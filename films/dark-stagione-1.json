@@ -1,0 +1,173 @@
+{
+  "formato": "spiegato",
+  "tipo": "serie",
+  "titolo": "Dark",
+  "stagione": 1,
+  "regista": "Baran bo Odar e Jantje Friese",
+  "anno": 2017,
+  "palette": {
+    "chiaro": "#E4E7E1",
+    "principale": "#3D5A4C",
+    "scuro": "#0A0E0D",
+    "accento": "#F2C230"
+  },
+  "linea_tempo": [1953, 1986, 2019, 2052],
+  "personaggi": [
+    { "nome": "Jonas", "ruolo": "un liceale di Winden", "oggetto": "impermeabile giallo" },
+    { "nome": "Michael", "ruolo": "il padre di Jonas", "oggetto": "busta chiusa con sigillo di ceralacca" },
+    { "nome": "Mikkel", "ruolo": "un bambino di 10 anni", "oggetto": "mazzo di carte da prestigiatore" },
+    { "nome": "Martha", "ruolo": "la ragazza che piace a Jonas, sorella di Mikkel", "oggetto": "gomitolo di filo rosso" },
+    { "nome": "Ines", "ruolo": "un'infermiera", "oggetto": "cuffietta da infermiera e cartella clinica" },
+    { "nome": "Noah", "ruolo": "un uomo vestito da prete", "oggetto": "colletto bianco da prete" },
+    { "nome": "Lo straniero", "ruolo": "un uomo misterioso", "oggetto": "zaino di tela con un apparecchio di ottone" },
+    { "nome": "Tannhaus", "ruolo": "l'orologiaio di Winden", "oggetto": "orologio da taschino aperto" },
+    { "nome": "Ulrich", "ruolo": "il padre di Mikkel, poliziotto", "oggetto": "distintivo e torcia da poliziotto" }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Una grotta. Tre epoche. Un bambino sparito.",
+    "immagine": "Sigla 'Spiegato semplice' (1,5 s, badge SERIE) e poi locandina: bosco di abeti di notte sotto la pioggia; in fondo le due torri della centrale nucleare che fumano; al centro l'ingresso di una grotta con una luce calda che pulsa dentro; su un ramo in primo piano un impermeabile giallo bagnato. Titolo grande in un carattere stretto e spaziato, 'STAGIONE 1' sotto. NON usare il logo ufficiale, il simbolo a tre archi intrecciati (triquetra) né le locandine con i volti.",
+    "voce": "Dark, stagione 1. Spiegato semplice."
+  },
+  "capitoli": [
+    {
+      "id": "winden",
+      "titolo": "Una città con un segreto",
+      "durata": 12,
+      "anno": 2019,
+      "personaggi": ["Jonas", "Michael"],
+      "scena": "Winden dall'alto in un giorno di pioggia: tetti bagnati, il bosco fitto tutto intorno, le torri della centrale che fumano; su un muro un manifesto 'SCOMPARSO' senza volto (solo sagoma vuota e scritta); in primo piano, sul davanzale di una camera, una busta chiusa con il sigillo di ceralacca e accanto l'impermeabile giallo.",
+      "sottotitoli": [
+        "Winden è una piccola città tedesca.",
+        "Ha un bosco, delle grotte e una centrale nucleare.",
+        "Nel 2019 lì spariscono dei bambini.",
+        "Jonas, un liceale, ha appena perso il padre, Michael.",
+        "Michael gli ha lasciato una lettera chiusa."
+      ]
+    },
+    {
+      "id": "mikkel",
+      "titolo": "Un bambino sparisce",
+      "durata": 13,
+      "anno": 2019,
+      "personaggi": ["Martha", "Mikkel"],
+      "scena": "Bosco di notte, torce elettriche abbandonate a terra che illuminano i tronchi; l'ingresso della grotta dietro una rete; un gomitolo di filo rosso e un mazzo di carte sparpagliato sul sentiero; le luci delle torce tremolano e si spengono a scatti, un bagliore dalla grotta.",
+      "sottotitoli": [
+        "Una notte Jonas e i suoi amici vanno nel bosco.",
+        "Con loro c'è Mikkel, 10 anni, il fratellino di Martha,",
+        "la ragazza che piace a Jonas.",
+        "Si sente un rumore fortissimo, le luci impazziscono,",
+        "e Mikkel sparisce nel nulla."
+      ]
+    },
+    {
+      "id": "trentatre",
+      "titolo": "La regola dei 33 anni",
+      "durata": 14,
+      "anno": 1986,
+      "personaggi": [],
+      "scena": "Spaccato della grotta come un plastico: un lungo cunicolo di roccia che scende, con tre porte di ferro in fila, ognuna con una targa illuminata (1953, 1986, 2019); una luce calda che corre da una porta all'altra come la luce di un ascensore; gocce che cadono dal soffitto.",
+      "sottotitoli": [
+        "Nelle grotte c'è un passaggio segreto.",
+        "Chi lo attraversa nel 2019 sbuca nel 1986:",
+        "stesso posto, 33 anni prima.",
+        "È come un ascensore con tre piani:",
+        "1953, 1986 e 2019."
+      ]
+    },
+    {
+      "id": "michael",
+      "titolo": "Mikkel nel 1986",
+      "durata": 12,
+      "anno": 1986,
+      "personaggi": ["Ines"],
+      "scena": "Corridoio d'ospedale anni '80 di notte: piastrelle verdi, neon che sfarfalla, un letto vuoto con la coperta ripiegata; sul comodino il mazzo di carte, una cartella clinica con scritto 'bambino sconosciuto' e una cuffietta da infermiera; dalla finestra, le torri della centrale.",
+      "sottotitoli": [
+        "Mikkel è finito proprio lì, nel 1986.",
+        "Non sa tornare indietro, e nessuno gli crede.",
+        "Lo porta a casa Ines, un'infermiera, che lo adotta.",
+        "Gli dà un nome nuovo: Michael.",
+        "Cresce, si sposa e ha un figlio."
+      ]
+    },
+    {
+      "id": "padre",
+      "titolo": "Il colpo di scena",
+      "durata": 13,
+      "anno": 2019,
+      "personaggi": [],
+      "scena": "La busta con il sigillo ora aperta su una scrivania, la lettera spiegata (righe illeggibili, solo tratti); accanto due oggetti uniti da un filo luminoso: il mazzo di carte da bambino e l'impermeabile giallo; il filo rosso del gomitolo si annoda intorno a entrambi formando un cerchio.",
+      "sottotitoli": [
+        "Quel figlio è Jonas.",
+        "Michael, il padre di Jonas, era Mikkel, il bambino sparito.",
+        "Lo rivela la sua lettera.",
+        "Quindi Martha, la ragazza che Jonas ama, è sua zia.",
+        "E se Jonas riporta Mikkel a casa, lui non nascerà mai."
+      ]
+    },
+    {
+      "id": "noah",
+      "titolo": "Chi rapisce i bambini",
+      "durata": 12,
+      "anno": 1986,
+      "personaggi": ["Noah"],
+      "scena": "Bunker nel bosco: una porta di metallo arrugginita tra le felci; dentro, una stanza di cemento con una sedia di ferro piena di cavi, bobine e lampadine; su un gancio un colletto bianco da prete; le lampadine si accendono una dopo l'altra con scintille e ronzio.",
+      "sottotitoli": [
+        "Ma chi ha preso gli altri bambini?",
+        "Noah, un uomo vestito da prete.",
+        "In un bunker nel bosco ha costruito una sedia che fa viaggiare nel tempo.",
+        "La prova sui bambini rapiti: molti non sopravvivono."
+      ]
+    },
+    {
+      "id": "straniero",
+      "titolo": "Il misterioso straniero",
+      "durata": 11,
+      "anno": 2019,
+      "personaggi": ["Lo straniero", "Tannhaus"],
+      "scena": "Bottega di orologiaio piena di pendoli e ingranaggi, tutti che ticchettano; sul bancone uno zaino di tela aperto con dentro un apparecchio di ottone a sfere e manopole che si illumina; un orologio da taschino aperto; fuori dalla vetrina la pioggia e una camera d'albergo con la finestra accesa.",
+      "sottotitoli": [
+        "Intanto in città arriva uno straniero.",
+        "Porta un apparecchio costruito da Tannhaus, un orologiaio di Winden.",
+        "Vuole distruggere il passaggio per sempre.",
+        "Chi è? È Jonas, da adulto, venuto dal futuro."
+      ]
+    },
+    {
+      "id": "scelta",
+      "titolo": "La scelta di Jonas",
+      "durata": 13,
+      "anno": 1953,
+      "personaggi": ["Ulrich"],
+      "scena": "Biforcazione nel cunicolo della grotta: a sinistra una porta socchiusa con luce calda e il mazzo di carte sulla soglia (1986), a destra una porta da cui escono foglie secche e l'ombra di una vecchia cella con le sbarre (1953); a terra un distintivo da poliziotto e una torcia accesa.",
+      "sottotitoli": [
+        "Jonas va nel 1986 e trova Mikkel.",
+        "Potrebbe riportarlo a casa, ma sceglie di no:",
+        "altrimenti lui stesso non esisterebbe.",
+        "Ulrich, il papà poliziotto di Mikkel, entra nelle grotte,",
+        "ma sbuca nel 1953 e finisce in prigione."
+      ]
+    },
+    {
+      "id": "fine",
+      "titolo": "Come finisce la stagione",
+      "durata": 12,
+      "anno": 2052,
+      "personaggi": [],
+      "scena": "Prima l'apparecchio di ottone che si accende dentro la grotta con un lampo bianco che si allarga a cerchio; poi lo stesso bosco nel 2052: alberi spogli, cenere che cade, la centrale crollata, una grande sfera nera che fluttua sopra le rovine.",
+      "sottotitoli": [
+        "Lo straniero accende l'apparecchio per chiudere il passaggio.",
+        "Ma è proprio così che il passaggio si apre:",
+        "il cerchio ricomincia.",
+        "Noah cattura Jonas e lo mette sulla sedia.",
+        "Jonas si risveglia nel 2052, in una Winden distrutta."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "In una frase: a Winden passato e futuro sono un cerchio.",
+    "immagine": "La linea del tempo completa (1953 · 1986 · 2019 · 2052) che si chiude ad anello sopra il bosco di notte, con l'impermeabile giallo al centro; scritta 'Stagione 2 spiegata: prossimamente'; riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina'."
+  },
+  "musica": "Originale e strumentale: droni elettronici gravi, archi lenti e un ticchettio di orologio che fa da metronomo; un motivo di quattro note che torna uguale in ogni capitolo (il cerchio), più cupo nel bunker e spezzato nel 2052; niente brani o motivi della serie."
+}
