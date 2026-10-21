@@ -9,6 +9,7 @@ import { Messaggi } from './Messaggi';
 import { Ghiaccio } from './Ghiaccio';
 import { Aggancio } from './Aggancio';
 import { BucoNero } from './BucoNero';
+import { Orologio } from './Orologio';
 
 // Scene di Interstellar, per id del capitolo (films/interstellar.json).
 export const INTERSTELLAR_SCENES: Record<string, SceneDef> = {
@@ -22,4 +23,5 @@ export const INTERSTELLAR_SCENES: Record<string, SceneDef> = {
   ghiaccio: { Component: Ghiaccio, title: { top: 400, size: 88, dark: true } },
   aggancio: { Component: Aggancio, title: { top: 400, size: 92 } },
   buconero: { Component: BucoNero, title: { top: 400, size: 92 } },
+  orologio: { Component: Orologio, title: { top: 392, size: 108 } },
 };
