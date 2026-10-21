@@ -1,0 +1,25 @@
+{
+  "name": "riassunti-film",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Riassunti animati di film in 2 minuti (video verticali 1080x1920)",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "node scripts/render.mjs",
+    "prova": "node scripts/prova.mjs",
+    "musica": "node scripts/musica.mjs",
+    "voce": "node scripts/voce.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.536",
+    "@remotion/google-fonts": "^4.0.536",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.536"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.31",
+    "typescript": "^7.0.2"
+  }
+}

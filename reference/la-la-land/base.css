@@ -1,0 +1,15 @@
+#stage { --ground:#F6F1E9; --main:#6B4FA0; --second:#1C1838; --accent:#F2C14E; color:var(--second); font-family:var(--sans, system-ui, sans-serif) }
+.ground { position:absolute; inset:0; background:var(--second); overflow:hidden }
+.words { position:absolute; margin:0; display:flex; flex-direction:column; gap:12px } .words > * { margin:0 }
+.line { font-family:var(--display, var(--sans, system-ui, sans-serif)); font-size:104px; line-height:1; font-weight:800 }
+.full { position:absolute; inset:0; width:100%; height:100%; overflow:visible }
+.chap { position:absolute; left:50px; top:262px; display:flex; align-items:center; gap:14px; padding:10px 22px; border-radius:999px; background:color-mix(in srgb, var(--second) 70%, transparent); color:var(--ground); font-size:26px; font-weight:800; letter-spacing:.12em }
+.chap-dot { width:8px; height:8px; border-radius:50%; background:var(--accent) }
+.segs { position:absolute; left:0; top:0; width:1080px; display:flex; gap:4px }
+.seg { height:16px; background:color-mix(in srgb, var(--second) 55%, transparent); position:relative; overflow:hidden }
+.seg-fill { position:absolute; left:0; top:0; bottom:0; width:0; background:var(--accent) }
+.stitle { position:absolute; left:80px; margin:0 }
+.t-light { color:var(--ground); text-shadow:0 4px 0 var(--second) }
+.t-dark { color:var(--second) }
+.subs { position:absolute; left:60px; top:1270px; width:960px; height:220px }
+.sub { position:absolute; left:0; right:0; bottom:0; margin:0 auto; width:fit-content; max-width:960px; box-sizing:border-box; padding:12px 26px 14px; border-radius:16px; background:color-mix(in srgb, var(--second) 82%, transparent); color:var(--ground); font-size:46px; line-height:1.25; font-weight:800; text-align:center }

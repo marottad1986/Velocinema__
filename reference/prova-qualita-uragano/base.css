@@ -1,0 +1,6 @@
+#stage { --ground:#E9F0F2; --main:#3E7C87; --second:#15202B; --accent:#FF6B2C; color:var(--ground); font-family:var(--sans, system-ui, sans-serif) }
+.ground { position:absolute; inset:0; background:var(--second); overflow:hidden }
+.full { position:absolute; inset:0; width:100%; height:100% }
+.label { position:absolute; left:50px; top:262px; padding:12px 26px; border-radius:999px; background:color-mix(in srgb, var(--second) 80%, transparent); font-size:34px; font-weight:800; letter-spacing:.2em; margin:0 }
+.label b { color:var(--accent) }
+.stitle { position:absolute; left:80px; top:360px; margin:0; font-family:var(--display, var(--sans, system-ui, sans-serif)); font-size:100px; font-weight:800; line-height:1; color:var(--ground); text-shadow:0 4px 0 var(--second) }

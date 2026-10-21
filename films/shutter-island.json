@@ -1,0 +1,175 @@
+{
+  "titolo": "Shutter Island",
+  "regista": "Martin Scorsese",
+  "anno": 2010,
+  "palette": {
+    "chiaro": "#E9F0F2",
+    "principale": "#3E7C87",
+    "scuro": "#15202B",
+    "accento": "#FF6B2C"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Una fuga impossibile. Un'isola senza uscita.",
+    "immagine": "Notte e tempesta; cancello di ferro dell'ospedale in primo piano con un lucchetto arancione aperto al centro; dietro, l'isola con una finestra accesa. Titolo alto e stretto (Anton).",
+    "voce": "Shutter Island, di Martin Scorsese. Tutto in due minuti."
+  },
+  "capitoli": [
+    {
+      "id": "arrivo",
+      "titolo": "L'arrivo",
+      "durata": 9,
+      "scena": "Traghetto nella nebbia verso l'isola con faro e ospedale.",
+      "sottotitoli": [
+        "Boston, 1954.",
+        "Un traghetto nella nebbia.",
+        "A bordo, due sceriffi federali.",
+        "Teddy Daniels, veterano di guerra,",
+        "con una moglie morta che non dimentica.",
+        "E Chuck, il collega nuovo."
+      ]
+    },
+    {
+      "id": "ospedale",
+      "titolo": "Ashecliffe",
+      "durata": 9,
+      "scena": "Cancello dell'ospedale che si apre, torretta con faro di ricerca, recinzioni di notte.",
+      "sottotitoli": [
+        "Destinazione: Ashecliffe,",
+        "ospedale per criminali psichiatrici.",
+        "Guardie, recinzioni, il padiglione C",
+        "per i più pericolosi.",
+        "Le pistole si consegnano all'ingresso.",
+        "Il direttore, il dottor Cawley, sorride. Troppo."
+      ]
+    },
+    {
+      "id": "cella",
+      "titolo": "La cella vuota",
+      "durata": 11,
+      "scena": "Cella chiusa a chiave, branda, scarpe sotto la branda, lampo dalla finestra con sbarre.",
+      "sottotitoli": [
+        "Il caso: una fuga impossibile.",
+        "Rachel Solando.",
+        "Ha annegato i suoi tre figli.",
+        "Stanotte è sparita.",
+        "La cella era chiusa dall'esterno.",
+        "Le guardie non si sono mosse.",
+        "E le scarpe? Ancora sotto la branda.",
+        "Rachel è scalza. Su un'isola."
+      ]
+    },
+    {
+      "id": "biglietto",
+      "titolo": "Il biglietto",
+      "durata": 9,
+      "scena": "Una piastrella del pavimento si solleva e appare un biglietto: 'La legge del 4 – Chi è il 67?'.",
+      "sottotitoli": [
+        "Sotto il pavimento, un biglietto.",
+        "«La legge del 4. Chi è il 67?»",
+        "Ma i pazienti sono 66.",
+        "Qualcuno manca.",
+        "I medici tacciono.",
+        "Cawley nega le cartelle cliniche."
+      ]
+    },
+    {
+      "id": "studio",
+      "titolo": "Lo studio del direttore",
+      "durata": 8,
+      "scena": "Studio con giradischi, pillole che cadono, pipa fumante, pioggia alla finestra.",
+      "sottotitoli": [
+        "Teddy ha emicranie violente.",
+        "Cawley gli offre pillole e sigarette.",
+        "Di notte, gli incubi. La guerra.",
+        "E sua moglie, Dolores: Rachel è ancora qui."
+      ]
+    },
+    {
+      "id": "incendio",
+      "titolo": "L'incendio",
+      "durata": 10,
+      "scena": "Finestra di un palazzo in fiamme di notte; scatola di fiammiferi 'A. Laeddis' che entra in scena.",
+      "sottotitoli": [
+        "Dolores è morta in un incendio.",
+        "Teddy è sicuro: l'ha appiccato",
+        "Andrew Laeddis, il custode.",
+        "Laeddis è rinchiuso qui.",
+        "Teddy è venuto per lui."
+      ]
+    },
+    {
+      "id": "uragano",
+      "titolo": "L'uragano",
+      "durata": 10,
+      "scena": "Faro nella tempesta con fascio rotante, onde e spruzzi; un cappello vola via dagli scogli.",
+      "sottotitoli": [
+        "Poi l'uragano. Salta la corrente.",
+        "Teddy punta al faro: lì, pensa, li operano.",
+        "Corre con Chuck sulla scogliera.",
+        "Si separano.",
+        "Teddy scende tra gli scogli a cercarlo."
+      ]
+    },
+    {
+      "id": "grotta",
+      "titolo": "La grotta",
+      "durata": 9,
+      "scena": "Grotta con fuoco acceso, coperta e tazza; tempesta fuori dall'apertura.",
+      "sottotitoli": [
+        "Niente Chuck.",
+        "Solo una grotta, e una donna.",
+        "Dice di essere la vera Rachel.",
+        "«Ti drogano. Vogliono farti diventare un paziente.»",
+        "E Chuck? «Sei arrivato da solo.»"
+      ]
+    },
+    {
+      "id": "lavagna",
+      "titolo": "Il colpo di scena",
+      "durata": 14,
+      "scena": "Interno del faro: lavagna dove i nomi vengono scritti a gesso lettera per lettera (EDWARD DANIELS → ANDREW LAEDDIS, RACHEL SOLANDO → DOLORES CHANAL); scrivania con lampada.",
+      "sottotitoli": [
+        "Teddy entra nel faro.",
+        "Solo Cawley, e una lavagna.",
+        "Edward Daniels: anagramma di Andrew Laeddis.",
+        "Rachel Solando: anagramma di Dolores Chanal,",
+        "sua moglie.",
+        "Teddy non esiste.",
+        "Il paziente 67 è lui. Da due anni."
+      ]
+    },
+    {
+      "id": "verita",
+      "titolo": "La verità",
+      "durata": 12,
+      "scena": "Il cappello cade dall'attaccapanni e appare un camice; cartella clinica 'Paziente n. 67 – Andrew Laeddis', foto della casa sul lago, timbro 'Ultima prova'.",
+      "sottotitoli": [
+        "Chuck è il dottor Sheehan,",
+        "il suo psichiatra.",
+        "L'indagine? Una recita.",
+        "Dolores aveva annegato i loro tre figli nel lago.",
+        "Lui le ha sparato.",
+        "Se non ricorda: lobotomia."
+      ]
+    },
+    {
+      "id": "alba",
+      "titolo": "All'alba",
+      "durata": 11,
+      "scena": "Gradini all'alba, cappello lasciato, impronte che compaiono verso il faro, gabbiani.",
+      "sottotitoli": [
+        "All'alba chiama il medico «Chuck».",
+        "Sembra ricaduto.",
+        "Lui chiede: meglio vivere da mostro,",
+        "o morire da uomo per bene?",
+        "E si avvia verso il faro. Forse ha scelto."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Alba sul mare, faro lontano, cappello sugli scogli; 'THE END' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo film arriva presto.'"
+  },
+  "musica": "Originale strumentale, tesa e discreta sotto la voce; effetti su lampo, lucchetto, vento, anagrammi, timbro."
+}

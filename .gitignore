@@ -1,0 +1,6 @@
+node_modules/
+out/
+.remotion/
+audio/**/*.wav
+audio/**/*.mp3
+audio/**/*.m4a

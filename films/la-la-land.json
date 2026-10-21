@@ -1,0 +1,166 @@
+{
+  "titolo": "La La Land",
+  "regista": "Damien Chazelle",
+  "anno": 2016,
+  "palette": {
+    "chiaro": "#F6F1E9",
+    "principale": "#6B4FA0",
+    "scuro": "#1C1838",
+    "accento": "#F2C14E"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Una città di sogni. Due sognatori. Una sola scelta.",
+    "immagine": "Cielo giallo e corallo al tramonto; tastiera di pianoforte gigante che corre come una strada verso il sole sopra lo skyline; note che fluttuano. NON usare cielo viola con lampione e coppia che balla (locandina ufficiale).",
+    "voce": "La La Land, di Damien Chazelle. Tutto in due minuti."
+  },
+  "capitoli": [
+    {
+      "id": "ingorgo",
+      "titolo": "L'ingorgo",
+      "durata": 9,
+      "scena": "Autostrada bloccata sotto il sole, palme, auto colorate in coda, onde di clacson.",
+      "sottotitoli": [
+        "Los Angeles.",
+        "Un ingorgo infinito in autostrada.",
+        "Mia sogna di fare l'attrice.",
+        "Sebastian sogna un locale jazz tutto suo.",
+        "Lui le suona il clacson. Lei lo manda a quel paese.",
+        "Primo incontro: un disastro."
+      ]
+    },
+    {
+      "id": "caffe",
+      "titolo": "I provini",
+      "durata": 9,
+      "scena": "Bancone del caffè negli studi cinematografici, tazza fumante, copione con timbro 'NO'.",
+      "sottotitoli": [
+        "Mia serve caffè negli studi cinematografici.",
+        "Fa un provino dopo l'altro.",
+        "La interrompono, la ignorano.",
+        "Ogni sera torna a casa con un no."
+      ]
+    },
+    {
+      "id": "piano",
+      "titolo": "Il pianoforte",
+      "durata": 11,
+      "scena": "Ristorante di notte con luci di Natale, pianoforte a coda sotto un faro, note che salgono.",
+      "sottotitoli": [
+        "Una notte sente un pianoforte da un ristorante.",
+        "È Sebastian.",
+        "Doveva suonare canzoni di Natale.",
+        "Invece suona il suo jazz.",
+        "Il proprietario lo licenzia.",
+        "Mia vuole fargli i complimenti.",
+        "Lui la scansa e se ne va."
+      ]
+    },
+    {
+      "id": "collina",
+      "titolo": "La collina",
+      "durata": 11,
+      "scena": "Tramonto sulla città, lampione che si accende, scarpe da tip tap sulla panchina, stelle che compaiono.",
+      "sottotitoli": [
+        "Si rincontrano a una festa:",
+        "lui suona in una cover band anni '80.",
+        "Al tramonto, su una collina sopra la città,",
+        "giurano di non piacersi.",
+        "E intanto ballano il tip tap."
+      ]
+    },
+    {
+      "id": "jazz",
+      "titolo": "Il jazz club",
+      "durata": 9,
+      "scena": "Insegna al neon JAZZ, contrabbasso, sassofono, batteria, faro sul palco.",
+      "sottotitoli": [
+        "Sebastian la porta in un jazz club.",
+        "Le spiega perché il jazz va salvato.",
+        "Lei molla il fidanzato a metà cena",
+        "e lo raggiunge al cinema."
+      ]
+    },
+    {
+      "id": "osservatorio",
+      "titolo": "L'osservatorio",
+      "durata": 11,
+      "scena": "Cupola del planetario con stelle che ruotano, proiettore stellare, stella cadente.",
+      "sottotitoli": [
+        "La pellicola si brucia.",
+        "Allora corrono all'osservatorio.",
+        "Nel planetario, tra le stelle,",
+        "ballano sospesi nel vuoto.",
+        "È il primo bacio.",
+        "E l'inizio della loro storia."
+      ]
+    },
+    {
+      "id": "sogno",
+      "titolo": "I sogni",
+      "durata": 9,
+      "scena": "Appartamento di notte: macchina da scrivere, pianoforte verticale, bozzetto 'SEB'S' su un tovagliolo.",
+      "sottotitoli": [
+        "Vanno a vivere insieme.",
+        "Lui la convince a scrivere uno spettacolo tutto suo.",
+        "Lei lo spinge ad aprire il suo locale."
+      ]
+    },
+    {
+      "id": "band",
+      "titolo": "La band",
+      "durata": 10,
+      "scena": "Palco da concerto con fasci di luce colorati, tastiere, pubblico anonimo.",
+      "sottotitoli": [
+        "Ma servono soldi.",
+        "Sebastian entra nella band di un amico.",
+        "Musica che non ama, ma che paga.",
+        "Tour, successo, mesi lontano."
+      ]
+    },
+    {
+      "id": "prima",
+      "titolo": "La prima",
+      "durata": 10,
+      "scena": "Piccolo teatro con sipario rosso, sgabello vuoto sotto il faro, poltrone vuote.",
+      "sottotitoli": [
+        "A cena litigano.",
+        "Poi la sera dello spettacolo di Mia.",
+        "Sala quasi vuota. Sebastian non c'è.",
+        "Mia è distrutta. Lascia Los Angeles."
+      ]
+    },
+    {
+      "id": "audizione",
+      "titolo": "Il provino",
+      "durata": 12,
+      "scena": "Sala provini, sgabello sotto la luce su una X di nastro; arriva una cartolina di Parigi.",
+      "sottotitoli": [
+        "Una direttrice di casting ha visto lo spettacolo.",
+        "Sebastian va a riprendere Mia in Nevada",
+        "e la convince a fare il provino.",
+        "Lei canta dei sognatori, come sua zia.",
+        "Ottiene la parte: si gira a Parigi."
+      ]
+    },
+    {
+      "id": "epilogo",
+      "titolo": "Cinque anni dopo",
+      "durata": 11,
+      "scena": "Muro di mattoni di notte, insegna al neon SEB'S che si accende, pianoforte alla finestra, note.",
+      "sottotitoli": [
+        "Cinque anni dopo.",
+        "Mia è una star, sposata con un altro.",
+        "Una sera entra per caso nel locale di Sebastian.",
+        "Lui suona la loro canzone.",
+        "Immaginano la vita che avrebbero potuto avere.",
+        "Poi, un sorriso."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Versione notturna della copertina (tastiera-strada sotto luna e stelle); 'The End' giallo; riquadro in alto con 'Ti è piaciuto?', 'Metti like', 'Segui la pagina', 'Il prossimo film arriva presto.'"
+  },
+  "musica": "Jazz originale (piano elettrico, contrabbasso walking, spazzole, vibrafono); niente brani del film."
+}
