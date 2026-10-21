@@ -8,6 +8,7 @@ import { Onde } from './Onde';
 import { Messaggi } from './Messaggi';
 import { Ghiaccio } from './Ghiaccio';
 import { Aggancio } from './Aggancio';
+import { BucoNero } from './BucoNero';
 
 // Scene di Interstellar, per id del capitolo (films/interstellar.json).
 export const INTERSTELLAR_SCENES: Record<string, SceneDef> = {
@@ -20,4 +21,5 @@ export const INTERSTELLAR_SCENES: Record<string, SceneDef> = {
   messaggi: { Component: Messaggi, title: { top: 400, size: 86 } },
   ghiaccio: { Component: Ghiaccio, title: { top: 400, size: 88, dark: true } },
   aggancio: { Component: Aggancio, title: { top: 400, size: 92 } },
+  buconero: { Component: BucoNero, title: { top: 400, size: 92 } },
 };
