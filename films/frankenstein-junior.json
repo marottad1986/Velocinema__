@@ -1,0 +1,169 @@
+{
+  "titolo": "Frankenstein Junior",
+  "regista": "Mel Brooks",
+  "anno": 1974,
+  "palette": {
+    "chiaro": "#ECE8DF",
+    "principale": "#5E6B75",
+    "scuro": "#141619",
+    "accento": "#8EF0C8"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Un castello. Un temporale. Si può fare!",
+    "immagine": "Notte di temporale in quasi bianco e nero (omaggio al film): castello su uno sperone di roccia, un fulmine verde-acqua colpisce il parafulmine della torre; in primo piano, su un tavolo da laboratorio con leve e bobine, un cilindro e un bastone da tip tap. Titolo in carattere horror anni '30 (es. Creepster). NON usare volti né il protagonista con la Creatura (locandina ufficiale).",
+    "voce": "Frankenstein Junior, di Mel Brooks. Tutto in due minuti."
+  },
+  "capitoli": [
+    {
+      "id": "lezione",
+      "titolo": "Frankenstin",
+      "durata": 10,
+      "scena": "Aula di anatomia a gradoni, lavagna con il disegno di un cervello e la scritta 'FRANKENSTIN' sottolineata due volte; sulla cattedra un bisturi e una lettera con sigillo di ceralacca 'Testamento – Transilvania'.",
+      "sottotitoli": [
+        "Stati Uniti, anni '30.",
+        "Il dottor Frederick Frankenstein insegna medicina.",
+        "E pretende che si pronunci «Frankenstin».",
+        "Del nonno, quello del mostro, si vergogna.",
+        "Poi arriva un'eredità: un castello in Transilvania."
+      ]
+    },
+    {
+      "id": "stazione",
+      "titolo": "Lupo ululà",
+      "durata": 10,
+      "scena": "Stazioncina di montagna di notte, lanterna sul binario, carro di fieno con un cavallo; luna piena, sagoma di un lupo che ulula sul crinale, il castello lontano in cima alla collina.",
+      "sottotitoli": [
+        "Alla stazione lo aspetta Aigor,",
+        "il servo con la gobba.",
+        "Una gobba che cambia lato a ogni scena.",
+        "Sul carro del fieno c'è Inga, la nuova assistente.",
+        "Lupo ululà. Castello ululì."
+      ]
+    },
+    {
+      "id": "castello",
+      "titolo": "Frau Blücher",
+      "durata": 9,
+      "scena": "Enorme portone del castello con due batacchi giganti, candelabro acceso, scalone con ragnatele; dalla finestra della stalla, criniere di cavalli che si impennano a ogni lampo.",
+      "sottotitoli": [
+        "Al castello, la governante:",
+        "Frau Blücher.",
+        "Ogni volta che qualcuno la nomina,",
+        "i cavalli nitriscono di terrore.",
+        "Di notte, un violino suona da solo."
+      ]
+    },
+    {
+      "id": "libreria",
+      "titolo": "Si può fare!",
+      "durata": 11,
+      "scena": "Libreria che ruota su sé stessa rivelando una scala a chiocciola che scende nel buio; candela nel portacandele; in basso, una scrivania con il diario aperto 'Come l'ho fatto' e un mozzicone di candela che si consuma.",
+      "sottotitoli": [
+        "Dietro una libreria, un passaggio segreto.",
+        "«Rimetti a posto la candela!»",
+        "Sotto, il laboratorio del nonno",
+        "e il suo diario: «Come l'ho fatto».",
+        "Frederick legge tutta la notte. Poi grida:",
+        "«Si può fare!»"
+      ]
+    },
+    {
+      "id": "cervello",
+      "titolo": "Abby Normal",
+      "durata": 10,
+      "scena": "Deposito di barattoli sotto vetro al chiaro di luna, uno a terra in frantumi; sul ripiano un barattolo con l'etichetta 'ABNORMAL'; fuori dalla finestra, un patibolo vuoto sotto la pioggia.",
+      "sottotitoli": [
+        "Serve un corpo:",
+        "lo prendono dal patibolo, di notte.",
+        "Serve un cervello: quello di un grande scienziato.",
+        "Aigor fa cadere il barattolo.",
+        "Ne prende un altro. L'etichetta dice: Abby Normal."
+      ]
+    },
+    {
+      "id": "creazione",
+      "titolo": "È vivo!",
+      "durata": 11,
+      "scena": "Laboratorio nella torre durante il temporale: tavolo operatorio sollevato verso il tetto aperto, bobine, scintille, leve, fulmini verde-acqua; poi il tavolo riabbassato e le cinghie di cuoio che si tendono e saltano.",
+      "sottotitoli": [
+        "Notte di tempesta.",
+        "Il tavolo sale verso il cielo, tra i fulmini.",
+        "Torna giù. Niente.",
+        "Frederick si arrende.",
+        "Poi le cinghie si tendono.",
+        "È vivo! Si poteva fare davvero."
+      ]
+    },
+    {
+      "id": "eremita",
+      "titolo": "L'eremita",
+      "durata": 10,
+      "scena": "Capanna di legno nel bosco: zuppa rovesciata e fumante sul tavolo, una tazza in frantumi, un sigaro spento accanto a un fiammifero acceso; un violino appeso alla parete.",
+      "sottotitoli": [
+        "La Creatura ha paura del fuoco.",
+        "Frau Blücher la libera col violino.",
+        "In una capanna trova un eremita cieco:",
+        "zuppa bollente, tazza in frantumi,",
+        "sigaro mai acceso."
+      ]
+    },
+    {
+      "id": "teatro",
+      "titolo": "Lo spettacolo",
+      "durata": 11,
+      "scena": "Palcoscenico di un teatro anni '30: sipario di velluto, due cilindri e due bastoni in scena, scritta luminosa 'PUTTIN' ON THE RITZ'; un riflettore che esplode in una pioggia di scintille; catene sul palco.",
+      "sottotitoli": [
+        "Frederick la riporta a casa con la musica",
+        "e decide di presentarla al mondo.",
+        "Teatro, frac e cilindro:",
+        "un numero di tip tap.",
+        "Poi esplode un riflettore.",
+        "La Creatura si spaventa e finisce in catene."
+      ]
+    },
+    {
+      "id": "elizabeth",
+      "titolo": "Elizabeth",
+      "durata": 10,
+      "scena": "Stanza da sposa nel castello: valigie e cappelliere appena arrivate, una parrucca bianca e cotonata sul manichino, un lampo che illumina una finestra spalancata con le tende al vento e le catene spezzate a terra.",
+      "sottotitoli": [
+        "Arriva Elizabeth, la fidanzata.",
+        "Non si lascia toccare: le si rovina il trucco.",
+        "La Creatura spezza le catene e la rapisce.",
+        "E lei, a sorpresa,",
+        "si mette a cantare."
+      ]
+    },
+    {
+      "id": "assedio",
+      "titolo": "L'assedio",
+      "durata": 10,
+      "scena": "Il castello di notte assediato da decine di torce in fila sulla collina; nel laboratorio due elmetti collegati da cavi, una leva abbassata e una scarica verde-acqua tra le bobine.",
+      "sottotitoli": [
+        "Il villaggio assalta il castello con le torce.",
+        "Frederick richiama la Creatura col violino",
+        "e le cede metà del suo cervello.",
+        "La Creatura parla. E calma tutti."
+      ]
+    },
+    {
+      "id": "nozze",
+      "titolo": "Lieto fine",
+      "durata": 10,
+      "scena": "Mattina luminosa sul castello: confetti e fiori sui gradini, una poltrona con il Wall Street Journal aperto, occhiali da lettura e una tazza fumante; sul davanzale due fedi nuziali.",
+      "sottotitoli": [
+        "Lieto fine per tutti.",
+        "Elizabeth sposa la Creatura,",
+        "che ora legge il Wall Street Journal.",
+        "Frederick sposa Inga.",
+        "E dallo scambio, pare, ci ha guadagnato anche lui."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Il castello della copertina all'alba dopo il temporale, parafulmine fumante, cilindro e bastone appoggiati sui gradini; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo film arriva presto.'"
+  },
+  "musica": "Originale e strumentale: valzer gotico per violino solo (il tema che calma la Creatura), organo e timpani per i temporali, un breve intermezzo swing con tip tap per lo spettacolo; effetti su fulmini, nitriti, barattolo rotto, riflettore che esplode; niente brani del film."
+}
