@@ -67,8 +67,8 @@ export const ChapterOverlay: React.FC<Props> = ({ film, index, t, chapterStart, 
         <span style={{ fontVariantNumeric: 'tabular-nums' }}>{fmtTime(T)} / {fmtTime(total)}</span>
       </div>
 
-      {film.linea_tempo && <Timeline film={film} index={index} t={t} />}
-      <CharacterTags film={film} index={index} t={t} times={times} />
+      {film.linea_tempo && !film.schema && <Timeline film={film} index={index} t={t} />}
+      {!film.schema && <CharacterTags film={film} index={index} t={t} times={times} />}
 
       <h2
         style={{

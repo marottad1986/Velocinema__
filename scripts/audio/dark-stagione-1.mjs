@@ -1,8 +1,8 @@
 // Colonna sonora originale di Dark, stagione 1 (formato "Spiegato semplice"): droni elettronici gravi, archi lenti e un
 // ticchettio d'orologio che fa da metronomo. Il motivo è inventato qui: quattro note in Do minore (Do, Mi bemolle, Re,
 // Sol) che tornano sempre uguali, come il cerchio del racconto; cupo nel bunker, spezzato nel 2052. Niente brani o motivi
-// della serie. Effetti agganciati agli eventi delle scene in src/scenes/dark-stagione-1/.
-import { put, rng, note, drum, thunder, wind, whoosh, swell, thud, pop, crackle, chalk, metalThud, glassCrash, doorCreak, rainHiss, neonHum, FX } from './synth.mjs';
+// della serie. Effetti agganciati agli eventi della parete in src/scenes/dark-stagione-1/Parete.tsx.
+import { put, rng, note, drum, whoosh, swell, pop, rainHiss, FX } from './synth.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
 const TAU = Math.PI * 2;
@@ -132,32 +132,17 @@ export default (mix, T) => {
     }
   };
 
-  // ---- sezioni (tempi dal JSON)
-  // copertina dopo la sigla: drone e motivo, pioggia
+  // ---- sezioni (tempi dal JSON): la parete delle indagini si riempie, la musica cresce con lo schema
   sec(SIGLA, T.winden, { bpm: 66, drone: 36, mel: 44, bells: 26 });
-  // la città: orologio, motivo, archi leggeri
-  sec(T.winden, T.mikkel, { bpm: 66, drone: 34, mel: 42, ticks: 30, str: 26 });
-  // il bosco: tensione che sale, poi il rombo
-  sec(T.mikkel, C('mikkel', 3), { bpm: 66, drone: 40, ticks: 30, mel: 38, keep: 0.75, str: 30 });
-  sec(C('mikkel', 3), T.trentatre, { bpm: 66, drone: 52, str: 40, pulse: 40 });
-  // la regola dei 33 anni: chiara, campanelle, il motivo in alto
+  sec(T.winden, T.mikkel, { bpm: 66, drone: 36, mel: 42, ticks: 30, pad: 30 });
+  sec(T.mikkel, T.trentatre, { bpm: 66, drone: 40, ticks: 30, mel: 40, str: 30 });
   sec(T.trentatre, T.michael, { bpm: 66, drone: 42, mel: 50, oct: 12, bells: 36, ticks: 30, pad: 44 });
-  // 1986: ospedale, pad freddo e motivo spoglio
-  sec(T.michael, T.padre, { bpm: 62, drone: 40, pad: 44, mel: 46, keep: 0.7, ticks: 28 });
-  // il colpo di scena: archi pieni, il motivo che si chiude
-  sec(T.padre, C('padre', 4), { bpm: 66, drone: 36, str: 40, mel: 46, ticks: 28 });
-  sec(C('padre', 4), T.noah, { bpm: 66, drone: 42, str: 48, mel: 50, bells: 34, pulse: 30 });
-  // il bunker: cupo, pulsazione sorda, motivo un'ottava sotto
+  sec(T.michael, T.noah, { bpm: 66, drone: 40, str: 40, mel: 46, ticks: 28 });
   sec(T.noah, T.straniero, { bpm: 60, drone: 50, mel: 40, oct: -12, pulse: 40, str: 30 });
-  // la bottega: tutti gli orologi, poi accelerano
-  sec(T.straniero, C('straniero', 3), { bpm: 70, drone: 34, ticks: 40, mel: 42, pad: 30 });
-  sec(C('straniero', 3), T.scelta, { bpm: 140, drone: 40, ticks: 46, str: 40 });
-  // la scelta: archi sospesi, poi il 1953
-  sec(T.scelta, C('scelta', 3), { bpm: 64, drone: 34, str: 38, mel: 44, ticks: 26 });
-  sec(C('scelta', 3), T.fine, { bpm: 64, drone: 46, str: 36, pulse: 34 });
-  // la fine: il cerchio, poi il 2052 con il motivo spezzato
-  sec(T.fine, C('fine', 3) + 1.2, { bpm: 66, drone: 46, str: 44, mel: 48, bells: 30, pulse: 36 });
-  sec(C('fine', 3) + 1.2, T.finale, { bpm: 54, drone: 54, mel: 36, oct: -12, broken: true, keep: 0.6 });
+  sec(T.straniero, T.scelta, { bpm: 70, drone: 36, ticks: 40, mel: 42, pad: 34 });
+  sec(T.scelta, T.inizio, { bpm: 64, drone: 40, str: 38, mel: 44, ticks: 26 });
+  sec(T.inizio, T.fine, { bpm: 66, drone: 46, str: 44, mel: 48, bells: 34, pulse: 34 });
+  sec(T.fine, T.finale, { bpm: 54, drone: 54, mel: 36, oct: -12, broken: true, keep: 0.6 });
 
   // finale: il motivo intero in campanelle e un accordo di Do minore aperto
   const F = T.finale;
@@ -169,49 +154,12 @@ export default (mix, T) => {
   whoosh(mix, 0.15, 0.6, { vel: 40, lo: 600, hi: 3000 });
   pop(mix, 0.55, 40, { pitch: 5 });
   pop(mix, 0.85, 44, { pitch: 12 });
-  // copertina e città: pioggia
-  rainHiss(mix, SIGLA, T.mikkel, { power: 0.3, fade: 1 });
-  // città: manifesti, impermeabile, busta
-  [0, 0.3, 0.6].forEach((d) => pop(mix, C('winden', 2) + d + 0.2, 34, { pitch: -5 }));
-  bell(mix, 79, { t: C('winden', 3) + 0.2, vel: 36 });
-  bell(mix, 84, { t: C('winden', 4) + 0.2, vel: 34 });
-  // bosco: vento, rombo, lampo, carte risucchiate
-  wind(mix, T.mikkel, T.trentatre, { power: 0.25, fade: 1, center: 500, seed: 19 });
-  rumble(mix, C('mikkel', 3), T.trentatre - C('mikkel', 3) + 0.5, { vel: 34 });
-  whoosh(mix, C('mikkel', 4), 1.0, { vel: 50, lo: 200, hi: 3000 });
-  thunder(mix, C('mikkel', 4) + 0.3, 0.3, 9);
-  // grotta: la cabina che scende, il «-33», l'indicatore, le targhe
-  swell(mix, C('trentatre', 1) + 1.4, 1.2, { vel: 36 });
-  pop(mix, C('trentatre', 2) + 0.1, 40, { pitch: 3 });
-  bell(mix, 84, { t: C('trentatre', 3) + 0.1, vel: 40 });
-  [0, 0.7, 1.7].forEach((d, k) => bell(mix, [67, 72, 75][k], { t: C('trentatre', 4) + d, vel: 42 }));
-  // ospedale: ronzio del neon, la penna che scrive, l'impermeabile del figlio
-  neonHum(mix, T.michael, T.padre - T.michael, { vel: 28 });
-  [0, 0.25, 0.5, 0.75].forEach((d) => chalk(mix, C('michael', 3) + 0.4 + d, 26));
-  bell(mix, 79, { t: C('michael', 4) + 1.3, vel: 40 });
-  // lettera: busta che si apre, matita, il cerchio rosso
-  whoosh(mix, C('padre', 2), 0.5, { vel: 30, lo: 1500, hi: 5000 });
-  [0.3, 1.0, 1.2].forEach((d) => chalk(mix, C('padre', 1) + d, 24));
-  [0.4, 1.2].forEach((d) => chalk(mix, C('padre', 3) + d, 24));
-  swell(mix, C('padre', 4) + 1.6, 1.6, { vel: 40 });
-  // bunker: porta, scariche elettriche, lampadine che scoppiano
-  doorCreak(mix, T.noah + 0.1, 1.4, { vel: 40 });
-  crackle(mix, C('noah', 2) + 0.3, C('noah', 3) + 1.2, { vel: 36 });
-  thud(mix, C('noah', 2) + 2.0, 40, { bright: 3000 });
-  Array.from({ length: 9 }, (_, i) => pop(mix, C('noah', 3) + 0.2 + i * 0.12, 40, { pitch: 10 - i, pan: (i - 4) * 0.1 }));
-  glassCrash(mix, C('noah', 3) + 0.2, 40, 47);
-  // bottega: pioggia fuori, apparecchio che si accende, lancette che corrono
-  rainHiss(mix, T.straniero, T.scelta, { power: 0.25, fade: 0.8, seed: 63 });
-  swell(mix, C('straniero', 1) + 1, 1.0, { vel: 32 });
-  whoosh(mix, C('straniero', 3) + 0.4, 1.4, { vel: 44, lo: 300, hi: 4000 });
-  // bivio: porta del 1986, foglie, torcia che rotola, sbarre
-  doorCreak(mix, C('scelta', 0), 0.9, { vel: 34 });
-  wind(mix, C('scelta', 3) + 1, T.fine, { power: 0.25, fade: 0.6, center: 700, seed: 23 });
-  [0.5, 0.9, 1.3].forEach((d) => thud(mix, C('scelta', 3) + d, 26, { bright: 2500 }));
-  metalThud(mix, C('scelta', 4) + 0.85, 66);
-  // fine: l'apparecchio, l'anello, il lampo, il 2052
-  swell(mix, C('fine', 0) + 1.2, 1.0, { vel: 40 });
-  whoosh(mix, C('fine', 1), 1.4, { vel: 50, lo: 200, hi: 2500 });
-  thunder(mix, C('fine', 3) + 1.2, 0.45, 13);
-  wind(mix, C('fine', 3) + 1.3, T.finale + 2, { power: 0.45, fade: 1, center: 380, seed: 29 });
+  // pioggia fuori dalla stanza delle indagini, per tutto il video
+  rainHiss(mix, SIGLA, T.finale, { power: 0.22, fade: 1.2 });
+  // dove spariscono: rombo sotto la grotta
+  rumble(mix, C('mikkel', 2), 2.4, { vel: 34 });
+  // il passaggio: la linea gialla che sale, le grotte negli altri anni
+  swell(mix, C('trentatre', 0) + 1.6, 1.4, { vel: 40 });
+  [0.3, 0.8].forEach((d, k) => bell(mix, [72, 75][k], { t: C('trentatre', 1) + d, vel: 40 }));
+  [0, 0.5, 1.0].forEach((d, k) => bell(mix, [67, 72, 75][k], { t: C('trentatre', 2) + d, vel: 42 }));
 };

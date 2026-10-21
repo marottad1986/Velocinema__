@@ -19,6 +19,8 @@ export type Personaggio = { nome: string; ruolo: string; oggetto: string };
 export type FilmData = {
   titolo: string;
   formato?: 'riassunto' | 'spiegato';
+  /** Formato "spiegato" disegnato come un unico schema che si costruisce (niente linea del tempo né cartellini sopra). */
+  schema?: boolean;
   tipo?: 'film' | 'serie';
   stagione?: number;
   regista: string;
