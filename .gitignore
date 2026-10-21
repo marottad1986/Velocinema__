@@ -4,5 +4,3 @@ out/
 audio/**/*.wav
 audio/**/*.mp3
 audio/**/*.m4a
-voce-modello/
-.venv-voce/
