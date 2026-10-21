@@ -121,7 +121,7 @@ const Venere: React.FC<SceneProps> = ({ t, dur, cues }) => (
 );
 
 const Vortici: React.FC<SceneProps> = ({ t, dur }) => (
-  <Quadro opera={OPERA} t={t} chiavi={[{ t: 0, v: { ...P.vortice, h: 0.9 } }, { t: dur, v: { ...P.vortice, h: 0.5 } }]}>
+  <Quadro opera={OPERA} t={t} chiavi={[{ t: 0, v: { ...P.vortice, y: 0.44, h: 0.9 } }, { t: dur, v: { ...P.vortice, h: 0.5 } }]}>
     <Vortice aspect={A} t={t} {...P.vortice} r={0.16} giri={0.1} forza={0.4} da={0.5} />
     <Vortice aspect={A} t={t} {...P.vortice2} r={0.09} giri={0.12} forza={0.3} da={2} verso={-1} />
   </Quadro>
@@ -159,5 +159,5 @@ export const NOTTE_STELLATA_SCENES: Record<string, SceneDef> = {
   oggi: { Component: Oggi, title: { top: 400, size: 104 } },
 };
 
-export const Copertina = copertinaQuadro(OPERA, { ...P.luna, x: P.luna.x - 0.2, y: P.luna.y + 0.15, h: 1.2 });
+export const Copertina = copertinaQuadro(OPERA, { x: P.luna.x - 0.25, y: 0.5, h: 0.95 });
 export const Finale = finaleQuadro(OPERA);
