@@ -24,7 +24,7 @@
         "Los Angeles.",
         "Un ingorgo infinito in autostrada.",
         "Mia sogna di fare l'attrice.",
-        "Sebastian sogna un locale jazz tutto suo.",
+        "Sebastian, pianista, sogna un locale jazz.",
         "Lui le suona il clacson. Lei lo manda a quel paese.",
         "Primo incontro: un disastro."
       ]
@@ -35,8 +35,8 @@
       "durata": 9,
       "scena": "Bancone del caffè negli studi cinematografici, tazza fumante, copione con timbro 'NO'.",
       "sottotitoli": [
-        "Mia serve caffè negli studi cinematografici.",
-        "Fa un provino dopo l'altro.",
+        "Mia fa la barista negli studi di Hollywood.",
+        "E fa un provino dopo l'altro.",
         "La interrompono, la ignorano.",
         "Ogni sera torna a casa con un no."
       ]
@@ -47,7 +47,7 @@
       "durata": 11,
       "scena": "Ristorante di notte con luci di Natale, pianoforte a coda sotto un faro, note che salgono.",
       "sottotitoli": [
-        "Una notte sente un pianoforte da un ristorante.",
+        "Una sera sente un pianoforte da un ristorante.",
         "È Sebastian.",
         "Doveva suonare canzoni di Natale.",
         "Invece suona il suo jazz.",
@@ -63,7 +63,7 @@
       "scena": "Tramonto sulla città, lampione che si accende, scarpe da tip tap sulla panchina, stelle che compaiono.",
       "sottotitoli": [
         "Si rincontrano a una festa:",
-        "lui suona in una cover band anni '80.",
+        "lui suona in una band di cover anni '80.",
         "Al tramonto, su una collina sopra la città,",
         "giurano di non piacersi.",
         "E intanto ballano il tip tap."
@@ -77,8 +77,8 @@
       "sottotitoli": [
         "Sebastian la porta in un jazz club.",
         "Le spiega perché il jazz va salvato.",
-        "Lei molla il fidanzato a metà cena",
-        "e lo raggiunge al cinema."
+        "Mia ha un fidanzato: lo lascia a metà cena",
+        "e corre da Sebastian, al cinema."
       ]
     },
     {
@@ -87,7 +87,7 @@
       "durata": 11,
       "scena": "Cupola del planetario con stelle che ruotano, proiettore stellare, stella cadente.",
       "sottotitoli": [
-        "La pellicola si brucia.",
+        "La pellicola del film si brucia.",
         "Allora corrono all'osservatorio.",
         "Nel planetario, tra le stelle,",
         "ballano sospesi nel vuoto.",
@@ -103,7 +103,7 @@
       "sottotitoli": [
         "Vanno a vivere insieme.",
         "Lui la convince a scrivere uno spettacolo tutto suo.",
-        "Lei lo spinge ad aprire il suo locale."
+        "Lei lo spinge ad aprire il suo locale jazz."
       ]
     },
     {
@@ -112,10 +112,10 @@
       "durata": 10,
       "scena": "Palco da concerto con fasci di luce colorati, tastiere, pubblico anonimo.",
       "sottotitoli": [
-        "Ma servono soldi.",
+        "Ma per il locale servono soldi.",
         "Sebastian entra nella band di un amico.",
         "Musica che non ama, ma che paga.",
-        "Tour, successo, mesi lontano."
+        "Tour, successo, mesi lontano da Mia."
       ]
     },
     {
@@ -124,8 +124,8 @@
       "durata": 10,
       "scena": "Piccolo teatro con sipario rosso, sgabello vuoto sotto il faro, poltrone vuote.",
       "sottotitoli": [
-        "A cena litigano.",
-        "Poi la sera dello spettacolo di Mia.",
+        "Litigano: lei dice che ha tradito il suo sogno.",
+        "Poi arriva la sera dello spettacolo di Mia.",
         "Sala quasi vuota. Sebastian non c'è.",
         "Mia è distrutta. Lascia Los Angeles."
       ]
@@ -137,10 +137,10 @@
       "scena": "Sala provini, sgabello sotto la luce su una X di nastro; arriva una cartolina di Parigi.",
       "sottotitoli": [
         "Una direttrice di casting ha visto lo spettacolo.",
-        "Sebastian va a riprendere Mia in Nevada",
+        "Sebastian va a riprendere Mia",
         "e la convince a fare il provino.",
-        "Lei canta dei sognatori, come sua zia.",
-        "Ottiene la parte: si gira a Parigi."
+        "Lei canta di sua zia, una sognatrice.",
+        "Ottiene la parte, a Parigi. E i due si lasciano."
       ]
     },
     {
@@ -151,10 +151,10 @@
       "sottotitoli": [
         "Cinque anni dopo.",
         "Mia è una star, sposata con un altro.",
-        "Una sera entra per caso nel locale di Sebastian.",
+        "Una sera entra per caso nel suo locale.",
         "Lui suona la loro canzone.",
-        "Immaginano la vita che avrebbero potuto avere.",
-        "Poi, un sorriso."
+        "Immaginano la vita che avrebbero avuto.",
+        "Poi un sorriso, e ognuno per la sua strada."
       ]
     }
   ],

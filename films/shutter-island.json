@@ -23,10 +23,10 @@
       "sottotitoli": [
         "Boston, 1954.",
         "Un traghetto nella nebbia.",
-        "A bordo, due sceriffi federali.",
-        "Teddy Daniels, veterano di guerra,",
-        "con una moglie morta che non dimentica.",
-        "E Chuck, il collega nuovo."
+        "A bordo, due agenti federali.",
+        "Teddy Daniels, reduce di guerra,",
+        "segnato dalla morte della moglie.",
+        "E Chuck, il nuovo collega."
       ]
     },
     {
@@ -36,10 +36,10 @@
       "scena": "Cancello dell'ospedale che si apre, torretta con faro di ricerca, recinzioni di notte.",
       "sottotitoli": [
         "Destinazione: Ashecliffe,",
-        "ospedale per criminali psichiatrici.",
-        "Guardie, recinzioni, il padiglione C",
+        "manicomio per criminali, su un'isola.",
+        "Guardie, recinzioni, e il padiglione C",
         "per i più pericolosi.",
-        "Le pistole si consegnano all'ingresso.",
+        "Le pistole vanno consegnate.",
         "Il direttore, il dottor Cawley, sorride. Troppo."
       ]
     },
@@ -49,13 +49,13 @@
       "durata": 11,
       "scena": "Cella chiusa a chiave, branda, scarpe sotto la branda, lampo dalla finestra con sbarre.",
       "sottotitoli": [
-        "Il caso: una fuga impossibile.",
+        "Il caso: una paziente sparita.",
         "Rachel Solando.",
-        "Ha annegato i suoi tre figli.",
-        "Stanotte è sparita.",
-        "La cella era chiusa dall'esterno.",
-        "Le guardie non si sono mosse.",
-        "E le scarpe? Ancora sotto la branda.",
+        "Aveva annegato i suoi tre figli.",
+        "Stanotte è scomparsa.",
+        "La cella era chiusa da fuori.",
+        "Nessuna guardia l'ha vista.",
+        "E le scarpe? Ancora sotto il letto.",
         "Rachel è scalza. Su un'isola."
       ]
     },
@@ -68,9 +68,9 @@
         "Sotto il pavimento, un biglietto.",
         "«La legge del 4. Chi è il 67?»",
         "Ma i pazienti sono 66.",
-        "Qualcuno manca.",
+        "Uno è nascosto.",
         "I medici tacciono.",
-        "Cawley nega le cartelle cliniche."
+        "Cawley nasconde le cartelle."
       ]
     },
     {
@@ -79,10 +79,10 @@
       "durata": 8,
       "scena": "Studio con giradischi, pillole che cadono, pipa fumante, pioggia alla finestra.",
       "sottotitoli": [
-        "Teddy ha emicranie violente.",
-        "Cawley gli offre pillole e sigarette.",
-        "Di notte, gli incubi. La guerra.",
-        "E sua moglie, Dolores: Rachel è ancora qui."
+        "Teddy ha emicranie fortissime.",
+        "Cawley gli dà pillole e sigarette.",
+        "Di notte, incubi: la guerra.",
+        "E la moglie morta: «Rachel è ancora qui»."
       ]
     },
     {
@@ -91,9 +91,9 @@
       "durata": 10,
       "scena": "Finestra di un palazzo in fiamme di notte; scatola di fiammiferi 'A. Laeddis' che entra in scena.",
       "sottotitoli": [
-        "Dolores è morta in un incendio.",
+        "La moglie è morta in un incendio.",
         "Teddy è sicuro: l'ha appiccato",
-        "Andrew Laeddis, il custode.",
+        "Andrew Laeddis, un custode.",
         "Laeddis è rinchiuso qui.",
         "Teddy è venuto per lui."
       ]
@@ -105,9 +105,9 @@
       "scena": "Faro nella tempesta con fascio rotante, onde e spruzzi; un cappello vola via dagli scogli.",
       "sottotitoli": [
         "Poi l'uragano. Salta la corrente.",
-        "Teddy punta al faro: lì, pensa, li operano.",
-        "Corre con Chuck sulla scogliera.",
-        "Si separano.",
+        "Teddy sospetta: nel faro operano i pazienti.",
+        "Ci corre con Chuck sulla scogliera.",
+        "Si perdono di vista.",
         "Teddy scende tra gli scogli a cercarlo."
       ]
     },
@@ -118,9 +118,9 @@
       "scena": "Grotta con fuoco acceso, coperta e tazza; tempesta fuori dall'apertura.",
       "sottotitoli": [
         "Niente Chuck.",
-        "Solo una grotta, e una donna.",
+        "In una grotta, una donna.",
         "Dice di essere la vera Rachel.",
-        "«Ti drogano. Vogliono farti diventare un paziente.»",
+        "«Ti drogano per farti diventare un paziente.»",
         "E Chuck? «Sei arrivato da solo.»"
       ]
     },
@@ -147,7 +147,7 @@
       "sottotitoli": [
         "Chuck è il dottor Sheehan,",
         "il suo psichiatra.",
-        "L'indagine? Una recita.",
+        "Tutto recitato, per curarlo.",
         "Dolores aveva annegato i loro tre figli nel lago.",
         "Lui le ha sparato.",
         "Se non ricorda: lobotomia."
@@ -161,9 +161,9 @@
       "sottotitoli": [
         "All'alba chiama il medico «Chuck».",
         "Sembra ricaduto.",
-        "Lui chiede: meglio vivere da mostro,",
+        "Ma chiede: meglio vivere da mostro,",
         "o morire da uomo per bene?",
-        "E si avvia verso il faro. Forse ha scelto."
+        "Va verso il faro: ha scelto l'oblio."
       ]
     }
   ],
