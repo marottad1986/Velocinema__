@@ -1,0 +1,63 @@
+# Quadri famosi in 2 minuti
+
+Stessi video verticali dei film (stesso formato, struttura, sovrimpressioni, musica e voce: vedi `CLAUDE.md`),
+ma dedicati a un quadro famoso. Ogni quadro è descritto da un file in `quadri/` con lo stesso schema dei film.
+
+## Opere ammesse (vincolante)
+- Solo opere di **pubblico dominio**: autore morto da più di 70 anni (oggi: morto prima del 1956).
+- Si usa la **riproduzione fotografica fedele dell'originale** (opera piana): in UE non crea nuovi diritti
+  (direttiva 2019/790, art. 14). Restano esclusi: foto con cornice o in sala, sculture e opere in 3D,
+  immagini dichiarate con licenza non libera dal museo.
+- Fonti: scansioni dei musei in pubblico dominio / CC0 (Rijksmuseum, Met, National Gallery of Art, Art Institute
+  of Chicago, Paris Musées…), Google Arts & Culture via Wikimedia Commons (modello «PD-Art»).
+- Per ogni immagine annotare nel JSON (`opera.fonte`) l'URL della fonte e la licenza; i file stanno in
+  `public/quadri/<slug>/` (originale ad alta risoluzione + eventuali piani ritagliati).
+- Esclusi finché sono protetti: Picasso, Magritte, Dalí, Hopper, Matisse, Frida Kahlo, Mondrian, Kandinsky…
+
+## Cosa si può fare sull'immagine
+- Movimenti di camera lenti (avvicinamento, panoramica) per inquadrare un dettaglio alla volta nel formato
+  verticale; parallasse leggera ritagliando l'opera in piani (cielo / sfondo / primo piano).
+- Animazioni discrete **sopra** il quadro, coerenti con ciò che è dipinto (luci che tremolano, vortici che
+  scorrono, acqua, foschia), che non cambino il significato dell'opera; a fine capitolo il quadro deve tornare
+  riconoscibile così com'è.
+- Evidenziare un dettaglio (alone, cerchio, scurimento del resto) quando la voce lo nomina.
+- Non ridipingere, non aggiungere persone o oggetti che non ci sono, non alterare i colori in modo da falsare l'opera
+  (salvo un breve confronto dichiarato, es. «così erano i colori prima che sbiadissero»).
+- Le figure umane presenti nel quadro si mostrano: fanno parte dell'opera. Gli elementi disegnati da noi
+  (es. una mappa, una lettera) seguono lo stile grafico dei film e restano senza persone.
+
+## Struttura dei capitoli (indicativa, 11 capitoli, 112 s)
+1. Il quadro a colpo d'occhio (titolo, autore, anno, dove si trova).
+2–4. Chi era il pittore in quel momento e perché lo dipinse.
+5–8. I dettagli, uno per capitolo, ognuno con il suo perché.
+9. La tecnica (materiali, pennellate, colori).
+10. Cosa ne pensava l'autore / come fu accolto.
+11. Che fine ha fatto: furti, restauri, dove si trova oggi.
+
+Finale: il quadro intero, «la prossima volta che lo vedi, guarda…» + invito a seguire la pagina.
+
+## Regole sul testo
+Valgono quelle dei film (comprensibile a chi non conosce l'opera, persone presentate col loro ruolo, ogni capitolo
+spiega il perché). In più:
+- solo fatti verificabili; le ipotesi degli storici dell'arte si dicono come ipotesi («secondo alcuni…»);
+- citazioni dalle lettere o dai documenti solo se brevi e tradotte, con chi le ha scritte.
+
+## Schema del JSON
+Uguale a `films/*.json`, con queste differenze:
+- `autore` al posto di `regista`; `anno` = anno dell'opera;
+- `opera`: `{ "tecnica", "misure", "museo", "fonte": { "url", "licenza" } }`;
+- nei capitoli `scena` descrive **l'inquadratura** (quale parte del quadro, movimento di camera, animazioni sopra).
+
+## Prime opere candidate (tutte libere)
+- Van Gogh, *Notte stellata* (1889) — bozza in `quadri/notte-stellata.json`
+- Hokusai, *La grande onda di Kanagawa* (1831 ca.)
+- Vermeer, *Ragazza con l'orecchino di perla* (1665 ca.)
+- Leonardo, *La Gioconda* (1503–1519)
+- Caravaggio, *Vocazione di san Matteo* (1600)
+- Botticelli, *Nascita di Venere* (1485 ca.)
+- Bosch, *Il giardino delle delizie* (1500 ca.)
+- Bruegel il Vecchio, *Torre di Babele* (1563)
+- Géricault, *La zattera della Medusa* (1819)
+- Munch, *L'urlo* (1893)
+- Klimt, *Il bacio* (1908)
+- Monet, *Impressione, levar del sole* (1872)

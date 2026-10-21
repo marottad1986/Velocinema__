@@ -1,0 +1,164 @@
+{
+  "titolo": "Notte stellata",
+  "autore": "Vincent van Gogh",
+  "anno": 1889,
+  "opera": {
+    "tecnica": "Olio su tela",
+    "misure": "73,7 × 92,1 cm",
+    "museo": "Museum of Modern Art, New York",
+    "fonte": {
+      "url": "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+      "licenza": "Pubblico dominio (PD-Art)"
+    }
+  },
+  "palette": {
+    "chiaro": "#F1EBD4",
+    "principale": "#2E4F8C",
+    "scuro": "#0B1530",
+    "accento": "#F2C94C"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Il cielo più famoso del mondo.",
+    "immagine": "Il quadro intero, leggermente scurito ai bordi; avvicinamento lento verso la luna; i vortici del cielo scorrono appena. Titolo grande in alto, autore e anno sotto.",
+    "voce": "La Notte stellata, di Vincent van Gogh. Tutto in due minuti."
+  },
+  "capitoli": [
+    {
+      "id": "colpo-d-occhio",
+      "titolo": "Un cielo che si muove",
+      "durata": 9,
+      "scena": "Panoramica lenta da sinistra a destra su tutto il quadro: cipresso, cielo a vortici, stelle, luna, villaggio. Stelle e luna pulsano piano.",
+      "sottotitoli": [
+        "Un villaggio addormentato sotto un cielo in tempesta.",
+        "È la Notte stellata, di Vincent van Gogh.",
+        "Dipinta nel 1889. E dietro c'è una storia."
+      ]
+    },
+    {
+      "id": "arles",
+      "titolo": "Un anno prima, ad Arles",
+      "durata": 10,
+      "scena": "Mappa disegnata della Francia del sud nello stile dei film: Arles e Saint-Rémy unite da una linea tratteggiata; sopra, un foglio di lettera con la firma «Vincent».",
+      "sottotitoli": [
+        "Van Gogh è un pittore olandese di 35 anni.",
+        "Nel sud della Francia, ad Arles, ha una crisi grave",
+        "e si taglia parte di un orecchio.",
+        "Da allora le crisi tornano."
+      ]
+    },
+    {
+      "id": "ospedale",
+      "titolo": "In clinica, per scelta",
+      "durata": 10,
+      "scena": "Avvicinamento al villaggio in basso a destra; le finestre gialle delle case si accendono una alla volta.",
+      "sottotitoli": [
+        "Nel maggio 1889 decide da solo di farsi ricoverare",
+        "in un ospedale psichiatrico a Saint-Rémy.",
+        "Lo tengono in una stanza con le sbarre.",
+        "Ma gli lasciano dipingere."
+      ]
+    },
+    {
+      "id": "finestra",
+      "titolo": "Dalla finestra con le sbarre",
+      "durata": 10,
+      "scena": "Inquadratura sulle colline all'orizzonte; per un istante l'ombra di sbarre di finestra scorre davanti e sparisce.",
+      "sottotitoli": [
+        "Dalla sua finestra vede colline e un pezzo di cielo.",
+        "Il quadro nasce da lì, ma lo dipinge di giorno,",
+        "a memoria: di notte nella stanza non può dipingere."
+      ]
+    },
+    {
+      "id": "villaggio",
+      "titolo": "Un villaggio inventato",
+      "durata": 10,
+      "scena": "Zoom sul campanile appuntito; il resto del quadro si scurisce leggermente; alone sulla punta del campanile.",
+      "sottotitoli": [
+        "Il villaggio non si vedeva dalla finestra: l'ha aggiunto lui.",
+        "E guarda il campanile: è appuntito, come nelle chiese olandesi,",
+        "non come quelle di Provenza.",
+        "Forse un ricordo di casa."
+      ]
+    },
+    {
+      "id": "cipresso",
+      "titolo": "La fiamma nera",
+      "durata": 10,
+      "scena": "Panoramica dal basso verso l'alto lungo il cipresso a sinistra; le sue pennellate ondeggiano come una fiamma.",
+      "sottotitoli": [
+        "A sinistra, un cipresso enorme, scuro come una fiamma.",
+        "In Provenza il cipresso è l'albero dei cimiteri.",
+        "Unisce la terra al cielo:",
+        "secondo molti, è la morte vista senza paura."
+      ]
+    },
+    {
+      "id": "venere",
+      "titolo": "La stella più grande",
+      "durata": 10,
+      "scena": "Zoom sulla stella bianca grande vicino al cipresso; brilla e pulsa; sullo schermo, una riga di lettera tradotta.",
+      "sottotitoli": [
+        "Al fratello Theo scrive di aver visto all'alba",
+        "solo «la stella del mattino, che sembrava grandissima».",
+        "Gli astronomi lo confermano: è il pianeta Venere,",
+        "visibile proprio in quei giorni."
+      ]
+    },
+    {
+      "id": "vortici",
+      "titolo": "Il vento nel cielo",
+      "durata": 11,
+      "scena": "Avvicinamento al grande vortice centrale; le pennellate scorrono lentamente lungo le spirali, come vento.",
+      "sottotitoli": [
+        "Al centro il cielo si avvolge in spirali.",
+        "Nessuno vede così il cielo: Van Gogh dipinge il movimento.",
+        "Alcuni fisici hanno misurato questi vortici",
+        "e somigliano a quelli veri dell'aria e dell'acqua."
+      ]
+    },
+    {
+      "id": "tecnica",
+      "titolo": "Colore a rilievo",
+      "durata": 10,
+      "scena": "Inquadratura molto ravvicinata della luna; luce radente che si sposta e fa risaltare lo spessore delle pennellate.",
+      "sottotitoli": [
+        "Il colore è steso spesso, quasi scolpito:",
+        "ogni pennellata è una striscia in rilievo.",
+        "Blu oltremare e di cobalto per il cielo,",
+        "giallo puro per stelle e luna."
+      ]
+    },
+    {
+      "id": "fallimento",
+      "titolo": "Per lui era un errore",
+      "durata": 11,
+      "scena": "Quadro intero che si allontana lentamente; i colori si attenuano un poco come in un ricordo.",
+      "sottotitoli": [
+        "Eppure a lui non piaceva.",
+        "Scrive a un amico pittore di aver fatto «stelle troppo grandi»:",
+        "per lui era un fallimento.",
+        "Un anno dopo, nel 1890, Van Gogh muore, a 37 anni,",
+        "avendo venduto pochissimo."
+      ]
+    },
+    {
+      "id": "oggi",
+      "titolo": "Oggi, a New York",
+      "durata": 11,
+      "scena": "Il quadro intero al centro, piccolo, su fondo scuro; si ingrandisce fino a riempire lo schermo.",
+      "sottotitoli": [
+        "Il quadro passa di mano in mano.",
+        "Nel 1941 lo compra un museo di New York, il MoMA.",
+        "Oggi è uno dei quadri più famosi al mondo:",
+        "proprio quello che lui riteneva sbagliato."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Il quadro intero, fermo; in basso «La prossima volta che lo vedi, cerca Venere accanto al cipresso.»; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo quadro arriva presto.'"
+  },
+  "musica": "Originale e strumentale: pianoforte lento e archi, un tema in tonalità minore che gira su sé stesso come i vortici; più scuro nei capitoli dell'ospedale, più luminoso su Venere e nel finale."
+}
