@@ -146,7 +146,7 @@ export const Teatro: React.FC<SceneProps> = ({ t, dur, cues }) => {
           {/* catene che cadono dall'alto e si ammucchiano sul palco */}
           {chains > 0 && (
             <g>
-              {[470, 610].map((x, i) => <Chain key={x} x={x + (i ? 20 : -20) * chains} y0={-200} y1={lerp(-200, 1190, chains)} />)}
+              {[470, 610].map((x, i) => <Chain key={x} x={x + (i ? 20 : -20) * chains} y0={680} y1={lerp(680, 1190, chains)} />)}
               <g opacity={seg(t, cues[5] + 0.4, cues[5] + 0.6)}>
                 {Array.from({ length: 11 }, (_, i) => (
                   <ellipse key={i} cx={430 + i * 22} cy={1206 + Math.sin(i * 1.3) * 8} rx={i % 2 ? 6 : 14} ry={i % 2 ? 12 : 8} fill="none" stroke="url(#te-chain)" strokeWidth="7" />
