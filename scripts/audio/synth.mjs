@@ -28,6 +28,9 @@ export const hz = (name) => {
 };
 
 const vamp = (vel) => (vel / 127) ** 1.6;
+
+/** Volume degli effetti sonori rispetto alla musica (×2,5 ≈ +8 dB): devono sentirsi sopra la colonna sonora. */
+export const FX = 2.5;
 const lpCoef = (fc) => 1 - Math.exp((-TAU * fc) / SR);
 
 /** Banco di mixaggio: bus asciutto e mandata al riverbero, in stereo. */
@@ -239,7 +242,7 @@ export const thunder = (mix, t, power = 1, seed = 7) => {
     const rumble = f2(brown, 160 + 60 * Math.sin(x * 3 + wob[0]), 0.6).low * 3.2;
     const env = Math.min(1, x / 0.25) * Math.exp(-x / 1.4) * (0.75 + 0.25 * Math.sin(x * 9 + wob[1]));
     return crack + rumble * env;
-  }, { gain: 0.55 * power, pan: 0.1, rev: 0.5 });
+  }, { gain: FX * 0.55 * power, pan: 0.1, rev: 0.5 });
 };
 
 /** Lucchetto che scatta: due click metallici ravvicinati. */
@@ -252,7 +255,7 @@ export const lockClick = (mix, t, vel = 70, seed = 11) => {
       let s = 0;
       parts.forEach((f, k) => { s += Math.sin(TAU * f * x) * Math.exp(-x / (0.05 / (k + 1))) / (k + 1); });
       return (s + (r() * 2 - 1) * Math.exp(-x / 0.004) * 0.8) * g;
-    }, { gain: vamp(vel) * 0.45, pan: 0.15, rev: 0.25 });
+    }, { gain: FX * vamp(vel) * 0.45, pan: 0.15, rev: 0.25 });
   }
 };
 
@@ -266,7 +269,7 @@ export const metalThud = (mix, t, vel = 60, seed = 13) => {
     parts.forEach((f, k) => { s += Math.sin(TAU * f * x) * Math.exp(-x / (0.35 / (k + 1))) * (k ? 0.5 : 1); });
     s += Math.sin(TAU * 70 * x) * Math.exp(-x / 0.06) * 1.2;
     return s * 0.5 + (r() * 2 - 1) * Math.exp(-x / 0.008) * 0.6;
-  }, { gain: vamp(vel) * 0.5, pan: 0.05, rev: 0.3 });
+  }, { gain: FX * vamp(vel) * 0.5, pan: 0.05, rev: 0.3 });
 };
 
 /** Vento: rumore in passa-banda con centro e volume che si muovono a raffiche. */
@@ -284,7 +287,7 @@ export const wind = (mix, t0, t1, { power = 1, fade = 1.5, center = 520, seed = 
       const out = muffle < 1 ? f2(b, 300 + 2000 * muffle, 0.7).low : b;
       const env = Math.min(1, x / fade, (dur - x) / fade);
       return out * gust * gust * env;
-    }, { gain: 0.38 * power, pan, rev: 0.15 });
+    }, { gain: FX * 0.38 * power, pan, rev: 0.15 });
   }
 };
 
@@ -296,7 +299,7 @@ export const whoosh = (mix, t, dur, { vel = 60, seed = 19, lo = 300, hi = 2400, 
     const u = i / (dur * SR);
     const fc = lo + (hi - lo) * Math.sin(Math.PI * u) ** 2;
     return f(r() * 2 - 1, fc, 0.4).band * Math.sin(Math.PI * u) ** 1.5;
-  }, { gain: vamp(vel) * 0.8, pan, rev: 0.3 });
+  }, { gain: FX * vamp(vel) * 0.8, pan, rev: 0.3 });
 };
 
 /** Gesso sulla lavagna: graffio brevissimo e acuto. */
@@ -308,7 +311,7 @@ export const chalk = (mix, t, vel = 40, seed = 23) => {
   put(mix, t, Math.ceil(len * SR), (i) => {
     const x = i / SR;
     return f(r() * 2 - 1, fc, 0.15).band * Math.sin((Math.PI * x) / len) * (0.8 + 0.4 * Math.sin(TAU * 140 * x));
-  }, { gain: vamp(vel) * 0.7, pan: -0.25 + r() * 0.2, rev: 0.12 });
+  }, { gain: FX * vamp(vel) * 0.7, pan: -0.25 + r() * 0.2, rev: 0.12 });
 };
 
 /** Risucchio crescente che prepara una rivelazione (rumore che sale). */
@@ -318,7 +321,7 @@ export const swell = (mix, tEnd, dur, { vel = 60, seed = 29 } = {}) => {
   put(mix, tEnd - dur, Math.ceil(dur * SR), (i) => {
     const u = i / (dur * SR);
     return f(r() * 2 - 1, 300 + 3000 * u * u, 0.5).band * u ** 2.5;
-  }, { gain: vamp(vel) * 0.9, rev: 0.6 });
+  }, { gain: FX * vamp(vel) * 0.9, rev: 0.6 });
 };
 
 /** Colpo sordo: timbro sulla cartella, porta, oggetto che cade. */
@@ -331,7 +334,7 @@ export const thud = (mix, t, vel = 70, { seed = 31, bright = 1200 } = {}) => {
     const body = Math.sin(TAU * (42 * x + 60 * 0.05 * (1 - Math.exp(-x / 0.05)))) * Math.exp(-x / 0.22);
     lp += a * ((r() * 2 - 1) - lp);
     return body + lp * Math.exp(-x / 0.05) * 1.6;
-  }, { gain: vamp(vel) * 0.85, rev: 0.35 });
+  }, { gain: FX * vamp(vel) * 0.85, rev: 0.35 });
 };
 
 /** Piccolo "pop" (pillole, piastrella): sinusoide che scende di tono. */
@@ -340,7 +343,7 @@ export const pop = (mix, t, vel = 50, { pitch = 0, pan = 0 } = {}) => {
   put(mix, t, Math.ceil(0.12 * SR), (i) => {
     const x = i / SR;
     return Math.sin(TAU * (f0 * 0.5 * x + f0 * 0.5 * 0.02 * (1 - Math.exp(-x / 0.02)))) * Math.exp(-x / 0.03);
-  }, { gain: vamp(vel) * 0.5, pan, rev: 0.25 });
+  }, { gain: FX * vamp(vel) * 0.5, pan, rev: 0.25 });
 };
 
 /** Fiamme: crepitio di piccoli schiocchi casuali (seme fisso). */
@@ -351,7 +354,7 @@ export const crackle = (mix, t0, t1, { vel = 40, seed = 37 } = {}) => {
     const pan = r() * 1.2 - 0.6;
     const f = svf();
     const fc = 1500 + r() * 3000;
-    put(mix, t, Math.ceil(0.02 * SR), (i) => f(r() * 2 - 1, fc, 0.3).band * Math.exp(-i / (SR * 0.004)), { gain: vamp(vel) * g, pan, rev: 0.1 });
+    put(mix, t, Math.ceil(0.02 * SR), (i) => f(r() * 2 - 1, fc, 0.3).band * Math.exp(-i / (SR * 0.004)), { gain: FX * vamp(vel) * g, pan, rev: 0.1 });
   }
 };
 
@@ -366,7 +369,7 @@ export const carHorn = (mix, t, freqs = [349.2, 440, 523.3], { vel = 50, dur = 0
       lp += a * (sq - lp);
       const env = Math.min(1, x / 0.02) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / 0.15));
       return lp * env * (1 + 0.04 * Math.sin(TAU * 6 * x));
-    }, { gain: vamp(vel) * 0.28, pan: pan + (k - 1) * 0.1, rev: 0.3 });
+    }, { gain: FX * vamp(vel) * 0.28, pan: pan + (k - 1) * 0.1, rev: 0.3 });
   });
 };
 
@@ -384,7 +387,7 @@ export const neonHum = (mix, t, dur = 4, { vel = 40, seed = 43 } = {}) => {
     const hiss = f(r() * 2 - 1, 6000, 0.5).high * 0.05;
     const env = Math.min(1, x / 0.01) * Math.min(1, (dur - x) / 1.2);
     return (buzz * 0.2 * on + hiss * on) * env + click;
-  }, { gain: vamp(vel) * 0.5, pan: 0.25, rev: 0.2 });
+  }, { gain: FX * vamp(vel) * 0.5, pan: 0.25, rev: 0.2 });
 };
 
 // ---------------------------------------------------------------- riverbero e uscita
@@ -456,7 +459,7 @@ export const glassCrash = (mix, t, vel = 80, seed = 53) => {
   put(mix, t, Math.ceil(0.9 * SR), (i) => {
     const x = i / SR;
     return f(r() * 2 - 1, 5200, 0.3).high * (Math.exp(-x / 0.05) + 0.35 * Math.exp(-x / 0.3));
-  }, { gain: vamp(vel) * 0.7, pan: 0.05, rev: 0.3 });
+  }, { gain: FX * vamp(vel) * 0.7, pan: 0.05, rev: 0.3 });
   for (let k = 0; k < 26; k++) {
     const dt = 0.01 + r() ** 1.6 * 0.9;
     const fr = 2400 + r() * 5200;
@@ -465,7 +468,7 @@ export const glassCrash = (mix, t, vel = 80, seed = 53) => {
     put(mix, t + dt, Math.ceil(0.4 * SR), (i) => {
       const x = i / SR;
       return Math.sin(TAU * fr * x) * Math.exp(-x / tau) * Math.min(1, x / 0.0008);
-    }, { gain: vamp(vel) * g * 0.5, pan: r() * 1.4 - 0.7, rev: 0.3 });
+    }, { gain: FX * vamp(vel) * g * 0.5, pan: r() * 1.4 - 0.7, rev: 0.3 });
   }
 };
 
@@ -481,7 +484,7 @@ export const rainHiss = (mix, t0, t1, { power = 1, fade = 1.2, seed = 59 } = {})
       const hiss = f(n, 6500, 0.35).band * 0.8 + f2(n, 2600, 0.5).band * 0.35;
       const drop = r() < 0.0009 ? (r() * 2 - 1) * 2.5 : 0;
       return (hiss * (0.8 + 0.2 * Math.sin(x * 0.7 + side)) + drop * 0.4) * Math.min(1, x / fade, (dur - x) / fade);
-    }, { gain: 0.34 * power, pan, rev: 0.2 });
+    }, { gain: FX * 0.34 * power, pan, rev: 0.2 });
   }
 };
 
@@ -498,7 +501,7 @@ export const radioStatic = (mix, t, dur = 1.6, { vel = 55, seed = 61, whistle = 
     const tone = Math.sin(TAU * (whistle * x + 600 * Math.sin(Math.PI * u) * x)) * 0.05 * Math.sin(Math.PI * u) ** 2;
     const env = Math.min(1, x / 0.02, (dur - x) / 0.12);
     return (body * 0.9 + tone) * env;
-  }, { gain: vamp(vel) * 0.7, pan: -0.15, rev: 0.12 });
+  }, { gain: FX * vamp(vel) * 0.7, pan: -0.15, rev: 0.12 });
 };
 
 /** Porta che cigola: dente di sega a tono che sale e scende, a scatti, filtrato in formanti. */
@@ -515,7 +518,7 @@ export const doorCreak = (mix, t, dur = 1.8, { vel = 50, seed = 67 } = {}) => {
     const stick = 0.55 + 0.45 * Math.sin(x * 47 + wob[1]) ** 2;
     const out = f(saw, 900 + 500 * Math.sin(Math.PI * u), 0.25).band * 2.2;
     return out * stick * Math.min(1, x / 0.05, (dur - x) / 0.25);
-  }, { gain: vamp(vel) * 0.55, pan: 0.3, rev: 0.3 });
+  }, { gain: FX * vamp(vel) * 0.55, pan: 0.3, rev: 0.3 });
 };
 
 /** Colpo vuoto su una superficie dipinta: toc di legno cavo e breve risonanza. */
@@ -528,7 +531,7 @@ export const hollowBonk = (mix, t, vel = 70, seed = 71) => {
     const body = Math.sin(TAU * (118 * x + 40 * 0.03 * (1 - Math.exp(-x / 0.03)))) * Math.exp(-x / 0.12)
       + 0.45 * Math.sin(TAU * 236 * x) * Math.exp(-x / 0.08) + 0.25 * Math.sin(TAU * 410 * x) * Math.exp(-x / 0.05);
     return body + lp * Math.exp(-x / 0.012) * 1.1;
-  }, { gain: vamp(vel) * 0.8, pan: 0, rev: 0.45 });
+  }, { gain: FX * vamp(vel) * 0.8, pan: 0, rev: 0.45 });
 };
 
 /** Applauso lontano: tanti piccoli battiti casuali con densità e volume che crescono e poi calano. */
@@ -545,7 +548,7 @@ export const applause = (mix, t, dur = 5, { vel = 40, seed = 73 } = {}) => {
       const fc = 1500 + r() * 2800;
       const len = 0.012 + r() * 0.012;
       put(mix, t + x, Math.ceil(len * SR * 3), (i) => f(r() * 2 - 1, fc, 0.5).band * Math.exp(-i / (SR * len)),
-        { gain: vamp(vel) * env * (0.3 + r() * 0.7) * 0.5, pan: pan + (r() - 0.5) * 0.5, rev: 0.4 });
+        { gain: FX * vamp(vel) * env * (0.3 + r() * 0.7) * 0.5, pan: pan + (r() - 0.5) * 0.5, rev: 0.4 });
     }
   }
 };
@@ -560,5 +563,5 @@ export const channelClick = (mix, t, vel = 60, seed = 79) => {
     const burst = f(r() * 2 - 1, 3800, 0.3).band * Math.min(1, x / 0.004) * Math.exp(-x / 0.07) * 0.9;
     const thump = Math.sin(TAU * 90 * x) * Math.exp(-x / 0.03) * 0.6;
     return click + burst + thump;
-  }, { gain: vamp(vel) * 0.75, pan: 0.1, rev: 0.15 });
+  }, { gain: FX * vamp(vel) * 0.75, pan: 0.1, rev: 0.15 });
 };

@@ -2,7 +2,7 @@
 // sotto la voce. Il tema (La minore, 4 battute, poche note che salgono) è inventato qui: intimo alla fattoria, si allarga
 // nello spazio, si fa teso sulle onde e sul ghiaccio e si apre in La maggiore nel finale. Niente ticchettii regolari né
 // motivi del film. Effetti agganciati agli eventi delle scene in src/scenes/interstellar/.
-import { put, rng, drum, thunder, wind, metalThud, glassCrash, doorCreak, whoosh, thud, swell, pop } from './synth.mjs';
+import { put, rng, drum, thunder, wind, metalThud, glassCrash, doorCreak, whoosh, thud, swell, pop , FX } from './synth.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
 const TAU = Math.PI * 2;
@@ -94,12 +94,12 @@ const rumble = (mix, t0, dur, { vel = 50, seed = 3 } = {}) => {
     b = 0.99 * b + 0.05 * (r() * 2 - 1);
     lp += 0.05 * (b - lp);
     return lp * 6 * Math.sin(Math.PI * Math.min(1, u * 1.4)) ** 0.8;
-  }, { gain: vamp(vel), rev: 0.3 });
+  }, { gain: FX * vamp(vel), rev: 0.3 });
 };
 
 /** Bip di Morse: sinusoide breve e pulita. */
 const beep = (mix, t, dur, { vel = 40, f = 1320 } = {}) => {
-  put(mix, t, Math.ceil(dur * SR), (i) => Math.sin(TAU * f * i / SR) * Math.min(1, i / 200) * Math.min(1, (dur * SR - i) / 200), { gain: vamp(vel) * 0.35, pan: 0.2, rev: 0.4 });
+  put(mix, t, Math.ceil(dur * SR), (i) => Math.sin(TAU * f * i / SR) * Math.min(1, i / 200) * Math.min(1, (dur * SR - i) / 200), { gain: FX * vamp(vel) * 0.35, pan: 0.2, rev: 0.4 });
 };
 
 // ---------------------------------------------------------------- materiale musicale

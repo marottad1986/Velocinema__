@@ -2,7 +2,7 @@
 // calma la Creatura"), organo da castello, pizzicati in tre tempi, timpani per i temporali e un breve intermezzo
 // swing con tip tap per lo spettacolo. Tema e armonie inventati qui; nessun brano o tema del film.
 // Nel lieto fine il valzer passa in Re maggiore. Effetti agganciati agli eventi delle scene in src/scenes/frankenstein-junior/.
-import { put, rng, drum, thunder, wind, metalThud, glassCrash, rainHiss, doorCreak, hollowBonk, applause, chalk, whoosh, thud, pop, crackle, swell } from './synth.mjs';
+import { put, rng, drum, thunder, wind, metalThud, glassCrash, rainHiss, doorCreak, hollowBonk, applause, chalk, whoosh, thud, pop, crackle, swell , FX } from './synth.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
 const TAU = Math.PI * 2;
@@ -76,7 +76,7 @@ const howl = (mix, t, { vel = 50, dur = 2.6 } = {}) => {
     const f = 380 + 260 * Math.sin(Math.PI * Math.min(1, u * 1.6)) ** 0.7 - 160 * Math.max(0, u - 0.6) + 8 * Math.sin(TAU * 5 * u * dur);
     ph = (ph + f / SR) % 1;
     return (Math.sin(TAU * ph) + 0.2 * Math.sin(TAU * 2 * ph)) * Math.sin(Math.PI * u) ** 0.8;
-  }, { gain: vamp(vel) * 0.45, pan: 0.4, rev: 0.8 });
+  }, { gain: FX * vamp(vel) * 0.45, pan: 0.4, rev: 0.8 });
 };
 
 /** Nitrito: tono nasale con vibrato rapido e discesa. */
@@ -88,7 +88,7 @@ const neigh = (mix, t, { vel = 50, dur = 1.1, pan = 0.5 } = {}) => {
     ph = (ph + f / SR) % 1;
     const s = 2 * Math.abs(2 * ph - 1) - 1;
     return s * Math.sin(Math.PI * u) * (0.7 + 0.3 * Math.sin(TAU * 30 * u * dur));
-  }, { gain: vamp(vel) * 0.3, pan, rev: 0.5 });
+  }, { gain: FX * vamp(vel) * 0.3, pan, rev: 0.5 });
 };
 
 /** Campanella: parziali inarmoniche, decadimento lungo. */
@@ -109,7 +109,7 @@ const buzz = (mix, t0, t1, { vel = 40, seed = 41 } = {}) => {
     const s = Math.sin(TAU * 100 * x) + 0.5 * Math.sin(TAU * 200 * x) + 0.3 * Math.sin(TAU * 300 * x);
     const env = Math.min(1, x / 0.3) * Math.min(1, (dur - x) / 0.3);
     return (s * 0.5 + (r() < 0.004 ? (r() * 2 - 1) * 4 : 0)) * env;
-  }, { gain: vamp(vel) * 0.4, rev: 0.2 });
+  }, { gain: FX * vamp(vel) * 0.4, rev: 0.2 });
 };
 
 // ---------------------------------------------------------------- materiale musicale
