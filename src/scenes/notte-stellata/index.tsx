@@ -6,34 +6,35 @@ import { Alone, LuceRadente, OmbraSbarre, Quadro, Riflettore, Vortice, type Oper
 import type { SceneDef, SceneProps } from '../../types';
 import { copertinaQuadro, finaleQuadro, intera } from '../quadri/Locandina';
 
-// Notte stellata (quadri/notte-stellata.json): scansione Google Art Project da Wikimedia Commons,
-// ridotta a ~8000 px di lato lungo e salvata in public/quadri/notte-stellata/originale.jpg.
+// Notte stellata (quadri/notte-stellata.json): scansione Google Art Project da Wikimedia Commons
+// (miniatura ufficiale da 3840 px), salvata in public/quadri/notte-stellata/originale.jpg.
 
-export const OPERA: Opera = { src: 'quadri/notte-stellata/originale.jpg', aspect: 1.262 };
+export const OPERA: Opera = { src: 'quadri/notte-stellata/originale.jpg', aspect: 3840 / 3041 };
 const A = OPERA.aspect;
 
-// Punti dell'opera in frazioni (x da sinistra, y dall'alto). Stime: da verificare sull'immagine con `npm run prova`.
+// Punti dell'opera in frazioni (x da sinistra, y dall'alto), letti sull'immagine.
 const P = {
-  luna: { x: 0.885, y: 0.14 },
-  venere: { x: 0.3, y: 0.39 },
-  vortice: { x: 0.47, y: 0.3 },
-  campanile: { x: 0.56, y: 0.66 },
-  villaggio: { x: 0.62, y: 0.82 },
-  colline: { x: 0.6, y: 0.6 },
-  cipressoBase: { x: 0.19, y: 0.85 },
-  cipressoPunta: { x: 0.2, y: 0.12 },
+  luna: { x: 0.898, y: 0.178 },
+  venere: { x: 0.344, y: 0.513 },
+  vortice: { x: 0.48, y: 0.33 },
+  vortice2: { x: 0.67, y: 0.48 },
+  campanile: { x: 0.564, y: 0.66 },
+  villaggio: { x: 0.66, y: 0.84 },
+  colline: { x: 0.6, y: 0.64 },
+  cipressoBase: { x: 0.25, y: 0.82 },
+  cipressoPunta: { x: 0.2, y: 0.08 },
   stelle: [
-    { x: 0.06, y: 0.12 }, { x: 0.33, y: 0.12 }, { x: 0.6, y: 0.08 }, { x: 0.72, y: 0.28 },
-    { x: 0.57, y: 0.42 }, { x: 0.8, y: 0.4 }, { x: 0.95, y: 0.37 },
+    { x: 0.234, y: 0.03 }, { x: 0.344, y: 0.04 }, { x: 0.414, y: 0.07 }, { x: 0.61, y: 0.09 }, { x: 0.234, y: 0.17 },
+    { x: 0.70, y: 0.23 }, { x: 0.33, y: 0.33 }, { x: 0.13, y: 0.48 }, { x: 0.047, y: 0.45 },
   ],
   finestre: [
-    { x: 0.44, y: 0.86 }, { x: 0.52, y: 0.8 }, { x: 0.63, y: 0.84 }, { x: 0.71, y: 0.79 }, { x: 0.79, y: 0.86 }, { x: 0.88, y: 0.82 },
+    { x: 0.756, y: 0.873 }, { x: 0.785, y: 0.868 }, { x: 0.83, y: 0.907 }, { x: 0.69, y: 0.9 }, { x: 0.648, y: 0.857 }, { x: 0.55, y: 0.87 },
   ],
 };
 
 const Stelle: React.FC<{ t: number; forza?: number }> = ({ t, forza = 0.4 }) => (
   <>
-    {P.stelle.map((s, i) => <Alone key={i} aspect={A} t={t} {...s} r={0.05} forza={forza} periodo={2 + (i % 3) * 0.5} fase={i * 0.7} />)}
+    {P.stelle.map((s, i) => <Alone key={i} aspect={A} t={t} {...s} r={0.045} forza={forza} periodo={2 + (i % 3) * 0.5} fase={i * 0.7} />)}
     <Alone aspect={A} t={t} {...P.luna} r={0.11} forza={forza * 1.1} periodo={3.2} />
   </>
 );
@@ -107,8 +108,8 @@ const Villaggio: React.FC<SceneProps> = ({ t, dur, cues }) => (
 );
 
 const Cipresso: React.FC<SceneProps> = ({ t, dur, cues }) => (
-  <Quadro opera={OPERA} t={t} chiavi={[{ t: 0, v: { ...P.cipressoBase, h: 0.55 } }, { t: dur - 1, v: { ...P.cipressoPunta, y: P.cipressoPunta.y + 0.12, h: 0.5 } }]}>
-    <Riflettore aspect={A} t={t} x={P.cipressoPunta.x} y={P.cipressoPunta.y + 0.1} r={0.17} buio={0.45} da={cues[2] ?? 6} />
+  <Quadro opera={OPERA} t={t} chiavi={[{ t: 0, v: { ...P.cipressoBase, h: 0.55 } }, { t: dur - 1, v: { ...P.cipressoPunta, y: P.cipressoPunta.y + 0.18, h: 0.5 } }]}>
+    <Riflettore aspect={A} t={t} x={P.cipressoPunta.x + 0.01} y={P.cipressoPunta.y + 0.2} r={0.24} buio={0.45} da={cues[2] ?? 6} />
   </Quadro>
 );
 
@@ -122,7 +123,7 @@ const Venere: React.FC<SceneProps> = ({ t, dur, cues }) => (
 const Vortici: React.FC<SceneProps> = ({ t, dur }) => (
   <Quadro opera={OPERA} t={t} chiavi={[{ t: 0, v: { ...P.vortice, h: 0.9 } }, { t: dur, v: { ...P.vortice, h: 0.5 } }]}>
     <Vortice aspect={A} t={t} {...P.vortice} r={0.16} giri={0.1} forza={0.4} da={0.5} />
-    <Vortice aspect={A} t={t} x={P.vortice.x + 0.13} y={P.vortice.y - 0.05} r={0.1} giri={0.12} forza={0.3} da={2} verso={-1} />
+    <Vortice aspect={A} t={t} {...P.vortice2} r={0.09} giri={0.12} forza={0.3} da={2} verso={-1} />
   </Quadro>
 );
 
@@ -151,7 +152,7 @@ export const NOTTE_STELLATA_SCENES: Record<string, SceneDef> = {
   finestra: { Component: Finestra, title: { top: 400, size: 88 } },
   villaggio: { Component: Villaggio, title: { top: 400, size: 96 } },
   cipresso: { Component: Cipresso, title: { top: 400, size: 104, width: 600 } },
-  venere: { Component: Venere, title: { top: 400, size: 104 } },
+  venere: { Component: Venere, title: { top: 400, size: 96 } },
   vortici: { Component: Vortici, title: { top: 400, size: 104 } },
   tecnica: { Component: Tecnica, title: { top: 400, size: 104 } },
   fallimento: { Component: Fallimento, title: { top: 400, size: 96 } },
