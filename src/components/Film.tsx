@@ -1,6 +1,7 @@
 import React from 'react';
 import { AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig } from 'remotion';
 import { ChapterOverlay, subtitleTimes } from './ChapterOverlay';
+import { SIGLA, Sigla } from './Sigla';
 import { DISPLAY, SANS } from '../lib/fonts';
 import { getFilm } from '../films';
 import type { FilmDef } from '../types';
@@ -73,10 +74,14 @@ export const PosterView: React.FC<{ slug: string; end?: boolean }> = ({ slug, en
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const Comp = end ? film.ending : film.cover;
-  const dur = end ? film.data.finale.durata : film.data.copertina.durata;
+  const total = end ? film.data.finale.durata : film.data.copertina.durata;
+  // Formato "spiegato": la copertina parte dopo la sigla e dura il resto dei 4 s.
+  const sigla = !end && film.data.formato === 'spiegato' ? SIGLA : 0;
+  const t = Math.max(0, frame / fps - sigla);
   return (
     <AbsoluteFill style={{ background: film.data.palette.scuro, overflow: 'hidden' }}>
-      {Comp ? <Comp t={frame / fps} dur={dur} film={film.data} /> : <PosterPlaceholder film={film} end={end} />}
+      {Comp ? <Comp t={t} dur={total - sigla} film={film.data} /> : <PosterPlaceholder film={film} end={end} />}
+      {sigla > 0 && <Sigla t={frame / fps} tipo={film.data.tipo ?? 'film'} />}
     </AbsoluteFill>
   );
 };

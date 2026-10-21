@@ -63,6 +63,9 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Elemento fisso che si costruisce capitolo dopo capitolo (es. `linea_tempo` con gli anni, l'`anno` del capitolo
   evidenziato), sotto l'etichetta del capitolo e fuori dalle zone coperte dalle app.
 - Finale: la voce dice il riassunto «in una frase» (`finale.voce`); per le serie si annuncia la stagione successiva.
+- Codice: sigla in `src/components/Sigla.tsx` (la copertina del film riceve `t` già spostato di 1,5 s); linea del tempo
+  e cartellini dei personaggi in `src/components/ChapterOverlay.tsx`, attivi quando il JSON ha `linea_tempo` e `personaggi`.
+  Primo episodio: `films/dark-stagione-1.json`, scene in `src/scenes/dark-stagione-1/`, musica in `scripts/audio/dark-stagione-1.mjs`.
 - Priorità: serie intricate (Dark, Lost, Westworld, Severance, Twin Peaks, 1899; una stagione per video se lunghe),
   film (Inception, Tenet, Mulholland Drive, Donnie Darko, Primer). Libri solo dopo ~10 episodi.
 

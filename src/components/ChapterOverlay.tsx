@@ -67,6 +67,9 @@ export const ChapterOverlay: React.FC<Props> = ({ film, index, t, chapterStart, 
         <span style={{ fontVariantNumeric: 'tabular-nums' }}>{fmtTime(T)} / {fmtTime(total)}</span>
       </div>
 
+      {film.linea_tempo && <Timeline film={film} index={index} t={t} />}
+      <CharacterTags film={film} index={index} t={t} times={times} />
+
       <h2
         style={{
           position: 'absolute', left: 80, top: Math.max(title.top, 380), margin: 0, width: title.width,
@@ -102,5 +105,82 @@ export const ChapterOverlay: React.FC<Props> = ({ film, index, t, chapterStart, 
         })}
       </div>
     </div>
+  );
+};
+
+/**
+ * Formato "spiegato": linea del tempo accanto all'etichetta (y 262). Gli anni già visitati dal racconto si accendono
+ * capitolo dopo capitolo, quello del capitolo è evidenziato con l'accento; gli altri restano "????".
+ */
+const Timeline: React.FC<{ film: FilmData; index: number; t: number }> = ({ film, index, t }) => {
+  const P = film.palette;
+  const years = film.linea_tempo ?? [];
+  const now = film.capitoli[index].anno;
+  const seen = new Set(film.capitoli.slice(0, index).map((c) => c.anno));
+  const pop = eo(seg(t, 0.2, 0.6));
+  const x0 = 634, step = 116;
+  return (
+    <div style={{ position: 'absolute', left: 584, top: 262, width: 446, height: 52, borderRadius: 999, background: alpha(P.scuro, 0.72) }}>
+      <div style={{ position: 'absolute', left: x0 - 584 + 6, right: 446 - (x0 - 584 + step * (years.length - 1)) + 6, top: 25, height: 3, background: alpha(P.chiaro, 0.3) }} />
+      {years.map((y, i) => {
+        const cur = y === now;
+        const known = seen.has(y) || cur;
+        const fresh = cur && !seen.has(y); // anno che compare per la prima volta in questo capitolo
+        const o = fresh ? pop : 1;
+        return (
+          <span
+            key={y}
+            style={{
+              position: 'absolute', left: x0 - 584 + i * step, top: 26, transform: `translate(-50%, -50%) scale(${cur ? 1 + 0.12 * (1 - pop) : 1})`,
+              padding: '4px 10px', borderRadius: 999, background: cur ? P.accento : alpha(P.scuro, 0.9),
+              color: cur ? P.scuro : P.chiaro, fontSize: 24, fontWeight: 800, letterSpacing: '0.04em', fontVariantNumeric: 'tabular-nums',
+              opacity: known ? (cur ? 1 : 0.85) * o + (1 - o) * 0.35 : 0.35,
+            }}
+          >
+            {known && o > 0.5 ? y : '????'}
+          </span>
+        );
+      })}
+    </div>
+  );
+};
+
+/**
+ * Formato "spiegato": cartellino «NOME = oggetto» quando un personaggio viene presentato (prima frase che lo nomina),
+ * così si impara quale oggetto lo rappresenta. Sta sopra i sottotitoli, a sinistra.
+ */
+const CharacterTags: React.FC<{ film: FilmData; index: number; t: number; times: (readonly [number, number])[] }> = ({ film, index, t, times }) => {
+  const P = film.palette;
+  const ch = film.capitoli[index];
+  const tags = (ch.personaggi ?? []).flatMap((nome) => {
+    const def = film.personaggi?.find((p) => p.nome === nome);
+    const key = nome.replace(/^(lo|la|il|l')\s*/i, '').toLowerCase();
+    const i = ch.sottotitoli.findIndex((l) => l.toLowerCase().includes(key));
+    if (!def || i < 0) return [];
+    const a = times[i][0] + 0.25;
+    const b = times[Math.min(i + 1, times.length - 1)][1] - 0.1;
+    return [{ def, a, b }];
+  });
+  return (
+    <>
+      {tags.map(({ def, a, b }, k) => {
+        const p = eo(seg(t, a, a + 0.35));
+        const q = seg(t, b - 0.25, b);
+        const o = p * (1 - q);
+        return (
+          <div
+            key={def.nome}
+            style={{
+              position: 'absolute', left: 60, top: 1172 - k * 82, display: 'flex', alignItems: 'baseline', gap: 14,
+              padding: '10px 22px 12px', borderRadius: 14, background: alpha(P.scuro, 0.82), borderLeft: `8px solid ${P.accento}`,
+              color: P.chiaro, opacity: o, visibility: o > 0 ? 'visible' : 'hidden', transform: `translateX(${(1 - p) * -30}px)`,
+            }}
+          >
+            <span style={{ fontSize: 30, fontWeight: 800, letterSpacing: '0.1em', color: P.accento }}>{def.nome.toUpperCase()}</span>
+            <span style={{ fontSize: 30, fontWeight: 400 }}>= {def.oggetto}</span>
+          </div>
+        );
+      })}
+    </>
   );
 };

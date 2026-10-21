@@ -1,5 +1,5 @@
 import type { FilmData, FilmDef } from './types';
-import { ANTON, CREEPSTER, SYNCOPATE } from './lib/fonts';
+import { ANTON, CREEPSTER, STENCIL, SYNCOPATE } from './lib/fonts';
 import shutterIsland from '../films/shutter-island.json';
 import laLaLand from '../films/la-la-land.json';
 import trumanShow from '../films/the-truman-show.json';
@@ -17,6 +17,8 @@ import { FRANKENSTEIN_JUNIOR_SCENES } from './scenes/frankenstein-junior';
 import { Copertina as FrankCover, Finale as FrankEnd } from './scenes/frankenstein-junior/Locandina';
 import { INTERSTELLAR_SCENES } from './scenes/interstellar';
 import { Copertina as InterCover, Finale as InterEnd } from './scenes/interstellar/Locandina';
+import { DARK_S1_SCENES } from './scenes/dark-stagione-1';
+import { Copertina as DarkCover, Finale as DarkEnd } from './scenes/dark-stagione-1/Locandina';
 
 // Registro dei film: un JSON in films/ + le scene disegnate in src/scenes/<film>/.
 // Le scene non ancora ricostruite compaiono come segnaposto.
@@ -26,7 +28,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'the-truman-show', data: trumanShow as FilmData, scenes: TRUMAN_SHOW_SCENES, cover: TrumanCover, ending: TrumanEnd },
   { slug: 'frankenstein-junior', data: frankensteinJunior as FilmData, scenes: FRANKENSTEIN_JUNIOR_SCENES, cover: FrankCover, ending: FrankEnd, posterFont: CREEPSTER },
   { slug: 'interstellar', data: interstellar as FilmData, scenes: INTERSTELLAR_SCENES, cover: InterCover, ending: InterEnd, posterFont: SYNCOPATE },
-  { slug: 'dark-stagione-1', data: darkStagione1 as FilmData, scenes: {} },
+  { slug: 'dark-stagione-1', data: darkStagione1 as FilmData, scenes: DARK_S1_SCENES, cover: DarkCover, ending: DarkEnd, posterFont: STENCIL },
 ];
 
 export const getFilm = (slug: string): FilmDef => {

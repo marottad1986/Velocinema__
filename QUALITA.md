@@ -38,6 +38,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - Shutter Island: fredda, verde petrolio (#0E3A40).
   - La La Land: calda nelle scene di giorno (#F2C14E), viola-indaco di notte (#2C2456).
   - The Truman Show: azzurro pastello da set televisivo di giorno (#8FD3F4, opacità 10%), blu notte nelle scene di tempesta e di notte (#142235).
+  - Dark (Spiegato semplice): verde-grigio freddo da bosco bagnato (#2F4A40, opacità 12%); nel 2052 seppia di cenere (#5A4E3C). Unico colore deciso il giallo dell'impermeabile (#F2C230) sugli oggetti chiave.
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
 
@@ -125,3 +126,18 @@ Look da fantascienza intima: blu profondo nello spazio, polvere color sabbia sul
 - La verità di Brand: rotazione che rallenta, frammenti, lavagna con l'equazione barrata.
 - Dentro il buco nero: disco dorato, navetta che cade, tunnel di librerie con fili di luce, libro che cade.
 - Il messaggio: Morse dorato in sincronia con la lancetta, stazione spaziale con case, due orologi, navetta verso Amelia.
+
+### Dark, stagione 1 (Spiegato semplice)
+Look da mistero nordico: pioggia, bosco di abeti, cemento e luci calde isolate. Ogni personaggio è un oggetto fisso
+(impermeabile giallo = Jonas, carte = Mikkel, busta con sigillo = Michael, gomitolo rosso = Martha, cuffietta = Ines,
+colletto = Noah, zaino con apparecchio di ottone = lo straniero, orologio da taschino = Tannhaus, distintivo = Ulrich),
+disegnati in `src/scenes/dark-stagione-1/Winden.tsx` insieme a abeti e torri della centrale. Mai figure.
+- Una città con un segreto: pioggia su due livelli e gocce sul vetro, vapore delle torri, manifesti che compaiono, finestre accese.
+- Un bambino sparisce: torce a terra con fasci che sfarfallano, grotta che si accende, foglie, carte risucchiate, un lampo.
+- La regola dei 33 anni: spaccato a tre piani come un ascensore, cabina di luce nel pozzo, targhe che si accendono, gocce.
+- Mikkel nel 1986: neon che sfarfalla, pulviscolo, cartella con «Michael» scritto a mano, segni dell'altezza sullo stipite.
+- Il colpo di scena: albero di famiglia a matita fatto di oggetti, busta che si apre, filo rosso che chiude il cerchio.
+- Chi rapisce i bambini: luce dalla porta con pulviscolo, lampadine che si accendono e scoppiano, scintille, fumo.
+- Il misterioso straniero: orologi che ticchettano e poi corrono, pioggia in vetrina, X rossa sulla mappa, pendolo.
+- La scelta di Jonas: due porte (1986 calda, 1953 fredda), freccia «a casa?», impermeabile che sbiadisce, sbarre che cadono.
+- Come finisce la stagione: anello di luce, cerchio che gira, lampo, poi 2052 con cenere, torri crollate e sfera nera.
