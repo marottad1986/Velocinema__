@@ -3,6 +3,7 @@ import { camera, eo, eob, lerp, rng, seg } from '../../lib/anim';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Fire, Fog, Glow, Gulls, Lightning, NearMotes, Notes, Rain, flashAt } from '../../lib/elements';
 import type { SceneProps } from '../../types';
+import { Violino } from './Violino';
 
 // Frau Blücher: enorme portone del castello con due batacchi giganti, torce accese, finestra della stalla
 // dove i cavalli si impennano a ogni lampo; in alto una finestrella con un violino che suona da solo. Nessuna persona.
@@ -104,9 +105,7 @@ export const Castello: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <path d="M890 760 V650 Q890 600 940 600 Q990 600 990 650 V760 Z" fill="#3A3428" stroke={K} strokeWidth="8" />
             <Glow id="fb-vw" x={940} y={690} r={110 + 50 * violin} t={t} color="#F0DDB0" amp={0.1} rate={2.5} opacity={0.35 + 0.35 * violin} />
             <g transform="translate(940 700) rotate(-25)">
-              <path d="M-14 -50 q-16 0 -16 18 q0 10 6 14 q-8 6 -8 16 q0 22 32 22 q32 0 32 -22 q0 -10 -8 -16 q6 -4 6 -14 q0 -18 -16 -18 q-8 0 -14 6 q-6 -6 -14 -6 Z" fill="#8A5A34" stroke={K} strokeWidth="5" />
-              <path d="M0 -50 V-96" stroke={K} strokeWidth="8" />
-              <path d="M0 -96 q8 -6 4 -14" fill="none" stroke={K} strokeWidth="6" />
+              <Violino outline={K} scale={0.5} />
             </g>
             <g transform={`rotate(${Math.sin(t * 9) * 10 * violin} 940 700)`} opacity={violin}>
               <path d="M880 660 L1000 740" stroke="#D8D4C6" strokeWidth="5" strokeLinecap="round" />
