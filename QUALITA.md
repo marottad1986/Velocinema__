@@ -127,17 +127,11 @@ Look da fantascienza intima: blu profondo nello spazio, polvere color sabbia sul
 - Dentro il buco nero: disco dorato, navetta che cade, tunnel di librerie con fili di luce, libro che cade.
 - Il messaggio: Morse dorato in sincronia con la lancetta, stazione spaziale con case, due orologi, navetta verso Amelia.
 
-### Dark, stagione 1 (Spiegato semplice)
-Look da mistero nordico: pioggia, bosco di abeti, cemento e luci calde isolate. Ogni personaggio è un oggetto fisso
-(impermeabile giallo = Jonas, carte = Mikkel, busta con sigillo = Michael, gomitolo rosso = Martha, cuffietta = Ines,
-colletto = Noah, zaino con apparecchio di ottone = lo straniero, orologio da taschino = Tannhaus, distintivo = Ulrich),
-disegnati in `src/scenes/dark-stagione-1/Winden.tsx` insieme a abeti e torri della centrale. Mai figure.
-- Una città con un segreto: pioggia su due livelli e gocce sul vetro, vapore delle torri, manifesti che compaiono, finestre accese.
-- Un bambino sparisce: torce a terra con fasci che sfarfallano, grotta che si accende, foglie, carte risucchiate, un lampo.
-- La regola dei 33 anni: spaccato a tre piani come un ascensore, cabina di luce nel pozzo, targhe che si accendono, gocce.
-- Mikkel nel 1986: neon che sfarfalla, pulviscolo, cartella con «Michael» scritto a mano, segni dell'altezza sullo stipite.
-- Il colpo di scena: albero di famiglia a matita fatto di oggetti, busta che si apre, filo rosso che chiude il cerchio.
-- Chi rapisce i bambini: luce dalla porta con pulviscolo, lampadine che si accendono e scoppiano, scintille, fumo.
-- Il misterioso straniero: orologi che ticchettano e poi corrono, pioggia in vetrina, X rossa sulla mappa, pendolo.
-- La scelta di Jonas: due porte (1986 calda, 1953 fredda), freccia «a casa?», impermeabile che sbiadisce, sbarre che cadono.
-- Come finisce la stagione: anello di luce, cerchio che gira, lampo, poi 2052 con cenere, torri crollate e sfera nera.
+### Dark, stagione 1 (Spiegato semplice, schema)
+Un'unica parete delle indagini (`src/scenes/dark-stagione-1/Parete.tsx`) che si riempie frase dopo frase: intonaco scuro
+verde-grigio, fasce degli anni con nastro di carta (1953, 1986, 2019, 2052), polaroid appese con puntine rosse che mostrano
+gli oggetti dei personaggi (mai figure), fili rossi con scritte a gesso per i legami, linea gialla tratteggiata per il
+passaggio, biglietti per le domande. Luce di lampada che segue la camera, pulviscolo, velo scuro dietro il titolo, grana.
+- Ogni elemento compare con un piccolo rimbalzo quando la voce lo nomina; i fili si tendono in 0,6 s.
+- La camera stringe sull'elemento nominato e si allarga quando serve vedere i legami; alla fine mostra tutta la parete.
+- Non più di un filo nuovo per frase; le scritte non devono finire sopra le foto.
