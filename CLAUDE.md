@@ -5,6 +5,9 @@ Ogni film è descritto da un file in `films/` (titolo, regista, palette, coperti
 Il codice in `reference/` è la versione attuale delle scene, scritta per un altro player: va usato come
 riferimento per i disegni e le animazioni, non eseguito così com'è.
 
+Serie parallela con la stessa grafica: **quadri famosi** spiegati in 2 minuti, JSON in `quadri/`.
+Regole proprie (solo opere di pubblico dominio, immagine originale animata): vedi `QUADRI.md`.
+
 ## Formato (vincolante)
 - 1080×1920, 30 o 60 fps, durata esatta 2:00 (120 s).
 - Struttura: copertina 4 s + capitoli (112 s in tutto) + finale 4 s.

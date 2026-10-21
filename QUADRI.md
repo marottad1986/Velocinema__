@@ -14,6 +14,23 @@ ma dedicati a un quadro famoso. Ogni quadro è descritto da un file in `quadri/`
   `public/quadri/<slug>/` (originale ad alta risoluzione + eventuali piani ritagliati).
 - Esclusi finché sono protetti: Picasso, Magritte, Dalí, Hopper, Matisse, Frida Kahlo, Mondrian, Kandinsky…
 
+## Preparare l'immagine
+1. Scaricare la scansione più grande dalla fonte indicata nel JSON (`opera.fonte.url`).
+2. Ridurla a ~8000 px di lato lungo (oltre, Chromium rallenta o non la carica) e salvarla come
+   `public/quadri/<slug>/originale.jpg`:
+   `ffmpeg -i scansione.jpg -vf "scale='min(8000,iw)':-2" -q:v 2 public/quadri/<slug>/originale.jpg`
+3. Controllare che `aspect` in `src/scenes/<slug>/index.tsx` sia larghezza/altezza dell'immagine
+   e verificare i punti dei dettagli con `npm run prova` (sono stime finché non si vede l'immagine vera).
+Finché l'immagine manca, le scene mostrano l'avviso «[immagine mancante]» con il percorso atteso.
+
+## Codice
+- `src/lib/quadro.tsx`: `<Quadro>` (opera inquadrata con fotogrammi chiave della camera, fondo sfocato,
+  sfumature per titolo e sottotitoli) ed effetti: `Alone`, `Riflettore`, `LuceRadente`, `Vortice` (nello spazio
+  dell'opera, coordinate in frazioni 0–1) e `OmbraSbarre` (nello spazio dello schermo).
+- `src/scenes/quadri/Locandina.tsx`: copertina e finale comuni a tutti i quadri.
+- `src/scenes/<slug>/index.tsx`: punti dell'opera e una scena per capitolo; registrare il quadro in `src/films.ts`.
+- Gli script (`render`, `prova`, `musica`, `voce`) cercano il JSON in `films/` e poi in `quadri/`.
+
 ## Cosa si può fare sull'immagine
 - Movimenti di camera lenti (avvicinamento, panoramica) per inquadrare un dettaglio alla volta nel formato
   verticale; parallasse leggera ritagliando l'opera in piani (cielo / sfondo / primo piano).

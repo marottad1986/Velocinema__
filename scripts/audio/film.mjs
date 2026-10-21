@@ -2,9 +2,12 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
+/** JSON di un film (films/) o di un quadro (quadri/); undefined se non c'è. */
+export const filmPath = (slug) => [`films/${slug}.json`, `quadri/${slug}.json`].find((p) => existsSync(p));
+
 export const loadFilm = (slug) => {
-  const path = `films/${slug}.json`;
-  if (!existsSync(path)) throw new Error(`Non trovo ${path}`);
+  const path = filmPath(slug);
+  if (!path) throw new Error(`Non trovo films/${slug}.json né quadri/${slug}.json`);
   return JSON.parse(readFileSync(path, 'utf8'));
 };
 

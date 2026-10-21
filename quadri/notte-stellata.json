@@ -86,7 +86,7 @@
       "id": "cipresso",
       "titolo": "La fiamma nera",
       "durata": 10,
-      "scena": "Panoramica dal basso verso l'alto lungo il cipresso a sinistra; le sue pennellate ondeggiano come una fiamma.",
+      "scena": "Panoramica dal basso verso l'alto lungo il cipresso a sinistra; alla fine il resto del quadro si scurisce e resta in luce la punta, contro il cielo.",
       "sottotitoli": [
         "A sinistra, un cipresso enorme, scuro come una fiamma.",
         "In Provenza il cipresso è l'albero dei cimiteri.",
@@ -134,7 +134,7 @@
       "id": "fallimento",
       "titolo": "Per lui era un errore",
       "durata": 11,
-      "scena": "Quadro intero che si allontana lentamente; i colori si attenuano un poco come in un ricordo.",
+      "scena": "La camera si allontana lentamente fino al quadro intero; un velo scuro leggero, come un ricordo.",
       "sottotitoli": [
         "Eppure a lui non piaceva.",
         "Scrive a un amico pittore di aver fatto «stelle troppo grandi»:",
@@ -158,7 +158,8 @@
   ],
   "finale": {
     "durata": 4,
-    "immagine": "Il quadro intero, fermo; in basso «La prossima volta che lo vedi, cerca Venere accanto al cipresso.»; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo quadro arriva presto.'"
+    "immagine": "Il quadro intero, fermo; in basso la frase del finale; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo quadro arriva presto.'",
+    "frase": "La prossima volta che lo vedi, cerca Venere accanto al cipresso."
   },
   "musica": "Originale e strumentale: pianoforte lento e archi, un tema in tonalità minore che gira su sé stesso come i vortici; più scuro nei capitoli dell'ospedale, più luminoso su Venere e nel finale."
 }

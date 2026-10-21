@@ -10,14 +10,20 @@ export type Capitolo = {
   sottotitoli: string[];
 };
 
+/** Scheda dell'opera (solo quadri, QUADRI.md). */
+export type OperaInfo = { tecnica: string; misure: string; museo: string; fonte: { url: string; licenza: string } };
+
+/** Dati di un film (films/) o di un quadro (quadri/: autore al posto di regista, più la scheda dell'opera). */
 export type FilmData = {
   titolo: string;
-  regista: string;
+  regista?: string;
+  autore?: string;
   anno: number;
+  opera?: OperaInfo;
   palette: Palette;
   copertina: { durata: number; frase_lancio?: string; immagine: string; voce?: string };
   capitoli: Capitolo[];
-  finale: { durata: number; immagine: string };
+  finale: { durata: number; immagine: string; frase?: string };
   musica?: string;
 };
 
