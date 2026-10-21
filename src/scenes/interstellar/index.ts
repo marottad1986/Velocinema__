@@ -5,6 +5,7 @@ import { Nasa } from './Nasa';
 import { Partenza } from './Partenza';
 import { Varco } from './Varco';
 import { Onde } from './Onde';
+import { Messaggi } from './Messaggi';
 
 // Scene di Interstellar, per id del capitolo (films/interstellar.json).
 export const INTERSTELLAR_SCENES: Record<string, SceneDef> = {
@@ -14,4 +15,5 @@ export const INTERSTELLAR_SCENES: Record<string, SceneDef> = {
   partenza: { Component: Partenza, title: { top: 392, size: 108 } },
   varco: { Component: Varco, title: { top: 392, size: 108 } },
   onde: { Component: Onde, title: { top: 400, size: 88 } },
+  messaggi: { Component: Messaggi, title: { top: 400, size: 86 } },
 };
