@@ -26,6 +26,15 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 - Musica solo originale e strumentale; mai brani o temi dei film.
 - Nessuna clip, immagine o audio preso dai film.
 
+## Testo per chi non ha visto il film (vincolante)
+- Il racconto deve essere comprensibile a chi non conosce il film: ogni personaggio viene presentato con il suo ruolo
+  la prima volta che compare (es. «Aigor, il servo»).
+- Ogni capitolo spiega perché succede quello che succede, e il capitolo dopo deve seguire logicamente.
+- Niente battute, citazioni o soprannomi che capisce solo chi ha visto il film; se si usa una gag famosa, va spiegata
+  nella stessa frase.
+- Il finale deve dire chiaramente come va a finire, compresi i colpi di scena.
+- Titoli dei capitoli chiari anche fuori contesto.
+
 ## Elementi fissi sopra le immagini (capitoli)
 - Barra a capitoli sottile (16 px) sul bordo superiore, un segmento per capitolo proporzionale alla durata,
   riempimento con il colore accento.
