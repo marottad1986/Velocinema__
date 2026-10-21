@@ -49,6 +49,8 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 - Clip registrate una per capitolo in `audio/<film>/`, nominate `00_copertina`, `01_<id>`, `02_<id>`…
 - Montaggio: ogni clip parte all'inizio del suo capitolo; se sfora, accelerare al massimo del 15%
   mantenendo il tono, altrimenti segnalare la frase da accorciare. Musica abbassata sotto la voce.
+- Voce sintetica gratuita (Kokoro, voce maschile `im_nicola`, licenza Apache 2.0): `scripts/voce-kokoro.py` genera le clip
+  in `audio/<film>/` adattando la velocità alla durata di ogni capitolo (istruzioni in testa al file).
 - `npm run voce -- <film>` → `out/<film>-voce.mp4` (richiede `out/<film>.mp4` già renderizzato con la musica).
   Gli inizi dei capitoli vengono dal JSON (copertina + durate); clip in wav/mp3/m4a/flac/ogg, facoltativa `NN_finale`.
   Lascia 0,1 s prima del capitolo successivo; oltre il +15% (atempo) non monta nulla, esce con errore e indica
