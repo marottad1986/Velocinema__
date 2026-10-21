@@ -125,7 +125,7 @@ export const Cervello: React.FC<SceneProps> = ({ t, dur, cues }) => {
           {/* barattolo ABNORMAL: dallo scaffale al piedistallo */}
           <g transform={`translate(${lerp(414, pedX, swap)} ${lerp(928, pedY, swap) - Math.sin(swap * Math.PI) * 120}) scale(${lerp(0.55, 1, swap)})`} opacity={broke ? 1 : 0}>
             <Glow id="ce-tag" x={0} y={-60} r={170} t={t} color={ACC} amp={0.12} rate={3} opacity={0.6 * tag} />
-            <Jar label="ABNORMAL" labelFill={swap > 0.9 ? ACC : '#E2DCC8'} />
+            <Jar label="ANORMALE" labelFill={swap > 0.9 ? ACC : '#E2DCC8'} />
           </g>
         </g>
 
