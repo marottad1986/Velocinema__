@@ -6,6 +6,7 @@ import trumanShow from '../films/the-truman-show.json';
 import frankensteinJunior from '../films/frankenstein-junior.json';
 import interstellar from '../films/interstellar.json';
 import darkStagione1 from '../films/dark-stagione-1.json';
+import inception from '../films/inception.json';
 import { SHUTTER_ISLAND_SCENES } from './scenes/shutter-island';
 import { Copertina as ShutterCover } from './scenes/shutter-island/Copertina';
 import { Finale as ShutterEnd } from './scenes/shutter-island/Finale';
@@ -29,6 +30,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'frankenstein-junior', data: frankensteinJunior as FilmData, scenes: FRANKENSTEIN_JUNIOR_SCENES, cover: FrankCover, ending: FrankEnd, posterFont: CREEPSTER },
   { slug: 'interstellar', data: interstellar as FilmData, scenes: INTERSTELLAR_SCENES, cover: InterCover, ending: InterEnd, posterFont: SYNCOPATE },
   { slug: 'dark-stagione-1', data: darkStagione1 as FilmData, scenes: DARK_S1_SCENES, cover: DarkCover, ending: DarkEnd, posterFont: STENCIL },
+  { slug: 'inception', data: inception as FilmData, scenes: {} },
 ];
 
 export const getFilm = (slug: string): FilmDef => {

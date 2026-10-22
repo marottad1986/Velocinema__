@@ -1,0 +1,173 @@
+{
+  "formato": "spiegato",
+  "tipo": "film",
+  "schema": true,
+  "titolo": "Inception",
+  "regista": "Christopher Nolan",
+  "anno": 2010,
+  "palette": {
+    "chiaro": "#EDEFF2",
+    "principale": "#44617A",
+    "scuro": "#0B1016",
+    "accento": "#E39A3B"
+  },
+  "personaggi": [
+    {
+      "nome": "Cobb",
+      "ruolo": "un ladro di sogni",
+      "oggetto": "trottola di metallo"
+    },
+    {
+      "nome": "Saito",
+      "ruolo": "un ricco uomo d'affari",
+      "oggetto": "valigetta"
+    },
+    {
+      "nome": "Fischer",
+      "ruolo": "l'erede di un'azienda rivale",
+      "oggetto": "girandola di carta"
+    },
+    {
+      "nome": "il padre di Fischer",
+      "ruolo": "un magnate morente",
+      "oggetto": "cassaforte"
+    },
+    {
+      "nome": "Mal",
+      "ruolo": "la moglie di Cobb",
+      "oggetto": "fede nuziale"
+    }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Un sogno. Dentro un sogno. Dentro un sogno.",
+    "immagine": "Sigla 'Spiegato semplice' (badge FILM), poi una trottola di metallo che gira su un tavolo scuro; sotto il tavolo, come in uno spaccato, tre piani che scendono (città sotto la pioggia, corridoio d'albergo, fortezza nella neve) e in fondo una spiaggia grigia. NON usare città che si piega, persone, né locandine ufficiali.",
+    "voce": "Inception, spiegato semplice."
+  },
+  "capitoli": [
+    {
+      "id": "estrazione",
+      "titolo": "Cosa fa Cobb?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
+      "sottotitoli": [
+        "Cobb è un ladro speciale: ruba segreti dai sogni.",
+        "Entra nel sogno di chi dorme e si fa dire tutto.",
+        "Per capire se sta sognando, fa girare una trottola:",
+        "nei sogni non si ferma mai."
+      ]
+    },
+    {
+      "id": "innesto",
+      "titolo": "Cosa gli chiede Saito?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
+      "sottotitoli": [
+        "Saito, un ricco uomo d'affari, gli chiede il contrario:",
+        "non rubare un'idea, ma piantarne una",
+        "nella testa di Fischer, l'erede di un'azienda rivale.",
+        "Fischer deve decidere da solo di smontare l'impero del padre.",
+        "In cambio Cobb, che è ricercato, potrà tornare dai figli."
+      ]
+    },
+    {
+      "id": "livelli",
+      "titolo": "Perché un sogno dentro un sogno?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
+      "sottotitoli": [
+        "Un'idea attecchisce solo se sembra nata da te,",
+        "e più si scende in profondità, più sembra tua.",
+        "Così il piano è un sogno dentro un sogno dentro un sogno,",
+        "come i piani di un palazzo: tre livelli sotto la realtà."
+      ]
+    },
+    {
+      "id": "tempo",
+      "titolo": "Perché il tempo rallenta?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
+      "sottotitoli": [
+        "Addormentano Fischer in aereo, durante un volo di dieci ore.",
+        "Nei sogni però la mente corre, e il tempo si allunga:",
+        "dieci ore diventano una settimana al primo piano,",
+        "sei mesi al secondo, dieci anni al terzo."
+      ]
+    },
+    {
+      "id": "calcio",
+      "titolo": "Come ci si sveglia?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
+      "sottotitoli": [
+        "Per risalire serve una caduta improvvisa,",
+        "come quando sogni di cadere e ti svegli di colpo.",
+        "La chiamano «calcio», e va data su ogni piano,",
+        "tutti nello stesso momento."
+      ]
+    },
+    {
+      "id": "limbo",
+      "titolo": "E se si muore nel sogno?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
+      "sottotitoli": [
+        "Di solito morire in un sogno ti sveglia.",
+        "Ma qui usano un sonnifero fortissimo:",
+        "chi muore precipita nel limbo, il piano più in fondo,",
+        "dove si resta per anni e si dimentica cos'è reale."
+      ]
+    },
+    {
+      "id": "mal",
+      "titolo": "Chi è Mal?",
+      "durata": 14,
+      "personaggi": [],
+      "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
+      "sottotitoli": [
+        "Cobb lo sa bene: ci finì anni fa con la moglie, Mal.",
+        "Per riportarla su, le mise in testa un'idea: «niente è vero».",
+        "Ma l'idea restò anche da sveglia, e Mal si tolse la vita.",
+        "Per questo Cobb è ricercato, e lei lo tormenta nei sogni."
+      ]
+    },
+    {
+      "id": "missione",
+      "titolo": "Funziona?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
+      "sottotitoli": [
+        "Al terzo piano Fischer muore e precipita nel limbo.",
+        "Cobb scende a riprenderlo, e lì dice addio a Mal.",
+        "Fischer risale e in una cassaforte trova una copia del padre,",
+        "che gli chiede di essere se stesso. L'idea ha attecchito."
+      ]
+    },
+    {
+      "id": "trottola",
+      "titolo": "La trottola cade?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
+      "sottotitoli": [
+        "Cobb ritrova Saito, invecchiato nel limbo, e lo riporta su.",
+        "Si svegliano in aereo, e Cobb torna a casa.",
+        "Fa girare la trottola, ma corre dai figli senza guardarla.",
+        "Sogno o realtà? Il film non lo dice. Tu che dici?"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "In una frase: un'idea, una volta piantata, non se ne va più.",
+    "immagine": "La torre dei piani completa con la trottola in cima che vacilla; riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la spiegazione che vorresti.'"
+  },
+  "musica": "Originale e strumentale: archi gravi e pianoforte, un pulsare che rallenta a ogni piano più profondo, un ticchettio che si dilata; niente brani o temi del film (né la colonna sonora originale né canzoni usate nel film)."
+}
