@@ -11,6 +11,7 @@ on:
     branches: [main]
     paths:
       - films/**
+      - quadri/**
       - src/**
       - scripts/**
       - audio/**
@@ -46,7 +47,7 @@ jobs:
           if [ "$EVENTO" = workflow_dispatch ]; then
             if [ -z "$SCELTO" ]; then
               film=$(node scripts/cambiati.mjs --tutti)
-            elif [ -f "films/$SCELTO.json" ] && [[ "$SCELTO" =~ ^[a-z0-9-]+$ ]]; then
+            elif { [ -f "films/$SCELTO.json" ] || [ -f "quadri/$SCELTO.json" ]; } && [[ "$SCELTO" =~ ^[a-z0-9-]+$ ]]; then
               film="[\"$SCELTO\"]"
             else
               echo "::error::Film sconosciuto: $SCELTO"; exit 1

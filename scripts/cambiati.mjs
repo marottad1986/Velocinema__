@@ -1,13 +1,17 @@
 // Film da rigenerare dopo un push (usato da .github/workflows/video-mega.yml).
 // git diff --name-only A B | node scripts/cambiati.mjs   → JSON dei film toccati, es. ["shutter-island"]
 // node scripts/cambiati.mjs --tutti                      → JSON di tutti i film
-// File di un solo film: films/<f>.json, src/scenes/<f>/, scripts/audio/<f>.mjs, audio/<f>/.
+// File di un solo film: films/<f>.json (o quadri/<f>.json), src/scenes/<f>/, scripts/audio/<f>.mjs, audio/<f>/.
 // Codice comune (resto di src/, scripts/, package.json, remotion.config.ts): tutti i film.
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 
-const tutti = readdirSync('films').filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5)).sort();
+const tutti = ['films', 'quadri']
+  .flatMap((d) => (existsSync(d) ? readdirSync(d) : []))
+  .filter((f) => f.endsWith('.json'))
+  .map((f) => f.slice(0, -5))
+  .sort();
 const COMUNI = [/^src\//, /^scripts\/[^/]+\.mjs$/, /^scripts\/audio\/(synth|film)\.mjs$/, /^package(-lock)?\.json$/, /^remotion\.config\.ts$/];
-const PROPRI = [/^films\/([^/]+)\.json$/, /^src\/scenes\/([^/]+)\//, /^scripts\/audio\/([^/]+)\.mjs$/, /^audio\/([^/]+)\//];
+const PROPRI = [/^(?:films|quadri)\/([^/]+)\.json$/, /^src\/scenes\/([^/]+)\//, /^scripts\/audio\/([^/]+)\.mjs$/, /^audio\/([^/]+)\//];
 
 const scelti = (file) => {
   for (const re of PROPRI) {
