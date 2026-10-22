@@ -87,18 +87,33 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      # A volte apt o il download di MEGAcmd restano appesi per mezz'ora: ogni tentativo ha 4 minuti, poi si riprova.
+      # Strumenti tenuti in cache fra un'esecuzione e l'altra: lo specchio Ubuntu di Azure a volte scarica a pochi KB/s
+      # (ffmpeg da apt sono 99 pacchetti). ffmpeg arriva già compilato da GitHub (veloce); i pacchetti di MEGAcmd restano
+      # nella cache, così apt li scarica solo la prima volta.
+      - uses: actions/cache@v4
+        with:
+          path: ~/strumenti
+          key: strumenti-ubuntu24-v1
       - name: Strumenti (ffmpeg, MEGAcmd)
         timeout-minutes: 15
         run: |
+          S=~/strumenti
+          mkdir -p "$S/apt/partial"
+          if [ ! -x "$S/ffmpeg/bin/ffmpeg" ]; then
+            curl -fsSL --retry 3 --max-time 300 https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz -o /tmp/ffmpeg.tar.xz
+            mkdir -p "$S/ffmpeg" && tar -xJf /tmp/ffmpeg.tar.xz -C "$S/ffmpeg" --strip-components=1
+          fi
+          echo "$S/ffmpeg/bin" >> "$GITHUB_PATH"
+          "$S/ffmpeg/bin/ffmpeg" -version | head -1
+          [ -s "$S/megacmd.deb" ] || wget -q --tries=3 --timeout=60 https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megacmd-xUbuntu_24.04_amd64.deb -O "$S/megacmd.deb"
           installa() {
             sudo timeout 240 apt-get update -q -o Acquire::Retries=3 &&
-            sudo timeout 240 apt-get install -y -q -o Acquire::Retries=3 ffmpeg &&
-            timeout 240 wget -q --tries=3 --timeout=60 https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megacmd-xUbuntu_24.04_amd64.deb -O /tmp/megacmd.deb &&
-            sudo timeout 240 apt-get install -y -q /tmp/megacmd.deb
+            sudo timeout 240 apt-get install -y -q -o Acquire::Retries=3 -o Dir::Cache::Archives="$S/apt" "$S/megacmd.deb"
           }
-          for i in 1 2 3; do installa && exit 0; echo "Tentativo $i non riuscito, riprovo"; sleep 10; done
-          exit 1
+          ok=0
+          for i in 1 2 3; do if installa; then ok=1; break; fi; echo "Tentativo $i non riuscito, riprovo"; sleep 10; done
+          sudo chown -R "$USER" "$S"
+          [ "$ok" = 1 ]
       - run: npm ci
       # campioni (VSCO-2 CE, VCSL) ed effetti registrati: scaricati da scripts/musica.mjs, tenuti fra un'esecuzione e l'altra
       - uses: actions/cache@v4
