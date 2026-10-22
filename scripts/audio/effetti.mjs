@@ -1,0 +1,105 @@
+// Effetti sonori registrati: archivio di Craig Smith (USC Cinema / Sunset Editorial, "SSE Library" e "Red Library"),
+// CC0, ospitato su archive.org. Scaricati alla prima esecuzione in campioni/effetti/ (cartella ignorata da git).
+// Ogni voce del catalogo è un file intero; lo spartito sceglie la presa con da/durata (secondi nel file).
+import { existsSync, mkdirSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { readWav } from './wav.mjs';
+import { SR } from './synth.mjs';
+
+const CACHE = 'campioni/effetti';
+
+/** id → [item di archive.org, file, picco del file in dB (RMS su 10 ms): serve a normalizzare i volumi]. */
+export const CATALOGO = {
+  tuono_classico: ['Red_Library_Nature_Rain', 'R30-28-Classic Thunder Clap.wav', -21],
+  tuono_breve: ['Red_Library_Nature_Rain', 'R30-29-Classic Thunder Clap.wav', -21],
+  tuono_secco: ['Red_Library_Nature_Rain', 'R30-30-Classic Thunder Clap.wav', -21],
+  tuono_forte: ['Red_Library_Nature_Rain', 'R22-13-Classic Thunder Strike.wav', -10],
+  tuono_lontano: ['SSE_Library_WEATHER', 'THUNDER/THUN_Thunderclap; strong; distant; could be explo_CS_USC.wav', -9],
+  pioggia_vento: ['Red_Library_Nature_Rain', 'R10-04-Heavy Rain and Wind.wav', -8],
+  vento_fischio: ['SSE_Library_WIND', 'GENERAL/WIND_Whistling wind; good rumble_CS_USC.wav', -10],
+  vento_invernale: ['Red_Library_Nature_Wind', 'R27-28-Big Cold Winter Wind.wav', -21],
+  vento_raffiche: ['Red_Library_Nature_Wind', 'R22-11-Blustery Wind Loop.wav', -6],
+  vento_leggero: ['SSE_Library_WIND', 'GENERAL/WIND_Steady wind_CS_USC.wav', -30],
+  serratura: ['SSE_Library_MECHANICAL', 'LOCK/MECHLock_Lock opens; could be door; gun or other small_CS_USC.wav', -16],
+  metallo_cade: ['SSE_Library_METAL', 'IMPACT/METLImpt_Metal objects hitting and fall_CS_USC.wav', -16],
+  cancello: ['Red_Library_Doors', 'R26-04-Castle Door or Gate.wav', -12],
+  colpi_legno: ['Red_Library_Doors', 'R09-12-Wooden Thuds and Slams.wav', -12],
+  martelletto: ['SSE_Library_TOOLS', 'HAND/TOOLHand_Gavel pounding short & long_CS_USC.wav', -13],
+  tintinnio: ['Red_Library_Foley_Props_1', 'R15-86-Clinking and Bottle Down.wav', -16],
+  fuoco: ['Red_Library_Fire', 'R09-67-Small Crackling Fire.wav', -19],
+  fiammata: ['SSE_Library_FIRE', 'WHOOSH/FIREWhsh_Flare whoosh_CS_USC.wav', -8],
+  telo: ['Red_Library_Foley_Props_3', 'R24-18-Tent or Tarp Whoosh.wav', -13],
+  stoffa: ['Red_Library_Foley_Props_5', 'R27-32-Heavy Cloth Fluttering or Torch.wav', -11],
+};
+
+const percorso = (id) => `${CACHE}/${CATALOGO[id][0]}/${CATALOGO[id][1].replace(/[/;?]/g, '_')}`;
+
+/** Scarica gli effetti mancanti (curl, presente anche in Windows 10+). */
+export const scaricaEffetti = (ids) => {
+  const mancanti = ids.filter((id) => {
+    if (!CATALOGO[id]) throw new Error(`Effetto sconosciuto: ${id}`);
+    return !existsSync(percorso(id));
+  });
+  if (!mancanti.length) return;
+  console.log(`Scarico ${mancanti.length} effetti sonori (archive.org, CC0) in ${CACHE}/ (solo la prima volta)…`);
+  for (const id of mancanti) {
+    const [item, file] = CATALOGO[id];
+    const dest = percorso(id);
+    mkdirSync(dest.slice(0, dest.lastIndexOf('/')), { recursive: true });
+    const url = `https://archive.org/download/${item}/${file.split('/').map(encodeURIComponent).join('/')}`;
+    const res = spawnSync('curl', ['-fsSL', '--retry', '3', '-o', dest, url], { stdio: 'inherit' });
+    if (res.error) throw new Error(`curl non trovato: serve per scaricare gli effetti (${res.error.message})`);
+    if (res.status !== 0) throw new Error(`Download fallito: ${url}`);
+  }
+};
+
+const memoria = new Map();
+const carica = (id) => {
+  if (!memoria.has(id)) {
+    const w = readWav(percorso(id));
+    // mono (ultimo canale ignorato se stereo: le prese di questo archivio sono mono)
+    memoria.set(id, { sr: w.sr, x: w.L });
+  }
+  return memoria.get(id);
+};
+
+/**
+ * Suona un tratto di registrazione: da/durata in secondi nel file; t = istante nel film.
+ * fadeIn/fadeOut in secondi; gain lineare rispetto al picco del file portato a -6 dB (gain 1 = colpo pieno); lp = passa-basso (Hz) per suoni attutiti o lontani;
+ * rate = velocità (cambia anche il tono); largo = per i tappeti (vento, pioggia): il canale destro legge
+ * lo stesso file spostato di largo secondi, così il suono si apre in stereo.
+ */
+export const clip = (mix, id, { t, da = 0, durata, gain = 1, pan = 0, rev = 0.15, fadeIn = 0.005, fadeOut = 0.05, lp = 0, rate = 1, largo = 0 }) => {
+  const { sr, x } = carica(id);
+  const step = (sr / SR) * rate;
+  const dur = durata ?? (x.length / sr - da);
+  const len = Math.ceil((dur * SR) / rate);
+  const read = (pos) => {
+    const k = Math.floor(pos), f = pos - k;
+    return k >= 0 && k + 1 < x.length ? x[k] + (x[k + 1] - x[k]) * f : 0;
+  };
+  const a = lp ? 1 - Math.exp((-2 * Math.PI * lp) / SR) : 1;
+  const z = [0, 0, 0, 0]; // passa-basso a due poli per canale
+  const s0 = Math.round(t * SR);
+  const p0 = da * sr;
+  const off = largo * sr;
+  const g = gain * 10 ** ((-6 - CATALOGO[id][2]) / 20);
+  const gl = g * Math.min(1, Math.SQRT2 * Math.cos(((pan + 1) * Math.PI) / 4));
+  const gr = g * Math.min(1, Math.SQRT2 * Math.sin(((pan + 1) * Math.PI) / 4));
+  for (let i = 0; i < len; i++) {
+    const k = s0 + i;
+    if (k < 0) continue;
+    if (k >= mix.n) break;
+    const u = i / SR;
+    const env = Math.min(1, u / Math.max(1e-4, fadeIn / rate), (len - i) / SR / Math.max(1e-4, fadeOut / rate));
+    const pos = p0 + i * step;
+    let l = read(pos), r = largo ? read(pos + off >= x.length ? pos - off : pos + off) : l;
+    if (lp) {
+      z[0] += a * (l - z[0]); z[1] += a * (z[0] - z[1]); l = z[1];
+      z[2] += a * (r - z[2]); z[3] += a * (z[2] - z[3]); r = z[3];
+    }
+    l *= env * gl; r *= env * gr;
+    mix.L[k] += l; mix.R[k] += r;
+    mix.rL[k] += l * rev; mix.rR[k] += r * rev;
+  }
+};

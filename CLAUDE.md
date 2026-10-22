@@ -67,7 +67,11 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 - Spartito per film in `scripts/audio/<film>.mjs` (accordi, livelli per sezione, effetti agganciati ai secondi
   delle scene in `src/scenes/<film>/`); esporta `strumenti` (campioni da scaricare) e `sala` (riverbero).
   Se si cambiano i tempi di un evento in una scena, aggiornare anche lo spartito.
-- Shutter Island usa già l'orchestra campionata; gli altri film usano ancora i vecchi strumenti sintetici.
+- Effetti sonori registrati: `scripts/audio/effetti.mjs` (archivio CC0 di Craig Smith, USC / Sunset Editorial, "SSE Library"
+  e "Red Library" su archive.org), scaricati in `campioni/effetti/`; `clip(mix, id, { t, da, durata, gain, lp, largo… })`
+  suona un tratto del file (da/durata = presa scelta). Per aggiungere un effetto: voce nel `CATALOGO` con il picco del file.
+  Lo spartito esporta `effetti` (id da scaricare). I tappeti (pioggia, vento, fuoco) restano sotto la musica, i colpi sopra.
+- Shutter Island usa già orchestra campionata ed effetti registrati; gli altri film usano ancora i vecchi suoni sintetici.
 - `npm run musica -- <film>` → `out/<film>-musica.wav`. `npm run render` la rigenera e la unisce al video con ffmpeg
   (anche per un solo capitolo, col tratto di musica corrispondente). Film senza spartito: video muto, con avviso.
 
