@@ -2,78 +2,38 @@
 // Il tema (16 tempi, Do maggiore) è inventato qui: semplice e ottimista. Poi si incrina: modo minore, note
 // mancanti, intonazione instabile e qualche nota sbagliata nei capitoli del sospetto; nero e burrascoso con
 // padre e barca; infine torna pieno e luminoso (muro, inchino, finale). Nessun tema o pattern del film.
-// Effetti agganciati ai sottotitoli (tempi in proporzione ai caratteri), come in La La Land.
-import { put, rng, drum, thunder, wind, metalThud, glassCrash, rainHiss, radioStatic, doorCreak, hollowBonk, applause, channelClick } from './synth.mjs';
+// Strumenti campionati (VSCO-2 CE); effetti registrati (archivio CC0, scripts/audio/effetti.mjs) agganciati ai
+// sottotitoli (tempi in proporzione ai caratteri), come in La La Land.
+import { rng, channelClick } from './synth.mjs';
+import { suona, archi, colpo } from './campioni.mjs';
+import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
-const TAU = Math.PI * 2;
-const SR = 44100;
-const mtof = (m, cents = 0) => 440 * 2 ** ((m - 69 + cents / 100) / 12);
-const vamp = (v) => (v / 127) ** 1.6;
+export const strumenti = ['pianoforte', 'glockenspiel', 'violini', 'viole', 'celli', 'contrabbasso', 'grancassa'];
+export const effetti = ['vetro_lastra', 'metallo_schianto', 'pioggia_dura', 'radio_sintonia', 'tuono_classico', 'tuono_secco', 'tuono_forte',
+  'tuono_breve', 'vento_invernale', 'onde', 'colpi_cavi', 'porta_cigolio', 'applauso'];
+/** Sala media e calda. */
+export const sala = { rt60: 2.2, brillo: 7000, predelay: 0.025, wet: 0.5 };
 
-// ---------------------------------------------------------------- strumenti locali (via put)
+// ---------------------------------------------------------------- strumenti (campionati; firme come nella versione sintetica)
 
-/** Pianoforte: armoniche con decadimento più rapido in alto, martelletto morbido. */
-const piano = (mix, m, { t, dur = 1.5, vel = 60, pan = 0, rev = 0.35, gain = 1, cents = 0 }) => {
-  const f = mtof(m, cents);
-  const tau = Math.max(0.5, 2.6 - m * 0.02) * Math.min(1.4, 0.6 + dur * 0.4);
-  const len = Math.ceil((Math.min(dur, 4) + 0.5) * SR);
-  const rel = 0.35;
-  put(mix, t, len, (i) => {
-    const x = i / SR;
-    let s = 0;
-    for (let h = 1; h <= 6; h++) {
-      const fh = f * h * Math.sqrt(1 + 0.0004 * h * h);
-      s += Math.sin(TAU * fh * x) * Math.exp(-x / (tau / (0.6 + h * 0.5))) / (h ** 1.15);
-    }
-    const hammer = Math.sin(TAU * f * 3 * x) * Math.exp(-x / 0.012) * 0.3;
-    const env = Math.min(1, x / 0.003) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / rel));
-    return (s + hammer) * env;
-  }, { gain: gain * vamp(vel) * 0.55, pan, rev });
-};
+/** Pianoforte verticale; cents = intonazione instabile del mondo che si incrina. */
+const piano = (mix, m, { t, dur = 1.5, vel = 60, pan = 0, rev = 0.35, gain = 1, cents = 0 }) =>
+  suona(mix, 'pianoforte', m, { t, dur: Math.min(dur, 4), vel: vel * 1.1, pan, rev, gain: gain * 6, cents, release: 0.45 });
 
-/** Celesta: sinusoide più parziali a campana, decadimento corto e brillante. */
-const celesta = (mix, m, { t, dur = 1.8, vel = 50, pan = 0.25, rev = 0.55, gain = 1, cents = 0 }) => {
-  const f = mtof(m, cents);
-  put(mix, t, Math.ceil(dur * SR), (i) => {
-    const x = i / SR;
-    const s = Math.sin(TAU * f * x) * Math.exp(-x / (dur * 0.35)) + 0.3 * Math.sin(TAU * 2 * f * x) * Math.exp(-x / 0.35)
-      + 0.18 * Math.sin(TAU * 5.4 * f * x) * Math.exp(-x / 0.1) + 0.06 * Math.sin(TAU * 8.9 * f * x) * Math.exp(-x / 0.04);
-    return s * Math.min(1, x / 0.002) * Math.min(1, (dur - x) / 0.05);
-  }, { gain: gain * vamp(vel) * 0.6, pan, rev });
-};
+/** Celesta: glockenspiel morbido, un'ottava sotto (il glockenspiel suona già due ottave sopra lo scritto). */
+const celesta = (mix, m, { t, dur = 1.8, vel = 50, pan = 0.25, rev = 0.55, gain = 1, cents = 0 }) =>
+  suona(mix, 'glockenspiel', m - 12, { t, dur, vel: vel * 0.9, pan, rev, gain: gain * 0.55, cents, release: 1.2 });
 
-/** Archi morbidi: tre seghe leggermente scordate, passa-basso, attacco lento e vibrato. */
-const strings = (mix, m, { t, dur, vel = 40, pan = 0, rev = 0.6, gain = 1, det = 6, att = 0.9, bright = 3.5, seed = 1 }) => {
-  const f = mtof(m);
+/** Archi: det (cent) diventa una stonatura deterministica della sezione; att = attacco. */
+const strings = (mix, m, { t, dur, vel = 40, pan = 0, rev = 0.6, gain = 1, det = 6, att = 0.9, seed = 1 }) => {
   const r = rng(seed * 977 + Math.round(t * 1000) + m);
-  const dets = [-det, 0, det].map((c) => f * 2 ** (c / 1200));
-  const ph = dets.map(() => r());
-  const vibPh = r() * 6;
-  const rel = 1.2;
-  const a = 1 - Math.exp((-TAU * f * bright) / SR);
-  let lp = 0;
-  put(mix, t, Math.ceil((dur + rel) * SR), (i) => {
-    const x = i / SR;
-    const vib = 1 + 0.003 * Math.sin(TAU * 5.1 * x + vibPh) * Math.min(1, x / 1.5);
-    let s = 0;
-    for (let k = 0; k < 3; k++) s += 2 * ((ph[k] + dets[k] * vib * x) % 1) - 1;
-    lp += a * (s / 3 - lp);
-    const env = Math.min(1, x / att) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / rel));
-    return lp * env;
-  }, { gain: gain * vamp(vel), pan, rev });
+  archi(mix, m, { t, dur, vel: vel + 8, pan, rev, gain: gain * 1.7, attack: att, release: 1.2, cents: det > 8 ? (r() * 2 - 1) * det : 0, seed });
 };
 
-/** Bordone grave: sinusoide con seconda armonica, entra e esce lentamente. */
-const drone = (mix, m, { t, dur, vel = 50, gain = 1, att = 1.5 }) => {
-  const f = mtof(m);
-  const rel = 1.5;
-  put(mix, t, Math.ceil((dur + rel) * SR), (i) => {
-    const x = i / SR;
-    const env = Math.min(1, x / att) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / rel));
-    return (Math.sin(TAU * f * x) + 0.4 * Math.sin(TAU * 2 * f * x + 0.5) + 0.15 * Math.sin(TAU * 3.01 * f * x)) * env * (1 + 0.15 * Math.sin(TAU * 0.3 * x));
-  }, { gain: gain * vamp(vel), rev: 0.4 });
-};
+/** Bordone grave: contrabbasso tenuto (un'ottava sopra se scende sotto il Mi grave). */
+const drone = (mix, m, { t, dur, vel = 50, gain = 1, att = 1.5 }) =>
+  suona(mix, 'contrabbasso', m < 28 ? m + 12 : m, { t, dur, vel: vel + 10, gain: gain * 1.8, attack: att, release: 1.5, rev: 0.4 });
 
 // ---------------------------------------------------------------- materiale musicale
 
@@ -189,11 +149,11 @@ export default (mix, T) => {
   // fuga: teso, più mosso, archi con cluster e pulsazione grave di pianoforte
   sec(T.fuga, T.barca, { bpm: 104, mode: 'min', keep: 0.35, mel: 46, lh: 46, lhp: 1, cel: 32, str: 38, det: 34, wrong: 0.3, cluster: true, sdet: 22, att: 0.5 });
   // pulsazione sorda: colpi di cassa leggera sul grave, a battere nervoso, stringendo verso la barca
-  for (let t = T.fuga + 2.4; t < T.barca - 0.3; t += 60 / 104 * (t > T.barca - 4 ? 0.5 : 1)) drum(mix, 'softkick', t, 30 + 12 * ((t - T.fuga) / (T.barca - T.fuga)), 7);
+  for (let t = T.fuga + 2.4; t < T.barca - 0.3; t += 60 / 104 * (t > T.barca - 4 ? 0.5 : 1)) colpo(mix, 'grancassa', 'bdrum_pp', { t, vel: 70 + 50 * ((t - T.fuga) / (T.barca - T.fuga)), gain: 0.7, rev: 0.3, seed: Math.round(t * 10) });
 
   // barca: tempesta; bordone, archi bassi, colpi sordi; solo alla fine ("Truman resiste") il tema risale
   sec(T.barca, C('barca', 5), { bpm: 60, mode: 'dark', keep: 0.12, mel: 38, oct: -12, lh: 54, lhp: 1, low: true, str: 46, sdet: 24, att: 0.6, cluster: true, drone: 52, det: 40, wrong: 0.25, vs: 1 });
-  for (let t = C('barca', 2); t < C('barca', 5); t += 1.0) drum(mix, 'kick', t, 44, 9);
+  for (let t = C('barca', 2); t < C('barca', 5); t += 1.0) colpo(mix, 'grancassa', 'bdrum_mp', { t, vel: 100, gain: 0.8, rev: 0.35, seed: Math.round(t * 10) });
   sec(C('barca', 5), T.muro, { bpm: 70, mode: 'maj', keep: 0.7, mel: 48, lh: 44, cel: 40, str: 46, att: 0.6, det: 6, vs: 1 });
 
   // muro: calma, bolla di speranza; si allarga fino alla voce dal cielo
@@ -214,26 +174,30 @@ export default (mix, T) => {
   [84, 88, 91, 95, 96].forEach((m, j) => celesta(mix, m, { t: F + 0.3 + j * 0.2, dur: 3.2, vel: 46, gain: BODY * 1.2, pan: -0.2 + j * 0.12, rev: 0.6 }));
 
   // ---------------------------------------------------------------- effetti sonori
-  // riflettore (frase 1, "cade un riflettore"): vetro che si rompe e colpo di metallo
-  glassCrash(mix, T.riflettore + 2.2, 78); // impatto in Riflettore.tsx
-  metalThud(mix, T.riflettore + 2.2, 62);
-  // pioggia: scroscio dall'inizio della pioggia alla sua fine, che si allarga a tutti (frase 3) e si spegne a fine capitolo
-  rainHiss(mix, T.pioggia + 0.2, T.radio - 0.1, { power: 0.5, fade: 1.2 });
-  // radio: tre sfrigolii a frasi 0, 1, 2
-  radioStatic(mix, C('radio', 0) + 0.3, 1.8, { vel: 56, whistle: 1700, seed: 61 });
-  radioStatic(mix, C('radio', 1) + 0.1, 1.2, { vel: 46, whistle: 2300, seed: 62 });
-  radioStatic(mix, C('radio', 2) + 0.1, 1.3, { vel: 42, whistle: 1300, seed: 63 });
-  // padre: due tuoni (tempesta della frase 1, poi frase 4)
-  thunder(mix, T.padre + 2.6, 0.7, 7); // lampi di Padre.tsx a 2,51 e 5,86 s
-  thunder(mix, T.padre + 5.95, 0.5, 9);
-  // barca: vento forte e due tuoni (frase 3 e frase 4)
-  wind(mix, C('barca', 3), C('barca', 5) + 2, { power: 0.55, fade: 1.5, center: 480, seed: 17 });
-  thunder(mix, T.barca + 7.9, 1, 11); // lampi di Barca.tsx a 7,82 e 8,9 s
-  thunder(mix, T.barca + 9.0, 0.85, 13);
-  // muro: toc vuoto quando la prua urta il cielo dipinto (frase 1); porta che si apre (frase 4)
-  hollowBonk(mix, T.muro + 1.6, 72); // la prua buca il cielo (Muro.tsx)
-  doorCreak(mix, T.muro + 6.7, 1.8, { vel: 52 }); // si accende USCITA
-  // inchino: applauso morbido che cresce (frase 4); scatto di canale (frase 5)
-  applause(mix, C('inchino', 4) + 0.2, Math.min(5, C('inchino', 5) - C('inchino', 4) + 0.6), { vel: 44 });
-  channelClick(mix, T.inchino + 8.3, 62); // i televisori passano alla neve (Inchino.tsx)
+  // riflettore (frase 1, "cade un riflettore"): lastra di vetro e schianto di metallo (impatto in Riflettore.tsx)
+  clip(mix, 'vetro_lastra', { t: T.riflettore + 2.2 - 0.25, da: 1.85, durata: 4, gain: 0.4, fadeOut: 1.5, rev: 0.3 });
+  clip(mix, 'metallo_schianto', { t: T.riflettore + 2.2 - 0.31, da: 0.05, durata: 1.4, gain: 0.4, fadeOut: 0.5, rev: 0.3, pan: 0.1 });
+  // pioggia: scroscio che cade solo su Truman, si allarga a tutti (frase 3) e si spegne a fine capitolo
+  clip(mix, 'pioggia_dura', { t: T.pioggia + 0.2, da: 5.4, durata: T.radio - 0.3 - T.pioggia, gain: 1.8, fadeIn: 1.2, fadeOut: 1.2, largo: 3, rev: 0.12 });
+  // radio: tre sfrigolii di sintonia a frasi 0, 1, 2
+  clip(mix, 'radio_sintonia', { t: C('radio', 0) + 0.3, da: 1.5, durata: 1.8, gain: 0.45, fadeIn: 0.03, fadeOut: 0.15, pan: -0.15, rev: 0.12 });
+  clip(mix, 'radio_sintonia', { t: C('radio', 1) + 0.1, da: 15.6, durata: 1.2, gain: 0.35, fadeIn: 0.03, fadeOut: 0.15, pan: -0.15, rev: 0.12 });
+  clip(mix, 'radio_sintonia', { t: C('radio', 2) + 0.1, da: 20.75, durata: 1.3, gain: 0.32, fadeIn: 0.03, fadeOut: 0.15, pan: -0.15, rev: 0.12 });
+  /** Tuono dopo un lampo della scena a t. */
+  const tuono = (t, id, da, durata, gain) => clip(mix, id, { t: t + 0.15, da, durata, gain, fadeIn: 0.03, fadeOut: 1.2, rev: 0.35, pan: 0.1 });
+  // padre: due tuoni (lampi di Padre.tsx a 2,51 e 5,86 s)
+  tuono(T.padre + 2.5, 'tuono_classico', 0.98, 3.4, 0.35);
+  tuono(T.padre + 5.85, 'tuono_secco', 0.78, 4, 0.3);
+  // barca: vento forte, onde e due tuoni (lampi di Barca.tsx a 7,82 e 8,9 s)
+  clip(mix, 'vento_invernale', { t: C('barca', 3), da: 3, durata: C('barca', 5) + 2 - C('barca', 3), gain: 0.3, fadeIn: 1.5, fadeOut: 1.5, largo: 4, rev: 0.1 });
+  clip(mix, 'onde', { t: T.barca, da: 2, durata: C('barca', 5) + 2 - T.barca, gain: 0.3, fadeIn: 1.5, fadeOut: 1.5, largo: 3, rev: 0.1 });
+  tuono(T.barca + 7.82, 'tuono_forte', 0.55, 4, 0.9);
+  tuono(T.barca + 8.9, 'tuono_breve', 1.47, 2.6, 0.7);
+  // muro: colpo vuoto quando la prua urta il cielo dipinto; porta che si apre (si accende USCITA, Muro.tsx)
+  clip(mix, 'colpi_cavi', { t: T.muro + 1.6 - 0.01, da: 3.4, durata: 0.6, gain: 0.8, fadeOut: 0.2, rev: 0.45 });
+  clip(mix, 'porta_cigolio', { t: T.muro + 6.7, da: 10.68, durata: 1.8, gain: 0.4, fadeOut: 0.4, rev: 0.3, pan: 0.3 });
+  // inchino: applauso che cresce (frase 4); scatto di canale (i televisori passano alla neve, Inchino.tsx)
+  const ta = C('inchino', 4) + 0.2, da = Math.min(5, C('inchino', 5) - C('inchino', 4) + 0.6);
+  clip(mix, 'applauso', { t: ta, da: 3, durata: da, gain: 0.6, fadeIn: da * 0.6, fadeOut: da * 0.35, largo: 2, rev: 0.3 });
+  channelClick(mix, T.inchino + 8.3, 62);
 };
