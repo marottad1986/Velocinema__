@@ -21,7 +21,7 @@ on:
   workflow_dispatch:
     inputs:
       film:
-        description: 'Film da rigenerare (es. shutter-island). Vuoto = tutti'
+        description: 'Film da rigenerare, separati da spazi o virgole (es. shutter-island, cast-away). Vuoto = tutti'
         required: false
         default: ''
 
@@ -47,10 +47,17 @@ jobs:
           if [ "$EVENTO" = workflow_dispatch ]; then
             if [ -z "$SCELTO" ]; then
               film=$(node scripts/cambiati.mjs --tutti)
-            elif { [ -f "films/$SCELTO.json" ] || [ -f "quadri/$SCELTO.json" ]; } && [[ "$SCELTO" =~ ^[a-z0-9-]+$ ]]; then
-              film="[\"$SCELTO\"]"
             else
-              echo "::error::Film sconosciuto: $SCELTO"; exit 1
+              # uno o più film separati da spazi o virgole, es. "cast-away, jurassic-park"
+              film=""
+              for f in ${SCELTO//,/ }; do
+                if [[ "$f" =~ ^[a-z0-9-]+$ ]] && { [ -f "films/$f.json" ] || [ -f "quadri/$f.json" ]; }; then
+                  film="$film${film:+,}\"$f\""
+                else
+                  echo "::error::Film sconosciuto: $f"; exit 1
+                fi
+              done
+              film="[$film]"
             fi
           elif [ -z "$PRIMA" ] || [ "$PRIMA" = 0000000000000000000000000000000000000000 ] || ! git cat-file -e "$PRIMA" 2>/dev/null; then
             film=$(node scripts/cambiati.mjs --tutti)
@@ -105,7 +112,9 @@ jobs:
             echo "::error::Mancano i segreti MEGA_EMAIL e MEGA_PASSWORD"; exit 1
           fi
           mega-login "$MEGA_EMAIL" "$MEGA_PASSWORD" > /dev/null
-          mega-mkdir -p "/Velocinema/$FILM"
+          # mkdir -p dà errore se la cartella c'è già (secondo caricamento dello stesso film): conta solo che alla fine esista
+          mega-mkdir -p "/Velocinema/$FILM" > /dev/null 2>&1 || true
+          mega-ls "/Velocinema/$FILM" > /dev/null
       # regole vincolanti di CLAUDE.md (durata, ritmo della voce, finale, musica campionata…): se falliscono il video non si fa
       - name: Controlli
         run: node scripts/controlli.mjs "$FILM"
