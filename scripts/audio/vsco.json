@@ -2,6 +2,18 @@
  "repo": "sgossner/VSCO-2-CE",
  "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
  "licenza": "CC0 (Versilian Studios / Sam Gossner, Ivy Audio / Simon Dalzell)",
+ "fonti": {
+  "vsco": {
+   "repo": "sgossner/VSCO-2-CE",
+   "commit": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+   "licenza": "CC0 (Versilian Studios / Sam Gossner, Ivy Audio / Simon Dalzell)"
+  },
+  "vcsl": {
+   "repo": "sgossner/VCSL",
+   "commit": "c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e",
+   "licenza": "CC0 (Versilian Studios / Sam Gossner)"
+  }
+ },
  "strumenti": {
   "violini": {
    "dir": "Strings/Violin Section/susVib",
@@ -4704,6 +4716,1810 @@
      "inizio": 0.0026,
      "durata": 8.304,
      "db": -36.7
+    }
+   ]
+  },
+  "pianoforte_coda": {
+   "fonte": "vcsl",
+   "dir": "Chordophones/Zithers/Grand Piano, Steinway B/Sus",
+   "campioni": [
+    {
+     "f": "JHPiano_Sus_Close_A#0_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 28.132,
+     "db": -17.7,
+     "midi": 22
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#0_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 31.587,
+     "db": -17.1,
+     "midi": 22
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#0_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 25.87,
+     "db": -16.6,
+     "midi": 22
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#1_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 34.105,
+     "db": -13.9,
+     "midi": 34
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#1_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 41.624,
+     "db": -13.4,
+     "midi": 34
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#1_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 35.897,
+     "db": -13.5,
+     "midi": 34
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#2_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 26.358,
+     "db": -15.7,
+     "midi": 46,
+     "cents": -1
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#2_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 29.15,
+     "db": -14.6,
+     "midi": 46,
+     "cents": 0
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#2_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 36.474,
+     "db": -14.1,
+     "midi": 46,
+     "cents": 1
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#3_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 24.052,
+     "db": -21.4,
+     "midi": 58,
+     "cents": 4
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#3_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 35.917,
+     "db": -20.6,
+     "midi": 58,
+     "cents": 9
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#3_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 30.777,
+     "db": -19.3,
+     "midi": 58,
+     "cents": 15
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#4_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 21.297,
+     "db": -14.4,
+     "midi": 70,
+     "cents": 5
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#4_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 24.821,
+     "db": -13.2,
+     "midi": 70,
+     "cents": 6
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#4_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 22.518,
+     "db": -12.8,
+     "midi": 70,
+     "cents": 7
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#5_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 15.799,
+     "db": -16.2,
+     "midi": 82,
+     "cents": 0
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#5_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 14.423,
+     "db": -15.5,
+     "midi": 82,
+     "cents": 1
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#5_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 15.806,
+     "db": -15.9,
+     "midi": 82,
+     "cents": 1
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#6_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 7.461,
+     "db": -27.3,
+     "midi": 94
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#6_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 8.331,
+     "db": -25.9,
+     "midi": 94
+    },
+    {
+     "f": "JHPiano_Sus_Close_A#6_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 8.393,
+     "db": -26,
+     "midi": 94,
+     "cents": -2
+    },
+    {
+     "f": "JHPiano_Sus_Close_C1_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 29.809,
+     "db": -17.7,
+     "midi": 24
+    },
+    {
+     "f": "JHPiano_Sus_Close_C1_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 39.935,
+     "db": -17.3,
+     "midi": 24
+    },
+    {
+     "f": "JHPiano_Sus_Close_C1_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 24.889,
+     "db": -17.3,
+     "midi": 24
+    },
+    {
+     "f": "JHPiano_Sus_Close_C2_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 29.221,
+     "db": -15.1,
+     "midi": 36
+    },
+    {
+     "f": "JHPiano_Sus_Close_C2_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 31.879,
+     "db": -15,
+     "midi": 36
+    },
+    {
+     "f": "JHPiano_Sus_Close_C2_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 30.663,
+     "db": -14.8,
+     "midi": 36
+    },
+    {
+     "f": "JHPiano_Sus_Close_C3_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 32.884,
+     "db": -14.1,
+     "midi": 48,
+     "cents": 0
+    },
+    {
+     "f": "JHPiano_Sus_Close_C3_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 28.211,
+     "db": -13.9,
+     "midi": 48,
+     "cents": -2
+    },
+    {
+     "f": "JHPiano_Sus_Close_C3_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 33.055,
+     "db": -13.1,
+     "midi": 48,
+     "cents": 1
+    },
+    {
+     "f": "JHPiano_Sus_Close_C4_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 22.138,
+     "db": -14.5,
+     "midi": 60,
+     "cents": 3
+    },
+    {
+     "f": "JHPiano_Sus_Close_C4_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 31.606,
+     "db": -13.7,
+     "midi": 60,
+     "cents": 7
+    },
+    {
+     "f": "JHPiano_Sus_Close_C4_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 24.14,
+     "db": -14,
+     "midi": 60,
+     "cents": 9
+    },
+    {
+     "f": "JHPiano_Sus_Close_C5_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 23.64,
+     "db": -15.1,
+     "midi": 72,
+     "cents": 8
+    },
+    {
+     "f": "JHPiano_Sus_Close_C5_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 28.867,
+     "db": -14.1,
+     "midi": 72,
+     "cents": 12
+    },
+    {
+     "f": "JHPiano_Sus_Close_C5_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 22.932,
+     "db": -14.3,
+     "midi": 72,
+     "cents": 8
+    },
+    {
+     "f": "JHPiano_Sus_Close_C6_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 13.164,
+     "db": -19.1,
+     "midi": 84,
+     "cents": 9
+    },
+    {
+     "f": "JHPiano_Sus_Close_C6_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 17.464,
+     "db": -18.5,
+     "midi": 84,
+     "cents": 8
+    },
+    {
+     "f": "JHPiano_Sus_Close_C6_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 12.918,
+     "db": -17.1,
+     "midi": 84,
+     "cents": 6
+    },
+    {
+     "f": "JHPiano_Sus_Close_C7_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 6.589,
+     "db": -23.8,
+     "midi": 96,
+     "cents": 13
+    },
+    {
+     "f": "JHPiano_Sus_Close_C7_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 8.721,
+     "db": -23.9,
+     "midi": 96,
+     "cents": 12
+    },
+    {
+     "f": "JHPiano_Sus_Close_C7_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 7.691,
+     "db": -23.1,
+     "midi": 96,
+     "cents": 12
+    },
+    {
+     "f": "JHPiano_Sus_Close_D1_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 34.241,
+     "db": -14,
+     "midi": 26
+    },
+    {
+     "f": "JHPiano_Sus_Close_D1_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 35.066,
+     "db": -13.9,
+     "midi": 26
+    },
+    {
+     "f": "JHPiano_Sus_Close_D1_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 33.173,
+     "db": -13.9,
+     "midi": 26
+    },
+    {
+     "f": "JHPiano_Sus_Close_D2_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 34.964,
+     "db": -13.9,
+     "midi": 38,
+     "cents": 0
+    },
+    {
+     "f": "JHPiano_Sus_Close_D2_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 34.365,
+     "db": -13.9,
+     "midi": 38,
+     "cents": 2
+    },
+    {
+     "f": "JHPiano_Sus_Close_D2_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 39.066,
+     "db": -13.1,
+     "midi": 38,
+     "cents": 5
+    },
+    {
+     "f": "JHPiano_Sus_Close_D3_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 31.574,
+     "db": -16.2,
+     "midi": 50,
+     "cents": 4
+    },
+    {
+     "f": "JHPiano_Sus_Close_D3_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 31.051,
+     "db": -15.5,
+     "midi": 50,
+     "cents": 7
+    },
+    {
+     "f": "JHPiano_Sus_Close_D3_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 31.747,
+     "db": -16.6,
+     "midi": 50,
+     "cents": 5
+    },
+    {
+     "f": "JHPiano_Sus_Close_D4_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 28.983,
+     "db": -13.4,
+     "midi": 62,
+     "cents": -1
+    },
+    {
+     "f": "JHPiano_Sus_Close_D4_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 25.757,
+     "db": -12.9,
+     "midi": 62,
+     "cents": 1
+    },
+    {
+     "f": "JHPiano_Sus_Close_D4_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 28.244,
+     "db": -12.8,
+     "midi": 62,
+     "cents": 4
+    },
+    {
+     "f": "JHPiano_Sus_Close_D5_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 21.315,
+     "db": -16.7,
+     "midi": 74,
+     "cents": 1
+    },
+    {
+     "f": "JHPiano_Sus_Close_D5_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 21.776,
+     "db": -16.2,
+     "midi": 74,
+     "cents": 1
+    },
+    {
+     "f": "JHPiano_Sus_Close_D5_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 18.365,
+     "db": -15.9,
+     "midi": 74,
+     "cents": 4
+    },
+    {
+     "f": "JHPiano_Sus_Close_D6_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 12.259,
+     "db": -20.1,
+     "midi": 86,
+     "cents": 4
+    },
+    {
+     "f": "JHPiano_Sus_Close_D6_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 11.321,
+     "db": -20.2,
+     "midi": 86,
+     "cents": 4
+    },
+    {
+     "f": "JHPiano_Sus_Close_D6_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 11.899,
+     "db": -20.4,
+     "midi": 86,
+     "cents": 4
+    },
+    {
+     "f": "JHPiano_Sus_Close_D7_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 6.489,
+     "db": -18.9,
+     "midi": 98,
+     "cents": 11
+    },
+    {
+     "f": "JHPiano_Sus_Close_D7_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 6.698,
+     "db": -17.5,
+     "midi": 98,
+     "cents": 10
+    },
+    {
+     "f": "JHPiano_Sus_Close_D7_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 7.311,
+     "db": -18.2,
+     "midi": 98,
+     "cents": 10
+    },
+    {
+     "f": "JHPiano_Sus_Close_E1_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 34.636,
+     "db": -15.1,
+     "midi": 28
+    },
+    {
+     "f": "JHPiano_Sus_Close_E1_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 38.515,
+     "db": -14.8,
+     "midi": 28
+    },
+    {
+     "f": "JHPiano_Sus_Close_E1_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 39.748,
+     "db": -14,
+     "midi": 28
+    },
+    {
+     "f": "JHPiano_Sus_Close_E2_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 30.017,
+     "db": -15.8,
+     "midi": 40,
+     "cents": 0
+    },
+    {
+     "f": "JHPiano_Sus_Close_E2_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 32.857,
+     "db": -15.3,
+     "midi": 40,
+     "cents": -4
+    },
+    {
+     "f": "JHPiano_Sus_Close_E2_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 39.91,
+     "db": -14.6,
+     "midi": 40,
+     "cents": -5
+    },
+    {
+     "f": "JHPiano_Sus_Close_E3_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 26.685,
+     "db": -18.1,
+     "midi": 52,
+     "cents": 0
+    },
+    {
+     "f": "JHPiano_Sus_Close_E3_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 28.685,
+     "db": -18.2,
+     "midi": 52,
+     "cents": 0
+    },
+    {
+     "f": "JHPiano_Sus_Close_E3_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 28.778,
+     "db": -17.7,
+     "midi": 52,
+     "cents": 1
+    },
+    {
+     "f": "JHPiano_Sus_Close_E4_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 23.415,
+     "db": -11.8,
+     "midi": 64,
+     "cents": 2
+    },
+    {
+     "f": "JHPiano_Sus_Close_E4_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 28.19,
+     "db": -11.6,
+     "midi": 64,
+     "cents": 3
+    },
+    {
+     "f": "JHPiano_Sus_Close_E4_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 27.442,
+     "db": -11.7,
+     "midi": 64,
+     "cents": 2
+    },
+    {
+     "f": "JHPiano_Sus_Close_E5_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 19.095,
+     "db": -16.8,
+     "midi": 76,
+     "cents": 3
+    },
+    {
+     "f": "JHPiano_Sus_Close_E5_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 19.196,
+     "db": -16.6,
+     "midi": 76,
+     "cents": 4
+    },
+    {
+     "f": "JHPiano_Sus_Close_E5_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 17.121,
+     "db": -16.9,
+     "midi": 76,
+     "cents": 5
+    },
+    {
+     "f": "JHPiano_Sus_Close_E6_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 8.754,
+     "db": -16,
+     "midi": 88,
+     "cents": 4
+    },
+    {
+     "f": "JHPiano_Sus_Close_E6_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 11.108,
+     "db": -15.5,
+     "midi": 88,
+     "cents": 3
+    },
+    {
+     "f": "JHPiano_Sus_Close_E6_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 9.118,
+     "db": -15.2,
+     "midi": 88,
+     "cents": 2
+    },
+    {
+     "f": "JHPiano_Sus_Close_E7_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 6.452,
+     "db": -22.8,
+     "midi": 100,
+     "cents": 14
+    },
+    {
+     "f": "JHPiano_Sus_Close_E7_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 6.584,
+     "db": -21.5,
+     "midi": 100,
+     "cents": 10
+    },
+    {
+     "f": "JHPiano_Sus_Close_E7_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 7.012,
+     "db": -21.5,
+     "midi": 100,
+     "cents": 11
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#1_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 29.036,
+     "db": -13.7,
+     "midi": 30
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#1_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 39.962,
+     "db": -14,
+     "midi": 30
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#1_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 33.84,
+     "db": -14.3,
+     "midi": 30
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#2_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 28.667,
+     "db": -13.7,
+     "midi": 42,
+     "cents": 2
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#2_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 36.204,
+     "db": -13.7,
+     "midi": 42,
+     "cents": 2
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#2_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 33.987,
+     "db": -14.6,
+     "midi": 42,
+     "cents": 4
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#3_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 27.288,
+     "db": -17.2,
+     "midi": 54,
+     "cents": 0
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#3_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 33.952,
+     "db": -16.7,
+     "midi": 54,
+     "cents": 0
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#3_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 27.697,
+     "db": -16.2,
+     "midi": 54,
+     "cents": 1
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#4_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 25.787,
+     "db": -14.8,
+     "midi": 66,
+     "cents": -1
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#4_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 27.817,
+     "db": -14.1,
+     "midi": 66,
+     "cents": 1
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#4_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 30.634,
+     "db": -14,
+     "midi": 66,
+     "cents": 0
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#5_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 18.498,
+     "db": -17.8,
+     "midi": 78,
+     "cents": 2
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#5_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 17.407,
+     "db": -16.8,
+     "midi": 78,
+     "cents": 7
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#5_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 14.641,
+     "db": -16.7,
+     "midi": 78,
+     "cents": 4
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#6_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 8.968,
+     "db": -19.8,
+     "midi": 90,
+     "cents": -2
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#6_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 8.971,
+     "db": -19.7,
+     "midi": 90,
+     "cents": -4
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#6_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 7.759,
+     "db": -19.5,
+     "midi": 90,
+     "cents": -5
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#7_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 4.746,
+     "db": -24.6,
+     "midi": 102
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#7_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 6.37,
+     "db": -24.1,
+     "midi": 102
+    },
+    {
+     "f": "JHPiano_Sus_Close_F#7_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 6.22,
+     "db": -23.3,
+     "midi": 102
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#1_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 29.516,
+     "db": -13.1,
+     "midi": 32
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#1_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 35.716,
+     "db": -13.3,
+     "midi": 32
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#1_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 34.952,
+     "db": -13.5,
+     "midi": 32
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#2_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 27.481,
+     "db": -15.1,
+     "midi": 44,
+     "cents": 5
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#2_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 33.518,
+     "db": -15.2,
+     "midi": 44,
+     "cents": 7
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#2_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 29.834,
+     "db": -15.3,
+     "midi": 44,
+     "cents": 8
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#3_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 24.123,
+     "db": -17.7,
+     "midi": 56,
+     "cents": -1
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#3_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 31.708,
+     "db": -16.9,
+     "midi": 56,
+     "cents": 0
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#3_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 27.617,
+     "db": -17.8,
+     "midi": 56,
+     "cents": 1
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#4_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 19.373,
+     "db": -15.8,
+     "midi": 68,
+     "cents": 3
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#4_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 25.437,
+     "db": -14.1,
+     "midi": 68,
+     "cents": 2
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#4_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 22.284,
+     "db": -13.2,
+     "midi": 68,
+     "cents": 2
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#5_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 19.445,
+     "db": -13.1,
+     "midi": 80,
+     "cents": -1
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#5_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 16.425,
+     "db": -12.9,
+     "midi": 80,
+     "cents": 0
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#5_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 13.723,
+     "db": -12.4,
+     "midi": 80,
+     "cents": 0
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#6_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 8.666,
+     "db": -25.9,
+     "midi": 92,
+     "cents": -4
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#6_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 9.546,
+     "db": -24.5,
+     "midi": 92,
+     "cents": -3
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#6_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 7.956,
+     "db": -24.2,
+     "midi": 92,
+     "cents": -5
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#7_vl2_rr1.wav",
+     "dyn": "vl2",
+     "inizio": 0,
+     "durata": 4.817,
+     "db": -24.3,
+     "midi": 104
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#7_vl3_rr1.wav",
+     "dyn": "vl3",
+     "inizio": 0,
+     "durata": 5.512,
+     "db": -22.4,
+     "midi": 104
+    },
+    {
+     "f": "JHPiano_Sus_Close_G#7_vl4_rr1.wav",
+     "dyn": "vl4",
+     "inizio": 0,
+     "durata": 6.052,
+     "db": -22.4,
+     "midi": 104
+    }
+   ]
+  },
+  "timpani": {
+   "fonte": "vcsl",
+   "dir": "Membranophones/Struck Membranophones/Timpani 1/Hit",
+   "campioni": [
+    {
+     "f": "Timpani1_Hit_v2_rr1_Sum.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 7.309,
+     "db": -49.4,
+     "midi": 42,
+     "cents": -40
+    },
+    {
+     "f": "Timpani1_Hit_v2_rr2_Sum.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 7.516,
+     "db": -49.1,
+     "midi": 42,
+     "cents": -40
+    },
+    {
+     "f": "Timpani1_Hit_v3_rr3_Sum.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 8.445,
+     "db": -35.3,
+     "midi": 42,
+     "cents": -40
+    },
+    {
+     "f": "Timpani1_Hit_v3_rr4_Sum.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 13.265,
+     "db": -36.2,
+     "midi": 42,
+     "cents": -40
+    },
+    {
+     "f": "Timpani1_Hit_v4_rr1_Sum.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 11.48,
+     "db": -25.1,
+     "midi": 42,
+     "cents": -40
+    },
+    {
+     "f": "Timpani1_Hit_v4_rr2_Sum.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 11.313,
+     "db": -23,
+     "midi": 42,
+     "cents": -40
+    },
+    {
+     "f": "Timpani2_Hit_v2_rr1_Sum.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 8.71,
+     "db": -34.4,
+     "midi": 47,
+     "cents": -20
+    },
+    {
+     "f": "Timpani2_Hit_v2_rr2_Sum.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 9.062,
+     "db": -35.1,
+     "midi": 47,
+     "cents": -20
+    },
+    {
+     "f": "Timpani2_Hit_v3_rr1_Sum.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 10.743,
+     "db": -27.5,
+     "midi": 47,
+     "cents": -20
+    },
+    {
+     "f": "Timpani2_Hit_v3_rr2_Sum.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 10.297,
+     "db": -27.9,
+     "midi": 47,
+     "cents": -20
+    },
+    {
+     "f": "Timpani2_Hit_v4_rr1_Sum.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 9.286,
+     "db": -21.9,
+     "midi": 47,
+     "cents": -20
+    },
+    {
+     "f": "Timpani2_Hit_v4_rr2_Sum.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 10.232,
+     "db": -20.5,
+     "midi": 47,
+     "cents": -20
+    },
+    {
+     "f": "Timpani3_Hit_v2_rr1_Sum.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 3.493,
+     "db": -38.8,
+     "midi": 50,
+     "cents": -50
+    },
+    {
+     "f": "Timpani3_Hit_v2_rr2_Sum.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 8.715,
+     "db": -37.3,
+     "midi": 50,
+     "cents": -50
+    },
+    {
+     "f": "Timpani3_Hit_v3_rr1_Sum.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 9.116,
+     "db": -31.7,
+     "midi": 50,
+     "cents": -50
+    },
+    {
+     "f": "Timpani3_Hit_v3_rr2_Sum.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 8.356,
+     "db": -32,
+     "midi": 50,
+     "cents": -50
+    },
+    {
+     "f": "Timpani3_Hit_v4_rr1_Sum.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 10.282,
+     "db": -22.6,
+     "midi": 50,
+     "cents": -50
+    },
+    {
+     "f": "Timpani3_Hit_v4_rr2_Sum.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 10.456,
+     "db": -22.3,
+     "midi": 50,
+     "cents": -50
+    },
+    {
+     "f": "Timpani4_Hit_v2_rr1_Sum.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 4.167,
+     "db": -40.6,
+     "midi": 52,
+     "cents": 40
+    },
+    {
+     "f": "Timpani4_Hit_v2_rr2_Sum.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 5.393,
+     "db": -42.4,
+     "midi": 52,
+     "cents": 40
+    },
+    {
+     "f": "Timpani4_Hit_v3_rr1_Sum.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 5.742,
+     "db": -34.1,
+     "midi": 52,
+     "cents": 40
+    },
+    {
+     "f": "Timpani4_Hit_v3_rr2_Sum.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 7.246,
+     "db": -35.4,
+     "midi": 52,
+     "cents": 40
+    },
+    {
+     "f": "Timpani4_Hit_v4_rr1_Sum.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 9.066,
+     "db": -22.7,
+     "midi": 52,
+     "cents": 40
+    },
+    {
+     "f": "Timpani4_Hit_v4_rr2_Sum.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 10.008,
+     "db": -23.1,
+     "midi": 52,
+     "cents": 40
+    },
+    {
+     "f": "Timpani5_Hit_v2_rr1_Sum.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 3.405,
+     "db": -52.1,
+     "midi": 55,
+     "cents": -50
+    },
+    {
+     "f": "Timpani5_Hit_v2_rr2_Sum.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 4.636,
+     "db": -48.9,
+     "midi": 55,
+     "cents": -50
+    },
+    {
+     "f": "Timpani5_Hit_v3_rr1_Sum.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 5.875,
+     "db": -37,
+     "midi": 55,
+     "cents": -50
+    },
+    {
+     "f": "Timpani5_Hit_v3_rr2_Sum.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 5.591,
+     "db": -36.4,
+     "midi": 55,
+     "cents": -50
+    },
+    {
+     "f": "Timpani5_Hit_v4_rr1_Sum.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 6.881,
+     "db": -29.3,
+     "midi": 55,
+     "cents": -50
+    },
+    {
+     "f": "Timpani5_Hit_v4_rr2_Sum.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 6.468,
+     "db": -28.4,
+     "midi": 55,
+     "cents": -50
+    }
+   ]
+  },
+  "rullante": {
+   "fonte": "vcsl",
+   "dir": "Membranophones/Struck Membranophones/Snare Drum, Modern 1",
+   "perc": true,
+   "campioni": [
+    {
+     "f": "Snare2_HitNS_v2_rr1_Mid.wav",
+     "dyn": "v2",
+     "inizio": 0.0057,
+     "durata": 0.881,
+     "db": -32.8
+    },
+    {
+     "f": "Snare2_HitNS_v2_rr2_Mid.wav",
+     "dyn": "v2",
+     "inizio": 0.0059,
+     "durata": 0.723,
+     "db": -32
+    },
+    {
+     "f": "Snare2_HitNS_v4_rr1_Mid.wav",
+     "dyn": "v4",
+     "inizio": 0.006,
+     "durata": 0.942,
+     "db": -21.9
+    },
+    {
+     "f": "Snare2_HitNS_v4_rr2_Mid.wav",
+     "dyn": "v4",
+     "inizio": 0.006,
+     "durata": 0.936,
+     "db": -20.5
+    },
+    {
+     "f": "Snare2_HitNS_v5_rr1_Mid.wav",
+     "dyn": "v5",
+     "inizio": 0.006,
+     "durata": 0.953,
+     "db": -16.1
+    },
+    {
+     "f": "Snare2_HitNS_v5_rr2_Mid.wav",
+     "dyn": "v5",
+     "inizio": 0.006,
+     "durata": 0.841,
+     "db": -16
+    },
+    {
+     "f": "Snare2_HitNS_v6_rr1_Mid.wav",
+     "dyn": "v6",
+     "inizio": 0.0058,
+     "durata": 1.114,
+     "db": -13.6
+    },
+    {
+     "f": "Snare2_HitNS_v6_rr2_Mid.wav",
+     "dyn": "v6",
+     "inizio": 0.0059,
+     "durata": 1.206,
+     "db": -12.7
+    },
+    {
+     "f": "Snare2_HitSN_v3_rr1_Mid.wav",
+     "dyn": "v3",
+     "inizio": 0.0021,
+     "durata": 1.73,
+     "db": -45.8
+    },
+    {
+     "f": "Snare2_HitSN_v3_rr2_Mid.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.311,
+     "db": -44.7
+    },
+    {
+     "f": "Snare2_HitSN_v5_rr1_Mid.wav",
+     "dyn": "v5",
+     "inizio": 0.0054,
+     "durata": 1.363,
+     "db": -36.1
+    },
+    {
+     "f": "Snare2_HitSN_v5_rr2_Mid.wav",
+     "dyn": "v5",
+     "inizio": 0,
+     "durata": 1.448,
+     "db": -37
+    },
+    {
+     "f": "Snare2_HitSN_v6_rr1_Mid.wav",
+     "dyn": "v6",
+     "inizio": 0.006,
+     "durata": 1.364,
+     "db": -29
+    },
+    {
+     "f": "Snare2_HitSN_v6_rr2_Mid.wav",
+     "dyn": "v6",
+     "inizio": 0.006,
+     "durata": 1.367,
+     "db": -28.6
+    },
+    {
+     "f": "Snare2_HitSN_v7_rr1_Mid.wav",
+     "dyn": "v7",
+     "inizio": 0.0062,
+     "durata": 1.539,
+     "db": -20.7
+    },
+    {
+     "f": "Snare2_HitSN_v7_rr2_Mid.wav",
+     "dyn": "v7",
+     "inizio": 0.0061,
+     "durata": 1.465,
+     "db": -22.6
+    },
+    {
+     "f": "Snare2_HitSN_v9_rr1_Mid.wav",
+     "dyn": "v9",
+     "inizio": 0.0063,
+     "durata": 1.671,
+     "db": -15.2
+    },
+    {
+     "f": "Snare2_HitSN_v9_rr2_Mid.wav",
+     "dyn": "v9",
+     "inizio": 0.0063,
+     "durata": 1.545,
+     "db": -16.4
+    }
+   ]
+  },
+  "cassa": {
+   "fonte": "vcsl",
+   "dir": "Membranophones/Struck Membranophones/Bass Drum 1",
+   "perc": true,
+   "campioni": [
+    {
+     "f": "BDrumNew_hit_v2_rr1_Sum.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.596,
+     "db": -31.3
+    },
+    {
+     "f": "BDrumNew_hit_v2_rr2_Sum.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.714,
+     "db": -33.2
+    },
+    {
+     "f": "BDrumNew_hit_v3_rr1_Sum.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 2.081,
+     "db": -25.8
+    },
+    {
+     "f": "BDrumNew_hit_v3_rr2_Sum.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 2.01,
+     "db": -27.4
+    },
+    {
+     "f": "BDrumNew_hit_v5_rr1_Sum.wav",
+     "dyn": "v5",
+     "inizio": 0,
+     "durata": 3.334,
+     "db": -19.1
+    },
+    {
+     "f": "BDrumNew_hit_v5_rr2_Sum.wav",
+     "dyn": "v5",
+     "inizio": 0,
+     "durata": 3.483,
+     "db": -19.9
+    },
+    {
+     "f": "BDrumNew_hit_v7_rr1_Sum.wav",
+     "dyn": "v7",
+     "inizio": 0,
+     "durata": 6.265,
+     "db": -14
+    },
+    {
+     "f": "BDrumNew_hit_v7_rr2_Sum.wav",
+     "dyn": "v7",
+     "inizio": 0,
+     "durata": 5.635,
+     "db": -13.6
+    }
+   ]
+  },
+  "charleston": {
+   "fonte": "vcsl",
+   "dir": "Idiophones/Struck Idiophones/Hi-Hat Cymbal",
+   "perc": true,
+   "campioni": [
+    {
+     "f": "HiHat_Close_rr1_Mid.wav",
+     "dyn": "unica",
+     "inizio": 0.0069,
+     "durata": 1.342,
+     "db": -39.4
+    },
+    {
+     "f": "HiHat_Close_rr2_Mid.wav",
+     "dyn": "unica",
+     "inizio": 0.002,
+     "durata": 1.443,
+     "db": -41.1
+    },
+    {
+     "f": "HiHat_HitC_v1_rr1_Mid.wav",
+     "dyn": "v1",
+     "inizio": 0.0033,
+     "durata": 1.194,
+     "db": -56.5
+    },
+    {
+     "f": "HiHat_HitC_v1_rr2_Mid.wav",
+     "dyn": "v1",
+     "inizio": 0.0024,
+     "durata": 1.33,
+     "db": -54.3
+    },
+    {
+     "f": "HiHat_HitC_v2_rr1_Mid.wav",
+     "dyn": "v2",
+     "inizio": 0.0044,
+     "durata": 1.401,
+     "db": -45.3
+    },
+    {
+     "f": "HiHat_HitC_v2_rr2_Mid.wav",
+     "dyn": "v2",
+     "inizio": 0.0044,
+     "durata": 1.417,
+     "db": -45.7
+    },
+    {
+     "f": "HiHat_HitC_v3_rr1_Mid.wav",
+     "dyn": "v3",
+     "inizio": 0.0052,
+     "durata": 1.24,
+     "db": -33.1
+    },
+    {
+     "f": "HiHat_HitC_v3_rr2_Mid.wav",
+     "dyn": "v3",
+     "inizio": 0.0051,
+     "durata": 1.581,
+     "db": -36.3
+    },
+    {
+     "f": "HiHat_HitC_v4_rr1_Mid.wav",
+     "dyn": "v4",
+     "inizio": 0.0054,
+     "durata": 1.509,
+     "db": -25.7
+    },
+    {
+     "f": "HiHat_HitC_v4_rr2_Mid.wav",
+     "dyn": "v4",
+     "inizio": 0.0053,
+     "durata": 1.346,
+     "db": -26.9
+    },
+    {
+     "f": "HiHat_HitLoose_rr1_Mid.wav",
+     "dyn": "unica",
+     "inizio": 0.0054,
+     "durata": 2.766,
+     "db": -23.3
+    },
+    {
+     "f": "HiHat_HitLoose_rr2_Mid.wav",
+     "dyn": "unica",
+     "inizio": 0.0053,
+     "durata": 2.487,
+     "db": -23.4
+    },
+    {
+     "f": "HiHat_HitOC_rr5_Mid.wav",
+     "dyn": "unica",
+     "inizio": 0.0053,
+     "durata": 1.938,
+     "db": -34.9
+    },
+    {
+     "f": "HiHat_HitO_rr1_Mid.wav",
+     "dyn": "unica",
+     "inizio": 0.0054,
+     "durata": 5.819,
+     "db": -26.8
+    },
+    {
+     "f": "HiHat_HitO_rr2_Mid.wav",
+     "dyn": "unica",
+     "inizio": 0.0054,
+     "durata": 6.156,
+     "db": -25.2
+    }
+   ]
+  },
+  "tom": {
+   "fonte": "vcsl",
+   "dir": "Membranophones/Struck Membranophones/Tom 1/Stick",
+   "perc": true,
+   "campioni": [
+    {
+     "f": "TomH_HitS_v2_rr1_Mid.wav",
+     "dyn": "v2",
+     "inizio": 0.0072,
+     "durata": 2.344,
+     "db": -38.9
+    },
+    {
+     "f": "TomH_HitS_v2_rr2_Mid.wav",
+     "dyn": "v2",
+     "inizio": 0.0072,
+     "durata": 2.549,
+     "db": -37.4
+    },
+    {
+     "f": "TomH_HitS_v3_rr1_Mid.wav",
+     "dyn": "v3",
+     "inizio": 0.0073,
+     "durata": 2.407,
+     "db": -28.7
+    },
+    {
+     "f": "TomH_HitS_v3_rr2_Mid.wav",
+     "dyn": "v3",
+     "inizio": 0.0073,
+     "durata": 2.487,
+     "db": -29.2
+    },
+    {
+     "f": "TomH_HitS_v4_rr1_Mid.wav",
+     "dyn": "v4",
+     "inizio": 0.0068,
+     "durata": 2.977,
+     "db": -22.5
+    },
+    {
+     "f": "TomH_HitS_v4_rr2_Mid.wav",
+     "dyn": "v4",
+     "inizio": 0.0066,
+     "durata": 3.159,
+     "db": -23.1
+    }
+   ]
+  },
+  "piatto_crash": {
+   "fonte": "vcsl",
+   "dir": "Idiophones/Struck Idiophones/Clash Cymbals 1",
+   "perc": true,
+   "campioni": [
+    {
+     "f": "cymbal_crash1_ff2.wav",
+     "dyn": "ff",
+     "inizio": 0,
+     "durata": 13.291,
+     "db": -18.3
+    },
+    {
+     "f": "cymbal_crash1_ff3.wav",
+     "dyn": "ff",
+     "inizio": 0,
+     "durata": 14.654,
+     "db": -15.9
+    },
+    {
+     "f": "cymbal_crash1_mf1.wav",
+     "dyn": "mf",
+     "inizio": 0,
+     "durata": 8.479,
+     "db": -23.4
+    },
+    {
+     "f": "cymbal_crash1_mf2.wav",
+     "dyn": "mf",
+     "inizio": 0,
+     "durata": 9.659,
+     "db": -21.1
+    },
+    {
+     "f": "cymbal_crash1_mp1.wav",
+     "dyn": "mp",
+     "inizio": 0,
+     "durata": 7.105,
+     "db": -27.2
+    },
+    {
+     "f": "cymbal_crash1_mp2.wav",
+     "dyn": "mp",
+     "inizio": 0,
+     "durata": 8.03,
+     "db": -25.6
+    },
+    {
+     "f": "cymbal_crash1_pp1.wav",
+     "dyn": "pp",
+     "inizio": 0,
+     "durata": 9.334,
+     "db": -33.1
+    },
+    {
+     "f": "cymbal_crash1_pp2.wav",
+     "dyn": "pp",
+     "inizio": 0,
+     "durata": 8.553,
+     "db": -34.2
     }
    ]
   }

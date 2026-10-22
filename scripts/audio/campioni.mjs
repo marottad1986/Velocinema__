@@ -1,6 +1,6 @@
-// Strumenti campionati: VSCO-2 Community Edition (CC0, Versilian Studios), scaricati alla prima esecuzione
-// in campioni/vsco/ (cartella ignorata da git) dal commit fissato in vsco.json, quindi il suono non cambia nel tempo.
-// Suona le note con scelta del campione più vicino, dinamica per velocità, alternanza deterministica,
+// Strumenti campionati: VSCO-2 Community Edition e VCSL (CC0, Versilian Studios), scaricati alla prima esecuzione
+// in campioni/vsco/ e campioni/vcsl/ (cartelle ignorate da git) dai commit fissati in vsco.json, quindi il suono non
+// cambia nel tempo. Suona le note con scelta del campione più vicino, dinamica per velocità, alternanza deterministica,
 // cambio d'intonazione con interpolazione cubica e prolungamento delle note lunghe con dissolvenze incrociate.
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { dirname } from 'node:path';
@@ -9,9 +9,9 @@ import { readWav } from './wav.mjs';
 import { SR, hz, rng } from './synth.mjs';
 
 const INDICE = JSON.parse(readFileSync(new URL('./vsco.json', import.meta.url), 'utf8'));
-const CACHE = 'campioni/vsco';
-
-const percorso = (s, c) => `${CACHE}/${s.dir}/${c.f}`;
+/** Fonte di uno strumento: VSCO-2 CE (predefinita) o VCSL, ognuna con la sua cartella in campioni/. */
+const fonte = (s) => INDICE.fonti[s.fonte ?? 'vsco'];
+const percorso = (s, c) => `campioni/${s.fonte ?? 'vsco'}/${s.dir}/${c.f}`;
 
 /** Scarica i campioni mancanti degli strumenti indicati (curl, presente anche in Windows 10+). */
 export const scaricaCampioni = (ids) => {
@@ -22,11 +22,12 @@ export const scaricaCampioni = (ids) => {
     for (const c of s.campioni) if (!existsSync(percorso(s, c))) mancanti.push([s, c]);
   }
   if (!mancanti.length) return;
-  console.log(`Scarico ${mancanti.length} campioni VSCO-2 CE in ${CACHE}/ (solo la prima volta)…`);
+  console.log(`Scarico ${mancanti.length} campioni (VSCO-2 CE / VCSL) in campioni/ (solo la prima volta)…`);
   for (const [s, c] of mancanti) {
     const dest = percorso(s, c);
     mkdirSync(dirname(dest), { recursive: true });
-    const url = `https://raw.githubusercontent.com/${INDICE.repo}/${INDICE.commit}/${`${s.dir}/${c.f}`.split('/').map(encodeURIComponent).join('/')}`;
+    const { repo, commit } = fonte(s);
+    const url = `https://raw.githubusercontent.com/${repo}/${commit}/${`${s.dir}/${c.f}`.split('/').map(encodeURIComponent).join('/')}`;
     const res = spawnSync('curl', ['-fsSL', '--retry', '3', '-o', dest, url], { stdio: 'inherit' });
     if (res.error) throw new Error(`curl non trovato: serve per scaricare i campioni (${res.error.message})`);
     if (res.status !== 0) throw new Error(`Download fallito: ${url}`);
