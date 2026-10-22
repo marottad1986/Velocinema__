@@ -34,6 +34,9 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
   nella stessa frase.
 - Il finale deve dire chiaramente come va a finire, compresi i colpi di scena.
 - Titoli dei capitoli chiari anche fuori contesto.
+- Testo discorsivo, come un racconto continuo: le frasi si legano tra loro (perché, ma, così, finché, quando…)
+  e un capitolo si aggancia al precedente. Niente elenchi di frasi brevi staccate; le righe dei sottotitoli
+  sono pezzi dello stesso discorso.
 
 ## Elementi fissi sopra le immagini (capitoli)
 - Barra a capitoli sottile (16 px) sul bordo superiore, un segmento per capitolo proporzionale alla durata,
