@@ -1,0 +1,127 @@
+# Rigenera i video dei film modificati e li carica su MEGA in /Velocinema/<film>/.
+# - Automatico a ogni push su main che tocca un film (JSON, scene, spartito, voce) o il codice comune.
+# - A mano: Actions → "Video su MEGA" → Run workflow (film vuoto = tutti).
+# Voce: se su MEGA esiste /Velocinema/<film>/voce/ con le clip (00_copertina, 01_<id>…) o se ci sono
+# clip in audio/<film>/, monta anche <film>-voce.mp4.
+# Segreti richiesti (Settings → Secrets and variables → Actions): MEGA_EMAIL, MEGA_PASSWORD.
+name: Video su MEGA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - films/**
+      - src/**
+      - scripts/**
+      - audio/**
+      - package.json
+      - package-lock.json
+      - remotion.config.ts
+  workflow_dispatch:
+    inputs:
+      film:
+        description: 'Film da rigenerare (es. shutter-island). Vuoto = tutti'
+        required: false
+        default: ''
+
+concurrency:
+  group: video-mega
+  cancel-in-progress: false
+
+jobs:
+  scegli:
+    runs-on: ubuntu-24.04
+    outputs:
+      film: ${{ steps.f.outputs.film }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: f
+        env:
+          EVENTO: ${{ github.event_name }}
+          SCELTO: ${{ inputs.film }}
+          PRIMA: ${{ github.event.before }}
+        run: |
+          if [ "$EVENTO" = workflow_dispatch ]; then
+            if [ -z "$SCELTO" ]; then
+              film=$(node scripts/cambiati.mjs --tutti)
+            elif [ -f "films/$SCELTO.json" ] && [[ "$SCELTO" =~ ^[a-z0-9-]+$ ]]; then
+              film="[\"$SCELTO\"]"
+            else
+              echo "::error::Film sconosciuto: $SCELTO"; exit 1
+            fi
+          elif [ -z "$PRIMA" ] || [ "$PRIMA" = 0000000000000000000000000000000000000000 ] || ! git cat-file -e "$PRIMA" 2>/dev/null; then
+            film=$(node scripts/cambiati.mjs --tutti)
+          else
+            film=$(git diff --name-only "$PRIMA" "$GITHUB_SHA" | node scripts/cambiati.mjs)
+          fi
+          echo "Film da rigenerare: $film"
+          echo "film=$film" >> "$GITHUB_OUTPUT"
+
+  video:
+    needs: scegli
+    if: needs.scegli.outputs.film != '[]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        film: ${{ fromJSON(needs.scegli.outputs.film) }}
+    env:
+      FILM: ${{ matrix.film }}
+      MEGA_EMAIL: ${{ secrets.MEGA_EMAIL }}
+      MEGA_PASSWORD: ${{ secrets.MEGA_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Strumenti (ffmpeg, MEGAcmd)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg
+          wget -q https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megacmd-xUbuntu_24.04_amd64.deb -O /tmp/megacmd.deb
+          sudo apt-get install -y -q /tmp/megacmd.deb
+      - run: npm ci
+      - name: Accesso a MEGA
+        run: |
+          if [ -z "$MEGA_EMAIL" ] || [ -z "$MEGA_PASSWORD" ]; then
+            echo "::error::Mancano i segreti MEGA_EMAIL e MEGA_PASSWORD"; exit 1
+          fi
+          mega-login "$MEGA_EMAIL" "$MEGA_PASSWORD" > /dev/null
+          mega-mkdir -p "/Velocinema/$FILM"
+      - name: Video con musica
+        run: npm run render -- "$FILM"
+      - name: Voce (se ci sono le clip)
+        continue-on-error: true
+        run: |
+          if mega-ls "/Velocinema/$FILM/voce" > /dev/null 2>&1; then
+            mkdir -p clip && mega-get "/Velocinema/$FILM/voce" clip/ > /dev/null
+            npm run voce -- "$FILM" --cartella clip/voce
+          elif [ -n "$(ls -A "audio/$FILM" 2>/dev/null)" ]; then
+            npm run voce -- "$FILM"
+          else
+            echo "Nessuna clip voce per $FILM"
+          fi
+      - name: Caricamento su MEGA
+        run: |
+          for f in "out/$FILM.mp4" "out/$FILM-voce.mp4"; do
+            [ -f "$f" ] || continue
+            dest="/Velocinema/$FILM/$(basename "$f")"
+            mega-rm -f "$dest" > /dev/null 2>&1 || true
+            mega-put "$f" "$dest" > /dev/null
+            echo "Caricato $dest"
+          done
+      - name: Uscita da MEGA
+        if: always()
+        run: mega-logout > /dev/null 2>&1 || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ matrix.film }}
+          path: out/${{ matrix.film }}*.mp4
+          retention-days: 7
+          if-no-files-found: ignore
