@@ -1,5 +1,5 @@
 import type { FilmData, FilmDef } from './types';
-import { ANTON, CINZEL, CREEPSTER, SYNCOPATE } from './lib/fonts';
+import { ANTON, BEBAS, CINZEL, CREEPSTER, STENCIL, SYNCOPATE } from './lib/fonts';
 import shutterIsland from '../films/shutter-island.json';
 import laLaLand from '../films/la-la-land.json';
 import trumanShow from '../films/the-truman-show.json';
@@ -8,6 +8,8 @@ import interstellar from '../films/interstellar.json';
 import castAway from '../films/cast-away.json';
 import jurassicPark from '../films/jurassic-park.json';
 import harryPotter1 from '../films/harry-potter-pietra-filosofale.json';
+import darkStagione1 from '../films/dark-stagione-1.json';
+import inception from '../films/inception.json';
 import { SHUTTER_ISLAND_SCENES } from './scenes/shutter-island';
 import { Copertina as ShutterCover } from './scenes/shutter-island/Copertina';
 import { Finale as ShutterEnd } from './scenes/shutter-island/Finale';
@@ -25,6 +27,10 @@ import { JURASSIC_PARK_SCENES } from './scenes/jurassic-park';
 import { Copertina as JurassicCover, Finale as JurassicEnd } from './scenes/jurassic-park/Locandina';
 import { HARRY_POTTER_1_SCENES } from './scenes/harry-potter-pietra-filosofale';
 import { Copertina as HP1Cover, Finale as HP1End } from './scenes/harry-potter-pietra-filosofale/Locandina';
+import { DARK_S1_SCENES } from './scenes/dark-stagione-1';
+import { INCEPTION_SCENES } from './scenes/inception';
+import { Copertina as IncCover, Finale as IncEnd } from './scenes/inception/Locandina';
+import { Copertina as DarkCover, Finale as DarkEnd } from './scenes/dark-stagione-1/Locandina';
 
 // Registro dei film: un JSON in films/ + le scene disegnate in src/scenes/<film>/.
 // Le scene non ancora ricostruite compaiono come segnaposto.
@@ -37,6 +43,8 @@ export const FILMS: FilmDef[] = [
   { slug: 'cast-away', data: castAway as FilmData, scenes: CAST_AWAY_SCENES, cover: CastCover, ending: CastEnd },
   { slug: 'jurassic-park', data: jurassicPark as FilmData, scenes: JURASSIC_PARK_SCENES, cover: JurassicCover, ending: JurassicEnd, posterFont: ANTON },
   { slug: 'harry-potter-pietra-filosofale', data: harryPotter1 as FilmData, scenes: HARRY_POTTER_1_SCENES, cover: HP1Cover, ending: HP1End, posterFont: CINZEL },
+  { slug: 'dark-stagione-1', data: darkStagione1 as FilmData, scenes: DARK_S1_SCENES, cover: DarkCover, ending: DarkEnd, posterFont: STENCIL },
+  { slug: 'inception', data: inception as FilmData, scenes: INCEPTION_SCENES, cover: IncCover, ending: IncEnd, posterFont: BEBAS },
 ];
 
 export const getFilm = (slug: string): FilmDef => {

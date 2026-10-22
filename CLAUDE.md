@@ -1,4 +1,4 @@
-# Riassunti animati di film in 2 minuti
+# Riassunti animati di film in 2 minuti (+ "Spiegato semplice")
 
 Progetto per produrre video verticali (Reel, TikTok, Shorts) che raccontano un film intero in 2 minuti.
 Ogni film è descritto da un file in `films/` (titolo, regista, palette, copertina, capitoli, sottotitoli, finale).
@@ -35,20 +35,21 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
   nella stessa frase.
 - Il finale deve dire chiaramente come va a finire, compresi i colpi di scena.
 - Titoli dei capitoli chiari anche fuori contesto.
-- Testo discorsivo: si racconta come a voce a un amico; ogni frase si aggancia alla precedente con connettivi
-  espliciti («perché», «infatti», «intanto», «così», «quindi», «ma», «alla fine») e un capitolo si aggancia al
-  precedente. Niente elenchi secchi di fatti né frasi telegrafiche; mai frasi che parlano dello schema o del video
-  stesso (es. «Tutto in due minuti»). Le righe dei sottotitoli sono pezzi dello stesso discorso.
-  L'ultima frase chiude o lascia una domanda chiara.
+- Testo discorsivo (tutti i formati): si racconta come a voce a un amico. Ogni frase si aggancia alla precedente con
+  connettivi espliciti («perché», «infatti», «intanto», «così», «quindi», «ma», «alla fine»), così i collegamenti li fa
+  la voce e chi guarda non deve ricostruirli; anche un capitolo si aggancia al precedente. Niente elenchi secchi di fatti
+  né frasi telegrafiche; mai frasi che parlano dello schema o del video stesso (es. «Tutto in due minuti», «Ecco lo schema
+  completo»). Le righe dei sottotitoli sono pezzi dello stesso discorso. L'ultima frase della storia chiude o lascia una
+  domanda chiara (per le serie: da dove riparte la stagione dopo).
 - Spiegato facile: parole di tutti i giorni, nessun termine tecnico senza spiegarlo subito, una cosa alla volta.
 - Queste regole sul testo valgono per tutti i progetti della serie (film, quadri, canzoni, serie TV spiegate…).
 - Se si riscrive il testo di un film già disegnato, tenere lo stesso numero di righe per capitolo e lo stesso
   contenuto in ogni riga: scene e spartito agganciano gli eventi all'indice della riga (`cues`).
 
-## Finale (vincolante)
+## Finale (vincolante, tutti i formati)
 - Nell'immagine finale, sotto «Metti like» / «Segui la pagina», l'invito a commentare (mai «Il prossimo … arriva presto»):
-  «Commenta con il film / la spiegazione / la canzone / il quadro che vorresti.» (secondo il formato).
-  Per questo progetto: «Commenta con il film che vorresti.»
+  riassunti di film → «Commenta con il film che vorresti.»; Spiegato semplice → «Commenta con la spiegazione che vorresti.»;
+  canzoni → «Commenta con la canzone che vorresti.»; quadri → «Commenta con il quadro che vorresti.»
 
 ## Elementi fissi sopra le immagini (capitoli)
 - Barra a capitoli sottile (16 px) sul bordo superiore, un segmento per capitolo proporzionale alla durata,
@@ -58,6 +59,41 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 - Sottotitoli in basso (tra y 1270 e 1490), una frase alla volta su fascia scura semitrasparente,
   tempi distribuiti in proporzione alla lunghezza delle frasi.
 - Zone coperte dalle app: niente testo nei primi 250 px in alto e negli ultimi 420 px in basso.
+
+## Secondo formato: "Spiegato semplice" (film e serie TV)
+Trame complesse spiegate nel modo più semplice possibile, «come a un bambino di 5 anni». Valgono tutte le regole
+sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
+- JSON: `"formato": "spiegato"`, `"tipo": "film"` o `"serie"`; per le serie `"stagione": N` e file
+  `films/<serie>-stagione-<N>.json` (serie brevi/concluse: un solo file per tutta la serie, senza `stagione`).
+  Il campo `regista` resta (per le serie: ideatori o regista principale).
+- Struttura: sigla 1,5 s dentro la copertina da 4 s (nome "Spiegato semplice" + badge FILM o SERIE, uguale per tutti
+  gli episodi) + capitoli (112 s) + finale 4 s. Capitoli più lunghi e meno numerosi (8–10, 11–14 s ciascuno).
+- Capitoli per concetti, non per scene: ognuno spiega una sola idea (una regola, un luogo, un colpo di scena) e
+  il titolo la dice (es. «La regola dei 33 anni»), in ordine di comprensione.
+- Scrittura: frasi brevi (max ~12 parole), parole comuni; ogni idea difficile ha un paragone quotidiano
+  (es. «come un ascensore con tre piani»). Ritmo un po' più lento: al massimo 3,4 parole/s contando ogni anno
+  a quattro cifre come 4 parole, meglio intorno a 3,1.
+- Personaggi come oggetti: ogni personaggio ha un oggetto simbolo fisso (`personaggi`: nome, ruolo, oggetto), che
+  compare con un cartellino col nome nel capitolo in cui viene presentato (`personaggi` del capitolo) e poi lo
+  rappresenta sempre. Mai figure, sagome o volti.
+- **Uno schema, non scene**: tutto il video è un unico diagramma che si costruisce frase dopo frase (la camera si sposta
+  sulla parte di cui parla la voce e alla fine si allarga sullo schema completo). Lo stile dello schema segue il contenuto
+  spiegato (Dark: albero di famiglia che si annoda, con il passaggio della grotta e un quadrante d'orologio sullo sfondo).
+  Vocabolario fisso: cerchio con oggetto = personaggio, linea = legame (con scritta a mano), tratteggio giallo = viaggio
+  nel tempo, cartellino pieno = colpo di scena, anello rosso = il nodo da capire. Pochi elementi: le scritte che servono
+  a un solo capitolo si spengono alla fine del capitolo; titolo piccolo in alto (64 px) perché lo schema intero stia
+  tra titolo e sottotitoli. JSON: `"schema": true` (niente linea del tempo né cartellini sopra lo schema).
+  Valgono luce, texture, particelle e colore di QUALITA.md; la parallasse a piani è sostituita dai movimenti di camera.
+- Capitoli come domande («Come funziona il passaggio?»): ogni capitolo risponde e aggiunge un pezzo allo schema.
+- Elemento fisso che si costruisce capitolo dopo capitolo (es. `linea_tempo` con gli anni, l'`anno` del capitolo
+  evidenziato), sotto l'etichetta del capitolo e fuori dalle zone coperte dalle app.
+- Finale: la voce dice il riassunto «in una frase» (`finale.voce`); per le serie si annuncia la stagione successiva.
+- Codice: sigla in `src/components/Sigla.tsx` (la copertina del film riceve `t` già spostato di 1,5 s); linea del tempo
+  e cartellini dei personaggi in `src/components/ChapterOverlay.tsx`, attivi quando il JSON ha `linea_tempo` e `personaggi`.
+  Episodi: Dark (`films/dark-stagione-1.json`, schema `src/scenes/dark-stagione-1/Albero.tsx`), Inception
+  (`films/inception.json`, schema `src/scenes/inception/Piani.tsx`); musica in `scripts/audio/<slug>.mjs`.
+- Priorità: serie intricate (Dark, Lost, Westworld, Severance, Twin Peaks, 1899; una stagione per video se lunghe),
+  film (Inception, Tenet, Mulholland Drive, Donnie Darko, Primer). Libri solo dopo ~10 episodi.
 
 ## Voce
 - I sottotitoli coincidono con il testo voce. Ritmo di riferimento: circa 3,4 parole al secondo.
@@ -86,7 +122,7 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 - Un solo tempo (bpm) per film, su una griglia continua: le scene lente vanno a metà passo, quelle concitate a passo
   doppio, e i cambi di sezione cadono sulla battuta più vicina all'inizio del capitolo (mai tempi diversi per capitolo:
   si sente la musica accelerare e rallentare). Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
-  Frankenstein Junior 104.
+  Frankenstein Junior 104; Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 a metà passo).
 - Effetti sonori registrati: `scripts/audio/effetti.mjs` (archivio CC0 di Craig Smith, USC / Sunset Editorial, "SSE Library"
   e "Red Library" su archive.org), scaricati in `campioni/effetti/`; `clip(mix, id, { t, da, durata, gain, lp, largo… })`
   suona un tratto del file (da/durata = presa scelta). Per aggiungere un effetto: voce nel `CATALOGO` con il picco del file.

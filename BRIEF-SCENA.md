@@ -74,6 +74,9 @@ Se ti serve un elemento che manca e che potrà servire ad altri film, aggiungilo
 funzione pura di `t`, seme, `id`, niente filtri) e mettilo nel catalogo. Il resto si disegna nella scena.
 
 ## 4. Errori già fatti (da non ripetere)
+- **Cartellini dei personaggi (formato «spiegato»).** Mentre una frase presenta un personaggio compare in basso a
+  sinistra (x 60–800, y 1090–1250) il cartellino «NOME = oggetto»: in quel momento tieni l'oggetto chiave fuori da quella
+  fascia. La linea del tempo sta a destra dell'etichetta (x 584–1030, y 262–314).
 - **Testi coperti.** Etichetta a y 262, titolo a y ≈380–500 a sinistra, sottotitoli a y 1270–1490 centrati.
   Gli oggetti chiave della scena stanno **tra y 520 e 1260**. Ricorda che lo zoom della camera (fino a 1,09
   attorno a y 1000) sposta verso l'alto ciò che sta sopra: lascia ~40 px di margine sotto il titolo.

@@ -42,6 +42,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
     blu-grigio invernale a Memphis (#3B4C66).
   - Jurassic Park: verde giungla (#1E4A30, opacità 10%), verde quasi nero di notte e in tempesta (#0F1F17).
   - Harry Potter e la pietra filosofale: blu-viola notturno (#1E1A3A, opacità 12%), caldo dorato di giorno (#E8B04A, 8%).
+  - Dark (Spiegato semplice): verde-grigio freddo da bosco bagnato (#2F4A40, opacità 12%); nel 2052 seppia di cenere (#5A4E3C). Unico colore deciso il giallo dell'impermeabile (#F2C230) sugli oggetti chiave.
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
 
@@ -182,3 +183,20 @@ Niente logo con il fulmine, stemmi delle case o carattere del film; titolo in Ci
 - Lo specchio: neve alla finestra, lo specchio si riempie di luce calda, un drappo lo copre.
 - La botola: liane, chiavi con le ali, scacchiera gigante, il cavallo che crolla in frantumi.
 - La pietra filosofale: fuoco magico viola, buio che avanza, luce che protegge, la pietra che si sbriciola.
+### Dark, stagione 1 (Spiegato semplice, schema)
+L'albero che si annoda (`src/scenes/dark-stagione-1/Albero.tsx`): fondo scuro verde-grigio, un quadrante d'orologio
+appena visibile che gira, due famiglie in colonna (Kahnwald, Nielsen), anni dall'alto in basso, il passaggio della
+grotta come colonna gialla tratteggiata a sinistra. Personaggi = cerchi con l'oggetto (mai figure).
+- Ogni nodo compare con un rimbalzo quando la voce lo nomina; il nodo di cui si parla ha l'anello giallo con alone.
+- Il colpo di scena: filo giallo «torna nel 1986» da Mikkel a Michael e anello rosso Michael → Jonas → Martha → Mikkel.
+- Le scritte di un solo capitolo si spengono a fine capitolo; alla fine resta l'albero completo e leggibile.
+- Pulviscolo, grana e vignettatura come le altre scene.
+
+### Inception (Spiegato semplice, schema)
+La torre dei sogni come cianografia (`src/scenes/inception/Piani.tsx`): carta blu con griglia, linee bianche, accento
+arancione. Piani dall'alto in basso: realtà (aereo), sogno 1 città, sogno 2 albergo, sogno 3 fortezza, limbo; a destra un
+orologio per piano con la durata. Personaggi = cerchi con l'oggetto (trottola, valigetta, girandola, cassaforte, fede).
+- L'idea è un seme arancione che scende di piano in piano e germoglia in Fischer.
+- I calci sono frecce arancioni che risalgono; il limbo e Mal sono in rosso.
+- La trottola grande nella realtà gira, accelera quando la voce ne parla e alla fine vacilla.
+- Velo scuro dietro il titolo: nelle inquadrature strette la torre può passare sotto il titolo.

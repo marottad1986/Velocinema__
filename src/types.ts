@@ -8,16 +8,29 @@ export type Capitolo = {
   durata: number;
   scena: string;
   sottotitoli: string[];
+  /** Solo formato "spiegato": anno evidenziato sulla linea del tempo e personaggi presentati nel capitolo. */
+  anno?: number;
+  personaggi?: string[];
 };
+
+/** Formato "spiegato": ogni personaggio è rappresentato da un oggetto, mai da una figura. */
+export type Personaggio = { nome: string; ruolo: string; oggetto: string };
 
 export type FilmData = {
   titolo: string;
+  formato?: 'riassunto' | 'spiegato';
+  /** Formato "spiegato" disegnato come un unico schema che si costruisce (niente linea del tempo né cartellini sopra). */
+  schema?: boolean;
+  tipo?: 'film' | 'serie';
+  stagione?: number;
   regista: string;
   anno: number;
   palette: Palette;
   copertina: { durata: number; frase_lancio?: string; immagine: string; voce?: string };
+  linea_tempo?: number[];
+  personaggi?: Personaggio[];
   capitoli: Capitolo[];
-  finale: { durata: number; immagine: string };
+  finale: { durata: number; immagine: string; voce?: string };
   musica?: string;
 };
 
