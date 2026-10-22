@@ -15,6 +15,11 @@ export const effetti = ['vetro_lastra', 'metallo_schianto', 'pioggia_dura', 'rad
 /** Sala media e calda. */
 export const sala = { rt60: 2.2, brillo: 7000, predelay: 0.025, wet: 0.5 };
 
+/** Un solo tempo per tutto il film; le scene cupe (padre, barca) vanno a metà passo sulla stessa griglia. */
+const BPM = 78;
+const GRID = (4 * 60) / BPM;
+const snap = (t) => Math.round(t / GRID) * GRID;
+
 // ---------------------------------------------------------------- strumenti (campionati; firme come nella versione sintetica)
 
 /** Pianoforte verticale; cents = intonazione instabile del mondo che si incrina. */
@@ -66,13 +71,15 @@ export default (mix, T) => {
   let sid = 0;
 
   /**
-   * Suona il tema ciclicamente da `from` a `to`.
+   * Suona il tema ciclicamente da `from` a `to` (agganciati alla battuta più vicina della griglia a 78 bpm).
+   * passo: 'meta' = 39 bpm sulla stessa griglia.
    * mode: 'maj' | 'min' | 'dark'. keep: probabilità di ogni nota. det: cent di instabilità. wrong: probabilità di nota sbagliata.
    * lh: pianoforte mano sinistra. cel: celesta in raddoppio. str: archi (livello). cluster: nota dissonante negli archi.
    * low: archi e basso un'ottava sotto. tr: tremolo di archi (tipo pulsazione). big: ottave al piano e raddoppi larghi.
    */
   const sec = (from, to, o) => {
-    const beat = 60 / o.bpm, bar = 4 * beat, loop = 16 * beat;
+    from = snap(from); to = snap(to);
+    const beat = (60 / BPM) * (o.passo === 'meta' ? 2 : 1), bar = 4 * beat, loop = 16 * beat;
     const R = rng(4000 + sid++ * 131);
     const minor = o.mode !== 'maj';
     const chords = minor ? CH_MIN : CH_MAJ;
@@ -121,54 +128,54 @@ export default (mix, T) => {
   const C = (id, n) => cue(id, n);
 
   // copertina + seahaven: tema luminoso, pianoforte e celesta, archi leggeri
-  sec(0, T.riflettore, { bpm: 86, mode: 'maj', keep: 1, mel: 54, lh: 46, cel: 44, str: 34, oct: 0, vs: 1, lhp: 1 });
+  sec(0, T.riflettore, { mode: 'maj', keep: 1, mel: 54, lh: 46, cel: 44, str: 34, oct: 0, vs: 1, lhp: 1 });
 
   // riflettore: cielo sereno, poi il vetro cade e il tema si incrina
-  sec(T.riflettore, C('riflettore', 1) + 0.6, { bpm: 86, mode: 'maj', keep: 0.85, mel: 52, lh: 42, cel: 40, str: 30 });
-  sec(C('riflettore', 1) + 0.6, T.pioggia, { bpm: 66, mode: 'min', keep: 0.5, mel: 44, lh: 36, lhp: 0.7, cel: 38, str: 30, det: 28, celdet: 2.2, wrong: 0.15, cluster: true, sdet: 14, vs: 1 });
+  sec(T.riflettore, C('riflettore', 1) + 0.6, { mode: 'maj', keep: 0.85, mel: 52, lh: 42, cel: 40, str: 30 });
+  sec(C('riflettore', 1) + 0.6, T.pioggia, { mode: 'min', keep: 0.5, mel: 44, lh: 36, lhp: 0.7, cel: 38, str: 30, det: 28, celdet: 2.2, wrong: 0.15, cluster: true, sdet: 14, vs: 1 });
 
   // pioggia: sparso e freddo; si allarga la pioggia ("corretto l'errore"): maggiore finto, quasi sereno
-  sec(T.pioggia, C('pioggia', 3), { bpm: 64, mode: 'min', keep: 0.5, mel: 40, lh: 34, lhp: 0.6, cel: 34, str: 26, det: 18, wrong: 0.08, vs: 1 });
-  sec(C('pioggia', 3), T.radio, { bpm: 72, mode: 'maj', keep: 0.65, mel: 42, lh: 34, cel: 38, str: 28, det: 12, celoff: 18, wrong: 0.05, vs: 1 });
+  sec(T.pioggia, C('pioggia', 3), { mode: 'min', keep: 0.5, mel: 40, lh: 34, lhp: 0.6, cel: 34, str: 26, det: 18, wrong: 0.08, vs: 1 });
+  sec(C('pioggia', 3), T.radio, { mode: 'maj', keep: 0.65, mel: 42, lh: 34, cel: 38, str: 28, det: 12, celoff: 18, wrong: 0.05, vs: 1 });
 
   // radio: tentennante; "la musica torna" a frase 3, poi di nuovo sospetto
-  sec(T.radio, C('radio', 3), { bpm: 76, mode: 'min', keep: 0.45, mel: 40, lh: 34, lhp: 0.6, cel: 34, str: 28, det: 30, celdet: 2.2, wrong: 0.2, cluster: true, sdet: 16 });
-  sec(C('radio', 3), C('radio', 4), { bpm: 90, mode: 'maj', keep: 0.9, mel: 52, lh: 42, cel: 44, str: 30, det: 4 });
-  sec(C('radio', 4), T.padre, { bpm: 76, mode: 'min', keep: 0.4, mel: 40, lh: 34, lhp: 0.6, cel: 32, str: 30, det: 30, celdet: 2.4, wrong: 0.2, cluster: true, sdet: 16 });
+  sec(T.radio, C('radio', 3), { mode: 'min', keep: 0.45, mel: 40, lh: 34, lhp: 0.6, cel: 34, str: 28, det: 30, celdet: 2.2, wrong: 0.2, cluster: true, sdet: 16 });
+  sec(C('radio', 3), C('radio', 4), { mode: 'maj', keep: 0.9, mel: 52, lh: 42, cel: 44, str: 30, det: 4 });
+  sec(C('radio', 4), T.padre, { mode: 'min', keep: 0.4, mel: 40, lh: 34, lhp: 0.6, cel: 32, str: 30, det: 30, celdet: 2.4, wrong: 0.2, cluster: true, sdet: 16 });
 
   // padre: buio, bordone e archi gravi, pianoforte profondo; tema quasi sparito
-  sec(T.padre, T.sylvia, { bpm: 54, mode: 'dark', keep: 0.18, mel: 34, oct: -12, lh: 44, lhp: 0.85, low: true, str: 40, sdet: 20, att: 1.4, cluster: true, drone: 46, det: 40, wrong: 0.2, vs: 1 });
+  sec(T.padre, T.sylvia, { passo: 'meta', mode: 'dark', keep: 0.18, mel: 34, oct: -12, lh: 44, lhp: 0.85, low: true, str: 40, sdet: 20, att: 1.4, cluster: true, drone: 46, det: 40, wrong: 0.2, vs: 1 });
 
   // sylvia: un ricordo caldo e dolce, tema lento ma maggiore, con malinconia
-  sec(T.sylvia, T.figi, { bpm: 66, mode: 'maj', keep: 0.75, mel: 44, lh: 38, cel: 40, str: 36, att: 1.2, det: 2, leg: 1.3 });
+  sec(T.sylvia, T.figi, { mode: 'maj', keep: 0.75, mel: 44, lh: 38, cel: 40, str: 36, att: 1.2, det: 2, leg: 1.3 });
 
   // figi: sospetto, sparso; si spezza ancora di più sul muro con l'aereo colpito (frase 3)
-  sec(T.figi, C('figi', 3), { bpm: 78, mode: 'min', keep: 0.45, mel: 42, lh: 36, lhp: 0.7, cel: 36, str: 30, det: 26, wrong: 0.18, cluster: true, sdet: 14 });
-  sec(C('figi', 3), T.fuga, { bpm: 80, mode: 'min', keep: 0.35, mel: 44, lh: 40, cel: 36, str: 36, det: 36, celdet: 2.4, wrong: 0.28, cluster: true, sdet: 20, att: 0.5 });
+  sec(T.figi, C('figi', 3), { mode: 'min', keep: 0.45, mel: 42, lh: 36, lhp: 0.7, cel: 36, str: 30, det: 26, wrong: 0.18, cluster: true, sdet: 14 });
+  sec(C('figi', 3), T.fuga, { mode: 'min', keep: 0.35, mel: 44, lh: 40, cel: 36, str: 36, det: 36, celdet: 2.4, wrong: 0.28, cluster: true, sdet: 20, att: 0.5 });
 
   // fuga: teso, più mosso, archi con cluster e pulsazione grave di pianoforte
-  sec(T.fuga, T.barca, { bpm: 104, mode: 'min', keep: 0.35, mel: 46, lh: 46, lhp: 1, cel: 32, str: 38, det: 34, wrong: 0.3, cluster: true, sdet: 22, att: 0.5 });
+  sec(T.fuga, T.barca, { mode: 'min', keep: 0.35, mel: 46, lh: 46, lhp: 1, cel: 32, str: 38, det: 34, wrong: 0.3, cluster: true, sdet: 22, att: 0.5 });
   // pulsazione sorda: colpi di cassa leggera sul grave, a battere nervoso, stringendo verso la barca
-  for (let t = T.fuga + 2.4; t < T.barca - 0.3; t += 60 / 104 * (t > T.barca - 4 ? 0.5 : 1)) colpo(mix, 'grancassa', 'bdrum_pp', { t, vel: 70 + 50 * ((t - T.fuga) / (T.barca - T.fuga)), gain: 0.7, rev: 0.3, seed: Math.round(t * 10) });
+  for (let t = Math.ceil((T.fuga + 2.4) / (60 / BPM)) * (60 / BPM); t < snap(T.barca) - 0.3; t += (60 / BPM) * (t > snap(T.barca) - 4 ? 0.5 : 1)) colpo(mix, 'grancassa', 'bdrum_pp', { t, vel: 70 + 50 * ((t - T.fuga) / (T.barca - T.fuga)), gain: 0.7, rev: 0.3, seed: Math.round(t * 10) });
 
   // barca: tempesta; bordone, archi bassi, colpi sordi; solo alla fine ("Truman resiste") il tema risale
-  sec(T.barca, C('barca', 5), { bpm: 60, mode: 'dark', keep: 0.12, mel: 38, oct: -12, lh: 54, lhp: 1, low: true, str: 46, sdet: 24, att: 0.6, cluster: true, drone: 52, det: 40, wrong: 0.25, vs: 1 });
-  for (let t = C('barca', 2); t < C('barca', 5); t += 1.0) colpo(mix, 'grancassa', 'bdrum_mp', { t, vel: 100, gain: 0.8, rev: 0.35, seed: Math.round(t * 10) });
-  sec(C('barca', 5), T.muro, { bpm: 70, mode: 'maj', keep: 0.7, mel: 48, lh: 44, cel: 40, str: 46, att: 0.6, det: 6, vs: 1 });
+  sec(T.barca, C('barca', 5), { passo: 'meta', mode: 'dark', keep: 0.12, mel: 38, oct: -12, lh: 54, lhp: 1, low: true, str: 46, sdet: 24, att: 0.6, cluster: true, drone: 52, det: 40, wrong: 0.25, vs: 1 });
+  for (let t = snap(C('barca', 2)); t < snap(C('barca', 5)); t += 2 * (60 / BPM)) colpo(mix, 'grancassa', 'bdrum_mp', { t, vel: 100, gain: 0.8, rev: 0.35, seed: Math.round(t * 10) });
+  sec(C('barca', 5), T.muro, { mode: 'maj', keep: 0.7, mel: 48, lh: 44, cel: 40, str: 46, att: 0.6, det: 6, vs: 1 });
 
   // muro: calma, bolla di speranza; si allarga fino alla voce dal cielo
-  sec(T.muro, C('muro', 2), { bpm: 72, mode: 'maj', keep: 0.6, mel: 40, lh: 34, cel: 38, str: 30, att: 1.2 });
-  sec(C('muro', 2), C('muro', 3), { bpm: 70, mode: 'min', keep: 0.4, mel: 34, lh: 30, lhp: 0.5, cel: 32, str: 28, det: 12, cluster: true, sdet: 12 });
-  sec(C('muro', 3), C('muro', 5), { bpm: 84, mode: 'maj', keep: 0.85, mel: 48, lh: 42, cel: 42, str: 42, att: 0.6, big: true });
-  sec(C('muro', 5), T.inchino, { bpm: 76, mode: 'maj', keep: 0.9, mel: 52, lh: 46, cel: 46, str: 52, att: 0.5, big: true });
+  sec(T.muro, C('muro', 2), { mode: 'maj', keep: 0.6, mel: 40, lh: 34, cel: 38, str: 30, att: 1.2 });
+  sec(C('muro', 2), C('muro', 3), { mode: 'min', keep: 0.4, mel: 34, lh: 30, lhp: 0.5, cel: 32, str: 28, det: 12, cluster: true, sdet: 12 });
+  sec(C('muro', 3), C('muro', 5), { mode: 'maj', keep: 0.85, mel: 48, lh: 42, cel: 42, str: 42, att: 0.6, big: true });
+  sec(C('muro', 5), T.inchino, { mode: 'maj', keep: 0.9, mel: 52, lh: 46, cel: 46, str: 52, att: 0.5, big: true });
 
   // inchino: finale luminoso e ampio, tema pieno con raddoppi
-  sec(T.inchino, C('inchino', 2), { bpm: 78, mode: 'maj', keep: 0.9, mel: 52, lh: 46, cel: 46, str: 50, att: 0.6, big: true });
-  sec(C('inchino', 2), C('inchino', 5), { bpm: 90, mode: 'maj', keep: 1, mel: 60, lh: 52, cel: 52, str: 58, att: 0.5, big: true, oct: 0 });
-  sec(C('inchino', 5), T.finale, { bpm: 90, mode: 'maj', keep: 0.5, mel: 40, lh: 34, cel: 40, str: 36, att: 0.5 });
+  sec(T.inchino, C('inchino', 2), { mode: 'maj', keep: 0.9, mel: 52, lh: 46, cel: 46, str: 50, att: 0.6, big: true });
+  sec(C('inchino', 2), C('inchino', 5), { mode: 'maj', keep: 1, mel: 60, lh: 52, cel: 52, str: 58, att: 0.5, big: true, oct: 0 });
+  sec(C('inchino', 5), T.finale, { mode: 'maj', keep: 0.5, mel: 40, lh: 34, cel: 40, str: 36, att: 0.5 });
 
   // finale: accordo di Do maggiore ampio, che sale e si scioglie
-  const F = T.finale;
+  const F = snap(T.finale); // sulla griglia, dove finisce l'ultima sezione
   [36, 43, 48, 52, 55, 59, 64, 67].forEach((m, j) => piano(mix, m, { t: F + j * 0.06, dur: 3.2, vel: 52, gain: BODY * 1.2, pan: -0.3 + j * 0.09, rev: 0.5 }));
   [48, 55, 59, 64, 67, 72].forEach((m, j) => strings(mix, m, { t: F, dur: 3, vel: 58, gain: BODY * 0.9, pan: (j - 2.5) * 0.25, det: 6, att: 0.4, seed: 20 + j }));
   [84, 88, 91, 95, 96].forEach((m, j) => celesta(mix, m, { t: F + 0.3 + j * 0.2, dur: 3.2, vel: 46, gain: BODY * 1.2, pan: -0.2 + j * 0.12, rev: 0.6 }));

@@ -15,6 +15,11 @@ export const effetti = ['tuono_classico', 'tuono_secco', 'tuono_forte', 'tuono_b
 /** Sala del castello: pietra, coda lunga e scura. */
 export const sala = { rt60: 2.9, brillo: 5000, predelay: 0.03, wet: 0.55 };
 
+/** Un solo tempo per tutto il film (valzer a 104, swing dello spettacolo sugli stessi battiti). */
+const BPM = 104;
+const GRID = (3 * 60) / BPM;
+const snap = (t) => Math.round(t / GRID) * GRID;
+
 // ---------------------------------------------------------------- strumenti (campionati; firme come nella versione sintetica)
 
 /** Violino solista con vibrato; slide non più usato (il campione ha già il suo attacco d'arco). */
@@ -76,12 +81,13 @@ export default (mix, T) => {
   let sid = 0;
 
   /**
-   * Valzer ciclico da `from` a `to`.
+   * Valzer ciclico da `from` a `to` (agganciati alla battuta più vicina della griglia a 104 bpm).
    * vln: violino (livello) · keep: probabilità di ogni nota · oct: trasposizione · major: Re maggiore
    * oom: pizzicato in tre tempi (livello) · org: organo sostenuto (livello) · timp: timpano sul primo tempo
    */
   const waltz = (from, to, o) => {
-    const beat = 60 / o.bpm, bar = 3 * beat, loop = 24 * beat;
+    from = snap(from); to = snap(to);
+    const beat = 60 / BPM, bar = 3 * beat, loop = 24 * beat;
     const R = rng(7000 + sid++ * 97);
     const chords = o.major ? CH_MAJ : CH_MIN;
     for (let L0 = from; L0 < to - 0.2; L0 += loop) {
@@ -110,8 +116,9 @@ export default (mix, T) => {
   };
 
   /** Swing per lo spettacolo: contrabbasso camminante, spazzole e tip tap. */
-  const swing = (from, to, { bpm = 150, vel = 46 } = {}) => {
-    const beat = 60 / bpm;
+  const swing = (from, to, { vel = 46 } = {}) => {
+    from = snap(from); to = snap(to);
+    const beat = 60 / BPM;
     const walk = [38, 41, 45, 46, 43, 46, 50, 48, 45, 41, 43, 44, 45, 44, 43, 41];
     let k = 0;
     for (let t = from; t < to - 0.1; t += beat, k++) {
@@ -125,41 +132,41 @@ export default (mix, T) => {
 
   // ---- sezioni (tempi dai capitoli del JSON)
   // copertina: organo e timpani nel temporale
-  waltz(0, T.lezione, { bpm: 96, org: 46, timp: 58, timpAll: true });
+  waltz(0, T.lezione, { org: 46, timp: 58, timpAll: true });
   // lezione: valzer leggero e un po' pedante, pizzicati e violino
-  waltz(T.lezione, T.stazione, { bpm: 104, vln: 48, keep: 0.85, oom: 44 });
+  waltz(T.lezione, T.stazione, { vln: 48, keep: 0.85, oom: 44 });
   // stazione: notte in montagna, violino sparso e organo basso
-  waltz(T.stazione, T.castello, { bpm: 92, vln: 40, keep: 0.6, org: 30, orgOct: -12, oom: 30 });
+  waltz(T.stazione, T.castello, { vln: 40, keep: 0.6, org: 30, orgOct: -12, oom: 30 });
   // castello: tensione da film horror, organo e timpani; poi il violino "da solo" (cue 4)
-  waltz(T.castello, C('castello', 4), { bpm: 92, org: 40, timp: 50, oom: 28 });
-  waltz(C('castello', 4) - 0.3, T.libreria, { bpm: 92, vln: 52, keep: 1 });
+  waltz(T.castello, C('castello', 4), { org: 40, timp: 50, oom: 28 });
+  waltz(C('castello', 4) - 0.3, T.libreria, { vln: 52, keep: 1 });
   // libreria: mistero, poi entusiasmo crescente fino a "Si può fare!"
-  waltz(T.libreria, C('libreria', 3), { bpm: 88, org: 34, oom: 34, vln: 38, keep: 0.5 });
-  waltz(C('libreria', 3), T.cervello, { bpm: 112, org: 40, oom: 44, vln: 52, keep: 1, timp: 46 });
+  waltz(T.libreria, C('libreria', 3), { org: 34, oom: 34, vln: 38, keep: 0.5 });
+  waltz(C('libreria', 3), T.cervello, { org: 40, oom: 44, vln: 52, keep: 1, timp: 46 });
   // cervello: furtivo, pizzicati e organo grave
-  waltz(T.cervello, T.creazione, { bpm: 100, oom: 42, org: 30, orgOct: -12, vln: 36, keep: 0.4 });
+  waltz(T.cervello, T.creazione, { oom: 42, org: 30, orgOct: -12, vln: 36, keep: 0.4 });
   // creazione: organo pieno e timpani; silenzio quando la corrente muore; poi tutto a piena forza
-  waltz(T.creazione, C('creazione', 3) + 0.5, { bpm: 100, org: 50, timp: 58, timpAll: true, oom: 40 });
-  waltz(C('creazione', 5), T.eremita, { bpm: 118, org: 56, timp: 62, timpAll: true, vln: 58, keep: 1, oom: 46 });
+  waltz(T.creazione, C('creazione', 3) + 0.5, { org: 50, timp: 58, timpAll: true, oom: 40 });
+  waltz(C('creazione', 5), T.eremita, { org: 56, timp: 62, timpAll: true, vln: 58, keep: 1, oom: 46 });
   // eremita: il violino che calma (tema intero, dolce); poi pizzicati comici
-  waltz(T.eremita, C('eremita', 3), { bpm: 90, vln: 50, keep: 1, org: 26 });
-  waltz(C('eremita', 3), T.teatro, { bpm: 120, oom: 46, vln: 40, keep: 0.6 });
+  waltz(T.eremita, C('eremita', 3), { vln: 50, keep: 1, org: 26 });
+  waltz(C('eremita', 3), T.teatro, { oom: 46, vln: 40, keep: 0.6 });
   // teatro: il violino porta in scena, poi swing con tip tap; l'esplosione interrompe tutto
-  waltz(T.teatro, C('teatro', 2), { bpm: 100, vln: 46, keep: 0.9, oom: 36 });
-  swing(C('teatro', 2), C('teatro', 4), { bpm: 150, vel: 50 });
-  waltz(C('teatro', 4) + 0.4, T.elizabeth, { bpm: 80, org: 44, timp: 56, timpAll: true });
+  waltz(T.teatro, C('teatro', 2), { vln: 46, keep: 0.9, oom: 36 });
+  swing(C('teatro', 2), C('teatro', 4), { vel: 50 });
+  waltz(C('teatro', 4) + 0.4, T.elizabeth, { org: 44, timp: 56, timpAll: true });
   // elizabeth: valzer elegante, poi la tempesta; quando canta il tema torna in maggiore
-  waltz(T.elizabeth, C('elizabeth', 2), { bpm: 108, oom: 40, vln: 44, keep: 0.8 });
-  waltz(C('elizabeth', 2), C('elizabeth', 3) + 0.3, { bpm: 96, org: 46, timp: 56, timpAll: true });
-  waltz(C('elizabeth', 3) + 0.3, T.assedio, { bpm: 96, major: true, vln: 54, keep: 1, org: 30, oct: 12 });
+  waltz(T.elizabeth, C('elizabeth', 2), { oom: 40, vln: 44, keep: 0.8 });
+  waltz(C('elizabeth', 2), C('elizabeth', 3) + 0.3, { org: 46, timp: 56, timpAll: true });
+  waltz(C('elizabeth', 3) + 0.3, T.assedio, { major: true, vln: 54, keep: 1, org: 30, oct: 12 });
   // assedio: marcia minacciosa di timpani, violino dalla torre, poi calma
-  waltz(T.assedio, C('assedio', 3), { bpm: 104, org: 44, timp: 60, timpAll: true, vln: 46, keep: 0.8 });
-  waltz(C('assedio', 3), T.nozze, { bpm: 84, vln: 42, keep: 0.7, org: 28, major: true });
+  waltz(T.assedio, C('assedio', 3), { org: 44, timp: 60, timpAll: true, vln: 46, keep: 0.8 });
+  waltz(C('assedio', 3), T.nozze, { vln: 42, keep: 0.7, org: 28, major: true });
   // nozze: valzer in Re maggiore, pieno e luminoso
-  waltz(T.nozze, T.finale, { bpm: 108, major: true, vln: 56, keep: 1, oom: 46, org: 30 });
+  waltz(T.nozze, T.finale, { major: true, vln: 56, keep: 1, oom: 46, org: 30 });
 
   // finale: accordo di Re maggiore all'organo, violino che sale e campanelle
-  const F = T.finale;
+  const F = snap(T.finale); // sulla griglia, dove finisce l'ultima sezione
   [38, 50, 54, 57, 62, 66].forEach((m, j) => organ(mix, m, { t: F, dur: 3.3, vel: 50, gain: BODY * 0.8, pan: (j - 2.5) * 0.25 }));
   violin(mix, 74, { t: F + 0.1, dur: 1, vel: 54, gain: BODY * 1.2 });
   violin(mix, 78, { t: F + 1.1, dur: 1, vel: 54, gain: BODY * 1.2 });

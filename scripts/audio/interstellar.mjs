@@ -16,6 +16,10 @@ export const sala = { rt60: 3.2, brillo: 7000, predelay: 0.035, wet: 0.6 };
 
 const TAU = Math.PI * 2;
 const SR = 44100;
+/** Un solo tempo per tutto il film; le sezioni di tensione vanno a passo doppio sulla stessa griglia. */
+const BPM = 72;
+const GRID = (4 * 60) / BPM;
+const snap = (t) => Math.round(t / GRID) * GRID;
 const vamp = (v) => (v / 127) ** 1.6;
 
 // ---------------------------------------------------------------- strumenti (campionati; firme come nella versione sintetica)
@@ -76,12 +80,14 @@ export default (mix, T) => {
   let sid = 0;
 
   /**
-   * Il tema ciclico da `from` a `to`.
+   * Il tema ciclico da `from` a `to` (agganciati alla battuta più vicina della griglia a 72 bpm).
+   * passo: 'doppio' = 144 bpm sulla stessa griglia.
    * mel: pianoforte (livello) · keep: probabilità di ogni nota · oct: trasposizione · major: La maggiore
    * pad / org / str: tappeto, organo, archi (livello) · low: bassi un'ottava sotto · pulse: colpi sordi a ogni battuta
    */
   const sec = (from, to, o) => {
-    const beat = 60 / o.bpm, bar = 4 * beat, loop = 16 * beat;
+    from = snap(from); to = snap(to);
+    const beat = (60 / BPM) * (o.passo === 'doppio' ? 0.5 : 1), bar = 4 * beat, loop = 16 * beat;
     const R = rng(9000 + sid++ * 113);
     const chords = o.major ? CH_MAJ : CH_MIN;
     for (let L0 = from; L0 < to - 0.2; L0 += loop) {
@@ -112,38 +118,38 @@ export default (mix, T) => {
 
   // ---- sezioni (tempi dai capitoli del JSON)
   // copertina: tappeto e campanelle, il tema accennato
-  sec(0, T.terra, { bpm: 70, pad: 40, mel: 44, keep: 0.6, bells: 30 });
+  sec(0, T.terra, { pad: 40, mel: 44, keep: 0.6, bells: 30 });
   // terra e fantasma: pianoforte intimo, archi leggeri
-  sec(T.terra, T.fantasma, { bpm: 72, mel: 50, keep: 1, str: 30, bass: 40 });
-  sec(T.fantasma, C('fantasma', 2), { bpm: 72, mel: 44, keep: 0.6, pad: 30, bass: 36 });
-  sec(C('fantasma', 2), T.nasa, { bpm: 84, mel: 50, keep: 1, pad: 38, bells: 34, bass: 40 });
+  sec(T.terra, T.fantasma, { mel: 50, keep: 1, str: 30, bass: 40 });
+  sec(T.fantasma, C('fantasma', 2), { mel: 44, keep: 0.6, pad: 30, bass: 36 });
+  sec(C('fantasma', 2), T.nasa, { mel: 50, keep: 1, pad: 38, bells: 34, bass: 40 });
   // base segreta: l'organo entra, il piano si allarga
-  sec(T.nasa, T.partenza, { bpm: 76, mel: 48, keep: 0.9, org: 40, pad: 34, bells: 30 });
+  sec(T.nasa, T.partenza, { mel: 48, keep: 0.9, org: 40, pad: 34, bells: 30 });
   // partenza: commosso, archi pieni, poi il razzo
-  sec(T.partenza, C('partenza', 4), { bpm: 66, mel: 52, keep: 1, str: 44, bass: 44 });
-  sec(C('partenza', 4), T.varco, { bpm: 80, org: 50, str: 46, pad: 40, low: true, pulse: 30 });
+  sec(T.partenza, C('partenza', 4), { mel: 52, keep: 1, str: 44, bass: 44 });
+  sec(C('partenza', 4), T.varco, { org: 50, str: 46, pad: 40, low: true, pulse: 30 });
   // varco: spazio aperto, organo e campanelle, tema in alto
-  sec(T.varco, T.onde, { bpm: 64, mel: 44, keep: 0.8, oct: 12, org: 44, pad: 38, bells: 34 });
+  sec(T.varco, T.onde, { mel: 44, keep: 0.8, oct: 12, org: 44, pad: 38, bells: 34 });
   // onde: tensione crescente, pulsazione sorda, organo grave
-  sec(T.onde, C('onde', 3), { bpm: 92, org: 46, pad: 40, low: true, pulse: 40, mel: 40, keep: 0.4 });
-  sec(C('onde', 3), T.messaggi, { bpm: 96, org: 54, str: 46, low: true, pulse: 46 });
+  sec(T.onde, C('onde', 3), { passo: 'doppio', org: 46, pad: 40, low: true, pulse: 40, mel: 40, keep: 0.4 });
+  sec(C('onde', 3), T.messaggi, { passo: 'doppio', org: 54, str: 46, low: true, pulse: 46 });
   // messaggi: solo pianoforte, intimo e triste
-  sec(T.messaggi, T.ghiaccio, { bpm: 60, mel: 50, keep: 1, pad: 26, bass: 38 });
+  sec(T.messaggi, T.ghiaccio, { mel: 50, keep: 1, pad: 26, bass: 38 });
   // ghiaccio: freddo, tappeto chiaro, poi tensione e pulsazione
-  sec(T.ghiaccio, C('ghiaccio', 2), { bpm: 70, pad: 40, bright: 5, mel: 38, keep: 0.5, oct: 12, bells: 30 });
-  sec(C('ghiaccio', 2), T.aggancio, { bpm: 100, org: 50, str: 44, low: true, pulse: 44, mel: 38, keep: 0.4 });
+  sec(T.ghiaccio, C('ghiaccio', 2), { pad: 40, bright: 5, mel: 38, keep: 0.5, oct: 12, bells: 30 });
+  sec(C('ghiaccio', 2), T.aggancio, { passo: 'doppio', org: 50, str: 44, low: true, pulse: 44, mel: 38, keep: 0.4 });
   // aggancio: organo in crescendo, poi la verità (di nuovo minore e sospeso)
-  sec(T.aggancio, C('aggancio', 1), { bpm: 108, org: 58, str: 50, pad: 40, pulse: 48 });
-  sec(C('aggancio', 1), T.buconero, { bpm: 64, mel: 42, keep: 0.6, pad: 34, bass: 36 });
+  sec(T.aggancio, C('aggancio', 1), { passo: 'doppio', org: 58, str: 50, pad: 40, pulse: 48 });
+  sec(C('aggancio', 1), T.buconero, { mel: 42, keep: 0.6, pad: 34, bass: 36 });
   // buco nero: organo enorme e grave, poi la stanza fuori dal tempo: campanelle e pianoforte sospeso
-  sec(T.buconero, C('buconero', 3), { bpm: 70, org: 58, pad: 46, low: true, str: 44 });
-  sec(C('buconero', 3), T.orologio, { bpm: 60, mel: 46, keep: 0.8, oct: 12, bells: 40, pad: 34 });
+  sec(T.buconero, C('buconero', 3), { org: 58, pad: 46, low: true, str: 44 });
+  sec(C('buconero', 3), T.orologio, { mel: 46, keep: 0.8, oct: 12, bells: 40, pad: 34 });
   // orologio: il tema torna e si apre in maggiore
-  sec(T.orologio, C('orologio', 2), { bpm: 72, mel: 48, keep: 1, pad: 34, bells: 32 });
-  sec(C('orologio', 2), T.finale, { bpm: 76, mel: 54, keep: 1, major: true, org: 44, str: 46, bells: 36 });
+  sec(T.orologio, C('orologio', 2), { mel: 48, keep: 1, pad: 34, bells: 32 });
+  sec(C('orologio', 2), T.finale, { mel: 54, keep: 1, major: true, org: 44, str: 46, bells: 36 });
 
   // finale: accordo di La maggiore ampio
-  const F = T.finale;
+  const F = snap(T.finale); // sulla griglia, dove finisce l'ultima sezione
   [33, 45, 52, 57, 61, 64, 69].forEach((m, j) => organ(mix, m, { t: F, dur: 3.4, vel: 46, gain: BODY * 0.8, pan: (j - 3) * 0.2 }));
   [57, 61, 64, 69].forEach((m, j) => strings(mix, m, { t: F + 0.1, dur: 3.2, vel: 50, gain: BODY * 0.8, pan: (j - 1.5) * 0.3, att: 0.6, seed: 30 + j }));
   [81, 85, 88, 93].forEach((m, j) => bell(mix, m, { t: F + 0.4 + j * 0.35, vel: 40, pan: -0.3 + j * 0.2 }));
