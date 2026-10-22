@@ -3771,6 +3771,3198 @@
     }
    ]
   },
+  "tromba": {
+   "dir": "Brass/Trumpet/sus",
+   "campioni": [
+    {
+     "f": "Sum_SHTrumpet_sus_A#3_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 19.263,
+     "db": -30.3,
+     "midi": 70,
+     "cents": 3
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_A#3_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 9.451,
+     "db": -18.1,
+     "midi": 70,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_A2_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 11.907,
+     "db": -35.6,
+     "midi": 57,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_A2_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 5.903,
+     "db": -22.8,
+     "midi": 57,
+     "cents": -3
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_A4_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 14.331,
+     "db": -20.1,
+     "midi": 81,
+     "cents": -3
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_A4_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 9.809,
+     "db": -12.3,
+     "midi": 81,
+     "cents": -1
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_C3_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 15.176,
+     "db": -35.7,
+     "midi": 60,
+     "cents": -18
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_C3_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 6.996,
+     "db": -21.9,
+     "midi": 60,
+     "cents": -2
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_C5_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 14.559,
+     "db": -17.8,
+     "midi": 84,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_C5_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 7.595,
+     "db": -14.8,
+     "midi": 84,
+     "cents": -6
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_D#3_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 15.634,
+     "db": -33.9,
+     "midi": 63,
+     "cents": -1
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_D#3_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 9.381,
+     "db": -17.3,
+     "midi": 63,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_D4_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 16.316,
+     "db": -22.5,
+     "midi": 74,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_D4_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 8.063,
+     "db": -13.2,
+     "midi": 74,
+     "cents": 2
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_F2_v1_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 12.496,
+     "db": -39.1,
+     "midi": 53,
+     "cents": 4
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_F2_v3_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 5.56,
+     "db": -21.8,
+     "midi": 53,
+     "cents": -4
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_F4_v1_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 13.845,
+     "db": -23.3,
+     "midi": 77,
+     "cents": 6
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_F4_v3_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 7.196,
+     "db": -14.9,
+     "midi": 77,
+     "cents": -4
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_G3_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 17.064,
+     "db": -34.3,
+     "midi": 67,
+     "cents": 7
+    },
+    {
+     "f": "Sum_SHTrumpet_sus_G3_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 9.288,
+     "db": -14,
+     "midi": 67,
+     "cents": 4
+    }
+   ]
+  },
+  "tromba_stacc": {
+   "dir": "Brass/Trumpet/stac",
+   "campioni": [
+    {
+     "f": "Sum_SHTrumpet_stac_A#3_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.141,
+     "db": -43.4,
+     "midi": 70
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A#3_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.132,
+     "db": -46.4,
+     "midi": 70
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A#3_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.238,
+     "db": -33.2,
+     "midi": 70,
+     "cents": 2
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A#3_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.34,
+     "db": -31.2,
+     "midi": 70,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A#3_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.533,
+     "db": -27.1,
+     "midi": 70,
+     "cents": 3
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A#3_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.494,
+     "db": -24.4,
+     "midi": 70,
+     "cents": 11
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A2_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.753,
+     "db": -52.3,
+     "midi": 57
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A2_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.835,
+     "db": -46.9,
+     "midi": 57,
+     "cents": -3
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A2_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 0.945,
+     "db": -39.3,
+     "midi": 57,
+     "cents": 2
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A2_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 0.968,
+     "db": -38.2,
+     "midi": 57,
+     "cents": -5
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A2_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.51,
+     "db": -33.1,
+     "midi": 57
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A2_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.555,
+     "db": -34,
+     "midi": 57,
+     "cents": 2
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A4_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.482,
+     "db": -27.1,
+     "midi": 81,
+     "cents": -3
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A4_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.222,
+     "db": -26.4,
+     "midi": 81,
+     "cents": 0
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A4_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.209,
+     "db": -27.4,
+     "midi": 81,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A4_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.251,
+     "db": -26.2,
+     "midi": 81,
+     "cents": 4
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A4_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.351,
+     "db": -21.5,
+     "midi": 81,
+     "cents": 7
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_A4_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.464,
+     "db": -20.5,
+     "midi": 81,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_C3_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.044,
+     "db": -51.6,
+     "midi": 60
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_C3_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.942,
+     "db": -55.6,
+     "midi": 60
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_C3_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.14,
+     "db": -39.4,
+     "midi": 60,
+     "cents": 9
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_C3_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.169,
+     "db": -41.2,
+     "midi": 60,
+     "cents": 4
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_C3_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.218,
+     "db": -33.1,
+     "midi": 60
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_C3_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.322,
+     "db": -31.9,
+     "midi": 60,
+     "cents": 4
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_C5_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.658,
+     "db": -26.1,
+     "midi": 84,
+     "cents": -1
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_C5_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.367,
+     "db": -31.6,
+     "midi": 84,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_C5_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 0.889,
+     "db": -24.4,
+     "midi": 84,
+     "cents": -3
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_C5_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.489,
+     "db": -23.4,
+     "midi": 84,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_C5_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.438,
+     "db": -17.3,
+     "midi": 84,
+     "cents": 2
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_C5_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.697,
+     "db": -22.2,
+     "midi": 84,
+     "cents": 0
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_D#3_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.051,
+     "db": -47.9,
+     "midi": 63
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_D#3_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.071,
+     "db": -44.5,
+     "midi": 63
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_D#3_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.291,
+     "db": -36.2,
+     "midi": 63,
+     "cents": -1
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_D#3_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.265,
+     "db": -36.5,
+     "midi": 63,
+     "cents": -5
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_D#3_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.464,
+     "db": -28.6,
+     "midi": 63,
+     "cents": 3
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_D#3_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.396,
+     "db": -30.9,
+     "midi": 63,
+     "cents": -2
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_D4_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.103,
+     "db": -36.1,
+     "midi": 74,
+     "cents": 0
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_D4_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.079,
+     "db": -37.6,
+     "midi": 74,
+     "cents": -8
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_D4_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.337,
+     "db": -27.6,
+     "midi": 74,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_D4_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.167,
+     "db": -30.3,
+     "midi": 74,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_D4_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.754,
+     "db": -21.3,
+     "midi": 74,
+     "cents": 5
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_D4_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.441,
+     "db": -23.1,
+     "midi": 74,
+     "cents": 4
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F2_v1_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.868,
+     "db": -51.9,
+     "midi": 53
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F2_v1_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.874,
+     "db": -52.5,
+     "midi": 53
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F2_v2_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.08,
+     "db": -46.6,
+     "midi": 53
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F2_v2_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.975,
+     "db": -45.7,
+     "midi": 53
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F2_v3_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.073,
+     "db": -39,
+     "midi": 53
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F2_v3_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.927,
+     "db": -42,
+     "midi": 53
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F3_v1_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.181,
+     "db": -44.4,
+     "midi": 65
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F3_v1_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.297,
+     "db": -43.4,
+     "midi": 65
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F3_v2_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.347,
+     "db": -36.4,
+     "midi": 65
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F3_v2_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.344,
+     "db": -40,
+     "midi": 65
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F3_v3_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.421,
+     "db": -35.7,
+     "midi": 65
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F3_v3_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.4,
+     "db": -36.6,
+     "midi": 65,
+     "cents": -1
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F4_v1_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.204,
+     "db": -35.8,
+     "midi": 77,
+     "cents": 4
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F4_v1_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.376,
+     "db": -34.7,
+     "midi": 77,
+     "cents": 8
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F4_v2_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.385,
+     "db": -28.3,
+     "midi": 77,
+     "cents": 3
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F4_v2_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.361,
+     "db": -26,
+     "midi": 77,
+     "cents": 0
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F4_v3_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.535,
+     "db": -20.7,
+     "midi": 77,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_F4_v3_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.512,
+     "db": -18.8,
+     "midi": 77,
+     "cents": 7
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_G3_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.28,
+     "db": -45.6,
+     "midi": 67,
+     "cents": 0
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_G3_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.224,
+     "db": -44.6,
+     "midi": 67,
+     "cents": -3
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_G3_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.192,
+     "db": -37.1,
+     "midi": 67,
+     "cents": 1
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_G3_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.149,
+     "db": -37.4,
+     "midi": 67,
+     "cents": 4
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_G3_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.286,
+     "db": -30.7,
+     "midi": 67,
+     "cents": 3
+    },
+    {
+     "f": "Sum_SHTrumpet_stac_G3_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.441,
+     "db": -28.7,
+     "midi": 67,
+     "cents": 2
+    }
+   ]
+  },
+  "corno": {
+   "dir": "Brass/F Horn/sus",
+   "campioni": [
+    {
+     "f": "MOHorn_sus_A#1_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 13.705,
+     "db": -40.4,
+     "midi": 46,
+     "cents": 7
+    },
+    {
+     "f": "MOHorn_sus_A#1_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 15.533,
+     "db": -39.4,
+     "midi": 46,
+     "cents": -1
+    },
+    {
+     "f": "MOHorn_sus_A#1_v3_1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 10.369,
+     "db": -32.1,
+     "midi": 46,
+     "cents": -2
+    },
+    {
+     "f": "MOHorn_sus_A0_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 5.369,
+     "db": -30.3,
+     "midi": 33,
+     "cents": -5
+    },
+    {
+     "f": "MOHorn_sus_A2_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 15.148,
+     "db": -32,
+     "midi": 57,
+     "cents": -8
+    },
+    {
+     "f": "MOHorn_sus_A2_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 14.41,
+     "db": -24.9,
+     "midi": 57,
+     "cents": 0
+    },
+    {
+     "f": "MOHorn_sus_A2_v3_1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 7.4,
+     "db": -21.5,
+     "midi": 57,
+     "cents": -4
+    },
+    {
+     "f": "MOHorn_sus_C1_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 6.201,
+     "db": -32.7,
+     "midi": 36,
+     "cents": 0
+    },
+    {
+     "f": "MOHorn_sus_C1_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 4.579,
+     "db": -29.3,
+     "midi": 36,
+     "cents": 0
+    },
+    {
+     "f": "MOHorn_sus_C1_v3_1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 3.992,
+     "db": -27.1,
+     "midi": 36,
+     "cents": -10
+    },
+    {
+     "f": "MOHorn_sus_C3_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 14.282,
+     "db": -30.3,
+     "midi": 60,
+     "cents": 3
+    },
+    {
+     "f": "MOHorn_sus_C3_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 12.703,
+     "db": -27.5,
+     "midi": 60,
+     "cents": -1
+    },
+    {
+     "f": "MOHorn_sus_C3_v3_1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 11.986,
+     "db": -23.8,
+     "midi": 60,
+     "cents": 0
+    },
+    {
+     "f": "MOHorn_sus_C3_v4_1.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 9.987,
+     "db": -17.3,
+     "midi": 60,
+     "cents": -7
+    },
+    {
+     "f": "MOHorn_sus_D#1_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 8.079,
+     "db": -32.8,
+     "midi": 39,
+     "cents": -1
+    },
+    {
+     "f": "MOHorn_sus_D#1_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 5.501,
+     "db": -26.7,
+     "midi": 39,
+     "cents": 4
+    },
+    {
+     "f": "MOHorn_sus_D#1_v3_1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 5.257,
+     "db": -23.4,
+     "midi": 39,
+     "cents": -3
+    },
+    {
+     "f": "MOHorn_sus_D2_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 14.174,
+     "db": -46,
+     "midi": 50,
+     "cents": -1
+    },
+    {
+     "f": "MOHorn_sus_D2_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 14.645,
+     "db": -35,
+     "midi": 50,
+     "cents": -6
+    },
+    {
+     "f": "MOHorn_sus_D2_v3_1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 9.899,
+     "db": -25.4,
+     "midi": 50,
+     "cents": -1
+    },
+    {
+     "f": "MOHorn_sus_D2_v4_1.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 6.611,
+     "db": -20.8,
+     "midi": 50,
+     "cents": 6
+    },
+    {
+     "f": "MOHorn_sus_D4_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 8.192,
+     "db": -16.8,
+     "midi": 74,
+     "cents": 5
+    },
+    {
+     "f": "MOHorn_sus_F2_v1_1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 12.262,
+     "db": -37.1,
+     "midi": 53,
+     "cents": -3
+    },
+    {
+     "f": "MOHorn_sus_F2_v2_1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 14.502,
+     "db": -33,
+     "midi": 53,
+     "cents": -6
+    },
+    {
+     "f": "MOHorn_sus_F2_v3_1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 9.595,
+     "db": -24.4,
+     "midi": 53,
+     "cents": -7
+    },
+    {
+     "f": "MOHorn_sus_F4_v1_1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 8.376,
+     "db": -15.5,
+     "midi": 77,
+     "cents": 2
+    },
+    {
+     "f": "MOHorn_sus_G1_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 11.557,
+     "db": -36.8,
+     "midi": 43,
+     "cents": -6
+    },
+    {
+     "f": "MOHorn_sus_G1_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 7.373,
+     "db": -28.7,
+     "midi": 43,
+     "cents": 13
+    },
+    {
+     "f": "MOHorn_sus_G1_v3_1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 5.338,
+     "db": -25,
+     "midi": 43,
+     "cents": -1
+    }
+   ]
+  },
+  "corno_stacc": {
+   "dir": "Brass/F Horn/stac",
+   "campioni": [
+    {
+     "f": "MOHorn_stac_A#1_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.272,
+     "db": -41.6,
+     "midi": 46,
+     "cents": 3
+    },
+    {
+     "f": "MOHorn_stac_A#1_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 0.964,
+     "db": -39.1,
+     "midi": 46,
+     "cents": 1
+    },
+    {
+     "f": "MOHorn_stac_A#1_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.134,
+     "db": -38,
+     "midi": 46,
+     "cents": 2
+    },
+    {
+     "f": "MOHorn_stac_A#1_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.47,
+     "db": -32.9,
+     "midi": 46,
+     "cents": -2
+    },
+    {
+     "f": "MOHorn_stac_A#1_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.156,
+     "db": -31.6,
+     "midi": 46,
+     "cents": -1
+    },
+    {
+     "f": "MOHorn_stac_A0_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.382,
+     "db": -37,
+     "midi": 33
+    },
+    {
+     "f": "MOHorn_stac_A0_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.677,
+     "db": -37,
+     "midi": 33
+    },
+    {
+     "f": "MOHorn_stac_A2_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.805,
+     "db": -29.4,
+     "midi": 57
+    },
+    {
+     "f": "MOHorn_stac_A2_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.674,
+     "db": -31.6,
+     "midi": 57,
+     "cents": 7
+    },
+    {
+     "f": "MOHorn_stac_A2_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.464,
+     "db": -23.4,
+     "midi": 57,
+     "cents": 7
+    },
+    {
+     "f": "MOHorn_stac_A2_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 2.252,
+     "db": -24.2,
+     "midi": 57
+    },
+    {
+     "f": "MOHorn_stac_A2_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.56,
+     "db": -17,
+     "midi": 57,
+     "cents": 8
+    },
+    {
+     "f": "MOHorn_stac_A2_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.889,
+     "db": -17,
+     "midi": 57,
+     "cents": 3
+    },
+    {
+     "f": "MOHorn_stac_C1_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.234,
+     "db": -40,
+     "midi": 36
+    },
+    {
+     "f": "MOHorn_stac_C1_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.339,
+     "db": -40,
+     "midi": 36
+    },
+    {
+     "f": "MOHorn_stac_C1_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.235,
+     "db": -33.9,
+     "midi": 36
+    },
+    {
+     "f": "MOHorn_stac_C1_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0.0007,
+     "durata": 1.287,
+     "db": -34.3,
+     "midi": 36
+    },
+    {
+     "f": "MOHorn_stac_C3_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.767,
+     "db": -29.9,
+     "midi": 60,
+     "cents": -5
+    },
+    {
+     "f": "MOHorn_stac_C3_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.536,
+     "db": -28.2,
+     "midi": 60,
+     "cents": -7
+    },
+    {
+     "f": "MOHorn_stac_C3_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 0.661,
+     "db": -21.7,
+     "midi": 60,
+     "cents": 8
+    },
+    {
+     "f": "MOHorn_stac_C3_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.049,
+     "db": -21.6,
+     "midi": 60,
+     "cents": 5
+    },
+    {
+     "f": "MOHorn_stac_C3_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.592,
+     "db": -13.7,
+     "midi": 60,
+     "cents": -2
+    },
+    {
+     "f": "MOHorn_stac_C3_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.664,
+     "db": -16.2,
+     "midi": 60,
+     "cents": 3
+    },
+    {
+     "f": "MOHorn_stac_D#1_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.275,
+     "db": -30.5,
+     "midi": 39
+    },
+    {
+     "f": "MOHorn_stac_D#1_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.138,
+     "db": -28.6,
+     "midi": 39
+    },
+    {
+     "f": "MOHorn_stac_D#1_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.314,
+     "db": -28.4,
+     "midi": 39
+    },
+    {
+     "f": "MOHorn_stac_D#1_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.489,
+     "db": -27,
+     "midi": 39,
+     "cents": -1
+    },
+    {
+     "f": "MOHorn_stac_D2_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.126,
+     "db": -38.1,
+     "midi": 50,
+     "cents": 5
+    },
+    {
+     "f": "MOHorn_stac_D2_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.215,
+     "db": -38.6,
+     "midi": 50,
+     "cents": -1
+    },
+    {
+     "f": "MOHorn_stac_D2_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.29,
+     "db": -31.6,
+     "midi": 50,
+     "cents": 2
+    },
+    {
+     "f": "MOHorn_stac_D2_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.611,
+     "db": -30.6,
+     "midi": 50,
+     "cents": 5
+    },
+    {
+     "f": "MOHorn_stac_D2_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 0.8,
+     "db": -25.9,
+     "midi": 50,
+     "cents": -1
+    },
+    {
+     "f": "MOHorn_stac_D2_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.671,
+     "db": -23.4,
+     "midi": 50,
+     "cents": -2
+    },
+    {
+     "f": "MOHorn_stac_D4_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.481,
+     "db": -15.2,
+     "midi": 74,
+     "cents": 7
+    },
+    {
+     "f": "MOHorn_stac_D4_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.442,
+     "db": -12.3,
+     "midi": 74,
+     "cents": 4
+    },
+    {
+     "f": "MOHorn_stac_D4_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.464,
+     "db": -9.5,
+     "midi": 74,
+     "cents": 1
+    },
+    {
+     "f": "MOHorn_stac_D4_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.698,
+     "db": -9.1,
+     "midi": 74,
+     "cents": 0
+    },
+    {
+     "f": "MOHorn_stac_D4_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.172,
+     "db": -11.4,
+     "midi": 74,
+     "cents": 1
+    },
+    {
+     "f": "MOHorn_stac_D4_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.453,
+     "db": -9.7,
+     "midi": 74,
+     "cents": -4
+    },
+    {
+     "f": "MOHorn_stac_F2_v1_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.709,
+     "db": -34.7,
+     "midi": 53
+    },
+    {
+     "f": "MOHorn_stac_F2_v1_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.052,
+     "db": -34.2,
+     "midi": 53,
+     "cents": 1
+    },
+    {
+     "f": "MOHorn_stac_F2_v2_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.156,
+     "db": -28.8,
+     "midi": 53,
+     "cents": 1
+    },
+    {
+     "f": "MOHorn_stac_F2_v2_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.539,
+     "db": -25.3,
+     "midi": 53,
+     "cents": 4
+    },
+    {
+     "f": "MOHorn_stac_F2_v3_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.717,
+     "db": -18.2,
+     "midi": 53,
+     "cents": 1
+    },
+    {
+     "f": "MOHorn_stac_F2_v3_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.252,
+     "db": -18.1,
+     "midi": 53,
+     "cents": 1
+    },
+    {
+     "f": "MOHorn_stac_F4_v1_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.466,
+     "db": -10.9,
+     "midi": 77,
+     "cents": 3
+    },
+    {
+     "f": "MOHorn_stac_F4_v1_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.564,
+     "db": -13.7,
+     "midi": 77,
+     "cents": 0
+    },
+    {
+     "f": "MOHorn_stac_F4_v2_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.88,
+     "db": -9.4,
+     "midi": 77,
+     "cents": -4
+    },
+    {
+     "f": "MOHorn_stac_F4_v2_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.62,
+     "db": -7.9,
+     "midi": 77,
+     "cents": -3
+    },
+    {
+     "f": "MOHorn_stac_F4_v3_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.998,
+     "db": -5.6,
+     "midi": 77,
+     "cents": -6
+    },
+    {
+     "f": "MOHorn_stac_G1_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.407,
+     "db": -35,
+     "midi": 43
+    },
+    {
+     "f": "MOHorn_stac_G1_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.51,
+     "db": -32.4,
+     "midi": 43
+    },
+    {
+     "f": "MOHorn_stac_G1_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.152,
+     "db": -28.5,
+     "midi": 43,
+     "cents": -3
+    },
+    {
+     "f": "MOHorn_stac_G1_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.051,
+     "db": -24.6,
+     "midi": 43
+    }
+   ]
+  },
+  "trombone": {
+   "dir": "Brass/Tenor Trombone/sus",
+   "campioni": [
+    {
+     "f": "tenortbn_sus_A#0_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 4.804,
+     "db": -49.2,
+     "midi": 34,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_A#0_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 4.17,
+     "db": -39.9,
+     "midi": 34,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_A#1_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 17.878,
+     "db": -53.9,
+     "midi": 46,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_A#1_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0.0004,
+     "durata": 9.4,
+     "db": -40.9,
+     "midi": 46,
+     "cents": 1
+    },
+    {
+     "f": "tenortbn_sus_A#1_v3_1.wav",
+     "dyn": "v3",
+     "inizio": 0.0018,
+     "durata": 5.277,
+     "db": -34.1,
+     "midi": 46,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_C#1_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 7.444,
+     "db": -48,
+     "midi": 37,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_C#1_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 4.479,
+     "db": -44.1,
+     "midi": 37,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_C#3_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 19.882,
+     "db": -44.7,
+     "midi": 61,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_C#3_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 10.769,
+     "db": -33.8,
+     "midi": 61,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_C#3_v3_1.wav",
+     "dyn": "v3",
+     "inizio": 0.0013,
+     "durata": 7.785,
+     "db": -28.6,
+     "midi": 61,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_C3_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 22.223,
+     "db": -48.8,
+     "midi": 60,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_C3_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0.001,
+     "durata": 9.138,
+     "db": -36.1,
+     "midi": 60,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_C3_v3_1.wav",
+     "dyn": "v3",
+     "inizio": 0.004,
+     "durata": 7.659,
+     "db": -30.1,
+     "midi": 60,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_D#1_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 11.791,
+     "db": -52.4,
+     "midi": 39,
+     "cents": 1
+    },
+    {
+     "f": "tenortbn_sus_D#1_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0.0001,
+     "durata": 6.613,
+     "db": -45,
+     "midi": 39,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_D#1_v3_1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 4.999,
+     "db": -40.8,
+     "midi": 39,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_D#3_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0.0008,
+     "durata": 24.283,
+     "db": -48.3,
+     "midi": 63,
+     "cents": -1
+    },
+    {
+     "f": "tenortbn_sus_D#3_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 13.774,
+     "db": -35.5,
+     "midi": 63,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_D#3_v3_1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 7.025,
+     "db": -27.6,
+     "midi": 63,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_D2_v1_1.wav",
+     "dyn": "v1",
+     "inizio": 0.0002,
+     "durata": 15.494,
+     "db": -55.5,
+     "midi": 50,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_D2_v2_1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 9.825,
+     "db": -44.2,
+     "midi": 50,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_D2_v3_1.wav",
+     "dyn": "v3",
+     "inizio": 0.0005,
+     "durata": 6.588,
+     "db": -37.5,
+     "midi": 50,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_F1_v1_1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 12.934,
+     "db": -53.3,
+     "midi": 41,
+     "cents": 1
+    },
+    {
+     "f": "tenortbn_sus_F1_v2_1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 7.941,
+     "db": -44.9,
+     "midi": 41,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_F1_v3_1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 6.791,
+     "db": -39.5,
+     "midi": 41,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_F2_v1_1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 20.48,
+     "db": -52.8,
+     "midi": 53,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_F2_v2_1.wav",
+     "dyn": "f",
+     "inizio": 0.0045,
+     "durata": 9.935,
+     "db": -39.3,
+     "midi": 53,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_F2_v3_1.wav",
+     "dyn": "f",
+     "inizio": 0.0029,
+     "durata": 6.279,
+     "db": -34,
+     "midi": 53,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_F3_v1_1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 25.833,
+     "db": -41.2,
+     "midi": 65,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_F3_v2_1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 12.063,
+     "db": -29.6,
+     "midi": 65,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_sus_F3_v3_1.wav",
+     "dyn": "f",
+     "inizio": 0.0013,
+     "durata": 7.369,
+     "db": -25.5,
+     "midi": 65,
+     "cents": 0
+    }
+   ]
+  },
+  "trombone_stacc": {
+   "dir": "Brass/Tenor Trombone/stac",
+   "campioni": [
+    {
+     "f": "tenortbn_stac_A#0_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.965,
+     "db": -48.6,
+     "midi": 34
+    },
+    {
+     "f": "tenortbn_stac_A#0_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.023,
+     "db": -48.6,
+     "midi": 34
+    },
+    {
+     "f": "tenortbn_stac_A#0_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.194,
+     "db": -46.7,
+     "midi": 34
+    },
+    {
+     "f": "tenortbn_stac_A#0_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.007,
+     "db": -47,
+     "midi": 34
+    },
+    {
+     "f": "tenortbn_stac_A#0_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 0.967,
+     "db": -44.9,
+     "midi": 34
+    },
+    {
+     "f": "tenortbn_stac_A#0_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.719,
+     "db": -44.1,
+     "midi": 34
+    },
+    {
+     "f": "tenortbn_stac_A#0_v4_rr1.wav",
+     "dyn": "v4",
+     "inizio": 0.0004,
+     "durata": 1.051,
+     "db": -37.8,
+     "midi": 34
+    },
+    {
+     "f": "tenortbn_stac_A#0_v4_rr2.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 1.12,
+     "db": -37.5,
+     "midi": 34
+    },
+    {
+     "f": "tenortbn_stac_A#1_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.887,
+     "db": -49.6,
+     "midi": 46,
+     "cents": -2
+    },
+    {
+     "f": "tenortbn_stac_A#1_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.494,
+     "db": -47.8,
+     "midi": 46
+    },
+    {
+     "f": "tenortbn_stac_A#1_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.181,
+     "db": -37.4,
+     "midi": 46,
+     "cents": -3
+    },
+    {
+     "f": "tenortbn_stac_A#1_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.647,
+     "db": -37.5,
+     "midi": 46,
+     "cents": -1
+    },
+    {
+     "f": "tenortbn_stac_A#1_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.553,
+     "db": -28.9,
+     "midi": 46,
+     "cents": 2
+    },
+    {
+     "f": "tenortbn_stac_A#1_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.223,
+     "db": -28.1,
+     "midi": 46,
+     "cents": 2
+    },
+    {
+     "f": "tenortbn_stac_A#1_v4_rr1.wav",
+     "dyn": "v4",
+     "inizio": 0.0004,
+     "durata": 1.307,
+     "db": -24.7,
+     "midi": 46
+    },
+    {
+     "f": "tenortbn_stac_A#1_v4_rr2.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 1.408,
+     "db": -22.7,
+     "midi": 46
+    },
+    {
+     "f": "tenortbn_stac_A#2_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.113,
+     "db": -41.3,
+     "midi": 58,
+     "cents": -1
+    },
+    {
+     "f": "tenortbn_stac_A#2_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.695,
+     "db": -41.2,
+     "midi": 58,
+     "cents": -2
+    },
+    {
+     "f": "tenortbn_stac_A#2_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.017,
+     "db": -32.2,
+     "midi": 58,
+     "cents": 2
+    },
+    {
+     "f": "tenortbn_stac_A#2_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.673,
+     "db": -29.7,
+     "midi": 58,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_stac_A#2_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.722,
+     "db": -29.4,
+     "midi": 58,
+     "cents": 1
+    },
+    {
+     "f": "tenortbn_stac_A#2_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.94,
+     "db": -29.4,
+     "midi": 58,
+     "cents": 1
+    },
+    {
+     "f": "tenortbn_stac_A#2_v4_r2.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 1.568,
+     "db": -22.7,
+     "midi": 58,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_stac_A#2_v4_rr1.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 2.029,
+     "db": -21.2,
+     "midi": 58,
+     "cents": 1
+    },
+    {
+     "f": "tenortbn_stac_D3_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.476,
+     "db": -40.3,
+     "midi": 62,
+     "cents": 5
+    },
+    {
+     "f": "tenortbn_stac_D3_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.992,
+     "db": -40.1,
+     "midi": 62,
+     "cents": -2
+    },
+    {
+     "f": "tenortbn_stac_D3_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.486,
+     "db": -31.9,
+     "midi": 62,
+     "cents": 3
+    },
+    {
+     "f": "tenortbn_stac_D3_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.108,
+     "db": -32.2,
+     "midi": 62,
+     "cents": -2
+    },
+    {
+     "f": "tenortbn_stac_D3_v3_rr1.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.78,
+     "db": -30,
+     "midi": 62,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_stac_D3_v3_rr2.wav",
+     "dyn": "v3",
+     "inizio": 0,
+     "durata": 1.351,
+     "db": -29.7,
+     "midi": 62,
+     "cents": -2
+    },
+    {
+     "f": "tenortbn_stac_D3_v4_rr1.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 1.865,
+     "db": -21.8,
+     "midi": 62,
+     "cents": -1
+    },
+    {
+     "f": "tenortbn_stac_D3_v4_rr2.wav",
+     "dyn": "v4",
+     "inizio": 0,
+     "durata": 1.971,
+     "db": -21.7,
+     "midi": 62
+    },
+    {
+     "f": "tenortbn_stac_F1_v1_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.172,
+     "db": -44.7,
+     "midi": 41
+    },
+    {
+     "f": "tenortbn_stac_F1_v1_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.25,
+     "db": -44.3,
+     "midi": 41
+    },
+    {
+     "f": "tenortbn_stac_F1_v2_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.33,
+     "db": -37.6,
+     "midi": 41
+    },
+    {
+     "f": "tenortbn_stac_F1_v2_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.803,
+     "db": -37.7,
+     "midi": 41,
+     "cents": 2
+    },
+    {
+     "f": "tenortbn_stac_F1_v3_rr1.wav",
+     "dyn": "f",
+     "inizio": 0.0005,
+     "durata": 1.474,
+     "db": -36.6,
+     "midi": 41,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_stac_F1_v3_rr2.wav",
+     "dyn": "f",
+     "inizio": 0.0002,
+     "durata": 1.215,
+     "db": -35.6,
+     "midi": 41,
+     "cents": 2
+    },
+    {
+     "f": "tenortbn_stac_F1_v4_rr1.wav",
+     "dyn": "f",
+     "inizio": 0.0004,
+     "durata": 1.832,
+     "db": -34.1,
+     "midi": 41
+    },
+    {
+     "f": "tenortbn_stac_F1_v4_rr2.wav",
+     "dyn": "f",
+     "inizio": 0.0045,
+     "durata": 1.178,
+     "db": -32.2,
+     "midi": 41
+    },
+    {
+     "f": "tenortbn_stac_F2_v1_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.022,
+     "db": -47.7,
+     "midi": 53,
+     "cents": 3
+    },
+    {
+     "f": "tenortbn_stac_F2_v1_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.555,
+     "db": -45.7,
+     "midi": 53,
+     "cents": 5
+    },
+    {
+     "f": "tenortbn_stac_F2_v2_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.93,
+     "db": -34.7,
+     "midi": 53,
+     "cents": -2
+    },
+    {
+     "f": "tenortbn_stac_F2_v2_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.075,
+     "db": -35.9,
+     "midi": 53,
+     "cents": 2
+    },
+    {
+     "f": "tenortbn_stac_F2_v3_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.004,
+     "db": -35.2,
+     "midi": 53,
+     "cents": 1
+    },
+    {
+     "f": "tenortbn_stac_F2_v3_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.992,
+     "db": -35.7,
+     "midi": 53,
+     "cents": -1
+    },
+    {
+     "f": "tenortbn_stac_F2_v4_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.531,
+     "db": -27.3,
+     "midi": 53,
+     "cents": -1
+    },
+    {
+     "f": "tenortbn_stac_F2_v4_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.454,
+     "db": -26.7,
+     "midi": 53,
+     "cents": 0
+    },
+    {
+     "f": "tenortbn_stac_F3_v1_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.174,
+     "db": -35.3,
+     "midi": 65,
+     "cents": -4
+    },
+    {
+     "f": "tenortbn_stac_F3_v1_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.055,
+     "db": -33,
+     "midi": 65,
+     "cents": 2
+    },
+    {
+     "f": "tenortbn_stac_F3_v2_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.051,
+     "db": -32,
+     "midi": 65,
+     "cents": -1
+    },
+    {
+     "f": "tenortbn_stac_F3_v2_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.129,
+     "db": -30.6,
+     "midi": 65,
+     "cents": 1
+    },
+    {
+     "f": "tenortbn_stac_F3_v3_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.126,
+     "db": -27.9,
+     "midi": 65,
+     "cents": 1
+    },
+    {
+     "f": "tenortbn_stac_F3_v3_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.067,
+     "db": -27.9,
+     "midi": 65,
+     "cents": -2
+    },
+    {
+     "f": "tenortbn_stac_F3_v4_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 2.006,
+     "db": -22,
+     "midi": 65,
+     "cents": 2
+    },
+    {
+     "f": "tenortbn_stac_F3_v4_rr2.wav",
+     "dyn": "f",
+     "inizio": 0.002,
+     "durata": 1.983,
+     "db": -21.1,
+     "midi": 65,
+     "cents": 1
+    }
+   ]
+  },
+  "celli_spicc": {
+   "dir": "Strings/Cello Section/spic",
+   "campioni": [
+    {
+     "f": "spic_A2_v1_RR1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.592,
+     "db": -33.1,
+     "midi": 57,
+     "cents": 5
+    },
+    {
+     "f": "spic_A2_v1_RR2.wav",
+     "dyn": "v1",
+     "inizio": 0.0021,
+     "durata": 1.347,
+     "db": -30.6,
+     "midi": 57,
+     "cents": -6
+    },
+    {
+     "f": "spic_A2_v2_RR1.wav",
+     "dyn": "v2",
+     "inizio": 0.0022,
+     "durata": 3.377,
+     "db": -17.5,
+     "midi": 57,
+     "cents": 4
+    },
+    {
+     "f": "spic_A2_v2_RR2.wav",
+     "dyn": "v2",
+     "inizio": 0.0039,
+     "durata": 3.293,
+     "db": -14.9,
+     "midi": 57,
+     "cents": 3
+    },
+    {
+     "f": "spic_B1_v1_RR1.wav",
+     "dyn": "v1",
+     "inizio": 0.0007,
+     "durata": 1.739,
+     "db": -32,
+     "midi": 47,
+     "cents": -8
+    },
+    {
+     "f": "spic_B1_v1_RR2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.904,
+     "db": -31.1,
+     "midi": 47,
+     "cents": -1
+    },
+    {
+     "f": "spic_B1_v2_RR1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.8,
+     "db": -22.7,
+     "midi": 47,
+     "cents": -3
+    },
+    {
+     "f": "spic_B1_v2_RR2.wav",
+     "dyn": "v2",
+     "inizio": 0.0057,
+     "durata": 1.993,
+     "db": -21.4,
+     "midi": 47,
+     "cents": -2
+    },
+    {
+     "f": "spic_B3_v1_RR1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.53,
+     "db": -33,
+     "midi": 71,
+     "cents": 0
+    },
+    {
+     "f": "spic_B3_v1_RR2.wav",
+     "dyn": "v1",
+     "inizio": 0.0089,
+     "durata": 1.392,
+     "db": -33,
+     "midi": 71,
+     "cents": -1
+    },
+    {
+     "f": "spic_B3_v2_RR1.wav",
+     "dyn": "v2",
+     "inizio": 0.0008,
+     "durata": 2.293,
+     "db": -18.1,
+     "midi": 71,
+     "cents": 2
+    },
+    {
+     "f": "spic_B3_v2_RR2.wav",
+     "dyn": "v2",
+     "inizio": 0.0002,
+     "durata": 2.251,
+     "db": -21.3,
+     "midi": 71,
+     "cents": -2
+    },
+    {
+     "f": "spic_C1_v1_RR1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 3.121,
+     "db": -33.3,
+     "midi": 36,
+     "cents": -8
+    },
+    {
+     "f": "spic_C1_v1_RR2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 3.217,
+     "db": -33,
+     "midi": 36,
+     "cents": -5
+    },
+    {
+     "f": "spic_C1_v2_RR1.wav",
+     "dyn": "v2",
+     "inizio": 0.0029,
+     "durata": 3.227,
+     "db": -16.9,
+     "midi": 36,
+     "cents": -9
+    },
+    {
+     "f": "spic_C1_v2_RR2.wav",
+     "dyn": "v2",
+     "inizio": 0.0021,
+     "durata": 3.502,
+     "db": -18.1,
+     "midi": 36,
+     "cents": -9
+    },
+    {
+     "f": "spic_C3_v1_RR1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.509,
+     "db": -33.4,
+     "midi": 60,
+     "cents": 1
+    },
+    {
+     "f": "spic_C3_v1_RR2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.675,
+     "db": -29.6,
+     "midi": 60,
+     "cents": -5
+    },
+    {
+     "f": "spic_C3_v2_RR1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 2.027,
+     "db": -23.1,
+     "midi": 60,
+     "cents": -3
+    },
+    {
+     "f": "spic_C3_v2_RR2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 2.89,
+     "db": -21.4,
+     "midi": 60,
+     "cents": -1
+    },
+    {
+     "f": "spic_D2_v1_RR1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.489,
+     "db": -32.7,
+     "midi": 50,
+     "cents": -6
+    },
+    {
+     "f": "spic_D2_v1_RR2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.405,
+     "db": -32.3,
+     "midi": 50,
+     "cents": -5
+    },
+    {
+     "f": "spic_D2_v2_RR1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 3.386,
+     "db": -20.3,
+     "midi": 50,
+     "cents": -3
+    },
+    {
+     "f": "spic_D2_v2_RR2.wav",
+     "dyn": "v2",
+     "inizio": 0.003,
+     "durata": 2.959,
+     "db": -20.4,
+     "midi": 50,
+     "cents": -2
+    },
+    {
+     "f": "spic_D4_v1_RR1.wav",
+     "dyn": "v1",
+     "inizio": 0.0006,
+     "durata": 1.301,
+     "db": -38,
+     "midi": 74,
+     "cents": -3
+    },
+    {
+     "f": "spic_D4_v1_RR2.wav",
+     "dyn": "v1",
+     "inizio": 0.0034,
+     "durata": 1.551,
+     "db": -35.6,
+     "midi": 74,
+     "cents": 5
+    },
+    {
+     "f": "spic_D4_v2_RR1.wav",
+     "dyn": "v2",
+     "inizio": 0.0013,
+     "durata": 1.655,
+     "db": -23.3,
+     "midi": 74,
+     "cents": -7
+    },
+    {
+     "f": "spic_D4_v2_RR2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.517,
+     "db": -23.6,
+     "midi": 74,
+     "cents": 0
+    },
+    {
+     "f": "spic_E1_v1_RR1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.142,
+     "db": -36.2,
+     "midi": 40,
+     "cents": 4
+    },
+    {
+     "f": "spic_E1_v1_RR2.wav",
+     "dyn": "v1",
+     "inizio": 0.0012,
+     "durata": 1.357,
+     "db": -35.4,
+     "midi": 40,
+     "cents": 9
+    },
+    {
+     "f": "spic_E1_v2_RR1.wav",
+     "dyn": "v2",
+     "inizio": 0.0029,
+     "durata": 1.735,
+     "db": -22.7,
+     "midi": 40,
+     "cents": 5
+    },
+    {
+     "f": "spic_E1_v2_RR2.wav",
+     "dyn": "v2",
+     "inizio": 0.0016,
+     "durata": 1.869,
+     "db": -21.5,
+     "midi": 40,
+     "cents": -3
+    },
+    {
+     "f": "spic_E3_v1_RR1.wav",
+     "dyn": "v1",
+     "inizio": 0.0029,
+     "durata": 1.356,
+     "db": -36,
+     "midi": 64,
+     "cents": 4
+    },
+    {
+     "f": "spic_E3_v1_RR2.wav",
+     "dyn": "v1",
+     "inizio": 0.0038,
+     "durata": 1.169,
+     "db": -35.1,
+     "midi": 64,
+     "cents": 1
+    },
+    {
+     "f": "spic_E3_v2_RR1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.814,
+     "db": -21.8,
+     "midi": 64,
+     "cents": 4
+    },
+    {
+     "f": "spic_E3_v2_RR2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 2.27,
+     "db": -21,
+     "midi": 64,
+     "cents": -1
+    },
+    {
+     "f": "spic_F2_v1_RR1.wav",
+     "dyn": "f",
+     "inizio": 0.0047,
+     "durata": 1.083,
+     "db": -32.4,
+     "midi": 53,
+     "cents": 13
+    },
+    {
+     "f": "spic_F2_v1_RR2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 1.125,
+     "db": -34.9,
+     "midi": 53,
+     "cents": 8
+    },
+    {
+     "f": "spic_F2_v2_RR1.wav",
+     "dyn": "f",
+     "inizio": 0.0056,
+     "durata": 1.284,
+     "db": -20.7,
+     "midi": 53,
+     "cents": 3
+    },
+    {
+     "f": "spic_F2_v2_RR2.wav",
+     "dyn": "f",
+     "inizio": 0.0016,
+     "durata": 1.509,
+     "db": -21.9,
+     "midi": 53,
+     "cents": -8
+    },
+    {
+     "f": "spic_F4_v1_RR1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.785,
+     "db": -34.1,
+     "midi": 77,
+     "cents": 8
+    },
+    {
+     "f": "spic_F4_v1_RR2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.884,
+     "db": -36.6,
+     "midi": 77,
+     "cents": 0
+    },
+    {
+     "f": "spic_F4_v2_RR1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.773,
+     "db": -25.9,
+     "midi": 77,
+     "cents": 4
+    },
+    {
+     "f": "spic_F4_v2_RR2.wav",
+     "dyn": "f",
+     "inizio": 0.0008,
+     "durata": 1.348,
+     "db": -22.5,
+     "midi": 77,
+     "cents": 0
+    },
+    {
+     "f": "spic_G1_v1_RR1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 2.144,
+     "db": -32.8,
+     "midi": 43,
+     "cents": -10
+    },
+    {
+     "f": "spic_G1_v1_RR2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.872,
+     "db": -32.4,
+     "midi": 43,
+     "cents": -2
+    },
+    {
+     "f": "spic_G1_v2_RR1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 3.235,
+     "db": -23.9,
+     "midi": 43,
+     "cents": 1
+    },
+    {
+     "f": "spic_G1_v2_RR2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 2.856,
+     "db": -20.1,
+     "midi": 43,
+     "cents": -2
+    },
+    {
+     "f": "spic_G3_v1_RR1.wav",
+     "dyn": "v1",
+     "inizio": 0.0036,
+     "durata": 1.358,
+     "db": -30,
+     "midi": 67,
+     "cents": -9
+    },
+    {
+     "f": "spic_G3_v1_RR2.wav",
+     "dyn": "v1",
+     "inizio": 0.0024,
+     "durata": 1.483,
+     "db": -32,
+     "midi": 67,
+     "cents": -5
+    },
+    {
+     "f": "spic_G3_v2_RR1.wav",
+     "dyn": "v2",
+     "inizio": 0.0006,
+     "durata": 1.512,
+     "db": -18.3,
+     "midi": 67,
+     "cents": -17
+    },
+    {
+     "f": "spic_G3_v2_RR2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.949,
+     "db": -19,
+     "midi": 67,
+     "cents": -12
+    }
+   ]
+  },
+  "viole_spicc": {
+   "dir": "Strings/Viola Section/spic",
+   "campioni": [
+    {
+     "f": "Violas_spic_A3_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.976,
+     "db": -33.5,
+     "midi": 69,
+     "cents": 1
+    },
+    {
+     "f": "Violas_spic_A3_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.953,
+     "db": -35.7,
+     "midi": 69,
+     "cents": -2
+    },
+    {
+     "f": "Violas_spic_A3_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.207,
+     "db": -22.1,
+     "midi": 69,
+     "cents": 4
+    },
+    {
+     "f": "Violas_spic_A3_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.138,
+     "db": -23.4,
+     "midi": 69,
+     "cents": 1
+    },
+    {
+     "f": "Violas_spic_B2_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.16,
+     "db": -39.3,
+     "midi": 59,
+     "cents": 1
+    },
+    {
+     "f": "Violas_spic_B2_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.171,
+     "db": -38,
+     "midi": 59,
+     "cents": 4
+    },
+    {
+     "f": "Violas_spic_B2_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 2.162,
+     "db": -24,
+     "midi": 59,
+     "cents": 1
+    },
+    {
+     "f": "Violas_spic_B2_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.975,
+     "db": -26.9,
+     "midi": 59,
+     "cents": 1
+    },
+    {
+     "f": "Violas_spic_B4_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.787,
+     "db": -39.5,
+     "midi": 83,
+     "cents": 1
+    },
+    {
+     "f": "Violas_spic_B4_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.915,
+     "db": -34.8,
+     "midi": 83,
+     "cents": 1
+    },
+    {
+     "f": "Violas_spic_B4_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.096,
+     "db": -23.6,
+     "midi": 83,
+     "cents": -2
+    },
+    {
+     "f": "Violas_spic_B4_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.05,
+     "db": -25.8,
+     "midi": 83,
+     "cents": 0
+    },
+    {
+     "f": "Violas_spic_C2_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 2.724,
+     "db": -29.9,
+     "midi": 48,
+     "cents": 3
+    },
+    {
+     "f": "Violas_spic_C2_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 2.597,
+     "db": -29.9,
+     "midi": 48,
+     "cents": 3
+    },
+    {
+     "f": "Violas_spic_C2_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 2.82,
+     "db": -21.7,
+     "midi": 48,
+     "cents": 2
+    },
+    {
+     "f": "Violas_spic_C2_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 3.102,
+     "db": -24.4,
+     "midi": 48,
+     "cents": -4
+    },
+    {
+     "f": "Violas_spic_C4_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.892,
+     "db": -36.4,
+     "midi": 72,
+     "cents": -1
+    },
+    {
+     "f": "Violas_spic_C4_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.771,
+     "db": -37.9,
+     "midi": 72,
+     "cents": 1
+    },
+    {
+     "f": "Violas_spic_C4_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.18,
+     "db": -21.8,
+     "midi": 72,
+     "cents": 2
+    },
+    {
+     "f": "Violas_spic_C4_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.179,
+     "db": -15.6,
+     "midi": 72,
+     "cents": 4
+    },
+    {
+     "f": "Violas_spic_D3_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.049,
+     "db": -38.8,
+     "midi": 62,
+     "cents": 2
+    },
+    {
+     "f": "Violas_spic_D3_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.115,
+     "db": -36.8,
+     "midi": 62,
+     "cents": -1
+    },
+    {
+     "f": "Violas_spic_D3_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.299,
+     "db": -23.7,
+     "midi": 62,
+     "cents": 2
+    },
+    {
+     "f": "Violas_spic_D3_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.543,
+     "db": -24.8,
+     "midi": 62,
+     "cents": -1
+    },
+    {
+     "f": "Violas_spic_D5_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.635,
+     "db": -37.1,
+     "midi": 86,
+     "cents": 0
+    },
+    {
+     "f": "Violas_spic_D5_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.56,
+     "db": -35,
+     "midi": 86,
+     "cents": 0
+    },
+    {
+     "f": "Violas_spic_D5_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 0.633,
+     "db": -18.6,
+     "midi": 86,
+     "cents": -5
+    },
+    {
+     "f": "Violas_spic_D5_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 0.597,
+     "db": -21.3,
+     "midi": 86,
+     "cents": -3
+    },
+    {
+     "f": "Violas_spic_E2_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.818,
+     "db": -41.7,
+     "midi": 52,
+     "cents": -5
+    },
+    {
+     "f": "Violas_spic_E2_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.844,
+     "db": -41.7,
+     "midi": 52,
+     "cents": -12
+    },
+    {
+     "f": "Violas_spic_E2_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.54,
+     "db": -29.1,
+     "midi": 52,
+     "cents": -9
+    },
+    {
+     "f": "Violas_spic_E2_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.213,
+     "db": -29.4,
+     "midi": 52,
+     "cents": 5
+    },
+    {
+     "f": "Violas_spic_E4_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.843,
+     "db": -38.9,
+     "midi": 76,
+     "cents": 2
+    },
+    {
+     "f": "Violas_spic_E4_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.047,
+     "db": -37.9,
+     "midi": 76,
+     "cents": -1
+    },
+    {
+     "f": "Violas_spic_E4_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.228,
+     "db": -20.9,
+     "midi": 76,
+     "cents": -2
+    },
+    {
+     "f": "Violas_spic_E4_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.211,
+     "db": -21.5,
+     "midi": 76,
+     "cents": 1
+    },
+    {
+     "f": "Violas_spic_F3_v1_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.713,
+     "db": -35.9,
+     "midi": 65,
+     "cents": 1
+    },
+    {
+     "f": "Violas_spic_F3_v1_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.723,
+     "db": -39.5,
+     "midi": 65,
+     "cents": -2
+    },
+    {
+     "f": "Violas_spic_F3_v2_rr1.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.89,
+     "db": -21.8,
+     "midi": 65,
+     "cents": 5
+    },
+    {
+     "f": "Violas_spic_F3_v2_rr2.wav",
+     "dyn": "f",
+     "inizio": 0,
+     "durata": 0.792,
+     "db": -27.9,
+     "midi": 65,
+     "cents": -2
+    },
+    {
+     "f": "Violas_spic_G2_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.111,
+     "db": -38.4,
+     "midi": 55,
+     "cents": -2
+    },
+    {
+     "f": "Violas_spic_G2_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.78,
+     "db": -38,
+     "midi": 55,
+     "cents": 7
+    },
+    {
+     "f": "Violas_spic_G2_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.196,
+     "db": -25.4,
+     "midi": 55,
+     "cents": 19
+    },
+    {
+     "f": "Violas_spic_G2_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 1.407,
+     "db": -25.5,
+     "midi": 55,
+     "cents": 1
+    },
+    {
+     "f": "Violas_spic_G4_v1_rr1.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 1.006,
+     "db": -31.3,
+     "midi": 79,
+     "cents": -3
+    },
+    {
+     "f": "Violas_spic_G4_v1_rr2.wav",
+     "dyn": "v1",
+     "inizio": 0,
+     "durata": 0.893,
+     "db": -30.5,
+     "midi": 79,
+     "cents": 4
+    },
+    {
+     "f": "Violas_spic_G4_v2_rr1.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 0.773,
+     "db": -20.7,
+     "midi": 79,
+     "cents": 7
+    },
+    {
+     "f": "Violas_spic_G4_v2_rr2.wav",
+     "dyn": "v2",
+     "inizio": 0,
+     "durata": 0.79,
+     "db": -17.9,
+     "midi": 79,
+     "cents": 4
+    }
+   ]
+  },
   "organo": {
    "dir": "Keys/Organ/Quiet",
    "campioni": [
