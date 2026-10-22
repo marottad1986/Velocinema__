@@ -35,6 +35,15 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 - Il finale deve dire chiaramente come va a finire, compresi i colpi di scena.
 - Titoli dei capitoli chiari anche fuori contesto.
 
+## Testo discorsivo (vincolante)
+- Si racconta come a voce a un amico: ogni frase si aggancia alla precedente con connettivi espliciti
+  («perché», «infatti», «intanto», «così», «quindi», «ma», «alla fine»); niente elenchi secchi di fatti né frasi
+  telegrafiche; mai frasi che parlano dello schema o del video stesso. L'ultima frase chiude o lascia una domanda chiara.
+
+## Finale (vincolante)
+- Nell'immagine finale, sotto «Metti like» / «Segui la pagina», l'invito a commentare (mai «Il prossimo … arriva presto»):
+  «Commenta con il film / la spiegazione / la canzone / il quadro che vorresti.» (secondo il formato).
+
 ## Canzoni spiegate (stesso schema dei film)
 - Un JSON in `films/` come per i film (es. `films/bohemian-rhapsody.json`): `regista` = artista, numero di capitoli libero
   (l'etichetta diventa "CAPITOLO N DI M"), campo `fonti` obbligatorio con i link che confermano ogni fatto citato.

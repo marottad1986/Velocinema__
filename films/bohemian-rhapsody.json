@@ -10,9 +10,9 @@
   },
   "copertina": {
     "durata": 4,
-    "frase_lancio": "Sei minuti. Tre canzoni in una. Nessun ritornello.",
+    "frase_lancio": "Sei minuti, nessun ritornello: eppure ha conquistato tutti.",
     "immagine": "Palco d'opera vuoto con sipario rosso socchiuso; al centro un pianoforte a coda con il coperchio aperto e una partitura sul leggio; dietro, un grande gong dorato e, sul fondale dipinto, un fulmine. Titolo grande. NON usare i quattro volti illuminati dall'alto, lo stemma dell'album né foto o copertine dei Queen.",
-    "voce": "Bohemian Rhapsody, dei Queen. Spiegata in due minuti."
+    "voce": "Bohemian Rhapsody, dei Queen: la canzone che nessuno voleva trasmettere."
   },
   "capitoli": [
     {
@@ -21,11 +21,11 @@
       "durata": 13,
       "scena": "Soggiorno di sera: pianoforte verticale con lampada accesa, fogli di musica sparsi sul leggio e sul pavimento, tazza di tè fumante, finestra con le luci di una città inglese; sul pianoforte un metronomo che oscilla.",
       "sottotitoli": [
-        "Inghilterra, 1975. I Queen, un gruppo rock inglese,",
-        "preparano il loro quarto album.",
-        "Freddie Mercury, il cantante, porta una canzone mai vista:",
-        "dura quasi sei minuti, non ha ritornello",
-        "e mescola ballata, opera e rock."
+        "Nel 1975 i Queen, un gruppo rock inglese,",
+        "stanno preparando il loro quarto album.",
+        "Così Freddie Mercury, il cantante, porta in studio una canzone mai vista:",
+        "infatti dura quasi sei minuti e non ha nemmeno un ritornello,",
+        "ma soprattutto mescola ballata, opera e rock."
       ]
     },
     {
@@ -34,11 +34,11 @@
       "durata": 14,
       "scena": "Sala di registrazione anni '70: mixer pieno di cursori e lancette, grande registratore a bobine che gira, nastro consumato che diventa trasparente; oltre il vetro lo studio con tre microfoni in fila; cuffie appese.",
       "sottotitoli": [
-        "La registrano in cinque studi, tra Galles e Londra.",
-        "Per l'opera, Mercury, il chitarrista Brian May e il batterista Roger Taylor",
-        "sovrappongono le voci fino a sembrare un coro:",
-        "in certi punti, 180 registrazioni una sull'altra.",
-        "Il nastro diventa quasi trasparente."
+        "Per registrarla servono cinque studi tra Galles e Londra,",
+        "perché nell'opera Mercury, il chitarrista Brian May e il batterista Roger Taylor",
+        "sovrappongono le voci finché sembrano un coro intero:",
+        "in certi punti ci sono 180 registrazioni una sull'altra.",
+        "Così il nastro si consuma e diventa quasi trasparente."
       ]
     },
     {
@@ -47,11 +47,11 @@
       "durata": 15,
       "scena": "Stanza povera di notte: pioggia sulla finestra, una lettera sul tavolo accanto a una candela, una porta socchiusa con la luce del corridoio, una valigia pronta; in fondo un pianoforte; a fine scena una chitarra elettrica appoggiata che si illumina.",
       "sottotitoli": [
-        "La canzone si apre con un coro senza strumenti:",
+        "Tutto comincia con un coro senza strumenti:",
         "qualcuno si chiede se è vita vera o solo fantasia.",
-        "Poi entra il pianoforte, e parla un ragazzo povero:",
-        "confessa alla madre di aver ucciso un uomo: ora deve andarsene.",
-        "Poi l'assolo di chitarra di May."
+        "Poi entra il pianoforte e parla un ragazzo povero,",
+        "che confessa alla madre di aver ucciso un uomo, e quindi deve andarsene.",
+        "Alla fine la sua voce lascia spazio all'assolo di chitarra di May."
       ]
     },
     {
@@ -60,11 +60,11 @@
       "durata": 14,
       "scena": "Palco d'opera con sipario rosso e fondale notturno dipinto; due fasci di luce che si alternano da sinistra e da destra (due cori che litigano); sul palco, come oggetti di scena, una maschera della commedia dell'arte, un cannocchiale antico e una botola da cui sale una luce rossa con fumo; fulmine sul fondale.",
       "sottotitoli": [
-        "Di colpo diventa un'opera lirica.",
-        "Due cori litigano sull'anima del ragazzo: uno vuole lasciarlo andare, l'altro no.",
-        "Le parole strane sono personaggi e invocazioni:",
-        "Scaramouche, una maschera del teatro; Galileo, lo scienziato;",
-        "Bismillah, in arabo «nel nome di Dio»; Belzebù, un diavolo."
+        "Ma di colpo diventa un'opera lirica:",
+        "due cori litigano sull'anima del ragazzo: uno vuole liberarlo, l'altro no.",
+        "Intanto spuntano parole strane, cioè personaggi e invocazioni:",
+        "Scaramouche è una maschera del teatro, Galileo lo scienziato,",
+        "Bismillah, in arabo «nel nome di Dio», e Belzebù, un diavolo."
       ]
     },
     {
@@ -73,11 +73,11 @@
       "durata": 14,
       "scena": "Palco rock: amplificatori impilati con le lucine accese, batteria con piatti che vibrano, una chitarra elettrica sull'asta, fasci colorati nel fumo; alla fine le luci si abbassano, resta un pianoforte nel buio e un grande gong che vibra.",
       "sottotitoli": [
-        "Poi esplode il rock duro.",
-        "Il ragazzo si ribella a chi lo giudica:",
-        "non possono trattarlo così e lasciarlo morire.",
-        "Alla fine la musica si calma e torna il pianoforte:",
-        "niente ha davvero importanza. Un colpo di gong, e silenzio."
+        "Subito dopo esplode il rock duro,",
+        "perché il ragazzo si ribella a chi lo sta giudicando:",
+        "non possono trattarlo così e poi lasciarlo morire.",
+        "Poi la rabbia si spegne e torna il pianoforte,",
+        "che chiude: niente conta davvero. Infine un colpo di gong, e silenzio."
       ]
     },
     {
@@ -86,11 +86,11 @@
       "durata": 14,
       "scena": "Camerino vuoto dopo il concerto: specchio con le lampadine intorno, un foglio con il testo pieno di cancellature, un punto interrogativo disegnato a matita, un mazzo di fiori; dalla porta la luce del palco che si spegne.",
       "sottotitoli": [
-        "Mercury non l'ha mai spiegata: ognuno doveva farsi la sua idea.",
-        "Brian May ha detto solo che ci aveva messo molto di sé.",
-        "Molti la leggono come un addio alla persona che era.",
-        "Per altri parla della sua sessualità, che allora teneva nascosta.",
-        "Restano ipotesi."
+        "Mercury non l'ha mai spiegata: voleva che ognuno si facesse un'idea.",
+        "Brian May dice solo che ci aveva messo molto di sé.",
+        "Così molti ci sentono un addio alla persona che era,",
+        "altri la sua sessualità, che allora teneva nascosta.",
+        "Chi ha ragione? Nessuno lo sa."
       ]
     },
     {
@@ -100,10 +100,10 @@
       "scena": "Studio radiofonico anni '70: insegna ON AIR che si accende, giradischi con il disco che gira, microfono a braccio, telefono con le linee che lampeggiano, pila di lettere degli ascoltatori; un calendario con il contatore dei passaggi.",
       "sottotitoli": [
         "La casa discografica la trova troppo lunga per la radio.",
-        "Kenny Everett, DJ amico del gruppo, ne ha una copia",
+        "Ma Kenny Everett, DJ amico del gruppo, ne ha una copia",
         "e promette, ridendo, di non trasmetterla.",
-        "La trasmette 14 volte in due giorni.",
-        "Esce il 31 ottobre 1975: prima in Gran Bretagna per nove settimane."
+        "Invece la trasmette 14 volte in due giorni.",
+        "Così, uscita il 31 ottobre 1975, resta prima in Gran Bretagna nove settimane."
       ]
     },
     {
@@ -112,17 +112,17 @@
       "durata": 14,
       "scena": "Interno di un'auto vuota di notte: cruscotto con l'autoradio accesa e la cassetta che gira, lancette, parabrezza con le luci dei lampioni che scorrono; sul cruscotto un pupazzetto a molla che oscilla a tempo; in fondo la città.",
       "sottotitoli": [
-        "Nel 1991 Mercury muore di AIDS.",
-        "La canzone torna prima in Gran Bretagna per cinque settimane.",
-        "Nel 1992 il film Fusi di testa la usa in una scena:",
-        "amici in auto che scuotono la testa a tempo.",
-        "Oggi è la canzone del Novecento più ascoltata in streaming."
+        "Nel 1991 Mercury muore di AIDS,",
+        "e la canzone torna prima in Gran Bretagna.",
+        "L'anno dopo il film Fusi di testa la mette in una scena",
+        "con amici in auto che scuotono la testa a tempo.",
+        "Così oggi è la canzone del Novecento più ascoltata in streaming."
       ]
     }
   ],
   "finale": {
     "durata": 4,
-    "immagine": "Il palco della copertina a luci basse: il gong dorato che vibra ancora, il pianoforte chiuso, una rosa sul coperchio; 'Fine' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'La prossima canzone arriva presto.'"
+    "immagine": "Il palco della copertina a luci basse: il gong dorato che vibra ancora, il pianoforte chiuso, una rosa sul coperchio; 'Fine' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la canzone che vorresti.'"
   },
   "musica": "Originale e strumentale: pianoforte, archi e organo, un tema semplice che passa da intimo a solenne a energico come le tre parti della canzone; niente melodie, accordi o ritmi di Bohemian Rhapsody. La canzone vera, se si vuole, si aggiunge alla pubblicazione dalla libreria musicale con licenza della piattaforma.",
   "fonti": [
