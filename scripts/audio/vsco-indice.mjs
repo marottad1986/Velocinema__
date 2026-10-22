@@ -1,12 +1,20 @@
-// Strumento di sviluppo: analizza una copia locale di VSCO-2 Community Edition e scrive scripts/audio/vsco.json
+// Strumento di sviluppo: analizza copie locali di VSCO-2 Community Edition e di VCSL (stesso autore, CC0, più ampia:
+// pianoforte a coda, timpani, batteria) e scrive scripts/audio/vsco.json
 // (per ogni strumento: file, nota reale misurata, dinamica, inizio del suono, livello).
 // Va rieseguito solo per aggiungere strumenti al catalogo qui sotto; il rendering usa vsco.json.
-//   git clone https://github.com/sgossner/VSCO-2-CE.git <dir>   (commit indicato in COMMIT)
-//   node scripts/audio/vsco-indice.mjs <dir>
+//   git clone https://github.com/sgossner/VSCO-2-CE.git <vsco>   (commit indicati in FONTI)
+//   git clone https://github.com/sgossner/VCSL.git <vcsl>
+//   node scripts/audio/vsco-indice.mjs <vsco> <vcsl>
 import { readdirSync, writeFileSync } from 'node:fs';
 import { readWav } from './wav.mjs';
 
-export const COMMIT = '440300901dfe9275fd84e0b7763af1f8443ae62e';
+/** Repository dei campioni, a commit fissato (il suono non cambia nel tempo). */
+export const FONTI = {
+  vsco: { repo: 'sgossner/VSCO-2-CE', commit: '440300901dfe9275fd84e0b7763af1f8443ae62e', licenza: 'CC0 (Versilian Studios / Sam Gossner, Ivy Audio / Simon Dalzell)' },
+  vcsl: { repo: 'sgossner/VCSL', commit: 'c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e', licenza: 'CC0 (Versilian Studios / Sam Gossner)' },
+};
+/** Timpani VCSL: nota principale misurata sullo spettro (modo (1,1); l'autocorrelazione non la trova). */
+const TIMPANI = { Timpani1: 41.6, Timpani2: 46.8, Timpani3: 49.5, Timpani4: 52.4, Timpani5: 54.5 };
 
 /** id → cartella nel repository VSCO (e filtro facoltativo sul nome del file). Strumenti senza intonazione: perc. */
 const CATALOGO = {
@@ -34,6 +42,14 @@ const CATALOGO = {
   piatto_sospeso: { dir: 'VSCO 1 Percussion/varMetal/Cymbals/susp', perc: true },
   gong: { dir: 'VSCO 1 Percussion/varMetal/Gong', perc: true, filter: /^gong_hit_(p|pp|ppp|mp|mf|f)[_ .]/ },
   gong_graffio: { dir: 'VSCO 1 Percussion/varMetal/Gong', perc: true, filter: /^gong_scrape/ },
+  // VCSL
+  pianoforte_coda: { fonte: 'vcsl', dir: 'Chordophones/Zithers/Grand Piano, Steinway B/Sus' },
+  timpani: { fonte: 'vcsl', dir: 'Membranophones/Struck Membranophones/Timpani 1/Hit', altezza: (f) => TIMPANI[f.split('_')[0]] },
+  rullante: { fonte: 'vcsl', dir: 'Membranophones/Struck Membranophones/Snare Drum, Modern 1', perc: true, filter: /_Hit(NS|SN)_/ },
+  cassa: { fonte: 'vcsl', dir: 'Membranophones/Struck Membranophones/Bass Drum 1', perc: true },
+  charleston: { fonte: 'vcsl', dir: 'Idiophones/Struck Idiophones/Hi-Hat Cymbal', perc: true },
+  tom: { fonte: 'vcsl', dir: 'Membranophones/Struck Membranophones/Tom 1/Stick', perc: true, filter: /_HitS_/ },
+  piatto_crash: { fonte: 'vcsl', dir: 'Idiophones/Struck Idiophones/Clash Cymbals 1', perc: true, filter: /crash1_(pp|mp|mf|ff)/ },
 };
 
 const numero = (f) => Number(/_(\d{2,3})(?:_rr\d)?\.wav$/.exec(f)[1]);
@@ -105,26 +121,31 @@ const analizza = (path, { perc, nota, mappa }) => {
 };
 
 const dinamica = (f) => {
-  const m = /_(v\d|dyn\d|ppp|pp|p|mp|mf|ff|fff|f)(?=[_ .\d])/i.exec(f);
+  const m = /_(v\d|vl\d|dyn\d|ppp|pp|p|mp|mf|ff|fff|f)(?=[_ .\d])/i.exec(f);
   return m ? m[1].toLowerCase() : 'unica';
 };
 
-const root = process.argv[2];
-if (!root) {
-  console.error('Uso: node scripts/audio/vsco-indice.mjs <cartella VSCO-2-CE>');
+const radici = { vsco: process.argv[2], vcsl: process.argv[3] };
+if (!radici.vsco || !radici.vcsl) {
+  console.error('Uso: node scripts/audio/vsco-indice.mjs <cartella VSCO-2-CE> <cartella VCSL>');
   process.exit(1);
 }
 const strumenti = {};
 for (const [id, def] of Object.entries(CATALOGO)) {
+  const fonte = def.fonte ?? 'vsco';
+  const root = radici[fonte];
   const files = readdirSync(`${root}/${def.dir}`).filter((f) => /\.wav$/i.test(f) && (!def.filter || def.filter.test(f))).sort();
   strumenti[id] = {
+    ...(fonte !== 'vsco' ? { fonte } : {}),
     dir: def.dir,
     ...(def.perc ? { perc: true } : {}),
     campioni: files.map((f) => {
-      const nota = def.perc ? null : def.mappa ? def.mappa(f) : etichetta(f);
-      const a = analizza(`${root}/${def.dir}/${f}`, { perc: def.perc, nota, mappa: !!def.mappa });
+      const alt = def.altezza?.(f);
+      const nota = def.perc ? null : alt !== undefined ? Math.round(alt) : def.mappa ? def.mappa(f) : etichetta(f);
+      const a = analizza(`${root}/${def.dir}/${f}`, { perc: def.perc, nota, mappa: !!def.mappa || alt !== undefined });
       a.etichetta = nota;
-      if (def.mappa) a.midi = nota; // il pianoforte ha la mappa dei tasti esatta
+      if (def.mappa) a.midi = nota; // il pianoforte e l'organo hanno la mappa dei tasti esatta
+      if (alt !== undefined) { a.midi = Math.round(alt); a.cents = Math.round((alt - a.midi) * 100); }
       return { f, dyn: dinamica(f), ...a };
     }),
   };
@@ -133,10 +154,10 @@ for (const [id, def] of Object.entries(CATALOGO)) {
   for (const c of strumenti[id].campioni) if (c.ottava !== undefined) conta[c.ottava] = (conta[c.ottava] ?? 0) + 1;
   const k = Number(Object.entries(conta).sort((a, b) => b[1] - a[1])[0]?.[0] ?? 0);
   for (const c of strumenti[id].campioni) {
-    if (!def.perc && !def.mappa && c.etichetta !== null) c.midi = c.etichetta + 12 * k;
+    if (!def.perc && !def.mappa && !def.altezza && c.etichetta !== null) c.midi = c.etichetta + 12 * k;
     delete c.ottava;
     delete c.etichetta;
   }
   console.log(`${id}: ${files.length} campioni`);
 }
-writeFileSync('scripts/audio/vsco.json', JSON.stringify({ repo: 'sgossner/VSCO-2-CE', commit: COMMIT, licenza: 'CC0 (Versilian Studios / Sam Gossner, Ivy Audio / Simon Dalzell)', strumenti }, null, 1) + '\n');
+writeFileSync('scripts/audio/vsco.json', JSON.stringify({ ...FONTI.vsco, fonti: FONTI, strumenti }, null, 1) + '\n');
