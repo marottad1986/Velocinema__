@@ -19,6 +19,8 @@ export type FilmData = {
   capitoli: Capitolo[];
   finale: { durata: number; immagine: string };
   musica?: string;
+  /** Fonti dei fatti citati (canzoni: obbligatorie). */
+  fonti?: string[];
 };
 
 /**

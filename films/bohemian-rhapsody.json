@@ -1,0 +1,135 @@
+{
+  "titolo": "Bohemian Rhapsody",
+  "regista": "Queen",
+  "anno": 1975,
+  "palette": {
+    "chiaro": "#F4ECDD",
+    "principale": "#8A1E3C",
+    "scuro": "#0E0A14",
+    "accento": "#E9B949"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Sei minuti. Tre canzoni in una. Nessun ritornello.",
+    "immagine": "Palco d'opera vuoto con sipario rosso socchiuso; al centro un pianoforte a coda con il coperchio aperto e una partitura sul leggio; dietro, un grande gong dorato e, sul fondale dipinto, un fulmine. Titolo grande. NON usare i quattro volti illuminati dall'alto, lo stemma dell'album né foto o copertine dei Queen.",
+    "voce": "Bohemian Rhapsody, dei Queen. Spiegata in due minuti."
+  },
+  "capitoli": [
+    {
+      "id": "canzone",
+      "titolo": "Una canzone impossibile",
+      "durata": 13,
+      "scena": "Soggiorno di sera: pianoforte verticale con lampada accesa, fogli di musica sparsi sul leggio e sul pavimento, tazza di tè fumante, finestra con le luci di una città inglese; sul pianoforte un metronomo che oscilla.",
+      "sottotitoli": [
+        "Inghilterra, 1975. I Queen, un gruppo rock inglese,",
+        "preparano il loro quarto album.",
+        "Freddie Mercury, il cantante, porta una canzone mai vista:",
+        "dura quasi sei minuti, non ha ritornello",
+        "e mescola ballata, opera e rock."
+      ]
+    },
+    {
+      "id": "registrazione",
+      "titolo": "Settimane per un coro",
+      "durata": 14,
+      "scena": "Sala di registrazione anni '70: mixer pieno di cursori e lancette, grande registratore a bobine che gira, nastro consumato che diventa trasparente; oltre il vetro lo studio con tre microfoni in fila; cuffie appese.",
+      "sottotitoli": [
+        "La registrano in diversi studi, tra Galles e Londra.",
+        "Per la parte d'opera, Mercury, il chitarrista Brian May e il batterista Roger Taylor",
+        "cantano le stesse note per ore, per settimane:",
+        "circa 180 voci sovrapposte.",
+        "Il nastro, a forza di passaggi, diventa quasi trasparente."
+      ]
+    },
+    {
+      "id": "confessione",
+      "titolo": "Prima parte: la confessione",
+      "durata": 15,
+      "scena": "Stanza povera di notte: pioggia sulla finestra, una lettera sul tavolo accanto a una candela, una porta socchiusa con la luce del corridoio, una valigia pronta; in fondo un pianoforte; a fine scena una chitarra elettrica appoggiata che si illumina.",
+      "sottotitoli": [
+        "La canzone si apre con un coro senza strumenti:",
+        "qualcuno si chiede se è vita vera o solo fantasia.",
+        "Poi entra il pianoforte, e parla un ragazzo povero:",
+        "confessa alla madre di aver ucciso un uomo: ora deve andarsene.",
+        "Poi l'assolo di chitarra di May."
+      ]
+    },
+    {
+      "id": "opera",
+      "titolo": "Seconda parte: il processo",
+      "durata": 14,
+      "scena": "Palco d'opera con sipario rosso e fondale notturno dipinto; due fasci di luce che si alternano da sinistra e da destra (due cori che litigano); sul palco, come oggetti di scena, una maschera della commedia dell'arte, un cannocchiale antico e una botola da cui sale una luce rossa con fumo; fulmine sul fondale.",
+      "sottotitoli": [
+        "Di colpo diventa un'opera lirica.",
+        "Due cori litigano sull'anima del ragazzo: uno vuole lasciarlo andare, l'altro no.",
+        "Le parole strane sono personaggi e invocazioni:",
+        "Scaramouche, una maschera del teatro; Galileo, lo scienziato;",
+        "Bismillah, in arabo «nel nome di Dio»; Belzebù, un diavolo."
+      ]
+    },
+    {
+      "id": "rock",
+      "titolo": "Terza parte: la ribellione",
+      "durata": 14,
+      "scena": "Palco rock: amplificatori impilati con le lucine accese, batteria con piatti che vibrano, una chitarra elettrica sull'asta, fasci colorati nel fumo; alla fine le luci si abbassano, resta un pianoforte nel buio e un grande gong che vibra.",
+      "sottotitoli": [
+        "Poi esplode il rock duro.",
+        "Il ragazzo si ribella a chi lo giudica:",
+        "non possono trattarlo così e lasciarlo morire.",
+        "Alla fine la musica si calma e torna il pianoforte:",
+        "niente ha davvero importanza. Un colpo di gong, e silenzio."
+      ]
+    },
+    {
+      "id": "significato",
+      "titolo": "Che cosa vuol dire?",
+      "durata": 14,
+      "scena": "Camerino vuoto dopo il concerto: specchio con le lampadine intorno, un foglio con il testo pieno di cancellature, un punto interrogativo disegnato a matita, un mazzo di fiori; dalla porta la luce del palco che si spegne.",
+      "sottotitoli": [
+        "Mercury non l'ha mai spiegata: ognuno doveva farsi la sua idea.",
+        "Brian May ha detto solo che ci aveva messo molto di sé.",
+        "Molti la leggono come un addio alla persona che era.",
+        "Per altri parla della sua omosessualità, allora tenuta segreta.",
+        "Restano ipotesi."
+      ]
+    },
+    {
+      "id": "radio",
+      "titolo": "Troppo lunga per la radio",
+      "durata": 14,
+      "scena": "Studio radiofonico anni '70: insegna ON AIR che si accende, giradischi con il disco che gira, microfono a braccio, telefono con le linee che lampeggiano, pila di lettere degli ascoltatori; un calendario con il contatore dei passaggi.",
+      "sottotitoli": [
+        "Per la casa discografica è troppo lunga per la radio.",
+        "Mercury la passa all'amico DJ Kenny Everett,",
+        "chiedendogli, ridendo, di non trasmetterla.",
+        "Lui la manda in onda 14 volte in due giorni.",
+        "Esce il 31 ottobre 1975: nove settimane al primo posto in Gran Bretagna."
+      ]
+    },
+    {
+      "id": "seconda-vita",
+      "titolo": "Una seconda vita",
+      "durata": 14,
+      "scena": "Interno di un'auto vuota di notte: cruscotto con l'autoradio accesa e la cassetta che gira, lancette, parabrezza con le luci dei lampioni che scorrono; sul cruscotto un pupazzetto a molla che oscilla a tempo; in fondo la città.",
+      "sottotitoli": [
+        "Nel 1991 Mercury muore di AIDS.",
+        "La canzone torna al primo posto in Gran Bretagna.",
+        "Pochi mesi dopo, il film Fusi di testa la mette in una scena:",
+        "amici in auto che scuotono la testa a tempo.",
+        "Oggi è tra le canzoni più ascoltate al mondo."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Il palco della copertina a luci basse: il gong dorato che vibra ancora, il pianoforte chiuso, una rosa sul coperchio; 'Fine' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'La prossima canzone arriva presto.'"
+  },
+  "musica": "Originale e strumentale: pianoforte, archi e organo, un tema semplice che passa da intimo a solenne a energico come le tre parti della canzone; niente melodie, accordi o ritmi di Bohemian Rhapsody. La canzone vera, se si vuole, si aggiunge alla pubblicazione dalla libreria musicale con licenza della piattaforma.",
+  "fonti": [
+    "Durata (5:55), uscita 31 ottobre 1975, album A Night at the Opera, nove settimane al n. 1 nel Regno Unito: dati di classifica ufficiali (Official Charts Company).",
+    "Registrazione in più studi (Rockfield in Galles, poi Londra), circa 180 sovrapposizioni vocali, nastro consumato fino a diventare trasparente: interviste a Brian May e al produttore Roy Thomas Baker.",
+    "Kenny Everett e i 14 passaggi in due giorni su Capital Radio: aneddoto riportato dalle biografie del gruppo.",
+    "Mercury non spiegò mai il testo; Brian May: ci aveva messo molto di sé. Le letture (addio a sé stesso, omosessualità) sono interpretazioni di critici e biografi, non dichiarazioni dell'autore.",
+    "Riedizione dopo la morte di Mercury (24 novembre 1991) di nuovo al n. 1 nel Regno Unito; scena di Wayne's World (Fusi di testa, 1992) e ritorno nelle classifiche americane."
+  ]
+}
