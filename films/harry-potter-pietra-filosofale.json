@@ -1,0 +1,156 @@
+{
+  "titolo": "Harry Potter e la pietra filosofale",
+  "regista": "Chris Columbus",
+  "anno": 2001,
+  "palette": {
+    "chiaro": "#F3E9D2",
+    "principale": "#7A1F2B",
+    "scuro": "#14122A",
+    "accento": "#E8B04A"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Una lettera. Un treno. Una vita piena di magia.",
+    "immagine": "Notte stellata sopra un castello con tante torri su una scogliera, finestre accese riflesse nel lago; in primo piano una lettera chiusa con sigillo di ceralacca che vola, e un gufo bianco in volo. Titolo grande con carattere classico (Cinzel). NON usare il logo del film (scritta con il fulmine), stemmi delle case né persone.",
+    "voce": "Harry Potter e la pietra filosofale, di Chris Columbus: la scoperta della magia."
+  },
+  "capitoli": [
+    {
+      "id": "sottoscala",
+      "titolo": "Il ragazzo nel sottoscala",
+      "durata": 10,
+      "scena": "Sgabuzzino sotto le scale visto dalla porticina aperta: un lettino stretto, una lampadina che pende, ragnatele e un ragno, soldatini e un paio di occhiali tondi rotti tenuti col nastro; sopra, i gradini.",
+      "sottotitoli": [
+        "Harry Potter ha undici anni, è orfano",
+        "e vive con gli zii Dursley, che lo trattano malissimo:",
+        "dorme in uno sgabuzzino sotto le scale",
+        "e non sa niente dei suoi genitori."
+      ]
+    },
+    {
+      "id": "lettere",
+      "titolo": "Le lettere",
+      "durata": 9,
+      "scena": "Salotto in ordine maniacale: dal camino escono a fiotti decine di lettere che volano per la stanza; sul davanzale e sulla staccionata fuori, tanti gufi; una lettera con il sigillo di ceralacca in primo piano.",
+      "sottotitoli": [
+        "Un giorno arrivano lettere per lui da una scuola,",
+        "ma lo zio le strappa senza aprirle,",
+        "così i gufi ne portano a centinaia, perfino dal camino."
+      ]
+    },
+    {
+      "id": "mago",
+      "titolo": "Sei un mago",
+      "durata": 9,
+      "scena": "Notte di tempesta: una casupola su uno scoglio in mezzo al mare, la porta buttata giù, dentro il fuoco acceso; sul tavolo una torta di compleanno un po' storta e un ombrello rosa.",
+      "sottotitoli": [
+        "Alla fine arriva Hagrid, il gigante buono custode della scuola,",
+        "e gli dice la verità: Harry è un mago,",
+        "e i suoi genitori sono stati uccisi dal mago malvagio Voldemort."
+      ]
+    },
+    {
+      "id": "binario",
+      "titolo": "Il binario nove e tre quarti",
+      "durata": 9,
+      "scena": "Stazione di Londra: una colonna di mattoni con il cartello del binario 9 e ¾; un carrello con un baule e una gabbia con un gufo bianco che entra nel muro come in uno specchio d'acqua; dietro, un treno rosso a vapore.",
+      "sottotitoli": [
+        "Così parte per Hogwarts, la scuola di magia:",
+        "alla stazione di Londra attraversa un muro",
+        "e trova il binario nove e tre quarti, con un treno rosso a vapore."
+      ]
+    },
+    {
+      "id": "castello",
+      "titolo": "Il castello",
+      "durata": 10,
+      "scena": "Notte su un grande lago nero: in alto, sulla scogliera, un castello con tante torri e finestre accese; sull'acqua una fila di barchette con le lanterne; stelle e nebbia bassa.",
+      "sottotitoli": [
+        "Sul treno conosce Ron, che diventa il suo migliore amico,",
+        "ed Hermione, una ragazza bravissima a scuola,",
+        "e di notte arrivano in barca al castello,",
+        "illuminato sopra il lago."
+      ]
+    },
+    {
+      "id": "cappello",
+      "titolo": "Il cappello parlante",
+      "durata": 11,
+      "scena": "Grande sala del castello: soffitto che mostra il cielo stellato, centinaia di candele che fluttuano, lunghe tavolate con piatti e calici d'oro; al centro uno sgabello con un vecchio cappello da mago rattoppato; stendardi rossi e oro (senza stemmi).",
+      "sottotitoli": [
+        "Nella grande sala, sotto candele che volano,",
+        "un cappello parlante sceglie la casa di ogni studente,",
+        "cioè la squadra in cui vivrà e farà punti tutto l'anno:",
+        "Harry, Ron ed Hermione finiscono in Grifondoro."
+      ]
+    },
+    {
+      "id": "quidditch",
+      "titolo": "Il Quidditch",
+      "durata": 10,
+      "scena": "Campo da gioco nel cielo: altissimi anelli sui pali, torri con gli spalti e gli stendardi; una scopa che sfreccia lasciando una scia; una pallina d'oro con le ali che zigzaga brillando.",
+      "sottotitoli": [
+        "A lezione di volo Harry si scopre bravissimo sulla scopa,",
+        "così entra nella squadra di Quidditch,",
+        "lo sport dei maghi giocato in volo,",
+        "con il compito di acchiappare una pallina d'oro con le ali."
+      ]
+    },
+    {
+      "id": "cane",
+      "titolo": "Il cane a tre teste",
+      "durata": 11,
+      "scena": "Stanza di pietra dietro una porta proibita: un enorme cane a tre teste che dorme e ringhia, le zampe sopra una botola di legno; un'arpa che suona da sola; luce di una torcia.",
+      "sottotitoli": [
+        "Intanto i tre amici trovano, dietro una porta proibita,",
+        "un enorme cane a tre teste che fa la guardia a una botola,",
+        "e scoprono che sotto è nascosta la pietra filosofale,",
+        "che rende immortali."
+      ]
+    },
+    {
+      "id": "specchio",
+      "titolo": "Lo specchio",
+      "durata": 11,
+      "scena": "Stanza buia e polverosa, fuori nevica: un grande specchio antico con la cornice d'oro intagliata, che invece di riflettere la stanza si riempie di una luce calda; candele e drappi.",
+      "sottotitoli": [
+        "A Natale Harry trova uno specchio magico",
+        "in cui vede i suoi genitori accanto a lui:",
+        "il preside Silente gli spiega che lo specchio mostra",
+        "solo ciò che desideriamo di più,",
+        "e che non bisogna perdersi nei sogni."
+      ]
+    },
+    {
+      "id": "botola",
+      "titolo": "La botola",
+      "durata": 11,
+      "scena": "Sotterraneo enorme: una scacchiera gigante con pezzi di pietra alti come case, un cavallo caduto in frantumi; in alto uno sciame di chiavi con le ali; liane che si attorcigliano in primo piano.",
+      "sottotitoli": [
+        "Convinti che il professor Piton",
+        "voglia rubare la pietra per Voldemort,",
+        "i tre scendono nella botola e superano le prove:",
+        "una pianta che stritola, chiavi che volano",
+        "e una partita a scacchi giganti, dove Ron si sacrifica."
+      ]
+    },
+    {
+      "id": "pietra",
+      "titolo": "La pietra filosofale",
+      "durata": 11,
+      "scena": "Sala sotterranea con fiamme di fuoco magico all'ingresso: lo specchio d'oro al centro, una pietra rossa che brilla; la pietra che si sbriciola in polvere luminosa alla fine.",
+      "sottotitoli": [
+        "In fondo c'è il professor Raptor, servo di Voldemort, non Piton:",
+        "nello specchio la pietra compare in tasca a Harry,",
+        "che vuole solo salvarla,",
+        "e Raptor non può toccarlo, protetto dall'amore della madre.",
+        "Così la pietra viene distrutta."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Il castello all'alba visto dal lago, gufi in volo e il treno rosso che si allontana sul ponte; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
+  },
+  "musica": "Originale e strumentale: arpa, flauto, archi e campanelli, un tema luminoso e curioso in maggiore (lontano dal tema dei film), cupo nello sgabuzzino e nei sotterranei, festoso nella grande sala; niente brani o temi dei film."
+}

@@ -14,3 +14,6 @@ export const HAND = loadCaveat('normal', { weights: ['700'], subsets: ['latin', 
 export const CREEPSTER = loadCreepster('normal', { weights: ['400'], subsets: ['latin'] }).fontFamily;
 /** Titolo spaziale, maiuscole larghe (Interstellar). */
 export const SYNCOPATE = loadSyncopate('normal', { weights: ['700'], subsets: ['latin'] }).fontFamily;
+import { loadFont as loadCinzel } from '@remotion/google-fonts/Cinzel';
+/** Titolo classico da libro antico (Harry Potter). */
+export const CINZEL = loadCinzel('normal', { weights: ['700'], subsets: ['latin'] }).fontFamily;

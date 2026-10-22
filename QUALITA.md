@@ -41,6 +41,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - Cast Away: calda tropicale di giorno sull'isola (#F2B85A, opacità 10%), blu oceano di notte e in tempesta (#0E2A3A),
     blu-grigio invernale a Memphis (#3B4C66).
   - Jurassic Park: verde giungla (#1E4A30, opacità 10%), verde quasi nero di notte e in tempesta (#0F1F17).
+  - Harry Potter e la pietra filosofale: blu-viola notturno (#1E1A3A, opacità 12%), caldo dorato di giorno (#E8B04A, 8%).
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
 
@@ -163,3 +164,21 @@ nel momento chiave; per il resto si raccontano con le tracce (acqua che trema, i
 - Senza corrente: cancello delle gabbie che si apre, leva, lampade che si riaccendono in fila, scintille.
 - Raptor in cucina: maniglia che si abbassa, mestoli che oscillano, pentola che cade, spia della porta che diventa rossa.
 - La fuga: atrio che trema, striscione che crolla, alba, elicottero che parte, uccelli sul mare.
+
+### Harry Potter e la pietra filosofale
+Look da libro di fiabe: notti blu-viola con candele e finestre calde, pietra e legno, l'oro (#E8B04A) solo sull'oggetto
+chiave (sigillo della lettera, cartello 9 ¾, lanterne, pallina d'oro, cornice dello specchio). Elementi comuni in
+`src/scenes/harry-potter-pietra-filosofale/Comuni.tsx` (gufo, lettera, castello, candela fluttuante, scopa, pallina d'oro,
+cornice dello specchio). Persone mai (nemmeno nello specchio: solo luce calda); animali sì (gufi, cane a tre teste).
+Niente logo con il fulmine, stemmi delle case o carattere del film; titolo in Cinzel.
+- Il ragazzo nel sottoscala: lampadina che oscilla, ragno che scende, pulviscolo, cornice vuota.
+- Le lettere: lettere che escono a fiotti dal camino, gufi che compaiono alla finestra, lettera strappata.
+- Sei un mago: porta che cade, lampi, fuoco che divampa, onde sullo scoglio, pioggia.
+- Il binario nove e tre quarti: muro che si increspa come acqua, carrello che ci entra, treno a vapore che appare.
+- Il castello: finestre che si accendono, barchette con le lanterne, riflessi sul lago, gufo in volo.
+- Il cappello parlante: candele che fluttuano, cielo stellato con stella cadente, cappello che parla, coriandoli.
+- Il Quidditch: scopa che si alza e sfreccia con la scia, pallina d'oro che zigzaga, stendardi al vento.
+- Il cane a tre teste: il cane si sveglia e ringhia, la botola si illumina, l'arpa suona e lo riaddormenta.
+- Lo specchio: neve alla finestra, lo specchio si riempie di luce calda, un drappo lo copre.
+- La botola: liane, chiavi con le ali, scacchiera gigante, il cavallo che crolla in frantumi.
+- La pietra filosofale: fuoco magico viola, buio che avanza, luce che protegge, la pietra che si sbriciola.
