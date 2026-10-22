@@ -11,25 +11,30 @@ export type Pt = { x: number; y: number };
 
 export const BIANCO = '#FFFFFF';
 export const VETRO = '#0A1020';
-const OMBRA = { stroke: '#000', strokeOpacity: 0.45, strokeWidth: 6, paintOrder: 'stroke' as const };
 
 /** Entrata (0→1) e uscita (1→0) morbide. */
 const vita = (t: number, da: number, a?: number, entrata = 0.6) =>
   eo(seg(t, da, da + entrata)) * (a === undefined ? 1 : 1 - eo(seg(t, a, a + 0.4)));
 
 /** Etichetta: occhiello in maiuscoletto (colore accento) e riga descrittiva. */
-const Etichetta: React.FC<{ x: number; y: number; kicker: string; sub?: string; accento: string; dx: number; o: number; destra: boolean }> = ({ x, y, kicker, sub, accento, dx, o, destra }) => (
-  <g opacity={o} transform={`translate(${dx} 0)`}>
-    <text x={x} y={y - 6} textAnchor={destra ? 'start' : 'end'} fontFamily={SANS} fontWeight={800} fontSize="30" letterSpacing="4" fill={accento} {...OMBRA}>
-      {kicker.toUpperCase()}
-    </text>
-    {sub && (
-      <text x={x} y={y + 34} textAnchor={destra ? 'start' : 'end'} fontFamily={SANS} fontSize="32" fill={BIANCO} {...OMBRA}>
-        {sub}
+const Etichetta: React.FC<{ x: number; y: number; kicker: string; sub?: string; accento: string; dx: number; o: number; destra: boolean }> = ({ x, y, kicker, sub, accento, dx, o, destra }) => {
+  // Fascia scura dietro il testo (larghezza stimata dai caratteri): leggibile anche sulle opere chiare
+  const w = Math.max(kicker.length * 21, (sub?.length ?? 0) * 16.5) + 28;
+  const x0 = destra ? x - 14 : x - w + 14;
+  return (
+    <g opacity={o} transform={`translate(${dx} 0)`}>
+      <rect x={x0} y={y - 44} width={w} height={sub ? 94 : 56} rx="12" fill={VETRO} fillOpacity=".72" />
+      <text x={x} y={y - 6} textAnchor={destra ? 'start' : 'end'} fontFamily={SANS} fontWeight={800} fontSize="30" letterSpacing="4" fill={accento}>
+        {kicker.toUpperCase()}
       </text>
-    )}
-  </g>
-);
+      {sub && (
+        <text x={x} y={y + 34} textAnchor={destra ? 'start' : 'end'} fontFamily={SANS} fontSize="32" fill={BIANCO}>
+          {sub}
+        </text>
+      )}
+    </g>
+  );
+};
 
 /**
  * Richiamo: punto sul dettaglio `to`, linea fino a `lab`, breve tratto orizzontale ed etichetta.
@@ -111,11 +116,13 @@ export const Riquadro: React.FC<{ t: number; da: number; a?: number; at: Pt; w?:
 }) => {
   if (t < da) return null;
   const v = vita(t, da, a, 0.6);
+  // Si allarga da solo se titolo o nota non ci stanno (larghezza stimata dai caratteri); il disegno resta centrato
+  const W = Math.max(w, titolo.length * 21 + 56, (nota?.length ?? 0) * 15 + 56);
   return (
-    <g opacity={v} transform={`translate(${at.x - w / 2} ${at.y - h / 2 + (1 - v) * 24})`}>
-      <rect width={w} height={h} rx="22" fill={VETRO} fillOpacity=".84" stroke={BIANCO} strokeOpacity=".25" strokeWidth="2" />
+    <g opacity={v} transform={`translate(${at.x - W / 2} ${at.y - h / 2 + (1 - v) * 24})`}>
+      <rect width={W} height={h} rx="22" fill={VETRO} fillOpacity=".84" stroke={BIANCO} strokeOpacity=".25" strokeWidth="2" />
       <text x="28" y="50" fontFamily={SANS} fontWeight={800} fontSize="26" letterSpacing="4" fill={accento}>{titolo.toUpperCase()}</text>
-      <g transform="translate(30 70)">{children}</g>
+      <g transform={`translate(${30 + (W - w) / 2} 70)`}>{children}</g>
       {nota && <text x="28" y={h - 26} fontFamily={SANS} fontSize="28" fill={BIANCO} opacity=".9">{nota}</text>}
     </g>
   );

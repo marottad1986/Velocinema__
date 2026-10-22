@@ -18,6 +18,8 @@ import { INTERSTELLAR_SCENES } from './scenes/interstellar';
 import { Copertina as InterCover, Finale as InterEnd } from './scenes/interstellar/Locandina';
 import notteStellata from '../quadri/notte-stellata.json';
 import { NOTTE_STELLATA_SCENES, Copertina as NotteCover, Finale as NotteEnd } from './scenes/notte-stellata';
+import grandeOnda from '../quadri/grande-onda.json';
+import { GRANDE_ONDA_SCENES, Copertina as OndaCover, Finale as OndaEnd } from './scenes/grande-onda';
 
 // Registro dei film e dei quadri: un JSON in films/ (o quadri/, vedi QUADRI.md) + le scene in src/scenes/<slug>/.
 // Le scene non ancora ricostruite compaiono come segnaposto.
@@ -28,6 +30,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'frankenstein-junior', data: frankensteinJunior as FilmData, scenes: FRANKENSTEIN_JUNIOR_SCENES, cover: FrankCover, ending: FrankEnd, posterFont: CREEPSTER },
   { slug: 'interstellar', data: interstellar as FilmData, scenes: INTERSTELLAR_SCENES, cover: InterCover, ending: InterEnd, posterFont: SYNCOPATE },
   { slug: 'notte-stellata', data: notteStellata as FilmData, scenes: NOTTE_STELLATA_SCENES, cover: NotteCover, ending: NotteEnd },
+  { slug: 'grande-onda', data: grandeOnda as FilmData, scenes: GRANDE_ONDA_SCENES, cover: OndaCover, ending: OndaEnd },
 ];
 
 export const getFilm = (slug: string): FilmDef => {

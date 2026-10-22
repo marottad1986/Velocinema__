@@ -2,7 +2,7 @@ import React from 'react';
 import { AbsoluteFill } from 'remotion';
 import { eo, seg } from '../../lib/anim';
 import { SANS } from '../../lib/fonts';
-import { LuceRadente, OmbraSbarre, Quadro, proietta, vistaAt, type Chiave, type Opera } from '../../lib/quadro';
+import { LuceRadente, OmbraSbarre, Quadro, inquadra, type Chiave, type Opera } from '../../lib/quadro';
 import { Anello, Annotazioni, BIANCO, LINEA, Richiamo, Riquadro, Spirale, type Pt } from '../../lib/annotazioni';
 import type { SceneDef, SceneProps } from '../../types';
 import { copertinaQuadro, finaleQuadro, intera } from '../quadri/Locandina';
@@ -27,18 +27,13 @@ const P = {
   stelle: [{ x: 0.234, y: 0.17 }, { x: 0.7, y: 0.23 }],
 };
 
-/** Vista al tempo t e proiezione dei punti dell'opera sullo schermo. */
-const camera = (chiavi: Chiave[], t: number) => {
-  const v = vistaAt(chiavi, t);
-  const s = 1920 / (v.h * 1000);
-  return { at: (p: Pt) => proietta(OPERA, v, p), px: (frazione: number) => frazione * 1000 * s };
-};
+const camera = (chiavi: Chiave[], t: number) => inquadra(OPERA, chiavi, t);
 const add = (p: Pt, dx: number, dy: number): Pt => ({ x: p.x + dx, y: p.y + dy });
 
 // ---------------------------------------------------------------- disegni a linea per i riquadri (≈ 340×200)
 
 const Testo: React.FC<{ x: number; y: number; children: React.ReactNode; size?: number; anchor?: 'start' | 'middle' | 'end'; bold?: boolean }> = ({ x, y, children, size = 24, anchor = 'middle', bold }) => (
-  <text x={x} y={y} textAnchor={anchor} fontFamily={SANS} fontWeight={bold ? 800 : 400} fontSize={size} fill={BIANCO}>{children}</text>
+  <text x={x} y={y} textAnchor={anchor} fontFamily={SANS} fontWeight={bold ? 800 : 400} fontSize={size} fill={BIANCO} stroke="none">{children}</text>
 );
 
 const Clinica = () => (
@@ -175,7 +170,7 @@ const Museo = () => (
     <rect x="30" y="60" width="280" height="130" />
     {[0, 1, 2, 3].map((i) => <rect key={i} x={50 + i * 66} y="80" width="44" height="44" strokeWidth={2} />)}
     <rect x="140" y="140" width="60" height="50" />
-    <text x="170" y="40" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" letterSpacing="8" fill={BIANCO}>MoMA</text>
+    <text x="170" y="40" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" letterSpacing="8" fill={BIANCO} stroke="none">MoMA</text>
   </g>
 );
 

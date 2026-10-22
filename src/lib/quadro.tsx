@@ -17,6 +17,8 @@ export type Opera = {
   aspect: number;
   /** Piani ritagliati (PNG trasparenti delle stesse dimensioni) per la parallasse: f > 1 = più vicino. */
   piani?: { src: string; f: number }[];
+  /** Velo scuro in alto per la leggibilità del titolo (0–1, predefinito 0,55): più alto per le opere chiare. */
+  velo?: number;
 };
 
 /** Inquadratura: centro (x, y) in frazioni dell'opera, h = frazione dell'altezza visibile (>1: opera intera con margine). */
@@ -46,6 +48,13 @@ export const vistaAt = (chiavi: Chiave[], t: number): Vista => {
 export const proietta = (opera: Opera, v: Vista, p: { x: number; y: number }) => {
   const s = 1920 / (v.h * H);
   return { x: FOCUS.x + (p.x - v.x) * H * opera.aspect * s, y: FOCUS.y + (p.y - v.y) * H * s };
+};
+
+/** Camera al tempo t: `at` porta un punto dell'opera sullo schermo, `px` converte una frazione dell'altezza in px. */
+export const inquadra = (opera: Opera, chiavi: Chiave[], t: number) => {
+  const v = vistaAt(chiavi, t);
+  const s = 1920 / (v.h * H);
+  return { at: (p: { x: number; y: number }) => proietta(opera, v, p), px: (frazione: number) => frazione * H * s };
 };
 
 const exists = (src: string) => getStaticFiles().some((f) => f.name === src);
@@ -101,7 +110,7 @@ export const Quadro: React.FC<QuadroProps> = ({ opera, t, chiavi, children, sopr
         {children}
       </div>
       {/* Sfumature per titolo (alto) e sottotitoli (basso): non cambiano i colori dell'opera al centro */}
-      <AbsoluteFill style={{ background: 'linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,0) 32%, rgba(0,0,0,0) 62%, rgba(0,0,0,.5) 80%, rgba(0,0,0,.6))' }} />
+      <AbsoluteFill style={{ background: `linear-gradient(rgba(0,0,0,${opera.velo ?? 0.55}), rgba(0,0,0,0) ${(opera.velo ?? 0.55) > 0.55 ? 40 : 32}%, rgba(0,0,0,0) 62%, rgba(0,0,0,.5) 80%, rgba(0,0,0,.6))` }} />
       {sopra}
     </AbsoluteFill>
   );
