@@ -37,6 +37,10 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 - Testo discorsivo, come un racconto continuo: le frasi si legano tra loro (perché, ma, così, finché, quando…)
   e un capitolo si aggancia al precedente. Niente elenchi di frasi brevi staccate; le righe dei sottotitoli
   sono pezzi dello stesso discorso.
+- Spiegato facile: parole di tutti i giorni, nessun termine tecnico senza spiegarlo subito, una cosa alla volta.
+- Queste regole sul testo valgono per tutti i progetti della serie (film, quadri, canzoni, serie TV spiegate…).
+- Se si riscrive il testo di un film già disegnato, tenere lo stesso numero di righe per capitolo e lo stesso
+  contenuto in ogni riga: scene e spartito agganciano gli eventi all'indice della riga (`cues`).
 
 ## Elementi fissi sopra le immagini (capitoli)
 - Barra a capitoli sottile (16 px) sul bordo superiore, un segmento per capitolo proporzionale alla durata,

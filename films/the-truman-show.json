@@ -21,12 +21,12 @@
       "durata": 10,
       "scena": "Cittadina sul mare perfetta: villette bianche con staccionate, prati tagliati, cielo azzurro, lampioni identici, una telecamera nascosta in una casetta per uccelli.",
       "sottotitoli": [
-        "Seahaven, un'isola perfetta.",
-        "Truman Burbank vende assicurazioni.",
-        "Moglie sorridente, vicini gentili,",
-        "lo stesso saluto ogni mattina.",
-        "Non sa una cosa sola:",
-        "la sua vita è uno show tv in diretta. E tutti recitano."
+        "Seahaven, un'isola perfetta:",
+        "Truman Burbank vende assicurazioni",
+        "con moglie sorridente e vicini gentili",
+        "che lo salutano uguale ogni mattina.",
+        "Non sa che",
+        "la sua vita è uno show in diretta dove tutti recitano."
       ]
     },
     {
@@ -36,10 +36,10 @@
       "scena": "Mattina in strada: un riflettore da studio con l'etichetta 'SIRIUS' è appena caduto dal cielo e sta in mezzo all'asfalto, vetro incrinato, fumo leggero.",
       "sottotitoli": [
         "Una mattina, dal cielo sereno,",
-        "cade un riflettore da studio.",
-        "Sopra c'è scritto: Sirius.",
-        "La radio spiega: pezzi di un aereo.",
-        "Truman alza gli occhi. Il cielo tace."
+        "cade un riflettore da studio",
+        "con sopra scritto Sirius,",
+        "e la radio parla di un pezzo d'aereo.",
+        "Truman alza gli occhi, ma il cielo tace."
       ]
     },
     {
@@ -48,10 +48,10 @@
       "durata": 9,
       "scena": "Spiaggia di sole: una sola nuvola scarica pioggia su un cerchio di sabbia, ombrellone rovesciato e un asciugamano bagnato; tutto intorno è asciutto.",
       "sottotitoli": [
-        "Al mare, piove.",
-        "Ma piove solo su di lui.",
-        "Un cerchio d'acqua che lo segue.",
-        "Poi la pioggia si allarga a tutti,",
+        "Poi, al mare, piove",
+        "ma solo su di lui:",
+        "un cerchio d'acqua che lo segue,",
+        "finché la pioggia si allarga a tutti",
         "come se qualcuno avesse corretto l'errore."
       ]
     },
@@ -61,11 +61,11 @@
       "durata": 9,
       "scena": "Interno di un'auto anni '50, cruscotto con autoradio che sfrigola, lancetta della frequenza che salta, cerchietto del tracciato sulla mappa ritagliata.",
       "sottotitoli": [
-        "In auto, l'autoradio sfrigola.",
-        "Si sente la regia dello show che descrive",
-        "ogni sua mossa, svolta dopo svolta.",
-        "Poi la musica torna.",
-        "Truman comincia a sospettare."
+        "In auto, l'autoradio sfrigola",
+        "e si sente la regia dello show che descrive",
+        "ogni sua mossa, svolta dopo svolta,",
+        "finché torna la musica.",
+        "Così Truman comincia a sospettare."
       ]
     },
     {
@@ -74,10 +74,10 @@
       "durata": 10,
       "scena": "Ricordo: barca a vela rovesciata in un mare in tempesta di notte; un ponte sull'acqua con un cartello di pericolo; un berretto da marinaio che galleggia.",
       "sottotitoli": [
-        "Da bambino ha visto il padre annegare,",
-        "in una tempesta organizzata dallo show.",
-        "Da allora l'acqua lo paralizza.",
-        "Non attraversa nemmeno il ponte.",
+        "Da bambino ha visto il padre annegare",
+        "in una tempesta organizzata dallo show,",
+        "e da allora l'acqua lo paralizza:",
+        "non attraversa nemmeno il ponte.",
         "È così che lo tengono sull'isola."
       ]
     },
@@ -87,12 +87,12 @@
       "durata": 11,
       "scena": "Spiaggia di notte sotto le stelle: un maglione rosso lasciato sulla sabbia, una spilla rotonda con la scritta 'Come finirà?', un fuoco spento, un faro lontano.",
       "sottotitoli": [
-        "Al college conosce Sylvia, una comparsa.",
-        "Una sera, sulla spiaggia, lei gli dice:",
-        "è tutto finto, tutti recitano.",
-        "Arriva un uomo e la porta via.",
+        "Al college conobbe Sylvia, una comparsa,",
+        "che una sera, in spiaggia, gli disse",
+        "che era tutto finto,",
+        "ma un uomo la portò via.",
         "Lui conserva il suo maglione rosso",
-        "e non smette di pensare a lei."
+        "e pensa ancora a lei."
       ]
     },
     {
@@ -101,11 +101,11 @@
       "durata": 10,
       "scena": "Vetrina di un'agenzia di viaggi: manifesto con un aereo colpito da un fulmine e la scritta 'Potrebbe succedere a te!'; mappamondo con le Figi cerchiate; biglietti esauriti.",
       "sottotitoli": [
-        "Truman vuole andare alle Figi,",
-        "dove dicono che Sylvia si sia trasferita.",
-        "All'agenzia di viaggi: tutto esaurito.",
-        "Sul muro, un aereo colpito da un fulmine.",
-        "Potrebbe succedere a te."
+        "Così Truman vuole andare alle Figi,",
+        "dove forse vive Sylvia,",
+        "ma all'agenzia di viaggi è tutto esaurito",
+        "e sul muro, un aereo colpito da un fulmine",
+        "con la scritta: potrebbe succedere a te."
       ]
     },
     {
@@ -114,12 +114,12 @@
       "durata": 11,
       "scena": "Strada notturna fuori città: un muro di fiamme sull'asfalto, transenne con il cartello 'Fuga radioattiva', fari d'auto, segnale stradale per 'Ovunque tranne qui'.",
       "sottotitoli": [
-        "Prova a lasciare l'isola in auto.",
-        "Davanti a lui, all'improvviso:",
-        "un incendio sulla strada,",
-        "poi una fuga radioattiva.",
-        "Ogni via si chiude al suo passaggio.",
-        "Lo riportano a casa. Sorridendo."
+        "Allora prova a lasciare l'isola in auto,",
+        "ma davanti a lui, all'improvviso,",
+        "compare un incendio sulla strada",
+        "e poi una fuga radioattiva:",
+        "ogni via si chiude al suo passaggio",
+        "e lo riportano a casa, sorridendo."
       ]
     },
     {
@@ -128,12 +128,12 @@
       "durata": 11,
       "scena": "Piccola barca a vela chiamata 'Santa Maria' in una tempesta enorme: onde alte, fulmini, vela tesa; nel cielo si intravede la griglia dei riflettori.",
       "sottotitoli": [
-        "Una notte sparisce.",
-        "Lo ritrovano in mare, su una barca a vela.",
-        "Lui, che ha il terrore dell'acqua.",
-        "Il regista dello show scatena una tempesta.",
-        "Onde, fulmini. La barca si rovescia.",
-        "Truman resiste."
+        "Una notte sparisce",
+        "e lo ritrovano in mare, su una barca a vela:",
+        "lui, che ha il terrore dell'acqua.",
+        "Il regista dello show scatena una tempesta",
+        "di onde e fulmini che rovesciano la barca,",
+        "ma Truman resiste."
       ]
     },
     {
@@ -142,12 +142,12 @@
       "durata": 11,
       "scena": "Mare calmo all'alba: la prua della barca ha bucato il cielo, che è un muro dipinto; una scaletta sale lungo il muro fino a una porta con la scritta 'USCITA'.",
       "sottotitoli": [
-        "Il mare torna calmo.",
-        "La prua urta qualcosa:",
-        "il cielo. È un muro dipinto.",
-        "Lungo il muro, una scala",
-        "e una porta: uscita.",
-        "Il regista, dal cielo, gli chiede di restare."
+        "Quando il mare torna calmo",
+        "la prua urta qualcosa:",
+        "il cielo, che è un muro dipinto.",
+        "Lungo il muro sale una scala",
+        "fino a una porta con scritto uscita,",
+        "e il regista, dal cielo, gli chiede di restare."
       ]
     },
     {
@@ -156,12 +156,12 @@
       "durata": 11,
       "scena": "La porta nel cielo dipinto è aperta sul buio; davanti, un ultimo gradino; in un bar della città, televisori che passano allo schermo vuoto e tazze sul bancone.",
       "sottotitoli": [
-        "Fuori, nessuno sa cosa lo aspetta.",
-        "Truman ci pensa un momento.",
-        "Poi saluta con la sua solita battuta,",
-        "si inchina, ed esce dallo show.",
-        "Nel mondo, il pubblico applaude.",
-        "E cerca un altro canale."
+        "Fuori nessuno sa cosa lo aspetta,",
+        "e Truman ci pensa un momento;",
+        "poi saluta con la frase di ogni mattina,",
+        "si inchina ed esce dallo show.",
+        "Nel mondo il pubblico applaude",
+        "e poi cerca un altro canale."
       ]
     }
   ],
