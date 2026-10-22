@@ -40,6 +40,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - The Truman Show: azzurro pastello da set televisivo di giorno (#8FD3F4, opacità 10%), blu notte nelle scene di tempesta e di notte (#142235).
   - Cast Away: calda tropicale di giorno sull'isola (#F2B85A, opacità 10%), blu oceano di notte e in tempesta (#0E2A3A),
     blu-grigio invernale a Memphis (#3B4C66).
+  - Jurassic Park: verde giungla (#1E4A30, opacità 10%), verde quasi nero di notte e in tempesta (#0F1F17).
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
 
@@ -144,3 +145,21 @@ Mai Chuck né Kelly: si raccontano con gli oggetti; nessun marchio (corriere ano
 - Perso in mare: pallone che si allontana, corda lasciata, riflessi di sole, nave all'orizzonte con fumo.
 - Il ritorno: pioggia su due livelli, gocce dalla veranda, pozzanghere con cerchi, porta che si chiude, fari che si accendono.
 - Il bivio: polvere dietro il furgone, ali sul portellone che si illuminano, erba secca al vento, raggi del tramonto.
+
+### Jurassic Park
+Look da avventura nella giungla: verdi profondi, nebbia, pioggia notturna, luci di sicurezza verdi e rosse; l'ambra
+(#F2A23A) solo sull'oggetto chiave (goccia d'ambra, cartello della recinzione, provette, leva, striscione).
+Elementi comuni in `src/scenes/jurassic-park/Comuni.tsx` (jeep, recinzione elettrica, felci, alberi, ambra, elicottero, uovo).
+I dinosauri vivi non si disegnano mai, come le persone: si raccontano con le tracce (acqua che trema, impronte, cavi
+spezzati, gusci, scheletri da museo). Niente logo del film.
+- Dinosauri di nuovo vivi: luce sotto l'ambra con pulviscolo, DNA che gira sugli schermi, isola alla finestra.
+- Gli esperti: pale dell'elicottero, erba piegata dal vento, cascata con nebbia, gabbiani.
+- Il laboratorio: lampade calde sulle uova, uovo che si crepa e si apre, braccio meccanico, cartellini «F».
+- La visita: jeep sul binario, cielo che si scurisce, un lampo, foglie strappate dal vento.
+- Il sabotaggio: zone della mappa che diventano rosse, allarme, bomboletta con le provette, pioggia sui vetri.
+- Il T-rex: cerchi nel bicchiere a ogni passo, vista che trema, cavi che si spezzano, jeep che si rovescia, torcia.
+- La notte nella giungla: fari che si spengono, bomboletta che scivola nel fango, pioggia che cala, stelle.
+- Le uova schiuse: raggi tra gli alberi, nebbia, impronte piccole che compaiono, rana che salta.
+- Senza corrente: cancello delle gabbie che si apre, leva, lampade che si riaccendono in fila, scintille.
+- Raptor in cucina: maniglia che si abbassa, mestoli che oscillano, pentola che cade, spia della porta che diventa rossa.
+- La fuga: atrio che trema, striscione che crolla, alba, elicottero che parte, uccelli sul mare.
