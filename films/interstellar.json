@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Per salvare il mondo, deve lasciarlo.",
     "immagine": "Campo di mais al tramonto sotto un cielo che si apre in un buco nero con l'anello dorato; in primo piano, sul bordo di una libreria, un orologio da polso con la lancetta dei secondi che scatta. Titolo grande e spaziato. NON usare l'astronauta in tuta, l'astronave accanto a Saturno né il pickup tra il mais (locandine ufficiali).",
-    "voce": "Interstellar, di Christopher Nolan. Tutto in due minuti."
+    "voce": "Interstellar, di Christopher Nolan: un viaggio nello spazio per salvare la Terra."
   },
   "capitoli": [
     {
@@ -85,10 +85,10 @@
       "scena": "Mare basso e infinito; all'orizzonte una montagna d'acqua che si avvicina; nel cielo un enorme buco nero con l'anello dorato; una piccola navetta posata sull'acqua.",
       "sottotitoli": [
         "Il primo pianeta è tutto acqua, accanto a un buco nero,",
-        "dove il tempo rallenta: un'ora vale sette anni sulla Terra.",
+        "dove un'ora vale sette anni sulla Terra.",
         "Un'onda alta come una montagna li travolge",
         "e uno scienziato muore;",
-        "per ripartire perdono 23 anni."
+        "e intanto sulla Terra passano 23 anni."
       ]
     },
     {
@@ -109,7 +109,7 @@
       "durata": 11,
       "scena": "Distesa di ghiaccio con nuvole congelate sospese nel cielo; un rifugio con la luce accesa; una navetta che decolla e, in alto, un lampo di esplosione accanto all'astronave.",
       "sottotitoli": [
-        "Il secondo pianeta è di ghiaccio:",
+        "Così provano il secondo pianeta, di ghiaccio,",
         "lì li aspetta il dottor Mann, un esploratore.",
         "Ma ha mentito: il pianeta è invivibile, voleva essere salvato,",
         "e prova a uccidere Cooper per rubare l'astronave,",
@@ -134,9 +134,9 @@
       "durata": 11,
       "scena": "Il buco nero con il disco dorato; la navetta che si stacca e precipita; poi una griglia infinita di librerie sospese nel vuoto (la stanza fuori dal tempo), attraversata da fili di luce.",
       "sottotitoli": [
-        "Il carburante non basta per tutti:",
-        "Cooper si stacca e cade nel buco nero con un robot,",
-        "così Amelia può raggiungere l'ultimo pianeta.",
+        "Ma il carburante non basta per tutti,",
+        "così Cooper si sgancia nel buco nero con un robot",
+        "e Amelia può raggiungere l'ultimo pianeta.",
         "Dentro trova una stanza fuori dal tempo, la camera di Murph:",
         "il fantasma era lui."
       ]
@@ -157,7 +157,7 @@
   ],
   "finale": {
     "durata": 4,
-    "immagine": "Il pianeta di Amelia all'alba: rocce rossastre, una tenda illuminata e una bandierina; nel cielo, piccolo e lontano, il buco nero; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo film arriva presto.'"
+    "immagine": "Il pianeta di Amelia all'alba: rocce rossastre, una tenda illuminata e una bandierina; nel cielo, piccolo e lontano, il buco nero; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
   "musica": "Originale e strumentale: pianoforte, archi e sintetizzatori spaziali; un tema semplice di poche note che si allarga dalla fattoria allo spazio, si fa teso sulle onde e sul ghiaccio e si apre nel finale; niente brani o motivi del film."
 }

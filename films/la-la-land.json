@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Una città di sogni. Due sognatori. Una sola scelta.",
     "immagine": "Cielo giallo e corallo al tramonto; tastiera di pianoforte gigante che corre come una strada verso il sole sopra lo skyline; note che fluttuano. NON usare cielo viola con lampione e coppia che balla (locandina ufficiale).",
-    "voce": "La La Land, di Damien Chazelle. Tutto in due minuti."
+    "voce": "La La Land, di Damien Chazelle: due sognatori a Los Angeles."
   },
   "capitoli": [
     {
@@ -23,10 +23,10 @@
       "sottotitoli": [
         "A Los Angeles,",
         "bloccati in coda,",
-        "Mia sogna di fare l'attrice",
-        "e Sebastian, pianista, un locale jazz.",
-        "Lui suona il clacson, lei lo manda a quel paese:",
-        "un primo incontro disastroso."
+        "Mia, aspirante attrice,",
+        "e Sebastian, pianista che sogna un locale jazz,",
+        "litigano a colpi di clacson,",
+        "e il primo incontro è un disastro."
       ]
     },
     {
@@ -47,7 +47,7 @@
       "durata": 11,
       "scena": "Ristorante di notte con luci di Natale, pianoforte a coda sotto un faro, note che salgono.",
       "sottotitoli": [
-        "Passando, sente un pianoforte da un ristorante:",
+        "Passando, Mia sente un pianoforte da un ristorante:",
         "è Sebastian.",
         "Doveva suonare canzoni di Natale,",
         "ma suona il suo jazz",
@@ -62,7 +62,7 @@
       "durata": 11,
       "scena": "Tramonto sulla città, lampione che si accende, scarpe da tip tap sulla panchina, stelle che compaiono.",
       "sottotitoli": [
-        "Si rincontrano a una festa,",
+        "Poi si rincontrano a una festa,",
         "dove lui suona in una band di cover anni '80,",
         "e al tramonto, su una collina sopra la città,",
         "giurano di non piacersi",
@@ -160,7 +160,7 @@
   ],
   "finale": {
     "durata": 4,
-    "immagine": "Versione notturna della copertina (tastiera-strada sotto luna e stelle); 'The End' giallo; riquadro in alto con 'Ti è piaciuto?', 'Metti like', 'Segui la pagina', 'Il prossimo film arriva presto.'"
+    "immagine": "Versione notturna della copertina (tastiera-strada sotto luna e stelle); 'The End' giallo; riquadro in alto con 'Ti è piaciuto?', 'Metti like', 'Segui la pagina', 'Commenta con il film che vorresti.'"
   },
   "musica": "Jazz originale (piano elettrico, contrabbasso walking, spazzole, vibrafono); niente brani del film."
 }

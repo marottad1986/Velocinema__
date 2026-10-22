@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Un'isola. Quattro anni. Un solo amico.",
     "immagine": "Tramonto su una spiaggia deserta: in primo piano un pacco di cartone con due ali disegnate, mezzo affondato nella sabbia bagnata; accanto, un pallone da pallavolo con una faccia dipinta con un'impronta di mano rossa (nessun logo); dietro, la laguna turchese, la barriera di onde bianche e il picco dell'isola. Titolo grande (Bricolage). NON usare la silhouette dell'uomo sulla spiaggia né il volto del protagonista (locandina ufficiale); nessun marchio di corrieri o di palloni.",
-    "voce": "Cast Away, di Robert Zemeckis. Tutto in due minuti."
+    "voce": "Cast Away, di Robert Zemeckis: un naufrago solo su un'isola deserta."
   },
   "capitoli": [
     {
@@ -98,7 +98,7 @@
       "durata": 10,
       "scena": "Interno di una grotta sulla roccia: parete coperta di tacche per contare i giorni e disegni a carbone, una lancia appoggiata, pesci ad affumicare sul fuoco, l'orologio da tasca aperto con la foto, il pallone con la faccia su una sporgenza; fuori, la laguna.",
       "sottotitoli": [
-        "Quattro anni dopo abita in una grotta,",
+        "Così, quattro anni dopo, abita in una grotta,",
         "pesca con la lancia e conta i giorni sulla parete;",
         "parla con Wilson, guarda la foto di Kelly",
         "e sogna ancora di tornare."
@@ -150,7 +150,7 @@
       "durata": 11,
       "scena": "Incrocio di quattro strade sterrate nella pianura del Texas, cielo enorme al tramonto: un cartello stradale con le direzioni, un furgone che si allontana con due ali dipinte sul portellone, sulla soglia di un cancello lontano il pacco con le ali consegnato.",
       "sottotitoli": [
-        "Infine consegna il pacco con le ali,",
+        "Alla fine consegna il pacco con le ali,",
         "con un biglietto: questo pacco mi ha salvato la vita.",
         "A un incrocio una donna gli indica la strada:",
         "è lei ad averlo spedito,",
@@ -160,7 +160,7 @@
   ],
   "finale": {
     "durata": 4,
-    "immagine": "Lo stesso incrocio nel Texas a sera, cartello stradale e strade che si perdono nella pianura, una stella che si accende; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo film arriva presto.'"
+    "immagine": "Lo stesso incrocio nel Texas a sera, cartello stradale e strade che si perdono nella pianura, una stella che si accende; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
   "musica": "Originale e strumentale: pianoforte, archi, tamburi leggeri; ticchettio d'orologio all'inizio, quasi silenzio sull'isola (solo onde e vento, il film non ha musica in quella parte), un tema caldo che nasce quando parte la zattera e si apre al bivio finale; niente brani del film."
 }

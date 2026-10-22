@@ -34,13 +34,20 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
   nella stessa frase.
 - Il finale deve dire chiaramente come va a finire, compresi i colpi di scena.
 - Titoli dei capitoli chiari anche fuori contesto.
-- Testo discorsivo, come un racconto continuo: le frasi si legano tra loro (perché, ma, così, finché, quando…)
-  e un capitolo si aggancia al precedente. Niente elenchi di frasi brevi staccate; le righe dei sottotitoli
-  sono pezzi dello stesso discorso.
+- Testo discorsivo: si racconta come a voce a un amico; ogni frase si aggancia alla precedente con connettivi
+  espliciti («perché», «infatti», «intanto», «così», «quindi», «ma», «alla fine») e un capitolo si aggancia al
+  precedente. Niente elenchi secchi di fatti né frasi telegrafiche; mai frasi che parlano dello schema o del video
+  stesso (es. «Tutto in due minuti»). Le righe dei sottotitoli sono pezzi dello stesso discorso.
+  L'ultima frase chiude o lascia una domanda chiara.
 - Spiegato facile: parole di tutti i giorni, nessun termine tecnico senza spiegarlo subito, una cosa alla volta.
 - Queste regole sul testo valgono per tutti i progetti della serie (film, quadri, canzoni, serie TV spiegate…).
 - Se si riscrive il testo di un film già disegnato, tenere lo stesso numero di righe per capitolo e lo stesso
   contenuto in ogni riga: scene e spartito agganciano gli eventi all'indice della riga (`cues`).
+
+## Finale (vincolante)
+- Nell'immagine finale, sotto «Metti like» / «Segui la pagina», l'invito a commentare (mai «Il prossimo … arriva presto»):
+  «Commenta con il film / la spiegazione / la canzone / il quadro che vorresti.» (secondo il formato).
+  Per questo progetto: «Commenta con il film che vorresti.»
 
 ## Elementi fissi sopra le immagini (capitoli)
 - Barra a capitoli sottile (16 px) sul bordo superiore, un segmento per capitolo proporzionale alla durata,

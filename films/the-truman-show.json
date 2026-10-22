@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Una vita perfetta. In diretta. Senza che lui lo sappia.",
     "immagine": "Seahaven vista dall'alto dentro una gigantesca cupola di cielo dipinto, con le giunture del cielo appena visibili; in alto un riflettore da studio e la spia rossa REC di una telecamera; il mare chiuso dal muro della cupola. Titolo grande (Bricolage). NON usare collage di volti né la faccia del protagonista (locandina ufficiale).",
-    "voce": "The Truman Show, di Peter Weir. Tutto in due minuti."
+    "voce": "The Truman Show, di Peter Weir: una vita che è tutta uno show."
   },
   "capitoli": [
     {
@@ -21,12 +21,12 @@
       "durata": 10,
       "scena": "Cittadina sul mare perfetta: villette bianche con staccionate, prati tagliati, cielo azzurro, lampioni identici, una telecamera nascosta in una casetta per uccelli.",
       "sottotitoli": [
-        "Seahaven, un'isola perfetta:",
-        "Truman Burbank vende assicurazioni",
+        "Sull'isola perfetta di Seahaven",
+        "Truman Burbank vende assicurazioni,",
         "con moglie sorridente e vicini gentili",
         "che lo salutano uguale ogni mattina.",
-        "Non sa che",
-        "la sua vita è uno show in diretta dove tutti recitano."
+        "Ma non sa che",
+        "la sua vita è uno show in diretta: tutti recitano."
       ]
     },
     {
@@ -61,7 +61,7 @@
       "durata": 9,
       "scena": "Interno di un'auto anni '50, cruscotto con autoradio che sfrigola, lancetta della frequenza che salta, cerchietto del tracciato sulla mappa ritagliata.",
       "sottotitoli": [
-        "In auto, l'autoradio sfrigola",
+        "Un giorno, in auto, l'autoradio sfrigola",
         "e si sente la regia dello show che descrive",
         "ogni sua mossa, svolta dopo svolta,",
         "finché torna la musica.",
@@ -128,7 +128,7 @@
       "durata": 11,
       "scena": "Piccola barca a vela chiamata 'Santa Maria' in una tempesta enorme: onde alte, fulmini, vela tesa; nel cielo si intravede la griglia dei riflettori.",
       "sottotitoli": [
-        "Una notte sparisce",
+        "Una notte Truman sparisce",
         "e lo ritrovano in mare, su una barca a vela:",
         "lui, che ha il terrore dell'acqua.",
         "Il regista dello show scatena una tempesta",
@@ -167,7 +167,7 @@
   ],
   "finale": {
     "durata": 4,
-    "immagine": "La porta nel cielo dipinto aperta, scaletta e barca a vela ferma sull'acqua calma; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo film arriva presto.'"
+    "immagine": "La porta nel cielo dipinto aperta, scaletta e barca a vela ferma sull'acqua calma; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
   "musica": "Originale e strumentale: pianoforte, archi morbidi, celesta, un tema leggero e ottimista che si incrina nelle scene di sospetto e cresce in un finale luminoso; niente brani del film."
 }

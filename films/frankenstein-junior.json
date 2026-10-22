@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Un castello. Un temporale. Si può fare!",
     "immagine": "Notte di temporale in quasi bianco e nero (omaggio al film): castello su uno sperone di roccia, un fulmine verde-acqua colpisce il parafulmine della torre; in primo piano, su un tavolo da laboratorio con leve e bobine, un cilindro e un bastone da tip tap. Titolo in carattere horror anni '30 (es. Creepster). NON usare volti né il protagonista con la Creatura (locandina ufficiale).",
-    "voce": "Frankenstein Junior, di Mel Brooks. Tutto in due minuti."
+    "voce": "Frankenstein Junior, di Mel Brooks: il nipote di Frankenstein ci riprova."
   },
   "capitoli": [
     {
@@ -21,7 +21,7 @@
       "durata": 10,
       "scena": "Aula di anatomia a gradoni, lavagna con il disegno di un cervello e la scritta 'FRANKENSTIN' sottolineata due volte; sulla cattedra un bisturi e una lettera con sigillo di ceralacca 'Testamento – Transilvania'.",
       "sottotitoli": [
-        "Anni '30: Frederick insegna medicina",
+        "Negli anni '30 Frederick insegna medicina",
         "ed è nipote del barone Frankenstein,",
         "ma si fa chiamare «Frankenstin»",
         "perché si vergogna del nonno, che creò un mostro.",
@@ -74,7 +74,7 @@
       "durata": 10,
       "scena": "Deposito di barattoli sotto vetro al chiaro di luna, uno a terra in frantumi; sul ripiano un barattolo con l'etichetta 'ANORMALE'; fuori dalla finestra, un patibolo vuoto sotto la pioggia.",
       "sottotitoli": [
-        "Servono un corpo e un cervello:",
+        "Così cercano un corpo e un cervello:",
         "il corpo è un impiccato, preso di notte,",
         "il cervello quello di un genio,",
         "ma Aigor lo fa cadere",
@@ -87,7 +87,7 @@
       "durata": 11,
       "scena": "Laboratorio nella torre durante il temporale: tavolo operatorio sollevato verso il tetto aperto, bobine, scintille, leve, fulmini verde-acqua; poi il tavolo riabbassato e le cinghie di cuoio che si tendono e saltano.",
       "sottotitoli": [
-        "Una notte di tempesta",
+        "Poi, in una notte di tempesta,",
         "il tavolo con il corpo sale verso i fulmini",
         "ma torna giù immobile,",
         "e Frederick pensa di aver fallito.",
@@ -101,9 +101,9 @@
       "durata": 10,
       "scena": "Capanna di legno nel bosco: zuppa rovesciata e fumante sul tavolo, una tazza in frantumi, un sigaro spento accanto a un fiammifero acceso; un violino appeso alla parete.",
       "sottotitoli": [
-        "Il fuoco fa infuriare la Creatura;",
-        "Frau Blücher la libera col violino.",
-        "Fugge da un eremita cieco",
+        "Il fuoco fa infuriare la Creatura,",
+        "che, liberata da Frau Blücher col violino,",
+        "fugge da un eremita cieco",
         "che, per aiutarla, le rovescia la zuppa bollente",
         "e le accende il dito invece del sigaro."
       ]
@@ -114,12 +114,12 @@
       "durata": 11,
       "scena": "Palcoscenico di un teatro anni '30: sipario di velluto, due cilindri e due bastoni in scena, scritta luminosa 'PUTTIN' ON THE RITZ'; un riflettore che esplode in una pioggia di scintille; catene sul palco.",
       "sottotitoli": [
-        "Frederick la calma con la musica",
+        "Ritrovata, Frederick la calma con la musica",
         "e la presenta a teatro agli scienziati,",
         "in frac e cilindro,",
         "per un numero di tip tap.",
-        "Poi esplode un riflettore: la Creatura si spaventa",
-        "e aggredisce il pubblico, finendo in catene."
+        "ma un riflettore esplode e la Creatura, spaventata,",
+        "aggredisce il pubblico, finendo in catene."
       ]
     },
     {
@@ -128,7 +128,7 @@
       "durata": 10,
       "scena": "Stanza da sposa nel castello: valigie e cappelliere appena arrivate, una parrucca bianca e cotonata sul manichino, un lampo che illumina una finestra spalancata con le tende al vento e le catene spezzate a terra.",
       "sottotitoli": [
-        "Arriva Elizabeth, la fidanzata di Frederick,",
+        "Intanto arriva Elizabeth, fidanzata di Frederick,",
         "che non si fa abbracciare: rovina il trucco.",
         "La Creatura spezza le catene e la rapisce,",
         "ma tra i due, a sorpresa,",
@@ -142,7 +142,7 @@
       "scena": "Il castello di notte assediato da decine di torce in fila sulla collina; nel laboratorio due elmetti collegati da cavi, una leva abbassata e una scarica verde-acqua tra le bobine.",
       "sottotitoli": [
         "Il villaggio assalta il castello con le torce:",
-        "Frederick richiama la Creatura con la musica",
+        "Frederick la richiama con la musica",
         "e con una scarica le dona parte del suo cervello,",
         "così la Creatura parla e la folla si calma."
       ]
@@ -153,9 +153,9 @@
       "durata": 10,
       "scena": "Mattina luminosa sul castello: confetti e fiori sui gradini, una poltrona con il Wall Street Journal aperto, occhiali da lettura e una tazza fumante; sul davanzale due fedi nuziali.",
       "sottotitoli": [
-        "E tutto finisce bene:",
+        "Alla fine va tutto bene:",
         "Elizabeth sposa la Creatura,",
-        "che ora è colta e legge il giornale della Borsa,",
+        "che ora legge perfino il giornale della Borsa,",
         "e Frederick sposa Inga, la sua assistente;",
         "nello scambio, anche lui ha preso qualcosa dalla Creatura."
       ]
@@ -163,7 +163,7 @@
   ],
   "finale": {
     "durata": 4,
-    "immagine": "Il castello della copertina all'alba dopo il temporale, parafulmine fumante, cilindro e bastone appoggiati sui gradini; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo film arriva presto.'"
+    "immagine": "Il castello della copertina all'alba dopo il temporale, parafulmine fumante, cilindro e bastone appoggiati sui gradini; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
   "musica": "Originale e strumentale: valzer gotico per violino solo (il tema che calma la Creatura), organo e timpani per i temporali, un breve intermezzo swing con tip tap per lo spettacolo; effetti su fulmini, nitriti, barattolo rotto, riflettore che esplode; niente brani del film."
 }
