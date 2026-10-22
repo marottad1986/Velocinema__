@@ -8,7 +8,7 @@ import { suona, colpo, crescendo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
-export const strumenti = ['violino_solo', 'organo', 'organo_pieno', 'violini_pizz', 'celli_pizz', 'contrabbasso_pizz', 'grancassa', 'glockenspiel', 'gong', 'piatto_sospeso'];
+export const strumenti = ['violino_solo', 'organo', 'organo_pieno', 'violini_pizz', 'celli_pizz', 'contrabbasso_pizz', 'timpani', 'glockenspiel', 'gong', 'piatto_sospeso'];
 export const effetti = ['tuono_classico', 'tuono_secco', 'tuono_forte', 'tuono_breve', 'scariche', 'scintille', 'ronzio_tesla', 'pioggia_vento',
   'telo', 'colpi_legno', 'vento_leggero', 'vento_raffiche', 'carro', 'lupo', 'colpi_cavi', 'nitriti', 'nitriti_paura', 'legno_cigolio', 'porta_sbatte',
   'vetri', 'metallo_colpi', 'fuoco', 'torcia', 'ceramica', 'fiammifero', 'applauso_breve', 'catene', 'sacchi', 'campane_festa'];
@@ -34,11 +34,9 @@ const organ = (mix, m, { t, dur, vel = 40, pan = 0, rev = 0.6, gain = 1 }) =>
 const pizz = (mix, m, { t, vel = 50, pan = 0, gain = 1 }) =>
   suona(mix, m < 40 ? 'contrabbasso_pizz' : m < 55 ? 'celli_pizz' : 'violini_pizz', m, { t, dur: 0.5, vel: vel * 1.5, pan, rev: 0.35, gain: gain * 1.8, release: 0.3 });
 
-/** Timpano: grancassa d'orchestra con il contrabbasso pizzicato sulla nota (VSCO non ha timpani intonati). */
-const timp = (mix, m, { t, vel = 60, gain = 1 }) => {
-  colpo(mix, 'grancassa', vel > 56 ? 'bdrum_f' : 'bdrum_mp', { t, vel: 100, gain: gain * 0.7, rev: 0.4, seed: m });
-  suona(mix, 'contrabbasso_pizz', m + 12, { t, dur: 0.8, vel: vel * 1.6, gain: gain * 0.9, rev: 0.4, release: 0.4 });
-};
+/** Timpano intonato (VCSL), un'ottava sopra la nota dello spartito (registro reale dei timpani). */
+const timp = (mix, m, { t, vel = 60, gain = 1 }) =>
+  suona(mix, 'timpani', m + 12, { t, dur: 1.4, vel: vel * 1.6, gain: gain * 1.0, rev: 0.45, release: 0.6, seed: m });
 
 /** Campanella: glockenspiel. */
 const bell = (mix, m, { t, vel = 50, pan = 0, gain = 1 }) =>
