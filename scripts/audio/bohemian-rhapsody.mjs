@@ -3,10 +3,22 @@
 // Percorso, come nel brano: coro di voci sovrapposte senza strumenti → ballata al pianoforte con basso e batteria
 // leggera → assolo di chitarre armonizzate → opera con accordi staccati del pianoforte, cori che si rispondono da
 // sinistra a destra e timpani → rock pesante con riff e chitarre gemelle → coda al pianoforte e gong.
-// Le voci sono sintetizzate con formanti (vocali «a», «o», «u»), doppiate e allargate come le sovrapposizioni in studio.
+// Pianoforte a coda, timpani, batteria e gong sono campionati (VCSL e VSCO-2 CE, CC0), il basso è un contrabbasso
+// pizzicato. Le voci restano sintetizzate con formanti (vocali «a», «o», «u»), doppiate e allargate come le
+// sovrapposizioni in studio, e così le chitarre elettriche distorte: nelle librerie CC0 non ci sono cori né chitarre.
+// Un solo tempo (70 bpm) per tutto il video: ballata a passo pieno, opera e rock a passo doppio (140).
+// Effetti registrati (archivio CC0, scripts/audio/effetti.mjs).
 // Effetti agganciati agli eventi delle scene in src/scenes/bohemian-rhapsody/.
-import { put, rng, drum, note, thunder, whoosh, swell, pop, chalk, lockClick, rainHiss, radioStatic, channelClick, doorCreak, thud, FX } from './synth.mjs';
+import { put, rng, chalk, pop, channelClick, FX } from './synth.mjs';
+import { suona, colpo, crescendo } from './campioni.mjs';
+import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
+
+export const strumenti = ['pianoforte_coda', 'contrabbasso_pizz', 'timpani', 'rullante', 'cassa', 'charleston', 'piatto_crash', 'gong', 'piatto_sospeso'];
+export const effetti = ['tuono_classico', 'tuono_secco', 'tuono_forte', 'tuono_breve', 'telo', 'scatti', 'disturbo', 'pioggia_dura', 'porta_cigolio',
+  'colpi_legno', 'passaggio', 'radio_sintonia'];
+/** Studio con una bella coda (le sovrapposizioni in sala). */
+export const sala = { rt60: 2.4, brillo: 7000, predelay: 0.025, wet: 0.5 };
 
 const TAU = Math.PI * 2;
 const SR = 44100;
@@ -65,18 +77,13 @@ const choir = (mix, notes, { t, dur, vel = 40, vowel = 'a', layers = 2, width = 
   });
 };
 
-/** Pianoforte: armoniche con decadimento più rapido in alto. */
-const piano = (mix, m, { t, dur = 1.5, vel = 60, pan = 0, rev = 0.45, gain = 1 }) => {
-  const f = mtof(m);
-  const tau = Math.max(0.5, 2.6 - m * 0.02);
-  put(mix, t, Math.ceil((Math.min(dur, 4) + 0.4) * SR), (i) => {
-    const x = i / SR;
-    let s = 0;
-    for (let h = 1; h <= 6; h++) s += Math.sin(TAU * f * h * Math.sqrt(1 + 0.0004 * h * h) * x) * Math.exp(-x / (tau / (0.6 + h * 0.5))) / h ** 1.15;
-    const env = Math.min(1, x / 0.003) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / 0.25));
-    return s * env;
-  }, { gain: gain * vamp(vel) * 0.55, pan, rev });
-};
+/** Pianoforte a coda (Steinway, VCSL). */
+const piano = (mix, m, { t, dur = 1.5, vel = 60, pan = 0, rev = 0.45, gain = 1 }) =>
+  suona(mix, 'pianoforte_coda', m, { t, dur: Math.min(dur, 4), vel: vel * 1.15, pan, rev, gain: gain * 0.6, release: 0.3 });
+
+/** Basso: contrabbasso pizzicato. */
+const bassNote = (mix, m, { t, dur, vel }) =>
+  suona(mix, 'contrabbasso_pizz', m < 28 ? m + 12 : m, { t, dur, vel: vel * 1.6, gain: 1.8, rev: 0.15, release: 0.15 });
 
 /** Chitarra elettrica distorta con vibrato e una piccola salita iniziale (bending); `mute` = palm muting. */
 const guitar = (mix, m, { t, dur, vel = 40, pan = 0, gain = 1, bend = 0, mute = false, rev = 0.3 }) => {
@@ -100,55 +107,29 @@ const guitar = (mix, m, { t, dur, vel = 40, pan = 0, gain = 1, bend = 0, mute = 
 /** Bicordo (quinta + ottava) per il riff. */
 const power = (mix, root, o) => [0, 7, 12].forEach((v, j) => guitar(mix, root + v, { ...o, pan: (o.pan ?? 0) + (j - 1) * 0.15 }));
 
-/** Timpano: sinusoide grave che cala leggermente, con colpo di bacchetta. */
-const timpani = (mix, m, t, vel = 60, seed = 3) => {
-  const f = mtof(m);
-  const r = rng(seed + Math.round(t * 1000));
-  put(mix, t, Math.ceil(1.6 * SR), (i) => {
-    const x = i / SR;
-    const ff = f * (1 + 0.04 * Math.exp(-x / 0.05));
-    return (Math.sin(TAU * ff * x) + 0.4 * Math.sin(TAU * ff * 1.5 * x) * Math.exp(-x / 0.3) + (r() * 2 - 1) * 0.5 * Math.exp(-x / 0.01)) * Math.exp(-x / 0.6);
-  }, { gain: vamp(vel) * 0.8, rev: 0.5 });
+/** Timpano intonato (VCSL). */
+const timpani = (mix, m, t, vel = 60, seed = 3) => suona(mix, 'timpani', m, { t, dur: 1.5, vel: vel * 1.6, gain: 1.4, rev: 0.5, release: 0.6, seed });
+
+/** Rullante (VCSL). */
+const snare = (mix, t, vel = 60, seed = 5) => colpo(mix, 'rullante', vel > 55 ? 'v6' : vel > 40 ? 'v5' : 'v4', { t, vel: 100, gain: 0.6 * (vel / 60), pan: 0.05, rev: 0.25, seed: seed + Math.round(t * 100) });
+
+/** Piatto crash (VCSL). */
+const crash = (mix, t, vel = 50, seed = 9) => colpo(mix, 'piatto_crash', vel > 60 ? 'ff' : 'mf', { t, vel: 100, gain: 0.35 * (vel / 60), pan: 0.35, rev: 0.35, dur: 2.5, release: 0.8, seed });
+
+/** Batteria (stesse chiamate della versione sintetica): cassa, charleston chiuso. */
+const drum = (mix, kind, t, vel = 50, seed = 1) => {
+  const r = seed + Math.round(t * 100);
+  if (kind === 'kick' || kind === 'softkick') colpo(mix, 'cassa', vel > 55 ? 'v5' : 'v3', { t, vel: 100, gain: (kind === 'kick' ? 0.8 : 0.55) * (vel / 60), rev: 0.15, seed: r });
+  else colpo(mix, 'charleston', vel > 35 ? 'v3' : 'v2', { t, vel: 100, gain: 0.3 * (vel / 50), pan: 0.3, rev: 0.15, seed: r });
 };
 
-/** Rullante: rumore e un tono, coda breve. */
-const snare = (mix, t, vel = 60, seed = 5) => {
-  const r = rng(seed + Math.round(t * 1000));
-  let lp = 0;
-  put(mix, t, Math.ceil(0.25 * SR), (i) => {
-    const x = i / SR;
-    const n = r() * 2 - 1;
-    lp += 0.25 * (n - lp);
-    return ((n - lp * 0.6) * Math.exp(-x / 0.07) + 0.6 * Math.sin(TAU * 190 * x) * Math.exp(-x / 0.04));
-  }, { gain: vamp(vel) * 0.5, pan: 0.05, rev: 0.25 });
-};
+/** Gong (VSCO). */
+const gong = (mix, t, { vel = 70, len = 6, seed = 5 } = {}) =>
+  colpo(mix, 'gong', vel > 45 ? 'gong_hit_mf' : 'gong_hit_p', { t, vel: 100, gain: 0.6 * (vel / 50), rev: 0.55, dur: len, release: 1.5, seed });
 
-/** Piatto crash: rumore acuto con coda lunga. */
-const crash = (mix, t, vel = 50, seed = 9) => {
-  const r = rng(seed + Math.round(t * 1000));
-  let lp = 0;
-  put(mix, t, Math.ceil(2.2 * SR), (i) => {
-    const x = i / SR;
-    const n = r() * 2 - 1;
-    lp += 0.5 * (n - lp);
-    return (n - lp) * Math.exp(-x / 0.7) * Math.min(1, x / 0.002);
-  }, { gain: vamp(vel) * 0.35, pan: 0.35, rev: 0.35 });
-};
-
-/** Gong: parziali inarmoniche gravi con battimenti e un lieve crescendo dopo il colpo, coda lunga. */
-const gong = (mix, t, { vel = 70, len = 6, seed = 5 } = {}) => {
-  const r = rng(seed);
-  const parts = [55, 87.3, 118.6, 151.2, 203.7, 266.1, 341.9, 452.3].map((f, k) => ({ f: f * (1 + (r() - 0.5) * 0.01), a: 1 / (1 + k * 0.6), tau: len * (0.9 - k * 0.08), ph: r() * TAU }));
-  let n = 0;
-  put(mix, t, Math.ceil(len * SR), (i) => {
-    const x = i / SR;
-    n = 0.97 * n + 0.03 * (r() * 2 - 1);
-    let s = 0;
-    for (const p of parts) s += p.a * Math.sin(TAU * p.f * x + p.ph + 0.6 * Math.sin(TAU * 0.7 * x)) * Math.exp(-x / p.tau);
-    const bloom = 0.6 + 0.4 * Math.min(1, x / 0.6);
-    return (s * bloom + n * 4 * Math.exp(-x / 0.08)) * Math.min(1, x / 0.003);
-  }, { gain: FX * vamp(vel) * 0.35, rev: 0.6 });
-};
+const BPM = 70;
+const GRID = (4 * 60) / BPM;
+const snap = (t) => Math.round(t / GRID) * GRID;
 
 // ---------------------------------------------------------------- materiale musicale (inventato qui)
 
@@ -201,7 +182,9 @@ export default (mix, T) => {
   const R = rng(1975);
 
   /** Coro senza strumenti: accordi lunghi della ballata. layers cresce = più sovrapposizioni. */
-  const acappella = (from, to, { vel = 40, layers = 2, high = false, vowel = 'a', bar = 2.6 } = {}) => {
+  const acappella = (from, to, { vel = 40, layers = 2, high = false, vowel = 'a' } = {}) => {
+    from = snap(from); to = snap(to);
+    const bar = GRID;
     for (let t = from, b = 0; t < to - 0.4; t += bar, b++) {
       const ch = BALLAD[b % 4];
       const d = Math.min(bar * 1.05, to - t);
@@ -212,8 +195,9 @@ export default (mix, T) => {
   };
 
   /** Ballata: arpeggi del pianoforte, basso, melodia rada; drums = batteria leggera; solo = assolo di chitarre gemelle. */
-  const ballad = (from, to, { bpm = 72, vel = 46, bass = 0, drums = 0, mel = 0, choirVel = 0, solo = 0, chords = BALLAD } = {}) => {
-    const beat = 60 / bpm, bar = 4 * beat;
+  const ballad = (from, to, { vel = 46, bass = 0, drums = 0, mel = 0, choirVel = 0, solo = 0, chords = BALLAD } = {}) => {
+    from = snap(from); to = snap(to);
+    const beat = 60 / BPM, bar = 4 * beat;
     for (let t = from, b = 0; t < to - 0.3; t += bar, b++) {
       const ch = chords[b % 4];
       const v = voicing(ch, 58);
@@ -223,7 +207,7 @@ export default (mix, T) => {
         piano(mix, v[[0, 1, 2, 3, 2, 1, 0, 1][k]], { t: tk, dur: beat * 0.9, vel: vel * (k === 0 ? 1.08 : 0.9), pan: 0.1 });
       }
       piano(mix, ch[0] - 12, { t, dur: bar, vel: vel * 0.95, pan: -0.15 });
-      if (bass) note(mix, 'bass', mtof(ch[0] - 24), { t, dur: bar * 0.95, vel: bass });
+      if (bass) bassNote(mix, ch[0] - 24, { t, dur: bar * 0.95, vel: bass });
       if (drums) for (let k = 0; k < 4; k++) {
         const tk = t + k * beat;
         if (tk >= to - 0.1) break;
@@ -253,8 +237,9 @@ export default (mix, T) => {
   };
 
   /** Opera: accordi staccati del pianoforte a ottavi, cori che si rispondono (sinistra grave «o», destra acuta «a»), timpani. */
-  const opera = (from, to, { bpm = 132, vel = 46, choirVel = 44, timp = 50, full = false } = {}) => {
-    const beat = 60 / bpm, bar = 4 * beat;
+  const opera = (from, to, { vel = 46, choirVel = 44, timp = 50, full = false } = {}) => {
+    from = snap(from); to = snap(to);
+    const beat = 30 / BPM, bar = 4 * beat; // passo doppio
     for (let t = from, b = 0; t < to - 0.2; t += bar, b++) {
       const ch = OPERA[b % 4];
       for (let k = 0; k < 8; k++) {
@@ -273,14 +258,15 @@ export default (mix, T) => {
   };
 
   /** Rock: riff di bicordi a ottavi, batteria piena, chitarre gemelle sopra. */
-  const rock = (from, to, { bpm = 140, vel = 50, drums = 70, lead = 0, shift = 0 } = {}) => {
-    const beat = 60 / bpm, e = beat / 2;
+  const rock = (from, to, { vel = 50, drums = 70, lead = 0, shift = 0 } = {}) => {
+    from = snap(from); to = snap(to);
+    const beat = 30 / BPM, e = beat / 2; // passo doppio
     for (let t = from, bar = 0; t < to - 0.2; t += 8 * beat, bar++) {
       RIFF.forEach((m, k) => {
         const tk = t + k * e;
         if (m === null || tk >= to - 0.1) return;
         power(mix, m + shift, { t: tk, dur: e * 0.85, vel, mute: k % 4 !== 0, pan: -0.2 });
-        note(mix, 'bass', mtof(m + shift - 12), { t: tk, dur: e * 0.9, vel: vel - 6 });
+        bassNote(mix, m + shift - 12, { t: tk, dur: e * 0.9, vel: vel - 6 });
       });
       for (let k = 0; k < 8; k++) {
         const tk = t + k * beat;
@@ -307,73 +293,80 @@ export default (mix, T) => {
   acappella(0.2, T.canzone, { vel: 42, layers: 2, high: true });
   // una canzone impossibile: il coro continua, poi entra il pianoforte della ballata
   acappella(T.canzone, C('canzone', 2), { vel: 38, layers: 2 });
-  ballad(C('canzone', 2), T.registrazione, { bpm: 76, vel: 48, mel: 42 });
+  ballad(C('canzone', 2), T.registrazione, { vel: 48, mel: 42 });
   // registrazione: le voci si sovrappongono sempre di più (le sovrapposizioni in studio)
-  acappella(T.registrazione, C('registrazione', 2), { vel: 36, layers: 2, bar: 2.2 });
-  acappella(C('registrazione', 2), C('registrazione', 3), { vel: 40, layers: 4, high: true, bar: 2.2 });
-  acappella(C('registrazione', 3), T.confessione, { vel: 42, layers: 6, high: true, bar: 2.2 });
+  acappella(T.registrazione, C('registrazione', 2), { vel: 36, layers: 2 });
+  acappella(C('registrazione', 2), C('registrazione', 3), { vel: 40, layers: 4, high: true });
+  acappella(C('registrazione', 3), T.confessione, { vel: 42, layers: 6, high: true });
   // confessione: la ballata vera, poi basso e batteria, poi l'assolo delle chitarre gemelle
-  ballad(T.confessione, C('confessione', 2), { bpm: 68, vel: 46, choirVel: 30 });
-  ballad(C('confessione', 2), C('confessione', 4), { bpm: 70, vel: 46, bass: 44, drums: 34, mel: 38 });
-  ballad(C('confessione', 4), T.opera, { bpm: 70, vel: 40, bass: 46, drums: 40, solo: 46 });
+  ballad(T.confessione, C('confessione', 2), { vel: 46, choirVel: 30 });
+  ballad(C('confessione', 2), C('confessione', 4), { vel: 46, bass: 44, drums: 34, mel: 38 });
+  ballad(C('confessione', 4), T.opera, { vel: 40, bass: 46, drums: 40, solo: 46 });
   // opera: staccati, cori a botta e risposta, timpani; poi tutto il coro insieme
-  opera(T.opera, C('opera', 3), { bpm: 132, vel: 40, choirVel: 38, timp: 44 });
-  opera(C('opera', 3), T.rock, { bpm: 132, vel: 42, choirVel: 40, timp: 50, full: true });
+  opera(T.opera, C('opera', 3), { vel: 40, choirVel: 38, timp: 44 });
+  opera(C('opera', 3), T.rock, { vel: 42, choirVel: 40, timp: 50, full: true });
   // rock: riff e chitarre gemelle; poi coda al pianoforte
-  rock(T.rock, C('rock', 3), { bpm: 140, vel: 52, drums: 72, lead: 42 });
-  ballad(C('rock', 3), T.significato, { bpm: 64, vel: 40, choirVel: 22, chords: [[52, MAJ], [47, MAJ], [49, MIN], [45, MAJ]] });
+  rock(T.rock, C('rock', 3), { vel: 52, drums: 72, lead: 42 });
+  ballad(C('rock', 3), T.significato, { vel: 40, choirVel: 22, chords: [[52, MAJ], [47, MAJ], [49, MIN], [45, MAJ]] });
   // significato: di nuovo il coro senza strumenti, sospeso
-  acappella(T.significato, T.radio, { vel: 32, layers: 2, vowel: 'u', bar: 3 });
+  acappella(T.significato, T.radio, { vel: 32, layers: 2, vowel: 'u' });
   // radio: la ballata con basso e batteria leggera; in onda si allarga con il coro
-  ballad(T.radio, C('radio', 3), { bpm: 84, vel: 42, bass: 40, drums: 30, mel: 36 });
-  ballad(C('radio', 3), T['seconda-vita'], { bpm: 84, vel: 46, bass: 44, drums: 38, mel: 40, choirVel: 30 });
+  ballad(T.radio, C('radio', 3), { vel: 42, bass: 40, drums: 30, mel: 36 });
+  ballad(C('radio', 3), T['seconda-vita'], { vel: 46, bass: 44, drums: 38, mel: 40, choirVel: 30 });
   // seconda vita: pianoforte raccolto, poi in auto torna il rock (si scuote la testa), alla fine il coro in maggiore
-  ballad(T['seconda-vita'], C('seconda-vita', 2), { bpm: 64, vel: 38 });
-  rock(C('seconda-vita', 2), C('seconda-vita', 4), { bpm: 140, vel: 48, drums: 64 });
-  ballad(C('seconda-vita', 4), T.finale, { bpm: 76, vel: 46, bass: 44, drums: 36, choirVel: 34, chords: LIFT, solo: 36 });
+  ballad(T['seconda-vita'], C('seconda-vita', 2), { vel: 38 });
+  rock(C('seconda-vita', 2), C('seconda-vita', 4), { vel: 48, drums: 64 });
+  ballad(C('seconda-vita', 4), T.finale, { vel: 46, bass: 44, drums: 36, choirVel: 34, chords: LIFT, solo: 36 });
 
   // finale: accordo di Do a voci piene e il gong che si spegne
-  const F = T.finale;
+  const F = snap(T.finale); // sulla griglia, dove finisce l'ultima sezione
   choir(mix, [48, 55, 60, 64, 67, 72], { t: F, dur: 3.3, vel: 42, layers: 3, att: 0.5, seed: 500 });
   piano(mix, 48, { t: F, dur: 3.5, vel: 46, pan: -0.1 });
   gong(mix, F - 0.6, { vel: 34, len: 5, seed: 13 });
 
   // ---------------------------------------------------------------- effetti sonori (tempi delle scene)
+  const TUONI = [['tuono_classico', 0.98, 5], ['tuono_secco', 0.78, 5], ['tuono_forte', 0.55, 5], ['tuono_breve', 1.47, 2.6]];
+  let nt = 0;
+  const tuono = (t, power) => {
+    const [id, da, durata] = TUONI[nt++ % TUONI.length];
+    clip(mix, id, { t: t + 0.1, da, durata, gain: 0.7 * power, fadeIn: 0.03, fadeOut: 1.2, rev: 0.35, pan: 0.1 });
+  };
+  const scatto = (t, gain = 0.25, da = 12.68, rate = 1, pan = 0) => clip(mix, 'scatti', { t, da, durata: 0.15, gain, rate, pan, rev: 0.2 });
   // copertina: tuono sul fondale, colpo di gong
-  thunder(mix, 0.9, 0.6, 3);
+  tuono(0.9, 0.6);
   gong(mix, 1.1, { vel: 46, len: 5, seed: 3 });
   // soggiorno: fogli che volano
-  whoosh(mix, C('canzone', 4) + 0.1, 1.2, { vel: 36, lo: 800, hi: 4000 });
+  clip(mix, 'telo', { t: C('canzone', 4) + 0.1, da: 4.57, durata: 1.0, gain: 0.25, fadeOut: 0.3, rev: 0.2 });
   // registrazione: il nastro parte, i tre microfoni, il contatore a 180, il nastro che si consuma
-  lockClick(mix, T.registrazione + 0.3, 50);
-  [0, 1, 2].forEach((i) => pop(mix, C('registrazione', 1) + 0.25 + i * 0.6, 40, { pitch: i * 2, pan: -0.4 + i * 0.4 }));
-  swell(mix, C('registrazione', 3) + 0.7, 1.6, { vel: 40 });
-  whoosh(mix, C('registrazione', 4) + 0.2, 1.4, { vel: 30, lo: 2000, hi: 7000 });
-  // confessione: pioggia, la porta che si apre, l'assolo
-  rainHiss(mix, T.confessione, T.opera, { power: 0.35, fade: 1.2 });
-  doorCreak(mix, C('confessione', 3) + 0.6, 1.6, { vel: 40 });
+  scatto(T.registrazione + 0.3, 0.35, 6.49);
+  [0, 1, 2].forEach((i) => scatto(C('registrazione', 1) + 0.25 + i * 0.6, 0.2, 12.68, 1 + i * 0.1, -0.4 + i * 0.4));
+  crescendo(mix, C('registrazione', 3) + 0.7, 1.6, { gain: 0.35 });
+  clip(mix, 'disturbo', { t: C('registrazione', 4) + 0.2, da: 2, durata: 1.4, gain: 0.15, fadeIn: 0.3, fadeOut: 0.6, rev: 0.2 });
+  // confessione: pioggia, la porta che si apre
+  clip(mix, 'pioggia_dura', { t: T.confessione, da: 5.4, durata: T.opera - T.confessione, gain: 0.8, fadeIn: 1.2, fadeOut: 1.2, largo: 3, rev: 0.12 });
+  clip(mix, 'porta_cigolio', { t: C('confessione', 3) + 0.6, da: 10.68, durata: 1.6, gain: 0.35, fadeOut: 0.4, rev: 0.3, pan: 0.3 });
   // opera: due tuoni (inizio e Belzebù), la botola che si apre
-  thunder(mix, C('opera', 0) + 0.25, 0.7, 5);
-  thud(mix, C('opera', 4) + 0.1, 50, { bright: 700 });
-  thunder(mix, C('opera', 4) + 0.3, 0.8, 9);
-  whoosh(mix, C('opera', 4) + 0.2, 1.6, { vel: 44, lo: 150, hi: 1200 });
+  tuono(C('opera', 0) + 0.25, 1.2);
+  clip(mix, 'colpi_legno', { t: C('opera', 4) + 0.1, da: 12.55, durata: 0.8, gain: 0.45, fadeOut: 0.3, rev: 0.4 });
+  tuono(C('opera', 4) + 0.3, 1.3);
+  clip(mix, 'passaggio', { t: C('opera', 4) + 0.2 - 0.4, da: 12.27, durata: 2.0, gain: 0.3, fadeOut: 0.6, rev: 0.4 });
   // rock: esplosione iniziale, il gong finale
   crash(mix, C('rock', 0) + 0.25, 80);
-  thunder(mix, C('rock', 0) + 0.25, 0.4, 13);
+  tuono(C('rock', 0) + 0.25, 0.4);
   gong(mix, C('rock', 4) + 1.2, { vel: 52, len: 6, seed: 7 });
   // significato: il punto interrogativo disegnato, il cassetto, le lampadine che si spengono
   [0, 0.5, 1.0, 1.5, 2.45].forEach((d, i) => chalk(mix, C('significato', 0) + 0.4 + d, 34 - i * 2, 23 + i));
-  thud(mix, C('significato', 3) + 1.1, 34, { bright: 900 });
+  clip(mix, 'colpi_legno', { t: C('significato', 3) + 1.1, da: 1.4, durata: 0.4, gain: 0.25, rev: 0.3 });
   const RB = rng(6161);
   for (let i = 0; i < 14; i++) pop(mix, C('significato', 4) + RB() * 0.9, 22, { pitch: -4 + (i % 5), pan: -0.5 + (i % 7) * 0.15 });
   // radio: fruscio della radio, ON AIR, telefono, lettere
-  radioStatic(mix, T.radio + 0.1, 1.2, { vel: 36 });
+  clip(mix, 'radio_sintonia', { t: T.radio + 0.1, da: 1.5, durata: 1.2, gain: 0.3, fadeIn: 0.03, fadeOut: 0.15, pan: -0.15, rev: 0.12 });
   channelClick(mix, C('radio', 3), 50);
   for (let i = 0; i < 8; i++) pop(mix, C('radio', 3) + 0.4 + i * 0.22, 30, { pitch: 12 + (i % 2) * 3, pan: 0.5 });
-  whoosh(mix, C('radio', 3) + 0.3, 1.2, { vel: 30, lo: 1500, hi: 5000 });
-  swell(mix, C('radio', 4) + 1.2, 1.2, { vel: 36 });
+  clip(mix, 'telo', { t: C('radio', 3) + 0.3, da: 12.85, durata: 0.9, gain: 0.2, fadeOut: 0.3, rev: 0.2 });
+  crescendo(mix, C('radio', 4) + 1.2, 1.2, { gain: 0.3 });
   // seconda vita: la radio si accende, la cassetta parte, la città si illumina
   channelClick(mix, C('seconda-vita', 1), 46);
-  lockClick(mix, C('seconda-vita', 2), 54);
-  swell(mix, C('seconda-vita', 4) + 0.8, 1.6, { vel: 40 });
+  scatto(C('seconda-vita', 2), 0.35, 6.49);
+  crescendo(mix, C('seconda-vita', 4) + 0.8, 1.6, { gain: 0.35 });
 };
