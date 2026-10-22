@@ -115,7 +115,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Un solo tempo (bpm) per film, su una griglia continua: le scene lente vanno a metà passo, quelle concitate a passo
   doppio, e i cambi di sezione cadono sulla battuta più vicina all'inizio del capitolo (mai tempi diversi per capitolo:
   si sente la musica accelerare e rallentare). Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
-  Frankenstein Junior 104.
+  Frankenstein Junior 104; Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 a metà passo).
 - Effetti sonori registrati: `scripts/audio/effetti.mjs` (archivio CC0 di Craig Smith, USC / Sunset Editorial, "SSE Library"
   e "Red Library" su archive.org), scaricati in `campioni/effetti/`; `clip(mix, id, { t, da, durata, gain, lp, largo… })`
   suona un tratto del file (da/durata = presa scelta). Per aggiungere un effetto: voce nel `CATALOGO` con il picco del file.
