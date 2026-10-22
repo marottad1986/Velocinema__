@@ -62,9 +62,11 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   rappresenta sempre. Mai figure, sagome o volti.
 - **Uno schema, non scene**: tutto il video è un unico diagramma che si costruisce frase dopo frase (la camera si sposta
   sulla parte di cui parla la voce e alla fine si allarga sullo schema completo). Lo stile dello schema segue il contenuto
-  spiegato (Dark: parete delle indagini con foto appese, fili rossi, passaggio giallo tratteggiato, fasce degli anni).
-  Vocabolario fisso: foto/oggetto = personaggio o luogo, filo rosso = legame, linea tratteggiata = viaggio nel tempo,
-  biglietto = domanda aperta. JSON: `"schema": true` (niente linea del tempo né cartellini sopra lo schema).
+  spiegato (Dark: albero di famiglia che si annoda, con il passaggio della grotta e un quadrante d'orologio sullo sfondo).
+  Vocabolario fisso: cerchio con oggetto = personaggio, linea = legame (con scritta a mano), tratteggio giallo = viaggio
+  nel tempo, cartellino pieno = colpo di scena, anello rosso = il nodo da capire. Pochi elementi: le scritte che servono
+  a un solo capitolo si spengono alla fine del capitolo; titolo piccolo in alto (64 px) perché lo schema intero stia
+  tra titolo e sottotitoli. JSON: `"schema": true` (niente linea del tempo né cartellini sopra lo schema).
   Valgono luce, texture, particelle e colore di QUALITA.md; la parallasse a piani è sostituita dai movimenti di camera.
 - Capitoli come domande («Come funziona il passaggio?»): ogni capitolo risponde e aggiunge un pezzo allo schema.
 - Elemento fisso che si costruisce capitolo dopo capitolo (es. `linea_tempo` con gli anni, l'`anno` del capitolo
@@ -72,7 +74,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Finale: la voce dice il riassunto «in una frase» (`finale.voce`); per le serie si annuncia la stagione successiva.
 - Codice: sigla in `src/components/Sigla.tsx` (la copertina del film riceve `t` già spostato di 1,5 s); linea del tempo
   e cartellini dei personaggi in `src/components/ChapterOverlay.tsx`, attivi quando il JSON ha `linea_tempo` e `personaggi`.
-  Primo episodio: `films/dark-stagione-1.json`, schema in `src/scenes/dark-stagione-1/Parete.tsx`, musica in `scripts/audio/dark-stagione-1.mjs`.
+  Primo episodio: `films/dark-stagione-1.json`, schema in `src/scenes/dark-stagione-1/Albero.tsx`, musica in `scripts/audio/dark-stagione-1.mjs`.
 - Priorità: serie intricate (Dark, Lost, Westworld, Severance, Twin Peaks, 1899; una stagione per video se lunghe),
   film (Inception, Tenet, Mulholland Drive, Donnie Darko, Primer). Libri solo dopo ~10 episodi.
 

@@ -128,10 +128,10 @@ Look da fantascienza intima: blu profondo nello spazio, polvere color sabbia sul
 - Il messaggio: Morse dorato in sincronia con la lancetta, stazione spaziale con case, due orologi, navetta verso Amelia.
 
 ### Dark, stagione 1 (Spiegato semplice, schema)
-Un'unica parete delle indagini (`src/scenes/dark-stagione-1/Parete.tsx`) che si riempie frase dopo frase: intonaco scuro
-verde-grigio, fasce degli anni con nastro di carta (1953, 1986, 2019, 2052), polaroid appese con puntine rosse che mostrano
-gli oggetti dei personaggi (mai figure), fili rossi con scritte a gesso per i legami, linea gialla tratteggiata per il
-passaggio, biglietti per le domande. Luce di lampada che segue la camera, pulviscolo, velo scuro dietro il titolo, grana.
-- Ogni elemento compare con un piccolo rimbalzo quando la voce lo nomina; i fili si tendono in 0,6 s.
-- La camera stringe sull'elemento nominato e si allarga quando serve vedere i legami; alla fine mostra tutta la parete.
-- Non più di un filo nuovo per frase; le scritte non devono finire sopra le foto.
+L'albero che si annoda (`src/scenes/dark-stagione-1/Albero.tsx`): fondo scuro verde-grigio, un quadrante d'orologio
+appena visibile che gira, due famiglie in colonna (Kahnwald, Nielsen), anni dall'alto in basso, il passaggio della
+grotta come colonna gialla tratteggiata a sinistra. Personaggi = cerchi con l'oggetto (mai figure).
+- Ogni nodo compare con un rimbalzo quando la voce lo nomina; il nodo di cui si parla ha l'anello giallo con alone.
+- Il colpo di scena: filo giallo «torna nel 1986» da Mikkel a Michael e anello rosso Michael → Jonas → Martha → Mikkel.
+- Le scritte di un solo capitolo si spengono a fine capitolo; alla fine resta l'albero completo e leggibile.
+- Pulviscolo, grana e vignettatura come le altre scene.
