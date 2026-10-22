@@ -1,5 +1,5 @@
 import type { FilmData, FilmDef } from './types';
-import { ANTON, BEBAS, CINZEL, CREEPSTER, STENCIL, SYNCOPATE } from './lib/fonts';
+import { ANTON, BEBAS, CINZEL, CREEPSTER, PLAYFAIR, SERIF, STENCIL, SYNCOPATE } from './lib/fonts';
 import shutterIsland from '../films/shutter-island.json';
 import laLaLand from '../films/la-la-land.json';
 import trumanShow from '../films/the-truman-show.json';
@@ -10,6 +10,7 @@ import jurassicPark from '../films/jurassic-park.json';
 import harryPotter1 from '../films/harry-potter-pietra-filosofale.json';
 import darkStagione1 from '../films/dark-stagione-1.json';
 import inception from '../films/inception.json';
+import bohemianRhapsody from '../films/bohemian-rhapsody.json';
 import { SHUTTER_ISLAND_SCENES } from './scenes/shutter-island';
 import { Copertina as ShutterCover } from './scenes/shutter-island/Copertina';
 import { Finale as ShutterEnd } from './scenes/shutter-island/Finale';
@@ -35,6 +36,8 @@ import notteStellata from '../quadri/notte-stellata.json';
 import { NOTTE_STELLATA_SCENES, Copertina as NotteCover, Finale as NotteEnd } from './scenes/notte-stellata';
 import grandeOnda from '../quadri/grande-onda.json';
 import { GRANDE_ONDA_SCENES, Copertina as OndaCover, Finale as OndaEnd } from './scenes/grande-onda';
+import { BOHEMIAN_RHAPSODY_SCENES } from './scenes/bohemian-rhapsody';
+import { Copertina as BohemianCover, Finale as BohemianEnd } from './scenes/bohemian-rhapsody/Locandina';
 
 // Registro dei film e dei quadri: un JSON in films/ (o quadri/, vedi QUADRI.md) + le scene in src/scenes/<slug>/.
 // Le scene non ancora ricostruite compaiono come segnaposto.
@@ -51,6 +54,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'inception', data: inception as FilmData, scenes: INCEPTION_SCENES, cover: IncCover, ending: IncEnd, posterFont: BEBAS },
   { slug: 'notte-stellata', data: notteStellata as FilmData, scenes: NOTTE_STELLATA_SCENES, cover: NotteCover, ending: NotteEnd },
   { slug: 'grande-onda', data: grandeOnda as FilmData, scenes: GRANDE_ONDA_SCENES, cover: OndaCover, ending: OndaEnd },
+  { slug: 'bohemian-rhapsody', data: bohemianRhapsody as FilmData, scenes: BOHEMIAN_RHAPSODY_SCENES, cover: BohemianCover, ending: BohemianEnd, posterFont: PLAYFAIR },
 ];
 
 export const getFilm = (slug: string): FilmDef => {

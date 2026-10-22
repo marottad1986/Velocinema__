@@ -55,6 +55,18 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
   canzoni → «Commenta con la canzone che vorresti.»; quadri → «Commenta con il quadro che vorresti.»
 - Mai frasi come «La prossima volta che lo vedi…» (né nel finale né altrove).
 
+## Canzoni spiegate (stesso schema dei film)
+- Un JSON in `films/` come per i film (es. `films/bohemian-rhapsody.json`): `regista` = artista, numero di capitoli libero
+  (l'etichetta diventa "CAPITOLO N DI M"), campo `fonti` obbligatorio con i link che confermano ogni fatto citato.
+- Testi: mai riportare il testo della canzone, nemmeno a pezzi; si racconta con parole proprie. Ammesse solo parole
+  singole o nomi (es. «Scaramouche») per spiegarli nella stessa frase.
+- Significato: distinguere sempre ciò che l'autore ha detto da ciò che ipotizzano critici e biografi («per molti…»,
+  «restano ipotesi»). Se le fonti non concordano su un fatto, non darlo per certo.
+- Persone reali: nessun ritratto, sagoma o caricatura dell'artista; niente copertine di dischi, foto o loghi del gruppo.
+- Musica: solo originale, senza imitare melodia, accordi o ritmo della canzone (meglio anche in un'altra tonalità).
+  Si può richiamare lo stile e la forma: strumenti, sezioni nello stesso ordine, cambi di tempo e di carattere.
+  La canzone vera, se si vuole, si aggiunge al momento della pubblicazione dalla libreria musicale con licenza della piattaforma.
+
 ## Elementi fissi sopra le immagini (capitoli)
 - Barra a capitoli sottile (16 px) sul bordo superiore, un segmento per capitolo proporzionale alla durata,
   riempimento con il colore accento.
@@ -127,7 +139,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   doppio, e i cambi di sezione cadono sulla battuta più vicina all'inizio del capitolo (mai tempi diversi per capitolo:
   si sente la musica accelerare e rallentare). Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
   Frankenstein Junior 104; Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 a metà passo);
-  quadri: Grande onda 88, Notte stellata 92.
+  quadri: Grande onda 88, Notte stellata 92;
+  Bohemian Rhapsody 70 (opera e rock a passo doppio, 140).
 - Effetti sonori registrati: `scripts/audio/effetti.mjs` (archivio CC0 di Craig Smith, USC / Sunset Editorial, "SSE Library"
   e "Red Library" su archive.org), scaricati in `campioni/effetti/`; `clip(mix, id, { t, da, durata, gain, lp, largo… })`
   suona un tratto del file (da/durata = presa scelta). Per aggiungere un effetto: voce nel `CATALOGO` con il picco del file.
