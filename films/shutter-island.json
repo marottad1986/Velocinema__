@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Una fuga impossibile. Un'isola senza uscita.",
     "immagine": "Notte e tempesta; cancello di ferro dell'ospedale in primo piano con un lucchetto arancione aperto al centro; dietro, l'isola con una finestra accesa. Titolo alto e stretto (Anton).",
-    "voce": "Shutter Island, di Martin Scorsese. Tutto in due minuti."
+    "voce": "Shutter Island, di Martin Scorsese: un'indagine in un manicomio su un'isola."
   },
   "capitoli": [
     {
@@ -21,12 +21,12 @@
       "durata": 9,
       "scena": "Traghetto nella nebbia verso l'isola con faro e ospedale.",
       "sottotitoli": [
-        "Boston, 1954.",
-        "Un traghetto nella nebbia.",
-        "A bordo, due agenti federali.",
-        "Teddy Daniels, reduce di guerra,",
-        "segnato dalla morte della moglie.",
-        "E Chuck, il nuovo collega."
+        "Nel 1954",
+        "un traghetto attraversa la nebbia",
+        "con a bordo due agenti federali:",
+        "Teddy Daniels, reduce di guerra",
+        "segnato dalla morte della moglie,",
+        "e Chuck, il suo nuovo collega."
       ]
     },
     {
@@ -35,12 +35,12 @@
       "durata": 9,
       "scena": "Cancello dell'ospedale che si apre, torretta con faro di ricerca, recinzioni di notte.",
       "sottotitoli": [
-        "Destinazione: Ashecliffe,",
-        "manicomio per criminali, su un'isola.",
-        "Guardie, recinzioni, e il padiglione C",
+        "Vanno ad Ashecliffe,",
+        "manicomio per criminali sull'isola,",
+        "con guardie, recinzioni e il padiglione C",
         "per i più pericolosi.",
-        "Le pistole vanno consegnate.",
-        "Il direttore, il dottor Cawley, sorride. Troppo."
+        "Qui devono consegnare le pistole,",
+        "mentre il direttore, il dottor Cawley, sorride troppo."
       ]
     },
     {
@@ -49,14 +49,14 @@
       "durata": 11,
       "scena": "Cella chiusa a chiave, branda, scarpe sotto la branda, lampo dalla finestra con sbarre.",
       "sottotitoli": [
-        "Il caso: una paziente sparita.",
-        "Rachel Solando.",
-        "Aveva annegato i suoi tre figli.",
-        "Stanotte è scomparsa.",
-        "La cella era chiusa da fuori.",
-        "Nessuna guardia l'ha vista.",
-        "E le scarpe? Ancora sotto il letto.",
-        "Rachel è scalza. Su un'isola."
+        "Devono ritrovare una paziente sparita,",
+        "Rachel Solando,",
+        "che aveva annegato i tre figli.",
+        "Stanotte è scomparsa",
+        "da una cella chiusa da fuori,",
+        "senza che una guardia la vedesse,",
+        "lasciando le scarpe sotto il letto:",
+        "è scalza, su un'isola."
       ]
     },
     {
@@ -65,12 +65,12 @@
       "durata": 9,
       "scena": "Una piastrella del pavimento si solleva e appare un biglietto: 'La legge del 4 – Chi è il 67?'.",
       "sottotitoli": [
-        "Sotto il pavimento, un biglietto.",
+        "Poi trovano un biglietto nascosto:",
         "«La legge del 4. Chi è il 67?»",
-        "Ma i pazienti sono 66.",
-        "Uno è nascosto.",
-        "I medici tacciono.",
-        "Cawley nasconde le cartelle."
+        "I pazienti però sono 66,",
+        "quindi uno è nascosto,",
+        "ma i medici tacciono",
+        "e Cawley nasconde le cartelle."
       ]
     },
     {
@@ -79,10 +79,10 @@
       "durata": 8,
       "scena": "Studio con giradischi, pillole che cadono, pipa fumante, pioggia alla finestra.",
       "sottotitoli": [
-        "Teddy ha emicranie fortissime.",
-        "Cawley gli dà pillole e sigarette.",
-        "Di notte, incubi: la guerra.",
-        "E la moglie morta: «Rachel è ancora qui»."
+        "Intanto Teddy ha emicranie fortissime",
+        "e Cawley gli dà pillole e sigarette.",
+        "Di notte sogna la guerra",
+        "e la moglie morta: «Rachel è ancora qui»."
       ]
     },
     {
@@ -91,11 +91,11 @@
       "durata": 10,
       "scena": "Finestra di un palazzo in fiamme di notte; scatola di fiammiferi 'A. Laeddis' che entra in scena.",
       "sottotitoli": [
-        "La moglie è morta in un incendio.",
-        "Teddy è sicuro: l'ha appiccato",
-        "Andrew Laeddis, un custode.",
-        "Laeddis è rinchiuso qui.",
-        "Teddy è venuto per lui."
+        "La moglie era morta in un incendio,",
+        "e Teddy è sicuro che l'abbia appiccato",
+        "Andrew Laeddis, un custode",
+        "rinchiuso proprio qui:",
+        "è per lui che è venuto."
       ]
     },
     {
@@ -104,11 +104,11 @@
       "durata": 10,
       "scena": "Faro nella tempesta con fascio rotante, onde e spruzzi; un cappello vola via dagli scogli.",
       "sottotitoli": [
-        "Poi l'uragano. Salta la corrente.",
-        "Teddy sospetta: nel faro operano i pazienti.",
-        "Ci corre con Chuck sulla scogliera.",
-        "Si perdono di vista.",
-        "Teddy scende tra gli scogli a cercarlo."
+        "Poi l'uragano fa saltare la corrente.",
+        "Teddy sospetta che nel faro operino i pazienti",
+        "e ci corre con Chuck sulla scogliera,",
+        "ma si perdono di vista",
+        "e Teddy scende tra gli scogli a cercarlo."
       ]
     },
     {
@@ -117,9 +117,9 @@
       "durata": 9,
       "scena": "Grotta con fuoco acceso, coperta e tazza; tempesta fuori dall'apertura.",
       "sottotitoli": [
-        "Niente Chuck.",
-        "In una grotta, una donna.",
-        "Dice di essere la vera Rachel.",
+        "Chuck è sparito,",
+        "ma in una grotta trova una donna",
+        "che dice di essere la vera Rachel:",
         "«Ti drogano per farti diventare un paziente.»",
         "E Chuck? «Sei arrivato da solo.»"
       ]
@@ -130,13 +130,13 @@
       "durata": 14,
       "scena": "Interno del faro: lavagna dove i nomi vengono scritti a gesso lettera per lettera (EDWARD DANIELS → ANDREW LAEDDIS, RACHEL SOLANDO → DOLORES CHANAL); scrivania con lampada.",
       "sottotitoli": [
-        "Teddy entra nel faro.",
-        "Solo Cawley, e una lavagna.",
-        "Edward Daniels: anagramma di Andrew Laeddis.",
-        "Rachel Solando: anagramma di Dolores Chanal,",
+        "Allora Teddy entra nel faro,",
+        "ma trova solo Cawley e una lavagna:",
+        "Edward Daniels è l'anagramma di Andrew Laeddis,",
+        "Rachel Solando di Dolores Chanal,",
         "sua moglie.",
-        "Teddy non esiste.",
-        "Il paziente 67 è lui. Da due anni."
+        "quindi Teddy non esiste:",
+        "il paziente 67 è lui, da due anni."
       ]
     },
     {
@@ -145,12 +145,12 @@
       "durata": 12,
       "scena": "Il cappello cade dall'attaccapanni e appare un camice; cartella clinica 'Paziente n. 67 – Andrew Laeddis', foto della casa sul lago, timbro 'Ultima prova'.",
       "sottotitoli": [
-        "Chuck è il dottor Sheehan,",
-        "il suo psichiatra.",
-        "Tutto recitato, per curarlo.",
-        "Dolores aveva annegato i loro tre figli nel lago.",
-        "Lui le ha sparato.",
-        "Se non ricorda: lobotomia."
+        "Chuck è in realtà il dottor Sheehan,",
+        "il suo psichiatra,",
+        "e hanno recitato tutto per curarlo.",
+        "Perché Dolores aveva annegato i loro tre figli nel lago",
+        "e lui le ha sparato.",
+        "Se non lo ricorda, sarà la lobotomia."
       ]
     },
     {
@@ -159,17 +159,17 @@
       "durata": 11,
       "scena": "Gradini all'alba, cappello lasciato, impronte che compaiono verso il faro, gabbiani.",
       "sottotitoli": [
-        "All'alba chiama il medico «Chuck».",
-        "Sembra ricaduto.",
-        "Ma chiede: meglio vivere da mostro,",
+        "All'alba chiama di nuovo il medico «Chuck»,",
+        "come se fosse ricaduto.",
+        "Ma poi gli chiede: meglio vivere da mostro",
         "o morire da uomo per bene?",
-        "Va verso il faro: ha scelto l'oblio."
+        "E va verso il faro: ha scelto la lobotomia."
       ]
     }
   ],
   "finale": {
     "durata": 4,
-    "immagine": "Alba sul mare, faro lontano, cappello sugli scogli; 'THE END' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo film arriva presto.'"
+    "immagine": "Alba sul mare, faro lontano, cappello sugli scogli; 'THE END' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
   "musica": "Originale strumentale, tesa e discreta sotto la voce; effetti su lampo, lucchetto, vento, anagrammi, timbro."
 }

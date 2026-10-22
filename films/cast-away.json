@@ -1,0 +1,166 @@
+{
+  "titolo": "Cast Away",
+  "regista": "Robert Zemeckis",
+  "anno": 2000,
+  "palette": {
+    "chiaro": "#F3E6C8",
+    "principale": "#2A9D8F",
+    "scuro": "#0E2A3A",
+    "accento": "#E4572E"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Un'isola. Quattro anni. Un solo amico.",
+    "immagine": "Tramonto su una spiaggia deserta: in primo piano un pacco di cartone con due ali disegnate, mezzo affondato nella sabbia bagnata; accanto, un pallone da pallavolo con una faccia dipinta con un'impronta di mano rossa (nessun logo); dietro, la laguna turchese, la barriera di onde bianche e il picco dell'isola. Titolo grande (Bricolage). NON usare la silhouette dell'uomo sulla spiaggia né il volto del protagonista (locandina ufficiale); nessun marchio di corrieri o di palloni.",
+    "voce": "Cast Away, di Robert Zemeckis: un naufrago solo su un'isola deserta."
+  },
+  "capitoli": [
+    {
+      "id": "tempo",
+      "titolo": "Ogni minuto conta",
+      "durata": 10,
+      "scena": "Centro di smistamento di notte: nastri trasportatori pieni di pacchi che scorrono, luci al neon, un grande orologio da parete con la lancetta dei secondi che scatta, un cronometro appoggiato su una pila di scatole. Corriere inventato, nessun marchio reale.",
+      "sottotitoli": [
+        "A Memphis, Chuck Noland lavora per un corriere espresso",
+        "e vive con l'orologio in mano,",
+        "perché ogni pacco deve arrivare in tempo.",
+        "Non rallenta mai, nemmeno con Kelly,",
+        "la donna che vuole sposare."
+      ]
+    },
+    {
+      "id": "promessa",
+      "titolo": "La promessa di Natale",
+      "durata": 9,
+      "scena": "Interno di un'auto ferma all'aeroporto, sera di Natale con neve leggera: sul cruscotto un orologio da tasca aperto con una piccola foto dentro e una scatolina regalo con il fiocco; fuori, le luci di un aereo cargo in pista.",
+      "sottotitoli": [
+        "A Natale deve partire per lavoro:",
+        "Kelly gli regala l'orologio del nonno, con dentro la sua foto,",
+        "e lui le lascia una scatolina con un anello,",
+        "promettendo di tornare presto."
+      ]
+    },
+    {
+      "id": "schianto",
+      "titolo": "L'aereo precipita",
+      "durata": 9,
+      "scena": "Notte di tempesta sull'oceano: un aereo cargo con le luci di posizione che scende tra le nuvole squarciate dai fulmini; sotto, onde enormi e un gommone di salvataggio arancione che si gonfia tra la schiuma.",
+      "sottotitoli": [
+        "Ma l'aereo cargo su cui viaggia",
+        "finisce in una tempesta sopra il Pacifico",
+        "e precipita in mare:",
+        "Chuck si salva su un gommone,",
+        "unico sopravvissuto."
+      ]
+    },
+    {
+      "id": "isola",
+      "titolo": "L'isola deserta",
+      "durata": 9,
+      "scena": "Alba su un'isola minuscola: spiaggia bianca, palme, un picco roccioso; il gommone arancione sgonfio sulla riva; al largo la barriera corallina con una linea di onde alte che si frangono; orizzonte vuoto.",
+      "sottotitoli": [
+        "All'alba le onde lo spingono",
+        "su un'isola minuscola, in mezzo al nulla,",
+        "dove non c'è nessuno;",
+        "e la barriera di onde alte",
+        "gli impedisce di riprendere il mare."
+      ]
+    },
+    {
+      "id": "pacchi",
+      "titolo": "I pacchi",
+      "durata": 10,
+      "scena": "Spiaggia di giorno: pacchi del corriere arrivati con la marea, aperti sulla sabbia (pattini da ghiaccio, un vestito da sera, videocassette, un pallone da pallavolo senza logo); un solo pacco chiuso, con due ali disegnate, messo in disparte su una roccia.",
+      "sottotitoli": [
+        "Con la marea arrivano i pacchi dell'aereo,",
+        "e lui, che li ha sempre consegnati, li apre:",
+        "pattini, un vestito, un pallone.",
+        "Solo uno, con due ali disegnate, resta chiuso,",
+        "perché giura di consegnarlo."
+      ]
+    },
+    {
+      "id": "fuoco",
+      "titolo": "Il fuoco e Wilson",
+      "durata": 11,
+      "scena": "Sera sulla spiaggia: legnetti e cocco per accendere il fuoco, fumo che sale, poi una fiamma alta che illumina la sabbia; accanto, il pallone con la faccia fatta da un'impronta di mano rossa, appoggiato come un compagno; scintille verso le stelle.",
+      "sottotitoli": [
+        "Per giorni prova ad accendere il fuoco,",
+        "finché si ferisce la mano e lancia il pallone:",
+        "l'impronta di sangue sembra una faccia.",
+        "Lo chiama Wilson, la marca del pallone,",
+        "e con lui accanto, finalmente, accende la fiamma."
+      ]
+    },
+    {
+      "id": "anni",
+      "titolo": "Quattro anni dopo",
+      "durata": 10,
+      "scena": "Interno di una grotta sulla roccia: parete coperta di tacche per contare i giorni e disegni a carbone, una lancia appoggiata, pesci ad affumicare sul fuoco, l'orologio da tasca aperto con la foto, il pallone con la faccia su una sporgenza; fuori, la laguna.",
+      "sottotitoli": [
+        "Così, quattro anni dopo, abita in una grotta,",
+        "pesca con la lancia e conta i giorni sulla parete;",
+        "parla con Wilson, guarda la foto di Kelly",
+        "e sogna ancora di tornare."
+      ]
+    },
+    {
+      "id": "vela",
+      "titolo": "La vela",
+      "durata": 11,
+      "scena": "Spiaggia al mattino: un grande pannello di plastica portato dalla marea; poco lontano una zattera di tronchi legati con corde e una vela fatta col pannello; bandierina che indica il vento; la barriera di onde all'orizzonte.",
+      "sottotitoli": [
+        "Poi un giorno il mare porta un pannello di plastica",
+        "abbastanza grande da diventare una vela.",
+        "Chuck costruisce una zattera,",
+        "aspetta il vento giusto per superare le onde",
+        "e lascia l'isola, con Wilson legato a bordo."
+      ]
+    },
+    {
+      "id": "wilson",
+      "titolo": "Perso in mare",
+      "durata": 11,
+      "scena": "Oceano aperto sotto un cielo enorme: la zattera malandata con la vela strappata; lontano, il pallone con la faccia che si allontana galleggiando; una corda che pende in acqua; all'orizzonte, la sagoma di una grande nave portacontainer.",
+      "sottotitoli": [
+        "Dopo settimane in mezzo all'oceano,",
+        "mentre dorme, Wilson scivola in acqua.",
+        "Chuck nuota per riprenderlo,",
+        "ma deve scegliere tra il pallone e la zattera,",
+        "e lo lascia andare, piangendo.",
+        "Pochi giorni dopo una nave lo trova."
+      ]
+    },
+    {
+      "id": "ritorno",
+      "titolo": "Il ritorno",
+      "durata": 11,
+      "scena": "Notte di pioggia davanti a una casa di Memphis: veranda illuminata, un'auto fuoristrada parcheggiata nel vialetto, una bicicletta da bambina sul prato, l'ombrello aperto abbandonato sui gradini, pozzanghere che riflettono la luce.",
+      "sottotitoli": [
+        "A casa però lo credevano morto,",
+        "e Kelly si è sposata e ha una figlia.",
+        "Una notte di pioggia si dicono di amarsi ancora,",
+        "ma lei sceglie la sua famiglia",
+        "e Chuck riparte da solo."
+      ]
+    },
+    {
+      "id": "bivio",
+      "titolo": "Il bivio",
+      "durata": 11,
+      "scena": "Incrocio di quattro strade sterrate nella pianura del Texas, cielo enorme al tramonto: un cartello stradale con le direzioni, un furgone che si allontana con due ali dipinte sul portellone, sulla soglia di un cancello lontano il pacco con le ali consegnato.",
+      "sottotitoli": [
+        "Alla fine consegna il pacco con le ali,",
+        "con un biglietto: questo pacco mi ha salvato la vita.",
+        "A un incrocio una donna gli indica la strada:",
+        "è lei ad averlo spedito,",
+        "e Chuck la guarda andare, sorridendo."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Lo stesso incrocio nel Texas a sera, cartello stradale e strade che si perdono nella pianura, una stella che si accende; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
+  },
+  "musica": "Originale e strumentale: pianoforte, archi, tamburi leggeri; ticchettio d'orologio all'inizio, quasi silenzio sull'isola (solo onde e vento, il film non ha musica in quella parte), un tema caldo che nasce quando parte la zattera e si apre al bivio finale; niente brani del film."
+}
