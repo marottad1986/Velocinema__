@@ -71,6 +71,7 @@ Valgono quelle dei film (comprensibile a chi non conosce l'opera, persone presen
 spiega il perché). In più:
 - solo fatti verificabili; le ipotesi degli storici dell'arte si dicono come ipotesi («secondo alcuni…»);
 - citazioni dalle lettere o dai documenti solo se brevi e tradotte, con chi le ha scritte.
+- ogni video sta in piedi da solo: mai riferimenti ad altri quadri già raccontati nella serie («ti ricordi…», «come Van Gogh…»).
 
 ## Schema del JSON
 Uguale a `films/*.json`, con queste differenze:
@@ -80,7 +81,7 @@ Uguale a `films/*.json`, con queste differenze:
 
 ## Prime opere candidate (tutte libere)
 - Van Gogh, *Notte stellata* (1889) — bozza in `quadri/notte-stellata.json`
-- Hokusai, *La grande onda di Kanagawa* (1831 ca.)
+- Hokusai, *La grande onda di Kanagawa* (1831 ca.) — bozza in `quadri/grande-onda.json`
 - Vermeer, *Ragazza con l'orecchino di perla* (1665 ca.)
 - Leonardo, *La Gioconda* (1503–1519)
 - Caravaggio, *Vocazione di san Matteo* (1600)

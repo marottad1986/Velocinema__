@@ -13,11 +13,20 @@ export const intera = (opera: Opera, x = 0.5, y = 0.5) => ({ x, y, h: (1920 * op
 
 const CREMA = '#FFF8E6';
 
-/** Titolo spezzato in righe (una parola per riga se le parole sono due, come «Notte / stellata»). */
+/** Titolo in due righe il più possibile bilanciate («Notte / stellata», «La grande onda / di Kanagawa»). */
 const righe = (titolo: string) => {
   const p = titolo.split(' ');
-  return p.length === 2 ? p : [titolo];
+  if (p.length < 2) return p;
+  let best = 1;
+  for (let k = 1; k < p.length; k++) {
+    const diff = (s: number) => Math.abs(p.slice(0, s).join(' ').length - p.slice(s).join(' ').length);
+    if (diff(k) < diff(best)) best = k;
+  }
+  return [p.slice(0, best).join(' '), p.slice(best).join(' ')];
 };
+
+/** Corpo del titolo: 230 px, ridotto perché la riga più lunga stia nei 920 px disponibili. */
+const corpo = (r: string[]) => Math.min(230, Math.floor(920 / (Math.max(...r.map((x) => x.length)) * 0.43)));
 
 /** Copertina: dettaglio a tutto schermo (camera da `da` a `a`), titolo grande in alto a sinistra. */
 export const copertinaQuadro = (opera: Opera, da: Chiave['v'], a: Chiave['v']): React.FC<PosterProps> => ({ t, dur, film }) => {
@@ -25,6 +34,8 @@ export const copertinaQuadro = (opera: Opera, da: Chiave['v'], a: Chiave['v']): 
   const k = eo(seg(t, 0.1, 0.8));
   const sub = eo(seg(t, 0.5, 1.0));
   const lancio = eo(seg(t, 1.0, 1.6));
+  const r = righe(film.titolo);
+  const size = corpo(r);
   return (
     <AbsoluteFill>
       <Quadro opera={opera} t={t} chiavi={[{ t: 0, v: da }, { t: dur, v: a }]} />
@@ -32,11 +43,11 @@ export const copertinaQuadro = (opera: Opera, da: Chiave['v'], a: Chiave['v']): 
       <p style={{ position: 'absolute', top: 290, left: 80, margin: 0, fontFamily: SANS, fontWeight: 800, fontSize: 30, letterSpacing: '0.35em', color: P.accento, opacity: k }}>
         IL QUADRO IN 2 MINUTI
       </p>
-      <h1 style={{ position: 'absolute', top: 340, left: 72, margin: 0, fontFamily: SERIF, fontWeight: 400, fontSize: 230, lineHeight: 0.88, color: CREMA,
+      <h1 style={{ position: 'absolute', top: 340, left: 72, margin: 0, fontFamily: SERIF, fontWeight: 400, fontSize: size, lineHeight: 0.88, color: CREMA,
         opacity: k, transform: `translateY(${(1 - k) * 30}px)`, textShadow: '0 6px 30px rgba(0,0,0,.5)' }}>
-        {righe(film.titolo).map((r, i) => <React.Fragment key={i}>{i > 0 && <br />}{r}</React.Fragment>)}
+        {r.map((x, i) => <React.Fragment key={i}>{i > 0 && <br />}{x}</React.Fragment>)}
       </h1>
-      <p style={{ position: 'absolute', top: 780, left: 80, margin: 0, fontFamily: SANS, fontWeight: 800, fontSize: 40, color: CREMA, opacity: sub }}>
+      <p style={{ position: 'absolute', top: 340 + size * 0.88 * 2 + 30, left: 80, margin: 0, fontFamily: SANS, fontWeight: 800, fontSize: 40, color: CREMA, opacity: sub }}>
         {film.autore} · {film.anno}
       </p>
       {film.copertina.frase_lancio && (

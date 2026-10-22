@@ -1,0 +1,157 @@
+{
+  "titolo": "La grande onda di Kanagawa",
+  "autore": "Katsushika Hokusai",
+  "anno": 1831,
+  "opera": {
+    "tecnica": "Xilografia policroma (nishiki-e)",
+    "misure": "25,7 × 37,9 cm",
+    "museo": "Esemplari in molti musei (Metropolitan Museum, British Museum…)",
+    "fonte": {
+      "url": "",
+      "licenza": "Pubblico dominio"
+    }
+  },
+  "palette": {
+    "chiaro": "#F3EBD8",
+    "principale": "#1F3A68",
+    "scuro": "#0E1A2E",
+    "accento": "#E7B65C"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "L'onda più famosa del mondo.",
+    "immagine": "Dettaglio della cresta dell'onda con la schiuma ad artigli a tutto schermo, lento avvicinamento; titolo grande in serif in alto a sinistra, autore e anno sotto; in basso la frase di lancio in corsivo.",
+    "voce": "La grande onda di Kanagawa, di Katsushika Hokusai."
+  },
+  "capitoli": [
+    {
+      "id": "colpo-d-occhio",
+      "titolo": "Un'onda gigantesca",
+      "durata": 9,
+      "scena": "Panoramica da destra a sinistra su tutta la stampa: onda, barche, Fuji.",
+      "sottotitoli": [
+        "Un'onda gigantesca si alza sopra tre barche,",
+        "e laggiù, piccolissimo, si vede il monte Fuji.",
+        "È la Grande onda di Kanagawa, una stampa giapponese di Hokusai."
+      ]
+    },
+    {
+      "id": "hokusai",
+      "titolo": "Hokusai a settant'anni",
+      "durata": 10,
+      "scena": "Avvicinamento alla firma e al cartiglio in alto a sinistra; riquadro con la firma tradotta.",
+      "sottotitoli": [
+        "Hokusai la crea intorno al 1831, quando ha già circa settant'anni,",
+        "e nella vita cambia nome più di trenta volte, una per ogni fase.",
+        "Infatti qui firma: «già Hokusai, ora Iitsu»."
+      ]
+    },
+    {
+      "id": "serie",
+      "titolo": "Trentasei vedute",
+      "durata": 10,
+      "scena": "Il Fuji al centro; riquadro con lo schema della serie (36 piccoli riquadri con la sagoma del monte).",
+      "sottotitoli": [
+        "La stampa fa parte di una serie, le Trentasei vedute del monte Fuji,",
+        "così in ogni foglio la montagna sacra compare in un paesaggio diverso.",
+        "Qui però è minuscola, quasi schiacciata dall'onda."
+      ]
+    },
+    {
+      "id": "due-montagne",
+      "titolo": "Due montagne",
+      "durata": 10,
+      "scena": "Confronto tra la cavità dell'onda, l'onda piccola in primo piano e il Fuji; richiami e riquadro con le tre sagome.",
+      "sottotitoli": [
+        "Eppure l'onda piccola in primo piano ha proprio la forma del Fuji,",
+        "con la cima bianca di schiuma come la neve.",
+        "Così l'acqua, per un istante, diventa più alta della montagna."
+      ]
+    },
+    {
+      "id": "barche",
+      "titolo": "Le barche dei pescatori",
+      "durata": 10,
+      "scena": "Avvicinamento alle barche; richiami sui rematori chini; riquadro con la sagoma della barca.",
+      "sottotitoli": [
+        "Intanto, sotto l'onda, ci sono tre barche strette",
+        "che portavano in fretta il pesce ai mercati di Edo, l'attuale Tokyo.",
+        "I rematori si stringono ai remi e chinano la testa."
+      ]
+    },
+    {
+      "id": "artigli",
+      "titolo": "Gli artigli della schiuma",
+      "durata": 10,
+      "scena": "Avvicinamento alla cresta: le dita di schiuma; riquadro con lo schema dei riccioli che si ripetono.",
+      "sottotitoli": [
+        "Sulla cresta, poi, la schiuma si apre in tante dita sottili",
+        "che sembrano artigli pronti ad afferrare le barche,",
+        "e ogni ricciolo si divide in riccioli più piccoli, quasi all'infinito."
+      ]
+    },
+    {
+      "id": "tsunami",
+      "titolo": "Non è uno tsunami",
+      "durata": 10,
+      "scena": "L'onda intera; riquadro con lo schema: tsunami basso al largo e alto sulla costa, onda di tempesta alta al largo.",
+      "sottotitoli": [
+        "Molti la chiamano tsunami, ma non lo è,",
+        "perché uno tsunami al largo è basso e si alza solo vicino alla costa.",
+        "Questa invece è un'onda di tempesta, in mare aperto."
+      ]
+    },
+    {
+      "id": "blu",
+      "titolo": "Un blu venuto da lontano",
+      "durata": 11,
+      "scena": "Avvicinamento al mare scuro; riquadro con i due blu a confronto: indaco e blu di Prussia.",
+      "sottotitoli": [
+        "E poi c'è quel blu, il blu di Prussia,",
+        "un colore sintetico nato a Berlino un secolo prima,",
+        "che in Giappone è una novità e resiste bene alla luce:",
+        "così Hokusai lo usa per il mare."
+      ]
+    },
+    {
+      "id": "stampa",
+      "titolo": "Incisa nel legno",
+      "durata": 10,
+      "scena": "La stampa intera; riquadro con lo schema dei blocchi di legno, uno per colore.",
+      "sottotitoli": [
+        "Infatti non è un dipinto unico, ma una xilografia:",
+        "l'immagine è incisa su blocchi di legno, uno per ogni colore,",
+        "quindi se ne stampano migliaia di copie, vendute a poco prezzo."
+      ]
+    },
+    {
+      "id": "europa",
+      "titolo": "Il viaggio in Europa",
+      "durata": 11,
+      "scena": "Allontanamento; riquadro con una mappa schematica Giappone → Europa.",
+      "sottotitoli": [
+        "Per due secoli il Giappone resta chiuso agli stranieri,",
+        "ma quando si apre, nell'Ottocento, queste stampe arrivano in Europa",
+        "e affascinano gli artisti: Debussy, per esempio,",
+        "mette l'onda sulla copertina della sua musica, La mer."
+      ]
+    },
+    {
+      "id": "oggi",
+      "titolo": "Cent'anni per imparare",
+      "durata": 11,
+      "scena": "Dalla stampa piccola su fondo scuro alla stampa intera.",
+      "sottotitoli": [
+        "Oggi se ne conservano esemplari in molti musei del mondo,",
+        "eppure Hokusai scriveva che solo a cent'anni",
+        "il suo disegno sarebbe diventato perfetto.",
+        "Morì a ottantotto anni: secondo te c'era già riuscito?"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "La stampa intera, ferma; riquadro in alto: titolo, autore e anno + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il quadro che vorresti.'"
+  },
+  "musica": "Originale e strumentale: pianoforte, archi e pizzicati con una scala pentatonica che ricorda il Giappone senza imitarne brani; il mare sale e scende sotto la voce; più teso sull'onda e sulle barche, sospeso sul Fuji, si apre nel finale."
+}
