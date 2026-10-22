@@ -80,12 +80,18 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      # A volte apt o il download di MEGAcmd restano appesi per mezz'ora: ogni tentativo ha 4 minuti, poi si riprova.
       - name: Strumenti (ffmpeg, MEGAcmd)
+        timeout-minutes: 15
         run: |
-          sudo apt-get update -q
-          sudo apt-get install -y -q ffmpeg
-          wget -q https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megacmd-xUbuntu_24.04_amd64.deb -O /tmp/megacmd.deb
-          sudo apt-get install -y -q /tmp/megacmd.deb
+          installa() {
+            sudo timeout 240 apt-get update -q -o Acquire::Retries=3 &&
+            sudo timeout 240 apt-get install -y -q -o Acquire::Retries=3 ffmpeg &&
+            timeout 240 wget -q --tries=3 --timeout=60 https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megacmd-xUbuntu_24.04_amd64.deb -O /tmp/megacmd.deb &&
+            sudo timeout 240 apt-get install -y -q /tmp/megacmd.deb
+          }
+          for i in 1 2 3; do installa && exit 0; echo "Tentativo $i non riuscito, riprovo"; sleep 10; done
+          exit 1
       - run: npm ci
       # campioni (VSCO-2 CE, VCSL) ed effetti registrati: scaricati da scripts/musica.mjs, tenuti fra un'esecuzione e l'altra
       - uses: actions/cache@v4
