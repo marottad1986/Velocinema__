@@ -46,6 +46,7 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 ## Finale (vincolante)
 - Nell'immagine finale, sotto «Metti like» / «Segui la pagina», l'invito a commentare (mai «Il prossimo … arriva presto»):
   «Commenta con il film / la spiegazione / la canzone / il quadro che vorresti.» (secondo il formato).
+- Mai frasi come «La prossima volta che lo vedi…» (né nel finale né altrove).
 
 ## Elementi fissi sopra le immagini (capitoli)
 - Barra a capitoli sottile (16 px) sul bordo superiore, un segmento per capitolo proporzionale alla durata,

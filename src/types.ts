@@ -23,7 +23,7 @@ export type FilmData = {
   palette: Palette;
   copertina: { durata: number; frase_lancio?: string; immagine: string; voce?: string };
   capitoli: Capitolo[];
-  finale: { durata: number; immagine: string; frase?: string };
+  finale: { durata: number; immagine: string };
   musica?: string;
 };
 

@@ -49,11 +49,10 @@ export const copertinaQuadro = (opera: Opera, da: Chiave['v'], a: Chiave['v']): 
   );
 };
 
-/** Finale: l'opera intera, la frase «la prossima volta che lo vedi…», «Metti like» / «Segui la pagina» e l'invito a commentare. */
+/** Finale: l'opera intera, «Metti like» / «Segui la pagina» e l'invito a commentare (mai frasi come «la prossima volta che lo vedi…»). */
 export const finaleQuadro = (opera: Opera): React.FC<PosterProps> => ({ t, film }) => {
   const P = film.palette;
   const card = eo(seg(t, 0.1, 0.6));
-  const frase = eo(seg(t, 0.6, 1.2));
   return (
     <AbsoluteFill>
       <Quadro opera={opera} t={t} chiavi={[{ t: 0, v: intera(opera, 0.5, 0.42) }]} />
@@ -68,12 +67,6 @@ export const finaleQuadro = (opera: Opera): React.FC<PosterProps> => ({ t, film 
         </div>
         <p style={{ margin: '26px 0 0', fontSize: 32, opacity: 0.85 }}>Commenta con il quadro che vorresti.</p>
       </div>
-      {film.finale.frase && (
-        <p style={{ position: 'absolute', left: 80, right: 80, top: 1300, margin: 0, fontFamily: SERIF, fontStyle: 'italic', fontSize: 60, lineHeight: 1.15, color: CREMA,
-          textAlign: 'center', textShadow: '0 4px 20px rgba(0,0,0,.6)', opacity: frase, transform: `translateY(${(1 - frase) * 14}px)` }}>
-          {film.finale.frase}
-        </p>
-      )}
     </AbsoluteFill>
   );
 };

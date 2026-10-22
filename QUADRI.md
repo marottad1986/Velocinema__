@@ -41,7 +41,7 @@ Finché l'immagine manca, le scene mostrano l'avviso «[immagine mancante]» con
   **riquadri scuri** con piccoli disegni a linea bianca che spiegano (confronti, schemi, mappe, oggetti).
   Ogni annotazione entra con la frase che ne parla e non copre titolo né sottotitoli.
 - Copertina: dettaglio dell'opera a tutto schermo, titolo grande in serif (Instrument Serif), autore e anno,
-  frase di lancio in corsivo. Finale con titolo in serif e la frase «la prossima volta che lo vedi…».
+  frase di lancio in corsivo. Finale con titolo in serif, «Metti like» / «Segui la pagina» e «Commenta con il quadro che vorresti.»; mai frasi come «la prossima volta che lo vedi…».
 - Niente persone disegnate.
 
 ## Cosa si può fare sull'immagine
@@ -64,7 +64,7 @@ Finché l'immagine manca, le scene mostrano l'avviso «[immagine mancante]» con
 10. Cosa ne pensava l'autore / come fu accolto.
 11. Che fine ha fatto: furti, restauri, dove si trova oggi.
 
-Finale: il quadro intero, «la prossima volta che lo vedi, guarda…» + invito a seguire la pagina.
+Finale: il quadro intero con «Metti like» / «Segui la pagina» e «Commenta con il quadro che vorresti.»
 
 ## Regole sul testo
 Valgono quelle dei film (comprensibile a chi non conosce l'opera, persone presentate col loro ruolo, ogni capitolo
