@@ -4,76 +4,46 @@
 // leggera → assolo di chitarre armonizzate → opera con accordi staccati del pianoforte, cori che si rispondono da
 // sinistra a destra e timpani → rock pesante con riff e chitarre gemelle → coda al pianoforte e gong.
 // Pianoforte a coda, timpani, batteria e gong sono campionati (VCSL e VSCO-2 CE, CC0), il basso è un contrabbasso
-// pizzicato. Le voci restano sintetizzate con formanti (vocali «a», «o», «u»), doppiate e allargate come le
-// sovrapposizioni in studio, e così le chitarre elettriche distorte: nelle librerie CC0 non ci sono cori né chitarre.
+// pizzicato. Nelle librerie CC0 non ci sono cori né chitarre elettriche: il coro è affidato ad archi e organo (e agli
+// ottoni nel botta e risposta dell'opera), le chitarre ad archi spiccati con tromboni staccati (riff) e a trombe
+// gemelle (assoli).
 // Un solo tempo (70 bpm) per tutto il video: ballata a passo pieno, opera e rock a passo doppio (140).
 // Effetti registrati (archivio CC0, scripts/audio/effetti.mjs).
 // Effetti agganciati agli eventi delle scene in src/scenes/bohemian-rhapsody/.
-import { put, rng, chalk, pop, channelClick, FX } from './synth.mjs';
-import { suona, colpo, crescendo } from './campioni.mjs';
+import { rng, chalk, pop, channelClick } from './synth.mjs';
+import { suona, archi, colpo, crescendo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
-export const strumenti = ['pianoforte_coda', 'contrabbasso_pizz', 'timpani', 'rullante', 'cassa', 'charleston', 'piatto_crash', 'gong', 'piatto_sospeso'];
+export const strumenti = ['pianoforte_coda', 'contrabbasso_pizz', 'violini', 'viole', 'celli', 'contrabbasso', 'organo',
+  'tromba', 'corno', 'trombone', 'trombone_stacc', 'celli_spicc', 'viole_spicc', 'timpani', 'rullante', 'cassa', 'charleston', 'piatto_crash', 'gong', 'piatto_sospeso'];
 export const effetti = ['tuono_classico', 'tuono_secco', 'tuono_forte', 'tuono_breve', 'telo', 'scatti', 'disturbo', 'pioggia_dura', 'porta_cigolio',
   'colpi_legno', 'passaggio', 'radio_sintonia'];
 /** Studio con una bella coda (le sovrapposizioni in sala). */
 export const sala = { rt60: 2.4, brillo: 7000, predelay: 0.025, wet: 0.5 };
 
-const TAU = Math.PI * 2;
-const SR = 44100;
-const mtof = (m) => 440 * 2 ** ((m - 69) / 12);
-const vamp = (v) => (v / 127) ** 1.6;
+// ---------------------------------------------------------------- strumenti (campionati)
 
-// ---------------------------------------------------------------- filtri
-
-/** Passa-banda biquadratico (guadagno 0 dB al centro). */
-const bandpass = (fc, q) => {
-  const w = (TAU * fc) / SR, al = Math.sin(w) / (2 * q), a0 = 1 + al;
-  const b0 = al / a0, b2 = -al / a0, a1 = (-2 * Math.cos(w)) / a0, a2 = (1 - al) / a0;
-  let x1 = 0, x2 = 0, y1 = 0, y2 = 0;
-  return (x) => {
-    const y = b0 * x + b2 * x2 - a1 * y1 - a2 * y2;
-    x2 = x1; x1 = x; y2 = y1; y1 = y;
-    return y;
-  };
-};
-
-// formanti delle vocali: [frequenza, larghezza (Q), ampiezza]
-const VOWELS = {
-  a: [[730, 8, 1], [1090, 10, 0.5], [2440, 14, 0.25]],
-  o: [[570, 8, 1], [840, 10, 0.45], [2410, 14, 0.15]],
-  u: [[320, 7, 1], [870, 10, 0.25], [2240, 14, 0.1]],
-};
-
-// ---------------------------------------------------------------- strumenti locali (via put)
-
-/** Voce di coro: dente di sega con vibrato filtrato dalle formanti della vocale. */
+/**
+ * "Voce" del coro, suonata da strumenti veri (nessuna libreria CC0 ha un coro): note brevi a botta e risposta
+ * (attacco < 0,15 s, l'opera) agli ottoni secondo il registro; vocale «u» all'organo; il resto agli archi.
+ */
 const voice = (mix, m, { t, dur, vel = 40, pan = 0, vowel = 'a', att = 0.25, rel = 0.6, gain = 1, seed = 1, rev = 0.7 }) => {
-  const f = mtof(m);
-  const r = rng(seed * 313 + m + Math.round(t * 100));
-  const ph0 = r(), vr = 5 + r() * 0.8, vp = r() * TAU, det = 1 + (r() - 0.5) * 0.006;
-  const fs = VOWELS[vowel].map(([fc, q, a]) => ({ bp: bandpass(fc, q), a }));
-  let ph = ph0;
-  put(mix, t, Math.ceil((dur + rel) * SR), (i) => {
-    const x = i / SR;
-    const vib = 1 + 0.006 * Math.sin(TAU * vr * x + vp) * Math.min(1, x / 0.6);
-    ph = (ph + (f * det * vib) / SR) % 1;
-    const src = 2 * ph - 1;
-    let s = 0;
-    for (const { bp, a } of fs) s += bp(src) * a;
-    const env = Math.min(1, x / att) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / rel));
-    return s * env * 1.6;
-  }, { gain: gain * vamp(vel), pan, rev });
+  if (att < 0.15) {
+    const id = m < 53 ? 'trombone' : m < 65 ? 'corno' : 'tromba';
+    suona(mix, id, m, { t, dur, vel: vel * 1.7, pan, rev, gain: gain * 0.9, attack: 0.02, release: 0.3, seed });
+  } else if (vowel === 'u') {
+    suona(mix, 'organo', m, { t, dur, vel, pan, rev, gain: gain * 0.9, attack: att, release: rel, seed });
+  } else {
+    archi(mix, m, { t, dur, vel: vel + 14, pan, rev, gain: gain * 1.5, attack: att, release: rel + 0.4, seed });
+  }
 };
 
-/** Coro sovrapposto: ogni nota cantata da `layers` voci leggermente diverse, sparse nello stereo. */
+/** Coro: una voce per nota, sparse nello stereo; più "sovrapposizioni" = sezione più piena e più forte. */
 const choir = (mix, notes, { t, dur, vel = 40, vowel = 'a', layers = 2, width = 0.8, center = 0, att = 0.25, gain = 1, seed = 1 }) => {
   notes.forEach((m, j) => {
-    for (let k = 0; k < layers; k++) {
-      const pan = Math.max(-1, Math.min(1, center + (((j * layers + k) / Math.max(1, notes.length * layers - 1)) * 2 - 1) * width));
-      voice(mix, m, { t: t + k * 0.012, dur, vel, pan, vowel, att, gain: gain / Math.sqrt(layers), seed: seed * 17 + j * 5 + k });
-    }
+    const pan = Math.max(-1, Math.min(1, center + ((j / Math.max(1, notes.length - 1)) * 2 - 1) * width));
+    voice(mix, m, { t, dur, vel: vel + 3 * (layers - 2), pan, vowel, att, gain: gain * (0.38 + 0.02 * layers), seed: seed * 17 + j * 5 });
   });
 };
 
@@ -85,23 +55,19 @@ const piano = (mix, m, { t, dur = 1.5, vel = 60, pan = 0, rev = 0.45, gain = 1 }
 const bassNote = (mix, m, { t, dur, vel }) =>
   suona(mix, 'contrabbasso_pizz', m < 28 ? m + 12 : m, { t, dur, vel: vel * 1.6, gain: 1.8, rev: 0.15, release: 0.15 });
 
-/** Chitarra elettrica distorta con vibrato e una piccola salita iniziale (bending); `mute` = palm muting. */
+/**
+ * Le "chitarre", suonate da strumenti veri: il riff (mute) da celli e viole spiccati, con i tromboni staccati sui
+ * colpi accentati; le linee soliste (chitarre gemelle) dalle trombe (dai corni sotto il Fa3). bend non serve più.
+ */
 const guitar = (mix, m, { t, dur, vel = 40, pan = 0, gain = 1, bend = 0, mute = false, rev = 0.3 }) => {
-  const f = mtof(m);
-  let ph1 = 0, ph2 = 0.3, lp = 0, lp2 = 0;
-  const a = 1 - Math.exp((-TAU * (mute ? 900 : 2600)) / SR);
-  put(mix, t, Math.ceil((dur + 0.15) * SR), (i) => {
-    const x = i / SR;
-    const b = bend ? 2 ** ((-bend * Math.max(0, 1 - x / 0.12)) / 12) : 1;
-    const vib = 1 + (mute ? 0 : 0.008 * Math.sin(TAU * 5.5 * x) * Math.min(1, Math.max(0, x - 0.25) / 0.4));
-    ph1 = (ph1 + (f * b * vib) / SR) % 1;
-    ph2 = (ph2 + (f * 1.004 * b * vib) / SR) % 1;
-    const s = (2 * ph1 - 1) + (2 * ph2 - 1);
-    lp += a * (Math.tanh(s * 3) - lp);
-    lp2 += a * (lp - lp2);
-    const env = Math.min(1, x / 0.004) * (mute ? Math.exp(-x / 0.09) : 1) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / 0.15));
-    return lp2 * env * 0.45;
-  }, { gain: gain * vamp(vel), pan, rev });
+  if (mute) {
+    suona(mix, m < 55 ? 'celli_spicc' : 'viole_spicc', m, { t, dur, vel: vel * 1.7, pan, rev, gain: gain * 0.8, release: 0.12 });
+  } else if (dur < 0.6) {
+    suona(mix, m < 55 ? 'celli_spicc' : 'viole_spicc', m, { t, dur, vel: vel * 1.9, pan, rev, gain: gain * 0.85, release: 0.15 });
+    suona(mix, 'trombone_stacc', m < 34 ? m + 12 : m, { t, dur, vel: vel * 1.8, pan: -pan, rev, gain: gain * 0.55, release: 0.15 });
+  } else {
+    suona(mix, m < 53 ? 'corno' : 'tromba', m, { t, dur, vel: vel * 1.8, pan, rev: rev + 0.15, gain: gain * 0.6, attack: 0.02, release: 0.25 });
+  }
 };
 
 /** Bicordo (quinta + ottava) per il riff. */
