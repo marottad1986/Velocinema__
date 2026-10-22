@@ -45,15 +45,20 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 - Zone coperte dalle app: niente testo nei primi 250 px in alto e negli ultimi 420 px in basso.
 
 ## Voce
-- I sottotitoli coincidono con il testo voce. Ritmo di riferimento: circa 3,4 parole al secondo.
-- Clip registrate una per capitolo in `audio/<film>/`, nominate `00_copertina`, `01_<id>`, `02_<id>`…
-- Montaggio: ogni clip parte all'inizio del suo capitolo; se sfora, accelerare al massimo del 15%
+- I sottotitoli coincidono con il testo voce. Ritmo di riferimento: circa 2,8 parole al secondo
+  (circa 28–30 parole per un capitolo da 10–11 s): le voci espressive non reggono ritmi più alti.
+- Voce generata con ElevenLabs (modello v3, voce «Brando Vox – Stylish Social Media Voice»), con un piano a pagamento
+  per l'uso commerciale: le clip del piano gratuito servono solo per le prove e non vanno pubblicate.
+  Testo da incollare senza indicazioni di tono tra parentesi (rallentano la lettura).
+- Clip generate una per capitolo in `audio/<film>/`, nominate `00_copertina`, `01_<id>`, `02_<id>`…
+- Montaggio: ogni clip parte all'inizio del suo capitolo; se sfora, accorciare le pause e accelerare al massimo del 25%
   mantenendo il tono, altrimenti segnalare la frase da accorciare. Musica abbassata sotto la voce.
-- Voce registrata da un attore (niente voce sintetica).
 - `npm run voce -- <film>` → `out/<film>-voce.mp4` (richiede `out/<film>.mp4` già renderizzato con la musica).
   Gli inizi dei capitoli vengono dal JSON (copertina + durate); clip in wav/mp3/m4a/flac/ogg, facoltativa `NN_finale`.
-  Lascia 0,1 s prima del capitolo successivo; oltre il +15% (atempo) non monta nulla, esce con errore e indica
-  quante parole togliere e la frase più lunga del capitolo. Ducking: `sidechaincompress` della voce sulla musica.
+  Toglie il silenzio iniziale e finale di ogni clip (copie ripulite in `out/voce-tmp/`); se la clip sfora, porta le pause
+  tra le frasi a 0,25 s e poi accelera con atempo. Lascia 0,1 s prima del capitolo successivo; oltre il +25% non monta
+  nulla, esce con errore e indica quante parole togliere e la frase più lunga del capitolo.
+  Ducking: `sidechaincompress` della voce sulla musica.
   Opzioni per le prove: `--cartella <dir>` (clip), `--video <file>`, `--uscita <file>`.
 
 ## Musica

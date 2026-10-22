@@ -1,12 +1,14 @@
 // npm run voce -- <film> [--cartella <dir>] [--video <file>] [--uscita <file>]
 //   → out/<film>-voce.mp4: video di out/<film>.mp4 + voce, con la musica abbassata sotto la voce (ducking).
 // Clip in audio/<film>/: 00_copertina, 01_<id>, 02_<id>… (wav, mp3, m4a, flac, ogg); facoltativa NN_finale.
-// Ogni clip parte all'inizio del suo capitolo. Se è più lunga del capitolo viene accelerata (atempo, tono invariato)
-// fino al 15%; oltre, lo script non monta nulla e indica la frase da accorciare.
-import { existsSync, readdirSync } from 'node:fs';
+// Ogni clip parte all'inizio del suo capitolo, senza il silenzio iniziale e finale. Se è più lunga del capitolo,
+// prima si accorciano le pause tra le frasi (al massimo 0,25 s), poi viene accelerata (atempo, tono invariato)
+// fino al 25%; oltre, lo script non monta nulla e indica la frase da accorciare.
+import { existsSync, mkdirSync, readdirSync } from 'node:fs';
 import { duration, hasAudio, loadFilm, run, timeline } from './audio/film.mjs';
 
-const MAX_SPEEDUP = 1.15;
+const MAX_SPEEDUP = 1.25;
+const MAX_PAUSE = 0.25; // pausa massima tra le frasi quando la clip è troppo lunga
 const MARGIN = 0.1; // secondi di respiro prima del capitolo successivo
 const EXT = ['.wav', '.mp3', '.m4a', '.flac', '.ogg'];
 
@@ -35,6 +37,15 @@ if (!existsSync(dir)) {
   process.exit(1);
 }
 
+// ---- clip ripulita in out/voce-tmp: senza silenzio ai bordi e, se serve, con le pause accorciate
+const TMP = 'out/voce-tmp';
+mkdirSync(TMP, { recursive: true });
+const TRIM = 'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse';
+const clean = (src, dst, filter) => {
+  run('ffmpeg', ['-y', '-v', 'error', '-i', src, '-af', filter, '-ar', '48000', dst]);
+  return dst;
+};
+
 // ---- abbina le clip ai capitoli
 const files = readdirSync(dir).filter((f) => EXT.some((e) => f.toLowerCase().endsWith(e)));
 const used = new Set();
@@ -47,7 +58,11 @@ for (const s of segments) {
     continue;
   }
   used.add(f);
-  clips.push({ ...s, base, file: `${dir}/${f}`, len: duration(`${dir}/${f}`) });
+  let file = clean(`${dir}/${f}`, `${TMP}/${base}.wav`, TRIM);
+  if (duration(file) > s.dur - MARGIN) {
+    file = clean(`${dir}/${f}`, `${TMP}/${base}-pause.wav`, `${TRIM},silenceremove=stop_periods=-1:stop_duration=${MAX_PAUSE}:stop_threshold=-40dB`);
+  }
+  clips.push({ ...s, base, file, len: duration(file) });
 }
 files.filter((f) => !used.has(f)).forEach((f) => console.warn(`  ignorata ${f}: il nome non corrisponde a nessun capitolo (NN_<id>)`));
 if (!clips.length) {
@@ -55,20 +70,20 @@ if (!clips.length) {
   process.exit(1);
 }
 
-// ---- velocità di ogni clip; frase da accorciare se non basta il 15%
+// ---- velocità di ogni clip; frase da accorciare se non basta il 25%
 const words = (s) => s.split(/\s+/).filter(Boolean).length;
 const problems = [];
 for (const c of clips) {
   const room = c.dur - MARGIN;
   c.speed = c.len <= room ? 1 : c.len / room;
   if (c.speed <= MAX_SPEEDUP) continue;
-  const extra = c.len / MAX_SPEEDUP - room; // secondi da togliere (a velocità +15%)
+  const extra = c.len / MAX_SPEEDUP - room; // secondi da togliere (a velocità +25%)
   const total = c.testo.reduce((a, s) => a + words(s), 0);
   const wps = total / c.len; // ritmo reale della registrazione
   const cut = Math.max(1, Math.ceil(extra * MAX_SPEEDUP * wps));
   const longest = [...c.testo].sort((a, b) => words(b) - words(a))[0];
   problems.push(
-    `  ${c.base}: dura ${c.len.toFixed(2)} s, il capitolo ${c.dur} s (servirebbe +${((c.speed - 1) * 100).toFixed(0)}%, massimo +15%).\n` +
+    `  ${c.base}: dura ${c.len.toFixed(2)} s, il capitolo ${c.dur} s (servirebbe +${((c.speed - 1) * 100).toFixed(0)}%, massimo +25%).\n` +
       (longest
         ? `    Accorcia di circa ${cut} parol${cut === 1 ? 'a' : 'e'}, per esempio la frase più lunga: «${longest}»`
         : `    Togli circa ${extra.toFixed(1)} s di parlato.`),
