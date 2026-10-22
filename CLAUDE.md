@@ -35,6 +35,11 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 - Il finale deve dire chiaramente come va a finire, compresi i colpi di scena.
 - Titoli dei capitoli chiari anche fuori contesto.
 
+## Finale (vincolante, tutti i formati)
+- Nell'immagine finale, sotto «Metti like» / «Segui la pagina», l'invito a commentare (mai «Il prossimo film arriva presto»):
+  riassunti di film → «Commenta con il film che vorresti.»; Spiegato semplice → «Commenta con la spiegazione che vorresti.»;
+  formati futuri su canzoni o quadri → «Commenta con la canzone che vorresti.» / «Commenta con il quadro che vorresti.»
+
 ## Elementi fissi sopra le immagini (capitoli)
 - Barra a capitoli sottile (16 px) sul bordo superiore, un segmento per capitolo proporzionale alla durata,
   riempimento con il colore accento.
