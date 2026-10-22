@@ -27,11 +27,21 @@ Finché l'immagine manca, le scene mostrano l'avviso «[immagine mancante]» con
 - `src/lib/quadro.tsx`: `<Quadro>` (opera inquadrata con fotogrammi chiave della camera, fondo sfocato,
   sfumature per titolo e sottotitoli) ed effetti: `Alone`, `Riflettore`, `LuceRadente`, `Vortice` (nello spazio
   dell'opera, coordinate in frazioni 0–1) e `OmbraSbarre` (nello spazio dello schermo).
+- `src/lib/schizzi.tsx`: `Freccia`, `FrecciaGiro`, `Percorso`, `Cerchio`, `Scritta`, `Scheda`, `Scintilla`, `Cuore`
+  dentro `<Schizzi>` (spazio dello schermo); `proietta` porta un punto dell'opera sullo schermo per agganciarli.
 - `src/scenes/quadri/Locandina.tsx`: copertina e finale comuni a tutti i quadri.
 - `src/scenes/<slug>/index.tsx`: punti dell'opera e una scena per capitolo; registrare il quadro in `src/films.ts`.
 - Gli script (`render`, `prova`, `musica`, `voce`) cercano il JSON in `films/` e poi in `quadri/`.
 
-## Cosa si può fare sull'immagine
+## Tono e schizzi (vincolante)
+- Per tutte le età: testi caldi e curiosi (domande a chi guarda, «sorpresa!», paragoni quotidiani come «il latte
+  nel caffè»), parole semplici, una curiosità per capitolo. Musica allegra; tenera, non triste, nei momenti difficili.
+- I dettagli si indicano con **schizzi a mano** (`src/lib/schizzi.tsx`), non con luci: frecce, cerchi scarabocchiati,
+  scritte a mano e **schede di carta** con piccoli disegni che spiegano (confronti, schemi, oggetti). Il tratto vibra
+  come un disegno animato; ogni schizzo entra con un rimbalzo, sincronizzato con la frase che ne parla.
+- Gli schizzi sono disegni nostri, nello stile dei film; niente persone disegnate.
+
+
 - Movimenti di camera lenti (avvicinamento, panoramica) per inquadrare un dettaglio alla volta nel formato
   verticale; parallasse leggera ritagliando l'opera in piani (cielo / sfondo / primo piano).
 - Animazioni discrete **sopra** il quadro, coerenti con ciò che è dipinto (luci che tremolano, vortici che

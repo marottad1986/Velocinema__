@@ -19,140 +19,133 @@
   },
   "copertina": {
     "durata": 4,
-    "frase_lancio": "Il cielo più famoso del mondo.",
+    "frase_lancio": "Il cielo più famoso del mondo… e i suoi segreti!",
     "immagine": "Il quadro intero, leggermente scurito ai bordi; avvicinamento lento verso la luna; i vortici del cielo scorrono appena. Titolo grande in alto, autore e anno sotto.",
     "voce": "La Notte stellata, di Vincent van Gogh. Tutto in due minuti."
   },
   "capitoli": [
     {
       "id": "colpo-d-occhio",
-      "titolo": "Un cielo che si muove",
+      "titolo": "Il cielo che gira",
       "durata": 9,
       "scena": "Panoramica lenta da sinistra a destra su tutto il quadro: cipresso, cielo a vortici, stelle, luna, villaggio. Stelle e luna pulsano piano.",
       "sottotitoli": [
-        "Un villaggio addormentato sotto un cielo in tempesta.",
-        "È la Notte stellata, di Vincent van Gogh.",
-        "Dipinta nel 1889. E dietro c'è una storia."
+        "Guarda bene questo cielo: sembra che giri!",
+        "È la Notte stellata di Vincent van Gogh, del 1889.",
+        "Ha un sacco di segreti. Scopriamoli!"
       ]
     },
     {
       "id": "arles",
-      "titolo": "Un anno prima, ad Arles",
+      "titolo": "Prima del quadro",
       "durata": 10,
       "scena": "Mappa disegnata della Francia del sud nello stile dei film: Arles e Saint-Rémy unite da una linea tratteggiata; sopra, un foglio di lettera con la firma «Vincent».",
       "sottotitoli": [
-        "Van Gogh è un pittore olandese di 35 anni.",
-        "Nel sud della Francia, ad Arles, ha una crisi grave",
-        "e si taglia parte di un orecchio.",
-        "Da allora le crisi tornano."
+        "Vincent è un pittore olandese, pieno di colori.",
+        "Va a vivere nel sole del sud della Francia, ad Arles.",
+        "Ma sta male: ha crisi forti, e una notte si ferisce un orecchio."
       ]
     },
     {
       "id": "ospedale",
-      "titolo": "In clinica, per scelta",
+      "titolo": "Si fa curare",
       "durata": 10,
       "scena": "Avvicinamento al villaggio in basso a destra; le finestre gialle delle case si accendono una alla volta.",
       "sottotitoli": [
-        "Nel maggio 1889 decide da solo di farsi ricoverare",
-        "in un ospedale psichiatrico a Saint-Rémy.",
-        "Lo tengono in una stanza con le sbarre.",
-        "Ma gli lasciano dipingere."
+        "Allora fa una scelta coraggiosa: chiede aiuto.",
+        "Nel 1889 va a curarsi in una clinica a Saint-Rémy.",
+        "Lì può dipingere: in un anno farà circa 150 quadri!"
       ]
     },
     {
       "id": "finestra",
-      "titolo": "Dalla finestra con le sbarre",
+      "titolo": "La vista dalla finestra",
       "durata": 10,
       "scena": "Inquadratura sulle colline all'orizzonte; per un istante l'ombra di sbarre di finestra scorre davanti e sparisce.",
       "sottotitoli": [
-        "Dalla sua finestra vede colline e un pezzo di cielo.",
-        "Il quadro nasce da lì, ma lo dipinge di giorno,",
-        "a memoria: di notte nella stanza non può dipingere."
+        "Dalla finestra, con le sbarre, vede colline e cielo.",
+        "Ma di notte, nella stanza, non può dipingere.",
+        "Così guarda, ricorda… e dipinge di giorno, a memoria!"
       ]
     },
     {
       "id": "villaggio",
-      "titolo": "Un villaggio inventato",
+      "titolo": "Il paese inventato",
       "durata": 10,
       "scena": "Zoom sul campanile appuntito; il resto del quadro si scurisce leggermente; alone sulla punta del campanile.",
       "sottotitoli": [
-        "Il villaggio non si vedeva dalla finestra: l'ha aggiunto lui.",
-        "E guarda il campanile: è appuntito, come nelle chiese olandesi,",
-        "non come quelle di Provenza.",
-        "Forse un ricordo di casa."
+        "Sorpresa: quel paesino dalla finestra non si vedeva.",
+        "L'ha inventato lui! E il campanile è a punta, come in Olanda.",
+        "Forse un pezzetto di casa sua, nascosto nel quadro."
       ]
     },
     {
       "id": "cipresso",
-      "titolo": "La fiamma nera",
+      "titolo": "L'albero fiamma",
       "durata": 10,
       "scena": "Panoramica dal basso verso l'alto lungo il cipresso a sinistra; alla fine il resto del quadro si scurisce e resta in luce la punta, contro il cielo.",
       "sottotitoli": [
-        "A sinistra, un cipresso enorme, scuro come una fiamma.",
-        "In Provenza il cipresso è l'albero dei cimiteri.",
-        "Unisce la terra al cielo:",
-        "secondo molti, è la morte vista senza paura."
+        "E questo gigante scuro? È un cipresso, a forma di fiamma.",
+        "Parte dalla terra e arriva fino alle stelle.",
+        "In Provenza è l'albero dei cimiteri, ma qui sembra ballare."
       ]
     },
     {
       "id": "venere",
-      "titolo": "La stella più grande",
+      "titolo": "Non è una stella!",
       "durata": 10,
       "scena": "Zoom sulla stella bianca grande vicino al cipresso; brilla e pulsa; sullo schermo, una riga di lettera tradotta.",
       "sottotitoli": [
-        "Al fratello Theo scrive di aver visto all'alba",
-        "solo «la stella del mattino, che sembrava grandissima».",
-        "Gli astronomi lo confermano: è il pianeta Venere,",
-        "visibile proprio in quei giorni."
+        "Vedi questa stella grande e luminosa? Non è una stella!",
+        "È il pianeta Venere. Vincent scrive al fratello Theo",
+        "di averlo visto all'alba, enorme. E gli astronomi confermano!"
       ]
     },
     {
       "id": "vortici",
-      "titolo": "Il vento nel cielo",
+      "titolo": "Il vento disegnato",
       "durata": 11,
       "scena": "Avvicinamento al grande vortice centrale; le pennellate scorrono lentamente lungo le spirali, come vento.",
       "sottotitoli": [
-        "Al centro il cielo si avvolge in spirali.",
-        "Nessuno vede così il cielo: Van Gogh dipinge il movimento.",
-        "Alcuni fisici hanno misurato questi vortici",
-        "e somigliano a quelli veri dell'aria e dell'acqua."
+        "Al centro il cielo si arrotola come un'onda.",
+        "Vincent non dipinge solo le cose: dipinge il movimento!",
+        "Alcuni scienziati hanno studiato questi vortici:",
+        "somigliano a quelli veri, come il latte nel caffè!"
       ]
     },
     {
       "id": "tecnica",
-      "titolo": "Colore a rilievo",
+      "titolo": "Colore in rilievo",
       "durata": 10,
       "scena": "Inquadratura molto ravvicinata della luna; luce radente che si sposta e fa risaltare lo spessore delle pennellate.",
       "sottotitoli": [
-        "Il colore è steso spesso, quasi scolpito:",
-        "ogni pennellata è una striscia in rilievo.",
-        "Blu oltremare e di cobalto per il cielo,",
-        "giallo puro per stelle e luna."
+        "Avvicinati: il colore è spesso, quasi una scultura.",
+        "Ogni pennellata è una piccola strada in rilievo.",
+        "Blu per il cielo, giallo pieno per la luna. Che energia!"
       ]
     },
     {
       "id": "fallimento",
-      "titolo": "Per lui era un errore",
+      "titolo": "A lui non piaceva!",
       "durata": 11,
       "scena": "La camera si allontana lentamente fino al quadro intero; un velo scuro leggero, come un ricordo.",
       "sottotitoli": [
-        "Eppure a lui non piaceva.",
-        "Scrive a un amico pittore di aver fatto «stelle troppo grandi»:",
-        "per lui era un fallimento.",
-        "Un anno dopo, nel 1890, Van Gogh muore, a 37 anni,",
-        "avendo venduto pochissimo."
+        "Eppure, sai una cosa? A Vincent non piaceva!",
+        "Scrive a un amico che le stelle sono troppo grandi.",
+        "Un anno dopo, nel 1890, muore, a soli 37 anni,",
+        "senza sapere quanto sarebbe diventato famoso."
       ]
     },
     {
       "id": "oggi",
-      "titolo": "Oggi, a New York",
+      "titolo": "Oggi è una star",
       "durata": 11,
       "scena": "Il quadro intero al centro, piccolo, su fondo scuro; si ingrandisce fino a riempire lo schermo.",
       "sottotitoli": [
-        "Il quadro passa di mano in mano.",
-        "Nel 1941 lo compra un museo di New York, il MoMA.",
-        "Oggi è uno dei quadri più famosi al mondo:",
-        "proprio quello che lui riteneva sbagliato."
+        "Oggi la Notte stellata è a New York,",
+        "al MoMA, un grande museo d'arte moderna.",
+        "Davanti a lei c'è sempre una piccola folla.",
+        "Le stelle troppo grandi? Piacciono a tutti!"
       ]
     }
   ],
@@ -161,5 +154,5 @@
     "immagine": "Il quadro intero, fermo; in basso la frase del finale; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo quadro arriva presto.'",
     "frase": "La prossima volta che lo vedi, cerca Venere accanto al cipresso."
   },
-  "musica": "Originale e strumentale: pianoforte lento e archi, un tema in tonalità minore che gira su sé stesso come i vortici; più scuro nei capitoli dell'ospedale, più luminoso su Venere e nel finale."
+  "musica": "Originale e strumentale: allegra e luminosa, in Re maggiore; pizzicati, vibrafono, contrabbasso e percussioni leggere (shaker, colpi di bacchetta); un tema saltellante che gira su sé stesso come i vortici; più tenera (senza ritmo) quando Vincent sta male e quando il quadro non gli piace, poi riparte in festa nel finale."
 }

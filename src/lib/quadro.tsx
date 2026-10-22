@@ -42,6 +42,12 @@ export const vistaAt = (chiavi: Chiave[], t: number): Vista => {
   return chiavi[chiavi.length - 1].v;
 };
 
+/** Posizione sullo schermo di un punto dell'opera (frazioni) con la vista v: per agganciare gli schizzi. */
+export const proietta = (opera: Opera, v: Vista, p: { x: number; y: number }) => {
+  const s = 1920 / (v.h * H);
+  return { x: FOCUS.x + (p.x - v.x) * H * opera.aspect * s, y: FOCUS.y + (p.y - v.y) * H * s };
+};
+
 const exists = (src: string) => getStaticFiles().some((f) => f.name === src);
 
 /** Avviso al posto dell'opera se l'immagine non è ancora in public/. */
@@ -61,7 +67,7 @@ type QuadroProps = {
   chiavi: Chiave[];
   /** Effetti nello spazio quadro (si muovono con l'opera): <Alone>, <Riflettore>, <LuceRadente>, <Vortice>… */
   children?: React.ReactNode;
-  /** Effetti nello spazio del fotogramma (fermi rispetto allo schermo), sopra l'opera. */
+  /** Effetti e schizzi nello spazio del fotogramma (fermi rispetto allo schermo), sopra l'opera. */
   sopra?: React.ReactNode;
   /** Oscuramento del fondo sfocato quando l'opera non riempie il fotogramma. */
   fondo?: number;
@@ -94,9 +100,9 @@ export const Quadro: React.FC<QuadroProps> = ({ opera, t, chiavi, children, sopr
         ))}
         {children}
       </div>
-      {sopra}
       {/* Sfumature per titolo (alto) e sottotitoli (basso): non cambiano i colori dell'opera al centro */}
       <AbsoluteFill style={{ background: 'linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,0) 32%, rgba(0,0,0,0) 62%, rgba(0,0,0,.5) 80%, rgba(0,0,0,.6))' }} />
+      {sopra}
     </AbsoluteFill>
   );
 };
