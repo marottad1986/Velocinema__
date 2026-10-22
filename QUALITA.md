@@ -38,6 +38,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - Shutter Island: fredda, verde petrolio (#0E3A40).
   - La La Land: calda nelle scene di giorno (#F2C14E), viola-indaco di notte (#2C2456).
   - The Truman Show: azzurro pastello da set televisivo di giorno (#8FD3F4, opacità 10%), blu notte nelle scene di tempesta e di notte (#142235).
+  - Bohemian Rhapsody: bordeaux da teatro (#3A1028, opacità 12%).
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
 
@@ -125,3 +126,16 @@ Look da fantascienza intima: blu profondo nello spazio, polvere color sabbia sul
 - La verità di Brand: rotazione che rallenta, frammenti, lavagna con l'equazione barrata.
 - Dentro il buco nero: disco dorato, navetta che cade, tunnel di librerie con fili di luce, libro che cade.
 - Il messaggio: Morse dorato in sincronia con la lancetta, stazione spaziale con case, due orologi, navetta verso Amelia.
+
+### Bohemian Rhapsody
+Look da teatro d'opera e da anni '70: bordeaux, velluto rosso, legno, luci calde; l'oro (#E9B949) solo sugli oggetti
+chiave (gong, spartiti, maschera, contatore, classifica). Elementi comuni in `src/scenes/bohemian-rhapsody/Comune.tsx`
+(pianoforte verticale e a coda, gong). Mai i membri del gruppo, nemmeno in sagoma: si raccontano strumenti e luoghi.
+- Una canzone impossibile: lampada che si scalda, note dal pianoforte, metronomo, tre spartiti (ballata, opera, rock), fogli che volano.
+- Un coro fatto in tre: tre microfoni che si accendono, cursori e lancette, contatore che arriva a 180, nastro che diventa trasparente.
+- Prima parte: la confessione: pioggia sul vetro, candela, lettera che si accende, porta che si apre sul corridoio, chitarra che si illumina.
+- Seconda parte: il processo: due fasci alternati (i due cori), maschera e cannocchiale che si accendono, botola rossa con fumo, due fulmini.
+- Terza parte: la ribellione: fasci colorati nel fumo, piatti che vibrano, poi faro sul pianoforte e gong con anelli dorati.
+- Che cosa vuol dire?: punto interrogativo tracciato sullo specchio, giacca che oscilla, cassetto che si chiude, lampadine che si spengono.
+- Troppo lunga per la radio: ON AIR al neon, orologio che corre, 14 tacche sulla bacheca, telefono che lampeggia, barra d'oro in classifica.
+- Una seconda vita: lampioni che scorrono, cassetta che gira, pupazzetto che scuote la testa, finestre della città che si accendono.

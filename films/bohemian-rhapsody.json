@@ -30,15 +30,15 @@
     },
     {
       "id": "registrazione",
-      "titolo": "Settimane per un coro",
+      "titolo": "Un coro fatto in tre",
       "durata": 14,
       "scena": "Sala di registrazione anni '70: mixer pieno di cursori e lancette, grande registratore a bobine che gira, nastro consumato che diventa trasparente; oltre il vetro lo studio con tre microfoni in fila; cuffie appese.",
       "sottotitoli": [
-        "La registrano in diversi studi, tra Galles e Londra.",
-        "Per la parte d'opera, Mercury, il chitarrista Brian May e il batterista Roger Taylor",
-        "cantano le stesse note per ore, per settimane:",
-        "circa 180 voci sovrapposte.",
-        "Il nastro, a forza di passaggi, diventa quasi trasparente."
+        "La registrano in cinque studi, tra Galles e Londra.",
+        "Per l'opera, Mercury, il chitarrista Brian May e il batterista Roger Taylor",
+        "sovrappongono le voci fino a sembrare un coro:",
+        "in certi punti, 180 registrazioni una sull'altra.",
+        "Il nastro diventa quasi trasparente."
       ]
     },
     {
@@ -89,7 +89,7 @@
         "Mercury non l'ha mai spiegata: ognuno doveva farsi la sua idea.",
         "Brian May ha detto solo che ci aveva messo molto di sé.",
         "Molti la leggono come un addio alla persona che era.",
-        "Per altri parla della sua omosessualità, allora tenuta segreta.",
+        "Per altri parla della sua sessualità, che allora teneva nascosta.",
         "Restano ipotesi."
       ]
     },
@@ -99,11 +99,11 @@
       "durata": 14,
       "scena": "Studio radiofonico anni '70: insegna ON AIR che si accende, giradischi con il disco che gira, microfono a braccio, telefono con le linee che lampeggiano, pila di lettere degli ascoltatori; un calendario con il contatore dei passaggi.",
       "sottotitoli": [
-        "Per la casa discografica è troppo lunga per la radio.",
-        "Mercury la passa all'amico DJ Kenny Everett,",
-        "chiedendogli, ridendo, di non trasmetterla.",
-        "Lui la manda in onda 14 volte in due giorni.",
-        "Esce il 31 ottobre 1975: nove settimane al primo posto in Gran Bretagna."
+        "La casa discografica la trova troppo lunga per la radio.",
+        "Kenny Everett, DJ amico del gruppo, ne ha una copia",
+        "e promette, ridendo, di non trasmetterla.",
+        "La trasmette 14 volte in due giorni.",
+        "Esce il 31 ottobre 1975: prima in Gran Bretagna per nove settimane."
       ]
     },
     {
@@ -113,10 +113,10 @@
       "scena": "Interno di un'auto vuota di notte: cruscotto con l'autoradio accesa e la cassetta che gira, lancette, parabrezza con le luci dei lampioni che scorrono; sul cruscotto un pupazzetto a molla che oscilla a tempo; in fondo la città.",
       "sottotitoli": [
         "Nel 1991 Mercury muore di AIDS.",
-        "La canzone torna al primo posto in Gran Bretagna.",
-        "Pochi mesi dopo, il film Fusi di testa la mette in una scena:",
+        "La canzone torna prima in Gran Bretagna per cinque settimane.",
+        "Nel 1992 il film Fusi di testa la usa in una scena:",
         "amici in auto che scuotono la testa a tempo.",
-        "Oggi è tra le canzoni più ascoltate al mondo."
+        "Oggi è la canzone del Novecento più ascoltata in streaming."
       ]
     }
   ],
@@ -126,10 +126,13 @@
   },
   "musica": "Originale e strumentale: pianoforte, archi e organo, un tema semplice che passa da intimo a solenne a energico come le tre parti della canzone; niente melodie, accordi o ritmi di Bohemian Rhapsody. La canzone vera, se si vuole, si aggiunge alla pubblicazione dalla libreria musicale con licenza della piattaforma.",
   "fonti": [
-    "Durata (5:55), uscita 31 ottobre 1975, album A Night at the Opera, nove settimane al n. 1 nel Regno Unito: dati di classifica ufficiali (Official Charts Company).",
-    "Registrazione in più studi (Rockfield in Galles, poi Londra), circa 180 sovrapposizioni vocali, nastro consumato fino a diventare trasparente: interviste a Brian May e al produttore Roy Thomas Baker.",
-    "Kenny Everett e i 14 passaggi in due giorni su Capital Radio: aneddoto riportato dalle biografie del gruppo.",
-    "Mercury non spiegò mai il testo; Brian May: ci aveva messo molto di sé. Le letture (addio a sé stesso, omosessualità) sono interpretazioni di critici e biografi, non dichiarazioni dell'autore.",
-    "Riedizione dopo la morte di Mercury (24 novembre 1991) di nuovo al n. 1 nel Regno Unito; scena di Wayne's World (Fusi di testa, 1992) e ritorno nelle classifiche americane."
+    "Durata 5:55, uscita 31 ottobre 1975 (EMI), album A Night at the Opera: https://en.wikipedia.org/wiki/Bohemian_Rhapsody",
+    "Nove settimane al n. 1 nel Regno Unito (1975-76), cinque settimane nella riedizione del dicembre 1991: https://www.officialcharts.com/chart-news/queen-bohemian-rhapsody-50-years/ e https://www.udiscovermusic.com/stories/queen-bohemian-rhapsody-1991-reissue-song",
+    "Tre settimane, cinque studi tra cui Rockfield (Galles); armonie dell'opera cantate da Mercury, May e Taylor; 180 sovrapposizioni in alcune sezioni; nastro quasi trasparente: https://www.soundonsound.com/people/roy-thomas-baker-gary-langan-making-queens-bohemian-rhapsody e https://www.mentalfloss.com/entertainment/music/10-operatic-facts-about-bohemian-rhapsody",
+    "Kenny Everett e i 14 passaggi in due giorni (le fonti non concordano su chi gli diede la copia, per questo il testo non lo dice): https://officialcharts.com/chart-news/queen-bohemian-rhapsody-50-years/",
+    "Mercury: ognuno deve ascoltarla e farsi la sua idea; Brian May: «He never explained the lyrics, but I think he put a lot of himself into that song»; letture sulla sessualità e sull'addio a sé stessi sono di critici e biografi (Lesley-Ann Jones, Tim Rice): https://www.songfacts.com/facts/queen/bohemian-rhapsody e https://www.thepinknews.com/2015/11/30/brian-may-doesnt-know-if-bohemian-rhapsody-was-freddie-mercury-coming-out",
+    "Wayne's World (1992) e n. 2 nella Billboard Hot 100: https://billboard.com/lists/queen-bohemian-rhapsody-anniversary-things-to-know",
+    "Canzone del XX secolo più ascoltata in streaming (dicembre 2018, dato Universal Music, oltre 1,6 miliardi): https://www.nbcnews.com/business/velshi-ruhle/most-streamed-song-century-bohemian-rhapsody-n946476",
+    "Gong finale suonato da Roger Taylor: https://rollingstone.com/music/music-features/queen-bohemian-rhapsody-50th-anniversary-1235423897/"
   ]
 }

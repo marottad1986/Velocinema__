@@ -35,6 +35,17 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 - Il finale deve dire chiaramente come va a finire, compresi i colpi di scena.
 - Titoli dei capitoli chiari anche fuori contesto.
 
+## Canzoni spiegate (stesso schema dei film)
+- Un JSON in `films/` come per i film (es. `films/bohemian-rhapsody.json`): `regista` = artista, numero di capitoli libero
+  (l'etichetta diventa "CAPITOLO N DI M"), campo `fonti` obbligatorio con i link che confermano ogni fatto citato.
+- Testi: mai riportare il testo della canzone, nemmeno a pezzi; si racconta con parole proprie. Ammesse solo parole
+  singole o nomi (es. «Scaramouche») per spiegarli nella stessa frase.
+- Significato: distinguere sempre ciò che l'autore ha detto da ciò che ipotizzano critici e biografi («per molti…»,
+  «restano ipotesi»). Se le fonti non concordano su un fatto, non darlo per certo.
+- Persone reali: nessun ritratto, sagoma o caricatura dell'artista; niente copertine di dischi, foto o loghi del gruppo.
+- Musica: solo originale, senza imitare melodia, accordi o ritmo della canzone. La canzone vera, se si vuole,
+  si aggiunge al momento della pubblicazione dalla libreria musicale con licenza della piattaforma.
+
 ## Elementi fissi sopra le immagini (capitoli)
 - Barra a capitoli sottile (16 px) sul bordo superiore, un segmento per capitolo proporzionale alla durata,
   riempimento con il colore accento.
