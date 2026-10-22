@@ -422,8 +422,9 @@ const reverb = (input, offset, room = 0.84, damp = 0.3) => {
  * Chiude il mix: riverbero, dissolvenze, normalizzazione al picco (dBFS) e WAV 16 bit stereo.
  * Restituisce il picco prima della normalizzazione.
  */
-export const writeWav = (mix, path, { peakDb = -3, fadeIn = 0.05, fadeOut = 2, wet = 0.9 } = {}) => {
-  const wl = reverb(mix.rL, 0), wr = reverb(mix.rR, 23);
+export const writeWav = (mix, path, { peakDb = -3, fadeIn = 0.05, fadeOut = 2, wet = 0.9, riverbero } = {}) => {
+  // riverbero: (canale, 0|1) → coda; se manca si usa il riverbero a pettini qui sopra
+  const wl = riverbero ? riverbero(mix.rL, 0) : reverb(mix.rL, 0), wr = riverbero ? riverbero(mix.rR, 1) : reverb(mix.rR, 23);
   const L = new Float32Array(mix.n), R = new Float32Array(mix.n);
   let peak = 0;
   for (let i = 0; i < mix.n; i++) {
