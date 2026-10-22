@@ -34,6 +34,11 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
   nella stessa frase.
 - Il finale deve dire chiaramente come va a finire, compresi i colpi di scena.
 - Titoli dei capitoli chiari anche fuori contesto.
+- Testo discorsivo (tutti i formati): si racconta come a voce a un amico. Ogni frase si aggancia alla precedente con
+  connettivi espliciti («perché», «infatti», «intanto», «così», «quindi», «ma», «alla fine»), così i collegamenti li fa
+  la voce e chi guarda non deve ricostruirli. Niente elenchi secchi di fatti né frasi telegrafiche; mai frasi che parlano
+  dello schema o del video stesso (es. «Ecco lo schema completo»). L'ultima frase della storia chiude o lascia una
+  domanda chiara (per le serie: da dove riparte la stagione dopo).
 
 ## Finale (vincolante, tutti i formati)
 - Nell'immagine finale, sotto «Metti like» / «Segui la pagina», l'invito a commentare (mai «Il prossimo film arriva presto»):
