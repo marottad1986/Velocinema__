@@ -1,0 +1,217 @@
+{
+  "formato": "spiegato",
+  "tipo": "serie",
+  "titolo": "Dark",
+  "stagione": 1,
+  "regista": "Baran bo Odar e Jantje Friese",
+  "anno": 2017,
+  "palette": {
+    "chiaro": "#E4E7E1",
+    "principale": "#3D5A4C",
+    "scuro": "#0A0E0D",
+    "accento": "#F2C230"
+  },
+  "linea_tempo": [
+    1953,
+    1986,
+    2019,
+    2052
+  ],
+  "personaggi": [
+    {
+      "nome": "Jonas",
+      "ruolo": "un liceale di Winden",
+      "oggetto": "impermeabile giallo"
+    },
+    {
+      "nome": "Michael",
+      "ruolo": "il padre di Jonas",
+      "oggetto": "busta chiusa con sigillo di ceralacca"
+    },
+    {
+      "nome": "Mikkel",
+      "ruolo": "un bambino di 10 anni",
+      "oggetto": "mazzo di carte da prestigiatore"
+    },
+    {
+      "nome": "Martha",
+      "ruolo": "la ragazza che piace a Jonas, sorella di Mikkel",
+      "oggetto": "gomitolo di filo rosso"
+    },
+    {
+      "nome": "Ines",
+      "ruolo": "un'infermiera",
+      "oggetto": "cuffietta da infermiera e cartella clinica"
+    },
+    {
+      "nome": "Noah",
+      "ruolo": "un uomo vestito da prete",
+      "oggetto": "colletto bianco da prete"
+    },
+    {
+      "nome": "Lo straniero",
+      "ruolo": "un uomo misterioso",
+      "oggetto": "zaino di tela con un apparecchio di ottone"
+    },
+    {
+      "nome": "Tannhaus",
+      "ruolo": "l'orologiaio di Winden",
+      "oggetto": "orologio da taschino aperto"
+    }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Una grotta. Quattro anni. Una sola famiglia.",
+    "immagine": "Sigla 'Spiegato semplice' (1,5 s, badge SERIE) e poi locandina: bosco di abeti di notte sotto la pioggia; in fondo le due torri della centrale nucleare che fumano; al centro l'ingresso di una grotta con una luce calda che pulsa dentro; su un ramo in primo piano un impermeabile giallo bagnato. Titolo grande in un carattere stretto e spaziato, 'STAGIONE 1' sotto. NON usare il logo ufficiale, il simbolo a tre archi intrecciati (triquetra) né le locandine con i volti.",
+    "voce": "Dark, stagione 1. Spiegato semplice."
+  },
+  "capitoli": [
+    {
+      "id": "winden",
+      "titolo": "Cosa succede a Winden?",
+      "durata": 12,
+      "anno": 2019,
+      "personaggi": [
+        "Jonas",
+        "Michael"
+      ],
+      "scena": "Parete delle indagini: in alto la foto di Winden con le torri della centrale; nella fascia del 2019 il manifesto dei bambini scomparsi, la foto dell'impermeabile giallo (Jonas) e la busta col sigillo (Michael), legate da un filo rosso «padre».",
+      "sottotitoli": [
+        "Winden è una piccola città tedesca, circondata dai boschi.",
+        "Nel 2019 lì cominciano a sparire dei bambini.",
+        "Intanto Jonas, un ragazzo del posto, ha perso il padre,",
+        "Michael, che gli ha lasciato una lettera chiusa."
+      ]
+    },
+    {
+      "id": "mikkel",
+      "titolo": "Dove spariscono i bambini?",
+      "durata": 12,
+      "anno": 2019,
+      "personaggi": [
+        "Mikkel",
+        "Martha"
+      ],
+      "scena": "Sulla fascia del 2019 si aggiungono le foto delle carte (Mikkel) e del gomitolo (Martha) con i fili «fratello» e «le piace»; poi la foto della grotta, un filo giallo «sparito qui» e una freccia tratteggiata verso un anno ancora coperto.",
+      "sottotitoli": [
+        "Poi una notte sparisce anche Mikkel, 10 anni.",
+        "È il fratellino di Martha, la ragazza che piace a Jonas.",
+        "Sparisce vicino a una grotta nel bosco,",
+        "e non è morto: è finito in un altro anno."
+      ]
+    },
+    {
+      "id": "trentatre",
+      "titolo": "Come funziona il passaggio?",
+      "durata": 13,
+      "anno": 1986,
+      "personaggi": [],
+      "scena": "Dalla grotta del 2019 parte una linea gialla tratteggiata che sale: compaiono le fasce del 1986 e del 1953, ognuna con la foto della stessa grotta; tra una grotta e l'altra l'etichetta «−33 anni».",
+      "sottotitoli": [
+        "Perché in quella grotta c'è un passaggio nel tempo.",
+        "Chi lo attraversa resta lì, ma in un altro anno:",
+        "dal 2019 al 1986, e poi al 1953.",
+        "Ogni volta, 33 anni prima."
+      ]
+    },
+    {
+      "id": "michael",
+      "titolo": "Chi è davvero Michael?",
+      "durata": 13,
+      "anno": 1986,
+      "personaggi": [
+        "Ines"
+      ],
+      "scena": "Le carte di Mikkel salgono lungo il passaggio fino al 1986; accanto la cuffietta (Ines) e l'etichetta «= Michael»; un filo rosso unisce le carte alla busta del 2019; la busta si apre; un filo «zia!» va dal gomitolo all'impermeabile.",
+      "sottotitoli": [
+        "Mikkel infatti sbuca nel 1986, e lì rimane.",
+        "Lo adotta Ines, un'infermiera, che lo chiama Michael.",
+        "Cresce e diventa il padre di Jonas:",
+        "è questo il segreto della lettera.",
+        "Così Martha, la ragazza di Jonas, è anche sua zia."
+      ]
+    },
+    {
+      "id": "noah",
+      "titolo": "Chi rapisce gli altri bambini?",
+      "durata": 12,
+      "anno": 1986,
+      "personaggi": [
+        "Noah"
+      ],
+      "scena": "Nella fascia del 1986 compaiono la foto del colletto da prete (Noah) e quella del bunker con la sedia di ferro; un filo rosso va dalla sedia al manifesto dei bambini scomparsi del 2019.",
+      "sottotitoli": [
+        "E gli altri bambini? Li rapisce Noah, un uomo vestito da prete.",
+        "Nel 1986 ha costruito un bunker nel bosco,",
+        "con una sedia che fa viaggiare nel tempo,",
+        "e la prova sui bambini rapiti: molti non sopravvivono."
+      ]
+    },
+    {
+      "id": "straniero",
+      "titolo": "Chi è lo straniero?",
+      "durata": 12,
+      "anno": 2019,
+      "personaggi": [
+        "Lo straniero",
+        "Tannhaus"
+      ],
+      "scena": "Nel 2019 compare la foto dello zaino con l'apparecchio di ottone (lo straniero) e quella dell'orologio da taschino (Tannhaus); un filo rosso «stessa persona» lega lo zaino all'impermeabile; una freccia tratteggiata arriva dal futuro, ancora coperto.",
+      "sottotitoli": [
+        "Nel 2019 arriva a Winden anche uno straniero.",
+        "Porta un apparecchio costruito da Tannhaus, l'orologiaio,",
+        "perché vuole chiudere il passaggio per sempre.",
+        "In realtà è Jonas da adulto, tornato dal futuro."
+      ]
+    },
+    {
+      "id": "scelta",
+      "titolo": "Si può cambiare il passato?",
+      "durata": 13,
+      "anno": 1986,
+      "personaggi": [],
+      "scena": "Una freccia porta l'impermeabile dal 2019 al 1986, accanto alle carte; la freccia «a casa» dalle carte al 2019 viene barrata; le frecce Mikkel → Michael → Jonas → 1986 formano un cerchio.",
+      "sottotitoli": [
+        "Intanto Jonas attraversa la grotta e ritrova Mikkel nel 1986.",
+        "Potrebbe riportarlo a casa, ma Mikkel non diventerebbe suo padre",
+        "e Jonas non nascerebbe. Così lo lascia lì.",
+        "A Winden il passato non si cambia: è già successo."
+      ]
+    },
+    {
+      "id": "inizio",
+      "titolo": "Chi ha aperto il passaggio?",
+      "durata": 13,
+      "anno": 2019,
+      "personaggi": [],
+      "scena": "Un filo dall'apparecchio dello straniero alla grotta: l'apparecchio si accende; la linea del passaggio si chiude ad anello attorno alle tre grotte, con la scritta «nessun inizio».",
+      "sottotitoli": [
+        "Lo straniero accende il suo apparecchio per chiudere il passaggio.",
+        "Ma è proprio così che il passaggio si apre.",
+        "Quindi è un cerchio: non c'è un vero inizio,",
+        "il futuro crea il passato, e il passato crea il futuro."
+      ]
+    },
+    {
+      "id": "fine",
+      "titolo": "Come finisce la stagione?",
+      "durata": 12,
+      "anno": 2052,
+      "personaggi": [],
+      "scena": "Dalla sedia del 1986 una freccia scende fino alla fascia del 2052, che si scopre: la foto di Winden distrutta e l'impermeabile coperto di cenere; poi la camera si allontana e mostra tutta la parete.",
+      "sottotitoli": [
+        "Alla fine Noah cattura Jonas e lo mette sulla sedia.",
+        "Jonas si risveglia nel 2052",
+        "e trova Winden distrutta.",
+        "Cosa è successo? È la domanda da cui riparte la stagione 2."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "In una frase: a Winden passato e futuro sono un cerchio.",
+    "immagine": "La linea del tempo completa (1953 · 1986 · 2019 · 2052) che si chiude ad anello sopra il bosco di notte, con l'impermeabile giallo al centro; scritta 'Commenta con la spiegazione che vorresti.'; riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina'."
+  },
+  "musica": "Originale e strumentale: droni elettronici gravi, archi lenti e un ticchettio di orologio che fa da metronomo; un motivo di quattro note che torna uguale in ogni capitolo (il cerchio), più cupo nel bunker e spezzato nel 2052; niente brani o motivi della serie.",
+  "schema": true
+}

@@ -190,7 +190,7 @@ export const Finale: React.FC<PosterProps> = ({ t, dur, film }) => {
           <span style={{ padding: '18px 34px', borderRadius: 999, background: P.accento, color: P.scuro, fontSize: 42, fontWeight: 800, transform: `scale(${b1})` }}>♥ Metti like</span>
           <span style={{ padding: '15px 31px', borderRadius: 999, border: `3px solid ${P.chiaro}`, fontSize: 42, fontWeight: 800, transform: `scale(${b2})` }}>Segui la pagina</span>
         </div>
-        <p style={{ margin: '30px 0 0', fontSize: 34, fontWeight: 400, opacity: seg(t, 1.0, 1.4) }}>Il prossimo film arriva presto.</p>
+        <p style={{ margin: '30px 0 0', fontSize: 34, fontWeight: 400, opacity: seg(t, 1.0, 1.4) }}>Commenta con il film che vorresti.</p>
       </div>
       <h1 style={{ position: 'absolute', left: 0, right: 0, top: 1150, margin: 0, textAlign: 'center', fontFamily: CREEPSTER, fontWeight: 400, fontSize: 190, lineHeight: 1,
         color: P.chiaro, textShadow: `0 7px 0 ${P.scuro}`, opacity: seg(t, 0.3, 0.6), transform: `scale(${lerp(0.9, 1, end)})` }}>

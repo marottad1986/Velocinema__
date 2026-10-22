@@ -1,0 +1,138 @@
+{
+  "titolo": "Bohemian Rhapsody",
+  "regista": "Queen",
+  "anno": 1975,
+  "palette": {
+    "chiaro": "#F4ECDD",
+    "principale": "#8A1E3C",
+    "scuro": "#0E0A14",
+    "accento": "#E9B949"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Sei minuti, nessun ritornello: eppure ha conquistato tutti.",
+    "immagine": "Palco d'opera vuoto con sipario rosso socchiuso; al centro un pianoforte a coda con il coperchio aperto e una partitura sul leggio; dietro, un grande gong dorato e, sul fondale dipinto, un fulmine. Titolo grande. NON usare i quattro volti illuminati dall'alto, lo stemma dell'album né foto o copertine dei Queen.",
+    "voce": "Bohemian Rhapsody, dei Queen: la canzone che nessuno voleva trasmettere."
+  },
+  "capitoli": [
+    {
+      "id": "canzone",
+      "titolo": "Una canzone impossibile",
+      "durata": 13,
+      "scena": "Soggiorno di sera: pianoforte verticale con lampada accesa, fogli di musica sparsi sul leggio e sul pavimento, tazza di tè fumante, finestra con le luci di una città inglese; sul pianoforte un metronomo che oscilla.",
+      "sottotitoli": [
+        "Nel 1975 i Queen, un gruppo rock inglese,",
+        "stanno preparando il loro quarto album.",
+        "Così Freddie Mercury, il cantante, porta in studio una canzone mai vista:",
+        "infatti dura quasi sei minuti e non ha nemmeno un ritornello,",
+        "ma soprattutto mescola ballata, opera e rock."
+      ]
+    },
+    {
+      "id": "registrazione",
+      "titolo": "Un coro fatto in tre",
+      "durata": 14,
+      "scena": "Sala di registrazione anni '70: mixer pieno di cursori e lancette, grande registratore a bobine che gira, nastro consumato che diventa trasparente; oltre il vetro lo studio con tre microfoni in fila; cuffie appese.",
+      "sottotitoli": [
+        "Per registrarla servono cinque studi tra Galles e Londra,",
+        "perché nell'opera Mercury, il chitarrista Brian May e il batterista Roger Taylor",
+        "sovrappongono le voci finché sembrano un coro intero:",
+        "in certi punti ci sono 180 registrazioni una sull'altra.",
+        "Così il nastro si consuma e diventa quasi trasparente."
+      ]
+    },
+    {
+      "id": "confessione",
+      "titolo": "Prima parte: la confessione",
+      "durata": 15,
+      "scena": "Stanza povera di notte: pioggia sulla finestra, una lettera sul tavolo accanto a una candela, una porta socchiusa con la luce del corridoio, una valigia pronta; in fondo un pianoforte; a fine scena una chitarra elettrica appoggiata che si illumina.",
+      "sottotitoli": [
+        "Tutto comincia con un coro senza strumenti:",
+        "qualcuno si chiede se è vita vera o solo fantasia.",
+        "Poi entra il pianoforte e parla un ragazzo povero,",
+        "che confessa alla madre di aver ucciso un uomo, e quindi deve andarsene.",
+        "Alla fine la sua voce lascia spazio all'assolo di chitarra di May."
+      ]
+    },
+    {
+      "id": "opera",
+      "titolo": "Seconda parte: il processo",
+      "durata": 14,
+      "scena": "Palco d'opera con sipario rosso e fondale notturno dipinto; due fasci di luce che si alternano da sinistra e da destra (due cori che litigano); sul palco, come oggetti di scena, una maschera della commedia dell'arte, un cannocchiale antico e una botola da cui sale una luce rossa con fumo; fulmine sul fondale.",
+      "sottotitoli": [
+        "Ma di colpo diventa un'opera lirica:",
+        "due cori litigano sull'anima del ragazzo: uno vuole liberarlo, l'altro no.",
+        "Intanto spuntano parole strane, cioè personaggi e invocazioni:",
+        "Scaramouche è una maschera del teatro, Galileo lo scienziato,",
+        "Bismillah, in arabo «nel nome di Dio», e Belzebù, un diavolo."
+      ]
+    },
+    {
+      "id": "rock",
+      "titolo": "Terza parte: la ribellione",
+      "durata": 14,
+      "scena": "Palco rock: amplificatori impilati con le lucine accese, batteria con piatti che vibrano, una chitarra elettrica sull'asta, fasci colorati nel fumo; alla fine le luci si abbassano, resta un pianoforte nel buio e un grande gong che vibra.",
+      "sottotitoli": [
+        "Subito dopo esplode il rock duro,",
+        "perché il ragazzo si ribella a chi lo sta giudicando:",
+        "non possono trattarlo così e poi lasciarlo morire.",
+        "Poi la rabbia si spegne e torna il pianoforte,",
+        "che chiude: niente conta davvero. Infine un colpo di gong, e silenzio."
+      ]
+    },
+    {
+      "id": "significato",
+      "titolo": "Che cosa vuol dire?",
+      "durata": 14,
+      "scena": "Camerino vuoto dopo il concerto: specchio con le lampadine intorno, un foglio con il testo pieno di cancellature, un punto interrogativo disegnato a matita, un mazzo di fiori; dalla porta la luce del palco che si spegne.",
+      "sottotitoli": [
+        "Mercury non l'ha mai spiegata: voleva che ognuno si facesse un'idea.",
+        "Brian May dice solo che ci aveva messo molto di sé.",
+        "Così molti ci sentono un addio alla persona che era,",
+        "altri la sua sessualità, che allora teneva nascosta.",
+        "Chi ha ragione? Nessuno lo sa."
+      ]
+    },
+    {
+      "id": "radio",
+      "titolo": "Troppo lunga per la radio",
+      "durata": 14,
+      "scena": "Studio radiofonico anni '70: insegna ON AIR che si accende, giradischi con il disco che gira, microfono a braccio, telefono con le linee che lampeggiano, pila di lettere degli ascoltatori; un calendario con il contatore dei passaggi.",
+      "sottotitoli": [
+        "La casa discografica la trova troppo lunga per la radio.",
+        "Ma Kenny Everett, DJ amico del gruppo, ne ha una copia",
+        "e promette, ridendo, di non trasmetterla.",
+        "Invece la trasmette 14 volte in due giorni.",
+        "Così, uscita il 31 ottobre 1975, resta prima in Gran Bretagna nove settimane."
+      ]
+    },
+    {
+      "id": "seconda-vita",
+      "titolo": "Una seconda vita",
+      "durata": 14,
+      "scena": "Interno di un'auto vuota di notte: cruscotto con l'autoradio accesa e la cassetta che gira, lancette, parabrezza con le luci dei lampioni che scorrono; sul cruscotto un pupazzetto a molla che oscilla a tempo; in fondo la città.",
+      "sottotitoli": [
+        "Nel 1991 Mercury muore di AIDS,",
+        "e la canzone torna prima in Gran Bretagna.",
+        "L'anno dopo il film Fusi di testa la mette in una scena",
+        "con amici in auto che scuotono la testa a tempo.",
+        "Così oggi è la canzone del Novecento più ascoltata in streaming."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Il palco della copertina a luci basse: il gong dorato che vibra ancora, il pianoforte chiuso, una rosa sul coperchio; 'Fine' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la canzone che vorresti.'"
+  },
+  "musica": "Originale e strumentale: pianoforte, archi e organo, un tema semplice che passa da intimo a solenne a energico come le tre parti della canzone; niente melodie, accordi o ritmi di Bohemian Rhapsody. La canzone vera, se si vuole, si aggiunge alla pubblicazione dalla libreria musicale con licenza della piattaforma.",
+  "fonti": [
+    "Durata 5:55, uscita 31 ottobre 1975 (EMI), album A Night at the Opera: https://en.wikipedia.org/wiki/Bohemian_Rhapsody",
+    "Nove settimane al n. 1 nel Regno Unito (1975-76), cinque settimane nella riedizione del dicembre 1991: https://www.officialcharts.com/chart-news/queen-bohemian-rhapsody-50-years/ e https://www.udiscovermusic.com/stories/queen-bohemian-rhapsody-1991-reissue-song",
+    "Tre settimane, cinque studi tra cui Rockfield (Galles); armonie dell'opera cantate da Mercury, May e Taylor; 180 sovrapposizioni in alcune sezioni; nastro quasi trasparente: https://www.soundonsound.com/people/roy-thomas-baker-gary-langan-making-queens-bohemian-rhapsody e https://www.mentalfloss.com/entertainment/music/10-operatic-facts-about-bohemian-rhapsody",
+    "Kenny Everett e i 14 passaggi in due giorni (le fonti non concordano su chi gli diede la copia, per questo il testo non lo dice): https://officialcharts.com/chart-news/queen-bohemian-rhapsody-50-years/",
+    "Mercury: ognuno deve ascoltarla e farsi la sua idea; Brian May: «He never explained the lyrics, but I think he put a lot of himself into that song»; letture sulla sessualità e sull'addio a sé stessi sono di critici e biografi (Lesley-Ann Jones, Tim Rice): https://www.songfacts.com/facts/queen/bohemian-rhapsody e https://www.thepinknews.com/2015/11/30/brian-may-doesnt-know-if-bohemian-rhapsody-was-freddie-mercury-coming-out",
+    "Wayne's World (1992) e n. 2 nella Billboard Hot 100: https://billboard.com/lists/queen-bohemian-rhapsody-anniversary-things-to-know",
+    "Canzone del XX secolo più ascoltata in streaming (dicembre 2018, dato Universal Music, oltre 1,6 miliardi): https://www.nbcnews.com/business/velshi-ruhle/most-streamed-song-century-bohemian-rhapsody-n946476",
+    "Gong finale suonato da Roger Taylor: https://rollingstone.com/music/music-features/queen-bohemian-rhapsody-50th-anniversary-1235423897/"
+  ]
+}

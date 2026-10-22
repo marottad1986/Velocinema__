@@ -1,6 +1,7 @@
 import React from 'react';
 import { AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig } from 'remotion';
 import { ChapterOverlay, subtitleTimes } from './ChapterOverlay';
+import { SIGLA, Sigla } from './Sigla';
 import { DISPLAY, SANS } from '../lib/fonts';
 import { getFilm } from '../films';
 import type { FilmDef } from '../types';
@@ -62,7 +63,7 @@ const PosterPlaceholder: React.FC<{ film: FilmDef; end?: boolean }> = ({ film, e
       <h1 style={{ fontFamily: film.posterFont ?? DISPLAY, fontSize: 170, color: P.chiaro, margin: 0, textAlign: 'center', lineHeight: 0.95, width: 900 }}>
         {end ? 'THE END' : film.data.titolo.toUpperCase()}
       </h1>
-      {!end && <p style={{ fontFamily: SANS, fontWeight: 800, fontSize: 40, color: P.accento, letterSpacing: '0.2em' }}>{film.data.regista.toUpperCase()}</p>}
+      {!end && <p style={{ fontFamily: SANS, fontWeight: 800, fontSize: 40, color: P.accento, letterSpacing: '0.2em' }}>{(film.data.regista ?? film.data.autore ?? '').toUpperCase()}</p>}
     </AbsoluteFill>
   );
 };
@@ -73,10 +74,14 @@ export const PosterView: React.FC<{ slug: string; end?: boolean }> = ({ slug, en
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const Comp = end ? film.ending : film.cover;
-  const dur = end ? film.data.finale.durata : film.data.copertina.durata;
+  const total = end ? film.data.finale.durata : film.data.copertina.durata;
+  // Formato "spiegato": la copertina parte dopo la sigla e dura il resto dei 4 s.
+  const sigla = !end && film.data.formato === 'spiegato' ? SIGLA : 0;
+  const t = Math.max(0, frame / fps - sigla);
   return (
     <AbsoluteFill style={{ background: film.data.palette.scuro, overflow: 'hidden' }}>
-      {Comp ? <Comp t={frame / fps} dur={dur} film={film.data} /> : <PosterPlaceholder film={film} end={end} />}
+      {Comp ? <Comp t={t} dur={total - sigla} film={film.data} /> : <PosterPlaceholder film={film} end={end} />}
+      {sigla > 0 && <Sigla t={frame / fps} tipo={film.data.tipo ?? 'film'} />}
     </AbsoluteFill>
   );
 };

@@ -38,6 +38,12 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - Shutter Island: fredda, verde petrolio (#0E3A40).
   - La La Land: calda nelle scene di giorno (#F2C14E), viola-indaco di notte (#2C2456).
   - The Truman Show: azzurro pastello da set televisivo di giorno (#8FD3F4, opacità 10%), blu notte nelle scene di tempesta e di notte (#142235).
+  - Cast Away: calda tropicale di giorno sull'isola (#F2B85A, opacità 10%), blu oceano di notte e in tempesta (#0E2A3A),
+    blu-grigio invernale a Memphis (#3B4C66).
+  - Jurassic Park: verde giungla (#1E4A30, opacità 10%), verde quasi nero di notte e in tempesta (#0F1F17).
+  - Harry Potter e la pietra filosofale: blu-viola notturno (#1E1A3A, opacità 12%), caldo dorato di giorno (#E8B04A, 8%).
+  - Dark (Spiegato semplice): verde-grigio freddo da bosco bagnato (#2F4A40, opacità 12%); nel 2052 seppia di cenere (#5A4E3C). Unico colore deciso il giallo dell'impermeabile (#F2C230) sugli oggetti chiave.
+  - Bohemian Rhapsody: bordeaux da teatro (#3A1028, opacità 12%).
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
 
@@ -125,3 +131,85 @@ Look da fantascienza intima: blu profondo nello spazio, polvere color sabbia sul
 - La verità di Brand: rotazione che rallenta, frammenti, lavagna con l'equazione barrata.
 - Dentro il buco nero: disco dorato, navetta che cade, tunnel di librerie con fili di luce, libro che cade.
 - Il messaggio: Morse dorato in sincronia con la lancetta, stazione spaziale con case, due orologi, navetta verso Amelia.
+
+### Cast Away
+Look da isola tropicale luminosa (sabbia, laguna turchese, palme) contro una Memphis fredda e notturna; l'accento rosso-arancio
+(#E4572E) solo sull'oggetto chiave della scena (lancetta, gommone, pacco con le ali, impronta su Wilson, fuoristrada).
+Elementi comuni in `src/scenes/cast-away/Comuni.tsx` (pallone, pacco con le ali, palma, zattera, orologio da tasca).
+Mai Chuck né Kelly: si raccontano con gli oggetti; nessun marchio (corriere anonimo, pallone senza logo).
+- Ogni minuto conta: nastri trasportatori in movimento, lancetta che scatta, neve alle finestre, pulviscolo nei fasci dei neon.
+- La promessa di Natale: neve su due livelli, luci di Natale, gocce sul parabrezza, orologio che si apre, luci di posizione dell'aereo.
+- L'aereo precipita: due lampi, pioggia su due livelli, motore in fiamme con fumo, colonna d'acqua all'impatto, gommone che si gonfia.
+- L'isola deserta: raggi dell'alba, onda alta che si frange sulla barriera, risacca sulla spiaggia, gabbiani.
+- I pacchi: pacco che arriva con la marea, oggetti che escono a uno a uno, alone sul pacco con le ali.
+- Il fuoco e Wilson: fumo dei tentativi, impronta che compare, fiamma con braci, cielo che passa dal tramonto alle stelle.
+- Quattro anni dopo: tacche che si moltiplicano, fumo dei pesci, braci, pulviscolo nel fascio dell'apertura.
+- La vela: pannello portato dalla marea, vela issata, bandierina che gira col vento, spruzzi sulla barriera.
+- Perso in mare: pallone che si allontana, corda lasciata, riflessi di sole, nave all'orizzonte con fumo.
+- Il ritorno: pioggia su due livelli, gocce dalla veranda, pozzanghere con cerchi, porta che si chiude, fari che si accendono.
+- Il bivio: polvere dietro il furgone, ali sul portellone che si illuminano, erba secca al vento, raggi del tramonto.
+
+### Jurassic Park
+Look da avventura nella giungla: verdi profondi, nebbia, pioggia notturna, luci di sicurezza verdi e rosse; l'ambra
+(#F2A23A) solo sull'oggetto chiave (goccia d'ambra, cartello della recinzione, provette, leva, striscione).
+Elementi comuni in `src/scenes/jurassic-park/Comuni.tsx` (jeep, recinzione elettrica, felci, alberi, ambra, elicottero, uovo).
+Persone mai. I dinosauri si disegnano generici, da manuale di paleontologia (raptor piumati e piccoli, colori non del film),
+nel momento chiave; per il resto si raccontano con le tracce (acqua che trema, impronte, cavi spezzati, gusci). Niente logo del film.
+- Dinosauri di nuovo vivi: luce sotto l'ambra con pulviscolo, DNA che gira sugli schermi, isola alla finestra.
+- Gli esperti: pale dell'elicottero, erba piegata dal vento, cascata con nebbia, gabbiani.
+- Il laboratorio: lampade calde sulle uova, uovo che si crepa e si apre, braccio meccanico, cartellini «F».
+- La visita: jeep sul binario, cielo che si scurisce, un lampo, foglie strappate dal vento.
+- Il sabotaggio: zone della mappa che diventano rosse, allarme, bomboletta con le provette, pioggia sui vetri.
+- Il T-rex: cerchi nel bicchiere a ogni passo, vista che trema, cavi che si spezzano, jeep che si rovescia, torcia.
+- La notte nella giungla: fari che si spengono, bomboletta che scivola nel fango, pioggia che cala, stelle.
+- Le uova schiuse: raggi tra gli alberi, nebbia, impronte piccole che compaiono, rana che salta.
+- Senza corrente: cancello delle gabbie che si apre, leva, lampade che si riaccendono in fila, scintille.
+- Raptor in cucina: maniglia che si abbassa, mestoli che oscillano, pentola che cade, spia della porta che diventa rossa.
+- La fuga: atrio che trema, striscione che crolla, alba, elicottero che parte, uccelli sul mare.
+
+### Harry Potter e la pietra filosofale
+Look da libro di fiabe: notti blu-viola con candele e finestre calde, pietra e legno, l'oro (#E8B04A) solo sull'oggetto
+chiave (sigillo della lettera, cartello 9 ¾, lanterne, pallina d'oro, cornice dello specchio). Elementi comuni in
+`src/scenes/harry-potter-pietra-filosofale/Comuni.tsx` (gufo, lettera, castello, candela fluttuante, scopa, pallina d'oro,
+cornice dello specchio). Persone mai (nemmeno nello specchio: solo luce calda); animali sì (gufi, cane a tre teste).
+Niente logo con il fulmine, stemmi delle case o carattere del film; titolo in Cinzel.
+- Il ragazzo nel sottoscala: lampadina che oscilla, ragno che scende, pulviscolo, cornice vuota.
+- Le lettere: lettere che escono a fiotti dal camino, gufi che compaiono alla finestra, lettera strappata.
+- Sei un mago: porta che cade, lampi, fuoco che divampa, onde sullo scoglio, pioggia.
+- Il binario nove e tre quarti: muro che si increspa come acqua, carrello che ci entra, treno a vapore che appare.
+- Il castello: finestre che si accendono, barchette con le lanterne, riflessi sul lago, gufo in volo.
+- Il cappello parlante: candele che fluttuano, cielo stellato con stella cadente, cappello che parla, coriandoli.
+- Il Quidditch: scopa che si alza e sfreccia con la scia, pallina d'oro che zigzaga, stendardi al vento.
+- Il cane a tre teste: il cane si sveglia e ringhia, la botola si illumina, l'arpa suona e lo riaddormenta.
+- Lo specchio: neve alla finestra, lo specchio si riempie di luce calda, un drappo lo copre.
+- La botola: liane, chiavi con le ali, scacchiera gigante, il cavallo che crolla in frantumi.
+- La pietra filosofale: fuoco magico viola, buio che avanza, luce che protegge, la pietra che si sbriciola.
+### Dark, stagione 1 (Spiegato semplice, schema)
+L'albero che si annoda (`src/scenes/dark-stagione-1/Albero.tsx`): fondo scuro verde-grigio, un quadrante d'orologio
+appena visibile che gira, due famiglie in colonna (Kahnwald, Nielsen), anni dall'alto in basso, il passaggio della
+grotta come colonna gialla tratteggiata a sinistra. Personaggi = cerchi con l'oggetto (mai figure).
+- Ogni nodo compare con un rimbalzo quando la voce lo nomina; il nodo di cui si parla ha l'anello giallo con alone.
+- Il colpo di scena: filo giallo «torna nel 1986» da Mikkel a Michael e anello rosso Michael → Jonas → Martha → Mikkel.
+- Le scritte di un solo capitolo si spengono a fine capitolo; alla fine resta l'albero completo e leggibile.
+- Pulviscolo, grana e vignettatura come le altre scene.
+
+### Inception (Spiegato semplice, schema)
+La torre dei sogni come cianografia (`src/scenes/inception/Piani.tsx`): carta blu con griglia, linee bianche, accento
+arancione. Piani dall'alto in basso: realtà (aereo), sogno 1 città, sogno 2 albergo, sogno 3 fortezza, limbo; a destra un
+orologio per piano con la durata. Personaggi = cerchi con l'oggetto (trottola, valigetta, girandola, cassaforte, fede).
+- L'idea è un seme arancione che scende di piano in piano e germoglia in Fischer.
+- I calci sono frecce arancioni che risalgono; il limbo e Mal sono in rosso.
+- La trottola grande nella realtà gira, accelera quando la voce ne parla e alla fine vacilla.
+- Velo scuro dietro il titolo: nelle inquadrature strette la torre può passare sotto il titolo.
+### Bohemian Rhapsody
+Look da teatro d'opera e da anni '70: bordeaux, velluto rosso, legno, luci calde; l'oro (#E9B949) solo sugli oggetti
+chiave (gong, spartiti, maschera, contatore, classifica). Elementi comuni in `src/scenes/bohemian-rhapsody/Comune.tsx`
+(pianoforte verticale e a coda, gong). Mai i membri del gruppo, nemmeno in sagoma: si raccontano strumenti e luoghi.
+- Una canzone impossibile: lampada che si scalda, note dal pianoforte, metronomo, tre spartiti (ballata, opera, rock), fogli che volano.
+- Un coro fatto in tre: tre microfoni che si accendono, cursori e lancette, contatore che arriva a 180, nastro che diventa trasparente.
+- Prima parte: la confessione: pioggia sul vetro, candela, lettera che si accende, porta che si apre sul corridoio, chitarra che si illumina.
+- Seconda parte: il processo: due fasci alternati (i due cori), maschera e cannocchiale che si accendono, botola rossa con fumo, due fulmini.
+- Terza parte: la ribellione: fasci colorati nel fumo, piatti che vibrano, poi faro sul pianoforte e gong con anelli dorati.
+- Che cosa vuol dire?: punto interrogativo tracciato sullo specchio, giacca che oscilla, cassetto che si chiude, lampadine che si spengono.
+- Troppo lunga per la radio: ON AIR al neon, orologio che corre, 14 tacche sulla bacheca, telefono che lampeggia, barra d'oro in classifica.
+- Una seconda vita: lampioni che scorrono, cassetta che gira, pupazzetto che scuote la testa, finestre della città che si accendono.

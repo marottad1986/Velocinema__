@@ -1,0 +1,157 @@
+{
+  "titolo": "Notte stellata",
+  "autore": "Vincent van Gogh",
+  "anno": 1889,
+  "opera": {
+    "tecnica": "Olio su tela",
+    "misure": "73,7 × 92,1 cm",
+    "museo": "Museum of Modern Art, New York",
+    "fonte": {
+      "url": "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+      "licenza": "Pubblico dominio (PD-Art)"
+    }
+  },
+  "palette": {
+    "chiaro": "#F1EBD4",
+    "principale": "#2E4F8C",
+    "scuro": "#0B1530",
+    "accento": "#F2C94C"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Il cielo più famoso della storia dell'arte.",
+    "immagine": "Dettaglio del grande vortice a tutto schermo, lento avvicinamento; titolo grande in serif su due righe in alto a sinistra, autore e anno sotto; in basso la frase di lancio in corsivo.",
+    "voce": "La Notte stellata, di Vincent van Gogh."
+  },
+  "capitoli": [
+    {
+      "id": "colpo-d-occhio",
+      "titolo": "Un cielo che si muove",
+      "durata": 9,
+      "scena": "Panoramica lenta da sinistra a destra su tutto il quadro: cipresso, cielo a vortici, stelle, luna, villaggio. Stelle e luna pulsano piano.",
+      "sottotitoli": [
+        "Guarda questo cielo: sembra girare sopra un paese addormentato.",
+        "È la Notte stellata, che Vincent van Gogh dipinse nel 1889,",
+        "e ogni suo dettaglio nasconde una storia."
+      ]
+    },
+    {
+      "id": "arles",
+      "titolo": "Prima del quadro",
+      "durata": 10,
+      "scena": "Mappa disegnata della Francia del sud nello stile dei film: Arles e Saint-Rémy unite da una linea tratteggiata; sopra, un foglio di lettera con la firma «Vincent».",
+      "sottotitoli": [
+        "Van Gogh, pittore olandese, nel 1888 si trasferisce ad Arles,",
+        "nel sud della Francia, perché cerca luce e colore.",
+        "Intanto però soffre di crisi violente, e in una si ferisce un orecchio."
+      ]
+    },
+    {
+      "id": "ospedale",
+      "titolo": "La clinica di Saint-Rémy",
+      "durata": 10,
+      "scena": "Avvicinamento al villaggio in basso a destra; le finestre gialle delle case si accendono una alla volta.",
+      "sottotitoli": [
+        "Così, nel maggio del 1889, sceglie di farsi curare",
+        "nella clinica di Saint-Rémy, a pochi chilometri da Arles,",
+        "e lì continua a dipingere: in un anno fa circa 150 quadri."
+      ]
+    },
+    {
+      "id": "finestra",
+      "titolo": "La vista dalla finestra",
+      "durata": 10,
+      "scena": "Inquadratura sulle colline all'orizzonte; per un istante l'ombra di sbarre di finestra scorre davanti e sparisce.",
+      "sottotitoli": [
+        "Dalla finestra, chiusa da sbarre, vede colline e cielo,",
+        "ma lì non può dipingere: lavora di giorno, in un'altra stanza.",
+        "Così osserva il cielo di notte e lo dipinge a memoria."
+      ]
+    },
+    {
+      "id": "villaggio",
+      "titolo": "Un paese inventato",
+      "durata": 10,
+      "scena": "Zoom sul campanile appuntito; il resto del quadro si scurisce leggermente; alone sulla punta del campanile.",
+      "sottotitoli": [
+        "Eppure, dalla finestra, il paese non si vedeva:",
+        "infatti Van Gogh lo aggiunge a memoria, con un campanile appuntito",
+        "che ricorda le chiese olandesi della sua infanzia."
+      ]
+    },
+    {
+      "id": "cipresso",
+      "titolo": "Il cipresso",
+      "durata": 10,
+      "scena": "Panoramica dal basso verso l'alto lungo il cipresso a sinistra; alla fine il resto del quadro si scurisce e resta in luce la punta, contro il cielo.",
+      "sottotitoli": [
+        "In primo piano, invece, un cipresso sale come una fiamma",
+        "e così unisce la terra al cielo, fino alle stelle.",
+        "In Provenza è l'albero dei cimiteri: parla di morte, ma anche di eternità."
+      ]
+    },
+    {
+      "id": "venere",
+      "titolo": "Non è una stella",
+      "durata": 10,
+      "scena": "Zoom sulla stella bianca grande vicino al cipresso; brilla e pulsa; sullo schermo, una riga di lettera tradotta.",
+      "sottotitoli": [
+        "Accanto al cipresso brilla la stella più grande, che però è Venere:",
+        "Van Gogh infatti scrive al fratello Theo di averla vista all'alba,",
+        "e gli astronomi confermano: in quei giorni era visibile."
+      ]
+    },
+    {
+      "id": "vortici",
+      "titolo": "Il cielo in movimento",
+      "durata": 11,
+      "scena": "Avvicinamento al grande vortice centrale; le pennellate scorrono lentamente lungo le spirali, come vento.",
+      "sottotitoli": [
+        "Al centro, intanto, il cielo si avvolge in due grandi spirali,",
+        "perché Van Gogh non dipinge il vento, ma il movimento.",
+        "E alcuni fisici, misurando questi vortici,",
+        "hanno visto che somigliano alla turbolenza vera dell'aria."
+      ]
+    },
+    {
+      "id": "tecnica",
+      "titolo": "Colore in rilievo",
+      "durata": 10,
+      "scena": "Inquadratura molto ravvicinata della luna; luce radente che si sposta e fa risaltare lo spessore delle pennellate.",
+      "sottotitoli": [
+        "Da vicino, poi, il colore è steso spesso, quasi scolpito,",
+        "perché ogni pennellata lascia un solco: è la tecnica dell'impasto.",
+        "Così il blu del cielo e il giallo delle stelle sembrano vibrare."
+      ]
+    },
+    {
+      "id": "fallimento",
+      "titolo": "Un quadro sbagliato?",
+      "durata": 11,
+      "scena": "La camera si allontana lentamente fino al quadro intero; un velo scuro leggero, come un ricordo.",
+      "sottotitoli": [
+        "Eppure a Van Gogh questo quadro non piaceva:",
+        "scrive infatti a un amico pittore di aver fatto stelle troppo grandi.",
+        "Muore l'anno dopo, nel 1890, a 37 anni,",
+        "senza sapere quanto sarebbe diventato amato."
+      ]
+    },
+    {
+      "id": "oggi",
+      "titolo": "Oggi, a New York",
+      "durata": 11,
+      "scena": "Il quadro intero al centro, piccolo, su fondo scuro; si ingrandisce fino a riempire lo schermo.",
+      "sottotitoli": [
+        "Alla fine, nel 1941, arriva al MoMA di New York,",
+        "il Museo d'arte moderna, dove si trova ancora oggi.",
+        "Così le stelle «troppo grandi» sono le più famose del mondo.",
+        "Avresti dato ragione a Van Gogh?"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Il quadro intero, fermo; riquadro in alto: titolo, autore e anno + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il quadro che vorresti.'"
+  },
+  "musica": "Originale e strumentale: elegante e luminosa, in Re maggiore; pianoforte, archi leggeri, contrabbasso e una pulsazione discreta di spazzole; tema in arpeggi che girano su sé stessi come i vortici. Più raccolta, senza pulsazione, quando Vincent sta male e quando il quadro non gli piace; si apre nel finale."
+}

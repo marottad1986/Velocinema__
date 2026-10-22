@@ -1,0 +1,163 @@
+{
+  "titolo": "Jurassic Park",
+  "regista": "Steven Spielberg",
+  "anno": 1993,
+  "palette": {
+    "chiaro": "#F4EBD0",
+    "principale": "#2E7D4F",
+    "scuro": "#0F1F17",
+    "accento": "#F2A23A"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Un'isola. Dinosauri veri. Che cosa può andare storto?",
+    "immagine": "Il grande cancello di legno del parco al tramonto, con due torce accese e la giungla fitta dietro; davanti, il binario delle jeep che entra; in primo piano una goccia d'ambra con dentro una zanzara che brilla. Titolo grande (Anton). NON usare il logo del film (scheletro nel cerchio rosso) né dinosauri o persone.",
+    "voce": "Jurassic Park, di Steven Spielberg: un parco di dinosauri veri su un'isola."
+  },
+  "capitoli": [
+    {
+      "id": "ambra",
+      "titolo": "Dinosauri di nuovo vivi",
+      "durata": 10,
+      "scena": "Laboratorio di notte: su un banco una goccia d'ambra illuminata da sotto con una zanzara intrappolata, un microscopio, provette, schermi con filamenti di DNA; dalla finestra, la sagoma dell'isola nel mare.",
+      "sottotitoli": [
+        "Il miliardario John Hammond ha un'isola in Costa Rica",
+        "piena di dinosauri veri:",
+        "i suoi scienziati li hanno clonati",
+        "dal sangue trovato in zanzare antiche",
+        "chiuse nell'ambra."
+      ]
+    },
+    {
+      "id": "esperti",
+      "titolo": "Gli esperti",
+      "durata": 9,
+      "scena": "Piazzola d'atterraggio in mezzo alla giungla, accanto a una cascata: un elicottero che scende con le pale che girano, l'erba piegata dal vento, nuvole basse sulle montagne.",
+      "sottotitoli": [
+        "Prima di aprire, però, vuole il parere di esperti:",
+        "Alan Grant ed Ellie Sattler, che studiano i dinosauri,",
+        "e il matematico Ian Malcolm, sicuro che finirà male."
+      ]
+    },
+    {
+      "id": "laboratorio",
+      "titolo": "Il laboratorio",
+      "durata": 9,
+      "scena": "Laboratorio delle nascite: incubatrice con uova sotto lampade calde, bracci meccanici, un uovo che si crepa e si apre lasciando solo gusci; schermi con grafici.",
+      "sottotitoli": [
+        "All'arrivo restano senza parole davanti ai dinosauri,",
+        "e nel laboratorio vedono nascere un cucciolo dall'uovo:",
+        "sono tutte femmine, così non possono riprodursi."
+      ]
+    },
+    {
+      "id": "visita",
+      "titolo": "La visita",
+      "durata": 9,
+      "scena": "Due jeep elettriche ferme sul binario guidato in mezzo alla giungla; accanto, un'altissima recinzione con il cartello di pericolo elettrico; nuvole nere di tempesta che arrivano dal mare.",
+      "sottotitoli": [
+        "Poi Hammond manda i due nipoti, Lex e Tim,",
+        "e gli esperti a fare il giro in jeep elettriche",
+        "che vanno da sole su un binario,",
+        "ma arriva una tempesta."
+      ]
+    },
+    {
+      "id": "sabotaggio",
+      "titolo": "Il sabotaggio",
+      "durata": 10,
+      "scena": "Sala di controllo di notte: monitor con le mappe del parco, luci delle recinzioni che passano dal verde al rosso, una tastiera, una bomboletta da barba senza marchio con il fondo che si svita; pioggia sui vetri.",
+      "sottotitoli": [
+        "Intanto Dennis Nedry, il programmatore del parco,",
+        "pagato da un'azienda rivale per rubare embrioni,",
+        "spegne la sicurezza",
+        "e scappa con le provette nascoste in una bomboletta da barba.",
+        "Così le recinzioni elettriche si spengono."
+      ]
+    },
+    {
+      "id": "trex",
+      "titolo": "Il T-rex",
+      "durata": 11,
+      "scena": "Notte di pioggia vista da dentro una jeep ferma: sul cruscotto un bicchiere d'acqua con i cerchi che tremano; fuori, i cavi della recinzione che si spezzano e cadono; torce elettriche e luci rosse di stop.",
+      "sottotitoli": [
+        "Le jeep si fermano davanti al recinto del T-rex,",
+        "e l'acqua in un bicchiere trema:",
+        "il dinosauro abbatte il recinto,",
+        "divora l'avvocato degli investitori",
+        "e rovescia la jeep dei bambini,",
+        "ma Grant riesce a portarli via."
+      ]
+    },
+    {
+      "id": "notte",
+      "titolo": "La notte nella giungla",
+      "durata": 10,
+      "scena": "Giungla di notte sotto la pioggia: una jeep impantanata con i fari accesi, la bomboletta da barba che scivola nel fango; in alto, rami di un albero enorme dove ci si può riparare.",
+      "sottotitoli": [
+        "Intanto Nedry si perde nella tempesta",
+        "e viene ucciso da un dinosauro velenoso,",
+        "perdendo gli embrioni nel fango,",
+        "mentre Grant e i bambini passano la notte su un albero."
+      ]
+    },
+    {
+      "id": "uova",
+      "titolo": "Le uova schiuse",
+      "durata": 11,
+      "scena": "Mattina nella giungla: un nido tra le felci con gusci di uova rotti, piccole impronte nel fango, raggi di sole tra gli alberi e nebbia bassa.",
+      "sottotitoli": [
+        "Al mattino Grant trova gusci di uova schiuse:",
+        "i dinosauri si riproducono lo stesso,",
+        "perché per completare il loro DNA",
+        "gli scienziati hanno usato quello di una rana,",
+        "che in natura può cambiare sesso.",
+        "Malcolm aveva ragione."
+      ]
+    },
+    {
+      "id": "corrente",
+      "titolo": "Senza corrente",
+      "durata": 11,
+      "scena": "Recinzione altissima con il cartello 10.000 VOLT accanto a una centralina con una grande leva; lampade lungo la recinzione che si riaccendono una dopo l'altra, scintille sui cavi.",
+      "sottotitoli": [
+        "Per far ripartire il parco riavviano tutto,",
+        "ma così si aprono le gabbie dei velociraptor,",
+        "i dinosauri più intelligenti e feroci.",
+        "Ellie riaccende la corrente",
+        "proprio mentre Tim scavalca una recinzione, e prende la scossa."
+      ]
+    },
+    {
+      "id": "cucina",
+      "titolo": "Raptor in cucina",
+      "durata": 11,
+      "scena": "Cucina del parco: banconi d'acciaio, mestoli appesi che oscillano, una pentola caduta, la maniglia della porta che si abbassa da sola; in fondo una porta con la spia che diventa rossa: bloccata.",
+      "sottotitoli": [
+        "Tim si riprende, ma i raptor li inseguono nella cucina del parco:",
+        "i bambini si nascondono tra i mobili d'acciaio,",
+        "poi Lex, che sa usare i computer,",
+        "blocca le porte e riattiva i telefoni."
+      ]
+    },
+    {
+      "id": "fuga",
+      "titolo": "La fuga",
+      "durata": 11,
+      "scena": "Atrio del centro visitatori con gli scheletri da museo e lo striscione 'Quando i dinosauri dominavano la Terra' che si stacca e cade; dalle vetrate, l'alba e un elicottero che parte; uccelli sul mare.",
+      "sottotitoli": [
+        "Nell'atrio i raptor li circondano,",
+        "ma arriva il T-rex e li assale,",
+        "e mentre crolla lo striscione del parco",
+        "tutti fuggono in elicottero.",
+        "Così Hammond rinuncia al parco,",
+        "e sul mare volano uccelli, i discendenti dei dinosauri."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Mare al tramonto visto dall'alto, l'isola che si allontana avvolta nella nebbia, uno stormo di pellicani che vola; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
+  },
+  "musica": "Originale e strumentale: archi, pianoforte, timpani e corni gravi; meraviglia all'arrivo, tensione con la tempesta, passi pesanti del T-rex (colpi gravi sincronizzati con l'acqua che trema), un tema ampio e luminoso nella fuga finale; niente brani del film."
+}
