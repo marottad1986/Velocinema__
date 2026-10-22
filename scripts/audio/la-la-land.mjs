@@ -29,6 +29,7 @@ const note = (mix, inst, f, { t, dur, vel = 64, pan = 0, rev = 0.25, gain = 1, s
 };
 
 const mtof = (m) => 440 * 2 ** ((m - 69) / 12);
+const BPM = 120;
 
 // qualità degli accordi: intervalli dalla fondamentale (voicing) e scala per la melodia
 const Q = {
@@ -73,23 +74,28 @@ export default (mix, T) => {
     return s.start + (s.dur * acc) / tot;
   };
 
-  // lev: 0 teso e basso, 1 caldo con spazzole leggere, 2 brillante. mel: strumento della melodia.
+  // lev: 0 teso e basso, 1 caldo con spazzole leggere, 2 brillante. mel: strumento della melodia. passo: 'meta' | 'pieno'.
   // sw = quota dello swing (0,5 dritto, 0,667 terzinato). dens = probabilità di una battuta con melodia.
-  const S = (id, from, to, o) => ({ id, from, to, ...o });
+  // Un solo tempo per tutto il film (120 bpm), come una band che suona dall'inizio alla fine: le scene intime vanno
+  // a metà passo (accordi, basso e spazzole a 60), le altre a passo pieno. I cambi di sezione cadono sulla battuta
+  // più vicina all'inizio del capitolo, sulla stessa griglia.
+  const GRID = (4 * 60) / BPM;
+  const snap = (t) => Math.round(t / GRID) * GRID;
+  const S = (id, from, to, o) => ({ id, from: snap(from), to: snap(to), ...o });
   const sections = [
-    S('copertina', 0, T.ingorgo, { bpm: 120, prog: P_F, lev: 1, sw: 0.62, mel: 'vibes', dens: 1, mv: 52 }),
-    S('ingorgo', T.ingorgo, T.caffe, { bpm: 148, prog: P_F, lev: 2, sw: 0.64, mel: 'vibes', dens: 0.9, mv: 46 }),
-    S('caffe', T.caffe, T.piano, { bpm: 112, prog: P_C, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.6, mv: 42 }),
-    S('piano', T.piano, T.collina, { bpm: 76, prog: P_EB, lev: 1, sw: 0.6, mel: 'epiano', dens: 0.85, mv: 48 }),
-    S('collina', T.collina, T.jazz, { bpm: 98, prog: P_AB, lev: 1, sw: 0.64, mel: 'vibes', dens: 0.8, mv: 46 }),
-    S('jazz', T.jazz, T.osservatorio, { bpm: 138, prog: P_BB, lev: 2, sw: 0.667, mel: 'epiano', dens: 0.95, mv: 46 }),
-    S('osservatorio', T.osservatorio, T.sogno, { bpm: 66, prog: P_D, lev: 1, sw: 0.58, mel: 'vibes', dens: 0.7, mv: 44, pad: true, soft: true }),
-    S('sogno', T.sogno, T.band, { bpm: 92, prog: P_G, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.7, mv: 44 }),
-    S('band', T.band, T.prima, { bpm: 150, prog: P_A6, lev: 2, sw: 0.62, mel: 'vibes', dens: 1, mv: 48, kick: true }),
-    S('prima', T.prima, T.audizione, { bpm: 64, prog: P_AM, lev: 0, sw: 0.58, mel: 'epiano', dens: 0.35, mv: 36, pad: true }),
-    S('audizione-a', T.audizione, T.audizione + 4, { bpm: 64, prog: P_AM, lev: 0, sw: 0.58, mel: 'epiano', dens: 0.3, mv: 36, pad: true }),
-    S('audizione-b', T.audizione + 4, T.epilogo, { bpm: 88, prog: P_UP, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.8, mv: 46 }),
-    S('epilogo', T.epilogo, T.finale, { bpm: 72, prog: P_EP, lev: 1, sw: 0.6, mel: 'both', dens: 0.85, mv: 46, pad: true, soft: true }),
+    S('copertina', 0, T.ingorgo, { passo: 'pieno', prog: P_F, lev: 1, sw: 0.62, mel: 'vibes', dens: 1, mv: 52 }),
+    S('ingorgo', T.ingorgo, T.caffe, { passo: 'pieno', prog: P_F, lev: 2, sw: 0.64, mel: 'vibes', dens: 0.9, mv: 46 }),
+    S('caffe', T.caffe, T.piano, { passo: 'pieno', prog: P_C, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.6, mv: 42 }),
+    S('piano', T.piano, T.collina, { passo: 'meta', prog: P_EB, lev: 1, sw: 0.6, mel: 'epiano', dens: 0.85, mv: 48 }),
+    S('collina', T.collina, T.jazz, { passo: 'pieno', prog: P_AB, lev: 1, sw: 0.64, mel: 'vibes', dens: 0.8, mv: 46 }),
+    S('jazz', T.jazz, T.osservatorio, { passo: 'pieno', prog: P_BB, lev: 2, sw: 0.667, mel: 'epiano', dens: 0.95, mv: 46 }),
+    S('osservatorio', T.osservatorio, T.sogno, { passo: 'meta', prog: P_D, lev: 1, sw: 0.58, mel: 'vibes', dens: 0.7, mv: 44, pad: true, soft: true }),
+    S('sogno', T.sogno, T.band, { passo: 'pieno', prog: P_G, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.7, mv: 44 }),
+    S('band', T.band, T.prima, { passo: 'pieno', prog: P_A6, lev: 2, sw: 0.62, mel: 'vibes', dens: 1, mv: 48, kick: true }),
+    S('prima', T.prima, T.audizione, { passo: 'meta', prog: P_AM, lev: 0, sw: 0.58, mel: 'epiano', dens: 0.35, mv: 36, pad: true }),
+    S('audizione-a', T.audizione, T.audizione + 4, { passo: 'meta', prog: P_AM, lev: 0, sw: 0.58, mel: 'epiano', dens: 0.3, mv: 36, pad: true }),
+    S('audizione-b', T.audizione + 4, T.epilogo, { passo: 'pieno', prog: P_UP, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.8, mv: 46 }),
+    S('epilogo', T.epilogo, T.finale, { passo: 'meta', prog: P_EP, lev: 1, sw: 0.6, mel: 'both', dens: 0.85, mv: 46, pad: true, soft: true }),
   ];
 
   // il corpo della musica resta più basso degli effetti: la normalizzazione al picco lo tiene discreto sotto la voce
@@ -98,7 +104,7 @@ export default (mix, T) => {
   const bdrum = (m, kind, t, vel, seed) => drum(m, kind, t, vel * BODY ** 0.6, seed);
 
   sections.forEach((sec, si) => {
-    const beat = 60 / sec.bpm;
+    const beat = (60 / BPM) * (sec.passo === 'meta' ? 2 : 1);
     const bar = 4 * beat;
     const R = rng(1000 + si * 77);
     // posizione in secondi di un "tempo" frazionario (0, 0,5, 1, 1,5…) con swing sulle metà
