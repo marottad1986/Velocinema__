@@ -1,11 +1,35 @@
 // Colonna sonora originale di La La Land: jazz da club, discreto sotto la voce.
-// Piano elettrico, contrabbasso walking, spazzole e vibrafono. Giri di accordi e linee melodiche inventati qui
-// (nessun tema del film): la melodia è generata a passi per grado dalla scala di ogni accordo, con seme fisso.
-// Effetti agganciati a inizi di capitolo o di sottotitolo (tempi dei sottotitoli in proporzione ai caratteri).
-import { note, drum, carHorn, neonHum, thud, rng } from './synth.mjs';
+// Pianoforte, contrabbasso pizzicato e tromba con sordina harmon (campionati, VSCO-2 CE), spazzole, glockenspiel
+// per gli scintillii. Giri di accordi e linee melodiche inventati qui (nessun tema del film): la melodia è generata
+// a passi per grado dalla scala di ogni accordo, con seme fisso.
+// Effetti registrati (archivio CC0, scripts/audio/effetti.mjs) agganciati a inizi di capitolo o di sottotitolo
+// (tempi dei sottotitoli in proporzione ai caratteri).
+import { drum, neonHum, rng } from './synth.mjs';
+import { suona, archi } from './campioni.mjs';
+import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
+export const strumenti = ['pianoforte', 'contrabbasso_pizz', 'tromba_sordina', 'glockenspiel', 'violini', 'viole', 'celli'];
+export const effetti = ['clacson', 'campanello_negozio', 'martelletto', 'tacchi', 'scatti', 'voci_caffe', 'voci_sala'];
+/** Club piccolo: coda corta e calda. */
+export const sala = { rt60: 1.6, brillo: 6500, predelay: 0.018, wet: 0.45 };
+
+/**
+ * Una nota (frequenza in Hz, come nella versione sintetica) sullo strumento campionato corrispondente:
+ * upright → contrabbasso pizzicato · epiano → pianoforte · vibes → tromba con sordina (sopra il Re6: glockenspiel)
+ * · pad → archi tenuti.
+ */
+const note = (mix, inst, f, { t, dur, vel = 64, pan = 0, rev = 0.25, gain = 1, seed = 1 }) => {
+  const m = Math.round(69 + 12 * Math.log2(f / 440));
+  if (inst === 'upright') suona(mix, 'contrabbasso_pizz', m, { t, dur, vel: vel * 1.5, pan, rev, gain: gain * 1.6, release: 0.12, seed });
+  else if (inst === 'epiano') suona(mix, 'pianoforte', m, { t, dur, vel: vel * 1.3, pan, rev, gain: gain * 3, release: 0.35, seed });
+  else if (inst === 'vibes' && m >= 86) suona(mix, 'glockenspiel', m - 12, { t, dur, vel: vel * 1.3, pan, rev, gain: gain * 0.5, release: 1, seed });
+  else if (inst === 'vibes') suona(mix, 'tromba_sordina', m, { t, dur: Math.min(dur, 1.6), vel: vel * 1.4, pan, rev, gain: gain * 0.9, release: 0.18, seed });
+  else if (inst === 'pad') archi(mix, m, { t, dur, vel: vel + 10, pan, rev, gain: gain * 1.2, attack: 0.8, release: 1.2, seed });
+};
+
 const mtof = (m) => 440 * 2 ** ((m - 69) / 12);
+const BPM = 120;
 
 // qualità degli accordi: intervalli dalla fondamentale (voicing) e scala per la melodia
 const Q = {
@@ -50,23 +74,28 @@ export default (mix, T) => {
     return s.start + (s.dur * acc) / tot;
   };
 
-  // lev: 0 teso e basso, 1 caldo con spazzole leggere, 2 brillante. mel: strumento della melodia.
+  // lev: 0 teso e basso, 1 caldo con spazzole leggere, 2 brillante. mel: strumento della melodia. passo: 'meta' | 'pieno'.
   // sw = quota dello swing (0,5 dritto, 0,667 terzinato). dens = probabilità di una battuta con melodia.
-  const S = (id, from, to, o) => ({ id, from, to, ...o });
+  // Un solo tempo per tutto il film (120 bpm), come una band che suona dall'inizio alla fine: le scene intime vanno
+  // a metà passo (accordi, basso e spazzole a 60), le altre a passo pieno. I cambi di sezione cadono sulla battuta
+  // più vicina all'inizio del capitolo, sulla stessa griglia.
+  const GRID = (4 * 60) / BPM;
+  const snap = (t) => Math.round(t / GRID) * GRID;
+  const S = (id, from, to, o) => ({ id, from: snap(from), to: snap(to), ...o });
   const sections = [
-    S('copertina', 0, T.ingorgo, { bpm: 120, prog: P_F, lev: 1, sw: 0.62, mel: 'vibes', dens: 1, mv: 52 }),
-    S('ingorgo', T.ingorgo, T.caffe, { bpm: 148, prog: P_F, lev: 2, sw: 0.64, mel: 'vibes', dens: 0.9, mv: 46 }),
-    S('caffe', T.caffe, T.piano, { bpm: 112, prog: P_C, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.6, mv: 42 }),
-    S('piano', T.piano, T.collina, { bpm: 76, prog: P_EB, lev: 1, sw: 0.6, mel: 'epiano', dens: 0.85, mv: 48 }),
-    S('collina', T.collina, T.jazz, { bpm: 98, prog: P_AB, lev: 1, sw: 0.64, mel: 'vibes', dens: 0.8, mv: 46 }),
-    S('jazz', T.jazz, T.osservatorio, { bpm: 138, prog: P_BB, lev: 2, sw: 0.667, mel: 'epiano', dens: 0.95, mv: 46 }),
-    S('osservatorio', T.osservatorio, T.sogno, { bpm: 66, prog: P_D, lev: 1, sw: 0.58, mel: 'vibes', dens: 0.7, mv: 44, pad: true, soft: true }),
-    S('sogno', T.sogno, T.band, { bpm: 92, prog: P_G, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.7, mv: 44 }),
-    S('band', T.band, T.prima, { bpm: 150, prog: P_A6, lev: 2, sw: 0.62, mel: 'vibes', dens: 1, mv: 48, kick: true }),
-    S('prima', T.prima, T.audizione, { bpm: 64, prog: P_AM, lev: 0, sw: 0.58, mel: 'epiano', dens: 0.35, mv: 36, pad: true }),
-    S('audizione-a', T.audizione, T.audizione + 4, { bpm: 64, prog: P_AM, lev: 0, sw: 0.58, mel: 'epiano', dens: 0.3, mv: 36, pad: true }),
-    S('audizione-b', T.audizione + 4, T.epilogo, { bpm: 88, prog: P_UP, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.8, mv: 46 }),
-    S('epilogo', T.epilogo, T.finale, { bpm: 72, prog: P_EP, lev: 1, sw: 0.6, mel: 'both', dens: 0.85, mv: 46, pad: true, soft: true }),
+    S('copertina', 0, T.ingorgo, { passo: 'pieno', prog: P_F, lev: 1, sw: 0.62, mel: 'vibes', dens: 1, mv: 52 }),
+    S('ingorgo', T.ingorgo, T.caffe, { passo: 'pieno', prog: P_F, lev: 2, sw: 0.64, mel: 'vibes', dens: 0.9, mv: 46 }),
+    S('caffe', T.caffe, T.piano, { passo: 'pieno', prog: P_C, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.6, mv: 42 }),
+    S('piano', T.piano, T.collina, { passo: 'meta', prog: P_EB, lev: 1, sw: 0.6, mel: 'epiano', dens: 0.85, mv: 48 }),
+    S('collina', T.collina, T.jazz, { passo: 'pieno', prog: P_AB, lev: 1, sw: 0.64, mel: 'vibes', dens: 0.8, mv: 46 }),
+    S('jazz', T.jazz, T.osservatorio, { passo: 'pieno', prog: P_BB, lev: 2, sw: 0.667, mel: 'epiano', dens: 0.95, mv: 46 }),
+    S('osservatorio', T.osservatorio, T.sogno, { passo: 'meta', prog: P_D, lev: 1, sw: 0.58, mel: 'vibes', dens: 0.7, mv: 44, pad: true, soft: true }),
+    S('sogno', T.sogno, T.band, { passo: 'pieno', prog: P_G, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.7, mv: 44 }),
+    S('band', T.band, T.prima, { passo: 'pieno', prog: P_A6, lev: 2, sw: 0.62, mel: 'vibes', dens: 1, mv: 48, kick: true }),
+    S('prima', T.prima, T.audizione, { passo: 'meta', prog: P_AM, lev: 0, sw: 0.58, mel: 'epiano', dens: 0.35, mv: 36, pad: true }),
+    S('audizione-a', T.audizione, T.audizione + 4, { passo: 'meta', prog: P_AM, lev: 0, sw: 0.58, mel: 'epiano', dens: 0.3, mv: 36, pad: true }),
+    S('audizione-b', T.audizione + 4, T.epilogo, { passo: 'pieno', prog: P_UP, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.8, mv: 46 }),
+    S('epilogo', T.epilogo, T.finale, { passo: 'meta', prog: P_EP, lev: 1, sw: 0.6, mel: 'both', dens: 0.85, mv: 46, pad: true, soft: true }),
   ];
 
   // il corpo della musica resta più basso degli effetti: la normalizzazione al picco lo tiene discreto sotto la voce
@@ -75,7 +104,7 @@ export default (mix, T) => {
   const bdrum = (m, kind, t, vel, seed) => drum(m, kind, t, vel * BODY ** 0.6, seed);
 
   sections.forEach((sec, si) => {
-    const beat = 60 / sec.bpm;
+    const beat = (60 / BPM) * (sec.passo === 'meta' ? 2 : 1);
     const bar = 4 * beat;
     const R = rng(1000 + si * 77);
     // posizione in secondi di un "tempo" frazionario (0, 0,5, 1, 1,5…) con swing sulle metà
@@ -154,27 +183,30 @@ export default (mix, T) => {
   const F = T.finale;
   [51, 55, 58, 62, 67].forEach((m, j) => note(mix, 'epiano', mtof(m), { t: F + j * 0.05, dur: 3, vel: 46, pan: -0.25 + j * 0.12, rev: 0.45, gain: 0.5 }));
   note(mix, 'upright', mtof(39), { t: F, dur: 2.5, vel: 56, gain: 0.65, rev: 0.1 });
-  [79, 82, 86, 91].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: F + 0.5 + j * 0.28, dur: 3, vel: 40 + j * 3, pan: 0.2, rev: 0.55, gain: 0.5 }));
+  [79, 82, 86, 91].forEach((m, j) => note(mix, 'vibes', mtof(m + 12), { t: F + 0.5 + j * 0.28, dur: 3, vel: 40 + j * 3, pan: 0.2, rev: 0.55, gain: 0.5 }));
   [51, 58, 62].forEach((m, j) => note(mix, 'pad', mtof(m), { t: F, dur: 2.2, vel: 38, rev: 0.6, pan: (j - 1) * 0.3, gain: 0.4, seed: 70 + j }));
 
   // ---- effetti sonori
-  // copertina: scintillio di vibrafono sull'attacco
+  // copertina: scintillio di glockenspiel sull'attacco
   [88, 91, 95].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: 0.15 + j * 0.12, dur: 2, vel: 34, pan: -0.2, rev: 0.6, gain: 0.45 }));
-  // ingorgo: clacson morbido a «Lui le suona il clacson» (frase 4) e un secondo più breve a «Primo incontro» (frase 5)
-  carHorn(mix, cue('ingorgo', 4), [349.2, 440, 523.3], { vel: 40, dur: 0.55 });
-  carHorn(mix, cue('ingorgo', 4) + 0.7, [349.2, 440], { vel: 32, dur: 0.3, pan: 0.15 });
-  // caffè: campanello del bancone (frase 2) e timbro «NO» sordo quando il timbro batte (frase 3, Caffe.tsx)
-  [96, 103].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: cue('caffe', 2) + j * 0.02, dur: 1.4, vel: 40, pan: 0.3, rev: 0.4, gain: 0.45 }));
-  thud(mix, cue('caffe', 3), 36, { bright: 800 });
-  // collina: quattro colpetti di tip tap a «E intanto ballano il tip tap»
-  [0, 0.14, 0.28, 0.5].forEach((d, j) => drum(mix, 'sidestick', cue('collina', 4) + d, 44 + (j === 3 ? 6 : 0), 11 + j));
-  // jazz: accordo di campane all'ingresso nel club
-  [77, 84, 89].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: T.jazz + 0.1 + j * 0.08, dur: 1.6, vel: 38, pan: 0.2, rev: 0.5, gain: 0.45 }));
-  // osservatorio: sfarfallio di vibrafono nel planetario («Nel planetario, tra le stelle») e stella cadente al bacio
+  // ingorgo: clacson a «Lui le suona il clacson» (frase 4) e un secondo più breve a «Primo incontro» (frase 5)
+  clip(mix, 'clacson', { t: cue('ingorgo', 4), da: 0.25, durata: 1.2, gain: 0.45, fadeOut: 0.2, rev: 0.25 });
+  clip(mix, 'clacson', { t: cue('ingorgo', 4) + 1.5, da: 0.25, durata: 0.45, gain: 0.3, fadeOut: 0.1, rev: 0.25, pan: 0.15 });
+  // caffè: voci del locale, campanello del bancone (frase 2) e timbro «NO» quando il timbro batte (frase 3, Caffe.tsx)
+  clip(mix, 'voci_caffe', { t: T.caffe, da: 2, durata: T.piano - T.caffe, gain: 0.08, fadeIn: 1, fadeOut: 1.5, largo: 4, rev: 0.15 });
+  clip(mix, 'campanello_negozio', { t: cue('caffe', 2), da: 8.75, durata: 2.5, gain: 0.35, fadeOut: 1, pan: 0.3, rev: 0.3 });
+  clip(mix, 'martelletto', { t: cue('caffe', 3) - 0.01, da: 2.24, durata: 0.5, gain: 0.35, fadeOut: 0.2, rev: 0.25 });
+  // collina: quattro colpetti di tacco sulle assi a «E intanto ballano il tip tap»
+  [[0, 5.1], [0.14, 11.27], [0.28, 22.36], [0.5, 16.63]].forEach(([d, da], j) =>
+    clip(mix, 'tacchi', { t: cue('collina', 4) + d - 0.01, da, durata: 0.2, gain: 0.3 + (j === 3 ? 0.1 : 0), pan: -0.15 + j * 0.1, rev: 0.25 }));
+  // jazz: voci del club e accordo di campane all'ingresso
+  clip(mix, 'voci_sala', { t: T.jazz, da: 3, durata: T.osservatorio - T.jazz, gain: 0.07, fadeIn: 1, fadeOut: 1.5, largo: 5, rev: 0.2 });
+  [77, 84, 89].forEach((m, j) => note(mix, 'vibes', mtof(m + 12), { t: T.jazz + 0.1 + j * 0.08, dur: 1.6, vel: 38, pan: 0.2, rev: 0.5, gain: 0.45 }));
+  // osservatorio: scintillio nel planetario («Nel planetario, tra le stelle») e stella cadente al bacio
   [91, 95, 98, 100, 103, 98, 107].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: cue('osservatorio', 2) + j * 0.11, dur: 2.4, vel: 36 + (j % 3) * 3, pan: -0.4 + j * 0.13, rev: 0.7, gain: 0.45 }));
   [108, 105, 102, 98, 93, 88].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: cue('osservatorio', 4) + j * 0.09, dur: 2.2, vel: 34 - j, pan: 0.5 - j * 0.15, rev: 0.7, gain: 0.45 }));
-  // prima: un colpo grave e lontano quando il faro si accende sullo sgabello vuoto (frase 1, Prima.tsx)
-  thud(mix, cue('prima', 1), 34, { bright: 600 });
+  // prima: lo scatto del faro che si accende sullo sgabello vuoto (frase 1, Prima.tsx)
+  clip(mix, 'scatti', { t: cue('prima', 1) - 0.02, da: 0.5, durata: 0.7, gain: 0.25, rate: 0.7, fadeOut: 0.2, rev: 0.5 });
   // epilogo: l'insegna SEB'S si accende alla frase 2 (Epilogo.tsx): scatto, sfarfallio, ronzio
   neonHum(mix, cue('epilogo', 2), 4.5, { vel: 34 });
 };
