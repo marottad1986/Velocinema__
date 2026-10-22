@@ -71,7 +71,10 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
   e "Red Library" su archive.org), scaricati in `campioni/effetti/`; `clip(mix, id, { t, da, durata, gain, lp, largo… })`
   suona un tratto del file (da/durata = presa scelta). Per aggiungere un effetto: voce nel `CATALOGO` con il picco del file.
   Lo spartito esporta `effetti` (id da scaricare). I tappeti (pioggia, vento, fuoco) restano sotto la musica, i colpi sopra.
-- Shutter Island usa già orchestra campionata ed effetti registrati; gli altri film usano ancora i vecchi suoni sintetici.
+- Tutti i film usano orchestra campionata ed effetti registrati. Restano sintetici solo pochi suoni senza un buon
+  equivalente registrato (gesso, spazzole jazz, bip Morse, neon, cambio canale, risucchio). Per tarare i volumi
+  confrontare musica ed effetti misurati separatamente; i vecchi strumenti sintetici di synth.mjs non vanno più usati
+  per la musica.
 - `npm run musica -- <film>` → `out/<film>-musica.wav`. `npm run render` la rigenera e la unisce al video con ffmpeg
   (anche per un solo capitolo, col tratto di musica corrispondente). Film senza spartito: video muto, con avviso.
 

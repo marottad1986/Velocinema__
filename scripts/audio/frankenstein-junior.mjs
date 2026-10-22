@@ -1,116 +1,43 @@
 // Colonna sonora originale di Frankenstein Junior: valzer gotico per violino solo in Re minore (il "violino che
 // calma la Creatura"), organo da castello, pizzicati in tre tempi, timpani per i temporali e un breve intermezzo
 // swing con tip tap per lo spettacolo. Tema e armonie inventati qui; nessun brano o tema del film.
-// Nel lieto fine il valzer passa in Re maggiore. Effetti agganciati agli eventi delle scene in src/scenes/frankenstein-junior/.
-import { put, rng, drum, thunder, wind, metalThud, glassCrash, rainHiss, doorCreak, hollowBonk, applause, chalk, whoosh, thud, pop, crackle, swell , FX } from './synth.mjs';
+// Nel lieto fine il valzer passa in Re maggiore. Strumenti campionati (VSCO-2 CE); effetti registrati
+// (archivio CC0, scripts/audio/effetti.mjs) agganciati agli eventi delle scene in src/scenes/frankenstein-junior/.
+import { rng, drum, chalk } from './synth.mjs';
+import { suona, colpo, crescendo } from './campioni.mjs';
+import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
-const TAU = Math.PI * 2;
-const SR = 44100;
-const mtof = (m, cents = 0) => 440 * 2 ** ((m - 69 + cents / 100) / 12);
-const vamp = (v) => (v / 127) ** 1.6;
+export const strumenti = ['violino_solo', 'organo', 'organo_pieno', 'violini_pizz', 'celli_pizz', 'contrabbasso_pizz', 'grancassa', 'glockenspiel', 'gong', 'piatto_sospeso'];
+export const effetti = ['tuono_classico', 'tuono_secco', 'tuono_forte', 'tuono_breve', 'scariche', 'scintille', 'ronzio_tesla', 'pioggia_vento',
+  'telo', 'colpi_legno', 'vento_leggero', 'vento_raffiche', 'carro', 'lupo', 'colpi_cavi', 'nitriti', 'nitriti_paura', 'legno_cigolio', 'porta_sbatte',
+  'vetri', 'metallo_colpi', 'fuoco', 'torcia', 'ceramica', 'fiammifero', 'applauso_breve', 'catene', 'sacchi', 'campane_festa'];
+/** Sala del castello: pietra, coda lunga e scura. */
+export const sala = { rt60: 2.9, brillo: 5000, predelay: 0.03, wet: 0.55 };
 
-// ---------------------------------------------------------------- strumenti locali (via put)
+// ---------------------------------------------------------------- strumenti (campionati; firme come nella versione sintetica)
 
-/** Violino: dente di sega filtrato, vibrato che entra dopo l'attacco, un filo di rumore d'arco. */
-const violin = (mix, m, { t, dur, vel = 60, pan = 0.15, rev = 0.45, gain = 1, seed = 1, slide = 0 }) => {
-  const r = rng(seed * 733 + Math.round(t * 1000) + m);
-  const f = mtof(m);
-  const att = Math.min(0.12, dur * 0.3), rel = 0.25;
-  const a = 1 - Math.exp((-TAU * 3200) / SR);
-  let ph = r(), lp = 0, lp2 = 0, nz = 0;
-  put(mix, t, Math.ceil((dur + rel) * SR), (i) => {
-    const x = i / SR;
-    const vib = 1 + 0.006 * Math.sin(TAU * 5.6 * x) * Math.min(1, Math.max(0, (x - 0.15) / 0.3));
-    const gl = slide ? 2 ** ((slide * Math.max(0, 1 - x / 0.12)) / 12) : 1;
-    ph = (ph + (f * vib * gl) / SR) % 1;
-    const saw = 2 * ph - 1;
-    lp += a * (saw - lp);
-    lp2 += a * (lp - lp2);
-    nz += 0.2 * ((r() * 2 - 1) - nz);
-    const env = Math.min(1, x / att) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / rel)) * (0.85 + 0.15 * Math.sin(TAU * 0.8 * x));
-    return (lp2 * 1.4 + nz * 0.04) * env;
-  }, { gain: gain * vamp(vel) * 0.7, pan, rev });
-};
+/** Violino solista con vibrato; slide non più usato (il campione ha già il suo attacco d'arco). */
+const violin = (mix, m, { t, dur, vel = 60, pan = 0.15, rev = 0.45, gain = 1, seed = 1 }) =>
+  suona(mix, 'violino_solo', m, { t, dur, vel: vel * 1.3, pan, rev, gain: gain * 1.2, attack: 0.03, release: 0.3, seed });
 
-/** Organo da castello: registri a sinusoidi (8', 4', 2 2/3', 2'), lieve tremolo. */
-const organ = (mix, m, { t, dur, vel = 40, pan = 0, rev = 0.6, gain = 1 }) => {
-  const f = mtof(m);
-  const rel = 0.6;
-  put(mix, t, Math.ceil((dur + rel) * SR), (i) => {
-    const x = i / SR;
-    const s = Math.sin(TAU * f * x) + 0.5 * Math.sin(TAU * 2 * f * x) + 0.25 * Math.sin(TAU * 3 * f * x) + 0.18 * Math.sin(TAU * 4 * f * x) + 0.6 * Math.sin(TAU * 0.5 * f * x);
-    const env = Math.min(1, x / 0.08) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / rel));
-    return s * env * (1 + 0.06 * Math.sin(TAU * 6 * x)) * 0.4;
-  }, { gain: gain * vamp(vel), pan, rev });
-};
+/** Organo da castello: registri dolci, da vel 50 il ripieno. */
+const organ = (mix, m, { t, dur, vel = 40, pan = 0, rev = 0.6, gain = 1 }) =>
+  suona(mix, vel >= 50 ? 'organo_pieno' : 'organo', m, { t, dur, vel, pan, rev, gain: gain * (vel >= 50 ? 0.6 : 1.2), attack: 0.05, release: 0.6 });
 
-/** Pizzicato: corda pizzicata breve con corpo legnoso. */
-const pizz = (mix, m, { t, vel = 50, pan = 0, gain = 1 }) => {
-  const f = mtof(m);
-  put(mix, t, Math.ceil(0.5 * SR), (i) => {
-    const x = i / SR;
-    const s = Math.sin(TAU * f * x) + 0.4 * Math.sin(TAU * 2 * f * x) * Math.exp(-x / 0.05) + 0.2 * Math.sin(TAU * 3 * f * x) * Math.exp(-x / 0.03);
-    return s * Math.min(1, x / 0.002) * Math.exp(-x / 0.16);
-  }, { gain: gain * vamp(vel) * 0.6, pan, rev: 0.35 });
-};
+/** Pizzicato: contrabbasso, celli o violini secondo l'altezza. */
+const pizz = (mix, m, { t, vel = 50, pan = 0, gain = 1 }) =>
+  suona(mix, m < 40 ? 'contrabbasso_pizz' : m < 55 ? 'celli_pizz' : 'violini_pizz', m, { t, dur: 0.5, vel: vel * 1.5, pan, rev: 0.35, gain: gain * 1.8, release: 0.3 });
 
-/** Timpano: sinusoide con leggera discesa di tono e colpo di pelle. */
+/** Timpano: grancassa d'orchestra con il contrabbasso pizzicato sulla nota (VSCO non ha timpani intonati). */
 const timp = (mix, m, { t, vel = 60, gain = 1 }) => {
-  const f = mtof(m);
-  const r = rng(Math.round(t * 1000) + m);
-  let lp = 0;
-  put(mix, t, Math.ceil(1.6 * SR), (i) => {
-    const x = i / SR;
-    lp += 0.05 * ((r() * 2 - 1) - lp);
-    const body = Math.sin(TAU * f * x * (1 + 0.04 * Math.exp(-x / 0.05))) + 0.35 * Math.sin(TAU * 1.5 * f * x) * Math.exp(-x / 0.3);
-    return (body * Math.exp(-x / 0.6) + lp * 3 * Math.exp(-x / 0.03)) * Math.min(1, x / 0.003);
-  }, { gain: gain * vamp(vel) * 0.9, rev: 0.4 });
+  colpo(mix, 'grancassa', vel > 56 ? 'bdrum_f' : 'bdrum_mp', { t, vel: 100, gain: gain * 0.7, rev: 0.4, seed: m });
+  suona(mix, 'contrabbasso_pizz', m + 12, { t, dur: 0.8, vel: vel * 1.6, gain: gain * 0.9, rev: 0.4, release: 0.4 });
 };
 
-/** Ululato del lupo: sinusoide che sale, tiene e scende, con vibrato. */
-const howl = (mix, t, { vel = 50, dur = 2.6 } = {}) => {
-  let ph = 0;
-  put(mix, t, Math.ceil(dur * SR), (i) => {
-    const u = i / (dur * SR);
-    const f = 380 + 260 * Math.sin(Math.PI * Math.min(1, u * 1.6)) ** 0.7 - 160 * Math.max(0, u - 0.6) + 8 * Math.sin(TAU * 5 * u * dur);
-    ph = (ph + f / SR) % 1;
-    return (Math.sin(TAU * ph) + 0.2 * Math.sin(TAU * 2 * ph)) * Math.sin(Math.PI * u) ** 0.8;
-  }, { gain: FX * vamp(vel) * 0.45, pan: 0.4, rev: 0.8 });
-};
-
-/** Nitrito: tono nasale con vibrato rapido e discesa. */
-const neigh = (mix, t, { vel = 50, dur = 1.1, pan = 0.5 } = {}) => {
-  let ph = 0;
-  put(mix, t, Math.ceil(dur * SR), (i) => {
-    const u = i / (dur * SR);
-    const f = 900 - 500 * u + 120 * Math.sin(TAU * 18 * u * dur) * (1 - u);
-    ph = (ph + f / SR) % 1;
-    const s = 2 * Math.abs(2 * ph - 1) - 1;
-    return s * Math.sin(Math.PI * u) * (0.7 + 0.3 * Math.sin(TAU * 30 * u * dur));
-  }, { gain: FX * vamp(vel) * 0.3, pan, rev: 0.5 });
-};
-
-/** Campanella: parziali inarmoniche, decadimento lungo. */
-const bell = (mix, m, { t, vel = 50, pan = 0, gain = 1 }) => {
-  const f = mtof(m);
-  put(mix, t, Math.ceil(2.5 * SR), (i) => {
-    const x = i / SR;
-    return (Math.sin(TAU * f * x) * Math.exp(-x / 1.2) + 0.5 * Math.sin(TAU * 2.76 * f * x) * Math.exp(-x / 0.6) + 0.3 * Math.sin(TAU * 5.4 * f * x) * Math.exp(-x / 0.25)) * Math.min(1, x / 0.002);
-  }, { gain: gain * vamp(vel) * 0.5, pan, rev: 0.6 });
-};
-
-/** Scarica elettrica: ronzio a 50 Hz con armoniche e crepitio. */
-const buzz = (mix, t0, t1, { vel = 40, seed = 41 } = {}) => {
-  const r = rng(seed);
-  const dur = t1 - t0;
-  put(mix, t0, Math.ceil(dur * SR), (i) => {
-    const x = i / SR;
-    const s = Math.sin(TAU * 100 * x) + 0.5 * Math.sin(TAU * 200 * x) + 0.3 * Math.sin(TAU * 300 * x);
-    const env = Math.min(1, x / 0.3) * Math.min(1, (dur - x) / 0.3);
-    return (s * 0.5 + (r() < 0.004 ? (r() * 2 - 1) * 4 : 0)) * env;
-  }, { gain: FX * vamp(vel) * 0.4, rev: 0.2 });
-};
+/** Campanella: glockenspiel. */
+const bell = (mix, m, { t, vel = 50, pan = 0, gain = 1 }) =>
+  suona(mix, 'glockenspiel', m - 12, { t, dur: 2.2, vel: vel * 1.3, pan, rev: 0.6, gain: gain * 0.45, release: 1.2 });
 
 // ---------------------------------------------------------------- materiale musicale
 
@@ -176,7 +103,8 @@ export default (mix, T) => {
         const t = L0 + b * beat;
         if (t >= to - 0.2 || R() > o.keep) continue;
         const m = (o.major ? toMajor(m0) : m0) + (o.oct ?? 0);
-        violin(mix, m, { t, dur: Math.min(d * beat * 1.05, to - t), vel: o.vln * (0.9 + R() * 0.2), gain: BODY * 1.2, seed: sid, slide: R() < 0.15 ? -1 : 0 });
+        R(); // (era la scelta dello scivolando: si consuma comunque per non cambiare le note che seguono)
+        violin(mix, m, { t, dur: Math.min(d * beat * 1.05, to - t), vel: o.vln * (0.9 + R() * 0.2), gain: BODY * 1.2, seed: sid });
       }
     }
   };
@@ -239,63 +167,79 @@ export default (mix, T) => {
   [86, 90, 93].forEach((m, j) => bell(mix, m, { t: F + 0.4 + j * 0.3, vel: 44, pan: -0.3 + j * 0.3 }));
 
   // ---------------------------------------------------------------- effetti sonori (tempi delle scene)
+  /** Tuono dopo il lampo a t: prese diverse a rotazione. */
+  const TUONI = [['tuono_classico', 0.98, 6], ['tuono_secco', 0.78, 5.5], ['tuono_forte', 0.55, 5], ['tuono_breve', 1.47, 2.6], ['tuono_forte', 7.45, 4.8]];
+  let nt = 0;
+  const tuono = (t, power, lp = 0) => {
+    const [id, da, durata] = TUONI[nt++ % TUONI.length];
+    clip(mix, id, { t: t + 0.15, da, durata, gain: 0.75 * power, lp, fadeIn: 0.03, fadeOut: 1.2, rev: 0.35, pan: 0.1 });
+  };
+  /** Tappeto stereo (pioggia, vento, fuoco, ronzio). */
+  const bed = (id, t0, t1, da, gain, o = {}) => clip(mix, id, { t: t0, da, durata: t1 - t0, gain, fadeIn: 0.8, fadeOut: 0.8, largo: 3, rev: 0.12, ...o });
+  /** Scarica elettrica breve (presa di scariche). */
+  const scarica = (t0, t1, da, gain) => clip(mix, 'scariche', { t: t0, da, durata: t1 - t0, gain, fadeIn: 0.05, fadeOut: 0.3, rev: 0.25 });
+
   // copertina: due fulmini sul parafulmine (Locandina.tsx a 1,1 e 2,6 s)
-  thunder(mix, 1.1, 0.8, 3); thunder(mix, 2.6, 0.6, 5);
-  buzz(mix, 1.1, 1.7, { vel: 44 });
-  rainHiss(mix, 0, T.lezione + 0.3, { power: 0.35, fade: 0.8 });
+  tuono(1.1, 0.8); tuono(2.6, 0.6);
+  scarica(1.1, 1.7, 11.24, 0.5);
+  bed('pioggia_vento', 0, T.lezione + 0.3, 1, 0.12);
   // lezione: gesso che scrive FRANKENSTIN, ritratto che gira, lettera che arriva
   for (let t = C('lezione', 2) - 0.2; t < C('lezione', 2) + 1.2; t += 0.09) chalk(mix, t, 36);
   chalk(mix, C('lezione', 2) + 1.3, 44); chalk(mix, C('lezione', 2) + 1.7, 44);
-  whoosh(mix, C('lezione', 3) + 0.3, 0.6, { vel: 40, lo: 400, hi: 1600 });
-  whoosh(mix, C('lezione', 4), 0.7, { vel: 44, lo: 500, hi: 2200, pan: 0.3 });
-  pop(mix, C('lezione', 4) + 0.7, 50, { pitch: -5 });
+  clip(mix, 'telo', { t: C('lezione', 3) + 0.3 - 0.1, da: 4.57, durata: 0.8, gain: 0.25, fadeOut: 0.2, rev: 0.2 });
+  clip(mix, 'telo', { t: C('lezione', 4) - 0.25, da: 12.85, durata: 0.8, gain: 0.25, fadeOut: 0.2, rev: 0.2, pan: 0.3 });
+  clip(mix, 'colpi_legno', { t: C('lezione', 4) + 0.7, da: 5.18, durata: 0.15, gain: 0.25, rev: 0.25 });
   // stazione: vento, sobbalzo del carro, ululato
-  wind(mix, T.stazione, T.castello, { power: 0.25, fade: 1.2, center: 500, seed: 19 });
-  thud(mix, C('stazione', 3) + 0.05, 52, { bright: 800 });
-  howl(mix, C('stazione', 4) - 0.1, { vel: 56, dur: 2.0 });
+  bed('vento_leggero', T.stazione, T.castello, 0.5, 0.12, { fadeIn: 1.2, fadeOut: 1.2 });
+  clip(mix, 'carro', { t: C('stazione', 3) + 0.05 - 0.55, da: 11.54, durata: 1.2, gain: 0.45, fadeOut: 0.4, rev: 0.2 });
+  clip(mix, 'lupo', { t: C('stazione', 4) - 0.1, da: 1.25, durata: 3.2, gain: 0.45, fadeOut: 1, pan: 0.4, rev: 0.4 });
   // castello: due colpi di batacchio, tuoni e nitriti, pioggia
-  hollowBonk(mix, T.castello + 0.45, 74); hollowBonk(mix, T.castello + 0.8, 70);
-  thunder(mix, C('castello', 1) + 0.15, 0.8, 7); thunder(mix, C('castello', 3) + 0.15, 0.6, 9);
-  neigh(mix, C('castello', 1) + 0.25, { vel: 56 }); neigh(mix, C('castello', 3) + 0.25, { vel: 50, pan: 0.6 });
-  rainHiss(mix, T.castello, T.libreria, { power: 0.4, fade: 0.8 });
+  clip(mix, 'colpi_cavi', { t: T.castello + 0.45 - 0.01, da: 0.5, durata: 0.5, gain: 0.7, fadeOut: 0.15, rev: 0.5 });
+  clip(mix, 'colpi_cavi', { t: T.castello + 0.8 - 0.01, da: 2.68, durata: 0.5, gain: 0.6, fadeOut: 0.15, rev: 0.5 });
+  tuono(C('castello', 1) + 0.15, 0.8); tuono(C('castello', 3) + 0.15, 0.6);
+  clip(mix, 'nitriti_paura', { t: C('castello', 1) + 0.25, da: 0.7, durata: 1.4, gain: 0.45, fadeOut: 0.3, pan: 0.5, rev: 0.4 });
+  clip(mix, 'nitriti', { t: C('castello', 3) + 0.25, da: 0.6, durata: 2.1, gain: 0.4, fadeOut: 0.4, pan: 0.6, rev: 0.4 });
+  bed('pioggia_vento', T.castello, T.libreria, 32, 0.2);
   // libreria: si apre cigolando, si richiude di colpo, si riapre; rivelazione finale
-  doorCreak(mix, C('libreria', 0) + 0.6, 1.0, { vel: 50 });
-  thud(mix, C('libreria', 1) + 0.33, 66);
-  doorCreak(mix, C('libreria', 1) + 1.2, 0.9, { vel: 46 });
-  swell(mix, C('libreria', 5), 2.2, { vel: 50 });
-  buzz(mix, C('libreria', 5), C('libreria', 5) + 1.0, { vel: 38 });
+  clip(mix, 'legno_cigolio', { t: C('libreria', 0) + 0.6, da: 2.85, durata: 1.0, gain: 0.45, fadeOut: 0.3, rev: 0.4 });
+  clip(mix, 'porta_sbatte', { t: C('libreria', 1) + 0.33 - 0.5, da: 2.6, durata: 0.9, gain: 0.55, fadeOut: 0.3, rev: 0.4 });
+  clip(mix, 'legno_cigolio', { t: C('libreria', 1) + 1.2, da: 0.25, durata: 0.9, gain: 0.4, fadeOut: 0.3, rev: 0.4 });
+  crescendo(mix, C('libreria', 5), 2.2, { gain: 0.35 });
+  clip(mix, 'ronzio_tesla', { t: C('libreria', 5), da: 5, durata: 1.0, gain: 0.3, fadeIn: 0.3, fadeOut: 0.3, rev: 0.2 });
   // cervello: tuono sul patibolo, barattolo in frantumi, rintocco per ABNORMAL
-  thunder(mix, C('cervello', 1) + 0.1, 0.7, 11); thunder(mix, C('cervello', 3) + 0.55, 0.45, 13);
-  glassCrash(mix, C('cervello', 3) + 0.55, 76);
-  bell(mix, 70, { t: C('cervello', 4) + 0.5, vel: 52 });
-  rainHiss(mix, T.cervello, T.creazione, { power: 0.25, fade: 1 });
+  tuono(C('cervello', 1) + 0.1, 0.7); tuono(C('cervello', 3) + 0.55, 0.45);
+  clip(mix, 'vetri', { t: C('cervello', 3) + 0.55 - 0.36, da: 3.66, durata: 1.0, gain: 0.5, fadeOut: 0.3, rev: 0.3 });
+  colpo(mix, 'gong', 'gong_hit_p', { t: C('cervello', 4) + 0.5, vel: 90, gain: 0.5, rev: 0.5, dur: 2.5, release: 0.8 });
+  bed('pioggia_vento', T.cervello, T.creazione, 66, 0.14);
   // creazione: elettricità, tuoni, cinghie che saltano
-  buzz(mix, T.creazione, C('creazione', 3) + 1.0, { vel: 46 });
-  buzz(mix, C('creazione', 5), T.eremita + 0.2, { vel: 52, seed: 43 });
-  thunder(mix, C('creazione', 1) + 0.9, 0.8, 15); thunder(mix, C('creazione', 5), 1, 17);
-  [0, 0.08, 0.16].forEach((d) => thud(mix, C('creazione', 5) - 0.25 + d, 58, { bright: 2400, seed: 31 + d * 100 }));
-  rainHiss(mix, T.creazione, T.eremita, { power: 0.35, fade: 1 });
+  bed('scintille', T.creazione, C('creazione', 3) + 1.0, 1, 0.3, { fadeIn: 0.3, fadeOut: 0.3 });
+  bed('scintille', C('creazione', 5), T.eremita + 0.2, 8, 0.35, { fadeIn: 0.3, fadeOut: 0.4 });
+  tuono(C('creazione', 1) + 0.9, 0.8); tuono(C('creazione', 5), 1);
+  [[0, 2.9], [0.08, 8.07], [0.16, 12.82]].forEach(([d, da], k) => clip(mix, 'metallo_colpi', { t: C('creazione', 5) - 0.25 + d, da, durata: 0.4, gain: 0.35 - k * 0.05, pan: -0.2 + k * 0.2, rev: 0.35 }));
+  bed('pioggia_vento', T.creazione, T.eremita, 87.5, 0.18);
   // eremita: fuoco, tazza in frantumi, fiammifero
-  crackle(mix, T.eremita, T.teatro, { vel: 36 });
-  glassCrash(mix, C('eremita', 3) + 0.6, 60, 57);
-  whoosh(mix, C('eremita', 3) + 0.3, 0.8, { vel: 36, lo: 200, hi: 900 });
-  whoosh(mix, C('eremita', 4) - 0.15, 0.25, { vel: 50, lo: 1500, hi: 5000, pan: 0.3 });
+  bed('fuoco', T.eremita, T.teatro, 3, 0.25);
+  clip(mix, 'ceramica', { t: C('eremita', 3) + 0.6 - 0.01, da: 3.95, durata: 1.4, gain: 0.5, fadeOut: 0.4, rev: 0.3 });
+  clip(mix, 'fiammifero', { t: C('eremita', 4) - 0.15 - 0.08, da: 0.62, durata: 1.0, gain: 0.45, fadeOut: 0.4, rev: 0.2, pan: 0.3 });
   // teatro: applauso al sipario, esplosione del riflettore, catene
-  applause(mix, C('teatro', 1), 2.2, { vel: 34 });
-  glassCrash(mix, C('teatro', 4), 82, 61); thunder(mix, C('teatro', 4), 0.5, 19);
-  [0, 0.15, 0.3, 0.45].forEach((d, k) => metalThud(mix, C('teatro', 5) + 0.3 + d, 56 - k * 6));
+  clip(mix, 'applauso_breve', { t: C('teatro', 1), da: 4.5, durata: 2.4, gain: 0.35, fadeIn: 0.4, fadeOut: 0.8, rev: 0.3 });
+  clip(mix, 'vetri', { t: C('teatro', 4) - 0.01, da: 1.48, durata: 1.1, gain: 0.6, fadeOut: 0.3, rev: 0.3 });
+  scarica(C('teatro', 4), C('teatro', 4) + 0.8, 7.6, 0.5);
+  tuono(C('teatro', 4), 0.5);
+  [[0, 5.12], [0.15, 11.47], [0.3, 18.4], [0.45, 28.11]].forEach(([d, da], k) => clip(mix, 'catene', { t: C('teatro', 5) + 0.3 + d, da, durata: 0.35, gain: 0.35 - k * 0.05, pan: -0.2 + k * 0.15, rev: 0.35 }));
   // elizabeth: bagagli che cadono, cipria, finestra spalancata nella tempesta
-  [0, 0.18, 0.32, 0.46].forEach((d) => thud(mix, C('elizabeth', 0) + d + 0.42, 54, { bright: 900 }));
-  whoosh(mix, C('elizabeth', 1) + 0.2, 1.0, { vel: 38, lo: 600, hi: 3000, pan: -0.3 });
-  thunder(mix, C('elizabeth', 2), 0.9, 21); thunder(mix, C('elizabeth', 2) + 0.9, 0.6, 23);
-  wind(mix, C('elizabeth', 2), T.assedio, { power: 0.4, fade: 1, center: 600, seed: 25 });
-  [0, 0.12].forEach((d) => metalThud(mix, C('elizabeth', 2) + 0.75 + d, 50));
+  [[0, 6.4], [0.18, 7.72], [0.32, 8.77], [0.46, 10.6]].forEach(([d, da], k) => clip(mix, 'sacchi', { t: C('elizabeth', 0) + d + 0.42, da, durata: 0.5, gain: 0.4 - k * 0.04, pan: -0.15 + k * 0.1, rev: 0.25 }));
+  clip(mix, 'telo', { t: C('elizabeth', 1) + 0.2, da: 8.45, durata: 0.8, gain: 0.2, fadeOut: 0.3, rev: 0.25, pan: -0.3 });
+  tuono(C('elizabeth', 2), 0.9); tuono(C('elizabeth', 2) + 0.9, 0.6);
+  bed('vento_raffiche', C('elizabeth', 2), T.assedio, 12, 0.3, { fadeIn: 0.5 });
+  [0, 0.12].forEach((d, k) => clip(mix, 'colpi_legno', { t: C('elizabeth', 2) + 0.75 + d, da: k ? 12.55 : 3.53, durata: 0.5, gain: 0.4, fadeOut: 0.2, rev: 0.35 }));
   // assedio: torce che crepitano, scarica dal parafulmine, torce che si spengono
-  crackle(mix, T.assedio, C('assedio', 3) + 1.2, { vel: 30, seed: 39 });
-  thunder(mix, C('assedio', 2) + 0.1, 0.9, 27); thunder(mix, C('assedio', 2) + 0.9, 0.7, 29);
-  buzz(mix, C('assedio', 2) + 0.1, C('assedio', 2) + 1.6, { vel: 50, seed: 45 });
+  bed('torcia', T.assedio, C('assedio', 3) + 1.2, 1.5, 0.2);
+  tuono(C('assedio', 2) + 0.1, 0.9); tuono(C('assedio', 2) + 0.9, 0.7);
+  scarica(C('assedio', 2) + 0.1, C('assedio', 2) + 1.6, 7.0, 0.55);
   // nozze: campane a festa, pagina del giornale, brillio delle fedi
+  clip(mix, 'campane_festa', { t: C('nozze', 1), da: 0.04, durata: Math.min(6, T.finale - C('nozze', 1)), gain: 0.35, fadeOut: 1.5, largo: 2, rev: 0.3 });
   [74, 78, 81, 86].forEach((m, j) => bell(mix, m, { t: C('nozze', 1) + j * 0.22, vel: 46, pan: -0.3 + j * 0.2 }));
-  whoosh(mix, C('nozze', 2) + 0.2, 0.6, { vel: 32, lo: 1200, hi: 4000 });
+  clip(mix, 'telo', { t: C('nozze', 2) + 0.2, da: 13.0, durata: 0.6, gain: 0.18, fadeOut: 0.2, rev: 0.2 });
   bell(mix, 93, { t: C('nozze', 3), vel: 40, pan: 0.4 });
 };
