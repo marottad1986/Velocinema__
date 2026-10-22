@@ -1,4 +1,4 @@
-// npm run controlli [-- <film>...] → controlla le regole vincolanti di CLAUDE.md su JSON, scene e spartiti.
+// node scripts/controlli.mjs [<film>...] → controlla le regole vincolanti di CLAUDE.md su JSON, scene e spartiti.
 // Senza argomenti controlla tutti i film (films/) e i quadri (quadri/). Esce con errore se trova un ERRORE;
 // gli AVVISI vanno letti ma non bloccano. Usato anche da .github/workflows/video-mega.yml prima del render.
 import { existsSync, readdirSync, readFileSync } from 'node:fs';

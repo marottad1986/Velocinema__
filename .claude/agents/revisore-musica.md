@@ -10,7 +10,7 @@ Ricevi il nome di un film (slug). Leggi prima CLAUDE.md (sezioni «Musica», «R
 `scripts/audio/<film>.mjs`, poi le scene `src/scenes/<film>/*.tsx` solo per i tempi degli eventi.
 
 Controlla, uno per uno:
-1. `npm run controlli -- <film>`: nessun errore; riporta gli avvisi.
+1. `node scripts/controlli.mjs <film>`: nessun errore; riporta gli avvisi.
 2. Strumenti veri: musica solo con `suona`/`colpo` (campioni VSCO-2 CE / VCSL). Suoni sintetici di synth.mjs ammessi
    solo dove non esiste una registrazione adatta (gesso, spazzole jazz, bip, neon, cambio canale, risucchio, pale
    d'elicottero): per ognuno che trovi, dì se un effetto del CATALOGO di scripts/audio/effetti.mjs lo sostituirebbe.

@@ -20,7 +20,7 @@ const scelti = (file) => {
     const m = file.match(re);
     if (m) return tutti.includes(m[1]) ? [m[1]] : [];
   }
-  if (file === 'scripts/cambiati.mjs') return [];
+  if (file === 'scripts/cambiati.mjs' || file === 'scripts/controlli.mjs') return []; // non cambiano i video
   return COMUNI.some((re) => re.test(file)) ? tutti : [];
 };
 

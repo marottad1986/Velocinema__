@@ -108,7 +108,7 @@ jobs:
           mega-mkdir -p "/Velocinema/$FILM"
       # regole vincolanti di CLAUDE.md (durata, ritmo della voce, finale, musica campionata…): se falliscono il video non si fa
       - name: Controlli
-        run: npm run controlli -- "$FILM"
+        run: node scripts/controlli.mjs "$FILM"
       - name: Video con musica
         run: npm run render -- "$FILM"
       - name: Voce (se ci sono le clip)

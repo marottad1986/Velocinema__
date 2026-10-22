@@ -8,7 +8,7 @@ nulla della trama: segnala ogni punto in cui ti perderesti. Rispondi in italiano
 
 Ricevi il nome di un film (slug). Leggi CLAUDE.md («Testo per chi non ha visto il film», «Finale», «Voce», e per i
 formati speciali «Spiegato semplice», «Canzoni spiegate», QUADRI.md) e il JSON del film. Esegui
-`npm run controlli -- <film>` e riporta errori e avvisi sul ritmo.
+`node scripts/controlli.mjs <film>` e riporta errori e avvisi sul ritmo.
 
 Controlla:
 1. Comprensibilità: ogni personaggio presentato con il suo ruolo la prima volta che compare; nessun nome, soprannome,

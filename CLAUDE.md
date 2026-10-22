@@ -167,7 +167,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 ## Metodo di lavoro e controllo qualità (vincolante)
 - Si parte sempre da `main`: una conversazione e un ramo per film (o per modifica), una pull request per film.
   Niente rami paralleli di lunga durata: a lavoro finito si unisce su main.
-- `npm run controlli [-- <film>]` (`scripts/controlli.mjs`): regole verificabili in automatico (durata 2:00, ritmo della
+- `node scripts/controlli.mjs [<film>...]` (`scripts/controlli.mjs`): regole verificabili in automatico (durata 2:00, ritmo della
   voce, frasi vietate, finale con «Commenta con…», scene registrate, musica con strumenti campionati e senza note()
   sintetiche, strumenti ed effetti dichiarati, agganci a capitoli e frasi esistenti, un solo tempo). Gira anche nel
   workflow MEGA prima del render: con un errore il video di quel film non viene fatto. Una regola nuova che si può
