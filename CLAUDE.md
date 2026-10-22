@@ -52,8 +52,9 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 - Significato: distinguere sempre ciò che l'autore ha detto da ciò che ipotizzano critici e biografi («per molti…»,
   «restano ipotesi»). Se le fonti non concordano su un fatto, non darlo per certo.
 - Persone reali: nessun ritratto, sagoma o caricatura dell'artista; niente copertine di dischi, foto o loghi del gruppo.
-- Musica: solo originale, senza imitare melodia, accordi o ritmo della canzone. La canzone vera, se si vuole,
-  si aggiunge al momento della pubblicazione dalla libreria musicale con licenza della piattaforma.
+- Musica: solo originale, senza imitare melodia, accordi o ritmo della canzone (meglio anche in un'altra tonalità).
+  Si può richiamare lo stile e la forma: strumenti, sezioni nello stesso ordine, cambi di tempo e di carattere.
+  La canzone vera, se si vuole, si aggiunge al momento della pubblicazione dalla libreria musicale con licenza della piattaforma.
 
 ## Elementi fissi sopra le immagini (capitoli)
 - Barra a capitoli sottile (16 px) sul bordo superiore, un segmento per capitolo proporzionale alla durata,
