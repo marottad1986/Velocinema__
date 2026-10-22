@@ -150,8 +150,8 @@ Mai Chuck né Kelly: si raccontano con gli oggetti; nessun marchio (corriere ano
 Look da avventura nella giungla: verdi profondi, nebbia, pioggia notturna, luci di sicurezza verdi e rosse; l'ambra
 (#F2A23A) solo sull'oggetto chiave (goccia d'ambra, cartello della recinzione, provette, leva, striscione).
 Elementi comuni in `src/scenes/jurassic-park/Comuni.tsx` (jeep, recinzione elettrica, felci, alberi, ambra, elicottero, uovo).
-I dinosauri vivi non si disegnano mai, come le persone: si raccontano con le tracce (acqua che trema, impronte, cavi
-spezzati, gusci, scheletri da museo). Niente logo del film.
+Persone mai. I dinosauri si disegnano generici, da manuale di paleontologia (raptor piumati e piccoli, colori non del film),
+nel momento chiave; per il resto si raccontano con le tracce (acqua che trema, impronte, cavi spezzati, gusci). Niente logo del film.
 - Dinosauri di nuovo vivi: luce sotto l'ambra con pulviscolo, DNA che gira sugli schermi, isola alla finestra.
 - Gli esperti: pale dell'elicottero, erba piegata dal vento, cascata con nebbia, gabbiani.
 - Il laboratorio: lampade calde sulle uova, uovo che si crepa e si apre, braccio meccanico, cartellini «F».

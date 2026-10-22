@@ -3,10 +3,11 @@ import { camera, eio, eo, mod, seg } from '../../lib/anim';
 import { Beam, Dust, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { K } from './Comuni';
+import { K, RaptorHead } from './Comuni';
 
 // Raptor in cucina: banconi d'acciaio, mestoli appesi che oscillano, una pentola caduta, la maniglia della porta che si
-// abbassa da sola; poi un monitor che si accende (Lex al computer) e la spia della porta che diventa rossa: bloccata.
+// abbassa da sola, dietro l'oblò la testa di un raptor piumato; poi un monitor che si accende (Lex al computer) e la spia
+// della porta che diventa rossa: bloccata.
 // Piani: parete e cappa (0,25) · porta con l'oblò e la maniglia (0,45) · mestoli (0,6) · banconi (0,85) · bancone in primo piano (1,25) · vapore (1,6)
 
 export const Cucina: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
@@ -17,6 +18,7 @@ export const Cucina: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const pot = eio(seg(t, cues[1] + 0.3, cues[1] + 0.8)); // la pentola cade
   const screen = eo(seg(t, cues[2], cues[2] + 0.8)); // il computer si accende
   const locked = seg(t, cues[3], cues[3] + 0.2); // «blocca le porte»: la spia diventa rossa
+  const peek = eio(seg(t, cues[0] + 0.5, cues[0] + 1.2)) * (1 - eio(seg(t, cues[2], cues[2] + 0.8))); // il raptor dietro l'oblò
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
@@ -35,7 +37,12 @@ export const Cucina: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         {/* porta della cucina con oblò, maniglia e spia */}
         <g transform={L(0.45)}>
           <rect x="400" y="640" width="280" height="460" fill="url(#cu-steel)" stroke={K} strokeWidth="9" />
-          <circle cx="540" cy="780" r="60" fill="#0E1816" stroke={K} strokeWidth="8" />
+          <clipPath id="cu-portclip"><circle cx="540" cy="780" r="56" /></clipPath>
+          <circle cx="540" cy="780" r="60" fill="#0E1816" />
+          <g clipPath="url(#cu-portclip)">
+            <RaptorHead x={420 + 90 * peek} y={790 + Math.sin(t * 2) * 4} s={0.62} t={t} open={peek * Math.max(0, Math.sin(t * 2.5))} />
+          </g>
+          <circle cx="540" cy="780" r="60" fill="none" stroke={K} strokeWidth="8" />
           <Glow id="cu-port" x={540} y={780} r={90} t={t} color="#6EA89A" amp={0.1} rate={1.2} opacity={0.35} />
           <path d="M500 750 Q520 730 550 734" stroke="#9FC4BA" strokeWidth="5" fill="none" opacity=".6" />
           <g transform={`rotate(${-35 * handle} 640 900)`}>

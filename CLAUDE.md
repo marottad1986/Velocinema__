@@ -21,7 +21,8 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
   Riferimento visivo: `reference/prova-qualita-uragano/scene-dopo.js`.
 
 ## Regole sui contenuti (vincolanti)
-- Nessun personaggio del film disegnato, nemmeno stilizzato o reinventato: solo luoghi e oggetti.
+- Nessun personaggio umano del film disegnato, nemmeno stilizzato o reinventato (niente sagome o mani): luoghi e oggetti.
+- Animali e dinosauri si possono disegnare, in modo generico e nel nostro stile, senza copiare il loro aspetto nel film.
 - Copertine e finali in stile locandina ma originali: mai riprodurre le locandine ufficiali.
 - Musica solo originale e strumentale; mai brani o temi dei film.
 - Nessuna clip, immagine o audio preso dai film.

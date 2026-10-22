@@ -3,11 +3,11 @@ import { camera, eio, eo, mod, rng, seg } from '../../lib/anim';
 import { Beam, Dust, Glow, Gulls, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Helicopter, K } from './Comuni';
+import { Helicopter, K, TRex } from './Comuni';
 
 // La fuga: atrio del centro visitatori con gli scheletri da museo e lo striscione «Quando i dinosauri dominavano la Terra»
 // che si stacca e cade; dalle vetrate l'alba, l'elicottero che parte e gli uccelli sul mare.
-// Gli scheletri sono oggetti da museo (impalcature di ossa), non dinosauri vivi.
+// Il T-rex (generico, nel nostro stile) entra dalla destra e ruggisce; gli scheletri sono oggetti da museo.
 // Piani: alba oltre le vetrate (0,2) · elicottero e uccelli (0,3) · vetrate (0,45) · scheletri (0,65) · striscione (0,85) · ossa a terra (1,2) · polvere (1,6)
 
 const r = rng(65);
@@ -33,6 +33,8 @@ export const Fuga: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const heli = eio(seg(t, cues[3], dur)); // l'elicottero parte
   const dawn = eo(seg(t, cues[3], dur));
   const birds = seg(t, cues[5], cues[5] + 1);
+  const rex = eio(seg(t, cues[1] - 0.3, cues[1] + 0.8)) * (1 - eio(seg(t, cues[3] + 0.5, cues[4] + 0.5)));
+  const roar = seg(t, cues[2] + 0.9, cues[2] + 1.2) * (1 - seg(t, cues[2] + 2.2, cues[2] + 2.6)) + seg(t, cues[1] + 0.5, cues[1] + 0.8) * (1 - seg(t, cues[1] + 1.4, cues[1] + 1.7));
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
@@ -76,6 +78,10 @@ export const Fuga: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <g transform={L(0.65)}>
           <Skeleton x={300} y={920} s={0.9} shake={shake} />
           <Skeleton x={820} y={980} s={0.7} flip shake={-shake} />
+        </g>
+        {/* il T-rex entra nell'atrio */}
+        <g transform={L(0.75)}>
+          {rex > 0 && <TRex x={1500 - 620 * rex} y={1190} s={0.95} t={t} jaw={roar} flip />}
         </g>
         {/* lo striscione che si stacca e cade (accento sul bordo) */}
         <g transform={L(0.85)}>

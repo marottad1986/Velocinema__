@@ -87,7 +87,8 @@ funzione pura di `t`, seme, `id`, niente filtri) e mettilo nel catalogo. Il rest
 - **Metà bassa vuota.** Gli ultimi 420 px sono coperti dalle app ma devono avere comunque primo piano e particelle.
 - **Fasce e riflessi che sembrano pali.** Un riflesso verticale va fatto a trattini tremolanti (`Reflection`).
 - **Lampi.** Massimo due per scena, mai più di 3 al secondo: usa sempre `flashAt`.
-- **Personaggi.** Mai, nemmeno sagome o mani: si raccontano luoghi e oggetti (cappello, scarpe, biglietto, tazza).
+- **Personaggi.** Mai persone, nemmeno sagome o mani: si raccontano luoghi e oggetti (cappello, scarpe, biglietto, tazza).
+  Animali e dinosauri sì, generici e nel nostro stile (mai il design del film).
 - **Props non JSON.** Le composizioni ricevono solo lo slug: non passare componenti o funzioni come props.
 
 ## 5. Verifica (due fotogrammi bastano)

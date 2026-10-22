@@ -3,10 +3,10 @@ import { camera, eio, mod, rng, seg } from '../../lib/anim';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Clouds, Fog, Glow, Gulls, NearMotes, Rain } from '../../lib/elements';
 import type { SceneProps } from '../../types';
-import { Fern, Helicopter, JungleTree, K } from './Comuni';
+import { Brachio, Fern, Helicopter, JungleTree, K } from './Comuni';
 
 // Gli esperti: piazzola d'atterraggio in mezzo alla giungla accanto a una cascata; un elicottero che scende con le pale
-// che girano, l'erba piegata dal vento, nuvole basse sulle montagne.
+// che girano, l'erba piegata dal vento, nuvole basse sulle montagne; un brachiosauro mangia dalle cime degli alberi.
 // Piani: cielo e montagne (0,2) · cascata (0,4) · giungla lontana (0,5) · piazzola ed elicottero (0,7) · felci in primo piano (1,25) · spruzzi (1,6)
 
 const r = rng(77);
@@ -46,9 +46,10 @@ export const Esperti: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <Fog id="es-mist" t={t} x={800} y={1120} color="#FFFFFF" rx={180} ry={50} drift={20} opacity={0.6} />
         </g>
 
-        {/* PIANO 2 — giungla lontana */}
+        {/* PIANO 2 — giungla lontana con il brachiosauro che mangia dalle cime (la meraviglia dell'arrivo) */}
         <g transform={L(0.5)}>
           {[-60, 140, 360, 980, 1160].map((x, i) => <JungleTree key={x} x={x} y={1180} h={190 + (i % 2) * 50} t={t} ph={i} outline={false} leaf="#2C5E40" trunk="#3A3020" />)}
+          <Brachio x={680} y={1170} s={0.78} t={t} reach={eio(seg(t, cues[0] + 0.5, cues[1]))} />
         </g>
 
         {/* PIANO 3 — piazzola e l'elicottero che atterra (accento sul cerchio della piazzola) */}

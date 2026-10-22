@@ -3,11 +3,11 @@ import { camera, eio, mod, seg } from '../../lib/anim';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Beam, Glow, GlassDrops, Lightning, NearMotes, Rain, flashAt } from '../../lib/elements';
 import type { SceneProps } from '../../types';
-import { Fence, K } from './Comuni';
+import { Fence, K, TRex } from './Comuni';
 
 // Il T-rex: notte di pioggia vista da dentro la jeep ferma; sul cruscotto il bicchiere d'acqua con i cerchi che tremano
 // a ogni passo; fuori i cavi della recinzione che si spezzano e cadono; torce, luci rosse; poi la jeep si rovescia.
-// Il dinosauro non si vede mai: solo passi, cerchi nell'acqua, cavi spezzati, un'impronta enorme nel fango.
+// Il T-rex (generico, nel nostro stile) compare solo quando sfonda la recinzione, illuminato da lampi e torcia.
 // Piani: cielo e lampi (0,2) · giungla (0,4) · recinzione (0,55) · impronta e torcia (0,7) · parabrezza e cruscotto (1,05) · pioggia vicina (1,6)
 
 export const Trex: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
@@ -20,6 +20,8 @@ export const Trex: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const roll = eio(seg(t, cues[4], cues[4] + 1.0)); // «rovescia la jeep»: la vista si inclina
   const flash = flashAt(t, [cues[2] + 0.1, cues[4] + 0.2]);
   const torch = seg(t, cues[5], cues[5] + 0.4); // una torcia: Grant porta via i bambini
+  const enter = eio(seg(t, cues[2] - 0.5, cues[2] + 0.5)); // il T-rex sfonda il recinto
+  const roar = seg(t, cues[2] + 0.5, cues[2] + 0.8) * (1 - seg(t, cues[2] + 2, cues[2] + 2.5)) + seg(t, cues[4], cues[4] + 0.3) * (1 - seg(t, cues[4] + 1, cues[4] + 1.4));
   const cam = camera(t, dur);
   const L = cam.layer;
   const shake = `translate(${quake * 10} ${quake * 6}) rotate(${roll * 32} 540 1100)`;
@@ -48,6 +50,11 @@ export const Trex: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         {/* PIANO 2 — la recinzione che si spezza */}
         <g transform={L(0.55)}>
           <Fence x0={-60} x1={1140} y={1140} h={460} posts={5} broken={broken} sign={false} accent={P.accento} />
+          {enter > 0 && (
+            <g opacity={0.55 + 0.45 * Math.max(flash, torch * 0.6, 0.35)}>
+              <TRex x={-300 + 620 * enter} y={1180} s={1.05} t={t} jaw={roar} />
+            </g>
+          )}
           {broken > 0 && broken < 1 && Array.from({ length: 10 }, (_, i) => (
             <circle key={i} cx={540 + Math.cos(i) * 200 * broken} cy={900 + Math.sin(i * 1.7) * 140 * broken} r="6" fill="#FFE8A0" opacity={1 - broken} />
           ))}
