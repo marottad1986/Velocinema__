@@ -1,85 +1,47 @@
-// Colonna sonora originale di Cast Away: pianoforte, archi e tamburi leggeri, discreta sotto la voce.
-// All'inizio il ticchettio dell'orologio e un ostinato di pianoforte che corre; poi la tempesta; sull'isola quasi
-// silenzio (solo onde e vento); un tema caldo nasce quando parte la zattera, si fa triste con Wilson perso in mare
+// Colonna sonora originale di Cast Away, discreta sotto la voce. Re maggiore, un solo tempo: 72 bpm
+// (isola, anni e ritorno a metà passo; la fuga sulla zattera a passo pieno con i timpani).
+// Orchestra campionata (VSCO-2 CE e VCSL, CC0: scripts/audio/campioni.mjs): pianoforte, archi, arpa, marimba,
+// glockenspiel, corno e percussioni. All'inizio l'orologio e un ostinato di pizzicati che corre; poi la tempesta;
+// sull'isola quasi silenzio (onde e vento); il tema caldo nasce con la zattera, si fa triste con Wilson perso in mare
 // e sotto la pioggia di Memphis, e si apre al bivio finale. Tema inventato qui, nessun brano o tema del film.
-// Effetti agganciati agli eventi delle scene in src/scenes/cast-away/ (tempi delle frasi come in ChapterOverlay).
-import { put, rng, drum, note, thunder, wind, whoosh, thud, pop, crackle, rainHiss, doorCreak } from './synth.mjs';
+// Effetti registrati (archivio CC0 di Craig Smith: scripts/audio/effetti.mjs), agganciati agli eventi delle scene
+// in src/scenes/cast-away/ (tempi delle frasi come in ChapterOverlay).
+import { suona, colpo } from './campioni.mjs';
+import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
+import { rng } from './synth.mjs';
 
-const TAU = Math.PI * 2;
-const SR = 44100;
-const mtof = (m) => 440 * 2 ** ((m - 69) / 12);
-const vamp = (v) => (v / 127) ** 1.6;
+export const strumenti = ['violini', 'viole', 'celli', 'contrabbasso', 'violini_trem', 'celli_trem', 'violini_pizz', 'contrabbasso_pizz', 'arpa', 'pianoforte', 'marimba', 'glockenspiel', 'corno', 'organo_pedale', 'timpani', 'grancassa', 'piatto_sospeso'];
+export const effetti = ['onde', 'onde_tonanti', 'pioggia_vento', 'pioggia_dura', 'vento_raffiche', 'vento_leggero', 'tuono_classico', 'tuono_secco', 'esplosioni', 'metallo_schianto', 'telo', 'stoffa', 'scatti', 'sacchi', 'colpi_cavi', 'torcia', 'fiammata', 'fuoco', 'porta_cigolio', 'porta_sbatte', 'rombo'];
+/** Sala media e luminosa: coda moderata, alte aperte (mare, cielo). */
+export const sala = { rt60: 2.2, brillo: 7000, predelay: 0.02, wet: 0.45 };
 
-// ---------------------------------------------------------------- strumenti locali (via put)
+const BPM = 72;
+const BEAT = 60 / BPM;
+const BAR = 4 * BEAT;
 
-/** Pianoforte: armoniche con decadimento più rapido in alto, martelletto morbido. */
-const piano = (mix, m, { t, dur = 1.5, vel = 60, pan = 0, rev = 0.4, gain = 1 }) => {
-  const f = mtof(m);
-  const tau = Math.max(0.5, 2.6 - m * 0.02) * Math.min(1.4, 0.6 + dur * 0.4);
-  put(mix, t, Math.ceil((Math.min(dur, 4) + 0.5) * SR), (i) => {
-    const x = i / SR;
-    let s = 0;
-    for (let h = 1; h <= 6; h++) s += Math.sin(TAU * f * h * Math.sqrt(1 + 0.0004 * h * h) * x) * Math.exp(-x / (tau / (0.6 + h * 0.5))) / h ** 1.15;
-    const hammer = Math.sin(TAU * f * 3 * x) * Math.exp(-x / 0.012) * 0.3;
-    return (s + hammer) * Math.min(1, x / 0.003) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / 0.35));
-  }, { gain: gain * vamp(vel) * 0.55, pan, rev });
-};
-
-/** Archi: tre seghe scordate, passa-basso, attacco lento e vibrato. */
-const strings = (mix, m, { t, dur, vel = 40, pan = 0, rev = 0.6, gain = 1, att = 1, seed = 1 }) => {
-  const f = mtof(m);
-  const r = rng(seed * 977 + Math.round(t * 1000) + m);
-  const dets = [-6, 0, 6].map((c) => f * 2 ** (c / 1200));
-  const ph = dets.map(() => r());
-  const a = 1 - Math.exp((-TAU * f * 3.2) / SR);
-  let lp = 0;
-  put(mix, t, Math.ceil((dur + 1.2) * SR), (i) => {
-    const x = i / SR;
-    const vib = 1 + 0.003 * Math.sin(TAU * 5.1 * x) * Math.min(1, x / 1.5);
-    let s = 0;
-    for (let k = 0; k < 3; k++) s += 2 * ((ph[k] + dets[k] * vib * x) % 1) - 1;
-    lp += a * (s / 3 - lp);
-    return lp * Math.min(1, x / att) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / 1.2));
-  }, { gain: gain * vamp(vel), pan, rev });
-};
-
-/** Risacca: rumore filtrato che sale e scende come un'onda sulla spiaggia. */
-const surf = (mix, t0, t1, { power = 1, period = 5.5, seed = 83 } = {}) => {
-  const r = rng(seed + Math.round(t0 * 1000));
-  const dur = t1 - t0;
-  let lp = 0, lp2 = 0;
-  put(mix, t0, Math.ceil(dur * SR), (i) => {
-    const x = i / SR;
-    const ph = (x / period) % 1;
-    const swell = Math.sin(Math.PI * Math.min(1, ph * 1.6)) ** 2;
-    const n = r() * 2 - 1;
-    lp += (0.08 + 0.12 * swell) * (n - lp);
-    lp2 += 0.02 * (lp - lp2);
-    const env = Math.min(1, x / 1.5, (dur - x) / 1.5);
-    return (lp - lp2 * 0.5) * (0.25 + 0.75 * swell) * env;
-  }, { gain: 0.9 * power, pan: 0, rev: 0.3 });
-};
-
-/** Sirena di nave lontana: due note gravi sovrapposte con attacco morbido. */
-const horn = (mix, t, dur = 2.2, vel = 50) => {
-  put(mix, t, Math.ceil((dur + 0.6) * SR), (i) => {
-    const x = i / SR;
-    const env = Math.min(1, x / 0.25) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / 0.6));
-    let s = 0;
-    for (const f of [98, 123.5]) for (let h = 1; h <= 5; h++) s += Math.sin(TAU * f * h * x) / (h * 1.4);
-    return s * env * 0.25;
-  }, { gain: vamp(vel), pan: -0.4, rev: 0.7 });
-};
-
-// ---------------------------------------------------------------- materiale musicale
-
-// Tema (8 tempi, Re maggiore): [tempo, nota MIDI, durata in tempi]
+// Tema (16 tempi, Re maggiore): [tempo, nota MIDI, durata in tempi]
 const THEME = [[0, 66, 1], [1, 69, 1], [2, 74, 2], [4, 73, 1], [5, 71, 1], [6, 69, 2],
   [8, 66, 1], [9, 64, 1], [10, 62, 1.5], [11.5, 64, 0.5], [12, 66, 3]];
-// accordi per battuta (4 tempi): Re, Si minore, Sol, La
+// accordi per battuta: Re, Si minore, Sol, La (maggiore) / Re minore, Si♭, Sol minore, La (minore)
 const CH_MAJ = [[50, 54, 57], [47, 50, 54], [43, 47, 50], [45, 49, 52]];
 const CH_MIN = [[50, 53, 57], [46, 50, 53], [43, 46, 50], [45, 49, 52]];
+
+/** Piccolo scarto umano (±12 ms), deterministico. */
+const umano = (t, k) => {
+  const x = Math.sin(t * 12.9898 + k * 78.233) * 43758.5453;
+  return x - Math.floor(x) - 0.5;
+};
+
+/** Arpa: arpeggio sull'accordo che sale per un'ottava e mezza. */
+const harp = (mix, chord, t, { step = 0.12, vel = 54, gain = 0.45 } = {}) =>
+  [...chord, ...chord.map((m) => m + 12), chord[0] + 24].forEach((m, j) => {
+    const u = umano(t, j);
+    suona(mix, 'arpa', m, { t: t + j * step + u * 0.02, dur: 1.6, vel: vel + u * 10, pan: -0.4 + j * 0.12, rev: 0.45, gain, release: 1.4 });
+  });
+
+/** Campanelli: glockenspiel acuto, lontano. */
+const glock = (mix, m, t, vel = 52, pan = 0.3, gain = 0.18) => suona(mix, 'glockenspiel', m, { t, dur: 2, vel, pan, rev: 0.6, gain, release: 1.5 });
 
 export default (mix, T) => {
   const { segments } = timeline(loadFilm('cast-away'));
@@ -93,115 +55,167 @@ export default (mix, T) => {
     for (let k = 0; k < n; k++) acc += (w[k] / tot) * (s.dur - 0.35);
     return s.start + acc;
   };
-  const BODY = 0.8;
+  /** Battuta della griglia più vicina all'istante t: i cambi di sezione cadono sempre sul battere. */
+  const B = (t) => Math.round(t / BAR) * BAR;
+  const archi = { attack: 0.35, release: 1.1, rev: 0.5 };
+  /** Colpo di timpano intonato (Re o La gravi). */
+  const timp = (t, m, vel, gain, seed = 1) => suona(mix, 'timpani', m, { t, dur: 1.2, vel, pan: -0.15, rev: 0.45, gain, release: 0.6, seed });
 
-  /** Tema con accordi da `from` a `to`; minor per la versione triste, big per l'apertura finale. */
-  const theme = (from, to, { bpm = 72, vel = 52, str = 36, minor = false, big = false, keep = 1, seed = 1 } = {}) => {
-    const beat = 60 / bpm, loop = 16 * beat;
+  /**
+   * Il tema da `from` a `to` (allineati alla griglia). minor: versione triste. half: a metà passo (accordi di due
+   * battute, melodia lenta). keep: probabilità di ogni nota della melodia. str 0 = niente archi. big: contrabbasso,
+   * violini e corno in più. harpVel: arpa su ogni accordo (0 = niente). mar: la melodia raddoppiata dalla marimba.
+   */
+  const theme = (from, to, { vel = 56, str = 40, minor = false, half = false, keep = 1, big = false, harpVel = 0, mar = false, seed = 1 } = {}) => {
+    const k = half ? 2 : 1, beat = BEAT * k, loop = 16 * beat;
     const R = rng(7000 + seed);
     const chords = minor ? CH_MIN : CH_MAJ;
     for (let L = from; L < to - 0.3; L += loop) {
       for (let b = 0; b < 4; b++) {
         const t = L + b * 4 * beat;
         if (t >= to - 0.4) break;
-        const d = Math.min(4 * beat * 1.05, to - t);
-        piano(mix, chords[b][0] - 12, { t, dur: beat * 3, vel: vel * 0.8, gain: BODY, pan: -0.2 });
-        chords[b].forEach((m, j) => strings(mix, m + 12, { t: t + j * 0.05, dur: d, vel: str, gain: BODY * 0.8, pan: (j - 1) * 0.35, seed: j + seed }));
-        if (big) strings(mix, chords[b][0] - 12, { t, dur: d, vel: str * 0.9, gain: BODY * 0.8, seed: 9 });
+        const d = Math.min(4 * beat, to - t);
+        const [a, c, e] = chords[b];
+        if (str) {
+          suona(mix, 'celli', a, { t, dur: d, vel: str, pan: -0.35, gain: 0.45, ...archi, seed: seed + b });
+          suona(mix, 'viole', c, { t, dur: d, vel: str - 4, pan: 0.1, gain: 0.36, ...archi, seed: seed + b + 1 });
+          suona(mix, 'viole', e, { t, dur: d, vel: str - 4, pan: 0.3, gain: 0.32, ...archi, seed: seed + b + 2 });
+        }
+        suona(mix, 'pianoforte', a - 12, { t, dur: beat * 3, vel: vel * 0.75, pan: -0.2, rev: 0.4, gain: 0.4, release: 1.2 });
+        if (big) {
+          suona(mix, 'contrabbasso', a - 12, { t, dur: d, vel: str, pan: -0.1, gain: 0.42, ...archi });
+          suona(mix, 'violini', e + 12, { t, dur: d, vel: str, pan: -0.2, gain: 0.28, attack: 0.5, release: 1.3, rev: 0.6 });
+          suona(mix, 'corno', c, { t, dur: d, vel: str - 6, pan: 0.25, gain: 0.22, attack: 0.4, release: 1, rev: 0.55 });
+        }
+        if (harpVel) harp(mix, chords[b], t, { step: beat / 3, vel: harpVel });
       }
-      for (const [b, m0, d] of THEME) {
+      for (const [b, m0, dd] of THEME) {
         const t = L + b * beat;
         if (t >= to - 0.2 || R() > keep) continue;
-        const m = minor && (m0 % 12 === 6 || m0 % 12 === 11) ? m0 - 1 : m0;
-        piano(mix, m + 12, { t, dur: Math.min(d * beat * 1.1, to - t), vel: vel * (0.9 + R() * 0.2), gain: BODY * 1.2, pan: 0.1 });
-        if (big) piano(mix, m, { t, dur: Math.min(d * beat * 1.1, to - t), vel: vel * 0.7, gain: BODY, pan: -0.1 });
+        const m = minor && (m0 % 12 === 6 || m0 % 12 === 11) ? m0 - 1 : m0; // Fa♯→Fa, Si→Si♭
+        const u = umano(t, b);
+        const dur = Math.min(dd * beat * 1.1, to - t);
+        suona(mix, 'pianoforte', m, { t: t + u * 0.02, dur, vel: vel + u * 10, pan: 0.1, rev: 0.4, gain: 0.55, release: 1 });
+        if (mar) suona(mix, 'marimba', m + 12, { t: t + 0.005, dur: Math.min(dur, 1.2), vel: vel * 0.8, pan: 0.35, rev: 0.4, gain: 0.25, release: 0.6 });
       }
     }
   };
 
-  // ---- copertina: accordo sospeso e risacca
-  [50, 57, 62, 66, 69].forEach((m, j) => piano(mix, m, { t: 0.2 + j * 0.12, dur: 3.2, vel: 44, gain: BODY, pan: -0.3 + j * 0.15, rev: 0.6 }));
-  surf(mix, 0, T.tempo + 0.8, { power: 0.5 });
+  /** Onde sulla spiaggia: tappeto stereo; lp le allontana (dentro la grotta, in mare aperto). */
+  const onde = (t0, t1, da, gain, lp = 0) =>
+    clip(mix, 'onde', { t: t0, da, durata: t1 - t0, gain, lp, fadeIn: 1.5, fadeOut: 1.5, largo: 3, rev: 0.1 });
 
-  // ---- tempo: ticchettio a ogni secondo (la lancetta scatta sugli interi in Tempo.tsx) e ostinato che corre
-  for (let s = 1; s < 10; s++) drum(mix, 'sidestick', T.tempo + s, 40 + (s > 4 ? 8 : 0), s);
-  const ost = [62, 65, 69, 65, 62, 64, 67, 64];
-  for (let t = T.tempo + 0.2, k = 0; t < T.promessa - 0.3; t += 60 / 132 / 2, k++) {
-    piano(mix, ost[k % 8], { t, dur: 0.22, vel: 40 + (t > cue('tempo', 2) ? 8 : 0), gain: BODY, pan: 0.2, rev: 0.25 });
+  // ---- copertina: arpa che sale sull'accordo di Re, campanelli, risacca
+  harp(mix, CH_MAJ[0], 0.2, { step: 0.11, vel: 56 });
+  [86, 90, 93].forEach((m, j) => glock(mix, m, 1.4 + j * 0.25, 48, -0.3 + j * 0.3));
+  onde(0, T.tempo + 0.8, 1, 0.2);
+
+  // ---- tempo: l'orologio scatta a ogni secondo (la lancetta salta sugli interi in Tempo.tsx); ostinato di pizzicati
+  // a ottavi che corre sopra un pedale degli archi; dalla terza frase entra il contrabbasso e la corsa si fa più forte
+  for (let s = 1; s < 10; s++) clip(mix, 'scatti', { t: T.tempo + s - 0.01, da: 12.65, durata: 0.12, gain: 0.22 + (s > 4 ? 0.06 : 0), pan: 0.15, rev: 0.2 });
+  const ost = [62, 66, 69, 66, 62, 64, 67, 64];
+  for (let t = B(T.tempo), k = 0; t < T.promessa - 0.3; t += BEAT / 2, k++) {
+    const forte = t > cue('tempo', 2);
+    suona(mix, 'violini_pizz', ost[k % 8] + 12, { t, dur: 0.3, vel: (forte ? 74 : 62) + (k % 2 ? -8 : 0), pan: 0.25, rev: 0.3, gain: 0.75, release: 0.3 });
+    if (forte && k % 4 === 0) suona(mix, 'contrabbasso_pizz', 38, { t, dur: BEAT, vel: 80, pan: -0.1, rev: 0.25, gain: 0.7, release: 0.3 });
   }
-  [38, 41, 45].forEach((m, j) => strings(mix, m + 12, { t: T.tempo, dur: 9.6, vel: 30, gain: BODY * 0.7, pan: (j - 1) * 0.3, seed: j }));
+  [50, 57, 62].forEach((m, j) => suona(mix, ['celli', 'viole', 'violini'][j], m, { t: B(T.tempo), dur: T.promessa - B(T.tempo), vel: 40, pan: (j - 1) * 0.3, gain: 0.45, attack: 1.2, release: 1.2, rev: 0.5 }));
 
-  // ---- promessa: il tema nasce piano, dolce, con un tocco di vibrafono quando si apre l'orologio
-  theme(T.promessa, T.schianto, { bpm: 66, vel: 46, str: 30, keep: 0.85, seed: 2 });
-  [86, 90, 93].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: cue('promessa', 1) + 0.3 + j * 0.12, dur: 1.8, vel: 40, pan: -0.3 + j * 0.3, rev: 0.6, gain: 0.5 }));
-  pop(mix, cue('promessa', 2) + 0.1, 40, { pitch: 3 });
+  // ---- promessa: il tema nasce piano, dolce; campanelli quando si apre l'orologio da tasca (seconda frase)
+  theme(B(T.promessa), B(T.schianto), { vel: 56, str: 40, keep: 0.85, harpVel: 40, seed: 2 });
+  [86, 90, 93].forEach((m, j) => glock(mix, m, cue('promessa', 1) + 0.3 + j * 0.12, 50, -0.3 + j * 0.3));
+  clip(mix, 'scatti', { t: cue('promessa', 2) + 0.1, da: 1.1, durata: 0.15, gain: 0.3, rev: 0.25 }); // l'orologio si chiude
 
-  // ---- schianto: tempesta, motore che cede, impatto; poi il gommone che si gonfia
-  const IMPACT = cue('schianto', 2) + 0.9;
-  wind(mix, T.schianto, T.isola - 0.5, { power: 0.32, center: 420, seed: 21 });
-  rainHiss(mix, T.schianto, T.isola - 0.3, { power: 0.2 });
-  [38, 39, 45].forEach((m, j) => strings(mix, m, { t: T.schianto, dur: IMPACT - T.schianto, vel: 32, gain: BODY * 0.8, att: 2, pan: (j - 1) * 0.4, seed: 30 + j }));
-  thunder(mix, cue('schianto', 1) + 0.4, 0.45, 5); // lampi di Schianto.tsx
-  whoosh(mix, IMPACT - 1.6, 1.6, { vel: 58, lo: 200, hi: 1600 });
-  thud(mix, IMPACT, 64, { bright: 500 });
-  thunder(mix, IMPACT - 0.05, 0.35, 9);
-  whoosh(mix, cue('schianto', 3), 0.9, { vel: 44, lo: 600, hi: 3000, pan: 0.2 }); // il gommone si gonfia
+  // ---- schianto: tempesta, motore che cede (tremoli e timpani), lampo, impatto in mare; poi il gommone che si gonfia
+  const IMPACT = cue('schianto', 2) + 0.9; // come in Schianto.tsx
+  clip(mix, 'pioggia_vento', { t: T.schianto - 0.3, da: 34, durata: T.isola - T.schianto, gain: 0.25, fadeIn: 0.8, fadeOut: 1.2, largo: 2.5, rev: 0.1 });
+  clip(mix, 'vento_raffiche', { t: T.schianto, da: 10, durata: T.isola - T.schianto - 0.5, gain: 0.22, fadeIn: 1, fadeOut: 1.2, largo: 3 });
+  [50, 51].forEach((m, j) => suona(mix, 'celli_trem', m, { t: T.schianto, dur: IMPACT - T.schianto, vel: 54, pan: (j - 0.5) * 0.6, gain: 0.32, attack: 0.8, release: 0.4, rev: 0.5 }));
+  suona(mix, 'violini_trem', 69, { t: cue('schianto', 1), dur: IMPACT - cue('schianto', 1), vel: 50, pan: 0.4, gain: 0.22, attack: 1, release: 0.3, rev: 0.55 });
+  suona(mix, 'contrabbasso', 38, { t: T.schianto, dur: IMPACT - T.schianto, vel: 50, gain: 0.42, attack: 0.8, release: 0.5, rev: 0.4 });
+  clip(mix, 'tuono_classico', { t: cue('schianto', 1) + 0.4 + 0.15, da: 0.98, durata: 4, gain: 0.22, fadeIn: 0.03, fadeOut: 1.4, rev: 0.35 }); // primo lampo
+  // il motore cede: rullo dei timpani che cresce fino all'impatto
+  for (let t = IMPACT - 2.4, k = 0; t < IMPACT - 0.05; t += 0.09, k++) timp(t, 38, 46 + (k * 50) / 27, 0.3 + k * 0.012, k);
+  clip(mix, 'esplosioni', { t: IMPACT - 0.05, da: 30.2, durata: 2.4, gain: 0.3, fadeIn: 0.02, fadeOut: 1.6, rev: 0.35 });
+  clip(mix, 'metallo_schianto', { t: IMPACT - 0.03, da: 0.05, durata: 1.4, gain: 0.35, fadeOut: 0.5, rev: 0.4 });
+  clip(mix, 'tuono_secco', { t: IMPACT - 0.05 + 0.15, da: 0.78, durata: 3, gain: 0.18, fadeIn: 0.03, fadeOut: 1, rev: 0.35, lp: 3000 }); // secondo lampo
+  colpo(mix, 'grancassa', 'bdrum_f', { t: IMPACT, vel: 100, rev: 0.5, gain: 0.5 });
+  colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: IMPACT - 1.3, vel: 70, rev: 0.4, gain: 0.3, dur: 1.4, release: 0.3 });
+  clip(mix, 'onde_tonanti', { t: IMPACT + 0.3, da: 5.9, durata: 4, gain: 0.4, fadeIn: 0.3, fadeOut: 1.5, largo: 2.5, rev: 0.2 });
+  clip(mix, 'telo', { t: cue('schianto', 3) - 0.05, da: 11.15, durata: 0.9, gain: 0.35, fadeOut: 0.3, rev: 0.25, pan: 0.2 }); // il gommone si gonfia
+  [62, 66, 69].forEach((m, j) => suona(mix, 'violini', m + 12, { t: cue('schianto', 3) + 0.3, dur: T.isola - cue('schianto', 3), vel: 32, pan: (j - 1) * 0.3, gain: 0.2, attack: 1.2, release: 1.4, rev: 0.6 }));
 
-  // ---- isola: quasi silenzio, solo risacca, vento leggero e un'onda grande sulla barriera
-  surf(mix, T.isola, T.fuoco, { power: 0.8 });
-  wind(mix, T.isola, T.anni, { power: 0.18, center: 700, seed: 41 });
-  whoosh(mix, cue('isola', 3) + 0.3, 1.6, { vel: 46, lo: 150, hi: 900 });
-  piano(mix, 62, { t: cue('isola', 2), dur: 3, vel: 34, gain: BODY, rev: 0.7 });
+  // ---- isola: quasi silenzio, solo risacca, vento leggero e un'onda grande sulla barriera (quarta frase)
+  onde(T.isola - 0.5, T.fuoco + 0.5, 14, 0.3);
+  clip(mix, 'vento_leggero', { t: T.isola, da: 0.5, durata: T.anni - T.isola, gain: 0.05, fadeIn: 2, fadeOut: 2, largo: 4 });
+  clip(mix, 'onde_tonanti', { t: cue('isola', 3) + 0.1, da: 5.9, durata: 3.4, gain: 0.45, fadeIn: 0.6, fadeOut: 1.4, largo: 2.5, rev: 0.2 });
+  suona(mix, 'pianoforte', 62, { t: cue('isola', 2), dur: 3, vel: 40, pan: 0.1, rev: 0.6, gain: 0.45, release: 2 });
+  suona(mix, 'pianoforte', 57, { t: cue('isola', 2) + 2 * BEAT, dur: 3, vel: 34, pan: -0.1, rev: 0.6, gain: 0.4, release: 2 });
+  suona(mix, 'celli', 38 + 12, { t: B(T.isola), dur: T.pacchi - B(T.isola), vel: 28, pan: -0.3, gain: 0.25, attack: 2, release: 2, rev: 0.6 });
 
-  // ---- pacchi: un pacco che arriva, gli oggetti che escono a uno a uno, il pacco con le ali
-  [0, 1, 2].forEach((i) => pop(mix, cue('pacchi', 2) + i * 0.45 + 0.1, 46, { pitch: i * 2, pan: -0.3 + i * 0.3 }));
-  [74, 78, 81, 86].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: cue('pacchi', 3) + 0.2 + j * 0.15, dur: 2, vel: 38, pan: 0.3, rev: 0.6, gain: 0.5 }));
+  // ---- pacchi: la marea porta un pacco (tonfo sulla sabbia), gli oggetti escono a uno a uno, il pacco con le ali
+  theme(B(T.pacchi), B(T.fuoco), { vel: 46, str: 0, keep: 0.6, mar: true, half: true, seed: 3 });
+  clip(mix, 'sacchi', { t: cue('pacchi', 1) + 0.3, da: 9.3, durata: 0.6, gain: 0.35, fadeOut: 0.2, rev: 0.25 });
+  [0, 1, 2].forEach((i) => suona(mix, 'marimba', [74, 78, 81][i], { t: cue('pacchi', 2) + 0.1 + i * 0.45, dur: 0.6, vel: 60, pan: -0.3 + i * 0.3, rev: 0.4, gain: 0.3, release: 0.5 }));
+  [74, 78, 81, 86].forEach((m, j) => glock(mix, m + 12, cue('pacchi', 3) + 0.2 + j * 0.15, 50, 0.3));
 
-  // ---- fuoco: sfregamenti, il pallone lanciato, la fiamma che prende
-  for (let t = T.fuoco + 0.4; t < cue('fuoco', 1); t += 0.32) whoosh(mix, t, 0.18, { vel: 24, lo: 1400, hi: 3200, seed: Math.round(t * 10) });
-  thud(mix, cue('fuoco', 1) + 2, 50, { bright: 900 });
-  piano(mix, 57, { t: cue('fuoco', 2) + 0.4, dur: 2.5, vel: 36, gain: BODY, rev: 0.6 });
-  piano(mix, 62, { t: cue('fuoco', 2) + 1.0, dur: 2.5, vel: 34, gain: BODY, rev: 0.6 });
-  whoosh(mix, cue('fuoco', 4) + 0.2, 1.2, { vel: 60, lo: 200, hi: 1800 });
-  crackle(mix, cue('fuoco', 4) + 0.3, T.anni + 0.5, { vel: 46 });
-  [50, 57, 62, 66].forEach((m, j) => strings(mix, m, { t: cue('fuoco', 4) + 0.3, dur: T.anni - cue('fuoco', 4), vel: 34, gain: BODY * 0.8, pan: (j - 1.5) * 0.3, seed: 50 + j }));
+  // ---- fuoco: il legnetto sfregato avanti e indietro, il pallone lanciato con rabbia, la fiamma che finalmente prende
+  clip(mix, 'torcia', { t: T.fuoco + 0.4, da: 2, durata: cue('fuoco', 1) - T.fuoco - 0.2, gain: 0.3, fadeIn: 0.3, fadeOut: 0.4, rev: 0.2 });
+  clip(mix, 'colpi_cavi', { t: cue('fuoco', 1) + 2 - 0.01, da: 0.5, durata: 0.5, gain: 0.45, fadeOut: 0.15, rev: 0.3 });
+  suona(mix, 'pianoforte', 57, { t: cue('fuoco', 2) + 0.4, dur: 2.5, vel: 40, pan: -0.1, rev: 0.6, gain: 0.45, release: 1.5 });
+  suona(mix, 'pianoforte', 62, { t: cue('fuoco', 2) + 0.4 + BEAT, dur: 2.5, vel: 38, pan: 0.1, rev: 0.6, gain: 0.42, release: 1.5 });
+  clip(mix, 'torcia', { t: cue('fuoco', 3) + 0.2, da: 9, durata: cue('fuoco', 4) - cue('fuoco', 3), gain: 0.3, fadeIn: 0.3, fadeOut: 0.3, rev: 0.2 });
+  for (let t = cue('fuoco', 4) - 1.2, k = 0; t < cue('fuoco', 4) + 0.15; t += 0.09, k++) timp(t, 38, 40 + k * 3, 0.35 + k * 0.02, 40 + k);
+  clip(mix, 'fiammata', { t: cue('fuoco', 4) + 0.2, da: 0.25, durata: 1.3, gain: 0.45, fadeOut: 0.5, rev: 0.3 });
+  clip(mix, 'fuoco', { t: cue('fuoco', 4) + 0.3, da: 1, durata: T.anni - cue('fuoco', 4) + 0.5, gain: 0.25, fadeIn: 0.4, fadeOut: 0.6, largo: 3, rev: 0.15 });
+  colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: cue('fuoco', 4) - 1.1, vel: 64, rev: 0.4, gain: 0.25, dur: 1.3, release: 0.3 });
+  harp(mix, CH_MAJ[0], cue('fuoco', 4) + 0.3, { step: 0.08, vel: 60 });
+  [50, 57, 62, 66].forEach((m, j) => suona(mix, ['celli', 'viole', 'viole', 'violini'][j], m, { t: cue('fuoco', 4) + 0.3, dur: T.anni - cue('fuoco', 4) - 0.3, vel: 44, pan: (j - 1.5) * 0.3, gain: 0.32, attack: 0.6, release: 1.2, rev: 0.55, seed: 50 + j }));
 
-  // ---- anni: grotta, fuoco basso, pianoforte solitario; si scalda quando sogna di tornare
-  crackle(mix, T.anni, T.vela - 0.5, { vel: 32, seed: 39 });
-  surf(mix, T.anni, T.vela, { power: 0.3, period: 7 });
-  theme(T.anni, cue('anni', 3), { bpm: 58, vel: 38, str: 0.01, keep: 0.55, minor: true, seed: 3 });
-  theme(cue('anni', 3), T.vela, { bpm: 62, vel: 42, str: 26, keep: 0.8, seed: 4 });
+  // ---- anni: grotta, fuoco basso, pianoforte solitario a metà passo; si scalda quando sogna di tornare
+  clip(mix, 'fuoco', { t: T.anni, da: 12, durata: T.vela - T.anni - 0.3, gain: 0.2, fadeIn: 0.6, fadeOut: 0.8, largo: 3, rev: 0.2 });
+  onde(T.anni, T.vela + 0.5, 20, 0.22, 900);
+  theme(B(T.anni), B(cue('anni', 3)), { vel: 54, str: 30, minor: true, half: true, keep: 0.7, seed: 4 });
+  theme(B(cue('anni', 3)), B(T.vela), { vel: 46, str: 28, keep: 0.8, seed: 5 });
 
-  // ---- vela: il tema caldo parte con la zattera, cresce quando lascia l'isola
-  surf(mix, T.vela, T.wilson, { power: 0.6 });
-  wind(mix, cue('vela', 3), T.wilson, { power: 0.3, center: 650, seed: 61 });
-  theme(T.vela + 0.3, cue('vela', 4), { bpm: 76, vel: 46, str: 30, keep: 0.9, seed: 5 });
-  theme(cue('vela', 4), T.wilson, { bpm: 76, vel: 56, str: 44, big: true, seed: 6 });
-  for (let t = cue('vela', 4); t < T.wilson - 0.3; t += 60 / 76) drum(mix, 'softkick', t, 34, 3);
-  whoosh(mix, cue('vela', 4) + 0.55 * (T.wilson - cue('vela', 4)), 1.2, { vel: 50, lo: 300, hi: 2600 }); // l'onda della barriera
+  // ---- vela: il tema caldo parte con la zattera, poi cresce a passo pieno con timpani e corno quando supera la barriera
+  onde(T.vela - 0.3, T.wilson + 0.5, 2, 0.3);
+  clip(mix, 'vento_raffiche', { t: cue('vela', 3), da: 40, durata: T.wilson - cue('vela', 3), gain: 0.16, fadeIn: 1, fadeOut: 1, largo: 2 });
+  clip(mix, 'telo', { t: cue('vela', 2) + 0.2, da: 12.85, durata: 0.9, gain: 0.3, fadeOut: 0.3, rev: 0.25 }); // la vela si gonfia
+  const VELA = B(cue('vela', 4));
+  theme(B(T.vela), VELA, { vel: 52, str: 36, keep: 0.9, harpVel: 46, seed: 6 });
+  theme(VELA, B(T.wilson), { vel: 62, str: 50, big: true, harpVel: 50, seed: 7 });
+  for (let t = VELA, k = 0; t < B(T.wilson) - 0.3; t += BEAT, k++) timp(t, k % 4 === 2 ? 33 : 38, k % 4 === 0 ? 96 : 64, 0.7, k);
+  clip(mix, 'onde_tonanti', { t: VELA + 0.55 * (T.wilson - VELA) - 0.6, da: 5.9, durata: 3, gain: 0.5, fadeIn: 0.3, fadeOut: 1.2, largo: 2.5, rev: 0.2 }); // l'onda della barriera
 
-  // ---- wilson: il tema in minore, archi, la corda lasciata; la sirena di una nave
-  surf(mix, T.wilson, T.ritorno, { power: 0.35, period: 7 });
-  theme(T.wilson, cue('wilson', 5), { bpm: 60, vel: 44, str: 40, minor: true, keep: 0.9, seed: 7 });
-  pop(mix, cue('wilson', 1) + 0.6, 34, { pitch: -4 }); // il pallone scivola in acqua
-  theme(cue('wilson', 5), T.ritorno, { bpm: 66, vel: 44, str: 34, keep: 0.7, seed: 8 });
-  horn(mix, cue('wilson', 5) + 0.4, 2.4, 46);
+  // ---- wilson: il tema in minore agli archi; il pallone scivola via; la sirena lontana di una nave (sesta frase)
+  onde(T.wilson, T.ritorno, 24, 0.2, 1500);
+  theme(B(T.wilson), B(cue('wilson', 5)), { vel: 54, str: 50, minor: true, keep: 0.9, seed: 8 });
+  suona(mix, 'violini', 74, { t: cue('wilson', 2), dur: cue('wilson', 4) - cue('wilson', 2), vel: 40, pan: -0.2, gain: 0.25, attack: 1, release: 1.4, rev: 0.6 });
+  clip(mix, 'onde', { t: cue('wilson', 1) + 0.6, da: 7.2, durata: 1.2, gain: 0.25, fadeIn: 0.1, fadeOut: 0.6, rev: 0.2, pan: 0.3 }); // tonfo leggero in acqua
+  theme(B(cue('wilson', 5)), B(T.ritorno), { vel: 46, str: 34, keep: 0.7, seed: 9 });
+  // sirena di nave: canne d'organo gravi e corni all'unisono, attacco lento, lontani
+  [[38, 'organo_pedale', 0.4], [43, 'organo_pedale', 0.3], [38, 'corno', 0.22]].forEach(([m, id, g], k) =>
+    suona(mix, id, m, { t: cue('wilson', 5) + 0.4, dur: 2.4, vel: 60, pan: -0.4, gain: g, attack: 0.3, release: 0.8, rev: 0.7, seed: 30 + k }));
 
-  // ---- ritorno: pioggia, tema minore lento; la porta che si chiude, l'auto che parte
-  rainHiss(mix, T.ritorno, T.bivio - 0.2, { power: 0.16 });
-  theme(T.ritorno, T.bivio, { bpm: 56, vel: 40, str: 32, minor: true, keep: 0.75, seed: 9 });
-  doorCreak(mix, cue('ritorno', 3) + 0.2, 1.2, { vel: 40 });
-  thud(mix, cue('ritorno', 3) + 1.4, 46, { bright: 700 });
-  whoosh(mix, cue('ritorno', 4) + 0.3, 2.4, { vel: 40, lo: 120, hi: 600 }); // motore che si allontana
+  // ---- ritorno: pioggia su Memphis, tema minore a metà passo; la porta che si chiude, l'auto che si allontana
+  clip(mix, 'pioggia_dura', { t: T.ritorno, da: 5.4, durata: T.bivio - T.ritorno - 0.2, gain: 0.9, fadeIn: 1.2, fadeOut: 1.2, largo: 3, rev: 0.12 });
+  theme(B(T.ritorno), B(T.bivio), { vel: 44, str: 36, minor: true, half: true, keep: 0.85, seed: 10 });
+  clip(mix, 'porta_cigolio', { t: cue('ritorno', 3) + 0.2, da: 10.68, durata: 1.2, gain: 0.3, fadeOut: 0.4, rev: 0.3, pan: 0.3 });
+  clip(mix, 'porta_sbatte', { t: cue('ritorno', 3) + 1.4 - 0.5, da: 2.6, durata: 0.9, gain: 0.45, fadeOut: 0.3, rev: 0.3, pan: 0.3 });
+  clip(mix, 'rombo', { t: cue('ritorno', 4) + 0.3, da: 31, durata: 2.6, gain: 0.3, lp: 500, fadeIn: 0.3, fadeOut: 1.6, largo: 2 }); // il motore si allontana
 
-  // ---- bivio: il tema si apre, pieno e luminoso, con vento caldo nella pianura
-  wind(mix, T.bivio, T.finale + 2, { power: 0.2, center: 800, seed: 71 });
-  theme(T.bivio, cue('bivio', 2), { bpm: 70, vel: 46, str: 36, seed: 10 });
-  theme(cue('bivio', 2), T.finale, { bpm: 70, vel: 56, str: 48, big: true, seed: 11 });
-  [74, 78, 81, 86, 90].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: cue('bivio', 3) + 0.1 + j * 0.12, dur: 2.4, vel: 40, pan: -0.4 + j * 0.2, rev: 0.6, gain: 0.5 }));
+  // ---- bivio: il tema si apre, pieno e luminoso, con vento caldo nella pianura; campanelli quando sorride
+  clip(mix, 'vento_leggero', { t: T.bivio, da: 3, durata: T.finale + 2 - T.bivio, gain: 0.07, fadeIn: 1.5, fadeOut: 1.5, largo: 4 });
+  theme(B(T.bivio), B(cue('bivio', 2)), { vel: 50, str: 40, harpVel: 44, seed: 11 });
+  theme(B(cue('bivio', 2)), B(T.finale), { vel: 62, str: 52, big: true, harpVel: 50, mar: true, seed: 12 });
+  [74, 78, 81, 86, 90].forEach((m, j) => glock(mix, m + 12, cue('bivio', 3) + 0.1 + j * 0.12, 50, -0.4 + j * 0.2));
 
-  // ---- finale: accordo di Re maggiore ampio che si scioglie
-  const F = T.finale;
-  [38, 45, 50, 54, 57, 62, 66, 69].forEach((m, j) => piano(mix, m, { t: F + j * 0.06, dur: 3.2, vel: 50, gain: BODY * 1.1, pan: -0.3 + j * 0.09, rev: 0.6 }));
-  [50, 57, 62, 66, 69].forEach((m, j) => strings(mix, m, { t: F, dur: 3, vel: 52, gain: BODY * 0.85, pan: (j - 2) * 0.3, att: 0.4, seed: 90 + j }));
+  // ---- finale: accordo di Re maggiore degli archi e del corno, arpa e pianoforte che si sciolgono
+  const F = B(T.finale);
+  harp(mix, CH_MAJ[0], F, { step: 0.08, vel: 60 });
+  [['contrabbasso', 38], ['celli', 50], ['viole', 57], ['viole', 62], ['violini', 66], ['violini', 69]].forEach(([id, n], k) =>
+    suona(mix, id, n, { t: F, dur: 2.8, vel: 58, pan: (k - 2.5) * 0.2, gain: 0.42, attack: 0.3, release: 1.4, rev: 0.6, seed: 90 + k }));
+  suona(mix, 'corno', 62, { t: F, dur: 2.6, vel: 54, pan: 0.2, gain: 0.25, attack: 0.3, release: 1.2, rev: 0.6 });
+  [74, 78, 81, 86].forEach((m, j) => suona(mix, 'pianoforte', m, { t: F + 0.4 + j * 0.2, dur: 2.4, vel: 50, pan: -0.2 + j * 0.15, rev: 0.55, gain: 0.4, release: 1.6 }));
 };
