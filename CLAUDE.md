@@ -59,7 +59,8 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 ## Musica
 - Colonna sonora originale generata in modo deterministico in Node, suonata con strumenti veri campionati:
   VSCO-2 Community Edition (CC0, Versilian Studios / Ivy Audio; citarli nei crediti), scaricati alla prima esecuzione
-  in `campioni/vsco/` (ignorata da git) dal commit fissato in `scripts/audio/vsco.json`.
+  in `campioni/vsco/` (ignorata da git) dal commit fissato in `scripts/audio/vsco.json`; dalla stessa casa e con la stessa
+  licenza anche VCSL (`campioni/vcsl/`: pianoforte a coda, timpani, rullante, cassa, charleston, tom, piatti).
   `scripts/audio/campioni.mjs`: `suona(mix, strumento, nota, {...})` e `colpo(...)` per le percussioni;
   `scripts/audio/sala.mjs`: riverbero a convoluzione; `scripts/audio/synth.mjs`: mix, WAV 16 bit 44,1 kHz stereo,
   vecchi strumenti sintetici (da non usare per la musica nuova) ed effetti sonori sintetici.
