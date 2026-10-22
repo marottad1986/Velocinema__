@@ -135,3 +135,12 @@ grotta come colonna gialla tratteggiata a sinistra. Personaggi = cerchi con l'og
 - Il colpo di scena: filo giallo «torna nel 1986» da Mikkel a Michael e anello rosso Michael → Jonas → Martha → Mikkel.
 - Le scritte di un solo capitolo si spengono a fine capitolo; alla fine resta l'albero completo e leggibile.
 - Pulviscolo, grana e vignettatura come le altre scene.
+
+### Inception (Spiegato semplice, schema)
+La torre dei sogni come cianografia (`src/scenes/inception/Piani.tsx`): carta blu con griglia, linee bianche, accento
+arancione. Piani dall'alto in basso: realtà (aereo), sogno 1 città, sogno 2 albergo, sogno 3 fortezza, limbo; a destra un
+orologio per piano con la durata. Personaggi = cerchi con l'oggetto (trottola, valigetta, girandola, cassaforte, fede).
+- L'idea è un seme arancione che scende di piano in piano e germoglia in Fischer.
+- I calci sono frecce arancioni che risalgono; il limbo e Mal sono in rosso.
+- La trottola grande nella realtà gira, accelera quando la voce ne parla e alla fine vacilla.
+- Velo scuro dietro il titolo: nelle inquadrature strette la torre può passare sotto il titolo.

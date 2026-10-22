@@ -5,6 +5,7 @@ import { loadFont as loadCaveat } from '@remotion/google-fonts/Caveat';
 import { loadFont as loadCreepster } from '@remotion/google-fonts/Creepster';
 import { loadFont as loadSyncopate } from '@remotion/google-fonts/Syncopate';
 import { loadFont as loadBigShouldersStencil } from '@remotion/google-fonts/BigShouldersStencil';
+import { loadFont as loadBebas } from '@remotion/google-fonts/BebasNeue';
 
 export const DISPLAY = loadBricolage('normal', { weights: ['800'], subsets: ['latin', 'latin-ext'] }).fontFamily;
 export const SANS = loadFigtree('normal', { weights: ['400', '800'], subsets: ['latin', 'latin-ext'] }).fontFamily;
@@ -17,3 +18,5 @@ export const CREEPSTER = loadCreepster('normal', { weights: ['400'], subsets: ['
 export const SYNCOPATE = loadSyncopate('normal', { weights: ['700'], subsets: ['latin'] }).fontFamily;
 /** Titolo a stampino, stretto e alto (Dark). */
 export const STENCIL = loadBigShouldersStencil('normal', { weights: ['800'], subsets: ['latin'] }).fontFamily;
+/** Titolo alto e condensato, da progetto (Inception). */
+export const BEBAS = loadBebas('normal', { weights: ['400'], subsets: ['latin', 'latin-ext'] }).fontFamily;
