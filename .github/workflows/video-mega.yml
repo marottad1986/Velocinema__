@@ -87,6 +87,12 @@ jobs:
           wget -q https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megacmd-xUbuntu_24.04_amd64.deb -O /tmp/megacmd.deb
           sudo apt-get install -y -q /tmp/megacmd.deb
       - run: npm ci
+      # campioni (VSCO-2 CE, VCSL) ed effetti registrati: scaricati da scripts/musica.mjs, tenuti fra un'esecuzione e l'altra
+      - uses: actions/cache@v4
+        with:
+          path: campioni
+          key: campioni-${{ hashFiles('scripts/audio/vsco.json', 'scripts/audio/effetti.mjs') }}
+          restore-keys: campioni-
       - name: Accesso a MEGA
         run: |
           if [ -z "$MEGA_EMAIL" ] || [ -z "$MEGA_PASSWORD" ]; then
