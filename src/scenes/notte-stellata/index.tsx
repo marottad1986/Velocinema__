@@ -1,17 +1,18 @@
 import React from 'react';
 import { AbsoluteFill } from 'remotion';
-import { eo, eob, seg } from '../../lib/anim';
-import { HAND, SANS } from '../../lib/fonts';
+import { eo, seg } from '../../lib/anim';
+import { SANS } from '../../lib/fonts';
 import { LuceRadente, OmbraSbarre, Quadro, proietta, vistaAt, type Chiave, type Opera } from '../../lib/quadro';
-import { CARTA, CHALK, Cerchio, Cuore, Freccia, FrecciaGiro, GIALLO, INK, Percorso, Scheda, Schizzi, Scintilla, Scritta, type Pt } from '../../lib/schizzi';
+import { Anello, Annotazioni, BIANCO, LINEA, Richiamo, Riquadro, Spirale, type Pt } from '../../lib/annotazioni';
 import type { SceneDef, SceneProps } from '../../types';
 import { copertinaQuadro, finaleQuadro, intera } from '../quadri/Locandina';
 
 // Notte stellata (quadri/notte-stellata.json): scansione Google Art Project da Wikimedia Commons
 // (miniatura ufficiale da 3840 px), salvata in public/quadri/notte-stellata/originale.jpg.
-// Ogni scena: camera con fotogrammi chiave sulle frasi (cues) + schizzi a mano che spiegano i dettagli.
+// Ogni scena: camera con fotogrammi chiave sulle frasi (cues) + annotazioni editoriali (src/lib/annotazioni.tsx).
 
 export const OPERA: Opera = { src: 'quadri/notte-stellata/originale.jpg', aspect: 3840 / 3041 };
+const ACC = '#F2C94C';
 
 // Punti dell'opera in frazioni (x da sinistra, y dall'alto), letti sull'immagine.
 const P = {
@@ -19,242 +20,210 @@ const P = {
   venere: { x: 0.344, y: 0.513 },
   vortice: { x: 0.48, y: 0.33 },
   vortice2: { x: 0.67, y: 0.48 },
-  campanile: { x: 0.564, y: 0.66 },
-  villaggio: { x: 0.66, y: 0.84 },
+  campanile: { x: 0.564, y: 0.65 },
+  villaggio: { x: 0.68, y: 0.85 },
   colline: { x: 0.62, y: 0.6 },
   cipresso: [{ x: 0.27, y: 0.95 }, { x: 0.245, y: 0.62 }, { x: 0.215, y: 0.32 }, { x: 0.195, y: 0.07 }],
-  stelle: [{ x: 0.234, y: 0.17 }, { x: 0.7, y: 0.23 }, { x: 0.33, y: 0.33 }, { x: 0.61, y: 0.09 }, { x: 0.13, y: 0.48 }],
+  stelle: [{ x: 0.234, y: 0.17 }, { x: 0.7, y: 0.23 }],
 };
 
-/** Vista e proiezione dei punti dell'opera sullo schermo al tempo t. */
+/** Vista al tempo t e proiezione dei punti dell'opera sullo schermo. */
 const camera = (chiavi: Chiave[], t: number) => {
   const v = vistaAt(chiavi, t);
   const s = 1920 / (v.h * 1000);
   return { at: (p: Pt) => proietta(OPERA, v, p), px: (frazione: number) => frazione * 1000 * s };
 };
-
 const add = (p: Pt, dx: number, dy: number): Pt => ({ x: p.x + dx, y: p.y + dy });
 
-// ---------------------------------------------------------------- disegni delle schede (coordinate locali)
+// ---------------------------------------------------------------- disegni a linea per i riquadri (≈ 340×200)
 
-const L = { stroke: INK, strokeWidth: 5, strokeLinejoin: 'round' as const, strokeLinecap: 'round' as const };
-const Etichetta: React.FC<{ x: number; y: number; children: React.ReactNode; size?: number }> = ({ x, y, children, size = 44 }) => (
-  <text x={x} y={y} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={size} fill={INK}>{children}</text>
+const Testo: React.FC<{ x: number; y: number; children: React.ReactNode; size?: number; anchor?: 'start' | 'middle' | 'end'; bold?: boolean }> = ({ x, y, children, size = 24, anchor = 'middle', bold }) => (
+  <text x={x} y={y} textAnchor={anchor} fontFamily={SANS} fontWeight={bold ? 800 : 400} fontSize={size} fill={BIANCO}>{children}</text>
 );
 
-/** Clinica di Saint-Rémy: edificio con finestre ad arco e sbarre. */
 const Clinica = () => (
-  <g>
-    <path d="M40 120 L190 50 L340 120 Z" fill="#E59B6B" {...L} />
-    <rect x="60" y="118" width="260" height="120" fill="#F2D8A7" {...L} />
-    {[95, 170, 245].map((x) => (
+  <g {...LINEA}>
+    <path d="M30 80 L170 30 L310 80" />
+    <path d="M45 80 V200 H295 V80" />
+    {[75, 150, 225].map((x) => (
       <g key={x}>
-        <path d={`M${x} 200 V160 a20 20 0 0 1 40 0 V200 Z`} fill="#3E5C99" {...L} />
-        {[x + 13, x + 27].map((bx) => <path key={bx} d={`M${bx} 146 V200`} {...L} strokeWidth={3} />)}
+        <path d={`M${x} 160 V120 a20 20 0 0 1 40 0 V160 Z`} />
+        <path d={`M${x + 13} 104 V160 M${x + 27} 104 V160`} strokeWidth={2} />
       </g>
     ))}
-    <path d="M150 238 v-28 a16 16 0 0 1 32 0 v28" fill="#8A5A3C" {...L} />
-    <Etichetta x={190} y={286}>Saint-Rémy</Etichetta>
+    <path d="M150 200 v-22 a20 20 0 0 1 40 0 v22" />
   </g>
 );
 
-/** Pila di tele: «×150». */
 const Tele = () => (
   <g>
-    {[0, 1, 2, 3].map((i) => (
-      <g key={i} transform={`translate(${40 + i * 14} ${150 - i * 30}) rotate(${-4 + i * 3})`}>
-        <rect width="170" height="110" fill={['#F3C969', '#7FA7C9', '#9BC48A', '#E59B6B'][i]} {...L} />
-        <path d="M14 80 Q50 40 85 70 T156 50" fill="none" {...L} strokeWidth={4} />
-      </g>
-    ))}
-    <text x="250" y="150" textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize="86" fill="#D9342B">×150</text>
-    <Etichetta x={160} y={262}>in un anno!</Etichetta>
+    {[0, 1, 2].map((i) => <rect key={i} x={30 + i * 22} y={60 - i * 18} width="120" height="90" {...LINEA} transform={`rotate(${-4 + i * 4} ${90 + i * 22} ${105 - i * 18})`} />)}
+    <text x="250" y="130" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="96" fill={ACC}>150</text>
+    <Testo x={250} y={170}>quadri</Testo>
   </g>
 );
 
-/** Notte nella stanza: luna alla finestra e pennello sbarrato. */
-const NienteLuce = () => (
-  <g>
-    <rect x="30" y="30" width="150" height="150" fill="#1E2E5C" {...L} />
-    <path d="M118 70 a32 32 0 1 0 22 56 a26 26 0 1 1 -22 -56 Z" fill={GIALLO} {...L} strokeWidth={4} />
-    {[68, 105, 142].map((x) => <path key={x} d={`M${x} 30 V180`} {...L} />)}
-    <g transform="translate(260 105) rotate(35)">
-      <rect x="-12" y="-70" width="24" height="90" rx="6" fill="#C98B4E" {...L} />
-      <path d="M-14 20 h28 l-4 34 q-10 14 -20 0 Z" fill="#3E5C99" {...L} />
-    </g>
-    <path d="M200 40 L320 170 M320 40 L200 170" stroke="#D9342B" strokeWidth={10} strokeLinecap="round" />
-    <Etichetta x={175} y={238}>di notte: buio</Etichetta>
+const Notte = () => (
+  <g {...LINEA}>
+    <rect x="30" y="20" width="150" height="160" />
+    <path d="M80 20 V180 M130 20 V180" strokeWidth={2} />
+    <path d="M118 60 a26 26 0 1 0 18 46 a21 21 0 1 1 -18 -46 Z" />
+    <path d="M230 60 h70 M230 100 h70 M230 140 h40" strokeWidth={2} opacity={0.6} />
+    <path d="M220 40 L310 170 M310 40 L220 170" stroke={ACC} />
   </g>
 );
 
-/** Nuvoletta del pensiero con un piccolo cielo stellato: «a memoria». */
-const Ricordo = () => (
-  <g>
-    <path d="M70 150 q-50 -10 -30 -60 q0 -50 60 -50 q30 -40 90 -15 q60 -20 90 30 q50 15 25 70 q10 50 -60 45 q-40 30 -95 5 q-50 20 -80 -25 Z" fill="#E9F0FF" {...L} />
-    <path d="M110 120 q20 -50 60 -30 q30 15 20 -15" fill="none" stroke="#3E5C99" strokeWidth={6} strokeLinecap="round" />
-    {[[90, 80], [230, 75], [250, 140]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r="11" fill={GIALLO} {...L} strokeWidth={3} />)}
-    <circle cx="70" cy="215" r="14" fill="#E9F0FF" {...L} />
-    <circle cx="45" cy="250" r="8" fill="#E9F0FF" {...L} />
-    <Etichetta x={210} y={250}>a memoria!</Etichetta>
-  </g>
-);
-
-/** Chiese a confronto: campanile a punta (Olanda) e a vela (Provenza). */
-const Chiese = () => (
-  <g>
-    <path d="M95 40 L120 140 H70 Z" fill="#7FA7C9" {...L} />
-    <rect x="70" y="140" width="50" height="60" fill="#E8E2D0" {...L} />
-    <path d="M40 200 V160 L70 140 V200 Z" fill="#E8E2D0" {...L} />
-    <Etichetta x={95} y={250}>Olanda</Etichetta>
-    <path d="M60 268 l14 14 l30 -30" fill="none" stroke="#2E9E5B" strokeWidth={9} strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M230 120 h70 v80 h-70 Z" fill="#F2D8A7" {...L} />
-    <path d="M245 120 V88 h40 V120" fill="#F2D8A7" {...L} />
-    <path d="M258 120 v-18 a7 7 0 0 1 14 0 v18" fill={INK} />
-    <Etichetta x={265} y={250}>Provenza</Etichetta>
-    <path d="M160 70 V220" stroke={INK} strokeWidth={3} strokeDasharray="8 10" />
-  </g>
-);
-
-/** Fiamma = cipresso. */
-const Fiamma = () => (
-  <g>
-    <path d="M90 230 q-60 -50 -20 -120 q10 30 30 30 q-20 -60 30 -110 q0 50 30 70 q40 50 -10 130 Z" fill="#FF9F3F" {...L} />
-    <path d="M100 225 q-25 -30 0 -70 q20 30 15 70 Z" fill={GIALLO} {...L} strokeWidth={4} />
-    <text x="190" y="150" textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize="70" fill={INK}>=</text>
-    <path d="M280 235 q-55 -40 -30 -110 q-5 -50 25 -105 q30 55 25 105 q25 70 -20 110 Z" fill="#2F4A3A" {...L} />
-    <Etichetta x={170} y={278}>fiamma = cipresso</Etichetta>
-  </g>
-);
-
-/** Sole, Venere e Terra: Venere si vede all'alba vicino al Sole. */
-const Pianeti = () => (
-  <g>
-    <circle cx="70" cy="120" r="40" fill={GIALLO} {...L} />
+const Memoria = () => (
+  <g {...LINEA}>
+    <circle cx="70" cy="90" r="34" />
     {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
       const a = (i * Math.PI) / 4;
-      return <path key={i} d={`M${70 + 50 * Math.cos(a)} ${120 + 50 * Math.sin(a)} L${70 + 64 * Math.cos(a)} ${120 + 64 * Math.sin(a)}`} {...L} />;
+      return <path key={i} d={`M${70 + 44 * Math.cos(a)} ${90 + 44 * Math.sin(a)} L${70 + 56 * Math.cos(a)} ${90 + 56 * Math.sin(a)}`} />;
     })}
-    <path d="M70 30 A90 90 0 0 1 70 210" fill="none" stroke={INK} strokeWidth={3} strokeDasharray="8 8" />
-    <circle cx="160" cy="120" r="18" fill="#F3E3A0" {...L} />
-    <circle cx="300" cy="120" r="30" fill="#5B9BD5" {...L} />
-    <path d="M285 108 q10 -6 18 2 q6 10 -6 16 M300 135 q8 -4 12 4" fill="none" stroke="#2E9E5B" strokeWidth={5} strokeLinecap="round" />
-    <Etichetta x={70} y={250} size={36}>Sole</Etichetta>
-    <Etichetta x={165} y={180} size={36}>Venere</Etichetta>
-    <Etichetta x={300} y={190} size={36}>Terra</Etichetta>
-    <Etichetta x={190} y={290} size={40}>all'alba, enorme!</Etichetta>
+    <path d="M150 90 h50 l-12 -10 M200 90 l-12 10" />
+    <rect x="220" y="30" width="100" height="120" />
+    <path d="M232 120 q20 -40 40 -10 t36 -30" strokeWidth={2} />
+    <Testo x={70} y={190}>di giorno</Testo>
+    <Testo x={270} y={190}>sulla tela</Testo>
   </g>
 );
 
-/** Tazza vista dall'alto con il latte che gira. */
-const Tazza = () => (
-  <g>
-    <ellipse cx="160" cy="135" rx="120" ry="105" fill="#FFFFFF" {...L} />
-    <path d="M272 120 q60 0 50 40 q-8 30 -50 20" fill="none" {...L} strokeWidth={10} />
-    <ellipse cx="160" cy="135" rx="92" ry="80" fill="#8A5A3C" {...L} />
-    <path d="M160 135 m0 -8 a10 10 0 1 1 -12 14 a24 24 0 1 1 34 -30 a40 40 0 1 1 -62 46 a56 56 0 0 1 40 -86" fill="none" stroke="#F6E6CC" strokeWidth={9} strokeLinecap="round" />
-    <Etichetta x={160} y={278}>latte nel caffè</Etichetta>
+const Chiese = () => (
+  <g {...LINEA}>
+    <path d="M85 10 L108 110 H62 Z M62 110 h46 v70 h-46 Z M62 130 L32 148 V180 H62" />
+    <path d="M80 140 h12 v20 h-12 Z" />
+    <path d="M220 100 h80 v80 h-80 Z M235 100 V62 h50 V100 M252 100 v-20 a8 8 0 0 1 16 0 v20" />
+    <path d="M165 20 V190" strokeDasharray="4 10" strokeWidth={2} />
+    <Testo x={75} y={215}>a punta</Testo>
+    <Testo x={262} y={215}>a vela</Testo>
   </g>
 );
 
-/** Sezione della pittura: creste di colore in rilievo. */
-const Rilievo = () => (
-  <g>
-    <path d="M20 190 H320" {...L} />
-    <path d="M20 190 q20 -70 40 0 q15 -50 35 0 q25 -90 45 0 q15 -40 30 0 q20 -80 45 0 q15 -55 35 0 q20 -70 40 0 q10 -30 30 0" fill="#3E5C99" {...L} />
-    <path d="M140 190 q25 -90 45 0" fill={GIALLO} {...L} />
-    <path d="M60 60 L120 110 M100 50 L140 95" stroke="#D9342B" strokeWidth={6} strokeLinecap="round" />
-    <Etichetta x={170} y={250}>in rilievo, quasi 3D!</Etichetta>
+const Provenza = () => (
+  <g {...LINEA}>
+    <path d="M0 180 H340" />
+    <path d="M30 180 V120 H220 V180" strokeWidth={2} opacity={0.7} />
+    {[80, 150, 270].map((x, i) => <path key={x} d={`M${x} 180 q-26 -40 -10 -90 q4 -40 10 -70 q8 30 10 70 q16 50 -10 90`} strokeWidth={i === 2 ? 3 : 2.5} />)}
+    <path d="M200 120 v-26 M188 104 h24" strokeWidth={2} />
   </g>
 );
 
-/** Tubetti di colore: blu oltremare, blu cobalto, giallo. */
-const Tubetti = () => (
+const Lettera = () => (
+  <g {...LINEA}>
+    <rect x="30" y="20" width="280" height="150" />
+    <path d="M30 20 L170 110 L310 20" />
+    <Testo x={170} y={210} size={24}>«la stella del mattino, grandissima»</Testo>
+  </g>
+);
+
+const Pianeti = () => (
+  <g {...LINEA}>
+    <circle cx="60" cy="100" r="30" />
+    {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
+      const a = (i * Math.PI) / 4;
+      return <path key={i} d={`M${60 + 40 * Math.cos(a)} ${100 + 40 * Math.sin(a)} L${60 + 50 * Math.cos(a)} ${100 + 50 * Math.sin(a)}`} />;
+    })}
+    <path d="M60 10 A90 90 0 0 1 60 190" strokeDasharray="3 9" strokeWidth={2} />
+    <circle cx="140" cy="68" r="11" fill={BIANCO} />
+    <circle cx="275" cy="100" r="20" />
+    <Testo x={60} y={175}>Sole</Testo>
+    <Testo x={150} y={45}>Venere</Testo>
+    <Testo x={275} y={150}>Terra</Testo>
+  </g>
+);
+
+const spirale = (cx: number, cy: number, r: number, giri = 2.2) => {
+  let d = '';
+  for (let i = 0; i <= 60; i++) {
+    const u = i / 60, a = u * giri * Math.PI * 2, rr = r * (1 - u * 0.85);
+    d += `${i ? 'L' : 'M'}${(cx + rr * Math.cos(a)).toFixed(1)} ${(cy + rr * Math.sin(a) * 0.8).toFixed(1)} `;
+  }
+  return d;
+};
+const Turbolenza = () => (
+  <g {...LINEA}>
+    <path d="M0 20 Q85 -10 170 20 T340 20 M0 190 Q85 220 170 190 T340 190" strokeWidth={2} />
+    <path d={spirale(110, 105, 70)} />
+    <path d={spirale(225, 95, 42)} />
+    <path d={spirale(285, 150, 20, 1.6)} />
+    <path d={spirale(50, 160, 18, 1.6)} />
+  </g>
+);
+
+const Impasto = () => (
+  <g {...LINEA}>
+    <path d="M0 160 H340" />
+    <path d="M10 160 q20 -70 40 0 q15 -50 35 0 q25 -90 45 0 q15 -40 30 0 q20 -80 45 0 q15 -55 35 0 q20 -70 40 0 q10 -30 30 0" />
+    <path d="M40 40 L110 90 M80 30 L140 75" stroke={ACC} />
+    <Testo x={170} y={200}>sezione della pittura</Testo>
+  </g>
+);
+
+const Colori = () => (
   <g>
-    {[['#2A3FA0', 'oltremare'], ['#2F6FD1', 'cobalto'], [GIALLO, 'giallo']].map(([c, n], i) => (
-      <g key={n} transform={`translate(${40 + i * 100} 40) rotate(${-8 + i * 8} 40 90)`}>
-        <path d="M10 20 h60 l-6 140 h-48 Z" fill="#E8E8E8" {...L} />
-        <rect x="16" y="50" width="48" height="70" fill={c} {...L} strokeWidth={4} />
-        <rect x="28" y="160" width="24" height="22" fill="#666" {...L} strokeWidth={4} />
-        <path d="M40 182 q-14 24 6 30 q16 -4 -6 -30" fill={c} {...L} strokeWidth={4} />
+    {[['#2A3FA0', 'oltremare'], ['#2F6FD1', 'cobalto'], ['#F4C430', 'giallo']].map(([c, n], i) => (
+      <g key={n} transform={`translate(${20 + i * 110} 10)`}>
+        <rect width="80" height="130" rx="8" fill={c} stroke={BIANCO} strokeWidth="2" />
+        <Testo x={40} y={175}>{n}</Testo>
       </g>
     ))}
-    <Etichetta x={170} y={278} size={40}>blu, blu e giallo</Etichetta>
   </g>
 );
 
-/** Museo (MoMA, New York). */
 const Museo = () => (
-  <g>
-    <rect x="40" y="70" width="280" height="150" fill="#E8E2D0" {...L} />
-    {[0, 1, 2, 3].map((i) => <rect key={i} x={60 + i * 66} y="90" width="44" height="50" fill="#9CC3E6" {...L} strokeWidth={4} />)}
-    <rect x="150" y="160" width="60" height="60" fill="#3E5C99" {...L} />
-    <rect x="70" y="40" width="220" height="40" fill={INK} />
-    <text x="180" y="70" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="30" fill={CARTA} letterSpacing="6">MoMA</text>
-    <Etichetta x={180} y={272}>New York</Etichetta>
+  <g {...LINEA}>
+    <rect x="30" y="60" width="280" height="130" />
+    {[0, 1, 2, 3].map((i) => <rect key={i} x={50 + i * 66} y="80" width="44" height="44" strokeWidth={2} />)}
+    <rect x="140" y="140" width="60" height="50" />
+    <text x="170" y="40" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" letterSpacing="8" fill={BIANCO}>MoMA</text>
   </g>
 );
 
 // ---------------------------------------------------------------- scene
 
 const ColpoDOcchio: React.FC<SceneProps> = ({ t, cues }) => {
-  const chiavi = [{ t: 0, v: { x: 0.3, y: 0.48, h: 1 } }, { t: cues[1], v: { x: 0.48, y: 0.42, h: 0.82 } }, { t: 9, v: { x: 0.7, y: 0.45, h: 0.95 } }];
+  const chiavi = [{ t: 0, v: { x: 0.3, y: 0.5, h: 1 } }, { t: cues[1], v: { x: 0.48, y: 0.44, h: 0.85 } }, { t: 9, v: { x: 0.72, y: 0.45, h: 0.95 } }];
   const { at, px } = camera(chiavi, t);
-  const vo = at(P.vortice);
   return (
     <Quadro opera={OPERA} t={t} chiavi={chiavi}
       sopra={
-        <Schizzi>
-          <FrecciaGiro t={t} da={0.7} a={cues[2] - 0.3} c={vo} r={px(0.1)} />
-          <Scritta t={t} da={1.3} a={cues[2] - 0.3} at={add(vo, 60, px(0.1) + 80)} testo="gira!" size={96} color={GIALLO} />
-          {P.stelle.map((s, i) => <Scintilla key={i} t={t} da={cues[2] + i * 0.25} at={at(s)} seed={i} />)}
-          <Scritta t={t} da={cues[2] + 0.6} at={{ x: 540, y: 1150 }} testo="segreti in arrivo…" size={70} rot={-3} />
-        </Schizzi>
+        <Annotazioni>
+          <Richiamo t={t} da={0.6} a={cues[1] - 0.2} to={at(P.cipresso[1])} lab={{ x: 520, y: 1100 }} kicker="Il cipresso" sub="in primo piano" accento={ACC} />
+          <Spirale t={t} da={cues[1]} a={cues[2] + 1.2} c={at(P.vortice)} r={px(0.09)} />
+          <Richiamo t={t} da={cues[2]} to={add(at(P.luna), -px(0.05), px(0.04))} lab={{ x: 700, y: 1100 }} kicker="La luna" sub="e undici stelle" accento={ACC} />
+        </Annotazioni>
       }
     />
   );
 };
 
-/** Mappa disegnata sopra l'opera sfocata: Arles, il sole, poi la tempesta; in fondo la strada per Saint-Rémy. */
-const Arles: React.FC<SceneProps> = ({ t, dur, palette: C, cues }) => {
-  const map = eob(seg(t, 0.15, 0.7), 1.6);
-  const sole = eob(seg(t, cues[1], cues[1] + 0.5), 1.8) * (1 - seg(t, cues[2] - 0.2, cues[2] + 0.2));
-  const nube = eob(seg(t, cues[2], cues[2] + 0.5), 1.8);
-  const lampo = nube > 0.9 && Math.floor((t - cues[2]) * 3) % 3 === 0;
-  const route = eo(seg(t, dur - 1.6, dur - 0.4));
-  const A = { x: 450, y: 1000 }, S = { x: 740, y: 840 };
+/** Mappa a linea bianca in un riquadro scuro sopra l'opera sfocata: Arles, poi la strada per Saint-Rémy. */
+const Arles: React.FC<SceneProps> = ({ t, dur, cues }) => {
+  const map = eo(seg(t, 0.2, 0.9));
+  const route = eo(seg(t, dur - 1.8, dur - 0.5));
+  const anno = eo(seg(t, cues[1], cues[1] + 0.6));
+  const A = { x: 440, y: 1000 }, S = { x: 730, y: 850 };
   return (
-    <Quadro opera={OPERA} t={t} fondo={0.7} chiavi={[{ t: 0, v: { x: 0.5, y: 0.5, h: 0.6 } }, { t: dur, v: { x: 0.56, y: 0.5, h: 0.48 } }]}
+    <Quadro opera={OPERA} t={t} fondo={0.75} chiavi={[{ t: 0, v: { x: 0.5, y: 0.5, h: 0.6 } }, { t: dur, v: { x: 0.56, y: 0.5, h: 0.48 } }]}
       sopra={
-        <AbsoluteFill style={{ background: 'rgba(0,0,0,.35)' }}>
-          <svg width="1080" height="1920" viewBox="0 0 1080 1920">
-            <g transform={`translate(540 940) rotate(-2) scale(${map}) translate(-540 -940)`} opacity={Math.min(1, map * 3)}>
-              <rect x="150" y="660" width="780" height="580" rx="18" fill={C.chiaro} stroke={INK} strokeWidth="8" />
-              <path d="M154 1130 Q300 1100 420 1150 Q560 1200 700 1150 Q840 1110 926 1140 V1236 H154 Z" fill="#7FA7C9" stroke={INK} strokeWidth="6" />
-              <path d="M520 664 Q490 800 460 900 Q430 1000 445 1140" fill="none" stroke="#7FA7C9" strokeWidth="18" strokeLinecap="round" />
-              <text x="190" y="720" fontFamily={SANS} fontWeight={800} fontSize="28" letterSpacing="4" fill={INK} opacity=".6">SUD DELLA FRANCIA · 1888</text>
-              {/* Vincent, pittore olandese: bandierina dei Paesi Bassi */}
-              <g transform="translate(700 700) rotate(4)">
-                <path d="M0 0 V70" stroke={INK} strokeWidth="5" />
-                {['#C8102E', '#FFFFFF', '#21468B'].map((c, i) => <rect key={c} x="0" y={i * 14} width="60" height="14" fill={c} stroke={INK} strokeWidth="3" />)}
-              </g>
-              <text x="780" y="740" fontFamily={HAND} fontWeight={700} fontSize="40" fill={INK}>Vincent</text>
-              <path d={`M${A.x} ${A.y} Q600 880 ${S.x} ${S.y}`} fill="none" stroke={C.principale} strokeWidth="9" strokeLinecap="round" pathLength={1} strokeDasharray={`${route} 1`} />
-              <circle cx={A.x} cy={A.y} r="20" fill={C.accento} stroke={INK} strokeWidth="6" />
-              <text x={A.x - 210} y={A.y + 16} fontFamily={SANS} fontWeight={800} fontSize="46" fill={INK}>Arles</text>
-              <g opacity={route > 0 ? 1 : 0.35}>
-                <circle cx={S.x} cy={S.y} r="16" fill={route > 0.98 ? C.accento : C.chiaro} stroke={INK} strokeWidth="6" />
-                <text x={S.x - 70} y={S.y - 34} fontFamily={SANS} fontWeight={800} fontSize="38" fill={INK}>Saint-Rémy</text>
-              </g>
-              {/* il sole del sud */}
-              <g transform={`translate(330 880) scale(${sole}) rotate(${t * 30})`}>
-                {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => <path key={i} d="M0 -62 V-86" stroke={INK} strokeWidth="8" strokeLinecap="round" transform={`rotate(${i * 45})`} />)}
-                <circle r="48" fill={GIALLO} stroke={INK} strokeWidth="6" />
-              </g>
-              {/* le crisi: nuvola con il lampo */}
-              <g transform={`translate(330 870) scale(${nube})`}>
-                <path d="M-90 30 q-40 -5 -25 -45 q5 -45 55 -40 q20 -40 70 -25 q45 -10 55 35 q45 10 25 55 Z" fill="#8C93A8" stroke={INK} strokeWidth="6" strokeLinejoin="round" />
-                <path d="M-10 35 l-20 45 h25 l-15 45 l45 -60 h-25 l15 -30 Z" fill={lampo ? '#FFF6B0' : GIALLO} stroke={INK} strokeWidth="5" strokeLinejoin="round" />
-              </g>
+        <AbsoluteFill style={{ background: 'rgba(0,0,0,.4)' }}>
+          <svg width="1080" height="1920" viewBox="0 0 1080 1920" style={{ opacity: map, transform: `translateY(${(1 - map) * 24}px)` }}>
+            <rect x="130" y="660" width="820" height="560" rx="24" fill="#0A1020" fillOpacity=".86" stroke={BIANCO} strokeOpacity=".25" strokeWidth="2" />
+            <text x="170" y="720" fontFamily={SANS} fontWeight={800} fontSize="26" letterSpacing="5" fill={ACC}>SUD DELLA FRANCIA</text>
+            <path d="M134 1120 Q300 1090 420 1140 Q560 1190 700 1140 Q840 1100 946 1130" fill="none" stroke={BIANCO} strokeWidth="3" />
+            <text x="760" y="1185" fontFamily={SANS} fontSize="26" fill={BIANCO} opacity=".6">Mediterraneo</text>
+            <path d="M520 664 Q490 800 460 900 Q430 1000 445 1130" fill="none" stroke={BIANCO} strokeWidth="3" strokeDasharray="2 10" strokeLinecap="round" />
+            <text x="530" y="780" fontFamily={SANS} fontSize="26" fill={BIANCO} opacity=".6">Rodano</text>
+            <path d={`M${A.x} ${A.y} Q600 880 ${S.x} ${S.y}`} fill="none" stroke={ACC} strokeWidth="4" pathLength={1} strokeDasharray={`${route} 1`} />
+            <circle cx={A.x} cy={A.y} r="12" fill={ACC} />
+            <text x={A.x - 30} y={A.y + 10} textAnchor="end" fontFamily={SANS} fontWeight={800} fontSize="44" fill={BIANCO}>Arles</text>
+            <g opacity={0.4 + 0.6 * route}>
+              <circle cx={S.x} cy={S.y} r="10" fill={route > 0.98 ? ACC : 'none'} stroke={ACC} strokeWidth="3" />
+              <text x={S.x + 24} y={S.y + 10} fontFamily={SANS} fontWeight={800} fontSize="36" fill={BIANCO}>Saint-Rémy</text>
+            </g>
+            <g opacity={anno}>
+              <rect x="170" y="760" width="150" height="56" rx="28" fill={ACC} />
+              <text x="245" y="798" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="32" fill="#0B1530">1888</text>
             </g>
           </svg>
         </AbsoluteFill>
@@ -264,36 +233,40 @@ const Arles: React.FC<SceneProps> = ({ t, dur, palette: C, cues }) => {
 };
 
 const Ospedale: React.FC<SceneProps> = ({ t, dur, cues }) => {
-  const chiavi = [{ t: 0, v: { x: 0.6, y: 0.62, h: 0.9 } }, { t: cues[1], v: { x: 0.66, y: 0.78, h: 0.55 } }, { t: dur, v: { x: 0.62, y: 0.82, h: 0.45 } }];
+  const chiavi = [{ t: 0, v: { x: 0.6, y: 0.62, h: 0.9 } }, { t: cues[1], v: { x: 0.66, y: 0.76, h: 0.6 } }, { t: dur, v: { x: 0.62, y: 0.8, h: 0.5 } }];
   return (
     <Quadro opera={OPERA} t={t} chiavi={chiavi}
       sopra={
-        <Schizzi>
-          <Cuore t={t} da={0.9} at={{ x: 820, y: 760 }} r={46} />
-          <Scritta t={t} da={1.1} at={{ x: 720, y: 690 }} testo="coraggio!" size={84} color={GIALLO} rot={-6} />
-          <Scheda t={t} da={cues[1]} a={dur - 0.4} at={{ x: 320, y: 930 }} w={380} h={310} rot={-5}><Clinica /></Scheda>
-          <Scheda t={t} da={cues[2]} at={{ x: 760, y: 1040 }} w={330} h={290} rot={6} seed={12}><Tele /></Scheda>
-        </Schizzi>
+        <Annotazioni>
+          <Riquadro t={t} da={cues[1] - 0.3} a={cues[2] - 0.3} at={{ x: 540, y: 960 }} titolo="Saint-Paul-de-Mausole" nota="la clinica di Saint-Rémy, dal maggio 1889" accento={ACC} w={560}>
+            <g transform="translate(80 0)"><Clinica /></g>
+          </Riquadro>
+          <Riquadro t={t} da={cues[2]} at={{ x: 540, y: 960 }} titolo="In un anno" nota="circa 150 quadri a Saint-Rémy" accento={ACC} w={460}>
+            <g transform="translate(20 0)"><Tele /></g>
+          </Riquadro>
+        </Annotazioni>
       }
     />
   );
 };
 
 const Finestra: React.FC<SceneProps> = ({ t, dur, cues }) => {
-  const chiavi = [{ t: 0, v: { x: 0.5, y: 0.62, h: 0.72 } }, { t: dur, v: { x: 0.68, y: 0.58, h: 0.6 } }];
+  const chiavi = [{ t: 0, v: { x: 0.5, y: 0.62, h: 0.72 } }, { t: dur, v: { x: 0.66, y: 0.58, h: 0.6 } }];
   const { at } = camera(chiavi, t);
-  const co = at(P.colline);
   return (
     <Quadro opera={OPERA} t={t} chiavi={chiavi}
       sopra={
         <>
-          <OmbraSbarre t={t} da={0.2} a={cues[1] - 0.2} forza={0.55} />
-          <Schizzi>
-            <Freccia t={t} da={1.4} a={cues[2] - 0.3} from={{ x: 260, y: 1130 }} to={co} curva={-90} />
-            <Scritta t={t} da={1.7} a={cues[2] - 0.3} at={{ x: 230, y: 1190 }} testo="colline" size={70} />
-            <Scheda t={t} da={cues[1]} a={cues[2] - 0.2} at={{ x: 720, y: 980 }} w={350} h={270} rot={5}><NienteLuce /></Scheda>
-            <Scheda t={t} da={cues[2]} at={{ x: 560, y: 960 }} w={330} h={280} rot={-4} seed={14}><Ricordo /></Scheda>
-          </Schizzi>
+          <OmbraSbarre t={t} da={0.2} a={cues[1] - 0.2} forza={0.5} />
+          <Annotazioni>
+            <Richiamo t={t} da={1.2} a={cues[1] - 0.2} to={at(P.colline)} lab={{ x: 300, y: 1130 }} kicker="Le Alpilles" sub="le colline di Saint-Rémy" accento={ACC} />
+            <Riquadro t={t} da={cues[1] + 0.2} a={cues[2] - 0.2} at={{ x: 700, y: 980 }} titolo="Di notte" nota="niente luce per dipingere" accento={ACC}>
+              <Notte />
+            </Riquadro>
+            <Riquadro t={t} da={cues[2]} at={{ x: 540, y: 980 }} titolo="A memoria" nota="quello che ha visto la notte" accento={ACC}>
+              <Memoria />
+            </Riquadro>
+          </Annotazioni>
         </>
       }
     />
@@ -301,77 +274,78 @@ const Finestra: React.FC<SceneProps> = ({ t, dur, cues }) => {
 };
 
 const Villaggio: React.FC<SceneProps> = ({ t, dur, cues }) => {
-  const chiavi = [{ t: 0, v: { x: 0.62, y: 0.76, h: 0.8 } }, { t: cues[1], v: { x: 0.6, y: 0.72, h: 0.5 } }, { t: dur, v: { x: 0.57, y: 0.69, h: 0.36 } }];
+  const chiavi = [{ t: 0, v: { x: 0.64, y: 0.76, h: 0.75 } }, { t: cues[1], v: { x: 0.6, y: 0.71, h: 0.5 } }, { t: dur, v: { x: 0.58, y: 0.7, h: 0.42 } }];
   const { at, px } = camera(chiavi, t);
-  const punta = at({ x: P.campanile.x, y: P.campanile.y - 0.01 });
   return (
     <Quadro opera={OPERA} t={t} chiavi={chiavi}
       sopra={
-        <Schizzi>
-          <Cerchio t={t} da={0.5} a={cues[1] - 0.2} c={at(P.villaggio)} rx={px(0.2)} ry={px(0.08)} />
-          <Scritta t={t} da={0.9} a={cues[1] - 0.2} at={add(at(P.villaggio), 0, -px(0.15))} testo="inventato!" size={92} color={GIALLO} />
-          <Freccia t={t} da={cues[1] + 0.3} from={add(punta, 280, 150)} to={punta} curva={-70} gap={24} />
-          <Scritta t={t} da={cues[1] + 0.6} at={add(punta, 300, 210)} testo="a punta!" size={76} />
-          <Scheda t={t} da={cues[1] + 1.2} a={cues[2] - 0.2} at={{ x: 290, y: 1050 }} w={360} h={300} rot={-4}><Chiese /></Scheda>
-          <Cuore t={t} da={cues[2] + 0.2} at={add(punta, -170, 40)} r={44} />
-          <Scritta t={t} da={cues[2] + 0.4} at={add(punta, -190, 130)} testo="casa" size={80} color="#FF9AB0" />
-        </Schizzi>
+        <Annotazioni>
+          <Richiamo t={t} da={0.5} a={cues[1] - 0.2} to={at(P.villaggio)} lab={{ x: 380, y: 1150 }} kicker="Il paese" sub="aggiunto a memoria" accento={ACC} />
+          <Richiamo t={t} da={cues[1] + 0.2} a={cues[2] - 0.8} to={at(P.campanile)} lab={add(at(P.campanile), 150, px(0.1))} kicker="Il campanile" sub="a punta, come in Olanda" accento={ACC} />
+          <Riquadro t={t} da={cues[2] - 0.6} at={{ x: 300, y: 1060 }} titolo="Olanda · Provenza" accento={ACC} h={320}>
+            <Chiese />
+          </Riquadro>
+        </Annotazioni>
       }
     />
   );
 };
 
 const Cipresso: React.FC<SceneProps> = ({ t, dur, cues }) => {
-  const chiavi = [{ t: 0, v: { x: 0.28, y: 0.78, h: 0.62 } }, { t: cues[1], v: { x: 0.26, y: 0.52, h: 0.7 } }, { t: dur, v: { x: 0.24, y: 0.3, h: 0.55 } }];
+  const chiavi = [{ t: 0, v: { x: 0.3, y: 0.78, h: 0.62 } }, { t: cues[1], v: { x: 0.28, y: 0.52, h: 0.72 } }, { t: dur, v: { x: 0.26, y: 0.32, h: 0.6 } }];
   const { at } = camera(chiavi, t);
-  const mid = at(P.cipresso[1]);
   return (
     <Quadro opera={OPERA} t={t} chiavi={chiavi}
       sopra={
-        <Schizzi>
-          <Freccia t={t} da={0.6} a={cues[1] - 0.2} from={add(mid, 380, 120)} to={add(mid, 40, 0)} curva={-80} />
-          <Scritta t={t} da={0.9} a={cues[1] - 0.2} at={add(mid, 400, 190)} testo="cipresso" size={84} />
-          <Percorso t={t} da={cues[1] + 0.2} a={cues[2] - 0.2} punti={P.cipresso.map((q) => add(at(q), 90, 0))} dur={1.6} color={CHALK} />
-          <Scritta t={t} da={cues[1] + 1.4} a={cues[2] - 0.2} at={{ x: 760, y: 760 }} testo="fino alle stelle!" size={72} color={GIALLO} />
-          <Scheda t={t} da={cues[2]} at={{ x: 740, y: 1020 }} w={340} h={300} rot={5}><Fiamma /></Scheda>
-        </Schizzi>
+        <Annotazioni>
+          <Richiamo t={t} da={0.6} a={cues[1] - 0.2} to={add(at(P.cipresso[1]), 20, 0)} lab={{ x: 560, y: 1120 }} kicker="Cipresso" sub="alto come una fiamma" accento={ACC} />
+          <Richiamo t={t} da={cues[1]} a={cues[2] - 0.2} to={at({ x: 0.235, y: 0.45 })} lab={{ x: 600, y: 1120 }} kicker="Fino alle stelle" sub="unisce la terra e il cielo" accento={ACC} />
+          <Riquadro t={t} da={cues[2]} at={{ x: 720, y: 1000 }} titolo="In Provenza" nota="l'albero dei cimiteri" accento={ACC}>
+            <Provenza />
+          </Riquadro>
+        </Annotazioni>
       }
     />
   );
 };
 
 const Venere: React.FC<SceneProps> = ({ t, dur, cues }) => {
-  const chiavi = [{ t: 0, v: { x: 0.38, y: 0.46, h: 0.85 } }, { t: cues[1], v: { x: 0.35, y: 0.5, h: 0.52 } }, { t: dur, v: { x: 0.33, y: 0.48, h: 0.46 } }];
+  const chiavi = [{ t: 0, v: { x: 0.38, y: 0.46, h: 0.85 } }, { t: cues[1], v: { x: 0.37, y: 0.5, h: 0.6 } }, { t: dur, v: { x: 0.36, y: 0.5, h: 0.52 } }];
   const { at, px } = camera(chiavi, t);
-  const ve = at(P.venere);
-  const r = px(0.085);
+  const ve = at(P.venere), r = px(0.08);
   return (
     <Quadro opera={OPERA} t={t} chiavi={chiavi}
       sopra={
-        <Schizzi>
-          <Cerchio t={t} da={0.6} c={ve} rx={r} />
-          <Scritta t={t} da={1.0} a={cues[1] - 0.1} at={add(ve, r + 60, -r)} testo="?" size={140} color={GIALLO} rot={10} />
-          <Scritta t={t} da={cues[1]} at={add(ve, 0, -r - 70)} testo="pianeta Venere!" size={80} color={GIALLO} />
-          <Scheda t={t} da={cues[2]} at={{ x: 790, y: 1080 }} w={370} h={310} rot={4}><Pianeti /></Scheda>
-        </Schizzi>
+        <Annotazioni>
+          <Anello t={t} da={0.5} c={ve} r={r} />
+          <Richiamo t={t} da={0.8} to={add(ve, r * 0.71, -r * 0.71)} lab={add(ve, r * 0.71 + 110, -r * 0.71 - 110)} kicker="Venere" sub="un pianeta" accento={ACC} punto={false} />
+          <Riquadro t={t} da={cues[1]} a={cues[2] - 0.2} at={{ x: 720, y: 1060 }} titolo="Lettera a Theo · 1889" accento={ACC}>
+            <Lettera />
+          </Riquadro>
+          <Riquadro t={t} da={cues[2]} at={{ x: 720, y: 1060 }} titolo="Sole · Venere · Terra" nota="visibile prima dell'alba" accento={ACC}>
+            <Pianeti />
+          </Riquadro>
+        </Annotazioni>
       }
     />
   );
 };
 
 const Vortici: React.FC<SceneProps> = ({ t, dur, cues }) => {
-  const chiavi = [{ t: 0, v: { ...P.vortice, y: 0.44, h: 0.9 } }, { t: cues[2], v: { x: 0.56, y: 0.42, h: 0.7 } }, { t: dur, v: { x: 0.5, y: 0.38, h: 0.62 } }];
+  const chiavi = [{ t: 0, v: { x: 0.5, y: 0.44, h: 0.9 } }, { t: cues[2], v: { x: 0.54, y: 0.42, h: 0.75 } }, { t: dur, v: { x: 0.52, y: 0.4, h: 0.68 } }];
   const { at, px } = camera(chiavi, t);
   const v1 = at(P.vortice), v2 = at(P.vortice2);
   return (
     <Quadro opera={OPERA} t={t} chiavi={chiavi}
       sopra={
-        <Schizzi>
-          <FrecciaGiro t={t} da={0.5} c={v1} r={px(0.1)} />
-          <Scritta t={t} da={cues[1]} a={cues[3] - 0.2} at={add(v1, 0, px(0.1) + 80)} testo="movimento!" size={86} color={GIALLO} rot={-6} />
-          <FrecciaGiro t={t} da={cues[2]} c={v2} r={px(0.09)} verso={-1} ang0={200} giro={300} color={GIALLO} seed={8} />
-          <Scheda t={t} da={cues[3]} at={{ x: 300, y: 1050 }} w={330} h={300} rot={-5}><Tazza /></Scheda>
-        </Schizzi>
+        <Annotazioni>
+          <Spirale t={t} da={0.4} c={v1} r={px(0.085)} />
+          <Spirale t={t} da={0.9} c={v2} r={px(0.055)} verso={-1} />
+          <Richiamo t={t} da={1.4} a={cues[3] - 0.2} to={add(v1, -px(0.085), 30)} lab={{ x: 220, y: 1120 }} kicker="Due spirali" sub="il cielo si avvolge" accento={ACC} />
+          <Riquadro t={t} da={cues[3]} at={{ x: 720, y: 1060 }} titolo="Turbolenza" nota="vortici dentro vortici" accento={ACC}>
+            <Turbolenza />
+          </Riquadro>
+        </Annotazioni>
       }
     />
   );
@@ -380,16 +354,18 @@ const Vortici: React.FC<SceneProps> = ({ t, dur, cues }) => {
 const Tecnica: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const chiavi = [{ t: 0, v: { x: P.luna.x - 0.05, y: P.luna.y + 0.03, h: 0.36 } }, { t: dur, v: { ...P.luna, h: 0.24 } }];
   const { at } = camera(chiavi, t);
-  const lu = at(P.luna);
   return (
     <Quadro opera={OPERA} t={t} chiavi={chiavi}
       sopra={
-        <Schizzi>
-          <Freccia t={t} da={0.6} a={cues[1] - 0.2} from={{ x: 230, y: 1150 }} to={add(lu, -60, 60)} curva={80} />
-          <Scritta t={t} da={0.9} a={cues[1] - 0.2} at={{ x: 230, y: 1205 }} testo="spesso!" size={84} color={GIALLO} />
-          <Scheda t={t} da={cues[1]} a={cues[2] - 0.2} at={{ x: 330, y: 1040 }} w={340} h={290} rot={-4}><Rilievo /></Scheda>
-          <Scheda t={t} da={cues[2]} at={{ x: 330, y: 1040 }} w={340} h={300} rot={5} seed={15}><Tubetti /></Scheda>
-        </Schizzi>
+        <Annotazioni>
+          <Richiamo t={t} da={0.6} a={cues[1] - 0.2} to={add(at(P.luna), -60, 60)} lab={{ x: 260, y: 1130 }} kicker="Impasto" sub="colore spesso, in rilievo" accento={ACC} />
+          <Riquadro t={t} da={cues[1]} a={cues[2] - 0.2} at={{ x: 330, y: 1040 }} titolo="Impasto" accento={ACC} h={300}>
+            <Impasto />
+          </Riquadro>
+          <Riquadro t={t} da={cues[2]} at={{ x: 330, y: 1040 }} titolo="La tavolozza" accento={ACC} h={300}>
+            <Colori />
+          </Riquadro>
+        </Annotazioni>
       }>
       <LuceRadente aspect={OPERA.aspect} t={t} {...P.luna} r={0.14} da={0.6} a={dur - 1} />
     </Quadro>
@@ -405,13 +381,10 @@ const Fallimento: React.FC<SceneProps> = ({ t, dur, cues }) => {
       sopra={
         <>
           <AbsoluteFill style={{ background: '#0B1530', opacity: 0.3 * seg(t, cues[2], cues[3]) }} />
-          <Schizzi>
-            <Scritta t={t} da={0.5} a={fuori} at={{ x: 540, y: 1180 }} testo="non gli piaceva?!" size={86} color={GIALLO} />
-            {[P.venere, P.stelle[0], P.stelle[1]].map((s, i) => (
-              <Cerchio key={i} t={t} da={cues[1] + i * 0.3} a={fuori} c={at(s)} rx={px(0.07)} seed={20 + i} color={CHALK} />
-            ))}
-            <Scritta t={t} da={cues[1] + 1} a={fuori} at={{ x: 540, y: 760 }} testo="troppo grandi?" size={80} />
-          </Schizzi>
+          <Annotazioni>
+            {[P.venere, ...P.stelle].map((s, i) => <Anello key={i} t={t} da={cues[1] + i * 0.25} a={fuori} c={at(s)} r={px(0.07)} />)}
+            <Richiamo t={t} da={cues[1] + 0.8} a={fuori} to={add(at(P.venere), px(0.05), px(0.05))} lab={{ x: 560, y: 1130 }} kicker="Troppo grandi" sub="secondo Van Gogh" accento={ACC} punto={false} />
+          </Annotazioni>
         </>
       }
     />
@@ -420,20 +393,14 @@ const Fallimento: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
 const Oggi: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const chiavi = [{ t: 0, v: { x: 0.5, y: 0.6, h: 4.5 } }, { t: cues[2], v: { x: 0.5, y: 0.5, h: 3 } }, { t: dur, v: { x: 0.5, y: 0.45, h: 2 } }];
-  const { at } = camera(chiavi, t);
   return (
     <Quadro opera={OPERA} t={t} fondo={0.75} chiavi={chiavi}
       sopra={
-        <Schizzi>
-          <Scheda t={t} da={0.4} a={cues[2] - 0.2} at={{ x: 540, y: 1080 }} w={360} h={300} rot={-3}><Museo /></Scheda>
-          {[[-1, -1], [1, -1], [-1, 1], [1, 1]].map(([sx, sy], i) => (
-            <Scintilla key={i} t={t} da={cues[2] + i * 0.2} at={add(at({ x: 0.5, y: 0.5 }), sx * 300, sy * 230)} seed={i + 3} r={30} />
-          ))}
-          {[[-280, -60], [300, -120], [-180, 200], [240, 180], [0, -260]].map(([dx, dy], i) => (
-            <Cuore key={i} t={t} da={cues[3] + i * 0.18} at={add(at({ x: 0.5, y: 0.5 }), dx, dy)} r={36} />
-          ))}
-          <Scritta t={t} da={cues[3] + 0.3} at={{ x: 540, y: 1180 }} testo="★ una star! ★" size={90} color={GIALLO} />
-        </Schizzi>
+        <Annotazioni>
+          <Riquadro t={t} da={0.4} a={cues[2] - 0.2} at={{ x: 540, y: 1080 }} titolo="Museum of Modern Art" nota="New York, dal 1941" accento={ACC}>
+            <Museo />
+          </Riquadro>
+        </Annotazioni>
       }
     />
   );
@@ -441,9 +408,9 @@ const Oggi: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
 // Scene per id del capitolo (quadri/notte-stellata.json).
 export const NOTTE_STELLATA_SCENES: Record<string, SceneDef> = {
-  'colpo-d-occhio': { Component: ColpoDOcchio, title: { top: 400, size: 104 } },
+  'colpo-d-occhio': { Component: ColpoDOcchio, title: { top: 400, size: 96 } },
   arles: { Component: Arles, title: { top: 400, size: 104 } },
-  ospedale: { Component: Ospedale, title: { top: 400, size: 104 } },
+  ospedale: { Component: Ospedale, title: { top: 400, size: 92 } },
   finestra: { Component: Finestra, title: { top: 400, size: 92 } },
   villaggio: { Component: Villaggio, title: { top: 400, size: 104 } },
   cipresso: { Component: Cipresso, title: { top: 400, size: 104 } },
@@ -454,5 +421,5 @@ export const NOTTE_STELLATA_SCENES: Record<string, SceneDef> = {
   oggi: { Component: Oggi, title: { top: 400, size: 104 } },
 };
 
-export const Copertina = copertinaQuadro(OPERA, { x: P.luna.x - 0.25, y: 0.5, h: 0.95 });
+export const Copertina = copertinaQuadro(OPERA, { x: 0.6, y: 0.33, h: 0.62 }, { x: 0.58, y: 0.34, h: 0.55 });
 export const Finale = finaleQuadro(OPERA);

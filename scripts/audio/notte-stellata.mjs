@@ -1,22 +1,61 @@
-// Colonna sonora originale della Notte stellata: allegra e luminosa, in Re maggiore, discreta sotto la voce.
-// Pizzicati, vibrafono, contrabbasso e percussioni leggere; il tema (4 battute in 4/4, crome che salgono e
-// girano su sé stesse come i vortici) è inventato qui. Più tenero e senza ritmo quando Vincent sta male e quando
-// il quadro non gli piace, poi riparte in festa. Un "pop" a ogni scheda disegnata che compare.
-// Effetti agganciati agli schizzi delle scene in src/scenes/notte-stellata/.
-import { note, drum, pop, swell, whoosh, wind } from './synth.mjs';
+// Colonna sonora originale della Notte stellata: elegante e luminosa, in Re maggiore, discreta sotto la voce.
+// Pianoforte in arpeggi che girano su sé stessi come i vortici, archi leggeri, contrabbasso e una pulsazione
+// discreta di spazzole. Più raccolta (senza pulsazione) quando Vincent sta male e quando il quadro non gli piace;
+// si apre nel finale. Il tema è inventato qui. Pochi effetti, agganciati ai riquadri delle scene.
+import { put, rng, drum, swell, wind, note } from './synth.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
+const TAU = Math.PI * 2;
+const SR = 44100;
 const mtof = (m) => 440 * 2 ** ((m - 69) / 12);
+const vamp = (v) => (v / 127) ** 1.6;
 
-// tema: [tempo, nota MIDI, durata in tempi]; Re · Sol · Si minore · La
+// ---------------------------------------------------------------- strumenti locali (via put)
+
+/** Pianoforte morbido: armoniche con decadimento più rapido in alto. */
+const piano = (mix, m, { t, dur = 1.5, vel = 60, pan = 0, rev = 0.5, gain = 1 }) => {
+  const f = mtof(m);
+  const tau = Math.max(0.6, 2.8 - m * 0.02);
+  put(mix, t, Math.ceil((Math.min(dur, 4) + 0.6) * SR), (i) => {
+    const x = i / SR;
+    let s = 0;
+    for (let h = 1; h <= 5; h++) s += Math.sin(TAU * f * h * Math.sqrt(1 + 0.0004 * h * h) * x) * Math.exp(-x / (tau / (0.6 + h * 0.5))) / h ** 1.2;
+    const env = Math.min(1, x / 0.004) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / 0.5));
+    return s * env;
+  }, { gain: gain * vamp(vel) * 0.55, pan, rev });
+};
+
+/** Archi: tre seghe scordate con vibrato e attacco lento. */
+const strings = (mix, m, { t, dur, vel = 40, pan = 0, rev = 0.6, gain = 1, att = 1.2, seed = 1 }) => {
+  const f = mtof(m);
+  const r = rng(seed * 977 + Math.round(t * 1000) + m);
+  const dets = [-6, 0, 6].map((c) => f * 2 ** (c / 1200));
+  const ph = dets.map(() => r());
+  const a = 1 - Math.exp((-TAU * f * 3) / SR);
+  let lp = 0;
+  const rel = 1.4;
+  put(mix, t, Math.ceil((dur + rel) * SR), (i) => {
+    const x = i / SR;
+    const vib = 1 + 0.003 * Math.sin(TAU * 5 * x) * Math.min(1, x / 1.5);
+    let s = 0;
+    for (let k = 0; k < 3; k++) s += 2 * ((ph[k] + dets[k] * vib * x) % 1) - 1;
+    lp += a * (s / 3 - lp);
+    const env = Math.min(1, x / att) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / rel));
+    return lp * env;
+  }, { gain: gain * vamp(vel), pan, rev });
+};
+
+// ---------------------------------------------------------------- materiale musicale
+
+// accordi per battuta (4/4): Re · Si minore · Sol · La  (radice MIDI del basso, intervalli)
+const CHORDS = [[38, [0, 4, 7]], [35, [0, 3, 7]], [43, [0, 4, 7]], [45, [0, 4, 7]]];
+// tema: [tempo, nota MIDI, durata in tempi] su 4 battute, sopra gli arpeggi
 const THEME = [
-  [0, 74, 0.5], [0.5, 78, 0.5], [1, 81, 0.5], [1.5, 78, 0.5], [2, 76, 1], [3, 74, 1],
-  [4, 74, 0.5], [4.5, 79, 0.5], [5, 83, 0.5], [5.5, 79, 0.5], [6, 81, 1], [7, 79, 1],
-  [8, 74, 0.5], [8.5, 78, 0.5], [9, 83, 0.5], [9.5, 78, 0.5], [10, 81, 0.5], [10.5, 79, 0.5], [11, 78, 0.5], [11.5, 76, 0.5],
-  [12, 76, 1], [13, 73, 0.5], [13.5, 76, 0.5], [14, 78, 1], [15, 76, 1],
+  [0, 78, 1.5], [1.5, 76, 0.5], [2, 74, 2],
+  [4, 74, 1.5], [5.5, 76, 0.5], [6, 78, 1], [7, 81, 1],
+  [8, 79, 1.5], [9.5, 78, 0.5], [10, 76, 2],
+  [12, 76, 1], [13, 78, 1], [14, 73, 2],
 ];
-// accordi per battuta: radice MIDI (ottava del basso) e intervalli
-const CHORDS = [[38, [0, 4, 7]], [43, [0, 4, 7]], [47, [0, 3, 7]], [45, [0, 4, 7]]];
 
 export default (mix, T) => {
   const film = loadFilm('notte-stellata');
@@ -31,110 +70,69 @@ export default (mix, T) => {
     for (let k = 0; k < n; k++) cur += (w[k] / tot) * (s.dur - 0.35);
     return s.start + cur;
   };
+  const BODY = 0.8;
+  let sid = 0;
 
   /**
    * Il tema ciclico da `from` a `to`.
-   * mel: vibrafono (livello) · keep: probabilità di ogni nota · oct: trasposizione
-   * pluck: arpeggio pizzicato · bass: contrabbasso · groove: percussioni (0 = niente) · ep: piano elettrico (accordi tenuti)
+   * arp: arpeggio in crome al pianoforte · mel: tema (pianoforte, ottava sopra) · keep: probabilità di ogni nota
+   * str: archi · bass: contrabbasso · pulse: spazzole e cassa morbida
    */
-  let sid = 0;
   const sec = (from, to, o) => {
     const beat = 60 / o.bpm, bar = 4 * beat, loop = 16 * beat;
-    let k = sid++ * 7;
-    const keep = () => ((k = (k * 16807 + 11) % 2147483647) / 2147483647) < o.keep;
+    const R = rng(5000 + sid++ * 113);
     for (let L0 = from; L0 < to - 0.2; L0 += loop) {
       for (let b = 0; b < 4; b++) {
         const t = L0 + b * bar;
         if (t >= to - 0.3) break;
         const [root, iv] = CHORDS[b];
-        const left = to - t;
-        if (o.bass) {
-          note(mix, 'upright', mtof(root), { t, dur: beat * 1.6, vel: o.bass, pan: -0.1 });
-          if (t + 2 * beat < to - 0.2) note(mix, 'upright', mtof(root + 7), { t: t + 2 * beat, dur: beat * 1.4, vel: o.bass * 0.9, pan: -0.1 });
+        const d = Math.min(bar * 1.02, to - t);
+        if (o.bass) note(mix, 'upright', mtof(root), { t, dur: bar * 0.9, vel: o.bass, pan: -0.1 });
+        if (o.str) iv.concat([12]).forEach((v, j) => strings(mix, root + 12 + v + (j === 3 ? 12 : 0), { t: t + j * 0.04, dur: d, vel: o.str, gain: BODY * 0.7, pan: (j - 1.5) * 0.3, seed: j + 3 }));
+        if (o.arp) {
+          const figura = [0, iv[1], iv[2], 12, iv[2] + 12, 12, iv[2], iv[1]];
+          figura.forEach((v, e) => {
+            const te = t + e * beat * 0.5;
+            if (te < to - 0.2) piano(mix, root + 24 + v, { t: te, dur: beat * 0.9, vel: o.arp * (e % 2 ? 0.82 : 1), gain: BODY, pan: -0.25 + (e % 4) * 0.12 });
+          });
         }
-        if (o.ep) iv.forEach((v, j) => note(mix, 'epiano', mtof(root + 24 + v), { t, dur: Math.min(bar, left), vel: o.ep, pan: (j - 1) * 0.25, rev: 0.4 }));
-        if (o.pluck) for (let e = 0; e < 8; e++) {
-          const te = t + e * beat * 0.5;
-          if (te >= to - 0.2) break;
-          const m = root + 24 + [0, iv[1], iv[2], 12][e % 4];
-          note(mix, 'pluck', mtof(m), { t: te, dur: beat * 0.6, vel: o.pluck * (e % 2 ? 0.8 : 1), pan: 0.25, rev: 0.3, seed: e });
-        }
-        if (o.groove) for (let q = 0; q < 8; q++) {
-          const tq = t + q * beat * 0.5;
+        if (o.pulse) for (let q = 0; q < 4; q++) {
+          const tq = t + q * beat;
           if (tq >= to - 0.2) break;
-          drum(mix, 'shaker', tq, o.groove * (q % 2 ? 0.7 : 1));
-          if (q === 0 || q === 5) drum(mix, 'softkick', tq, o.groove * 1.2);
-          if (q === 2 || q === 6) drum(mix, 'sidestick', tq, o.groove * 0.9);
+          drum(mix, 'brushtap', tq + beat * 0.5, o.pulse * 0.8);
+          if (q === 1 || q === 3) drum(mix, 'swish', tq, o.pulse);
+          if (q === 0) drum(mix, 'softkick', tq, o.pulse * 1.1);
         }
       }
       if (!o.mel) continue;
       for (const [b, m, d] of THEME) {
         const t = L0 + b * beat;
-        if (t >= to - 0.2 || !keep()) continue;
-        note(mix, 'vibes', mtof(m + (o.oct ?? 0)), { t, dur: Math.min(d * beat * 1.4, to - t), vel: o.mel, pan: 0.05, rev: 0.35 });
+        if (t >= to - 0.2 || R() > o.keep) continue;
+        piano(mix, m + (o.oct ?? 0), { t, dur: Math.min(d * beat * 1.1, to - t), vel: o.mel * (0.92 + R() * 0.16), gain: BODY * 1.15, pan: 0.08, rev: 0.6 });
       }
     }
   };
 
   // ---- sezioni (tempi dai capitoli del JSON)
-  // copertina e primo sguardo: si parte in festa
-  sec(0, T.arles, { bpm: 112, mel: 56, keep: 1, pluck: 44, bass: 52, groove: 40 });
-  // Arles: allegro col sole, poi tenero quando sta male
-  sec(T.arles, C('arles', 2), { bpm: 112, mel: 52, keep: 0.9, pluck: 40, bass: 48, groove: 34 });
-  sec(C('arles', 2), T.ospedale, { bpm: 84, mel: 44, keep: 0.6, ep: 40, bass: 40 });
-  // ospedale: il coraggio, il ritmo torna piano piano
-  sec(T.ospedale, T.finestra, { bpm: 100, mel: 48, keep: 1, ep: 34, pluck: 36, bass: 44, groove: 24 });
-  // finestra: sospeso e curioso
-  sec(T.finestra, T.villaggio, { bpm: 100, mel: 42, keep: 0.7, oct: 12, pluck: 34, bass: 40, groove: 22 });
-  // villaggio, cipresso, Venere: il tema pieno
-  sec(T.villaggio, T.venere, { bpm: 112, mel: 54, keep: 1, pluck: 42, bass: 50, groove: 38 });
-  sec(T.venere, T.vortici, { bpm: 112, mel: 52, keep: 1, oct: 12, pluck: 40, bass: 48, groove: 34 });
-  // vortici: il più mosso
-  sec(T.vortici, T.tecnica, { bpm: 120, mel: 56, keep: 1, pluck: 46, bass: 52, groove: 44 });
-  // tecnica: leggero
-  sec(T.tecnica, T.fallimento, { bpm: 112, mel: 50, keep: 0.9, pluck: 40, bass: 46, groove: 32 });
-  // non gli piaceva: tenero, senza ritmo
-  sec(T.fallimento, T.oggi, { bpm: 80, mel: 44, keep: 0.8, ep: 40, bass: 38 });
-  // oggi: si riparte in festa
-  sec(T.oggi, T.finale, { bpm: 116, mel: 58, keep: 1, pluck: 46, bass: 54, groove: 46 });
+  sec(0, T.arles, { bpm: 92, arp: 40, mel: 52, keep: 1, str: 30, bass: 46, pulse: 30 });
+  sec(T.arles, C('arles', 2), { bpm: 92, arp: 38, mel: 48, keep: 0.9, bass: 44, pulse: 26 });
+  sec(C('arles', 2), T.ospedale, { bpm: 76, arp: 32, mel: 42, keep: 0.6, str: 34, bass: 38 });
+  sec(T.ospedale, T.villaggio, { bpm: 84, arp: 36, mel: 46, keep: 0.8, str: 32, bass: 42, pulse: 22 });
+  sec(T.villaggio, T.vortici, { bpm: 92, arp: 40, mel: 50, keep: 1, str: 30, bass: 46, pulse: 28 });
+  sec(T.vortici, T.tecnica, { bpm: 100, arp: 44, mel: 52, keep: 1, str: 38, bass: 48, pulse: 34 });
+  sec(T.tecnica, T.fallimento, { bpm: 92, arp: 38, mel: 48, keep: 0.9, bass: 44, pulse: 26 });
+  sec(T.fallimento, T.oggi, { bpm: 72, arp: 30, mel: 44, keep: 0.8, str: 38, bass: 38 });
+  sec(T.oggi, T.finale, { bpm: 92, arp: 42, mel: 54, keep: 1, str: 42, bass: 48, pulse: 30 });
 
-  // finale: accordo di Re maggiore con un ultimo giro di vibrafono
+  // finale: accordo di Re maggiore aperto
   const F = T.finale;
-  [50, 54, 57, 62, 66].forEach((m, j) => note(mix, 'epiano', mtof(m), { t: F, dur: 3.2, vel: 46, pan: (j - 2) * 0.2, rev: 0.5 }));
-  [74, 78, 81, 86].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: F + 0.2 + j * 0.18, dur: 2.5, vel: 50, pan: -0.3 + j * 0.2, rev: 0.5 }));
-  note(mix, 'upright', mtof(38), { t: F, dur: 2, vel: 54 });
+  [38, 50, 57, 62, 66, 69].forEach((m, j) => strings(mix, m, { t: F, dur: 3.2, vel: 46, gain: BODY * 0.8, pan: (j - 2.5) * 0.2, att: 0.6, seed: 30 + j }));
+  [62, 66, 69, 74, 78].forEach((m, j) => piano(mix, m, { t: F + j * 0.12, dur: 3, vel: 46, gain: BODY, pan: -0.2 + j * 0.1 }));
 
-  // ---------------------------------------------------------------- effetti (tempi degli schizzi nelle scene)
-  // capitolo 1: la freccia che gira, le scintille
-  whoosh(mix, T['colpo-d-occhio'] + 0.7, 0.8, { vel: 34, lo: 600, hi: 2400 });
-  [0, 1, 2, 3, 4].forEach((i) => pop(mix, C('colpo-d-occhio', 2) + i * 0.25, 30, { pitch: 7 + i * 2, pan: -0.4 + i * 0.2 }));
-  // Arles: mappa, sole, nuvola col tuono leggero
-  pop(mix, T.arles + 0.15, 40);
-  pop(mix, C('arles', 1), 36, { pitch: 5 });
-  swell(mix, C('arles', 2) + 0.4, 0.9, { vel: 30 });
-  // ospedale: cuore, clinica, tele
-  pop(mix, T.ospedale + 0.9, 36, { pitch: 7 });
-  pop(mix, C('ospedale', 1), 40);
-  pop(mix, C('ospedale', 2), 40, { pitch: 3 });
-  // finestra: schede
-  pop(mix, C('finestra', 1), 40);
-  pop(mix, C('finestra', 2), 40, { pitch: 3 });
-  // villaggio: scheda delle chiese, cuore
-  pop(mix, C('villaggio', 1) + 1.2, 40);
-  pop(mix, C('villaggio', 2) + 0.2, 34, { pitch: 7 });
-  // cipresso: freccia lungo l'albero, scheda della fiamma
-  whoosh(mix, C('cipresso', 1) + 0.2, 1.4, { vel: 34, lo: 300, hi: 3000 });
-  pop(mix, C('cipresso', 2), 40);
-  // Venere: «pianeta Venere!», scheda dei pianeti
-  pop(mix, C('venere', 1), 36, { pitch: 7 });
-  pop(mix, C('venere', 2), 40);
-  // vortici: il vento e la tazza
-  wind(mix, T.vortici, T.tecnica, { power: 0.18, fade: 1.5, center: 700, seed: 19 });
-  pop(mix, C('vortici', 3), 40);
-  // tecnica: schede
-  pop(mix, C('tecnica', 1), 40);
-  pop(mix, C('tecnica', 2), 40, { pitch: 3 });
-  // oggi: museo, scintille, cuori
-  pop(mix, T.oggi + 0.4, 40);
-  [0, 1, 2, 3, 4].forEach((i) => pop(mix, C('oggi', 3) + i * 0.18, 32, { pitch: 5 + i * 2, pan: -0.4 + i * 0.2 }));
+  // ---------------------------------------------------------------- effetti discreti (tempi delle scene)
+  // vortici: un filo di vento
+  wind(mix, T.vortici, T.tecnica, { power: 0.15, fade: 1.5, center: 700, seed: 19 });
+  // passaggi verso la clinica e verso il quadro intero
+  swell(mix, T.ospedale + 0.2, 1.2, { vel: 26 });
+  swell(mix, T.oggi + 0.3, 1.4, { vel: 28 });
 };
