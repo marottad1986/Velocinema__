@@ -16,6 +16,10 @@ export type Capitolo = {
 /** Formato "spiegato": ogni personaggio è rappresentato da un oggetto, mai da una figura. */
 export type Personaggio = { nome: string; ruolo: string; oggetto: string };
 
+/** Scheda dell'opera (solo quadri, QUADRI.md). */
+export type OperaInfo = { tecnica: string; misure: string; museo: string; fonte: { url: string; licenza: string } };
+
+/** Dati di un film (films/) o di un quadro (quadri/: autore al posto di regista, più la scheda dell'opera). */
 export type FilmData = {
   titolo: string;
   formato?: 'riassunto' | 'spiegato';
@@ -23,8 +27,10 @@ export type FilmData = {
   schema?: boolean;
   tipo?: 'film' | 'serie';
   stagione?: number;
-  regista: string;
+  regista?: string;
+  autore?: string;
   anno: number;
+  opera?: OperaInfo;
   palette: Palette;
   copertina: { durata: number; frase_lancio?: string; immagine: string; voce?: string };
   linea_tempo?: number[];

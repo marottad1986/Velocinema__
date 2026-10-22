@@ -5,6 +5,9 @@ Ogni film è descritto da un file in `films/` (titolo, regista, palette, coperti
 Il codice in `reference/` è la versione attuale delle scene, scritta per un altro player: va usato come
 riferimento per i disegni e le animazioni, non eseguito così com'è.
 
+Serie parallela con la stessa grafica: **quadri famosi** spiegati in 2 minuti, JSON in `quadri/`.
+Regole proprie (solo opere di pubblico dominio, immagine originale animata): vedi `QUADRI.md`.
+
 ## Formato (vincolante)
 - 1080×1920, 30 o 60 fps, durata esatta 2:00 (120 s).
 - Struttura: copertina 4 s + capitoli (112 s in tutto) + finale 4 s.
@@ -50,6 +53,7 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 - Nell'immagine finale, sotto «Metti like» / «Segui la pagina», l'invito a commentare (mai «Il prossimo … arriva presto»):
   riassunti di film → «Commenta con il film che vorresti.»; Spiegato semplice → «Commenta con la spiegazione che vorresti.»;
   canzoni → «Commenta con la canzone che vorresti.»; quadri → «Commenta con il quadro che vorresti.»
+- Mai frasi come «La prossima volta che lo vedi…» (né nel finale né altrove).
 
 ## Elementi fissi sopra le immagini (capitoli)
 - Barra a capitoli sottile (16 px) sul bordo superiore, un segmento per capitolo proporzionale alla durata,
@@ -122,7 +126,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Un solo tempo (bpm) per film, su una griglia continua: le scene lente vanno a metà passo, quelle concitate a passo
   doppio, e i cambi di sezione cadono sulla battuta più vicina all'inizio del capitolo (mai tempi diversi per capitolo:
   si sente la musica accelerare e rallentare). Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
-  Frankenstein Junior 104; Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 a metà passo).
+  Frankenstein Junior 104; Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 a metà passo);
+  quadri: Grande onda 88, Notte stellata 92.
 - Effetti sonori registrati: `scripts/audio/effetti.mjs` (archivio CC0 di Craig Smith, USC / Sunset Editorial, "SSE Library"
   e "Red Library" su archive.org), scaricati in `campioni/effetti/`; `clip(mix, id, { t, da, durata, gain, lp, largo… })`
   suona un tratto del file (da/durata = presa scelta). Per aggiungere un effetto: voce nel `CATALOGO` con il picco del file.

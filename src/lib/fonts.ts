@@ -7,6 +7,7 @@ import { loadFont as loadSyncopate } from '@remotion/google-fonts/Syncopate';
 import { loadFont as loadBigShouldersStencil } from '@remotion/google-fonts/BigShouldersStencil';
 import { loadFont as loadBebas } from '@remotion/google-fonts/BebasNeue';
 import { loadFont as loadCinzel } from '@remotion/google-fonts/Cinzel';
+import { loadFont as loadInstrument } from '@remotion/google-fonts/InstrumentSerif';
 
 export const DISPLAY = loadBricolage('normal', { weights: ['800'], subsets: ['latin', 'latin-ext'] }).fontFamily;
 export const SANS = loadFigtree('normal', { weights: ['400', '800'], subsets: ['latin', 'latin-ext'] }).fontFamily;
@@ -23,3 +24,6 @@ export const CINZEL = loadCinzel('normal', { weights: ['700'], subsets: ['latin'
 export const STENCIL = loadBigShouldersStencil('normal', { weights: ['800'], subsets: ['latin'] }).fontFamily;
 /** Titolo alto e condensato, da progetto (Inception). */
 export const BEBAS = loadBebas('normal', { weights: ['400'], subsets: ['latin', 'latin-ext'] }).fontFamily;
+/** Titolo serif elegante (serie dei quadri: copertina e finale). */
+export const SERIF = loadInstrument('normal', { weights: ['400'], subsets: ['latin', 'latin-ext'] }).fontFamily;
+loadInstrument('italic', { weights: ['400'], subsets: ['latin', 'latin-ext'] });

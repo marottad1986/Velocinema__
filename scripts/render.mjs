@@ -4,15 +4,15 @@
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, renameSync, rmSync } from 'node:fs';
 import { generaMusica } from './musica.mjs';
-import { loadFilm, run, timeline } from './audio/film.mjs';
+import { filmPath, loadFilm, run, timeline } from './audio/film.mjs';
 
 const [film, capitolo] = process.argv.slice(2);
 if (!film) {
   console.error('Uso: npm run render -- <film> [capitolo]   es. npm run render -- shutter-island');
   process.exit(1);
 }
-if (!existsSync(`films/${film}.json`)) {
-  console.error(`Non trovo films/${film}.json`);
+if (!filmPath(film)) {
+  console.error(`Non trovo films/${film}.json né quadri/${film}.json`);
   process.exit(1);
 }
 mkdirSync('out', { recursive: true });

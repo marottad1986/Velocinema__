@@ -63,7 +63,7 @@ const PosterPlaceholder: React.FC<{ film: FilmDef; end?: boolean }> = ({ film, e
       <h1 style={{ fontFamily: film.posterFont ?? DISPLAY, fontSize: 170, color: P.chiaro, margin: 0, textAlign: 'center', lineHeight: 0.95, width: 900 }}>
         {end ? 'THE END' : film.data.titolo.toUpperCase()}
       </h1>
-      {!end && <p style={{ fontFamily: SANS, fontWeight: 800, fontSize: 40, color: P.accento, letterSpacing: '0.2em' }}>{film.data.regista.toUpperCase()}</p>}
+      {!end && <p style={{ fontFamily: SANS, fontWeight: 800, fontSize: 40, color: P.accento, letterSpacing: '0.2em' }}>{(film.data.regista ?? film.data.autore ?? '').toUpperCase()}</p>}
     </AbsoluteFill>
   );
 };

@@ -31,8 +31,12 @@ import { DARK_S1_SCENES } from './scenes/dark-stagione-1';
 import { INCEPTION_SCENES } from './scenes/inception';
 import { Copertina as IncCover, Finale as IncEnd } from './scenes/inception/Locandina';
 import { Copertina as DarkCover, Finale as DarkEnd } from './scenes/dark-stagione-1/Locandina';
+import notteStellata from '../quadri/notte-stellata.json';
+import { NOTTE_STELLATA_SCENES, Copertina as NotteCover, Finale as NotteEnd } from './scenes/notte-stellata';
+import grandeOnda from '../quadri/grande-onda.json';
+import { GRANDE_ONDA_SCENES, Copertina as OndaCover, Finale as OndaEnd } from './scenes/grande-onda';
 
-// Registro dei film: un JSON in films/ + le scene disegnate in src/scenes/<film>/.
+// Registro dei film e dei quadri: un JSON in films/ (o quadri/, vedi QUADRI.md) + le scene in src/scenes/<slug>/.
 // Le scene non ancora ricostruite compaiono come segnaposto.
 export const FILMS: FilmDef[] = [
   { slug: 'shutter-island', data: shutterIsland as FilmData, scenes: SHUTTER_ISLAND_SCENES, cover: ShutterCover, ending: ShutterEnd, posterFont: ANTON },
@@ -45,6 +49,8 @@ export const FILMS: FilmDef[] = [
   { slug: 'harry-potter-pietra-filosofale', data: harryPotter1 as FilmData, scenes: HARRY_POTTER_1_SCENES, cover: HP1Cover, ending: HP1End, posterFont: CINZEL },
   { slug: 'dark-stagione-1', data: darkStagione1 as FilmData, scenes: DARK_S1_SCENES, cover: DarkCover, ending: DarkEnd, posterFont: STENCIL },
   { slug: 'inception', data: inception as FilmData, scenes: INCEPTION_SCENES, cover: IncCover, ending: IncEnd, posterFont: BEBAS },
+  { slug: 'notte-stellata', data: notteStellata as FilmData, scenes: NOTTE_STELLATA_SCENES, cover: NotteCover, ending: NotteEnd },
+  { slug: 'grande-onda', data: grandeOnda as FilmData, scenes: GRANDE_ONDA_SCENES, cover: OndaCover, ending: OndaEnd },
 ];
 
 export const getFilm = (slug: string): FilmDef => {
