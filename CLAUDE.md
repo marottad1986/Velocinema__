@@ -164,6 +164,20 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   Clip voce lette da `/Velocinema/<film>/voce/` su MEGA (o da `audio/<film>/`). Segreti `MEGA_EMAIL`, `MEGA_PASSWORD`.
   A mano: Actions → "Video su MEGA" → Run workflow.
 
+## Metodo di lavoro e controllo qualità (vincolante)
+- Si parte sempre da `main`: una conversazione e un ramo per film (o per modifica), una pull request per film.
+  Niente rami paralleli di lunga durata: a lavoro finito si unisce su main.
+- `node scripts/controlli.mjs [<film>...]` (`scripts/controlli.mjs`): regole verificabili in automatico (durata 2:00, ritmo della
+  voce, frasi vietate, finale con «Commenta con…», scene registrate, musica con strumenti campionati e senza note()
+  sintetiche, strumenti ed effetti dichiarati, agganci a capitoli e frasi esistenti, un solo tempo). Gira anche nel
+  workflow MEGA prima del render: con un errore il video di quel film non viene fatto. Una regola nuova che si può
+  verificare in automatico va aggiunta anche lì, così vale per tutti i film già fatti.
+- Prima della pull request di un film nuovo o modificato, i tre revisori in `.claude/agents/` (subagenti):
+  `revisore-testi` (legge da spettatore che non ha visto il film), `revisore-immagini` (fotogrammi di prova contro
+  QUALITA.md), `revisore-musica` (sincronia, livelli, strumenti veri). Si chiamano solo quelli della parte toccata.
+  La pull request riporta i verdetti; si unisce solo con controlli verdi e revisori APPROVATO (o con i punti aperti
+  spiegati nella pull request).
+
 ## Struttura del codice (Remotion, 30 fps)
 - **Per disegnare scene (anche di un film nuovo) seguire `BRIEF-SCENA.md`**: metodo, scheletro, errori da evitare, verifica.
 - `src/lib/elements.tsx`: libreria di elementi animati riutilizzabili (pioggia, nebbia, fumo, fuoco, aloni, fasci, mare, stelle, note, neon…); catalogo visivo nelle composizioni `libreria--esterni` e `libreria--interni` (`src/lib/Catalogo.tsx`).
