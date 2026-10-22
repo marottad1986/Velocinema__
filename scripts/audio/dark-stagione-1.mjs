@@ -2,7 +2,7 @@
 // ticchettio d'orologio che fa da metronomo. Il motivo è inventato qui: quattro note in Do minore (Do, Mi bemolle, Re,
 // Sol) che tornano sempre uguali, come il cerchio del racconto; cupo nel bunker, spezzato nel 2052. Niente brani o motivi
 // della serie. Effetti agganciati agli eventi della parete in src/scenes/dark-stagione-1/Parete.tsx.
-import { put, rng, note, drum, whoosh, swell, pop, rainHiss, FX } from './synth.mjs';
+import { put, rng, note, drum, whoosh, pop, FX } from './synth.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
 const TAU = Math.PI * 2;
@@ -154,12 +154,10 @@ export default (mix, T) => {
   whoosh(mix, 0.15, 0.6, { vel: 40, lo: 600, hi: 3000 });
   pop(mix, 0.55, 40, { pitch: 5 });
   pop(mix, 0.85, 44, { pitch: 12 });
-  // pioggia fuori dalla stanza delle indagini, per tutto il video
-  rainHiss(mix, SIGLA, T.finale, { power: 0.22, fade: 1.2 });
   // dove spariscono: rombo sotto la grotta
   rumble(mix, C('mikkel', 2), 2.4, { vel: 34 });
   // il passaggio: la linea gialla che sale, le grotte negli altri anni
-  swell(mix, C('trentatre', 0) + 1.6, 1.4, { vel: 40 });
+  bell(mix, 60, { t: C('trentatre', 0) + 0.3, vel: 38 });
   [0.3, 0.8].forEach((d, k) => bell(mix, [72, 75][k], { t: C('trentatre', 1) + d, vel: 40 }));
   [0, 0.5, 1.0].forEach((d, k) => bell(mix, [67, 72, 75][k], { t: C('trentatre', 2) + d, vel: 42 }));
 };
