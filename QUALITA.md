@@ -38,6 +38,8 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - Shutter Island: fredda, verde petrolio (#0E3A40).
   - La La Land: calda nelle scene di giorno (#F2C14E), viola-indaco di notte (#2C2456).
   - The Truman Show: azzurro pastello da set televisivo di giorno (#8FD3F4, opacità 10%), blu notte nelle scene di tempesta e di notte (#142235).
+  - Cast Away: calda tropicale di giorno sull'isola (#F2B85A, opacità 10%), blu oceano di notte e in tempesta (#0E2A3A),
+    blu-grigio invernale a Memphis (#3B4C66).
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
 
@@ -125,3 +127,20 @@ Look da fantascienza intima: blu profondo nello spazio, polvere color sabbia sul
 - La verità di Brand: rotazione che rallenta, frammenti, lavagna con l'equazione barrata.
 - Dentro il buco nero: disco dorato, navetta che cade, tunnel di librerie con fili di luce, libro che cade.
 - Il messaggio: Morse dorato in sincronia con la lancetta, stazione spaziale con case, due orologi, navetta verso Amelia.
+
+### Cast Away
+Look da isola tropicale luminosa (sabbia, laguna turchese, palme) contro una Memphis fredda e notturna; l'accento rosso-arancio
+(#E4572E) solo sull'oggetto chiave della scena (lancetta, gommone, pacco con le ali, impronta su Wilson, fuoristrada).
+Elementi comuni in `src/scenes/cast-away/Comuni.tsx` (pallone, pacco con le ali, palma, zattera, orologio da tasca).
+Mai Chuck né Kelly: si raccontano con gli oggetti; nessun marchio (corriere anonimo, pallone senza logo).
+- Ogni minuto conta: nastri trasportatori in movimento, lancetta che scatta, neve alle finestre, pulviscolo nei fasci dei neon.
+- La promessa di Natale: neve su due livelli, luci di Natale, gocce sul parabrezza, orologio che si apre, luci di posizione dell'aereo.
+- L'aereo precipita: due lampi, pioggia su due livelli, motore in fiamme con fumo, colonna d'acqua all'impatto, gommone che si gonfia.
+- L'isola deserta: raggi dell'alba, onda alta che si frange sulla barriera, risacca sulla spiaggia, gabbiani.
+- I pacchi: pacco che arriva con la marea, oggetti che escono a uno a uno, alone sul pacco con le ali.
+- Il fuoco e Wilson: fumo dei tentativi, impronta che compare, fiamma con braci, cielo che passa dal tramonto alle stelle.
+- Quattro anni dopo: tacche che si moltiplicano, fumo dei pesci, braci, pulviscolo nel fascio dell'apertura.
+- La vela: pannello portato dalla marea, vela issata, bandierina che gira col vento, spruzzi sulla barriera.
+- Perso in mare: pallone che si allontana, corda lasciata, riflessi di sole, nave all'orizzonte con fumo.
+- Il ritorno: pioggia su due livelli, gocce dalla veranda, pozzanghere con cerchi, porta che si chiude, fari che si accendono.
+- Il bivio: polvere dietro il furgone, ali sul portellone che si illuminano, erba secca al vento, raggi del tramonto.
