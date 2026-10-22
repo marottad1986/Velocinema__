@@ -103,6 +103,10 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 - Node e ffmpeg/ffprobe devono essere nel PATH (in PowerShell, se mancano:
   `$env:Path = [Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [Environment]::GetEnvironmentVariable("Path","User")`).
 - Creare un nuovo film: scrivere `films/<nome>.json` seguendo lo schema dei due esistenti.
+- Archivio su MEGA (`.github/workflows/video-mega.yml`): a ogni push su main GitHub Actions rigenera i film toccati
+  (`scripts/cambiati.mjs`; codice comune = tutti) e carica `<film>.mp4` e `<film>-voce.mp4` in `/Velocinema/<film>/`.
+  Clip voce lette da `/Velocinema/<film>/voce/` su MEGA (o da `audio/<film>/`). Segreti `MEGA_EMAIL`, `MEGA_PASSWORD`.
+  A mano: Actions → "Video su MEGA" → Run workflow.
 
 ## Struttura del codice (Remotion, 30 fps)
 - **Per disegnare scene (anche di un film nuovo) seguire `BRIEF-SCENA.md`**: metodo, scheletro, errori da evitare, verifica.
