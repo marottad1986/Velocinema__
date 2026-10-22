@@ -121,7 +121,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   e "Red Library" su archive.org), scaricati in `campioni/effetti/`; `clip(mix, id, { t, da, durata, gain, lp, largo… })`
   suona un tratto del file (da/durata = presa scelta). Per aggiungere un effetto: voce nel `CATALOGO` con il picco del file.
   Lo spartito esporta `effetti` (id da scaricare). I tappeti (pioggia, vento, fuoco) restano sotto la musica, i colpi sopra.
-- Tutti i film usano orchestra campionata ed effetti registrati. Restano sintetici solo pochi suoni senza un buon
+- Tutti i film usano orchestra campionata ed effetti registrati (timpani veri da VCSL in Frankenstein Junior). Restano sintetici solo pochi suoni senza un buon
   equivalente registrato (gesso, spazzole jazz, bip Morse, neon, cambio canale, risucchio). Per tarare i volumi
   confrontare musica ed effetti misurati separatamente; i vecchi strumenti sintetici di synth.mjs non vanno più usati
   per la musica.
