@@ -98,9 +98,9 @@ const putStereo = (mix, t, len, gen, { gain = 1, pan = 0, rev = 0.2 }) => {
  * Suona una nota con uno strumento campionato.
  * nota: nome ('D3') o numero MIDI. t/dur in secondi; vel 0–127 sceglie lo strato di dinamica e il volume.
  * attack: dissolvenza d'entrata (archi che crescono); release: coda dopo dur (archi ~0,8 s; arpa/piano lasciano
- * suonare con release lungo); start: secondi di campione da saltare (attacco più morbido).
+ * suonare con release lungo); start: secondi di campione da saltare (attacco più morbido); cents: scordatura voluta.
  */
-export const suona = (mix, id, nota, { t, dur, vel = 64, pan = 0, rev = 0.3, gain = 1, attack = 0, release = 0.6, start = 0, seed = 1 }) => {
+export const suona = (mix, id, nota, { t, dur, vel = 64, pan = 0, rev = 0.3, gain = 1, attack = 0, release = 0.6, start = 0, cents = 0, seed = 1 }) => {
   const s = INDICE.strumenti[id];
   const midi = typeof nota === 'number' ? nota : Math.round(69 + 12 * Math.log2(hz(nota) / 440));
   const r = rng(seed * 7919 + Math.round(t * 1000) + midi * 31);
@@ -113,7 +113,7 @@ export const suona = (mix, id, nota, { t, dur, vel = 64, pan = 0, rev = 0.3, gai
   const cand = strato.filter((c) => dist(c) === best);
   const c = cand[Math.floor(r() * cand.length)];
   const { L, R } = carica(s, c);
-  const ratio = 2 ** ((midi - c.midi - (c.cents ?? 0) / 100) / 12);
+  const ratio = 2 ** ((midi + cents / 100 - c.midi - (c.cents ?? 0) / 100) / 12);
   // volume: lo strato porta già il suo timbro; la velocità rifinisce dentro lo strato
   const g = gain * livello(id) * (0.35 + 0.65 * (vel / 127)) ** 1.5;
 
@@ -150,9 +150,10 @@ export const suona = (mix, id, nota, { t, dur, vel = 64, pan = 0, rev = 0.3, gai
 
 /**
  * Colpo di percussione campionata: file = inizio del nome del campione (es. 'bdrum_mp', 'gong_hit_p')
- * oppure dinamica; tra più campioni corrispondenti si sceglie con il seme. dur facoltativa (sfuma alla fine).
+ * oppure dinamica; tra più campioni corrispondenti si sceglie con il seme. dur facoltativa (sfuma alla fine);
+ * da = secondi di campione da saltare.
  */
-export const colpo = (mix, id, file, { t, vel = 100, pan = 0, rev = 0.3, gain = 1, dur = Infinity, release = 0.5, pitch = 0, seed = 1 }) => {
+export const colpo = (mix, id, file, { t, vel = 100, pan = 0, rev = 0.3, gain = 1, dur = Infinity, release = 0.5, pitch = 0, da = 0, seed = 1 }) => {
   const s = INDICE.strumenti[id];
   const cand = s.campioni.filter((c) => c.f.startsWith(file) || c.dyn === file);
   if (!cand.length) throw new Error(`Nessun campione "${file}" in ${id}`);
@@ -160,12 +161,26 @@ export const colpo = (mix, id, file, { t, vel = 100, pan = 0, rev = 0.3, gain = 
   const c = cand[Math.floor(r() * cand.length)];
   const { L, R } = carica(s, c);
   const ratio = 2 ** (pitch / 12);
-  const len = Math.ceil(Math.min((L.length - 2) / ratio, (dur + release) * SR));
+  const s0 = da * SR;
+  const len = Math.ceil(Math.min((L.length - 2 - s0) / ratio, (dur + release) * SR));
   const d = dur * SR, rel = release * SR;
   putStereo(mix, t, len, (i, o) => {
-    const v = i * ratio, k = Math.floor(v);
+    const v = s0 + i * ratio, k = Math.floor(v);
     const env = i > d ? Math.max(0, 1 - (i - d) / rel) ** 2 : 1;
     o[0] = hermite(L, k, v - k) * env;
     o[1] = hermite(R, k, v - k) * env;
   }, { gain: gain * livello(id) * (vel / 127), pan, rev });
+};
+
+/** Archi d'orchestra: sceglie la sezione dall'altezza (contrabbasso, celli, viole, violini). */
+export const archi = (mix, nota, opts) => {
+  const m = typeof nota === 'number' ? nota : Math.round(69 + 12 * Math.log2(hz(nota) / 440));
+  const id = m < 40 ? 'contrabbasso' : m < 50 ? 'celli' : m < 62 ? 'viole' : 'violini';
+  suona(mix, id, m, { attack: 0.3, release: 1, rev: 0.5, ...opts });
+};
+
+/** Crescendo del piatto sospeso (rullo con battenti morbidi) che culmina a tEnd; dur ≤ 3,3 s. */
+export const crescendo = (mix, tEnd, dur, { gain = 0.4, pan = 0, rev = 0.45 } = {}) => {
+  const d = Math.min(dur, 3.3);
+  colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: tEnd - d, da: 3.4 - d, vel: 100, gain, pan, rev, dur: d + 0.2, release: 1.2 });
 };

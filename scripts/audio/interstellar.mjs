@@ -1,103 +1,46 @@
-// Colonna sonora originale di Interstellar: pianoforte, archi, tappeti di sintetizzatore e un organo spaziale, discreti
+// Colonna sonora originale di Interstellar: pianoforte, archi e organo (campionati, VSCO-2 CE), discreti
 // sotto la voce. Il tema (La minore, 4 battute, poche note che salgono) è inventato qui: intimo alla fattoria, si allarga
 // nello spazio, si fa teso sulle onde e sul ghiaccio e si apre in La maggiore nel finale. Niente ticchettii regolari né
-// motivi del film. Effetti agganciati agli eventi delle scene in src/scenes/interstellar/.
-import { put, rng, drum, thunder, wind, metalThud, glassCrash, doorCreak, whoosh, thud, swell, pop , FX } from './synth.mjs';
+// motivi del film. Effetti registrati (archivio CC0, scripts/audio/effetti.mjs) agganciati agli eventi delle scene
+// in src/scenes/interstellar/.
+import { put, rng, swell, FX } from './synth.mjs';
+import { suona, archi, colpo, crescendo } from './campioni.mjs';
+import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
+
+export const strumenti = ['pianoforte', 'violini', 'viole', 'celli', 'contrabbasso', 'organo', 'organo_pieno', 'glockenspiel', 'grancassa', 'piatto_sospeso'];
+export const effetti = ['vento_leggero', 'vento_raffiche', 'vento_artico', 'legno_cade', 'portone_motore', 'scatti', 'porta_sbatte', 'razzo',
+  'passaggio', 'onde_tonanti', 'tuono_forte', 'rombo', 'disturbo', 'ghiaccio_frana', 'esplosioni', 'metallo_colpi', 'metallo_schianto'];
+/** Sala grande e luminosa: coda lunga (lo spazio). */
+export const sala = { rt60: 3.2, brillo: 7000, predelay: 0.035, wet: 0.6 };
 
 const TAU = Math.PI * 2;
 const SR = 44100;
-const mtof = (m, cents = 0) => 440 * 2 ** ((m - 69 + cents / 100) / 12);
 const vamp = (v) => (v / 127) ** 1.6;
 
-// ---------------------------------------------------------------- strumenti locali (via put)
+// ---------------------------------------------------------------- strumenti (campionati; firme come nella versione sintetica)
 
-/** Pianoforte morbido: armoniche con decadimento più rapido in alto. */
-const piano = (mix, m, { t, dur = 1.5, vel = 60, pan = 0, rev = 0.5, gain = 1 }) => {
-  const f = mtof(m);
-  const tau = Math.max(0.6, 2.8 - m * 0.02);
-  put(mix, t, Math.ceil((Math.min(dur, 4) + 0.6) * SR), (i) => {
-    const x = i / SR;
-    let s = 0;
-    for (let h = 1; h <= 5; h++) s += Math.sin(TAU * f * h * Math.sqrt(1 + 0.0004 * h * h) * x) * Math.exp(-x / (tau / (0.6 + h * 0.5))) / h ** 1.2;
-    const env = Math.min(1, x / 0.004) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / 0.5));
-    return s * env;
-  }, { gain: gain * vamp(vel) * 0.55, pan, rev });
-};
+/** Pianoforte verticale; dur = tasto tenuto, poi smorzatore. */
+const piano = (mix, m, { t, dur = 1.5, vel = 60, pan = 0, rev = 0.5, gain = 1 }) =>
+  suona(mix, 'pianoforte', m, { t, dur: Math.min(dur, 4), vel: vel * 1.1, pan, rev, gain: gain * 4, release: 0.5 });
 
-/** Tappeto di sintetizzatore: due seghe scordate, filtro che si apre lentamente, attacco e rilascio lunghi. */
-const pad = (mix, m, { t, dur, vel = 40, pan = 0, rev = 0.7, gain = 1, bright = 3, att = 1.5, seed = 1 }) => {
-  const f = mtof(m);
-  const r = rng(seed * 131 + Math.round(t * 100) + m);
-  const ph = [r(), r(), r()];
-  const dets = [-8, 0, 7].map((c) => f * 2 ** (c / 1200));
-  let lp = 0;
-  const rel = 2;
-  put(mix, t, Math.ceil((dur + rel) * SR), (i) => {
-    const x = i / SR;
-    const open = 1 - Math.exp((-TAU * f * (bright * (0.6 + 0.4 * Math.sin(TAU * 0.08 * x)))) / SR);
-    let s = 0;
-    for (let k = 0; k < 3; k++) s += 2 * ((ph[k] + dets[k] * x) % 1) - 1;
-    lp += open * (s / 3 - lp);
-    const env = Math.min(1, x / att) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / rel));
-    return lp * env;
-  }, { gain: gain * vamp(vel), pan, rev });
-};
+/** Tappeto: archi con attacco lento (il vecchio sintetizzatore). bright non serve più. */
+const pad = (mix, m, { t, dur, vel = 40, pan = 0, rev = 0.7, gain = 1, att = 1.5, seed = 1 }) =>
+  archi(mix, m, { t, dur, vel: vel + 6, pan, rev, gain: gain * 1.5, attack: att, release: 1.8, seed });
 
-/** Organo spaziale: registri a sinusoidi con un'ottava sotto, lieve battimento. */
-const organ = (mix, m, { t, dur, vel = 40, pan = 0, rev = 0.75, gain = 1 }) => {
-  const f = mtof(m);
-  const rel = 1.2;
-  put(mix, t, Math.ceil((dur + rel) * SR), (i) => {
-    const x = i / SR;
-    const s = 0.7 * Math.sin(TAU * 0.5 * f * x) + Math.sin(TAU * f * x) + 0.5 * Math.sin(TAU * 2.003 * f * x) + 0.25 * Math.sin(TAU * 3 * f * x) + 0.15 * Math.sin(TAU * 4.01 * f * x);
-    const env = Math.min(1, x / 0.6) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / rel));
-    return s * env * 0.35;
-  }, { gain: gain * vamp(vel), pan, rev });
-};
+/** Organo a canne: registri dolci; da vel 54 il ripieno. */
+const organ = (mix, m, { t, dur, vel = 40, pan = 0, rev = 0.75, gain = 1 }) =>
+  suona(mix, vel >= 54 ? 'organo_pieno' : 'organo', m, { t, dur, vel, pan, rev, gain: gain * (vel >= 54 ? 0.45 : 0.6), attack: 0.08, release: 1.2 });
 
-/** Archi: tre seghe scordate con vibrato e attacco lento. */
-const strings = (mix, m, { t, dur, vel = 40, pan = 0, rev = 0.6, gain = 1, att = 1.0, seed = 1 }) => {
-  const f = mtof(m);
-  const r = rng(seed * 977 + Math.round(t * 1000) + m);
-  const dets = [-6, 0, 6].map((c) => f * 2 ** (c / 1200));
-  const ph = dets.map(() => r());
-  const a = 1 - Math.exp((-TAU * f * 3.2) / SR);
-  let lp = 0;
-  const rel = 1.4;
-  put(mix, t, Math.ceil((dur + rel) * SR), (i) => {
-    const x = i / SR;
-    const vib = 1 + 0.003 * Math.sin(TAU * 5 * x) * Math.min(1, x / 1.5);
-    let s = 0;
-    for (let k = 0; k < 3; k++) s += 2 * ((ph[k] + dets[k] * vib * x) % 1) - 1;
-    lp += a * (s / 3 - lp);
-    const env = Math.min(1, x / att) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / rel));
-    return lp * env;
-  }, { gain: gain * vamp(vel), pan, rev });
-};
+/** Archi d'orchestra. */
+const strings = (mix, m, { t, dur, vel = 40, pan = 0, rev = 0.6, gain = 1, att = 1.0, seed = 1 }) =>
+  archi(mix, m, { t, dur, vel: vel + 8, pan, rev, gain: gain * 0.8, attack: att, release: 1.4, seed });
 
-/** Campanella cristallina: parziali inarmoniche, decadimento lungo. */
-const bell = (mix, m, { t, vel = 46, pan = 0, gain = 1 }) => {
-  const f = mtof(m);
-  put(mix, t, Math.ceil(3 * SR), (i) => {
-    const x = i / SR;
-    return (Math.sin(TAU * f * x) * Math.exp(-x / 1.4) + 0.4 * Math.sin(TAU * 2.76 * f * x) * Math.exp(-x / 0.6) + 0.2 * Math.sin(TAU * 5.4 * f * x) * Math.exp(-x / 0.25)) * Math.min(1, x / 0.002);
-  }, { gain: gain * vamp(vel) * 0.45, pan, rev: 0.75 });
-};
+/** Campanella: glockenspiel. */
+const bell = (mix, m, { t, vel = 46, pan = 0, gain = 1 }) =>
+  suona(mix, 'glockenspiel', m, { t, dur: 2.5, vel: vel + 10, pan, rev: 0.75, gain: gain * 0.4, release: 1.5 });
 
-/** Rombo grave (razzo, motori): rumore marrone filtrato con salita e discesa. */
-const rumble = (mix, t0, dur, { vel = 50, seed = 3 } = {}) => {
-  const r = rng(seed);
-  let b = 0, lp = 0;
-  put(mix, t0, Math.ceil(dur * SR), (i) => {
-    const u = i / (dur * SR);
-    b = 0.99 * b + 0.05 * (r() * 2 - 1);
-    lp += 0.05 * (b - lp);
-    return lp * 6 * Math.sin(Math.PI * Math.min(1, u * 1.4)) ** 0.8;
-  }, { gain: FX * vamp(vel), rev: 0.3 });
-};
-
-/** Bip di Morse: sinusoide breve e pulita. */
+/** Bip di Morse: sinusoide breve e pulita (è un segnale elettronico anche nel film). */
 const beep = (mix, t, dur, { vel = 40, f = 1320 } = {}) => {
   put(mix, t, Math.ceil(dur * SR), (i) => Math.sin(TAU * f * i / SR) * Math.min(1, i / 200) * Math.min(1, (dur * SR - i) / 200), { gain: FX * vamp(vel) * 0.35, pan: 0.2, rev: 0.4 });
 };
@@ -153,7 +96,7 @@ export default (mix, T) => {
         if (o.org) iv.forEach((v, j) => organ(mix, root + v, { t, dur: d, vel: o.org, gain: BODY * 0.8, pan: (j - 1) * 0.3 }));
         if (o.str) iv.concat([12]).forEach((v, j) => strings(mix, root + v + 12, { t: t + j * 0.05, dur: d, vel: o.str, gain: BODY * 0.7, pan: (j - 1.5) * 0.3, att: o.att ?? 1, seed: j + 3 }));
         if (o.bass) piano(mix, root - 12, { t, dur: bar, vel: o.bass, gain: BODY, pan: -0.15 });
-        if (o.pulse) drum(mix, 'softkick', t, o.pulse, 7);
+        if (o.pulse) colpo(mix, 'grancassa', o.pulse > 40 ? 'bdrum_p' : 'bdrum_pp', { t, vel: 100, gain: 0.6, rev: 0.35, seed: b });
       }
       if (!o.mel) continue;
       for (const [b, m0, d] of THEME) {
@@ -206,45 +149,49 @@ export default (mix, T) => {
   [81, 85, 88, 93].forEach((m, j) => bell(mix, m, { t: F + 0.4 + j * 0.35, vel: 40, pan: -0.3 + j * 0.2 }));
 
   // ---------------------------------------------------------------- effetti sonori (tempi delle scene)
+  /** Tappeto stereo da una registrazione (vento, rombo…). */
+  const bed = (id, t0, t1, da, gain, o = {}) => clip(mix, id, { t: t0, da, durata: t1 - t0, gain, fadeIn: 1, fadeOut: 1, largo: 3, rev: 0.12, ...o });
   // terra: vento di polvere e raffica
-  wind(mix, T.terra, T.nasa, { power: 0.3, fade: 1.2, center: 450, seed: 13 });
-  whoosh(mix, C('terra', 1), 2.2, { vel: 46, lo: 300, hi: 1600 });
+  bed('vento_leggero', T.terra, T.nasa, 0.2, 0.12);
+  clip(mix, 'vento_raffiche', { t: C('terra', 1), da: 40, durata: 2.6, gain: 0.3, fadeIn: 0.6, fadeOut: 1, largo: 2 });
   // fantasma: libri che cadono, la polvere che si posa, rivelazione
-  [0, 0.35, 0.7].forEach((d) => thud(mix, C('fantasma', 1) + d + 0.55, 46, { bright: 1400 }));
-  swell(mix, C('fantasma', 3) + 0.3, 1.8, { vel: 40 });
-  // base segreta: porta dell'hangar, schermo che si accende, varco che appare
-  doorCreak(mix, T.nasa + 0.2, 1.6, { vel: 36 });
-  pop(mix, C('nasa', 1), 40, { pitch: 7 });
-  swell(mix, C('nasa', 2) + 0.4, 1.6, { vel: 36 });
+  [0, 0.35, 0.7].forEach((d, k) => clip(mix, 'legno_cade', { t: C('fantasma', 1) + d + 0.55, durata: 0.6, gain: 0.35 - k * 0.05, rate: 0.9 + k * 0.08, pan: -0.2 + k * 0.2, rev: 0.3 }));
+  crescendo(mix, C('fantasma', 3) + 0.3, 1.8, { gain: 0.3 });
+  // base segreta: portone dell'hangar a motore, schermo che si accende, varco che appare
+  clip(mix, 'portone_motore', { t: T.nasa + 0.2, da: 2.0, durata: 2.4, gain: 0.35, fadeOut: 0.8, rev: 0.35 });
+  clip(mix, 'scatti', { t: C('nasa', 1), da: 12.68, durata: 0.15, gain: 0.25, rev: 0.25 });
+  crescendo(mix, C('nasa', 2) + 0.4, 1.6, { gain: 0.25 });
   // partenza: porta che sbatte, razzo
-  thud(mix, C('partenza', 1) + 0.55, 66);
-  rumble(mix, C('partenza', 4) - 0.4, T.varco - C('partenza', 4) + 1.4, { vel: 64 });
-  // varco: risucchio e lampo all'ingresso
-  swell(mix, C('varco', 3) + 1.1, 2.4, { vel: 56 });
-  whoosh(mix, C('varco', 3) + 1.0, 1.4, { vel: 50, lo: 200, hi: 3000 });
-  // onde: l'onda che arriva, lo schianto, i motori
-  swell(mix, C('onde', 3), 2.6, { vel: 58 });
-  thunder(mix, C('onde', 3) - 0.1, 0.9, 7);
-  wind(mix, C('onde', 3), C('onde', 4) + 0.6, { power: 0.5, fade: 0.6, center: 700, seed: 15 });
-  rumble(mix, C('onde', 4) - 0.2, 2.2, { vel: 50, seed: 5 });
+  clip(mix, 'porta_sbatte', { t: C('partenza', 1) + 0.55 - 0.5, da: 2.6, durata: 1.0, gain: 0.5, fadeOut: 0.3, rev: 0.3 });
+  const tr = C('partenza', 4) - 0.4;
+  clip(mix, 'razzo', { t: tr, da: 6, durata: T.varco - tr + 1.4, gain: 1.0, fadeIn: 0.6, fadeOut: 1.4, rev: 0.25 });
+  // varco: risucchio e passaggio all'ingresso
+  crescendo(mix, C('varco', 3) + 1.1, 2.4, { gain: 0.4 });
+  clip(mix, 'passaggio', { t: C('varco', 3) + 1.0 - 0.4, da: 34.3, durata: 2.6, gain: 0.4, fadeOut: 0.6, rev: 0.4 });
+  // onde: l'onda che arriva e si schianta, i motori
+  crescendo(mix, C('onde', 3), 2.6, { gain: 0.4 });
+  clip(mix, 'onde_tonanti', { t: C('onde', 3) - 1.2, da: 5.9, durata: C('onde', 4) - C('onde', 3) + 2.4, gain: 0.7, fadeIn: 0.8, fadeOut: 1, largo: 2.5, rev: 0.2 });
+  clip(mix, 'tuono_forte', { t: C('onde', 3) - 0.1, da: 0.55, durata: 4, gain: 0.6, fadeIn: 0.03, fadeOut: 1.2, rev: 0.35 });
+  clip(mix, 'rombo', { t: C('onde', 4) - 0.2, da: 31, durata: 2.2, gain: 0.5, fadeIn: 0.4, fadeOut: 0.8, largo: 2 });
   // messaggi: lo schermo che si spegne nel rumore
-  whoosh(mix, C('messaggi', 3) + 0.4, 1.0, { vel: 34, lo: 2000, hi: 6000 });
+  clip(mix, 'disturbo', { t: C('messaggi', 3) + 0.4, da: 6.5, durata: 1.0, gain: 0.25, fadeIn: 0.05, fadeOut: 0.4, rev: 0.2 });
   // ghiaccio: vento gelido, crepa, decollo, esplosione
-  wind(mix, T.ghiaccio, T.aggancio, { power: 0.4, fade: 1, center: 900, seed: 21 });
-  glassCrash(mix, C('ghiaccio', 2) + 0.3, 52, 41);
-  rumble(mix, C('ghiaccio', 3) - 0.2, 1.8, { vel: 46, seed: 9 });
-  thunder(mix, C('ghiaccio', 4) + 0.1, 1, 11);
+  bed('vento_artico', T.ghiaccio, T.aggancio, 20, 0.22);
+  clip(mix, 'ghiaccio_frana', { t: C('ghiaccio', 2) + 0.3 - 0.9, da: 0.2, durata: 2.6, gain: 0.45, fadeOut: 1, rev: 0.3 });
+  clip(mix, 'rombo', { t: C('ghiaccio', 3) - 0.2, da: 90, durata: 1.8, gain: 0.45, fadeIn: 0.3, fadeOut: 0.8, largo: 2 });
+  clip(mix, 'esplosioni', { t: C('ghiaccio', 4) + 0.1 - 1.2, da: 35.15, durata: 4, gain: 0.8, fadeIn: 0.05, fadeOut: 1.5, rev: 0.35 });
   // aggancio: colpi metallici dei frammenti, l'aggancio
-  [0.6, 1.4, 2.0].forEach((d, k) => metalThud(mix, T.aggancio + d, 44 - k * 4));
-  metalThud(mix, C('aggancio', 1) - 0.2, 70);
+  [[0.6, 2.9], [1.4, 8.07], [2.0, 12.82]].forEach(([d, da], k) => clip(mix, 'metallo_colpi', { t: T.aggancio + d - 0.01, da, durata: 0.5, gain: 0.4 - k * 0.07, pan: -0.3 + k * 0.3, rev: 0.45 }));
+  clip(mix, 'metallo_schianto', { t: C('aggancio', 1) - 0.2 - 0.3, da: 0.05, durata: 1.4, gain: 0.7, fadeOut: 0.5, rev: 0.45 });
   // buco nero: la caduta, il passaggio, il libro che cade
-  swell(mix, C('buconero', 3), 3.0, { vel: 60 });
-  whoosh(mix, C('buconero', 3) - 0.3, 1.2, { vel: 50, lo: 150, hi: 2000 });
-  thud(mix, C('buconero', 4) + 0.5, 50, { bright: 1400 });
+  crescendo(mix, C('buconero', 3), 3.0, { gain: 0.45 });
+  swell(mix, C('buconero', 3), 3.0, { vel: 44 });
+  clip(mix, 'passaggio', { t: C('buconero', 3) - 0.3 - 0.4, da: 12.27, durata: 2.2, gain: 0.4, fadeOut: 0.6, rev: 0.45 });
+  clip(mix, 'legno_cade', { t: C('buconero', 4) + 0.5, durata: 0.6, gain: 0.4, rev: 0.35 });
   // orologio: i bip del Morse in sincronia con la lancetta, poi l'apertura
   const MORSE = [0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1];
   const m0 = T.orologio + 0.4, mStep = (C('orologio', 1) + 0.6 - 0.4 - T.orologio) / MORSE.length;
   MORSE.forEach((m, i) => beep(mix, m0 + i * mStep, m ? mStep * 0.6 : mStep * 0.25, { vel: 40 }));
-  swell(mix, C('orologio', 2) + 0.8, 1.6, { vel: 44 });
-  rumble(mix, C('orologio', 4) + 0.2, 2.4, { vel: 40, seed: 11 });
+  crescendo(mix, C('orologio', 2) + 0.8, 1.6, { gain: 0.3 });
+  clip(mix, 'rombo', { t: C('orologio', 4) + 0.2, da: 120, durata: 2.4, gain: 0.35, fadeIn: 0.5, fadeOut: 1, largo: 2 });
 };

@@ -20,12 +20,23 @@ const CATALOGO = {
   arpa: { dir: 'Strings/Harp' },
   pianoforte: { dir: 'Keys/Upright Piano', filter: /dyn[12]_/ , mappa: (f) => { const k = Number(/_(\d{3})\.wav$/.exec(f)[1]); return k === 44 ? 108 : 21 + 2 * k; } },
   glockenspiel: { dir: 'Percussion/Glock' },
+  marimba: { dir: 'Percussion/Marimba' },
+  violino_solo: { dir: 'Strings/Solo Violin/Arco Vib' },
+  violini_pizz: { dir: 'Strings/Violin Section/Pizz' },
+  celli_pizz: { dir: 'Strings/Cello Section/pizzT' },
+  tromba_sordina: { dir: 'Brass/Trumpet/harmonM-sus' },
+  // organo: i numeri nei nomi sono passi di 3 semitoni (36–96); l'autocorrelazione sbaglia ottava con i registri da 16'
+  organo: { dir: 'Keys/Organ/Quiet', filter: /Man3/, mappa: (f) => numero(f) - 86 },
+  organo_pedale: { dir: 'Keys/Organ/Quiet', filter: /Pedal/, mappa: (f) => numero(f) - 28 },
+  organo_pieno: { dir: 'Keys/Organ/Loud', filter: /Man3/, mappa: (f) => numero(f) + 35 },
   grancassa: { dir: 'VSCO 1 Percussion/drums/bass', perc: true, filter: /^bdrum_(p|pp|ppp|mp|f|ff)[_ .]/ },
   grancassa_rullo: { dir: 'VSCO 1 Percussion/drums/bass', perc: true, filter: /^bdrum_roll/ },
   piatto_sospeso: { dir: 'VSCO 1 Percussion/varMetal/Cymbals/susp', perc: true },
   gong: { dir: 'VSCO 1 Percussion/varMetal/Gong', perc: true, filter: /^gong_hit_(p|pp|ppp|mp|mf|f)[_ .]/ },
   gong_graffio: { dir: 'VSCO 1 Percussion/varMetal/Gong', perc: true, filter: /^gong_scrape/ },
 };
+
+const numero = (f) => Number(/_(\d{2,3})(?:_rr\d)?\.wav$/.exec(f)[1]);
 
 const NOTE = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
 const etichetta = (f) => {
@@ -55,7 +66,7 @@ const altezza = (x, sr, s0) => {
   return null;
 };
 
-const analizza = (path, { perc, nota }) => {
+const analizza = (path, { perc, nota, mappa }) => {
   const { sr, L, R } = readWav(path);
   const m = new Float32Array(L.length);
   let peak = 0;
@@ -81,13 +92,15 @@ const analizza = (path, { perc, nota }) => {
   if (midi === null) {
     if (detMidi === null) throw new Error(`Né etichetta né intonazione: ${path}`);
     midi = Math.round(detMidi);
-  } else if (detMidi !== null) {
-    // le etichette di ottava cambiano convenzione tra strumenti: si sceglie l'ottava più vicina alla misura
+  } else if (detMidi !== null && !mappa) {
+    // le etichette di ottava cambiano convenzione tra strumenti: si annota l'ottava misurata, poi vale la maggioranza
     const k = Math.round((detMidi - midi) / 12);
-    if (Math.abs(detMidi - (midi + 12 * k)) < 0.6) { midi += 12 * k; out.ottava = k; }
+    if (Math.abs(detMidi - (midi + 12 * k)) < 0.6) out.ottava = k;
   }
   out.midi = midi;
-  if (detMidi !== null && Math.abs(detMidi - midi) < 0.5 && det.conf > 0.9) out.cents = Math.round((detMidi - midi) * 100);
+  // scordatura: scarto dalla nota a meno di ottave (l'autocorrelazione a volte sbaglia ottava)
+  const scarto = detMidi === null ? null : ((detMidi - midi + 6) % 12 + 12) % 12 - 6;
+  if (scarto !== null && Math.abs(scarto) < 0.5 && det.conf > 0.9) out.cents = Math.round(scarto * 100);
   return out;
 };
 
@@ -109,18 +122,20 @@ for (const [id, def] of Object.entries(CATALOGO)) {
     ...(def.perc ? { perc: true } : {}),
     campioni: files.map((f) => {
       const nota = def.perc ? null : def.mappa ? def.mappa(f) : etichetta(f);
-      const a = analizza(`${root}/${def.dir}/${f}`, { perc: def.perc, nota });
+      const a = analizza(`${root}/${def.dir}/${f}`, { perc: def.perc, nota, mappa: !!def.mappa });
+      a.etichetta = nota;
       if (def.mappa) a.midi = nota; // il pianoforte ha la mappa dei tasti esatta
       return { f, dyn: dinamica(f), ...a };
     }),
   };
-  // campioni la cui intonazione non si è potuta misurare: stessa correzione d'ottava della maggioranza
+  // ottava: la convenzione di maggioranza dello strumento vale per tutti i suoi campioni
   const conta = {};
   for (const c of strumenti[id].campioni) if (c.ottava !== undefined) conta[c.ottava] = (conta[c.ottava] ?? 0) + 1;
   const k = Number(Object.entries(conta).sort((a, b) => b[1] - a[1])[0]?.[0] ?? 0);
   for (const c of strumenti[id].campioni) {
-    if (!def.perc && !def.mappa && c.ottava === undefined) c.midi += 12 * k;
+    if (!def.perc && !def.mappa && c.etichetta !== null) c.midi = c.etichetta + 12 * k;
     delete c.ottava;
+    delete c.etichetta;
   }
   console.log(`${id}: ${files.length} campioni`);
 }
