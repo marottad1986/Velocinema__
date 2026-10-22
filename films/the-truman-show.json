@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Una vita perfetta. In diretta. Senza che lui lo sappia.",
     "immagine": "Seahaven vista dall'alto dentro una gigantesca cupola di cielo dipinto, con le giunture del cielo appena visibili; in alto un riflettore da studio e la spia rossa REC di una telecamera; il mare chiuso dal muro della cupola. Titolo grande (Bricolage). NON usare collage di volti né la faccia del protagonista (locandina ufficiale).",
-    "voce": "The Truman Show, di Peter Weir. Tutto in due minuti."
+    "voce": "The Truman Show, di Peter Weir."
   },
   "capitoli": [
     {
@@ -167,7 +167,7 @@
   ],
   "finale": {
     "durata": 4,
-    "immagine": "La porta nel cielo dipinto aperta, scaletta e barca a vela ferma sull'acqua calma; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo film arriva presto.'"
+    "immagine": "La porta nel cielo dipinto aperta, scaletta e barca a vela ferma sull'acqua calma; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
   "musica": "Originale e strumentale: pianoforte, archi morbidi, celesta, un tema leggero e ottimista che si incrina nelle scene di sospetto e cresce in un finale luminoso; niente brani del film."
 }

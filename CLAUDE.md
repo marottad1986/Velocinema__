@@ -38,6 +38,15 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 - Il finale deve dire chiaramente come va a finire, compresi i colpi di scena.
 - Titoli dei capitoli chiari anche fuori contesto.
 
+## Testo discorsivo (vincolante)
+- Si racconta come a voce a un amico: ogni frase si aggancia alla precedente con connettivi espliciti
+  («perché», «infatti», «intanto», «così», «quindi», «ma», «alla fine»); niente elenchi secchi di fatti né frasi
+  telegrafiche; mai frasi che parlano dello schema o del video stesso. L'ultima frase chiude o lascia una domanda chiara.
+
+## Finale (vincolante)
+- Nell'immagine finale, sotto «Metti like» / «Segui la pagina», l'invito a commentare (mai «Il prossimo … arriva presto»):
+  «Commenta con il film / la spiegazione / la canzone / il quadro che vorresti.» (secondo il formato).
+
 ## Elementi fissi sopra le immagini (capitoli)
 - Barra a capitoli sottile (16 px) sul bordo superiore, un segmento per capitolo proporzionale alla durata,
   riempimento con il colore accento.

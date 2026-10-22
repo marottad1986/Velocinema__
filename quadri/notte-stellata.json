@@ -19,9 +19,9 @@
   },
   "copertina": {
     "durata": 4,
-    "frase_lancio": "Il cielo più famoso della storia dell'arte, spiegato in due minuti.",
+    "frase_lancio": "Il cielo più famoso della storia dell'arte.",
     "immagine": "Dettaglio del grande vortice a tutto schermo, lento avvicinamento; titolo grande in serif su due righe in alto a sinistra, autore e anno sotto; in basso la frase di lancio in corsivo.",
-    "voce": "La Notte stellata, di Vincent van Gogh. Tutto in due minuti."
+    "voce": "La Notte stellata, di Vincent van Gogh."
   },
   "capitoli": [
     {
@@ -30,9 +30,9 @@
       "durata": 9,
       "scena": "Panoramica lenta da sinistra a destra su tutto il quadro: cipresso, cielo a vortici, stelle, luna, villaggio. Stelle e luna pulsano piano.",
       "sottotitoli": [
-        "Un paese addormentato, un cipresso e un cielo che sembra girare.",
-        "È la Notte stellata di Vincent van Gogh, dipinta nel 1889.",
-        "Dietro ogni dettaglio c'è una storia."
+        "Guarda questo cielo: sembra girare sopra un paese addormentato.",
+        "È la Notte stellata, che Vincent van Gogh dipinse nel 1889,",
+        "e ogni suo dettaglio nasconde una storia."
       ]
     },
     {
@@ -41,9 +41,9 @@
       "durata": 10,
       "scena": "Mappa disegnata della Francia del sud nello stile dei film: Arles e Saint-Rémy unite da una linea tratteggiata; sopra, un foglio di lettera con la firma «Vincent».",
       "sottotitoli": [
-        "Van Gogh è un pittore olandese. Nel 1888 va ad Arles,",
-        "nel sud della Francia, in cerca di luce.",
-        "Ma soffre di crisi violente: in una si ferisce un orecchio."
+        "Van Gogh, pittore olandese, nel 1888 si trasferisce ad Arles,",
+        "nel sud della Francia, perché cerca luce e colore.",
+        "Intanto però soffre di crisi violente, e in una si ferisce un orecchio."
       ]
     },
     {
@@ -52,9 +52,9 @@
       "durata": 10,
       "scena": "Avvicinamento al villaggio in basso a destra; le finestre gialle delle case si accendono una alla volta.",
       "sottotitoli": [
-        "Nel maggio del 1889 sceglie di farsi curare",
-        "nella clinica di Saint-Rémy, a pochi chilometri da Arles.",
-        "Lì continua a dipingere: in un anno, circa 150 quadri."
+        "Così, nel maggio del 1889, sceglie di farsi curare",
+        "nella clinica di Saint-Rémy, a pochi chilometri da Arles,",
+        "e lì continua a dipingere: in un anno fa circa 150 quadri."
       ]
     },
     {
@@ -63,9 +63,9 @@
       "durata": 10,
       "scena": "Inquadratura sulle colline all'orizzonte; per un istante l'ombra di sbarre di finestra scorre davanti e sparisce.",
       "sottotitoli": [
-        "Dalla finestra della sua stanza, con le sbarre, vede colline e cielo.",
-        "Di notte, però, nella stanza non può dipingere.",
-        "Così osserva, ricorda, e dipinge di giorno, a memoria."
+        "Dalla finestra, chiusa da sbarre, vede colline e cielo,",
+        "ma lì non può dipingere: lavora di giorno, in un'altra stanza.",
+        "Così osserva il cielo di notte e lo dipinge a memoria."
       ]
     },
     {
@@ -74,8 +74,8 @@
       "durata": 10,
       "scena": "Zoom sul campanile appuntito; il resto del quadro si scurisce leggermente; alone sulla punta del campanile.",
       "sottotitoli": [
-        "Dalla finestra della clinica, il paese non si vedeva.",
-        "Van Gogh lo aggiunge a memoria, con un campanile appuntito",
+        "Eppure, dalla finestra, il paese non si vedeva:",
+        "infatti Van Gogh lo aggiunge a memoria, con un campanile appuntito",
         "che ricorda le chiese olandesi della sua infanzia."
       ]
     },
@@ -85,9 +85,9 @@
       "durata": 10,
       "scena": "Panoramica dal basso verso l'alto lungo il cipresso a sinistra; alla fine il resto del quadro si scurisce e resta in luce la punta, contro il cielo.",
       "sottotitoli": [
-        "In primo piano, un cipresso scuro sale come una fiamma.",
-        "Unisce la terra al cielo, fino alle stelle.",
-        "In Provenza è l'albero dei cimiteri: morte, ma anche eternità."
+        "In primo piano, invece, un cipresso sale come una fiamma",
+        "e così unisce la terra al cielo, fino alle stelle.",
+        "In Provenza è l'albero dei cimiteri: parla di morte, ma anche di eternità."
       ]
     },
     {
@@ -96,9 +96,9 @@
       "durata": 10,
       "scena": "Zoom sulla stella bianca grande vicino al cipresso; brilla e pulsa; sullo schermo, una riga di lettera tradotta.",
       "sottotitoli": [
-        "La stella più luminosa, accanto al cipresso, è Venere.",
-        "Van Gogh scrive al fratello Theo di averla vista all'alba, grandissima.",
-        "Gli astronomi confermano: in quei giorni era visibile prima dell'alba."
+        "Accanto al cipresso brilla la stella più grande, che però è Venere:",
+        "Van Gogh infatti scrive al fratello Theo di averla vista all'alba,",
+        "e gli astronomi confermano: in quei giorni era visibile."
       ]
     },
     {
@@ -107,10 +107,10 @@
       "durata": 11,
       "scena": "Avvicinamento al grande vortice centrale; le pennellate scorrono lentamente lungo le spirali, come vento.",
       "sottotitoli": [
-        "Al centro, il cielo si avvolge in due grandi spirali.",
-        "Van Gogh non dipinge il vento: dipinge il movimento.",
-        "Alcuni fisici hanno misurato questi vortici:",
-        "somigliano alla turbolenza vera dell'aria e dell'acqua."
+        "Al centro, intanto, il cielo si avvolge in due grandi spirali,",
+        "perché Van Gogh non dipinge il vento, ma il movimento.",
+        "E alcuni fisici, misurando questi vortici,",
+        "hanno visto che somigliano alla turbolenza vera dell'aria."
       ]
     },
     {
@@ -119,9 +119,9 @@
       "durata": 10,
       "scena": "Inquadratura molto ravvicinata della luna; luce radente che si sposta e fa risaltare lo spessore delle pennellate.",
       "sottotitoli": [
-        "Visto da vicino, il colore è steso spesso, quasi scolpito.",
-        "Ogni pennellata lascia un solco: questa tecnica si chiama impasto.",
-        "Blu oltremare e cobalto per il cielo, gialli puri per stelle e luna."
+        "Da vicino, poi, il colore è steso spesso, quasi scolpito,",
+        "perché ogni pennellata lascia un solco: è la tecnica dell'impasto.",
+        "Così il blu del cielo e il giallo delle stelle sembrano vibrare."
       ]
     },
     {
@@ -130,8 +130,8 @@
       "durata": 11,
       "scena": "La camera si allontana lentamente fino al quadro intero; un velo scuro leggero, come un ricordo.",
       "sottotitoli": [
-        "Eppure a Van Gogh questo quadro non piaceva.",
-        "Scrive a un amico pittore di aver fatto stelle troppo grandi.",
+        "Eppure a Van Gogh questo quadro non piaceva:",
+        "scrive infatti a un amico pittore di aver fatto stelle troppo grandi.",
         "Muore l'anno dopo, nel 1890, a 37 anni,",
         "senza sapere quanto sarebbe diventato amato."
       ]
@@ -142,16 +142,16 @@
       "durata": 11,
       "scena": "Il quadro intero al centro, piccolo, su fondo scuro; si ingrandisce fino a riempire lo schermo.",
       "sottotitoli": [
-        "Dal 1941 la Notte stellata è al MoMA,",
-        "il Museo d'arte moderna di New York.",
-        "È uno dei quadri più riconoscibili al mondo.",
-        "E le stelle «troppo grandi» sono proprio quelle che ricordiamo tutti."
+        "Alla fine, nel 1941, arriva al MoMA di New York,",
+        "il Museo d'arte moderna, dove si trova ancora oggi.",
+        "Così le stelle «troppo grandi» sono le più famose del mondo.",
+        "Avresti dato ragione a Van Gogh?"
       ]
     }
   ],
   "finale": {
     "durata": 4,
-    "immagine": "Il quadro intero, fermo; in basso la frase del finale; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo quadro arriva presto.'",
+    "immagine": "Il quadro intero, fermo; in basso la frase del finale; riquadro in alto: titolo, autore e anno + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il quadro che vorresti.'",
     "frase": "La prossima volta che lo vedi, cerca Venere accanto al cipresso."
   },
   "musica": "Originale e strumentale: elegante e luminosa, in Re maggiore; pianoforte, archi leggeri, contrabbasso e una pulsazione discreta di spazzole; tema in arpeggi che girano su sé stessi come i vortici. Più raccolta, senza pulsazione, quando Vincent sta male e quando il quadro non gli piace; si apre nel finale."

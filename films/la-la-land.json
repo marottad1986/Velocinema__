@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Una città di sogni. Due sognatori. Una sola scelta.",
     "immagine": "Cielo giallo e corallo al tramonto; tastiera di pianoforte gigante che corre come una strada verso il sole sopra lo skyline; note che fluttuano. NON usare cielo viola con lampione e coppia che balla (locandina ufficiale).",
-    "voce": "La La Land, di Damien Chazelle. Tutto in due minuti."
+    "voce": "La La Land, di Damien Chazelle."
   },
   "capitoli": [
     {
@@ -160,7 +160,7 @@
   ],
   "finale": {
     "durata": 4,
-    "immagine": "Versione notturna della copertina (tastiera-strada sotto luna e stelle); 'The End' giallo; riquadro in alto con 'Ti è piaciuto?', 'Metti like', 'Segui la pagina', 'Il prossimo film arriva presto.'"
+    "immagine": "Versione notturna della copertina (tastiera-strada sotto luna e stelle); 'The End' giallo; riquadro in alto con 'Ti è piaciuto?', 'Metti like', 'Segui la pagina', 'Commenta con il film che vorresti.'"
   },
   "musica": "Jazz originale (piano elettrico, contrabbasso walking, spazzole, vibrafono); niente brani del film."
 }

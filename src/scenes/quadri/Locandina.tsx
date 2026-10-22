@@ -49,7 +49,7 @@ export const copertinaQuadro = (opera: Opera, da: Chiave['v'], a: Chiave['v']): 
   );
 };
 
-/** Finale: l'opera intera, la frase «la prossima volta che lo vedi…» e l'invito a seguire la pagina. */
+/** Finale: l'opera intera, la frase «la prossima volta che lo vedi…», «Metti like» / «Segui la pagina» e l'invito a commentare. */
 export const finaleQuadro = (opera: Opera): React.FC<PosterProps> => ({ t, film }) => {
   const P = film.palette;
   const card = eo(seg(t, 0.1, 0.6));
@@ -63,10 +63,10 @@ export const finaleQuadro = (opera: Opera): React.FC<PosterProps> => ({ t, film 
         <p style={{ margin: 0, fontFamily: SERIF, fontWeight: 400, fontSize: 84, lineHeight: 1 }}>{film.titolo}</p>
         <p style={{ margin: '12px 0 0', fontSize: 32, opacity: 0.8 }}>{film.autore} · {film.anno}</p>
         <div style={{ display: 'flex', gap: 24, justifyContent: 'center', marginTop: 34 }}>
-          <span style={{ padding: '16px 34px', borderRadius: 999, background: P.accento, color: P.scuro, fontSize: 38, fontWeight: 800 }}>Segui la pagina</span>
-          <span style={{ padding: '13px 31px', borderRadius: 999, border: `3px solid ${CREMA}`, fontSize: 38, fontWeight: 800 }}>Salva il video</span>
+          <span style={{ padding: '16px 34px', borderRadius: 999, background: P.accento, color: P.scuro, fontSize: 38, fontWeight: 800 }}>Metti like</span>
+          <span style={{ padding: '13px 31px', borderRadius: 999, border: `3px solid ${CREMA}`, fontSize: 38, fontWeight: 800 }}>Segui la pagina</span>
         </div>
-        <p style={{ margin: '26px 0 0', fontSize: 30, opacity: 0.75 }}>Il prossimo quadro arriva presto.</p>
+        <p style={{ margin: '26px 0 0', fontSize: 32, opacity: 0.85 }}>Commenta con il quadro che vorresti.</p>
       </div>
       {film.finale.frase && (
         <p style={{ position: 'absolute', left: 80, right: 80, top: 1300, margin: 0, fontFamily: SERIF, fontStyle: 'italic', fontSize: 60, lineHeight: 1.15, color: CREMA,

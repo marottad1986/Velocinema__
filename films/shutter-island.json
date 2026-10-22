@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Una fuga impossibile. Un'isola senza uscita.",
     "immagine": "Notte e tempesta; cancello di ferro dell'ospedale in primo piano con un lucchetto arancione aperto al centro; dietro, l'isola con una finestra accesa. Titolo alto e stretto (Anton).",
-    "voce": "Shutter Island, di Martin Scorsese. Tutto in due minuti."
+    "voce": "Shutter Island, di Martin Scorsese."
   },
   "capitoli": [
     {
@@ -169,7 +169,7 @@
   ],
   "finale": {
     "durata": 4,
-    "immagine": "Alba sul mare, faro lontano, cappello sugli scogli; 'THE END' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo film arriva presto.'"
+    "immagine": "Alba sul mare, faro lontano, cappello sugli scogli; 'THE END' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
   "musica": "Originale strumentale, tesa e discreta sotto la voce; effetti su lampo, lucchetto, vento, anagrammi, timbro."
 }

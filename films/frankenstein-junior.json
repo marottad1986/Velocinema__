@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Un castello. Un temporale. Si può fare!",
     "immagine": "Notte di temporale in quasi bianco e nero (omaggio al film): castello su uno sperone di roccia, un fulmine verde-acqua colpisce il parafulmine della torre; in primo piano, su un tavolo da laboratorio con leve e bobine, un cilindro e un bastone da tip tap. Titolo in carattere horror anni '30 (es. Creepster). NON usare volti né il protagonista con la Creatura (locandina ufficiale).",
-    "voce": "Frankenstein Junior, di Mel Brooks. Tutto in due minuti."
+    "voce": "Frankenstein Junior, di Mel Brooks."
   },
   "capitoli": [
     {
@@ -163,7 +163,7 @@
   ],
   "finale": {
     "durata": 4,
-    "immagine": "Il castello della copertina all'alba dopo il temporale, parafulmine fumante, cilindro e bastone appoggiati sui gradini; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Il prossimo film arriva presto.'"
+    "immagine": "Il castello della copertina all'alba dopo il temporale, parafulmine fumante, cilindro e bastone appoggiati sui gradini; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
   "musica": "Originale e strumentale: valzer gotico per violino solo (il tema che calma la Creatura), organo e timpani per i temporali, un breve intermezzo swing con tip tap per lo spettacolo; effetti su fulmini, nitriti, barattolo rotto, riflettore che esplode; niente brani del film."
 }
