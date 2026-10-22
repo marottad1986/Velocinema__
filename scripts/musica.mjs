@@ -3,6 +3,9 @@
 import { existsSync, mkdirSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { createMix, writeWav } from './audio/synth.mjs';
+import { impulso, convolvi } from './audio/sala.mjs';
+import { scaricaCampioni } from './audio/campioni.mjs';
+import { scaricaEffetti } from './audio/effetti.mjs';
 import { loadFilm, timeline } from './audio/film.mjs';
 
 /** Genera la musica del film; restituisce il percorso del WAV, o null se il film non ha uno spartito. */
@@ -10,12 +13,16 @@ export const generaMusica = async (slug) => {
   const scorePath = `scripts/audio/${slug}.mjs`;
   if (!existsSync(scorePath)) return null;
   const { T } = timeline(loadFilm(slug));
-  const { default: score } = await import(pathToFileURL(scorePath).href);
+  // uno spartito può esportare: strumenti (campioni VSCO), effetti (registrazioni) e sala (riverbero a convoluzione)
+  const { default: score, strumenti = [], effetti = [], sala } = await import(pathToFileURL(scorePath).href);
+  scaricaCampioni(strumenti);
+  scaricaEffetti(effetti);
   const mix = createMix(T.END);
   score(mix, T);
   mkdirSync('out', { recursive: true });
   const out = `out/${slug}-musica.wav`;
-  writeWav(mix, out, { peakDb: -3, fadeOut: 2 });
+  const ir = sala && impulso(sala);
+  writeWav(mix, out, { peakDb: -3, fadeOut: 2, ...(ir && { wet: sala.wet ?? 0.5, riverbero: (ch, side) => convolvi(ch, ir[side]) }) });
   return out;
 };
 

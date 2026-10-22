@@ -57,10 +57,29 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
   Opzioni per le prove: `--cartella <dir>` (clip), `--video <file>`, `--uscita <file>`.
 
 ## Musica
-- Colonna sonora originale generata in modo deterministico da un piccolo sintetizzatore in Node
-  (`scripts/audio/synth.mjs`: strumenti, effetti sonori, riverbero, WAV 16 bit 44,1 kHz stereo, nessun campione esterno).
+- Colonna sonora originale generata in modo deterministico in Node, suonata con strumenti veri campionati:
+  VSCO-2 Community Edition (CC0, Versilian Studios / Ivy Audio; citarli nei crediti), scaricati alla prima esecuzione
+  in `campioni/vsco/` (ignorata da git) dal commit fissato in `scripts/audio/vsco.json`; dalla stessa casa e con la stessa
+  licenza anche VCSL (`campioni/vcsl/`: pianoforte a coda, timpani, rullante, cassa, charleston, tom, piatti).
+  `scripts/audio/campioni.mjs`: `suona(mix, strumento, nota, {...})` e `colpo(...)` per le percussioni;
+  `scripts/audio/sala.mjs`: riverbero a convoluzione; `scripts/audio/synth.mjs`: mix, WAV 16 bit 44,1 kHz stereo,
+  vecchi strumenti sintetici (da non usare per la musica nuova) ed effetti sonori sintetici.
+  Per aggiungere strumenti al catalogo: `scripts/audio/vsco-indice.mjs` (misura l'intonazione reale di ogni campione).
 - Spartito per film in `scripts/audio/<film>.mjs` (accordi, livelli per sezione, effetti agganciati ai secondi
-  delle scene in `src/scenes/<film>/`). Se si cambiano i tempi di un evento in una scena, aggiornare anche lo spartito.
+  delle scene in `src/scenes/<film>/`); esporta `strumenti` (campioni da scaricare) e `sala` (riverbero).
+  Se si cambiano i tempi di un evento in una scena, aggiornare anche lo spartito.
+- Un solo tempo (bpm) per film, su una griglia continua: le scene lente vanno a metà passo, quelle concitate a passo
+  doppio, e i cambi di sezione cadono sulla battuta più vicina all'inizio del capitolo (mai tempi diversi per capitolo:
+  si sente la musica accelerare e rallentare). Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
+  Frankenstein Junior 104.
+- Effetti sonori registrati: `scripts/audio/effetti.mjs` (archivio CC0 di Craig Smith, USC / Sunset Editorial, "SSE Library"
+  e "Red Library" su archive.org), scaricati in `campioni/effetti/`; `clip(mix, id, { t, da, durata, gain, lp, largo… })`
+  suona un tratto del file (da/durata = presa scelta). Per aggiungere un effetto: voce nel `CATALOGO` con il picco del file.
+  Lo spartito esporta `effetti` (id da scaricare). I tappeti (pioggia, vento, fuoco) restano sotto la musica, i colpi sopra.
+- Tutti i film usano orchestra campionata ed effetti registrati. Restano sintetici solo pochi suoni senza un buon
+  equivalente registrato (gesso, spazzole jazz, bip Morse, neon, cambio canale, risucchio). Per tarare i volumi
+  confrontare musica ed effetti misurati separatamente; i vecchi strumenti sintetici di synth.mjs non vanno più usati
+  per la musica.
 - `npm run musica -- <film>` → `out/<film>-musica.wav`. `npm run render` la rigenera e la unisce al video con ffmpeg
   (anche per un solo capitolo, col tratto di musica corrispondente). Film senza spartito: video muto, con avviso.
 
