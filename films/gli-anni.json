@@ -1,0 +1,139 @@
+{
+  "titolo": "Gli anni",
+  "regista": "883",
+  "anno": 1995,
+  "palette": {
+    "chiaro": "#FFF3E0",
+    "principale": "#2F6EA6",
+    "scuro": "#16131F",
+    "accento": "#F2A23A"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "La nostalgia, scritta a venticinque anni.",
+    "immagine": "Strada di provincia al tramonto: un bar d'angolo con l'insegna accesa, un motorino parcheggiato con il casco sul sellino, un jukebox che si vede dalla vetrina, rondini nel cielo arancione. Titolo in corsivo come un'insegna al neon. NON usare foto, copertine dei dischi o il logo degli 883.",
+    "voce": "Gli anni, degli 883: la nostalgia scritta a venticinque anni."
+  },
+  "capitoli": [
+    {
+      "id": "pavia",
+      "titolo": "Due amici di Pavia",
+      "durata": 14,
+      "scena": "Il ponte coperto di Pavia sul Ticino al tramonto; sull'argine un motorino con un mangianastri appoggiato sul sellino; rondini; le luci della città che si accendono una a una.",
+      "sottotitoli": [
+        "A Pavia il futuro cantante Max Pezzali e Mauro Repetto sono compagni di liceo",
+        "e passano i pomeriggi a inventare canzoni.",
+        "Così nascono gli 883, dal nome di una Harley-Davidson.",
+        "Raccontano la provincia: amici, motorini, bar e primi amori,",
+        "e in pochi anni mezza Italia li canta."
+      ]
+    },
+    {
+      "id": "cantina",
+      "titolo": "L'ultima canzone insieme",
+      "durata": 14,
+      "scena": "Cantina con una tastiera, un registratore a cassette con la luce rossa, due sedie (una spinta sotto il tavolo), una valigia pronta e una cartolina di Hollywood appesa; da una finestrella alta passa un aereo.",
+      "sottotitoli": [
+        "Ma a metà degli anni Novanta Repetto lascia il gruppo,",
+        "perché vuole provare a fare cinema in America.",
+        "Prima, si racconta, i due scrivono un'ultima canzone nella cantina di Max,",
+        "ma Repetto non la firma, perché non la sente più sua:",
+        "così sul disco compare solo Pezzali."
+      ]
+    },
+    {
+      "id": "uscita",
+      "titolo": "Nostalgia a venticinque anni",
+      "durata": 14,
+      "scena": "Vetrina di un negozio di dischi di sera: cassette e CD esposti, una classifica con il primo posto illuminato, un calendario del 1995, una torta con le candeline del 25 e un orologio da muro.",
+      "sottotitoli": [
+        "La canzone si chiama Gli anni ed esce nel 1995,",
+        "dentro l'album La donna il sogno & il grande incubo, che arriva primo in classifica.",
+        "Pezzali aveva venticinque anni quando è nata,",
+        "eppure parla già di nostalgia, come chi si guarda indietro.",
+        "Infatti racconta un ritorno."
+      ]
+    },
+    {
+      "id": "bar",
+      "titolo": "Il ritorno al bar",
+      "durata": 14,
+      "scena": "Interno di un vecchio bar di provincia: bancone, macchina del caffè che fuma, jukebox acceso, flipper, insegna al neon nella vetrina, porta che si apre sulla strada; tutto fermo come anni prima.",
+      "sottotitoli": [
+        "Nella canzone un ragazzo ormai cresciuto torna nel bar",
+        "dove da giovane trascorreva le giornate con gli amici.",
+        "Entra e scopre che lì dentro non è cambiato niente.",
+        "Ma lui sì: è cambiato lui.",
+        "Ed è lì che partono i ricordi."
+      ]
+    },
+    {
+      "id": "ricordi",
+      "titolo": "Quando eravamo ragazzi",
+      "durata": 14,
+      "scena": "Garage aperto su un cortile d'estate al tramonto: un motorino con il casco, una vecchia televisione accesa con i colori di un telefilm, poster alle pareti, un salvadanaio, lucciole nel cortile.",
+      "sottotitoli": [
+        "Così torna con la mente agli anni Ottanta, quando era un ragazzino:",
+        "i giri in motorino con gli amici,",
+        "e Happy Days, una serie americana che guardavano tutti.",
+        "Nel ricordo erano anni semplici, ma pieni di sogni.",
+        "Infatti, allora, il futuro sembrava enorme."
+      ]
+    },
+    {
+      "id": "amici",
+      "titolo": "Gli amici cresciuti",
+      "durata": 14,
+      "scena": "Piazza di provincia di sera: un'auto da sposi con i nastri, chicchi di riso a terra, un passeggino accanto a una panchina, la torre con l'orologio; in un angolo il motorino da solo.",
+      "sottotitoli": [
+        "Poi, nella canzone, incontra alcuni vecchi amici:",
+        "intanto si sono sposati e hanno messo su famiglia.",
+        "Lui li guarda e capisce quanto tempo è passato davvero.",
+        "Per molti, in quella scena c'è anche un po' d'invidia",
+        "per chi ha già trovato la sua strada."
+      ]
+    },
+    {
+      "id": "significato",
+      "titolo": "Nostalgia all'età sbagliata",
+      "durata": 14,
+      "scena": "Cameretta di un ragazzo all'alba: una clessidra sul comodino, due torte con le candeline 14 e 17, fotografie appese a un filo che sbiadiscono, una finestra da cui entra il sole.",
+      "sottotitoli": [
+        "Ma che cosa voleva dire Pezzali?",
+        "Lui racconta di aver sempre avuto nostalgia all'età sbagliata:",
+        "a diciassette anni, infatti, rimpiangeva già i quattordici.",
+        "E spiega che non gli manca il passato in sé,",
+        "ma quello che si perde crescendo: l'incoscienza e la fiducia in sé stessi."
+      ]
+    },
+    {
+      "id": "oggi",
+      "titolo": "Una canzone di tutti",
+      "durata": 14,
+      "scena": "Stadio di notte visto dagli spalti vuoti: migliaia di luci dei telefoni accese come stelle, un palco lontano con i fiori di Sanremo, un disco generico senza copertina; in fondo, l'insegna del bar che si accende.",
+      "sottotitoli": [
+        "Nel 1998 dà il nome alla raccolta dei successi degli 883,",
+        "e per Pezzali resta la canzone che lo rappresenta di più.",
+        "E nel 2021 il cantautore Gio Evan la reinterpreta sul palco di Sanremo.",
+        "E tu, quale bar ti porti nel cuore?"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "La strada della copertina di notte: il bar con la serranda mezza abbassata e l'insegna che resta accesa, il motorino sotto un lampione; 'Fine' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la canzone che vorresti.'"
+  },
+  "musica": "Originale e strumentale: pop italiano anni Novanta a tempo medio, pianoforte, archi e batteria, che passa da strofa raccolta a ritornello aperto; niente melodie, accordi o ritmi di Gli anni.",
+  "fonti": [
+    "Pezzali e Repetto compagni al liceo Copernico di Pavia; scioglimento della coppia e partenza di Repetto per gli Stati Uniti: https://tg24.sky.it/spettacolo/musica/approfondimenti/perche-883-si-sono-divisi",
+    "Nome 883 da un modello di moto Harley-Davidson; vittoria al Festivalbar 1993: https://www.ticketone.it/artist/883/ e https://www.ticketone.it/magazine/news/indagine-sugli-883-come-nasce-una-leggenda-pop",
+    "Gli anni accreditata al solo Pezzali ma ultima scritta con Repetto, che scelse di non firmarla; uscita nel 1995 nell'album La donna il sogno & il grande incubo; tema del ritorno al bar, motorini e Happy Days: https://it.wikipedia.org/wiki/Gli_anni_(singolo)",
+    "Repetto non firma Gli anni perché non rappresentava più la direzione artistica che voleva seguire; partenza per tentare il cinema negli Stati Uniti: https://en.wikipedia.org/wiki/Gli_anni e https://www.qobuz.com/gb-en/interpreter/883/311093",
+    "Repetto: la canzone nacque nella cantina di Max, in un periodo in cui voleva andare via da Pavia: https://www.rockit.it/articolo/mauro-repetto-non-avrei-mai-potuto-essere-collega-max-pezzali",
+    "Album La donna il sogno & il grande incubo (1995) primo in classifica in Italia; raccolta Gli anni (1998): https://en.wikipedia.org/wiki/883_(band)",
+    "Scritta a 25 anni; «quando avevo 17 anni rimpiangevo i 14»; la nostalgia per ciò che si perde con l'età (incoscienza, fiducia nelle proprie possibilità): https://www.rollingstone.it/musica/interviste-musica/conosco-ancora-i-vostri-sogni-lintervista-a-max-pezzali/286738/ e https://www.rollingstone.it/musica/interviste-musica/max-pezzali-i-ragazzi-vedono-i-nostri-profili-instagram-e-si-vergognano-per-noi/536323/",
+    "Incontro con i vecchi amici ormai sposati e lettura dell'invidia (interpretazione): https://www.linkiesta.it/2013/08/elogio-di-max-pezzali-e-della-poetica-degli-883/",
+    "Pezzali (2020): la canzone più rappresentativa della sua carriera: https://www.spettacolonews.com/musica/2020/max-pezzali-intervista/",
+    "Gio Evan canta Gli anni nella serata delle cover di Sanremo 2021: https://www.ilpost.it/2021/02/20/cover-duetti-sanremo-2021/"
+  ]
+}
