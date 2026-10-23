@@ -42,23 +42,38 @@ export const Letter: React.FC<{ x: number; y: number; s?: number; rot?: number; 
   </g>
 );
 
-/** Castello con tante torri su una scogliera; `lit` 0..1 accende le finestre. Origine alla base. */
-export const Castle: React.FC<{ x: number; y: number; s?: number; t: number; lit?: number; fill?: string; windowColor?: string }> = ({ x, y, s = 1, t, lit = 1, fill = '#1E1A36', windowColor = '#FFD27A' }) => {
+/** Castello con tante torri su uno sperone di roccia; `lit` 0..1 accende le finestre. Origine alla base.
+ *  `rim` = lato da cui arriva la luce (-1 sinistra, 1 destra): filo di luce sui bordi di torri e tetti. */
+export const Castle: React.FC<{ x: number; y: number; s?: number; t: number; lit?: number; fill?: string; windowColor?: string; roof?: string; rock?: string; rim?: number; rimColor?: string }> = ({
+  x, y, s = 1, t, lit = 1, fill = '#1E1A36', windowColor = '#FFD27A', roof = '#2A2650', rock = '#100E24', rim = 1, rimColor = '#B8B4E8',
+}) => {
   const towers: [number, number, number][] = [[-300, 300, 44], [-200, 420, 50], [-90, 520, 60], [40, 600, 70], [170, 470, 54], [270, 380, 46], [350, 280, 38]];
+  const win = (cx: number, cy: number, w: number, h: number, o: number, k: string | number) => (
+    <path key={k} d={`M${cx - w / 2} ${cy + h} V${cy + w / 2} A${w / 2} ${w / 2} 0 0 1 ${cx + w / 2} ${cy + w / 2} V${cy + h} Z`} fill={windowColor} opacity={o} />
+  );
   return (
-    <g transform={`translate(${x} ${y}) scale(${s})`}>
-      <path d="M-420 0 Q-380 -120 -320 -150 L360 -150 Q420 -100 440 0 Z" fill={fill} />
-      <rect x="-330" y="-260" width="700" height="120" fill={fill} />
+    <g transform={`translate(${x} ${y}) scale(${s})`} strokeLinejoin="round">
+      {/* sperone di roccia con le crepe */}
+      <path d="M-470 40 L-430 -20 L-400 -40 L-380 -90 L-340 -110 L-330 -150 L370 -150 L390 -120 L420 -96 L430 -50 L470 -10 L500 40 Z" fill={rock} stroke={K} strokeWidth="6" />
+      <path d="M-300 -120 l30 50 l-10 40 M-120 -140 l20 60 l30 30 M120 -130 l-20 50 l20 50 M300 -120 l20 40 l-10 50" stroke={K} strokeWidth="4" fill="none" opacity=".7" />
+      <path d={rim < 0 ? 'M-470 40 L-430 -20 L-400 -40 L-380 -90 L-340 -110 L-330 -150' : 'M370 -150 L390 -120 L420 -96 L430 -50 L470 -10 L500 40'} stroke={rimColor} strokeWidth="5" fill="none" opacity=".45" />
+      {/* corpo con la merlatura */}
+      <path d={`M-330 -150 V-260 ${Array.from({ length: 18 }, (_, k) => `H${-330 + k * 39 + 20} V-280 H${-330 + k * 39 + 39} V-260`).join(' ')} H370 V-150 Z`} fill={fill} stroke={K} strokeWidth="5" />
+      {/* grande finestra della sala */}
+      {win(109, -244, 48, 84, lit * 0.9, 'hall')}
+      <path d="M109 -216 V-160 M85 -194 H133" stroke={K} strokeWidth="4" opacity={0.5 + 0.5 * lit} />
       {towers.map(([tx, h, w], i) => (
         <g key={i}>
-          <rect x={tx - w / 2} y={-150 - h} width={w} height={h} fill={fill} />
-          <path d={`M${tx - w / 2 - 8} ${-150 - h} L${tx} ${-150 - h - w * 1.4} L${tx + w / 2 + 8} ${-150 - h} Z`} fill={fill} />
-          {Array.from({ length: Math.floor(h / 70) }, (_, k) => (
-            <rect key={k} x={tx - 6} y={-150 - h + 30 + k * 70} width="12" height="22" rx="6" fill={windowColor} opacity={lit * (0.55 + 0.45 * Math.sin(t * 1.5 + i * 1.7 + k))} />
-          ))}
+          <rect x={tx - w / 2} y={-150 - h} width={w} height={h} fill={fill} stroke={K} strokeWidth="5" />
+          <path d={`M${tx + (rim * w) / 2 - rim * 3} ${-150 - h} V-150`} stroke={rimColor} strokeWidth="4" opacity=".4" />
+          <path d={`M${tx - w / 2 - 10} ${-150 - h} L${tx} ${-150 - h - w * 1.5} L${tx + w / 2 + 10} ${-150 - h} Z`} fill={roof} stroke={K} strokeWidth="5" />
+          <path d={`M${tx} ${-150 - h - w * 1.5} L${tx + rim * (w / 2 + 10)} ${-150 - h}`} stroke={rimColor} strokeWidth="4" opacity=".5" />
+          <path d={`M${tx} ${-150 - h - w * 1.5} v-26`} stroke={K} strokeWidth="4" />
+          <path d={`M${tx} ${-176 - h - w * 1.5} l${18 + Math.sin(t * 5 + i) * 4} 6 l${-18 - Math.sin(t * 5 + i) * 4} 6 Z`} fill={windowColor} opacity=".8" />
+          {Array.from({ length: Math.floor(h / 70) }, (_, k) => win(tx, -150 - h + 30 + k * 70, 14, 26, lit * (0.55 + 0.45 * Math.sin(t * 1.5 + i * 1.7 + k)), k))}
         </g>
       ))}
-      {Array.from({ length: 14 }, (_, k) => <rect key={k} x={-310 + k * 48} y="-220" width="10" height="18" rx="5" fill={windowColor} opacity={lit * (0.5 + 0.4 * Math.sin(t * 2 + k))} />)}
+      {Array.from({ length: 14 }, (_, k) => (k < 8 || k > 9) && win(-305 + k * 48, -225, 12, 20, lit * (0.5 + 0.4 * Math.sin(t * 2 + k)), `b${k}`))}
     </g>
   );
 };
