@@ -102,6 +102,7 @@ const putStereo = (mix, t, len, gen, { gain = 1, pan = 0, rev = 0.2 }) => {
  * suonare con release lungo); start: secondi di campione da saltare (attacco più morbido); cents: scordatura voluta.
  */
 export const suona = (mix, id, nota, { t, dur, vel = 64, pan = 0, rev = 0.3, gain = 1, attack = 0, release = 0.6, start = 0, cents = 0, seed = 1 }) => {
+  if (globalThis.VELOCINEMA_STEM === 'effetti') return; // scripts/livelli.mjs: misura dei soli effetti
   const s = INDICE.strumenti[id];
   const midi = typeof nota === 'number' ? nota : Math.round(69 + 12 * Math.log2(hz(nota) / 440));
   const r = rng(seed * 7919 + Math.round(t * 1000) + midi * 31);
@@ -155,6 +156,7 @@ export const suona = (mix, id, nota, { t, dur, vel = 64, pan = 0, rev = 0.3, gai
  * da = secondi di campione da saltare.
  */
 export const colpo = (mix, id, file, { t, vel = 100, pan = 0, rev = 0.3, gain = 1, dur = Infinity, release = 0.5, pitch = 0, da = 0, seed = 1 }) => {
+  if (globalThis.VELOCINEMA_STEM === 'effetti') return; // scripts/livelli.mjs: misura dei soli effetti
   const s = INDICE.strumenti[id];
   const cand = s.campioni.filter((c) => c.f.startsWith(file) || c.dyn === file);
   if (!cand.length) throw new Error(`Nessun campione "${file}" in ${id}`);

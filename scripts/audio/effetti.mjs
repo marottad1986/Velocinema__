@@ -80,6 +80,11 @@ export const CATALOGO = {
   tacchi: ['Red_Library_Footsteps_1', 'R10-16-High Heels on Wooden Floor.wav', -9],
   voci_caffe: ['SSE_Library_CROWDS', 'MISC/CRWDWalla-CAFE_Light cafe background walla; could be party;_CS_USC.wav', -8],
   voci_sala: ['SSE_Library_CROWDS', 'CONVERSATION/CRWDConv_Interior crowd walla; men & women; polite_CS_USC.wav', -14],
+  fischio_vapore: ['Red_Library_Bells_Horns_Whistles', 'R20-28-Steam Whistle.wav', -23],
+  treno_vapore: ['SSE_Library_TRAINS', 'STEAM/TRNSteam_Steam engine train starts and pulls away_CS_USC.wav', -10],
+  gufo: ['Red_Library_Animals_Birds', 'R01-27-Great Horned Owl Hoot.wav', -19],
+  ali: ['Red_Library_Animals_Birds', 'R21-40b-Bird Wings Flapping.wav', -14],
+  ringhio: ['Red_Library_Animals_Dogs', 'R11-45-Growling Dog.wav', -18],
 };
 
 const percorso = (id) => `${CACHE}/${CATALOGO[id][0]}/${CATALOGO[id][1].replace(/[/;?]/g, '_')}`;
@@ -120,6 +125,7 @@ const carica = (id) => {
  * lo stesso file spostato di largo secondi, così il suono si apre in stereo.
  */
 export const clip = (mix, id, { t, da = 0, durata, gain = 1, pan = 0, rev = 0.15, fadeIn = 0.005, fadeOut = 0.05, lp = 0, rate = 1, largo = 0 }) => {
+  if (globalThis.VELOCINEMA_STEM === 'musica') return; // scripts/livelli.mjs: misura della sola musica
   const { sr, x } = carica(id);
   const step = (sr / SR) * rate;
   const dur = durata ?? (x.length / sr - da);

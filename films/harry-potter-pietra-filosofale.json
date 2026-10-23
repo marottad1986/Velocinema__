@@ -21,21 +21,21 @@
       "durata": 10,
       "scena": "Sgabuzzino sotto le scale visto dalla porticina aperta: un lettino stretto, una lampadina che pende, ragnatele e un ragno, soldatini e un paio di occhiali tondi rotti tenuti col nastro; sopra, i gradini.",
       "sottotitoli": [
-        "Harry Potter ha undici anni, è orfano",
+        "Harry Potter ha quasi undici anni, è orfano",
         "e vive con gli zii Dursley, che lo trattano malissimo:",
         "dorme in uno sgabuzzino sotto le scale",
-        "e non sa niente dei suoi genitori."
+        "e non sa la verità sui suoi genitori."
       ]
     },
     {
       "id": "lettere",
-      "titolo": "Le lettere",
+      "titolo": "Le lettere dei gufi",
       "durata": 9,
       "scena": "Salotto in ordine maniacale: dal camino escono a fiotti decine di lettere che volano per la stanza; sul davanzale e sulla staccionata fuori, tanti gufi; una lettera con il sigillo di ceralacca in primo piano.",
       "sottotitoli": [
-        "Un giorno arrivano lettere per lui da una scuola,",
+        "Un giorno arrivano lettere da una scuola, portate dai gufi,",
         "ma lo zio le strappa senza aprirle,",
-        "così i gufi ne portano a centinaia, perfino dal camino."
+        "così ne arrivano centinaia, perfino dal camino, e lo zio fugge su uno scoglio."
       ]
     },
     {
@@ -44,9 +44,9 @@
       "durata": 9,
       "scena": "Notte di tempesta: una casupola su uno scoglio in mezzo al mare, la porta buttata giù, dentro il fuoco acceso; sul tavolo una torta di compleanno un po' storta e un ombrello rosa.",
       "sottotitoli": [
-        "Alla fine arriva Hagrid, il gigante buono custode della scuola,",
+        "Ma anche lì arriva Hagrid, il gigante custode della scuola,",
         "e gli dice la verità: Harry è un mago,",
-        "e i suoi genitori sono stati uccisi dal mago malvagio Voldemort."
+        "e i suoi genitori sono morti per proteggerlo dal mago malvagio Voldemort."
       ]
     },
     {
@@ -56,7 +56,7 @@
       "scena": "Stazione di Londra: una colonna di mattoni con il cartello del binario 9 e ¾; un carrello con un baule e una gabbia con un gufo bianco che entra nel muro come in uno specchio d'acqua; dietro, un treno rosso a vapore.",
       "sottotitoli": [
         "Così parte per Hogwarts, la scuola di magia:",
-        "alla stazione di Londra attraversa un muro",
+        "alla stazione di Londra attraversa un muro magico",
         "e trova il binario nove e tre quarti, con un treno rosso a vapore."
       ]
     },
@@ -80,7 +80,7 @@
       "sottotitoli": [
         "Nella grande sala, sotto candele che volano,",
         "un cappello parlante sceglie la casa di ogni studente,",
-        "cioè la squadra in cui vivrà e farà punti tutto l'anno:",
+        "cioè il gruppo con cui vivrà e studierà tutto l'anno:",
         "Harry, Ron ed Hermione finiscono in Grifondoro."
       ]
     },
@@ -92,8 +92,8 @@
       "sottotitoli": [
         "A lezione di volo Harry si scopre bravissimo sulla scopa,",
         "così entra nella squadra di Quidditch,",
-        "lo sport dei maghi giocato in volo,",
-        "con il compito di acchiappare una pallina d'oro con le ali."
+        "lo sport dei maghi, che si gioca per aria,",
+        "per acchiappare la pallina d'oro alata che fa vincere."
       ]
     },
     {
@@ -102,36 +102,36 @@
       "durata": 11,
       "scena": "Stanza di pietra dietro una porta proibita: un enorme cane a tre teste che dorme e ringhia, le zampe sopra una botola di legno; un'arpa che suona da sola; luce di una torcia.",
       "sottotitoli": [
-        "Intanto i tre amici trovano, dietro una porta proibita,",
-        "un enorme cane a tre teste che fa la guardia a una botola,",
+        "Intanto i tre amici, dietro una porta proibita,",
+        "trovano un cane a tre teste che sorveglia una botola,",
         "e scoprono che sotto è nascosta la pietra filosofale,",
-        "che rende immortali."
+        "che rende immortali: Voldemort, rimasto senza corpo, la cerca."
       ]
     },
     {
       "id": "specchio",
-      "titolo": "Lo specchio",
+      "titolo": "Lo specchio dei desideri",
       "durata": 11,
       "scena": "Stanza buia e polverosa, fuori nevica: un grande specchio antico con la cornice d'oro intagliata, che invece di riflettere la stanza si riempie di una luce calda; candele e drappi.",
       "sottotitoli": [
         "A Natale Harry trova uno specchio magico",
         "in cui vede i suoi genitori accanto a lui:",
         "il preside Silente gli spiega che lo specchio mostra",
-        "solo ciò che desideriamo di più,",
+        "solo il desiderio più profondo,",
         "e che non bisogna perdersi nei sogni."
       ]
     },
     {
       "id": "botola",
-      "titolo": "La botola",
+      "titolo": "Le prove sotto la botola",
       "durata": 11,
       "scena": "Sotterraneo enorme: una scacchiera gigante con pezzi di pietra alti come case, un cavallo caduto in frantumi; in alto uno sciame di chiavi con le ali; liane che si attorcigliano in primo piano.",
       "sottotitoli": [
-        "Convinti che il professor Piton",
+        "Convinti che il severo professor Piton",
         "voglia rubare la pietra per Voldemort,",
         "i tre scendono nella botola e superano le prove:",
-        "una pianta che stritola, chiavi che volano",
-        "e una partita a scacchi giganti, dove Ron si sacrifica."
+        "una pianta che stritola, chiavi volanti",
+        "e scacchi giganti, dove Ron resta ferito per farli passare."
       ]
     },
     {
@@ -140,11 +140,11 @@
       "durata": 11,
       "scena": "Sala sotterranea con fiamme di fuoco magico all'ingresso: lo specchio d'oro al centro, una pietra rossa che brilla; la pietra che si sbriciola in polvere luminosa alla fine.",
       "sottotitoli": [
-        "In fondo c'è il professor Raptor, servo di Voldemort, non Piton:",
-        "nello specchio la pietra compare in tasca a Harry,",
-        "che vuole solo salvarla,",
-        "e Raptor non può toccarlo, protetto dall'amore della madre.",
-        "Così la pietra viene distrutta."
+        "In fondo Harry trova il professor Raptor, servo di Voldemort, non Piton:",
+        "lo specchio gli dà la pietra,",
+        "perché Harry vuole solo salvarla,",
+        "e Raptor brucia toccandolo, grazie all'amore della madre:",
+        "Voldemort fugge, e la pietra viene distrutta."
       ]
     }
   ],

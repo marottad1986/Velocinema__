@@ -36,6 +36,8 @@ export const Lettere: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M60 760 H500" stroke="#E8E2D0" strokeWidth="10" />
           {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${80 + i * 55} 760 V810`} stroke="#E8E2D0" strokeWidth="8" />)}
           <path d="M280 560 V820" stroke={K} strokeWidth="10" />
+          {/* luce del giorno che entra dalla finestra */}
+          <Glow id="le-win" x={280} y={700} r={360} t={t} color="#FFF4D8" amp={0.04} rate={1} opacity={0.45} />
           {OWLS.slice(0, 3).map(([x, y], i) => <g key={i} opacity={owls(i)}><Owl x={x} y={y + 30} s={0.55} t={t} color={i % 2 ? '#B8A07A' : '#F4F1E6'} /></g>)}
         </g>
         {/* parete con il camino da cui escono le lettere */}
@@ -45,9 +47,9 @@ export const Lettere: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <rect x="700" y="900" width="220" height="300" fill="#1E1810" stroke={K} strokeWidth="8" />
           <Glow id="le-hearth" x={810} y={1100} r={180} t={t} color="#FFB060" amp={0.1} rate={4} opacity={0.4 - 0.3 * flood} />
           {/* soprammobili in fila perfetta */}
-          {[640, 720, 900, 980].map((x, i) => <rect key={x} x={x - 14} y={690 - (i % 2) * 14} width="28" height={30 + (i % 2) * 14} rx="4" fill={i % 2 ? '#6A8AAA' : '#C9A060'} stroke={K} strokeWidth="4" />)}
-          {/* gufi sul davanzale interno */}
-          {OWLS.slice(3).map(([x, y], i) => <g key={i} opacity={owls(i + 3) * flood}><Owl x={x - 640} y={y - 300} s={0.6} t={t} /></g>)}
+          {[640, 720, 900, 980].map((x, i) => <rect key={x} opacity={1 - flood} x={x - 14} y={690 - (i % 2) * 14} width="28" height={30 + (i % 2) * 14} rx="4" fill={i % 2 ? '#6A8AAA' : '#C9A060'} stroke={K} strokeWidth="4" />)}
+          {/* gufi entrati in casa, appollaiati sulla mensola del camino al posto dei soprammobili */}
+          {OWLS.slice(3).map(([x], i) => <g key={i} opacity={owls(i + 3) * flood}><Owl x={x - 20} y={686} s={0.6} t={t} color={i % 2 ? '#B8A07A' : '#F4F1E6'} /></g>)}
         </g>
         {/* lettere che volano dal camino */}
         <g transform={L(0.8)}>
@@ -68,8 +70,19 @@ export const Lettere: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M-90 1240 H280" stroke="#8AAA8A" strokeWidth="8" />
           <rect x="380" y="1240" width="260" height="30" fill="#8A5A30" stroke={K} strokeWidth="6" />
           <path d="M410 1270 V1380 M610 1270 V1380" stroke={K} strokeWidth="10" />
-          <g transform={`translate(${500 - 60 * torn} 1222) rotate(${-14 * torn})`}><path d="M-60 -20 H0 L-6 -4 L4 6 L-4 20 H-60 Z" fill="#EFE2C2" stroke={K} strokeWidth="4" /></g>
-          <g transform={`translate(${520 + 60 * torn} 1222) rotate(${16 * torn})`}><path d="M60 -20 H0 L-6 -4 L4 6 L-4 20 H60 Z" fill="#EFE2C2" stroke={K} strokeWidth="4" /></g>
+          {/* la lettera intera sul tavolino; da «lo zio le strappa» si divide in due */}
+          {torn <= 0 ? (
+            <g transform="translate(510 1222)">
+              <rect x="-62" y="-22" width="124" height="44" rx="3" fill="#EFE2C2" stroke={K} strokeWidth="4" />
+              <path d="M-62 -22 L0 6 L62 -22" fill="none" stroke="#C9B48A" strokeWidth="3" />
+              <circle cx="0" cy="6" r="8" fill={P.accento} stroke={K} strokeWidth="2" />
+            </g>
+          ) : (
+            <>
+              <g transform={`translate(${500 - 60 * torn} 1222) rotate(${-14 * torn})`}><path d="M-60 -20 H0 L-6 -4 L4 6 L-4 20 H-60 Z" fill="#EFE2C2" stroke={K} strokeWidth="4" /></g>
+              <g transform={`translate(${520 + 60 * torn} 1222) rotate(${16 * torn})`}><path d="M60 -20 H0 L-6 -4 L4 6 L-4 20 H60 Z" fill="#EFE2C2" stroke={K} strokeWidth="4" /></g>
+            </>
+          )}
         </g>
         {/* lettera in primo piano con il sigillo (accento) */}
         <g transform={L(1.3)}>

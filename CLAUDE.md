@@ -138,7 +138,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Un solo tempo (bpm) per film, su una griglia continua: le scene lente vanno a metà passo, quelle concitate a passo
   doppio, e i cambi di sezione cadono sulla battuta più vicina all'inizio del capitolo (mai tempi diversi per capitolo:
   si sente la musica accelerare e rallentare). Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
-  Frankenstein Junior 104; Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 a metà passo);
+  Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96; Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 a metà passo);
   quadri: Grande onda 88, Notte stellata 92;
   Bohemian Rhapsody 70 (opera e rock a passo doppio, 140).
 - Effetti sonori registrati: `scripts/audio/effetti.mjs` (archivio CC0 di Craig Smith, USC / Sunset Editorial, "SSE Library"
@@ -149,6 +149,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   equivalente registrato (gesso, spazzole jazz, bip Morse, neon, cambio canale, risucchio). Per tarare i volumi
   confrontare musica ed effetti misurati separatamente; i vecchi strumenti sintetici di synth.mjs non vanno più usati
   per la musica.
+- `node scripts/livelli.mjs <film> [--finestre]`: livelli per capitolo di mix, sola musica e soli effetti (con la stessa
+  normalizzazione), buchi e tratti in cui gli effetti coprono la musica: da usare per tarare i volumi.
 - `npm run musica -- <film>` → `out/<film>-musica.wav`. `npm run render` la rigenera e la unisce al video con ffmpeg
   (anche per un solo capitolo, col tratto di musica corrispondente). Film senza spartito: video muto, con avviso.
 

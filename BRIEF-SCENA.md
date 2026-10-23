@@ -101,6 +101,9 @@ $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Env
 npx tsc --noEmit
 node scripts/prova.mjs <film> <id> <secondo-evento> <secondo-tranquillo>
 ```
+In un ambiente cloud (Linux, Node e ffmpeg già nel PATH) basta indicare il Chromium installato:
+`REMOTION_BROWSER=/opt/pw-browsers/chromium-*/chrome-linux/chrome node scripts/prova.mjs <film> <id> <secondi…>`
+(i secondi sono relativi all'inizio del capitolo).
 - Guarda i PNG in `out/prova/` con lo strumento di lettura immagini: uno nel momento dell'evento principale
   (lampo, oggetto che entra, scritta), uno in un momento tranquillo con un sottotitolo lungo a schermo.
 - Controlla i criteri di QUALITA §8 e la lista del §4. Correggi e riguarda **solo** se qualcosa non va:

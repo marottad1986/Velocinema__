@@ -78,9 +78,20 @@ export const Cappello: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
             <path d="M-60 -10 Q-40 -100 0 -170" stroke="#A88A64" strokeWidth="5" fill="none" opacity=".7" />
           </g>
         </g>
+        {/* tavolata in primo piano lungo il bordo basso, con piatti e calici */}
+        <g transform={L(1.15)}>
+          <rect x="-200" y="1640" width="1480" height="80" fill="url(#cp-table)" stroke={K} strokeWidth="9" />
+          <rect x="-200" y="1720" width="1480" height="260" fill="#3A2A1C" stroke={K} strokeWidth="9" />
+          {Array.from({ length: 6 }, (_, k) => (
+            <g key={k}>
+              <ellipse cx={20 + k * 210} cy="1652" rx="70" ry="20" fill="#E8E2D0" stroke={K} strokeWidth="5" />
+              <path d={`M${110 + k * 210} 1650 v-56 h-24 l-10 -40 h68 l-10 40 h-24`} fill={P.accento} stroke={K} strokeWidth="5" />
+            </g>
+          ))}
+        </g>
         <g transform={L(1.3)}>{NEAR.map((c, i) => <FloatingCandle key={i} x={c.x} y={c.y} s={c.s} t={t} ph={c.ph} />)}</g>
         <g transform={L(1.6)}>
-          {party > 0 && <Confetti t={t - cues[3]} seed={4} n={30} colors={[P.accento, '#C02A30', '#F4E8C8']} speed={0.3} />}
+          {party > 0 && <Confetti t={t - cues[3]} seed={4} n={80} colors={[P.accento, '#C02A30', '#F4E8C8', '#E8B04A']} speed={0.35} />}
           <NearMotes id="cp-near" t={t} color="#FFD27A" n={6} y0={1300} opacity={0.08} />
         </g>
       </g>

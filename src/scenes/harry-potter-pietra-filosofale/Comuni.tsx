@@ -42,23 +42,65 @@ export const Letter: React.FC<{ x: number; y: number; s?: number; rot?: number; 
   </g>
 );
 
-/** Castello con tante torri su una scogliera; `lit` 0..1 accende le finestre. Origine alla base. */
-export const Castle: React.FC<{ x: number; y: number; s?: number; t: number; lit?: number; fill?: string; windowColor?: string }> = ({ x, y, s = 1, t, lit = 1, fill = '#1E1A36', windowColor = '#FFD27A' }) => {
+/** Castello con tante torri su uno sperone di roccia; `lit` 0..1 accende le finestre. Origine alla base.
+ *  `rim` = lato da cui arriva la luce (-1 sinistra, 1 destra): filo di luce sui bordi di torri e tetti. */
+export const Castle: React.FC<{ x: number; y: number; s?: number; t: number; lit?: number; fill?: string; windowColor?: string; roof?: string; rock?: string; rim?: number; rimColor?: string }> = ({
+  x, y, s = 1, t, lit = 1, fill = '#1E1A36', windowColor = '#FFD27A', roof = '#2A2650', rock = '#100E24', rim = 1, rimColor = '#B8B4E8',
+}) => {
   const towers: [number, number, number][] = [[-300, 300, 44], [-200, 420, 50], [-90, 520, 60], [40, 600, 70], [170, 470, 54], [270, 380, 46], [350, 280, 38]];
+  const win = (cx: number, cy: number, w: number, h: number, o: number, k: string | number) => (
+    <path key={k} d={`M${cx - w / 2} ${cy + h} V${cy + w / 2} A${w / 2} ${w / 2} 0 0 1 ${cx + w / 2} ${cy + w / 2} V${cy + h} Z`} fill={windowColor} opacity={o} />
+  );
   return (
-    <g transform={`translate(${x} ${y}) scale(${s})`}>
-      <path d="M-420 0 Q-380 -120 -320 -150 L360 -150 Q420 -100 440 0 Z" fill={fill} />
-      <rect x="-330" y="-260" width="700" height="120" fill={fill} />
+    <g transform={`translate(${x} ${y}) scale(${s})`} strokeLinejoin="round">
+      {/* sperone di roccia con le crepe */}
+      <path d="M-470 40 L-430 -20 L-400 -40 L-380 -90 L-340 -110 L-330 -150 L370 -150 L390 -120 L420 -96 L430 -50 L470 -10 L500 40 Z" fill={rock} stroke={K} strokeWidth="6" />
+      <path d="M-300 -120 l30 50 l-10 40 M-120 -140 l20 60 l30 30 M120 -130 l-20 50 l20 50 M300 -120 l20 40 l-10 50" stroke={K} strokeWidth="4" fill="none" opacity=".7" />
+      <path d={rim < 0 ? 'M-470 40 L-430 -20 L-400 -40 L-380 -90 L-340 -110 L-330 -150' : 'M370 -150 L390 -120 L420 -96 L430 -50 L470 -10 L500 40'} stroke={rimColor} strokeWidth="5" fill="none" opacity=".45" />
+      {/* corpo con la merlatura */}
+      <path d={`M-330 -150 V-260 ${Array.from({ length: 18 }, (_, k) => `H${-330 + k * 39 + 20} V-280 H${-330 + k * 39 + 39} V-260`).join(' ')} H370 V-150 Z`} fill={fill} stroke={K} strokeWidth="5" />
+      {/* grande finestra della sala */}
+      {win(109, -244, 48, 84, lit * 0.9, 'hall')}
+      <path d="M109 -216 V-160 M85 -194 H133" stroke={K} strokeWidth="4" opacity={0.5 + 0.5 * lit} />
       {towers.map(([tx, h, w], i) => (
         <g key={i}>
-          <rect x={tx - w / 2} y={-150 - h} width={w} height={h} fill={fill} />
-          <path d={`M${tx - w / 2 - 8} ${-150 - h} L${tx} ${-150 - h - w * 1.4} L${tx + w / 2 + 8} ${-150 - h} Z`} fill={fill} />
-          {Array.from({ length: Math.floor(h / 70) }, (_, k) => (
-            <rect key={k} x={tx - 6} y={-150 - h + 30 + k * 70} width="12" height="22" rx="6" fill={windowColor} opacity={lit * (0.55 + 0.45 * Math.sin(t * 1.5 + i * 1.7 + k))} />
-          ))}
+          <rect x={tx - w / 2} y={-150 - h} width={w} height={h} fill={fill} stroke={K} strokeWidth="5" />
+          <path d={`M${tx + (rim * w) / 2 - rim * 3} ${-150 - h} V-150`} stroke={rimColor} strokeWidth="4" opacity=".4" />
+          <path d={`M${tx - w / 2 - 10} ${-150 - h} L${tx} ${-150 - h - w * 1.5} L${tx + w / 2 + 10} ${-150 - h} Z`} fill={roof} stroke={K} strokeWidth="5" />
+          <path d={`M${tx} ${-150 - h - w * 1.5} L${tx + rim * (w / 2 + 10)} ${-150 - h}`} stroke={rimColor} strokeWidth="4" opacity=".5" />
+          <path d={`M${tx} ${-150 - h - w * 1.5} v-26`} stroke={K} strokeWidth="4" />
+          <path d={`M${tx} ${-176 - h - w * 1.5} l${18 + Math.sin(t * 5 + i) * 4} 6 l${-18 - Math.sin(t * 5 + i) * 4} 6 Z`} fill={windowColor} opacity=".8" />
+          {Array.from({ length: Math.floor(h / 70) }, (_, k) => win(tx, -150 - h + 30 + k * 70, 14, 26, lit * (0.55 + 0.45 * Math.sin(t * 1.5 + i * 1.7 + k)), k))}
         </g>
       ))}
-      {Array.from({ length: 14 }, (_, k) => <rect key={k} x={-310 + k * 48} y="-220" width="10" height="18" rx="5" fill={windowColor} opacity={lit * (0.5 + 0.4 * Math.sin(t * 2 + k))} />)}
+      {Array.from({ length: 14 }, (_, k) => (k < 8 || k > 9) && win(-305 + k * 48, -225, 12, 20, lit * (0.5 + 0.4 * Math.sin(t * 2 + k)), `b${k}`))}
+    </g>
+  );
+};
+
+/** Trenino a vapore visto da lontano, rivolto a destra (locomotiva davanti); origine sui binari, lungo ~70·carrozze+70.
+ *  Il fumo lo disegna chi lo usa, sopra il comignolo (x ≈ 70·carrozze+54, y ≈ -48). */
+export const SmallTrain: React.FC<{ x: number; y: number; s?: number; cars?: number; body?: string; lit?: number }> = ({ x, y, s = 1, cars = 4, body = '#B82A30', lit = 1 }) => {
+  const X = cars * 70;
+  return (
+    <g transform={`translate(${x} ${y}) scale(${s})`} strokeLinejoin="round">
+      {Array.from({ length: cars }, (_, k) => (
+        <g key={k}>
+          <rect x={k * 70} y="-34" width="64" height="28" rx="4" fill={body} stroke={K} strokeWidth="3" />
+          <path d={`M${k * 70 - 2} -34 Q${k * 70 + 32} -44 ${k * 70 + 66} -34 Z`} fill="#3A1A1E" stroke={K} strokeWidth="3" />
+          {[0, 1, 2].map((w) => <rect key={w} x={k * 70 + 8 + w * 18} y="-28" width="11" height="11" rx="2" fill="#FFD27A" opacity={0.3 + 0.7 * lit} />)}
+          <path d={`M${k * 70 + 64} -14 h6`} stroke={K} strokeWidth="4" />
+          {[12, 52].map((d) => <circle key={d} cx={k * 70 + d} cy="-4" r="5" fill={K} />)}
+        </g>
+      ))}
+      <rect x={X} y="-46" width="26" height="40" rx="3" fill={body} stroke={K} strokeWidth="3" />
+      <rect x={X + 5} y="-40" width="14" height="12" fill="#FFD27A" opacity={0.3 + 0.7 * lit} />
+      <rect x={X + 24} y="-32" width="42" height="24" rx="11" fill="#2A1A22" stroke={K} strokeWidth="3" />
+      <path d={`M${X + 34} -32 v24 M${X + 48} -32 v24`} stroke={body} strokeWidth="3" />
+      <rect x={X + 50} y="-48" width="9" height="16" fill="#2A1A22" stroke={K} strokeWidth="3" />
+      <path d={`M${X + 64} -10 l12 8 h-14 Z`} fill="#4A4A4A" stroke={K} strokeWidth="2" />
+      <circle cx={X + 67} cy="-22" r="4" fill="#FFF0C0" />
+      {[14, 36, 56].map((d, i) => <circle key={d} cx={X + d} cy={i ? -5 : -7} r={i ? 6 : 8} fill="#3A3A3A" stroke={K} strokeWidth="2.5" />)}
     </g>
   );
 };
@@ -102,10 +144,14 @@ export const GoldBall: React.FC<{ x: number; y: number; s?: number; t: number; c
 };
 
 /** Cornice d'oro intagliata dello specchio (il vetro si disegna da fuori). Origine al centro del vetro. */
+/** Sagoma dello specchio ad arco (centrata in 0,0): la stessa per la cornice e per il vetro, che così la segue. */
+export const mirrorPath = (w: number, h: number) =>
+  `M${-w / 2 - 40} ${h / 2 + 60} V${-h / 2 + 40} Q${-w / 2 - 40} ${-h / 2 - 120} 0 ${-h / 2 - 140} Q${w / 2 + 40} ${-h / 2 - 120} ${w / 2 + 40} ${-h / 2 + 40} V${h / 2 + 60} Z`;
+
 export const MirrorFrame: React.FC<{ x: number; y: number; w: number; h: number; gold: string }> = ({ x, y, w, h, gold }) => (
   <g transform={`translate(${x} ${y})`} strokeLinejoin="round">
-    <path d={`M${-w / 2 - 40} ${h / 2 + 60} V${-h / 2 + 40} Q${-w / 2 - 40} ${-h / 2 - 120} 0 ${-h / 2 - 140} Q${w / 2 + 40} ${-h / 2 - 120} ${w / 2 + 40} ${-h / 2 + 40} V${h / 2 + 60} Z`} fill="none" stroke={K} strokeWidth="64" />
-    <path d={`M${-w / 2 - 40} ${h / 2 + 60} V${-h / 2 + 40} Q${-w / 2 - 40} ${-h / 2 - 120} 0 ${-h / 2 - 140} Q${w / 2 + 40} ${-h / 2 - 120} ${w / 2 + 40} ${-h / 2 + 40} V${h / 2 + 60} Z`} fill="none" stroke={gold} strokeWidth="50" />
+    <path d={mirrorPath(w, h)} fill="none" stroke={K} strokeWidth="64" />
+    <path d={mirrorPath(w, h)} fill="none" stroke={gold} strokeWidth="50" />
     <path d={`M${-w / 2 - 54} ${h / 2} V${-h / 2 + 40} Q${-w / 2 - 54} ${-h / 2 - 130} 0 ${-h / 2 - 152}`} fill="none" stroke="#FFF0B8" strokeWidth="6" opacity=".7" />
     {Array.from({ length: 7 }, (_, i) => <circle key={i} cx={-w / 2 - 40} cy={-h / 2 + 60 + i * ((h - 40) / 6)} r="8" fill="#8A5A10" />)}
     {Array.from({ length: 7 }, (_, i) => <circle key={i} cx={w / 2 + 40} cy={-h / 2 + 60 + i * ((h - 40) / 6)} r="8" fill="#8A5A10" />)}

@@ -52,34 +52,61 @@ export const Cane: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* torcia alla parete */}
         <g transform={L(0.4)}>
-          <path d="M900 700 l40 -20 v40 Z" fill="#3A3030" stroke={K} strokeWidth="5" />
-          <Fire id="cn-torch" t={t} x={930} y={680} scale={0.5} outline={K} />
-          <Glow id="cn-torchg" x={930} y={640} r={420} t={t} color="#FFA050" amp={0.12} rate={6} opacity={0.5} />
+          <path d="M940 660 l40 -20 v40 Z" fill="#3A3030" stroke={K} strokeWidth="5" />
+          <Fire id="cn-torch" t={t} x={970} y={640} scale={0.5} outline={K} />
+          <Glow id="cn-torchg" x={970} y={600} r={440} t={t} color="#FFA050" amp={0.12} rate={6} opacity={0.55} />
         </g>
-        {/* il cane a tre teste */}
-        <g transform={L(0.6)}>
-          <ellipse cx="560" cy="1180" rx="380" ry="40" fill={K} opacity=".4" />
-          <path d={`M180 1180 Q160 ${960 - breath} 420 ${930 - breath} Q720 ${910 - breath} 860 ${1000 - breath} Q930 1080 900 1180 Z`} fill="url(#cn-fur)" stroke={K} strokeWidth="9" />
-          <path d="M240 1180 V1100 M330 1180 V1110 M780 1180 V1110 M860 1180 V1100" stroke={K} strokeWidth="44" strokeLinecap="round" />
-          <path d="M240 1180 V1100 M330 1180 V1110 M780 1180 V1110 M860 1180 V1100" stroke="#7A5E40" strokeWidth="30" strokeLinecap="round" />
-          <path d={`M200 1060 Q120 1000 90 ${900 + Math.sin(t * 3) * 20 * (1 - awake)}`} stroke={K} strokeWidth="30" fill="none" strokeLinecap="round" />
-          <path d={`M200 1060 Q120 1000 90 ${900 + Math.sin(t * 3) * 20 * (1 - awake)}`} stroke="#7A5E40" strokeWidth="18" fill="none" strokeLinecap="round" />
-          <path d="M620 940 Q700 930 800 960" stroke="#9A7E5A" strokeWidth="10" fill="none" opacity=".6" />
-          <Head x={620 + 0 * awake} y={940 - 60 * awake} s={0.85} rot={-30 * (1 - awake) + 10} snarl={snarl} eye={awake} />
-          <Head x={720} y={1000 - 40 * awake} s={0.9} rot={-10 * (1 - awake) + 4} snarl={snarl} eye={awake} />
-          <Head x={560} y={1060 - 20 * awake} s={0.8} rot={20 * (1 - awake)} snarl={snarl * 0.8} eye={awake} />
-          {awake < 0.3 && [0, 1, 2].map((k) => <text key={k} x={760 + k * 40} y={860 - k * 40 - ((t * 30) % 40)} fontFamily="Figtree" fontWeight={800} fontSize={30 + k * 8} fill="#B8B4C8" opacity={0.6 * (1 - awake * 3)}>z</text>)}
+        {/* il cane a tre teste: sdraiato come una sfinge, tre colli che partono dalle spalle, zampe intere a terra */}
+        <g transform={`${L(0.6)} translate(-90 0)`}>
+          <ellipse cx="560" cy="1190" rx="420" ry="44" fill={K} opacity=".4" />
+          {/* coda */}
+          <path d={`M210 1080 Q120 1040 100 ${940 + Math.sin(t * 3) * 20 * (1 - awake)}`} stroke={K} strokeWidth="30" fill="none" strokeLinecap="round" />
+          <path d={`M210 1080 Q120 1040 100 ${940 + Math.sin(t * 3) * 20 * (1 - awake)}`} stroke="#7A5E40" strokeWidth="18" fill="none" strokeLinecap="round" />
+          {/* zampa posteriore piegata */}
+          <path d="M240 1100 Q200 1180 260 1188 H380 Q400 1170 360 1150" fill="#6A5038" stroke={K} strokeWidth="8" />
+          {/* corpo */}
+          <path d={`M200 1150 Q170 ${990 - breath} 420 ${960 - breath} Q700 ${940 - breath} 820 ${1000 - breath} Q880 1060 860 1150 Q600 1190 200 1150 Z`} fill="url(#cn-fur)" stroke={K} strokeWidth="9" />
+          <path d={`M300 ${1010 - breath} Q480 ${985 - breath} 700 ${1000 - breath}`} stroke="#9A7E5A" strokeWidth="8" fill="none" opacity=".5" />
+          {/* zampe anteriori distese in avanti, con le dita appoggiate */}
+          {[0, 1].map((k) => (
+            <g key={k} transform={`translate(${k * 70} ${k * 8})`}>
+              <path d="M760 1110 Q800 1160 870 1170 H990 Q1010 1186 990 1196 H860 Q770 1196 730 1150 Z" fill={k ? '#7A5E40' : '#6A5038'} stroke={K} strokeWidth="8" />
+              {[950, 970].map((x) => <path key={x} d={`M${x} 1172 V1194`} stroke={K} strokeWidth="4" />)}
+            </g>
+          ))}
+          {/* tre colli dalle spalle e tre teste */}
+          {[
+            { nx: 700, ny: 1010, hx: 600, hy: 860 - 40 * awake, s: 0.78, rot: -20 * (1 - awake) - 8, sn: 0.8 },
+            { nx: 760, ny: 1000, hx: 760, hy: 800 - 50 * awake, s: 0.86, rot: -12 * (1 - awake), sn: 1 },
+            { nx: 820, ny: 1020, hx: 900, hy: 900 - 30 * awake, s: 0.8, rot: 18 * (1 - awake) + 4, sn: 0.9 },
+          ].map((h, i) => (
+            <g key={i}>
+              <path d={`M${h.nx - 50} ${h.ny + 40} Q${(h.nx + h.hx) / 2 - 40} ${(h.ny + h.hy) / 2} ${h.hx - 30} ${h.hy + 20} L${h.hx + 30} ${h.hy + 40} Q${(h.nx + h.hx) / 2 + 40} ${(h.ny + h.hy) / 2 + 20} ${h.nx + 50} ${h.ny + 40} Z`} fill="url(#cn-fur)" stroke={K} strokeWidth="8" />
+              <Head x={h.hx} y={h.hy} s={h.s} rot={h.rot} snarl={snarl * h.sn} eye={awake} />
+            </g>
+          ))}
+          {awake < 0.3 && [0, 1, 2].map((k) => <text key={k} x={900 + k * 40} y={760 - k * 40 - ((t * 30) % 40)} fontFamily="Figtree" fontWeight={800} fontSize={30 + k * 8} fill="#B8B4C8" opacity={0.6 * (1 - awake * 3)}>z</text>)}
         </g>
         {/* botola di legno sotto le zampe (accento sulla luce che filtra) */}
         <g transform={L(0.75)}>
-          <path d="M-200 1180 H1280 V2200 H-200 Z" fill="url(#cn-floor)" />
-          <g transform="translate(560 1260)">
+          <path d="M-200 1200 H1280 V2200 H-200 Z" fill="url(#cn-floor)" />
+          <g transform="translate(560 1290)">
             <path d="M-170 -40 H170 L200 40 H-200 Z" fill="#5A3E24" stroke={K} strokeWidth="8" />
             {[-100, 0, 100].map((x) => <path key={x} d={`M${x} -40 L${x * 1.18} 40`} stroke="#3A2614" strokeWidth="6" />)}
             <circle cx="120" cy="0" r="14" fill="none" stroke="#C9A24A" strokeWidth="6" />
             <path d="M-200 40 H200" stroke={P.accento} strokeWidth="6" opacity={trap} />
             <Glow id="cn-trapg" x={0} y={40} r={260} t={t} color={P.accento} amp={0.1} rate={2} opacity={0.5 * trap} />
           </g>
+          {/* lastre del pavimento, paglia e ossa rosicchiate in primo piano */}
+          {[1330, 1480, 1680].map((y) => <path key={y} d={`M-200 ${y} H1280`} stroke="#241C20" strokeWidth="5" />)}
+          {Array.from({ length: 7 }, (_, i) => <path key={i} d={`M${540 + (i - 3) * 160} 1180 L${540 + (i - 3) * 420} 1940`} stroke="#241C20" strokeWidth="4" />)}
+          {Array.from({ length: 22 }, (_, i) => <path key={`p${i}`} d={`M${180 + i * 34} ${1640 + (i % 4) * 20} l${40 + (i % 3) * 10} ${-12 + (i % 5) * 6}`} stroke="#B8944A" strokeWidth="5" strokeLinecap="round" opacity=".8" />)}
+          {[[330, 1760, 20], [720, 1820, -14]].map(([x, y, rot], i) => (
+            <g key={`b${i}`} transform={`translate(${x} ${y}) rotate(${rot})`}>
+              <path d="M-90 -8 H90 V8 H-90 Z" fill="#E8DCC0" stroke={K} strokeWidth="6" />
+              {[-1, 1].map((d) => <g key={d}><circle cx={d * 96} cy="-12" r="16" fill="#E8DCC0" stroke={K} strokeWidth="6" /><circle cx={d * 96} cy="12" r="16" fill="#E8DCC0" stroke={K} strokeWidth="6" /></g>)}
+            </g>
+          ))}
         </g>
         {/* arpa che suona da sola */}
         <g transform={L(0.9)}>
@@ -89,7 +116,7 @@ export const Cane: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             {Array.from({ length: 7 }, (_, i) => <path key={i} d={`M${20 + i * 20} ${-30 - i * 4} V${-220 + i * 4 + Math.sin(t * 20 + i) * 3 * harp}`} stroke="#F4E8C8" strokeWidth="3" />)}
             <path d="M-20 0 H180" stroke={K} strokeWidth="14" />
           </g>
-          {harp > 0 && <Notes t={t} x={240} y={1100} seed={7} n={6} color={P.accento} outline={K} rise={420} spread={160} size={1.1} />}
+          {harp > 0 && <Notes t={t} x={300} y={1120} seed={7} n={6} color={P.accento} outline={K} rise={260} spread={160} size={1.1} />}
         </g>
         {/* stipite della porta proibita in primo piano */}
         <g transform={L(1.25)}>

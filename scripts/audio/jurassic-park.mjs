@@ -179,7 +179,7 @@ export default (mix, T) => {
   pulsa(B(T.sabotaggio), B(T.trex), 46, 58, 0.4);
   suona(mix, 'contrabbasso', 34, { t: B(T.sabotaggio), dur: B(T.trex) - B(T.sabotaggio), vel: 44, gain: 0.4, attack: 1, release: 0.8, rev: 0.4 });
   // allarme: due note acute alternate del glockenspiel, come una sirena d'ufficio (si accende con le zone rosse)
-  for (let t = cue('sabotaggio', 2), k = 0; t < cue('sabotaggio', 2) + 3; t += 0.4, k++) glock(mix, k % 2 ? 91 : 88, t, 60, 0.4, 0.2);
+  for (let t = cue('sabotaggio', 2), k = 0; t < cue('sabotaggio', 2) + 3; t += BEAT / 2, k++) glock(mix, k % 2 ? 91 : 88, t, 60, 0.4, 0.2);
   suona(mix, 'violini_trem', 70, { t: cue('sabotaggio', 2), dur: cue('sabotaggio', 4) - cue('sabotaggio', 2), vel: 48, pan: 0.4, gain: 0.2, attack: 0.6, release: 0.5, rev: 0.5 });
   clip(mix, 'serratura', { t: cue('sabotaggio', 3) + 0.2, da: 2.45, durata: 0.5, gain: 0.35, pan: 0.2, rev: 0.25 }); // la bomboletta si svita
   clip(mix, 'scatti', { t: cue('sabotaggio', 4), da: 6.5, durata: 0.12, gain: 0.25, rev: 0.25 }); // «le recinzioni si spengono»
@@ -220,7 +220,7 @@ export default (mix, T) => {
 
   // ---- corrente: le gabbie si aprono (seconda frase), la leva, le lampade che si accendono in fila, la scossa
   clip(mix, 'cancello', { t: cue('corrente', 1), da: 2.85, durata: 2.4, gain: 0.3, fadeOut: 0.8, rev: 0.35 });
-  for (let t = cue('corrente', 1), k = 0; t < cue('corrente', 1) + 2.4; t += 0.4, k++) glock(mix, k % 2 ? 91 : 88, t, 54, 0.4, 0.16);
+  for (let t = cue('corrente', 1), k = 0; t < cue('corrente', 1) + 2.4; t += BEAT / 2, k++) glock(mix, k % 2 ? 91 : 88, t, 54, 0.4, 0.16);
   [46, 47].forEach((m, j) => suona(mix, 'celli_trem', m + 12, { t: cue('corrente', 1), dur: cue('corrente', 3) - cue('corrente', 1), vel: 50, pan: (j - 0.5) * 0.6, gain: 0.3, attack: 0.5, release: 0.6, rev: 0.5, seed: 80 + j }));
   clip(mix, 'serratura', { t: cue('corrente', 3) - 0.1, da: 5.55, durata: 0.6, gain: 0.45, pan: -0.2, rev: 0.25 }); // la leva
   for (let i = 0; i < 6; i++) clip(mix, 'scatti', { t: cue('corrente', 3) + 0.3 + i * 0.25, da: [1.1, 6.5, 12.65, 15.8, 19.5, 1.7][i], durata: 0.12, gain: 0.25, pan: -0.5 + i * 0.2, rev: 0.3 });
