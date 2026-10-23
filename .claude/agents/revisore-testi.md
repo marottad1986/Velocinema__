@@ -35,6 +35,7 @@ Controlla:
    «spiegato», con gli anni a quattro cifre contati come 4 parole).
 11. Testi sull'immagine (frase di lancio della copertina, scritte nelle scene): possono essere brevi come in una
    locandina, ma non devono parlare del video stesso né anticipare in modo confuso.
+   Eccezione decisa: l'etichetta di serie «IL FILM IN 2 MINUTI» sopra il titolo delle copertine resta (non segnalarla).
 
 Formato della risposta: per ogni capitolo «OK» oppure i problemi con la frase esatta e la riscrittura proposta (con il
 conteggio delle parole). Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.
