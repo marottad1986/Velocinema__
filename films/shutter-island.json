@@ -31,7 +31,7 @@
     },
     {
       "id": "ospedale",
-      "titolo": "Ashecliffe",
+      "titolo": "Il manicomio",
       "durata": 9,
       "scena": "Cancello dell'ospedale che si apre, torretta con faro di ricerca, recinzioni di notte.",
       "sottotitoli": [
@@ -65,7 +65,7 @@
       "durata": 9,
       "scena": "Una piastrella del pavimento si solleva e appare un biglietto: 'La legge del 4 – Chi è il 67?'.",
       "sottotitoli": [
-        "Poi trovano un biglietto nascosto:",
+        "Nella cella trovano un biglietto:",
         "«La legge del 4. Chi è il 67?»",
         "I pazienti però sono 66,",
         "quindi uno è nascosto,",
@@ -75,14 +75,14 @@
     },
     {
       "id": "studio",
-      "titolo": "Lo studio del direttore",
+      "titolo": "Pillole e incubi",
       "durata": 8,
       "scena": "Studio con giradischi, pillole che cadono, pipa fumante, pioggia alla finestra.",
       "sottotitoli": [
         "Intanto Teddy ha emicranie fortissime",
         "e Cawley gli dà pillole e sigarette.",
         "Di notte sogna la guerra",
-        "e la moglie morta: «Rachel è ancora qui»."
+        "e la moglie, che gli sussurra: «Rachel è ancora qui»."
       ]
     },
     {
@@ -93,9 +93,9 @@
       "sottotitoli": [
         "La moglie era morta in un incendio,",
         "e Teddy è sicuro che l'abbia appiccato",
-        "Andrew Laeddis, un custode",
+        "Andrew Laeddis, il custode del palazzo,",
         "rinchiuso proprio qui:",
-        "è per lui che è venuto."
+        "è venuto per lui, e per svelare esperimenti segreti sui pazienti."
       ]
     },
     {
@@ -104,8 +104,8 @@
       "durata": 10,
       "scena": "Faro nella tempesta con fascio rotante, onde e spruzzi; un cappello vola via dagli scogli.",
       "sottotitoli": [
-        "Poi l'uragano fa saltare la corrente.",
-        "Teddy sospetta che nel faro operino i pazienti",
+        "Poi un uragano fa saltare la corrente.",
+        "Teddy sospetta esperimenti sul cervello nel faro",
         "e ci corre con Chuck sulla scogliera,",
         "ma si perdono di vista",
         "e Teddy scende tra gli scogli a cercarlo."
@@ -119,22 +119,22 @@
       "sottotitoli": [
         "Chuck è sparito,",
         "ma in una grotta trova una donna",
-        "che dice di essere la vera Rachel:",
+        "che dice di essere una dottoressa fuggita:",
         "«Ti drogano per farti diventare un paziente.»",
-        "E Chuck? «Sei arrivato da solo.»"
+        "E Cawley giura: «Sei arrivato da solo.»"
       ]
     },
     {
       "id": "lavagna",
-      "titolo": "Il colpo di scena",
+      "titolo": "Il segreto del faro",
       "durata": 14,
       "scena": "Interno del faro: lavagna dove i nomi vengono scritti a gesso lettera per lettera (EDWARD DANIELS → ANDREW LAEDDIS, RACHEL SOLANDO → DOLORES CHANAL); scrivania con lampada.",
       "sottotitoli": [
-        "Allora Teddy entra nel faro,",
-        "ma trova solo Cawley e una lavagna:",
-        "Edward Daniels è l'anagramma di Andrew Laeddis,",
+        "Così corre al faro a cercare Chuck,",
+        "ma c'è solo Cawley, che svela la legge del 4:",
+        "il suo nome, Edward Daniels, è l'anagramma di Andrew Laeddis,",
         "Rachel Solando di Dolores Chanal,",
-        "sua moglie.",
+        "sua moglie,",
         "quindi Teddy non esiste:",
         "il paziente 67 è lui, da due anni."
       ]
@@ -150,12 +150,12 @@
         "e hanno recitato tutto per curarlo.",
         "Perché Dolores aveva annegato i loro tre figli nel lago",
         "e lui le ha sparato.",
-        "Se non lo ricorda, sarà la lobotomia."
+        "Se non ricorda, avrà la lobotomia, che spegne la mente."
       ]
     },
     {
       "id": "alba",
-      "titolo": "All'alba",
+      "titolo": "La scelta",
       "durata": 11,
       "scena": "Gradini all'alba, cappello lasciato, impronte che compaiono verso il faro, gabbiani.",
       "sottotitoli": [
@@ -163,7 +163,7 @@
         "come se fosse ricaduto.",
         "Ma poi gli chiede: meglio vivere da mostro",
         "o morire da uomo per bene?",
-        "E va verso il faro: ha scelto la lobotomia."
+        "E si lascia portare al faro: ha scelto la lobotomia."
       ]
     }
   ],
