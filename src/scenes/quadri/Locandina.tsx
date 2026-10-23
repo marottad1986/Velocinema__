@@ -41,7 +41,7 @@ export const copertinaQuadro = (opera: Opera, da: Chiave['v'], a: Chiave['v']): 
       <Quadro opera={opera} t={t} chiavi={[{ t: 0, v: da }, { t: dur, v: a }]} />
       <AbsoluteFill style={{ background: 'linear-gradient(rgba(5,10,25,.75), rgba(5,10,25,0) 45%, rgba(5,10,25,0) 60%, rgba(5,10,25,.7))' }} />
       <p style={{ position: 'absolute', top: 290, left: 80, margin: 0, fontFamily: SANS, fontWeight: 800, fontSize: 30, letterSpacing: '0.35em', color: P.accento, opacity: k }}>
-        IL QUADRO IN 2 MINUTI
+        QUADRI SPIEGATI
       </p>
       <h1 style={{ position: 'absolute', top: 340, left: 72, margin: 0, fontFamily: SERIF, fontWeight: 400, fontSize: size, lineHeight: 0.88, color: CREMA,
         opacity: k, transform: `translateY(${(1 - k) * 30}px)`, textShadow: '0 6px 30px rgba(0,0,0,.5)' }}>

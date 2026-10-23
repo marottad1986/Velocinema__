@@ -61,6 +61,9 @@ for (const [slug, path] of lista) {
   }
   const locandine = [dirScene && `${dirScene}/Locandina.tsx`, dirScene && `${dirScene}/Finale.tsx`, path.startsWith('quadri/') && 'src/scenes/quadri/Locandina.tsx'].filter((p) => p && existsSync(p));
   if (!locandine.some((p) => /Commenta con (il film|la spiegazione|la canzone|il quadro) che vorresti\./.test(readFileSync(p, 'utf8')))) E.push('finale senza «Commenta con … che vorresti.»');
+  // etichetta «… IN 2 MINUTI» sopra il titolo: ammessa solo nei riassunti di film (canzoni, quadri, Spiegato semplice usano il nome della serie)
+  const soloFilm = !path.startsWith('quadri/') && !spiegato && !j.fonti;
+  if (!soloFilm) for (const p of locandine) if (/IN 2 MINUTI/i.test(readFileSync(p, 'utf8'))) E.push(`${p}: «… IN 2 MINUTI» ammesso solo nelle copertine dei film (usare il nome della serie)`);
 
   // ---- musica: spartito con strumenti campionati, niente strumenti sintetici, risorse dichiarate, agganci validi
   const sp = `scripts/audio/${slug}.mjs`;
