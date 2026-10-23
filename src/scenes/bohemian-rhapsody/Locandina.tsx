@@ -95,7 +95,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
     <div style={{ position: 'absolute', inset: 0 }}>
       <Stage id="bc" t={t} dur={dur} />
       <div style={{ position: 'absolute', left: 80, top: 286, width: 920, fontFamily: SANS }}>
-        <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.accento, opacity: tag, textShadow: `0 2px 0 ${P.scuro}` }}>LA CANZONE IN 2 MINUTI</p>
+        <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.accento, opacity: tag, textShadow: `0 2px 0 ${P.scuro}` }}>CANZONI SPIEGATE</p>
         <h1 style={{ margin: '18px 0 0', fontFamily: PLAYFAIR, fontWeight: 900, fontSize: 132, lineHeight: 0.95, color: P.chiaro, textShadow: `0 6px 0 ${P.scuro}` }}>
           <span style={{ display: 'block', opacity: seg(t, 0.15, 0.4), transform: `translateY(${(1 - l1) * 50}px)` }}>Bohemian</span>
           <span style={{ display: 'block', opacity: seg(t, 0.3, 0.55), transform: `translateY(${(1 - l2) * 50}px)` }}>Rhapsody</span>
