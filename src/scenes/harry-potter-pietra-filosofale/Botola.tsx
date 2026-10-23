@@ -10,8 +10,12 @@ import { K } from './Comuni';
 // Piani: volta del sotterraneo (0,2) · chiavi con le ali (0,4) · scacchiera e pezzi (0,6) · cavallo che cade (0,75) · liane in primo piano (1,25) · polvere (1,6)
 
 const r = rng(3030);
-const KEYS = Array.from({ length: 18 }, () => ({ x: r() * 1000 + 40, y: 560 + r() * 280, ph: r() * 6, s: 0.6 + r() * 0.5 }));
-const SHARDS = Array.from({ length: 14 }, () => ({ vx: (r() - 0.5) * 400, vy: 120 + r() * 220, rot: (r() - 0.5) * 400, s: 14 + r() * 20 }));
+const KEYS = Array.from({ length: 18 }, () => ({ x: r() * 1000 + 40, y: 660 + r() * 260, ph: r() * 6, s: 0.6 + r() * 0.5 }));
+const SHARDS = Array.from({ length: 16 }, () => ({ vx: (r() - 0.5) * 520, vy: 140 + r() * 240, rot: (r() - 0.5) * 300, s: 24 + r() * 34, k: r() }));
+const BLOCKS = Array.from({ length: 60 }, () => ({ c: r() }));
+/** Scacchiera in prospettiva: righe dal fondo (0) al davanti (5), colonne che convergono al centro. */
+const ROW_Y = (k: number) => 1000 + 56 * k + 6 * k * k;
+const ROW_W = (k: number) => 560 + 150 * k; // metà larghezza della scacchiera alla riga k
 
 /** Pezzo degli scacchi di pietra: re, regina, torre, alfiere, pedone (profili semplici). */
 const Piece: React.FC<{ x: number; y: number; s: number; kind: 'king' | 'queen' | 'rook' | 'bishop' | 'pawn'; dark?: boolean }> = ({ x, y, s, kind, dark }) => {
@@ -50,8 +54,16 @@ export const Botola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         {/* volta del sotterraneo con la luce della botola */}
         <g transform={L(0.2)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="url(#bt-vault)" />
-          {Array.from({ length: 6 }, (_, i) => <path key={i} d={`M${-200 + i * 300} 1100 Q${-50 + i * 300} 540 ${100 + i * 300} 1100`} fill="none" stroke="#2A2436" strokeWidth="16" />)}
-          <Beam id="bt-trap" x={540} y={500} t={t} length={900} spread={380} color="#FFE8B8" angle={90} opacity={0.2} />
+          {/* volta di pietra: blocchi e grandi archi pieni */}
+          {BLOCKS.map((b, i) => {
+            const row = Math.floor(i / 6), col = i % 6;
+            return <rect key={i} x={-200 + col * 250 + (row % 2) * 125} y={420 + row * 70} width="240" height="64" fill={b.c > 0.5 ? '#221E2E' : '#1A1724'} stroke="#0E0C16" strokeWidth="4" />;
+          })}
+          {[-140, 540, 1220].map((cx) => (
+            <path key={cx} d={`M${cx - 300} 1100 V760 A300 300 0 0 1 ${cx + 300} 760 V1100 H${cx + 230} V770 A230 230 0 0 0 ${cx - 230} 770 V1100 Z`} fill="#2E2A3A" stroke={K} strokeWidth="8" />
+          ))}
+          <Beam id="bt-trap" x={780} y={560} t={t} length={900} spread={380} color="#FFE8B8" angle={100} opacity={0.2} />
+          <Glow id="bt-trapg" x={780} y={560} r={160} t={t} color="#FFE8B8" amp={0.05} rate={1} opacity={0.5} />
         </g>
         {/* chiavi con le ali (accento) */}
         <g transform={L(0.4)} opacity={0.3 + 0.7 * keys}>
@@ -69,11 +81,10 @@ export const Botola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* scacchiera gigante con i pezzi di pietra */}
         <g transform={L(0.6)}>
-          {Array.from({ length: 40 }, (_, i) => {
-            const row = Math.floor(i / 8), col = i % 8;
-            const y0 = 1000 + row * 60, w = 140 + row * 30;
-            const x0 = 540 - 4 * w + col * w;
-            return <path key={i} d={`M${x0} ${y0} H${x0 + w} L${x0 + w + (col - 3.5) * 6} ${y0 + 60} H${x0 + (col - 4.5) * 6} Z`} fill={(row + col) % 2 ? '#2A2634' : '#8A8478'} />;
+          {Array.from({ length: 64 }, (_, i) => {
+            const k = Math.floor(i / 8), c = i % 8;
+            const x = (kk: number, cc: number) => 540 + ((cc - 4) / 4) * ROW_W(kk);
+            return <path key={i} d={`M${x(k, c)} ${ROW_Y(k)} H${x(k, c + 1)} L${x(k + 1, c + 1)} ${ROW_Y(k + 1)} H${x(k + 1, c)} Z`} fill={(k + c) % 2 ? '#2A2634' : '#8A8478'} stroke="#14121C" strokeWidth="2" />;
           })}
           <Piece x={160} y={1060} s={0.75} kind="rook" dark />
           <Piece x={330} y={1040} s={0.7} kind="king" dark />
@@ -91,10 +102,14 @@ export const Botola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               <circle cx="20" cy="-270" r="8" fill={K} />
             </g>
           </g>
-          {crash > 0 && crash < 1 && SHARDS.map((s, i) => (
-            <rect key={i} x={620 + s.vx * crash} y={1180 - s.vy * crash + 400 * crash * crash} width={s.s} height={s.s * 0.7} fill="#C9C2B0" stroke={K} strokeWidth="3" transform={`rotate(${s.rot * crash} ${620 + s.vx * crash} ${1180 - s.vy * crash + 400 * crash * crash})`} opacity={1 - crash * 0.6} />
-          ))}
-          {crash > 0 && <Glow id="bt-dust" x={620} y={1220} r={300} t={t} color="#C9C2B0" amp={0} opacity={0.4 * (1 - crash)} />}
+          {/* i pezzi di pietra volano e restano a terra (sopra la fascia dei sottotitoli), con una nube di polvere */}
+          {crash > 0 && SHARDS.map((s, i) => {
+            const e = Math.min(1, crash * 1.3);
+            const x = 620 + s.vx * e;
+            const y = Math.min(1240 - s.k * 30, 1160 - s.vy * e + 520 * e * e);
+            return <path key={i} d={`M0 0 L${s.s} ${s.s * 0.2} L${s.s * 0.8} ${s.s * 0.8} L${s.s * 0.1} ${s.s * 0.6} Z`} transform={`translate(${x} ${y}) rotate(${s.rot * e})`} fill={i % 3 ? '#C9C2B0' : '#A8A090'} stroke={K} strokeWidth="4" />;
+          })}
+          {crash > 0 && <Glow id="bt-dust" x={620} y={1180} r={260 + 200 * crash} t={t} color="#D8D0C0" amp={0} opacity={0.55 * (1 - 0.6 * crash)} />}
         </g>
         {/* liane che si attorcigliano in primo piano */}
         <g transform={L(1.25)}>
@@ -109,7 +124,7 @@ export const Botola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           ))}
         </g>
         <g transform={L(1.6)}>
-          <Dust t={t} top={{ y: 500, x0: 440, x1: 640 }} bottom={{ y: 1300, x0: 200, x1: 880 }} seed={6} n={24} color="#FFE8B8" boost={crash} />
+          <Dust t={t} top={{ y: 560, x0: 680, x1: 880 }} bottom={{ y: 1300, x0: 200, x1: 880 }} seed={6} n={24} color="#FFE8B8" boost={crash} />
           <NearMotes id="bt-near" t={t} color="#E8E2D0" n={5} y0={1300} opacity={0.07 + 0.03 * mod(t, 1)} />
         </g>
       </g>
