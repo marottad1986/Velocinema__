@@ -1,7 +1,7 @@
 import React from 'react';
 import { camera, eob, rng, seg } from '../../lib/anim';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
-import { Confetti, Glow, NearMotes, ShootingStar, Stars } from '../../lib/elements';
+import { Confetti, Glow, NearMotes, Stars } from '../../lib/elements';
 import type { SceneProps } from '../../types';
 import { FloatingCandle, K } from './Comuni';
 
@@ -35,7 +35,25 @@ export const Cappello: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
         <g transform={L(0.2)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="url(#cp-sky)" />
           <Stars t={t} seed={7} n={50} y={-100} h={1000} />
-          <ShootingStar id="cp-ss" t={t} at={cues[2] + 0.5} from={{ x: 900, y: 300 }} to={{ x: 500, y: 560 }} />
+          {/* stella cadente ben visibile nel cielo libero a destra del titolo */}
+          {(() => {
+            const p = seg(t, cues[2] + 0.5, cues[2] + 1.7);
+            if (p <= 0 || p >= 1) return null;
+            const hx = 1060 - 520 * p, hy = 280 + 360 * p;
+            return (
+              <g opacity={Math.sin(p * Math.PI)}>
+                <defs>
+                  <linearGradient id="cp-ssg" gradientUnits="userSpaceOnUse" x1={hx + 260} y1={hy - 180} x2={hx} y2={hy}>
+                    <stop offset="0" stopColor="#FFE8A8" stopOpacity="0" />
+                    <stop offset="1" stopColor="#FFFFFF" stopOpacity="1" />
+                  </linearGradient>
+                </defs>
+                <path d={`M${hx + 260} ${hy - 180} L${hx} ${hy}`} stroke="url(#cp-ssg)" strokeWidth="10" strokeLinecap="round" />
+                <Glow id="cp-ssh" x={hx} y={hy} r={70} t={t} color="#FFF4C8" amp={0} opacity={0.9} />
+                <circle cx={hx} cy={hy} r="9" fill="#FFFFFF" />
+              </g>
+            );
+          })()}
         </g>
         <g transform={L(0.35)}>{FAR.map((c, i) => <FloatingCandle key={i} x={c.x} y={c.y} s={c.s} t={t} ph={c.ph} />)}</g>
         {/* pareti con finestre gotiche e stendardi */}
@@ -44,8 +62,18 @@ export const Cappello: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
           {[-40, 260, 560, 860].map((x) => <path key={x} d={`M${x} 1200 V1020 Q${x + 60} 960 ${x + 120} 1020 V1200 Z`} fill="#3A4A7A" stroke={K} strokeWidth="6" opacity=".9" />)}
           {[120, 420, 720, 1020].map((x, i) => (
             <g key={x} transform={`translate(${x} 960)`}>
-              <path d={`M-50 0 H50 V${150 + 40 * (i % 2 ? 0 : pick)} L0 ${120 + 40 * (i % 2 ? 0 : pick)} L-50 ${150 + 40 * (i % 2 ? 0 : pick)} Z`} fill={i % 2 ? '#2A4A7A' : 'url(#cp-red)'} stroke={K} strokeWidth="5" />
-              <path d="M-50 24 H50" stroke={i % 2 ? '#B8C4D8' : P.accento} strokeWidth="6" />
+              {(() => {
+                // gli stendardi rossi e oro si srotolano fino a terra e ondeggiano; quelli blu restano fermi
+                const ext = i % 2 ? 0 : 150 * pick, wav = i % 2 ? 0 : Math.sin(t * 4 + i) * 10 * pick, wd = i % 2 ? 50 : 50 + 8 * pick;
+                return (
+                  <>
+                    {!(i % 2) && <Glow id={`cp-bg${i}`} x={0} y={120} r={160} t={t} color="#FFD27A" amp={0.1} rate={3} opacity={0.5 * pick} />}
+                    <path d={`M${-wd} 0 H${wd} V${150 + ext} L${wav} ${120 + ext} L${-wd} ${150 + ext} Z`} fill={i % 2 ? '#2A4A7A' : 'url(#cp-red)'} stroke={K} strokeWidth="5" />
+                    <path d={`M${-wd} 24 H${wd}`} stroke={i % 2 ? '#B8C4D8' : P.accento} strokeWidth="6" />
+                    {!(i % 2) && pick > 0 && <path d={`M${-wd} ${150 + ext - 10} L${wav} ${120 + ext - 10} L${wd} ${150 + ext - 10}`} stroke={P.accento} strokeWidth="6" fill="none" opacity={pick} />}
+                  </>
+                );
+              })()}
             </g>
           ))}
         </g>
