@@ -43,15 +43,17 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 0 — muro di mattoni e finestrella alta con il cielo di notte */}
         <g transform={L(0.25)}>
           <rect x="-200" y="-200" width="1480" height="1600" fill="url(#ct-wall)" />
-          <g opacity=".35">
+          <g opacity=".6">
             {BRICKS.map((b, i) => <rect key={i} x={b.x} y={b.y + 500} width="100" height="50" rx="4" fill={b.c > 0.5 ? '#4A3030' : '#3A2626'} />)}
           </g>
           <rect x="700" y="620" width="240" height="120" fill="url(#ct-night)" />
           <Stars t={t} seed={3} n={10} x={705} y={625} w={230} h={110} color="#E8E0F0" size={0.7} />
           {plane > 0 && plane < 1 && (
-            <g transform={`translate(${lerp(960, 680, plane)} ${lerp(700, 650, plane)})`}>
+            <g transform={`translate(${lerp(960, 680, plane)} ${lerp(700, 650, plane)}) scale(2)`}>
+              <path d="M24 2 L120 6" stroke="#E8E0F0" strokeWidth="2" opacity=".35" />
               <path d="M-20 0 H20 M0 -6 L-8 8 M0 6 L-8 -8" stroke="#E8E0F0" strokeWidth="3" />
-              <circle cx="20" cy="0" r="3" fill="#FF4A4A" opacity={Math.sin(t * 12) > 0 ? 1 : 0.2} />
+              <Glow id="ct-planeg" x={-20} y={0} r={14} t={t} color="#FF4A4A" amp={0.5} rate={12} opacity={0.8} />
+              <circle cx="-20" cy="0" r="3" fill="#FF4A4A" opacity={Math.sin(t * 12) > 0 ? 1 : 0.2} />
             </g>
           )}
           <rect x="700" y="620" width="240" height="120" fill="none" stroke={K} strokeWidth="10" />
@@ -88,7 +90,7 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues }) => {
           {/* lampadina appesa */}
           <g transform={`rotate(${sway} 540 520)`}>
             <path d="M540 520 V830" stroke={K} strokeWidth="4" />
-            <Glow id="ct-bulb" x={540} y={850} r={420} t={t} color="#FFD98A" amp={0.04} rate={2} opacity={0.55} />
+            <Glow id="ct-bulb" x={540} y={850} r={520} t={t} color="#FFD98A" amp={0.04} rate={2} opacity={0.75} />
             <circle cx="540" cy="850" r="20" fill="#FFF3CF" stroke={K} strokeWidth="4" />
           </g>
           {/* tavolo */}
@@ -104,8 +106,8 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues }) => {
             {[0, 1, 2, 3].map((i) => <circle key={i} cx={-160 + i * 26} cy="-48" r="6" fill={i === 1 ? ORANGE : '#8A8692'} />)}
           </g>
           {/* registratore a cassette */}
-          <g transform="translate(700 1060)">
-            <Glow id="ct-rec" x={104} y={-62} r={60} t={t} color="#FF4A3A" amp={0.2} rate={5} opacity={0.6 * rec} />
+          <g transform="translate(700 1112)">
+            <Glow id="ct-rec" x={57} y={-34} r={60} t={t} color="#FF4A3A" amp={0.2} rate={5} opacity={0.6 * rec} />
             <Mangianastri x={0} y={0} s={0.55} t={t} play={rec} />
           </g>
           {/* foglio con la riga della firma */}
@@ -116,11 +118,14 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <path d="M-70 8 H-10 M6 8 H62" stroke={K} strokeWidth="2" strokeDasharray="5 4" opacity={0.4 + 0.6 * sheet} />
             <path d="M-66 4 q10 -10 18 0 t18 -2 t16 2" stroke={ORANGE} strokeWidth="3" fill="none" opacity={name} />
           </g>
-          {/* sedie: una resta, l'altra si allontana */}
+          {/* sedie: una resta, l'altra si allontana ruotando */}
           {[[200, 0], [640, chair]].map(([x, k], i) => (
-            <g key={i} transform={`translate(${(x as number) + (k as number) * 120} 1300)`}>
-              <path d="M-50 0 V-150 M50 0 V-90 M-50 -90 H50 M-50 -150 H-40" stroke={K} strokeWidth="12" strokeLinecap="round" />
-              <path d="M-56 -96 H56" stroke="#7A5A3E" strokeWidth="14" strokeLinecap="round" />
+            <g key={i} transform={`translate(${(x as number) + (k as number) * 140} 1300) rotate(${(k as number) * 10})`}>
+              <path d="M-46 0 L-40 -110 M46 0 L40 -110 M-30 6 L-26 -96 M30 6 L26 -96" stroke={K} strokeWidth="10" strokeLinecap="round" />
+              <path d="M-56 -118 L56 -118 L46 -100 H-46 Z" fill="#7A5A3E" stroke={K} strokeWidth="6" strokeLinejoin="round" />
+              <path d="M-48 -118 L-52 -250 M48 -118 L52 -250" stroke={K} strokeWidth="10" strokeLinecap="round" />
+              <path d="M-54 -250 H54 V-200 H-54 Z" fill="#7A5A3E" stroke={K} strokeWidth="6" />
+              <path d="M-50 -246 H50" stroke="#C89A6A" strokeWidth="3" opacity=".6" />
             </g>
           ))}
           {/* valigia pronta */}
@@ -130,13 +135,20 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <path d="M-90 -80 H90" stroke="#5A2218" strokeWidth="6" />
             <rect x="-60" y="-120" width="40" height="28" rx="4" fill="#F4ECDD" stroke={K} strokeWidth="3" transform="rotate(-8 -40 -106)" />
           </g>
-          <Notes t={t - c2} x={700} y={1000} n={6} spread={300} rise={340} color={ORANGE} outline={K} size={0.85 * rec} speed={0.24} />
+          <Notes t={t - c2} x={700} y={1050} n={6} spread={300} rise={340} color={ORANGE} outline={K} size={0.85 * rec} speed={0.24} />
         </g>
 
         {/* PIANO 3 — scala di legno e cavi in primo piano */}
         <g transform={L(1.2)}>
-          <path d="M-200 1420 L180 2200 H-200 Z" fill="#2A1E16" stroke={K} strokeWidth="10" />
-          {[1500, 1620, 1740, 1860].map((y, i) => <path key={i} d={`M-200 ${y} L${-200 + (y - 1420) * 0.49} ${y}`} stroke="#5A4232" strokeWidth="10" />)}
+          <path d="M-200 1380 H-40 L260 1960 H-200 Z" fill="#2A1E16" stroke={K} strokeWidth="10" />
+          {[1460, 1580, 1700, 1820].map((y, i) => <path key={i} d={`M-200 ${y} L${-40 + (y - 1380) * 0.517} ${y}`} stroke="#5A4232" strokeWidth="14" />)}
+          <path d="M-40 1380 L260 1960" stroke="#7A5A3E" strokeWidth="6" />
+          {[[880, 1720, 260, 200, '#8A6A4A'], [1000, 1560, 200, 170, '#7A5A3E'], [800, 1600, 150, 130, '#9A7A54']].map(([x, y, w, h, c], i) => (
+            <g key={i}>
+              <rect x={x as number} y={y as number} width={w as number} height={h as number} fill={c as string} stroke={K} strokeWidth="8" />
+              <path d={`M${x} ${(y as number) + 30} H${(x as number) + (w as number)}`} stroke="#C8A070" strokeWidth="6" opacity=".6" />
+            </g>
+          ))}
           <path d="M480 1500 C600 1580 700 1480 900 1600 S1100 1700 1300 1640" stroke={K} strokeWidth="12" fill="none" />
           <path d="M480 1500 C600 1580 700 1480 900 1600 S1100 1700 1300 1640" stroke="#3A3036" strokeWidth="5" fill="none" />
         </g>

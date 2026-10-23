@@ -15,7 +15,7 @@ import { K, Mangianastri, Motorino, ORANGE, TINT_DAY } from './Comune';
 const r = rng(1995);
 const HOUSES = Array.from({ length: 16 }, (_, i) => ({ x: -180 + i * 92 + r() * 20, w: 70 + r() * 40, h: 70 + r() * 110, c: r() }));
 const WINDOWS = HOUSES.flatMap((h) => Array.from({ length: 3 }, (_, k) => ({ x: h.x + 14 + k * 20, y: 900 - h.h + 24 + (k % 2) * 30, d: r() }))).filter((w) => w.y < 880);
-const GRASS = Array.from({ length: 60 }, () => ({ x: -200 + r() * 1480, h: 30 + r() * 50, ph: r() * 6 }));
+const GRASS = Array.from({ length: 70 }, () => ({ x: -200 + r() * 1480, h: 150 + r() * 160, ph: r() * 6 }));
 
 export const Pavia: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const cam = camera(t, dur);
@@ -41,8 +41,8 @@ export const Pavia: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 0 — cielo al tramonto e sole basso (calmo in alto per il titolo) */}
         <g transform={L(0.2)}>
           <rect x="-200" y="-200" width="1480" height="1400" fill="url(#pv-sky)" />
-          <Glow id="pv-sun" x={760} y={880} r={lerp(420, 360, dusk)} t={t} color="#FFE0A0" amp={0.03} rate={1} opacity={0.7} />
-          <circle cx="760" cy={lerp(860, 900, dusk)} r="70" fill="#FFE8B0" opacity=".95" />
+          <Glow id="pv-sun" x={640} y={770} r={lerp(420, 360, dusk)} t={t} color="#FFE0A0" amp={0.03} rate={1} opacity={0.7} />
+          <circle cx="640" cy={lerp(750, 790, dusk)} r="62" fill="#FFE8B0" opacity=".95" />
           {[640, 700, 760].map((y, i) => (
             <path key={i} d={`M${-100 + mod(t * 8 + i * 300, 1400)} ${y} q60 -20 120 0 q60 -16 110 0`} fill="none" stroke="#FFD8B0" strokeWidth="8" opacity=".35" strokeLinecap="round" />
           ))}
@@ -72,9 +72,10 @@ export const Pavia: React.FC<SceneProps> = ({ t, dur, cues }) => {
             );
           })}
           {/* colonnine e tetto della copertura */}
-          {Array.from({ length: 24 }, (_, i) => <rect key={i} x={-190 + i * 62} y="880" width="10" height="52" fill="#3A1E1A" />)}
-          <path d="M-200 885 L-200 862 H1280 V885 Z" fill="url(#pv-roof)" stroke={K} strokeWidth="6" />
-          <path d="M-200 862 H1280" stroke="#C8805A" strokeWidth="4" opacity=".6" />
+          {Array.from({ length: 24 }, (_, i) => <rect key={i} x={-190 + i * 62} y="800" width="12" height="90" fill="#3A1E1A" stroke={K} strokeWidth="2" />)}
+          <path d="M-200 805 L-200 770 H1280 V805 Z" fill="url(#pv-roof)" stroke={K} strokeWidth="6" />
+          <path d="M-200 805 H1280" stroke="#2A1210" strokeWidth="8" />
+          <path d="M-200 770 H1280" stroke="#C8805A" strokeWidth="4" opacity=".6" />
           {/* cappella al centro del ponte */}
           <path d="M480 885 V820 L540 780 L600 820 V885 Z" fill="url(#pv-brick)" stroke={K} strokeWidth="7" strokeLinejoin="round" />
           <path d="M470 822 L540 772 L610 822" fill="none" stroke="#3A1A16" strokeWidth="10" strokeLinejoin="round" />
@@ -105,8 +106,15 @@ export const Pavia: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <g opacity={seg(t, c3, c3 + 0.4)}>
             <Gulls t={t - c3} seed={7} n={5} y={610} h={150} color={K} size={0.8} period={7} />
           </g>
-          <g stroke="#2A3A1E" strokeWidth="6" strokeLinecap="round">
-            {GRASS.map((g, i) => <path key={i} d={`M${g.x} 1700 q${4 + Math.sin(t * 1.2 + g.ph) * 8} ${-g.h / 2} ${Math.sin(t * 1.2 + g.ph) * 14} ${-g.h}`} fill="none" />)}
+          <path d="M-200 1700 Q300 1660 700 1690 Q1000 1700 1280 1680 V2200 H-200 Z" fill="#2E4424" />
+          {[[-60, 1], [1140, -1]].map(([x, k], i) => (
+            <g key={i} stroke="#3A5A2A" strokeWidth="12" strokeLinecap="round" fill="none">
+              {[0, 1, 2, 3, 4].map((j) => <path key={j} d={`M${x + k * j * 26} 1960 q${k * (20 + Math.sin(t + j) * 10)} -220 ${k * (40 + j * 8 + Math.sin(t * 1.1 + j) * 12)} ${-420 - j * 40}`} />)}
+              {[0, 2, 4].map((j) => <ellipse key={j} cx={x + k * (j * 26 + 40 + j * 8)} cy={1540 - j * 40} rx="10" ry="34" fill="#6A4A2A" stroke={K} strokeWidth="4" />)}
+            </g>
+          ))}
+          <g stroke="#6A8A40" strokeWidth="9" strokeLinecap="round">
+            {GRASS.map((g, i) => <path key={i} d={`M${g.x} 1940 q${4 + Math.sin(t * 1.2 + g.ph) * 8} ${-g.h / 2} ${Math.sin(t * 1.2 + g.ph) * 14} ${-g.h}`} fill="none" />)}
           </g>
         </g>
         <g transform={L(1.7)}>

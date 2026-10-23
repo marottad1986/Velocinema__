@@ -50,7 +50,9 @@ export const Significato: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <path d="M640 900 Q720 860 790 890 T940 880 V980 H640 Z" fill="#3A3A5A" opacity=".8" />
           <rect x="640" y="620" width="300" height="360" fill="none" stroke={K} strokeWidth="12" />
           <path d="M790 620 V980 M640 800 H940" stroke={K} strokeWidth="8" />
-          <path d={`M600 600 Q${620 + Math.sin(t) * 6} 800 ${630 + Math.sin(t) * 8} 1000 H580 V600 Z`} fill="#6A8AB0" stroke={K} strokeWidth="6" />
+          <path d="M600 604 H980" stroke={K} strokeWidth="10" strokeLinecap="round" />
+          <path d={`M600 610 H660 Q${650 + Math.sin(t) * 6} 800 ${662 + Math.sin(t) * 8} 1010 H594 Q588 800 600 610 Z`} fill="#6A8AB0" stroke={K} strokeWidth="6" strokeLinejoin="round" />
+          <path d={`M618 620 Q${614 + Math.sin(t) * 4} 800 ${620 + Math.sin(t) * 6} 1000 M640 620 Q${636 + Math.sin(t) * 4} 800 ${644 + Math.sin(t) * 6} 1000`} stroke="#4A6A90" strokeWidth="4" fill="none" />
         </g>
 
         {/* PIANO 1 — filo con le fotografie che sbiadiscono, poster */}
@@ -70,7 +72,7 @@ export const Significato: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <g transform="translate(140 860) rotate(-4)">
             <rect x="-80" y="-60" width="160" height="120" fill="#2F6EA6" stroke={K} strokeWidth="6" />
             <circle cx="-20" cy="0" r="30" fill="#F4ECDD" opacity=".7" />
-            <path d="M20 -30 L60 40 M20 40 L60 -30" stroke="#F2A23A" strokeWidth="8" />
+            <path d="M20 -30 L60 40 M20 40 L60 -30" stroke="#F4ECDD" strokeWidth="8" />
           </g>
         </g>
 
@@ -108,6 +110,7 @@ export const Significato: React.FC<SceneProps> = ({ t, dur, cues }) => {
         <g transform={L(1.2)}>
           <path d="M-200 1480 H360 Q400 1480 400 1520 V2200 H-200 Z" fill="#3A5A8A" stroke={K} strokeWidth="10" />
           <path d="M-200 1540 H380" stroke="#5A7AB0" strokeWidth="8" />
+          <path d="M120 1500 Q240 1470 340 1500 Q350 1560 320 1590 Q220 1600 130 1580 Q110 1540 120 1500 Z" fill="#E8E4EC" stroke={K} strokeWidth="7" />
           <path d="M-200 1600 Q100 1640 380 1600" stroke="#2A4A70" strokeWidth="6" fill="none" />
           {[720, 880].map((x, i) => (
             <g key={i} transform={`translate(${x} 1720) rotate(${i ? 8 : -6})`}>

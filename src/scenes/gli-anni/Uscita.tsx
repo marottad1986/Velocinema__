@@ -48,6 +48,7 @@ export const Uscita: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 1 — facciata del negozio, tenda a strisce, vetrina con l'interno */}
         <g transform={L(0.45)}>
+          <g transform="translate(0 40)">
           <rect x="60" y="600" width="960" height="640" fill="#3A2A2A" stroke={K} strokeWidth="9" />
           <rect x="100" y="680" width="880" height="500" fill="url(#us-shop)" opacity={0.35 + 0.65 * on} />
           <Glow id="us-in" x={540} y={930} r={560} t={t} color="#FFD9A0" amp={0.03} rate={1.4} opacity={0.35 * on} />
@@ -101,7 +102,7 @@ export const Uscita: React.FC<SceneProps> = ({ t, dur, cues }) => {
           {/* bancone con la torta del 25 */}
           <rect x="250" y="1080" width="300" height="100" fill="#6A4A32" stroke={K} strokeWidth="7" />
           <g transform="translate(400 1080)">
-            <Glow id="us-cake" x={0} y={-90} r={170} t={t} color="#FFD27A" amp={0.12} rate={7} opacity={0.6 * candles} />
+            <Glow id="us-cake" x={0} y={-110} r={200} t={t} color={ORANGE} amp={0.12} rate={7} opacity={0.95 * candles} />
             <rect x="-80" y="-56" width="160" height="56" rx="10" fill="#F4D8E0" stroke={K} strokeWidth="6" />
             <path d="M-80 -40 q20 14 40 0 t40 0 t40 0 t40 0" fill="none" stroke="#E86A8A" strokeWidth="6" />
             <text x="-22" y="-62" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="56" fill="#F2A23A" stroke={K} strokeWidth="3">2</text>
@@ -112,14 +113,17 @@ export const Uscita: React.FC<SceneProps> = ({ t, dur, cues }) => {
           </g>
           {/* vetro, riflesso e insegna del bar riflessa */}
           <rect x="100" y="680" width="880" height="500" fill="url(#us-glass)" />
-          <g opacity={0.55 * seg(t, c4, c4 + 0.6)} transform="translate(0 0)">
-            <Neon id="us-bar" t={t} x={820} y={1150} text="BAR" color="#7AE0FF" font={SANS} size={90} onAt={c4} />
+          <g opacity={seg(t, c4, c4 + 0.6)}>
+            <path d="M560 1180 L700 960 H980 V1180 Z" fill="#14121C" opacity=".55" />
+            <Glow id="us-barg" x={820} y={1120} r={200} t={t} color="#FF6A8A" amp={0.08} rate={3} opacity={0.6} />
+            <Neon id="us-bar" t={t} x={820} y={1150} text="BAR" color="#FF6A8A" font={SANS} size={90} onAt={c4} />
           </g>
           <rect x="100" y="680" width="880" height="500" fill="none" stroke={K} strokeWidth="12" />
           <path d="M540 680 V1180" stroke={K} strokeWidth="8" />
           {/* tenda a strisce */}
           <path d={`M30 600 H1050 L1010 ${676 + Math.sin(t * 1.2) * 3} H70 Z`} fill="url(#us-awn)" stroke={K} strokeWidth="8" strokeLinejoin="round" />
           {Array.from({ length: 9 }, (_, i) => <path key={i} d={`M${120 + i * 110} 600 L${116 + i * 104} 676`} stroke="#F4ECDD" strokeWidth="26" opacity=".85" />)}
+          </g>
         </g>
 
         {/* PIANO 2 — marciapiede e lampione */}
@@ -127,19 +131,29 @@ export const Uscita: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <rect x="-200" y="1240" width="1480" height="800" fill="url(#us-walk)" />
           <path d="M-200 1240 H1280" stroke={K} strokeWidth="8" />
           <Reflection t={t} x={540} y={1260} color="#FFD9A0" n={7} w={260} gap={22} opacity={0.35 * on} />
-          <g transform="translate(-20 1250)">
-            <path d="M0 0 V-640 Q0 -680 60 -680" stroke={K} strokeWidth="14" fill="none" />
-            <Glow id="us-lamp" x={70} y={-668} r={160} t={t} color="#FFE7A0" amp={0.04} rate={2} opacity={0.6} />
-            <path d="M40 -684 H100 L90 -660 H50 Z" fill="#3A3448" stroke={K} strokeWidth="5" />
+          <g transform="translate(40 1250)">
+            <path d="M0 0 V-540 Q0 -580 60 -580" stroke={K} strokeWidth="14" fill="none" />
+            <Glow id="us-lamp" x={70} y={-568} r={160} t={t} color="#FFE7A0" amp={0.04} rate={2} opacity={0.6} />
+            <path d="M40 -584 H100 L90 -560 H50 Z" fill="#3A3448" stroke={K} strokeWidth="5" />
+            {[0, 1, 2, 3, 4].map((i) => <circle key={i} cx={70 + Math.sin(t * (3 + i) + i * 2) * 50} cy={-540 + Math.cos(t * (2.4 + i) + i) * 40} r="3.5" fill="#FFF3CF" opacity=".8" />)}
           </g>
         </g>
 
-        {/* PIANO 3 — bordo del marciapiede e pozzanghere vicine */}
+        {/* PIANO 3 — bordo del marciapiede in rilievo, pozzanghera con il riflesso, portabici e cestino */}
         <g transform={L(1.2)}>
           <path d="M-200 1560 H1280 V2200 H-200 Z" fill="#100E16" />
-          <path d="M-200 1560 H1280" stroke="#4A4858" strokeWidth="12" />
-          <ellipse cx="300" cy="1680" rx="220" ry="30" fill="#2A2840" />
-          <ellipse cx="300" cy="1680" rx="200" ry="22" fill="#FFD9A0" opacity={0.12 * on + 0.06 * Math.sin(t * 2)} />
+          <path d="M-200 1540 H1280 V1580 H-200 Z" fill="#5A5868" stroke={K} strokeWidth="8" />
+          <path d="M-200 1546 H1280" stroke="#9A98A8" strokeWidth="4" opacity=".6" />
+          <ellipse cx="460" cy="1720" rx="300" ry="46" fill="#2A2840" />
+          <Reflection t={t} x={460} y={1690} color="#FFD9A0" n={4} w={220} gap={16} opacity={0.35 * on} />
+          <g stroke={K} strokeWidth="12" fill="none">
+            {[0, 1, 2].map((i) => <path key={i} d={`M${-80 + i * 70} 1700 V1600 Q${-80 + i * 70} 1560 ${-40 + i * 70} 1560 Q${0 + i * 70} 1560 ${0 + i * 70} 1600 V1700`} stroke="#8A8698" />)}
+          </g>
+          <g transform="translate(1010 1760)">
+            <path d="M-80 0 L-66 -200 H66 L80 0 Z" fill="#3A5A4A" stroke={K} strokeWidth="9" strokeLinejoin="round" />
+            <path d="M-90 -200 H90" stroke={K} strokeWidth="14" />
+            {[-40, 0, 40].map((x) => <path key={x} d={`M${x} -180 V-20`} stroke="#2A4A3A" strokeWidth="6" />)}
+          </g>
         </g>
         <g transform={L(1.7)}>
           <NearMotes id="us-near" t={t} color="#FFE2C0" opacity={0.07} />

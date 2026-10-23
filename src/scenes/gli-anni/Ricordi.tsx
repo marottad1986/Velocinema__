@@ -1,7 +1,7 @@
 import React from 'react';
 import { camera, eo, eob, lerp, mod, rng, seg } from '../../lib/anim';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
-import { Fireflies, Glow, NearMotes, Smoke, Stars } from '../../lib/elements';
+import { Fireflies, Glow, NearMotes, ShootingStar, Smoke, Stars } from '../../lib/elements';
 import type { SceneProps } from '../../types';
 import { K, Motorino, ORANGE, TINT_DAY } from './Comune';
 
@@ -32,6 +32,7 @@ export const Ricordi: React.FC<SceneProps> = ({ t, dur, cues }) => {
         <Lin id="ri-wall" stops={[[0, '#2A2024'], [0.5, '#3E2E2E'], [1, '#2A1E1C']]} />
         <Lin id="ri-floor" stops={[[0, '#5A4A40'], [1, '#1E1814']]} />
         <Lin id="ri-yard" stops={[[0, '#6A6A3A'], [1, '#3A3A22']]} />
+        <Lin id="ri-night" stops={[[0, '#0E1030'], [0.6, '#1E2250'], [1, '#3A2A5A']]} />
         <Lin id="ri-tv" stops={[[0, '#7AD0FF'], [0.3, '#F2A23A'], [0.6, '#E86A8A'], [1, '#7AD06A']]} />
       </defs>
 
@@ -39,8 +40,10 @@ export const Ricordi: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 0 — cielo al tramonto che alla fine si apre di stelle (calmo in alto per il titolo) */}
         <g transform={L(0.25)}>
           <rect x="-200" y="-200" width="1480" height="1500" fill="url(#ri-sky)" />
-          <g opacity={0.3 + 0.7 * sky}>
-            <Stars t={t} seed={44} n={50} y={-100} h={900} color="#FFF3E0" size={1} appear={0} />
+          <rect x="-200" y="-200" width="1480" height="1500" fill="url(#ri-night)" opacity={0.9 * sky} />
+          <g opacity={sky}>
+            <Stars t={t} seed={44} n={40} x={160} y={600} w={760} h={330} color="#FFF3E0" size={1.8} />
+            <ShootingStar id="ri-shoot" t={t} at={c4 + 1} from={{ x: 860, y: 620 }} to={{ x: 300, y: 820 }} color="#FFF3E0" />
           </g>
           <Glow id="ri-sun" x={540} y={1000} r={lerp(380, 520, sky)} t={t} color="#FFD890" amp={0.03} rate={1} opacity={0.6} />
           <rect x="-200" y="1010" width="1480" height="300" fill="url(#ri-yard)" />
@@ -74,8 +77,8 @@ export const Ricordi: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <path d="M-40 40 L0 -60 L40 40 Z" fill="#F4ECDD" opacity=".85" />
           </g>
           {/* scaffale con il salvadanaio */}
-          <path d="M930 960 H1100" stroke="#6A4A32" strokeWidth="12" />
-          <g transform="translate(1000 950)">
+          <path d="M860 960 H1100" stroke="#6A4A32" strokeWidth="12" />
+          <g transform="translate(930 950)">
             <Glow id="ri-pig" x={0} y={-30} r={130} t={t} color={ORANGE} amp={0.1} rate={3} opacity={0.6 * piggy} />
             <ellipse cx="0" cy="-34" rx="48" ry="34" fill="#F2A0B8" stroke={K} strokeWidth="6" />
             <path d="M-20 -66 h24" stroke={K} strokeWidth="5" />
@@ -90,7 +93,7 @@ export const Ricordi: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 3 — motorino e televisione su una cassetta */}
         <g transform={L(0.75)}>
-          <Motorino id="ri-moto" x={420} y={1250} s={1.0} t={t} light={lamp} color="#C8303A" />
+          <Motorino id="ri-moto" x={420} y={1250} s={1.0} t={t} light={lamp} />
           <g opacity={lamp}><Smoke id="ri-smoke" t={t} x={200} y={1170} color="#D8D0C8" n={6} rise={140} wind={-200} r0={20} r1={70} speed={0.5} opacity={0.6} /></g>
           <g transform="translate(790 1170)">
             <rect x="-90" y="0" width="180" height="90" fill="#8A6A44" stroke={K} strokeWidth="7" />
@@ -110,10 +113,22 @@ export const Ricordi: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 4 — cornice della porta del garage (saracinesca alzata) e attrezzi */}
         <g transform={L(1.2)}>
-          <path d="M-200 -200 H1280 V600 H-200 Z" fill="#1E1618" stroke={K} strokeWidth="10" />
-          {[480, 520, 560].map((y) => <path key={y} d={`M-200 ${y} H1280`} stroke="#3A2E30" strokeWidth="6" />)}
-          <path d="M-200 600 H1280" stroke="#6A5A50" strokeWidth="6" />
+          <path d="M-200 -200 H1280 V620 H-200 Z" fill="#1E1618" stroke={K} strokeWidth="10" />
+          <path d="M-200 620 H1280" stroke="#6A5A50" strokeWidth="6" />
           <path d="M-200 600 H-40 V2200 H-200 Z M1280 600 H1120 V2200 H1280 Z" fill="#1E1618" stroke={K} strokeWidth="10" />
+          <ellipse cx="560" cy="1640" rx="160" ry="26" fill="#0E0A0A" opacity=".5" />
+          <ellipse cx="300" cy="1760" rx="90" ry="16" fill="#0E0A0A" opacity=".45" />
+          <ellipse cx="560" cy="1636" rx="60" ry="8" fill="#9AD8FF" opacity={0.12 + 0.1 * tv} />
+          <g transform="translate(960 1720)">
+            <rect x="-150" y="-150" width="300" height="160" fill="#8A3A2A" stroke={K} strokeWidth="9" />
+            <path d="M-150 -100 H150 M-50 -150 V10 M50 -150 V10" stroke="#5A2218" strokeWidth="6" />
+            {[-100, 0, 100].map((x) => <g key={x}><rect x={x - 16} y="-240" width="32" height="100" rx="8" fill="#3A7A4A" stroke={K} strokeWidth="5" /><rect x={x - 8} y="-262" width="16" height="26" fill="#3A7A4A" stroke={K} strokeWidth="4" /></g>)}
+          </g>
+          <g transform="translate(150 1820)">
+            <path d="M-90 0 V-150 Q-90 -170 -70 -170 H70 Q90 -170 90 -150 V0 Z" fill="#C8303A" stroke={K} strokeWidth="9" />
+            <path d="M-30 -170 V-210 H30 V-170" fill="none" stroke={K} strokeWidth="10" />
+            <path d="M-60 -130 L60 -40" stroke="#E86A6A" strokeWidth="8" opacity=".6" />
+          </g>
           <g transform="translate(-60 1500) rotate(-20)">
             <path d="M0 0 V300" stroke="#6A4A32" strokeWidth="14" />
             <path d="M-30 300 H30 L20 360 H-20 Z" fill="#8A8692" stroke={K} strokeWidth="5" />

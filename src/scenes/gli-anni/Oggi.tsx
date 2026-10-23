@@ -18,7 +18,7 @@ import { K, ORANGE, TINT_NIGHT } from './Comune';
 const r = rng(2021);
 const PHONES = Array.from({ length: 260 }, () => ({ x: -180 + r() * 1440, y: 760 + r() * 300, d: r(), ph: r() * 6 }));
 const NEAR = Array.from({ length: 60 }, () => ({ x: -180 + r() * 1440, y: 1100 + r() * 160, d: r(), ph: r() * 6 }));
-const FLOWERS = Array.from({ length: 18 }, (_, i) => ({ x: 400 + i * 16 + r() * 10, y: 960 + r() * 20, c: ['#E0303A', '#F2A23A', '#F4ECDD', '#E86A8A'][i % 4] }));
+const FLOWERS = Array.from({ length: 12 }, (_, i) => ({ c: ['#E0303A', '#F2A23A', '#F4ECDD', '#E86A8A'][i % 4] }));
 
 export const Oggi: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const cam = camera(t, dur);
@@ -50,15 +50,20 @@ export const Oggi: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 1 — tribuna di fronte con le luci dei telefoni e le torri dei fari */}
         <g transform={L(0.35)}>
           <path d="M-200 740 Q540 690 1280 740 V1080 H-200 Z" fill="url(#og-stand)" />
-          {[-60, 1140].map((x, i) => (
-            <g key={i}>
-              <path d={`M${x} 1060 V620`} stroke="#2A2840" strokeWidth="14" />
-              <rect x={x - 70} y="580" width="140" height="60" rx="6" fill="#2A2840" stroke={K} strokeWidth="5" />
-              <Glow id={`og-tower${i}`} x={x} y={610} r={260} t={t} color="#E8F0FF" amp={0.03} rate={1} opacity={0.6 * crowd(0) * (1 - 0.6 * dim)} />
-            </g>
-          ))}
+          <path d="M-200 700 Q540 650 1280 700 V730 Q540 680 -200 730 Z" fill="#2A2840" stroke={K} strokeWidth="5" />
+          {Array.from({ length: 7 }, (_, i) => <path key={i} d={`M-200 ${780 + i * 44} Q540 ${736 + i * 46} 1280 ${780 + i * 44}`} stroke="#2A2840" strokeWidth="4" fill="none" />)}
           {PHONES.map((p, i) => (
-            <circle key={i} cx={p.x} cy={p.y} r={2.5 + p.d * 2} fill="#F4F8FF" opacity={crowd(p.d) * (0.4 + 0.6 * (0.5 + 0.5 * Math.sin(t * 2 + p.ph))) * (1 - 0.7 * dim)} />
+            <rect key={i} x={p.x} y={p.y} width="3.5" height="6" rx="1" fill="#FFF0D0" opacity={crowd(p.d) * (0.45 + 0.55 * (0.5 + 0.5 * Math.sin(t * 2 + p.ph))) * (1 - 0.7 * dim)} />
+          ))}
+          {[90, 990].map((x, i) => (
+            <g key={i}>
+              <path d={`M${x} 1060 V700`} stroke="#2A2840" strokeWidth="16" />
+              <path d={`M${x - 20} 1060 L${x} 760 L${x + 20} 1060`} stroke="#2A2840" strokeWidth="6" fill="none" />
+              <rect x={x - 80} y="650" width="160" height="70" rx="6" fill="#2A2840" stroke={K} strokeWidth="5" />
+              {Array.from({ length: 8 }, (_, k) => <circle key={k} cx={x - 60 + (k % 4) * 40} cy={670 + Math.floor(k / 4) * 30} r="10" fill="#F4F8FF" opacity={0.25 + 0.75 * crowd(0) * (1 - 0.6 * dim)} />)}
+              <Glow id={`og-tower${i}`} x={x} y={685} r={220} t={t} color="#E8F0FF" amp={0.03} rate={1} opacity={0.6 * crowd(0) * (1 - 0.6 * dim)} />
+              <Beam id={`og-tb${i}`} x={x} y={700} t={t} length={520} spread={260} angle={i ? 120 : 60} color="#E8F0FF" opacity={0.18 * crowd(0) * (1 - 0.6 * dim)} />
+            </g>
           ))}
         </g>
 
@@ -71,8 +76,16 @@ export const Oggi: React.FC<SceneProps> = ({ t, dur, cues }) => {
           {[-1, 1].map((k) => (
             <Beam key={k} id={`og-sb${k}`} x={540 + k * 150} y={845} t={t} length={500} spread={160} angle={90 + k * 25} sweep={10} sweepRate={0.8 + k * 0.1} color={k > 0 ? '#9AD8FF' : '#FFB8D8'} opacity={0.35 * stage * (1 - 0.6 * dim)} />
           ))}
-          {FLOWERS.map((f, i) => (
-            <circle key={i} cx={f.x + 14} cy={f.y - 10} r={9} fill={f.c} stroke={K} strokeWidth="2" opacity={stage} />
+          {[400, 480, 600, 680].map((x, i) => (
+            <g key={i} transform={`translate(${x} 990)`} opacity={0.3 + 0.7 * stage}>
+              <path d="M-14 0 L-10 -24 H10 L14 0 Z" fill="#C8B8A8" stroke={K} strokeWidth="3" />
+              {[-12, 0, 12].map((dx, j) => (
+                <g key={j}>
+                  <path d={`M0 -24 L${dx} -46`} stroke="#3A6A2E" strokeWidth="3" />
+                  <circle cx={dx} cy={-50} r="8" fill={FLOWERS[(i * 3 + j) % FLOWERS.length].c} stroke={K} strokeWidth="2" />
+                </g>
+              ))}
+            </g>
           ))}
         </g>
 
@@ -95,8 +108,10 @@ export const Oggi: React.FC<SceneProps> = ({ t, dur, cues }) => {
           {[1290, 1250].map((y, i) => <path key={i} d={`M-200 ${y - 40 * i} H1280`} stroke="#3A3648" strokeWidth="5" opacity={i ? 0.7 : 0} />)}
           {Array.from({ length: 8 }, (_, i) => (
             <g key={i} transform={`translate(${-140 + i * 170} 1420)`}>
-              <path d="M-60 0 Q-60 -90 0 -96 Q60 -90 60 0 Z" fill="#2F6EA6" stroke={K} strokeWidth="7" />
-              <path d="M-66 0 H66 V24 H-66 Z" fill="#245A8A" stroke={K} strokeWidth="6" />
+              <path d="M-56 -30 L-50 -120 Q0 -134 50 -120 L56 -30 Z" fill="#2F6EA6" stroke={K} strokeWidth="7" strokeLinejoin="round" />
+              <path d="M-40 -110 Q0 -122 40 -110" stroke="#6AA0D8" strokeWidth="5" fill="none" opacity=".6" />
+              <path d="M-62 -30 H62 L54 0 H-54 Z" fill="#245A8A" stroke={K} strokeWidth="6" strokeLinejoin="round" />
+              <path d="M-40 0 V30 M40 0 V30" stroke={K} strokeWidth="8" />
             </g>
           ))}
           {/* disco generico sul seggiolino */}
@@ -109,7 +124,8 @@ export const Oggi: React.FC<SceneProps> = ({ t, dur, cues }) => {
           </g>
           {/* insegna del bar che resta accesa */}
           <g transform="translate(880 1230)">
-            <rect x="-120" y="-70" width="240" height="96" rx="12" fill="#1A1220" stroke={K} strokeWidth="7" opacity={0.3 + 0.7 * bar} />
+            <path d="M0 26 V200" stroke={K} strokeWidth="14" opacity={bar} />
+            <rect x="-120" y="-70" width="240" height="96" rx="12" fill="#1A1220" stroke={K} strokeWidth="7" opacity={bar} />
             <g opacity={bar}>
               <Neon id="og-bar" t={t} x={0} y={0} text="BAR" color={ORANGE} font={SANS} size={64} onAt={c3 + 0.4} />
             </g>
@@ -119,9 +135,10 @@ export const Oggi: React.FC<SceneProps> = ({ t, dur, cues }) => {
         <g transform={L(1.35)}>
           {Array.from({ length: 5 }, (_, i) => (
             <g key={i} transform={`translate(${-100 + i * 300} 1760)`}>
-              <path d="M-110 0 Q-110 -170 0 -180 Q110 -170 110 0 Z" fill="#245A8A" stroke={K} strokeWidth="10" />
-              <path d="M-90 -120 Q-60 -160 0 -164" stroke="#6AA0D8" strokeWidth="6" fill="none" opacity=".5" />
-              <path d="M-120 0 H120 V44 H-120 Z" fill="#1E4A72" stroke={K} strokeWidth="9" />
+              <path d="M-100 -60 L-90 -230 Q0 -254 90 -230 L100 -60 Z" fill="#245A8A" stroke={K} strokeWidth="10" strokeLinejoin="round" />
+              <path d="M-70 -214 Q0 -232 70 -214" stroke="#6AA0D8" strokeWidth="6" fill="none" opacity=".5" />
+              <path d="M-112 -60 H112 L98 0 H-98 Z" fill="#1E4A72" stroke={K} strokeWidth="9" strokeLinejoin="round" />
+              <path d="M-70 0 V60 M70 0 V60" stroke={K} strokeWidth="14" />
             </g>
           ))}
         </g>

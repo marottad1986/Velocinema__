@@ -72,7 +72,7 @@ export const Amici: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 2 — auto da sposi con i nastri, panchina e passeggino */}
         <g transform={L(0.6)}>
           <rect x="-200" y="1090" width="1480" height="900" fill="url(#am-pave)" />
-          <g transform="translate(110 1110)">
+          <g transform="translate(230 1110)">
             <path d="M0 0 V-340" stroke={K} strokeWidth="12" />
             <Glow id="am-sign" x={0} y={-300} r={170} t={t} color={ORANGE} amp={0.1} rate={3} opacity={0.6 * sign} />
             <path d="M0 -340 H130 L160 -310 L130 -280 H0 Z" fill={sign > 0.3 ? ORANGE : '#C8B8A8'} stroke={K} strokeWidth="6" strokeLinejoin="round" />
@@ -92,6 +92,18 @@ export const Amici: React.FC<SceneProps> = ({ t, dur, cues }) => {
             {/* nastri bianchi dal cofano allo specchietto */}
             <path d="M210 -60 Q150 -110 100 -90 M210 -60 Q160 -40 120 -80" stroke="#F4ECDD" strokeWidth="6" fill="none" />
             <circle cx="208" cy="-60" r="14" fill="#F4ECDD" stroke={K} strokeWidth="4" />
+            {/* grande fiocco sul cofano, nastri sulle portiere, barattoli dietro */}
+            <g transform="translate(150 -92)">
+              <path d="M0 0 L-46 -30 L-46 30 Z M0 0 L46 -30 L46 30 Z" fill="#F4D8E0" stroke={K} strokeWidth="5" strokeLinejoin="round" />
+              <circle r="12" fill="#E86A8A" stroke={K} strokeWidth="4" />
+            </g>
+            <path d="M-100 -60 Q0 -40 110 -66" stroke="#F4D8E0" strokeWidth="8" fill="none" />
+            {[0, 1, 2].map((i) => (
+              <g key={i} transform={`translate(${-300 - i * 40 + Math.sin(t * 6 + i) * 4} ${-6 + (i % 2) * 8})`}>
+                <path d={`M${i * 40 + 90} -24 L30 -4`} stroke="#C8C4CC" strokeWidth="2" />
+                <rect x="14" y="-18" width="26" height="30" rx="3" fill="#B8B4BC" stroke={K} strokeWidth="4" />
+              </g>
+            ))}
             <path d={`M-210 -40 q-30 ${20 + Math.sin(t * 3) * 6} -60 ${30 + Math.sin(t * 3 + 1) * 8} M-210 -30 q-24 ${30 + Math.sin(t * 3 + 2) * 6} -40 ${50}`} stroke="#F4ECDD" strokeWidth="4" fill="none" />
           </g>
           {/* panchina e passeggino */}
@@ -99,7 +111,7 @@ export const Amici: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <path d="M-120 -40 H120 M-120 -70 H120 M-110 -40 V0 M110 -40 V0" stroke="#6A4A32" strokeWidth="14" strokeLinecap="round" />
             <path d="M-120 -40 H120" stroke={K} strokeWidth="4" />
           </g>
-          <g transform="translate(980 1230)">
+          <g transform="translate(900 1236)">
             <path d="M-60 -120 Q-60 -40 0 -40 H60 V-90 Q60 -130 0 -130 Z" fill="#4A7AB0" stroke={K} strokeWidth="7" strokeLinejoin="round" />
             <path d="M-60 -120 Q-20 -170 50 -130" fill="#2F5A8A" stroke={K} strokeWidth="7" />
             <path d="M60 -90 L100 -150 H120" stroke={K} strokeWidth="7" fill="none" />

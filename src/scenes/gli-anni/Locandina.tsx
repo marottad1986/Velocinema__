@@ -65,13 +65,18 @@ const Strada: React.FC<{ id: string; t: number; dur: number; night?: boolean }> 
           <Motorino id={`${id}-moto`} x={300} y={1300} s={0.85} t={t} light={night ? 0 : 0.6} />
         </g>
         <g transform={L(1.2)}>
-          <g transform="translate(70 1600)">
-            <path d="M0 0 V-900 Q0 -950 70 -950" stroke={K} strokeWidth="18" fill="none" />
-            <path d="M40 -956 H110 L98 -926 H52 Z" fill="#3A3448" stroke={K} strokeWidth="6" />
-            <Glow id={`${id}-lamp`} x={75} y={-930} r={night ? 260 : 120} t={t} color="#FFE7A0" amp={0.05} rate={2} opacity={night ? 0.8 : 0.3} />
+          <g transform="translate(200 1600)">
+            <path d="M0 0 V-830 Q0 -880 70 -880" stroke={K} strokeWidth="18" fill="none" />
+            <path d="M40 -886 H110 L98 -856 H52 Z" fill="#3A3448" stroke={K} strokeWidth="6" />
+            <Glow id={`${id}-lamp`} x={75} y={-860} r={night ? 260 : 120} t={t} color="#FFE7A0" amp={0.05} rate={2} opacity={night ? 0.8 : 0.3} />
           </g>
           <path d="M-200 1620 H1280 V2200 H-200 Z" fill="#1E1A20" />
-          <path d="M-200 1620 H1280" stroke="#5A5460" strokeWidth="12" />
+          <path d="M-200 1600 H1280 V1640 H-200 Z" fill="#5A5460" stroke={K} strokeWidth="8" />
+          <path d="M-200 1606 H1280" stroke="#9A98A8" strokeWidth="4" opacity=".6" />
+          {[0, 1, 2, 3].map((i) => <rect key={i} x={-100 + i * 380} y="1800" width="200" height="22" fill="#E8E0D0" opacity=".5" />)}
+          <ellipse cx="700" cy="1730" rx="260" ry="40" fill="#14121C" />
+          <ellipse cx="700" cy="1730" rx="220" ry="26" fill={ORANGE} opacity={0.18 + 0.06 * Math.sin(t * 3)} />
+          <g transform="translate(1000 1640)"><path d="M0 0 V-170" stroke={K} strokeWidth="18" /><path d="M0 -170 V-30" stroke="#C8303A" strokeWidth="8" /></g>
         </g>
         {!night && <g transform={L(1.3)}><Gulls t={t} seed={5} n={4} y={640} h={160} color={K} size={0.8} period={6} /></g>}
         <g transform={L(1.6)}><NearMotes id={`${id}-near`} t={t} color="#FFE0B0" n={6} vx={-30} vy={-6} opacity={0.08} /></g>
@@ -97,7 +102,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
         <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.accento, opacity: tag, textShadow: `0 2px 0 ${P.scuro}` }}>CANZONI SPIEGATE</p>
         <h1 style={{ margin: '6px 0 0', fontFamily: PACIFICO, fontWeight: 400, fontSize: 168, lineHeight: 1.15, color: P.chiaro, textShadow: neonShadow(P.accento),
           opacity: flick * seg(t, 0.15, 0.4), transform: `translateY(${(1 - l1) * 40}px)` }}>Gli anni</h1>
-        <p style={{ margin: '34px 0 0', fontSize: 40, fontWeight: 800, opacity: by, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>una canzone degli {film.regista} · {film.anno}</p>
+        <p style={{ margin: '70px 0 0', fontSize: 40, fontWeight: 800, opacity: by, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>una canzone degli {film.regista} · {film.anno}</p>
       </div>
       <p style={{ position: 'absolute', left: 60, right: 60, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 960, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 40, fontWeight: 800, textAlign: 'center',

@@ -4,7 +4,7 @@ import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Beam, Dust, Glow, NearMotes, Neon, Notes, Wisps } from '../../lib/elements';
 import { SANS } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
-import { Jukebox, K, Motorino, ORANGE, TINT_DAY } from './Comune';
+import { Jukebox, K, ORANGE, TINT_DAY } from './Comune';
 
 // Il ritorno al bar: interno di un vecchio bar di provincia. Bancone, macchina del caffè che fuma, scaffale di
 // bottiglie, jukebox, flipper, vetrina con l'insegna al neon e un motorino fuori; un calendario sul muro.
@@ -68,11 +68,13 @@ export const Bar: React.FC<SceneProps> = ({ t, dur, cues }) => {
           </g>
         </g>
 
-        {/* PIANO 1 — vetrina sulla strada con l'insegna e il motorino */}
+        {/* PIANO 1 — vetrina sulla strada con l'insegna e il lampione */}
         <g transform={L(0.35)}>
           <rect x="-10" y="620" width="300" height="460" fill="url(#ba-street)" />
           <rect x="-10" y="980" width="300" height="100" fill="#8A6A5A" />
-          <Motorino id="ba-moto" x={150} y={1060} s={0.55} t={t} light={0} helmet={false} />
+          {/* lampione e marciapiede oltre la vetrina */}
+          <path d="M60 1080 V760 Q60 730 90 730" stroke="#5A4A4A" strokeWidth="8" fill="none" />
+          <circle cx="96" cy="736" r="10" fill="#FFF3CF" opacity=".8" />
           <rect x="-10" y="620" width="300" height="460" fill="none" stroke={K} strokeWidth="12" />
           <path d="M140 620 V700" stroke={K} strokeWidth="8" />
           <Neon id="ba-neon" t={t} x={140} y={770} text="BAR" color="#FF6A8A" font={SANS} size={80} onAt={-1} />
@@ -82,7 +84,15 @@ export const Bar: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 2 — pavimento a scacchi, bancone, macchina del caffè */}
         <g transform={L(0.55)}>
-          <rect x="-200" y="1080" width="1480" height="900" fill="url(#ba-tiles)" opacity=".9" />
+          <rect x="-200" y="1080" width="1480" height="900" fill="#4A3C32" />
+          {Array.from({ length: 9 }, (_, i) => {
+            const y0 = 1080 + 900 * (((i + 1) / 9) ** 1.8), y1 = 1080 + 900 * ((i / 9) ** 1.8);
+            return Array.from({ length: 14 }, (_, j) => {
+              const xs = (y: number) => [540 + (j - 7) * 140 * ((y - 900) / 180) / 2, 540 + (j - 6) * 140 * ((y - 900) / 180) / 2];
+              const [a0, b0] = xs(y1), [a1, b1] = xs(y0);
+              return (i + j) % 2 ? <path key={`${i}-${j}`} d={`M${a0} ${y1} L${b0} ${y1} L${b1} ${y0} L${a1} ${y0} Z`} fill="#6A5848" /> : null;
+            });
+          })}
           <rect x="-200" y="1080" width="1480" height="900" fill="url(#ba-floor)" opacity=".55" />
           <path d="M300 900 H1280 V1140 H300 Z" fill="url(#ba-counter)" stroke={K} strokeWidth="9" />
           <path d="M280 880 H1280 V910 H280 Z" fill="url(#ba-top)" stroke={K} strokeWidth="7" />
@@ -104,12 +114,19 @@ export const Bar: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 3 — flipper a sinistra e jukebox a destra */}
         <g transform={L(0.75)}>
-          <g transform="translate(130 1260)">
-            <path d="M-110 0 L-90 -150 H110 L90 0 Z" fill="#2F6EA6" stroke={K} strokeWidth="8" strokeLinejoin="round" />
-            <rect x="-100" y="-330" width="200" height="170" rx="8" fill="#1A2440" stroke={K} strokeWidth="8" />
-            <Glow id="ba-pin" x={0} y={-250} r={140} t={t} color="#7AD0FF" amp={0.2} rate={4} opacity={0.3 + 0.3 * juke} />
-            {[0, 1, 2].map((i) => <circle key={i} cx={-50 + i * 50} cy={-250 + (i % 2) * 30} r="16" fill={['#E0303A', ORANGE, '#7AD06A'][i]} opacity={0.5 + 0.5 * Math.sin(t * 5 + i * 2) * 0.5 + 0.5 * juke} />)}
-            <path d="M-80 0 V60 M80 0 V60" stroke={K} strokeWidth="10" />
+          <g transform="translate(130 1270)">
+            <path d="M-120 -40 L120 -40 L80 -200 L-80 -200 Z" fill="#2F6EA6" stroke={K} strokeWidth="8" strokeLinejoin="round" />
+            <path d="M-104 -50 L104 -50 L70 -190 L-70 -190 Z" fill="#1A3A60" stroke={K} strokeWidth="4" />
+            <path d="M-104 -50 L104 -50 L70 -190 L-70 -190 Z" fill="#FFFFFF" opacity=".08" />
+            <path d="M-40 -66 L-8 -78 M40 -66 L8 -78" stroke={ORANGE} strokeWidth="8" strokeLinecap="round" />
+            <circle cx={Math.sin(t * 2.3) * 40} cy={-120 + Math.cos(t * 3.1) * 40} r="7" fill="#E8E4EC" stroke={K} strokeWidth="2" />
+            {[0, 1, 2].map((i) => <circle key={i} cx={-40 + i * 40} cy={-160 + (i % 2) * 20} r="12" fill={['#E0303A', ORANGE, '#7AD06A'][i]} opacity={0.5 + 0.5 * Math.abs(Math.sin(t * 5 + i * 2)) * (0.4 + 0.6 * juke)} stroke={K} strokeWidth="3" />)}
+            <rect x="-90" y="-380" width="180" height="180" rx="10" fill="#1A2440" stroke={K} strokeWidth="8" />
+            <Glow id="ba-pin" x={0} y={-290} r={150} t={t} color="#7AD0FF" amp={0.2} rate={4} opacity={0.3 + 0.3 * juke} />
+            <rect x="-60" y="-360" width="120" height="40" rx="6" fill="#0E1222" stroke={K} strokeWidth="4" />
+            <text x="0" y="-330" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="30" fill={ORANGE} opacity={0.6 + 0.4 * juke}>{String(10000 + Math.floor(t * 731) % 90000).padStart(6, '0')}</text>
+            <path d="M-70 -300 Q0 -250 70 -300" stroke="#E86A8A" strokeWidth="6" fill="none" opacity=".8" />
+            <path d="M-100 -40 V30 M100 -40 V30" stroke={K} strokeWidth="12" />
           </g>
           <Jukebox id="ba-juke" x={900} y={1280} s={0.95} t={t} on={0.2 + 0.8 * juke} />
           <Notes t={t - c4} x={860} y={1000} n={6} spread={200} rise={200} color={ORANGE} outline={K} size={0.9 * juke} speed={0.25} />
@@ -129,7 +146,8 @@ export const Bar: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <rect x="-30" y="-40" width="60" height="84" rx="6" fill="#F4ECDD" stroke={K} strokeWidth="5" />
             <path d="M-14 -20 L0 -4 L14 -20 Z" fill="#C8303A" />
           </g>
-          <path d="M1280 -200 H1060 V2200 H1280 Z" fill="#2A1A14" stroke={K} strokeWidth="10" />
+          <path d="M1280 -200 H990 V2200 H1280 Z" fill="#2A1A14" stroke={K} strokeWidth="10" />
+          <path d="M1010 -200 V2200" stroke="#5A3A2A" strokeWidth="6" />
         </g>
         <g transform={L(1.7)}>
           <Dust t={t} top={{ y: 800, x0: 240, x1: 320 }} bottom={{ y: 1400, x0: 300, x1: 900 }} n={26} color="#FFF0C8" boost={-0.1 - 0.4 * settle} />
