@@ -122,7 +122,7 @@ export default (mix, T) => {
 
   // ---- mago: tempesta sullo scoglio, la porta che cade, il fuoco che divampa sulla rivelazione
   clip(mix, 'pioggia_vento', { t: T.mago - 0.3, da: 5, durata: 9.6, gain: 0.09, fadeIn: 0.8, fadeOut: 0.8, largo: 2.5, rev: 0.1 });
-  clip(mix, 'tuono_classico', { t: T.mago + 0.85, da: 0.98, durata: 5, gain: 0.42, fadeIn: 0.03, fadeOut: 1.2, rev: 0.35 }); // lampo di Mago.tsx a 0,7 s
+  clip(mix, 'tuono_classico', { t: T.mago + 0.85, da: 0.98, durata: 4, gain: 0.3, fadeIn: 0.03, fadeOut: 1.4, rev: 0.35 }); // lampo di Mago.tsx a 0,7 s
   clip(mix, 'colpi_legno', { t: T.mago + 1.2, da: 5.74, durata: 0.4, gain: 0.5, rev: 0.35 }); // la porta cade
   clip(mix, 'fuoco', { t: T.mago + 1.2, da: 1, durata: T.binario - T.mago - 1.2, gain: 0.08, fadeIn: 0.5, fadeOut: 0.6, largo: 3, rev: 0.15 });
   clip(mix, 'fiammata', { t: cue('mago', 1) + 0.1, da: 0.2, durata: 1.3, gain: 0.35, fadeOut: 0.5, rev: 0.3 });
@@ -160,11 +160,13 @@ export default (mix, T) => {
   // ---- cane: tensione degli archi, il ringhio quando si sveglia, l'arpa che lo riaddormenta
   [50, 51].forEach((m, j) => suona(mix, 'celli_trem', m, { t: T.cane, dur: cue('cane', 3) - T.cane, vel: 56, pan: (j - 0.5) * 0.6, gain: 0.35, attack: 0.6, release: 0.8, rev: 0.5 }));
   suona(mix, 'contrabbasso', 38, { t: T.cane, dur: cue('cane', 3) - T.cane, vel: 50, gain: 0.45, attack: 0.6, release: 1, rev: 0.4 });
-  clip(mix, 'ringhio', { t: cue('cane', 1) + 0.3, da: 10, durata: 2.2, gain: 0.45, rate: 0.85, fadeIn: 0.1, fadeOut: 0.5, rev: 0.35, pan: 0.1 });
-  clip(mix, 'ringhio', { t: cue('cane', 2) + 0.4, da: 15.5, durata: 1.4, gain: 0.32, rate: 0.85, fadeIn: 0.1, fadeOut: 0.5, rev: 0.35, pan: -0.1 });
+  clip(mix, 'ringhio', { t: cue('cane', 1) + 0.3, da: 10, durata: 2.2, gain: 0.24, rate: 0.85, fadeIn: 0.1, fadeOut: 0.5, rev: 0.35, pan: 0.1 });
+  clip(mix, 'ringhio', { t: cue('cane', 2) + 0.4, da: 15.5, durata: 1.4, gain: 0.17, rate: 0.85, fadeIn: 0.1, fadeOut: 0.5, rev: 0.35, pan: -0.1 });
   for (let k = 0; k < 4; k++) harp(mix, CH[k % 4], cue('cane', 3) - 1 + k * BEAT, { step: 0.07, vel: 58 });
 
   // ---- specchio: neve fuori, il tema dolce che si accende, campanelli, poi si calma
+  // ponte fra il cane e lo specchio: accordo tenuto degli archi finché il tema non entra sul battere
+  [53, 57, 60].forEach((m, j) => suona(mix, ['celli', 'viole', 'viole'][j], m, { t: T.specchio - 0.8, dur: B(T.specchio) - T.specchio + 1.6, vel: 58, pan: (j - 1) * 0.3, gain: 0.5, attack: 0.6, release: 1.2, rev: 0.5, seed: 70 + j }));
   theme(B(T.specchio), B(T.botola), { half: true, vel: 56, str: 44, keep: 0.9, harpVel: 44, seed: 8 });
   clip(mix, 'vento_leggero', { t: T.specchio, da: 3, durata: 11, gain: 0.04, lp: 1200, fadeIn: 1.5, fadeOut: 1.5, largo: 4 });
   for (let t = cue('specchio', 1) - 0.4, k = 0; t < cue('specchio', 4); t += BEAT / 2, k++) glock(mix, [96, 100, 103, 108][k % 4], t, 34, -0.5 + (k % 5) * 0.25, 0.1);

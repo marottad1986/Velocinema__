@@ -125,6 +125,7 @@ const carica = (id) => {
  * lo stesso file spostato di largo secondi, così il suono si apre in stereo.
  */
 export const clip = (mix, id, { t, da = 0, durata, gain = 1, pan = 0, rev = 0.15, fadeIn = 0.005, fadeOut = 0.05, lp = 0, rate = 1, largo = 0 }) => {
+  if (globalThis.VELOCINEMA_STEM === 'musica') return; // scripts/livelli.mjs: misura della sola musica
   const { sr, x } = carica(id);
   const step = (sr / SR) * rate;
   const dur = durata ?? (x.length / sr - da);
