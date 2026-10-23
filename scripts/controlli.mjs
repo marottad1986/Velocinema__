@@ -83,6 +83,9 @@ for (const [slug, path] of lista) {
     }
     const bpm = new Set([...src.matchAll(/\bbpm:\s*(\d+)/g)].map((m) => m[1]));
     if (bpm.size > 1) A.push(`tempi diversi nello spartito (${[...bpm].join(', ')} bpm): la regola è un solo tempo per film`);
+    // figure ripetute (arpeggi, campanelli, sbuffi…) con un passo fisso in secondi formano un secondo tempo fuori griglia
+    const passi = [...src.matchAll(/for \(let t = [^;]*;[^;]*; t \+= (\d+(?:\.\d+)?)[,)]/g)].map((m) => m[1]).filter((x) => +x >= 0.15); // sotto 0,15 s: rulli e tremoli
+    if (/const (BPM|BEAT)\b/.test(src) && passi.length) A.push(`figure ripetute con passo fisso (${[...new Set(passi)].join(', ')} s): usare BEAT o sue frazioni`);
   }
 
   errori += E.length;

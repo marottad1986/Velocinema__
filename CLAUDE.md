@@ -149,6 +149,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   equivalente registrato (gesso, spazzole jazz, bip Morse, neon, cambio canale, risucchio). Per tarare i volumi
   confrontare musica ed effetti misurati separatamente; i vecchi strumenti sintetici di synth.mjs non vanno più usati
   per la musica.
+- `node scripts/livelli.mjs <film> [--finestre]`: livelli per capitolo di mix, sola musica e soli effetti (con la stessa
+  normalizzazione), buchi e tratti in cui gli effetti coprono la musica: da usare per tarare i volumi.
 - `npm run musica -- <film>` → `out/<film>-musica.wav`. `npm run render` la rigenera e la unisce al video con ffmpeg
   (anche per un solo capitolo, col tratto di musica corrispondente). Film senza spartito: video muto, con avviso.
 
