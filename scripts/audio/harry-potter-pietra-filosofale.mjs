@@ -3,58 +3,27 @@
 // Tema inventato qui, in Fa maggiore e in 4/4 a 96 bpm (scene calme e cupe a metà passo), luminoso e curioso, volutamente lontano dal tema dei film (niente valzer di
 // celesta in minore): melodia al pianoforte raddoppiata dal glockenspiel, arpa arpeggiata, archi tenuti.
 // Cupo nello sgabuzzino e nei sotterranei, festoso nella grande sala e nel Quidditch; finale ampio.
-// Effetti registrati (archivio CC0 di Craig Smith: scripts/audio/effetti.mjs); fischio del treno, gufo, ringhio, frullo
-// d'ali e vapore restano sintetici. Effetti agganciati alle frasi dei sottotitoli (tempi come in ChapterOverlay).
-import { put, rng, whoosh, pop } from './synth.mjs';
+// Effetti registrati (archivio CC0 di Craig Smith: scripts/audio/effetti.mjs); anche gufo, fischio e vapore del treno,
+// ringhio e battito d'ali sono registrazioni vere. Effetti agganciati alle frasi dei sottotitoli (tempi come in ChapterOverlay).
+import { rng } from './synth.mjs';
 import { suona, colpo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
 export const strumenti = ['violini', 'viole', 'celli', 'contrabbasso', 'violini_trem', 'celli_trem', 'contrabbasso_pizz', 'arpa', 'pianoforte', 'glockenspiel', 'grancassa', 'piatto_sospeso', 'gong'];
-export const effetti = ['tuono_classico', 'tuono_secco', 'pioggia_vento', 'fuoco', 'fiammata', 'colpi_legno', 'telo', 'stoffa', 'cancello', 'vento_leggero', 'tintinnio', 'ceramica'];
+export const effetti = ['tuono_classico', 'tuono_secco', 'pioggia_vento', 'fuoco', 'fiammata', 'colpi_legno', 'telo', 'stoffa', 'cancello', 'vento_leggero', 'tintinnio', 'ceramica', 'gufo', 'fischio_vapore', 'treno_vapore', 'ali', 'ringhio'];
 /** Sala grande e calda (la grande sala del castello): coda media, alte morbide. */
 export const sala = { rt60: 2.3, brillo: 6500, predelay: 0.025, wet: 0.5 };
 
-const TAU = Math.PI * 2;
 /** Un solo tempo per tutto il film (CLAUDE.md, «Musica»): le scene calme vanno a metà passo (48). */
 const BPM = 96;
 const BEAT = 60 / BPM;
 const BAR = 4 * BEAT;
-const SR = 44100;
-const vamp = (v) => (v / 127) ** 1.6;
 
-// ---------------------------------------------------------------- effetti sintetici (non esistono nelle registrazioni)
+// ---------------------------------------------------------------- effetti registrati di animali e treno
 
-/** Fischio del treno a vapore: due note che salgono un po', con soffio. */
-const whistle = (mix, t, dur = 1.6, vel = 46) => {
-  const r = rng(Math.round(t * 1000));
-  put(mix, t, Math.ceil((dur + 0.3) * SR), (i) => {
-    const x = i / SR;
-    const bend = 1 + 0.02 * Math.min(1, x / 0.3);
-    const env = Math.min(1, x / 0.08) * (x < dur ? 1 : Math.max(0, 1 - (x - dur) / 0.3));
-    return (Math.sin(TAU * 740 * bend * x) + Math.sin(TAU * 932 * bend * x) * 0.8 + (r() * 2 - 1) * 0.2) * env * 0.4;
-  }, { gain: vamp(vel), pan: -0.4, rev: 0.5 });
-};
-
-/** Verso del gufo: due «uu» morbidi che scendono. */
-const hoot = (mix, t, vel = 40, pan = 0) => {
-  [0, 0.45].forEach((d, k) => put(mix, t + d, Math.ceil(0.4 * SR), (i) => {
-    const x = i / SR;
-    const f = (k ? 360 : 400) * (1 - (0.06 * x) / 0.4);
-    return Math.sin(TAU * f * x) * Math.sin((Math.PI * x) / 0.4) ** 1.5;
-  }, { gain: vamp(vel) * 0.6, pan, rev: 0.5 }));
-};
-
-/** Ringhio: rumore grave modulato. */
-const growl = (mix, t, dur = 1.6, vel = 50) => {
-  const r = rng(Math.round(t * 1000));
-  let lp = 0;
-  put(mix, t, Math.ceil(dur * SR), (i) => {
-    const x = i / SR;
-    lp += 0.03 * ((r() * 2 - 1) - lp);
-    return lp * 6 * (0.6 + 0.4 * Math.sin(TAU * 28 * x)) * Math.sin((Math.PI * x) / dur);
-  }, { gain: vamp(vel), pan: 0.1, rev: 0.3 });
-};
+/** Gufo: due «uu» della presa (gufo reale, archivio CC0). */
+const hoot = (mix, t, gain = 0.3, pan = 0) => clip(mix, 'gufo', { t, da: 2.4, durata: 2.2, gain, pan, fadeIn: 0.05, fadeOut: 0.6, rev: 0.45 });
 
 // ---------------------------------------------------------------- materiale musicale
 
@@ -139,7 +108,7 @@ export default (mix, T) => {
   harp(mix, CH[0], 0.2, { step: 0.1, vel: 60 });
   [84, 89, 93, 96].forEach((m, j) => glock(mix, m, 1.2 + j * 0.25, 60, -0.3 + j * 0.2));
   clip(mix, 'stoffa', { t: 1.6, da: 15, durata: 1.2, gain: 0.25, fadeIn: 0.2, fadeOut: 0.5, pan: -0.3, rev: 0.3 });
-  hoot(mix, 2.6, 34, -0.3);
+  hoot(mix, 2.2, 0.25, -0.3);
 
   // ---- sottoscala: tema cupo e lento al pianoforte; passi sulle scale sopra lo sgabuzzino
   theme(B(T.sottoscala), B(T.lettere), { half: true, vel: 70, str: 54, dark: true, keep: 0.8, harpVel: 0, seed: 1 });
@@ -149,8 +118,7 @@ export default (mix, T) => {
   theme(B(T.lettere), B(T.mago), { vel: 58, str: 40, keep: 0.9, harpVel: 48, pizz: true, seed: 2 });
   for (let k = 0; k < 6; k++) clip(mix, 'stoffa', { t: cue('lettere', 2) + k * 0.45, da: 15 + k * 0.5, durata: 0.5, gain: 0.2, fadeIn: 0.05, fadeOut: 0.2, pan: -0.5 + (k % 5) * 0.25, rev: 0.25 });
   clip(mix, 'colpi_legno', { t: cue('lettere', 1) + 0.2, da: 5.74, durata: 0.3, gain: 0.15, rev: 0.25 });
-  hoot(mix, T.lettere + 1.2, 34, 0.4);
-  hoot(mix, T.lettere + 2.6, 30, -0.5);
+  hoot(mix, T.lettere + 1.0, 0.25, 0.4);
 
   // ---- mago: tempesta sullo scoglio, la porta che cade, il fuoco che divampa sulla rivelazione
   clip(mix, 'pioggia_vento', { t: T.mago - 0.3, da: 5, durata: 9.6, gain: 0.09, fadeIn: 0.8, fadeOut: 0.8, largo: 2.5, rev: 0.1 });
@@ -168,8 +136,8 @@ export default (mix, T) => {
   theme(B(T.binario), B(T.castello), { vel: 58, str: 40, keep: 0.9, harpVel: 48, seed: 4 });
   clip(mix, 'telo', { t: cue('binario', 1) + 0.8, da: 8.45, durata: 0.75, gain: 0.3, fadeOut: 0.3, rev: 0.4 });
   colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: cue('binario', 1) + 0.4, vel: 60, rev: 0.4, gain: 0.25, dur: 1.4, release: 0.4 });
-  whistle(mix, cue('binario', 2) + 0.2, 1.4, 44);
-  for (let t = cue('binario', 2) + 0.4; t < T.castello - 0.2; t += BEAT) whoosh(mix, t, 0.3, { vel: 24, lo: 600, hi: 3000, seed: Math.round(t * 10) });
+  clip(mix, 'fischio_vapore', { t: cue('binario', 2) + 0.2, da: 1.5, durata: 1.6, gain: 0.3, pan: -0.4, fadeIn: 0.05, fadeOut: 0.5, rev: 0.45 });
+  clip(mix, 'treno_vapore', { t: cue('binario', 2) + 0.4, da: 5, durata: T.castello - cue('binario', 2) - 0.6, gain: 0.18, fadeIn: 0.4, fadeOut: 0.8, rev: 0.25 }); // il treno parte sbuffando
 
   // ---- castello: meraviglia notturna sul lago, campanelli come stelle, brezza
   theme(B(T.castello), B(T.cappello), { half: true, vel: 58, str: 46, keep: 1, harpVel: 50, big: true, seed: 5 });
@@ -187,13 +155,13 @@ export default (mix, T) => {
   theme(B(T.quidditch), B(T.cane), { vel: 70, str: 50, keep: 1, harpVel: 40, pizz: true, big: true, seed: 7 });
   for (let t = B(T.quidditch), k = 0; t < T.cane - 0.3; t += BEAT, k++) colpo(mix, 'grancassa', 'bdrum_p', { t, vel: k % 2 ? 70 : 90, rev: 0.35, gain: 0.6, seed: k });
   for (let t = cue('quidditch', 1) + Math.PI / 1.4 - 0.1; t < T.cane - 0.5; t += Math.PI / 1.4) clip(mix, 'telo', { t, da: 8.45, durata: 0.75, gain: 0.25, fadeOut: 0.3, rev: 0.3, pan: Math.sin(t) * 0.6, rate: 1.2 });
-  for (let t = cue('quidditch', 3); t < T.cane - 0.2; t += 0.05) pop(mix, t, 12, { pitch: 14, pan: Math.sin(t * 3) * 0.5 });
+  clip(mix, 'ali', { t: cue('quidditch', 3), da: 8.5, durata: T.cane - 0.2 - cue('quidditch', 3), gain: 0.2, rate: 1.8, fadeIn: 0.1, fadeOut: 0.4, rev: 0.25, pan: 0.2 }); // la pallina d'oro con le ali
 
   // ---- cane: tensione degli archi, il ringhio quando si sveglia, l'arpa che lo riaddormenta
   [50, 51].forEach((m, j) => suona(mix, 'celli_trem', m, { t: T.cane, dur: cue('cane', 3) - T.cane, vel: 56, pan: (j - 0.5) * 0.6, gain: 0.35, attack: 0.6, release: 0.8, rev: 0.5 }));
   suona(mix, 'contrabbasso', 38, { t: T.cane, dur: cue('cane', 3) - T.cane, vel: 50, gain: 0.45, attack: 0.6, release: 1, rev: 0.4 });
-  growl(mix, cue('cane', 1) + 0.3, 2.2, 66);
-  growl(mix, cue('cane', 2) + 0.4, 1.4, 50);
+  clip(mix, 'ringhio', { t: cue('cane', 1) + 0.3, da: 10, durata: 2.2, gain: 0.45, rate: 0.85, fadeIn: 0.1, fadeOut: 0.5, rev: 0.35, pan: 0.1 });
+  clip(mix, 'ringhio', { t: cue('cane', 2) + 0.4, da: 15.5, durata: 1.4, gain: 0.32, rate: 0.85, fadeIn: 0.1, fadeOut: 0.5, rev: 0.35, pan: -0.1 });
   for (let k = 0; k < 4; k++) harp(mix, CH[k % 4], cue('cane', 3) - 1 + k * BEAT, { step: 0.07, vel: 58 });
 
   // ---- specchio: neve fuori, il tema dolce che si accende, campanelli, poi si calma
@@ -205,7 +173,7 @@ export default (mix, T) => {
   // ---- botola: cupo; chiavi con le ali, mosse degli scacchi, il cavallo che crolla
   theme(B(T.botola), B(T.pietra), { half: true, vel: 66, str: 52, dark: true, keep: 0.8, harpVel: 0, pizz: true, seed: 9 });
   clip(mix, 'stoffa', { t: cue('botola', 3) + 0.6, da: 16, durata: cue('botola', 4) - cue('botola', 3), gain: 0.2, fadeIn: 0.3, fadeOut: 0.4, largo: 1, rev: 0.3 });
-  for (let t = cue('botola', 3) + 0.6; t < cue('botola', 4); t += 0.06) pop(mix, t, 8, { pitch: 10 + Math.sin(t * 9) * 4, pan: Math.sin(t * 5) * 0.6 });
+  clip(mix, 'ali', { t: cue('botola', 3) + 0.6, da: 13.8, durata: cue('botola', 4) - cue('botola', 3) - 0.6, gain: 0.14, rate: 2.2, fadeIn: 0.1, fadeOut: 0.3, rev: 0.3, pan: -0.2 }); // le chiavi con le ali
   [0, 1, 2].forEach((k) => clip(mix, 'colpi_legno', { t: cue('botola', 4) + k * 0.4, da: 1.4, durata: 0.35, gain: 0.25, lp: 1400, rev: 0.4 }));
   clip(mix, 'ceramica', { t: cue('botola', 4) + 2.05, da: 3.95, durata: 1.4, gain: 0.2, fadeOut: 0.4, rev: 0.35 }); // il cavallo va in frantumi
   clip(mix, 'colpi_legno', { t: cue('botola', 4) + 2.0, da: 5.74, durata: 0.45, gain: 0.55, rev: 0.45 });
@@ -229,5 +197,5 @@ export default (mix, T) => {
     suona(mix, id, n, { t: F, dur: 2.6, vel: 60, pan: (k - 2.5) * 0.2, gain: 0.45, attack: 0.3, release: 1.4, rev: 0.6, seed: 20 + k }));
   suona(mix, 'pianoforte', 77, { t: F + 0.3, dur: 2.6, vel: 60, pan: 0.1, rev: 0.5, gain: 0.5, release: 1.4 });
   [89, 93, 96, 101].forEach((m, j) => glock(mix, m, F + 0.8 + j * 0.2, 56, -0.3 + j * 0.2, 0.2));
-  hoot(mix, F + 1.6, 30, 0.4);
+  hoot(mix, F + 1.4, 0.2, 0.4);
 };
