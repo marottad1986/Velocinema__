@@ -119,7 +119,28 @@ export const Botola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               {[0, 1, 2].map((k) => {
                 const len = 500 + k * 120 + 200 * vines;
                 const sw = Math.sin(t * 1.5 + k + i) * 30;
-                return <path key={k} d={`M${x} ${y} C${x + d * 200} ${y - len * 0.3 * (i === 2 ? -1 : 1)} ${x + d * (60 + sw)} ${y - len * 0.6 * (i === 2 ? -1 : 1)} ${x + d * (260 + k * 60 + sw)} ${y - len * (i === 2 ? -0.5 : 1)}`} stroke={k % 2 ? '#2E4A24' : '#3E5E2E'} strokeWidth={34 - k * 8} fill="none" strokeLinecap="round" />;
+                const s = i === 2 ? -1 : 1;
+                const Q = [[x, y], [x + d * 200, y - len * 0.3 * s], [x + d * (60 + sw), y - len * 0.6 * s], [x + d * (260 + k * 60 + sw), y - len * (i === 2 ? -0.5 : 1)]];
+                const at = (u: number) => [0, 1].map((j) => (1 - u) ** 3 * Q[0][j] + 3 * (1 - u) ** 2 * u * Q[1][j] + 3 * (1 - u) * u * u * Q[2][j] + u ** 3 * Q[3][j]);
+                const w = 34 - k * 8;
+                return (
+                  <g key={k}>
+                    <path d={`M${Q[0][0]} ${Q[0][1]} C${Q[1][0]} ${Q[1][1]} ${Q[2][0]} ${Q[2][1]} ${Q[3][0]} ${Q[3][1]}`} stroke={K} strokeWidth={w + 8} fill="none" strokeLinecap="round" />
+                    <path d={`M${Q[0][0]} ${Q[0][1]} C${Q[1][0]} ${Q[1][1]} ${Q[2][0]} ${Q[2][1]} ${Q[3][0]} ${Q[3][1]}`} stroke={k % 2 ? '#2E4A24' : '#3E5E2E'} strokeWidth={w} fill="none" strokeLinecap="round" />
+                    {/* foglie a coppie e nodi lungo il tralcio */}
+                    {[0.2, 0.35, 0.5, 0.65, 0.8, 0.93].map((u, m) => {
+                      const [px, py] = at(u), [qx, qy] = at(Math.min(1, u + 0.02));
+                      const ang = (Math.atan2(qy - py, qx - px) * 180) / Math.PI + (m % 2 ? 60 : -60) + Math.sin(t * 2 + m + k) * 8;
+                      const ls = (1.0 + 0.6 * (1 - u)) * (0.8 + 0.2 * vines);
+                      return (
+                        <g key={m}>
+                          <circle cx={px} cy={py} r={w * 0.35} fill="#24381C" stroke={K} strokeWidth="3" />
+                          <path d="M0 0 Q22 -16 52 0 Q22 16 0 0 Z M6 0 H46" transform={`translate(${px} ${py}) rotate(${ang}) scale(${ls})`} fill={m % 2 ? '#5A8A3A' : '#4A7A30'} stroke={K} strokeWidth="3" />
+                        </g>
+                      );
+                    })}
+                  </g>
+                );
               })}
             </g>
           ))}
