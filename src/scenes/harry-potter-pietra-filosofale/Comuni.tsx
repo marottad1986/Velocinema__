@@ -102,10 +102,14 @@ export const GoldBall: React.FC<{ x: number; y: number; s?: number; t: number; c
 };
 
 /** Cornice d'oro intagliata dello specchio (il vetro si disegna da fuori). Origine al centro del vetro. */
+/** Sagoma dello specchio ad arco (centrata in 0,0): la stessa per la cornice e per il vetro, che così la segue. */
+export const mirrorPath = (w: number, h: number) =>
+  `M${-w / 2 - 40} ${h / 2 + 60} V${-h / 2 + 40} Q${-w / 2 - 40} ${-h / 2 - 120} 0 ${-h / 2 - 140} Q${w / 2 + 40} ${-h / 2 - 120} ${w / 2 + 40} ${-h / 2 + 40} V${h / 2 + 60} Z`;
+
 export const MirrorFrame: React.FC<{ x: number; y: number; w: number; h: number; gold: string }> = ({ x, y, w, h, gold }) => (
   <g transform={`translate(${x} ${y})`} strokeLinejoin="round">
-    <path d={`M${-w / 2 - 40} ${h / 2 + 60} V${-h / 2 + 40} Q${-w / 2 - 40} ${-h / 2 - 120} 0 ${-h / 2 - 140} Q${w / 2 + 40} ${-h / 2 - 120} ${w / 2 + 40} ${-h / 2 + 40} V${h / 2 + 60} Z`} fill="none" stroke={K} strokeWidth="64" />
-    <path d={`M${-w / 2 - 40} ${h / 2 + 60} V${-h / 2 + 40} Q${-w / 2 - 40} ${-h / 2 - 120} 0 ${-h / 2 - 140} Q${w / 2 + 40} ${-h / 2 - 120} ${w / 2 + 40} ${-h / 2 + 40} V${h / 2 + 60} Z`} fill="none" stroke={gold} strokeWidth="50" />
+    <path d={mirrorPath(w, h)} fill="none" stroke={K} strokeWidth="64" />
+    <path d={mirrorPath(w, h)} fill="none" stroke={gold} strokeWidth="50" />
     <path d={`M${-w / 2 - 54} ${h / 2} V${-h / 2 + 40} Q${-w / 2 - 54} ${-h / 2 - 130} 0 ${-h / 2 - 152}`} fill="none" stroke="#FFF0B8" strokeWidth="6" opacity=".7" />
     {Array.from({ length: 7 }, (_, i) => <circle key={i} cx={-w / 2 - 40} cy={-h / 2 + 60 + i * ((h - 40) / 6)} r="8" fill="#8A5A10" />)}
     {Array.from({ length: 7 }, (_, i) => <circle key={i} cx={w / 2 + 40} cy={-h / 2 + 60 + i * ((h - 40) / 6)} r="8" fill="#8A5A10" />)}
