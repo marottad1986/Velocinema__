@@ -23,7 +23,7 @@ export const Castello: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
   const owl = mod(t * 0.09, 1);
   // il treno attraversa il viadotto mentre la voce parla del viaggio (frasi 0 e 1), poi sparisce dietro lo sperone
   const tr = seg(t, 0, cues[2] + 0.6);
-  const trainX = -380 + tr * 760;
+  const trainX = 60 + tr * 440; // già intero nell'inquadratura sulla prima frase
   const trainO = 1 - seg(t, cues[2], cues[2] + 0.6);
 
   return (
@@ -58,7 +58,7 @@ export const Castello: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
           <path d="M300 1080 Q420 1010 560 1000 L900 990 Q1060 1010 1280 1060 V1090 H300 Z" fill="#0E0C22" />
           <Glow id="ca-castleg" x={CX} y={760} r={460} t={t} color="#FFD27A" amp={0.04} rate={1} opacity={0.12 + 0.25 * lit} />
           <Castle x={CX} y={CY} s={CS} t={t} lit={0.35 + 0.65 * lit} fill="#262452" roof="#34306A" rock="#14122E" rim={-1} />
-          <g transform={`translate(${-100 + owl * 1300} ${640 - Math.sin(owl * Math.PI) * 120})`}><Owl x={0} y={0} s={0.35} t={t} fly={1} /></g>
+          <g transform={`translate(${-100 + owl * 1300} ${700 - Math.sin(owl * Math.PI) * 100})`}><Owl x={0} y={0} s={0.35} t={t} fly={1} /></g>
         </g>
         {/* il lago: il castello specchiato e mosso dalle onde, riflessi delle finestre e della luna */}
         <g transform={L(0.6)}>

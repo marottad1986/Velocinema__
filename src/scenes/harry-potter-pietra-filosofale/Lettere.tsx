@@ -47,9 +47,9 @@ export const Lettere: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <rect x="700" y="900" width="220" height="300" fill="#1E1810" stroke={K} strokeWidth="8" />
           <Glow id="le-hearth" x={810} y={1100} r={180} t={t} color="#FFB060" amp={0.1} rate={4} opacity={0.4 - 0.3 * flood} />
           {/* soprammobili in fila perfetta */}
-          {[640, 720, 900, 980].map((x, i) => <rect key={x} x={x - 14} y={690 - (i % 2) * 14} width="28" height={30 + (i % 2) * 14} rx="4" fill={i % 2 ? '#6A8AAA' : '#C9A060'} stroke={K} strokeWidth="4" />)}
-          {/* gufi sul davanzale interno */}
-          {OWLS.slice(3).map(([x, y], i) => <g key={i} opacity={owls(i + 3) * flood}><Owl x={x - 640} y={y - 300} s={0.6} t={t} /></g>)}
+          {[640, 720, 900, 980].map((x, i) => <rect key={x} opacity={1 - flood} x={x - 14} y={690 - (i % 2) * 14} width="28" height={30 + (i % 2) * 14} rx="4" fill={i % 2 ? '#6A8AAA' : '#C9A060'} stroke={K} strokeWidth="4" />)}
+          {/* gufi entrati in casa, appollaiati sulla mensola del camino al posto dei soprammobili */}
+          {OWLS.slice(3).map(([x], i) => <g key={i} opacity={owls(i + 3) * flood}><Owl x={x - 20} y={686} s={0.6} t={t} color={i % 2 ? '#B8A07A' : '#F4F1E6'} /></g>)}
         </g>
         {/* lettere che volano dal camino */}
         <g transform={L(0.8)}>

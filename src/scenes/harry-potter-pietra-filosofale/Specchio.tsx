@@ -51,10 +51,10 @@ export const Specchio: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
         {/* drappi rossi alle pareti */}
         <g transform={L(0.45)}>
           {/* tenda appesa a un bastone, dal soffitto al pavimento */}
-          <path d="M800 470 H1060" stroke={K} strokeWidth="14" strokeLinecap="round" />
-          <circle cx="800" cy="470" r="14" fill={P.accento} stroke={K} strokeWidth="5" />
-          <path d="M830 476 Q900 800 860 1270 H1010 Q1050 800 1020 476 Z" fill={P.principale} stroke={K} strokeWidth="7" />
-          <path d="M880 500 Q930 860 900 1250 M960 500 Q990 860 960 1250" stroke="#9A3040" strokeWidth="10" fill="none" />
+          <path d="M800 600 H1060" stroke={K} strokeWidth="14" strokeLinecap="round" />
+          <circle cx="800" cy="600" r="14" fill={P.accento} stroke={K} strokeWidth="5" />
+          <path d="M830 606 Q900 880 860 1270 H1010 Q1050 880 1020 606 Z" fill={P.principale} stroke={K} strokeWidth="7" />
+          <path d="M880 630 Q930 900 900 1250 M960 630 Q990 900 960 1250" stroke="#9A3040" strokeWidth="10" fill="none" />
           {[180, 900].map((x, i) => <FloatingCandle key={x} x={x} y={1000 - i * 260} s={1.2} t={t} ph={i * 2} />)}
         </g>
         {/* lo specchio d'oro: si riempie di luce calda (accento sulla cornice) */}

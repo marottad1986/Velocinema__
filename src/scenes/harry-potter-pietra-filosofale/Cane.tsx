@@ -52,9 +52,9 @@ export const Cane: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* torcia alla parete */}
         <g transform={L(0.4)}>
-          <path d="M820 780 l40 -20 v40 Z" fill="#3A3030" stroke={K} strokeWidth="5" />
-          <Fire id="cn-torch" t={t} x={850} y={760} scale={0.5} outline={K} />
-          <Glow id="cn-torchg" x={850} y={720} r={440} t={t} color="#FFA050" amp={0.12} rate={6} opacity={0.55} />
+          <path d="M940 660 l40 -20 v40 Z" fill="#3A3030" stroke={K} strokeWidth="5" />
+          <Fire id="cn-torch" t={t} x={970} y={640} scale={0.5} outline={K} />
+          <Glow id="cn-torchg" x={970} y={600} r={440} t={t} color="#FFA050" amp={0.12} rate={6} opacity={0.55} />
         </g>
         {/* il cane a tre teste: sdraiato come una sfinge, tre colli che partono dalle spalle, zampe intere a terra */}
         <g transform={`${L(0.6)} translate(-90 0)`}>

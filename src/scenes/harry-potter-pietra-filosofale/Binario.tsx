@@ -92,6 +92,10 @@ export const Binario: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               {[780, 880, 980, 1080].map((y) => <path key={y} d={`M${cx - 330} ${y} H${cx + 330}`} stroke="#3A3A48" strokeWidth="5" />)}
             </g>
           ))}
+          {/* travatura scura del tetto dietro il titolo: le vetrate cominciano sotto */}
+          <path d="M-200 -200 H1280 V610 H-200 Z" fill="#2E2E3A" />
+          <path d="M-200 610 H1280" stroke="#14141C" strokeWidth="18" />
+          {Array.from({ length: 14 }, (_, i) => <circle key={i} cx={-160 + i * 100} cy={610} r="5" fill="#6A6A78" />)}
           <Beam id="bn-sky" x={880} y={640} t={t} length={800} spread={420} color="#F4F0E0" angle={110} opacity={0.16} />
           <path d="M-200 1150 H1280 V1300 H-200 Z" fill="#4A4A56" />
         </g>

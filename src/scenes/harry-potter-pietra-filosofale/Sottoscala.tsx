@@ -94,7 +94,9 @@ export const Sottoscala: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =
         </g>
         {/* porticina aperta con la grata, in primo piano */}
         <g transform={L(1.2)}>
-          <path d="M-200 -200 H140 V1400 H-200 Z M940 -200 H1280 V1400 H940 Z M-200 1400 H1280 V2200 H-200 Z" fill="url(#ss-hall)" stroke={K} strokeWidth="10" />
+          {/* parete del corridoio con il vano della porticina: architrave sotto il titolo, così nessuno stipite lo attraversa */}
+          <path d="M-200 -200 H1280 V2200 H-200 Z M140 640 V1400 H940 V640 Z" fill="url(#ss-hall)" fillRule="evenodd" stroke={K} strokeWidth="10" />
+          <path d="M-200 1400 H140 M940 1400 H1280" stroke={K} strokeWidth="10" />
           <path d="M-200 1400 H1280" stroke="#6A5A40" strokeWidth="16" />
           {/* assi del corridoio e zerbino davanti alla porticina, fino al bordo */}
           {[1520, 1660, 1820].map((y) => <path key={y} d={`M-200 ${y} H1280`} stroke="#8A7452" strokeWidth="5" opacity=".6" />)}

@@ -6,7 +6,7 @@ import type { SceneProps } from '../../types';
 import { K } from './Comuni';
 
 // La botola: sotterraneo enorme sotto la botola; liane che si attorcigliano, uno sciame di chiavi con le ali e una
-// scacchiera gigante con pezzi di pietra alti come case; un cavallo che cade in frantumi (Ron si sacrifica).
+// scacchiera gigante con pezzi di pietra alti come case; un cavallo che cade in frantumi (Ron resta ferito per farli passare).
 // Piani: volta del sotterraneo (0,2) · chiavi con le ali (0,4) · scacchiera e pezzi (0,6) · cavallo che cade (0,75) · liane in primo piano (1,25) · polvere (1,6)
 
 const r = rng(3030);
@@ -41,8 +41,9 @@ export const Botola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const L = cam.layer;
   const vines = eio(seg(t, cues[3], cues[3] + 1)); // «una pianta che stritola»
   const keys = seg(t, cues[3] + 0.6, cues[3] + 1.2); // «chiavi che volano»
-  const fall = eio(seg(t, cues[4] + 1.2, cues[4] + 2.0)); // «Ron si sacrifica»: il cavallo crolla
+  const fall = eio(seg(t, cues[4] + 1.2, cues[4] + 2.0)); // «Ron resta ferito»: il cavallo crolla
   const crash = seg(t, cues[4] + 2.0, cues[4] + 2.8);
+  const settle = seg(t, cues[4] + 2.0, cues[4] + 4.0); // la nube di polvere si posa del tutto
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
@@ -109,7 +110,7 @@ export const Botola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             const y = Math.min(1240 - s.k * 30, 1160 - s.vy * e + 520 * e * e);
             return <path key={i} d={`M0 0 L${s.s} ${s.s * 0.2} L${s.s * 0.8} ${s.s * 0.8} L${s.s * 0.1} ${s.s * 0.6} Z`} transform={`translate(${x} ${y}) rotate(${s.rot * e})`} fill={i % 3 ? '#C9C2B0' : '#A8A090'} stroke={K} strokeWidth="4" />;
           })}
-          {crash > 0 && <Glow id="bt-dust" x={620} y={1180} r={260 + 200 * crash} t={t} color="#D8D0C0" amp={0} opacity={0.55 * (1 - 0.6 * crash)} />}
+          {crash > 0 && <Glow id="bt-dust" x={620} y={1180} r={260 + 200 * crash} t={t} color="#D8D0C0" amp={0} opacity={0.55 * (1 - settle)} />}
         </g>
         {/* liane che si attorcigliano in primo piano */}
         <g transform={L(1.25)}>

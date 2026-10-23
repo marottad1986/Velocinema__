@@ -16,7 +16,7 @@ export const Quidditch: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
   const lift = eio(seg(t, 0.4, cues[1]));
   const fly = t > cues[1] ? (t - cues[1]) : 0;
   const bx = lift < 1 ? 300 : 300 + Math.sin(fly * 1.4) * 360;
-  const by = 1200 - 420 * lift - (lift >= 1 ? Math.sin(fly * 2.1) * 120 : 0);
+  const by = 1200 - 420 * lift - (lift >= 1 ? Math.sin(fly * 2.1) * 60 : 0); // resta sotto il titolo
   const brot = lift < 1 ? -10 * lift + Math.sin(t * 20) * 2 * (1 - lift) : Math.cos(fly * 1.4) * 18;
   // la pallina d'oro compare su «acchiappare una pallina d'oro»
   const ball = seg(t, cues[3] - 0.2, cues[3] + 0.4);
@@ -67,10 +67,11 @@ export const Quidditch: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
         </g>
         {/* la scopa che sfreccia con la scia */}
         <g transform={L(0.85)}>
-          {lift >= 1 && Array.from({ length: 10 }, (_, k) => {
-            const tt = fly - k * 0.05;
-            const x = 300 + Math.sin(tt * 1.4) * 360, y = 780 - Math.sin(tt * 2.1) * 120;
-            return <circle key={k} cx={x + 200} cy={y} r={14 - k} fill="#FFFFFF" opacity={0.5 - k * 0.05} />;
+          {/* scia della scopa: segue la saggina lungo il percorso appena fatto */}
+          {lift >= 1 && Array.from({ length: 16 }, (_, k) => {
+            const tt = fly - k * 0.045;
+            const x = 300 + Math.sin(tt * 1.4) * 360, y = 780 - Math.sin(tt * 2.1) * 60;
+            return <circle key={k} cx={x + 200 * Math.cos((Math.cos(tt * 1.4) * 18 * Math.PI) / 180)} cy={y} r={22 - k} fill={k < 5 ? '#FFF4D0' : '#FFFFFF'} opacity={0.8 - k * 0.045} />;
           })}
           <Broom x={bx} y={by} s={1.1} rot={brot} />
         </g>
