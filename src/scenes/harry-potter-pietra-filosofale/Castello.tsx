@@ -3,7 +3,7 @@ import { camera, eio, mod, seg } from '../../lib/anim';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Fog, Glow, Moon, NearMotes, Reflection, Smoke, Stars, WaveLines } from '../../lib/elements';
 import type { SceneProps } from '../../types';
-import { Castle, K, Owl } from './Comuni';
+import { Castle, K, Owl, SmallTrain } from './Comuni';
 
 // Il castello: notte su un grande lago nero; a destra, sullo sperone di roccia, il castello con tante torri e finestre
 // accese (filo di luce dalla luna a sinistra); sulla riva lontana il treno illuminato corre sul viadotto mentre la voce
@@ -48,16 +48,8 @@ export const Castello: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
           <path d="M-200 990 H520" stroke="#2A2C58" strokeWidth="10" />
           {Array.from({ length: 9 }, (_, i) => <path key={i} d={`M${-190 + i * 80} 994 v44 M${-190 + i * 80} 1038 q40 -40 80 0`} fill="none" stroke="#2A2C58" strokeWidth="7" />)}
           <g opacity={trainO} transform={`translate(${trainX} 986)`}>
-            <Smoke id="ca-smoke" t={t} x={290} y={-46} color="#8A8CB8" n={6} rise={90} wind={-160} r0={8} r1={30} speed={0.5} opacity={0.6} />
-            {[0, 1, 2, 3].map((k) => (
-              <g key={k}>
-                <rect x={k * 64} y="-30" width="58" height="26" rx="4" fill="#3A1A2A" stroke={K} strokeWidth="3" />
-                {[0, 1, 2].map((w) => <rect key={w} x={k * 64 + 8 + w * 16} y="-24" width="9" height="10" fill="#FFD27A" opacity={0.9} />)}
-              </g>
-            ))}
-            <rect x="256" y="-36" width="44" height="32" rx="4" fill="#4A1E24" stroke={K} strokeWidth="3" />
-            <rect x="284" y="-50" width="10" height="16" fill="#2A1418" stroke={K} strokeWidth="2" />
-            <circle cx="302" cy="-18" r="5" fill="#FFF0C0" />
+            <Smoke id="ca-smoke" t={t} x={334} y={-50} color="#8A8CB8" n={6} rise={90} wind={-160} r0={8} r1={30} speed={0.5} opacity={0.6} />
+            <SmallTrain x={0} y={0} cars={4} />
             <Glow id="ca-trg" x={140} y={-18} r={160} t={t} color="#FFD27A" amp={0.05} rate={2} opacity={0.25} />
           </g>
         </g>

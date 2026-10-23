@@ -78,6 +78,33 @@ export const Castle: React.FC<{ x: number; y: number; s?: number; t: number; lit
   );
 };
 
+/** Trenino a vapore visto da lontano, rivolto a destra (locomotiva davanti); origine sui binari, lungo ~70·carrozze+70.
+ *  Il fumo lo disegna chi lo usa, sopra il comignolo (x ≈ 70·carrozze+54, y ≈ -48). */
+export const SmallTrain: React.FC<{ x: number; y: number; s?: number; cars?: number; body?: string; lit?: number }> = ({ x, y, s = 1, cars = 4, body = '#B82A30', lit = 1 }) => {
+  const X = cars * 70;
+  return (
+    <g transform={`translate(${x} ${y}) scale(${s})`} strokeLinejoin="round">
+      {Array.from({ length: cars }, (_, k) => (
+        <g key={k}>
+          <rect x={k * 70} y="-34" width="64" height="28" rx="4" fill={body} stroke={K} strokeWidth="3" />
+          <path d={`M${k * 70 - 2} -34 Q${k * 70 + 32} -44 ${k * 70 + 66} -34 Z`} fill="#3A1A1E" stroke={K} strokeWidth="3" />
+          {[0, 1, 2].map((w) => <rect key={w} x={k * 70 + 8 + w * 18} y="-28" width="11" height="11" rx="2" fill="#FFD27A" opacity={0.3 + 0.7 * lit} />)}
+          <path d={`M${k * 70 + 64} -14 h6`} stroke={K} strokeWidth="4" />
+          {[12, 52].map((d) => <circle key={d} cx={k * 70 + d} cy="-4" r="5" fill={K} />)}
+        </g>
+      ))}
+      <rect x={X} y="-46" width="26" height="40" rx="3" fill={body} stroke={K} strokeWidth="3" />
+      <rect x={X + 5} y="-40" width="14" height="12" fill="#FFD27A" opacity={0.3 + 0.7 * lit} />
+      <rect x={X + 24} y="-32" width="42" height="24" rx="11" fill="#2A1A22" stroke={K} strokeWidth="3" />
+      <path d={`M${X + 34} -32 v24 M${X + 48} -32 v24`} stroke={body} strokeWidth="3" />
+      <rect x={X + 50} y="-48" width="9" height="16" fill="#2A1A22" stroke={K} strokeWidth="3" />
+      <path d={`M${X + 64} -10 l12 8 h-14 Z`} fill="#4A4A4A" stroke={K} strokeWidth="2" />
+      <circle cx={X + 67} cy="-22" r="4" fill="#FFF0C0" />
+      {[14, 36, 56].map((d, i) => <circle key={d} cx={X + d} cy={i ? -5 : -7} r={i ? 6 : 8} fill="#3A3A3A" stroke={K} strokeWidth="2.5" />)}
+    </g>
+  );
+};
+
 /** Candela che fluttua (oscilla piano su e giù), con fiammella e alone. */
 export const FloatingCandle: React.FC<{ x: number; y: number; s?: number; t: number; ph?: number }> = ({ x, y, s = 1, t, ph = 0 }) => {
   const fy = y + Math.sin(t * 1.2 + ph) * 10;
