@@ -51,6 +51,10 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
   per l'uso commerciale: le clip del piano gratuito servono solo per le prove e non vanno pubblicate.
   Testo da incollare senza indicazioni di tono tra parentesi (rallentano la lettura).
 - Clip generate una per capitolo in `audio/<film>/`, nominate `00_copertina`, `01_<id>`, `02_<id>`…
+- In alternativa una registrazione unica con tutti i capitoli di seguito, separati da una pausa lunga:
+  `npm run dividi -- <film> <file>` taglia nel mezzo delle pause più lunghe (una in meno delle parti con voce) e scrive
+  le clip in `audio/<film>/` (`--cartella <dir>` per le prove), mostrando il ritmo di ogni parte per controllare i tagli.
+  Un capitolo da rifare si rigenera da solo e si salva col suo nome al posto della clip tagliata.
 - Montaggio: ogni clip parte all'inizio del suo capitolo; se sfora, accorciare le pause e accelerare al massimo del 25%
   mantenendo il tono, altrimenti segnalare la frase da accorciare. Musica abbassata sotto la voce.
 - `npm run voce -- <film>` → `out/<film>-voce.mp4` (richiede `out/<film>.mp4` già renderizzato con la musica).
@@ -85,8 +89,8 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 - `src/scenes/<film>/<Scena>.tsx`: una scena per capitolo; `index.ts` mappa id capitolo → componente + posizione titolo.
 - `src/components/ChapterOverlay.tsx`: barra, etichetta, titolo, sottotitoli. `src/lib/anim.ts`: camera/parallasse e utilità del tempo. `src/lib/fx.tsx`: grana, vignettatura, velatura, gradienti.
 - Le props delle composizioni devono essere JSON (si passa lo slug del film, non l'oggetto).
-- Comandi: `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run voce -- <film>`.
-- Audio: `scripts/musica.mjs`, `scripts/voce.mjs`, `scripts/audio/` (sintetizzatore, spartiti, tempi dal JSON e helper ffmpeg in `film.mjs`).
+- Comandi: `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run dividi -- <film> <file>`, `npm run voce -- <film>`.
+- Audio: `scripts/musica.mjs`, `scripts/voce.mjs`, `scripts/dividi.mjs`, `scripts/audio/` (sintetizzatore, spartiti, tempi dal JSON e helper ffmpeg in `film.mjs`).
 
 ## Tecnologia suggerita
 Remotion (React) per comporre e renderizzare i video, ffmpeg per audio e montaggio voce.
