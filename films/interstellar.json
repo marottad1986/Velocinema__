@@ -25,7 +25,7 @@
         "polvere ovunque, raccolti distrutti.",
         "Cooper, ex pilota della NASA, fa il contadino.",
         "Vive con i figli, Tom e Murph.",
-        "Resta solo il mais. Ancora per poco."
+        "Resta solo il mais."
       ]
     },
     {
@@ -34,10 +34,10 @@
       "durata": 10,
       "scena": "Cameretta con libreria; libri che cadono da soli; finestra aperta sulla tempesta; la polvere si deposita sul pavimento in strisce regolari (codice binario); modellino di astronave appeso al soffitto.",
       "sottotitoli": [
-        "Murph dice che in camera c'è un fantasma:",
-        "i libri cadono da soli dalla libreria.",
-        "Durante una tempesta, la polvere sul pavimento forma delle righe.",
-        "Cooper capisce: è un codice. Sono coordinate."
+        "Murph crede di avere un fantasma in camera:",
+        "i libri cadono da soli.",
+        "Durante una tempesta, la polvere forma delle righe.",
+        "Cooper capisce: è un codice, sono coordinate."
       ]
     },
     {
@@ -47,10 +47,10 @@
       "scena": "Hangar sotterraneo con una grande astronave ad anello in costruzione; lavagne piene di equazioni; uno schermo con Saturno e accanto una sfera luminosa che deforma le stelle (il varco).",
       "sottotitoli": [
         "Le coordinate portano a una base segreta della NASA.",
-        "Il professor Brand spiega il piano:",
-        "vicino a Saturno è apparso un varco nello spazio,",
-        "un tunnel verso un'altra galassia.",
-        "Lì ci sono pianeti dove l'umanità potrebbe vivere."
+        "Il professor Brand spiega:",
+        "vicino a Saturno si è aperto un varco,",
+        "un tunnel verso un'altra galassia,",
+        "con pianeti dove l'umanità può vivere."
       ]
     },
     {
@@ -60,10 +60,10 @@
       "scena": "Cameretta di Murph al tramonto: un orologio da polso lasciato sul letto, la libreria; dalla finestra, sul campo di mais, la scia di un razzo che sale nel cielo.",
       "sottotitoli": [
         "Serve un pilota: Cooper accetta.",
-        "Murph non vuole che parta e non lo saluta.",
+        "Murph, arrabbiata, non lo saluta.",
         "Lui le lascia un orologio uguale al suo.",
         "«Tornerò», promette.",
-        "Il razzo parte, verso Saturno."
+        "Il razzo parte verso Saturno."
       ]
     },
     {
@@ -84,9 +84,9 @@
       "durata": 11,
       "scena": "Mare basso e infinito; all'orizzonte una montagna d'acqua che si avvicina; nel cielo un enorme buco nero con l'anello dorato; una piccola navetta posata sull'acqua.",
       "sottotitoli": [
-        "Primo pianeta: tutto acqua, vicino a un enorme buco nero.",
-        "Lì il tempo rallenta: un'ora vale sette anni sulla Terra.",
-        "Un'onda alta come una montagna li travolge.",
+        "Primo pianeta: solo acqua, vicino a un buco nero.",
+        "Lì un'ora vale sette anni sulla Terra.",
+        "Un'onda gigante li travolge.",
         "Uno scienziato muore.",
         "Per ripartire perdono 23 anni."
       ]
@@ -97,10 +97,10 @@
       "durata": 10,
       "scena": "Cabina dell'astronave in penombra: uno schermo con video sfocati (solo luci e colori, nessun volto) e il contatore degli anni che sale; fuori dall'oblò il buco nero; una tazza, una cuffia appoggiata.",
       "sottotitoli": [
-        "Sull'astronave, Cooper guarda i video da casa.",
-        "Tom è cresciuto, si è sposato, ha perso un figlio.",
-        "Murph ora è adulta, ed è una scienziata.",
-        "Lavora con Brand alla NASA. Ed è ancora arrabbiata."
+        "Cooper guarda i video da casa.",
+        "Tom si è sposato, ha perso un figlio.",
+        "Murph è diventata una scienziata.",
+        "Lavora con Brand alla NASA, ancora arrabbiata con lui."
       ]
     },
     {
@@ -110,8 +110,8 @@
       "scena": "Distesa di ghiaccio con nuvole congelate sospese nel cielo; un rifugio con la luce accesa; una navetta che decolla e, in alto, un lampo di esplosione accanto all'astronave.",
       "sottotitoli": [
         "Secondo pianeta: ghiaccio e nuvole gelate.",
-        "Lì li aspetta il dottor Mann, un esploratore.",
-        "Ma ha mentito: il pianeta è invivibile, voleva solo essere salvato.",
+        "Lì li aspetta l'esploratore Mann.",
+        "Ha mentito per farsi salvare: è invivibile.",
         "Prova a uccidere Cooper e a rubare l'astronave.",
         "Muore, e la danneggia."
       ]
@@ -122,10 +122,10 @@
       "durata": 9,
       "scena": "L'astronave ad anello che ruota impazzita perdendo frammenti; la navetta che si allinea e la aggancia; stelle che girano; in un riquadro, una lavagna con un'equazione cancellata a metà.",
       "sottotitoli": [
-        "Cooper riaggancia l'astronave che gira impazzita.",
-        "Intanto sulla Terra il vecchio Brand muore, e confessa:",
+        "Cooper riaggancia l'astronave impazzita.",
+        "Sulla Terra, il vecchio Brand muore e confessa:",
         "salvare chi è rimasto era impossibile.",
-        "Mancano dati che esistono solo dentro un buco nero."
+        "Servono dati da dentro un buco nero."
       ]
     },
     {
@@ -134,10 +134,10 @@
       "durata": 11,
       "scena": "Il buco nero con il disco dorato; la navetta che si stacca e precipita; poi una griglia infinita di librerie sospese nel vuoto (la stanza fuori dal tempo), attraversata da fili di luce.",
       "sottotitoli": [
-        "Il carburante non basta per tutti.",
-        "Cooper si stacca e cade nel buco nero con un robot,",
-        "così Amelia può raggiungere l'ultimo pianeta.",
-        "Dentro, trova una stanza fuori dal tempo: la camera di Murph.",
+        "Il carburante non basta.",
+        "Cooper si getta nel buco nero con un robot,",
+        "così Amelia raggiunge l'ultimo pianeta.",
+        "Dentro trova la camera di Murph, fuori dal tempo.",
         "Il fantasma era lui."
       ]
     },
@@ -147,11 +147,11 @@
       "durata": 11,
       "scena": "Primo piano dell'orologio sulla libreria con la lancetta dei secondi che scatta in codice Morse; poi una gigantesca stazione spaziale cilindrica con case e campi all'interno; in fondo, un pianeta lontano.",
       "sottotitoli": [
-        "Con la lancetta dell'orologio le manda i dati in Morse.",
-        "Murph capisce: l'umanità lascia la Terra.",
+        "Dall'orologio le manda i dati in Morse.",
+        "Murph salva l'umanità, che lascia la Terra.",
         "Cooper si risveglia vicino a Saturno.",
         "Murph è anziana, lui ancora giovane.",
-        "Lei gli dice: vai da Amelia. E lui parte."
+        "Lei lo manda da Amelia."
       ]
     }
   ],

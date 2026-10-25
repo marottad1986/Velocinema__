@@ -9,6 +9,7 @@
     "prova": "node scripts/prova.mjs",
     "musica": "node scripts/musica.mjs",
     "voce": "node scripts/voce.mjs",
+    "dividi": "node scripts/dividi.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

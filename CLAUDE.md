@@ -90,15 +90,24 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   film (Inception, Tenet, Mulholland Drive, Donnie Darko, Primer). Libri solo dopo ~10 episodi.
 
 ## Voce
-- I sottotitoli coincidono con il testo voce. Ritmo di riferimento: circa 3,4 parole al secondo.
-- Clip registrate una per capitolo in `audio/<film>/`, nominate `00_copertina`, `01_<id>`, `02_<id>`…
-- Montaggio: ogni clip parte all'inizio del suo capitolo; se sfora, accelerare al massimo del 15%
+- I sottotitoli coincidono con il testo voce. Ritmo di riferimento: circa 2,8 parole al secondo
+  (circa 28–30 parole per un capitolo da 10–11 s): le voci espressive non reggono ritmi più alti.
+- Voce generata con ElevenLabs (modello v3, voce «Brando Vox – Stylish Social Media Voice»), con un piano a pagamento
+  per l'uso commerciale: le clip del piano gratuito servono solo per le prove e non vanno pubblicate.
+  Testo da incollare senza indicazioni di tono tra parentesi (rallentano la lettura).
+- Clip generate una per capitolo in `audio/<film>/`, nominate `00_copertina`, `01_<id>`, `02_<id>`…
+- In alternativa una registrazione unica con tutti i capitoli di seguito, separati da una pausa lunga:
+  `npm run dividi -- <film> <file>` taglia nel mezzo delle pause più lunghe (una in meno delle parti con voce) e scrive
+  le clip in `audio/<film>/` (`--cartella <dir>` per le prove), mostrando il ritmo di ogni parte per controllare i tagli.
+  Un capitolo da rifare si rigenera da solo e si salva col suo nome al posto della clip tagliata.
+- Montaggio: ogni clip parte all'inizio del suo capitolo; se sfora, accorciare le pause e accelerare al massimo del 25%
   mantenendo il tono, altrimenti segnalare la frase da accorciare. Musica abbassata sotto la voce.
-- Voce registrata da un attore (niente voce sintetica).
 - `npm run voce -- <film>` → `out/<film>-voce.mp4` (richiede `out/<film>.mp4` già renderizzato con la musica).
   Gli inizi dei capitoli vengono dal JSON (copertina + durate); clip in wav/mp3/m4a/flac/ogg, facoltativa `NN_finale`.
-  Lascia 0,1 s prima del capitolo successivo; oltre il +15% (atempo) non monta nulla, esce con errore e indica
-  quante parole togliere e la frase più lunga del capitolo. Ducking: `sidechaincompress` della voce sulla musica.
+  Toglie il silenzio iniziale e finale di ogni clip (copie ripulite in `out/voce-tmp/`); se la clip sfora, porta le pause
+  tra le frasi a 0,25 s e poi accelera con atempo. Lascia 0,1 s prima del capitolo successivo; oltre il +25% non monta
+  nulla, esce con errore e indica quante parole togliere e la frase più lunga del capitolo.
+  Ducking: `sidechaincompress` della voce sulla musica.
   Opzioni per le prove: `--cartella <dir>` (clip), `--video <file>`, `--uscita <file>`.
 
 ## Musica
@@ -148,8 +157,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - `src/scenes/<film>/<Scena>.tsx`: una scena per capitolo; `index.ts` mappa id capitolo → componente + posizione titolo.
 - `src/components/ChapterOverlay.tsx`: barra, etichetta, titolo, sottotitoli. `src/lib/anim.ts`: camera/parallasse e utilità del tempo. `src/lib/fx.tsx`: grana, vignettatura, velatura, gradienti.
 - Le props delle composizioni devono essere JSON (si passa lo slug del film, non l'oggetto).
-- Comandi: `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run voce -- <film>`.
-- Audio: `scripts/musica.mjs`, `scripts/voce.mjs`, `scripts/audio/` (sintetizzatore, spartiti, tempi dal JSON e helper ffmpeg in `film.mjs`).
+- Comandi: `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run dividi -- <film> <file>`, `npm run voce -- <film>`.
+- Audio: `scripts/musica.mjs`, `scripts/voce.mjs`, `scripts/dividi.mjs`, `scripts/audio/` (sintetizzatore, spartiti, tempi dal JSON e helper ffmpeg in `film.mjs`).
 
 ## Tecnologia suggerita
 Remotion (React) per comporre e renderizzare i video, ffmpeg per audio e montaggio voce.
