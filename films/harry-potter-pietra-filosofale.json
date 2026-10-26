@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Una lettera. Un treno. Una vita piena di magia.",
     "immagine": "Notte stellata sopra un castello con tante torri su una scogliera, finestre accese riflesse nel lago; in primo piano una lettera chiusa con sigillo di ceralacca che vola, e un gufo bianco in volo. Titolo grande con carattere classico (Cinzel). NON usare il logo del film (scritta con il fulmine), stemmi delle case né persone.",
-    "voce": "Harry Potter e la pietra filosofale, di Chris Columbus: la scoperta della magia."
+    "voce": "Harry Potter e la pietra filosofale."
   },
   "capitoli": [
     {
@@ -21,10 +21,10 @@
       "durata": 10,
       "scena": "Sgabuzzino sotto le scale visto dalla porticina aperta: un lettino stretto, una lampadina che pende, ragnatele e un ragno, soldatini e un paio di occhiali tondi rotti tenuti col nastro; sopra, i gradini.",
       "sottotitoli": [
-        "Harry Potter ha quasi undici anni, è orfano",
-        "e vive con gli zii Dursley, che lo trattano malissimo:",
+        "Harry Potter, quasi undici anni, è orfano",
+        "e vive con zii che lo trattano malissimo:",
         "dorme in uno sgabuzzino sotto le scale",
-        "e non sa la verità sui suoi genitori."
+        "e non sa nulla dei genitori."
       ]
     },
     {
@@ -33,9 +33,9 @@
       "durata": 9,
       "scena": "Salotto in ordine maniacale: dal camino escono a fiotti decine di lettere che volano per la stanza; sul davanzale e sulla staccionata fuori, tanti gufi; una lettera con il sigillo di ceralacca in primo piano.",
       "sottotitoli": [
-        "Un giorno arrivano lettere da una scuola, portate dai gufi,",
-        "ma lo zio le strappa senza aprirle,",
-        "così ne arrivano centinaia, perfino dal camino, e lo zio fugge su uno scoglio."
+        "Un giorno i gufi gli portano lettere da una scuola,",
+        "ma lo zio le strappa,",
+        "così ne arrivano centinaia, e lo zio fugge su uno scoglio."
       ]
     },
     {
@@ -44,9 +44,9 @@
       "durata": 9,
       "scena": "Notte di tempesta: una casupola su uno scoglio in mezzo al mare, la porta buttata giù, dentro il fuoco acceso; sul tavolo una torta di compleanno un po' storta e un ombrello rosa.",
       "sottotitoli": [
-        "Ma anche lì arriva Hagrid, il gigante custode della scuola,",
+        "Ma arriva Hagrid, custode della scuola,",
         "e gli dice la verità: Harry è un mago,",
-        "e i suoi genitori sono morti per proteggerlo dal mago malvagio Voldemort."
+        "e i genitori sono morti per proteggerlo dal malvagio Voldemort."
       ]
     },
     {
@@ -56,8 +56,8 @@
       "scena": "Stazione di Londra: una colonna di mattoni con il cartello del binario 9 e ¾; un carrello con un baule e una gabbia con un gufo bianco che entra nel muro come in uno specchio d'acqua; dietro, un treno rosso a vapore.",
       "sottotitoli": [
         "Così parte per Hogwarts, la scuola di magia:",
-        "alla stazione di Londra attraversa un muro magico",
-        "e trova il binario nove e tre quarti, con un treno rosso a vapore."
+        "a Londra attraversa un muro della stazione",
+        "e trova il binario nove e tre quarti."
       ]
     },
     {
@@ -67,7 +67,7 @@
       "scena": "Notte su un grande lago nero: in alto, sulla scogliera, un castello con tante torri e finestre accese; sull'acqua una fila di barchette con le lanterne; stelle e nebbia bassa.",
       "sottotitoli": [
         "Sul treno conosce Ron, che diventa il suo migliore amico,",
-        "ed Hermione, una ragazza bravissima a scuola,",
+        "ed Hermione, bravissima a scuola,",
         "e di notte arrivano in barca al castello,",
         "illuminato sopra il lago."
       ]
@@ -78,10 +78,10 @@
       "durata": 11,
       "scena": "Grande sala del castello: soffitto che mostra il cielo stellato, centinaia di candele che fluttuano, lunghe tavolate con piatti e calici d'oro; al centro uno sgabello con un vecchio cappello da mago rattoppato; stendardi rossi e oro (senza stemmi).",
       "sottotitoli": [
-        "Nella grande sala, sotto candele che volano,",
+        "Nella grande sala, tra candele che volano,",
         "un cappello parlante sceglie la casa di ogni studente,",
-        "cioè il gruppo con cui vivrà e studierà tutto l'anno:",
-        "Harry, Ron ed Hermione finiscono in Grifondoro."
+        "cioè il gruppo con cui vivrà tutto l'anno:",
+        "Harry, Ron ed Hermione vanno in Grifondoro."
       ]
     },
     {
@@ -90,10 +90,10 @@
       "durata": 10,
       "scena": "Campo da gioco nel cielo: altissimi anelli sui pali, torri con gli spalti e gli stendardi; una scopa che sfreccia lasciando una scia; una pallina d'oro con le ali che zigzaga brillando.",
       "sottotitoli": [
-        "A lezione di volo Harry si scopre bravissimo sulla scopa,",
+        "A lezione di volo Harry si scopre bravissimo,",
         "così entra nella squadra di Quidditch,",
-        "lo sport dei maghi, che si gioca per aria,",
-        "per acchiappare la pallina d'oro alata che fa vincere."
+        "lo sport dei maghi giocato in volo,",
+        "dove vince chi prende la pallina d'oro."
       ]
     },
     {
@@ -102,10 +102,10 @@
       "durata": 11,
       "scena": "Stanza di pietra dietro una porta proibita: un enorme cane a tre teste che dorme e ringhia, le zampe sopra una botola di legno; un'arpa che suona da sola; luce di una torcia.",
       "sottotitoli": [
-        "Intanto i tre amici, dietro una porta proibita,",
-        "trovano un cane a tre teste che sorveglia una botola,",
-        "e scoprono che sotto è nascosta la pietra filosofale,",
-        "che rende immortali: Voldemort, rimasto senza corpo, la cerca."
+        "Intanto, dietro una porta proibita, i tre amici",
+        "trovano un cane a tre teste sopra una botola:",
+        "sotto c'è la pietra filosofale, che rende immortali,",
+        "e Voldemort, ormai senza corpo, la cerca."
       ]
     },
     {
@@ -115,8 +115,8 @@
       "scena": "Stanza buia e polverosa, fuori nevica: un grande specchio antico con la cornice d'oro intagliata, che invece di riflettere la stanza si riempie di una luce calda; candele e drappi.",
       "sottotitoli": [
         "A Natale Harry trova uno specchio magico",
-        "in cui vede i suoi genitori accanto a lui:",
-        "il preside Silente gli spiega che lo specchio mostra",
+        "in cui vede i suoi genitori:",
+        "Silente, il preside, spiega che mostra",
         "solo il desiderio più profondo,",
         "e che non bisogna perdersi nei sogni."
       ]
@@ -129,9 +129,9 @@
       "sottotitoli": [
         "Convinti che il severo professor Piton",
         "voglia rubare la pietra per Voldemort,",
-        "i tre scendono nella botola e superano le prove:",
-        "una pianta che stritola, chiavi volanti",
-        "e scacchi giganti, dove Ron resta ferito per farli passare."
+        "i tre scendono nella botola:",
+        "superano una pianta che stritola, chiavi volanti",
+        "e scacchi giganti, dove Ron si sacrifica."
       ]
     },
     {
@@ -140,11 +140,11 @@
       "durata": 11,
       "scena": "Sala sotterranea con fiamme di fuoco magico all'ingresso: lo specchio d'oro al centro, una pietra rossa che brilla; la pietra che si sbriciola in polvere luminosa alla fine.",
       "sottotitoli": [
-        "In fondo Harry trova il professor Raptor, servo di Voldemort, non Piton:",
-        "lo specchio gli dà la pietra,",
-        "perché Harry vuole solo salvarla,",
-        "e Raptor brucia toccandolo, grazie all'amore della madre:",
-        "Voldemort fugge, e la pietra viene distrutta."
+        "Ma il ladro è Raptor, un altro professore:",
+        "lo specchio dà la pietra a Harry,",
+        "che vuole solo salvarla,",
+        "e Raptor brucia toccandolo, per l'amore della madre:",
+        "Voldemort fugge e la pietra viene distrutta."
       ]
     }
   ],
