@@ -115,9 +115,11 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 ## Voce
 - I sottotitoli coincidono con il testo voce. Ritmo di riferimento: circa 2,8 parole al secondo
   (circa 28–30 parole per un capitolo da 10–11 s): le voci espressive non reggono ritmi più alti.
-- Voce generata con ElevenLabs (modello v3, voce «Brando Vox – Stylish Social Media Voice»), con un piano a pagamento
+- Voce generata con ElevenLabs (modello `eleven_v4`, voce «Brando Vox – Stylish Social Media Voice»), con un piano a pagamento
   per l'uso commerciale: le clip del piano gratuito servono solo per le prove e non vanno pubblicate.
   Testo da incollare senza indicazioni di tono tra parentesi (rallentano la lettura).
+  Brando è una voce professionale clonata, addestrata solo su alcuni modelli (`eleven_v4`, `eleven_multilingual_v2`…):
+  con un modello su cui non è addestrata (es. `eleven_v3`) la voce cambia. Nel sito i file scaricati finiscono con il modello (`_v4`).
 - Clip generate una per capitolo in `audio/<film>/`, nominate `00_copertina`, `01_<id>`, `02_<id>`…
 - `node scripts/genera-voce.mjs <film>` genera le clip direttamente con l'API di ElevenLabs, una per
   parte, dal testo del JSON e con voce, modello e impostazioni di `scripts/audio/voce.json` (il `voice_id` si cerca per nome
