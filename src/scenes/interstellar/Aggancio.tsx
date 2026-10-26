@@ -29,7 +29,7 @@ export const Aggancio: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const tx = eob(seg(t, cues[1], cues[1] + 0.6));
   const cross = eo(seg(t, cues[2] + 0.2, cues[2] + 0.8));
   const hole = eob(seg(t, cues[3], cues[3] + 0.6));
-  const cx = 540, cy = 820;
+  const cx = 480, cy = 860; // più in basso e a sinistra: lascia libero il titolo e il riquadro della trasmissione
   const shA = ang * (180 / Math.PI);
 
   return (
@@ -65,7 +65,7 @@ export const Aggancio: React.FC<SceneProps> = ({ t, dur, cues }) => {
         <g transform={L(0.55)}>
           <g transform={`rotate(${(shA * 0.15) % 360} ${cx} ${cy})`}>
             {/* rotazione dei moduli: un secondo anello che gira veloce attorno al mozzo */}
-            <Ring x={cx} y={cy} r={250} t={ang} spin={1} tiltY={0.9} outline={K} lit="#EEF2F4" debris={1 - slow} />
+            <Ring x={cx} y={cy} r={232} t={ang} spin={1} tiltY={0.9} outline={K} lit="#EEF2F4" debris={1 - slow} />
           </g>
           {/* navetta: arriva, ruota con l'anello, si incastra nel mozzo */}
           <g transform={`translate(${lerp(140, cx, dock)} ${lerp(1240, cy, dock)}) rotate(${lerp(-30, shA * dock, dock)}) scale(${lerp(0.9, 0.5, dock)})`}>
@@ -78,7 +78,7 @@ export const Aggancio: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 3 — trasmissione dalla Terra: la lavagna del piano «salvare tutti» (0,8) */}
         <g transform={L(0.8)} opacity={tx}>
-          <g transform={`translate(${lerp(760, 690, tx)} 1160) scale(${tx})`}>
+          <g transform={`translate(${lerp(800, 740, tx)} 1128) scale(${0.82 * tx})`}>
             <rect x="-250" y="-150" width="500" height="300" rx="16" fill="#0E1622" stroke="#8EB8D8" strokeWidth="6" />
             <text x="-226" y="-114" fontFamily={DISPLAY} fontWeight={800} fontSize="22" fill="#8EB8D8" letterSpacing="3">TRASMISSIONE · TERRA</text>
             <rect x="-220" y="-92" width="440" height="220" fill="url(#ag-board)" stroke="#5A4A38" strokeWidth="8" />
@@ -102,8 +102,18 @@ export const Aggancio: React.FC<SceneProps> = ({ t, dur, cues }) => {
             return <rect key={i} x={x} y={y} width={b.s} height={b.s * 0.6} fill="#C9D3DB" stroke={K} strokeWidth="3" transform={`rotate(${t * 180 + i * 30} ${x} ${y})`} />;
           })}
         </g>
+        {/* pezzo di scafo staccato che passa vicinissimo, dal basso */}
+        <g transform={L(1.4)}>
+          <g transform={`translate(${260 + t * 14} ${1800 - t * 10}) rotate(${-14 + t * 3})`}>
+            <path d="M-320 -120 L240 -170 L330 60 L280 340 L-360 360 Z" fill="#9AA8B4" stroke={K} strokeWidth="10" strokeLinejoin="round" />
+            <path d="M-300 -60 L250 -110 M-310 40 L290 0 M-60 -140 L-30 350" stroke="#5A6878" strokeWidth="6" />
+            <path d="M-310 -112 L236 -160" stroke="#EEF2F4" strokeWidth="5" opacity=".7" />
+            {[[-240, -80], [-120, -90], [0, -100], [120, -112], [-240, 20], [-120, 14], [0, 8], [120, 2]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r="7" fill="#3A4858" />)}
+            <path d="M330 60 L380 40 L360 90 Z M280 340 L330 320 L300 380 Z" fill="#C9D3DB" stroke={K} strokeWidth="5" />
+          </g>
+        </g>
         <g transform={L(1.8)}>
-          <NearMotes id="ag-near" t={t} color="#DCE8F2" n={6} vx={-30} vy={-6} opacity={0.06} />
+          <NearMotes id="ag-near" t={t} color="#DCE8F2" n={6} vx={-30} vy={-6} opacity={0.15} />
         </g>
       </g>
 

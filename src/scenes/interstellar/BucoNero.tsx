@@ -1,6 +1,6 @@
 import React from 'react';
 import { camera, eio, eo, lerp, mod, rng, seg } from '../../lib/anim';
-import { Finish, FxDefs, Lin } from '../../lib/fx';
+import { Finish, FxDefs, GlowGradient, Lin } from '../../lib/fx';
 import { Glow, NearMotes, Stars } from '../../lib/elements';
 import type { SceneProps } from '../../types';
 import { BlackHole, GOLD, Ring } from './Spazio';
@@ -47,6 +47,7 @@ export const BucoNero: React.FC<SceneProps> = ({ t, dur, cues }) => {
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
         <FxDefs id="bn" />
+        <GlowGradient id="bn-veil" color="#0A0806" core={0.75} mid={0.4} />
         <Lin id="bn-space" stops={[[0, '#02030A'], [0.5, '#0A1020'], [1, '#03050C']]} />
         <radialGradient id="bn-tess">
           <stop offset="0" stopColor="#3A2E24" />
@@ -72,7 +73,8 @@ export const BucoNero: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <Glow id="bn-pl" x={930} y={560} r={60} t={t} color="#9AB4C4" amp={0.1} rate={2} opacity={0.5 * away} />
             <Ring x={lerp(250, 900, away)} y={lerp(1180, 600, away)} r={lerp(110, 20, away)} t={t} spin={0.3} tiltY={0.4} outline={K} lit="#DCE4EA" />
             {/* la navetta si stacca e cade nel disco */}
-            <g transform={`translate(${lerp(300, cx, detach)} ${lerp(1150, cy + 40, detach)}) scale(${lerp(0.5, 0.05, detach)}) rotate(${detach * 220})`}>
+            {detach > 0 && <path d={`M300 1150 L${lerp(300, cx, detach)} ${lerp(1150, cy + 40, detach)}`} stroke="#8EB8D8" strokeWidth="8" strokeLinecap="round" opacity={0.55 * (1 - seg(detach, 0.85, 1))} />}
+            <g transform={`translate(${lerp(300, cx, detach)} ${lerp(1150, cy + 40, detach)}) scale(${lerp(0.85, 0.14, detach)}) rotate(${detach * 220})`}>
               <path d="M-110 16 L-80 -26 H60 L118 8 L108 26 H-100 Z" fill="#EEF2F4" stroke={K} strokeWidth="8" strokeLinejoin="round" />
               <Glow id="bn-eng" x={-120} y={10} r={70} t={t} color="#8EB8D8" amp={0.3} rate={15} opacity={0.9} />
             </g>
@@ -118,9 +120,21 @@ export const BucoNero: React.FC<SceneProps> = ({ t, dur, cues }) => {
           </g>
         )}
 
+        {/* velo scuro dietro il titolo nella stanza fuori dal tempo: fili e scaffali non lo disturbano */}
+        {cross > 0 && <ellipse cx="420" cy="450" rx="560" ry="150" fill="url(#bn-veil)" opacity={cross * 0.85} />}
+
+        {/* primo piano della prima parte: il bordo dell'astronave da cui parte la navetta, fino in basso (1,3) */}
+        <g transform={L(1.3)} opacity={1 - cross}>
+          <path d="M-200 2200 V1700 Q300 1560 900 1660 Q1100 1700 1280 1800 V2200 Z" fill="#7A8898" stroke={K} strokeWidth="10" />
+          <path d="M-200 1740 Q300 1600 900 1700 Q1100 1740 1280 1840" fill="none" stroke="#DCE4EA" strokeWidth="5" opacity=".6" />
+          {[-80, 120, 320, 520, 720, 920].map((x, i) => <path key={i} d={`M${x} ${1690 - Math.sin((i / 5) * Math.PI) * 80} V2200`} stroke="#4A5868" strokeWidth="6" />)}
+          {[60, 260, 460, 660, 860].map((x, i) => <circle key={i} cx={x} cy={1760 - Math.sin(((i + 0.5) / 5) * Math.PI) * 70} r="8" fill="#3A4858" />)}
+          <Glow id="bn-hull" x={300} y={1640} r={260} t={t} color="#8EB8D8" amp={0.1} rate={3} opacity={0.3 * (1 - detach)} />
+        </g>
+
         {/* PIANO 5 — particelle vicine (1,8) */}
         <g transform={L(1.8)}>
-          <NearMotes id="bn-near" t={t} color={cross > 0.5 ? '#F3DDA8' : '#DCE8F2'} n={7} vx={-20} vy={-10} opacity={0.08} />
+          <NearMotes id="bn-near" t={t} color={cross > 0.5 ? '#F3DDA8' : '#DCE8F2'} n={7} vx={-20} vy={-10} opacity={0.15} />
         </g>
       </g>
 

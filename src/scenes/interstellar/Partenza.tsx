@@ -91,13 +91,24 @@ export const Partenza: React.FC<SceneProps> = ({ t, dur, cues }) => {
             {[0, 90, 180, 270].map((a) => <path key={a} d="M0 -30 V-24" stroke={K} strokeWidth="4" transform={`rotate(${a})`} />)}
             <path d="M0 0 V-22" stroke={K} strokeWidth="5" strokeLinecap="round" transform="rotate(40)" />
             <path d="M0 0 V-16" stroke={K} strokeWidth="5" strokeLinecap="round" transform="rotate(200)" />
-            <path d="M0 4 V-30" stroke="#C0392B" strokeWidth="2.5" strokeLinecap="round" transform={`rotate(${tick})`} />
+            <path d="M0 4 V-30" stroke={GOLD} strokeWidth="2.5" strokeLinecap="round" transform={`rotate(${tick})`} />
             <circle r="4" fill={K} />
           </g>
         </g>
 
-        {/* PIANO 4 — comodino con lampada e modellino di razzo in primo piano (1,2) */}
+        {/* PIANO 4 — tappeto, scatola di libri, comodino con lampada e modellino di razzo in primo piano (1,2) */}
         <g transform={L(1.2)}>
+          <path d="M300 1640 L1300 1600 L1340 2100 L240 2100 Z" fill="#6A3A2A" stroke={K} strokeWidth="8" strokeLinejoin="round" />
+          <path d="M340 1680 L1260 1645 M330 1760 L1280 1724" stroke="#C9A060" strokeWidth="8" opacity=".7" />
+          {Array.from({ length: 9 }, (_, i) => <circle key={i} cx={420 + i * 100} cy={1700 + i * -3} r="9" fill="#C9A060" opacity=".6" />)}
+          <g transform="translate(880 1700)">
+            <path d="M0 0 H240 V260 H0 Z" fill="#9A7A52" stroke={K} strokeWidth="8" />
+            <path d="M0 0 L-30 -50 H200 L240 0 M240 0 L280 -40" fill="#B8925E" stroke={K} strokeWidth="7" strokeLinejoin="round" />
+            {[0, 1, 2].map((i) => <rect key={i} x={20 + i * 66} y={-70 - (i % 2) * 20} width="54" height={90 + (i % 2) * 20} fill={['#3E4A5A', '#7A5A3A', '#4E6A4A'][i]} stroke={K} strokeWidth="5" />)}
+            <path d="M0 120 H240" stroke="#6A5232" strokeWidth="6" />
+          </g>
+          {/* polvere sul tappeto nella luce del tramonto */}
+          {Array.from({ length: 12 }, (_, i) => <circle key={`d${i}`} cx={360 + i * 70} cy={1760 + (i % 4) * 50 - ((t * 20 + i * 13) % 40)} r={2 + (i % 3)} fill="#FFE6C0" opacity=".45" />)}
           <rect x="-120" y="1380" width="360" height="560" fill="#3A2C20" stroke={K} strokeWidth="10" />
           <path d="M-120 1440 H240" stroke={K} strokeWidth="6" />
           <circle cx="60" cy="1530" r="12" fill={GOLD} />

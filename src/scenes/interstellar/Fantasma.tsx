@@ -93,8 +93,8 @@ export const Fantasma: React.FC<SceneProps> = ({ t, dur, cues }) => {
             ))}
           </g>
           {/* modellino di astronave appeso */}
-          <g transform={`translate(520 ${600 + Math.sin(t * 1.1) * 6}) rotate(${Math.sin(t * 0.9) * 8 * storm})`}>
-            <path d="M0 -110 V-40" stroke="#9A9284" strokeWidth="3" />
+          <g transform={`translate(790 ${680 + Math.sin(t * 1.1) * 6}) rotate(${Math.sin(t * 0.9) * 8 * storm})`}>
+            <path d="M0 -150 V-40" stroke="#9A9284" strokeWidth="3" />
             <path d="M-30 0 L0 -40 L30 0 L20 30 H-20 Z" fill="#DCE4EA" stroke={K} strokeWidth="5" strokeLinejoin="round" />
             <path d="M-20 30 L-36 50 M20 30 L36 50" stroke={K} strokeWidth="5" />
             <rect x="-8" y="-14" width="16" height="12" fill="#3E6A8A" />
@@ -105,7 +105,13 @@ export const Fantasma: React.FC<SceneProps> = ({ t, dur, cues }) => {
         <g transform={L(0.75)}>
           <path d="M-200 1100 H1280 V2200 H-200 Z" fill="url(#fa-floor)" />
           {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M-200 ${1120 + i * 40 + i * i * 6} H1280`} stroke="#1E160E" strokeWidth="4" opacity=".7" />)}
-          {/* libri caduti: dalla mensola al pavimento */}
+          <Glow id="fa-code" x={540} y={1180} r={420} t={t} color={GOLD} amp={0.08} rate={2} opacity={0.5 * lit} />
+          {CODE.map((b, i) => {
+            const p = stripes(i);
+            const x = 140 + i * 66;
+            return <path key={i} d={`M${x} 1130 L${x - 30} 1250`} stroke={lit > 0 ? (lit > 0.5 ? GOLD : '#C9A878') : '#C9A878'} strokeWidth={b ? 30 : 10} strokeLinecap="round" opacity={0.85 * p} />;
+          })}
+          {/* libri caduti: dalla mensola al pavimento, sopra le strisce */}
           {FALL.map(([ri, i, d]) => {
             const bk = BOOKS[ri][i];
             const p = seg(t, cues[1] + d, cues[1] + d + 0.55);
@@ -115,15 +121,9 @@ export const Fantasma: React.FC<SceneProps> = ({ t, dur, cues }) => {
             const y = lerp(y0, 1190 - bk.w - ri * 14, drop * drop);
             return <rect key={`f${ri}${i}`} x={x0 + drop * (90 + ri * 40)} y={y} width={bk.w} height={bk.h} rx="3" fill={bk.c} stroke={K} strokeWidth="4" transform={`rotate(${25 + drop * 65} ${x0 + drop * (90 + ri * 40) + bk.w / 2} ${y + bk.h})`} />;
           })}
-          <Glow id="fa-code" x={540} y={1180} r={420} t={t} color={GOLD} amp={0.08} rate={2} opacity={0.5 * lit} />
-          {CODE.map((b, i) => {
-            const p = stripes(i);
-            const x = 140 + i * 66;
-            return <path key={i} d={`M${x} 1130 L${x - 30} 1250`} stroke={lit > 0 ? (lit > 0.5 ? GOLD : '#C9A878') : '#C9A878'} strokeWidth={b ? 30 : 10} strokeLinecap="round" opacity={0.85 * p} />;
-          })}
-          {/* cifre che compaiono sopra le strisce */}
+          {/* cifre che compaiono sul pavimento, sotto ogni striscia */}
           {CODE.map((b, i) => (
-            <text key={i} x={126 + i * 66} y={lerp(1110, 1090, lit)} textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="34" fill={GOLD} opacity={seg(t, cues[3] + i * 0.08, cues[3] + 0.3 + i * 0.08)}>{b}</text>
+            <text key={i} x={110 + i * 66} y={lerp(1300, 1290, lit)} textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="34" fill={GOLD} opacity={seg(t, cues[3] + i * 0.08, cues[3] + 0.3 + i * 0.08)}>{b}</text>
           ))}
         </g>
 

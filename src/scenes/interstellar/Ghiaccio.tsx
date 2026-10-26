@@ -57,8 +57,15 @@ export const Ghiaccio: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <Ring x={820} y={640} r={84} t={t} spin={0.3 + boom * 2} tiltY={0.4} outline={K} lit="#EEF2F4" debris={boom} />
           {boom > 0 && boom < 1 && (
             <g>
-              <Glow id="gh-boom" x={860} y={640} r={200 * boom + 40} t={t} color="#FFE6A8" amp={0.2} rate={20} opacity={0.9 * (1 - boom)} />
-              <circle cx="860" cy="640" r={20 + 60 * boom} fill="#FFF4D6" opacity={1 - boom} />
+              <Glow id="gh-boom" x={860} y={640} r={360 * boom + 80} t={t} color="#FFE6A8" amp={0.2} rate={20} opacity={0.95 * (1 - boom)} />
+              <circle cx="860" cy="640" r={30 + 110 * boom} fill="#FFF4D6" opacity={1 - boom} />
+              <circle cx="860" cy="640" r={60 + 200 * boom} fill="none" stroke="#FFE6A8" strokeWidth={14 * (1 - boom)} opacity={0.8 * (1 - boom)} />
+              {/* frammenti dell'anello che volano via */}
+              {Array.from({ length: 12 }, (_, i) => {
+                const a = (i / 12) * Math.PI * 2 + 0.3, d = 40 + 260 * boom * (0.7 + (i % 3) * 0.2);
+                const x = 860 + Math.cos(a) * d, y = 640 + Math.sin(a) * d * 0.8;
+                return <rect key={i} x={x - 9} y={y - 5} width={18 + (i % 3) * 6} height="10" fill="#C9D3DB" stroke={K} strokeWidth="3" opacity={1 - seg(boom, 0.7, 1)} transform={`rotate(${i * 40 + boom * 300} ${x} ${y})`} />;
+              })}
             </g>
           )}
           <rect x="-200" y="-200" width="1480" height="2320" fill="#FFF4E0" opacity={flash * 0.3} />

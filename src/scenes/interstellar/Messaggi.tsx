@@ -23,7 +23,7 @@ const Icon: React.FC<{ kind: 'house' | 'rings' | 'candle' | 'board'; x: number; 
     {kind === 'house' && <path d="M-30 20 V-6 L0 -30 L30 -6 V20 Z M-8 20 V2 H8 V20" />}
     {kind === 'rings' && <><circle cx="-10" cy="4" r="16" /><circle cx="12" cy="4" r="16" /></>}
     {kind === 'candle' && <><path d="M-10 26 V-8 H10 V26 Z" /><path d="M0 -14 q-8 -10 0 -22 q8 12 0 22" fill={GOLD} stroke={GOLD} /></>}
-    {kind === 'board' && <><rect x="-34" y="-24" width="68" height="46" /><path d="M-24 -10 h18 M-24 4 h30 M10 -10 l12 12 M22 -10 l-12 12" /></>}
+    {kind === 'board' && <><rect x="-34" y="-24" width="68" height="46" /><path d="M-26 -12 q6 -10 12 0 t12 0" /><path d="M-26 6 h14 M-19 -1 v14 M-4 6 h8 M10 6 q6 -12 12 0" /><circle cx="22" cy="-12" r="4" fill={GOLD} stroke={GOLD} /></>}
   </g>
 );
 

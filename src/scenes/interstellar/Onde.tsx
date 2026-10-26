@@ -31,7 +31,8 @@ const Dial: React.FC<{ x: number; y: number; a: number; label: string; hot?: boo
 export const Onde: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
-  const dials = Math.max(seg(t, cues[1] - 0.2, cues[1] + 0.4) * (1 - seg(t, cues[2] + 1.6, cues[3]) * 0.6), seg(t, cues[4] - 0.2, cues[4] + 0.3));
+  // i quadranti spariscono mentre l'onda sale (non si vedono «attraverso» l'acqua) e tornano con gli anni passati
+  const dials = Math.max(seg(t, cues[1] - 0.2, cues[1] + 0.4) * (1 - seg(t, cues[2] - 0.2, cues[2] + 0.4)), seg(t, cues[4] - 0.2, cues[4] + 0.3));
   const rise = eio(seg(t, cues[2] - 0.6, cues[3]));
   const crash = seg(t, cues[3], cues[3] + 1.0);
   const lift = eo(seg(t, cues[4] - 0.2, dur));
@@ -62,6 +63,14 @@ export const Onde: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <path d="M-200 1060 Q540 1050 1280 1060 V1300 H-200 Z" fill="url(#on-sea)" />
           <path d={`M-200 1062 C100 1062 160 ${waveTop + 40} 420 ${waveTop} C680 ${waveTop - 20} 860 ${waveTop + 60} 1280 ${waveTop + 30} V1062 Z`} fill="url(#on-wave)" stroke={K} strokeWidth="6" />
           <path d={`M-200 1062 C100 1062 160 ${waveTop + 40} 420 ${waveTop} C680 ${waveTop - 20} 860 ${waveTop + 60} 1280 ${waveTop + 30}`} fill="none" stroke="#EEF4F6" strokeWidth={4 + 8 * rise} opacity={0.4 + 0.5 * rise} />
+          {/* cresta che si arriccia in cima all'onda, con schiuma e spruzzi */}
+          {rise > 0.2 && crash < 1 && (
+            <g opacity={seg(rise, 0.2, 0.6) * (1 - crash)}>
+              <path d={`M250 ${waveTop + 50} Q360 ${waveTop - 90 * rise} 560 ${waveTop - 40 * rise} Q620 ${waveTop - 10} 600 ${waveTop + 40} Q560 ${waveTop + 10} 520 ${waveTop + 30} Q470 ${waveTop - 10} 420 ${waveTop + 20} Z`} fill="#2E4A5A" stroke={K} strokeWidth="6" strokeLinejoin="round" />
+              <path d={`M270 ${waveTop + 40} Q360 ${waveTop - 80 * rise} 556 ${waveTop - 36 * rise} Q612 ${waveTop - 6} 596 ${waveTop + 34}`} fill="none" stroke="#EEF4F6" strokeWidth="14" strokeLinecap="round" />
+              {Array.from({ length: 14 }, (_, i) => <circle key={i} cx={300 + i * 22 + Math.sin(t * 6 + i) * 6} cy={Math.max(540, waveTop - 50 * rise - 10 - ((t * 120 + i * 37) % 60))} r={4 + (i % 4) * 2} fill="#EEF4F6" opacity={0.8} />)}
+            </g>
+          )}
           <Fog id="on-mist" t={t} y={1050} x={540} rx={900} ry={50} color="#B8C8D4" opacity={0.5} speed={0.3} drift={60} />
         </g>
 
@@ -91,6 +100,12 @@ export const Onde: React.FC<SceneProps> = ({ t, dur, cues }) => {
         <g transform={L(1.2)}>
           <WaveBand t={t} y={1600} fill="#3E5A6A" foam="#DCE8F0" amp={18} w={420} speed={50} bob={10} foamWidth={8} />
           <WaveBand t={t} y={1760} fill="#2A4050" foam="#C9D8E0" amp={24} w={520} speed={70} bob={12} ph={1} foamWidth={8} />
+          {/* cresta vicinissima con schiuma e spruzzi, che arriva al bordo in basso */}
+          <WaveBand t={t} y={1860} fill="#1E3040" foam="#EEF4F6" amp={60} w={640} speed={90} bob={16} ph={2} foamWidth={14} foamOpacity={0.9} />
+          {Array.from({ length: 10 }, (_, i) => {
+            const p = ((t * 0.7 + i / 10) % 1);
+            return <circle key={i} cx={(i * 131) % 1100} cy={1800 - 140 * Math.sin(p * Math.PI)} r={5 + (i % 3) * 3} fill="#EEF4F6" opacity={0.7 * Math.sin(p * Math.PI)} />;
+          })}
         </g>
 
         {/* PIANO 5 — spruzzi e particelle (1,5–1,8) */}
@@ -101,7 +116,7 @@ export const Onde: React.FC<SceneProps> = ({ t, dur, cues }) => {
           })}
         </g>
         <g transform={L(1.8)}>
-          <NearMotes id="on-near" t={t} color="#DCE8F0" n={7} vx={-30} vy={-6} opacity={0.08} />
+          <NearMotes id="on-near" t={t} color="#DCE8F0" n={7} vx={-30} vy={-6} opacity={0.15} />
         </g>
       </g>
 

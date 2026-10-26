@@ -26,7 +26,7 @@ export const Orologio: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const beat = Math.floor(seg(t, 5 / 12, 5 / 12 + MORSE.length * (5 / 18)) * MORSE.length * 0.999);
   const tickA = beat * 24 + (mod((t - 5 / 12) * 3.6, 1) < 0.3 ? 6 : 0);
   const data = eo(seg(t, cues[1] + 0.2, cues[1] + 1.0));
-  const station = eio(seg(t, cues[2] - 0.4, cues[2] + 1.2));
+  const station = eio(seg(t, cues[2] - 0.2, cues[2] + 0.4)); // dissolvenza breve: niente doppia immagine
   const ages = eob(seg(t, cues[3], cues[3] + 0.6));
   const depart = eio(seg(t, cues[4] + 0.2, dur));
   const wx = 540, wy = lerp(900, 1180, station), ws = lerp(1, 0.5, station);
@@ -72,9 +72,12 @@ export const Orologio: React.FC<SceneProps> = ({ t, dur, cues }) => {
           </g>
           {/* navetta che parte verso il pianeta di Amelia */}
           {depart > 0 && (
-            <g transform={`translate(${lerp(800, 180, depart)} ${lerp(1000, 650, depart)}) scale(${lerp(0.5, 0.08, depart)}) rotate(-35)`}>
+            <g>
+            <path d={`M800 1000 L${lerp(800, 180, depart)} ${lerp(1000, 650, depart)}`} stroke="#8EB8D8" strokeWidth="6" strokeLinecap="round" opacity={0.5 * (1 - seg(depart, 0.8, 1))} />
+            <g transform={`translate(${lerp(800, 180, depart)} ${lerp(1000, 650, depart)}) scale(${lerp(0.6, 0.24, depart)}) rotate(-35)`}>
               <path d="M-110 16 L-80 -26 H60 L118 8 L108 26 H-100 Z" fill="#EEF2F4" stroke={K} strokeWidth="8" strokeLinejoin="round" />
               <Glow id="or-eng" x={-130} y={10} r={90} t={t} color="#8EB8D8" amp={0.3} rate={15} opacity={0.9} />
+            </g>
             </g>
           )}
         </g>
@@ -82,7 +85,7 @@ export const Orologio: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 2 — l'orologio sulla mensola della libreria, il Morse e i due orologi (0,7) */}
         <g transform={L(0.7)}>
           <g opacity={1 - station}>
-            <rect x="-200" y="560" width="1480" height="800" fill="url(#or-room)" />
+            <rect x="-200" y="-200" width="1480" height="2400" fill="url(#or-room)" />
             <path d="M-200 1080 H1280" stroke="#2A1E14" strokeWidth="30" />
             {Array.from({ length: 14 }, (_, i) => <rect key={i} x={-160 + i * 90} y={1080 - 140 - (i % 3) * 16} width="70" height={140 + (i % 3) * 16} rx="5" fill={['#7A5A3E', '#4E5A6A', '#8A6A4A', '#5A4A3A'][i % 4]} stroke={K} strokeWidth="5" opacity={Math.abs(i - 6.5) < 2 ? 0 : 1} />)}
           </g>
@@ -103,7 +106,7 @@ export const Orologio: React.FC<SceneProps> = ({ t, dur, cues }) => {
             {MORSE.map((m, i) => (
               <rect key={i} x={160 + i * 64 - (m ? 22 : 9)} y="660" width={m ? 44 : 18} height="18" rx="9" fill={GOLD} opacity={i < beat ? 1 : 0.15} />
             ))}
-            <text x="540" y="740" textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="30" fill={GOLD} letterSpacing="4" opacity={data}>DATI RICEVUTI</text>
+            <text x="540" y="626" textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="30" fill={GOLD} letterSpacing="4" opacity={data}>DATI RICEVUTI</text>
           </g>
           {/* due orologi: lui giovane, lei anziana */}
           <g opacity={ages * (1 - depart * 0.6)}>
@@ -118,12 +121,26 @@ export const Orologio: React.FC<SceneProps> = ({ t, dur, cues }) => {
           </g>
         </g>
 
+        {/* PRIMO PIANO — dorsi dei libri della mensola, poi il bordo dell'oblò della stazione (1,2) */}
+        <g transform={L(1.2)}>
+          <g opacity={1 - station}>
+            <path d="M-200 1600 H1280 V2200 H-200 Z" fill="#2A1E14" stroke={K} strokeWidth="8" />
+            {Array.from({ length: 11 }, (_, i) => <rect key={i} x={-180 + i * 120} y={1480 - (i % 3) * 30} width="96" height={460 + (i % 3) * 30} rx="6" fill={['#6A4A32', '#3E4A5A', '#7A5A3A', '#4A3A2A'][i % 4]} stroke={K} strokeWidth="6" />)}
+            {Array.from({ length: 11 }, (_, i) => <path key={i} d={`M${-160 + i * 120} ${1540 - (i % 3) * 30} H${-104 + i * 120}`} stroke={GOLD} strokeWidth="4" opacity=".6" />)}
+          </g>
+          <g opacity={station}>
+            <path d="M-200 2200 V1640 Q540 1440 1280 1640 V2200 Z" fill="url(#or-hull)" stroke={K} strokeWidth="10" />
+            <path d="M-200 1700 Q540 1510 1280 1700" fill="none" stroke="#EEF2F4" strokeWidth="4" opacity=".6" />
+            {[-60, 220, 540, 860, 1140].map((x, i) => <circle key={i} cx={x} cy={1720 - 90 * Math.cos(((x - 540) / 900) * Math.PI / 2)} r="10" fill="#3A4858" stroke={K} strokeWidth="4" />)}
+          </g>
+        </g>
+
         {/* PIANO 3 — pulviscolo dorato e particelle vicine (1,5–1,8) */}
         <g transform={L(1.5)}>
           <Dust t={t} top={{ y: 600, x0: 200, x1: 880 }} bottom={{ y: 1300, x0: 100, x1: 980 }} n={30} color="#F3DDA8" />
         </g>
         <g transform={L(1.8)}>
-          <NearMotes id="or-near" t={t + r()} color="#F3DDA8" n={6} vx={-20} vy={-8} opacity={0.07} />
+          <NearMotes id="or-near" t={t + r()} color="#F3DDA8" n={6} vx={-20} vy={-8} opacity={0.15} />
         </g>
       </g>
 
@@ -131,5 +148,5 @@ export const Orologio: React.FC<SceneProps> = ({ t, dur, cues }) => {
     </svg>
   );
 };
-// Tempi evento (s nel capitolo): Morse da 0,4 a cue1 + 0,6 · DATI RICEVUTI cue1 + 0,2 · stazione spaziale cue2 − 0,4 → +1,2
+// Tempi evento (s nel capitolo): Morse da 0,4 a cue1 + 0,6 · DATI RICEVUTI cue1 + 0,2 · stazione spaziale cue2 − 0,2 → +0,4
 // · due orologi cue3 · navetta verso il pianeta di Amelia da cue4 + 0,2.

@@ -36,7 +36,7 @@ const Copertina_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
           <BlackHole id="ic-bh" x={600} y={860} r={110} t={t} tilt={-7} />
         </g>
         <g transform={L(0.5)}>
-          <path d="M-200 1250 Q540 1230 1280 1250 V1500 H-200 Z" fill="url(#ic-field)" />
+          <path d="M-200 1250 Q540 1230 1280 1250 V2200 H-200 Z" fill="url(#ic-field)" />
           <Glow id="ic-dusk" x={540} y={1250} r={600} t={t} color="#F2B87A" amp={0.03} rate={1} opacity={0.3} />
         </g>
         <g transform={L(0.8)}>
@@ -58,7 +58,7 @@ const Copertina_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
             <circle r="8" fill={K} />
           </g>
         </g>
-        <g transform={L(1.6)}><NearMotes id="ic-near" t={t} color="#F2D8A8" n={7} vx={-40} vy={-4} opacity={0.1} /></g>
+        <g transform={L(1.6)}><NearMotes id="ic-near" t={t} color="#F2D8A8" n={9} vx={-40} vy={-4} opacity={0.3} /></g>
       </g>
       <Finish id="ic" tint="#3E6A8A" tintOpacity={0.08} />
     </svg>
@@ -102,10 +102,27 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
           </g>
         </g>
         <g transform={L(1.2)}>
-          <path d="M-200 1980 V1560 L-40 1500 L120 1600 L200 1980 Z" fill="#4A2E22" stroke={K} strokeWidth="8" strokeLinejoin="round" />
-          <path d="M1280 1980 V1520 L1100 1470 L960 1580 L920 1980 Z" fill="#4A2E22" stroke={K} strokeWidth="8" strokeLinejoin="round" />
+          {/* rocce grandi ai lati e sassi che arrivano al bordo in basso, con la luce dell'alba sui bordi */}
+          <path d="M-200 2000 V1460 L-60 1380 L80 1440 L180 1560 L300 1700 L340 2000 Z" fill="#4A2E22" stroke={K} strokeWidth="8" strokeLinejoin="round" />
+          <path d="M-60 1380 L80 1440 L180 1560" fill="none" stroke="#E8A87A" strokeWidth="5" opacity=".7" />
+          <path d="M1280 2000 V1420 L1120 1360 L980 1460 L880 1640 L820 2000 Z" fill="#4A2E22" stroke={K} strokeWidth="8" strokeLinejoin="round" />
+          <path d="M1120 1360 L980 1460 L880 1640" fill="none" stroke="#C98A62" strokeWidth="4" opacity=".5" />
+          {[[420, 1830, 70, 36], [560, 1880, 46, 22], [690, 1800, 60, 28], [470, 1720, 30, 15], [760, 1910, 80, 34]].map(([x, y, rx, ry], i) => (
+            <g key={i}>
+              <ellipse cx={x} cy={y + ry * 0.6} rx={rx * 1.1} ry={ry * 0.4} fill="#000" opacity=".25" />
+              <ellipse cx={x} cy={y} rx={rx} ry={ry} fill={i % 2 ? '#6A4232' : '#5A3828'} stroke={K} strokeWidth="6" />
+              <path d={`M${x - rx * 0.6} ${y - ry * 0.5} Q${x} ${y - ry * 0.95} ${x + rx * 0.5} ${y - ry * 0.6}`} fill="none" stroke="#E8A87A" strokeWidth="4" opacity=".6" />
+            </g>
+          ))}
         </g>
-        <g transform={L(1.6)}><NearMotes id="ie-near" t={t + mod(0, 1)} color="#FFE6C0" n={6} vx={-25} vy={-6} opacity={0.1} /></g>
+        {/* polvere rossa sollevata dal vento */}
+        <g transform={L(1.4)}>
+          {Array.from({ length: 5 }, (_, i) => {
+            const p = mod(t * 0.25 + i / 5, 1);
+            return <ellipse key={i} cx={1200 - p * 1500} cy={1560 + (i % 3) * 110 - p * 60} rx={160 + i * 30} ry={34 + i * 6} fill="#E8A87A" opacity={0.18 * Math.sin(p * Math.PI)} />;
+          })}
+        </g>
+        <g transform={L(1.6)}><NearMotes id="ie-near" t={t} color="#FFE6C0" n={9} vx={-25} vy={-6} opacity={0.3} /></g>
       </g>
       <Finish id="ie" tint="#C9846A" tintOpacity={0.06} />
     </svg>
