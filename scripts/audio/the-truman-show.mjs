@@ -4,10 +4,10 @@
 // padre e barca; infine torna pieno e luminoso (muro, inchino, finale). Nessun tema o pattern del film.
 // Strumenti campionati (VSCO-2 CE); effetti registrati (archivio CC0, scripts/audio/effetti.mjs) agganciati ai
 // sottotitoli (tempi in proporzione ai caratteri), come in La La Land.
-import { rng } from '/home/user/vel-truman/scripts/audio/synth.mjs';
-import { suona, archi, colpo } from '/home/user/vel-truman/scripts/audio/campioni.mjs';
-import { clip } from '/home/user/vel-truman/scripts/audio/effetti.mjs';
-import { loadFilm, timeline } from '/home/user/vel-truman/scripts/audio/film.mjs';
+import { rng } from './synth.mjs';
+import { suona, archi, colpo } from './campioni.mjs';
+import { clip } from './effetti.mjs';
+import { loadFilm, timeline } from './film.mjs';
 
 export const strumenti = ['pianoforte', 'glockenspiel', 'violini', 'viole', 'celli', 'contrabbasso', 'grancassa'];
 export const effetti = ['vetro_lastra', 'metallo_schianto', 'pioggia_dura', 'radio_sintonia', 'tuono_classico', 'tuono_secco', 'tuono_forte',
@@ -165,7 +165,7 @@ export default (mix, T) => {
   // pulsazione sorda: colpi di cassa leggera sul grave, a battere nervoso, stringendo verso la barca
   for (let t = snapBeat(T.fuga + 2.4); t < snap(T.barca) - 0.3; t += (60 / BPM) * (t > snap(T.barca) - 4 ? 0.5 : 1)) colpo(mix, 'grancassa', 'bdrum_pp', { t, vel: 70 + 50 * ((t - T.fuga) / (T.barca - T.fuga)), gain: 0.7, rev: 0.3, seed: Math.round(t * 10) });
 
-  // barca: tempesta; bordone, archi bassi, colpi sordi; solo alla fine ("Truman resiste") il tema risale
+  // barca: tempesta; bordone, archi bassi, colpi sordi fino al muro (il tema risale con la sezione del muro)
   sec(T.barca, T.muro, { passo: 'meta', mode: 'dark', keep: 0.12, mel: 38, oct: -12, lh: 54, lhp: 1, low: true, str: 46, sdet: 24, att: 0.6, cluster: true, drone: 52, det: 40, wrong: 0.25, vs: 1 });
   for (let t = snap(C('barca', 2)); t < snap(T.muro); t += 2 * (60 / BPM)) colpo(mix, 'grancassa', 'bdrum_mp', { t, vel: 100, gain: 0.8, rev: 0.35, seed: Math.round(t * 10) });
 
@@ -220,7 +220,8 @@ export default (mix, T) => {
     clip(mix, 'disturbo', { t: z, da: 7 + i * 0.4, durata: 0.35, gain: 0.18, fadeIn: 0.01, fadeOut: 0.2, rev: 0.1, pan: [-0.3, 0.3, 0][i] });
   });
   // figi: timbro ESAURITO (Figi.tsx, cues[2] + 0,15)
-  clip(mix, 'martelletto', { t: C('figi', 2) + 0.15 - 0.07, da: 0.12, durata: 0.2, gain: 0.5, fadeOut: 0.08, lp: 2500, rev: 0.2 });
+  clip(mix, 'martelletto', { t: C('figi', 2) + 0.18, // picco sul timbro che tocca il manifesto (Figi.tsx, cue 2 + 0,26)
+    da: 0.12, durata: 0.2, gain: 0.5, fadeOut: 0.08, lp: 2500, rev: 0.2 });
   // fuga: fiammata e fuoco sulla strada (Fuga.tsx: cues[2] su, cues[5] giù)
   clip(mix, 'fiammata', { t: C('fuga', 2) - 0.15, da: 0.05, durata: 1.1, gain: 0.35, fadeOut: 0.4, rev: 0.25 });
   clip(mix, 'fuoco', { t: C('fuga', 2), da: 2, durata: C('fuga', 5) + 0.5 - C('fuga', 2), gain: 0.22, fadeIn: 0.8, fadeOut: 0.5, largo: 3, rev: 0.15 });

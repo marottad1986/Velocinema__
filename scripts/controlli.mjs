@@ -74,6 +74,8 @@ for (const [slug, path] of lista) {
     const strumenti = lista('strumenti'), effetti = lista('effetti');
     if (!strumenti.length) E.push('lo spartito non usa strumenti campionati (export strumenti vuoto o assente)');
     const daSynth = (src.match(/import \{([^}]*)\} from '\.\/synth\.mjs'/) ?? [, ''])[1];
+    // import solo relativi: un percorso assoluto della macchina locale fa fallire musica e render in GitHub Actions
+    for (const m of src.matchAll(/^import .* from '([^']+)'/gm)) if (!m[1].startsWith('./')) E.push(`import «${m[1]}»: negli spartiti solo percorsi relativi ('./…')`);
     if (/\bnote\b/.test(daSynth)) E.push('lo spartito importa note() da synth.mjs: strumenti sintetici vietati per la musica');
     for (const m of src.matchAll(/\b(?:suona|colpo)\(mix, '([a-z_]+)'/g)) if (!strumenti.includes(m[1])) E.push(`strumento «${m[1]}» usato ma non dichiarato in strumenti (in CI non verrebbe scaricato)`);
     for (const m of src.matchAll(/\bclip\(mix, '([a-z_]+)'/g)) if (!effetti.includes(m[1])) E.push(`effetto «${m[1]}» usato ma non dichiarato in effetti (in CI non verrebbe scaricato)`);
