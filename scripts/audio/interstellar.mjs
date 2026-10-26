@@ -3,7 +3,7 @@
 // nello spazio, si fa teso sulle onde e sul ghiaccio e si apre in La maggiore nel finale. Niente ticchettii regolari né
 // motivi del film. Effetti registrati (archivio CC0, scripts/audio/effetti.mjs) agganciati agli eventi delle scene
 // in src/scenes/interstellar/.
-import { put, rng, swell, FX } from './synth.mjs';
+import { put, rng, FX } from './synth.mjs';
 import { suona, archi, colpo, crescendo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
@@ -89,6 +89,7 @@ export default (mix, T) => {
    */
   const sec = (from, to, o) => {
     from = snap(from); to = snap(to);
+    if (to - from < 1e-6) console.warn(`Sezione vuota a ${from.toFixed(2)} s: i due estremi cadono sulla stessa battuta`);
     const beat = (60 / BPM) * (o.passo === 'doppio' ? 0.5 : 1), bar = 4 * beat, loop = 16 * beat;
     const R = rng(9000 + sid++ * 113);
     const chords = o.major ? CH_MAJ : CH_MIN;
@@ -128,8 +129,9 @@ export default (mix, T) => {
   // base segreta: l'organo entra, il piano si allarga
   sec(T.nasa, T.partenza, { mel: 48, keep: 0.9, org: 40, pad: 34, bells: 30 });
   // partenza: commosso, archi pieni, poi il razzo
-  sec(T.partenza, C('partenza', 4), { mel: 52, keep: 1, str: 44, bass: 44 });
-  sec(C('partenza', 4), T.varco, { org: 50, str: 46, pad: 40, low: true, pulse: 30 });
+  // il lancio parte una battuta prima del razzo: con C('partenza', 4) la sezione cadrebbe sulla battuta del varco e sparirebbe
+  sec(T.partenza, C('partenza', 3), { mel: 52, keep: 1, str: 44, bass: 44 });
+  sec(C('partenza', 3), T.varco, { org: 60, str: 54, pad: 48, low: true, pulse: 44, g: 1.4 });
   // varco: spazio aperto, organo e campanelle, tema in alto
   sec(T.varco, T.onde, { mel: 44, keep: 0.8, oct: 12, org: 44, pad: 38, bells: 34 });
   // onde: tensione crescente, pulsazione sorda, organo grave
@@ -173,13 +175,13 @@ export default (mix, T) => {
   // partenza: porta che sbatte, razzo
   clip(mix, 'porta_sbatte', { t: C('partenza', 1) + 0.55 - 0.5, da: 2.6, durata: 1.0, gain: 0.5, fadeOut: 0.3, rev: 0.3 });
   const tr = C('partenza', 4) - 0.4;
-  clip(mix, 'razzo', { t: tr, da: 6, durata: T.varco - tr + 1.4, gain: 0.6, fadeIn: 0.6, fadeOut: 1.4, rev: 0.25 });
+  clip(mix, 'razzo', { t: tr, da: 6, durata: T.varco - tr + 1.4, gain: 0.4, fadeIn: 0.6, fadeOut: 1.4, rev: 0.25 });
   // varco: risucchio e passaggio all'ingresso
   crescendo(mix, C('varco', 3) + 1.1, 2.4, { gain: 0.4 });
-  clip(mix, 'passaggio', { t: C('varco', 3) + 1.0 - 0.4, da: 34.3, durata: 2.6, gain: 0.4, fadeOut: 0.6, rev: 0.4 });
+  clip(mix, 'passaggio', { t: C('varco', 3) + 0.45, da: 34.3, durata: 2.6, gain: 0.4, fadeOut: 0.6, rev: 0.4 });
   // onde: l'onda che arriva e si schianta, i motori
   crescendo(mix, C('onde', 3), 2.6, { gain: 0.4 });
-  clip(mix, 'onde_tonanti', { t: C('onde', 3) - 1.2, da: 5.9, durata: C('onde', 4) - C('onde', 3) + 2.4, gain: 0.45, fadeIn: 0.8, fadeOut: 1, largo: 2.5, rev: 0.2 });
+  clip(mix, 'onde_tonanti', { t: C('onde', 3) - 1.2, da: 5.9, durata: C('onde', 4) - C('onde', 3) + 2.4, gain: 0.35, fadeIn: 0.8, fadeOut: 1, largo: 2.5, rev: 0.2 });
   clip(mix, 'tuono_forte', { t: C('onde', 3) - 0.1, da: 0.9, durata: 3.6, gain: 0.6, fadeIn: 0.03, fadeOut: 1.2, rev: 0.35 });
   clip(mix, 'rombo', { t: C('onde', 4) - 0.2, da: 31, durata: 2.2, gain: 0.5, fadeIn: 0.4, fadeOut: 0.8, largo: 2 });
   // messaggi: lo schermo che si spegne nel rumore
@@ -190,16 +192,15 @@ export default (mix, T) => {
   clip(mix, 'rombo', { t: C('ghiaccio', 3) - 0.2, da: 90, durata: 1.8, gain: 0.45, fadeIn: 0.3, fadeOut: 0.8, largo: 2 });
   clip(mix, 'esplosioni', { t: C('ghiaccio', 4) + 0.1 - 0.04, da: 7.96, durata: 2.8, gain: 0.8, fadeIn: 0.05, fadeOut: 1.5, rev: 0.35 });
   // aggancio: colpi metallici dei frammenti, l'aggancio
-  [[0.6, 2.9], [1.4, 8.07], [2.0, 12.82]].forEach(([d, da], k) => clip(mix, 'metallo_colpi', { t: T.aggancio + d - 0.01, da, durata: 0.5, gain: 0.4 - k * 0.07, pan: -0.3 + k * 0.3, rev: 0.45 }));
-  clip(mix, 'metallo_schianto', { t: C('aggancio', 1) - 0.2 - 0.3, da: 0.05, durata: 1.4, gain: 0.7, fadeOut: 0.5, rev: 0.45 });
+  [[2 / 3, 2.9], [2 / 3 + BEAT / 2, 8.07], [2 / 3 + BEAT, 12.82]].forEach(([d, da], k) => clip(mix, 'metallo_colpi', { t: T.aggancio + d - 0.01, da, durata: 0.5, gain: 0.4 - k * 0.07, pan: -0.3 + k * 0.3, rev: 0.45 }));
+  clip(mix, 'metallo_schianto', { t: C('aggancio', 1) - 0.35, da: 0.05, durata: 1.4, gain: 0.7, fadeOut: 0.5, rev: 0.45 });
   // buco nero: la caduta, il passaggio, il libro che cade
   crescendo(mix, C('buconero', 3), 3.0, { gain: 0.45 });
-  swell(mix, C('buconero', 3), 3.0, { vel: 44 });
   clip(mix, 'passaggio', { t: C('buconero', 3) - 0.3 - 0.05, da: 12.27, durata: 2.2, gain: 0.4, fadeOut: 0.6, rev: 0.45 });
   clip(mix, 'legno_cade', { t: C('buconero', 4) + 0.5, durata: 0.6, gain: 0.4, rev: 0.35 });
   // orologio: i bip del Morse in sincronia con la lancetta, poi l'apertura
   const MORSE = [0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1];
-  const m0 = snap(T.orologio) + BEAT / 2, mStep = BEAT / 3;
+  const m0 = snap(T.orologio) + 2 * BEAT, mStep = BEAT / 3; // stesso istante di Orologio.tsx (2/3 s dall'inizio del capitolo)
   MORSE.forEach((m, i) => beep(mix, m0 + i * mStep, m ? mStep * 0.6 : mStep * 0.25, { vel: 40 }));
   crescendo(mix, C('orologio', 2) + 0.8, 1.6, { gain: 0.3 });
   clip(mix, 'rombo', { t: C('orologio', 4) + 0.2, da: 120, durata: 2.4, gain: 0.35, fadeIn: 0.5, fadeOut: 1, largo: 2 });
