@@ -1,9 +1,9 @@
-// npm run genera-voce -- <film> [--capitolo <id>] [--rifai] [--prova]
+// node scripts/genera-voce.mjs <film> [--capitolo <id>] [--rifai] [--prova]
 //   Genera con ElevenLabs le clip della voce di un film (00_copertina, 01_<id>…, NN_finale) in audio/<film>/,
 //   una chiamata per parte, con il testo del JSON (sottotitoli = voce) e la voce di scripts/audio/voce.json.
 //   Le clip già presenti si saltano (--rifai le rigenera; --capitolo <id> ne fa una sola, anche "copertina" o "finale").
 //   --prova: mostra testi e caratteri (= crediti) senza chiamare ElevenLabs.
-// Altri comandi: npm run genera-voce -- --voci [nome] (voci dell'account), --modelli (modelli disponibili).
+// Altri comandi: node scripts/genera-voce.mjs --voci [nome] (voci dell'account), --modelli (modelli disponibili).
 // Chiave (permessi: Text to Speech; Voices: read per cercare la voce per nome): variabile d'ambiente ELEVENLABS_API_KEY,
 // oppure, nell'ambiente cloud, segreto di rete per api.elevenlabs.io con intestazione xi-api-key (la aggiunge il proxy).
 // Dopo: npm run render -- <film> (se il video non c'è) e npm run voce -- <film> per montare e controllare i tempi.
@@ -62,7 +62,7 @@ if (flag('modelli')) {
 
 const slug = args.find((a, i) => !a.startsWith('--') && !(i > 0 && ['--capitolo'].includes(args[i - 1])));
 if (!slug) {
-  console.error('Uso: npm run genera-voce -- <film> [--capitolo <id>] [--rifai] [--prova]');
+  console.error('Uso: node scripts/genera-voce.mjs <film> [--capitolo <id>] [--rifai] [--prova]');
   process.exit(1);
 }
 const dir = `audio/${slug}`;

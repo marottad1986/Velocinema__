@@ -119,7 +119,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   per l'uso commerciale: le clip del piano gratuito servono solo per le prove e non vanno pubblicate.
   Testo da incollare senza indicazioni di tono tra parentesi (rallentano la lettura).
 - Clip generate una per capitolo in `audio/<film>/`, nominate `00_copertina`, `01_<id>`, `02_<id>`…
-- `npm run genera-voce -- <film>` (`scripts/genera-voce.mjs`) genera le clip direttamente con l'API di ElevenLabs, una per
+- `node scripts/genera-voce.mjs <film>` genera le clip direttamente con l'API di ElevenLabs, una per
   parte, dal testo del JSON e con voce, modello e impostazioni di `scripts/audio/voce.json` (il `voice_id` si cerca per nome
   la prima volta e si salva lì). Salta le clip già presenti; `--capitolo <id>` (anche `copertina`/`finale`) ne rifà una,
   `--rifai` tutte, `--prova` mostra testi e crediti senza chiamare l'API; `--voci [nome]` e `--modelli` per la configurazione.
@@ -204,7 +204,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - `src/scenes/<film>/<Scena>.tsx`: una scena per capitolo; `index.ts` mappa id capitolo → componente + posizione titolo.
 - `src/components/ChapterOverlay.tsx`: barra, etichetta, titolo, sottotitoli. `src/lib/anim.ts`: camera/parallasse e utilità del tempo. `src/lib/fx.tsx`: grana, vignettatura, velatura, gradienti.
 - Le props delle composizioni devono essere JSON (si passa lo slug del film, non l'oggetto).
-- Comandi: `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run dividi -- <film> <file>`, `npm run genera-voce -- <film>`, `npm run voce -- <film>`.
+- Comandi: `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run dividi -- <film> <file>`, `node scripts/genera-voce.mjs <film>`, `npm run voce -- <film>`.
 - Audio: `scripts/musica.mjs`, `scripts/voce.mjs`, `scripts/genera-voce.mjs`, `scripts/audio/` (sintetizzatore, spartiti, tempi dal JSON e helper ffmpeg in `film.mjs`).
 
 ## Tecnologia suggerita

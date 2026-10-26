@@ -10,7 +10,6 @@
     "musica": "node scripts/musica.mjs",
     "voce": "node scripts/voce.mjs",
     "dividi": "node scripts/dividi.mjs",
-    "genera-voce": "node scripts/genera-voce.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
