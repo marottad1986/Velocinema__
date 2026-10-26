@@ -240,8 +240,9 @@ export const Radio: React.FC<SceneProps> = ({ t, dur, cues }) => {
           {[-30, 90, 210].map((a) => (
             <path key={a} d={`M110 1560 L${110 + Math.cos((a * Math.PI) / 180) * 330} ${1560 + Math.sin((a * Math.PI) / 180) * 330}`} stroke={K} strokeWidth="34" />
           ))}
+          {/* raggi cromati a colore pieno: un gradiente su una linea verticale non si disegna */}
           {[-30, 90, 210].map((a) => (
-            <path key={a} d={`M110 1560 L${110 + Math.cos((a * Math.PI) / 180) * 330} ${1560 + Math.sin((a * Math.PI) / 180) * 330}`} stroke="url(#rd-chrome)" strokeWidth="20" />
+            <path key={a} d={`M110 1560 L${110 + Math.cos((a * Math.PI) / 180) * 330} ${1560 + Math.sin((a * Math.PI) / 180) * 330}`} stroke="#C9D3DC" strokeWidth="20" />
           ))}
           <circle cx="110" cy="1560" r="200" fill="none" stroke="url(#rd-chrome)" strokeWidth="12" />
           <circle cx="110" cy="1560" r="200" fill="none" stroke={K} strokeWidth="3" opacity=".5" />

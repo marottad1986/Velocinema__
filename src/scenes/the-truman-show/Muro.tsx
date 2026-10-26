@@ -219,9 +219,10 @@ export const Muro: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
             <path d="M-150 -30 H150" stroke="#4FA3D1" strokeWidth="9" />
             <text x="0" y="14" textAnchor="middle" fontFamily="Figtree" fontWeight={800} fontSize="34" letterSpacing="2" fill={K}>SANTA MARIA</text>
             <text x="0" y="42" textAnchor="middle" fontFamily="Figtree" fontWeight={700} fontSize="18" letterSpacing="4" fill="#5E7489">SEAHAVEN</text>
-            <path d="M0 50 V96" stroke={K} strokeWidth="10" />
-            <path d="M-8 72 h16 v34 h-16 Z" fill="#E7D5B4" stroke={K} strokeWidth="4" />
           </g>
+          {/* l'acqua copre il terzo basso dello scafo: la barca galleggia, non sta sopra il mare */}
+          <path d={`M-200 ${boatY + 30} Q${BX - 200} ${boatY + 20 + Math.sin(t * 1.6) * 4} ${BX} ${boatY + 18} T1280 ${boatY + 30} V2100 H-200 Z`} fill="#5AA9D3" />
+          <path d={`M${BX - 200} ${boatY + 24} Q${BX} ${boatY + 12} ${BX + 200} ${boatY + 24}`} fill="none" stroke="#FFFFFF" strokeWidth="5" opacity=".7" />
           <WaveLines t={t} ys={[C.y + 210]} color="#FFFFFF" amp={4} w={140} speed={14} width={5} opacity={0.6} />
         </g>
 

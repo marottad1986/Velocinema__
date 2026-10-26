@@ -29,9 +29,9 @@ export const Pioggia: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const SPREAD = cues[3] ?? 4.5;
   const cx = 600 + 110 * eio(seg(t, FOLLOW, FOLLOW + 1.3));
   const sp = eio(seg(t, SPREAD, SPREAD + 1.6));
-  const CY = 640;
+  const CY = 730; // sotto il titolo, anche quando la nuvola si allarga
   const RX = 220, RY = 46, RCY = 1190;
-  const cs = lerp(1, 1.15, sp);
+  const cs = lerp(1, 1.06, sp);
   const poly = [
     [lerp(cx - 170, -300, sp), lerp(CY + 50, -300, sp)],
     [lerp(cx + 170, 1380, sp), lerp(CY + 50, -300, sp)],
@@ -163,8 +163,10 @@ export const Pioggia: React.FC<SceneProps> = ({ t, dur, cues }) => {
           </g>
 
           {/* la nuvola, appesa a due cavi del set */}
+          {/* due cavi appesi a un'americana sotto il titolo (non lo attraversano) */}
           <g stroke={K} strokeWidth="3" opacity={0.45 * (1 - sp)}>
-            <path d={`M${cx + 110} ${CY - 90} V-300 M${cx + 175} ${CY - 50} V-300`} />
+            <path d={`M${cx + 110} ${CY - 90} V545 M${cx + 175} ${CY - 50} V545`} />
+            <path d={`M${cx + 60} 540 H${cx + 240}`} strokeWidth="10" />
           </g>
           <g transform={`translate(${cx} ${CY}) scale(${cs})`}>
             <ellipse cx="0" cy="70" rx="220" ry="18" fill="#6C7A8B" opacity=".4" />

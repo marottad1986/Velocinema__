@@ -77,7 +77,7 @@ export const Figi: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <rect x="150" y="700" width="380" height="430" fill="#EAF6FF" opacity={flash * 0.6} />
             <ellipse cx="260" cy="760" rx="140" ry="40" fill="#22385A" opacity=".8" />
             <ellipse cx="440" cy="740" rx="130" ry="44" fill="#22385A" opacity=".8" />
-            <Lightning x={400} y={730} h={150} flash={Math.max(flash, 0.0)} seed={5} color="#FFF6B0" width={12} />
+            <Lightning x={400} y={730} h={150} flash={Math.max(flash, 0.8 * seg(t, cues[3] + 0.15, cues[3] + 0.3))} seed={5} color="#FFF6B0" width={12} />
             {/* aereo in picchiata */}
             <g transform={`translate(${380 + flash * 6} ${900 + Math.sin(t * 2) * 6}) rotate(${22 + flash * 6})`}>
               <path d="M-110 0 Q-100 -16 60 -14 L100 -4 Q108 0 100 6 L60 14 Q-100 16 -110 0 Z" fill="#F4F1E6" stroke={K} strokeWidth="6" strokeLinejoin="round" />
@@ -110,7 +110,7 @@ export const Figi: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <text x="670" y="868" textAnchor="middle" fontFamily="Bricolage Grotesque" fontWeight={800} fontSize="22" fill={K}>FIGI</text>
 
           {/* mappamondo che gira con le Figi cerchiate */}
-          <path d="M790 1030 V1080 M740 1100 H840" stroke="#8A6A44" strokeWidth="12" strokeLinecap="round" />
+          <path d="M790 1030 V1125 M740 1140 H840" stroke="#8A6A44" strokeWidth="12" strokeLinecap="round" />
           <path d="M680 930 A110 110 0 0 1 900 930" fill="none" stroke="#8A6A44" strokeWidth="8" />
           <circle cx="790" cy="930" r="98" fill="url(#fj-globe)" stroke={K} strokeWidth="8" />
           <g clipPath="url(#fj-gl)">
