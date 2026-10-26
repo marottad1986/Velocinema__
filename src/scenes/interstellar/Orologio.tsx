@@ -22,9 +22,9 @@ const HOUSES = Array.from({ length: 16 }, (_, i) => ({ a: (i / 16) * Math.PI * 2
 export const Orologio: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
-  // battito Morse: un segno ogni 0,22 s
-  const beat = Math.floor(seg(t, 0.4, cues[1] + 0.6) * MORSE.length * 0.999);
-  const tickA = beat * 24 + (mod(t * 4.5, 1) < 0.3 ? 6 : 0);
+  // battito Morse: un segno ogni terzo di tempo (72 bpm), da mezzo tempo dopo l'inizio, come i bip dello spartito
+  const beat = Math.floor(seg(t, 5 / 12, 5 / 12 + MORSE.length * (5 / 18)) * MORSE.length * 0.999);
+  const tickA = beat * 24 + (mod((t - 5 / 12) * 3.6, 1) < 0.3 ? 6 : 0);
   const data = eo(seg(t, cues[1] + 0.2, cues[1] + 1.0));
   const station = eio(seg(t, cues[2] - 0.4, cues[2] + 1.2));
   const ages = eob(seg(t, cues[3], cues[3] + 0.6));

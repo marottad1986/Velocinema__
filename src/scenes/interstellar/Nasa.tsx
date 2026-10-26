@@ -117,8 +117,19 @@ export const Nasa: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 3 — ringhiera e cavi in primo piano (1,2) */}
         <g transform={L(1.2)}>
           <path d="M-200 1600 H1280 V2200 H-200 Z" fill="url(#na-front)" stroke={K} strokeWidth="9" />
-          <path d="M-200 1420 H1280" stroke="url(#na-steel)" strokeWidth="18" />
-          {[-60, 180, 420, 660, 900, 1140].map((x) => <path key={x} d={`M${x} 1420 V1600`} stroke="url(#na-steel)" strokeWidth="14" />)}
+          {/* ringhiera d'acciaio: colori pieni (un gradiente su una linea dritta non si disegna) */}
+          {[-60, 180, 420, 660, 900, 1140].map((x) => (
+            <g key={x}>
+              <path d={`M${x} 1420 V2000`} stroke={K} strokeWidth="24" />
+              <path d={`M${x} 1420 V2000`} stroke="#6A7A8A" strokeWidth="14" />
+              <path d={`M${x - 3} 1430 V2000`} stroke="#B8C8D8" strokeWidth="3" opacity=".6" />
+            </g>
+          ))}
+          <path d="M-200 1420 H1280" stroke={K} strokeWidth="28" />
+          <path d="M-200 1420 H1280" stroke="#7A8A9A" strokeWidth="18" />
+          <path d="M-200 1414 H1280" stroke="#C8D8E8" strokeWidth="3" opacity=".7" />
+          <path d="M-200 1640 H1280" stroke={K} strokeWidth="20" />
+          <path d="M-200 1640 H1280" stroke="#5A6A7A" strokeWidth="12" />
           <path d="M-200 1520 H1280" stroke="#3A4654" strokeWidth="8" />
           <path d="M-200 1700 Q300 1640 700 1720 Q1000 1780 1280 1700" fill="none" stroke="#1A2230" strokeWidth="30" />
           <path d="M-200 1780 Q400 1720 800 1800 Q1100 1850 1280 1780" fill="none" stroke="#24303E" strokeWidth="24" />

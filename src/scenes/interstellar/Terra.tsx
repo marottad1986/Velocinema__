@@ -101,7 +101,9 @@ export const Terra: React.FC<SceneProps> = ({ t, dur, cues }) => {
         <g transform={L(1.2)}>
           <Corn t={t + 1} y={1900} n={16} h={560} seed={8} x0={-260} w={1600} dry={dry * 0.5} />
           <path d="M-200 1560 H1280" stroke={K} strokeWidth="26" />
-          <path d="M-200 1560 H1280" stroke="url(#tr-fence)" strokeWidth="16" />
+          <path d="M-200 1560 H1280" stroke={K} strokeWidth="24" />
+          <path d="M-200 1560 H1280" stroke="#8A7454" strokeWidth="14" />
+          <path d="M-200 1555 H1280" stroke="#B89C74" strokeWidth="3" opacity=".7" />
           {[-60, 260, 580, 900, 1220].map((x) => <rect key={x} x={x - 16} y="1500" width="32" height="420" fill="url(#tr-fence)" stroke={K} strokeWidth="7" />)}
           {/* casco da pilota sul paletto: era della NASA */}
           <g transform="translate(160 1250) scale(0.9)">

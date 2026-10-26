@@ -29,7 +29,7 @@ const BOOKS = Array.from({ length: 4 }, (_, row) => {
 });
 // strisce del codice: spessa = 1, sottile = 0
 const CODE = [1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1];
-const FALL = [[1, 3, 0], [2, 5, 0.35], [0, 6, 0.7]] as const; // [riga, indice libro, ritardo]
+const FALL = [[1, 3, 0], [2, 5, 5 / 12], [0, 6, 5 / 6]] as const; // [riga, indice libro, ritardo]: a mezzo tempo (72 bpm), come nello spartito
 
 export const Fantasma: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const cam = camera(t, dur);
