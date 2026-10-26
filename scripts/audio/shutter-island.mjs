@@ -71,10 +71,10 @@ const campana = (mix, n, t, vel, pan = -0.2) => {
 
 /** Lavagna: righe di gesso scritte lettera per lettera (stessi tempi di Lavagna.tsx). */
 const LAVAGNA_ROWS = [
-  { s: 'EDWARD DANIELS', a: 3.6, b: 4.65 },
-  { s: 'ANDREW LAEDDIS', a: 5.0, b: 6.3, anagram: true },
-  { s: 'RACHEL SOLANDO', a: 6.45, b: 7.5 },
-  { s: 'DOLORES CHANAL', a: 7.85, b: 9.15, anagram: true },
+  { s: 'EDWARD DANIELS', a: 4.9, b: 5.8 },
+  { s: 'ANDREW LAEDDIS', a: 6.2, b: 7.5, anagram: true },
+  { s: 'RACHEL SOLANDO', a: 7.8, b: 8.5 },
+  { s: 'DOLORES CHANAL', a: 8.9, b: 9.9, anagram: true },
 ];
 
 export default (mix, T) => {
@@ -179,7 +179,7 @@ export default (mix, T) => {
       colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: at('lavagna', row.a), vel: 70, rev: 0.4, gain: 0.35, dur: 1.2, release: 0.3 });
     }
   }
-  tuono(at('lavagna', 10.3), 'forte4', 0.9); // «Teddy non esiste»
+  tuono(at('lavagna', 10.5), 'forte4', 0.9); // «Teddy non esiste» (lampo di Lavagna.tsx a 10,5 s)
 
   // ---- verità: il cappello cade (0,7–1,55), il timbro «Ultima prova» a 10,0
   clip(mix, 'telo', { t: at('verita', 0.7), da: 8.45, durata: 0.75, gain: 0.25, fadeOut: 0.2, rev: 0.2 });

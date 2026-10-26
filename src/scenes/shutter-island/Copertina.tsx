@@ -19,7 +19,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
   const L = cam.layer;
   const sweep = Math.cos(t * 1.1 + 0.6);
   const pulse = Math.abs(sweep);
-  const lamp = { x: 760, y: 1010 };
+  const lamp = { x: 815, y: 1010 }; // tra due sbarre del cancello, così il faro si vede
   // un solo lampo, a 1,6 s
   const flash = seg(t, 1.6, 1.66) * (1 - seg(t, 1.75, 2.3));
   const lockSwing = Math.sin(t * 2.4) * 7 * (1 - seg(t, 0, dur) * 0.5);
@@ -73,11 +73,11 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
             <path d="M394 1030 h20 v26 h-20 z M526 1030 h20 v26 h-20 z" fill="#1A282D" />
             <rect x="462" y="1030" width="22" height="28" fill="#FFD25C" />
             <circle cx="473" cy="1044" r={46 + Math.sin(t * 3) * 4} fill="url(#co-warm)" opacity=".55" />
-            <path d="M742 1100 L750 1030 H770 L778 1100 Z" fill="#DCE5E8" stroke={K} strokeWidth="5" strokeLinejoin="round" />
-            <path d="M746 1060 H774" stroke="#B5562F" strokeWidth="10" />
+            <path d="M797 1100 L805 1030 H825 L833 1100 Z" fill="#DCE5E8" stroke={K} strokeWidth="5" strokeLinejoin="round" />
+            <path d="M801 1060 H829" stroke="#B5562F" strokeWidth="10" />
             <circle cx={lamp.x} cy={lamp.y} r={50 + pulse * 30} fill="url(#co-lamp)" opacity={0.5 + pulse * 0.3} />
-            <rect x="748" y="998" width="24" height="26" fill="#FFE7A0" stroke={K} strokeWidth="4" />
-            <path d="M744 999 L760 984 L776 999 Z" fill={K} />
+            <rect x="803" y="998" width="24" height="26" fill="#FFE7A0" stroke={K} strokeWidth="4" />
+            <path d="M799 999 L815 984 L831 999 Z" fill={K} />
           </g>
 
           {/* mare in tempesta (0,7) */}
@@ -95,7 +95,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
             <path d="M-120 960 Q540 820 1200 960" fill="none" stroke="url(#co-iron)" strokeWidth="34" />
             <path d="M-120 946 Q540 806 1200 946" fill="none" stroke="#7E979B" strokeWidth="4" opacity=".55" />
             {GATE_BARS.map((x) => {
-              const top = 960 - 140 * (1 - ((x - 540) / 660) ** 2) - 30;
+              const top = 960 - 140 * (1 - ((x - 540) / 660) ** 2) + 30; // punte sotto la riga del regista
               return (
                 <g key={x}>
                   <rect x={x - 9} y={top} width="18" height={2100 - top} fill="url(#co-iron)" stroke={K} strokeWidth="6" />

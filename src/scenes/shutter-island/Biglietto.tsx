@@ -4,8 +4,9 @@ import { Finish, FxDefs, GlowGradient, Lin } from '../../lib/fx';
 import { HAND } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
 
-// Il biglietto: una piastrella del pavimento si solleva e appare un biglietto «La legge del 4 – Chi è il 67?».
-// Piani: parete di fondo con piastrelle e grata (0,25) · pavimento in prospettiva con la buca (0,45)
+// Il biglietto: nella cella di Rachel (stesso muro di mattoni, finestra con le sbarre e secchio del capitolo «La cella
+// vuota») una piastrella del pavimento si solleva e appare un biglietto «La legge del 4 – Chi è il 67?».
+// Piani: parete di mattoni con la finestra a sbarre (0,25) · pavimento in prospettiva con la buca (0,45)
 //        · piastrella sollevata, polvere e biglietto (0,6–0,7) · branda e tubo in primo piano (1,25) · pulviscolo vicino (1,7)
 
 const K = '#0A1215';
@@ -85,8 +86,10 @@ export const Biglietto: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
         <FxDefs id="bi" />
-        <Lin id="bi-wall" stops={[[0, '#0B1417'], [0.35, '#16252A'], [0.7, '#22353A'], [1, '#1A2A2F']]} />
-        <Lin id="bi-tilewall" stops={[[0, '#3E5256'], [1, '#26363A']]} />
+        <Lin id="bi-wall" stops={[[0, '#121C20'], [0.25, '#24363B'], [0.5, '#34494D'], [1, '#22323A']]} />
+        <Lin id="bi-night" stops={[[0, '#0B161C'], [0.6, '#1D3A44'], [1, '#2C5560']]} />
+        <Lin id="bi-bucket" x2={1} y2={0} stops={[[0, '#56686B'], [0.3, '#B9C8CA'], [0.55, '#6E8285'], [1, '#2B3A3D']]} />
+        <GlowGradient id="bi-moon" color="#BFD9DE" core={0.5} mid={0.18} />
         <Lin id="bi-floor" stops={[[0, '#1D292C'], [0.35, '#152024'], [1, '#070D0F']]} />
         <Lin id="bi-hole" stops={[[0, '#030607'], [1, '#121B1E']]} />
         <Lin id="bi-tile" x2={1} y2={0} stops={[[0, '#7E918E'], [0.6, '#A3B4B0'], [1, '#C4D2CE']]} />
@@ -109,17 +112,17 @@ export const Biglietto: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
         {/* PIANO 0 — parete di fondo: intonaco scuro, zoccolo di piastrelle, grata d'aerazione (0,25) */}
         <g transform={L(0.25)}>
           <rect x="-200" y="-200" width="1480" height={WALL_Y + 220} fill="url(#bi-wall)" />
-          <rect x="-200" y="760" width="1480" height={WALL_Y - 760} fill="url(#bi-tilewall)" />
-          <path d={Array.from({ length: 4 }, (_, i) => `M-200 ${790 + i * 60} H1280`).join(' ')} stroke="#1A272B" strokeWidth="4" opacity=".8" />
-          <path d={Array.from({ length: 17 }, (_, i) => `M${-180 + i * 90} 760 V${WALL_Y}`).join(' ')} stroke="#1A272B" strokeWidth="4" opacity=".8" />
-          <path d="M-200 760 H1280" stroke={K} strokeWidth="9" />
-          <path d="M-200 768 H1280" stroke="#8FA6A8" strokeWidth="3" opacity=".45" />
+          {/* mattoni come nella cella del capitolo precedente */}
+          <path d={Array.from({ length: 12 }, (_, row) => `M-200 ${100 + row * 100} H1280 ` + Array.from({ length: 9 }, (_, c) => `M${(c - 1) * 180 + (row % 2) * 90} ${100 + row * 100} V${200 + row * 100}`).join(' ')).join(' ')} stroke="#0F181B" strokeWidth="5" opacity=".45" />
+          {/* finestra con le sbarre della cella: cielo notturno e alone di luna */}
+          <ellipse cx="790" cy="660" rx="300" ry="240" fill="url(#bi-moon)" />
+          <rect x="672" y="562" width="236" height="196" rx="6" fill="#1A2629" stroke={K} strokeWidth="9" />
+          <rect x="690" y="580" width="200" height="160" fill="url(#bi-night)" />
+          {[730, 790, 850].map((x) => <path key={x} d={`M${x} 572 V748`} stroke={K} strokeWidth="16" />)}
+          <path d="M690 660 H890" stroke={K} strokeWidth="14" />
+          <rect x="652" y="760" width="276" height="20" fill="#5D7174" stroke={K} strokeWidth="7" />
           {/* alone della torcia riflesso sulla parete */}
           <ellipse cx={spot.x} cy="900" rx="380" ry="160" fill="url(#bi-warm)" opacity={0.22 + breathe * 0.04} />
-          {/* grata d'aerazione */}
-          <rect x="760" y="600" width="170" height="110" rx="6" fill="#0E171A" stroke={K} strokeWidth="8" />
-          <path d="M770 622 H920 M770 644 H920 M770 666 H920 M770 688 H920" stroke="#3D5054" strokeWidth="6" />
-          <path d="M764 604 H926" stroke="#9DB2B4" strokeWidth="3" opacity=".5" />
           {/* segni sul muro e macchia d'umidità */}
           <g stroke="#7E9598" strokeWidth="4" strokeLinecap="round" opacity=".45">
             <path d="M150 640 v40 M166 640 v40 M182 640 v40 M198 640 v40 M140 672 l70 -26" />
@@ -143,8 +146,9 @@ export const Biglietto: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
             <path d="M-90 -14 H90 M-104 0 H104 M-90 14 H90" stroke="#2B3B3F" strokeWidth="7" />
           </g>
 
-          {/* luce della torcia sul pavimento */}
-          <ellipse cx={spot.x} cy={spot.y} rx={250 + breathe * 10} ry={92 + breathe * 4} fill="url(#bi-spot)" opacity=".7" />
+          {/* luce della torcia sul pavimento, con alone */}
+          <ellipse cx={spot.x} cy={spot.y} rx={420 + breathe * 14} ry={170 + breathe * 6} fill="url(#bi-warm)" opacity={0.35 + breathe * 0.05} />
+          <ellipse cx={spot.x} cy={spot.y} rx={250 + breathe * 10} ry={92 + breathe * 4} fill="url(#bi-spot)" opacity=".85" />
 
           {/* buca: interno scuro, parete lontana illuminata, terra e calcinacci */}
           <path d={quad(HOLE.x0, HOLE.x1, HOLE.z0, HOLE.z1)} fill="url(#bi-hole)" />
@@ -229,6 +233,15 @@ export const Biglietto: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
           <rect x="980" y="-200" width="70" height="2400" fill="url(#bi-pipe)" stroke={K} strokeWidth="9" />
           <rect x="966" y="880" width="98" height="40" rx="6" fill="#4C6064" stroke={K} strokeWidth="7" />
           <path d="M994 -200 V2200" stroke="#B5CACD" strokeWidth="4" opacity=".5" />
+          {/* il secchio della cella, in primo piano sul bordo in basso */}
+          <g transform="translate(760 1830)">
+            <ellipse cx="0" cy="130" rx="190" ry="30" fill="#000" opacity=".35" />
+            <path d="M-150 -110 H150 L120 130 H-120 Z" fill="url(#bi-bucket)" stroke={K} strokeWidth="10" strokeLinejoin="round" />
+            <ellipse cx="0" cy="-110" rx="150" ry="28" fill="#2B3A3D" stroke={K} strokeWidth="10" />
+            <path d="M-150 -110 Q0 -300 150 -110" fill="none" stroke={K} strokeWidth="9" />
+            <path d="M-136 -40 H136 M-128 40 H128" stroke={K} strokeWidth="6" opacity=".7" />
+            <path d="M-90 -90 L-74 110" stroke="#F1F6F7" strokeWidth="8" strokeLinecap="round" opacity=".6" />
+          </g>
         </g>
 
         {/* PIANO 5 — pulviscolo vicino alla camera, acceso dalla torcia (1,7) */}

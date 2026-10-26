@@ -214,6 +214,9 @@ export const Cella: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
           {/* coperta piegata ai piedi */}
           <rect x="380" y="936" width="140" height="42" rx="10" fill="url(#ce-blanket)" stroke={K} strokeWidth="8" />
           <path d="M386 956 H514" stroke="#2C4246" strokeWidth="4" />
+          {/* buio sotto la branda: le scarpe si leggono «sotto il letto», non davanti */}
+          <path d="M80 1048 H520 L526 1208 H74 Z" fill="#04080A" opacity=".55" />
+          <path d="M80 1050 H520" stroke="#04080A" strokeWidth="14" opacity=".5" />
           {/* scarpe sotto la branda */}
           <ellipse cx="300" cy="1196" rx={150 * (0.6 + shoeGlow * 0.5)} ry="34" fill="url(#ce-shoe)" opacity={0.25 + shoeGlow * 0.6} />
           <g transform={`translate(300 1196) scale(${lerp(0.94, 1, sp) * (1 + Math.sin(t * 3) * 0.006)}) translate(-300 -1196)`}>
