@@ -100,7 +100,7 @@ export default (mix, T) => {
   // Hokusai e la serie: calmo, pizzicato e pianoforte
   sec(T.hokusai, T['due-montagne'], { koto: 36, mel: 46, keep: 0.9, bass: 40 });
   // due montagne: sospeso
-  sec(T['due-montagne'], T.barche, { mel: 42, keep: 0.7, oct: 12, str: 36 });
+  sec(T['due-montagne'], T.barche, { mel: 46, keep: 0.85, oct: 12, str: 54, bass: 30 });
   // barche, artigli, tsunami: teso, tamburo
   sec(T.barche, T.blu, { koto: 44, mel: 50, keep: 1, str: 44, bass: 50, taiko: 46 });
   // il blu e la stampa: più leggero
