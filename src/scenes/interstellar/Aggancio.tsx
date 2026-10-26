@@ -7,7 +7,7 @@ import type { SceneProps } from '../../types';
 import { GOLD, Ring } from './Spazio';
 
 // La verità di Brand: l'astronave ad anello gira impazzita perdendo frammenti; la navetta si allinea, ruota con lei e
-// la aggancia. Poi arriva una trasmissione dalla Terra: la lavagna del «Piano A» con l'equazione, che viene barrata,
+// la aggancia. Poi arriva una trasmissione dalla Terra: la lavagna del piano «salvare tutti» con l'equazione, che viene barrata,
 // e al suo posto il simbolo del buco nero. Nessuna persona.
 // Eventi: aggancio (fino a cue 1) · la rotazione rallenta (cue 1) · trasmissione dalla Terra (cue 1) · l'equazione viene
 //         barrata: impossibile (cue 2) · compare il buco nero con il punto interrogativo (cue 3).
@@ -76,13 +76,13 @@ export const Aggancio: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <Glow id="ag-lock" x={cx} y={cy} r={160} t={t} color={GOLD} amp={0.2} rate={6} opacity={0.6 * seg(dock, 0.95, 1) * (1 - slow * 0.5)} />
         </g>
 
-        {/* PIANO 3 — trasmissione dalla Terra: la lavagna del Piano A (0,8) */}
+        {/* PIANO 3 — trasmissione dalla Terra: la lavagna del piano «salvare tutti» (0,8) */}
         <g transform={L(0.8)} opacity={tx}>
           <g transform={`translate(${lerp(760, 690, tx)} 1160) scale(${tx})`}>
             <rect x="-250" y="-150" width="500" height="300" rx="16" fill="#0E1622" stroke="#8EB8D8" strokeWidth="6" />
             <text x="-226" y="-114" fontFamily={DISPLAY} fontWeight={800} fontSize="22" fill="#8EB8D8" letterSpacing="3">TRASMISSIONE · TERRA</text>
             <rect x="-220" y="-92" width="440" height="220" fill="url(#ag-board)" stroke="#5A4A38" strokeWidth="8" />
-            <text x="-200" y="-50" fontFamily={HAND} fontSize="34" fill="#E8EEF0">Piano A: salvare la Terra</text>
+            <text x="-200" y="-50" fontFamily={HAND} fontSize="34" fill="#E8EEF0">Il piano: salvare tutti</text>
             <text x="-200" y="10" fontFamily={HAND} fontSize="38" fill="#E8EEF0">G·M / r² + ∫ … = ?</text>
             <path d={`M-200 ${0} L${lerp(-200, 120, cross)} ${lerp(0, 20, cross)}`} stroke="#E25A4A" strokeWidth="8" strokeLinecap="round" opacity={cross > 0 ? 1 : 0} />
             <text x="-200" y="78" fontFamily={HAND} fontSize="34" fill="#E25A4A" opacity={cross}>impossibile</text>
