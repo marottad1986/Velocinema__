@@ -95,7 +95,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
             <path d="M-120 960 Q540 820 1200 960" fill="none" stroke="url(#co-iron)" strokeWidth="34" />
             <path d="M-120 946 Q540 806 1200 946" fill="none" stroke="#7E979B" strokeWidth="4" opacity=".55" />
             {GATE_BARS.map((x) => {
-              const top = 960 - 140 * (1 - ((x - 540) / 660) ** 2) + 30; // punte sotto la riga del regista
+              const top = 960 - 140 * (1 - ((x - 540) / 660) ** 2) + 110; // punte sotto la riga del regista anche con lo zoom finale
               return (
                 <g key={x}>
                   <rect x={x - 9} y={top} width="18" height={2100 - top} fill="url(#co-iron)" stroke={K} strokeWidth="6" />

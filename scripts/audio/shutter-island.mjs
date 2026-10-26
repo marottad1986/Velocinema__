@@ -8,7 +8,7 @@ import { suona, colpo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 
 export const strumenti = ['violini', 'viole', 'celli', 'contrabbasso', 'violini_trem', 'celli_trem', 'contrabbasso_pizz', 'arpa', 'pianoforte', 'glockenspiel', 'grancassa', 'gong', 'piatto_sospeso'];
-export const effetti = ['onde', 'sirena_nebbia', 'macchina_scrivere', 'giornale', 'risacca', 'tuono_classico', 'tuono_breve', 'tuono_secco', 'tuono_forte', 'tuono_lontano', 'pioggia_vento', 'vento_fischio', 'vento_invernale', 'vento_raffiche', 'vento_leggero', 'serratura', 'metallo_cade', 'cancello', 'colpi_legno', 'martelletto', 'tintinnio', 'fuoco', 'fiammata', 'telo', 'stoffa'];
+export const effetti = ['onde', 'sirena_nebbia', 'macchina_scrivere', 'giornale', 'risacca', 'tuono_classico', 'tuono_breve', 'tuono_secco', 'tuono_forte', 'tuono_lontano', 'pioggia_vento', 'vento_fischio', 'vento_invernale', 'vento_raffiche', 'vento_leggero', 'serratura', 'metallo_cade', 'cancello', 'colpi_legno', 'martelletto', 'tintinnio', 'fuoco', 'telo', 'stoffa'];
 /** Sala da concerto scura: coda lunga, alte smorzate. */
 export const sala = { rt60: 2.8, brillo: 5500, predelay: 0.03, wet: 0.55 };
 
@@ -101,7 +101,7 @@ export default (mix, T) => {
   // finale: accordo pieno degli archi, gong lieve e arpeggio di campane che sale
   const fine = T.END - 4;
   [['contrabbasso', 'D2'], ['celli', 'D3'], ['viole', 'F3'], ['viole', 'A3'], ['violini', 'D4'], ['violini', 'A4']].forEach(([id, n], k) =>
-    suona(mix, id, n, { t: fine, dur: 2.6, vel: 60, pan: (k - 2.5) * 0.2, gain: 0.45, attack: 0.3, release: 1.4, rev: 0.6, seed: 20 + k }));
+    suona(mix, id, n, { t: fine, dur: 3.4, vel: 60, pan: (k - 2.5) * 0.2, gain: 0.45, attack: 0.3, release: 1.4, rev: 0.6, seed: 20 + k }));
   colpo(mix, 'gong', 'gong_hit_p', { t: fine, vel: 80, rev: 0.5, gain: 0.5, dur: 3.2, release: 0.8 });
   ['D5', 'F5', 'A5', 'D6'].forEach((n, k) => campana(mix, n, fine + BEAT / 2 + (k * BEAT) / 2, 56 + k * 8));
 
@@ -124,58 +124,58 @@ export default (mix, T) => {
   campana(mix, 'D5', 0.2, 60);
   pioggia(0, 4.2, 1, 0.16);
   clip(mix, 'vento_fischio', { t: 0, da: 20, durata: 4.6, gain: 0.14, fadeIn: 0.6, fadeOut: 0.8, largo: 3 });
-  tuono(1.6, 'classico', 0.6, 0, 2.4, 0.8);
+  tuono(1.6, 'classico', 0.35, 0, 2.4, 0.8);
   clip(mix, 'serratura', { t: 0.5, da: 2.42, durata: 0.15, gain: 0.15, pan: 0.15, rev: 0.25 });
 
   // ---- arrivo: il traghetto nella nebbia, mare e sirena da nebbia sulla frase del traghetto
-  clip(mix, 'onde', { t: at('arrivo', 0), da: 2, durata: 9, gain: 0.12, fadeIn: 1, fadeOut: 1, largo: 3 });
-  clip(mix, 'sirena_nebbia', { t: at('arrivo', 0.67), da: 0.2, durata: 5, gain: 0.12, lp: 1500, fadeOut: 2, rev: 0.4, pan: -0.2 });
+  clip(mix, 'onde', { t: at('arrivo', 0), da: 2, durata: 9, gain: 0.07, fadeIn: 1, fadeOut: 1, largo: 3 });
+  clip(mix, 'sirena_nebbia', { t: at('arrivo', 0.67), da: 0.2, durata: 5, gain: 0.07, lp: 1500, fadeOut: 2, rev: 0.4, pan: -0.2 });
 
   // ---- ospedale: il lucchetto scatta (0,6), cade (1,0–1,45), il cancello si apre; pioggia
   pioggia(at('ospedale', -0.2), at('ospedale', 9.2), 32, 0.14);
   clip(mix, 'serratura', { t: at('ospedale', 0.6), da: 2.42, durata: 0.15, gain: 0.6, pan: 0.15, rev: 0.25 });
   clip(mix, 'serratura', { t: at('ospedale', 0.69), da: 2.91, durata: 0.25, gain: 0.45, pan: 0.15, rev: 0.25 });
-  clip(mix, 'metallo_cade', { t: at('ospedale', 1.45) - 0.06, da: 0.62, durata: 0.55, gain: 0.4, fadeOut: 0.15, rev: 0.3 }); // un solo colpo: la presa ne contiene altri dopo
+  clip(mix, 'metallo_cade', { t: at('ospedale', 1.45) - 0.08, da: 0.66, durata: 0.28, gain: 0.4, fadeOut: 0.1, rev: 0.3 }); // un solo colpo: la presa ne contiene altri dopo
   clip(mix, 'cancello', { t: at('ospedale', 1.5), da: 2.85, durata: 3.6, gain: 0.35, fadeOut: 1, rev: 0.3, pan: -0.1 });
 
   // ---- cella: lucchetto che vibra, lampo a 3,0 e 7,8 (più debole); pioggia alla finestra
-  pioggia(at('cella', 0), at('cella', 11.2), 0.5, 0.14, 900);
+  pioggia(at('cella', 0), at('cella', 11.2), 0.5, 0.14, 1800);
   clip(mix, 'serratura', { t: at('cella', 0.35), da: 13.6, durata: 0.3, gain: 0.3, pan: 0.15, rev: 0.25 });
   tuono(at('cella', 3.0), 'forte', 0.7, 0, 3.5);
-  tuono(at('cella', 7.8), 'secco', 0.4, 0, 3.2);
+  tuono(at('cella', 7.8), 'secco', 0.22, 0, 2.4);
 
   // ---- biglietto: la piastrella si solleva e si appoggia
   clip(mix, 'colpi_legno', { t: at('biglietto', 0.75), da: 1.4, durata: 0.4, gain: 0.25, rev: 0.3 });
   clip(mix, 'colpi_legno', { t: at('biglietto', 2.06), da: 5.74, durata: 0.35, gain: 0.15, rev: 0.3, pan: 0.1 });
 
   // ---- studio: pillole che cadono, lampo a 4,6; pioggia alla finestra
-  pioggia(at('studio', 0), at('studio', 8.2), 66, 0.12, 900);
+  pioggia(at('studio', 0), at('studio', 8.2), 66, 0.12, 1800);
   // il flacone si posa (2,12), il tappo atterra (2,37), le sette pillole toccano la scrivania una dopo l'altra (Studio.tsx)
   clip(mix, 'tintinnio', { t: at('studio', 2.12), da: 4.13, durata: 0.35, gain: 0.22, pan: 0.2, rev: 0.25 });
-  clip(mix, 'tintinnio', { t: at('studio', 2.37), da: 3.21, durata: 0.3, gain: 0.16, pan: -0.15, rev: 0.25 });
+  clip(mix, 'tintinnio', { t: at('studio', 2.33), da: 3.42, durata: 0.22, gain: 0.16, pan: -0.15, rev: 0.25 });
   for (let i = 0; i < 7; i++) clip(mix, 'tintinnio', { t: at('studio', 2.47 + i / 6), da: 0.16, durata: 0.12, gain: 0.08 + (i % 3) * 0.02, pan: -0.1 + i * 0.04, rev: 0.25 });
-  tuono(at('studio', 4.6), 'lontano', 0.3, 2500, 3.5);
+  tuono(at('studio', 4.6), 'lontano', 0.2, 2500, 3.5);
 
-  // ---- incendio: fuoco che crepita e fiammata
+  // ---- incendio: fuoco che crepita e scatola di fiammiferi
   clip(mix, 'fuoco', { t: at('incendio', 0), da: 1, durata: 10, gain: 0.3, fadeIn: 0.5, fadeOut: 0.8, largo: 3, rev: 0.15 });
   clip(mix, 'colpi_legno', { t: at('incendio', 4.81), da: 5.74, durata: 0.3, gain: 0.2, rev: 0.3 }); // la scatola di fiammiferi atterra
 
   // ---- uragano: vento forte e pioggia, lampi a 3,0 e 7,2, il cappello vola via (5–8)
   clip(mix, 'vento_invernale', { t: at('uragano', -0.6), da: 3, durata: 11, gain: 0.22, fadeIn: 0.8, fadeOut: 1, largo: 4, rev: 0.1 });
   pioggia(at('uragano', -0.3), at('uragano', 10.3), 36, 0.15);
-  tuono(at('uragano', 3.0), 'forte2', 1);
-  tuono(at('uragano', 7.2), 'breve', 0.7);
-  clip(mix, 'stoffa', { t: at('uragano', 5.0), da: 15, durata: 3, gain: 0.45, fadeIn: 0.3, fadeOut: 0.8, pan: 0.4, rev: 0.2 });
+  tuono(at('uragano', 3.0), 'forte', 0.8, 0, 4.5);
+  tuono(at('uragano', 7.2), 'breve', 0.25);
+  clip(mix, 'stoffa', { t: at('uragano', 5.0), da: 15, durata: 3, gain: 0.3, fadeIn: 0.3, fadeOut: 0.8, pan: 0.4, rev: 0.2 });
 
   // ---- grotta: tempesta attutita fuori dall'apertura, lampi a 2,4 e 7,0, fuoco
   pioggia(at('grotta', 0), at('grotta', 9.2), 66.5, 0.15, 1500);
   clip(mix, 'vento_raffiche', { t: at('grotta', 0), da: 15, durata: 9, gain: 0.2, lp: 600, fadeIn: 0.6, fadeOut: 0.8, largo: 3 });
   clip(mix, 'fuoco', { t: at('grotta', 0), da: 12, durata: 9, gain: 0.15, fadeIn: 0.5, fadeOut: 0.8, largo: 3, rev: 0.2 });
   tuono(at('grotta', 2.4), 'classico', 0.4, 1200, 3.5);
-  tuono(at('grotta', 7.0), 'secco', 0.45, 1000);
+  tuono(at('grotta', 7.0), 'secco', 0.3, 1000);
 
   // ---- lavagna: gesso lettera per lettera; gli anagrammi arrivano con un risucchio e una campana; pioggia alla finestra
-  pioggia(at('lavagna', 0), at('lavagna', 14.2), 32.5, 0.1, 900);
+  pioggia(at('lavagna', 0), at('lavagna', 14.2), 32.5, 0.1, 1800);
   for (const row of LAVAGNA_ROWS) {
     [...row.s].forEach((c, i) => {
       if (c !== ' ') chalk(mix, at('lavagna', row.a + ((row.b - row.a) * i) / (row.s.length - 1)), row.anagram ? 44 : 36);
@@ -201,5 +201,5 @@ export default (mix, T) => {
 
   // ---- alba: brezza leggera dal mare
   clip(mix, 'vento_leggero', { t: at('alba', 0), da: 0.2, durata: T.END - at('alba', 0), gain: 0.12, fadeIn: 2, fadeOut: 3, largo: 4 });
-  clip(mix, 'risacca', { t: at('alba', 0), da: 2, durata: T.END - at('alba', 0), gain: 0.15, fadeIn: 1.5, fadeOut: 3, largo: 3 }); // il mare all'alba
+  clip(mix, 'risacca', { t: at('alba', 0), da: 2, durata: T.END - 2.5 - at('alba', 0), gain: 0.15, fadeIn: 1.5, fadeOut: 2.5, largo: 3 }); // il mare all'alba
 };
