@@ -403,7 +403,7 @@
     },
     {
      "f": "ViolaEns_susvib_F3_v1_1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0.0272,
      "durata": 9.402,
      "db": -35.7,
@@ -412,7 +412,7 @@
     },
     {
      "f": "ViolaEns_susvib_F3_v2_1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0.0018,
      "durata": 13.121,
      "db": -19.1,
@@ -633,7 +633,7 @@
     },
     {
      "f": "susvib_F2_v1_1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0.0074,
      "durata": 8.261,
      "db": -30.2,
@@ -642,7 +642,7 @@
     },
     {
      "f": "susvib_F2_v3_1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 11.575,
      "db": -16.1,
@@ -651,7 +651,7 @@
     },
     {
      "f": "susvib_F4_v1_1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0.0226,
      "durata": 7.267,
      "db": -34.8,
@@ -660,7 +660,7 @@
     },
     {
      "f": "susvib_F4_v3_1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 10.303,
      "db": -21.5,
@@ -1298,7 +1298,7 @@
     },
     {
      "f": "trem_F2_v1_1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0.0102,
      "durata": 7.022,
      "db": -41.9,
@@ -1306,7 +1306,7 @@
     },
     {
      "f": "trem_F2_v2_1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 6.823,
      "db": -14.9,
@@ -1314,7 +1314,7 @@
     },
     {
      "f": "trem_F4_v1_1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0.0051,
      "durata": 7.483,
      "db": -46.5,
@@ -1323,7 +1323,7 @@
     },
     {
      "f": "trem_F4_v2_1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 7.265,
      "db": -16.8,
@@ -1871,7 +1871,7 @@
     },
     {
      "f": "KSHarp_F2_mf.wav",
-     "dyn": "f",
+     "dyn": "mf",
      "inizio": 0.0037,
      "durata": 17.497,
      "db": -47.3,
@@ -1880,7 +1880,7 @@
     },
     {
      "f": "KSHarp_F4_mf.wav",
-     "dyn": "f",
+     "dyn": "mf",
      "inizio": 0.007,
      "durata": 10.847,
      "db": -29,
@@ -1889,7 +1889,7 @@
     },
     {
      "f": "KSHarp_F6_mf.wav",
-     "dyn": "f",
+     "dyn": "mf",
      "inizio": 0.0061,
      "durata": 2.342,
      "db": -40.9,
@@ -2447,7 +2447,7 @@
     },
     {
      "f": "Marimba_hit_Outrigger_F1_loud_01.wav",
-     "dyn": "f",
+     "dyn": "unica",
      "inizio": 0.0002,
      "durata": 3.675,
      "db": -42.1,
@@ -2456,7 +2456,7 @@
     },
     {
      "f": "Marimba_hit_Outrigger_F3_loud_01.wav",
-     "dyn": "f",
+     "dyn": "unica",
      "inizio": 0.0028,
      "durata": 6.008,
      "db": -30.3,
@@ -2465,7 +2465,7 @@
     },
     {
      "f": "Marimba_hit_Outrigger_F5_loud_01.wav",
-     "dyn": "f",
+     "dyn": "unica",
      "inizio": 0.0006,
      "durata": 2.083,
      "db": -36.6,
@@ -3482,7 +3482,7 @@
     },
     {
      "f": "pizzT_F2_v1_RR1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 2.504,
      "db": -31.9,
@@ -3491,7 +3491,7 @@
     },
     {
      "f": "pizzT_F2_v1_RR2.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.686,
      "db": -34.4,
@@ -3500,7 +3500,7 @@
     },
     {
      "f": "pizzT_F2_v2_RR1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0.0041,
      "durata": 1.811,
      "db": -22.1,
@@ -3509,7 +3509,7 @@
     },
     {
      "f": "pizzT_F2_v2_RR2.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 2.032,
      "db": -24,
@@ -3518,7 +3518,7 @@
     },
     {
      "f": "pizzT_F4_v1_RR1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 0.873,
      "db": -40.2,
@@ -3526,7 +3526,7 @@
     },
     {
      "f": "pizzT_F4_v1_RR2.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 0.913,
      "db": -31.1,
@@ -3534,7 +3534,7 @@
     },
     {
      "f": "pizzT_F4_v2_RR1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.011,
      "db": -22.8,
@@ -3542,7 +3542,7 @@
     },
     {
      "f": "pizzT_F4_v2_RR2.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0.0012,
      "durata": 1.309,
      "db": -23.1,
@@ -3735,7 +3735,7 @@
     },
     {
      "f": "Sum_SHTrumpet_harmonM-sus_F4_v1_rr1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 7.52,
      "db": -35.3,
@@ -3744,7 +3744,7 @@
     },
     {
      "f": "Sum_SHTrumpet_harmonM-sus_F4_v3_rr1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 6.93,
      "db": -24.6,
@@ -3902,7 +3902,7 @@
     },
     {
      "f": "Sum_SHTrumpet_sus_F2_v1_rr1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 12.496,
      "db": -39.1,
@@ -3911,7 +3911,7 @@
     },
     {
      "f": "Sum_SHTrumpet_sus_F2_v3_rr1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 5.56,
      "db": -21.8,
@@ -3920,7 +3920,7 @@
     },
     {
      "f": "Sum_SHTrumpet_sus_F4_v1_rr1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 13.845,
      "db": -23.3,
@@ -3929,7 +3929,7 @@
     },
     {
      "f": "Sum_SHTrumpet_sus_F4_v3_rr1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 7.196,
      "db": -14.9,
@@ -4330,7 +4330,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F2_v1_rr1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 0.868,
      "db": -51.9,
@@ -4338,7 +4338,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F2_v1_rr2.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 0.874,
      "db": -52.5,
@@ -4346,7 +4346,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F2_v2_rr1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.08,
      "db": -46.6,
@@ -4354,7 +4354,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F2_v2_rr2.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 0.975,
      "db": -45.7,
@@ -4362,7 +4362,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F2_v3_rr1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 1.073,
      "db": -39,
@@ -4370,7 +4370,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F2_v3_rr2.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 0.927,
      "db": -42,
@@ -4378,7 +4378,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F3_v1_rr1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.181,
      "db": -44.4,
@@ -4386,7 +4386,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F3_v1_rr2.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.297,
      "db": -43.4,
@@ -4394,7 +4394,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F3_v2_rr1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.347,
      "db": -36.4,
@@ -4402,7 +4402,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F3_v2_rr2.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.344,
      "db": -40,
@@ -4410,7 +4410,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F3_v3_rr1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 1.421,
      "db": -35.7,
@@ -4418,7 +4418,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F3_v3_rr2.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 1.4,
      "db": -36.6,
@@ -4427,7 +4427,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F4_v1_rr1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.204,
      "db": -35.8,
@@ -4436,7 +4436,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F4_v1_rr2.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.376,
      "db": -34.7,
@@ -4445,7 +4445,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F4_v2_rr1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.385,
      "db": -28.3,
@@ -4454,7 +4454,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F4_v2_rr2.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.361,
      "db": -26,
@@ -4463,7 +4463,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F4_v3_rr1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 1.535,
      "db": -20.7,
@@ -4472,7 +4472,7 @@
     },
     {
      "f": "Sum_SHTrumpet_stac_F4_v3_rr2.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 1.512,
      "db": -18.8,
@@ -4738,7 +4738,7 @@
     },
     {
      "f": "MOHorn_sus_F2_v1_1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 12.262,
      "db": -37.1,
@@ -4747,7 +4747,7 @@
     },
     {
      "f": "MOHorn_sus_F2_v2_1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 14.502,
      "db": -33,
@@ -4756,7 +4756,7 @@
     },
     {
      "f": "MOHorn_sus_F2_v3_1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 9.595,
      "db": -24.4,
@@ -4765,7 +4765,7 @@
     },
     {
      "f": "MOHorn_sus_F4_v1_1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 8.376,
      "db": -15.5,
@@ -5146,7 +5146,7 @@
     },
     {
      "f": "MOHorn_stac_F2_v1_rr1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.709,
      "db": -34.7,
@@ -5154,7 +5154,7 @@
     },
     {
      "f": "MOHorn_stac_F2_v1_rr2.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.052,
      "db": -34.2,
@@ -5163,7 +5163,7 @@
     },
     {
      "f": "MOHorn_stac_F2_v2_rr1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.156,
      "db": -28.8,
@@ -5172,7 +5172,7 @@
     },
     {
      "f": "MOHorn_stac_F2_v2_rr2.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.539,
      "db": -25.3,
@@ -5181,7 +5181,7 @@
     },
     {
      "f": "MOHorn_stac_F2_v3_rr1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 1.717,
      "db": -18.2,
@@ -5190,7 +5190,7 @@
     },
     {
      "f": "MOHorn_stac_F2_v3_rr2.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 1.252,
      "db": -18.1,
@@ -5199,7 +5199,7 @@
     },
     {
      "f": "MOHorn_stac_F4_v1_rr1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.466,
      "db": -10.9,
@@ -5208,7 +5208,7 @@
     },
     {
      "f": "MOHorn_stac_F4_v1_rr2.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.564,
      "db": -13.7,
@@ -5217,7 +5217,7 @@
     },
     {
      "f": "MOHorn_stac_F4_v2_rr1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 0.88,
      "db": -9.4,
@@ -5226,7 +5226,7 @@
     },
     {
      "f": "MOHorn_stac_F4_v2_rr2.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.62,
      "db": -7.9,
@@ -5235,7 +5235,7 @@
     },
     {
      "f": "MOHorn_stac_F4_v3_rr1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 0.998,
      "db": -5.6,
@@ -5480,7 +5480,7 @@
     },
     {
      "f": "tenortbn_sus_F1_v1_1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 12.934,
      "db": -53.3,
@@ -5489,7 +5489,7 @@
     },
     {
      "f": "tenortbn_sus_F1_v2_1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 7.941,
      "db": -44.9,
@@ -5498,7 +5498,7 @@
     },
     {
      "f": "tenortbn_sus_F1_v3_1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 6.791,
      "db": -39.5,
@@ -5507,7 +5507,7 @@
     },
     {
      "f": "tenortbn_sus_F2_v1_1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 20.48,
      "db": -52.8,
@@ -5516,7 +5516,7 @@
     },
     {
      "f": "tenortbn_sus_F2_v2_1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0.0045,
      "durata": 9.935,
      "db": -39.3,
@@ -5525,7 +5525,7 @@
     },
     {
      "f": "tenortbn_sus_F2_v3_1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0.0029,
      "durata": 6.279,
      "db": -34,
@@ -5534,7 +5534,7 @@
     },
     {
      "f": "tenortbn_sus_F3_v1_1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 25.833,
      "db": -41.2,
@@ -5543,7 +5543,7 @@
     },
     {
      "f": "tenortbn_sus_F3_v2_1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 12.063,
      "db": -29.6,
@@ -5552,7 +5552,7 @@
     },
     {
      "f": "tenortbn_sus_F3_v3_1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0.0013,
      "durata": 7.369,
      "db": -25.5,
@@ -5842,7 +5842,7 @@
     },
     {
      "f": "tenortbn_stac_F1_v1_rr1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.172,
      "db": -44.7,
@@ -5850,7 +5850,7 @@
     },
     {
      "f": "tenortbn_stac_F1_v1_rr2.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.25,
      "db": -44.3,
@@ -5858,7 +5858,7 @@
     },
     {
      "f": "tenortbn_stac_F1_v2_rr1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.33,
      "db": -37.6,
@@ -5866,7 +5866,7 @@
     },
     {
      "f": "tenortbn_stac_F1_v2_rr2.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.803,
      "db": -37.7,
@@ -5875,7 +5875,7 @@
     },
     {
      "f": "tenortbn_stac_F1_v3_rr1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0.0005,
      "durata": 1.474,
      "db": -36.6,
@@ -5884,7 +5884,7 @@
     },
     {
      "f": "tenortbn_stac_F1_v3_rr2.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0.0002,
      "durata": 1.215,
      "db": -35.6,
@@ -5893,7 +5893,7 @@
     },
     {
      "f": "tenortbn_stac_F1_v4_rr1.wav",
-     "dyn": "f",
+     "dyn": "v4",
      "inizio": 0.0004,
      "durata": 1.832,
      "db": -34.1,
@@ -5901,7 +5901,7 @@
     },
     {
      "f": "tenortbn_stac_F1_v4_rr2.wav",
-     "dyn": "f",
+     "dyn": "v4",
      "inizio": 0.0045,
      "durata": 1.178,
      "db": -32.2,
@@ -5909,7 +5909,7 @@
     },
     {
      "f": "tenortbn_stac_F2_v1_rr1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.022,
      "db": -47.7,
@@ -5918,7 +5918,7 @@
     },
     {
      "f": "tenortbn_stac_F2_v1_rr2.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.555,
      "db": -45.7,
@@ -5927,7 +5927,7 @@
     },
     {
      "f": "tenortbn_stac_F2_v2_rr1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 0.93,
      "db": -34.7,
@@ -5936,7 +5936,7 @@
     },
     {
      "f": "tenortbn_stac_F2_v2_rr2.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.075,
      "db": -35.9,
@@ -5945,7 +5945,7 @@
     },
     {
      "f": "tenortbn_stac_F2_v3_rr1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 1.004,
      "db": -35.2,
@@ -5954,7 +5954,7 @@
     },
     {
      "f": "tenortbn_stac_F2_v3_rr2.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 0.992,
      "db": -35.7,
@@ -5963,7 +5963,7 @@
     },
     {
      "f": "tenortbn_stac_F2_v4_rr1.wav",
-     "dyn": "f",
+     "dyn": "v4",
      "inizio": 0,
      "durata": 1.531,
      "db": -27.3,
@@ -5972,7 +5972,7 @@
     },
     {
      "f": "tenortbn_stac_F2_v4_rr2.wav",
-     "dyn": "f",
+     "dyn": "v4",
      "inizio": 0,
      "durata": 1.454,
      "db": -26.7,
@@ -5981,7 +5981,7 @@
     },
     {
      "f": "tenortbn_stac_F3_v1_rr1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.174,
      "db": -35.3,
@@ -5990,7 +5990,7 @@
     },
     {
      "f": "tenortbn_stac_F3_v1_rr2.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.055,
      "db": -33,
@@ -5999,7 +5999,7 @@
     },
     {
      "f": "tenortbn_stac_F3_v2_rr1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.051,
      "db": -32,
@@ -6008,7 +6008,7 @@
     },
     {
      "f": "tenortbn_stac_F3_v2_rr2.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 1.129,
      "db": -30.6,
@@ -6017,7 +6017,7 @@
     },
     {
      "f": "tenortbn_stac_F3_v3_rr1.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 1.126,
      "db": -27.9,
@@ -6026,7 +6026,7 @@
     },
     {
      "f": "tenortbn_stac_F3_v3_rr2.wav",
-     "dyn": "f",
+     "dyn": "v3",
      "inizio": 0,
      "durata": 1.067,
      "db": -27.9,
@@ -6035,7 +6035,7 @@
     },
     {
      "f": "tenortbn_stac_F3_v4_rr1.wav",
-     "dyn": "f",
+     "dyn": "v4",
      "inizio": 0,
      "durata": 2.006,
      "db": -22,
@@ -6044,7 +6044,7 @@
     },
     {
      "f": "tenortbn_stac_F3_v4_rr2.wav",
-     "dyn": "f",
+     "dyn": "v4",
      "inizio": 0.002,
      "durata": 1.983,
      "db": -21.1,
@@ -6382,7 +6382,7 @@
     },
     {
      "f": "spic_F2_v1_RR1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0.0047,
      "durata": 1.083,
      "db": -32.4,
@@ -6391,7 +6391,7 @@
     },
     {
      "f": "spic_F2_v1_RR2.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 1.125,
      "db": -34.9,
@@ -6400,7 +6400,7 @@
     },
     {
      "f": "spic_F2_v2_RR1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0.0056,
      "durata": 1.284,
      "db": -20.7,
@@ -6409,7 +6409,7 @@
     },
     {
      "f": "spic_F2_v2_RR2.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0.0016,
      "durata": 1.509,
      "db": -21.9,
@@ -6418,7 +6418,7 @@
     },
     {
      "f": "spic_F4_v1_RR1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 0.785,
      "db": -34.1,
@@ -6427,7 +6427,7 @@
     },
     {
      "f": "spic_F4_v1_RR2.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 0.884,
      "db": -36.6,
@@ -6436,7 +6436,7 @@
     },
     {
      "f": "spic_F4_v2_RR1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 0.773,
      "db": -25.9,
@@ -6445,7 +6445,7 @@
     },
     {
      "f": "spic_F4_v2_RR2.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0.0008,
      "durata": 1.348,
      "db": -22.5,
@@ -6855,7 +6855,7 @@
     },
     {
      "f": "Violas_spic_F3_v1_rr1.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 0.713,
      "db": -35.9,
@@ -6864,7 +6864,7 @@
     },
     {
      "f": "Violas_spic_F3_v1_rr2.wav",
-     "dyn": "f",
+     "dyn": "v1",
      "inizio": 0,
      "durata": 0.723,
      "db": -39.5,
@@ -6873,7 +6873,7 @@
     },
     {
      "f": "Violas_spic_F3_v2_rr1.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 0.89,
      "db": -21.8,
@@ -6882,7 +6882,7 @@
     },
     {
      "f": "Violas_spic_F3_v2_rr2.wav",
-     "dyn": "f",
+     "dyn": "v2",
      "inizio": 0,
      "durata": 0.792,
      "db": -27.9,
