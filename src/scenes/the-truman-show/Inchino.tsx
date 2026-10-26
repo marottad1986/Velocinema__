@@ -12,7 +12,6 @@ import type { SceneProps } from '../../types';
 const K = '#142235';
 const STEP_AT = 6.03; // «si inchina, ed esce»: la luce sull'ultimo gradino resta senza nessuno
 const END_TAG = 7.35; // «Nel mondo, il pubblico applaude»
-const STATIC = { left: 8.3, right: 8.8, main: 9.28 }; // «E cerca un altro canale»
 
 /** Il cielo dipinto con la porta aperta sul buio (coordinate 0..490 × 0..390 dello schermo). */
 const DoorShot: React.FC<{ t: number; accent: string; spill: number; tag: boolean }> = ({ t, accent, spill, tag }) => (
@@ -111,12 +110,14 @@ const Cup: React.FC<{ x: number; y: number; t: number; ph: number; s?: number }>
   </g>
 );
 
-export const Inchino: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
+export const Inchino: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
 
   const spill = seg(t, STEP_AT, STEP_AT + 0.6) * (1 - seg(t, STEP_AT + 1.4, STEP_AT + 2.4)) + 0.15;
   const tag = t < END_TAG;
+  // cambi di canale su «e cerca un altro canale» (ultima frase), uno per televisore; stessi istanti nello spartito
+  const STATIC = { left: cues[5], right: cues[5] + 0.45, main: cues[5] + 0.9 };
   const sn = { l: t >= STATIC.left, r: t >= STATIC.right, m: t >= STATIC.main };
   // lampo bianco breve sullo schermo al cambio di canale (non è un lampo a tutto schermo)
   const zap = (at: number) => seg(t, at, at + 0.04) * (1 - seg(t, at + 0.05, at + 0.3)) * 0.85;

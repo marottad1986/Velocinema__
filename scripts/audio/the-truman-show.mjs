@@ -4,21 +4,25 @@
 // padre e barca; infine torna pieno e luminoso (muro, inchino, finale). Nessun tema o pattern del film.
 // Strumenti campionati (VSCO-2 CE); effetti registrati (archivio CC0, scripts/audio/effetti.mjs) agganciati ai
 // sottotitoli (tempi in proporzione ai caratteri), come in La La Land.
-import { rng, channelClick } from './synth.mjs';
-import { suona, archi, colpo } from './campioni.mjs';
-import { clip } from './effetti.mjs';
-import { loadFilm, timeline } from './film.mjs';
+import { rng } from '/home/user/vel-truman/scripts/audio/synth.mjs';
+import { suona, archi, colpo } from '/home/user/vel-truman/scripts/audio/campioni.mjs';
+import { clip } from '/home/user/vel-truman/scripts/audio/effetti.mjs';
+import { loadFilm, timeline } from '/home/user/vel-truman/scripts/audio/film.mjs';
 
 export const strumenti = ['pianoforte', 'glockenspiel', 'violini', 'viole', 'celli', 'contrabbasso', 'grancassa'];
 export const effetti = ['vetro_lastra', 'metallo_schianto', 'pioggia_dura', 'radio_sintonia', 'tuono_classico', 'tuono_secco', 'tuono_forte',
-  'tuono_breve', 'vento_invernale', 'onde', 'colpi_cavi', 'porta_cigolio', 'applauso'];
+  'tuono_breve', 'vento_invernale', 'onde', 'colpi_cavi', 'porta_cigolio', 'applauso',
+  'scatti', 'disturbo', 'martelletto', 'fiammata', 'fuoco'];
 /** Sala media e calda. */
 export const sala = { rt60: 2.2, brillo: 7000, predelay: 0.025, wet: 0.5 };
 
 /** Un solo tempo per tutto il film; le scene cupe (padre, barca) vanno a metà passo sulla stessa griglia. */
 const BPM = 78;
-const GRID = (4 * 60) / BPM;
-const snap = (t) => Math.round(t / GRID) * GRID;
+const BEAT = 60 / BPM, GRID = 4 * BEAT;
+/** Griglia sfasata di 1 s: con battute da 3,08 s è lo sfasamento che avvicina di più gli inizi dei capitoli al battere. */
+const OFF = 1;
+const snap = (t) => OFF + Math.round((t - OFF) / GRID) * GRID;
+const snapBeat = (t) => OFF + Math.round((t - OFF) / BEAT) * BEAT;
 
 // ---------------------------------------------------------------- strumenti (campionati; firme come nella versione sintetica)
 
@@ -61,10 +65,10 @@ export default (mix, T) => {
   /** Secondo d'inizio della frase n-esima del capitolo (tempi in proporzione ai caratteri). */
   const cue = (id, n) => {
     const s = seg[id];
-    const tot = s.testo.reduce((a, x) => a + x.length, 0);
-    let acc = 0;
-    for (let k = 0; k < n; k++) acc += s.testo[k].length;
-    return s.start + (s.dur * acc) / tot;
+    const w = s.testo.map((l) => l.length + 6), tot = w.reduce((a, b) => a + b, 0);
+    let cur = s.start + 0.15;
+    for (let k = 0; k < n; k++) cur += (w[k] / tot) * (s.dur - 0.35);
+    return cur;
   };
 
   const BODY = 0.78; // il corpo musicale resta sotto agli effetti
@@ -79,6 +83,7 @@ export default (mix, T) => {
    */
   const sec = (from, to, o) => {
     from = snap(from); to = snap(to);
+    if (to <= from) { console.warn(`sezione vuota a ${from.toFixed(2)} s`); return; }
     const beat = (60 / BPM) * (o.passo === 'meta' ? 2 : 1), bar = 4 * beat, loop = 16 * beat;
     const R = rng(4000 + sid++ * 131);
     const minor = o.mode !== 'maj';
@@ -128,6 +133,9 @@ export default (mix, T) => {
   const C = (id, n) => cue(id, n);
 
   // copertina + seahaven: tema luminoso, pianoforte e celesta, archi leggeri
+  // levare prima della prima battuta (la griglia parte a OFF = 1 s): un tempo prima, archi e pianoforte
+  [48, 55, 64].forEach((m, j) => strings(mix, m, { t: OFF - BEAT, dur: BEAT + 0.5, vel: 30, gain: BODY * 0.8, pan: (j - 1) * 0.3, att: 0.25, seed: 40 + j }));
+  piano(mix, 67, { t: OFF - BEAT, dur: BEAT, vel: 48, gain: BODY * 1.25, pan: 0.05, rev: 0.4 });
   sec(0, T.riflettore, { mode: 'maj', keep: 1, mel: 54, lh: 46, cel: 44, str: 34, oct: 0, vs: 1, lhp: 1 });
 
   // riflettore: cielo sereno, poi il vetro cade e il tema si incrina
@@ -140,8 +148,7 @@ export default (mix, T) => {
 
   // radio: tentennante; "la musica torna" a frase 3, poi di nuovo sospetto
   sec(T.radio, C('radio', 3), { mode: 'min', keep: 0.45, mel: 40, lh: 34, lhp: 0.6, cel: 34, str: 28, det: 30, celdet: 2.2, wrong: 0.2, cluster: true, sdet: 16 });
-  sec(C('radio', 3), C('radio', 4), { mode: 'maj', keep: 0.9, mel: 52, lh: 42, cel: 44, str: 30, det: 4 });
-  sec(C('radio', 4), T.padre, { mode: 'min', keep: 0.4, mel: 40, lh: 34, lhp: 0.6, cel: 32, str: 30, det: 30, celdet: 2.4, wrong: 0.2, cluster: true, sdet: 16 });
+  sec(C('radio', 3), T.padre, { mode: 'maj', keep: 0.9, mel: 52, lh: 42, cel: 44, str: 30, det: 4 });
 
   // padre: buio, bordone e archi gravi, pianoforte profondo; tema quasi sparito
   sec(T.padre, T.sylvia, { passo: 'meta', mode: 'dark', keep: 0.18, mel: 34, oct: -12, lh: 44, lhp: 0.85, low: true, str: 40, sdet: 20, att: 1.4, cluster: true, drone: 46, det: 40, wrong: 0.2, vs: 1 });
@@ -156,36 +163,37 @@ export default (mix, T) => {
   // fuga: teso, più mosso, archi con cluster e pulsazione grave di pianoforte
   sec(T.fuga, T.barca, { mode: 'min', keep: 0.35, mel: 46, lh: 46, lhp: 1, cel: 32, str: 38, det: 34, wrong: 0.3, cluster: true, sdet: 22, att: 0.5 });
   // pulsazione sorda: colpi di cassa leggera sul grave, a battere nervoso, stringendo verso la barca
-  for (let t = Math.ceil((T.fuga + 2.4) / (60 / BPM)) * (60 / BPM); t < snap(T.barca) - 0.3; t += (60 / BPM) * (t > snap(T.barca) - 4 ? 0.5 : 1)) colpo(mix, 'grancassa', 'bdrum_pp', { t, vel: 70 + 50 * ((t - T.fuga) / (T.barca - T.fuga)), gain: 0.7, rev: 0.3, seed: Math.round(t * 10) });
+  for (let t = snapBeat(T.fuga + 2.4); t < snap(T.barca) - 0.3; t += (60 / BPM) * (t > snap(T.barca) - 4 ? 0.5 : 1)) colpo(mix, 'grancassa', 'bdrum_pp', { t, vel: 70 + 50 * ((t - T.fuga) / (T.barca - T.fuga)), gain: 0.7, rev: 0.3, seed: Math.round(t * 10) });
 
   // barca: tempesta; bordone, archi bassi, colpi sordi; solo alla fine ("Truman resiste") il tema risale
-  sec(T.barca, C('barca', 5), { passo: 'meta', mode: 'dark', keep: 0.12, mel: 38, oct: -12, lh: 54, lhp: 1, low: true, str: 46, sdet: 24, att: 0.6, cluster: true, drone: 52, det: 40, wrong: 0.25, vs: 1 });
-  for (let t = snap(C('barca', 2)); t < snap(C('barca', 5)); t += 2 * (60 / BPM)) colpo(mix, 'grancassa', 'bdrum_mp', { t, vel: 100, gain: 0.8, rev: 0.35, seed: Math.round(t * 10) });
-  sec(C('barca', 5), T.muro, { mode: 'maj', keep: 0.7, mel: 48, lh: 44, cel: 40, str: 46, att: 0.6, det: 6, vs: 1 });
+  sec(T.barca, T.muro, { passo: 'meta', mode: 'dark', keep: 0.12, mel: 38, oct: -12, lh: 54, lhp: 1, low: true, str: 46, sdet: 24, att: 0.6, cluster: true, drone: 52, det: 40, wrong: 0.25, vs: 1 });
+  for (let t = snap(C('barca', 2)); t < snap(T.muro); t += 2 * (60 / BPM)) colpo(mix, 'grancassa', 'bdrum_mp', { t, vel: 100, gain: 0.8, rev: 0.35, seed: Math.round(t * 10) });
 
   // muro: calma, bolla di speranza; si allarga fino alla voce dal cielo
-  sec(T.muro, C('muro', 2), { mode: 'maj', keep: 0.6, mel: 40, lh: 34, cel: 38, str: 30, att: 1.2 });
-  sec(C('muro', 2), C('muro', 3), { mode: 'min', keep: 0.4, mel: 34, lh: 30, lhp: 0.5, cel: 32, str: 28, det: 12, cluster: true, sdet: 12 });
+  sec(T.muro, C('muro', 3), { mode: 'min', keep: 0.4, mel: 34, lh: 30, lhp: 0.5, cel: 32, str: 28, det: 12, cluster: true, sdet: 12 });
   sec(C('muro', 3), C('muro', 5), { mode: 'maj', keep: 0.85, mel: 48, lh: 42, cel: 42, str: 42, att: 0.6, big: true });
   sec(C('muro', 5), T.inchino, { mode: 'maj', keep: 0.9, mel: 52, lh: 46, cel: 46, str: 52, att: 0.5, big: true });
 
   // inchino: finale luminoso e ampio, tema pieno con raddoppi
   sec(T.inchino, C('inchino', 2), { mode: 'maj', keep: 0.9, mel: 52, lh: 46, cel: 46, str: 50, att: 0.6, big: true });
-  sec(C('inchino', 2), C('inchino', 5), { mode: 'maj', keep: 1, mel: 60, lh: 52, cel: 52, str: 58, att: 0.5, big: true, oct: 0 });
-  sec(C('inchino', 5), T.finale, { mode: 'maj', keep: 0.5, mel: 40, lh: 34, cel: 40, str: 36, att: 0.5 });
+  sec(C('inchino', 2), T.finale, { mode: 'maj', keep: 1, mel: 60, lh: 52, cel: 52, str: 58, att: 0.5, big: true, oct: 0 });
 
   // finale: accordo di Do maggiore ampio, che sale e si scioglie
-  const F = snap(T.finale); // sulla griglia, dove finisce l'ultima sezione
+  const F = snapBeat(T.finale); // sul tempo più vicino all'immagine finale
+  // ponte: accordo di Sol tenuto dalla fine dell'ultima sezione al Do finale
+  if (F - snap(T.finale) > 0.3) [43, 55, 59, 62].forEach((m, j) => strings(mix, m, { t: snap(T.finale), dur: F - snap(T.finale) + 0.3, vel: 50, gain: BODY * 0.8, pan: (j - 1.5) * 0.3, att: 0.3, seed: 30 + j }));
   [36, 43, 48, 52, 55, 59, 64, 67].forEach((m, j) => piano(mix, m, { t: F + j * 0.06, dur: 3.2, vel: 52, gain: BODY * 1.2, pan: -0.3 + j * 0.09, rev: 0.5 }));
   [48, 55, 59, 64, 67, 72].forEach((m, j) => strings(mix, m, { t: F, dur: 3, vel: 58, gain: BODY * 0.9, pan: (j - 2.5) * 0.25, det: 6, att: 0.4, seed: 20 + j }));
-  [84, 88, 91, 95, 96].forEach((m, j) => celesta(mix, m, { t: F + 0.3 + j * 0.2, dur: 3.2, vel: 46, gain: BODY * 1.2, pan: -0.2 + j * 0.12, rev: 0.6 }));
+  [84, 88, 91, 95, 96].forEach((m, j) => celesta(mix, m, { t: F + BEAT / 2 + j * BEAT / 4, dur: 3.2, vel: 46, gain: BODY * 1.2, pan: -0.2 + j * 0.12, rev: 0.6 }));
 
   // ---------------------------------------------------------------- effetti sonori
   // riflettore (frase 1, "cade un riflettore"): lastra di vetro e schianto di metallo (impatto in Riflettore.tsx)
-  clip(mix, 'vetro_lastra', { t: T.riflettore + 2.2 - 0.25, da: 1.85, durata: 4, gain: 0.4, fadeOut: 1.5, rev: 0.3 });
-  clip(mix, 'metallo_schianto', { t: T.riflettore + 2.2 - 0.31, da: 0.05, durata: 1.4, gain: 0.4, fadeOut: 0.5, rev: 0.3, pan: 0.1 });
+  const urto = C('riflettore', 1) + 0.38; // impatto in Riflettore.tsx (TI)
+  clip(mix, 'vetro_lastra', { t: urto - 0.25, da: 1.85, durata: 1.8, gain: 0.3, fadeOut: 1, rev: 0.3 });
+  clip(mix, 'metallo_schianto', { t: urto - 0.1, da: 0.05, durata: 1.4, gain: 0.4, fadeOut: 0.5, rev: 0.3, pan: 0.1 });
   // pioggia: scroscio che cade solo su Truman, si allarga a tutti (frase 3) e si spegne a fine capitolo
-  clip(mix, 'pioggia_dura', { t: T.pioggia + 0.2, da: 5.4, durata: T.radio - 0.3 - T.pioggia, gain: 1.8, fadeIn: 1.2, fadeOut: 1.2, largo: 3, rev: 0.12 });
+  clip(mix, 'pioggia_dura', { t: T.pioggia + 0.2, da: 5.4, durata: T.radio - 0.3 - T.pioggia, gain: 0.8, fadeIn: 1.2, fadeOut: 1.2, largo: 3, rev: 0.12 });
+  clip(mix, 'pioggia_dura', { t: C('pioggia', 3), da: 14, durata: T.radio - 0.3 - C('pioggia', 3), gain: 0.6, fadeIn: 1.6, fadeOut: 1.2, largo: 4, rev: 0.12, pan: 0.1 });
   // radio: tre sfrigolii di sintonia a frasi 0, 1, 2
   clip(mix, 'radio_sintonia', { t: C('radio', 0) + 0.3, da: 1.5, durata: 1.8, gain: 0.45, fadeIn: 0.03, fadeOut: 0.15, pan: -0.15, rev: 0.12 });
   clip(mix, 'radio_sintonia', { t: C('radio', 1) + 0.1, da: 15.6, durata: 1.2, gain: 0.35, fadeIn: 0.03, fadeOut: 0.15, pan: -0.15, rev: 0.12 });
@@ -193,18 +201,27 @@ export default (mix, T) => {
   /** Tuono dopo un lampo della scena a t. */
   const tuono = (t, id, da, durata, gain) => clip(mix, id, { t: t + 0.15, da, durata, gain, fadeIn: 0.03, fadeOut: 1.2, rev: 0.35, pan: 0.1 });
   // padre: due tuoni (lampi di Padre.tsx a 2,51 e 5,86 s)
-  tuono(T.padre + 2.5, 'tuono_classico', 0.98, 3.4, 0.35);
-  tuono(T.padre + 5.85, 'tuono_secco', 0.78, 4, 0.3);
+  tuono(C('padre', 1) + 0.1, 'tuono_classico', 0.98, 2.4, 0.3);
+  tuono(C('padre', 3) + 0.1, 'tuono_secco', 0.78, 2.6, 0.26);
   // barca: vento forte, onde e due tuoni (lampi di Barca.tsx a 7,82 e 8,9 s)
-  clip(mix, 'vento_invernale', { t: C('barca', 3), da: 3, durata: C('barca', 5) + 2 - C('barca', 3), gain: 0.3, fadeIn: 1.5, fadeOut: 1.5, largo: 4, rev: 0.1 });
-  clip(mix, 'onde', { t: T.barca, da: 2, durata: C('barca', 5) + 2 - T.barca, gain: 0.3, fadeIn: 1.5, fadeOut: 1.5, largo: 3, rev: 0.1 });
+  clip(mix, 'vento_invernale', { t: C('barca', 3), da: 3, durata: C('barca', 5) + 2 - C('barca', 3), gain: 0.2, fadeIn: 1.5, fadeOut: 1.5, largo: 4, rev: 0.1 });
+  clip(mix, 'onde', { t: T.barca, da: 2, durata: C('barca', 5) + 2 - T.barca, gain: 0.18, fadeIn: 1.5, fadeOut: 1.5, largo: 3, rev: 0.1 });
   tuono(T.barca + 7.82, 'tuono_forte', 0.55, 4, 0.9);
   tuono(T.barca + 8.9, 'tuono_breve', 1.47, 2.6, 0.7);
   // muro: colpo vuoto quando la prua urta il cielo dipinto; porta che si apre (si accende USCITA, Muro.tsx)
   clip(mix, 'colpi_cavi', { t: T.muro + 1.6 - 0.01, da: 3.4, durata: 0.6, gain: 0.8, fadeOut: 0.2, rev: 0.45 });
   clip(mix, 'porta_cigolio', { t: T.muro + 6.7, da: 10.68, durata: 1.8, gain: 0.4, fadeOut: 0.4, rev: 0.3, pan: 0.3 });
   // inchino: applauso che cresce (frase 4); scatto di canale (i televisori passano alla neve, Inchino.tsx)
-  const ta = C('inchino', 4) + 0.2, da = Math.min(5, C('inchino', 5) - C('inchino', 4) + 0.6);
-  clip(mix, 'applauso', { t: ta, da: 3, durata: da, gain: 0.6, fadeIn: da * 0.6, fadeOut: da * 0.35, largo: 2, rev: 0.3 });
-  channelClick(mix, T.inchino + 8.3, 62);
+  const ta = C('inchino', 4), zap = [0, 0.45, 0.9].map((x) => C('inchino', 5) + x); // STATIC di Inchino.tsx: su «e cerca un altro canale»
+  clip(mix, 'applauso', { t: ta, da: 3, durata: zap[2] - ta + 0.05, gain: 0.6, fadeIn: 0.8, fadeOut: 0.12, largo: 2, rev: 0.3 });
+  // cambio canale registrato: scatto della manopola e un soffio di neve per ogni televisore
+  zap.forEach((z, i) => {
+    clip(mix, 'scatti', { t: z - 0.08, da: [6.42, 8.12, 10.42][i], durata: 0.22, gain: 0.35, fadeOut: 0.05, rev: 0.1, pan: [-0.3, 0.3, 0][i] });
+    clip(mix, 'disturbo', { t: z, da: 7 + i * 0.4, durata: 0.35, gain: 0.18, fadeIn: 0.01, fadeOut: 0.2, rev: 0.1, pan: [-0.3, 0.3, 0][i] });
+  });
+  // figi: timbro ESAURITO (Figi.tsx, cues[2] + 0,15)
+  clip(mix, 'martelletto', { t: C('figi', 2) + 0.15 - 0.07, da: 0.12, durata: 0.2, gain: 0.5, fadeOut: 0.08, lp: 2500, rev: 0.2 });
+  // fuga: fiammata e fuoco sulla strada (Fuga.tsx: cues[2] su, cues[5] giù)
+  clip(mix, 'fiammata', { t: C('fuga', 2) - 0.15, da: 0.05, durata: 1.1, gain: 0.35, fadeOut: 0.4, rev: 0.25 });
+  clip(mix, 'fuoco', { t: C('fuga', 2), da: 2, durata: C('fuga', 5) + 0.5 - C('fuga', 2), gain: 0.22, fadeIn: 0.8, fadeOut: 0.5, largo: 3, rev: 0.15 });
 };
