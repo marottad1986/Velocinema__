@@ -47,6 +47,8 @@ export const Uragano: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
   const a = t * 1.0;
   const sweep = Math.cos(a);
   const pulse = Math.abs(sweep);
+  // verso sinistra il fascio passerebbe dietro il titolo: lì si attenua
+  const leftDim = 0.25 + 0.75 * Math.min(1, Math.max(0, (sweep + 0.2) / 0.4));
 
   // Due soli lampi (QUALITA §2): a 3,0 s e a 7,2 s
   const flash = seg(t, 3, 3.06) * (1 - seg(t, 3.15, 3.6)) + 0.7 * seg(t, 7.2, 7.26) * (1 - seg(t, 7.35, 7.8));
@@ -66,6 +68,7 @@ export const Uragano: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
       <defs>
         <FxDefs id="ur" />
         <Lin id="ur-sky" stops={[[0, '#081118'], [0.45, '#16303B'], [0.65, '#2A5059'], [1, '#1A3640']]} />
+        <GlowGradient id="ur-veil" color="#04090B" core={0.7} mid={0.35} />
         <Lin id="ur-beam" x2={1} y2={0} stops={[[0, '#FFE7A0', 0.75], [1, '#FFE7A0', 0]]} />
         <Lin id="ur-tower" x2={1} y2={0} stops={[[0, '#FFFFFF'], [0.55, '#DCE6E9'], [1, '#8FA4AA']]} />
         <Lin id="ur-sea" stops={[[0, '#2F6B73'], [1, '#0E2730']]} />
@@ -115,7 +118,7 @@ export const Uragano: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
 
         {/* PIANO 3 — isolotto con il faro e fascio rotante (0,6) */}
         <g transform={L(0.6, ISLE_DX)}>
-          <g transform={`translate(${LAMP.x} ${LAMP.y}) scale(${sweep} 1) translate(${-LAMP.x} ${-LAMP.y})`} opacity={0.55 + 0.45 * pulse}>
+          <g transform={`translate(${LAMP.x} ${LAMP.y}) scale(${sweep} 1) translate(${-LAMP.x} ${-LAMP.y})`} opacity={(0.55 + 0.45 * pulse) * leftDim}>
             <path d={`M${LAMP.x} ${LAMP.y - 8} L1500 476 L1500 860 L${LAMP.x} ${LAMP.y + 8} Z`} fill="url(#ur-beam)" />
           </g>
           <path d="M260 1270 Q350 1070 480 1100 Q560 1030 660 1070 Q800 1080 860 1270 Z" fill="url(#ur-rock)" stroke={K} strokeWidth="8" strokeLinejoin="round" />
@@ -203,6 +206,8 @@ export const Uragano: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
         </g>
       </g>
 
+      {/* velo scuro dietro il titolo: resta leggibile anche quando il lampo schiarisce il cielo */}
+      <ellipse cx="400" cy="470" rx="560" ry="210" fill="url(#ur-veil)" opacity={0.35 + 0.55 * flash} />
       <Finish id="ur" tint="#0E3A40" />
     </svg>
   );

@@ -16,7 +16,7 @@ const RACK = { x: 832, top: 476 };
 const FILE = { x: 92, y: 922, w: 652, h: 322 };
 
 // Tempi dai sottotitoli (subtitleTimes su 12 s): «Chuck è il dottor Sheehan» 0,15 s, «il suo psichiatra» 2,05 s,
-// «L'indagine? Una recita.» 3,48 s, «Dolores… nel lago» 5,2 s, «Lui le ha sparato» 8,47 s, «Se non ricorda…» 9,9 s.
+// «e hanno recitato tutto per curarlo» 3,48 s, «Dolores… nel lago» 5,2 s, «Lui le ha sparato» 8,47 s, «Se non ricorda…» 9,9 s.
 const HAT_FALL = [0.7, 1.55] as const;
 const COAT_IN = [1.35, 2.1] as const;
 const COVER = [3.55, 4.15] as const;

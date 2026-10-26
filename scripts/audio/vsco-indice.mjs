@@ -129,7 +129,8 @@ const analizza = (path, { perc, nota, mappa }) => {
 };
 
 const dinamica = (f) => {
-  const m = /_(v\d|vl\d|dyn\d|ppp|pp|p|mp|mf|ff|fff|f)(?=[_ .\d])/i.exec(f);
+  // «F2» è la nota Fa, non la dinamica forte: la dinamica «f» non è mai seguita da un numero o da un diesis
+  const m = /_(v\d|vl\d|dyn\d|ppp|pp|p|mp|mf|ff|fff|f(?![#\d]))(?=[_ .\d])/i.exec(f);
   return m ? m[1].toLowerCase() : 'unica';
 };
 

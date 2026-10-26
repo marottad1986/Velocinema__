@@ -16,14 +16,15 @@ const PITCH = 44; // passo fisso delle lettere: serve a sapere dove sta ogni let
 const X0 = 176; // centro della prima lettera
 const CHALK = '#E8EFEC';
 
-// Tempi agganciati ai sottotitoli (subtitleTimes su 14 s): «Edward Daniels…» 3,56 s, «Rachel Solando…» 6,41 s,
-// «sua moglie» 9,25 s, «Teddy non esiste» 10,22 s, «Il paziente 67…» 11,53 s.
+// Tempi agganciati ai sottotitoli (subtitleTimes su 14 s): «il suo nome, Edward Daniels…» 4,56 s (il nome detto verso
+// 5 s), «Rachel Solando…» 7,77 s, «sua moglie» 9,63 s, «Teddy non esiste» 10,45 s, «il paziente 67…» 11,88 s.
+// Gli stessi tempi sono in LAVAGNA_ROWS di scripts/audio/shutter-island.mjs (gesso, campane) e nel tuono a 10,5 s.
 type Row = { s: string; y: number; a: number; b: number; acc?: boolean; src?: number };
 const ROWS: Row[] = [
-  { s: 'EDWARD DANIELS', y: 682, a: 3.6, b: 4.65 },
-  { s: 'ANDREW LAEDDIS', y: 828, a: 5.0, b: 6.3, acc: true, src: 0 },
-  { s: 'RACHEL SOLANDO', y: 980, a: 6.45, b: 7.5 },
-  { s: 'DOLORES CHANAL', y: 1126, a: 7.85, b: 9.15, acc: true, src: 2 },
+  { s: 'EDWARD DANIELS', y: 682, a: 4.9, b: 5.8 },
+  { s: 'ANDREW LAEDDIS', y: 828, a: 6.2, b: 7.5, acc: true, src: 0 },
+  { s: 'RACHEL SOLANDO', y: 980, a: 7.8, b: 8.5 },
+  { s: 'DOLORES CHANAL', y: 1126, a: 8.9, b: 9.9, acc: true, src: 2 },
 ];
 const letterTime = (row: Row, i: number) => lerp(row.a, row.b, i / (row.s.length - 1));
 
@@ -109,7 +110,7 @@ export const Lavagna: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
 
   // Cambi di luce (max 2): la lampada si accende con un tremolio all'inizio, un lampo a «Teddy non esiste»
   const power = (0.3 + 0.7 * eo(seg(t, 0.15, 1.1))) * (1 - 0.45 * seg(t, 0.5, 0.54) * (1 - seg(t, 0.6, 0.68)));
-  const flash = seg(t, 10.3, 10.36) * (1 - seg(t, 10.46, 11.1));
+  const flash = seg(t, 10.5, 10.56) * (1 - seg(t, 10.66, 11.3));
   // lampada a sospensione che oscilla (pendolo smorzato appena)
   const swing = Math.sin(t * 1.25) * 7;
   const pool = Math.sin(t * 1.25 - 0.25); // la macchia di luce sulla lavagna segue l'oscillazione
@@ -127,15 +128,15 @@ export const Lavagna: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
   });
 
   // Segni successivi: frecce, sottolineature, barra sul nome falso, «67» cerchiato
-  const arrow1 = eo(seg(t, 4.68, 4.98));
-  const arrow2 = eo(seg(t, 7.52, 7.82));
-  const under = eo(seg(t, 9.3, 9.75));
-  const under2 = eo(seg(t, 9.6, 10.0));
-  const strike = eo(seg(t, 10.28, 10.75));
-  const six = seg(t, 11.62, 11.72);
-  const seven = seg(t, 11.84, 11.94);
-  const ring = eo(seg(t, 12.0, 12.6));
-  const ringPop = eob(seg(t, 12.55, 12.9), 2);
+  const arrow1 = eo(seg(t, 5.85, 6.15));
+  const arrow2 = eo(seg(t, 8.55, 8.85));
+  const under = eo(seg(t, 9.95, 10.35));
+  const under2 = eo(seg(t, 10.15, 10.5));
+  const strike = eo(seg(t, 10.5, 10.95));
+  const six = seg(t, 12.0, 12.1);
+  const seven = seg(t, 12.2, 12.3);
+  const ring = eo(seg(t, 12.35, 12.95));
+  const ringPop = eob(seg(t, 12.9, 13.25), 2);
 
   const W = { x: 940, y: 600, w: 132, h: 420 }; // finestra stretta e ad arco del faro
 
@@ -297,8 +298,8 @@ export const Lavagna: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
           </g>
           {/* «Teddy non esiste»: il nome falso viene barrato */}
           <path d="M146 668 Q300 652 460 664 T770 656" fill="none" stroke={CHALK} strokeWidth="8" strokeLinecap="round" pathLength={1} strokeDasharray="1" strokeDashoffset={1 - strike} opacity={strike > 0 ? 0.9 : 0} />
-          {/* «Il paziente 67»: numero cerchiato a destra */}
-          <g transform={`translate(824 902) scale(${1 + ringPop * 0.04 - 0.04 * seg(t, 12.9, 13.3)})`}>
+          {/* «Il paziente 67»: numero cerchiato a destra di ANDREW LAEDDIS, il suo vero nome */}
+          <g transform={`translate(830 796) scale(${0.85 * (1 + ringPop * 0.04 - 0.04 * seg(t, 13.25, 13.6))})`}>
             <circle cx="0" cy="0" r={90} fill="url(#lv-ring)" opacity={ring * (0.7 + Math.sin(t * 3) * 0.15)} />
             <text x="-18" y="26" textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={84} fill="url(#lv-chalkA)" opacity={six} transform="rotate(-4)">6</text>
             <text x="20" y="24" textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={84} fill="url(#lv-chalkA)" opacity={seven} transform="rotate(3)">7</text>
@@ -313,7 +314,7 @@ export const Lavagna: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
           <rect x="560" y={BOARD.y + BOARD.h - 22} width="56" height="14" rx="6" fill={CHALK} stroke={K} strokeWidth="4" />
           <rect x="640" y={BOARD.y + BOARD.h - 20} width="30" height="12" rx="5" fill={P.accento} stroke={K} strokeWidth="4" />
           {/* polvere accumulata sulla mensola */}
-          <ellipse cx="460" cy={BOARD.y + BOARD.h - 8} rx="160" ry="5" fill={CHALK} opacity={0.15 + 0.25 * seg(t, 3.6, 12)} />
+          <ellipse cx="460" cy={BOARD.y + BOARD.h - 8} rx="160" ry="5" fill={CHALK} opacity={0.15 + 0.25 * seg(t, 4.9, 12)} />
         </g>
 
         {/* polvere di gesso che si stacca mentre la lettera viene scritta (0,65) */}
@@ -331,7 +332,7 @@ export const Lavagna: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
             const i = Math.round(p * (row.s.length - 1));
             return <circle key={ri} cx={X0 + i * PITCH + 10} cy={row.y - 30} r={46 + Math.sin(t * 20) * 6} fill="url(#lv-puff)" opacity={(1 - seg(t, row.b, row.b + 0.8)) * 0.7} />;
           })}
-          {t > 11.6 && t < 13.4 && <circle cx="828" cy="878" r={60 + Math.sin(t * 18) * 6} fill="url(#lv-puff)" opacity={(1 - seg(t, 12.6, 13.4)) * 0.6} />}
+          {t > 11.95 && t < 13.75 && <circle cx="834" cy="772" r={52 + Math.sin(t * 18) * 5} fill="url(#lv-puff)" opacity={(1 - seg(t, 12.95, 13.75)) * 0.6} />}
         </g>
 
         {/* PIANO 3 — lampada a sospensione che oscilla, con cono di luce e pulviscolo (0,7) */}
