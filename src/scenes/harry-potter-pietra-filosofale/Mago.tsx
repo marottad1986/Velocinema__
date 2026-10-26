@@ -78,7 +78,19 @@ export const Mago: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           {/* spruzzi contro lo scoglio, a ondate */}
           {[[90, 1300, 0], [990, 1290, 1.3], [520, 1330, 2.4]].map(([x, y, ph], i) => {
             const p = ((t * 0.55 + ph) % 1.6) / 1.6;
-            return [0, 1, 2, 3, 4].map((k) => <circle key={`${i}${k}`} cx={x + (k - 2) * 40 * p} cy={y - 220 * Math.sin(Math.PI * p) * (0.6 + 0.1 * k)} r={26 - k * 3} fill="#E8EEF8" opacity={0.75 * (1 - p)} />);
+            // gocce lanciate a ventaglio che ricadono, più una nuvola di schiuma alla base
+            return (
+              <g key={i} opacity={1 - p}>
+                {[-60, -30, 0, 30, 60, 0].map((o, k) => <circle key={`f${k}`} cx={x + o * (1 + p)} cy={y + 10 - (k === 5 ? 50 : 20) * Math.sin(Math.PI * p)} r={22 + (k % 3) * 8 + 16 * p} fill="#E8EEF8" opacity={0.85} />)}
+                {Array.from({ length: 18 }, (_, k) => {
+                  const a = -Math.PI / 2 + ((k / 17) - 0.5) * 1.8 + Math.sin(k * 7.3 + i) * 0.15;
+                  const v = 340 + ((k * 53 + i * 31) % 140);
+                  const dx = Math.cos(a) * v * p, dy = Math.sin(a) * v * p + 260 * p * p;
+                  const r = 8 + ((k * 7) % 8);
+                  return <ellipse key={k} cx={x + dx} cy={y + dy} rx={r * 0.7} ry={r} transform={`rotate(${(Math.atan2(dy, dx) * 180) / Math.PI + 90} ${x + dx} ${y + dy})`} fill="#F0F4FA" />;
+                })}
+              </g>
+            );
           })}
           <path d="M-200 1420 H1280 V2200 H-200 Z" fill="#1A2440" />
           <WaveBand t={t} y={1360} fill="#24324F" foam="#DCE4F2" amp={110} w={420} speed={140} bob={18} ph={2} foamWidth={20} foamOpacity={0.9} />
