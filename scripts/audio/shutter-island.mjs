@@ -74,10 +74,10 @@ const campana = (mix, n, t, vel, pan = -0.2) => {
 
 /** Lavagna: righe di gesso scritte lettera per lettera (stessi tempi di Lavagna.tsx). */
 const LAVAGNA_ROWS = [
-  { s: 'EDWARD DANIELS', a: 4.95, b: 5.85 },
-  { s: 'ANDREW LAEDDIS', a: 6.2, b: 7.5, anagram: true },
-  { s: 'RACHEL SOLANDO', a: 7.8, b: 8.5 },
-  { s: 'DOLORES CHANAL', a: 8.9, b: 9.9, anagram: true },
+  { s: 'EDWARD DANIELS', a: 5.15, b: 6.0 },
+  { s: 'ANDREW LAEDDIS', a: 6.4, b: 7.6, anagram: true },
+  { s: 'RACHEL SOLANDO', a: 7.9, b: 8.55 },
+  { s: 'DOLORES CHANAL', a: 8.95, b: 9.95, anagram: true },
 ];
 
 export default (mix, T) => {
@@ -188,7 +188,7 @@ export default (mix, T) => {
     }
   }
   // segni a gesso: frecce, sottolineature di «sua moglie», barra su Edward Daniels, il 67 e il cerchio (Lavagna.tsx)
-  [5.9, 6.05, 8.55, 8.7, 9.95, 10.15, 10.8, 11.0, 12.45, 12.65, 12.8, 12.95, 13.1, 13.25].forEach((s, k) => chalk(mix, at('lavagna', s), 40 + (k % 3) * 4));
+  [6.05, 6.2, 8.6, 8.75, 10.0, 10.2, 10.8, 11.0, 12.45, 12.65, 12.8, 12.95, 13.1, 13.25].forEach((s, k) => chalk(mix, at('lavagna', s), 40 + (k % 3) * 4));
   tuono(at('lavagna', 10.8), 'forte4', 1); // «Teddy non esiste» (lampo di Lavagna.tsx a 10,8 s)
 
   // ---- verità: il cappello cade (0,7–1,55), il timbro «Ultima prova» a 10,0

@@ -16,15 +16,15 @@ const PITCH = 44; // passo fisso delle lettere: serve a sapere dove sta ogni let
 const X0 = 176; // centro della prima lettera
 const CHALK = '#E8EFEC';
 
-// Tempi agganciati ai sottotitoli (subtitleTimes su 14 s): «Edward Daniels…» 4,88 s, «Rachel Solando…» 7,73 s,
-// «sua moglie» 9,82 s, «Teddy non esiste» 10,74 s, «il paziente 67…» 12,35 s.
+// Tempi agganciati ai sottotitoli (subtitleTimes su 14 s): «Edward Daniels…» 5,05 s, «Rachel Solando…» 7,84 s,
+// «sua moglie» 9,90 s, «Teddy non esiste» 10,80 s, «il paziente 67…» 12,38 s.
 // Gli stessi tempi sono in LAVAGNA_ROWS di scripts/audio/shutter-island.mjs (gesso, campane) e nel tuono a 10,8 s.
 type Row = { s: string; y: number; a: number; b: number; acc?: boolean; src?: number };
 const ROWS: Row[] = [
-  { s: 'EDWARD DANIELS', y: 682, a: 4.95, b: 5.85 },
-  { s: 'ANDREW LAEDDIS', y: 828, a: 6.2, b: 7.5, acc: true, src: 0 },
-  { s: 'RACHEL SOLANDO', y: 980, a: 7.8, b: 8.5 },
-  { s: 'DOLORES CHANAL', y: 1126, a: 8.9, b: 9.9, acc: true, src: 2 },
+  { s: 'EDWARD DANIELS', y: 682, a: 5.15, b: 6.0 },
+  { s: 'ANDREW LAEDDIS', y: 828, a: 6.4, b: 7.6, acc: true, src: 0 },
+  { s: 'RACHEL SOLANDO', y: 980, a: 7.9, b: 8.55 },
+  { s: 'DOLORES CHANAL', y: 1126, a: 8.95, b: 9.95, acc: true, src: 2 },
 ];
 const letterTime = (row: Row, i: number) => lerp(row.a, row.b, i / (row.s.length - 1));
 
@@ -128,10 +128,10 @@ export const Lavagna: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
   });
 
   // Segni successivi: frecce, sottolineature, barra sul nome falso, «67» cerchiato
-  const arrow1 = eo(seg(t, 5.9, 6.2));
-  const arrow2 = eo(seg(t, 8.55, 8.85));
-  const under = eo(seg(t, 9.95, 10.35));
-  const under2 = eo(seg(t, 10.15, 10.5));
+  const arrow1 = eo(seg(t, 6.05, 6.35));
+  const arrow2 = eo(seg(t, 8.6, 8.9));
+  const under = eo(seg(t, 10.0, 10.35));
+  const under2 = eo(seg(t, 10.2, 10.55));
   const strike = eo(seg(t, 10.8, 11.25));
   const six = seg(t, 12.45, 12.55);
   const seven = seg(t, 12.65, 12.75);
@@ -314,7 +314,7 @@ export const Lavagna: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
           <rect x="560" y={BOARD.y + BOARD.h - 22} width="56" height="14" rx="6" fill={CHALK} stroke={K} strokeWidth="4" />
           <rect x="640" y={BOARD.y + BOARD.h - 20} width="30" height="12" rx="5" fill={P.accento} stroke={K} strokeWidth="4" />
           {/* polvere accumulata sulla mensola */}
-          <ellipse cx="460" cy={BOARD.y + BOARD.h - 8} rx="160" ry="5" fill={CHALK} opacity={0.15 + 0.25 * seg(t, 4.9, 12)} />
+          <ellipse cx="460" cy={BOARD.y + BOARD.h - 8} rx="160" ry="5" fill={CHALK} opacity={0.15 + 0.25 * seg(t, 5.15, 12)} />
         </g>
 
         {/* polvere di gesso che si stacca mentre la lettera viene scritta (0,65) */}

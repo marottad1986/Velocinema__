@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Una fuga impossibile. Un'isola senza uscita.",
     "immagine": "Notte e tempesta; cancello di ferro dell'ospedale in primo piano con un lucchetto arancione aperto al centro; dietro, l'isola con una finestra accesa. Titolo alto e stretto (Anton).",
-    "voce": "Shutter Island, di Martin Scorsese: un'indagine in un manicomio su un'isola."
+    "voce": "Shutter Island di Scorsese: un'indagine in un manicomio su un'isola."
   },
   "capitoli": [
     {
@@ -39,8 +39,8 @@
         "manicomio per criminali sull'isola,",
         "tra guardie e recinzioni",
         "per i più pericolosi.",
-        "Lasciano le pistole,",
-        "e il direttore, Cawley, sorride troppo."
+        "Lì lasciano le pistole,",
+        "mentre il direttore, Cawley, sorride troppo."
       ]
     },
     {
@@ -80,7 +80,7 @@
       "scena": "Studio con giradischi, pillole che cadono, pipa fumante, pioggia alla finestra.",
       "sottotitoli": [
         "Intanto Teddy ha forti emicranie",
-        "e Cawley gli dà delle pillole.",
+        "e Cawley gli dà pillole.",
         "Di notte sogna la guerra",
         "e la moglie che sussurra: «Rachel è ancora qui»."
       ]
@@ -95,7 +95,7 @@
         "e Teddy crede che l'abbia appiccato",
         "Andrew Laeddis, il custode del palazzo,",
         "rinchiuso proprio qui:",
-        "vuole trovarlo, e scoprire esperimenti segreti sui pazienti."
+        "vuole trovarlo e svelare esperimenti segreti sui pazienti."
       ]
     },
     {
@@ -108,7 +108,7 @@
         "Teddy teme esperimenti sul cervello nel faro",
         "e ci va con Chuck,",
         "ma si perdono di vista",
-        "e Teddy scende tra gli scogli."
+        "e Teddy lo cerca tra gli scogli."
       ]
     },
     {
@@ -117,11 +117,11 @@
       "durata": 9,
       "scena": "Grotta con fuoco acceso, coperta e tazza; tempesta fuori dall'apertura.",
       "sottotitoli": [
-        "Chuck è sparito.",
-        "Teddy, in una grotta, trova una donna",
+        "Chuck è sparito,",
+        "ma in grotta trova una donna",
         "che si dice dottoressa fuggita:",
         "«Ti drogano per renderti un paziente.»",
-        "Poi Cawley: «Sei arrivato da solo.»"
+        "Poi Cawley giura: «Sei arrivato da solo.»"
       ]
     },
     {
@@ -131,7 +131,7 @@
       "scena": "Interno del faro: lavagna dove i nomi vengono scritti a gesso lettera per lettera (EDWARD DANIELS → ANDREW LAEDDIS, RACHEL SOLANDO → DOLORES CHANAL); scrivania con lampada.",
       "sottotitoli": [
         "Così Teddy torna al faro per Chuck,",
-        "ma c'è Cawley, che spiega la legge del 4:",
+        "ma c'è solo Cawley, che spiega la legge del 4:",
         "Edward Daniels è l'anagramma di Andrew Laeddis,",
         "Rachel Solando di Dolores Chanal,",
         "sua moglie,",
@@ -148,7 +148,7 @@
         "Chuck è il dottor Sheehan,",
         "il suo psichiatra,",
         "e hanno recitato per curarlo.",
-        "Infatti Dolores aveva annegato i tre figli",
+        "Perché Dolores aveva annegato i loro figli nel lago",
         "e lui l'aveva uccisa.",
         "Se non ricorda, avrà la lobotomia, che spegne la mente."
       ]
