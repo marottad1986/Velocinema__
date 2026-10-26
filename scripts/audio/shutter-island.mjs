@@ -8,13 +8,15 @@ import { suona, colpo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 
 export const strumenti = ['violini', 'viole', 'celli', 'contrabbasso', 'violini_trem', 'celli_trem', 'contrabbasso_pizz', 'arpa', 'pianoforte', 'glockenspiel', 'grancassa', 'gong', 'piatto_sospeso'];
-export const effetti = ['tuono_classico', 'tuono_breve', 'tuono_secco', 'tuono_forte', 'tuono_lontano', 'pioggia_vento', 'vento_fischio', 'vento_invernale', 'vento_raffiche', 'vento_leggero', 'serratura', 'metallo_cade', 'cancello', 'colpi_legno', 'martelletto', 'tintinnio', 'fuoco', 'fiammata', 'telo', 'stoffa'];
+export const effetti = ['onde', 'sirena_nebbia', 'macchina_scrivere', 'giornale', 'risacca', 'tuono_classico', 'tuono_breve', 'tuono_secco', 'tuono_forte', 'tuono_lontano', 'pioggia_vento', 'vento_fischio', 'vento_invernale', 'vento_raffiche', 'vento_leggero', 'serratura', 'metallo_cade', 'cancello', 'colpi_legno', 'martelletto', 'tintinnio', 'fuoco', 'fiammata', 'telo', 'stoffa'];
 /** Sala da concerto scura: coda lunga, alte smorzate. */
 export const sala = { rt60: 2.8, brillo: 5500, predelay: 0.03, wet: 0.55 };
 
 const BPM = 90;
 const BEAT = 60 / BPM;
 const BAR = 4 * BEAT;
+/** Griglia sfasata di due tempi: così arrivo (4 s), uragano (60 s) e finale (116 s) cadono esatti sul battere. */
+const OFF = 2 * BEAT;
 
 const PROG = [['D3', 'F3', 'A3'], ['A#2', 'D3', 'F3'], ['G2', 'A#2', 'D3'], ['A2', 'C#3', 'E3']];
 const ROOTS = ['D2', 'A#1', 'G1', 'A1'];
@@ -36,10 +38,11 @@ const bar = (mix, t, i, level) => {
   // archi tenuti: celli sulla fondamentale, viole sulle altre voci; legato con code che si sovrappongono
   const [a, b, c] = PROG[i];
   const archi = { attack: 0.35, release: 1.1, rev: 0.5 };
-  suona(mix, 'celli', a, { t, dur: BAR, vel: 46 + level * 6, pan: -0.35, gain: 0.55, ...archi });
-  suona(mix, 'viole', b, { t, dur: BAR, vel: 40 + level * 6, pan: 0.1, gain: 0.45, ...archi });
-  suona(mix, 'viole', c, { t, dur: BAR, vel: 40 + level * 6, pan: 0.3, gain: 0.4, seed: 2, ...archi });
-  suona(mix, 'contrabbasso', ROOTS[i], { t, dur: BAR, vel: 44 + level * 6, pan: -0.1, gain: 0.5, ...archi });
+  const g0 = level === 0 ? 1.8 : 1; // al livello 0 gli archi sono soli: più presenti
+  suona(mix, 'celli', a, { t, dur: BAR, vel: 46 + level * 6, pan: -0.35, gain: 0.55 * g0, ...archi });
+  suona(mix, 'viole', b, { t, dur: BAR, vel: 40 + level * 6, pan: 0.1, gain: 0.45 * g0, ...archi });
+  suona(mix, 'viole', c, { t, dur: BAR, vel: 40 + level * 6, pan: 0.3, gain: 0.4 * g0, seed: 2, ...archi });
+  suona(mix, 'contrabbasso', ROOTS[i], { t, dur: BAR, vel: 44 + level * 6, pan: -0.1, gain: 0.5 * g0, ...archi });
   if (level >= 1) {
     let j = 0;
     steps('x.x.x.x.', t, (tt) => {
@@ -79,20 +82,20 @@ const LAVAGNA_ROWS = [
 
 export default (mix, T) => {
   // ---- musica: sezioni allineate alla battuta più vicina all'inizio dei capitoli
-  const B = (id) => Math.round(T[id] / BAR) * BAR;
+  const B = (id) => OFF + Math.round((T[id] - OFF) / BAR) * BAR;
   const sections = [
-    [0, B('ospedale'), 0],
+    [OFF - BAR, B('ospedale'), 0],
     [B('ospedale'), B('incendio'), 1],
     [B('incendio'), B('lavagna'), 2],
     [B('lavagna'), B('verita'), 3],
     [B('verita'), B('alba'), 1],
-    [B('alba'), T.END - 4, 0],
+    [B('alba'), T.END - 4, 1], // alba: arpa leggera, la musica non si spegne prima del finale
   ];
   for (const [from, to, level] of sections) {
     for (let t = from, k = 0; t + BAR <= to + 1e-6; t += BAR, k++) bar(mix, t, k % 4, level);
   }
   // pedale grave di Re sotto tutto il film (contrabbasso, ripreso con l'arco ogni quattro battute)
-  for (let t = 0; t < T.END - 4; t += 4 * BAR) {
+  for (let t = OFF - BAR; t < T.END - 4; t += 4 * BAR) {
     suona(mix, 'contrabbasso', 'D2', { t, dur: Math.min(4 * BAR, T.END - 3 - t), vel: 40, pan: 0.15, gain: 0.35, attack: 0.6, release: 1.5, rev: 0.4, seed: 9 });
   }
   // finale: accordo pieno degli archi, gong lieve e arpeggio di campane che sale
@@ -100,18 +103,18 @@ export default (mix, T) => {
   [['contrabbasso', 'D2'], ['celli', 'D3'], ['viole', 'F3'], ['viole', 'A3'], ['violini', 'D4'], ['violini', 'A4']].forEach(([id, n], k) =>
     suona(mix, id, n, { t: fine, dur: 2.6, vel: 60, pan: (k - 2.5) * 0.2, gain: 0.45, attack: 0.3, release: 1.4, rev: 0.6, seed: 20 + k }));
   colpo(mix, 'gong', 'gong_hit_p', { t: fine, vel: 80, rev: 0.5, gain: 0.5, dur: 3.2, release: 0.8 });
-  ['D5', 'F5', 'A5', 'D6'].forEach((n, k) => campana(mix, n, fine + 0.5 + k * 0.3, 56 + k * 8));
+  ['D5', 'F5', 'A5', 'D6'].forEach((n, k) => campana(mix, n, fine + BEAT / 2 + (k * BEAT) / 2, 56 + k * 8));
 
   const at = (id, s) => T[id] + s;
 
-  /** Tuono dopo il lampo delle scene a t: lo schiocco della presa cade ~0,25 s dopo il lampo. */
+  /** Tuono dopo il lampo delle scene a t: il picco delle prese è a +0,1 s, quindi lo schiocco cade ~0,15 s dopo il lampo. */
   const TUONI = {
-    classico: ['tuono_classico', 0.98, 6], forte: ['tuono_forte', 0.55, 5], forte2: ['tuono_forte', 7.45, 4.8], forte4: ['tuono_forte', 23.2, 2.4],
+    classico: ['tuono_classico', 0.98, 6], forte: ['tuono_forte', 0.55, 5], forte2: ['tuono_forte', 7.45, 4.8], forte4: ['tuono_forte', 0.55, 3.5],
     secco: ['tuono_secco', 0.78, 5.5], breve: ['tuono_breve', 1.47, 2.6], lontano: ['tuono_lontano', 1.77, 6],
   };
-  const tuono = (t, presa, gain, lp = 0) => {
+  const tuono = (t, presa, gain, lp = 0, dur = 0, fadeOut = 1.2) => {
     const [id, da, durata] = TUONI[presa];
-    clip(mix, id, { t: t + 0.15, da, durata, gain, lp, fadeIn: 0.03, fadeOut: 1.2, rev: 0.35, pan: 0.1 });
+    clip(mix, id, { t: t + 0.05, da, durata: dur || durata, gain, lp, fadeIn: 0.03, fadeOut, rev: 0.35, pan: 0.1 });
   };
   /** Pioggia con vento: tappeto stereo; lp attutisce (dietro una finestra, dentro la grotta). */
   const pioggia = (t0, t1, da, gain, lp = 0) =>
@@ -119,41 +122,46 @@ export default (mix, T) => {
 
   // ---- copertina: tempesta, lampo a 1,6 s, lucchetto aperto che dondola
   campana(mix, 'D5', 0.2, 60);
-  pioggia(0, 4.8, 1, 0.22);
-  clip(mix, 'vento_fischio', { t: 0, da: 20, durata: 4.6, gain: 0.2, fadeIn: 0.6, fadeOut: 0.8, largo: 3 });
-  tuono(1.6, 'classico', 0.8);
+  pioggia(0, 4.2, 1, 0.16);
+  clip(mix, 'vento_fischio', { t: 0, da: 20, durata: 4.6, gain: 0.14, fadeIn: 0.6, fadeOut: 0.8, largo: 3 });
+  tuono(1.6, 'classico', 0.6, 0, 2.4, 0.8);
   clip(mix, 'serratura', { t: 0.5, da: 2.42, durata: 0.15, gain: 0.15, pan: 0.15, rev: 0.25 });
+
+  // ---- arrivo: il traghetto nella nebbia, mare e sirena da nebbia sulla frase del traghetto
+  clip(mix, 'onde', { t: at('arrivo', 0), da: 2, durata: 9, gain: 0.12, fadeIn: 1, fadeOut: 1, largo: 3 });
+  clip(mix, 'sirena_nebbia', { t: at('arrivo', 0.67), da: 0.2, durata: 5, gain: 0.12, lp: 1500, fadeOut: 2, rev: 0.4, pan: -0.2 });
 
   // ---- ospedale: il lucchetto scatta (0,6), cade (1,0–1,45), il cancello si apre; pioggia
   pioggia(at('ospedale', -0.2), at('ospedale', 9.2), 32, 0.14);
   clip(mix, 'serratura', { t: at('ospedale', 0.6), da: 2.42, durata: 0.15, gain: 0.6, pan: 0.15, rev: 0.25 });
   clip(mix, 'serratura', { t: at('ospedale', 0.69), da: 2.91, durata: 0.25, gain: 0.45, pan: 0.15, rev: 0.25 });
-  clip(mix, 'metallo_cade', { t: at('ospedale', 1.45) - 0.06, da: 0.62, durata: 1.8, gain: 0.4, fadeOut: 0.6, rev: 0.3 });
+  clip(mix, 'metallo_cade', { t: at('ospedale', 1.45) - 0.06, da: 0.62, durata: 0.55, gain: 0.4, fadeOut: 0.15, rev: 0.3 }); // un solo colpo: la presa ne contiene altri dopo
   clip(mix, 'cancello', { t: at('ospedale', 1.5), da: 2.85, durata: 3.6, gain: 0.35, fadeOut: 1, rev: 0.3, pan: -0.1 });
 
   // ---- cella: lucchetto che vibra, lampo a 3,0 e 7,8 (più debole); pioggia alla finestra
   pioggia(at('cella', 0), at('cella', 11.2), 0.5, 0.14, 900);
   clip(mix, 'serratura', { t: at('cella', 0.35), da: 13.6, durata: 0.3, gain: 0.3, pan: 0.15, rev: 0.25 });
-  tuono(at('cella', 3.0), 'forte', 0.9);
-  tuono(at('cella', 7.8), 'secco', 0.6);
+  tuono(at('cella', 3.0), 'forte', 0.7, 0, 3.5);
+  tuono(at('cella', 7.8), 'secco', 0.4, 0, 3.2);
 
   // ---- biglietto: la piastrella si solleva e si appoggia
   clip(mix, 'colpi_legno', { t: at('biglietto', 0.75), da: 1.4, durata: 0.4, gain: 0.25, rev: 0.3 });
-  clip(mix, 'colpi_legno', { t: at('biglietto', 1.85), da: 5.74, durata: 0.35, gain: 0.15, rev: 0.3, pan: 0.1 });
+  clip(mix, 'colpi_legno', { t: at('biglietto', 2.06), da: 5.74, durata: 0.35, gain: 0.15, rev: 0.3, pan: 0.1 });
 
   // ---- studio: pillole che cadono, lampo a 4,6; pioggia alla finestra
   pioggia(at('studio', 0), at('studio', 8.2), 66, 0.12, 900);
-  clip(mix, 'tintinnio', { t: at('studio', 1.95), da: 0.16, durata: 0.3, gain: 0.3, rev: 0.25 });
-  clip(mix, 'tintinnio', { t: at('studio', 2.15), da: 4.13, durata: 0.35, gain: 0.22, pan: 0.2, rev: 0.25 });
-  clip(mix, 'tintinnio', { t: at('studio', 2.35), da: 3.21, durata: 0.45, gain: 0.18, pan: -0.15, rev: 0.25 });
-  tuono(at('studio', 4.6), 'lontano', 0.5, 2500);
+  // il flacone si posa (2,12), il tappo atterra (2,37), le sette pillole toccano la scrivania una dopo l'altra (Studio.tsx)
+  clip(mix, 'tintinnio', { t: at('studio', 2.12), da: 4.13, durata: 0.35, gain: 0.22, pan: 0.2, rev: 0.25 });
+  clip(mix, 'tintinnio', { t: at('studio', 2.37), da: 3.21, durata: 0.3, gain: 0.16, pan: -0.15, rev: 0.25 });
+  for (let i = 0; i < 7; i++) clip(mix, 'tintinnio', { t: at('studio', 2.47 + i / 6), da: 0.16, durata: 0.12, gain: 0.08 + (i % 3) * 0.02, pan: -0.1 + i * 0.04, rev: 0.25 });
+  tuono(at('studio', 4.6), 'lontano', 0.3, 2500, 3.5);
 
   // ---- incendio: fuoco che crepita e fiammata
   clip(mix, 'fuoco', { t: at('incendio', 0), da: 1, durata: 10, gain: 0.3, fadeIn: 0.5, fadeOut: 0.8, largo: 3, rev: 0.15 });
-  clip(mix, 'fiammata', { t: at('incendio', 7.6), da: 0.2, durata: 1.4, gain: 0.6, fadeOut: 0.6, rev: 0.3 });
+  clip(mix, 'colpi_legno', { t: at('incendio', 4.81), da: 5.74, durata: 0.3, gain: 0.2, rev: 0.3 }); // la scatola di fiammiferi atterra
 
   // ---- uragano: vento forte e pioggia, lampi a 3,0 e 7,2, il cappello vola via (5–8)
-  clip(mix, 'vento_invernale', { t: at('uragano', -0.6), da: 3, durata: 11, gain: 0.3, fadeIn: 0.8, fadeOut: 1, largo: 4, rev: 0.1 });
+  clip(mix, 'vento_invernale', { t: at('uragano', -0.6), da: 3, durata: 11, gain: 0.22, fadeIn: 0.8, fadeOut: 1, largo: 4, rev: 0.1 });
   pioggia(at('uragano', -0.3), at('uragano', 10.3), 36, 0.15);
   tuono(at('uragano', 3.0), 'forte2', 1);
   tuono(at('uragano', 7.2), 'breve', 0.7);
@@ -163,7 +171,7 @@ export default (mix, T) => {
   pioggia(at('grotta', 0), at('grotta', 9.2), 66.5, 0.15, 1500);
   clip(mix, 'vento_raffiche', { t: at('grotta', 0), da: 15, durata: 9, gain: 0.2, lp: 600, fadeIn: 0.6, fadeOut: 0.8, largo: 3 });
   clip(mix, 'fuoco', { t: at('grotta', 0), da: 12, durata: 9, gain: 0.15, fadeIn: 0.5, fadeOut: 0.8, largo: 3, rev: 0.2 });
-  tuono(at('grotta', 2.4), 'classico', 0.6, 1200);
+  tuono(at('grotta', 2.4), 'classico', 0.4, 1200, 3.5);
   tuono(at('grotta', 7.0), 'secco', 0.45, 1000);
 
   // ---- lavagna: gesso lettera per lettera; gli anagrammi arrivano con un risucchio e una campana; pioggia alla finestra
@@ -179,14 +187,19 @@ export default (mix, T) => {
       colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: at('lavagna', row.a), vel: 70, rev: 0.4, gain: 0.35, dur: 1.2, release: 0.3 });
     }
   }
-  tuono(at('lavagna', 10.5), 'forte4', 0.9); // «Teddy non esiste» (lampo di Lavagna.tsx a 10,5 s)
+  // segni a gesso: frecce, sottolineature di «sua moglie», barra su Edward Daniels, il 67 e il cerchio (Lavagna.tsx)
+  [5.85, 6.0, 8.55, 8.7, 9.95, 10.15, 10.5, 10.7, 12.0, 12.2, 12.35, 12.5, 12.65, 12.8].forEach((s, k) => chalk(mix, at('lavagna', s), 40 + (k % 3) * 4));
+  tuono(at('lavagna', 10.5), 'forte4', 1); // «Teddy non esiste» (lampo di Lavagna.tsx a 10,5 s)
 
   // ---- verità: il cappello cade (0,7–1,55), il timbro «Ultima prova» a 10,0
   clip(mix, 'telo', { t: at('verita', 0.7), da: 8.45, durata: 0.75, gain: 0.25, fadeOut: 0.2, rev: 0.2 });
   clip(mix, 'colpi_legno', { t: at('verita', 1.55), da: 0.96, durata: 0.3, gain: 0.22, rev: 0.3 });
   swell(mix, at('verita', 10.0), 0.6, { vel: 46 });
-  clip(mix, 'martelletto', { t: at('verita', 10.0) - 0.01, da: 2.24, durata: 0.7, gain: 0.95, fadeOut: 0.3, rev: 0.35 });
+  clip(mix, 'martelletto', { t: at('verita', 10.0) - 0.01, da: 2.24, durata: 0.28, gain: 0.95, fadeOut: 0.08, rev: 0.35 }); // un solo colpo
+  clip(mix, 'giornale', { t: at('verita', 3.55) - 0.2, da: 0.8, durata: 0.9, gain: 0.3, fadeOut: 0.3, rev: 0.25 }); // la cartella si apre
+  clip(mix, 'macchina_scrivere', { t: at('verita', 4.15), da: 0.4, durata: 1.3, gain: 0.3, fadeOut: 0.2, rev: 0.2, pan: 0.15 }); // il testo battuto a macchina
 
   // ---- alba: brezza leggera dal mare
-  clip(mix, 'vento_leggero', { t: at('alba', 0), da: 0.2, durata: T.END - at('alba', 0), gain: 0.04, fadeIn: 2, fadeOut: 3, largo: 4 });
+  clip(mix, 'vento_leggero', { t: at('alba', 0), da: 0.2, durata: T.END - at('alba', 0), gain: 0.12, fadeIn: 2, fadeOut: 3, largo: 4 });
+  clip(mix, 'risacca', { t: at('alba', 0), da: 2, durata: T.END - at('alba', 0), gain: 0.15, fadeIn: 1.5, fadeOut: 3, largo: 3 }); // il mare all'alba
 };
