@@ -78,7 +78,7 @@ const Strada: React.FC<{ id: string; t: number; dur: number; night?: boolean }> 
           <ellipse cx="700" cy="1730" rx="220" ry="26" fill={ORANGE} opacity={0.18 + 0.06 * Math.sin(t * 3)} />
           <g transform="translate(1000 1640)"><path d="M0 0 V-170" stroke={K} strokeWidth="18" /><path d="M0 -170 V-30" stroke="#C8303A" strokeWidth="8" /></g>
         </g>
-        {!night && <g transform={L(1.3)}><Gulls t={t} seed={5} n={4} y={640} h={160} color={K} size={0.8} period={6} /></g>}
+        {!night && <g transform={L(1.3)}><Gulls t={t} seed={5} n={4} y={700} h={110} color={K} size={0.8} period={6} /></g>}
         <g transform={L(1.6)}><NearMotes id={`${id}-near`} t={t} color="#FFE0B0" n={6} vx={-30} vy={-6} opacity={0.08} /></g>
       </g>
       <Finish id={id} tint={night ? TINT_NIGHT : TINT_DAY} tintOpacity={0.1} />

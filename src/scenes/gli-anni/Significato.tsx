@@ -35,6 +35,7 @@ export const Significato: React.FC<SceneProps> = ({ t, dur, cues }) => {
         <FxDefs id="sg" />
         <Lin id="sg-wall" stops={[[0, '#2A2A40'], [0.45, '#4A4058'], [0.8, '#5A4A58'], [1, '#3A3040']]} />
         <Lin id="sg-dawn" stops={[[0, '#3A4A8A'], [0.5, '#E8A0A0'], [1, '#FFD890']]} />
+        <clipPath id="sg-win"><rect x="640" y="620" width="300" height="360" /></clipPath>
         <Lin id="sg-desk" stops={[[0, '#8A6A4A'], [1, '#3A2A1C']]} />
         <Lin id="sg-floor" stops={[[0, '#5A4A44'], [1, '#1E1816']]} />
         <Lin id="sg-glass" x2={1} y2={0} stops={[[0, '#C8D8E8', 0.5], [0.5, '#FFFFFF', 0.8], [1, '#A8B8C8', 0.5]]} />
@@ -45,9 +46,9 @@ export const Significato: React.FC<SceneProps> = ({ t, dur, cues }) => {
         <g transform={L(0.25)}>
           <rect x="-200" y="-200" width="1480" height="1600" fill="url(#sg-wall)" />
           <rect x="640" y="620" width="300" height="360" fill="url(#sg-dawn)" />
-          <circle cx="790" cy={lerp(990, 900, sun)} r="56" fill="#FFF0C0" opacity={0.4 + 0.6 * sun} />
+          <g clipPath="url(#sg-win)"><circle cx="790" cy={lerp(990, 900, sun)} r="56" fill="#FFF0C0" opacity={0.4 + 0.6 * sun} />
           <Glow id="sg-sun" x={790} y={900} r={lerp(200, 420, sun)} t={t} color="#FFE0A0" amp={0.03} rate={1} opacity={0.3 + 0.5 * sun} />
-          <path d="M640 900 Q720 860 790 890 T940 880 V980 H640 Z" fill="#3A3A5A" opacity=".8" />
+          <path d="M640 900 Q720 860 790 890 T940 880 V980 H640 Z" fill="#3A3A5A" opacity=".8" /></g>
           <rect x="640" y="620" width="300" height="360" fill="none" stroke={K} strokeWidth="12" />
           <path d="M790 620 V980 M640 800 H940" stroke={K} strokeWidth="8" />
           <path d="M600 604 H980" stroke={K} strokeWidth="10" strokeLinecap="round" />
@@ -100,7 +101,7 @@ export const Significato: React.FC<SceneProps> = ({ t, dur, cues }) => {
               <path d="M-90 -44 q22 14 45 0 t45 0 t45 0 t45 0" fill="none" stroke={gold ? '#E8903A' : '#6AA0D8'} strokeWidth="6" />
               <text x="0" y="-68" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="64" fill={gold ? ORANGE : '#F4ECDD'} stroke={K} strokeWidth="3">{n as string}</text>
               {[-18, 18].map((dx, j) => (
-                <path key={j} d={`M${dx} -128 q${6 + Math.sin(t * 9 + j + i) * 3} -12 0 -24 q-6 12 0 24 Z`} fill="#FFE070" stroke={K} strokeWidth="2" opacity={k as number} />
+                <path key={j} d={`M${dx} -112 q${6 + Math.sin(t * 9 + j + i) * 3} -12 0 -24 q-6 12 0 24 Z`} fill="#FFE070" stroke={K} strokeWidth="2" opacity={k as number} />
               ))}
             </g>
           ))}

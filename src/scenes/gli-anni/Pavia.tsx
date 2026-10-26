@@ -55,7 +55,7 @@ export const Pavia: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <rect x="720" y="660" width="40" height="200" fill="#4A2E44" />
           <path d="M720 660 L740 620 L760 660 Z" fill="#4A2E44" />
           {HOUSES.map((h, i) => <rect key={i} x={h.x} y={900 - h.h} width={h.w} height={h.h} fill={h.c > 0.5 ? '#4A2E44' : '#54344C'} />)}
-          {WINDOWS.map((w, i) => <rect key={i} x={w.x} y={w.y} width="10" height="14" fill="#FFD27A" opacity={win(w.d) * (0.7 + 0.3 * Math.sin(t * 2 + i))} />)}
+          {WINDOWS.map((w, i) => <rect key={i} x={w.x - 3} y={w.y - 4} width="16" height="22" fill="#FFD27A" opacity={win(w.d) * (0.7 + 0.3 * Math.sin(t * 2 + i))} />)}
         </g>
 
         {/* PIANO 2 — il ponte coperto: arcate in mattoni, tetto, cappella al centro */}
@@ -108,9 +108,16 @@ export const Pavia: React.FC<SceneProps> = ({ t, dur, cues }) => {
           </g>
           <path d="M-200 1700 Q300 1660 700 1690 Q1000 1700 1280 1680 V2200 H-200 Z" fill="#2E4424" />
           {[[-60, 1], [1140, -1]].map(([x, k], i) => (
-            <g key={i} stroke="#3A5A2A" strokeWidth="12" strokeLinecap="round" fill="none">
-              {[0, 1, 2, 3, 4].map((j) => <path key={j} d={`M${x + k * j * 26} 1960 q${k * (20 + Math.sin(t + j) * 10)} -220 ${k * (40 + j * 8 + Math.sin(t * 1.1 + j) * 12)} ${-420 - j * 40}`} />)}
-              {[0, 2, 4].map((j) => <ellipse key={j} cx={x + k * (j * 26 + 40 + j * 8)} cy={1540 - j * 40} rx="10" ry="34" fill="#6A4A2A" stroke={K} strokeWidth="4" />)}
+            <g key={i} stroke="#6A8A40" strokeWidth="9" strokeLinecap="round" fill="none">
+              {[0, 1, 2, 3, 4].map((j) => {
+                const x0 = x + k * j * 26, dx = k * (40 + j * 8 + Math.sin(t * 1.1 + j) * 12), dy = -420 - j * 40;
+                return (
+                  <g key={j}>
+                    <path d={`M${x0} 1960 q${k * (20 + Math.sin(t + j) * 10)} -220 ${dx} ${dy}`} />
+                    {j % 2 === 0 && <ellipse cx={x0 + dx} cy={1960 + dy + 30} rx="10" ry="34" fill="#6A4A2A" stroke={K} strokeWidth="4" transform={`rotate(${dx / 12} ${x0 + dx} ${1960 + dy + 30})`} />}
+                  </g>
+                );
+              })}
             </g>
           ))}
           <g stroke="#6A8A40" strokeWidth="9" strokeLinecap="round">

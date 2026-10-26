@@ -7,7 +7,7 @@ import type { SceneProps } from '../../types';
 import { K, ORANGE, TINT_NIGHT } from './Comune';
 
 // Una canzone di tutti: stadio di notte visto dagli spalti vuoti. Migliaia di luci dei telefoni accese come stelle
-// (solo luci, nessuna persona), un palco lontano con i fiori, un disco generico sul seggiolino; in primo piano, alla
+// (solo luci, nessuna persona), un palco lontano con i fiori, un disco generico sul seggiolino; oltre gli spalti, alla
 // fine, si accende l'insegna di un bar.
 // Piani: cielo con le stelle (0,2) · tribuna di fronte con le luci (0,35) · palco con fiori e fari (0,5)
 //        · prato con le luci più vicine (0,75) · spalti vicini, seggiolini, disco, insegna (1,15) · pulviscolo (1,6)
@@ -28,7 +28,6 @@ export const Oggi: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const crowd = (d: number) => seg(t, c1 + d * 2.5, c1 + d * 2.5 + 0.3);
   const stage = eo(seg(t, c2, c2 + 0.8));
   const dim = eo(seg(t, c3, c3 + 1.2));
-  const bar = seg(t, c3 + 0.4, c3 + 0.8);
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
@@ -69,6 +68,12 @@ export const Oggi: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 2 — palco lontano con i fiori e i fari */}
         <g transform={L(0.5)}>
+          {/* insegna di un bar oltre gli spalti: spenta, si accende sulla domanda finale */}
+          <g transform="translate(900 860)">
+            <path d="M0 22 V120" stroke="#2A2840" strokeWidth="8" />
+            <rect x="-70" y="-40" width="140" height="62" rx="8" fill="#1A1220" stroke={K} strokeWidth="5" />
+            <Neon id="og-bar" t={t} x={0} y={8} text="BAR" color={ORANGE} font={SANS} size={40} onAt={c3 + 0.4} />
+          </g>
           <rect x="360" y="900" width="360" height="90" fill="#1A1626" stroke={K} strokeWidth="6" />
           <path d="M360 840 H720" stroke="#2A2840" strokeWidth="10" />
           <path d="M370 840 V900 M710 840 V900" stroke="#2A2840" strokeWidth="8" />
@@ -121,14 +126,6 @@ export const Oggi: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <circle r="58" fill="none" stroke="#9AD8FF" strokeWidth="6" opacity=".5" transform={`rotate(${t * 40})`} strokeDasharray="40 30" />
             <circle r="16" fill={ORANGE} stroke={K} strokeWidth="4" />
             <circle r="5" fill={K} />
-          </g>
-          {/* insegna del bar che resta accesa */}
-          <g transform="translate(880 1230)">
-            <path d="M0 26 V200" stroke={K} strokeWidth="14" opacity={bar} />
-            <rect x="-120" y="-70" width="240" height="96" rx="12" fill="#1A1220" stroke={K} strokeWidth="7" opacity={bar} />
-            <g opacity={bar}>
-              <Neon id="og-bar" t={t} x={0} y={0} text="BAR" color={ORANGE} font={SANS} size={64} onAt={c3 + 0.4} />
-            </g>
           </g>
           </g>
         </g>

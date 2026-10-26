@@ -108,7 +108,7 @@ export const Uscita: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <text x="-22" y="-62" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="56" fill="#F2A23A" stroke={K} strokeWidth="3">2</text>
             <text x="22" y="-62" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="56" fill="#F2A23A" stroke={K} strokeWidth="3">5</text>
             {[-22, 22].map((x, i) => (
-              <path key={i} d={`M${x} -112 q${6 + Math.sin(t * 9 + i) * 3} -12 0 -24 q-6 12 0 24 Z`} fill="#FFE070" stroke={K} strokeWidth="2" opacity={candles} />
+              <path key={i} d={`M${x} -100 q${6 + Math.sin(t * 9 + i) * 3} -12 0 -24 q-6 12 0 24 Z`} fill="#FFE070" stroke={K} strokeWidth="2" opacity={candles} />
             ))}
           </g>
           {/* vetro, riflesso e insegna del bar riflessa */}

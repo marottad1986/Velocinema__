@@ -15,7 +15,7 @@ import { Jukebox, K, ORANGE, TINT_DAY } from './Comune';
 //         partono le note e i ricordi.
 
 const r = rng(1985);
-const BOTTLES = Array.from({ length: 12 }, (_, i) => ({ x: 352 + i * 40, h: 60 + r() * 40, c: ['#3A8A4A', '#C8803A', '#8A2A3A', '#D8C870', '#4A6AA8'][Math.floor(r() * 5)] }));
+const BOTTLES = Array.from({ length: 10 }, (_, i) => ({ x: 352 + i * 40, h: 60 + r() * 40, c: ['#3A8A4A', '#C8803A', '#8A2A3A', '#D8C870', '#4A6AA8'][Math.floor(r() * 5)] }));
 
 export const Bar: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const cam = camera(t, dur);
@@ -48,9 +48,9 @@ export const Bar: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 0 — muro con scaffale, specchio e calendario (calmo in alto per il titolo) */}
         <g transform={L(0.25)}>
           <rect x="-200" y="-200" width="1480" height="1600" fill="url(#ba-wall)" />
-          <rect x="330" y="620" width="500" height="200" rx="8" fill="#2A2E3A" stroke={K} strokeWidth="8" />
+          <rect x="330" y="620" width="430" height="200" rx="8" fill="#2A2E3A" stroke={K} strokeWidth="8" />
           <path d="M330 640 L420 640 L340 720 Z" fill="#FFFFFF" opacity=".08" />
-          <path d="M330 720 H830 M330 820 H830" stroke="#6A4A32" strokeWidth="10" />
+          <path d="M330 720 H760 M330 820 H760" stroke="#6A4A32" strokeWidth="10" />
           {BOTTLES.map((b, i) => (
             <g key={i} transform={`translate(${b.x} ${i % 2 ? 820 : 720})`}>
               <rect x="-10" y={-b.h} width="20" height={b.h} rx="6" fill={b.c} stroke={K} strokeWidth="4" opacity=".9" />
@@ -58,11 +58,11 @@ export const Bar: React.FC<SceneProps> = ({ t, dur, cues }) => {
             </g>
           ))}
           {/* calendario che passa dal 1985 al 1995 */}
-          <g transform="translate(920 700)">
+          <g transform="translate(850 700)">
             <Glow id="ba-cal" x={0} y={30} r={130} t={t} color={ORANGE} amp={0.1} rate={3} opacity={0.5 * flip} />
             <rect x="-62" y="-20" width="124" height="104" rx="4" fill="#F4ECDD" stroke={K} strokeWidth="5" />
             <rect x="-62" y="-20" width="124" height="26" fill="#C8303A" stroke={K} strokeWidth="5" />
-            <g transform={`scale(1 ${Math.abs(Math.cos(Math.min(flip, 1) * Math.PI))})`} style={{ transformOrigin: '920px 760px' }}>
+            <g transform={`scale(1 ${Math.abs(Math.cos(Math.min(flip, 1) * Math.PI))})`} style={{ transformOrigin: '850px 760px' }}>
               <text x="0" y="62" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="38" fill={flip > 0.5 ? ORANGE : K}>{year}</text>
             </g>
           </g>

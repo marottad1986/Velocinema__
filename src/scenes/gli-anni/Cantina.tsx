@@ -36,6 +36,7 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues }) => {
         <Lin id="ct-floor" stops={[[0, '#3A3030'], [0.5, '#2A2222'], [1, '#141012']]} />
         <Lin id="ct-table" stops={[[0, '#7A5A3E'], [1, '#3A2818']]} />
         <Lin id="ct-night" stops={[[0, '#0E1230'], [1, '#2A2A5A']]} />
+        <clipPath id="ct-win"><rect x="700" y="620" width="240" height="120" /></clipPath>
         <Lin id="ct-card" stops={[[0, '#F2A23A'], [0.6, '#E8606A'], [1, '#6A3A7A']]} />
       </defs>
 
@@ -48,13 +49,13 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues }) => {
           </g>
           <rect x="700" y="620" width="240" height="120" fill="url(#ct-night)" />
           <Stars t={t} seed={3} n={10} x={705} y={625} w={230} h={110} color="#E8E0F0" size={0.7} />
-          {plane > 0 && plane < 1 && (
+          {plane > 0 && plane < 1 && (<g clipPath="url(#ct-win)">
             <g transform={`translate(${lerp(960, 680, plane)} ${lerp(700, 650, plane)}) scale(2)`}>
               <path d="M24 2 L120 6" stroke="#E8E0F0" strokeWidth="2" opacity=".35" />
               <path d="M-20 0 H20 M0 -6 L-8 8 M0 6 L-8 -8" stroke="#E8E0F0" strokeWidth="3" />
               <Glow id="ct-planeg" x={-20} y={0} r={14} t={t} color="#FF4A4A" amp={0.5} rate={12} opacity={0.8} />
               <circle cx="-20" cy="0" r="3" fill="#FF4A4A" opacity={Math.sin(t * 12) > 0 ? 1 : 0.2} />
-            </g>
+            </g></g>
           )}
           <rect x="700" y="620" width="240" height="120" fill="none" stroke={K} strokeWidth="10" />
           <path d="M820 620 V740 M700 680 H940" stroke={K} strokeWidth="6" />
@@ -89,7 +90,7 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <path d="M-200 1080 H1280" stroke={K} strokeWidth="8" />
           {/* lampadina appesa */}
           <g transform={`rotate(${sway} 540 520)`}>
-            <path d="M540 520 V830" stroke={K} strokeWidth="4" />
+            <path d="M540 -200 V830" stroke={K} strokeWidth="4" />
             <Glow id="ct-bulb" x={540} y={850} r={520} t={t} color="#FFD98A" amp={0.04} rate={2} opacity={0.75} />
             <circle cx="540" cy="850" r="20" fill="#FFF3CF" stroke={K} strokeWidth="4" />
           </g>
@@ -106,7 +107,7 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues }) => {
             {[0, 1, 2, 3].map((i) => <circle key={i} cx={-160 + i * 26} cy="-48" r="6" fill={i === 1 ? ORANGE : '#8A8692'} />)}
           </g>
           {/* registratore a cassette */}
-          <g transform="translate(700 1112)">
+          <g transform="translate(780 1112)">
             <Glow id="ct-rec" x={57} y={-34} r={60} t={t} color="#FF4A3A" amp={0.2} rate={5} opacity={0.6 * rec} />
             <Mangianastri x={0} y={0} s={0.55} t={t} play={rec} />
           </g>
@@ -135,7 +136,7 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <path d="M-90 -80 H90" stroke="#5A2218" strokeWidth="6" />
             <rect x="-60" y="-120" width="40" height="28" rx="4" fill="#F4ECDD" stroke={K} strokeWidth="3" transform="rotate(-8 -40 -106)" />
           </g>
-          <Notes t={t - c2} x={700} y={1050} n={6} spread={300} rise={340} color={ORANGE} outline={K} size={0.85 * rec} speed={0.24} />
+          <Notes t={t - c2} x={780} y={1050} n={6} spread={300} rise={340} color={ORANGE} outline={K} size={0.85 * rec} speed={0.24} />
         </g>
 
         {/* PIANO 3 — scala di legno e cavi in primo piano */}
