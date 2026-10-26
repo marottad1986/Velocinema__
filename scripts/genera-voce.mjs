@@ -4,7 +4,8 @@
 //   Le clip già presenti si saltano (--rifai le rigenera; --capitolo <id> ne fa una sola, anche "copertina" o "finale").
 //   --prova: mostra testi e caratteri (= crediti) senza chiamare ElevenLabs.
 // Altri comandi: npm run genera-voce -- --voci [nome] (voci dell'account), --modelli (modelli disponibili).
-// Chiave: variabile d'ambiente ELEVENLABS_API_KEY (permessi: Text to Speech; Voices: read per cercare la voce per nome).
+// Chiave (permessi: Text to Speech; Voices: read per cercare la voce per nome): variabile d'ambiente ELEVENLABS_API_KEY,
+// oppure, nell'ambiente cloud, segreto di rete per api.elevenlabs.io con intestazione xi-api-key (la aggiunge il proxy).
 // Dopo: npm run render -- <film> (se il video non c'è) e npm run voce -- <film> per montare e controllare i tempi.
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
@@ -25,11 +26,8 @@ const conf = JSON.parse(readFileSync(CONFIG, 'utf8'));
 
 /** Chiamata all'API con curl (rispetta il proxy e c'è anche in Windows 10+); la chiave passa da stdin, non dagli argomenti. */
 const api = (method, path, { body, out } = {}) => {
+  // in locale la chiave viene da ELEVENLABS_API_KEY; nell'ambiente cloud la aggiunge il proxy (segreto di rete xi-api-key)
   const key = process.env.ELEVENLABS_API_KEY;
-  if (!key) {
-    console.error('Manca la variabile d\'ambiente ELEVENLABS_API_KEY (chiave API di ElevenLabs).');
-    process.exit(1);
-  }
   mkdirSync(TMP, { recursive: true });
   const resp = out ?? `${TMP}/risposta.json`;
   const curlArgs = ['-sS', '-K', '-', '-X', method, '-o', resp, '-w', '%{http_code}', `${API}${path}`];
@@ -37,7 +35,7 @@ const api = (method, path, { body, out } = {}) => {
     writeFileSync(`${TMP}/richiesta.json`, JSON.stringify(body));
     curlArgs.push('-H', 'Content-Type: application/json', '--data-binary', `@${TMP}/richiesta.json`);
   }
-  const res = spawnSync('curl', curlArgs, { input: `header = "xi-api-key: ${key}"\n`, encoding: 'utf8' });
+  const res = spawnSync('curl', curlArgs, { input: key ? `header = "xi-api-key: ${key}"\n` : '', encoding: 'utf8' });
   if (res.error) throw new Error(`curl non trovato (${res.error.message})`);
   const code = Number(res.stdout);
   if (res.status !== 0 || code !== 200) {
@@ -45,6 +43,7 @@ const api = (method, path, { body, out } = {}) => {
     if (out) rmSync(out, { force: true });
     console.error(`ElevenLabs ${method} ${path}: ${code || 'nessuna risposta'} ${msg.trim()}`);
     if (!code) console.error('  api.elevenlabs.io non raggiungibile: rete assente o dominio non consentito.');
+    if (code === 401) console.error('  Chiave mancante o non valida: ELEVENLABS_API_KEY, o il segreto di rete xi-api-key per api.elevenlabs.io.');
     process.exit(1);
   }
   return out ? null : JSON.parse(readFileSync(resp, 'utf8'));

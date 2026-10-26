@@ -123,7 +123,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   parte, dal testo del JSON e con voce, modello e impostazioni di `scripts/audio/voce.json` (il `voice_id` si cerca per nome
   la prima volta e si salva lì). Salta le clip già presenti; `--capitolo <id>` (anche `copertina`/`finale`) ne rifà una,
   `--rifai` tutte, `--prova` mostra testi e crediti senza chiamare l'API; `--voci [nome]` e `--modelli` per la configurazione.
-  Serve la chiave in `ELEVENLABS_API_KEY` (permessi Text to Speech e Voices: read) e `api.elevenlabs.io` raggiungibile.
+  Chiave con permessi Text to Speech e Voices: read: in locale in `ELEVENLABS_API_KEY`; nell'ambiente cloud come segreto di rete
+  per `api.elevenlabs.io` con intestazione `xi-api-key` (la aggiunge il proxy, lo script non la vede).
 - In alternativa una registrazione unica con tutti i capitoli di seguito, separati da una pausa lunga:
   `npm run dividi -- <film> <file>` allinea il testo del JSON alle pause della registrazione, frase per frase, taglia dove inizia ogni capitolo e scrive
   le clip in `audio/<film>/` (`--cartella <dir>` per le prove), mostrando il ritmo di ogni parte per controllare i tagli.
