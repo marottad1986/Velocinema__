@@ -17,7 +17,7 @@ import { loadFilm, timeline } from './film.mjs';
 export const strumenti = ['pianoforte_coda', 'contrabbasso_pizz', 'violini', 'viole', 'celli', 'contrabbasso', 'glockenspiel',
   'cassa', 'rullante', 'charleston', 'piatto_crash', 'piatto_sospeso'];
 export const effetti = ['telo', 'scatti', 'porta_cigolio', 'voci_caffe', 'tintinnio', 'radio_sintonia', 'campane_festa', 'clacson',
-  'applauso', 'vento_leggero', 'sedia', 'aereo', 'motorino', 'monete', 'pagine'];
+  'applauso', 'vento_leggero', 'sedia', 'aereo', 'motorino', 'monete', 'pagine', 'fiammifero'];
 /** Sala piccola e asciutta, da studio pop. */
 export const sala = { rt60: 1.4, brillo: 7500, predelay: 0.015, wet: 0.35 };
 
@@ -160,7 +160,7 @@ export default (mix, T) => {
   sezione(T.significato, C('significato', 4), STROFA, { pno: 40, str: 30, mel: 34 });
   sezione(C('significato', 4), T.oggi, STROFA, { pno: 46, pulse: true, bass: 44, drums: 40, str: 36 });
   // ultimo ritornello; sulla domanda finale resta il pianoforte
-  sezione(T.oggi, C('oggi', 3), RIT, { pno: 43, pulse: true, bass: 42, drums: 46, str: 44, glk: 44 });
+  sezione(T.oggi, C('oggi', 3), RIT, { pno: 43, pulse: true, bass: 42, drums: 50, str: 48, glk: 44 });
   sezione(C('oggi', 3), T.finale, RIT, { pno: 40, glk: 30 });
 
   // finale: accordo di Re aperto e un ultimo campanello
@@ -176,30 +176,34 @@ export default (mix, T) => {
 
   // ---------------------------------------------------------------- effetti (tempi delle scene)
   // pavia: il mangianastri parte (tasto), le rondini
-  clip(mix, 'scatti', { t: C('pavia', 1), da: 1.1, durata: 0.15, gain: 0.3, rev: 0.2, pan: -0.4 });
+  clip(mix, 'scatti', { t: C('pavia', 1), da: 0.99, durata: 0.27, gain: 0.3, rev: 0.2, pan: -0.4 });
   clip(mix, 'vento_leggero', { t: T.pavia, da: 0.5, durata: 14, gain: 0.04, fadeIn: 1.5, fadeOut: 1.5, largo: 4 });
   // cantina: l'aereo lontano nella finestrella, il registratore va in REC (due tasti), la sedia che si sposta
-  clip(mix, 'aereo', { t: C('cantina', 1), da: 0, durata: 3, gain: 0.08, lp: 1500, fadeIn: 0.8, fadeOut: 0.8, largo: 3, rev: 0.3 });
+  clip(mix, 'aereo', { t: C('cantina', 1), da: 0, durata: 3, gain: 0.05, lp: 1500, fadeIn: 0.8, fadeOut: 0.8, largo: 3, rev: 0.3 });
   clip(mix, 'scatti', { t: C('cantina', 2), da: 12.68, durata: 0.15, gain: 0.5, rev: 0.25 });
   clip(mix, 'scatti', { t: C('cantina', 2) + 0.25, da: 6.5, durata: 0.12, gain: 0.35, rev: 0.25 });
   clip(mix, 'sedia', { t: C('cantina', 3) + 0.4, da: 3.5, durata: 1.2, gain: 0.2, fadeOut: 0.3, rev: 0.25, pan: 0.2 });
   // uscita: il foglio della classifica che si sposta
   clip(mix, 'telo', { t: C('uscita', 1) + 0.8, da: 4.57, durata: 0.8, gain: 0.2, fadeOut: 0.3, rev: 0.2 });
+  // uscita: si accendono le candeline del 25
+  clip(mix, 'fiammifero', { t: C('uscita', 2) + 0.13, da: 5.88, durata: 0.8, gain: 0.25, fadeOut: 0.3, rev: 0.2 });
   // bar: la porta che si apre, le voci lontane, i bicchieri
   clip(mix, 'porta_cigolio', { t: T.bar + 0.1, da: 10.68, durata: 1.4, gain: 0.3, fadeOut: 0.4, rev: 0.3, pan: -0.4 });
   clip(mix, 'voci_caffe', { t: T.bar, da: 2, durata: T.ricordi - T.bar, gain: 0.06, fadeIn: 1, fadeOut: 1.5, largo: 4, rev: 0.15 });
-  clip(mix, 'tintinnio', { t: C('bar', 2) + 0.3, da: 0.16, durata: 0.3, gain: 0.45, rev: 0.25, pan: 0.1 });
+  clip(mix, 'tintinnio', { t: C('bar', 2) + 0.3, da: 0.16, durata: 0.3, gain: 0.25, rev: 0.25, pan: 0.1 });
   // il calendario che gira dal 1985 al 1995, il jukebox che si accende
   clip(mix, 'pagine', { t: C('bar', 3), da: 0.9, durata: 0.6, gain: 0.25, fadeOut: 0.2, rev: 0.2, pan: 0.4 });
   clip(mix, 'scatti', { t: C('bar', 4), da: 1.1, durata: 0.15, gain: 0.3, rev: 0.2, pan: 0.35 });
   // ricordi: il motorino che si accende, la televisione, le monete nel salvadanaio
   clip(mix, 'motorino', { t: C('ricordi', 1), da: 0.5, durata: 1.6, gain: 0.12, fadeIn: 0.05, fadeOut: 0.5, rev: 0.15, pan: -0.3 });
-  clip(mix, 'monete', { t: C('ricordi', 3), da: 1.2, durata: 0.6, gain: 0.25, fadeOut: 0.15, rev: 0.2, pan: 0.45 });
+  clip(mix, 'monete', { t: C('ricordi', 3) + 0.05, da: 1.5, durata: 0.6, gain: 0.25, fadeOut: 0.15, rev: 0.2, pan: 0.45 });
   clip(mix, 'radio_sintonia', { t: C('ricordi', 2), da: 1.5, durata: 1.0, gain: 0.7, fadeIn: 0.03, fadeOut: 0.2, pan: 0.35, rev: 0.12 });
   // amici: campane della festa e clacson dell'auto degli sposi
   clip(mix, 'campane_festa', { t: C('amici', 1), da: 0.04, durata: 4.5, gain: 0.18, fadeOut: 1.5, largo: 2, rev: 0.3 });
   clip(mix, 'clacson', { t: C('amici', 1) + 1.2, da: 0.25, durata: 0.45, gain: 0.22, fadeOut: 0.1, rev: 0.25, pan: -0.3 });
   // significato: l'aeroplanino di carta
+  // significato: si accendono le candeline del 17
+  clip(mix, 'fiammifero', { t: C('significato', 2) - 0.07, da: 3.88, durata: 0.9, gain: 0.3, fadeOut: 0.3, rev: 0.2, pan: -0.2 });
   clip(mix, 'telo', { t: C('significato', 4) + 0.5, da: 8.45, durata: 0.75, gain: 0.2, fadeOut: 0.3, rev: 0.3, pan: 0.3 });
   // oggi: lo stadio e il palco
   clip(mix, 'applauso', { t: C('oggi', 1), da: 3, durata: C('oggi', 3) - C('oggi', 1), gain: 0.22, fadeIn: 1.2, fadeOut: 1.5, largo: 3, rev: 0.3 });
