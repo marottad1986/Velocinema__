@@ -31,7 +31,7 @@ const BEADS = Array.from({ length: 40 }, () => ({ x: WIN.x + r() * WIN.w, y: WIN
 const DUST = Array.from({ length: 22 }, () => ({ u: r(), v: r(), s: 2 + r() * 3.5, sp: 0.03 + r() * 0.04, ph: r() * 6 }));
 const NEAR = Array.from({ length: 6 }, (_, i) => ({ x: r() * 1080, y: 600 + r() * 1200, rad: 40 + r() * 60, ph: i }));
 // pillole: dove si fermano dopo essere uscite dal flacone
-const PILLS = Array.from({ length: 7 }, (_, i) => ({ t0: 2.15 + i * 0.16, x: 500 + i * 22 + r() * 30, y: 1172 + r() * 34, rot: r() * 360, spin: 200 + r() * 300 }));
+const PILLS = Array.from({ length: 7 }, (_, i) => ({ t0: 2.15 + i / 6, x: 500 + i * 22 + r() * 30, y: 1172 + r() * 34, rot: r() * 360, spin: 200 + r() * 300 }));
 
 // punto sull'ellisse del disco
 const onRec = (a: number, k = 1) => ({ x: REC.x + Math.cos(a) * REC.rx * k, y: REC.y + Math.sin(a) * REC.ry * k });
@@ -222,7 +222,7 @@ export const Studio: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
           })}
           {Array.from({ length: 6 }, (_, i) => {
             const p = mod(t * 0.18 + i / 6, 1);
-            return <circle key={i} cx={390 + p * 80 + Math.sin(p * 7 + i) * 24} cy={1060 - p * 420} r={20 + p * 70} fill="url(#st-smoke)" opacity={seg(p, 0, 0.2) * (1 - p) * 0.3} />;
+            return <circle key={i} cx={390 + p * 80 + Math.sin(p * 7 + i) * 24} cy={1060 - p * 360} r={20 + p * 60} fill="url(#st-smoke)" opacity={seg(p, 0, 0.2) * (1 - p) * 0.3} />;
           })}
 
           {/* flacone di pillole che si rovescia */}
@@ -238,26 +238,6 @@ export const Studio: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
           <g opacity={seg(t, 1.9, 2.0)} transform={`translate(${lerp(BOTTLE.x + 80, BOTTLE.x + 40, eo(seg(t, 1.9, 2.4)))} ${1150 - Math.sin(seg(t, 1.9, 2.4) * Math.PI) * 30}) rotate(${seg(t, 1.9, 2.4) * 200})`}>
             <rect x="-21" y="-9" width="42" height="18" rx="4" fill="#E9F0F2" stroke={K} strokeWidth="5" />
           </g>
-          {/* pillole che escono, cadono e rotolano: l'elemento chiave in arancione */}
-          {PILLS.map((p, i) => {
-            const q = seg(t, p.t0, p.t0 + 0.7);
-            if (q <= 0) return null;
-            const mouth = { x: BOTTLE.x + 100, y: BOTTLE.y - 28 };
-            const x = lerp(mouth.x, p.x, eo(q));
-            const hop = Math.abs(Math.sin(q * Math.PI * 2.2)) * 50 * (1 - q) ** 1.5;
-            const y = lerp(mouth.y, p.y, Math.min(1, q * 2.2)) - hop;
-            const rot = p.rot + eo(q) * p.spin;
-            return (
-              <g key={i} transform={`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${rot.toFixed(1)})`}>
-                {q > 0.9 && <ellipse cx="0" cy="8" rx="26" ry="6" fill="#000" opacity=".3" transform={`rotate(${-rot.toFixed(1)})`} />}
-                <path d="M0 -10 H-14 A10 10 0 0 0 -14 10 H0 Z" fill={P.accento} stroke={K} strokeWidth="4" />
-                <path d="M0 -10 H14 A10 10 0 0 1 14 10 H0 Z" fill="#F2EEE2" stroke={K} strokeWidth="4" />
-                <path d="M-16 -5 H-4" stroke="#FFC9A8" strokeWidth="2.5" strokeLinecap="round" />
-              </g>
-            );
-          })}
-          <circle cx="560" cy="1190" r={110 * seg(t, 2.2, 2.8)} fill="url(#st-acc)" opacity={0.35 + 0.08 * Math.sin(t * 2.5)} />
-
           {/* giradischi */}
           <path d="M600 1080 H950 L966 1150 H584 Z" fill="url(#st-plinth)" stroke={K} strokeWidth="8" strokeLinejoin="round" />
           <rect x="584" y="1148" width="382" height="40" fill="#2E1E14" stroke={K} strokeWidth="8" />
@@ -281,6 +261,26 @@ export const Studio: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
           <path d={`M925 1078 L${878 + Math.sin(t * 3.5) * 1.5} 1030 L${818 + Math.sin(t * 3.5) * 1.5} 1100`} fill="none" stroke={K} strokeWidth="10" strokeLinejoin="round" strokeLinecap="round" />
           <path d={`M925 1078 L${878 + Math.sin(t * 3.5) * 1.5} 1030 L${818 + Math.sin(t * 3.5) * 1.5} 1100`} fill="none" stroke="#D8C08A" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round" />
           <rect x={806 + Math.sin(t * 3.5) * 1.5} y="1094" width="26" height="14" rx="3" fill="#2A3438" stroke={K} strokeWidth="4" />
+          {/* pillole che escono, cadono e rotolano: l'elemento chiave in arancione (davanti al giradischi, così non vengono tagliate) */}
+          {PILLS.map((p, i) => {
+            const q = seg(t, p.t0, p.t0 + 0.7);
+            if (q <= 0) return null;
+            const mouth = { x: BOTTLE.x + 100, y: BOTTLE.y - 28 };
+            const x = lerp(mouth.x, p.x, eo(q));
+            const hop = Math.abs(Math.sin(q * Math.PI * 2.2)) * 50 * (1 - q) ** 1.5;
+            const y = lerp(mouth.y, p.y, Math.min(1, q * 2.2)) - hop;
+            const rot = p.rot + eo(q) * p.spin;
+            return (
+              <g key={i} transform={`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${rot.toFixed(1)})`}>
+                {q > 0.9 && <ellipse cx="0" cy="8" rx="26" ry="6" fill="#000" opacity=".3" transform={`rotate(${-rot.toFixed(1)})`} />}
+                <path d="M0 -10 H-14 A10 10 0 0 0 -14 10 H0 Z" fill={P.accento} stroke={K} strokeWidth="4" />
+                <path d="M0 -10 H14 A10 10 0 0 1 14 10 H0 Z" fill="#F2EEE2" stroke={K} strokeWidth="4" />
+                <path d="M-16 -5 H-4" stroke="#FFC9A8" strokeWidth="2.5" strokeLinecap="round" />
+              </g>
+            );
+          })}
+          <circle cx="560" cy="1190" r={110 * seg(t, 2.2, 2.8)} fill="url(#st-acc)" opacity={0.35 + 0.08 * Math.sin(t * 2.5)} />
+
           {/* note che salgono dal giradischi */}
           {[0, 1, 2].map((k) => {
             const p = mod(t / 2.6 + k / 3, 1);

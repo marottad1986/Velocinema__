@@ -111,7 +111,7 @@ export default (mix, T) => {
   hoot(mix, 2.2, 0.25, -0.3);
 
   // ---- sottoscala: tema cupo e lento al pianoforte; passi sulle scale sopra lo sgabuzzino
-  theme(B(T.sottoscala), B(T.lettere), { half: true, vel: 70, str: 54, dark: true, keep: 0.8, harpVel: 0, seed: 1 });
+  theme(B(T.sottoscala), B(T.lettere), { half: true, vel: 70, str: 64, dark: true, keep: 0.8, harpVel: 0, seed: 1 });
   [0, 0.45, 0.9, 1.35].forEach((d, k) => clip(mix, 'colpi_legno', { t: cue('sottoscala', 1) + d, da: 1.55, durata: 0.3, gain: 0.18 + (k % 2) * 0.04, lp: 1800, rev: 0.25, pan: -0.2 + k * 0.1 }));
 
   // ---- lettere: vivace con i pizzicati; frullo di lettere dal camino, i gufi
@@ -166,11 +166,11 @@ export default (mix, T) => {
   suona(mix, 'contrabbasso', 38, { t: T.cane, dur: cue('cane', 3) - T.cane, vel: 50, gain: 0.7, attack: 0.6, release: 1, rev: 0.4 });
   clip(mix, 'ringhio', { t: cue('cane', 1) + 0.3, da: 10, durata: 2.2, gain: 0.18, rate: 0.85, fadeIn: 0.1, fadeOut: 0.5, rev: 0.35, pan: 0.1 });
   clip(mix, 'ringhio', { t: cue('cane', 2) + 0.4, da: 15.5, durata: 1.4, gain: 0.13, rate: 0.85, fadeIn: 0.1, fadeOut: 0.5, rev: 0.35, pan: -0.1 });
-  for (let k = 0; k < 4; k++) harp(mix, CH[k % 4], cue('cane', 3) - 1 + k * BEAT, { step: 0.07, vel: 46, gain: 0.25 }); // ninna nanna: sotto la rivelazione e il finale
+  for (let k = 0; k < 4; k++) harp(mix, CH[k % 4], cue('cane', 3) - 1 + k * BEAT, { step: 0.07, vel: 50, gain: 0.32 }); // ninna nanna: sotto la rivelazione e il finale
 
   // ---- specchio: neve fuori, il tema dolce che si accende, campanelli, poi si calma
   // ponte fra il cane e lo specchio: accordo tenuto degli archi finché il tema non entra sul battere
-  [53, 57, 60].forEach((m, j) => suona(mix, ['celli', 'viole', 'viole'][j], m, { t: T.specchio - 0.8, dur: B(T.specchio) - T.specchio + 1.6, vel: 58, pan: (j - 1) * 0.3, gain: 0.5, attack: 0.6, release: 1.2, rev: 0.5, seed: 70 + j }));
+  [53, 57, 60].forEach((m, j) => suona(mix, ['celli', 'viole', 'viole'][j], m, { t: T.specchio - 1.4, dur: B(T.specchio) - T.specchio + 2.2, vel: 62, pan: (j - 1) * 0.3, gain: 0.85, attack: 0.6, release: 1.2, rev: 0.5, seed: 70 + j }));
   theme(B(T.specchio), B(T.botola), { half: true, vel: 56, str: 44, keep: 0.9, harpVel: 44, seed: 8 });
   clip(mix, 'vento_leggero', { t: T.specchio, da: 3, durata: 11, gain: 0.04, lp: 1200, fadeIn: 1.5, fadeOut: 1.5, largo: 4 });
   for (let t = 1.5 + Math.ceil((cue('specchio', 1) - 0.4 - 1.5) / (BEAT / 2)) * (BEAT / 2), k = 0; t < Math.min(cue('specchio', 4) + 1.5, T.botola - 0.3); t += BEAT / 2, k++) glock(mix, [96, 100, 103, 108][k % 4], t, 34, -0.5 + (k % 5) * 0.25, 0.1);
