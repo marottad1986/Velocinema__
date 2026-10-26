@@ -12,7 +12,7 @@ const K = '#0B1418';
 const HORIZON = 1090;
 
 // Impronte: dalla cima dei gradini verso il faro, lungo una curva, sempre più piccole (prospettiva).
-// Partono con «o morire da uomo per bene?» (6,17 s) e arrivano al faro durante «E si avvia verso il faro» (8,02 s).
+// Partono con «o morire da uomo per bene?» (6,17 s) e arrivano al faro durante «E si lascia portare al faro».
 const PRINTS_A = 6.3;
 const PRINTS_STEP = 0.3;
 const N_PRINTS = 14;

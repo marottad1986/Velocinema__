@@ -47,7 +47,7 @@ export const Cella: React.FC<SceneProps> = ({ t, dur, palette: P }) => {
   // Lucchetto: piccolo scatto all'inizio
   const lockRot = Math.sin(t * 9) * 6 * (1 - eo(seg(t, 0.5, 1.8))) * seg(t, 0.3, 0.5);
 
-  // Scarpe: evidenziate quando la voce dice «E le scarpe?» (7ª frase, ~ metà-fine capitolo)
+  // Scarpe: evidenziate quando la voce dice «lasciando le scarpe sotto il letto» (7ª frase, 8,1 s)
   const shoesAt = dur * 0.7;
   const sp = eob(seg(t, shoesAt, shoesAt + 0.5), 1.7);
   const shoeGlow = seg(t, shoesAt, shoesAt + 0.4);
