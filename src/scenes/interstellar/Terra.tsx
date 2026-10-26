@@ -106,10 +106,13 @@ export const Terra: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <path d="M-200 1555 H1280" stroke="#B89C74" strokeWidth="3" opacity=".7" />
           {[-60, 260, 580, 900, 1220].map((x) => <rect key={x} x={x - 16} y="1500" width="32" height="420" fill="url(#tr-fence)" stroke={K} strokeWidth="7" />)}
           {/* casco da pilota sul paletto: era della NASA */}
-          <g transform="translate(260 1500) scale(0.9)">
+          <g transform="translate(400 1760) scale(1.05)">
+            <ellipse cx="0" cy="4" rx="100" ry="18" fill="#000" opacity=".3" />
+            {/* anello del collo del casco */}
+            <rect x="-78" y="-14" width="156" height="22" rx="8" fill="#9AA4AE" stroke={K} strokeWidth="7" />
             <Glow id="tr-helm" x={0} y={-70} r={140} t={t} color="#FFF0C8" amp={0.1} rate={2.4} opacity={0.5 * porch} />
             <path d="M-70 0 Q-80 -130 0 -140 Q80 -130 70 0 Z" fill="#E8E4DA" stroke={K} strokeWidth="8" />
-            <path d="M-50 -60 Q0 -100 50 -60 V-20 H-50 Z" fill="#3E6A8A" stroke={K} strokeWidth="6" />
+            <path d="M-58 -64 Q0 -108 58 -64 V-24 Q0 -10 -58 -24 Z" fill="#3E6A8A" stroke={K} strokeWidth="6" />
             <path d="M-36 -64 Q-10 -84 20 -80" fill="none" stroke="#DCE8F0" strokeWidth="6" strokeLinecap="round" />
           </g>
         </g>

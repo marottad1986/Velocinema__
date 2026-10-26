@@ -56,9 +56,9 @@ export const Aggancio: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 1 — la Terra lontana, polverosa (0,3) */}
         <g transform={L(0.3)}>
-          <Glow id="ag-eg" x={160} y={1260} r={180} t={t} color="#C9A86A" amp={0.04} rate={1} opacity={0.35} />
-          <circle cx="160" cy="1260" r="70" fill="url(#ag-earth)" stroke={K} strokeWidth="5" />
-          <path d="M110 1240 q30 -20 60 0 q20 14 40 4" fill="none" stroke="#E8D4A8" strokeWidth="5" opacity=".6" />
+          <Glow id="ag-eg" x={160} y={1170} r={180} t={t} color="#C9A86A" amp={0.04} rate={1} opacity={0.35} />
+          <circle cx="160" cy="1170" r="70" fill="url(#ag-earth)" stroke={K} strokeWidth="5" />
+          <path d="M110 1150 q30 -20 60 0 q20 14 40 4" fill="none" stroke="#E8D4A8" strokeWidth="5" opacity=".6" />
         </g>
 
         {/* PIANO 2 — astronave che gira impazzita e navetta che aggancia (0,55) */}

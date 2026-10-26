@@ -103,14 +103,14 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
         </g>
         <g transform={L(1.2)}>
           {/* rocce grandi ai lati e sassi che arrivano al bordo in basso, con la luce dell'alba sui bordi */}
-          <path d="M-200 2000 V1460 L-60 1380 L80 1440 L180 1560 L300 1700 L340 2000 Z" fill="#4A2E22" stroke={K} strokeWidth="8" strokeLinejoin="round" />
-          <path d="M-60 1380 L80 1440 L180 1560" fill="none" stroke="#E8A87A" strokeWidth="5" opacity=".7" />
-          <path d="M1280 2000 V1420 L1120 1360 L980 1460 L880 1640 L820 2000 Z" fill="#4A2E22" stroke={K} strokeWidth="8" strokeLinejoin="round" />
-          <path d="M1120 1360 L980 1460 L880 1640" fill="none" stroke="#C98A62" strokeWidth="4" opacity=".5" />
+          <path d="M-200 2000 V1460 L-60 1380 L80 1440 L180 1560 L300 1700 L340 2000 Z" fill="#2E1C14" stroke={K} strokeWidth="8" strokeLinejoin="round" />
+          <path d="M-60 1380 L80 1440 L180 1560 L300 1700 L200 1720 L60 1560 Z" fill="#8A5A42" opacity=".9" />
+          <path d="M1280 2000 V1420 L1120 1360 L980 1460 L880 1640 L820 2000 Z" fill="#2E1C14" stroke={K} strokeWidth="8" strokeLinejoin="round" />
+          <path d="M1120 1360 L980 1460 L880 1640 L960 1660 L1060 1500 Z" fill="#8A5A42" opacity=".75" />
           {[[420, 1830, 70, 36], [560, 1880, 46, 22], [690, 1800, 60, 28], [470, 1720, 30, 15], [760, 1910, 80, 34]].map(([x, y, rx, ry], i) => (
             <g key={i}>
-              <ellipse cx={x} cy={y + ry * 0.6} rx={rx * 1.1} ry={ry * 0.4} fill="#000" opacity=".25" />
-              <ellipse cx={x} cy={y} rx={rx} ry={ry} fill={i % 2 ? '#6A4232' : '#5A3828'} stroke={K} strokeWidth="6" />
+              <ellipse cx={x} cy={y + ry * 0.7} rx={rx * 1.15} ry={ry * 0.45} fill="#000" opacity=".5" />
+              <ellipse cx={x} cy={y} rx={rx} ry={ry} fill={i % 2 ? '#9A6A4A' : '#8A5A40'} stroke={K} strokeWidth="6" />
               <path d={`M${x - rx * 0.6} ${y - ry * 0.5} Q${x} ${y - ry * 0.95} ${x + rx * 0.5} ${y - ry * 0.6}`} fill="none" stroke="#E8A87A" strokeWidth="4" opacity=".6" />
             </g>
           ))}

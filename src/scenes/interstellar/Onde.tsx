@@ -101,10 +101,10 @@ export const Onde: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <WaveBand t={t} y={1600} fill="#3E5A6A" foam="#DCE8F0" amp={18} w={420} speed={50} bob={10} foamWidth={8} />
           <WaveBand t={t} y={1760} fill="#2A4050" foam="#C9D8E0" amp={24} w={520} speed={70} bob={12} ph={1} foamWidth={8} />
           {/* cresta vicinissima con schiuma e spruzzi, che arriva al bordo in basso */}
-          <WaveBand t={t} y={1860} fill="#1E3040" foam="#EEF4F6" amp={60} w={640} speed={90} bob={16} ph={2} foamWidth={14} foamOpacity={0.9} />
+          <WaveBand t={t} y={1720} fill="#16242F" foam="#EEF4F6" amp={60} w={640} speed={90} bob={16} ph={2} foamWidth={14} foamOpacity={0.9} />
           {Array.from({ length: 10 }, (_, i) => {
             const p = ((t * 0.7 + i / 10) % 1);
-            return <circle key={i} cx={(i * 131) % 1100} cy={1800 - 140 * Math.sin(p * Math.PI)} r={5 + (i % 3) * 3} fill="#EEF4F6" opacity={0.7 * Math.sin(p * Math.PI)} />;
+            return <circle key={i} cx={(i * 131) % 1100} cy={1680 - 140 * Math.sin(p * Math.PI)} r={5 + (i % 3) * 3} fill="#EEF4F6" opacity={0.7 * Math.sin(p * Math.PI)} />;
           })}
         </g>
 

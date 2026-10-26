@@ -95,10 +95,10 @@ export const Nasa: React.FC<SceneProps> = ({ t, dur, cues }) => {
               <ellipse key={k} cx={sx + 110 + 80 * tunnel * (k / 4)} cy={sy - 50 - 40 * tunnel * (k / 4)} rx={lerp(56, 14, k / 4)} ry={lerp(56, 14, k / 4)} fill="none" stroke={GOLD} strokeWidth="3" opacity={tunnel * (1 - k * 0.15)} />
             ))}
             {/* tre pianeti candidati */}
-            {[[sx + 150, sy - 140, '#5A8AAA'], [sx + 196, sy - 100, '#C9D3DB'], [sx + 170, sy - 160, '#B88A5A']].map(([x, y, c], i) => (
+            {[[sx - 120, sy + 110, '#5A8AAA'], [sx - 40, sy + 120, '#C9D3DB'], [sx + 40, sy + 110, '#B88A5A']].map(([x, y, c], i) => (
               <g key={i} transform={`translate(${x} ${y}) scale(${planets(i)})`}>
-                <circle r="14" fill={c as string} stroke="#DCE8F2" strokeWidth="3" />
-                <circle r="24" fill="none" stroke={GOLD} strokeWidth="2" strokeDasharray="5 4" />
+                <circle r="22" fill={c as string} stroke="#DCE8F2" strokeWidth="3" />
+                <circle r="34" fill="none" stroke={GOLD} strokeWidth="2" strokeDasharray="5 4" />
               </g>
             ))}
           </g>

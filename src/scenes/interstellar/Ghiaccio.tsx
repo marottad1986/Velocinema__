@@ -57,12 +57,12 @@ export const Ghiaccio: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <Ring x={820} y={640} r={84} t={t} spin={0.3 + boom * 2} tiltY={0.4} outline={K} lit="#EEF2F4" debris={boom} />
           {boom > 0 && boom < 1 && (
             <g>
-              <Glow id="gh-boom" x={860} y={640} r={360 * boom + 80} t={t} color="#FFE6A8" amp={0.2} rate={20} opacity={0.95 * (1 - boom)} />
+              <Glow id="gh-boom" x={860} y={640} r={220 * boom + 60} t={t} color="#FFE6A8" amp={0.2} rate={20} opacity={0.95 * (1 - boom)} />
               <circle cx="860" cy="640" r={30 + 110 * boom} fill="#FFF4D6" opacity={1 - boom} />
-              <circle cx="860" cy="640" r={60 + 200 * boom} fill="none" stroke="#FFE6A8" strokeWidth={14 * (1 - boom)} opacity={0.8 * (1 - boom)} />
+              <circle cx="860" cy="640" r={50 + 130 * boom} fill="none" stroke="#FFE6A8" strokeWidth={14 * (1 - boom)} opacity={0.8 * (1 - boom)} />
               {/* frammenti dell'anello che volano via */}
               {Array.from({ length: 12 }, (_, i) => {
-                const a = (i / 12) * Math.PI * 2 + 0.3, d = 40 + 260 * boom * (0.7 + (i % 3) * 0.2);
+                const a = (i / 12) * Math.PI * 2 + 0.3, d = 40 + 160 * boom * (0.7 + (i % 3) * 0.2); // restano sotto il titolo
                 const x = 860 + Math.cos(a) * d, y = 640 + Math.sin(a) * d * 0.8;
                 return <rect key={i} x={x - 9} y={y - 5} width={18 + (i % 3) * 6} height="10" fill="#C9D3DB" stroke={K} strokeWidth="3" opacity={1 - seg(boom, 0.7, 1)} transform={`rotate(${i * 40 + boom * 300} ${x} ${y})`} />;
               })}
@@ -109,9 +109,9 @@ export const Ghiaccio: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 4 — blocchi di ghiaccio in primo piano (1,2) */}
         <g transform={L(1.2)}>
-          <path d="M-200 1980 V1540 L-60 1460 L80 1520 L160 1620 L120 1980 Z" fill="url(#gh-front)" stroke="#5A6E82" strokeWidth="8" strokeLinejoin="round" />
+          <path d="M-200 1980 V1540 L-60 1460 L80 1520 L160 1620 L120 1980 Z" fill="#9AB4CC" stroke="#5A6E82" strokeWidth="8" strokeLinejoin="round" />
           <path d="M-60 1460 L0 1560 L80 1520" fill="none" stroke="#EEF4F8" strokeWidth="6" />
-          <path d="M1280 1980 V1480 L1120 1420 L980 1500 L900 1640 L960 1980 Z" fill="url(#gh-front)" stroke="#5A6E82" strokeWidth="8" strokeLinejoin="round" />
+          <path d="M1280 1980 V1480 L1120 1420 L980 1500 L900 1640 L960 1980 Z" fill="#9AB4CC" stroke="#5A6E82" strokeWidth="8" strokeLinejoin="round" />
           <path d="M1120 1420 L1060 1540 L980 1500" fill="none" stroke="#EEF4F8" strokeWidth="6" />
           {[0, 1, 2, 3, 4].map((i) => <ellipse key={i} cx={420 + i * 80} cy={1700 - i * 50} rx="22" ry="10" fill="#7E92A4" opacity=".6" />)}
         </g>

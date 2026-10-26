@@ -114,7 +114,7 @@ export const Partenza: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <circle cx="60" cy="1530" r="12" fill={GOLD} />
           <path d="M40 1380 V1180 M-30 1180 L10 1080 H70 L110 1180 Z" fill="#C9A878" stroke={K} strokeWidth="8" strokeLinejoin="round" />
           <Glow id="pa-lamp" x={40} y={1140} r={180} t={t} color="#FFE6A8" amp={0.06} rate={2} opacity={0.5} />
-          <g transform="translate(180 1380)">
+          <g transform="translate(640 1800) scale(1.3)">
             <path d="M-20 0 L-14 -120 L0 -170 L14 -120 L20 0 Z" fill="#E8E2D6" stroke={K} strokeWidth="6" strokeLinejoin="round" />
             <path d="M-20 0 L-40 20 V-40 Z M20 0 L40 20 V-40 Z" fill="#3E6A8A" stroke={K} strokeWidth="5" />
           </g>
