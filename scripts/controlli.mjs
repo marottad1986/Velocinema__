@@ -3,9 +3,9 @@
 // gli AVVISI vanno letti ma non bloccano. Usato anche da .github/workflows/video-mega.yml prima del render.
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 
-// Ritmo della voce (CLAUDE.md, «Voce»): circa 3,4 parole/s; avviso oltre 3,5; errore oltre 3,9 (la clip andrebbe
-// accelerata più del 15% e il montaggio voce si fermerebbe). Nel formato "spiegato" 3,4 è un massimo (errore).
-const RIF_WPS = 3.4, AVVISO_WPS = 3.5, MAX_WPS = RIF_WPS * 1.15;
+// Ritmo della voce (CLAUDE.md, «Voce»): circa 2,8 parole/s per la voce ElevenLabs; avviso oltre circa 3,1 (3,12: 28 parole in 9 s passano); errore oltre 3,5
+// (la clip andrebbe accelerata più del 25% e il montaggio voce si fermerebbe). Nel formato "spiegato" 3,4 è un massimo (errore).
+const RIF_WPS = 2.8, AVVISO_WPS = 3.12, MAX_WPS = RIF_WPS * 1.25, MAX_SPIEGATO = 3.4;
 const VIETATE = [
   [/due minuti/i, 'frase che parla del video stesso'],
   [/la prossima volta che lo vedi/i, 'frase vietata nel finale e altrove'],
@@ -40,7 +40,7 @@ for (const [slug, path] of lista) {
     if (!c.sottotitoli?.length || c.sottotitoli.some((r) => !r.trim())) E.push(`capitolo ${c.id}: sottotitoli vuoti`);
     const w = c.sottotitoli.reduce((n, r) => n + parole(r, spiegato), 0);
     const wps = w / c.durata;
-    const max = spiegato ? RIF_WPS : MAX_WPS;
+    const max = spiegato ? MAX_SPIEGATO : MAX_WPS;
     const msg = `capitolo ${c.id}: ${w} parole in ${c.durata} s = ${wps.toFixed(2)} parole/s: togliere ${Math.ceil(w - RIF_WPS * c.durata)} parole`;
     if (wps > max + 1e-9) E.push(msg);
     else if (wps > AVVISO_WPS + 1e-9) A.push(msg);
