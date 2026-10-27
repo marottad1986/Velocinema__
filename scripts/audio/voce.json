@@ -1,0 +1,12 @@
+{
+  "nota": "Voce usata da npm run genera-voce. voice_id vuoto: lo script lo cerca per nome tra le voci dell'account (serve il permesso Voices: read sulla chiave) e lo scrive qui. Impostazioni prese dalle prove fatte nel sito: velocità 1,02, stabilità 0,42, somiglianza 0,70. Modello eleven_v4: Brando (voce professionale clonata) non è addestrata su eleven_v3.",
+  "nome": "Brando Vox",
+  "voice_id": "QKtRSwAp8GyjgntJdISB",
+  "modello": "eleven_v4",
+  "formato": "mp3_44100_128",
+  "impostazioni": {
+    "stability": 0.42,
+    "similarity_boost": 0.7,
+    "speed": 1.02
+  }
+}

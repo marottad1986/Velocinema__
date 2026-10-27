@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Per salvare il mondo, deve lasciarlo.",
     "immagine": "Campo di mais al tramonto sotto un cielo che si apre in un buco nero con l'anello dorato; in primo piano, sul bordo di una libreria, un orologio da polso con la lancetta dei secondi che scatta. Titolo grande e spaziato. NON usare l'astronauta in tuta, l'astronave accanto a Saturno né il pickup tra il mais (locandine ufficiali).",
-    "voce": "Interstellar, di Christopher Nolan: un viaggio nello spazio per salvare la Terra."
+    "voce": "Interstellar, di Christopher Nolan: un viaggio per salvare la Terra."
   },
   "capitoli": [
     {
@@ -21,11 +21,11 @@
       "durata": 10,
       "scena": "Campi di mais sotto un cielo giallastro; un muro di polvere all'orizzonte che avanza; casa di legno con veranda, mietitrebbia ferma; polvere che vola sui campi.",
       "sottotitoli": [
-        "Nel futuro la Terra sta morendo:",
-        "polvere ovunque e raccolti distrutti.",
+        "Nel futuro la Terra muore:",
+        "polvere e raccolti distrutti.",
         "Cooper, ex pilota della NASA, fa il contadino",
-        "e vive con i figli, Tom e Murph,",
-        "ma presto anche il mais finirà."
+        "con i figli, Tom e Murph,",
+        "ma anche il mais sta finendo."
       ]
     },
     {
@@ -34,9 +34,9 @@
       "durata": 10,
       "scena": "Cameretta con libreria; libri che cadono da soli; finestra aperta sulla tempesta; la polvere si deposita sul pavimento in strisce regolari (codice binario); modellino di astronave appeso al soffitto.",
       "sottotitoli": [
-        "Murph dice che in camera c'è un fantasma,",
-        "perché i libri cadono da soli dalla libreria.",
-        "Durante una tempesta, la polvere sul pavimento forma delle righe",
+        "Murph dice di avere un fantasma in camera,",
+        "perché i libri cadono da soli.",
+        "Durante una tempesta, la polvere forma delle righe",
         "e Cooper capisce: sono coordinate in codice."
       ]
     },
@@ -46,11 +46,11 @@
       "durata": 11,
       "scena": "Hangar sotterraneo con una grande astronave ad anello in costruzione; lavagne piene di equazioni; uno schermo con Saturno e accanto una sfera luminosa che deforma le stelle (il varco).",
       "sottotitoli": [
-        "Le coordinate portano a una base segreta della NASA,",
-        "dove il professor Brand spiega il piano:",
-        "vicino a Saturno si è aperto un varco nello spazio,",
+        "Così trova una base segreta della NASA,",
+        "dove il professor Brand spiega:",
+        "vicino a Saturno si è aperto un varco,",
         "un tunnel verso un'altra galassia",
-        "con pianeti dove l'umanità potrebbe vivere."
+        "con pianeti dove si potrebbe vivere."
       ]
     },
     {
@@ -61,9 +61,9 @@
       "sottotitoli": [
         "Serve un pilota e Cooper accetta,",
         "ma Murph, arrabbiata, non lo saluta.",
-        "Lui le lascia un orologio uguale al suo,",
+        "Le lascia un orologio come il suo,",
         "promettendo di tornare,",
-        "e il razzo parte verso Saturno."
+        "e parte verso Saturno."
       ]
     },
     {
@@ -84,11 +84,11 @@
       "durata": 11,
       "scena": "Mare basso e infinito; all'orizzonte una montagna d'acqua che si avvicina; nel cielo un enorme buco nero con l'anello dorato; una piccola navetta posata sull'acqua.",
       "sottotitoli": [
-        "Il primo pianeta è tutto acqua, accanto a un buco nero,",
+        "Il primo pianeta è un mare vicino a un buco nero,",
         "dove un'ora vale sette anni sulla Terra.",
-        "Un'onda alta come una montagna li travolge",
+        "Un'onda gigante li travolge",
         "e uno scienziato muore;",
-        "e intanto sulla Terra passano 23 anni."
+        "intanto sulla Terra passano 23 anni."
       ]
     },
     {
@@ -97,10 +97,10 @@
       "durata": 10,
       "scena": "Cabina dell'astronave in penombra: uno schermo con video sfocati (solo luci e colori, nessun volto) e il contatore degli anni che sale; fuori dall'oblò il buco nero; una tazza, una cuffia appoggiata.",
       "sottotitoli": [
-        "Sull'astronave, Cooper guarda i video da casa:",
-        "Tom è cresciuto, si è sposato, ha perso un figlio,",
-        "e Murph ora è adulta, una scienziata",
-        "che lavora alla NASA con Brand, ed è ancora arrabbiata."
+        "Cooper guarda i video da casa:",
+        "Tom si è sposato, ha perso un figlio,",
+        "e Murph è diventata una scienziata",
+        "alla NASA con Brand, arrabbiata con lui."
       ]
     },
     {
@@ -109,10 +109,10 @@
       "durata": 11,
       "scena": "Distesa di ghiaccio con nuvole congelate sospese nel cielo; un rifugio con la luce accesa; una navetta che decolla e, in alto, un lampo di esplosione accanto all'astronave.",
       "sottotitoli": [
-        "Così provano il secondo pianeta, di ghiaccio,",
-        "lì li aspetta il dottor Mann, un esploratore.",
-        "Ma ha mentito: il pianeta è invivibile, voleva essere salvato,",
-        "e prova a uccidere Cooper per rubare l'astronave,",
+        "Così provano un pianeta di ghiaccio,",
+        "dove li aspetta l'esploratore Mann.",
+        "Ma ha mentito per farsi salvare: è invivibile,",
+        "e prova a uccidere Cooper per l'astronave,",
         "ma muore e la danneggia."
       ]
     },
@@ -122,10 +122,10 @@
       "durata": 9,
       "scena": "L'astronave ad anello che ruota impazzita perdendo frammenti; la navetta che si allinea e la aggancia; stelle che girano; in un riquadro, una lavagna con un'equazione cancellata a metà.",
       "sottotitoli": [
-        "Cooper riaggancia l'astronave che gira impazzita.",
+        "Cooper riaggancia l'astronave impazzita.",
         "Intanto sulla Terra Brand, morendo, confessa",
         "che salvare chi è rimasto era impossibile:",
-        "mancano dati che esistono solo in un buco nero."
+        "servono dati da dentro un buco nero."
       ]
     },
     {
@@ -134,10 +134,10 @@
       "durata": 11,
       "scena": "Il buco nero con il disco dorato; la navetta che si stacca e precipita; poi una griglia infinita di librerie sospese nel vuoto (la stanza fuori dal tempo), attraversata da fili di luce.",
       "sottotitoli": [
-        "Ma il carburante non basta per tutti,",
-        "così Cooper si sgancia nel buco nero con un robot",
-        "e Amelia può raggiungere l'ultimo pianeta.",
-        "Dentro trova una stanza fuori dal tempo, la camera di Murph:",
+        "Ma il carburante non basta,",
+        "così Cooper si sgancia nel buco nero",
+        "e Amelia raggiunge l'ultimo pianeta.",
+        "Dentro trova la camera di Murph, fuori dal tempo:",
         "il fantasma era lui."
       ]
     },
@@ -147,11 +147,11 @@
       "durata": 11,
       "scena": "Primo piano dell'orologio sulla libreria con la lancetta dei secondi che scatta in codice Morse; poi una gigantesca stazione spaziale cilindrica con case e campi all'interno; in fondo, un pianeta lontano.",
       "sottotitoli": [
-        "Con la lancetta dell'orologio le manda i dati in Morse,",
-        "così Murph può portare via l'umanità.",
+        "Con l'orologio le manda i dati in Morse,",
+        "così Murph può salvare l'umanità.",
         "Cooper si risveglia vicino a Saturno:",
         "Murph è anziana, lui ancora giovane,",
-        "e lei lo manda da Amelia, e lui parte."
+        "e lei lo manda da Amelia."
       ]
     }
   ],
