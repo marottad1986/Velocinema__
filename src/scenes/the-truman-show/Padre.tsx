@@ -65,7 +65,7 @@ export const Padre: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <Clouds id="pd-cl" t={t} color="#46688A" seed={8} n={4} y={600} h={260} speed={0.25} opacity={0.45} />
         </g>
         <g transform={L(0.3)}>
-          <path d="M-200 0 H1280 V330 Q1060 280 880 330 Q700 270 520 320 Q340 280 160 330 Q0 300 -200 330 Z" fill="#0E1A2C" />
+          <path d="M-200 0 H1280 V330 Q1060 280 880 330 Q700 270 520 320 Q340 280 160 330 Q0 300 -200 330 Z" fill="#0E1A2C" opacity={1 - flash * 0.6} />
           <path d="M-200 330 Q0 300 160 330 Q340 280 520 320 Q700 270 880 330 Q1060 280 1280 330" fill="none" stroke="#4E7A9C" strokeWidth="5" opacity={0.4 + flash * 0.6} />
         </g>
         {/* fulmini */}
@@ -104,15 +104,16 @@ export const Padre: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         <g transform={L(0.65)}>
           <g transform={`translate(760 ${1110 + bob * 0.6}) rotate(${roll - 8})`}>
-            {/* albero spezzato che affonda, vela floscia sott'acqua */}
-            <path d="M-40 30 L-210 150" stroke="#C9B48A" strokeWidth="12" strokeLinecap="round" />
-            <path d="M-60 40 L-200 140 L-110 170 Z" fill="#E9E3D2" opacity=".45" />
+            {/* albero che esce di lato dall'acqua con la vela strappata: si legge come una barca rovesciata */}
+            <path d="M-150 0 L-330 -70" stroke={K} strokeWidth="18" strokeLinecap="round" />
+            <path d="M-150 0 L-330 -70" stroke="#C9B48A" strokeWidth="10" strokeLinecap="round" />
+            <path d="M-170 -6 L-320 -64 L-250 30 Z" fill="#E9E3D2" stroke={K} strokeWidth="6" strokeLinejoin="round" />
+            <path d="M-250 30 L-262 14 L-240 8" fill="none" stroke={K} strokeWidth="4" />
             {/* scafo capovolto: chiglia in alto */}
             <path d="M-170 10 Q-150 -60 0 -70 Q150 -60 175 10 Q0 40 -170 10 Z" fill="url(#pd-hull)" stroke={K} strokeWidth="9" strokeLinejoin="round" />
             <path d="M-150 -6 Q0 18 158 -6" fill="none" stroke={P.principale} strokeWidth="12" />
-            <path d="M-10 -70 L0 -128 L16 -70 Z" fill="#9AA6AE" stroke={K} strokeWidth="6" strokeLinejoin="round" />
+            <path d="M-110 -62 L-90 -92 H90 L110 -62 Z" fill="#9AA6AE" stroke={K} strokeWidth="6" strokeLinejoin="round" />
             <path d="M-120 -40 Q-40 -66 60 -60" fill="none" stroke="#FFFFFF" strokeWidth="5" opacity={0.6 + flash * 0.4} />
-            <path d="M168 0 L200 30 L186 46 L160 14 Z" fill="#9AA6AE" stroke={K} strokeWidth="5" strokeLinejoin="round" />
             <path d="M-90 -50 L-96 -2 M-30 -64 L-32 10 M40 -62 L42 10 M100 -46 L106 0" stroke="#9AA6AE" strokeWidth="3" opacity=".7" />
             <path d="M120 -30 q20 6 30 24" fill="none" stroke={K} strokeWidth="4" opacity=".6" />
           </g>
@@ -128,12 +129,14 @@ export const Padre: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
 
         {/* PIANO 3 — onde vicine e berretto da marinaio che galleggia (1,05) */}
         <g transform={L(1.05)}>
-          <g transform={`translate(${capX} ${capY}) rotate(${Math.sin(t * 1.7) * 12}) scale(1.3)`}>
+          <g transform={`translate(${capX} ${capY}) rotate(${Math.sin(t * 1.7) * 12}) scale(1.5)`}>
+            {/* nastri del berretto */}
+            <path d="M60 -10 Q100 10 96 46 M70 -6 Q118 4 124 36" fill="none" stroke="#22405A" strokeWidth="9" strokeLinecap="round" />
             <ellipse cx="0" cy="18" rx="96" ry="14" fill="#0B1422" opacity=".4" />
             {/* berretto bianco da marinaio con visiera blu */}
             <path d="M-80 6 Q-82 -44 0 -52 Q82 -44 80 6 Q0 20 -80 6 Z" fill="#F4F1E6" stroke={K} strokeWidth="8" strokeLinejoin="round" />
             <path d="M-78 -6 Q0 8 78 -6" fill="none" stroke={K} strokeWidth="12" />
-            <path d="M-70 4 Q-20 34 50 14" fill="#22405A" stroke={K} strokeWidth="6" strokeLinejoin="round" />
+            <path d="M-86 4 Q-30 46 64 16 Q0 22 -86 4 Z" fill="#22405A" stroke={K} strokeWidth="6" strokeLinejoin="round" />
             <circle cx="0" cy="-30" r="9" fill={P.principale} stroke={K} strokeWidth="4" />
             <path d="M-50 -36 Q-10 -50 30 -44" fill="none" stroke="#FFFFFF" strokeWidth="5" opacity=".8" />
           </g>
@@ -150,6 +153,9 @@ export const Padre: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <path d="M80 -24 Q190 -28 210 0 Q190 28 80 24 Z" fill="#C9A36E" stroke={K} strokeWidth="7" strokeLinejoin="round" />
           </g>
         </g>
+        <g transform={L(1.2)}>
+          <WaveBand t={t} y={1600} fill="#0A1626" foam="#7FA6C4" amp={36} w={300} speed={160} bob={14} ph={4} foamWidth={6} foamOpacity={0.5} />
+        </g>
         {/* PIANO 4 — pali del pontile in primo piano che incorniciano (1,3) */}
         <g transform={L(1.3)}>
           <path d="M-40 1990 V1300 Q20 1268 96 1290 L110 1990 Z" fill="url(#pd-front)" stroke="#070D16" strokeWidth="9" strokeLinejoin="round" />
@@ -157,9 +163,6 @@ export const Padre: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M-20 1310 Q30 1286 80 1300 M995 1222 Q1050 1200 1100 1214" fill="none" stroke="#8FB4CF" strokeWidth="5" opacity={0.5 + flash * 0.5} />
           <path d="M985 1400 H1120 M985 1560 H1120 M-40 1500 H105" stroke="#070D16" strokeWidth="6" />
           <path d="M100 1350 C260 1420 420 1430 560 1380 C720 1330 860 1320 985 1260" fill="none" stroke="#5C4A36" strokeWidth="9" strokeLinecap="round" />
-        </g>
-        <g transform={L(1.2)}>
-          <WaveBand t={t} y={1600} fill="#0A1626" foam="#7FA6C4" amp={36} w={300} speed={160} bob={14} ph={4} foamWidth={6} foamOpacity={0.5} />
         </g>
 
         {/* PIANO 5 — pioggia su due livelli e gocce vicine (0,5 / 1,5–2,0) */}
