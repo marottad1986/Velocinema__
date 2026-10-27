@@ -63,10 +63,10 @@ export const Sylvia: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <Stars t={t} seed={9} n={14} y={560} h={400} color="#FFF4D6" size={1.4} />
           <Moon id="sy-moon" x={880} y={640} r={52} t={t} color="#F4F1E6" halo="#CFE3F4" />
           {/* la stella finta: faretto appeso */}
-          <path d="M700 -200 V700" stroke="#3A5272" strokeWidth="3" opacity={fake * 0.9} />
-          <rect x="688" y="700" width="24" height="18" rx="4" fill="#2A3A52" opacity={fake} />
-          <Glow id="sy-fake" x={700} y={724} r={60} t={t} color="#FFF4D6" amp={0.1} rate={5} opacity={0.7 * fakeFlick} />
-          <circle cx="700" cy="724" r="6" fill="#FFFFFF" opacity={fakeFlick} />
+          <path d="M980 -200 V700" stroke="#3A5272" strokeWidth="3" opacity={fake * 0.9} />
+          <rect x="968" y="700" width="24" height="18" rx="4" fill="#2A3A52" opacity={fake} />
+          <Glow id="sy-fake" x={980} y={724} r={60} t={t} color="#FFF4D6" amp={0.1} rate={5} opacity={0.7 * fakeFlick} />
+          <circle cx="980" cy="724" r="6" fill="#FFFFFF" opacity={fakeFlick} />
         </g>
 
         {/* PIANO 1 — orizzonte: faro lontano a destra e luci della città a sinistra (0,45) */}
@@ -143,8 +143,10 @@ export const Sylvia: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           {[0, 1, 2, 3].map((i) => <ellipse key={i} cx={620 + i * 70} cy={1290 + (i % 2) * 22} rx="14" ry="8" fill="#3A4658" opacity=".6" />)}
         </g>
 
-        {/* ritagli di riviste che arrivano e si dispongono (0,8) */}
+        {/* ritagli di riviste che arrivano e si dispongono su un cartoncino posato sulla sabbia (0,8) */}
         <g transform={L(0.8)}>
+          <g transform="translate(640 1172) rotate(6) scale(0.45) translate(-300 -866)">
+          <ellipse cx="300" cy="990" rx="230" ry="26" fill="#0A1220" opacity={0.4 * seg(t, cues[5] - 0.2, cues[5] + 0.3)} />
           <g opacity={seg(t, cues[5] - 0.2, cues[5] + 0.3)} transform="rotate(-3 300 866)">
             <rect x="96" y="756" width="408" height="220" rx="6" fill="#F4F1E6" stroke={K} strokeWidth="6" opacity=".92" />
             <path d="M120 960 H480" stroke="#C9C3AE" strokeWidth="3" />
@@ -157,6 +159,7 @@ export const Sylvia: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
                 transform={`translate(${lerp(c.fx, c.x, p)} ${lerp(c.fy, c.y, p)}) rotate(${c.rot + (1 - p) * 220}) scale(${0.6 + 0.4 * p})`} />
             );
           })}
+          </g>
         </g>
 
         {/* PIANO 4 — duna con erba e tronco spiaggiato in primo piano (1,25) */}

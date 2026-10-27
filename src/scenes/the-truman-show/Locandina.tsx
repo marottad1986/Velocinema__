@@ -52,7 +52,7 @@ const Copertina_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
           </g>
           <rect x="-200" y="-200" width="1480" height="2400" fill="url(#tc-dome)" />
         </g>
-        <g transform={L(0.3, Math.sin(t * 0.3) * 10)}>{PUFFS.map((p, i) => <Puff key={i} {...p} />)}</g>
+        <g transform={L(0.3, Math.sin(t * 0.3) * 10)}>{PUFFS.map((p, i) => <Puff key={i} {...p} y={p.y + 280} />)}</g>
         {/* l'isola con le villette */}
         <g transform={L(0.5)}>
           <path d="M160 1150 Q240 1040 400 1050 Q540 1010 700 1046 Q860 1040 930 1150 Z" fill="#9BD08A" stroke={K} strokeWidth="6" strokeLinejoin="round" />
@@ -76,7 +76,7 @@ const Copertina_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
           <Reflection t={t} x={540} y={1170} color="#FFFFFF" n={8} w={90} opacity={0.4} />
           <WaveLines t={t} ys={[1230, 1320, 1440, 1580]} color="#BFE5F4" speed={30} opacity={0.55} />
         </g>
-        <g transform={L(0.6)}><Gulls t={t} y={820} h={120} color={K} /></g>
+        <g transform={L(0.6)}><Gulls t={t} y={990} h={70} color={K} /></g>
         {/* riflettori appesi in alto */}
         <g transform={L(1.2)}>
           <path d="M-200 150 H1280" stroke="#2B3A4F" strokeWidth="26" />
@@ -88,6 +88,20 @@ const Copertina_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
               <path d={`M${x - 8} 170 V200`} stroke="#2B3A4F" strokeWidth="8" />
               <rect x={x - 46} y="196" width="92" height="60" rx="10" fill="#33445C" stroke={K} strokeWidth="6" transform={`rotate(${i ? 22 : -22} ${x} 226)`} />
               <Glow id={`tc-lamp${i}`} x={x} y={240} r={70} t={t} color="#FFF6D8" amp={0.1} rate={2 + i} opacity={0.8} />
+            </g>
+          ))}
+        </g>
+        {/* primo piano: il pontile di legno da cui si guarda il mare del set, fino al bordo in basso */}
+        <g transform={L(1.25)}>
+          <path d="M260 2000 L430 1620 H650 L820 2000 Z" fill="#B88A5A" stroke={K} strokeWidth="9" strokeLinejoin="round" />
+          {[1680, 1760, 1860, 1970].map((y, i) => {
+            const k = (y - 1620) / 380;
+            return <path key={y} d={`M${430 - 170 * k} ${y} H${650 + 170 * k}`} stroke={K} strokeWidth={4 + i} opacity=".6" />;
+          })}
+          {[[430, 1620], [650, 1620], [330, 1820], [750, 1820]].map(([x, y], i) => (
+            <g key={i}>
+              <rect x={x - 12 - i * 2} y={y - 50 - i * 10} width={24 + i * 4} height={140 + i * 30} fill="#8A6440" stroke={K} strokeWidth="6" />
+              <ellipse cx={x} cy={y + 90 + i * 20} rx={22 + i * 4} ry="6" fill="#1E4E73" opacity=".5" />
             </g>
           ))}
         </g>
@@ -115,7 +129,7 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
         {/* il muro dipinto */}
         <g transform={L(0.3)}>
           <rect x="-200" y="-200" width="1480" height="1400" fill="url(#tf-sky)" />
-          {PUFFS.map((p, i) => <Puff key={i} {...p} y={p.y + 120} />)}
+          {PUFFS.map((p, i) => <Puff key={i} {...p} y={p.y + 300} />)}
           <Seams y0={-200} y1={1200} opacity={0.5} />
           {/* gabbiani dipinti, immobili */}
           <path d="M760 520 q14 -12 28 0 q14 -12 28 0 M840 580 q10 -9 20 0 q10 -9 20 0" fill="none" stroke="#7FB8D6" strokeWidth="5" strokeLinecap="round" />
@@ -143,11 +157,14 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
         <g transform={L(1.15)}>
           <g transform={`translate(330 ${1560 + Math.sin(t * 1.4) * 6}) rotate(${Math.sin(t * 1.4 + 1) * 1.5})`}>
             <path d="M-170 0 H170 L130 70 H-130 Z" fill="#F4F1E6" stroke={K} strokeWidth="9" strokeLinejoin="round" />
-            <path d="M-160 20 H160" stroke="#F2994A" strokeWidth="12" />
+            <path d="M-160 20 H160" stroke="#4FA3D1" strokeWidth="12" />
             <path d="M0 0 V-360" stroke={K} strokeWidth="10" />
-            <path d="M8 -350 L8 -20 L170 -20 Z" fill="#FFFFFF" stroke={K} strokeWidth="7" strokeLinejoin="round" />
+            <path d="M8 -350 L8 -20 L170 -20 Z" fill="#F2994A" stroke={K} strokeWidth="7" strokeLinejoin="round" />
             <path d="M-8 -300 L-8 -20 L-120 -20 Z" fill="#E9F4F8" stroke={K} strokeWidth="7" strokeLinejoin="round" />
             <text x="0" y="56" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="26" fill={K}>SANTA MARIA</text>
+            {/* linea di galleggiamento: l'acqua copre la parte bassa dello scafo */}
+            <path d="M-200 48 Q0 38 200 48 V110 H-200 Z" fill="#3E8FBF" opacity=".88" />
+            <path d="M-180 48 Q0 38 180 48" fill="none" stroke="#FFFFFF" strokeWidth="5" opacity=".7" />
           </g>
         </g>
         <g transform={L(1.6)}><NearMotes id="tf-near" t={t} color="#FFF6D8" opacity={0.12} /></g>
