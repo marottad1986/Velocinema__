@@ -115,10 +115,18 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 ## Voce
 - I sottotitoli coincidono con il testo voce. Ritmo di riferimento: circa 2,8 parole al secondo
   (circa 28–30 parole per un capitolo da 10–11 s): le voci espressive non reggono ritmi più alti.
-- Voce generata con ElevenLabs (modello v3, voce «Brando Vox – Stylish Social Media Voice»), con un piano a pagamento
+- Voce generata con ElevenLabs (modello `eleven_v4`, voce «Brando Vox – Stylish Social Media Voice»), con un piano a pagamento
   per l'uso commerciale: le clip del piano gratuito servono solo per le prove e non vanno pubblicate.
   Testo da incollare senza indicazioni di tono tra parentesi (rallentano la lettura).
+  Brando è una voce professionale clonata, addestrata solo su alcuni modelli (`eleven_v4`, `eleven_multilingual_v2`…):
+  con un modello su cui non è addestrata (es. `eleven_v3`) la voce cambia. Nel sito i file scaricati finiscono con il modello (`_v4`).
 - Clip generate una per capitolo in `audio/<film>/`, nominate `00_copertina`, `01_<id>`, `02_<id>`…
+- `node scripts/genera-voce.mjs <film>` genera le clip direttamente con l'API di ElevenLabs, una per
+  parte, dal testo del JSON e con voce, modello e impostazioni di `scripts/audio/voce.json` (il `voice_id` si cerca per nome
+  la prima volta e si salva lì). Salta le clip già presenti; `--capitolo <id>` (anche `copertina`/`finale`) ne rifà una,
+  `--rifai` tutte, `--prova` mostra testi e crediti senza chiamare l'API; `--voci [nome]` e `--modelli` per la configurazione.
+  Chiave con permessi Text to Speech e Voices: read: in locale in `ELEVENLABS_API_KEY`; nell'ambiente cloud come segreto di rete
+  per `api.elevenlabs.io` con intestazione `xi-api-key` (la aggiunge il proxy, lo script non la vede).
 - In alternativa una registrazione unica con tutti i capitoli di seguito, separati da una pausa lunga:
   `npm run dividi -- <film> <file>` allinea il testo del JSON alle pause della registrazione, frase per frase, taglia dove inizia ogni capitolo e scrive
   le clip in `audio/<film>/` (`--cartella <dir>` per le prove), mostrando il ritmo di ogni parte per controllare i tagli.
@@ -198,8 +206,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - `src/scenes/<film>/<Scena>.tsx`: una scena per capitolo; `index.ts` mappa id capitolo → componente + posizione titolo.
 - `src/components/ChapterOverlay.tsx`: barra, etichetta, titolo, sottotitoli. `src/lib/anim.ts`: camera/parallasse e utilità del tempo. `src/lib/fx.tsx`: grana, vignettatura, velatura, gradienti.
 - Le props delle composizioni devono essere JSON (si passa lo slug del film, non l'oggetto).
-- Comandi: `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run dividi -- <film> <file>`, `npm run voce -- <film>`.
-- Audio: `scripts/musica.mjs`, `scripts/voce.mjs`, `scripts/audio/` (sintetizzatore, spartiti, tempi dal JSON e helper ffmpeg in `film.mjs`).
+- Comandi: `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run dividi -- <film> <file>`, `node scripts/genera-voce.mjs <film>`, `npm run voce -- <film>`.
+- Audio: `scripts/musica.mjs`, `scripts/voce.mjs`, `scripts/genera-voce.mjs`, `scripts/audio/` (sintetizzatore, spartiti, tempi dal JSON e helper ffmpeg in `film.mjs`).
 
 ## Tecnologia suggerita
 Remotion (React) per comporre e renderizzare i video, ffmpeg per audio e montaggio voce.
