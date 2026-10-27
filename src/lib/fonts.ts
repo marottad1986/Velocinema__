@@ -9,6 +9,7 @@ import { loadFont as loadBebas } from '@remotion/google-fonts/BebasNeue';
 import { loadFont as loadCinzel } from '@remotion/google-fonts/Cinzel';
 import { loadFont as loadInstrument } from '@remotion/google-fonts/InstrumentSerif';
 import { loadFont as loadPlayfair } from '@remotion/google-fonts/PlayfairDisplay';
+import { loadFont as loadPacifico } from '@remotion/google-fonts/Pacifico';
 
 export const DISPLAY = loadBricolage('normal', { weights: ['800'], subsets: ['latin', 'latin-ext'] }).fontFamily;
 export const SANS = loadFigtree('normal', { weights: ['400', '800'], subsets: ['latin', 'latin-ext'] }).fontFamily;
@@ -30,3 +31,5 @@ export const SERIF = loadInstrument('normal', { weights: ['400'], subsets: ['lat
 loadInstrument('italic', { weights: ['400'], subsets: ['latin', 'latin-ext'] });
 /** Titolo da teatro d'opera, grazie alte (Bohemian Rhapsody). */
 export const PLAYFAIR = loadPlayfair('normal', { weights: ['900'], subsets: ['latin', 'latin-ext'] }).fontFamily;
+/** Corsivo da insegna al neon (Gli anni, 883). */
+export const PACIFICO = loadPacifico('normal', { weights: ['400'], subsets: ['latin', 'latin-ext'] }).fontFamily;

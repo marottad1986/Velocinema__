@@ -44,6 +44,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - Harry Potter e la pietra filosofale: blu-viola notturno (#1E1A3A, opacità 12%), caldo dorato di giorno (#E8B04A, 8%).
   - Dark (Spiegato semplice): verde-grigio freddo da bosco bagnato (#2F4A40, opacità 12%); nel 2052 seppia di cenere (#5A4E3C). Unico colore deciso il giallo dell'impermeabile (#F2C230) sugli oggetti chiave.
   - Bohemian Rhapsody: bordeaux da teatro (#3A1028, opacità 12%).
+  - Gli anni (883): tramonto caldo di provincia (#E8913A, opacità 10%), blu sera nelle scene di notte (#1E2448).
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
 
@@ -213,3 +214,17 @@ chiave (gong, spartiti, maschera, contatore, classifica). Elementi comuni in `sr
 - Che cosa vuol dire?: punto interrogativo tracciato sullo specchio, giacca che oscilla, cassetto che si chiude, lampadine che si spengono.
 - Troppo lunga per la radio: ON AIR al neon, orologio che corre, 14 tacche sulla bacheca, telefono che lampeggia, barra d'oro in classifica.
 - Una seconda vita: lampioni che scorrono, cassetta che gira, pupazzetto che scuote la testa, finestre della città che si accendono.
+
+### Gli anni (883)
+Provincia italiana tra anni Ottanta e Novanta: mattoni, tramonti arancioni, neon, motorini. L'arancione (#F2A23A) solo
+sugli oggetti chiave (mangianastri, cartolina, classifica, calendario, salvadanaio, cartello, torta del 14, disco,
+insegna). Elementi comuni in `src/scenes/gli-anni/Comune.tsx` (motorino, mangianastri, jukebox). Mai Pezzali, Repetto
+o altre persone, nemmeno in sagoma; niente copertine dei dischi né il logo degli 883.
+- Due amici di Pavia: ponte coperto al tramonto, riflessi sul Ticino, mangianastri con le note, rondini, finestre che si accendono.
+- L'ultima canzone insieme: lampadina che oscilla, aereo nella finestrella, registratore in REC, foglio con una sola firma, sedia che si allontana.
+- Nostalgia a venticinque anni: vetrina accesa, classifica che sale al primo posto, candeline del 25, orologio all'indietro, insegna riflessa.
+- Il ritorno al bar: fascio dalla porta, vapore della macchina del caffè, polvere che si posa, calendario 1985 → 1995, jukebox che si accende.
+- Quando eravamo ragazzi: faro del motorino, televisione con soli colori, salvadanaio con poche monete, lucciole, stelle.
+- Gli amici cresciuti: riso sull'auto degli sposi, lancette che corrono, lampione tremolante sul motorino solo, cartello con due frecce.
+- Nostalgia all'età sbagliata: clessidra che si gira, torte del 14 e del 17, foto che sbiadiscono, alba e aeroplanino di carta.
+- Una canzone di tutti: luci dei telefoni come stelle (nessuna persona), fiori sul palco, disco generico, insegna del bar alla fine.
