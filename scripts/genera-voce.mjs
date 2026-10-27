@@ -67,9 +67,13 @@ if (!slug) {
 }
 const dir = `audio/${slug}`;
 const solo = opt('capitolo');
-const parts = timeline(loadFilm(slug))
+const film = loadFilm(slug);
+// "pronuncia" nel JSON del film (facoltativo): parole da leggere in un altro modo, es. { "883": "otto otto tre" };
+// cambia solo il testo mandato a ElevenLabs, i sottotitoli restano come sono
+const leggi = (testo) => Object.entries(film.pronuncia ?? {}).reduce((a, [da, a2]) => a.split(da).join(a2), testo);
+const parts = timeline(film)
   .segments.filter((s) => s.testo.length && (!solo || s.id === solo))
-  .map((s) => ({ ...s, base: `${String(s.n).padStart(2, '0')}_${s.id}`, testo: s.testo.join(' ') }));
+  .map((s) => ({ ...s, base: `${String(s.n).padStart(2, '0')}_${s.id}`, testo: leggi(s.testo.join(' ')) }));
 if (!parts.length) {
   console.error(solo ? `Nessuna parte "${solo}" con testo voce in films/${slug}.json` : `Nessun testo voce in films/${slug}.json`);
   process.exit(1);
