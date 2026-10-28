@@ -25,8 +25,8 @@
         "bloccati in coda,",
         "Mia, aspirante attrice,",
         "e Sebastian, pianista che sogna un locale jazz,",
-        "litigano a colpi di clacson,",
-        "e il primo incontro è un disastro."
+        "litigano a colpi di clacson",
+        "e si detestano subito."
       ]
     },
     {
@@ -36,9 +36,9 @@
       "scena": "Bancone del caffè negli studi cinematografici, tazza fumante, copione con timbro 'NO'.",
       "sottotitoli": [
         "Mia fa la barista negli studi di Hollywood",
-        "e intanto fa un provino dopo l'altro,",
-        "ma la interrompono, la ignorano,",
-        "e ogni sera torna a casa con un no."
+        "e intanto fa provini su provini,",
+        "ma la interrompono sempre,",
+        "così torna sempre con un no."
       ]
     },
     {
@@ -47,13 +47,13 @@
       "durata": 11,
       "scena": "Ristorante di notte con luci di Natale, pianoforte a coda sotto un faro, note che salgono.",
       "sottotitoli": [
-        "Passando, Mia sente un pianoforte da un ristorante:",
+        "Una sera Mia sente un pianoforte:",
         "è Sebastian.",
         "Doveva suonare canzoni di Natale,",
-        "ma suona il suo jazz",
-        "e il proprietario lo licenzia.",
+        "ma suona jazz,",
+        "così il padrone lo licenzia.",
         "Mia vuole fargli i complimenti,",
-        "ma lui la scansa e se ne va."
+        "ma lui la scansa ed esce."
       ]
     },
     {
@@ -62,11 +62,11 @@
       "durata": 11,
       "scena": "Tramonto sulla città, lampione che si accende, scarpe da tip tap sulla panchina, stelle che compaiono.",
       "sottotitoli": [
-        "Poi si rincontrano a una festa,",
-        "dove lui suona in una band di cover anni '80,",
-        "e al tramonto, su una collina sopra la città,",
-        "giurano di non piacersi",
-        "mentre ballano il tip tap insieme."
+        "Poi si rivedono a una festa,",
+        "dove lui suona in una band anni '80,",
+        "e al tramonto, su una collina,",
+        "giurano di non piacersi,",
+        "ma intanto ballano il tip tap insieme."
       ]
     },
     {
@@ -76,9 +76,9 @@
       "scena": "Insegna al neon JAZZ, contrabbasso, sassofono, batteria, faro sul palco.",
       "sottotitoli": [
         "Sebastian la porta in un jazz club",
-        "e le spiega perché va salvato.",
-        "Mia, fidanzata con un altro, lo lascia a metà cena",
-        "e corre da Sebastian, al cinema."
+        "e le fa scoprire il jazz.",
+        "Così Mia molla il fidanzato a cena",
+        "e corre da Sebastian al cinema."
       ]
     },
     {
@@ -124,9 +124,9 @@
       "durata": 10,
       "scena": "Piccolo teatro con sipario rosso, sgabello vuoto sotto il faro, poltrone vuote.",
       "sottotitoli": [
-        "Litigano, perché lei dice che ha tradito il suo sogno,",
-        "e poi arriva la sera dello spettacolo di Mia:",
-        "la sala è quasi vuota e Sebastian non c'è.",
+        "Così litigano: per lei ha tradito il suo sogno.",
+        "Poi arriva lo spettacolo di Mia:",
+        "pochi spettatori, e Sebastian è bloccato con la band.",
         "Mia, distrutta, lascia Los Angeles."
       ]
     },
@@ -136,11 +136,11 @@
       "durata": 12,
       "scena": "Sala provini, sgabello sotto la luce su una X di nastro; arriva una cartolina di Parigi.",
       "sottotitoli": [
-        "Ma una direttrice di casting ha visto lo spettacolo:",
-        "Sebastian va a riprendere Mia",
-        "e la convince a fare il provino,",
-        "dove lei canta di sua zia, una sognatrice.",
-        "Ottiene la parte, a Parigi, e i due si lasciano."
+        "Ma allo spettacolo c'era chi sceglie gli attori:",
+        "così Sebastian va a riprendere Mia",
+        "e la convince al provino.",
+        "Lì canta di sua zia, una sognatrice.",
+        "Ottiene la parte, a Parigi, e si lasciano."
       ]
     },
     {
@@ -150,11 +150,11 @@
       "scena": "Muro di mattoni di notte, insegna al neon SEB'S che si accende, pianoforte alla finestra, note.",
       "sottotitoli": [
         "Cinque anni dopo",
-        "Mia è una star, sposata con un altro,",
-        "e una sera entra nel suo locale.",
+        "Mia è famosa, sposata con un altro,",
+        "e capita nel club di Sebastian.",
         "Lui suona la loro canzone",
-        "e immaginano la vita che avrebbero avuto,",
-        "poi si sorridono e si salutano per sempre."
+        "e sognano la vita mai vissuta,",
+        "poi si sorridono e si lasciano."
       ]
     }
   ],
