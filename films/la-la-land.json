@@ -36,8 +36,8 @@
       "scena": "Bancone del caffè negli studi cinematografici, tazza fumante, copione con timbro 'NO'.",
       "sottotitoli": [
         "Mia fa la barista negli studi di Hollywood",
-        "e intanto fa provini su provini,",
-        "ma la interrompono sempre,",
+        "e intanto corre da un provino all'altro,",
+        "ma la interrompono a metà,",
         "così torna sempre con un no."
       ]
     },
@@ -47,7 +47,7 @@
       "durata": 11,
       "scena": "Ristorante di notte con luci di Natale, pianoforte a coda sotto un faro, note che salgono.",
       "sottotitoli": [
-        "Una sera Mia sente un pianoforte:",
+        "In un ristorante Mia sente un pianoforte:",
         "è Sebastian.",
         "Doveva suonare canzoni di Natale,",
         "ma suona jazz,",
@@ -63,7 +63,7 @@
       "scena": "Tramonto sulla città, lampione che si accende, scarpe da tip tap sulla panchina, stelle che compaiono.",
       "sottotitoli": [
         "Poi si rivedono a una festa,",
-        "dove lui suona in una band anni '80,",
+        "dove lui suona in una band di cover anni '80,",
         "e al tramonto, su una collina,",
         "giurano di non piacersi,",
         "ma intanto ballano il tip tap insieme."
@@ -77,8 +77,8 @@
       "sottotitoli": [
         "Sebastian la porta in un jazz club",
         "e le fa scoprire il jazz.",
-        "Così Mia molla il fidanzato a cena",
-        "e corre da Sebastian al cinema."
+        "Così Mia pianta il fidanzato a cena",
+        "e corre al cinema, dove lui l'aspettava."
       ]
     },
     {
@@ -120,11 +120,11 @@
     },
     {
       "id": "prima",
-      "titolo": "La prima",
+      "titolo": "Lo spettacolo di Mia",
       "durata": 10,
       "scena": "Piccolo teatro con sipario rosso, sgabello vuoto sotto il faro, poltrone vuote.",
       "sottotitoli": [
-        "Così litigano: per lei ha tradito il suo sogno.",
+        "Così litigano: lei dice che ha tradito il suo sogno.",
         "Poi arriva lo spettacolo di Mia:",
         "pochi spettatori, e Sebastian è bloccato con la band.",
         "Mia, distrutta, lascia Los Angeles."
@@ -138,9 +138,9 @@
       "sottotitoli": [
         "Ma allo spettacolo c'era chi sceglie gli attori:",
         "così Sebastian va a riprendere Mia",
-        "e la convince al provino.",
+        "e la convince a provarci.",
         "Lì canta di sua zia, una sognatrice.",
-        "Ottiene la parte, a Parigi, e si lasciano."
+        "Ottiene un ruolo a Parigi: lei va, lui resta."
       ]
     },
     {
@@ -150,9 +150,9 @@
       "scena": "Muro di mattoni di notte, insegna al neon SEB'S che si accende, pianoforte alla finestra, note.",
       "sottotitoli": [
         "Cinque anni dopo",
-        "Mia è famosa, sposata con un altro,",
+        "Mia, famosa, ha sposato un altro,",
         "e capita nel club di Sebastian.",
-        "Lui suona la loro canzone",
+        "Lui suona il brano della prima sera",
         "e sognano la vita mai vissuta,",
         "poi si sorridono e si lasciano."
       ]

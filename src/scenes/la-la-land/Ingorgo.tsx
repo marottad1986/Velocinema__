@@ -8,7 +8,7 @@ import type { SceneProps } from '../../types';
 // Piani: cielo col sole (0,2) · colline e skyline nella foschia (0,35) · palme alte e cartello (0,5)
 //        · carreggiata con le auto in coda (0,65–0,8) · guardrail, aiuola e palma in primo piano (1,15–1,3)
 //        · pulviscolo caldo davanti alla camera (1,7)
-// Evento: il clacson dell'auto gialla durante «Lui le suona il clacson» (cue 4 ≈ 5,38 s), risposta a ≈ 6,2 s.
+// Evento: il clacson dell'auto gialla con «Litigano a colpi di clacson» (cue 4), risposta ≈ 0,8 s dopo.
 
 const K = '#1B1530';
 const r = rng(1608);

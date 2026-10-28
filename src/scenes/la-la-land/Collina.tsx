@@ -8,8 +8,8 @@ import type { SceneProps } from '../../types';
 // Piani: cielo del crepuscolo con stelle (0,2) · nubi e monti lontani con la cupola (0,3–0,35)
 //        · città nella valle con le luci (0,45) · crinale con alberi (0,6) · panchina, lampione e scarpe (0,75)
 //        · erba e cespugli in primo piano (1,25) · lucciole e particelle (1,4–1,7)
-// Eventi: il lampione si accende con «Al tramonto, su una collina sopra la città» (cue 2 ≈ 4,41 s);
-//         le scarpe battono il tip tap con «E intanto ballano il tip tap» (cue 4 ≈ 8,84 s).
+// Eventi: il lampione si accende con «E al tramonto, su una collina» (cue 2);
+//         le scarpe battono il tip tap con «Ma intanto ballano il tip tap insieme» (cue 4).
 
 const K = '#1B1530';
 const r = rng(1980);
