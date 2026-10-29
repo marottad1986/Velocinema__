@@ -213,7 +213,7 @@ export default (mix, T) => {
     clip(mix, 'ronzio_neon', { t, da: 0, durata: 0.55, gain: gain * 1.2, fadeOut: 0.05, rev: 0.2 });
     clip(mix, 'ronzio_neon', { t: t + 0.55, da: 2.6, durata: Math.min(3.5, fine - t - 0.6), gain, fadeIn: 0.05, fadeOut: 1.2, rev: 0.2 });
   };
-  neon(C('uscita', 4), T.bar);
-  neon(C('oggi', 3) + 0.4, T.finale, 0.07);
+  neon(C('uscita', 4), T.bar, 0.18);
+  neon(C('oggi', 3) + 0.4, T.finale, 0.1);
   clip(mix, 'applauso', { t: C('oggi', 1), da: 3, durata: C('oggi', 3) - C('oggi', 1), gain: 0.22, fadeIn: 1.2, fadeOut: 1.5, largo: 3, rev: 0.3 });
 };

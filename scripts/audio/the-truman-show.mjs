@@ -219,7 +219,6 @@ export default (mix, T) => {
     clip(mix, 'scatti', { t: z - 0.08, da: [6.42, 8.12, 10.42][i], durata: 0.22, gain: 0.35, fadeOut: 0.05, rev: 0.1, pan: [-0.3, 0.3, 0][i] });
     clip(mix, 'disturbo', { t: z, da: 7 + i * 0.4, durata: 0.35, gain: 0.18, fadeIn: 0.01, fadeOut: 0.2, rev: 0.1, pan: [-0.3, 0.3, 0][i] });
   });
-  // figi: timbro ESAURITO (Figi.tsx, cues[2] + 0,15)
   // insegna VOLI nella vetrina dell'agenzia che si accende (Figi.tsx, onAt = 0,6 s)
   /** Insegna al neon che si accende (Neon in elements.tsx: 0,5 s di sfarfallio dal suo onAt): scatto registrato e ronzio
    * a regime (presa da 2,6 s nel file), che si spegne prima di fine. */
@@ -227,7 +226,8 @@ export default (mix, T) => {
     clip(mix, 'ronzio_neon', { t, da: 0, durata: 0.55, gain: gain * 1.2, fadeOut: 0.05, rev: 0.2 });
     clip(mix, 'ronzio_neon', { t: t + 0.55, da: 2.6, durata: Math.min(3.5, fine - t - 0.6), gain, fadeIn: 0.05, fadeOut: 1.2, rev: 0.2 });
   };
-  neon(T.figi + 0.6, T.fuga, 0.08);
+  neon(T.figi + 0.6, T.fuga, 0.14);
+  // figi: timbro ESAURITO (Figi.tsx, cues[2] + 0,15)
   clip(mix, 'martelletto', { t: C('figi', 2) + 0.18, // picco sul timbro che tocca il manifesto (Figi.tsx, cue 2 + 0,26)
     da: 0.12, durata: 0.2, gain: 0.5, fadeOut: 0.08, lp: 2500, rev: 0.2 });
   // fuga: fiammata e fuoco sulla strada (Fuga.tsx: cues[2] su, cues[5] giù)

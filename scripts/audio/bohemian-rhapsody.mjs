@@ -336,7 +336,7 @@ export default (mix, T) => {
     clip(mix, 'ronzio_neon', { t, da: 0, durata: 0.55, gain: gain * 1.2, fadeOut: 0.05, rev: 0.2 });
     clip(mix, 'ronzio_neon', { t: t + 0.55, da: 2.6, durata: Math.min(3.5, fine - t - 0.6), gain, fadeIn: 0.05, fadeOut: 1.2, rev: 0.2 });
   };
-  neon(C('radio', 3), T['seconda-vita']); // la scritta ON AIR si accende (Radio.tsx, onAt = cue 3)
+  neon(C('radio', 3), T['seconda-vita'], 0.18); // la scritta ON AIR si accende (Radio.tsx, onAt = cue 3)
   crescendo(mix, C('radio', 4) + 1.2, 1.2, { gain: 0.3 });
   // seconda vita: la radio si accende, la cassetta parte, la città si illumina
   channelClick(mix, C('seconda-vita', 1), 46);
