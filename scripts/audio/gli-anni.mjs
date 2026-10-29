@@ -17,7 +17,7 @@ import { loadFilm, timeline } from './film.mjs';
 export const strumenti = ['pianoforte_coda', 'contrabbasso_pizz', 'violini', 'viole', 'celli', 'contrabbasso', 'glockenspiel',
   'cassa', 'rullante', 'charleston', 'piatto_crash', 'piatto_sospeso'];
 export const effetti = ['telo', 'scatti', 'porta_cigolio', 'voci_caffe', 'tintinnio', 'radio_sintonia', 'campane_festa', 'clacson',
-  'applauso', 'vento_leggero', 'sedia', 'aereo', 'motorino', 'monete', 'pagine', 'fiammifero'];
+  'applauso', 'vento_leggero', 'sedia', 'aereo', 'motorino', 'monete', 'pagine', 'fiammifero', 'ronzio_neon'];
 /** Sala piccola e asciutta, da studio pop. */
 export const sala = { rt60: 1.4, brillo: 7500, predelay: 0.015, wet: 0.35 };
 
@@ -206,5 +206,14 @@ export default (mix, T) => {
   clip(mix, 'fiammifero', { t: C('significato', 2) - 0.07, da: 3.88, durata: 0.9, gain: 0.3, fadeOut: 0.3, rev: 0.2, pan: -0.2 });
   clip(mix, 'telo', { t: C('significato', 4) + 0.5, da: 8.45, durata: 0.75, gain: 0.2, fadeOut: 0.3, rev: 0.3, pan: 0.3 });
   // oggi: lo stadio e il palco
+  // insegne BAR che si accendono: all'uscita (Uscita.tsx, onAt = cue 4) e oggi (Oggi.tsx, onAt = cue 3 + 0,4)
+  /** Insegna al neon che si accende (Neon in elements.tsx: 0,5 s di sfarfallio dal suo onAt): scatto registrato e ronzio
+   * a regime (presa da 2,6 s nel file), che si spegne prima di fine. */
+  const neon = (t, fine, gain = 0.1) => {
+    clip(mix, 'ronzio_neon', { t, da: 0, durata: 0.55, gain: gain * 1.2, fadeOut: 0.05, rev: 0.2 });
+    clip(mix, 'ronzio_neon', { t: t + 0.55, da: 2.6, durata: Math.min(3.5, fine - t - 0.6), gain, fadeIn: 0.05, fadeOut: 1.2, rev: 0.2 });
+  };
+  neon(C('uscita', 4), T.bar);
+  neon(C('oggi', 3) + 0.4, T.finale, 0.07);
   clip(mix, 'applauso', { t: C('oggi', 1), da: 3, durata: C('oggi', 3) - C('oggi', 1), gain: 0.22, fadeIn: 1.2, fadeOut: 1.5, largo: 3, rev: 0.3 });
 };
