@@ -9,7 +9,7 @@ import type { SceneProps } from '../../types';
 //        · città nella valle con le luci (0,45) · crinale con alberi (0,6) · panchina, lampione e scarpe (0,75)
 //        · erba e cespugli in primo piano (1,25) · lucciole e particelle (1,4–1,7)
 // Eventi: il lampione si accende con «E al tramonto, su una collina» (cue 2);
-//         le scarpe battono il tip tap con «Ma intanto ballano il tip tap insieme» (cue 4).
+//         le scarpe battono il tip tap con «Ma intanto ballano il tip tap insieme» (cue 4): un colpo ogni 0,25 s, a tempo (120 bpm).
 
 const K = '#1B1530';
 const r = rng(1980);
@@ -43,10 +43,10 @@ export const Collina: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const lamp = t < LAMP ? 0 : t < LAMP + 0.45 ? (Math.sin((t - LAMP) * 38) > 0 ? 1 : 0.15) : 1;
   // tip tap: le scarpe saltellano a turno
   const tapping = seg(t, TAP - 0.05, TAP + 0.1);
-  const hop = (ph: number) => tapping * Math.abs(Math.sin((t - TAP) * Math.PI * 3.2 + ph));
+  const hop = (ph: number) => tapping * Math.abs(Math.sin((t - TAP) * Math.PI * 2 + ph));
   const hopL = hop(0), hopR = hop(Math.PI / 2);
   const impact = (ph: number) => {
-    const p = mod((t - TAP) * 3.2 + ph / Math.PI, 1);
+    const p = mod((t - TAP) * 2 + ph / Math.PI, 1);
     return t > TAP ? Math.max(0, 1 - p * 3.5) : 0;
   };
 
