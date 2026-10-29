@@ -1,0 +1,145 @@
+{
+  "titolo": "Titanic",
+  "regista": "James Cameron",
+  "anno": 1997,
+  "palette": {
+    "chiaro": "#F4EEE2",
+    "principale": "#1E3A5A",
+    "scuro": "#08101C",
+    "accento": "#4FB0E8"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Su quella porta c'era posto per due?",
+    "immagine": "Notte stellata sull'oceano calmo: un grande transatlantico a quattro fumaioli, tutto illuminato, visto di tre quarti dal basso; davanti, sull'acqua nera, la punta bianca di un iceberg che affiora; in primo piano un diamante blu a forma di cuore su una catenina che brilla. Titolo in un carattere elegante da manifesto d'epoca (Playfair Display). NON usare la locandina ufficiale (i due volti, la prua al tramonto con le braccia aperte), persone o il logo del film.",
+    "voce": "Titanic, di James Cameron: una nave, un iceberg, una porta."
+  },
+  "capitoli": [
+    {
+      "id": "relitto",
+      "titolo": "Il tesoro nel relitto",
+      "durata": 10,
+      "scena": "In fondo all'oceano, al buio, la prua del relitto coperta di ruggine e coralli, illuminata dai fari di un piccolo sottomarino; bolle e particelle sospese; poi una cassaforte aperta sul fondale con dentro un foglio arrotolato.",
+      "sottotitoli": [
+        "Oggi un cacciatore di tesori cerca nel Titanic affondato",
+        "un diamante enorme, il Cuore dell'Oceano,",
+        "ma in una cassaforte trova solo il disegno di una ragazza che lo indossa."
+      ]
+    },
+    {
+      "id": "rose",
+      "titolo": "La ragazza del disegno",
+      "durata": 10,
+      "scena": "Una casetta sul mare all'alba: dentro, un vecchio televisore acceso che mostra il disegno ritrovato (solo il foglio con il diamante, nessuna figura); accanto, una tazza di tè, un vaso di terracotta e una vecchia foto incorniciata girata di spalle.",
+      "sottotitoli": [
+        "Quel disegno lo vede in televisione Rose, una signora di cento anni,",
+        "che chiama il cacciatore di tesori: la ragazza del disegno è lei.",
+        "Così, sulla sua nave, comincia a raccontare."
+      ]
+    },
+    {
+      "id": "imbarco",
+      "titolo": "Due biglietti, due mondi",
+      "durata": 10,
+      "scena": "Il molo di Southampton nel 1912: il fianco altissimo della nave nera con i quattro fumaioli, bandierine, valigie e bauli di lusso accatastati, una carrozza; in un angolo un tavolino da osteria con le carte da gioco e due biglietti vinti.",
+      "sottotitoli": [
+        "Nel 1912 Rose sale sul Titanic in prima classe",
+        "con Cal, il fidanzato ricco imposto dalla madre per pagare i debiti,",
+        "mentre Jack, un pittore povero, vince il biglietto a carte."
+      ]
+    },
+    {
+      "id": "poppa",
+      "titolo": "La notte sulla poppa",
+      "durata": 10,
+      "scena": "Notte sulla poppa della nave: la ringhiera, l'asta della bandiera, la scia bianca dell'elica che si allontana sotto un cielo pieno di stelle; un lampione di bordo; uno scialle abbandonato sul ponte.",
+      "sottotitoli": [
+        "Rose si sente in gabbia, tanto che una notte vuole buttarsi dalla poppa,",
+        "ma Jack la convince a tornare indietro.",
+        "Così Cal, per ringraziarlo, lo invita a cena in prima classe."
+      ]
+    },
+    {
+      "id": "festa",
+      "titolo": "La festa in terza classe",
+      "durata": 10,
+      "scena": "Prima il grande scalone di prima classe con la cupola di vetro e l'orologio; poi la sala di terza classe in festa: violino, fisarmonica e tamburo appoggiati, boccali di birra che tintinnano, lanterne che dondolano, coriandoli.",
+      "sottotitoli": [
+        "A cena i ricchi lo prendono in giro,",
+        "ma Jack porta Rose alla festa della terza classe,",
+        "dove si balla e si ride: lei non si è mai sentita così libera."
+      ]
+    },
+    {
+      "id": "prua",
+      "titolo": "Il disegno",
+      "durata": 10,
+      "scena": "Al tramonto, la prua della nave che fende il mare, con il vento e i gabbiani; poi un album da disegno aperto con matite e il diamante blu a forma di cuore; infine una cassaforte che si chiude con dentro il disegno.",
+      "sottotitoli": [
+        "Sulla prua Jack le fa aprire le braccia come se volasse,",
+        "poi la disegna con addosso solo il diamante,",
+        "e lei lascia il disegno nella cassaforte di Cal, per sfidarlo."
+      ]
+    },
+    {
+      "id": "iceberg",
+      "titolo": "L'iceberg",
+      "durata": 10,
+      "scena": "Notte senza luna e mare piatto: dalla coffa di vedetta si vede l'iceberg enorme che emerge dal buio davanti alla prua; la campana d'allarme che suona; scintille e ghiaccio che cade sul ponte; le scialuppe appese, poche.",
+      "sottotitoli": [
+        "Ma quella notte il Titanic, che va troppo veloce, urta un iceberg:",
+        "la nave, creduta inaffondabile, affonderà in meno di tre ore,",
+        "e le scialuppe bastano solo per metà dei passeggeri."
+      ]
+    },
+    {
+      "id": "manette",
+      "titolo": "Ammanettato sotto coperta",
+      "durata": 10,
+      "scena": "Un corridoio sotto coperta che si allaga: tubi, una panca con un paio di manette agganciate al tubo, l'acqua che sale e le luci che tremolano; un'ascia antincendio in una teca di vetro rotta.",
+      "sottotitoli": [
+        "Così Cal, geloso, gli fa infilare il diamante in tasca e lo fa arrestare come ladro,",
+        "e Jack resta ammanettato sotto coperta mentre l'acqua sale,",
+        "finché Rose lo libera con un'ascia."
+      ]
+    },
+    {
+      "id": "scialuppa",
+      "titolo": "Il salto dalla scialuppa",
+      "durata": 10,
+      "scena": "Il fianco della nave inclinata, con gli oblò accesi; una scialuppa bianca che scende con le funi lungo la fiancata, con un cappotto scuro appoggiato sul bordo e un luccichio blu nella tasca; razzi di soccorso bianchi che esplodono nel cielo.",
+      "sottotitoli": [
+        "Poi Cal fa salire Rose su una scialuppa col suo cappotto, con il diamante in tasca,",
+        "ma mentre la calano guarda Jack",
+        "e risale a bordo per restare con lui."
+      ]
+    },
+    {
+      "id": "naufragio",
+      "titolo": "La nave si spezza",
+      "durata": 11,
+      "scena": "La nave con la poppa alzata verso il cielo che si spezza e sprofonda, le luci che si spengono; poi l'oceano gelato e calmo sotto le stelle, con una porta di legno intagliata che galleggia, si inclina e si rovescia, e la brina sul legno.",
+      "sottotitoli": [
+        "Intanto la nave si spezza e affonda:",
+        "Rose sale su una porta che galleggia, ma in due si rovescia,",
+        "così Jack resta in acqua: le fa promettere di vivere e muore di freddo."
+      ]
+    },
+    {
+      "id": "cuore",
+      "titolo": "Il Cuore dell'Oceano",
+      "durata": 11,
+      "scena": "Notte calma sulla poppa della nave di ricerca, con le luci della gru; solo il diamante blu che cade dalla ringhiera e scende nell'acqua scura con una scia di bolle e di luce, fino a sparire verso il relitto.",
+      "sottotitoli": [
+        "Rose si salva, sfugge a Cal e mantiene la promessa,",
+        "e oggi, da anziana, getta in mare il diamante, tenuto nascosto tutta la vita.",
+        "Ma su quella porta c'era posto anche per Jack?"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "L'oceano calmo all'alba, con una porta di legno che galleggia nella luce rosa e un piccolo luccichio blu che affonda; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
+  },
+  "musica": "Originale e strumentale: pianoforte, archi e arpa con un tema ampio e malinconico in Mi bemolle maggiore; corni e timpani per la nave e l'iceberg; violino e pizzicati a passo doppio per la festa in terza classe (senza flauto irlandese né cori, niente melodie del film); mare, gabbiani, sirena della nave, campana d'allarme, ghiaccio e legno che scricchiola."
+}

@@ -42,8 +42,11 @@ import { GLI_ANNI_SCENES } from './scenes/gli-anni';
 import { Copertina as GliAnniCover, Finale as GliAnniEnd } from './scenes/gli-anni/Locandina';
 import { Copertina as BohemianCover, Finale as BohemianEnd } from './scenes/bohemian-rhapsody/Locandina';
 import shining from '../films/shining.json';
+import titanic from '../films/titanic.json';
 import { SHINING_SCENES } from './scenes/shining';
 import { Copertina as ShiningCover, Finale as ShiningEnd } from './scenes/shining/Locandina';
+import { TITANIC_SCENES } from './scenes/titanic';
+import { Copertina as TitanicCover, Finale as TitanicEnd } from './scenes/titanic/Locandina';
 
 // Registro dei film e dei quadri: un JSON in films/ (o quadri/, vedi QUADRI.md) + le scene in src/scenes/<slug>/.
 // Le scene non ancora ricostruite compaiono come segnaposto.
@@ -63,6 +66,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'gli-anni', data: gliAnni as FilmData, scenes: GLI_ANNI_SCENES, cover: GliAnniCover, ending: GliAnniEnd, posterFont: PACIFICO },
   { slug: 'bohemian-rhapsody', data: bohemianRhapsody as FilmData, scenes: BOHEMIAN_RHAPSODY_SCENES, cover: BohemianCover, ending: BohemianEnd, posterFont: PLAYFAIR },
   { slug: 'shining', data: shining as FilmData, scenes: SHINING_SCENES, cover: ShiningCover, ending: ShiningEnd, posterFont: TYPEWRITER },
+  { slug: 'titanic', data: titanic as FilmData, scenes: TITANIC_SCENES, cover: TitanicCover, ending: TitanicEnd, posterFont: PLAYFAIR },
 ];
 
 export const getFilm = (slug: string): FilmDef => {
