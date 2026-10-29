@@ -32,7 +32,7 @@ export type FilmData = {
   anno: number;
   opera?: OperaInfo;
   palette: Palette;
-  copertina: { durata: number; frase_lancio?: string; immagine: string; voce?: string };
+  copertina: { durata: number; frase_lancio?: string; immagine: string; voce?: string; /** Bollino accanto all'etichetta, es. "Halloween" → «SPECIALE HALLOWEEN»; si toglie per ripubblicare. */ speciale?: string };
   linea_tempo?: number[];
   personaggi?: Personaggio[];
   capitoli: Capitolo[];

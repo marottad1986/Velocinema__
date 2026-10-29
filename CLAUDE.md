@@ -181,6 +181,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Node e ffmpeg/ffprobe devono essere nel PATH (in PowerShell, se mancano:
   `$env:Path = [Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [Environment]::GetEnvironmentVariable("Path","User")`).
 - Creare un nuovo film: scrivere `films/<nome>.json` seguendo lo schema dei due esistenti.
+- Speciali (Halloween, Natale…): `"speciale": "Halloween"` nella `copertina` del JSON mette il bollino «SPECIALE HALLOWEEN»
+  accanto all'etichetta (`src/components/Speciale.tsx`); niente nella voce né nel disegno, così togliendo il campo il video torna normale.
 - Archivio su MEGA (`.github/workflows/video-mega.yml`): a ogni push su main GitHub Actions rigenera i film toccati
   (`scripts/cambiati.mjs`; codice comune = tutti) e carica `<film>.mp4` e `<film>-voce.mp4` in `/Velocinema/<film>/`.
   Clip voce lette da `/Velocinema/<film>/voce/` su MEGA (o da `audio/<film>/`). Segreti `MEGA_EMAIL`, `MEGA_PASSWORD`.

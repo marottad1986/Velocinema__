@@ -1,0 +1,155 @@
+{
+  "titolo": "Shining",
+  "regista": "Stanley Kubrick",
+  "anno": 1980,
+  "palette": {
+    "chiaro": "#F1ECE2",
+    "principale": "#2F4B3F",
+    "scuro": "#0D0F14",
+    "accento": "#C8202E"
+  },
+  "copertina": {
+    "durata": 4,
+    "speciale": "Halloween",
+    "frase_lancio": "Un inverno da soli. Un albergo che ricorda.",
+    "immagine": "Notte di tormenta: un enorme albergo di montagna isolato nella neve con una sola fila di finestre accese; davanti, visto dall'alto, un labirinto di siepi coperto di neve; in primo piano una macchina da scrivere con un foglio pieno di righe uguali. Titolo con carattere da macchina da scrivere (Special Elite). NON usare la locandina ufficiale (volto disegnato a puntini, volto dietro la porta), persone o il tappeto originale.",
+    "voce": "Shining, di Stanley Kubrick: un albergo vuoto, una famiglia sola."
+  },
+  "capitoli": [
+    {
+      "id": "custode",
+      "titolo": "Il custode d'inverno",
+      "durata": 10,
+      "scena": "Strada di montagna che sale tra i boschi d'autunno verso un enorme albergo isolato davanti alle vette; un'auto gialla piccola sui tornanti; nuvole basse che corrono.",
+      "sottotitoli": [
+        "Jack Torrance vuole fare lo scrittore, così accetta",
+        "di custodire d'inverno l'Overlook per scrivere in pace:",
+        "un albergo isolato tra le montagne,",
+        "dove un custode impazzì e uccise moglie e figlie."
+      ]
+    },
+    {
+      "id": "dono",
+      "titolo": "Il dono di Danny",
+      "durata": 9,
+      "scena": "Camera da bambino nell'albergo: un triciclo, giocattoli, una lampada; uno specchio sull'armadio che invece di riflettere la stanza tremola di lampi di luce, come visioni.",
+      "sottotitoli": [
+        "Con lui vanno la moglie Wendy e il figlio Danny,",
+        "che ha un dono chiamato luccicanza:",
+        "senza volerlo, vede cose del passato e del futuro."
+      ]
+    },
+    {
+      "id": "stanza",
+      "titolo": "La stanza 237",
+      "durata": 9,
+      "scena": "Corridoio d'albergo con le applique accese e un tappeto a motivi geometrici; in fondo una porta con il numero 237; la maniglia che vibra appena; una chiave appesa.",
+      "sottotitoli": [
+        "Il cuoco Hallorann, che ha lo stesso dono,",
+        "gli spiega che l'albergo ricorda le cose brutte",
+        "e, prima di partire, lo avverte: mai nella stanza 237."
+      ]
+    },
+    {
+      "id": "neve",
+      "titolo": "Chiusi dalla neve",
+      "durata": 10,
+      "scena": "L'albergo di notte nella tormenta, con poche finestre accese; davanti il grande labirinto di siepi coperto di neve; un mezzo cingolato per la neve parcheggiato; i pali del telefono con i fili spezzati.",
+      "sottotitoli": [
+        "Poi arriva la neve:",
+        "la strada si blocca, i telefoni tacciono,",
+        "e i tre restano soli, con una radio",
+        "e un mezzo per la neve, per le emergenze."
+      ]
+    },
+    {
+      "id": "bambine",
+      "titolo": "Le due bambine",
+      "durata": 10,
+      "scena": "Un lungo corridoio vuoto con il tappeto a esagoni (motivo inventato); un triciclo fermo di traverso; in fondo due paia di scarpine e una palla che rotola da sola verso la camera.",
+      "sottotitoli": [
+        "Danny gira i corridoi col triciclo",
+        "e la luccicanza gli mostra due bambine:",
+        "le figlie di quel custode, uccise lì.",
+        "Poi una palla lo porta nella 237, e ne esce ferito."
+      ]
+    },
+    {
+      "id": "bar",
+      "titolo": "Il bar dei fantasmi",
+      "durata": 11,
+      "scena": "Una grande sala da ballo dorata e vuota con il bancone del bar illuminato, file di bottiglie che brillano, un bicchiere che si riempie da solo, un secchiello del ghiaccio; i lampadari si accendono uno a uno.",
+      "sottotitoli": [
+        "Intanto Jack non scrive e diventa sempre più rabbioso,",
+        "perché l'albergo gli parla:",
+        "nel bar vuoto un barista fantasma gli versa da bere",
+        "e il fantasma del custode gli dice di punire la famiglia."
+      ]
+    },
+    {
+      "id": "frase",
+      "titolo": "La stessa frase",
+      "durata": 10,
+      "scena": "Nel salone, un tavolo con la macchina da scrivere e una pila altissima di fogli tutti pieni di righe uguali; fogli sparsi a terra; una lampada da tavolo; dalla finestra la neve.",
+      "sottotitoli": [
+        "Wendy, preoccupata, legge il libro a cui Jack lavora da settimane:",
+        "centinaia di pagine con la stessa frase,",
+        "ripetuta all'infinito.",
+        "Così capisce che suo marito è impazzito."
+      ]
+    },
+    {
+      "id": "dispensa",
+      "titolo": "La porta che si apre da sola",
+      "durata": 10,
+      "scena": "La porta della dispensa con il chiavistello che scorre da solo; scaffali di barattoli e scatole; sul ripiano la radio già sfasciata che sputa un'ultima scintilla; la mazza a terra.",
+      "sottotitoli": [
+        "Jack la minaccia: Wendy lo stordisce e lo chiude in dispensa,",
+        "ma un fantasma gli apre la porta;",
+        "radio e mezzo per la neve, Jack li aveva già rotti."
+      ]
+    },
+    {
+      "id": "specchio",
+      "titolo": "La parola nello specchio",
+      "durata": 11,
+      "scena": "Una camera buia: sulla porta una parola scritta in rosso col rossetto, che nello specchio si legge al contrario; poi la lama di un'ascia che sfonda il legno della porta del bagno, schegge che volano.",
+      "sottotitoli": [
+        "Danny, come posseduto, scrive sulla porta una parola strana,",
+        "che nello specchio Wendy legge «murder», omicidio in inglese.",
+        "Proprio allora Jack arriva con un'ascia",
+        "e sfonda la porta del bagno dove si sono chiusi."
+      ]
+    },
+    {
+      "id": "labirinto",
+      "titolo": "Il labirinto",
+      "durata": 11,
+      "scena": "Notte nella tormenta: l'ingresso dell'albergo spalancato con i fari di un mezzo cingolato fuori; poi il labirinto di siepi visto dall'alto, con impronte nella neve che entrano e tornano indietro.",
+      "sottotitoli": [
+        "Ma Danny, con la luccicanza, aveva chiamato Hallorann,",
+        "che arriva da lontano,",
+        "però, appena entra, Jack lo uccide.",
+        "Danny allora scappa nel labirinto",
+        "e cammina all'indietro sulle sue orme, per ingannare il padre."
+      ]
+    },
+    {
+      "id": "foto",
+      "titolo": "La foto del 1921",
+      "durata": 11,
+      "scena": "All'alba il labirinto è sepolto dalla neve e silenzioso; poi una parete del salone con tante vecchie foto in cornice: una, con la data 4 luglio 1921, si avvicina e si illumina (nessuna figura visibile, solo bagliore e la data).",
+      "sottotitoli": [
+        "Così Jack si perde e muore congelato,",
+        "mentre Danny e Wendy fuggono col mezzo di Hallorann.",
+        "Ma in una foto del 1921 appesa nell'albergo c'è anche Jack,",
+        "come se fosse sempre stato lì."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "L'albergo all'alba sotto la neve, silenzioso, con una sola finestra ancora accesa; le tracce del mezzo per la neve che si allontanano; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
+  },
+  "musica": "Originale e strumentale: organo grave, archi in tremolo e glissando, pianoforte nel registro basso, timpani e gong; un motivo lento e sospeso in Re minore che si incrina capitolo dopo capitolo; vento della tormenta, macchina da scrivere, porte che cigolano, legno che si spacca; niente brani del film."
+}
