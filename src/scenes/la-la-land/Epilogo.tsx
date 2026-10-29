@@ -132,15 +132,15 @@ export const Epilogo: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 3 — strada con pozzanghere che riflettono l'insegna */}
         <g transform={L(0.85)}>
           <rect x="-200" y={WALK + 110} width="1480" height="800" fill="url(#ep-street)" />
-          <ellipse cx="560" cy="1420" rx="330" ry="70" fill="#0A0818" />
-          <ellipse cx="560" cy="1420" rx="330" ry="70" fill="none" stroke="#4A3A78" strokeWidth="4" opacity=".7" />
-          <Reflection t={t} x={560} y={1370} color="#F2C14E" n={5} w={240} gap={20} opacity={0.75 * neonOn} />
-          <ellipse cx="200" cy="1600" rx="200" ry="44" fill="#0A0818" />
-          <Reflection t={t} x={200} y={1580} color="#E2A872" n={3} w={120} gap={16} opacity={0.4} />
+          <ellipse cx="600" cy="1690" rx="360" ry="76" fill="#0A0818" />
+          <ellipse cx="600" cy="1690" rx="360" ry="76" fill="none" stroke="#4A3A78" strokeWidth="4" opacity=".7" />
+          <Reflection t={t} x={600} y={1636} color="#F2C14E" n={5} w={260} gap={20} opacity={0.75 * neonOn} />
+          <ellipse cx="170" cy="1420" rx="190" ry="40" fill="#0A0818" />
+          <Reflection t={t} x={170} y={1402} color="#E2A872" n={3} w={120} gap={16} opacity={0.4} />
           {/* increspature della pioggia nelle pozzanghere */}
           {Array.from({ length: 6 }, (_, i) => {
             const p = ((t * 0.9 + i * 0.37) % 1);
-            const cx = [420, 640, 760, 500, 150, 260][i], cy = [1400, 1440, 1410, 1450, 1600, 1610][i];
+            const cx = [460, 680, 800, 540, 120, 230][i], cy = [1670, 1710, 1680, 1720, 1420, 1430][i];
             return <ellipse key={i} cx={cx} cy={cy} rx={6 + p * 50} ry={2 + p * 10} fill="none" stroke="#C9B8E0" strokeWidth="3" opacity={(1 - p) * 0.6} />;
           })}
         </g>

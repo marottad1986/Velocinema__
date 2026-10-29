@@ -199,6 +199,28 @@ export const Jazz: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           </g>
         </g>
 
+        {/* PIANO 3b — bordo del tavolo più vicino, con lampada, bicchiere e biglietto del cinema (1,45) */}
+        <g transform={L(1.45)}>
+          <path d="M-200 1760 Q540 1700 1280 1760 V2100 H-200 Z" fill="url(#jz-table)" stroke={K} strokeWidth="12" />
+          <path d="M-200 1774 Q540 1716 1280 1774" fill="none" stroke="#C88A6A" strokeWidth="5" opacity={0.35 + 0.35 * sp} />
+          {/* lampada da tavolo a sinistra */}
+          <Glow id="jz-tl" x={190} y={1640} r={260} t={t} color="#FFC870" amp={0.05} rate={2.2} opacity={0.7} />
+          <path d="M190 1740 V1640" stroke={K} strokeWidth="14" />
+          <ellipse cx="190" cy="1742" rx="56" ry="14" fill="#8A5A2E" stroke={K} strokeWidth="7" />
+          <path d="M120 1650 L150 1570 H230 L260 1650 Z" fill="#C0442E" stroke={K} strokeWidth="8" strokeLinejoin="round" />
+          <path d="M124 1648 H256" stroke="#FFE0A0" strokeWidth="6" />
+          {/* bicchiere con riflesso */}
+          <path d="M800 1730 L790 1600 H880 L870 1730 Z" fill="#C8D4E8" stroke={K} strokeWidth="7" opacity=".7" />
+          <path d="M794 1650 H876" stroke="#E8A040" strokeWidth="44" opacity=".55" />
+          <path d="M806 1612 V1716" stroke="#FFFFFF" strokeWidth="5" opacity=".6" strokeLinecap="round" />
+          {/* biglietto del cinema lasciato sul tavolo */}
+          <g transform="rotate(-8 520 1790)">
+            <path d="M420 1760 H620 V1782 a12 12 0 0 0 0 24 V1828 H420 V1806 a12 12 0 0 0 0 -24 Z" fill={P.accento} stroke={K} strokeWidth="6" strokeLinejoin="round" />
+            <path d="M574 1764 V1824" stroke={K} strokeWidth="3" strokeDasharray="6 6" />
+            <text x="496" y="1806" textAnchor="middle" fontFamily="Figtree" fontWeight={900} fontSize="30" fill={K}>CINEMA</text>
+          </g>
+        </g>
+
         {/* PIANO 4 — pulviscolo nel faro e particelle vicine (1,7) */}
         <g transform={L(1.5)} opacity={0.3 + 0.7 * sp}>
           <Dust t={t} top={{ y: 620, x0: 900, x1: 960 }} bottom={{ y: 1110, x0: 300, x1: 760 }} seed={402} n={30} color="#FFF0C8" />

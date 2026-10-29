@@ -92,7 +92,13 @@ export const Sogno: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
 
         {/* PIANO 1 — pianoforte verticale con lampada e metronomo (0,45) */}
         <g transform={L(0.45)}>
-          <rect x="560" y="860" width="500" height="320" rx="10" fill="url(#sg-piano)" stroke={K} strokeWidth="9" />
+          <rect x="560" y="860" width="500" height="700" rx="10" fill="url(#sg-piano)" stroke={K} strokeWidth="9" />
+          {/* pannello inferiore, zoccolo e pedali: il pianoforte poggia a terra */}
+          <rect x="600" y="1200" width="420" height="250" rx="8" fill="none" stroke={K} strokeWidth="6" opacity=".7" />
+          <path d="M616 1214 H1004" stroke="#9C6A50" strokeWidth="3" opacity=".5" />
+          <rect x="545" y="1540" width="530" height="40" rx="6" fill="#3A2420" stroke={K} strokeWidth="8" />
+          {[770, 810, 850].map((x) => <rect key={x} x={x - 12} y="1478" width="24" height="44" rx="6" fill="#C8A050" stroke={K} strokeWidth="5" />)}
+          <ellipse cx="810" cy="1584" rx="300" ry="18" fill="#000" opacity=".25" />
           <rect x="540" y="840" width="540" height="34" rx="8" fill="#3A2420" stroke={K} strokeWidth="8" />
           <rect x="590" y="900" width="440" height="110" rx="6" fill="#24161A" stroke={K} strokeWidth="6" />
           {/* spartito sul leggio */}
@@ -109,7 +115,6 @@ export const Sogno: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           {Array.from({ length: 20 }, (_, i) => ([1, 2, 4, 5, 6].includes(i % 7) ? <rect key={i} x={579 + i * 24} y="1020" width="12" height="26" fill={K} /> : null))}
           <path d="M560 1064 H1060" stroke={K} strokeWidth="8" />
           <path d="M580 1100 h460" stroke="#6A3E34" strokeWidth="4" opacity=".6" />
-          <rect x="580" y="1180" width="30" height="20" fill="#2A1A1A" stroke={K} strokeWidth="5" />
           {/* metronomo */}
           <path d="M610 840 L630 740 H666 L686 840 Z" fill="#6A4030" stroke={K} strokeWidth="6" strokeLinejoin="round" />
           <path d={`M648 830 L${648 + Math.sin((metro * Math.PI) / 180) * 80} ${830 - Math.cos((metro * Math.PI) / 180) * 80}`} stroke="#E8D8B0" strokeWidth="5" strokeLinecap="round" />
@@ -199,10 +204,14 @@ export const Sogno: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <path key={i} d="M0 0 Q30 -120 10 -260 Q-30 -130 0 0 Z" transform={`translate(${980 + i * 14} 1690) rotate(${a + Math.sin(t * 0.9 + i) * 3})`} fill={i % 2 ? '#3E7A5A' : '#2E5E46'} stroke={K} strokeWidth="6" strokeLinejoin="round" />
           ))}
           {/* fogli accartocciati */}
-          <circle cx="300" cy="1760" r="44" fill="#E8E0D0" stroke={K} strokeWidth="7" />
-          <path d="M270 1750 l30 -14 l20 26 M290 1786 l18 -20" fill="none" stroke="#A89AB0" strokeWidth="4" />
-          <circle cx="560" cy="1840" r="36" fill="#E8E0D0" stroke={K} strokeWidth="7" />
-          <path d="M540 1830 l26 10 l10 -22" fill="none" stroke="#A89AB0" strokeWidth="4" />
+          {[{ x: 300, y: 1760, s: 1 }, { x: 560, y: 1840, s: 0.82 }].map((b, i) => (
+            <g key={i} transform={`translate(${b.x} ${b.y}) scale(${b.s}) rotate(${i * 40})`}>
+              <ellipse cx="6" cy="40" rx="50" ry="10" fill="#000" opacity=".3" />
+              <path d="M-46 -6 L-30 -38 L-4 -30 L14 -46 L40 -26 L48 4 L34 34 L4 44 L-24 38 L-44 20 Z" fill="#E8E0D0" stroke={K} strokeWidth="7" strokeLinejoin="round" />
+              <path d="M-30 -38 L-6 -8 L14 -46 M-6 -8 L40 -26 M-6 -8 L4 44 M-6 -8 L-44 20 M-6 -8 L34 34" fill="none" stroke="#A89AB0" strokeWidth="4" strokeLinejoin="round" />
+              <path d="M-6 -8 L34 34 L48 4 L40 -26 Z" fill="#B8AEB8" opacity=".45" />
+            </g>
+          ))}
         </g>
 
         {/* PIANO 4 — fogli che volano e particelle vicine (1,5–1,7) */}

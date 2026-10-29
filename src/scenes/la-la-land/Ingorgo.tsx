@@ -278,7 +278,7 @@ export const Ingorgo: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
 
         {/* PIANO 7 — pulviscolo caldo davanti alla camera (1,7) */}
         <g transform={L(1.7)}>
-          <NearMotes id="ig-near" t={t} color="#FFF0C8" n={8} opacity={0.14} vx={-25} vy={-14} />
+          <NearMotes id="ig-near" t={t} color="#FFF0C8" n={8} opacity={0.3} vx={-25} vy={-14} />
         </g>
       </g>
 
