@@ -4,6 +4,7 @@ import { DISPLAY, SANS, TYPEWRITER } from '../../lib/fonts';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Fog, Glow, NearMotes, SunRays } from '../../lib/elements';
 import type { PosterProps } from '../../types';
+import { Speciale } from '../../components/Speciale';
 import { Hotel, K, Maze, Typewriter } from './Comuni';
 
 // Copertina e finale di Shining. Locandina originale: niente volto a puntini né volto dietro la porta, niente persone,
@@ -22,7 +23,7 @@ const Copertina_: React.FC<{ t: number; dur: number; accent: string }> = ({ t, d
       <defs>
         <FxDefs id="sc" />
         <Lin id="sc-sky" stops={[[0, '#05070C'], [0.5, '#141C28'], [1, '#2A3444']]} />
-        <Lin id="sc-ground" stops={[[0, '#C8D4E0'], [1, '#5A6A7E']]} />
+        <Lin id="sc-ground" stops={[[0, '#C8D4E0'], [0.5, '#7A8A9E'], [1, '#3A4656']]} />
       </defs>
       <g transform={cam.transform}>
         <g transform={L(0.2)}><rect x="-200" y="-200" width="1480" height="2400" fill="url(#sc-sky)" /></g>
@@ -32,7 +33,7 @@ const Copertina_: React.FC<{ t: number; dur: number; accent: string }> = ({ t, d
           <Fog id="sc-fog" t={t} y={900} color="#C8D4E0" rx={900} ry={60} opacity={0.5} />
         </g>
         <g transform={L(0.6)}>
-          <path d="M-200 900 H1280 V1600 H-200 Z" fill="url(#sc-ground)" />
+          <path d="M-200 900 H1280 V2200 H-200 Z" fill="url(#sc-ground)" />
           <g transform="translate(540 1040) scale(1 .42) translate(-540 -1040)"><Maze x={540} y={1040} w={760} h={700} snow={1} /></g>
         </g>
         <g transform={L(1.0)}>
@@ -89,7 +90,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
     <div style={{ position: 'absolute', inset: 0 }}>
       <Copertina_ t={t} dur={dur} accent={P.accento} />
       <div style={{ position: 'absolute', left: 80, top: 290, width: 920, fontFamily: SANS, color: P.chiaro }}>
-        <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.chiaro, opacity: tag, textShadow: `0 2px 0 ${P.scuro}` }}>IL FILM IN 2 MINUTI</p>
+        <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.chiaro, opacity: tag, textShadow: `0 2px 0 ${P.scuro}` }}>IL FILM IN 2 MINUTI<Speciale nome={film.copertina.speciale} scale={eob(seg(t, 0.4, 0.8), 1.6)} /></p>
         <h1 style={{ margin: '14px 0 0', fontFamily: TYPEWRITER, fontWeight: 400, fontSize: 200, lineHeight: 0.95, letterSpacing: '0.04em', color: P.accento,
           textShadow: `0 6px 0 ${P.scuro}`, opacity: seg(t, 0.15, 0.4), transform: `translateY(${(1 - l1) * 50}px)` }}>
           SHINING
