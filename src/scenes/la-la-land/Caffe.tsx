@@ -106,7 +106,7 @@ export const Caffe: React.FC<SceneProps> = ({ t, dur, cues }) => {
           {/* riflessi sul vetro */}
           <path d="M180 1020 L330 620 M230 1020 L360 680 M640 1020 L780 640" stroke="#FFFFFF" strokeWidth="10" opacity=".14" />
           {/* scritta adesiva sul vetro */}
-          <text x="325" y="725" textAnchor="middle" fontFamily="Bricolage Grotesque" fontWeight={800} fontSize="44" fill="none" stroke="#F6F1E9" strokeWidth="2" opacity=".55">CAFFÈ DEGLI STUDI</text>
+          <text x="325" y="725" textAnchor="middle" fontFamily="Bricolage Grotesque" fontWeight={800} fontSize="44" fill="#F6F1E9" stroke={K} strokeWidth="3" paintOrder="stroke" opacity=".85">CAFFÈ DEGLI STUDI</text>
           {/* lampade a sospensione a destra (lontane dal titolo) */}
           {[780, 960].map((x, i) => {
             const sw = Math.sin(t * 0.9 + i) * 3;

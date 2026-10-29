@@ -8,9 +8,9 @@ import type { SceneProps } from '../../types';
 // Piani: parete con porta, ghirlanda e albero (0,25) · festoni di luci (0,35) · tavoli con candele (0,5)
 //        · pianoforte a coda sotto il faro (0,7) · tende di velluto e tavolo in primo piano (1,2–1,3)
 //        · particelle calde (1,7)
-// Eventi: note timide di Natale, poi il jazz esplode con «Invece suona il suo jazz» (cue 3 ≈ 4,97 s);
-//         il faro si spegne con «Il proprietario lo licenzia» (cue 4 ≈ 6,33 s);
-//         la porta in fondo si apre e si richiude con «Lui la scansa e se ne va» (cue 6 ≈ 9,44 s).
+// Eventi: note timide di Natale, poi il jazz esplode con «Ma suona jazz» (cue 3);
+//         il faro si spegne con «Così il padrone lo licenzia» (cue 4);
+//         la porta in fondo si apre e si richiude con «Ma lui la scansa ed esce» (cue 6).
 
 const K = '#1B1530';
 const r = rng(1225);
