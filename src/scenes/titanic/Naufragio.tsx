@@ -1,6 +1,6 @@
 import React from 'react';
 import { camera, eio, eo, mod, rng, seg } from '../../lib/anim';
-import { Fog, Glow, NearMotes, Stars, WaveBand, WaveLines } from '../../lib/elements';
+import { Fog, Glow, Moon, NearMotes, Reflection, Stars, WaveBand, WaveLines } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
 import { Door, K, Ship } from './Comuni';
@@ -37,10 +37,12 @@ export const Naufragio: React.FC<SceneProps> = ({ t, dur, cues }) => {
         <g transform={L(0.15)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="url(#nf-sky)" />
           <Stars t={t} n={110} y={-100} h={900} seed={15} size={1.1} />
+          <Moon id="nf-moon" x={880} y={660} r={34} t={t} color="#E8F0F4" halo="#BFD8EE" />
         </g>
         <g transform={L(0.3)}>
           <path d="M-200 900 H1280 V2200 H-200 Z" fill="url(#nf-sea)" />
           <WaveLines t={t} ys={[930, 990]} color="#3A5A7A" amp={3} speed={12} opacity={0.3} />
+          <Reflection t={t} x={880} y={920} color="#DDEBF4" n={8} w={60} opacity={0.35} />
         </g>
         {/* la nave: la poppa sale, si spezza in due, sprofonda */}
         {down < 1 && (
@@ -48,13 +50,13 @@ export const Naufragio: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <svg x="-200" y="-200" width="1480" height="1100" viewBox="-200 -200 1480 1100" overflow="hidden">
               <g transform={`translate(0 ${520 * down})`}>
                 {/* metà di poppa (a sinistra): si alza e poi si raddrizza dopo la rottura */}
-                <g transform={`rotate(${-38 * tilt + 20 * brk} 560 900)`}>
+                <g transform={`rotate(${38 * tilt - 20 * brk} 560 900)`}>
                   <svg x="40" y="300" width="520" height="700" viewBox="40 300 520 700" overflow="hidden">
                     <Ship x={560} y={900} s={1} t={t} lit={0.9 * lights} />
                   </svg>
                 </g>
                 {/* metà di prua (a destra): già sott'acqua, scende */}
-                <g transform={`rotate(${-38 * tilt + 12 * brk} 560 900) translate(${20 * brk} ${80 * brk})`}>
+                <g transform={`rotate(${38 * tilt + 12 * brk} 560 900) translate(${20 * brk} ${80 * brk})`}>
                   <svg x="560" y="300" width="600" height="700" viewBox="560 300 600 700" overflow="hidden">
                     <Ship x={560} y={900} s={1} t={t} lit={0.9 * lights} />
                   </svg>
@@ -74,6 +76,8 @@ export const Naufragio: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <g transform={`translate(540 1180) rotate(${roll * 0.3}) translate(-540 -1180)`}>
             <g transform={`translate(0 ${Math.sin(t * 1.5) * 6}) scale(1 ${1 - Math.abs(Math.sin(flip * Math.PI)) * 0.7})`} style={{ transformOrigin: '540px 1180px' }}>
               <Door x={540} y={1180} s={0.9} rot={-8} frost={frost} />
+              {/* il bordo basso della porta velato dall'acqua */}
+              <path d={`M300 ${1230 + Math.sin(t * 1.5) * 5} Q540 ${1270 + Math.sin(t * 1.2) * 6} 780 ${1210 + Math.sin(t * 1.5 + 1) * 5} V1330 H300 Z`} fill="#0A1628" opacity=".55" />
             </g>
           </g>
           {flip > 0 && flip < 1 && [0, 1, 2].map((i) => <circle key={i} cx={540} cy={1200} r={60 + 120 * flip + i * 40} fill="none" stroke="#CFE8F0" strokeWidth="4" opacity={(1 - flip) * 0.6} />)}

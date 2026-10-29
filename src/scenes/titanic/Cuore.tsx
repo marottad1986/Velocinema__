@@ -51,9 +51,9 @@ export const Cuore: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M-200 740 H560" stroke="#C8402A" strokeWidth="10" />
           {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${-160 + i * 90} 740 V690`} stroke="#E8E4DC" strokeWidth="6" />)}
           <path d="M-200 690 H560" stroke="#E8E4DC" strokeWidth="8" />
-          <path d="M120 690 L300 600 L420 612" stroke="#E8C030" strokeWidth="18" fill="none" />
-          <path d="M420 612 V680" stroke={K} strokeWidth="4" />
-          <Glow id="cu-crane" x={300} y={600} r={260} t={t} color="#FFF2C8" amp={0.06} rate={2} opacity={0.6} />
+          <path d="M60 690 L260 640 L420 646" stroke="#E8C030" strokeWidth="16" fill="none" />
+          <path d="M420 646 V690" stroke={K} strokeWidth="4" />
+          <Glow id="cu-crane" x={420} y={660} r={170} t={t} color="#FFF2C8" amp={0.06} rate={2} opacity={0.6} />
           <Reflection t={t} x={420} y={910} color="#FFF2C8" n={8} opacity={0.4} />
         </g>
         {/* il diamante che cade e affonda, con la scia di luce */}
@@ -64,7 +64,7 @@ export const Cuore: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               <Diamond x={0} y={0} s={0.55} t={t} />
             </g>
           )}
-          {fall > 0.25 && <path d={`M540 900 Q${560} ${900 + (dy - 200) / 2} ${540 + Math.sin(fall * 9) * 20 * fall} ${700 + dy}`} stroke={P.accento} strokeWidth="6" fill="none" opacity={0.5 * (1 - fall * 0.6)} />}
+          {fall > 0.25 && <path d={`M540 900 Q${560} ${900 + (dy - 200) / 2} ${540 + Math.sin(fall * 9) * 20 * fall} ${700 + dy}`} stroke={P.accento} strokeWidth="6" fill="none" opacity={0.5 * (1 - fall * 0.6) * (1 - Math.max(0, (fall - 0.85) / 0.15))} />}
           {fall > 0.2 && [0, 1, 2].map((i) => <circle key={i} cx={540} cy={890} r={20 + i * 30 + 60 * Math.min(1, (fall - 0.2) * 3)} fill="none" stroke="#CFE8F0" strokeWidth="4" opacity={Math.max(0, 0.7 - (fall - 0.2) * 2)} />)}
         </g>
         {/* la porta che galleggia, lontana */}

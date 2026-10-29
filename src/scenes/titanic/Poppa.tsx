@@ -43,23 +43,13 @@ export const Poppa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           })}
           <WaveLines t={t} ys={[900, 1000, 1120]} color="#5A7A9A" amp={5} opacity={0.3} />
         </g>
-        {/* asta della bandiera e lampione di bordo */}
-        <g transform={L(0.6)}>
-          <path d="M540 1180 V560" stroke={K} strokeWidth="12" />
-          <path d={`M540 580 q60 ${10 + Math.sin(t * 4) * 8} 120 0 q-4 40 0 70 q-60 ${-10 + Math.sin(t * 4 + 1) * 8} -120 0 Z`} fill="#C8402A" stroke={K} strokeWidth="4" />
-          <g transform="translate(860 980)">
-            <path d="M0 200 V0" stroke={K} strokeWidth="10" />
-            <path d="M-26 0 H26 L18 -50 H-18 Z" fill="#FFE8A8" stroke={K} strokeWidth="5" />
-            <Glow id="pp-lamp" x={0} y={-24} r={260} t={t} color="#FFD890" amp={0.06} rate={2} opacity={0.5 + 0.2 * back} />
-          </g>
-        </g>
         {/* ringhiera della poppa e lo scialle */}
         <g transform={L(0.85)}>
           <path d="M-200 1180 Q540 1130 1280 1180" stroke="#E8E0D0" strokeWidth="14" fill="none" />
           <path d="M-200 1250 Q540 1200 1280 1250" stroke="#B8B0A0" strokeWidth="8" fill="none" />
           {Array.from({ length: 16 }, (_, i) => <path key={i} d={`M${-160 + i * 92} ${1170 - Math.sin((i / 15) * Math.PI) * 30} V${1300 - Math.sin((i / 15) * Math.PI) * 30}`} stroke="#B8B0A0" strokeWidth="8" />)}
           {/* scialle: prima oltre la ringhiera, che sventola, poi di nuovo sul ponte */}
-          <g transform={`translate(${380 + 40 * back} ${1110 + 230 * back}) rotate(${-30 + 30 * back})`}>
+          <g transform={`translate(${380 + 40 * back} ${1110 + 120 * back}) rotate(${-30 + 30 * back})`}>
             <path d={`M-90 0 Q0 ${-20 + 16 * Math.sin(t * 5) * shawl} 90 0 L${70 + 20 * Math.sin(t * 4) * shawl} ${90 - 40 * back} Q0 ${110 - 40 * back} ${-70} ${90 - 40 * back} Z`} fill="#7A5A9A" stroke={K} strokeWidth="5" />
             <path d="M-60 10 Q0 0 60 10" stroke="#B89AD0" strokeWidth="4" fill="none" />
           </g>
@@ -68,6 +58,15 @@ export const Poppa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <g transform={L(1.15)}>
           <path d="M-200 1380 Q540 1340 1280 1380 V2200 H-200 Z" fill="#8A6A48" />
           {Array.from({ length: 10 }, (_, i) => <path key={i} d={`M-200 ${1420 + i * 70} H1280`} stroke="#6A4E34" strokeWidth="4" />)}
+          {/* asta della bandiera e lampione di bordo, piantati sul ponte */}
+          <path d="M150 1390 V640" stroke={K} strokeWidth="14" />
+          <rect x="128" y="1370" width="44" height="30" fill="#3A2A1E" stroke={K} strokeWidth="5" />
+          <path d={`M150 660 q60 ${10 + Math.sin(t * 4) * 8} 120 0 q-4 40 0 70 q-60 ${-10 + Math.sin(t * 4 + 1) * 8} -120 0 Z`} fill="#C8402A" stroke={K} strokeWidth="4" />
+          <g transform="translate(940 1000)">
+            <path d="M0 390 V0" stroke={K} strokeWidth="12" />
+            <path d="M-26 0 H26 L18 -50 H-18 Z" fill="#FFE8A8" stroke={K} strokeWidth="5" />
+            <Glow id="pp-lamp" x={0} y={-24} r={260} t={t} color="#FFD890" amp={0.06} rate={2} opacity={0.5 + 0.2 * back} />
+          </g>
           {card > 0 && (
             <g transform={`translate(720 ${1220 - 40 * card}) rotate(${-8 + 6 * card}) scale(${card})`}>
               <rect x="-150" y="-90" width="300" height="180" rx="10" fill="#F4EAD2" stroke="#C9A24A" strokeWidth="8" />

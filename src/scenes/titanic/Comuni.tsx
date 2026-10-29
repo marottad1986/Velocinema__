@@ -16,7 +16,7 @@ export const Ship: React.FC<{ x: number; y: number; s?: number; t: number; lit?:
   return (
     <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${flip ? -s : s} ${s})`} strokeLinejoin="round">
       {/* alberi e cavi */}
-      <path d="M-400 -150 V-330 M420 -150 V-330 M-400 -320 L-200 -150 M420 -320 L240 -150 M-400 -320 L420 -320" stroke={K} strokeWidth="3" fill="none" opacity=".8" />
+      <path d="M-400 -60 V-330 M420 -60 V-330 M-400 -320 L-200 -150 M420 -320 L240 -150" stroke="#3A3E48" strokeWidth="5" fill="none" />
       {/* fumaioli color camoscio con la cima nera, inclinati all'indietro */}
       {[-210, -70, 70, 210].map((fx, i) => (
         <g key={i} transform={`translate(${fx} -150) skewX(-8)`}>
@@ -80,6 +80,10 @@ export const Door: React.FC<{ x: number; y: number; s?: number; rot?: number; fr
     <rect x="-112" y="-220" width="224" height="190" rx="8" fill="none" stroke="#5A3A1E" strokeWidth="9" />
     <rect x="-112" y="10" width="224" height="210" rx="8" fill="none" stroke="#5A3A1E" strokeWidth="9" />
     <path d="M-70 -125 Q0 -175 70 -125 Q0 -75 -70 -125 Z M-70 115 Q0 65 70 115 Q0 165 -70 115 Z" fill="none" stroke="#6A4426" strokeWidth="6" />
-    <rect x="-150" y="-260" width="300" height="520" rx="10" fill="#E8F4FA" opacity={0.55 * frost} />
+    {/* cerniere e maniglia, poi la brina che cresce sui bordi e negli intagli */}
+    {[-180, 150].map((hy) => <rect key={hy} x="-162" y={hy} width="22" height="40" rx="4" fill="#C8A86A" stroke={K} strokeWidth="4" />)}
+    <circle cx="118" cy="0" r="14" fill="#C8A86A" stroke={K} strokeWidth="4" />
+    <rect x="-150" y="-260" width="300" height="520" rx="10" fill="none" stroke="#E8F4FA" strokeWidth={28 * frost} opacity={0.8 * frost} />
+    <path d="M-70 -125 Q0 -175 70 -125 Q0 -75 -70 -125 Z M-70 115 Q0 65 70 115 Q0 165 -70 115 Z" fill="none" stroke="#E8F4FA" strokeWidth={8 * frost} opacity={0.7 * frost} />
   </g>
 );

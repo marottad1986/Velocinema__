@@ -40,12 +40,16 @@ export const Rose: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* mensola con foto girata e vaso */}
         <g transform={L(0.5)}>
-          <rect x="60" y="700" width="420" height="20" fill="#6A4A30" stroke={K} strokeWidth="5" />
-          <g transform="translate(150 700)"><path d="M-50 0 Q-70 -80 -30 -120 H30 Q70 -80 50 0 Z" fill="#B8603A" stroke={K} strokeWidth="5" /><path d="M-40 -60 H40" stroke="#E8C8A0" strokeWidth="5" /></g>
-          <g transform="translate(330 700)"><rect x="-60" y="-130" width="120" height="130" fill="#4A3426" stroke={K} strokeWidth="6" /><path d="M-20 0 L-40 40 M20 0 L40 40" stroke={K} strokeWidth="5" /></g>
+          <rect x="-120" y="800" width="400" height="20" fill="#6A4A30" stroke={K} strokeWidth="5" />
+          <path d="M-60 820 L-20 860 M220 820 L180 860" stroke={K} strokeWidth="6" />
+          <g transform="translate(-10 800)"><path d="M-50 0 Q-70 -80 -30 -120 H30 Q70 -80 50 0 Z" fill="#B8603A" stroke={K} strokeWidth="5" /><path d="M-40 -60 H40" stroke="#E8C8A0" strokeWidth="5" /></g>
+          <g transform="translate(170 800)"><rect x="-60" y="-130" width="120" height="130" fill="#4A3426" stroke={K} strokeWidth="6" /><path d="M0 -20 L40 -90" stroke={K} strokeWidth="5" /></g>
         </g>
-        {/* il vecchio televisore con il disegno ritrovato */}
-        <g transform={L(0.7)}>
+        {/* il vecchio televisore con il disegno ritrovato, sul suo mobile */}
+        <g transform={L(1.0)}>
+          <path d="M-200 1230 H1280 V2200 H-200 Z" fill="#3A2A20" />
+          <rect x="200" y="1200" width="520" height="130" fill="#6A4A30" stroke={K} strokeWidth="7" />
+          <path d="M460 1200 V1330 M240 1265 H420 M500 1265 H680" stroke="#4A3220" strokeWidth="6" />
           <rect x="230" y="840" width="460" height="360" rx="30" fill="#5A4430" stroke={K} strokeWidth="9" />
           <rect x="260" y="870" width="320" height="280" rx="40" fill="url(#ro-screen)" stroke={K} strokeWidth="6" />
           <g transform="translate(420 1010)">
@@ -60,18 +64,18 @@ export const Rose: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* tavolino con il telefono e la tazza di tè (accento: il filo del telefono) */}
         <g transform={L(1.0)}>
-          <path d="M-200 1230 H1280 V2200 H-200 Z" fill="#3A2A20" />
-          <rect x="640" y="1180" width="420" height="40" fill="#7A5434" stroke={K} strokeWidth="7" />
-          <g transform={`translate(860 1180) rotate(${ring * 4})`}>
+          <rect x="740" y="1180" width="380" height="36" fill="#7A5434" stroke={K} strokeWidth="7" />
+          <path d="M780 1216 V1330 M1080 1216 V1330" stroke={K} strokeWidth="12" />
+          <g transform={`translate(940 1180) rotate(${ring * 4})`}>
             <path d="M-80 0 Q-80 -60 0 -60 Q80 -60 80 0 Z" fill="#1A1A1E" stroke={K} strokeWidth="6" />
             <circle cx="0" cy="-30" r="22" fill="#E8E0D0" stroke={K} strokeWidth="4" />
             <g transform={`translate(0 ${-70 - 80 * lift}) rotate(${-30 * lift})`}>
               <path d="M-80 0 Q-90 -24 -64 -26 H64 Q90 -24 80 0 Q60 10 40 0 H-40 Q-60 10 -80 0 Z" fill="#1A1A1E" stroke={K} strokeWidth="6" />
             </g>
-            <path d={`M70 -20 Q140 ${20 - 40 * lift} 100 ${-70 - 60 * lift}`} stroke={P.accento} strokeWidth="5" fill="none" />
+            <path d={`M70 -20 Q140 ${20 - 40 * lift} ${64 * Math.cos((-30 * lift * Math.PI) / 180)} ${-70 - 80 * lift + 64 * Math.sin((-30 * lift * Math.PI) / 180)}`} stroke={P.accento} strokeWidth="5" fill="none" />
             {ring !== 0 && [0, 1, 2].map((i) => <path key={i} d={`M${-110 - i * 20} ${-60 - i * 10} q-10 20 0 40`} stroke="#F4EEE2" strokeWidth="5" fill="none" opacity=".8" />)}
           </g>
-          <g transform="translate(720 1180)">
+          <g transform="translate(800 1180)">
             <path d="M-36 0 V-50 H36 V0 Q0 14 -36 0 Z" fill="#F4EEE2" stroke={K} strokeWidth="5" />
             <path d="M36 -40 Q60 -40 56 -20 Q52 -6 36 -10" stroke={K} strokeWidth="5" fill="none" />
             <Wisps t={t} x={0} y={-56} color="#F4EEE2" n={3} h={120 + 60 * warm} width={30} />

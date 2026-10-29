@@ -41,8 +41,13 @@ const Copertina_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
           <Iceberg x={900} y={1130} s={0.75} below />
         </g>
         <g transform={L(1.0)}>
-          <Glow id="tc-dia" x={540} y={1250} r={260} t={t} color="#4FB0E8" amp={0.1} rate={3} opacity={0.5} />
-          <Diamond x={540} y={1250} s={1.1} t={t} />
+          {/* lastrone di ghiaccio galleggiante in primo piano con il diamante appoggiato sopra */}
+          <path d="M-200 1330 Q100 1270 420 1300 Q700 1250 1000 1300 Q1180 1280 1280 1320 V2200 H-200 Z" fill="#DCEBF2" stroke="#08101C" strokeWidth="8" />
+          <path d="M-200 1380 Q300 1340 700 1370 Q1000 1350 1280 1390 V2200 H-200 Z" fill="#A9CCDC" opacity=".6" />
+          <path d="M-200 1560 H1280 V2200 H-200 Z" fill="#08101C" opacity=".55" />
+          <Glow id="tc-dia" x={540} y={1210} r={260} t={t} color="#4FB0E8" amp={0.1} rate={3} opacity={0.5} />
+          <ellipse cx="540" cy="1290" rx="110" ry="16" fill="#08101C" opacity=".25" />
+          <Diamond x={540} y={1210} s={1.1} t={t} chain={false} />
         </g>
         <g transform={L(1.6)}><NearMotes id="tc-near" t={t} color="#DDEFFF" n={6} opacity={0.08} /></g>
       </g>
@@ -65,8 +70,9 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
       <g transform={cam.transform}>
         <g transform={L(0.2)}>
           <rect x="-200" y="-200" width="1480" height="1400" fill="url(#tf-sky)" />
-          <circle cx="760" cy="1000" r="70" fill="#FFE8C8" />
-          <SunRays id="tf-rays" x={760} y={1000} t={t} color="#FFE8C8" n={9} length={1000} opacity={0.3} />
+          <circle cx="760" cy="935" r="70" fill="#FFE8C8" />
+          <Glow id="tf-sun" x={760} y={935} r={300} t={t} color="#FFE2C0" amp={0.05} rate={1} opacity={0.5} />
+          <SunRays id="tf-rays" x={760} y={935} t={t} color="#FFE8C8" n={9} length={1000} opacity={0.3} />
         </g>
         <g transform={L(0.4)}>
           <path d="M-200 1010 H1280 V2200 H-200 Z" fill="url(#tf-sea)" />

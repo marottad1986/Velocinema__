@@ -1,6 +1,6 @@
 import React from 'react';
 import { camera, eob, eo, seg } from '../../lib/anim';
-import { Gulls, NearMotes, Smoke, Clouds } from '../../lib/elements';
+import { Clouds, Glow, Gulls, NearMotes, Smoke } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
 import { K, Ship } from './Comuni';
@@ -30,25 +30,31 @@ export const Imbarco: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* la nave enorme, di fianco, che riempie l'orizzonte */}
         <g transform={L(0.4)}>
-          <Smoke id="im-sm" t={t} x={420} y={600} color="#8A8A8A" rise={300} wind={-260} r0={30} r1={120} opacity={0.6} />
-          <Smoke id="im-sm2" t={t + 1.5} x={600} y={600} color="#9A9A9A" rise={300} wind={-260} r0={30} r1={120} opacity={0.5} />
-          <Ship x={560} y={1010} s={1.25} t={t} lit={0.3} />
-          {/* bandierine dal fumaiolo all'albero */}
-          <path d="M60 720 Q300 800 560 740" stroke={K} strokeWidth="2" fill="none" />
-          {Array.from({ length: 12 }, (_, i) => {
-            const x = 60 + i * 42, y = 720 + Math.sin((i / 11) * Math.PI) * 50;
+          {/* fumo dalle cime del secondo e terzo fumaiolo, spinto a destra e in basso dal vento */}
+          <Smoke id="im-sm" t={t} x={480} y={662} color="#8A8A8A" rise={70} wind={320} r0={26} r1={100} opacity={0.55} />
+          <Smoke id="im-sm2" t={t + 1.5} x={698} y={662} color="#9A9A9A" rise={70} wind={320} r0={26} r1={100} opacity={0.45} />
+          <Ship x={600} y={1090} s={1.55} t={t} lit={0.3} />
+          {/* bandierine dalla cima dell'albero di poppa al primo fumaiolo */}
+          <path d="M-20 580 Q130 680 262 662" stroke={K} strokeWidth="2" fill="none" />
+          {Array.from({ length: 7 }, (_, i) => {
+            const u = (i + 0.5) / 7, x = -20 + u * 282, y = 580 + u * 82 + Math.sin(u * Math.PI) * 30;
             return <path key={i} d={`M${x} ${y} l14 ${26 + Math.sin(t * 6 + i) * 4} l14 -26 Z`} fill={['#C8402A', '#F4EEE2', '#2A5A9A', '#E8C030'][i % 4]} stroke={K} strokeWidth="2" />;
           })}
         </g>
-        {/* molo, gru e passerella */}
+        {/* molo, gru, passerella e un lampione */}
         <g transform={L(0.65)}>
-          <path d="M-200 1010 H1280 V2200 H-200 Z" fill="url(#im-dock)" />
-          <path d="M-200 1010 H1280" stroke={K} strokeWidth="8" />
-          <path d="M700 1010 L840 860" stroke="#5A4A3A" strokeWidth="18" />
-          <path d="M700 1010 L840 860" stroke="#8A7458" strokeWidth="8" />
-          <path d="M60 1010 V720 L240 680" stroke={K} strokeWidth="14" fill="none" />
-          <path d="M240 680 V800" stroke={K} strokeWidth="4" />
-          <rect x="220" y="800" width="40" height="30" fill="#6A4A30" stroke={K} strokeWidth="4" />
+          <path d="M-200 1090 H1280 V2200 H-200 Z" fill="url(#im-dock)" />
+          <path d="M-200 1090 H1280" stroke={K} strokeWidth="8" />
+          <path d="M760 1090 L880 960" stroke="#5A4A3A" strokeWidth="18" />
+          <path d="M760 1090 L880 960" stroke="#8A7458" strokeWidth="8" />
+          <path d="M60 1090 V790 L240 750" stroke={K} strokeWidth="14" fill="none" />
+          <path d="M240 750 V870" stroke={K} strokeWidth="4" />
+          <rect x="220" y="870" width="40" height="30" fill="#6A4A30" stroke={K} strokeWidth="4" />
+          <g transform="translate(1010 1090)">
+            <path d="M0 0 V-240" stroke={K} strokeWidth="10" />
+            <path d="M-22 -240 H22 L16 -284 H-16 Z" fill="#FFE8A8" stroke={K} strokeWidth="5" />
+            <Glow id="im-lamp" x={0} y={-262} r={200} t={t} color="#FFE2A0" amp={0.05} rate={2} opacity={0.5} />
+          </g>
         </g>
         {/* bauli di lusso (prima classe) e il tavolino delle carte (terza classe) */}
         <g transform={L(0.9)}>
@@ -81,7 +87,7 @@ export const Imbarco: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M220 1580 Q600 1700 1280 1620" stroke="#8A6A44" strokeWidth="22" fill="none" strokeDasharray="10 14" />
         </g>
         <g transform={L(1.6)}>
-          <Gulls t={t} n={4} y={560} h={220} color={K} size={0.9} period={11} />
+          <Gulls t={t} n={4} y={660} h={160} color={K} size={0.9} period={11} />
           <NearMotes id="im-near" t={t} color="#FFFFFF" n={4} opacity={0.06} />
         </g>
       </g>

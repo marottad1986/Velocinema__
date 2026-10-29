@@ -30,9 +30,9 @@ export const Festa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <g opacity={1 - party}>
           <g transform={L(0.25)}>
             <rect x="-200" y="-200" width="1480" height="2400" fill="url(#fe-gold)" />
-            <path d="M240 700 Q540 420 840 700 Z" fill="#CFE0E8" stroke="#C9A24A" strokeWidth="10" />
-            {Array.from({ length: 7 }, (_, i) => <path key={i} d={`M540 470 L${240 + i * 100} 700`} stroke="#C9A24A" strokeWidth="5" />)}
-            <Glow id="fe-dome" x={540} y={620} r={420} t={t} color="#F4EAD2" amp={0.03} rate={1} opacity={0.4} />
+            <path d="M240 770 Q540 570 840 770 Z" fill="#CFE0E8" stroke="#C9A24A" strokeWidth="10" />
+            {Array.from({ length: 7 }, (_, i) => <path key={i} d={`M540 620 L${240 + i * 100} 770`} stroke="#C9A24A" strokeWidth="5" />)}
+            <Glow id="fe-dome" x={540} y={700} r={420} t={t} color="#F4EAD2" amp={0.03} rate={1} opacity={0.4} />
           </g>
           <g transform={L(0.5)}>
             <path d="M300 1240 L420 860 H660 L780 1240 Z" fill="#6A4428" stroke={K} strokeWidth="8" />
@@ -65,18 +65,19 @@ export const Festa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           </g>
           <g transform={L(0.8)}>
             {/* tamburo, fisarmonica, violino */}
-            <g transform="translate(240 1110)"><ellipse cx="0" cy="0" rx="110" ry="36" fill="#E8D8B0" stroke={K} strokeWidth="6" /><path d="M-110 0 V90 Q0 130 110 90 V0" fill="#A8402A" stroke={K} strokeWidth="6" /><path d="M-100 30 L-40 110 L20 30 L80 110" stroke="#E8C030" strokeWidth="5" fill="none" /></g>
+            <rect x="-100" y="1200" width="1280" height="30" fill="#5A3A20" stroke={K} strokeWidth="6" />
+            <g transform="translate(240 1080)"><ellipse cx="0" cy="0" rx="110" ry="36" fill="#E8D8B0" stroke={K} strokeWidth="6" /><path d="M-110 0 V90 Q0 130 110 90 V0" fill="#A8402A" stroke={K} strokeWidth="6" /><path d="M-100 30 L-40 110 L20 30 L80 110" stroke="#E8C030" strokeWidth="5" fill="none" /></g>
             <g transform={`translate(560 1140) scale(${1 + 0.06 * Math.sin(t * 6) * free} 1)`}>
               <rect x="-50" y="-80" width="30" height="140" fill="#2A2A2A" stroke={K} strokeWidth="5" />
               {Array.from({ length: 6 }, (_, i) => <path key={i} d={`M${-20 + i * 14} -80 L${-20 + i * 14 + 7} 60`} stroke="#C8402A" strokeWidth="10" />)}
               <rect x="64" y="-80" width="30" height="140" fill="#2A2A2A" stroke={K} strokeWidth="5" />
             </g>
-            <g transform="translate(850 1090) rotate(-30)">
+            <g transform="translate(870 1140) rotate(-15)">
               <path d="M-40 -90 Q-60 -60 -40 -30 Q-64 0 -40 40 Q0 60 40 40 Q64 0 40 -30 Q60 -60 40 -90 Q0 -110 -40 -90 Z" fill="#B8642A" stroke={K} strokeWidth="5" />
               <rect x="-8" y="-210" width="16" height="130" fill="#3A2414" stroke={K} strokeWidth="4" />
               <path d="M-16 -20 Q0 -14 16 -20 M-16 10 Q0 16 16 10" stroke={K} strokeWidth="4" fill="none" />
             </g>
-            <path d="M720 1000 L1000 1200" stroke="#E8D8B0" strokeWidth="5" />
+            <path d="M760 1200 L1010 1000" stroke="#E8D8B0" strokeWidth="5" />
           </g>
           <g transform={L(1.1)}>
             <path d="M-200 1250 H1280 V2200 H-200 Z" fill="#4A2E1A" />
@@ -92,6 +93,13 @@ export const Festa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               );
             })}
           </g>
+        </g>
+        {/* tavolo d'osteria in primo piano, con le carte e una candela (solo nella festa) */}
+        <g transform={L(1.3)} opacity={party}>
+          <path d="M-200 1600 Q540 1570 1280 1600 V2200 H-200 Z" fill="#7A5434" stroke={K} strokeWidth="9" />
+          {Array.from({ length: 6 }, (_, i) => <path key={i} d={`M-200 ${1660 + i * 90} H1280`} stroke="#5A3A20" strokeWidth="5" />)}
+          {[[260, -14], [340, 8], [420, -4]].map(([x, a], i) => <rect key={i} x={x - 34} y={1620} width="68" height="96" rx="6" fill="#F4EEE2" stroke={K} strokeWidth="4" transform={`rotate(${a} ${x} 1668)`} />)}
+          <g transform="translate(820 1630)"><rect x="-16" y="-70" width="32" height="70" fill="#F4EAD2" stroke={K} strokeWidth="4" /><ellipse cx="0" cy="-82" rx="9" ry="16" fill="#FFE8A0" /><Glow id="fe-cand" x={0} y={-82} r={140} t={t} color="#FFD890" amp={0.15} rate={7} opacity={0.6} /></g>
         </g>
         <g transform={L(1.6)}>
           {free > 0 && <g opacity={free}><Confetti t={t} n={40} colors={['#E8C030', '#C8402A', P.accento, '#F4EEE2']} /></g>}

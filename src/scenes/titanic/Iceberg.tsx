@@ -44,7 +44,7 @@ export const Iceberg: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           </g>
           {/* l'iceberg che cresce dal buio */}
           <g transform={L(0.55)}>
-            <g transform={`translate(${700 - 120 * near} 920) scale(${0.4 + 0.55 * near}) translate(-700 -900)`}>
+            <g transform={`translate(${700 - 120 * near} 960) scale(${0.4 + 0.4 * near}) translate(-700 -900)`}>
               <Berg x={700} y={900} s={1.4} below />
               <Glow id="ib-berg" x={700} y={700} r={500} t={t} color="#BFE0F0" amp={0.04} rate={1} opacity={0.2} />
             </g>
@@ -54,8 +54,9 @@ export const Iceberg: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <path d="M-200 2200 L380 1120 L1280 1500 V2200 Z" fill="#7A5E40" stroke={K} strokeWidth="9" />
             <path d="M380 1120 L1280 1500" stroke="#F4EEE2" strokeWidth="12" />
             <path d="M380 1120 L-200 2200" stroke="#F4EEE2" strokeWidth="12" />
-            <g transform="translate(260 760)">
-              <path d="M0 600 V0" stroke={K} strokeWidth="16" />
+            <g transform="translate(470 780)">
+              <path d="M0 520 V0" stroke={K} strokeWidth="16" />
+              <rect x="-24" y="500" width="48" height="24" fill="#3A2A20" stroke={K} strokeWidth="5" />
               <rect x="-60" y="-10" width="120" height="70" rx="8" fill="#3A2A20" stroke={K} strokeWidth="6" />
               <g transform={`rotate(${t > hit - 1.5 ? Math.sin(t * 9) * 28 : 0} 0 -20)`}>
                 <path d="M-26 -20 Q-30 30 -40 46 H40 Q30 30 26 -20 Q0 -36 -26 -20 Z" fill="#D9B05A" stroke={K} strokeWidth="5" />
@@ -70,14 +71,17 @@ export const Iceberg: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               return p > 0 ? <path key={i} d={`M0 0 l${c.s} ${-c.s * 0.6} l${c.s * 0.7} ${c.s} Z`} fill="#E8F4FA" stroke={K} strokeWidth="2" transform={`translate(${c.x + p * 80} ${700 + p * c.v + p * p * 300}) rotate(${p * 200 + i * 30})`} opacity={1 - p * 0.3} /> : null;
             })}
             <g opacity={boats} transform={`translate(0 ${30 * (1 - boats)})`}>
-              {[180, 820].map((x, i) => (
+              {/* il ponte delle scialuppe in primo piano */}
+              <path d="M-200 1240 H1280" stroke="#F4EEE2" strokeWidth="10" />
+              <path d="M-200 1246 H1280 V1290 H-200 Z" fill="#5A4430" />
+              {[250, 830].map((x, i) => (
                 <g key={x}>
                   <path d={`M${x - 100} 1240 V1120 q0 -20 20 -20 M${x + 100} 1240 V1120 q0 -20 -20 -20`} stroke={K} strokeWidth="8" fill="none" />
                   <Lifeboat x={x} y={1170} s={0.9} />
                   <Glow id={`ib-b${i}`} x={x} y={1150} r={150} t={t} color={P.accento} amp={0.1} rate={3} opacity={0.35} />
                 </g>
               ))}
-              {[340, 500, 660].map((x) => <g key={x}><path d={`M${x - 50} 1240 V1150 M${x + 50} 1240 V1150`} stroke={K} strokeWidth="6" opacity=".6" /><path d={`M${x - 70} 1180 H${x + 70}`} stroke="#F4EEE2" strokeWidth="4" strokeDasharray="10 10" opacity=".6" /></g>)}
+              {[410, 540, 670].map((x) => <g key={x}><path d={`M${x - 50} 1240 V1150 M${x + 50} 1240 V1150`} stroke={K} strokeWidth="6" opacity=".6" /><path d={`M${x - 70} 1180 H${x + 70}`} stroke="#F4EEE2" strokeWidth="4" strokeDasharray="10 10" opacity=".6" /></g>)}
             </g>
           </g>
           <g transform={L(1.6)}>

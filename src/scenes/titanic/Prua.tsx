@@ -16,7 +16,8 @@ export const Prua: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const L = cam.layer;
   const draw = eio(seg(t, cues[1] - 0.2, cues[1] + 0.6)); // dalla prua all'album
   const sketch = eo(seg(t, cues[1] + 0.4, cues[2])); // il disegno prende forma
-  const close = eo(seg(t, cues[2] + 0.6, cues[2] + 1.6)); // la cassaforte si chiude
+  const safe = eo(seg(t, cues[2], cues[2] + 0.5)); // compare la cassaforte aperta
+  const close = eo(seg(t, cues[2] + 0.6, cues[2] + 1.6)); // e si chiude sul disegno
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
@@ -44,8 +45,8 @@ export const Prua: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <path d="M-120 2200 L540 1060 L1200 2200" stroke="#6A4E34" strokeWidth="6" fill="none" />
             <path d="M-60 1560 L540 1000 L1140 1560" stroke="#F4EEE2" strokeWidth="12" fill="none" />
             <path d="M-60 1620 L540 1080 L1140 1620" stroke="#D8D0C0" strokeWidth="6" fill="none" />
-            <path d="M540 1000 L540 300" stroke={K} strokeWidth="4" />
-            <path d={`M540 300 L${180 + Math.sin(t * 3) * 10} 1100`} stroke={K} strokeWidth="3" />
+            <path d="M540 1000 L540 600" stroke={K} strokeWidth="5" />
+            <path d={`M540 600 Q${380 + Math.sin(t * 3) * 10} 940 240 1280`} stroke={K} strokeWidth="3" fill="none" />
             {/* nastri al vento sulla ringhiera */}
             {[0, 1].map((i) => <path key={i} d={`M${300 + i * 480} ${1220 - i * 0} q${-60 + i * 120} ${-20 + 14 * Math.sin(t * 7 + i)} ${-120 + i * 240} ${-10 + 20 * Math.sin(t * 6 + i)}`} stroke="#F4EEE2" strokeWidth="8" fill="none" strokeLinecap="round" />)}
           </g>
@@ -66,18 +67,18 @@ export const Prua: React.FC<SceneProps> = ({ t, dur, cues }) => {
               <path d="M165 40 L120 -10 Q108 -40 135 -50 Q155 -55 165 -30 Q175 -55 195 -50 Q222 -40 210 -10 Z" fill="none" stroke="#2A5A9A" strokeWidth="5" strokeDasharray="300" strokeDashoffset={300 * (1 - sketch)} />
               <path d="M-280 -180 H-50 M-280 -140 H-90" stroke="#C8B898" strokeWidth="3" />
             </g>
-            {[0, 1, 2].map((i) => <rect key={i} x={760 + i * 34} y={1260} width="18" height="150" rx="4" fill={['#3A3A3A', '#8A5A2A', '#C8402A'][i]} stroke={K} strokeWidth="3" transform={`rotate(${-20 + i * 8} ${770 + i * 34} 1330)`} />)}
-            <Diamond x={240} y={1300} s={0.7} t={t} />
-            <Glow id="pr-dia" x={240} y={1300} r={160} t={t} color="#4FB0E8" amp={0.12} rate={3} opacity={0.4} />
+            {[0, 1, 2].map((i) => <rect key={i} x={760 + i * 34} y={1040} width="18" height="130" rx="4" fill={['#3A3A3A', '#8A5A2A', '#C8402A'][i]} stroke={K} strokeWidth="3" transform={`rotate(${-20 + i * 8} ${770 + i * 34} 1105)`} />)}
+            <Diamond x={240} y={1180} s={0.7} t={t} />
+            <Glow id="pr-dia" x={240} y={1180} r={160} t={t} color="#4FB0E8" amp={0.12} rate={3} opacity={0.4} />
           </g>
           {/* la cassaforte di Cal che si chiude sul foglio arrotolato */}
-          {close > 0 && (
-            <g transform={L(1.1)} opacity={Math.min(1, close * 2)}>
+          {safe > 0 && (
+            <g transform={L(1.1)} opacity={safe}>
               <g transform="translate(860 920)">
                 <rect x="-130" y="-150" width="260" height="300" rx="10" fill="#3A3E40" stroke={K} strokeWidth="8" />
                 <rect x="-104" y="-124" width="208" height="248" fill="#0A0E10" />
                 <rect x="-70" y="10" width="140" height="40" rx="18" fill="#E8DCC0" stroke={K} strokeWidth="4" />
-                <g transform={`translate(-130 -150) scale(${1 - close} 1)`}><rect x="0" y="0" width="260" height="300" rx="10" fill="#4A4E50" stroke={K} strokeWidth="7" /></g>
+                <g transform={`translate(-130 -150) scale(${Math.max(0.02, close)} 1)`}><rect x="0" y="0" width="260" height="300" rx="10" fill="#4A4E50" stroke={K} strokeWidth="7" /></g>
                 <circle cx="70" cy="0" r="20" fill="#2A2E30" stroke="#C9A24A" strokeWidth="5" opacity={close} />
               </g>
             </g>

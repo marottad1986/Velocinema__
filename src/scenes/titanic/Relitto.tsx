@@ -3,7 +3,7 @@ import { camera, eo, mod, rng, seg } from '../../lib/anim';
 import { Beam, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { K, SAPPHIRE } from './Comuni';
+import { Diamond, K, SAPPHIRE } from './Comuni';
 
 // Il tesoro nel relitto: buio profondo; la prua del relitto arrugginita, coperta di concrezioni, illuminata dai fari di un
 // piccolo sottomarino che entra da destra; neve marina che scende; su «trova solo il disegno» una cassaforte aperta sul
@@ -20,7 +20,8 @@ export const Relitto: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const sub = eo(seg(t, 0, cues[1])); // il sottomarino arriva
   const safe = eo(seg(t, cues[2], cues[2] + 0.8)); // la cassaforte si apre
   const paper = eo(seg(t, cues[2] + 0.5, cues[2] + 1.8)); // il disegno esce e si illumina
-  const sweep = Math.sin(t * 0.6) * 12;
+  const sweep = Math.sin(t * 0.6) * 8;
+  const dream = eo(seg(t, cues[1], cues[1] + 0.8)) * (1 - seg(t, cues[2] - 0.3, cues[2] + 0.3)); // «il Cuore dell'Oceano»: il diamante cercato, come un miraggio
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
@@ -50,6 +51,13 @@ export const Relitto: React.FC<SceneProps> = ({ t, dur, cues }) => {
           })}
           {[0, 1, 2, 3, 4].map((i) => <circle key={i} cx={300 + i * 95} cy={1105 - i * 50} r="12" fill="#1A120E" stroke="#6A4A30" strokeWidth="4" />)}
         </g>
+        {/* il diamante cercato, che appare come un miraggio nella luce dei fari */}
+        {dream > 0 && (
+          <g transform={L(0.55)} opacity={0.75 * dream}>
+            <Glow id="rl-dream" x={600} y={860} r={260} t={t} color={SAPPHIRE} amp={0.12} rate={2} opacity={0.6} />
+            <Diamond x={600} y={860} s={0.9} t={t} />
+          </g>
+        )}
         {/* fondale e cassaforte */}
         <g transform={L(0.7)}>
           <path d="M-200 1220 Q300 1180 600 1230 Q900 1270 1280 1220 V2200 H-200 Z" fill="#1A2228" />
@@ -68,7 +76,8 @@ export const Relitto: React.FC<SceneProps> = ({ t, dur, cues }) => {
               <g transform={`translate(${-10 + 30 * paper} ${-60 - 90 * paper}) rotate(${-20 + 10 * paper})`}>
                 <Glow id="rl-paper" x={0} y={0} r={220} t={t} color="#CFE8FF" amp={0.1} rate={3} opacity={0.6 * paper} />
                 <rect x="-70" y="-22" width="140" height="44" rx="20" fill="#E8DCC0" stroke={K} strokeWidth="5" />
-                <path d="M-50 0 H50" stroke={SAPPHIRE} strokeWidth="6" opacity={paper} />
+                <Diamond x={0} y={0} s={0.22} t={t} chain={false} glow={paper} />
+                <path d="M-56 -10 H-24 M24 10 H56" stroke={SAPPHIRE} strokeWidth="3" opacity={0.6 * paper} />
               </g>
             )}
           </g>
@@ -84,8 +93,8 @@ export const Relitto: React.FC<SceneProps> = ({ t, dur, cues }) => {
         </g>
         {/* il sottomarino con i fari */}
         <g transform={`${L(0.9)} translate(${1250 - 450 * sub} ${700 + 30 * Math.sin(t * 0.8)})`}>
-          <Beam id="rl-b1" x={-90} y={20} t={t} length={900} spread={220} color="#DDEFFF" angle={160 + sweep} opacity={0.35} />
-          <Beam id="rl-b2" x={-90} y={50} t={t} length={700} spread={160} color="#DDEFFF" angle={200 + sweep} opacity={0.25} />
+          <Beam id="rl-b1" x={-90} y={20} t={t} length={900} spread={220} color="#DDEFFF" angle={135 + sweep} opacity={0.4} />
+          <Beam id="rl-b2" x={-90} y={50} t={t} length={700} spread={160} color="#DDEFFF" angle={158 + sweep} opacity={0.28} />
           <ellipse cx="0" cy="30" rx="120" ry="70" fill="#E8C030" stroke={K} strokeWidth="7" />
           <circle cx="-60" cy="20" r="26" fill="#9ED8F0" stroke={K} strokeWidth="6" />
           <rect x="-20" y="-50" width="60" height="34" rx="8" fill="#D8A820" stroke={K} strokeWidth="6" />
