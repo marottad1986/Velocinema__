@@ -64,8 +64,8 @@ export const Custode: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         {/* boschi d'autunno e tornanti */}
         <g transform={L(0.7)}>
           <path d="M-200 1000 Q540 960 1280 1010 V2200 H-200 Z" fill="url(#cu-hill)" />
-          <path d="M120 1240 L900 1185 L260 1130 L620 1075" fill="none" stroke="#2A2620" strokeWidth="34" strokeLinejoin="round" />
-          <path d="M120 1240 L900 1185 L260 1130 L620 1075" fill="none" stroke="#E8D8A0" strokeWidth="3" strokeDasharray="16 18" />
+          <path d="M120 1240 L900 1185 L260 1130 L620 1075 L560 1010" fill="none" stroke="#2A2620" strokeWidth="34" strokeLinejoin="round" />
+          <path d="M120 1240 L900 1185 L260 1130 L620 1075 L560 1010" fill="none" stroke="#E8D8A0" strokeWidth="3" strokeDasharray="16 18" />
           {TREES.map((tr, i) => <Pine key={i} x={tr.x} y={tr.y} s={tr.s * 0.6} c={tr.c > 0.6 ? '#C8782A' : tr.c > 0.3 ? '#A8522A' : '#2E4A30'} />)}
         </g>
         {/* l'auto gialla (accento sui fari) */}

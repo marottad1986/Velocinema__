@@ -28,12 +28,12 @@ export const Bambine: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <g transform={L(0.35)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="#141A1E" />
           <rect x="450" y="720" width="180" height="300" fill="#6A7A80" />
-          <ellipse cx="540" cy="1018" rx="110" ry="14" fill="#DCEAF4" opacity={0.25 * shoes} />
+          <ellipse cx="540" cy="1018" rx="90" ry="12" fill="#DCEAF4" opacity={0.25 * shoes} />
           <rect x="450" y="720" width="180" height="300" fill="#DCEAF4" opacity={0.35 * ghost} />
           <Glow id="bb-ghost" x={540} y={900} r={300} t={t} color="#DCEAF4" amp={0.12} rate={4} opacity={0.5 * ghost} />
           {/* due paia di scarpine affiancate in fondo al corridoio */}
-          <g opacity={shoes} transform="translate(540 1016) scale(2.2)">
-            {[-40, 30].map((x) => (
+          <g opacity={shoes} transform="translate(540 1017) scale(1.8)">
+            {[-24, 24].map((x) => (
               <g key={x}>
                 <path d={`M${x - 22} 0 Q${x - 22} -14 ${x - 8} -14 H${x - 2} V0 Z M${x + 2} 0 V-14 H${x + 8} Q${x + 22} -14 ${x + 22} 0 Z`} fill="#5A6A9A" stroke={K} strokeWidth="2" />
                 <path d={`M${x - 16} -14 H${x + 16}`} stroke="#E8EEF4" strokeWidth="3" />
