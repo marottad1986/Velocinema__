@@ -8,8 +8,8 @@ import type { SceneProps } from '../../types';
 // Piani: cielo del crepuscolo con stelle (0,2) · nubi e monti lontani con la cupola (0,3–0,35)
 //        · città nella valle con le luci (0,45) · crinale con alberi (0,6) · panchina, lampione e scarpe (0,75)
 //        · erba e cespugli in primo piano (1,25) · lucciole e particelle (1,4–1,7)
-// Eventi: il lampione si accende con «Al tramonto, su una collina sopra la città» (cue 2 ≈ 4,41 s);
-//         le scarpe battono il tip tap con «E intanto ballano il tip tap» (cue 4 ≈ 8,84 s).
+// Eventi: il lampione si accende con «E al tramonto, su una collina» (cue 2);
+//         le scarpe battono il tip tap con «Ma intanto ballano il tip tap insieme» (cue 4): un colpo ogni 0,25 s, a tempo (120 bpm).
 
 const K = '#1B1530';
 const r = rng(1980);
@@ -30,6 +30,9 @@ const Shoe: React.FC<{ flip?: boolean }> = ({ flip }) => (
   </g>
 );
 
+/** Sassi lungo il sentiero in primo piano: [x, y, larghezza]. */
+const ROCKS = [[420, 1560, 60], [600, 1600, 44], [700, 1530, 30]];
+
 export const Collina: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const cam = camera(t, dur, 540, 1100);
   const L = cam.layer;
@@ -43,10 +46,10 @@ export const Collina: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const lamp = t < LAMP ? 0 : t < LAMP + 0.45 ? (Math.sin((t - LAMP) * 38) > 0 ? 1 : 0.15) : 1;
   // tip tap: le scarpe saltellano a turno
   const tapping = seg(t, TAP - 0.05, TAP + 0.1);
-  const hop = (ph: number) => tapping * Math.abs(Math.sin((t - TAP) * Math.PI * 3.2 + ph));
+  const hop = (ph: number) => tapping * Math.abs(Math.sin((t - TAP) * Math.PI * 2 + ph));
   const hopL = hop(0), hopR = hop(Math.PI / 2);
   const impact = (ph: number) => {
-    const p = mod((t - TAP) * 3.2 + ph / Math.PI, 1);
+    const p = mod((t - TAP) * 2 + ph / Math.PI, 1);
     return t > TAP ? Math.max(0, 1 - p * 3.5) : 0;
   };
 
@@ -174,6 +177,8 @@ export const Collina: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <path d="M-200 1480 Q200 1420 560 1470 Q900 1520 1280 1450 V2000 H-200 Z" fill="#17122C" stroke={K} strokeWidth="9" strokeLinejoin="round" />
           <path d="M-200 1486 Q200 1426 560 1476" fill="none" stroke="#5A4A8A" strokeWidth="5" opacity=".7" />
           {GRASS.map((g, i) => {
+            // niente fili sotto i sassi (da lontano sembravano tentacoli)
+            if (ROCKS.some(([x, y, w]) => Math.abs(g.x - x) < w * 1.3 && g.y > y - w)) return null;
             const sway = Math.sin(t * 1.5 + g.ph) * 8;
             return <path key={i} d={`M${g.x} ${g.y} q${4 + sway / 2} ${-g.h / 2} ${sway} ${-g.h}`} stroke={i % 3 ? '#3E3470' : '#6A5AA0'} strokeWidth="6" strokeLinecap="round" fill="none" />;
           })}
@@ -183,7 +188,7 @@ export const Collina: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <path d="M1280 1640 Q1180 1480 1040 1540 Q940 1500 880 1600 Q820 1700 860 2000 H1280 Z" fill="#30265A" stroke={K} strokeWidth="9" strokeLinejoin="round" />
           <path d="M1200 1540 Q1120 1490 1040 1548 Q960 1510 900 1600" fill="none" stroke="#B07AA8" strokeWidth="6" strokeLinecap="round" opacity=".8" />
           {/* sassi lungo il sentiero */}
-          {[[420, 1560, 60], [600, 1600, 44], [700, 1530, 30]].map(([x, y, w], i) => (
+          {ROCKS.map(([x, y, w], i) => (
             <g key={i}>
               <ellipse cx={x} cy={y} rx={w} ry={w * 0.5} fill="#3E3270" stroke={K} strokeWidth="7" />
               <path d={`M${x - w * 0.6} ${y - w * 0.2} Q${x} ${y - w * 0.5} ${x + w * 0.5} ${y - w * 0.25}`} fill="none" stroke="#8C7AC0" strokeWidth="4" />

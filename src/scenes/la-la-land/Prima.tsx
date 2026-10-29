@@ -4,7 +4,7 @@ import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Beam, Dust, Glow, NearMotes, flashAt } from '../../lib/elements';
 import type { SceneProps } from '../../types';
 
-// La prima: piccolo teatro con sipario rosso, sgabello vuoto sotto il faro, poltrone vuote.
+// Lo spettacolo di Mia: piccolo teatro con sipario rosso, sgabello vuoto sotto il faro, poltrone vuote.
 // Piani: parete e mantovana (0,25) · fondale e palco (0,45) · quinte, sgabello, faro (0,6)
 //        · prime file di poltrone (0,85–1,0) · poltrone in primo piano e drappi ai bordi (1,25) · pulviscolo (1,7)
 // Eventi: cues[1] il faro si accende · cues[2] il posto riservato resta vuoto · cues[3] il faro cala e le quinte si chiudono.

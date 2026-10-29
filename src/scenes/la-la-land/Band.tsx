@@ -4,10 +4,11 @@ import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Beam, Confetti, Dust, flashAt, Fog, Glow, NearMotes, Smoke } from '../../lib/elements';
 import type { SceneProps } from '../../types';
 
-// La band: palco da concerto con fasci di luce colorati, tastiere, pubblico anonimo in controluce.
-// Nessun musicista: solo strumenti, luci e una fila di sagome indistinte (teste e spalle) senza volti.
+// La band: palco da concerto con fasci di luce colorati e tastiere, visto da sotto il palco.
+// Nessuna persona (né musicisti né pubblico): solo strumenti, luci e attrezzatura del tour.
 // Piani: fondale con parete di LED (0,25) · americana con i fari (0,4) · palco e strumenti (0,65) ·
-//        pubblico in controluce in primo piano (1,2) · coriandoli e particelle vicine (1,5–1,8)
+//        transenna e monitor da palco (1,2) · flight case del tour, cavi e scaletta (1,35) ·
+//        coriandoli e particelle vicine (1,5–1,8)
 
 const K = '#1B1530';
 const STAGE_Y = 1170;
@@ -20,15 +21,9 @@ const LAMPS = [
   { x: 780, c: '#4EC9E8', a: 85, ph: 4.1 },
   { x: 960, c: '#9B7FE0', a: 100, ph: 5.0 },
 ];
-// pubblico: due file di sagome arrotondate (teste e spalle), nessun volto
-const CROWD = [0, 1].map((row) =>
-  Array.from({ length: row === 0 ? 9 : 7 }, (_, i) => ({
-    x: (row === 0 ? -60 : -120) + i * (row === 0 ? 150 : 210) + r() * 40,
-    s: (row === 0 ? 1 : 1.4) * (0.9 + r() * 0.2),
-    ph: r() * 6,
-    rate: 4 + r() * 2,
-  })),
-);
+// città del tour sugli adesivi dei flight case
+const TOUR = ['TOKYO', 'LONDON', 'NEW YORK', 'PARIS', 'BERLIN', 'CHICAGO'];
+const STICK = ['#FF5EA8', '#4EC9E8', '#F2C14E', '#9B7FE0', '#F6F1E9', '#FF8A5C'];
 
 export const Band: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const cam = camera(t, dur, 540, 1040);
@@ -38,16 +33,6 @@ export const Band: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const flash = flashAt(t, [cues[1], cues[3]], [0.8, 1]);
   const conf = seg(t, cues[3], cues[3] + 0.4);
   const beat = Math.max(0, Math.sin(t * 2 * Math.PI * 2)) ** 3; // 120 bpm
-
-  const head = (x: number, y: number, s: number, rim: string) => (
-    <g transform={`translate(${x} ${y}) scale(${s})`}>
-      <path d="M-110 220 V120 Q-110 60 -50 50 H50 Q110 60 110 120 V220 Z" fill="#0C0918" stroke={K} strokeWidth="6" />
-      <ellipse cx="0" cy="0" rx="44" ry="52" fill="#0C0918" stroke={K} strokeWidth="6" />
-      {/* bordo di luce in controluce */}
-      <path d="M-40 -36 Q0 -60 40 -36" fill="none" stroke={rim} strokeWidth="5" strokeLinecap="round" opacity={0.3 + 0.5 * on} />
-      <path d="M-100 100 Q-90 62 -50 56 M50 56 Q90 62 100 100" fill="none" stroke={rim} strokeWidth="5" strokeLinecap="round" opacity={0.25 + 0.45 * on} />
-    </g>
-  );
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
@@ -60,6 +45,7 @@ export const Band: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <Lin id="bd-truss" x2={1} y2={0} stops={[[0, '#4A4668'], [0.5, '#9A96B8'], [1, '#4A4668']]} />
         <Lin id="bd-key" x2={1} y2={0} stops={[[0, '#A87A20'], [0.4, P.accento], [0.7, '#FFE6A0'], [1, '#A87A20']]} />
         <Lin id="bd-flash" stops={[[0, '#F6F1FF', 0], [0.12, '#F6F1FF', 1], [1, '#F6F1FF', 1]]} />
+        <Lin id="bd-floor" stops={[[0, '#140F2A'], [0.4, '#0E0A20'], [1, '#07051A']]} />
         <Lin id="bd-drum" x2={1} y2={0} stops={[[0, '#3A2A5E'], [0.5, '#6B4FA0'], [1, '#2A1E46']]} />
       </defs>
 
@@ -119,7 +105,7 @@ export const Band: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <ellipse cx="440" cy="858" rx="60" ry="10" fill="#C8B070" stroke={K} strokeWidth="4" transform={`rotate(${-8 + beat * 4} 440 858)`} />
           <ellipse cx="640" cy="848" rx="66" ry="10" fill="#C8B070" stroke={K} strokeWidth="4" transform={`rotate(${8 - beat * 4} 640 848)`} />
           <rect x="460" y="900" width="60" height="40" rx="6" fill="url(#bd-drum)" stroke={K} strokeWidth="5" />
-          <rect x="566" y="896" width="60" height="44" rx="6" fill="url(#bd-drum)" stroke={K} strokeWidth="5" />
+          <rect x="566" y="872" width="56" height="40" rx="6" fill="url(#bd-drum)" stroke={K} strokeWidth="5" />
 
           {/* casse ai lati */}
           {[60, 900].map((x, k) => (
@@ -175,21 +161,63 @@ export const Band: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         {/* lampo bianco delle luci stroboscopiche */}
         <rect x="-200" y="500" width="1480" height="1740" fill="url(#bd-flash)" opacity={flash * 0.22} />
 
-        {/* PIANO 3 — pubblico anonimo in controluce che esce dai bordi (1,2) */}
+        {/* PIANO 3 — transenna sotto il palco e monitor da palco (1,2) */}
         <g transform={L(1.2)}>
-          <rect x="-200" y="1580" width="1480" height="500" fill="#0C0918" />
-          {CROWD[0].map((h, i) => (
-            <g key={i} transform={`translate(0 ${-Math.abs(Math.sin(t * h.rate * 0.5 + h.ph)) * 10 * on})`}>
-              {head(h.x, 1400, h.s, LAMPS[i % LAMPS.length].c)}
+          <rect x="-200" y="1300" width="1480" height="800" fill="url(#bd-floor)" />
+          {/* monitor da palco inclinati sul bordo */}
+          {[250, 830].map((x, k) => (
+            <g key={k}>
+              <path d={`M${x - 120} 1310 L${x - 100} 1240 H${x + 100} L${x + 120} 1310 Z`} fill="url(#bd-amp)" stroke={K} strokeWidth="8" strokeLinejoin="round" />
+              <path d={`M${x - 84} 1252 H${x + 84} L${x + 96} 1298 H${x - 96} Z`} fill="#0E0A18" stroke="#4A4668" strokeWidth="4" />
+              <circle cx={x + 96} cy="1262" r="5" fill="#7CF07C" opacity={0.4 + 0.6 * beat * on} />
             </g>
+          ))}
+          {/* transenna di metallo che esce dai bordi */}
+          <path d="M-200 1530 H1280" stroke={K} strokeWidth="22" strokeLinecap="round" />
+          <path d="M-200 1530 H1280" stroke="url(#bd-truss)" strokeWidth="12" />
+          <path d="M-200 1524 H1280" stroke="#E8E4FF" strokeWidth="3" opacity={0.25 + 0.4 * on} />
+          <path d="M-200 1700 H1280" stroke={K} strokeWidth="16" />
+          <path d="M-200 1700 H1280" stroke="#4A4668" strokeWidth="8" />
+          {Array.from({ length: 30 }, (_, i) => (
+            <path key={i} d={`M${-190 + i * 50} 1536 V1760`} stroke={K} strokeWidth="10" />
+          ))}
+          {Array.from({ length: 30 }, (_, i) => (
+            <path key={i} d={`M${-190 + i * 50} 1540 V1756`} stroke="#5A5678" strokeWidth="4" />
+          ))}
+          {/* riflessi colorati delle luci sul metallo */}
+          {LAMPS.map((l, i) => (
+            <ellipse key={i} cx={l.x + Math.sin((t + l.ph) * (0.9 + (i % 3) * 0.25)) * 160} cy="1528" rx="70" ry="5" fill={l.c} opacity={0.55 * on} />
           ))}
         </g>
+
+        {/* PIANO 3b — flight case del tour, cavi e scaletta in primo piano (1,35) */}
         <g transform={L(1.35)}>
-          {CROWD[1].map((h, i) => (
-            <g key={i} transform={`translate(0 ${-Math.abs(Math.sin(t * h.rate * 0.5 + h.ph + 1)) * 14 * on})`}>
-              {head(h.x, 1640, h.s, LAMPS[(i + 2) % LAMPS.length].c)}
+          {[{ x: -120, w: 420, y: 1640, rot: -3 }, { x: 760, w: 460, y: 1620, rot: 2 }].map((c, k) => (
+            <g key={k} transform={`rotate(${c.rot} ${c.x + c.w / 2} ${c.y + 160})`}>
+              <rect x={c.x} y={c.y} width={c.w} height="420" rx="14" fill="#1E1A2E" stroke={K} strokeWidth="9" />
+              <path d={`M${c.x} ${c.y + 20} H${c.x + c.w} M${c.x} ${c.y + 400} H${c.x + c.w}`} stroke="#8A86A8" strokeWidth="6" opacity=".7" />
+              {[c.x + 14, c.x + c.w - 14].map((cx, j) => <rect key={j} x={cx - 14} y={c.y - 6} width="28" height="40" rx="5" fill="#9A96B8" stroke={K} strokeWidth="4" />)}
+              {TOUR.slice(k * 3, k * 3 + 3).map((name, j) => {
+                const sx = c.x + 40 + j * (c.w - 80) / 3, sy = c.y + 60 + (j % 2) * 70;
+                return (
+                  <g key={j} transform={`rotate(${(j - 1) * 7} ${sx + 55} ${sy + 25})`}>
+                    <rect x={sx} y={sy} width="120" height="52" rx="8" fill={STICK[(k * 3 + j) % STICK.length]} stroke={K} strokeWidth="4" />
+                    <text x={sx + 60} y={sy + 35} textAnchor="middle" fontFamily="Figtree" fontWeight={900} fontSize={name.length > 6 ? 19 : 24} fill={K}>{name}</text>
+                  </g>
+                );
+              })}
             </g>
           ))}
+          {/* scaletta incollata col nastro */}
+          <g transform="rotate(-6 540 1820)">
+            <rect x="440" y="1720" width="200" height="260" fill="#F6F1E9" stroke={K} strokeWidth="5" />
+            <rect x="500" y="1708" width="80" height="26" fill="#E8D8A0" opacity=".85" />
+            <text x="540" y="1770" textAnchor="middle" fontFamily="Figtree" fontWeight={900} fontSize="26" fill={K}>SET LIST</text>
+            {[0, 1, 2, 3, 4].map((j) => <path key={j} d={`M466 ${1800 + j * 30} h${j % 2 ? 120 : 148}`} stroke={K} strokeWidth="6" opacity=".55" strokeLinecap="round" />)}
+          </g>
+          {/* cavi che serpeggiano a terra */}
+          <path d="M-200 1890 C100 1840 260 1930 420 1880 S760 1850 1280 1900" fill="none" stroke={K} strokeWidth="16" strokeLinecap="round" />
+          <path d="M-200 1890 C100 1840 260 1930 420 1880 S760 1850 1280 1900" fill="none" stroke="#3A3456" strokeWidth="7" strokeLinecap="round" />
         </g>
 
         {/* PIANO 4 — coriandoli, pulviscolo nei fasci, particelle vicine (1,5–1,8) */}

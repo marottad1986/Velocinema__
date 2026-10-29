@@ -18,7 +18,7 @@ import { loadFilm, timeline } from './film.mjs';
 export const strumenti = ['pianoforte_coda', 'contrabbasso_pizz', 'violini', 'viole', 'celli', 'contrabbasso', 'organo',
   'tromba', 'corno', 'trombone', 'trombone_stacc', 'celli_spicc', 'viole_spicc', 'timpani', 'rullante', 'cassa', 'charleston', 'piatto_crash', 'gong', 'piatto_sospeso'];
 export const effetti = ['tuono_classico', 'tuono_secco', 'tuono_forte', 'tuono_breve', 'telo', 'scatti', 'disturbo', 'pioggia_dura', 'porta_cigolio',
-  'colpi_legno', 'passaggio', 'radio_sintonia'];
+  'colpi_legno', 'passaggio', 'radio_sintonia', 'ronzio_neon'];
 /** Studio con una bella coda (le sovrapposizioni in sala). */
 export const sala = { rt60: 2.4, brillo: 7000, predelay: 0.025, wet: 0.5 };
 
@@ -330,6 +330,13 @@ export default (mix, T) => {
   channelClick(mix, C('radio', 3), 50);
   for (let i = 0; i < 8; i++) pop(mix, C('radio', 3) + 0.4 + i * 0.22, 30, { pitch: 12 + (i % 2) * 3, pan: 0.5 });
   clip(mix, 'telo', { t: C('radio', 3) + 0.3, da: 12.85, durata: 0.9, gain: 0.2, fadeOut: 0.3, rev: 0.2 });
+  /** Insegna al neon che si accende (Neon in elements.tsx: 0,5 s di sfarfallio dal suo onAt): scatto registrato e ronzio
+   * a regime (presa da 2,6 s nel file), che si spegne prima di fine. */
+  const neon = (t, fine, gain = 0.1) => {
+    clip(mix, 'ronzio_neon', { t, da: 0, durata: 0.55, gain: gain * 1.2, fadeOut: 0.05, rev: 0.2 });
+    clip(mix, 'ronzio_neon', { t: t + 0.55, da: 2.6, durata: Math.min(3.5, fine - t - 0.6), gain, fadeIn: 0.05, fadeOut: 1.2, rev: 0.2 });
+  };
+  neon(C('radio', 3), T['seconda-vita'], 0.18); // la scritta ON AIR si accende (Radio.tsx, onAt = cue 3)
   crescendo(mix, C('radio', 4) + 1.2, 1.2, { gain: 0.3 });
   // seconda vita: la radio si accende, la cassetta parte, la città si illumina
   channelClick(mix, C('seconda-vita', 1), 46);

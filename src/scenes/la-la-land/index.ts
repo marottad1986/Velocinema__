@@ -21,7 +21,7 @@ export const LA_LA_LAND_SCENES: Record<string, SceneDef> = {
   osservatorio: { Component: Osservatorio, title: { top: 392, size: 108 } },
   sogno: { Component: Sogno, title: { top: 392, size: 108 } },
   band: { Component: Band, title: { top: 392, size: 108 } },
-  prima: { Component: Prima, title: { top: 392, size: 108 } },
+  prima: { Component: Prima, title: { top: 392, size: 92 } },
   audizione: { Component: Audizione, title: { top: 392, size: 108, dark: true } },
   epilogo: { Component: Epilogo, title: { top: 392, size: 92 } },
 };

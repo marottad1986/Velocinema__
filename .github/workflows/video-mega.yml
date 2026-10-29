@@ -62,7 +62,7 @@ jobs:
           elif [ -z "$PRIMA" ] || [ "$PRIMA" = 0000000000000000000000000000000000000000 ] || ! git cat-file -e "$PRIMA" 2>/dev/null; then
             film=$(node scripts/cambiati.mjs --tutti)
           else
-            film=$(git diff --name-only "$PRIMA" "$GITHUB_SHA" | node scripts/cambiati.mjs)
+            film=$(git diff --name-only "$PRIMA" "$GITHUB_SHA" | node scripts/cambiati.mjs "$PRIMA" "$GITHUB_SHA")
           fi
           echo "Film da rigenerare: $film"
           echo "film=$film" >> "$GITHUB_OUTPUT"

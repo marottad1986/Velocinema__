@@ -3,14 +3,15 @@
 // per gli scintillii. Giri di accordi e linee melodiche inventati qui (nessun tema del film): la melodia è generata
 // a passi per grado dalla scala di ogni accordo, con seme fisso.
 // Effetti registrati (archivio CC0, scripts/audio/effetti.mjs) agganciati a inizi di capitolo o di sottotitolo
-// (tempi dei sottotitoli in proporzione ai caratteri).
-import { drum, neonHum, rng } from './synth.mjs';
-import { suona, archi } from './campioni.mjs';
+// (tempi dei sottotitoli calcolati come subtitleTimes in ChapterOverlay). Restano sintetiche solo le spazzole.
+import { drum, rng } from './synth.mjs';
+import { suona, archi, colpo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
-export const strumenti = ['pianoforte', 'contrabbasso_pizz', 'tromba_sordina', 'glockenspiel', 'violini', 'viole', 'celli'];
-export const effetti = ['clacson', 'campanello_negozio', 'martelletto', 'tacchi', 'scatti', 'voci_caffe', 'voci_sala'];
+export const strumenti = ['pianoforte', 'contrabbasso_pizz', 'tromba_sordina', 'glockenspiel', 'violini', 'viole', 'celli', 'cassa', 'piatto_crash'];
+export const effetti = ['clacson', 'campanello_negozio', 'martelletto', 'tacchi', 'scatti', 'voci_caffe', 'voci_sala',
+  'giornale', 'porta_sbatte', 'macchina_scrivere', 'pioggia_dura', 'telo', 'ronzio_neon'];
 /** Club piccolo: coda corta e calda. */
 export const sala = { rt60: 1.6, brillo: 6500, predelay: 0.018, wet: 0.45 };
 
@@ -20,6 +21,7 @@ export const sala = { rt60: 1.6, brillo: 6500, predelay: 0.018, wet: 0.45 };
  * · pad → archi tenuti.
  */
 const note = (mix, inst, f, { t, dur, vel = 64, pan = 0, rev = 0.25, gain = 1, seed = 1 }) => {
+  if (t < 0) return; // la griglia parte un secondo prima della copertina
   const m = Math.round(69 + 12 * Math.log2(f / 440));
   if (inst === 'upright') suona(mix, 'contrabbasso_pizz', m, { t, dur, vel: vel * 1.5, pan, rev, gain: gain * 1.6, release: 0.12, seed });
   else if (inst === 'epiano') suona(mix, 'pianoforte', m, { t, dur, vel: vel * 1.3, pan, rev, gain: gain * 3, release: 0.35, seed });
@@ -65,23 +67,26 @@ const fold = (m, lo) => {
 export default (mix, T) => {
   const { segments } = timeline(loadFilm('la-la-land'));
   const seg = Object.fromEntries(segments.map((s) => [s.id, s]));
-  /** Secondo d'inizio della frase n-esima del capitolo (tempi in proporzione ai caratteri). */
+  /** Secondo d'inizio della frase n-esima del capitolo (come subtitleTimes in ChapterOverlay). */
   const cue = (id, n) => {
     const s = seg[id];
-    const tot = s.testo.reduce((a, x) => a + x.length, 0);
-    let acc = 0;
-    for (let k = 0; k < n; k++) acc += s.testo[k].length;
-    return s.start + (s.dur * acc) / tot;
+    const w = s.testo.map((l) => l.length + 6);
+    const tot = w.reduce((a, b) => a + b, 0);
+    let acc = 0.15;
+    for (let k = 0; k < n; k++) acc += (w[k] / tot) * (s.dur - 0.35);
+    return s.start + acc;
   };
 
   // lev: 0 teso e basso, 1 caldo con spazzole leggere, 2 brillante. mel: strumento della melodia. passo: 'meta' | 'pieno'.
   // sw = quota dello swing (0,5 dritto, 0,667 terzinato). dens = probabilità di una battuta con melodia.
   // Un solo tempo per tutto il film (120 bpm), come una band che suona dall'inizio alla fine: le scene intime vanno
   // a metà passo (accordi, basso e spazzole a 60), le altre a passo pieno. I cambi di sezione cadono sulla battuta
-  // più vicina all'inizio del capitolo, sulla stessa griglia.
+  // più vicina all'inizio del capitolo, sulla stessa griglia: la griglia è sfasata di 1 s (i capitoli iniziano quasi
+  // tutti su secondi dispari) e a pari distanza il cambio arriva prima del taglio, mai dopo.
   const GRID = (4 * 60) / BPM;
-  const snap = (t) => Math.round(t / GRID) * GRID;
-  const S = (id, from, to, o) => ({ id, from: snap(from), to: snap(to), ...o });
+  const OFF = 1;
+  const snap = (t) => OFF + Math.ceil((t - OFF) / GRID - 0.5) * GRID;
+  const S = (id, from, to, o) => ({ id, from: snap(from), to: to === T.finale ? to : snap(to), ...o });
   const sections = [
     S('copertina', 0, T.ingorgo, { passo: 'pieno', prog: P_F, lev: 1, sw: 0.62, mel: 'vibes', dens: 1, mv: 52 }),
     S('ingorgo', T.ingorgo, T.caffe, { passo: 'pieno', prog: P_F, lev: 2, sw: 0.64, mel: 'vibes', dens: 0.9, mv: 46 }),
@@ -93,15 +98,17 @@ export default (mix, T) => {
     S('sogno', T.sogno, T.band, { passo: 'pieno', prog: P_G, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.7, mv: 44 }),
     S('band', T.band, T.prima, { passo: 'pieno', prog: P_A6, lev: 2, sw: 0.62, mel: 'vibes', dens: 1, mv: 48, kick: true }),
     S('prima', T.prima, T.audizione, { passo: 'meta', prog: P_AM, lev: 0, sw: 0.58, mel: 'epiano', dens: 0.35, mv: 36, pad: true }),
-    S('audizione-a', T.audizione, T.audizione + 4, { passo: 'meta', prog: P_AM, lev: 0, sw: 0.58, mel: 'epiano', dens: 0.3, mv: 36, pad: true }),
-    S('audizione-b', T.audizione + 4, T.epilogo, { passo: 'pieno', prog: P_UP, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.8, mv: 46 }),
+    S('audizione-a', T.audizione, cue('audizione', 3), { passo: 'meta', prog: P_AM, lev: 0, sw: 0.58, mel: 'epiano', dens: 0.3, mv: 36, pad: true }),
+    S('audizione-b', cue('audizione', 3), T.epilogo, { passo: 'pieno', prog: P_UP, lev: 1, sw: 0.62, mel: 'epiano', dens: 0.8, mv: 46 }),
     S('epilogo', T.epilogo, T.finale, { passo: 'meta', prog: P_EP, lev: 1, sw: 0.6, mel: 'both', dens: 0.85, mv: 46, pad: true, soft: true }),
   ];
 
   // il corpo della musica resta più basso degli effetti: la normalizzazione al picco lo tiene discreto sotto la voce
   const BODY = 0.62;
   const bnote = (m, inst, n, o) => note(m, inst, n, { ...o, gain: (o.gain ?? 1) * BODY });
-  const bdrum = (m, kind, t, vel, seed) => drum(m, kind, t, vel * BODY ** 0.6, seed);
+  const bdrum = (m, kind, t, vel, seed) => { if (t >= 0) drum(m, kind, t, vel * BODY ** 0.6, seed); };
+  const cassa = (t, vel = 100, gain = 0.45, seed = 1) => colpo(mix, 'cassa', 'v3', { t, vel, gain: gain * BODY, rev: 0.15, seed });
+  const crash = (t, gain = 0.3) => colpo(mix, 'piatto_crash', 'mf', { t, vel: 100, gain: gain * BODY, pan: 0.3, rev: 0.35, dur: 2.5, release: 0.8 });
 
   sections.forEach((sec, si) => {
     const beat = (60 / BPM) * (sec.passo === 'meta' ? 2 : 1);
@@ -139,15 +146,15 @@ export default (mix, T) => {
         if (left < b * beat + 0.2) continue;
         voice.forEach((m, j) => bnote(mix, 'epiano', mtof(m), { t: pos(t, b) + j * 0.007, dur: beat * (sec.lev === 0 ? 3.4 : 1.2), vel: v * vlev, pan: -0.2 + j * 0.1, rev: 0.3, gain: 0.36 }));
       }
-      if (sec.pad && left > bar * 0.7) {
-        [root + 12, root + 12 + Qd.v[1], root + 24 + Qd.v[0] - 12].forEach((m, j) => bnote(mix, 'pad', mtof(fold(m, 48)), { t, dur: bar, vel: sec.lev === 0 ? 34 : 30, rev: 0.6, pan: (j - 1) * 0.35, gain: 0.35, seed: 5 + j }));
+      if (sec.pad && left > beat) {
+        [root + 12, root + 12 + Qd.v[1], root + 24 + Qd.v[0] - 12].forEach((m, j) => bnote(mix, 'pad', mtof(fold(m, 48)), { t, dur: Math.min(bar, left + 0.5), vel: sec.lev === 0 ? 44 : 30, rev: 0.6, pan: (j - 1) * 0.35, gain: sec.lev === 0 ? 0.6 : 0.35, seed: 5 + j }));
       }
 
       // ---- spazzole
       if (sec.lev >= 1) {
         [0, 1, 1.5, 2, 3, 3.5].forEach((b, j) => bdrum(mix, 'brushtap', pos(t, b), sec.lev === 2 ? 36 : 28 + (j % 2) * 4, 3 + k * 7 + j));
         [1, 3].forEach((b) => bdrum(mix, 'swish', pos(t, b), sec.lev === 2 ? 40 : 32, 5 + k));
-        if (sec.kick) [0, 2].forEach((b) => bdrum(mix, 'softkick', pos(t, b), 34));
+        if (sec.kick) [0, 2].forEach((b) => cassa(pos(t, b), 100, 0.45, k * 2 + b));
       }
 
       // ---- melodia: passi per grado sulla scala dell'accordo, ritmo scelto da quattro figure
@@ -183,30 +190,54 @@ export default (mix, T) => {
   const F = T.finale;
   [51, 55, 58, 62, 67].forEach((m, j) => note(mix, 'epiano', mtof(m), { t: F + j * 0.05, dur: 3, vel: 46, pan: -0.25 + j * 0.12, rev: 0.45, gain: 0.5 }));
   note(mix, 'upright', mtof(39), { t: F, dur: 2.5, vel: 56, gain: 0.65, rev: 0.1 });
-  [79, 82, 86, 91].forEach((m, j) => note(mix, 'vibes', mtof(m + 12), { t: F + 0.5 + j * 0.28, dur: 3, vel: 40 + j * 3, pan: 0.2, rev: 0.55, gain: 0.5 }));
+  [79, 82, 86, 91].forEach((m, j) => note(mix, 'vibes', mtof(m + 12), { t: F + 0.5 + j * 0.25, dur: 3, vel: 40 + j * 3, pan: 0.2, rev: 0.55, gain: 0.5 }));
   [51, 58, 62].forEach((m, j) => note(mix, 'pad', mtof(m), { t: F, dur: 2.2, vel: 38, rev: 0.6, pan: (j - 1) * 0.3, gain: 0.4, seed: 70 + j }));
 
   // ---- effetti sonori
+  const BEAT = 60 / BPM;
   // copertina: scintillio di glockenspiel sull'attacco
-  [88, 91, 95].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: 0.15 + j * 0.12, dur: 2, vel: 34, pan: -0.2, rev: 0.6, gain: 0.45 }));
-  // ingorgo: clacson a «Lui le suona il clacson» (frase 4) e un secondo più breve a «Primo incontro» (frase 5)
-  clip(mix, 'clacson', { t: cue('ingorgo', 4), da: 0.25, durata: 1.2, gain: 0.45, fadeOut: 0.2, rev: 0.25 });
-  clip(mix, 'clacson', { t: cue('ingorgo', 4) + 1.5, da: 0.25, durata: 0.45, gain: 0.3, fadeOut: 0.1, rev: 0.25, pan: 0.15 });
-  // caffè: voci del locale, campanello del bancone (frase 2) e timbro «NO» quando il timbro batte (frase 3, Caffe.tsx)
+  [88, 91, 95].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: 0.15 + j * BEAT / 4, dur: 2, vel: 34, pan: -0.2, rev: 0.6, gain: 0.45 }));
+  // ingorgo: due clacson lontani con le onde a +1 e +2,5 s (Ingorgo.tsx), poi il clacson a «litigano a colpi di
+  // clacson» (frase 4, tre colpi come le onde) e la risposta dell'auto lontana 0,85 s dopo
+  [[1, -0.5], [2.5, 0.5]].forEach(([d, pan]) => clip(mix, 'clacson', { t: T.ingorgo + d, da: 0.25, durata: 0.25, gain: 0.12, lp: 2500, pan, fadeOut: 0.05, rev: 0.3 }));
+  clip(mix, 'clacson', { t: cue('ingorgo', 4), da: 0.25, durata: 0.7, gain: 0.28, fadeOut: 0.12, rev: 0.25 });
+  clip(mix, 'clacson', { t: cue('ingorgo', 4) + 0.85, da: 0.25, durata: 0.45, gain: 0.2, fadeOut: 0.1, rev: 0.25, pan: 0.15, lp: 3500 });
+  // caffè: voci del locale, copione che cade sulla pila (frase 1), campanello del bancone (frase 2), timbro «NO» (frase 3)
   clip(mix, 'voci_caffe', { t: T.caffe, da: 2, durata: T.piano - T.caffe, gain: 0.08, fadeIn: 1, fadeOut: 1.5, largo: 4, rev: 0.15 });
-  clip(mix, 'campanello_negozio', { t: cue('caffe', 2), da: 8.75, durata: 2.5, gain: 0.35, fadeOut: 1, pan: 0.3, rev: 0.3 });
-  clip(mix, 'martelletto', { t: cue('caffe', 3) - 0.01, da: 2.24, durata: 0.5, gain: 0.35, fadeOut: 0.2, rev: 0.25 });
-  // collina: quattro colpetti di tacco sulle assi a «E intanto ballano il tip tap»
-  [[0, 5.1], [0.14, 11.27], [0.28, 22.36], [0.5, 16.63]].forEach(([d, da], j) =>
-    clip(mix, 'tacchi', { t: cue('collina', 4) + d - 0.01, da, durata: 0.2, gain: 0.3 + (j === 3 ? 0.1 : 0), pan: -0.15 + j * 0.1, rev: 0.25 }));
-  // jazz: voci del club e accordo di campane all'ingresso
+  clip(mix, 'giornale', { t: cue('caffe', 1) - 0.05, da: 0.93, durata: 0.35, gain: 0.2, fadeOut: 0.1, rev: 0.2 });
+  clip(mix, 'campanello_negozio', { t: cue('caffe', 2), da: 8.97, durata: 2.3, gain: 0.22, fadeOut: 1, pan: 0.3, rev: 0.3 });
+  clip(mix, 'martelletto', { t: cue('caffe', 3) - 0.01, da: 2.24, durata: 0.28, gain: 0.35, fadeOut: 0.06, rev: 0.25 });
+  // piano: il jazz esplode (frase 3) con una scaletta di pianoforte; il faro si spegne (frase 4); la porta in fondo
+  // si apre e si richiude (frase 6, Piano.tsx)
+  [63, 65, 67, 70, 72, 74, 75, 79].forEach((m, j) => note(mix, 'epiano', mtof(m), { t: cue('piano', 3) + j * BEAT / 4, dur: 0.4, vel: 46 + j * 2, pan: 0.1, rev: 0.35, gain: 0.5 * BODY }));
+  clip(mix, 'scatti', { t: cue('piano', 4) - 0.02, da: 0.5, durata: 0.35, gain: 0.15, rate: 0.7, fadeOut: 0.1, rev: 0.4 });
+  clip(mix, 'porta_sbatte', { t: cue('piano', 6) - 0.35, da: 1.2, durata: 0.9, gain: 0.15, lp: 3000, fadeOut: 0.2, rev: 0.35 });
+  clip(mix, 'porta_sbatte', { t: cue('piano', 6) + 1.28, da: 2.98, durata: 0.5, gain: 0.08, lp: 3000, fadeOut: 0.15, rev: 0.35 });
+  // collina: il tip tap a «ma intanto ballano il tip tap insieme» (frase 4): un colpo ogni ottavo (0,25 s) fino alla
+  // fine del capitolo, come le scarpe in Collina.tsx, alternando le quattro prese e con l'accento sui tempi
+  const TAKES = [5.1, 11.27, 22.36, 16.63];
+  for (let j = 0, tt = cue('collina', 4); tt < T.jazz - 0.2; j++, tt += BEAT / 2)
+    clip(mix, 'tacchi', { t: tt - 0.01, da: TAKES[j % 4], durata: 0.2, gain: j % 2 ? 0.2 : 0.3, pan: j % 2 ? 0.15 : -0.15, rev: 0.25 });
+  // jazz: voci del club, accordo di campane quando l'insegna si accende (+0,4 s, Jazz.tsx) e scatto del faro (frase 1)
   clip(mix, 'voci_sala', { t: T.jazz, da: 3, durata: T.osservatorio - T.jazz, gain: 0.07, fadeIn: 1, fadeOut: 1.5, largo: 5, rev: 0.2 });
-  [77, 84, 89].forEach((m, j) => note(mix, 'vibes', mtof(m + 12), { t: T.jazz + 0.1 + j * 0.08, dur: 1.6, vel: 38, pan: 0.2, rev: 0.5, gain: 0.45 }));
-  // osservatorio: scintillio nel planetario («Nel planetario, tra le stelle») e stella cadente al bacio
-  [91, 95, 98, 100, 103, 98, 107].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: cue('osservatorio', 2) + j * 0.11, dur: 2.4, vel: 36 + (j % 3) * 3, pan: -0.4 + j * 0.13, rev: 0.7, gain: 0.45 }));
-  [108, 105, 102, 98, 93, 88].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: cue('osservatorio', 4) + j * 0.09, dur: 2.2, vel: 34 - j, pan: 0.5 - j * 0.15, rev: 0.7, gain: 0.45 }));
-  // prima: lo scatto del faro che si accende sullo sgabello vuoto (frase 1, Prima.tsx)
-  clip(mix, 'scatti', { t: cue('prima', 1) - 0.02, da: 0.5, durata: 0.7, gain: 0.25, rate: 0.7, fadeOut: 0.2, rev: 0.5 });
-  // epilogo: l'insegna SEB'S si accende alla frase 2 (Epilogo.tsx): scatto, sfarfallio, ronzio
-  neonHum(mix, cue('epilogo', 2), 4.5, { vel: 34 });
+  [77, 84, 89].forEach((m, j) => note(mix, 'vibes', mtof(m + 12), { t: T.jazz + 0.4 + j * BEAT / 8, dur: 1.6, vel: 38, pan: 0.2, rev: 0.5, gain: 0.45 }));
+  clip(mix, 'scatti', { t: cue('jazz', 1) - 0.02, da: 0.5, durata: 0.3, gain: 0.1, rate: 0.7, fadeOut: 0.1, rev: 0.4 });
+  // osservatorio: scintillio nel planetario (frase 2) e stella cadente al bacio (frase 4)
+  [91, 95, 98, 100, 103, 98, 107].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: cue('osservatorio', 2) + j * BEAT / 4, dur: 2.4, vel: 36 + (j % 3) * 3, pan: -0.4 + j * 0.13, rev: 0.7, gain: 0.45 }));
+  [108, 105, 102, 98, 93, 88].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: cue('osservatorio', 4) + j * BEAT / 8, dur: 2.2, vel: 34 - j, pan: 0.5 - j * 0.15, rev: 0.7, gain: 0.45 }));
+  // sogno: la macchina da scrivere batte il copione (frase 1, 3,2 s come in Sogno.tsx)
+  clip(mix, 'macchina_scrivere', { t: cue('sogno', 1), da: 1.5, durata: 3.2, gain: 0.1, fadeOut: 0.3, rev: 0.2 });
+  // band: lampi delle luci (frase 1) e coriandoli (frase 3) con piatto e cassa
+  [1, 3].forEach((n) => { crash(cue('band', n)); cassa(cue('band', n), 100, 0.55, 40 + n); });
+  // prima: scatto del faro sullo sgabello vuoto (frase 1) e sipario che si chiude (frase 3, Prima.tsx)
+  clip(mix, 'scatti', { t: cue('prima', 1) - 0.02, da: 0.5, durata: 0.35, gain: 0.1, rate: 0.7, fadeOut: 0.1, rev: 0.5 });
+  clip(mix, 'telo', { t: cue('prima', 3) + 0.2, da: 12.83, durata: 0.8, gain: 0.12, lp: 2500, fadeOut: 0.3, rev: 0.4 });
+  // audizione: la cartolina di Parigi si posa (frase 4)
+  clip(mix, 'giornale', { t: cue('audizione', 4) + 1.2, da: 0.93, durata: 0.3, gain: 0.15, fadeOut: 0.1, rev: 0.25 });
+  // epilogo: pioggia per tutto il capitolo; l'insegna SEB'S si accende (frase 2): scatto e ronzio del neon;
+  // stella cadente (frase 4) con una discesa di glockenspiel
+  clip(mix, 'pioggia_dura', { t: T.epilogo, da: 2, durata: T.finale - T.epilogo + 1, gain: 0.05, lp: 4000, largo: 6, fadeIn: 1, fadeOut: 1.5 });
+  clip(mix, 'ronzio_neon', { t: cue('epilogo', 2), da: 0, durata: 0.55, gain: 0.12, fadeOut: 0.05, rev: 0.2 });
+  clip(mix, 'ronzio_neon', { t: cue('epilogo', 2) + 0.55, da: 2.6, durata: 4.5, gain: 0.1, fadeIn: 0.05, fadeOut: 1.5, rev: 0.2 });
+  [105, 102, 98, 93].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: cue('epilogo', 4) + 0.2 + j * BEAT / 8, dur: 2, vel: 30 - j, pan: 0.4 - j * 0.15, rev: 0.7, gain: 0.4 }));
 };
