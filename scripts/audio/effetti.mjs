@@ -93,7 +93,6 @@ export const CATALOGO = {
   sirena_nebbia: ['SSE_Library_HORNS', 'AIR POWERED/HORNAir_Fog horn with echo_CS_USC.wav', -18],
   macchina_scrivere: ['Red_Library_Communications', 'R20-10-Fast Typing on Manual Typewriter.wav', -18.6],
   giornale: ['Red_Library_Foley_Props_1', 'R15-04-Newspaper Being Opened.wav', -18],
-  ronzio_neon: ['Red_Library_Sci-Fi', 'R21-41-Electric Light Hum.wav', -15],
   risacca: ['SSE_Library_WATER', 'SURF/WATRSurf_Surf; medium distance; loopable_CS_USC.wav', -9],
 };
 
