@@ -10,10 +10,10 @@ import { suona, colpo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
-export const strumenti = ['organo', 'organo_pedale', 'celli', 'viole', 'violini', 'contrabbasso', 'celli_trem', 'violini_trem', 'contrabbasso_pizz',
+export const strumenti = ['organo', 'organo_pedale', 'celli_trem', 'violini_trem', 'contrabbasso_pizz',
   'pianoforte_coda', 'glockenspiel', 'timpani', 'gong', 'gong_graffio', 'piatto_sospeso', 'grancassa_rullo'];
 export const effetti = ['vento_artico', 'vento_invernale', 'macchina_scrivere', 'porta_cigolio', 'legno_cigolio', 'porta_sbatte', 'legno_cade',
-  'scintille', 'serratura', 'tintinnio', 'radio_sintonia', 'disturbo', 'metallo_cade', 'colpi_legno', 'pagine'];
+  'scintille', 'serratura', 'tintinnio', 'disturbo', 'metallo_cade', 'colpi_legno', 'pagine'];
 /** Grande salone vuoto: coda lunga, alte smorzate. */
 export const sala = { rt60: 3.2, brillo: 5000, predelay: 0.035, wet: 0.55 };
 
@@ -69,7 +69,7 @@ export default (mix, T) => {
     const step = BEAT * (half ? 4 : 2);
     for (let t = from; t < to - 0.3; t += step) {
       suona(mix, 'contrabbasso_pizz', 26, { t, dur: BEAT, vel, pan: -0.1, rev: 0.35, gain, release: 0.4 });
-      suona(mix, 'contrabbasso_pizz', 26, { t: t + BEAT * 0.4, dur: BEAT, vel: vel - 16, pan: -0.1, rev: 0.35, gain: gain * 0.8, release: 0.4 });
+      suona(mix, 'contrabbasso_pizz', 26, { t: t + BEAT / 3, dur: BEAT, vel: vel - 16, pan: -0.1, rev: 0.35, gain: gain * 0.8, release: 0.4 });
       if (timp) suona(mix, 'timpani', 38, { t, dur: 1.4, vel: vel + 10, pan: 0.15, rev: 0.5, gain: 0.9, release: 0.6, seed: Math.round(t) });
     }
   };
@@ -86,7 +86,7 @@ export default (mix, T) => {
   wind('vento_invernale', 0, T.custode + 0.6, 0.12);
   suona(mix, 'organo_pedale', 38, { t: 0.3, dur: 3.6, vel: 50, gain: 0.4, attack: 0.8, release: 1.2, rev: 0.5 });
   [50, 53, 57].forEach((m, j) => suona(mix, 'organo', m, { t: 0.5 + j * 0.3, dur: 3.2 - j * 0.3, vel: 44, pan: (j - 1) * 0.3, gain: 0.25, attack: 0.6, release: 1.2, rev: 0.55 }));
-  clip(mix, 'macchina_scrivere', { t: 1.6, da: 0.4, durata: 1.3, gain: 0.22, fadeOut: 0.3, rev: 0.3, pan: 0.15 });
+  clip(mix, 'macchina_scrivere', { t: 1.1, da: 0.4, durata: 1.3, gain: 0.22, fadeOut: 0.3, rev: 0.3, pan: 0.15 });
   scrape(2.2, 0.18);
 
   // ---- custode: l'auto sale fra le montagne; motivo a metà passo su organo calmo; buio su «uccise la famiglia»
@@ -99,19 +99,19 @@ export default (mix, T) => {
   // ---- dono: luccicanza, campanelli freddi nello specchio, il motivo un'ottava sopra
   organ(B(T.dono), B(T.stanza), { vel: 40, gain: 0.26, dark: true, k0: 1 });
   motif(B(T.dono), B(T.stanza), { half: true, vel: 50, oct: 12, gain: 0.45 });
-  [86, 89, 93, 98].forEach((m, j) => suona(mix, 'glockenspiel', m, { t: cue('dono', 1) + j * 0.18, dur: 2, vel: 52, pan: -0.3 + j * 0.2, rev: 0.7, gain: 0.16, release: 1.5 }));
+  [86, 89, 93, 98].forEach((m, j) => suona(mix, 'glockenspiel', m, { t: cue('dono', 1) + j * BEAT / 5, dur: 2, vel: 52, pan: -0.3 + j * 0.2, rev: 0.7, gain: 0.16, release: 1.5 }));
   roll(cue('dono', 2) - 1.2, 0.2);
   trem(cue('dono', 2), T.stanza - cue('dono', 2), [62, 63], { vel: 44, gain: 0.22 });
 
   // ---- stanza: corridoio, il battito comincia; il divieto della 237 con colpo d'archi e serratura
   organ(B(T.stanza), B(T.neve), { vel: 40, gain: 0.26, dark: true, k0: 2 });
   pulse(B(T.stanza), B(T.neve), { half: true, vel: 58 });
-  clip(mix, 'legno_cigolio', { t: T.stanza + 0.5, da: 2.85, durata: 1.0, gain: 0.25, fadeOut: 0.3, rev: 0.4, pan: -0.2 });
+  clip(mix, 'legno_cigolio', { t: T.stanza + 0.5, da: 2.85, durata: 1.0, gain: 0.15, fadeOut: 0.3, rev: 0.4, pan: -0.2 });
   clip(mix, 'serratura', { t: cue('stanza', 2), da: 2.45, durata: 0.5, gain: 0.35, pan: 0.2, rev: 0.3 });
   trem(cue('stanza', 2), T.neve - cue('stanza', 2), [50, 51, 62, 63], { vel: 56, gain: 0.32 });
 
   // ---- neve: la tormenta, i fili che si spezzano, la radio, il faro del mezzo per la neve
-  wind('vento_invernale', T.neve - 0.5, T.bambine - T.neve + 0.5, 0.11, 20);
+  wind('vento_invernale', T.neve - 0.5, T.bambine - T.neve + 0.5, 0.075, 20);
   organ(B(T.neve), B(T.bambine), { vel: 44, gain: 0.3 });
   motif(B(T.neve), B(T.bambine), { half: true, vel: 56 });
   clip(mix, 'metallo_cade', { t: cue('neve', 1) + 0.6, da: 0.66, durata: 0.28, gain: 0.3, fadeOut: 0.1, rev: 0.4, pan: 0.3 });
@@ -122,7 +122,7 @@ export default (mix, T) => {
   [[0.2, 1.3], [1.5, 0.7]].forEach(([d, l]) => clip(mix, 'legno_cigolio', { t: T.bambine + d, da: 0.25, durata: l, gain: 0.12, rate: 1.4, fadeOut: 0.3, rev: 0.3, pan: -0.3 + d * 0.2 }));
   pulse(B(T.bambine), B(T.bar), { half: true, vel: 56 });
   organ(B(T.bambine), B(T.bar), { vel: 40, gain: 0.26, dark: true, k0: 3 });
-  for (let k = 0, t = cue('bambine', 1); t < T.bar - 0.6; k++, t += BEAT) // il carillon delle due bambine: il motivo, acuto e lento
+  for (let k = 0, t = T.custode + Math.round((cue('bambine', 1) - T.custode) / (BEAT / 2)) * (BEAT / 2); t < T.bar - 0.6; k++, t += BEAT) // il carillon delle due bambine: il motivo, acuto e lento
     suona(mix, 'glockenspiel', [86, 85, 84, 83][k % 4], { t, dur: 1.4, vel: 46 - k, pan: k % 2 ? 0.3 : -0.3, rev: 0.7, gain: 0.18, release: 1.2 });
   trem(cue('bambine', 2), T.bar - cue('bambine', 2), [74, 75], { vel: 40, gain: 0.2 });
   scrape(cue('bambine', 2), 0.22);
@@ -130,7 +130,7 @@ export default (mix, T) => {
   // ---- bar: il salone dorato si accende; organo caldo e falso, bicchiere versato, poi diventa rosso
   organ(B(T.bar), B(T.frase), { vel: 52, gain: 0.4 });
   motif(B(T.bar), B(cue('bar', 3)), { half: true, vel: 50, oct: 12, gain: 0.4 });
-  [0, 1, 2].forEach((i) => clip(mix, 'tintinnio', { t: cue('bar', 1) + i * 0.25, da: 0.16, durata: 0.25, gain: 0.08, rev: 0.4, pan: -0.3 + i * 0.3 }));
+  [0, 1, 2].forEach((i) => clip(mix, 'tintinnio', { t: cue('bar', 1) + i * 0.25, da: 0.14, durata: 0.25, gain: 0.08, rev: 0.4, pan: -0.3 + i * 0.3 }));
   clip(mix, 'tintinnio', { t: cue('bar', 2) + 0.2, da: 4.13, durata: 0.35, gain: 0.25, pan: 0.2, rev: 0.3 });
   clip(mix, 'tintinnio', { t: cue('bar', 2) + 0.9, da: 3.42, durata: 0.22, gain: 0.16, pan: 0.2, rev: 0.3 });
   trem(cue('bar', 3), T.frase - cue('bar', 3), [38, 50, 51], { vel: 60, gain: 0.4 });
@@ -150,7 +150,7 @@ export default (mix, T) => {
   pulse(B(T.dispensa), B(T.specchio), { half: true, vel: 58 });
   organ(B(T.dispensa), B(T.specchio), { vel: 44, gain: 0.34, dark: true, k0: 3 });
   clip(mix, 'serratura', { t: cue('dispensa', 1) + 0.6, da: 5.55, durata: 0.6, gain: 0.4, pan: 0.25, rev: 0.3 }); // il chiavistello scorre
-  clip(mix, 'porta_cigolio', { t: cue('dispensa', 1) + 1.6, da: 10.68, durata: 1.6, gain: 0.3, fadeOut: 0.4, rev: 0.35, pan: 0.1 });
+  clip(mix, 'porta_cigolio', { t: cue('dispensa', 1) + 1.6, da: 10.68, durata: 1.6, gain: 0.12, fadeOut: 0.4, rev: 0.35, pan: 0.1 });
   scrape(cue('dispensa', 1) + 0.6, 0.25);
   clip(mix, 'scintille', { t: cue('dispensa', 2) + 0.4, da: 0.5, durata: 0.8, gain: 0.25, fadeOut: 0.3, rev: 0.3, pan: 0.4 }); // la radio rotta sputa una scintilla
   clip(mix, 'disturbo', { t: cue('dispensa', 2) + 0.4, da: 7, durata: 0.6, gain: 0.14, fadeIn: 0.02, fadeOut: 0.3, rev: 0.15, pan: 0.4 });
@@ -181,15 +181,15 @@ export default (mix, T) => {
   colpo(mix, 'grancassa_rullo', 'bdrum_roll1', { t: T.foto - 3, vel: 70, rev: 0.4, gain: 0.25, dur: 3, release: 0.5 });
 
   // ---- foto: silenzio all'alba (solo vento); poi l'organo e il motivo un'ottava sopra sulla foto del 1921
-  wind('vento_invernale', T.foto, cue('foto', 2) - T.foto + 1, 0.08, 40);
+  wind('vento_invernale', T.foto, cue('foto', 2) - T.foto + 1, 0.05, 40);
   motif(B(T.foto), B(cue('foto', 2)), { half: true, vel: 46, gain: 0.45 });
-  organ(B(cue('foto', 2)), T.finale, { vel: 44, gain: 0.32, k0: 0 });
-  motif(B(cue('foto', 2)), T.finale, { half: true, vel: 50, oct: 12, gain: 0.45 });
+  organ(B(cue('foto', 2)), B(T.finale), { vel: 44, gain: 0.32, k0: 0 });
+  motif(B(cue('foto', 2)), B(T.finale), { half: true, vel: 50, oct: 12, gain: 0.45 });
   roll(cue('foto', 3) - 1.3, 0.22);
-  [86, 89, 93, 98].forEach((m, j) => suona(mix, 'glockenspiel', m, { t: cue('foto', 3) + j * 0.2, dur: 2, vel: 48, pan: -0.3 + j * 0.2, rev: 0.7, gain: 0.15, release: 1.5 }));
+  [86, 89, 93, 98].forEach((m, j) => suona(mix, 'glockenspiel', m, { t: cue('foto', 3) + j * BEAT / 4, dur: 2, vel: 48, pan: -0.3 + j * 0.2, rev: 0.7, gain: 0.15, release: 1.5 }));
 
   // ---- finale: un ultimo accordo d'organo sospeso (Re con la sesta minore), gong lontano, vento
-  const F = B(T.finale) > T.finale + 0.4 ? B(T.finale) - BAR : B(T.finale);
+  const F = B(T.finale); // sulla battuta più vicina all'inizio del finale
   suona(mix, 'organo_pedale', 38, { t: F, dur: T.END - F, vel: 48, gain: 0.4, attack: 0.3, release: 1.4, rev: 0.55 });
   [50, 53, 58].forEach((m, j) => suona(mix, 'organo', m, { t: F + j * 0.1, dur: T.END - F - j * 0.1, vel: 44, pan: (j - 1) * 0.3, gain: 0.26, attack: 0.4, release: 1.4, rev: 0.6 }));
   gong(F + 0.2, 0.3);
