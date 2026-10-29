@@ -11,8 +11,8 @@ import { Hotel, K, Maze } from './Comuni';
 // Piani: cielo e tormenta lontana (0,2) · albergo (0,4) · labirinto (0,6) · pali del telefono e mezzo per la neve (0,85) · neve in primo piano (1,2) · fiocchi vicini (1,6)
 
 const r = rng(1010);
-const FAR = Array.from({ length: 90 }, () => ({ x: r() * 1400 - 160, y: r() * 2000, s: 2 + r() * 3, v: 120 + r() * 120 }));
-const NEAR = Array.from({ length: 30 }, () => ({ x: r() * 1400 - 160, y: r() * 2000, s: 7 + r() * 9, v: 380 + r() * 300 }));
+const FAR = Array.from({ length: 160 }, () => ({ x: r() * 1400 - 160, y: r() * 2000, s: 2 + r() * 3, v: 120 + r() * 120 }));
+const NEAR = Array.from({ length: 60 }, () => ({ x: r() * 1400 - 160, y: r() * 2000, s: 4 + r() * 9, v: 380 + r() * 300 }));
 
 export const Neve: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const cam = camera(t, dur);
@@ -33,7 +33,7 @@ export const Neve: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
       <g transform={cam.transform}>
         <g transform={L(0.2)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="url(#nv-sky)" />
-          {FAR.slice(0, 40).map((f, i) => <circle key={i} cx={mod(f.x - t * 140 * wind, 1440) - 180} cy={mod(f.y + t * f.v * 0.6, 1200)} r={f.s * 0.7} fill="#DCE4EE" opacity=".5" />)}
+          {FAR.map((f, i) => <circle key={i} cx={mod(f.x - t * 140 * wind, 1440) - 180} cy={mod(f.y + t * f.v * 0.6, 2000)} r={f.s * 0.7} fill="#DCE4EE" opacity=".5" />)}
         </g>
         {/* l'albergo nella tormenta, con la finestra della radio */}
         <g transform={L(0.4)}>
@@ -45,10 +45,8 @@ export const Neve: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* il labirinto di siepi davanti all'albergo */}
         <g transform={L(0.6)}>
-          <path d="M-200 900 H1280 V1600 H-200 Z" fill="url(#nv-ground)" />
-          <g transform="translate(540 1030) scale(1 .42) translate(-540 -1030)">
-            <Maze x={540} y={1030} w={760} h={700} snow={snow} />
-          </g>
+          <path d="M-200 900 H1280 V2200 H-200 Z" fill="url(#nv-ground)" />
+          <Maze x={540} y={1110} w={920} h={300} persp={0.62} snow={snow} />
         </g>
         {/* pali del telefono e mezzo per la neve */}
         <g transform={L(0.85)}>
@@ -68,7 +66,7 @@ export const Neve: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             {Array.from({ length: 6 }, (_, i) => <circle key={i} cx={-140 + i * 48} cy="1" r="12" fill="#5A5A5A" />)}
             <path d="M-150 -112 H100" stroke="#F4F6FA" strokeWidth={10 * snow} />
             <circle cx="100" cy="-80" r="12" fill={cat > 0 ? '#FFF4D0' : '#8A8A80'} stroke={K} strokeWidth="3" />
-            {cat > 0 && <Glow id="nv-cat" x={100} y={-80} r={160} t={t} color={P.accento} amp={0.1} rate={3} opacity={0.5 * cat} />}
+            {cat > 0 && <Glow id="nv-cat" x={100} y={-80} r={160} t={t} color="#FFE8B0" amp={0.1} rate={3} opacity={0.6 * cat} />}
           </g>
         </g>
         {/* cumuli di neve in primo piano */}

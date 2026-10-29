@@ -55,7 +55,7 @@ export const Dono: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           {/* le visioni */}
           <g opacity={flick}>
             <rect x="350" y="610" width="300" height="460" fill="url(#dn-vis)" />
-            {frame === 0 && <path d="M500 840 L380 1060 H620 Z M470 860 H530 V900 H470 Z" fill="#2A1A3A" opacity=".55" />}
+            {frame === 0 && <g opacity=".7">{/* un corridoio in prospettiva con una porta in fondo */}<path d="M350 610 L470 800 V900 L350 1070 Z M650 610 L530 800 V900 L650 1070 Z" fill="#3A2A4A" /><path d="M470 900 H530 L650 1070 H350 Z" fill="#7A2A1E" /><rect x="482" y="826" width="36" height="74" fill="#1A1020" /></g>}
             {frame === 1 && <g><rect x="440" y="720" width="120" height="240" fill="#4A2A2A" opacity=".6" /><text x="500" y="790" textAnchor="middle" fontFamily="Figtree" fontWeight={800} fontSize="34" fill={P.accento}>237</text></g>}
             {frame === 2 && Array.from({ length: 20 }, (_, i) => <circle key={i} cx={360 + ((i * 41) % 280)} cy={620 + mod(i * 33 + t * 120, 440)} r="4" fill="#FFFFFF" />)}
             {STARS.map((s, i) => <circle key={i} cx={500 + s.x} cy={840 + s.y} r="3" fill="#FFFFFF" opacity={0.4 + 0.6 * Math.abs(Math.sin(t * 5 + s.ph))} />)}
@@ -69,7 +69,7 @@ export const Dono: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M-200 1250 H1280 V2200 H-200 Z" fill="url(#dn-floor)" />
           <rect x="-120" y="1150" width="360" height="110" rx="10" fill="#3A5A7A" stroke={K} strokeWidth="8" />
           <rect x="-120" y="1110" width="120" height="60" rx="24" fill="#E8E2D0" stroke={K} strokeWidth="6" />
-          <Tricycle x={820} y={1240} s={1.1} rot={-4} color={P.accento} />
+          <Tricycle x={820} y={1255} s={1.1} color={P.accento} />
           <g transform="translate(560 1290)">
             <rect x="-40" y="-40" width="80" height="80" fill="#E8C030" stroke={K} strokeWidth="5" />
             <text x="0" y="16" textAnchor="middle" fontFamily="Figtree" fontWeight={800} fontSize="44" fill={K}>D</text>
@@ -79,6 +79,18 @@ export const Dono: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M120 1150 V1000" stroke={K} strokeWidth="8" />
           <path d="M70 1000 H170 L150 940 H90 Z" fill="#E8D8B0" stroke={K} strokeWidth="5" />
           <Glow id="dn-lamp" x={120} y={990} r={200} t={t} color="#FFD8A0" amp={0.06} rate={2} opacity={0.5} />
+        </g>
+        {/* tappeto rotondo e cesta dei giocattoli in primo piano */}
+        <g transform={L(1.15)}>
+          <ellipse cx="560" cy="1560" rx="520" ry="120" fill="#3A5A7A" stroke={K} strokeWidth="7" />
+          <ellipse cx="560" cy="1560" rx="400" ry="84" fill="none" stroke="#E8C030" strokeWidth="10" opacity=".7" />
+          <g transform="translate(860 1700) rotate(-4)">
+            <rect x="-230" y="-150" width="460" height="330" rx="14" fill="#8A5A34" stroke={K} strokeWidth="9" />
+            <rect x="-250" y="-190" width="500" height="60" rx="12" fill="#6A4426" stroke={K} strokeWidth="8" />
+            <path d="M-200 -60 H200 M-200 40 H200" stroke="#6A4426" strokeWidth="8" />
+            <circle cx="-120" cy="-210" r="44" fill="#C8202E" stroke={K} strokeWidth="6" />
+            <rect x="20" y="-260" width="90" height="90" fill="#4A8ACA" stroke={K} strokeWidth="6" transform="rotate(12 65 -215)" />
+          </g>
         </g>
         {/* tenda in primo piano */}
         <g transform={L(1.25)}>

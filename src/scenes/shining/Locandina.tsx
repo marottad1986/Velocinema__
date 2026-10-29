@@ -28,13 +28,13 @@ const Copertina_: React.FC<{ t: number; dur: number; accent: string }> = ({ t, d
       <g transform={cam.transform}>
         <g transform={L(0.2)}><rect x="-200" y="-200" width="1480" height="2400" fill="url(#sc-sky)" /></g>
         <g transform={L(0.4)}>
-          <Glow id="sc-hg" x={540} y={780} r={420} t={t} color="#FFC870" amp={0.04} rate={1} opacity={0.2} />
-          <Hotel x={540} y={900} s={0.8} t={t} lit={0.3} snow={1} />
-          <Fog id="sc-fog" t={t} y={900} color="#C8D4E0" rx={900} ry={60} opacity={0.5} />
+          <Glow id="sc-hg" x={540} y={860} r={420} t={t} color="#FFC870" amp={0.04} rate={1} opacity={0.2} />
+          <Hotel x={540} y={960} s={0.68} t={t} lit={0.3} snow={1} />
+          <Fog id="sc-fog" t={t} y={960} color="#C8D4E0" rx={900} ry={60} opacity={0.5} />
         </g>
         <g transform={L(0.6)}>
-          <path d="M-200 900 H1280 V2200 H-200 Z" fill="url(#sc-ground)" />
-          <g transform="translate(540 1040) scale(1 .42) translate(-540 -1040)"><Maze x={540} y={1040} w={760} h={700} snow={1} /></g>
+          <path d="M-200 960 H1280 V2200 H-200 Z" fill="url(#sc-ground)" />
+          <Maze x={540} y={1140} w={900} h={260} persp={0.62} snow={1} />
         </g>
         <g transform={L(1.0)}>
           <Glow id="sc-tw" x={540} y={1230} r={320} t={t} color="#FFD8A0" amp={0.06} rate={2} opacity={0.4} />
@@ -66,12 +66,12 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
           <SunRays id="sf-rays" x={860} y={1000} t={t} color="#FFE8C8" n={9} length={1000} opacity={0.3} />
         </g>
         <g transform={L(0.4)}>
-          <Hotel x={540} y={1020} s={0.75} t={t} lit={0.06} snow={1} litColor="#FFC870" />
+          <Hotel x={540} y={1020} s={0.75} t={t} one snow={1} litColor="#FFC870" />
         </g>
         <g transform={L(0.7)}>
           <path d="M-200 1020 H1280 V2200 H-200 Z" fill="url(#sf-snow)" />
-          <path d="M560 1030 Q600 1300 900 1500 Q1060 1600 1300 1680" stroke="#8A96A8" strokeWidth="26" strokeDasharray="10 8" fill="none" />
-          <path d="M520 1030 Q540 1300 820 1520 Q980 1640 1240 1740" stroke="#8A96A8" strokeWidth="26" strokeDasharray="10 8" fill="none" />
+          <path d="M760 1030 Q820 1200 900 1320 Q1020 1480 1300 1560" stroke="#8A96A8" strokeWidth="24" strokeDasharray="10 8" fill="none" />
+          <path d="M720 1030 Q770 1210 840 1340 Q960 1510 1240 1620" stroke="#8A96A8" strokeWidth="24" strokeDasharray="10 8" fill="none" />
         </g>
         <g transform={L(1.6)}><NearMotes id="sf-near" t={t} color="#FFFFFF" n={6} y0={1300} opacity={0.1} /></g>
       </g>

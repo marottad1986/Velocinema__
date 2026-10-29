@@ -7,9 +7,9 @@ import React from 'react';
 export const K = '#0D0F14'; // contorni
 
 /** Grande albergo di montagna (inventato): corpo centrale con tetto spiovente e due ali; `lit` 0..1 accende le finestre. */
-export const Hotel: React.FC<{ x: number; y: number; s?: number; t: number; lit?: number; snow?: number; litColor?: string }> = ({ x, y, s = 1, t, lit = 0.6, snow = 0, litColor = '#FFC870' }) => {
+export const Hotel: React.FC<{ x: number; y: number; s?: number; t: number; lit?: number; snow?: number; litColor?: string; one?: boolean }> = ({ x, y, s = 1, t, lit = 0.6, snow = 0, litColor = '#FFC870', one = false }) => {
   const win = (i: number, k: number) => {
-    const on = ((i * 7 + k * 13) % 5) < 5 * lit;
+    const on = one ? i === 22 && k === 1 : ((i * 7 + k * 13) % 5) < 5 * lit;
     return on ? 0.75 + 0.25 * Math.sin(t * 0.7 + i + k) : 0.12;
   };
   return (
@@ -38,31 +38,69 @@ export const Hotel: React.FC<{ x: number; y: number; s?: number; t: number; lit?
   );
 };
 
-/** Labirinto di siepi visto dall'alto, in prospettiva schiacciata: corridoi bianchi di neve e siepi scure. Origine al centro. */
-export const Maze: React.FC<{ x: number; y: number; w: number; h: number; snow?: number; hedge?: string }> = ({ x, y, w, h, snow = 1, hedge = '#1E3A2C' }) => {
-  // pianta fissa 9×9 (1 = siepe)
-  const P = [
-    '111110111',
-    '100010001',
-    '101110101',
-    '101000101',
-    '101011101',
-    '100010001',
-    '111010111',
-    '100000001',
-    '111101111',
-  ];
-  const cw = w / 9, ch = h / 9;
+// pianta fissa 9×9 del labirinto (1 = siepe)
+const MAZE = [
+  '111110111',
+  '100010001',
+  '101110101',
+  '101000101',
+  '101011101',
+  '100010001',
+  '111010111',
+  '100000001',
+  '111101111',
+];
+
+/**
+ * Labirinto di siepi visto dall'alto: corridoi bianchi di neve e siepi scure. Origine al centro.
+ * persp (0..1): larghezza del bordo lontano rispetto a quello vicino; con persp il labirinto è un trapezio visto da
+ * un'altura, con il fronte delle siepi visibile, e `h` è l'altezza sullo schermo. Senza, pianta vista dall'alto.
+ */
+export const Maze: React.FC<{ x: number; y: number; w: number; h: number; snow?: number; hedge?: string; persp?: number }> = ({ x, y, w, h, snow = 1, hedge = '#1E3A2C', persp }) => {
+  const floor = snow > 0.5 ? '#E8EEF4' : '#5A6A4A';
+  if (persp === undefined) {
+    const cw = w / 9, ch = h / 9;
+    return (
+      <g transform={`translate(${x - w / 2} ${y - h / 2})`}>
+        <rect width={w} height={h} fill={floor} />
+        {MAZE.flatMap((row, r) => [...row].map((c, k) => c === '1' ? (
+          <g key={`${r}${k}`}>
+            <rect x={k * cw} y={r * ch} width={cw + 0.5} height={ch + 0.5} fill={hedge} />
+            {snow > 0 && <rect x={k * cw} y={r * ch} width={cw + 0.5} height={ch * 0.35} fill="#F4F6FA" opacity={0.85 * snow} />}
+          </g>
+        ) : null))}
+        <rect width={w} height={h} fill="none" stroke={K} strokeWidth="6" />
+      </g>
+    );
+  }
+  // punto del piano (u, v in 0..1, v = 0 lontano) sullo schermo; le file vicine si allargano e si allungano
+  const vv = (v: number) => (Math.pow(1 + v, 1.6) - 1) / (Math.pow(2, 1.6) - 1);
+  const pt = (u: number, v: number) => {
+    const sc = persp + (1 - persp) * v;
+    return [x + (u - 0.5) * w * sc, y - h / 2 + vv(v) * h];
+  };
+  const poly = (pts: number[][]) => pts.map((q) => q.join(',')).join(' ');
+  const quad = (k: number, r: number, dy = 0) => poly([pt(k / 9, r / 9), pt((k + 1) / 9, r / 9), pt((k + 1) / 9, (r + 1) / 9), pt(k / 9, (r + 1) / 9)].map(([px, py]) => [px, py - dy]));
+  const tall = (r: number) => (h / 9) * 0.55 * (persp + (1 - persp) * (r / 9)); // altezza della siepe, più alta vicino
   return (
-    <g transform={`translate(${x - w / 2} ${y - h / 2})`}>
-      <rect width={w} height={h} fill={snow > 0.5 ? '#E8EEF4' : '#5A6A4A'} />
-      {P.flatMap((row, r) => [...row].map((c, k) => c === '1' ? (
-        <g key={`${r}${k}`}>
-          <rect x={k * cw} y={r * ch} width={cw + 0.5} height={ch + 0.5} fill={hedge} />
-          {snow > 0 && <rect x={k * cw} y={r * ch} width={cw + 0.5} height={ch * 0.35} fill="#F4F6FA" opacity={0.85 * snow} />}
+    <g strokeLinejoin="round">
+      <polygon points={poly([pt(0, 0), pt(1, 0), pt(1, 1), pt(0, 1)])} fill={floor} stroke={K} strokeWidth="5" />
+      {MAZE.map((row, r) => (
+        <g key={r}>
+          {[...row].map((c, k) => {
+            if (c !== '1') return null;
+            const hh = tall(r);
+            const [a0, a1] = [pt(k / 9, (r + 1) / 9), pt((k + 1) / 9, (r + 1) / 9)];
+            return (
+              <g key={k}>
+                {/* fronte della siepe verso chi guarda, poi la cima innevata */}
+                <polygon points={poly([[a0[0], a0[1] - hh], [a1[0], a1[1] - hh], a1, a0])} fill={hedge} stroke={K} strokeWidth="2" />
+                <polygon points={quad(k, r, hh)} fill={snow > 0 ? '#F4F6FA' : '#2E5A3E'} stroke={K} strokeWidth="2" opacity={snow > 0 ? 0.6 + 0.4 * snow : 1} />
+              </g>
+            );
+          })}
         </g>
-      ) : null))}
-      <rect width={w} height={h} fill="none" stroke={K} strokeWidth="6" />
+      ))}
     </g>
   );
 };
@@ -76,6 +114,35 @@ export const CarpetPattern: React.FC<{ id: string; a?: string; b?: string; c?: s
     <path d={`M${size / 2} ${size * 0.2} L${size * 0.67} ${size * 0.3} L${size / 2} ${size * 0.4} L${size * 0.33} ${size * 0.3} Z`} fill={a} />
   </pattern>
 );
+
+/**
+ * Tappeto del corridoio in prospettiva (motivo inventato: rombi annidati), dal bordo lontano (xl0..xr0 a y0) a quello
+ * vicino (xl1..xr1 a y1): le file si allargano e si allungano verso chi guarda.
+ */
+export const CarpetFloor: React.FC<{ xl0: number; xr0: number; y0: number; xl1: number; xr1: number; y1: number; a?: string; b?: string; c?: string; rows?: number; cols?: number }> = ({ xl0, xr0, y0, xl1, xr1, y1, a = '#7A2A1E', b = '#C46A2A', c = '#3A1E16', rows = 12, cols = 5 }) => {
+  const pt = (u: number, v: number) => {
+    const f = Math.pow(v, 1.7);
+    return [xl0 + (xl1 - xl0) * f + ((xr0 + (xr1 - xr0) * f) - (xl0 + (xl1 - xl0) * f)) * u, y0 + (y1 - y0) * f];
+  };
+  const poly = (q: number[][]) => q.map((p) => p.join(',')).join(' ');
+  const cells = [];
+  for (let r = 0; r < rows; r++) for (let k = 0; k < cols; k++) {
+    const u0 = k / cols, u1 = (k + 1) / cols, um = (u0 + u1) / 2, v0 = r / rows, v1 = (r + 1) / rows, vm = (v0 + v1) / 2;
+    const inner = (f: number) => poly([pt(um, vm - (vm - v0) * f), pt(um + (u1 - um) * f, vm), pt(um, vm + (v1 - vm) * f), pt(um - (um - u0) * f, vm)]);
+    cells.push(
+      <g key={`${r}-${k}`}>
+        <polygon points={inner(1)} fill={b} />
+        <polygon points={inner(0.5)} fill={c} />
+      </g>,
+    );
+  }
+  return (
+    <g>
+      <polygon points={poly([pt(0, 0), pt(1, 0), pt(1, 1), pt(0, 1)])} fill={a} />
+      {cells}
+    </g>
+  );
+};
 
 /** Macchina da scrivere vista di tre quarti, con il foglio inserito (righe tutte uguali). */
 export const Typewriter: React.FC<{ x: number; y: number; s?: number; t: number; lines?: number; accent?: string }> = ({ x, y, s = 1, t, lines = 6, accent = '#C8202E' }) => (
@@ -99,18 +166,26 @@ export const Typewriter: React.FC<{ x: number; y: number; s?: number; t: number;
 );
 
 /** Triciclo da bambino di profilo. */
-export const Tricycle: React.FC<{ x: number; y: number; s?: number; rot?: number; spin?: number; color?: string }> = ({ x, y, s = 1, rot = 0, spin = 0, color = '#C8202E' }) => (
-  <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${s})`} strokeLinecap="round" strokeLinejoin="round">
-    {[[-70, 30, 30], [70, 30, 30], [50, 26, 52]].map(([cx, r, cy], i) => (
-      <g key={i} transform={`translate(${cx} ${cy}) rotate(${spin})`}>
-        <circle r={r} fill="none" stroke={K} strokeWidth="9" />
-        <path d={`M${-r} 0 H${r} M0 ${-r} V${r}`} stroke="#6A6A70" strokeWidth="3" />
-      </g>
-    ))}
-    <path d="M-70 30 L10 -30 L50 52 M10 -30 L40 -90 M20 -90 H70" fill="none" stroke={color} strokeWidth="12" />
-    <path d="M-40 -20 H10" stroke={K} strokeWidth="16" />
-  </g>
-);
+export const Tricycle: React.FC<{ x: number; y: number; s?: number; rot?: number; spin?: number; color?: string }> = ({ x, y, s = 1, rot = 0, spin = 0, color = '#C8202E' }) => {
+  // origine a terra sotto il telaio: ruota davanti grande con i pedali, due ruote dietro piccole sfalsate, basi a y 0
+  const wheel = (cx: number, r: number, key: string, front = false) => (
+    <g key={key} transform={`translate(${cx} ${-r}) rotate(${spin})`}>
+      <circle r={r} fill={front ? 'none' : '#2A2A2E'} stroke={K} strokeWidth={front ? 9 : 7} />
+      <path d={`M${-r} 0 H${r} M0 ${-r} V${r}`} stroke="#8A8A90" strokeWidth="3" />
+      {front && <path d="M0 0 L18 -14 M0 0 L-18 14 M12 -18 H26 M-26 18 H-12" stroke={K} strokeWidth="6" />}
+    </g>
+  );
+  return (
+    <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${s})`} strokeLinecap="round" strokeLinejoin="round">
+      {wheel(-92, 22, 'b2')}
+      <path d="M-92 -22 H-58" stroke={K} strokeWidth="8" />
+      {wheel(-58, 22, 'b1')}
+      <path d="M-75 -22 L-10 -40 L60 -42 M-10 -40 L-20 -70 M60 -42 L48 -110 M30 -112 H72" fill="none" stroke={color} strokeWidth="12" />
+      <path d="M-44 -74 H4" stroke={K} strokeWidth="16" />
+      {wheel(60, 42, 'f', true)}
+    </g>
+  );
+};
 
 /** Porta d'albergo con cornice, numero d'ottone e maniglia. Origine in basso al centro. */
 export const HotelDoor: React.FC<{ x: number; y: number; s?: number; num?: string; shake?: number; open?: number }> = ({ x, y, s = 1, num = '', shake = 0, open = 0 }) => (

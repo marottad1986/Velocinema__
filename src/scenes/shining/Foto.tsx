@@ -27,6 +27,7 @@ export const Foto: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <FxDefs id="ft" />
         <Lin id="ft-dawn" stops={[[0, '#5A6A8A'], [0.5, '#D8B8A8'], [1, '#F4E8DC']]} />
         <Lin id="ft-wall" stops={[[0, '#3A2E22'], [0.5, '#5A4A36'], [1, '#2A2018']]} />
+        <radialGradient id="ft-halo" cx=".5" cy=".5" r=".5"><stop offset="0" stopColor="#FFF4D8" stopOpacity=".9" /><stop offset="1" stopColor="#FFF4D8" stopOpacity="0" /></radialGradient>
         <Lin id="ft-sepia" stops={[[0, '#C8A878'], [1, '#7A5A38']]} />
       </defs>
       <g transform={cam.transform}>
@@ -36,7 +37,7 @@ export const Foto: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <g>
             <rect x="160" y="540" width="760" height="420" fill="url(#ft-dawn)" />
             <SunRays id="ft-rays" x={760} y={640} t={t} color="#FFE8C8" n={8} length={700} opacity={0.3} />
-            <g transform="translate(540 870) scale(1 .3) translate(-540 -870)"><Maze x={540} y={870} w={520} h={380} snow={1} hedge="#5A6A6A" /></g>
+            <Maze x={540} y={880} w={600} h={130} persp={0.6} snow={1} hedge="#5A6A6A" />
             <path d={`M900 930 Q${800 - 300 * tracks} ${900 - 10 * tracks} ${700 - 520 * tracks} ${880 - 20 * tracks}`} stroke="#8A96A8" strokeWidth="10" strokeDasharray="6 6" fill="none" opacity={tracks} />
             <path d="M160 540 H920 V960 H160 Z M540 540 V960 M160 750 H920" fill="none" stroke={K} strokeWidth="14" />
           </g>
@@ -60,7 +61,7 @@ export const Foto: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             {/* la sala da ballo nella foto: lampadari e luci, nessuna figura */}
             {[-120, 0, 120].map((x) => <g key={x}><path d={`M${x - 30} -100 Q${x} -76 ${x + 30} -100`} stroke="#4A3018" strokeWidth="4" fill="none" /><circle cx={x} cy="-86" r="6" fill="#FFF4D8" opacity=".8" /></g>)}
             <path d="M-196 40 Q0 10 196 40 V104 H-196 Z" fill="#5A3E24" opacity=".5" />
-            <circle cx="20" cy="20" r={40 + 30 * glow} fill="#FFF4D8" opacity={0.15 + 0.55 * glow} />
+            <ellipse cx="0" cy="-20" rx={190} ry={110} fill="url(#ft-halo)" opacity={0.25 + 0.75 * glow} />
             <rect x="-196" y="110" width="392" height="44" fill="#E8D8B8" />
             <text x="0" y="142" textAnchor="middle" fontFamily={TYPEWRITER} fontSize="26" fill={P.accento} opacity={0.5 + 0.5 * glow}>4 luglio 1921</text>
           </g>
@@ -77,6 +78,16 @@ export const Foto: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <g transform={L(1.25)}>
           <path d="M-200 1500 H1280 V2200 H-200 Z" fill="#1A140E" />
           <rect x="-80" y="1640" width="260" height="200" fill="#2A1E14" stroke="#8A6A3A" strokeWidth="12" transform="rotate(-8 50 1740)" />
+          <rect x="300" y="1760" width="200" height="150" fill="#2A1E14" stroke="#8A6A3A" strokeWidth="10" transform="rotate(14 400 1835)" />
+          {[[560, 1640, -12], [640, 1700, 20], [480, 1600, 6]].map(([x, y, a], i) => <g key={i} transform={`rotate(${a} ${x} ${y})`}><rect x={x - 60} y={y - 40} width="120" height="80" fill="#E8DCC4" stroke={K} strokeWidth="3" /></g>)}
+          {/* poltrona del salone, vuota */}
+          <g transform="translate(900 1600)">
+            <path d="M-170 -160 Q-170 -230 -100 -230 H100 Q170 -230 170 -160 V40 H-170 Z" fill="#6A2A24" stroke={K} strokeWidth="9" />
+            <rect x="-210" y="-60" width="80" height="200" rx="30" fill="#7A3A2E" stroke={K} strokeWidth="8" />
+            <rect x="130" y="-60" width="80" height="200" rx="30" fill="#7A3A2E" stroke={K} strokeWidth="8" />
+            <rect x="-140" y="20" width="280" height="90" rx="16" fill="#8A4A3A" stroke={K} strokeWidth="8" />
+            <path d="M-170 140 V320 M170 140 V320" stroke={K} strokeWidth="14" />
+          </g>
         </g>
         <g transform={L(1.6)}>
           <Dust t={t} top={{ y: 640, x0: 600, x1: 900 }} bottom={{ y: 1300, x0: 200, x1: 900 }} seed={9} n={24} color="#FFE8C8" boost={glow * 0.4} />

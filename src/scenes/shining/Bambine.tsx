@@ -3,7 +3,7 @@ import { camera, eio, eo, seg } from '../../lib/anim';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Dust, Glow, NearMotes } from '../../lib/elements';
 import type { SceneProps } from '../../types';
-import { CarpetPattern, K, Tricycle } from './Comuni';
+import { CarpetFloor, K, Tricycle } from './Comuni';
 
 // Le due bambine: un lungo corridoio vuoto con il tappeto a rombi (motivo inventato); il triciclo che arriva e si ferma di
 // traverso; in fondo, su «due bambine», compaiono due paia di scarpine e una palla che rotola da sola verso il triciclo.
@@ -22,20 +22,20 @@ export const Bambine: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
         <FxDefs id="bb" />
-        <CarpetPattern id="bb-carpet" a="#3A2A5A" b="#C46A2A" c="#7A2A1E" size={80} />
-        <Lin id="bb-wall" x2={1} y2={0} stops={[[0, '#3A4A52'], [0.5, '#8A9A9E'], [1, '#3A4A52']]} />
+                <Lin id="bb-wall" x2={1} y2={0} stops={[[0, '#3A4A52'], [0.5, '#8A9A9E'], [1, '#3A4A52']]} />
       </defs>
       <g transform={cam.transform}>
         <g transform={L(0.35)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="#141A1E" />
           <rect x="450" y="720" width="180" height="300" fill="#6A7A80" />
+          <ellipse cx="540" cy="1018" rx="110" ry="14" fill="#DCEAF4" opacity={0.25 * shoes} />
           <rect x="450" y="720" width="180" height="300" fill="#DCEAF4" opacity={0.35 * ghost} />
           <Glow id="bb-ghost" x={540} y={900} r={300} t={t} color="#DCEAF4" amp={0.12} rate={4} opacity={0.5 * ghost} />
           {/* due paia di scarpine affiancate in fondo al corridoio */}
-          <g opacity={shoes} transform="translate(540 1010)">
+          <g opacity={shoes} transform="translate(540 1016) scale(2.2)">
             {[-40, 30].map((x) => (
               <g key={x}>
-                <path d={`M${x - 22} 0 Q${x - 22} -14 ${x - 8} -14 H${x - 2} V0 Z M${x + 2} 0 V-14 H${x + 8} Q${x + 22} -14 ${x + 22} 0 Z`} fill="#2A2A3A" stroke={K} strokeWidth="2" />
+                <path d={`M${x - 22} 0 Q${x - 22} -14 ${x - 8} -14 H${x - 2} V0 Z M${x + 2} 0 V-14 H${x + 8} Q${x + 22} -14 ${x + 22} 0 Z`} fill="#5A6A9A" stroke={K} strokeWidth="2" />
                 <path d={`M${x - 16} -14 H${x + 16}`} stroke="#E8EEF4" strokeWidth="3" />
               </g>
             ))}
@@ -56,7 +56,8 @@ export const Bambine: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* tappeto */}
         <g transform={L(0.8)}>
-          <path d="M450 1020 H630 L1280 1940 V2200 H-200 V1940 Z" fill="url(#bb-carpet)" />
+          <CarpetFloor xl0={450} xr0={630} y0={1020} xl1={-200} xr1={1280} y1={1940} a="#3A2A5A" b="#C46A2A" c="#7A2A1E" />
+          <path d="M-200 1940 H1280 V2200 H-200 Z" fill="#3A2A5A" />
           <path d="M450 1020 H630 L1280 1940 H-200 Z" fill="#000" opacity=".2" />
           {/* la palla che rotola */}
           {ball > 0 && (
@@ -68,10 +69,10 @@ export const Bambine: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* il triciclo che frena di traverso (accento) */}
         <g transform={L(0.9)}>
-          <ellipse cx={320 + 220 * ride} cy={1260} rx="160" ry="18" fill={K} opacity=".3" />
-          <Tricycle x={-200 + 520 * ride} y={1190} s={1.5} rot={-12 * seg(t, cues[1] - 0.6, cues[1])} spin={ride * 900} color={P.accento} />
+          <ellipse cx={300 + 230 * ride} cy={1282} rx="170" ry="16" fill={K} opacity=".3" />
+          <Tricycle x={300 + 230 * ride} y={1280} s={1.5} rot={-8 * seg(t, cues[1] - 0.6, cues[1]) * (1 - seg(t, cues[1] + 0.1, cues[1] + 0.6))} spin={ride * 900} color={P.accento} />
           {/* segni delle ruote sul tappeto */}
-          <path d={`M-200 1300 L${-200 + 520 * ride} ${1300 - 10 * ride}`} stroke="#000" strokeWidth="6" opacity=".2" />
+          <path d={`M200 1286 L${200 + 230 * ride} 1286`} stroke="#000" strokeWidth="6" opacity=".2" />
         </g>
         <g transform={L(1.25)}>
           <path d="M-200 -200 H60 V2200 H-200 Z M1280 -200 H1020 V2200 H1280 Z" fill="#14181C" stroke={K} strokeWidth="9" />

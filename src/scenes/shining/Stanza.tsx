@@ -3,7 +3,7 @@ import { camera, eo, seg } from '../../lib/anim';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Dust, Glow, NearMotes } from '../../lib/elements';
 import type { SceneProps } from '../../types';
-import { CarpetPattern, HotelDoor, K } from './Comuni';
+import { CarpetFloor, HotelDoor, K } from './Comuni';
 
 // La stanza 237: corridoio d'albergo in prospettiva con le applique accese e il tappeto a motivi (inventato); in fondo la
 // porta con il numero 237 e la maniglia che vibra; una chiave appesa. Su «mai entrare» le luci tremano e il numero si
@@ -14,7 +14,7 @@ export const Stanza: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
   const warn = seg(t, cues[2], cues[2] + 0.5); // «mai entrare nella stanza 237»
-  const flick = warn > 0 ? (Math.sin(t * 31) > 0.3 ? 1 : 0.55) : 1;
+  const flick = warn > 0 ? (Math.sin(t * 15) > 0.3 ? 1 : 0.55) : 1; // circa 2,4 lampi al secondo (sotto i 3)
   const shake = warn * Math.sin(t * 40);
   const memory = eo(seg(t, cues[1], cues[1] + 1)); // «l'albergo ricorda le cose brutte»: le cornici si inclinano
 
@@ -22,8 +22,7 @@ export const Stanza: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
         <FxDefs id="st" />
-        <CarpetPattern id="st-carpet" size={80} />
-        <Lin id="st-wall" x2={1} y2={0} stops={[[0, '#5A4A34'], [0.5, '#C8B48A'], [1, '#5A4A34']]} />
+                <Lin id="st-wall" x2={1} y2={0} stops={[[0, '#5A4A34'], [0.5, '#C8B48A'], [1, '#5A4A34']]} />
         <Lin id="st-ceil" stops={[[0, '#2A2218'], [1, '#6A5A44']]} />
       </defs>
       <g transform={cam.transform}>
@@ -52,7 +51,7 @@ export const Stanza: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             </g>
           ))}
           {/* cornici alle pareti, che si inclinano */}
-          {[[60, 900, -1], [1020, 900, 1]].map(([x, y, d], i) => (
+          {[[210, 900, -1], [870, 900, 1]].map(([x, y, d], i) => (
             <g key={i} transform={`rotate(${d * 9 * memory} ${x} ${y})`}>
               <rect x={x - 70} y={y - 50} width="140" height="100" fill="#3A3226" stroke="#D9B05A" strokeWidth="8" />
               <path d={`M${x - 50} ${y + 30} L${x - 10} ${y - 10} L${x + 20} ${y + 20} L${x + 50} ${y - 20}`} stroke="#8A7A5A" strokeWidth="5" fill="none" />
@@ -61,7 +60,8 @@ export const Stanza: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* tappeto in prospettiva */}
         <g transform={L(0.8)}>
-          <path d="M400 1120 H680 L1280 1900 V2200 H-200 V1900 Z" fill="url(#st-carpet)" />
+          <CarpetFloor xl0={400} xr0={680} y0={1120} xl1={-200} xr1={1280} y1={1900} />
+          <path d="M-200 1900 H1280 V2200 H-200 Z" fill="#7A2A1E" />
           <path d="M400 1120 H680 L1280 1900 V2200 H-200 V1900 Z" fill="none" stroke={K} strokeWidth="6" />
           <path d="M400 1120 H680 L1280 1900 H-200 Z" fill="#000" opacity=".25" />
         </g>

@@ -52,7 +52,7 @@ export const Dispensa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
         {/* la porta della dispensa con il chiavistello (accento: la luce che filtra) */}
         <g transform={L(0.7)}>
           <rect x="330" y="640" width="420" height="640" fill="#0A0A08" stroke={K} strokeWidth="10" />
-          <path d={`M${540 + 200 * open} 650 L540 1270`} stroke={P.accento} strokeWidth={6 * open} opacity={open} />
+          <rect x="736" y="652" width={34 * open} height="618" fill="#FFD8A0" opacity={0.85 * open} /> {/* lama di luce calda lungo la fessura */}
           <Glow id="dp-gap" x={540} y={960} r={240} t={t} color="#FFD8A0" amp={0.1} rate={2} opacity={0.4 * open} />
           <g transform={`translate(${-6 * slam} 0) skewY(${-4 * open})`}>
             <rect x="340" y="650" width="400" height="620" fill="url(#dp-door)" stroke={K} strokeWidth="8" />
@@ -67,7 +67,7 @@ export const Dispensa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
         <g transform={L(0.9)}>
           <path d="M-200 1280 H1280 V2200 H-200 Z" fill="url(#dp-floor)" />
           <rect x="760" y="1170" width="320" height="24" fill="#5A4430" stroke={K} strokeWidth="5" />
-          <g transform={`translate(900 1120) rotate(${smash * 18})`} opacity={1 - smash * 0.4}>
+          <g transform={`translate(900 1120) rotate(${smash * 4})`}>
             <rect x="-90" y="-60" width="180" height="110" rx="12" fill="#3A3A34" stroke={K} strokeWidth="6" />
             <circle cx="-40" cy="-6" r="30" fill="#1A1A18" stroke="#8A8A80" strokeWidth="4" />
             <rect x="10" y="-40" width="60" height="26" fill={smash > 0 ? '#1A1A18' : '#8AE0A0'} stroke={K} strokeWidth="3" />
@@ -76,12 +76,20 @@ export const Dispensa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
           </g>
           {spark > 0 && spark < 1 && SPARKS.map((s, i) => <circle key={i} cx={900 + Math.cos(s.a) * s.v * spark} cy={1110 + Math.sin(s.a) * s.v * spark + 200 * spark * spark} r="4" fill="#FFE8A0" opacity={1 - spark} />)}
           <Glow id="dp-spark" x={900} y={1110} r={160} t={t} color="#FFE8A0" amp={0.2} rate={9} opacity={0.6 * spark * (1 - spark) * 4} />
-          <g transform={`translate(200 ${1320}) rotate(${-30 + 60 * seg(t, 0.2, 0.5)})`}>
+          <g transform={`translate(150 ${1262}) rotate(${-30 + 22 * seg(t, 0.2, 0.5)})`}>
             <path d="M0 0 L220 -40" stroke={K} strokeWidth="26" strokeLinecap="round" />
             <path d="M0 0 L220 -40" stroke="#C8A060" strokeWidth="16" strokeLinecap="round" />
           </g>
         </g>
         <g transform={L(1.25)}>
+          {/* casse e sacchi di provviste in primo piano */}
+          <g transform="translate(-40 1580)">
+            <rect x="0" y="0" width="420" height="420" fill="#8A6A44" stroke={K} strokeWidth="9" />
+            <path d="M0 140 H420 M0 280 H420 M30 0 L390 420" stroke="#5A4228" strokeWidth="10" />
+            <text x="210" y="110" textAnchor="middle" fontFamily="Figtree" fontWeight={800} fontSize="56" fill="#3A2A18">FARINA</text>
+          </g>
+          <path d="M700 2000 Q660 1700 760 1620 Q860 1560 960 1630 Q1080 1700 1060 2000 Z" fill="#C8B488" stroke={K} strokeWidth="8" />
+          <path d="M770 1640 Q860 1600 950 1650" stroke="#8A7A58" strokeWidth="8" fill="none" />
           {[[-60, 1700], [1100, 1760], [80, 1840]].map(([x, y], i) => (
             <g key={i}>
               <rect x={x - 70} y={y - 120} width="140" height="180" rx="12" fill={['#C8202E', '#E8C030', '#3A6A9A'][i]} stroke={K} strokeWidth="8" />

@@ -54,15 +54,17 @@ export const Frase: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M-200 1200 H1280 V2200 H-200 Z" fill="url(#fr-floor)" />
           <rect x="80" y="1130" width="920" height="40" fill="url(#fr-table)" stroke={K} strokeWidth="8" />
           <path d="M120 1170 V1340 M960 1170 V1340" stroke={K} strokeWidth="18" />
-          <Glow id="fr-lamp" x={820} y={940} r={320} t={t} color="#FFD8A0" amp={0.06} rate={2} opacity={0.55} />
-          <path d="M820 1130 V990 L880 960" stroke={K} strokeWidth="8" fill="none" />
-          <path d="M840 950 L920 940 L900 990 Z" fill="#2E4A3A" stroke={K} strokeWidth="5" />
+          <Glow id="fr-lamp" x={900} y={960} r={320} t={t} color="#FFD8A0" amp={0.06} rate={2} opacity={0.55} />
           <Typewriter x={420} y={1070} s={1.05} t={t * (1 + loop)} accent={P.accento} />
           {/* la pila altissima */}
           <g transform="translate(780 1130)">
             {Array.from({ length: 16 }, (_, i) => <rect key={i} x={-90 + Math.sin(i * 1.7) * 6} y={-14 - i * 12} width="180" height="12" fill="#F4F0E4" stroke="#8A8270" strokeWidth="2" />)}
             <rect x="-96" y="-206" width="192" height="196" fill="none" stroke={P.accento} strokeWidth="6" opacity={red} />
           </g>
+          {/* lampada da tavolo accanto alla pila */}
+          <path d="M955 1130 V950 L905 925" stroke={K} strokeWidth="9" fill="none" />
+          <ellipse cx="955" cy="1128" rx="34" ry="9" fill="#2A2A2A" stroke={K} strokeWidth="4" />
+          <path d="M848 940 L936 916 L928 972 Z" fill="#2E4A3A" stroke={K} strokeWidth="5" />
           {/* fogli a ventaglio sul tavolo */}
           {[0, 1, 2, 3, 4].map((i) => <Page key={i} x={180 + i * 30 * fan} y={1120 - 10 * fan} s={0.55} rot={-30 + i * 14 * fan} o={fan} />)}
         </g>
@@ -70,7 +72,7 @@ export const Frase: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <g transform={L(1.0)}>
           {FLY.map((f, i) => {
             const p = mod(t * 0.18 * (0.5 + loop) + i / FLY.length, 1);
-            return <Page key={i} x={f.x + Math.sin(p * 6 + i) * 40} y={f.y - 260 * (1 - p) * loop} s={f.s * 0.7} rot={f.rot + p * 90 * loop} o={0.4 + 0.6 * Math.max(fan, loop)} />;
+            return <Page key={i} x={f.x + Math.sin(p * 6 + i) * 40} y={f.y - 260 * (1 - p) * loop} s={f.s * 0.7} rot={f.rot + p * 90 * loop} o={fan > 0.05 || loop > 0 ? 1 : 0} />;
           })}
         </g>
         <g transform={L(1.3)}>

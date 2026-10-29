@@ -37,10 +37,17 @@ export const Bar: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           {Array.from({ length: 10 }, (_, i) => <path key={i} d={`M${-160 + i * 150} 520 V1100`} stroke="#4A3620" strokeWidth="18" opacity=".6" />)}
           {[120, 540, 960].map((x, i) => (
             <g key={x}>
-              <path d={`M${x} 480 V560`} stroke="#8A6A3A" strokeWidth="4" />
-              <path d={`M${x - 60} 580 Q${x} 640 ${x + 60} 580 M${x - 40} 600 Q${x} 660 ${x + 40} 600`} stroke="#D9B05A" strokeWidth="5" fill="none" />
-              {[-60, -30, 0, 30, 60].map((d) => <circle key={d} cx={x + d} cy={580 + Math.abs(d) * 0.3} r="7" fill={lamp(i) > 0 ? '#FFE8B0' : '#5A4A30'} />)}
-              <Glow id={`br-ch${i}`} x={x} y={590} r={260} t={t} color={red > 0.5 ? '#E8503A' : '#FFD27A'} amp={0.05} rate={2 + i} opacity={0.55 * lamp(i)} />
+              {/* lampadario a due ordini di bracci con candele e gocce di cristallo */}
+              <path d={`M${x} 540 V640`} stroke="#8A6A3A" strokeWidth="5" />
+              <path d={`M${x - 110} 690 Q${x} 760 ${x + 110} 690 M${x - 70} 650 Q${x} 700 ${x + 70} 650`} stroke="#D9B05A" strokeWidth="8" fill="none" />
+              <path d={`M${x - 16} 640 H${x + 16} L${x + 8} 720 H${x - 8} Z`} fill="#D9B05A" stroke={K} strokeWidth="4" />
+              {[-110, -55, 0, 55, 110].map((d) => <g key={d}>
+                <rect x={x + d - 5} y={690 - 26 + Math.abs(d) * 0 - (d === 0 ? -40 : 0)} width="10" height="22" fill="#F4ECD8" stroke={K} strokeWidth="2" />
+                <circle cx={x + d} cy={690 - 32 - (d === 0 ? -40 : 0)} r="8" fill={lamp(i) > 0 ? '#FFE8B0' : '#5A4A30'} />
+                <path d={`M${x + d} ${700 + (110 - Math.abs(d)) * 0.25} l-7 16 l7 12 l7 -12 Z`} fill="#E8F0F4" stroke={K} strokeWidth="2" opacity=".85" />
+              </g>)}
+              {[-70, 0, 70].map((d) => <circle key={`u${d}`} cx={x + d} cy={638 + (d === 0 ? 0 : 6)} r="7" fill={lamp(i) > 0 ? '#FFE8B0' : '#5A4A30'} />)}
+              <Glow id={`br-ch${i}`} x={x} y={680} r={300} t={t} color={red > 0.5 ? '#E8503A' : '#FFD27A'} amp={0.05} rate={2 + i} opacity={0.55 * lamp(i)} />
             </g>
           ))}
         </g>

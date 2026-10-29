@@ -69,7 +69,9 @@ export const Specchio: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
           {/* lama dell'ascia che passa nel legno */}
           {blade > 0 && (
             <g transform={`translate(${760 - 60 * blade} 1040) rotate(-20)`}>
+              <rect x="-40" y="-26" width="44" height="52" fill="#4A4A50" stroke={K} strokeWidth="6" />
               <path d="M0 -70 Q90 -40 110 0 Q90 40 0 70 Z" fill="#D8DEE4" stroke={K} strokeWidth="6" />
+              <path d="M70 -50 Q104 -24 110 0 Q104 24 70 50" stroke="#3A3E44" strokeWidth="9" fill="none" />
               <path d="M20 -50 Q80 -30 96 0" stroke="#FFFFFF" strokeWidth="5" fill="none" opacity=".8" />
             </g>
           )}
@@ -83,16 +85,21 @@ export const Specchio: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
         {/* comodino con la lampada e il rossetto */}
         <g transform={L(1.1)}>
           <path d="M-200 1280 H1280 V2200 H-200 Z" fill="#14100C" />
-          <rect x="-120" y="1360" width="360" height="200" fill="#4A3426" stroke={K} strokeWidth="8" />
-          <path d="M60 1360 V1220" stroke={K} strokeWidth="10" />
-          <path d="M-10 1220 H130 L100 1140 H20 Z" fill="#E8D8B0" stroke={K} strokeWidth="6" />
-          <g transform="translate(180 1340) rotate(-30)">
+          <rect x="-90" y="1240" width="400" height="420" fill="#4A3426" stroke={K} strokeWidth="8" />
+          <path d="M-90 1300 H310 M-90 1440 H310" stroke="#2A1C14" strokeWidth="8" />
+          <circle cx="110" cy="1370" r="10" fill="#D9B05A" stroke={K} strokeWidth="3" />
+          <path d="M60 1240 V1120" stroke={K} strokeWidth="10" />
+          <path d="M-10 1120 H130 L100 1040 H20 Z" fill="#E8D8B0" stroke={K} strokeWidth="6" />
+          <g transform="translate(220 1236) rotate(-75)">
             <rect x="-14" y="-30" width="28" height="44" rx="4" fill="#2A2A2A" stroke={K} strokeWidth="3" />
             <path d="M-10 -30 V-56 L10 -64 V-30 Z" fill={P.accento} stroke={K} strokeWidth="3" />
           </g>
+          {/* il bordo del letto con la coperta, in primo piano */}
+          <path d="M480 1640 Q800 1600 1280 1620 V2200 H480 Z" fill="#6A2A2E" stroke={K} strokeWidth="8" />
+          <path d="M520 1700 Q820 1670 1280 1690" stroke="#8A3A3E" strokeWidth="14" fill="none" />
         </g>
         <g transform={L(1.6)}>
-          <Dust t={t} top={{ y: 1140, x0: 0, x1: 120 }} bottom={{ y: 1300, x0: 300, x1: 900 }} seed={5} n={20} color="#FFE2B0" />
+          <Dust t={t} top={{ y: 1040, x0: 0, x1: 120 }} bottom={{ y: 1300, x0: 300, x1: 900 }} seed={5} n={20} color="#FFE2B0" />
           <NearMotes id="sp-near" t={t} color="#FFE2B0" n={5} y0={1300} opacity={0.07} />
         </g>
       </g>
