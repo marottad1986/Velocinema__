@@ -33,3 +33,6 @@ loadInstrument('italic', { weights: ['400'], subsets: ['latin', 'latin-ext'] });
 export const PLAYFAIR = loadPlayfair('normal', { weights: ['900'], subsets: ['latin', 'latin-ext'] }).fontFamily;
 /** Corsivo da insegna al neon (Gli anni, 883). */
 export const PACIFICO = loadPacifico('normal', { weights: ['400'], subsets: ['latin', 'latin-ext'] }).fontFamily;
+import { loadFont as loadSpecialElite } from '@remotion/google-fonts/SpecialElite';
+/** Carattere da macchina da scrivere (Shining). */
+export const TYPEWRITER = loadSpecialElite('normal', { weights: ['400'], subsets: ['latin'] }).fontFamily;
