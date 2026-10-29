@@ -212,7 +212,7 @@ export default (mix, T) => {
   [63, 65, 67, 70, 72, 74, 75, 79].forEach((m, j) => note(mix, 'epiano', mtof(m), { t: cue('piano', 3) + j * BEAT / 4, dur: 0.4, vel: 46 + j * 2, pan: 0.1, rev: 0.35, gain: 0.5 * BODY }));
   clip(mix, 'scatti', { t: cue('piano', 4) - 0.02, da: 0.5, durata: 0.35, gain: 0.15, rate: 0.7, fadeOut: 0.1, rev: 0.4 });
   clip(mix, 'porta_sbatte', { t: cue('piano', 6) - 0.35, da: 1.2, durata: 0.9, gain: 0.15, lp: 3000, fadeOut: 0.2, rev: 0.35 });
-  clip(mix, 'porta_sbatte', { t: cue('piano', 6) + 1.28, da: 2.98, durata: 0.5, gain: 0.2, lp: 3000, fadeOut: 0.15, rev: 0.35 });
+  clip(mix, 'porta_sbatte', { t: cue('piano', 6) + 1.28, da: 2.98, durata: 0.5, gain: 0.08, lp: 3000, fadeOut: 0.15, rev: 0.35 });
   // collina: il tip tap a «ma intanto ballano il tip tap insieme» (frase 4): un colpo ogni ottavo (0,25 s) fino alla
   // fine del capitolo, come le scarpe in Collina.tsx, alternando le quattro prese e con l'accento sui tempi
   const TAKES = [5.1, 11.27, 22.36, 16.63];
@@ -230,7 +230,7 @@ export default (mix, T) => {
   // band: lampi delle luci (frase 1) e coriandoli (frase 3) con piatto e cassa
   [1, 3].forEach((n) => { crash(cue('band', n)); cassa(cue('band', n), 100, 0.55, 40 + n); });
   // prima: scatto del faro sullo sgabello vuoto (frase 1) e sipario che si chiude (frase 3, Prima.tsx)
-  clip(mix, 'scatti', { t: cue('prima', 1) - 0.02, da: 0.5, durata: 0.7, gain: 0.16, rate: 0.7, fadeOut: 0.2, rev: 0.5 });
+  clip(mix, 'scatti', { t: cue('prima', 1) - 0.02, da: 0.5, durata: 0.35, gain: 0.1, rate: 0.7, fadeOut: 0.1, rev: 0.5 });
   clip(mix, 'telo', { t: cue('prima', 3) + 0.2, da: 12.83, durata: 0.8, gain: 0.12, lp: 2500, fadeOut: 0.3, rev: 0.4 });
   // audizione: la cartolina di Parigi si posa (frase 4)
   clip(mix, 'giornale', { t: cue('audizione', 4) + 1.2, da: 0.93, durata: 0.3, gain: 0.15, fadeOut: 0.1, rev: 0.25 });
@@ -238,6 +238,6 @@ export default (mix, T) => {
   // stella cadente (frase 4) con una discesa di glockenspiel
   clip(mix, 'pioggia_dura', { t: T.epilogo, da: 2, durata: T.finale - T.epilogo + 1, gain: 0.05, lp: 4000, largo: 6, fadeIn: 1, fadeOut: 1.5 });
   clip(mix, 'ronzio_neon', { t: cue('epilogo', 2), da: 0, durata: 0.55, gain: 0.12, fadeOut: 0.05, rev: 0.2 });
-  clip(mix, 'ronzio_neon', { t: cue('epilogo', 2) + 0.55, da: 0.8, durata: 4.5, gain: 0.1, fadeIn: 0.3, fadeOut: 1.5, rev: 0.2 });
+  clip(mix, 'ronzio_neon', { t: cue('epilogo', 2) + 0.55, da: 2.6, durata: 4.5, gain: 0.1, fadeIn: 0.05, fadeOut: 1.5, rev: 0.2 });
   [105, 102, 98, 93].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: cue('epilogo', 4) + 0.2 + j * BEAT / 8, dur: 2, vel: 30 - j, pan: 0.4 - j * 0.15, rev: 0.7, gain: 0.4 }));
 };
