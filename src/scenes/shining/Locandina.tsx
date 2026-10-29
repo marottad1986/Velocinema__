@@ -70,8 +70,8 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
         </g>
         <g transform={L(0.7)}>
           <path d="M-200 1020 H1280 V2200 H-200 Z" fill="url(#sf-snow)" />
-          <path d="M760 1030 Q820 1200 900 1320 Q1020 1480 1300 1560" stroke="#8A96A8" strokeWidth="24" strokeDasharray="10 8" fill="none" />
-          <path d="M720 1030 Q770 1210 840 1340 Q960 1510 1240 1620" stroke="#8A96A8" strokeWidth="24" strokeDasharray="10 8" fill="none" />
+          <path d="M900 1030 Q960 1160 1040 1260 Q1140 1380 1300 1440" stroke="#8A96A8" strokeWidth="24" strokeDasharray="10 8" fill="none" />
+          <path d="M870 1030 Q920 1180 990 1290 Q1080 1420 1260 1520" stroke="#8A96A8" strokeWidth="24" strokeDasharray="10 8" fill="none" />
         </g>
         <g transform={L(1.6)}><NearMotes id="sf-near" t={t} color="#FFFFFF" n={6} y0={1300} opacity={0.1} /></g>
       </g>

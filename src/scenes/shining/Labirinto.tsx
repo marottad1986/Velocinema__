@@ -14,8 +14,8 @@ const r = rng(1921);
 const NEAR = Array.from({ length: 28 }, () => ({ x: r() * 1400 - 160, y: r() * 2000, s: 7 + r() * 9, v: 380 + r() * 300 }));
 // percorso nel labirinto 9×9 (riga, colonna), dall'ingresso in basso al centro
 const PATH: [number, number][] = [[8, 4], [7, 4], [7, 5], [6, 5], [5, 5], [5, 6], [5, 7], [4, 7], [3, 7], [2, 7], [1, 7], [1, 6], [1, 5], [2, 5], [3, 5], [3, 4]];
-// via di fuga laterale di Danny dopo essere tornato indietro
-const ESCAPE: [number, number][] = [[6, 5], [5, 5], [5, 3], [5, 2], [5, 1], [6, 1], [7, 1], [7, 2], [7, 3], [8, 4]];
+// Danny torna indietro sulle sue orme e si nasconde in un angolo, solo tra celle libere vicine
+const ESCAPE: [number, number][] = [[5, 5], [6, 5], [7, 5], [7, 4], [7, 3], [7, 2], [7, 1]];
 
 export const Labirinto: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const cam = camera(t, dur);
@@ -55,7 +55,7 @@ export const Labirinto: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
           <Hotel x={540} y={745} s={0.5} t={t} lit={0.25} snow={1} />
           <rect x="517" y="723" width="46" height="22" fill="#FFD8A0" opacity={0.8} />
           <Glow id="lb-door" x={540} y={735} r={120} t={t} color="#FFD8A0" amp={0.1} rate={5} opacity={0.5} />
-          <g transform="translate(860 745) scale(1.5)">
+          <g transform="translate(860 745) scale(1.2)">
             <rect x="-60" y="-50" width="120" height="44" rx="8" fill="#C84A20" stroke={K} strokeWidth="5" />
             <rect x="-70" y="-10" width="140" height="22" rx="10" fill="#2A2A2A" />
             <Beam id="lb-head" x={-60} y={-30} t={t} length={260} spread={90} color="#FFF4D0" angle={180} opacity={0.45 * lights} />

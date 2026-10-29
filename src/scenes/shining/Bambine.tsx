@@ -69,10 +69,10 @@ export const Bambine: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* il triciclo che frena di traverso (accento) */}
         <g transform={L(0.9)}>
-          <ellipse cx={300 + 230 * ride} cy={1282} rx="170" ry="16" fill={K} opacity=".3" />
-          <Tricycle x={300 + 230 * ride} y={1280} s={1.5} rot={-8 * seg(t, cues[1] - 0.6, cues[1]) * (1 - seg(t, cues[1] + 0.1, cues[1] + 0.6))} spin={ride * 900} color={P.accento} />
+          <ellipse cx={420 + 130 * ride} cy={1282} rx="170" ry="16" fill={K} opacity=".3" />
+          <Tricycle x={420 + 130 * ride} y={1280} s={1.5} rot={-8 * seg(t, cues[1] - 0.6, cues[1]) * (1 - seg(t, cues[1] + 0.1, cues[1] + 0.6))} spin={ride * 900} color={P.accento} />
           {/* segni delle ruote sul tappeto */}
-          <path d={`M200 1286 L${200 + 230 * ride} 1286`} stroke="#000" strokeWidth="6" opacity=".2" />
+          <path d={`M300 1286 L${300 + 130 * ride} 1286`} stroke="#000" strokeWidth="6" opacity=".2" />
         </g>
         <g transform={L(1.25)}>
           <path d="M-200 -200 H60 V2200 H-200 Z M1280 -200 H1020 V2200 H1280 Z" fill="#14181C" stroke={K} strokeWidth="9" />

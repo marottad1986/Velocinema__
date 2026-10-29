@@ -46,7 +46,7 @@ export const Neve: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         {/* il labirinto di siepi davanti all'albergo */}
         <g transform={L(0.6)}>
           <path d="M-200 900 H1280 V2200 H-200 Z" fill="url(#nv-ground)" />
-          <Maze x={540} y={1110} w={920} h={300} persp={0.62} snow={snow} />
+          <Maze x={650} y={1060} w={640} h={220} persp={0.62} snow={snow} />
         </g>
         {/* pali del telefono e mezzo per la neve */}
         <g transform={L(0.85)}>
@@ -59,7 +59,7 @@ export const Neve: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d={`M30 905 Q200 ${940 + 60 * wires} ${200 - 60 * wires} ${905 + 220 * wires}`} stroke={K} strokeWidth="3" fill="none" />
           <path d={`M370 905 Q260 ${940 + 60 * wires} ${240 + 40 * wires} ${905 + 260 * wires}`} stroke={K} strokeWidth="3" fill="none" />
           <path d="M-200 905 H30 M370 905 H1280" stroke={K} strokeWidth="3" opacity=".7" />
-          <g transform="translate(860 1230)">
+          <g transform="translate(880 1262) scale(.9)">
             <rect x="-150" y="-110" width="250" height="90" rx="10" fill="#C84A20" stroke={K} strokeWidth="7" />
             <rect x="-60" y="-170" width="140" height="70" rx="8" fill="#3A5A6A" stroke={K} strokeWidth="6" />
             <rect x="-170" y="-24" width="300" height="50" rx="24" fill="#2A2A2A" stroke={K} strokeWidth="6" />

@@ -54,7 +54,7 @@ export const Dispensa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
           <rect x="330" y="640" width="420" height="640" fill="#0A0A08" stroke={K} strokeWidth="10" />
           <rect x="736" y="652" width={34 * open} height="618" fill="#FFD8A0" opacity={0.85 * open} /> {/* lama di luce calda lungo la fessura */}
           <Glow id="dp-gap" x={540} y={960} r={240} t={t} color="#FFD8A0" amp={0.1} rate={2} opacity={0.4 * open} />
-          <g transform={`translate(${-6 * slam} 0) skewY(${-4 * open})`}>
+          <g transform={`translate(${-6 * slam} 0) translate(340 960) skewY(${-4 * open}) scale(${1 - 0.12 * open} 1) translate(-340 -960)`}> {/* gira sul cardine a sinistra */}
             <rect x="340" y="650" width="400" height="620" fill="url(#dp-door)" stroke={K} strokeWidth="8" />
             {[0, 1, 2].map((i) => <rect key={i} x="380" y={690 + i * 190} width="320" height="160" fill="none" stroke="#5A6068" strokeWidth="6" />)}
             {/* chiavistello */}

@@ -37,8 +37,9 @@ export const Foto: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <g>
             <rect x="160" y="540" width="760" height="420" fill="url(#ft-dawn)" />
             <SunRays id="ft-rays" x={760} y={640} t={t} color="#FFE8C8" n={8} length={700} opacity={0.3} />
-            <Maze x={540} y={880} w={600} h={130} persp={0.6} snow={1} hedge="#5A6A6A" />
-            <path d={`M900 930 Q${800 - 300 * tracks} ${900 - 10 * tracks} ${700 - 520 * tracks} ${880 - 20 * tracks}`} stroke="#8A96A8" strokeWidth="10" strokeDasharray="6 6" fill="none" opacity={tracks} />
+            <path d="M160 800 Q540 790 920 800 V960 H160 Z" fill="#E4E2E4" /> {/* piano di neve fino all'orizzonte */}
+            <Maze x={540} y={862} w={560} h={110} persp={0.6} snow={1} hedge="#5A6A6A" />
+            {[0, 9].map((d) => <path key={d} d={`M920 ${934 + d} Q${720} ${940 + d} ${920 - 760 * tracks} ${938 + d}`} stroke="#8A96A8" strokeWidth="5" strokeDasharray="5 4" fill="none" opacity={tracks} />)} {/* tracce doppie davanti al labirinto */}
             <path d="M160 540 H920 V960 H160 Z M540 540 V960 M160 750 H920" fill="none" stroke={K} strokeWidth="14" />
           </g>
         </g>

@@ -12,7 +12,7 @@ import { K } from './Comuni';
 // Piani: parete (0,25) · specchio della toeletta (0,5) · porta con la scritta (0,7) · lama e schegge (0,8) · comodino e lampada (1,1) · pulviscolo (1,6)
 
 const r = rng(1980);
-const CHIPS = Array.from({ length: 16 }, () => ({ a: -Math.PI + r() * Math.PI, v: 120 + r() * 260, s: 6 + r() * 10, rot: r() * 360 }));
+const CHIPS = Array.from({ length: 16 }, () => ({ a: -Math.PI + r() * Math.PI, v: 120 + r() * 260, s: 14 + r() * 16, rot: r() * 360 }));
 
 export const Specchio: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const cam = camera(t, dur);
@@ -78,7 +78,7 @@ export const Specchio: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
           {hits.map((h, k) => {
             const p = hitP(h);
             return p > 0 && p < 1 ? CHIPS.map((c, i) => (
-              <rect key={`${k}${i}`} x={760 + Math.cos(c.a) * c.v * p - c.s / 2} y={1040 + Math.sin(c.a) * c.v * p + 260 * p * p} width={c.s} height={c.s * 0.4} fill="#C9A060" stroke={K} strokeWidth="2" opacity={1 - p} transform={`rotate(${c.rot + p * 400} ${760 + Math.cos(c.a) * c.v * p} ${1040 + Math.sin(c.a) * c.v * p + 260 * p * p})`} />
+              <rect key={`${k}${i}`} x={760 + Math.cos(c.a) * c.v * p - c.s / 2} y={1040 + Math.sin(c.a) * c.v * p + 260 * p * p} width={c.s} height={c.s * 0.4} fill="#F0D8A8" stroke={K} strokeWidth="3" opacity={1 - p * p} transform={`rotate(${c.rot + p * 400} ${760 + Math.cos(c.a) * c.v * p} ${1040 + Math.sin(c.a) * c.v * p + 260 * p * p})`} />
             )) : null;
           })}
         </g>

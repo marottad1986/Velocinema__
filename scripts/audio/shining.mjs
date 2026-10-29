@@ -106,7 +106,7 @@ export default (mix, T) => {
   // ---- stanza: corridoio, il battito comincia; il divieto della 237 con colpo d'archi e serratura
   organ(B(T.stanza), B(T.neve), { vel: 40, gain: 0.26, dark: true, k0: 2 });
   pulse(B(T.stanza), B(T.neve), { half: true, vel: 58 });
-  clip(mix, 'legno_cigolio', { t: T.stanza + 0.5, da: 2.85, durata: 1.0, gain: 0.15, fadeOut: 0.3, rev: 0.4, pan: -0.2 });
+  clip(mix, 'legno_cigolio', { t: cue('stanza', 1), da: 2.85, durata: 1.0, gain: 0.15, fadeOut: 0.3, rev: 0.4, pan: -0.2 });
   clip(mix, 'serratura', { t: cue('stanza', 2), da: 2.45, durata: 0.5, gain: 0.35, pan: 0.2, rev: 0.3 });
   trem(cue('stanza', 2), T.neve - cue('stanza', 2), [50, 51, 62, 63], { vel: 56, gain: 0.32 });
 
@@ -171,8 +171,8 @@ export default (mix, T) => {
   trem(cue('specchio', 3) + 0.5, T.labirinto - cue('specchio', 3) - 0.5, [38, 50, 51, 62], { vel: 70, gain: 0.45 });
 
   // ---- labirinto: tormenta notturna, i fari che si spengono, la fuga: battito a passo pieno con timpani
-  wind('vento_artico', T.labirinto - 0.3, T.foto - T.labirinto + 0.3, 0.14, 2);
-  organ(B(T.labirinto), B(cue('labirinto', 2)), { vel: 40, gain: 0.26, dark: true });
+  wind('vento_artico', T.labirinto - 0.3, T.foto - T.labirinto + 0.3, 0.09, 2);
+  organ(B(T.labirinto), B(cue('labirinto', 2)), { vel: 42, gain: 0.3 });
   motif(B(T.labirinto), B(cue('labirinto', 2)), { half: true, vel: 54 });
   gong(cue('labirinto', 2), 0.5, 'gong_hit_mp');
   suona(mix, 'timpani', 38, { t: cue('labirinto', 2), dur: 2, vel: 110, gain: 1.2, rev: 0.5, release: 0.8, seed: 7 });
