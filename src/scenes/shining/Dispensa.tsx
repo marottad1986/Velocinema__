@@ -6,8 +6,8 @@ import type { SceneProps } from '../../types';
 import { K } from './Comuni';
 
 // La porta che si apre da sola: la porta della dispensa chiusa col chiavistello; su «il fantasma apre la porta» il
-// chiavistello scorre da solo e la porta si socchiude; su «rompe radio e mezzo per la neve» la radio sul ripiano va in
-// pezzi (scintille) e cade la mazza. Scaffali di barattoli e scatole tutt'intorno.
+// chiavistello scorre da solo e la porta si socchiude; su «radio e mezzo… li aveva già rotti» la radio sul ripiano, già
+// sfasciata, sputa un'ultima scintilla. La mazza a terra. Scaffali di barattoli e scatole tutt'intorno.
 // Piani: parete di fondo (0,25) · scaffali (0,5) · porta con il chiavistello (0,7) · radio sul ripiano (0,9) · barattoli in primo piano (1,25) · pulviscolo (1,6)
 
 const r = rng(77);
@@ -20,7 +20,8 @@ export const Dispensa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
   const slam = seg(t, 0.4, 0.6) * (1 - seg(t, 0.6, 1.2)); // la porta sbattuta e chiusa
   const bolt = eio(seg(t, cues[1] + 0.6, cues[1] + 1.4)); // il chiavistello scorre da solo
   const open = eo(seg(t, cues[1] + 1.6, cues[2])); // la porta si socchiude
-  const smash = seg(t, cues[2] + 1, cues[2] + 1.8); // la radio va in pezzi
+  const smash = 1; // la radio è già rotta
+  const spark = seg(t, cues[2] + 0.4, cues[2] + 1.2); // l'ultima scintilla della radio
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
@@ -73,7 +74,8 @@ export const Dispensa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
             <path d="M60 -60 L100 -110" stroke={K} strokeWidth="5" />
             {smash > 0 && <path d="M-60 -50 L-10 0 L-40 40 M30 -50 L0 10 L50 40" stroke="#F4F0E4" strokeWidth="4" fill="none" />}
           </g>
-          {smash > 0 && smash < 1 && SPARKS.map((s, i) => <circle key={i} cx={900 + Math.cos(s.a) * s.v * smash} cy={1110 + Math.sin(s.a) * s.v * smash + 200 * smash * smash} r="4" fill="#FFE8A0" opacity={1 - smash} />)}
+          {spark > 0 && spark < 1 && SPARKS.map((s, i) => <circle key={i} cx={900 + Math.cos(s.a) * s.v * spark} cy={1110 + Math.sin(s.a) * s.v * spark + 200 * spark * spark} r="4" fill="#FFE8A0" opacity={1 - spark} />)}
+          <Glow id="dp-spark" x={900} y={1110} r={160} t={t} color="#FFE8A0" amp={0.2} rate={9} opacity={0.6 * spark * (1 - spark) * 4} />
           <g transform={`translate(200 ${1320}) rotate(${-30 + 60 * seg(t, 0.2, 0.5)})`}>
             <path d="M0 0 L220 -40" stroke={K} strokeWidth="26" strokeLinecap="round" />
             <path d="M0 0 L220 -40" stroke="#C8A060" strokeWidth="16" strokeLinecap="round" />

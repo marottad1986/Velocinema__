@@ -13,7 +13,7 @@ import { loadFilm, timeline } from './film.mjs';
 export const strumenti = ['organo', 'organo_pedale', 'celli', 'viole', 'violini', 'contrabbasso', 'celli_trem', 'violini_trem', 'contrabbasso_pizz',
   'pianoforte_coda', 'glockenspiel', 'timpani', 'gong', 'gong_graffio', 'piatto_sospeso', 'grancassa_rullo'];
 export const effetti = ['vento_artico', 'vento_invernale', 'macchina_scrivere', 'porta_cigolio', 'legno_cigolio', 'porta_sbatte', 'legno_cade',
-  'vetri', 'serratura', 'tintinnio', 'radio_sintonia', 'disturbo', 'metallo_cade', 'colpi_legno', 'pagine'];
+  'scintille', 'serratura', 'tintinnio', 'radio_sintonia', 'disturbo', 'metallo_cade', 'colpi_legno', 'pagine'];
 /** Grande salone vuoto: coda lunga, alte smorzate. */
 export const sala = { rt60: 3.2, brillo: 5000, predelay: 0.035, wet: 0.55 };
 
@@ -145,16 +145,16 @@ export default (mix, T) => {
   gong(cue('frase', 3), 0.45);
   trem(cue('frase', 3), T.dispensa - cue('frase', 3), [50, 51, 57, 58], { vel: 62, gain: 0.4 });
 
-  // ---- dispensa: la porta sbattuta, il chiavistello che scorre da solo, la radio a pezzi
+  // ---- dispensa: la porta sbattuta, il chiavistello che scorre da solo, la radio già rotta che sfrigola
   clip(mix, 'porta_sbatte', { t: T.dispensa + 0.4 - 0.5, da: 2.6, durata: 0.9, gain: 0.32, fadeOut: 0.3, rev: 0.35 }); // Dispensa.tsx: slam a 0,4 s
   pulse(B(T.dispensa), B(T.specchio), { half: true, vel: 58 });
   organ(B(T.dispensa), B(T.specchio), { vel: 44, gain: 0.34, dark: true, k0: 3 });
   clip(mix, 'serratura', { t: cue('dispensa', 1) + 0.6, da: 5.55, durata: 0.6, gain: 0.4, pan: 0.25, rev: 0.3 }); // il chiavistello scorre
   clip(mix, 'porta_cigolio', { t: cue('dispensa', 1) + 1.6, da: 10.68, durata: 1.6, gain: 0.3, fadeOut: 0.4, rev: 0.35, pan: 0.1 });
   scrape(cue('dispensa', 1) + 0.6, 0.25);
-  clip(mix, 'vetri', { t: cue('dispensa', 2) + 1, da: 0, durata: 1.2, gain: 0.2, fadeOut: 0.4, rev: 0.3, pan: 0.4 }); // la radio va in pezzi
-  clip(mix, 'metallo_cade', { t: cue('dispensa', 2) + 1.05, da: 1.25, durata: 1.2, gain: 0.3, fadeOut: 0.4, rev: 0.35, pan: 0.35 });
-  trem(cue('dispensa', 2) + 1, T.specchio - cue('dispensa', 2) - 1, [38, 50, 56], { vel: 58, gain: 0.36 });
+  clip(mix, 'scintille', { t: cue('dispensa', 2) + 0.4, da: 0.5, durata: 0.8, gain: 0.25, fadeOut: 0.3, rev: 0.3, pan: 0.4 }); // la radio rotta sputa una scintilla
+  clip(mix, 'disturbo', { t: cue('dispensa', 2) + 0.4, da: 7, durata: 0.6, gain: 0.14, fadeIn: 0.02, fadeOut: 0.3, rev: 0.15, pan: 0.4 });
+  trem(cue('dispensa', 2) + 0.4, T.specchio - cue('dispensa', 2) - 0.4, [38, 50, 56], { vel: 58, gain: 0.36 });
 
   // ---- specchio: «murder» nello specchio (gong), poi l'ascia: due colpi sul legno con timpani e schegge
   pulse(B(T.specchio), B(cue('specchio', 2)), { half: true, vel: 58 });

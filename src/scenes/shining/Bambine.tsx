@@ -16,7 +16,7 @@ export const Bambine: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const ride = eio(seg(t, 0, cues[1])); // il triciclo corre e frena
   const shoes = eo(seg(t, cues[1], cues[1] + 0.8)); // le scarpine compaiono
   const ghost = seg(t, cues[2], cues[2] + 1) * (1 - seg(t, dur - 1, dur)); // luce fredda: «morte proprio lì»
-  const ball = eio(seg(t, cues[3], dur)); // la palla rotola verso Danny: «restare per sempre»
+  const ball = eio(seg(t, cues[3], dur)); // «una palla lo porta nella 237»: la palla rotola verso il triciclo
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>

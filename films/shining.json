@@ -21,10 +21,10 @@
       "durata": 10,
       "scena": "Strada di montagna che sale tra i boschi d'autunno verso un enorme albergo isolato davanti alle vette; un'auto gialla piccola sui tornanti; nuvole basse che corrono.",
       "sottotitoli": [
-        "Jack Torrance, scrittore senza lavoro, accetta",
-        "di custodire per tutto l'inverno l'Overlook,",
-        "un enorme albergo isolato tra le montagne,",
-        "dove un custode, anni prima, impazzì e uccise la famiglia."
+        "Jack Torrance vuole fare lo scrittore, così accetta",
+        "di custodire d'inverno l'Overlook per scrivere in pace:",
+        "un albergo isolato tra le montagne,",
+        "dove un custode impazzì e uccise moglie e figlie."
       ]
     },
     {
@@ -46,7 +46,7 @@
       "sottotitoli": [
         "Il cuoco Hallorann, che ha lo stesso dono,",
         "gli spiega che l'albergo ricorda le cose brutte",
-        "e lo avverte: mai entrare nella stanza 237."
+        "e, prima di partire, lo avverte: mai nella stanza 237."
       ]
     },
     {
@@ -67,10 +67,10 @@
       "durata": 10,
       "scena": "Un lungo corridoio vuoto con il tappeto a esagoni (motivo inventato); un triciclo fermo di traverso; in fondo due paia di scarpine e una palla che rotola da sola verso la camera.",
       "sottotitoli": [
-        "Danny gira i corridoi con il triciclo",
+        "Danny gira i corridoi col triciclo",
         "e la luccicanza gli mostra due bambine:",
-        "sono le figlie del vecchio custode, morte proprio lì,",
-        "che lo invitano a restare per sempre."
+        "le figlie di quel custode, uccise lì.",
+        "Poi una palla lo porta nella 237, e ne esce ferito."
       ]
     },
     {
@@ -79,10 +79,10 @@
       "durata": 11,
       "scena": "Una grande sala da ballo dorata e vuota con il bancone del bar illuminato, file di bottiglie che brillano, un bicchiere che si riempie da solo, un secchiello del ghiaccio; i lampadari si accendono uno a uno.",
       "sottotitoli": [
-        "Intanto Jack non scrive e diventa cattivo,",
+        "Intanto Jack non scrive e diventa sempre più rabbioso,",
         "perché l'albergo gli parla:",
-        "nel bar vuoto un fantasma gli versa da bere",
-        "e il fantasma del vecchio custode gli dice di punire la famiglia."
+        "nel bar vuoto un barista fantasma gli versa da bere",
+        "e il fantasma del custode gli dice di punire la famiglia."
       ]
     },
     {
@@ -91,21 +91,21 @@
       "durata": 10,
       "scena": "Nel salone, un tavolo con la macchina da scrivere e una pila altissima di fogli tutti pieni di righe uguali; fogli sparsi a terra; una lampada da tavolo; dalla finestra la neve.",
       "sottotitoli": [
-        "Wendy, preoccupata, legge il libro a cui lavora da mesi:",
+        "Wendy, preoccupata, legge il libro a cui Jack lavora da settimane:",
         "centinaia di pagine con la stessa frase,",
         "ripetuta all'infinito.",
-        "Così capisce che Jack è impazzito."
+        "Così capisce che suo marito è impazzito."
       ]
     },
     {
       "id": "dispensa",
       "titolo": "La porta che si apre da sola",
       "durata": 10,
-      "scena": "La porta della dispensa con il chiavistello che scorre da solo; scaffali di barattoli e scatole; poi, fuori nella neve, la radio a pezzi e il cofano aperto del mezzo per la neve.",
+      "scena": "La porta della dispensa con il chiavistello che scorre da solo; scaffali di barattoli e scatole; sul ripiano la radio già sfasciata che sputa un'ultima scintilla; la mazza a terra.",
       "sottotitoli": [
-        "Wendy lo colpisce con una mazza e lo chiude nella dispensa,",
-        "ma il fantasma del custode apre la porta",
-        "e Jack, libero, rompe radio e mezzo per la neve."
+        "Jack la minaccia: Wendy lo stordisce e lo chiude in dispensa,",
+        "ma un fantasma gli apre la porta;",
+        "radio e mezzo per la neve, Jack li aveva già rotti."
       ]
     },
     {
@@ -114,10 +114,10 @@
       "durata": 11,
       "scena": "Una camera buia: sulla porta una parola scritta in rosso col rossetto, che nello specchio si legge al contrario; poi la lama di un'ascia che sfonda il legno della porta del bagno, schegge che volano.",
       "sottotitoli": [
-        "Danny, spaventato, scrive sulla porta una parola strana,",
-        "ma riflessa nello specchio diventa «murder», assassino in inglese.",
-        "E Jack arriva con un'ascia",
-        "e sfonda la porta del bagno."
+        "Danny, come posseduto, scrive sulla porta una parola strana,",
+        "che nello specchio Wendy legge «murder», assassino in inglese.",
+        "Proprio allora Jack arriva con un'ascia",
+        "e sfonda la porta del bagno dove si sono chiusi."
       ]
     },
     {
@@ -126,11 +126,11 @@
       "durata": 11,
       "scena": "Notte nella tormenta: l'ingresso dell'albergo spalancato con i fari di un mezzo cingolato fuori; poi il labirinto di siepi visto dall'alto, con impronte nella neve che entrano e tornano indietro.",
       "sottotitoli": [
-        "Danny ha chiamato con la luccicanza Hallorann,",
+        "Ma Danny, con la luccicanza, aveva chiamato Hallorann,",
         "che arriva da lontano,",
-        "ma appena entra Jack lo uccide.",
-        "Danny scappa nel labirinto di siepi",
-        "e cammina all'indietro nelle sue impronte per confondere il padre."
+        "ma appena entra, Jack lo uccide.",
+        "Danny allora scappa nel labirinto",
+        "e cammina all'indietro sulle sue orme, per ingannare il padre."
       ]
     },
     {
@@ -140,7 +140,7 @@
       "scena": "All'alba il labirinto è sepolto dalla neve e silenzioso; poi una parete del salone con tante vecchie foto in cornice: una, con la data 4 luglio 1921, si avvicina e si illumina (nessuna figura visibile, solo bagliore e la data).",
       "sottotitoli": [
         "Così Jack si perde e muore congelato,",
-        "mentre Danny e Wendy fuggono via.",
+        "mentre Danny e Wendy fuggono col mezzo di Hallorann.",
         "Ma in una foto del 1921 appesa nell'albergo c'è anche Jack,",
         "come se fosse sempre stato lì."
       ]
