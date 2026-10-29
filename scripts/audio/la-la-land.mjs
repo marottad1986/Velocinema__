@@ -3,15 +3,15 @@
 // per gli scintillii. Giri di accordi e linee melodiche inventati qui (nessun tema del film): la melodia è generata
 // a passi per grado dalla scala di ogni accordo, con seme fisso.
 // Effetti registrati (archivio CC0, scripts/audio/effetti.mjs) agganciati a inizi di capitolo o di sottotitolo
-// (tempi dei sottotitoli calcolati come subtitleTimes in ChapterOverlay). Restano sintetici solo spazzole e neon.
-import { drum, neonHum, rng } from './synth.mjs';
+// (tempi dei sottotitoli calcolati come subtitleTimes in ChapterOverlay). Restano sintetiche solo le spazzole.
+import { drum, rng } from './synth.mjs';
 import { suona, archi, colpo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
 export const strumenti = ['pianoforte', 'contrabbasso_pizz', 'tromba_sordina', 'glockenspiel', 'violini', 'viole', 'celli', 'cassa', 'piatto_crash'];
 export const effetti = ['clacson', 'campanello_negozio', 'martelletto', 'tacchi', 'scatti', 'voci_caffe', 'voci_sala',
-  'giornale', 'porta_sbatte', 'macchina_scrivere', 'pioggia_dura', 'telo'];
+  'giornale', 'porta_sbatte', 'macchina_scrivere', 'pioggia_dura', 'telo', 'ronzio_neon'];
 /** Club piccolo: coda corta e calda. */
 export const sala = { rt60: 1.6, brillo: 6500, predelay: 0.018, wet: 0.45 };
 
@@ -234,9 +234,10 @@ export default (mix, T) => {
   clip(mix, 'telo', { t: cue('prima', 3) + 0.2, da: 12.83, durata: 0.8, gain: 0.12, lp: 2500, fadeOut: 0.3, rev: 0.4 });
   // audizione: la cartolina di Parigi si posa (frase 4)
   clip(mix, 'giornale', { t: cue('audizione', 4) + 1.2, da: 0.93, durata: 0.3, gain: 0.15, fadeOut: 0.1, rev: 0.25 });
-  // epilogo: pioggia per tutto il capitolo; l'insegna SEB'S si accende (frase 2): scatto e ronzio del neon (sintetico);
+  // epilogo: pioggia per tutto il capitolo; l'insegna SEB'S si accende (frase 2): scatto e ronzio del neon;
   // stella cadente (frase 4) con una discesa di glockenspiel
   clip(mix, 'pioggia_dura', { t: T.epilogo, da: 2, durata: T.finale - T.epilogo + 1, gain: 0.05, lp: 4000, largo: 6, fadeIn: 1, fadeOut: 1.5 });
-  neonHum(mix, cue('epilogo', 2), 4.5, { vel: 34 });
+  clip(mix, 'ronzio_neon', { t: cue('epilogo', 2), da: 0, durata: 0.55, gain: 0.12, fadeOut: 0.05, rev: 0.2 });
+  clip(mix, 'ronzio_neon', { t: cue('epilogo', 2) + 0.55, da: 2.6, durata: 4.5, gain: 0.1, fadeIn: 0.05, fadeOut: 1.5, rev: 0.2 });
   [105, 102, 98, 93].forEach((m, j) => note(mix, 'vibes', mtof(m), { t: cue('epilogo', 4) + 0.2 + j * BEAT / 8, dur: 2, vel: 30 - j, pan: 0.4 - j * 0.15, rev: 0.7, gain: 0.4 }));
 };
