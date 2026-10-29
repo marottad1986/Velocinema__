@@ -69,10 +69,10 @@ export const Rose: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <g transform={`translate(940 1180) rotate(${ring * 4})`}>
             <path d="M-80 0 Q-80 -60 0 -60 Q80 -60 80 0 Z" fill="#1A1A1E" stroke={K} strokeWidth="6" />
             <circle cx="0" cy="-30" r="22" fill="#E8E0D0" stroke={K} strokeWidth="4" />
-            <g transform={`translate(0 ${-70 - 80 * lift}) rotate(${-30 * lift})`}>
+            <g transform={`translate(${130 * lift} ${-70 + 70 * lift - 90 * Math.sin(Math.PI * lift)}) rotate(${-25 * Math.sin(Math.PI * lift)})`}>
               <path d="M-80 0 Q-90 -24 -64 -26 H64 Q90 -24 80 0 Q60 10 40 0 H-40 Q-60 10 -80 0 Z" fill="#1A1A1E" stroke={K} strokeWidth="6" />
             </g>
-            <path d={`M70 -20 Q140 ${20 - 40 * lift} ${64 * Math.cos((-30 * lift * Math.PI) / 180)} ${-70 - 80 * lift + 64 * Math.sin((-30 * lift * Math.PI) / 180)}`} stroke={P.accento} strokeWidth="5" fill="none" />
+            <path d={`M70 -20 Q140 ${20 - 40 * lift} ${130 * lift - 64} ${-70 + 70 * lift - 90 * Math.sin(Math.PI * lift)}`} stroke={P.accento} strokeWidth="5" fill="none" />
             {ring !== 0 && [0, 1, 2].map((i) => <path key={i} d={`M${-110 - i * 20} ${-60 - i * 10} q-10 20 0 40`} stroke="#F4EEE2" strokeWidth="5" fill="none" opacity=".8" />)}
           </g>
           <g transform="translate(800 1180)">

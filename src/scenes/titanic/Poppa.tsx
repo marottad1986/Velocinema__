@@ -47,7 +47,8 @@ export const Poppa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <g transform={L(0.85)}>
           <path d="M-200 1180 Q540 1130 1280 1180" stroke="#E8E0D0" strokeWidth="14" fill="none" />
           <path d="M-200 1250 Q540 1200 1280 1250" stroke="#B8B0A0" strokeWidth="8" fill="none" />
-          {Array.from({ length: 16 }, (_, i) => <path key={i} d={`M${-160 + i * 92} ${1170 - Math.sin((i / 15) * Math.PI) * 30} V${1300 - Math.sin((i / 15) * Math.PI) * 30}`} stroke="#B8B0A0" strokeWidth="8" />)}
+          {Array.from({ length: 16 }, (_, i) => <path key={i} d={`M${-160 + i * 92} ${1170 - Math.sin((i / 15) * Math.PI) * 30} V1400`} stroke="#B8B0A0" strokeWidth="8" />)}
+          <path d="M-200 1300 Q540 1260 1280 1300 V1400 H-200 Z" fill="#6A4E34" opacity=".85" /> {/* il bordo del ponte sotto la ringhiera */}
           {/* scialle: prima oltre la ringhiera, che sventola, poi di nuovo sul ponte */}
           <g transform={`translate(${380 + 40 * back} ${1110 + 120 * back}) rotate(${-30 + 30 * back})`}>
             <path d={`M-90 0 Q0 ${-20 + 16 * Math.sin(t * 5) * shawl} 90 0 L${70 + 20 * Math.sin(t * 4) * shawl} ${90 - 40 * back} Q0 ${110 - 40 * back} ${-70} ${90 - 40 * back} Z`} fill="#7A5A9A" stroke={K} strokeWidth="5" />

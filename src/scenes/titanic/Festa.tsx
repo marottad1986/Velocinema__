@@ -45,6 +45,12 @@ export const Festa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             {[120, 360, 720, 960].map((x) => <g key={x}><path d={`M${x - 20} 1180 L${x} 1110 L${x + 20} 1180`} fill="none" stroke="#C9D8E0" strokeWidth="5" /><ellipse cx={x} cy="1180" rx="40" ry="8" fill="#E8E0D0" stroke={K} strokeWidth="3" /></g>)}
             {[240, 840].map((x) => <g key={x}><path d={`M${x} 1180 V1080`} stroke="#C9A24A" strokeWidth="8" /><Glow id={`fe-c${x}`} x={x} y={1070} r={90} t={t} color="#FFE2A0" amp={0.12} rate={6} opacity={0.6} /><ellipse cx={x} cy="1068" rx="8" ry="14" fill="#FFE8B0" /></g>)}
           </g>
+          {/* pavimento a scacchi in prospettiva e due sedie dorate in primo piano */}
+          <g transform={L(1.3)}>
+            <path d="M-200 1260 H1280 V2200 H-200 Z" fill="#E8E0D0" />
+            {Array.from({ length: 6 }, (_, r) => Array.from({ length: 9 }, (_, c) => ((r + c) % 2 ? <path key={`${r}${c}`} d={`M${-200 + c * 165 - r * 20} ${1260 + r * r * 22 + r * 40} h165 l${-20 + 0} ${(2 * r + 1) * 22 + 40} h-165 Z`} fill="#3A2A1E" /> : null)))}
+            {[90, 990].map((x) => <g key={x}><path d={`M${x - 80} 2200 V1620 Q${x} 1560 ${x + 80} 1620 V2200`} fill="#C9A24A" stroke={K} strokeWidth="8" /><path d={`M${x - 50} 1700 H${x + 50}`} stroke="#8A6A2A" strokeWidth="8" /></g>)}
+          </g>
         </g>
         {/* terza classe: la festa */}
         <g opacity={party}>

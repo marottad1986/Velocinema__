@@ -47,6 +47,7 @@ export const Cuore: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* la poppa della nave di ricerca, di notte, con la gru e i fari */}
         <g transform={L(0.6)} opacity={night}>
+          <g transform="translate(0 110)">
           <path d="M-200 760 H560 L520 900 H-200 Z" fill="#E8E4DC" stroke={K} strokeWidth="8" />
           <path d="M-200 740 H560" stroke="#C8402A" strokeWidth="10" />
           {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${-160 + i * 90} 740 V690`} stroke="#E8E4DC" strokeWidth="6" />)}
@@ -54,7 +55,8 @@ export const Cuore: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M60 690 L260 640 L420 646" stroke="#E8C030" strokeWidth="16" fill="none" />
           <path d="M420 646 V690" stroke={K} strokeWidth="4" />
           <Glow id="cu-crane" x={420} y={660} r={170} t={t} color="#FFF2C8" amp={0.06} rate={2} opacity={0.6} />
-          <Reflection t={t} x={420} y={910} color="#FFF2C8" n={8} opacity={0.4} />
+          </g>
+          <Reflection t={t} x={420} y={1020} color="#FFF2C8" n={8} opacity={0.4} />
         </g>
         {/* il diamante che cade e affonda, con la scia di luce */}
         <g transform={L(0.85)}>

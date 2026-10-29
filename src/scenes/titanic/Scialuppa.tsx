@@ -79,7 +79,7 @@ export const Scialuppa: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
         </g>
         {/* onde in primo piano e un'altra scialuppa lontana sul mare */}
         <g transform={L(1.25)}>
-          <Lifeboat x={860} y={1420} s={0.6} rot={3} />
+          <Lifeboat x={860} y={1540} s={0.6} rot={3} />
           <WaveBand t={t} y={1520} fill="#0E1828" foam="#7A9AB8" amp={16} w={260} speed={40} bob={6} ph={1} />
           <WaveBand t={t} y={1700} fill="#08101C" foam="#5A7A9A" amp={20} w={320} speed={55} bob={8} ph={2} />
         </g>

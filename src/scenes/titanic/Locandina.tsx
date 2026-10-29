@@ -21,6 +21,7 @@ const Copertina_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
         <FxDefs id="tc" />
         <Lin id="tc-sky" stops={[[0, '#02040A'], [0.6, '#0E1A30'], [1, '#1E3050']]} />
         <Lin id="tc-sea" stops={[[0, '#14243A'], [1, '#02060C']]} />
+        <Lin id="tc-ice" stops={[[0, '#BFD8E6'], [1, '#4A6A80']]} />
       </defs>
       <g transform={cam.transform}>
         <g transform={L(0.15)}>
@@ -44,7 +45,9 @@ const Copertina_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
           {/* lastrone di ghiaccio galleggiante in primo piano con il diamante appoggiato sopra */}
           <path d="M-200 1330 Q100 1270 420 1300 Q700 1250 1000 1300 Q1180 1280 1280 1320 V2200 H-200 Z" fill="#DCEBF2" stroke="#08101C" strokeWidth="8" />
           <path d="M-200 1380 Q300 1340 700 1370 Q1000 1350 1280 1390 V2200 H-200 Z" fill="#A9CCDC" opacity=".6" />
-          <path d="M-200 1560 H1280 V2200 H-200 Z" fill="#08101C" opacity=".55" />
+          <path d="M-200 1420 Q300 1400 700 1440 Q1000 1420 1280 1450 V2200 H-200 Z" fill="url(#tc-ice)" />
+          <path d="M120 1330 L200 1460 L170 1600 M760 1320 L700 1480 L780 1640 M980 1340 L1060 1520" stroke="#7AA8C0" strokeWidth="5" fill="none" />
+          <path d="M300 1500 Q420 1480 520 1510 M640 1700 Q760 1680 880 1710" stroke="#FFFFFF" strokeWidth="6" fill="none" opacity=".6" />
           <Glow id="tc-dia" x={540} y={1210} r={260} t={t} color="#4FB0E8" amp={0.1} rate={3} opacity={0.5} />
           <ellipse cx="540" cy="1290" rx="110" ry="16" fill="#08101C" opacity=".25" />
           <Diamond x={540} y={1210} s={1.1} t={t} chain={false} />
@@ -70,9 +73,9 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
       <g transform={cam.transform}>
         <g transform={L(0.2)}>
           <rect x="-200" y="-200" width="1480" height="1400" fill="url(#tf-sky)" />
-          <circle cx="760" cy="935" r="70" fill="#FFE8C8" />
-          <Glow id="tf-sun" x={760} y={935} r={300} t={t} color="#FFE2C0" amp={0.05} rate={1} opacity={0.5} />
-          <SunRays id="tf-rays" x={760} y={935} t={t} color="#FFE8C8" n={9} length={1000} opacity={0.3} />
+          <Glow id="tf-sun" x={800} y={985} r={320} t={t} color="#FFB070" amp={0.05} rate={1} opacity={0.7} />
+          <circle cx="800" cy="985" r="64" fill="#FFB878" stroke="#E8885A" strokeWidth="6" />
+          <SunRays id="tf-rays" x={800} y={985} t={t} color="#FFE8C8" n={9} length={1000} opacity={0.3} />
         </g>
         <g transform={L(0.4)}>
           <path d="M-200 1010 H1280 V2200 H-200 Z" fill="url(#tf-sea)" />
@@ -138,7 +141,7 @@ export const Finale: React.FC<PosterProps> = ({ t, dur, film }) => {
         <p style={{ margin: '30px 0 0', fontSize: 34, fontWeight: 400, opacity: seg(t, 1.0, 1.4) }}>Commenta con il film che vorresti.</p>
       </div>
       <h1 style={{ position: 'absolute', left: 0, right: 0, top: 760, margin: 0, textAlign: 'center', fontFamily: PLAYFAIR, fontWeight: 900, fontSize: 150, lineHeight: 1,
-        color: P.chiaro, textShadow: `0 6px 0 ${P.scuro}`, opacity: seg(t, 0.3, 0.6), transform: `scale(${lerp(0.9, 1, end)})` }}>
+        color: P.principale, textShadow: `0 4px 0 ${P.chiaro}, 0 0 30px ${P.chiaro}`, opacity: seg(t, 0.3, 0.6), transform: `scale(${lerp(0.9, 1, end)})` }}>
         The End
       </h1>
     </div>

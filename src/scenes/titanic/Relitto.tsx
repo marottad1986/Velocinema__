@@ -65,12 +65,12 @@ export const Relitto: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <g transform="translate(330 1210) rotate(-6)">
             <rect x="-90" y="-120" width="180" height="140" rx="8" fill="#4A4E50" stroke={K} strokeWidth="7" />
             <circle cx="40" cy="-50" r="16" fill="#2A2E30" stroke="#8A9094" strokeWidth="4" />
-            {/* sportello che si apre */}
-            <g transform={`translate(-90 -120) scale(${1 - 0.85 * safe} 1)`}>
+            {safe > 0 && <rect x="-78" y="-108" width="156" height="116" fill="#0A0E10" opacity={safe} />}
+            {/* sportello che si apre verso l'esterno, sul cardine sinistro */}
+            <g transform={`translate(-90 -120) scale(${1 - 1.4 * safe} 1)`}>
               <rect x="0" y="0" width="180" height="140" rx="8" fill="#5A5E60" stroke={K} strokeWidth="6" />
               <circle cx="130" cy="70" r="14" fill="#2A2E30" stroke="#8A9094" strokeWidth="4" />
             </g>
-            {safe > 0 && <rect x="-78" y="-108" width="156" height="116" fill="#0A0E10" opacity={safe} />}
             {/* il foglio arrotolato che esce e si illumina */}
             {paper > 0 && (
               <g transform={`translate(${-10 + 30 * paper} ${-60 - 90 * paper}) rotate(${-20 + 10 * paper})`}>

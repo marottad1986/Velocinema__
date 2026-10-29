@@ -84,7 +84,7 @@ export const Naufragio: React.FC<SceneProps> = ({ t, dur, cues }) => {
           {[0, 1].map((i) => <ellipse key={i} cx={540} cy={1200} rx={260 + i * 80 + Math.sin(t * 1.5 + i) * 10} ry={40 + i * 14} fill="none" stroke="#5A7A9A" strokeWidth="3" opacity=".4" />)}
         </g>
         {/* rottami che galleggiano in primo piano: una sdraio, assi, un salvagente */}
-        <g transform={L(1.2)} opacity={sea}>
+        <g transform={L(1.2)}>
           <g transform={`translate(160 ${1640 + Math.sin(t * 1.3) * 8}) rotate(-14)`}><rect x="-140" y="-20" width="280" height="40" fill="#8A6A48" stroke={K} strokeWidth="6" /><path d="M-120 -20 L-60 -110 H100" stroke="#6A4E34" strokeWidth="12" fill="none" /></g>
           <g transform={`translate(900 ${1720 + Math.sin(t * 1.1 + 1) * 8})`}><circle r="80" fill="none" stroke="#F4EEE2" strokeWidth="34" /><circle r="80" fill="none" stroke="#C8402A" strokeWidth="34" strokeDasharray="40 86" /></g>
           <rect x="420" y={1860 + Math.sin(t * 1.5) * 6} width="300" height="30" fill="#7A5A3A" stroke={K} strokeWidth="5" transform="rotate(6 570 1875)" />

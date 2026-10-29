@@ -31,9 +31,9 @@ export const Imbarco: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         {/* la nave enorme, di fianco, che riempie l'orizzonte */}
         <g transform={L(0.4)}>
           {/* fumo dalle cime del secondo e terzo fumaiolo, spinto a destra e in basso dal vento */}
-          <Smoke id="im-sm" t={t} x={480} y={662} color="#8A8A8A" rise={70} wind={320} r0={26} r1={100} opacity={0.55} />
-          <Smoke id="im-sm2" t={t + 1.5} x={698} y={662} color="#9A9A9A" rise={70} wind={320} r0={26} r1={100} opacity={0.45} />
           <Ship x={600} y={1090} s={1.55} t={t} lit={0.3} />
+          <Smoke id="im-sm" t={t} x={510} y={668} color="#5A5A5A" rise={200} wind={300} r0={26} r1={110} opacity={0.7} />
+          <Smoke id="im-sm2" t={t + 1.5} x={740} y={668} color="#6A6A6A" rise={200} wind={300} r0={26} r1={110} opacity={0.6} />
           {/* bandierine dalla cima dell'albero di poppa al primo fumaiolo */}
           <path d="M-20 580 Q130 680 262 662" stroke={K} strokeWidth="2" fill="none" />
           {Array.from({ length: 7 }, (_, i) => {
@@ -58,7 +58,7 @@ export const Imbarco: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* bauli di lusso (prima classe) e il tavolino delle carte (terza classe) */}
         <g transform={L(0.9)}>
-          <g opacity={0.4 + 0.6 * lux} transform={`translate(${-40 * (1 - lux)} 0)`}>
+          <g transform={`translate(${-420 * (1 - lux)} 0)`}>
             <rect x="40" y="1100" width="260" height="140" rx="10" fill="#7A3A2A" stroke={K} strokeWidth="7" />
             <path d="M40 1150 H300 M110 1100 V1240 M230 1100 V1240" stroke="#D9B05A" strokeWidth="6" />
             <rect x="80" y="1010" width="190" height="90" rx="8" fill="#3A5A6A" stroke={K} strokeWidth="6" />

@@ -56,9 +56,10 @@ export const Manette: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* panca e manette agganciate al tubo */}
         <g transform={L(0.8)}>
-          <rect x="40" y="1150" width="460" height="40" fill="#5A4430" stroke={K} strokeWidth="6" />
-          <path d="M80 1190 V1290 M460 1190 V1290" stroke={K} strokeWidth="12" />
-          <g transform="translate(140 1080)">
+          <rect x="160" y="1100" width="460" height="40" fill="#5A4430" stroke={K} strokeWidth="6" />
+          <path d="M200 1140 V1290 M580 1140 V1290" stroke={K} strokeWidth="12" />
+          <path d="M260 870 V1010" stroke="#6A5A4A" strokeWidth="26" />
+          <g transform="translate(260 1020)">
             <circle cx="0" cy="0" r="30" fill="none" stroke="#C8CCD0" strokeWidth="10" />
             {snap < 0.1 ? (
               <path d="M30 0 Q70 30 90 60" stroke="#C8CCD0" strokeWidth="8" fill="none" strokeDasharray="10 4" />
@@ -72,16 +73,16 @@ export const Manette: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         {/* l'acqua che sale */}
         <g transform={L(0.95)}>
           <path d="M-200 1300 H1280 V2200 H-200 Z" fill="#3A3430" />
-          <g transform={`translate(0 ${-260 * water})`}>
+          <g transform={`translate(0 ${-170 * water})`}>
             <WaveBand t={t} y={1320} fill="url(#mn-water)" foam="#CFE8F0" amp={8} w={200} speed={60} bob={4} />
           </g>
         </g>
         {/* l'ascia antincendio che esce dalla teca e cala */}
         <g transform={L(1.15)}>
-          <rect x="300" y="610" width="180" height="320" fill="#2A1A1A" opacity=".5" />
-          <rect x="300" y="610" width="180" height="320" fill="none" stroke="#C8402A" strokeWidth="10" />
-          <path d="M320 630 L360 710 L320 790" stroke="#DDEBF4" strokeWidth="4" fill="none" opacity=".6" />
-          <g transform={`translate(${390 - 210 * axe} ${780 + 260 * axe}) rotate(${-10 - 90 * axe}) scale(.85)`}>
+          <rect x="440" y="650" width="180" height="320" fill="#2A1A1A" opacity=".5" />
+          <rect x="440" y="650" width="180" height="320" fill="none" stroke="#C8402A" strokeWidth="10" />
+          <path d="M460 670 L500 750 L460 830" stroke="#DDEBF4" strokeWidth="4" fill="none" opacity=".6" />
+          <g transform={`translate(${530 - 130 * axe} ${810 + 160 * axe}) rotate(${-10 - 80 * axe}) scale(.85)`}>
             <rect x="-10" y="-150" width="20" height="300" rx="6" fill="#A8642A" stroke={K} strokeWidth="5" />
             <path d="M10 -150 Q90 -150 90 -90 Q60 -110 10 -100 Z" fill="#C8CCD0" stroke={K} strokeWidth="5" />
             <path d="M-10 -150 L-60 -110 L-10 -110 Z" fill="#C8402A" stroke={K} strokeWidth="5" />

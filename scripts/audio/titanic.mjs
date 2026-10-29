@@ -94,7 +94,7 @@ export default (mix, T) => {
   sea(0, T.relitto + 0.5, 0.06);
   harp(CH[0], 0.2, { vel: 58 });
   clip(mix, 'sirena_nebbia', { t: 0.9, da: 0.2, durata: 2.8, gain: 0.05, lp: 1500, fadeOut: 1.2, rev: 0.45, pan: -0.2 });
-  [[1.6, 75], [2.0, 79], [2.4, 82]].forEach(([t, m]) => suona(mix, 'pianoforte_coda', m, { t, dur: 1.4, vel: 56, pan: 0.1, rev: 0.5, gain: 0.5, release: 1 }));
+  [[1.5, 75], [1.5 + BEAT / 2, 79], [1.5 + BEAT, 82], [4 - BEAT, 79]].forEach(([t, m]) => suona(mix, 'pianoforte_coda', m, { t, dur: 1.4, vel: 56, pan: 0.1, rev: 0.5, gain: 0.5, release: 1 }));
   glock(94, 1.2, 50);
 
   // ---- relitto: buio profondo; pedale grave, pianoforte rado; la cassaforte e il foglio che brilla
@@ -106,11 +106,13 @@ export default (mix, T) => {
   strings(B(cue('relitto', 2)), B(T.rose), { half: true, vel: 48, gain: 0.45, high: true });
   [87, 91, 94, 99].forEach((m, j) => glock(m, cue('relitto', 2) + 0.6 + j * BEAT / 4, 50));
 
+  [94, 99].forEach((m, j) => glock(m, cue('relitto', 1) + j * BEAT / 4, 46)); // il diamante «miraggio»
+
   // ---- rose: il racconto comincia; tema lento al pianoforte, il telefono che squilla, poi archi caldi
   theme(B(T.rose), B(T.imbarco), { half: true, vel: 54, gain: 0.5 });
   strings(B(T.rose), B(cue('rose', 2)), { half: true, vel: 48, gain: 0.42 });
   [0, 0.45].forEach((d) => clip(mix, 'campanello', { t: cue('rose', 1) + d, da: 0, durata: 0.4, gain: 0.12, rev: 0.3, pan: 0.3 }));
-  clip(mix, 'scatti', { t: cue('rose', 1) + 0.9, da: 0.44, durata: 0.3, gain: 0.2, rev: 0.25, pan: 0.3 }); // la cornetta si alza
+  clip(mix, 'scatti', { t: cue('rose', 1) + 0.9 - 0.18, da: 0.62, durata: 0.25, gain: 0.2, rev: 0.25, pan: 0.3 }); // la cornetta si alza
   strings(B(cue('rose', 2)), B(T.imbarco), { half: true, vel: 48, gain: 0.45, high: true });
 
   // ---- imbarco: il tema pieno, corni e timpani, la sirena della nave, la folla
@@ -128,24 +130,25 @@ export default (mix, T) => {
   sea(T.poppa, T.festa - T.poppa, 0.06, 8);
   theme(B(T.poppa), B(T.festa), { half: true, vel: 52, gain: 0.45 });
   strings(B(T.poppa), B(cue('poppa', 1)), { half: true, minor: true, vel: 42, gain: 0.28 });
-  trem(B(T.poppa), cue('poppa', 1) - T.poppa, [72, 75], { vel: 38, gain: 0.18 });
+  trem(B(T.poppa), B(cue('poppa', 1)) - B(T.poppa), [72, 75], { vel: 38, gain: 0.18 });
   strings(B(cue('poppa', 1)), B(T.festa), { half: true, vel: 46, gain: 0.42 });
   clip(mix, 'stoffa', { t: cue('poppa', 1) + 0.2, da: 15, durata: 1.2, gain: 0.2, fadeIn: 0.2, fadeOut: 0.5, rev: 0.3, pan: -0.2 });
   harp(CH[0], cue('poppa', 2) + 0.4);
 
   // ---- festa: prima la sala dorata (archi rigidi), poi la terza classe: giga a passo doppio, tamburo, boccali
-  const J = B(T.festa) + BAR / 2; // la giga parte con il passaggio alla terza classe (Festa.tsx: cues[1] - 0,2)
+  const J = B(T.festa) + BAR; // la giga parte sul battere, con l'immagine della festa ormai piena (Festa.tsx: cues[1] + 0,8)
+  harp(CH[0], B(T.festa), { vel: 56 });
   strings(B(T.festa), J, { vel: 56, gain: 0.6, high: true });
-  strings(J, B(T.prua), { vel: 46, gain: 0.26, bass: false }); // archi leggeri sotto la giga
+  strings(J, B(T.prua), { vel: 46, gain: 0.35, bass: false }); // archi leggeri sotto la giga
   for (let t = J, k = 0; t < B(T.prua) - 0.05; t += BEAT / 2, k++) {
     const [r] = CH[Math.floor(k / 16) % 4];
-    suona(mix, 'violino_solo', r + 24 + JIG[k % 8], { t, dur: BEAT / 2, vel: k % 4 ? 52 : 64, pan: 0.15, rev: 0.35, gain: 0.32, attack: 0.01, release: 0.15, seed: k });
-    if (k % 2 === 1) suona(mix, 'violini_pizz', r + 12 + (k % 4 === 1 ? 4 : 7), { t, dur: BEAT / 2, vel: 54, pan: -0.25, rev: 0.3, gain: 0.32, release: 0.2 });
-    if (k % 2 === 0) colpo(mix, k % 4 ? 'tom' : 'cassa', k % 4 ? 'TomH_HitS_v2' : 'v3', { t, vel: k % 4 ? 70 : 90, rev: 0.3, gain: 0.35 });
-    if (k % 4 === 0) suona(mix, 'contrabbasso_pizz', r - 12, { t, dur: BEAT, vel: 70, pan: -0.1, rev: 0.3, gain: 0.5, release: 0.3 });
+    suona(mix, 'violino_solo', r + 24 + JIG[k % 8], { t, dur: BEAT / 2, vel: k % 4 ? 52 : 64, pan: 0.15, rev: 0.35, gain: 0.55, attack: 0.005, release: 0.15, seed: k });
+    if (k % 2 === 1) suona(mix, 'violini_pizz', r + 12 + (k % 4 === 1 ? 4 : 7), { t, dur: BEAT / 2, vel: 54, pan: -0.25, rev: 0.3, gain: 0.8, release: 0.2 });
+    if (k % 2 === 0) colpo(mix, k % 4 ? 'tom' : 'cassa', k % 4 ? 'TomH_HitS_v2' : 'v3', { t, vel: k % 4 ? 70 : 90, rev: 0.3, gain: 0.55 });
+    if (k % 4 === 0) suona(mix, 'contrabbasso_pizz', r - 12, { t, dur: BEAT, vel: 70, pan: -0.1, rev: 0.3, gain: 0.4, release: 0.3 });
   }
   clip(mix, 'voci_sala', { t: J, da: 8, durata: T.prua - J, gain: 0.05, fadeIn: 0.5, fadeOut: 0.8, largo: 4, rev: 0.2 });
-  [0, 1, 2].forEach((i) => clip(mix, 'tintinnio', { t: J + 1 + i * 2 * BEAT, da: 4.13, durata: 0.35, gain: 0.15, rev: 0.3, pan: -0.3 + i * 0.3 }));
+  [0, 1, 2].forEach((i) => clip(mix, 'tintinnio', { t: J + i * 2 * BEAT, da: 4.13, durata: 0.35, gain: 0.15, rev: 0.3, pan: -0.3 + i * 0.3 }));
   roll(cue('festa', 2) - 1, 0.2);
 
   // ---- prua: il tema grande, archi e corni a metà passo, il vento; l'album e la cassaforte che si chiude
@@ -156,7 +159,7 @@ export default (mix, T) => {
   harp(CH[0], B(T.prua));
   suona(mix, 'corno', 58, { t: B(T.prua) + 2 * BAR, dur: 2 * BAR, vel: 54, gain: 0.3, attack: 0.5, release: 1.2, rev: 0.55 });
   clip(mix, 'pagine', { t: cue('prua', 1) + 0.2, da: 1, durata: 1, gain: 0.2, fadeOut: 0.3, rev: 0.3, pan: -0.2 });
-  clip(mix, 'serratura', { t: cue('prua', 2) + 1.25, da: 2.45, durata: 0.5, gain: 0.3, pan: 0.3, rev: 0.3 }); // la cassaforte si chiude
+  clip(mix, 'serratura', { t: cue('prua', 2) + 1.25, da: 2.45, durata: 0.42, gain: 0.3, pan: 0.3, rev: 0.3 }); // la cassaforte si chiude
 
   // ---- iceberg: mare piatto, tensione; la campana d'allarme, il ghiaccio che frana, il gong; le poche scialuppe
   const hit = cue('iceberg', 0) + 2.2; // Iceberg.tsx: la prua struscia sull'iceberg
@@ -179,8 +182,8 @@ export default (mix, T) => {
   clip(mix, 'onde', { t: cue('manette', 1), da: 2, durata: T.scialuppa - cue('manette', 1), gain: 0.08, lp: 1200, fadeIn: 1, fadeOut: 0.8, largo: 2, rev: 0.4 });
   clip(mix, 'colpi_legno', { t: cue('manette', 2) + 0.8, da: 5.74, durata: 0.4, gain: 0.4, rev: 0.4 }); // l'ascia
   clip(mix, 'catene', { t: cue('manette', 2) + 0.82, da: 0.4, durata: 0.5, gain: 0.35, rev: 0.35, pan: -0.3 }); // la catena si spezza
-  timp(cue('manette', 2) + 0.8, 36, 110, 1);
-  clip(mix, 'scatti', { t: cue('manette', 0) + 1.15, da: 0.44, durata: 0.25, gain: 0.15, rev: 0.3, pan: 0.4 }); // il diamante infilato in tasca
+  timp(cue('manette', 2) + 0.8, 36, 100, 0.7);
+  clip(mix, 'scatti', { t: cue('manette', 0) + 1.15 - 0.18, da: 0.62, durata: 0.25, gain: 0.15, rev: 0.3, pan: 0.4 }); // il diamante infilato in tasca
 
   // ---- scialuppa: il tema in minore sugli archi, i razzi di soccorso, le funi che cigolano
   strings(B(T.scialuppa), B(T.naufragio), { minor: true, vel: 56, gain: 0.58, high: true });
@@ -200,12 +203,13 @@ export default (mix, T) => {
   gong(brk + 0.05, 0.35, 'gong_hit_mp');
   clip(mix, 'onde', { t: cue('naufragio', 1) + 1.3, da: 7.2, durata: 1.2, gain: 0.2, fadeIn: 0.1, fadeOut: 0.6, rev: 0.2, pan: 0.1 }); // la porta si rovescia
   clip(mix, 'vento_artico', { t: cue('naufragio', 1) - 0.5, da: 2, durata: T.cuore - cue('naufragio', 1) + 0.5, gain: 0.025, fadeIn: 1, fadeOut: 1, largo: 4, rev: 0.1 });
-  strings(B(cue('naufragio', 1)), B(T.cuore), { half: true, minor: true, vel: 44, gain: 0.38, bass: false });
-  theme(B(cue('naufragio', 1)), B(T.cuore), { half: true, inst: 'violino_solo', vel: 52, gain: 0.42 });
+  strings(B(cue('naufragio', 1)), B(T.cuore), { half: true, minor: true, vel: 46, gain: 0.48, bass: false });
+  theme(B(cue('naufragio', 1)), B(T.cuore), { half: true, inst: 'violino_solo', vel: 54, gain: 0.55 });
+  harp(CH_MIN[0], cue('naufragio', 2), { vel: 44, gain: 0.35 }); // la brina
 
   // ---- cuore: il tema al pianoforte con l'arpa; il diamante che cade (glockenspiel e tuffo), poi la domanda sospesa
-  theme(B(T.cuore), B(T.finale), { half: true, vel: 56, gain: 0.5 });
-  strings(B(T.cuore), B(T.finale), { half: true, vel: 48, gain: 0.46, high: true });
+  theme(B(T.cuore), T.finale, { half: true, vel: 56, gain: 0.5 });
+  strings(B(T.cuore), T.finale, { half: true, vel: 48, gain: 0.46, high: true });
   const fall0 = cue('cuore', 1) + 1.4, fall1 = cue('cuore', 2) + 0.6; // Cuore.tsx: il diamante cade e affonda
   [99, 94, 91, 87, 82].forEach((m, j) => glock(m, fall0 + j * BEAT / 4, 50 - j * 3));
   clip(mix, 'onde', { t: fall0 + 0.25 * (fall1 - fall0) - 0.1, da: 7.2, durata: 0.9, gain: 0.14, fadeIn: 0.05, fadeOut: 0.5, rev: 0.3 });
