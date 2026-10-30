@@ -1,0 +1,145 @@
+{
+  "titolo": "Joker",
+  "regista": "Todd Phillips",
+  "anno": 2019,
+  "palette": {
+    "chiaro": "#F2E6D0",
+    "principale": "#2E5A4A",
+    "scuro": "#0E0C10",
+    "accento": "#D2382E"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Una risata che nessuno voleva sentire.",
+    "immagine": "Notte in una città sporca degli anni Ottanta: una lunga scalinata tra palazzi di mattoni, con la luce gialla dei lampioni e il fumo dei tombini; in cima, su un gradino, una giacca rossa e una parrucca da clown abbandonate; in alto le insegne al neon spente. Titolo in un carattere spesso e condensato (Anton). NON usare la locandina ufficiale (il volto truccato, la figura che balla sulle scale), persone o il logo del film.",
+    "voce": "Joker, di Todd Phillips: un clown, una città, una risata."
+  },
+  "capitoli": [
+    {
+      "id": "gotham",
+      "titolo": "Un clown a Gotham",
+      "durata": 10,
+      "scena": "Una strada di Gotham nel 1981: palazzi di mattoni anneriti, montagne di sacchi della spazzatura per lo sciopero, vapore dai tombini, un taxi giallo; appoggiato al muro un cartello pubblicitario da clown e una cassa con scarpe giganti e parrucca.",
+      "sottotitoli": [
+        "Nel 1981 Gotham è una città sporca e arrabbiata,",
+        "dove Arthur Fleck lavora come clown a noleggio",
+        "e sogna di diventare un comico famoso in TV."
+      ]
+    },
+    {
+      "id": "risata",
+      "titolo": "La risata che non si ferma",
+      "durata": 10,
+      "scena": "L'interno di un autobus di notte, con le luci che sfarfallano e i sedili vuoti; su un sedile un cartoncino plastificato che spiega la malattia della risata (scritte illeggibili e una faccina che ride); poi un vicolo con un cartello da clown spezzato a terra.",
+      "sottotitoli": [
+        "Ma Arthur ha una malattia che lo fa ridere all'improvviso,",
+        "anche quando è triste o ha paura,",
+        "e per questo la gente lo prende in giro e lo picchia."
+      ]
+    },
+    {
+      "id": "pistola",
+      "titolo": "La pistola sbagliata",
+      "durata": 10,
+      "scena": "Il corridoio di un ospedale per bambini con disegni colorati e palloncini; per terra, accanto a un ukulele e a una scarpa da clown, una pistola che è appena caduta; poi uno spogliatoio con un armadietto svuotato.",
+      "sottotitoli": [
+        "Così il collega Randall gli dà una pistola per difendersi,",
+        "ma la pistola gli cade in un ospedale per bambini",
+        "e Randall mente al capo: Arthur viene licenziato."
+      ]
+    },
+    {
+      "id": "metro",
+      "titolo": "La notte in metropolitana",
+      "durata": 10,
+      "scena": "Un vagone della metropolitana di notte, con le luci al neon che tremolano, i sedili arancioni e i finestrini neri; per terra una cravatta e una valigetta; poi un muro della città coperto di manifesti e di maschere da clown appese.",
+      "sottotitoli": [
+        "Quella sera in metropolitana tre uomini ricchi lo picchiano,",
+        "e Arthur, ancora vestito da clown, li uccide con la pistola.",
+        "Così i poveri, stufi dei ricchi, protestano con maschere da clown."
+      ]
+    },
+    {
+      "id": "madre",
+      "titolo": "La lettera della madre",
+      "durata": 10,
+      "scena": "Un appartamento povero: una poltrona davanti alla televisione accesa, una tazza, medicine sul tavolino; una lettera aperta sul tavolo, indirizzata a Thomas Wayne; dalla finestra, lontana, una villa illuminata.",
+      "sottotitoli": [
+        "Intanto sua madre Penny, malata, scrive lettere a Thomas Wayne,",
+        "l'uomo più ricco di Gotham, che si candida a sindaco:",
+        "e leggendone una Arthur scopre che Wayne sarebbe suo padre."
+      ]
+    },
+    {
+      "id": "verita",
+      "titolo": "La verità sulla madre",
+      "durata": 10,
+      "scena": "L'archivio di un vecchio manicomio: scaffali di cartelle, una lampada che oscilla, una cartella aperta con un timbro rosso «adozione» e vecchie fotografie girate; dalla finestra con le sbarre, la pioggia.",
+      "sottotitoli": [
+        "Ma Wayne nega tutto, e negli archivi del manicomio Arthur scopre perché:",
+        "Penny si era inventata tutto: lo aveva adottato",
+        "e da piccolo lo aveva lasciato picchiare dal suo compagno."
+      ]
+    },
+    {
+      "id": "sola",
+      "titolo": "Da solo",
+      "durata": 10,
+      "scena": "Il corridoio buio del palazzo di Arthur, con due porte una di fronte all'altra: quella della vicina socchiusa, con una luce calda e due tazze che svaniscono quando la luce si spegne; poi una stanza d'ospedale con il letto vuoto, il monitor e un cuscino.",
+      "sottotitoli": [
+        "Distrutto, Arthur entra in casa della vicina Sophie, che credeva la sua fidanzata,",
+        "e capisce che quell'amore era solo nella sua immaginazione:",
+        "così soffoca la madre in ospedale con un cuscino."
+      ]
+    },
+    {
+      "id": "murray",
+      "titolo": "L'invito in TV",
+      "durata": 10,
+      "scena": "Uno studio televisivo con il palco, il sipario, la scrivania del presentatore, le telecamere e la scritta luminosa «IN ONDA»; su un monitor un piccolo palco di un locale con un microfono solo e la scritta «JOKER» in sovrimpressione; l'applausometro che sale; poi un biglietto d'invito sulla scrivania.",
+      "sottotitoli": [
+        "Intanto Murray Franklin, il presentatore TV che Arthur adora,",
+        "mostra la sua serata da comico finita male e lo chiama «joker», buffone,",
+        "ma il video piace e Murray lo invita."
+      ]
+    },
+    {
+      "id": "scalinata",
+      "titolo": "Il ballo sulla scalinata",
+      "durata": 10,
+      "scena": "La lunga scalinata di città tra due muri, di giorno nuvoloso; a terra lungo i gradini foglie e cartacce che volano; un completo rosso e una giacca appesi a una ringhiera; in fondo la strada con un'auto della polizia.",
+      "sottotitoli": [
+        "Prima dello show uccide Randall, che con la sua bugia lo aveva fatto licenziare,",
+        "poi, truccato e col completo rosso,",
+        "scende ballando una lunga scalinata, inseguito dalla polizia."
+      ]
+    },
+    {
+      "id": "diretta",
+      "titolo": "In diretta",
+      "durata": 11,
+      "scena": "Lo studio televisivo visto dal palco: la scrivania, le luci, la telecamera con la lucina rossa; la scritta «IN ONDA» che lampeggia, poi lo schermo che diventa disturbo e la scritta «Collegamento interrotto».",
+      "sottotitoli": [
+        "In diretta chiede di farsi chiamare Joker, il nome con cui Murray lo derideva,",
+        "confessa i tre omicidi della metro",
+        "e spara a Murray davanti a tutta la città."
+      ]
+    },
+    {
+      "id": "rivolta",
+      "titolo": "Gotham brucia",
+      "durata": 11,
+      "scena": "Gotham di notte in rivolta: auto della polizia rovesciata con le luci che girano, fuochi, maschere da clown a terra; un vicolo con una collana di perle spezzata sul selciato; infine una finestra con le sbarre di un manicomio e un corridoio bianco.",
+      "sottotitoli": [
+        "Così Gotham esplode e i rivoltosi lo acclamano eroe,",
+        "mentre uno di loro uccide i Wayne davanti al figlio Bruce, futuro Batman.",
+        "Alla fine Arthur, rinchiuso in manicomio, ride: ma quanto era vero?"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "L'alba sulla scalinata vuota, con una parrucca da clown dimenticata su un gradino e il fumo che sale dai tombini; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
+  },
+  "musica": "Originale e strumentale: archi gravi, pianoforte nel registro basso, contrabbasso e timpani, un piccolo valzer storto da carillon per il clown; tensione che cresce fino alla diretta e alla rivolta; niente brani del film (né il tema degli archi né la canzone della scalinata). Rumori di città, metropolitana, televisione, sirene, folla."
+}
