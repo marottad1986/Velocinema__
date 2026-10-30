@@ -1,6 +1,6 @@
 import React from 'react';
 import { camera, eo, rng, seg } from '../../lib/anim';
-import { Glow, NearMotes } from '../../lib/elements';
+import { Dust, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { ANTON, SANS } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
@@ -21,7 +21,7 @@ export const Diretta: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const name = eo(seg(t, cues[0] + 1, cues[0] + 1.6)); // «Joker»
   const spot = eo(seg(t, cues[1], cues[1] + 1)); // resta un solo occhio di bue
   const shot = cues[2] + 1.2;
-  const flash = t > shot && t < shot + 0.15 ? 1 : 0;
+  const flash = seg(t, shot, shot + 0.05) * (1 - seg(t, shot + 0.12, shot + 0.6)); // lampo con dissolvenza
   const cut = seg(t, shot + 0.3, shot + 0.5); // collegamento interrotto
 
   return (
@@ -55,7 +55,7 @@ export const Diretta: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* il televisore di casa che trasmette la diretta */}
         <g transform={L(0.9)}>
-          <Tv x={600} y={1360} s={0.68} glow={1}>
+          <Tv x={760} y={830} s={0.55} glow={1}>
             {!cut ? (
               <g>
                 <rect x="-160" y="-110" width="250" height="220" fill="#3A1A2A" />
@@ -71,8 +71,9 @@ export const Diretta: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               <g>
                 <rect x="-160" y="-110" width="250" height="220" fill="#3A3A3A" />
                 {NOISE.map((n, i) => <rect key={i} x={n.x + ((t * 997 + i * 37) % 30) - 15} y={n.y} width={n.w} height="3" fill={(i + Math.floor(t * 30)) % 2 ? '#E8E8E8' : '#141414'} />)}
-                <rect x="-150" y="-20" width="230" height="40" fill="#14181C" opacity={cut} />
-                <text x="-35" y="6" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="16" fill="#E8E8E8" opacity={cut}>COLLEGAMENTO INTERROTTO</text>
+                <rect x="-155" y="-50" width="240" height="100" fill="#14181C" opacity={cut} />
+                <text x="-35" y="-8" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="30" fill="#E8E8E8" opacity={cut}>COLLEGAMENTO</text>
+                <text x="-35" y="30" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="30" fill="#E8E8E8" opacity={cut}>INTERROTTO</text>
               </g>
             )}
           </Tv>
@@ -86,6 +87,7 @@ export const Diretta: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           </g>
         </g>
         <g transform={L(1.6)}>
+          <Dust t={t} top={{ y: 580, x0: 360, x1: 460 }} bottom={{ y: 1180, x0: 140, x1: 480 }} seed={4} n={26} color="#FFF4D8" boost={spot * 0.5} />
           <NearMotes id="dr-near" t={t} color="#FFE8D0" n={6} opacity={0.08} />
         </g>
       </g>

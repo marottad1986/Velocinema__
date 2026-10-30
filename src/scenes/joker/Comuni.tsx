@@ -53,11 +53,11 @@ export const Sacchi: React.FC<{ x: number; y: number; s?: number; seed?: number 
 /** Parrucca da clown verde e riccia. Origine al centro. */
 export const Parrucca: React.FC<{ x: number; y: number; s?: number; color?: string }> = ({ x, y, s = 1, color = '#3E8A4A' }) => (
   <g transform={`translate(${x} ${y}) scale(${s})`}>
-    {Array.from({ length: 11 }, (_, i) => {
-      const a = Math.PI + (i / 10) * Math.PI;
-      return <circle key={i} cx={Math.cos(a) * 70} cy={Math.sin(a) * 46 + 10} r="30" fill={color} stroke={K} strokeWidth="5" />;
-    })}
-    <ellipse cx="0" cy="8" rx="56" ry="34" fill="#2E6A3A" />
+    {/* calotta sottile e due ciuffi ricci ai lati, vuota al centro */}
+    <path d="M-62 10 Q-60 -52 0 -56 Q60 -52 62 10" stroke="#2E6A3A" strokeWidth="12" fill="none" />
+    {[-1, 1].map((side) => [[60, -30, 26], [86, -6, 28], [72, 22, 26], [100, 26, 22], [52, 6, 22], [90, -40, 20]].map(([cx, cy, r], i) => (
+      <circle key={`${side}${i}`} cx={side * cx} cy={cy} r={r} fill={i % 2 ? '#2E6A3A' : color} stroke={K} strokeWidth="5" />
+    )))}
   </g>
 );
 

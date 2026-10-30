@@ -1,6 +1,6 @@
 import React from 'react';
 import { camera, eo, eob, seg } from '../../lib/anim';
-import { Glow, NearMotes } from '../../lib/elements';
+import { Dust, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { ANTON, SANS } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
@@ -52,7 +52,7 @@ export const Murray: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <rect x="520" y="980" width="440" height="160" rx="10" fill="#3A2A20" stroke={K} strokeWidth="7" />
           <rect x="520" y="960" width="440" height="30" fill="#5A4030" stroke={K} strokeWidth="6" />
           <path d="M820 960 V920 H860 V960" fill="#F2E6D0" stroke={K} strokeWidth="4" />
-          <g transform="translate(260 1080)">
+          <g transform="translate(130 1080)">
             <path d="M-110 0 V-150 Q-110 -200 -60 -200 H60 Q110 -200 110 -150 V0 Z" fill="#2A4A6A" stroke={K} strokeWidth="7" />
             <rect x="-130" y="-70" width="260" height="70" rx="14" fill="#3A5A7A" stroke={K} strokeWidth="6" />
           </g>
@@ -66,6 +66,8 @@ export const Murray: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         {/* il monitor con la serata da comico e la sovrimpressione JOKER, l'applausometro */}
         <g transform={L(0.95)}>
+          {/* il monitor su un piedistallo */}
+          <path d="M330 900 V1100 M260 1100 H400" stroke={K} strokeWidth="14" />
           <Tv x={330} y={790} s={0.72} glow={clip}>
             <g opacity={clip}>
               <rect x="-160" y="-110" width="250" height="220" fill="#1A1014" />
@@ -97,6 +99,7 @@ export const Murray: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M-200 1700 H1280 V2200 H-200 Z" fill="#0E0A10" opacity=".6" />
         </g>
         <g transform={L(1.6)}>
+          <Dust t={t} top={{ y: 560, x0: 200, x1: 900 }} bottom={{ y: 1250, x0: 100, x1: 980 }} seed={8} n={24} color="#FFE8D0" />
           <NearMotes id="mu-near" t={t} color="#FFE8D0" n={6} opacity={0.08} />
         </g>
       </g>

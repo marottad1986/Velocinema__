@@ -36,8 +36,8 @@ export const Scalinata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
           <Glow id="sc-sun" x={540} y={600} r={600} t={t} color="#F4E8C8" amp={0.03} rate={0.5} opacity={0.3} />
         </g>
         <g transform={L(0.35)}>
-          <Palazzo x={-200} y={1000} w={420} h={520} t={t} color="#5A3A2A" lit={0.1} seed={3} />
-          <Palazzo x={860} y={1000} w={420} h={560} t={t} color="#4A3226" lit={0.1} seed={5} />
+          <Palazzo x={-200} y={1000} w={420} h={370} t={t} color="#5A3A2A" lit={0.1} seed={3} />
+          <Palazzo x={860} y={1000} w={420} h={380} t={t} color="#4A3226" lit={0.1} seed={5} />
         </g>
         {/* la lunga scalinata tra due muri, in prospettiva verso il basso */}
         <g transform={L(0.6)}>
@@ -52,7 +52,7 @@ export const Scalinata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
         </g>
         {/* in fondo, l'auto della polizia con i lampeggianti */}
         <g transform={L(0.8)} opacity={police}>
-          <g transform="translate(540 1250) scale(.8)">
+          <g transform="translate(540 600) scale(.32)">
             <path d="M-150 0 V-50 L-100 -56 L-60 -100 H70 L110 -56 L150 -50 V0 Z" fill="#E8E8E4" stroke={K} strokeWidth="6" />
             <rect x="-150" y="-30" width="300" height="20" fill="#2A3A6A" />
             <rect x="-40" y="-120" width="80" height="20" rx="6" fill={siren ? '#3A6AE8' : P.accento} stroke={K} strokeWidth="4" />
@@ -62,7 +62,12 @@ export const Scalinata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
         </g>
         {/* la porta di Randall, che si chiude */}
         <g transform={L(1.0)} opacity={door}>
-          <rect x="300" y="600" width="480" height="720" fill="#2A2018" />
+          {/* il pianerottolo davanti alla porta di Randall: muro di mattoni, stipite, soglia e pavimento */}
+          <rect x="-200" y="540" width="1480" height="820" fill="#6A3A2A" />
+          {Array.from({ length: 30 }, (_, i) => <path key={i} d={`M-200 ${560 + i * 28} H1280`} stroke="#4A2A1E" strokeWidth="3" />)}
+          <path d="M-200 1340 H1280 V2200 H-200 Z" fill="#3A342C" />
+          <rect x="280" y="1320" width="520" height="30" fill="#8A847A" stroke={K} strokeWidth="5" />
+          <rect x="300" y="600" width="480" height="720" fill="#2A2018" stroke={K} strokeWidth="10" />
           <rect x="340" y="640" width="400" height="680" fill="#6A4A30" stroke={K} strokeWidth="8" />
           <circle cx="540" cy="760" r="14" fill="#C9A24A" stroke={K} strokeWidth="4" />
           <circle cx="700" cy="1000" r="16" fill="#C9A24A" stroke={K} strokeWidth="4" />
@@ -70,8 +75,10 @@ export const Scalinata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
         </g>
         {/* ringhiera in cima e il completo rosso che oscilla al vento */}
         <g transform={L(1.0)} opacity={1 - door}>
-          <path d="M60 760 H360" stroke={K} strokeWidth="14" />
-          <path d="M80 760 V1100 M340 760 V1100" stroke={K} strokeWidth="10" />
+          {/* la ringhiera laterale, fissata al muro di sinistra */}
+          <path d="M-200 740 L360 780" stroke={K} strokeWidth="14" />
+          <path d="M60 758 V1180 M340 778 V1100" stroke={K} strokeWidth="10" />
+          <rect x="-200" y="700" width="40" height="80" fill="#3A2A1E" stroke={K} strokeWidth="5" />
           <g opacity={suit} transform={`translate(${210} 760)`}>
             <Completo x={0} y={0} s={0.85} sway={Math.sin(t * 2.2) * 6 + Math.sin(t * 4.4) * 3 * dance} color={P.accento} />
           </g>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { camera, eo, seg } from '../../lib/anim';
-import { Glow, NearMotes } from '../../lib/elements';
+import { Dust, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
 import { K, Pistola as Gun, Scarpa } from './Comuni';
@@ -48,7 +48,7 @@ export const Pistola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <path d="M-200 1000 H1280" stroke="#F2E6D0" strokeWidth="10" />
           </g>
           <g transform={L(0.5)}>
-            {[[60, 760, '#E8B830'], [320, 720, '#4AA0D0'], [620, 780, '#E86A5A'], [900, 740, '#6AB85A']].map(([x, y, c], i) => (
+            {[[60, 850, '#E8B830'], [320, 820, '#4AA0D0'], [620, 860, '#E86A5A'], [900, 830, '#6AB85A']].map(([x, y, c], i) => (
               <g key={i}>
                 <rect x={(x as number) - 90} y={(y as number) - 80} width="180" height="140" fill="#F8F4EC" stroke={K} strokeWidth="5" transform={`rotate(${(i % 2 ? 3 : -3)} ${x} ${y})`} />
                 <circle cx={(x as number) - 30} cy={(y as number) - 20} r="26" fill={c as string} />
@@ -56,7 +56,7 @@ export const Pistola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               </g>
             ))}
             {[[200, '#D2382E'], [260, '#E8B830'], [840, '#4AA0D0']].map(([x, c], i) => (
-              <g key={i} transform={`translate(${x} ${650 + Math.sin(t * 1.4 + i) * 10})`}>
+              <g key={i} transform={`translate(${x} ${720 + Math.sin(t * 1.4 + i) * 10})`}>
                 <path d={`M0 40 Q${10 * Math.sin(t + i)} 160 0 320`} stroke="#F2E6D0" strokeWidth="3" fill="none" />
                 <ellipse cx="0" cy="0" rx="40" ry="50" fill={c as string} stroke={K} strokeWidth="5" />
               </g>
@@ -88,19 +88,30 @@ export const Pistola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <rect x="-200" y="-200" width="1480" height="2400" fill="url(#pi-locker)" />
           </g>
           <g transform={L(0.8)}>
-            <rect x="320" y="560" width="440" height="700" fill="#5A6A6A" stroke={K} strokeWidth="8" />
-            <rect x="340" y="580" width="400" height="660" fill="#1A2020" />
-            <path d="M360 640 H720" stroke="#8A9494" strokeWidth="8" />
-            <path d="M540 640 V700 L520 720" stroke="#8A9494" strokeWidth="4" fill="none" />
-            <g transform="translate(760 560) rotate(30) scale(1 1)"><rect x="0" y="0" width="30" height="680" fill="#6A7A7A" stroke={K} strokeWidth="6" /></g>
-            <rect x="380" y="520" width="140" height="30" fill="#F2E6D0" stroke={K} strokeWidth="4" transform="rotate(-12 450 535)" />
+            <rect x="320" y="680" width="440" height="580" fill="#5A6A6A" stroke={K} strokeWidth="8" />
+            <rect x="340" y="700" width="400" height="540" fill="#1A2020" />
+            <path d="M360 760 H720" stroke="#8A9494" strokeWidth="8" />
+            <path d="M540 760 V810 L520 830" stroke="#8A9494" strokeWidth="4" fill="none" />
+            {/* l'anta aperta, in prospettiva, con i cardini a destra */}
+            <path d="M760 690 L900 650 V1300 L760 1260 Z" fill="#6A7A7A" stroke={K} strokeWidth="6" />
+            {[760, 1150].map((y) => <rect key={y} x="752" y={y} width="16" height="30" fill="#3A4444" />)}
+            <rect x="780" y="900" width="14" height="60" rx="4" fill="#3A4444" />
+            {/* la targhetta strappata, a terra */}
+            <rect x="400" y="1290" width="140" height="30" fill="#F2E6D0" stroke={K} strokeWidth="4" transform="rotate(-12 470 1305)" />
             <path d="M-200 1260 H1280 V2200 H-200 Z" fill="#2A3232" />
           </g>
         </g>
         <g transform={L(1.3)}>
           <path d="M-200 -200 H60 V2200 H-200 Z M1280 -200 H1020 V2200 H1280 Z" fill="#2A2424" stroke={K} strokeWidth="9" />
+          {/* panca dello spogliatoio in primo piano */}
+          <rect x="-200" y="1620" width="1480" height="60" rx="10" fill="#8A6A44" stroke={K} strokeWidth="8" />
+          <path d="M120 1680 V2200 M960 1680 V2200" stroke={K} strokeWidth="24" />
         </g>
         <g transform={L(1.6)}>
+          <path d="M540 -200 V560" stroke="#2A2A2A" strokeWidth="4" />
+          <circle cx="540" cy="580" r="18" fill="#FFF4C8" />
+          <Glow id="pi-top" x={540} y={600} r={460} t={t} color="#FFF4C8" amp={0.06} rate={3} opacity={0.45} />
+          <Dust t={t} top={{ y: 600, x0: 440, x1: 640 }} bottom={{ y: 1250, x0: 200, x1: 880 }} seed={3} n={22} color="#FFF4D8" />
           <NearMotes id="pi-near" t={t} color="#F4F0D8" n={5} opacity={0.07} />
         </g>
       </g>

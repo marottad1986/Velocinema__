@@ -47,14 +47,14 @@ export const Rivolta: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           </g>
           <g transform={L(1.0)}>
             {/* auto della polizia rovesciata */}
-            <g transform="translate(400 1200) rotate(180) scale(1.1)">
+            <g transform="translate(400 1060) rotate(180) scale(1.1)">
               <path d="M-150 0 V-50 L-100 -56 L-60 -100 H70 L110 -56 L150 -50 V0 Z" fill="#E8E8E4" stroke={K} strokeWidth="6" />
               <rect x="-150" y="-30" width="300" height="20" fill="#2A3A6A" />
               <rect x="-40" y="-120" width="80" height="20" rx="6" fill={siren ? '#3A6AE8' : P.accento} stroke={K} strokeWidth="4" />
               <circle cx="-90" cy="4" r="24" fill={K} /><circle cx="90" cy="4" r="24" fill={K} />
             </g>
-            <Glow id="rv-siren" x={400} y={1330} r={260} t={t} color={siren ? '#3A6AE8' : P.accento} amp={0.1} rate={9} opacity={0.5} />
-            {[[140, 1240, -20], [700, 1260, 14], [960, 1230, -8]].map(([x, y, a], i) => (
+            <Glow id="rv-siren" x={400} y={1190} r={260} t={t} color={siren ? '#3A6AE8' : P.accento} amp={0.1} rate={9} opacity={0.5} />
+            {[[140, 1100, -20], [700, 1110, 14], [960, 1090, -8]].map(([x, y, a], i) => (
               <g key={i} transform={`translate(${x} ${y}) rotate(${a})`}>
                 <ellipse cx="0" cy="0" rx="46" ry="56" fill="#F2EEE4" stroke={K} strokeWidth="5" />
                 <circle cx="0" cy="10" r="11" fill={P.accento} />
@@ -75,9 +75,9 @@ export const Rivolta: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           </g>
           <g transform={L(1.0)}>
             {snap < 0.05 ? (
-              <path d="M440 1180 Q540 1260 640 1180" stroke="#F4F0E8" strokeWidth="10" strokeDasharray="2 12" strokeLinecap="round" fill="none" />
+              <path d="M420 1150 Q540 1250 660 1150" stroke="#F4F0E8" strokeWidth="18" strokeDasharray="2 20" strokeLinecap="round" fill="none" />
             ) : PEARLS.map((p, i) => (
-              <circle key={i} cx={540 + Math.cos(p.a) * p.v * snap} cy={1210 + Math.abs(Math.sin(p.a)) * p.v * 0.4 * snap} r={p.s} fill="#F4F0E8" stroke="#8A8478" strokeWidth="2" />
+              <circle key={i} cx={540 + Math.cos(p.a) * p.v * 1.3 * snap} cy={1180 + Math.abs(Math.sin(p.a)) * p.v * 0.4 * snap} r={p.s * 1.8} fill="#F4F0E8" stroke="#8A8478" strokeWidth="2" />
             ))}
             <Glow id="rv-pearl" x={540} y={1210} r={160} t={t} color="#FFFFFF" amp={0.1} rate={3} opacity={0.3} />
           </g>
@@ -86,19 +86,27 @@ export const Rivolta: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <g opacity={ward}>
           <g transform={L(0.15)}><rect x="-200" y="-200" width="1480" height="2400" fill="url(#rv-ward)" /></g>
           <g transform={L(0.7)}>
-            <path d="M-200 -200 L380 700 V1200 L-200 1700 Z M1280 -200 L700 700 V1200 L1280 1700 Z" fill="url(#rv-ward)" stroke="#8A908C" strokeWidth="5" />
-            <rect x="380" y="700" width="320" height="500" fill="#F4F8F4" />
-            <rect x="460" y="760" width="160" height="200" fill="#8AB0D0" stroke={K} strokeWidth="6" />
-            {[490, 525, 560, 595].map((x) => <path key={x} d={`M${x} 760 V960`} stroke={K} strokeWidth="6" />)}
+            <path d="M-200 -200 L380 700 V1000 L-200 1500 Z M1280 -200 L700 700 V1000 L1280 1500 Z" fill="url(#rv-ward)" stroke="#8A908C" strokeWidth="5" />
+            <rect x="380" y="700" width="320" height="300" fill="#F4F8F4" />
+            <rect x="460" y="740" width="160" height="170" fill="#8AB0D0" stroke={K} strokeWidth="6" />
+            {[490, 525, 560, 595].map((x) => <path key={x} d={`M${x} 740 V910`} stroke={K} strokeWidth="6" />)}
             <Glow id="rv-win" x={540} y={860} r={300} t={t} color="#FFFFFF" amp={0.04} rate={1} opacity={0.5} />
-            <path d="M380 1200 H700 L1280 1700 V2200 H-200 V1700 Z" fill="#C8CCC8" />
+            <path d="M380 1000 H700 L1280 1500 V2200 H-200 V1500 Z" fill="#C8CCC8" />
           </g>
           <g transform={L(1.0)}>
             {Array.from({ length: 10 }, (_, i) => {
               const p = i / 10;
-              return p < steps ? <ellipse key={i} cx={540 + (i % 2 ? 26 : -26) * (1 - p * 0.7)} cy={1720 - p * 500} rx={22 * (1 - p * 0.6)} ry={34 * (1 - p * 0.6)} fill={P.accento} opacity={0.85 - p * 0.4} /> : null;
+              return p < steps ? <ellipse key={i} cx={540 + (i % 2 ? 26 : -26) * (1 - p * 0.7)} cy={1240 - p * 230} rx={22 * (1 - p * 0.6)} ry={30 * (1 - p * 0.6)} fill={P.accento} opacity={0.85 - p * 0.4} /> : null;
             })}
           </g>
+        </g>
+        {/* primo piano: transenne della polizia nella rivolta, mattoni e bidone nel vicolo */}
+        <g transform={L(1.3)} opacity={riot}>
+          {[[-120, 1620], [520, 1660]].map(([x, y], i) => <g key={i}><rect x={x} y={y} width="520" height="80" fill="#E8E0D0" stroke={K} strokeWidth="8" /><path d={`M${x + 20} ${y} l60 80 M${x + 140} ${y} l60 80 M${x + 260} ${y} l60 80 M${x + 380} ${y} l60 80`} stroke="#D2382E" strokeWidth="22" /><path d={`M${x + 60} ${y + 80} V${y + 600} M${x + 460} ${y + 80} V${y + 600}`} stroke={K} strokeWidth="16" /></g>)}
+        </g>
+        <g transform={L(1.3)} opacity={alley}>
+          <g transform="translate(160 1640)"><rect x="-180" y="-120" width="360" height="600" rx="16" fill="#2E3A34" stroke={K} strokeWidth="9" /><rect x="-200" y="-150" width="400" height="40" rx="12" fill="#3A4840" stroke={K} strokeWidth="8" /></g>
+          {Array.from({ length: 6 }, (_, i) => <rect key={i} x={600 + (i % 3) * 160} y={1660 + Math.floor(i / 3) * 80} width="150" height="70" fill="#4A2A20" stroke={K} strokeWidth="6" />)}
         </g>
         <g transform={L(1.3)} opacity={riot}>
           <Smoke id="rv-smoke" t={t} x={820} y={1000} color="#3A2A2A" rise={600} wind={-200} r0={60} r1={240} speed={0.2} opacity={0.6} />

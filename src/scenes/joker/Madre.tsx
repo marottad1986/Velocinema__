@@ -83,8 +83,12 @@ export const Madre: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <Glow id="md-letter" x={540} y={1170} r={180} t={t} color="#FFF0D0" amp={0.06} rate={2} opacity={0.3 + 0.3 * line} />
         </g>
         <g transform={L(1.3)}>
-          <path d="M1280 -200 H1000 Q1060 700 990 1400 Q1050 1700 1010 2200 H1280 Z" fill="#8A5A3A" stroke={K} strokeWidth="9" />
-          <path d="M-200 1560 H1280 V2200 H-200 Z" fill="#2A2018" opacity=".7" />
+          <path d="M1280 -200 H920 Q1000 700 900 1400 Q980 1700 940 2200 H1280 Z" fill="#8A5A3A" stroke={K} strokeWidth="9" />
+          <path d="M1000 -200 Q1060 700 990 1400 Q1040 1700 1020 2200" stroke="#6A4028" strokeWidth="14" fill="none" />
+          {/* tappeto e bracciolo della poltrona in primo piano */}
+          <ellipse cx="420" cy="1820" rx="620" ry="180" fill="#7A3A2A" stroke={K} strokeWidth="8" />
+          <ellipse cx="420" cy="1820" rx="500" ry="130" fill="none" stroke="#C8A040" strokeWidth="10" opacity=".7" />
+          <rect x="-200" y="1580" width="320" height="700" rx="60" fill="#7A5A3A" stroke={K} strokeWidth="9" />
         </g>
         <g transform={L(1.6)}>
           <Dust t={t} top={{ y: 1000, x0: 620, x1: 880 }} bottom={{ y: 1280, x0: 300, x1: 900 }} seed={4} n={18} color="#D8E4FF" />

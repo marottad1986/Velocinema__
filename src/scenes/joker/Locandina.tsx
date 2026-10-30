@@ -45,7 +45,7 @@ const Copertina_: React.FC<{ t: number; dur: number; accent: string }> = ({ t, d
           {[[240, 960], [840, 960]].map(([x, y], i) => <g key={i}><path d={`M${x} ${y} V${y - 220}`} stroke={K} strokeWidth="8" /><circle cx={x} cy={y - 230} r="14" fill="#F2C46A" /><Glow id={`jc-l${i}`} x={x} y={y - 230} r={260} t={t} color="#F2C46A" amp={0.05} rate={2 + i} opacity={0.55} /></g>)}
         </g>
         <g transform={L(0.9)}>
-          <g transform="translate(540 1020) rotate(-70)"><Completo x={0} y={0} s={0.6} color={accent} /></g>
+          <g transform="translate(470 880) rotate(-18)"><Completo x={0} y={0} s={0.8} color={accent} /></g>
           <Parrucca x={700} y={1040} s={0.55} />
           <Glow id="jc-red" x={560} y={1020} r={260} t={t} color="#FF6A4A" amp={0.08} rate={2} opacity={0.35} />
         </g>

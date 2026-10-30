@@ -1,6 +1,6 @@
 import React from 'react';
 import { camera, eio, eo, seg } from '../../lib/anim';
-import { Glow, NearMotes } from '../../lib/elements';
+import { Dust, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
 import { K } from './Comuni';
@@ -49,6 +49,7 @@ export const Sola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           {/* il tavolino con due tazze e una rosa, che svaniscono */}
           <g transform={L(1.05)} opacity={warm}>
             <rect x="600" y="1180" width="300" height="24" fill="#8A6A44" stroke={K} strokeWidth="5" />
+            <path d="M620 1204 V1290 M880 1204 V1290" stroke={K} strokeWidth="9" />
             {[660, 760].map((x) => <path key={x} d={`M${x - 24} 1180 V1140 H${x + 24} V1180 Z`} fill="#F2E6D0" stroke={K} strokeWidth="4" />)}
             <path d="M850 1180 V1100" stroke="#3A6A3A" strokeWidth="5" />
             <circle cx="850" cy="1092" r="16" fill={P.accento} stroke={K} strokeWidth="4" />
@@ -68,7 +69,7 @@ export const Sola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <g transform="translate(250 900)">
               <rect x="-120" y="-120" width="240" height="160" rx="10" fill="#2A2E30" stroke={K} strokeWidth="6" />
               <path d={`M-100 -40 H-40 L-28 ${-40 - 60 * beat} L-16 ${-40 + 30 * beat} L-4 -40 H100`} stroke={flat ? P.accento : '#6AE08A'} strokeWidth="5" fill="none" />
-              <path d="M0 40 V200" stroke={K} strokeWidth="8" />
+              <path d="M0 40 V280 M-50 280 H50" stroke={K} strokeWidth="8" />
             </g>
             <path d="M380 1140 V1020 H1000 V1140" fill="none" stroke="#C8CCD0" strokeWidth="12" />
             <rect x="380" y="1060" width="620" height="90" rx="10" fill="#E8ECEE" stroke={K} strokeWidth="6" />
@@ -83,9 +84,13 @@ export const Sola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         <g transform={L(1.3)}>
           <path d="M-200 -200 H40 V2200 H-200 Z M1280 -200 H1040 V2200 H1280 Z" fill="#1A1A14" stroke={K} strokeWidth="9" />
-          <path d="M-200 1640 H1280 V2200 H-200 Z" fill="#141410" opacity=".6" />
+          {/* in primo piano: il termosifone del corridoio, poi la sponda del letto d'ospedale */}
+          <g opacity={1 - room}>{Array.from({ length: 8 }, (_, i) => <rect key={i} x={160 + i * 100} y="1640" width="70" height="600" rx="20" fill="#8A8A7A" stroke={K} strokeWidth="6" />)}</g>
+          <g opacity={room}><path d="M-200 1600 H1280" stroke="#C8CCD0" strokeWidth="26" />{Array.from({ length: 9 }, (_, i) => <path key={i} d={`M${-120 + i * 160} 1600 V2200`} stroke="#C8CCD0" strokeWidth="14" />)}</g>
         </g>
         <g transform={L(1.6)}>
+          <Glow id="so-ceil" x={540} y={620} r={420} t={t} color="#F4E8C0" amp={0.05} rate={2} opacity={0.35} />
+          <Dust t={t} top={{ y: 640, x0: 400, x1: 700 }} bottom={{ y: 1250, x0: 200, x1: 880 }} seed={7} n={20} color="#F4E8C0" />
           <NearMotes id="so-near" t={t} color="#F4E8C0" n={5} opacity={0.07} />
         </g>
       </g>

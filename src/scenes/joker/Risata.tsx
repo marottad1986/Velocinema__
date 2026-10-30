@@ -1,6 +1,6 @@
 import React from 'react';
 import { camera, eo, rng, seg } from '../../lib/anim';
-import { Glow, NearMotes } from '../../lib/elements';
+import { Dust, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
 import { K } from './Comuni';
@@ -37,10 +37,10 @@ export const Risata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             {LIGHTS.map((l, i) => <circle key={i} cx={((l.x - pass + 3000) % 1500) - 200} cy={l.y} r="14" fill={l.c} opacity=".6" />)}
           </g>
           <g transform={L(0.5)}>
-            <path d="M-200 -200 H1280 V560 H-200 Z M-200 860 H1280 V2200 H-200 Z" fill="url(#rs-bus)" />
-            {[0, 1, 2, 3].map((i) => <rect key={i} x={-160 + i * 340} y="560" width="300" height="300" fill="none" stroke="#5A6A60" strokeWidth="18" />)}
-            {[0, 1, 2].map((i) => <rect key={i} x={40 + i * 360} y="480" width="200" height="24" rx="8" fill="#F4F0D0" opacity={0.35 + 0.65 * fit} />)}
-            <Glow id="rs-lamp" x={540} y={500} r={700} t={t} color="#E8F0D0" amp={0.04} rate={2} opacity={0.35 * fit} />
+            <path d="M-200 -200 H1280 V660 H-200 Z M-200 940 H1280 V2200 H-200 Z" fill="url(#rs-bus)" />
+            {[0, 1, 2, 3].map((i) => <rect key={i} x={-160 + i * 340} y="660" width="300" height="280" fill="none" stroke="#5A6A60" strokeWidth="18" />)}
+            {[0, 1, 2].map((i) => <rect key={i} x={40 + i * 360} y="610" width="200" height="24" rx="8" fill="#F4F0D0" opacity={0.35 + 0.65 * fit} />)}
+            <Glow id="rs-lamp" x={540} y={620} r={700} t={t} color="#E8F0D0" amp={0.04} rate={2} opacity={0.35 * fit} />
           </g>
           <g transform={L(0.8)}>
             {[[-60, 1120], [400, 1120], [860, 1120]].map(([x, y], i) => (
@@ -64,9 +64,10 @@ export const Risata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <Glow id="rs-card" x={420} y={1080} r={200} t={t} color="#FFF4D0" amp={0.08} rate={3} opacity={0.35} />
           </g>
           <g transform={L(1.3)}>
-            <path d="M-200 360 H1280" stroke="#B8C0B8" strokeWidth="18" />
-            {[160, 760].map((x) => <path key={x} d={`M${x} 360 V2200`} stroke="#B8C0B8" strokeWidth="22" />)}
-            <path d="M-200 1600 H1280 V2200 H-200 Z" fill="#1A2420" />
+            <path d="M-200 650 H1280" stroke="#B8C0B8" strokeWidth="18" />
+            {[160, 760].map((x) => <path key={x} d={`M${x} 650 V2200`} stroke="#B8C0B8" strokeWidth="22" />)}
+            {/* schienali dei sedili davanti, in primo piano */}
+            {[-60, 470].map((x) => <g key={x}><rect x={x} y="1560" width="420" height="700" rx="40" fill="#3A6A5A" stroke={K} strokeWidth="9" /><path d={`M${x + 30} 1610 H${x + 390}`} stroke="#4A7A6A" strokeWidth="12" /></g>)}
           </g>
         </g>
         {/* il vicolo con il cartello da clown spezzato */}
@@ -82,9 +83,13 @@ export const Risata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <g transform="translate(420 1180) rotate(-24)"><rect x="-120" y="-70" width="150" height="140" fill="#F2E6D0" stroke={K} strokeWidth="6" /><circle cx="-50" cy="0" r="34" fill="none" stroke={P.accento} strokeWidth="8" /></g>
             <g transform="translate(640 1210) rotate(18)"><path d="M-40 -70 L80 -70 L80 70 L-60 70 L-20 0 Z" fill="#F2E6D0" stroke={K} strokeWidth="6" /><path d="M0 -30 H60 M10 0 H70 M0 30 H50" stroke="#5A4A3A" strokeWidth="7" /></g>
             <path d="M300 1240 V1150" stroke={K} strokeWidth="8" />
+            {/* bidone e mattoni del vicolo in primo piano */}
+            <g transform="translate(880 1620)"><rect x="-140" y="-160" width="280" height="560" rx="16" fill="#3A4440" stroke={K} strokeWidth="9" /><path d="M-140 -90 H140 M-140 40 H140" stroke="#2A3230" strokeWidth="10" /><rect x="-160" y="-190" width="320" height="40" rx="12" fill="#4A5450" stroke={K} strokeWidth="8" /></g>
+            {Array.from({ length: 4 }, (_, i) => <rect key={i} x={-150 + (i % 2) * 140} y={1640 + Math.floor(i / 2) * 70} width="130" height="60" fill="#5A3426" stroke={K} strokeWidth="6" />)}
           </g>
         </g>
         <g transform={L(1.6)}>
+          <Dust t={t} top={{ y: 520, x0: 100, x1: 980 }} bottom={{ y: 1250, x0: 100, x1: 980 }} seed={2} n={24} color="#E8F0D0" />
           <NearMotes id="rs-near" t={t} color="#E8F0D0" n={6} opacity={0.07} />
         </g>
       </g>

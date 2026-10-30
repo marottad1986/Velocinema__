@@ -1,6 +1,6 @@
 import React from 'react';
 import { camera, eo, rng, seg } from '../../lib/anim';
-import { Glow, NearMotes } from '../../lib/elements';
+import { Dust, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
 import { K } from './Comuni';
@@ -12,12 +12,13 @@ import { K } from './Comuni';
 // Piani: galleria (0,2) · vagone (0,5) · sedili (0,8) · oggetti a terra (1,05) · maniglie (1,3) · pulviscolo (1,6)
 
 const r = rng(3);
-const MASKS = Array.from({ length: 9 }, (_, i) => ({ x: 130 + (i % 3) * 300 + r() * 60, y: 700 + Math.floor(i / 3) * 200 + r() * 30, rot: (r() - 0.5) * 30 }));
+const MASKS = Array.from({ length: 9 }, (_, i) => ({ x: 130 + (i % 3) * 300 + r() * 60, y: 780 + Math.floor(i / 3) * 170 + r() * 20, rot: (r() - 0.5) * 30 }));
 
 export const Metro: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
-  const flash = [0, 0.35, 0.7].reduce((m, d) => Math.max(m, t > cues[1] + 0.6 + d && t < cues[1] + 0.75 + d ? 1 : 0), 0);
+  // tre lampi distanziati di 0,45 s, con dissolvenza (non più di 3 al secondo)
+  const flash = [0, 0.45, 0.9].reduce((m, d) => Math.max(m, seg(t, cues[1] + 0.6 + d, cues[1] + 0.66 + d) * (1 - seg(t, cues[1] + 0.72 + d, cues[1] + 1.0 + d))), 0);
   const dark = seg(t, cues[1] + 0.5, cues[1] + 0.6) * (1 - seg(t, cues[1] + 1.6, cues[1] + 2.2));
   const wall = eo(seg(t, cues[2] - 0.2, cues[2] + 0.7));
   const neon = Math.sin(t * 17) > 0.85 ? 0.5 : 1;
@@ -62,8 +63,8 @@ export const Metro: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <g opacity={wall}>
           <g transform={L(0.4)}>
             <rect x="-200" y="-200" width="1480" height="2400" fill="url(#mt-wall)" />
-            {Array.from({ length: 12 }, (_, i) => <rect key={i} x={-160 + (i % 6) * 230} y={560 + Math.floor(i / 6) * 330} width="210" height="300" fill={['#E8D8B0', '#C8B890', '#D8C8A0'][i % 3]} stroke={K} strokeWidth="4" transform={`rotate(${(i % 3) - 1} ${-55 + (i % 6) * 230} ${710 + Math.floor(i / 6) * 330})`} />)}
-            {Array.from({ length: 12 }, (_, i) => <path key={`t${i}`} d={`M${-130 + (i % 6) * 230} ${620 + Math.floor(i / 6) * 330} h150 M${-130 + (i % 6) * 230} ${660 + Math.floor(i / 6) * 330} h120`} stroke="#3A2A1E" strokeWidth="10" />)}
+            {Array.from({ length: 12 }, (_, i) => <rect key={i} x={-160 + (i % 6) * 230} y={680 + Math.floor(i / 6) * 300} width="210" height="280" fill={['#E8D8B0', '#C8B890', '#D8C8A0'][i % 3]} stroke={K} strokeWidth="4" transform={`rotate(${(i % 3) - 1} ${-55 + (i % 6) * 230} ${820 + Math.floor(i / 6) * 300})`} />)}
+            {Array.from({ length: 12 }, (_, i) => <path key={`t${i}`} d={`M${-130 + (i % 6) * 230} ${740 + Math.floor(i / 6) * 300} h150 M${-130 + (i % 6) * 230} ${780 + Math.floor(i / 6) * 300} h120`} stroke="#3A2A1E" strokeWidth="10" />)}
           </g>
           <g transform={L(0.8)}>
             {MASKS.map((m, i) => (
@@ -83,6 +84,7 @@ export const Metro: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           </g>
         </g>
         <g transform={L(1.6)}>
+          <Dust t={t} top={{ y: 520, x0: 100, x1: 980 }} bottom={{ y: 1250, x0: 100, x1: 980 }} seed={5} n={22} color="#F4F8E8" />
           <NearMotes id="mt-near" t={t} color="#F4F8E8" n={6} opacity={0.07} />
         </g>
       </g>

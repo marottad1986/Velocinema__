@@ -1,6 +1,6 @@
 import React from 'react';
 import { camera, eo, rng, seg } from '../../lib/anim';
-import { Glow, NearMotes, Rain } from '../../lib/elements';
+import { Dust, Glow, NearMotes, Rain } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { TYPEWRITER } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
@@ -37,12 +37,12 @@ export const Verita: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <svg x="740" y="560" width="260" height="300" viewBox="0 0 260 300"><Rain t={t} level="far" color="#9AB0C0" opacity={0.6} /></svg>
         </g>
         <g transform={L(0.5)}>
-          {[0, 1, 2, 3].map((row) => <rect key={row} x="-200" y={600 + row * 150} width="900" height="14" fill="#5A4A38" stroke={K} strokeWidth="4" />)}
-          {FOLDERS.map((f, i) => <rect key={i} x={-180 + f.x} y={600 + f.y * 150 - 110} width="54" height="110" fill={f.c} stroke={K} strokeWidth="3" opacity={i === 22 ? 1 - pull : 1} />)}
-          <g transform={`rotate(${swing} 420 500)`}>
-            <path d="M420 300 V560" stroke="#2A2A2A" strokeWidth="4" />
-            <path d="M380 560 H460 L440 600 H400 Z" fill="#3A4A3A" stroke={K} strokeWidth="5" />
-            <Glow id="vr-lamp" x={420} y={620} r={480} t={t} color="#F4E8B0" amp={0.05} rate={3} opacity={0.5 * flick} />
+          {[0, 1, 2, 3].map((row) => <rect key={row} x="-200" y={760 + row * 120} width="900" height="14" fill="#5A4A38" stroke={K} strokeWidth="4" />)}
+          {FOLDERS.map((f, i) => <rect key={i} x={-180 + f.x} y={760 + f.y * 120 - 96} width="54" height="96" fill={f.c} stroke={K} strokeWidth="3" opacity={i === 22 ? 1 - pull : 1} />)}
+          <g transform={`rotate(${swing} 420 600)`}>
+            <path d="M420 -200 V660" stroke="#2A2A2A" strokeWidth="4" />
+            <path d="M380 660 H460 L440 700 H400 Z" fill="#3A4A3A" stroke={K} strokeWidth="5" />
+            <Glow id="vr-lamp" x={420} y={720} r={480} t={t} color="#F4E8B0" amp={0.05} rate={3} opacity={0.5 * flick} />
           </g>
         </g>
         <g transform={L(0.8)}>
@@ -62,7 +62,7 @@ export const Verita: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               </g>
             )}
             {[-200, -80].map((x, i) => (
-              <g key={x} transform={`translate(${x} -110) rotate(${(i ? 8 : -6)}) scale(${1 - 2 * Math.min(flip, 0.5)} 1)`}>
+              <g key={x} transform={`translate(${x} -110) rotate(${(i ? 8 : -6)}) scale(${Math.max(0.03, Math.abs(1 - 2 * flip))} 1)`}>
                 <rect x="-50" y="-60" width="100" height="120" fill={flip > 0.5 ? '#E8E0D0' : '#C8B088'} stroke={K} strokeWidth="5" />
                 {flip > 0.5 ? <path d="M-30 -30 H30 M-30 0 H20" stroke="#8A7A60" strokeWidth="4" /> : <rect x="-40" y="-50" width="80" height="80" fill="#7A6040" />}
               </g>
@@ -71,9 +71,13 @@ export const Verita: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
         <g transform={L(1.3)}>
           {[-60, 160, 920, 1140].map((x) => <path key={x} d={`M${x} -200 V2200`} stroke="#1A1A1A" strokeWidth="26" />)}
-          <path d="M-200 1600 H1280 V2200 H-200 Z" fill="#141210" opacity=".7" />
+          {/* scatoloni d'archivio in primo piano */}
+          {[[-120, 1600, 360], [260, 1680, 300], [700, 1620, 380]].map(([x, y, w], i) => (
+            <g key={i}><rect x={x} y={y} width={w} height="600" fill={['#A88A58', '#B89A68', '#9A7A48'][i]} stroke={K} strokeWidth="8" /><rect x={x + w / 2 - 50} y={y + 40} width="100" height="50" fill="#F2E6D0" stroke={K} strokeWidth="4" /></g>
+          ))}
         </g>
         <g transform={L(1.6)}>
+          <Dust t={t} top={{ y: 720, x0: 360, x1: 480 }} bottom={{ y: 1250, x0: 100, x1: 900 }} seed={9} n={22} color="#F4E8B0" />
           <NearMotes id="vr-near" t={t} color="#F4E8B0" n={6} opacity={0.08} />
         </g>
       </g>

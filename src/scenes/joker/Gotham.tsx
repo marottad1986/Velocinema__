@@ -41,8 +41,12 @@ export const Gotham: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           {/* vetrina con il televisore (accento: il sogno della TV) */}
           <g transform="translate(860 1040)">
             <rect x="-120" y="-90" width="240" height="160" fill="#14181C" stroke={K} strokeWidth="6" />
-            <rect x="-96" y="-70" width="150" height="110" rx="12" fill={tv > 0 ? '#2A3A5A' : '#0A0C10'} stroke={K} strokeWidth="4" />
-            {tv > 0 && <g opacity={tv}><rect x="-80" y="-10" width="118" height="40" fill="#5A2A2A" /><path d="M-22 -10 V-50 M-30 -50 H-14" stroke="#E8E0D0" strokeWidth="4" /><circle cx="-22" cy="-54" r="6" fill="#E8E0D0" /><path d="M-90 -66 L-22 -20 L46 -66" stroke="#FFF4C0" strokeWidth="3" opacity=".4" /></g>}
+            {/* un televisore in vetrina: mobile di legno, schermo, manopole, antenna */}
+            <path d="M-40 -74 L-70 -96 M-10 -74 L20 -98" stroke={K} strokeWidth="4" />
+            <rect x="-100" y="-74" width="170" height="124" rx="12" fill="#6A4A30" stroke={K} strokeWidth="5" />
+            <rect x="-90" y="-64" width="120" height="104" rx="14" fill={tv > 0 ? '#2A3A5A' : '#0A0C10'} stroke={K} strokeWidth="4" />
+            <circle cx="50" cy="-40" r="9" fill="#2A1E14" /><circle cx="50" cy="-12" r="9" fill="#2A1E14" />
+            {tv > 0 && <g opacity={tv}><rect x="-84" y="0" width="108" height="34" fill="#5A2A2A" /><path d="M-30 0 V-36 M-38 -36 H-22" stroke="#E8E0D0" strokeWidth="4" /><circle cx="-30" cy="-40" r="6" fill="#E8E0D0" /></g>}
             <Glow id="gt-tv" x={-20} y={-14} r={160} t={t} color={P.accento} amp={0.1} rate={5} opacity={0.5 * tv} />
           </g>
         </g>
@@ -58,13 +62,17 @@ export const Gotham: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <circle cx="-64" cy="2" r="20" fill={K} /><circle cx="64" cy="2" r="20" fill={K} />
             <circle cx="108" cy="-28" r="7" fill="#FFF4C0" />
           </g>
+          {/* lampione con la luce gialla */}
+          <path d="M560 1140 V780 Q560 750 600 750 H640" stroke={K} strokeWidth="12" fill="none" />
+          <path d="M620 740 H680 L670 770 H630 Z" fill="#F2C46A" stroke={K} strokeWidth="4" />
+          <Glow id="gt-lamp" x={650} y={775} r={360} t={t} color="#F2C46A" amp={0.05} rate={2} opacity={0.65} />
           <ellipse cx="300" cy="1300" rx="80" ry="16" fill="#1A1A18" stroke="#5A5A54" strokeWidth="4" />
           <ellipse cx="820" cy="1340" rx="80" ry="16" fill="#1A1A18" stroke="#5A5A54" strokeWidth="4" />
         </g>
         {/* sacchi della spazzatura, cartello da clown, cassa con scarpe e parrucca */}
         <g transform={L(1.1)}>
           <Sacchi x={120} y={1180} s={1.1} seed={1} />
-          <g transform={`translate(420 ${1180 - 40 * (1 - sign)}) rotate(${-6 + 6 * sign})`} opacity={0.3 + 0.7 * sign}>
+          <g transform={`translate(420 ${1180 - 40 * (1 - sign)}) rotate(${-6 + 6 * sign})`} opacity={sign}>
             <path d="M0 0 V-80" stroke={K} strokeWidth="8" />
             <rect x="-110" y="-250" width="220" height="170" rx="10" fill="#F2E6D0" stroke={K} strokeWidth="6" />
             <circle cx="-50" cy="-170" r="34" fill="#F2E6D0" stroke={P.accento} strokeWidth="8" />
