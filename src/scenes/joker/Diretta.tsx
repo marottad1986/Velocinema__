@@ -54,8 +54,8 @@ export const Diretta: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           </g>
         </g>
         {/* il televisore di casa che trasmette la diretta */}
-        <g transform={L(0.9)}>
-          <Tv x={760} y={830} s={0.55} glow={1}>
+        <g transform={L(0.6)}>
+          <Tv x={760} y={856} s={0.55} glow={1}>
             {!cut ? (
               <g>
                 <rect x="-160" y="-110" width="250" height="220" fill="#3A1A2A" />

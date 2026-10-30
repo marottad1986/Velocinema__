@@ -55,13 +55,6 @@ export const Gotham: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M-200 1130 H1280 V2200 H-200 Z" fill="url(#gt-road)" />
           <path d="M-200 1130 H1280" stroke="#8A8478" strokeWidth="14" />
           <path d="M-200 1250 H1280" stroke="#C8A040" strokeWidth="6" strokeDasharray="60 50" opacity=".6" />
-          <g transform={`translate(${taxi} 1210)`}>
-            <path d="M-110 0 V-40 L-70 -44 L-40 -80 H50 L80 -44 L110 -40 V0 Z" fill="#E8B830" stroke={K} strokeWidth="6" />
-            <path d="M-32 -74 H44 L66 -46 H-60 Z" fill="#3A4A5A" stroke={K} strokeWidth="4" />
-            <rect x="-20" y="-96" width="40" height="16" fill="#F2E6D0" stroke={K} strokeWidth="3" />
-            <circle cx="-64" cy="2" r="20" fill={K} /><circle cx="64" cy="2" r="20" fill={K} />
-            <circle cx="108" cy="-28" r="7" fill="#FFF4C0" />
-          </g>
           {/* lampione con la luce gialla */}
           <path d="M560 1140 V780 Q560 750 600 750 H640" stroke={K} strokeWidth="12" fill="none" />
           <path d="M620 740 H680 L670 770 H630 Z" fill="#F2C46A" stroke={K} strokeWidth="4" />
@@ -75,14 +68,28 @@ export const Gotham: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <g transform={`translate(420 ${1180 - 40 * (1 - sign)}) rotate(${-6 + 6 * sign})`} opacity={sign}>
             <path d="M0 0 V-80" stroke={K} strokeWidth="8" />
             <rect x="-110" y="-250" width="220" height="170" rx="10" fill="#F2E6D0" stroke={K} strokeWidth="6" />
-            <circle cx="-50" cy="-170" r="34" fill="#F2E6D0" stroke={P.accento} strokeWidth="8" />
-            <circle cx="-50" cy="-170" r="10" fill={P.accento} />
-            <path d="M0 -210 H80 M0 -180 H90 M0 -150 H70 M0 -120 H85" stroke="#5A4A3A" strokeWidth="8" />
+            {/* faccina da clown: naso rosso, bocca larga, capelli verdi */}
+            <circle cx="-40" cy="-165" r="46" fill="#F8F4EC" stroke={K} strokeWidth="5" />
+            {[-80, 0].map((x) => <circle key={x} cx={x - 2} cy={-190} r="18" fill="#3E8A4A" stroke={K} strokeWidth="4" />)}
+            <ellipse cx="-56" cy="-176" rx="6" ry="8" fill={K} /><ellipse cx="-24" cy="-176" rx="6" ry="8" fill={K} />
+            <circle cx="-40" cy="-160" r="10" fill={P.accento} />
+            <path d="M-66 -142 Q-40 -116 -14 -142" stroke={P.accento} strokeWidth="7" fill="none" />
+            <path d="M24 -200 H90 M24 -170 H96 M24 -140 H80" stroke="#5A4A3A" strokeWidth="8" />
           </g>
           <g transform="translate(640 1180)">
             <rect x="-90" y="-80" width="180" height="80" fill="#8A6A44" stroke={K} strokeWidth="6" />
             <Scarpa x={-30} y={-80} s={0.7} rot={-8} />
             <Parrucca x={40} y={-104} s={0.45} />
+          </g>
+        </g>
+        {/* il taxi corre sulla strada, davanti al marciapiede */}
+        <g transform={L(1.1)}>
+          <g transform={`translate(${taxi} 1250)`}>
+            <path d="M-110 0 V-40 L-70 -44 L-40 -80 H50 L80 -44 L110 -40 V0 Z" fill="#E8B830" stroke={K} strokeWidth="6" />
+            <path d="M-32 -74 H44 L66 -46 H-60 Z" fill="#3A4A5A" stroke={K} strokeWidth="4" />
+            <rect x="-20" y="-96" width="40" height="16" fill="#F2E6D0" stroke={K} strokeWidth="3" />
+            <circle cx="-64" cy="2" r="20" fill={K} /><circle cx="64" cy="2" r="20" fill={K} />
+            <circle cx="108" cy="-28" r="7" fill="#FFF4C0" />
           </g>
         </g>
         <g transform={L(1.4)}>

@@ -48,6 +48,7 @@ export const Verita: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <g transform={L(0.8)}>
           <path d="M-200 1200 H1280 V2200 H-200 Z" fill="#2A2420" />
           <rect x="100" y="1160" width="880" height="40" fill="#6A5038" stroke={K} strokeWidth="7" />
+          <path d="M150 1200 V1400 M930 1200 V1400" stroke={K} strokeWidth="16" />
         </g>
         {/* la cartella aperta con il timbro e le fotografie */}
         <g transform={L(1.05)} opacity={pull}>
@@ -62,7 +63,7 @@ export const Verita: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               </g>
             )}
             {[-200, -80].map((x, i) => (
-              <g key={x} transform={`translate(${x} -110) rotate(${(i ? 8 : -6)}) scale(${Math.max(0.03, Math.abs(1 - 2 * flip))} 1)`}>
+              <g key={x} transform={`translate(${x} -78) rotate(${(i ? 8 : -6)}) scale(${Math.max(0.03, Math.abs(1 - 2 * flip))} 1)`}>
                 <rect x="-50" y="-60" width="100" height="120" fill={flip > 0.5 ? '#E8E0D0' : '#C8B088'} stroke={K} strokeWidth="5" />
                 {flip > 0.5 ? <path d="M-30 -30 H30 M-30 0 H20" stroke="#8A7A60" strokeWidth="4" /> : <rect x="-40" y="-50" width="80" height="80" fill="#7A6040" />}
               </g>

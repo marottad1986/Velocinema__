@@ -108,10 +108,10 @@ export const Pistola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M120 1680 V2200 M960 1680 V2200" stroke={K} strokeWidth="24" />
         </g>
         <g transform={L(1.6)}>
-          <path d="M540 -200 V560" stroke="#2A2A2A" strokeWidth="4" />
-          <circle cx="540" cy="580" r="18" fill="#FFF4C8" />
-          <Glow id="pi-top" x={540} y={600} r={460} t={t} color="#FFF4C8" amp={0.06} rate={3} opacity={0.45} />
-          <Dust t={t} top={{ y: 600, x0: 440, x1: 640 }} bottom={{ y: 1250, x0: 200, x1: 880 }} seed={3} n={22} color="#FFF4D8" />
+          <path d="M820 -200 V680" stroke="#2A2A2A" strokeWidth="4" />
+          <circle cx="820" cy="700" r="18" fill="#FFF4C8" />
+          <Glow id="pi-top" x={820} y={720} r={460} t={t} color="#FFF4C8" amp={0.06} rate={3} opacity={0.45} />
+          <Dust t={t} top={{ y: 720, x0: 720, x1: 920 }} bottom={{ y: 1250, x0: 200, x1: 880 }} seed={3} n={22} color="#FFF4D8" />
           <NearMotes id="pi-near" t={t} color="#F4F0D8" n={5} opacity={0.07} />
         </g>
       </g>

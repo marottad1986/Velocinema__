@@ -27,7 +27,7 @@ export const Metro: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
         <FxDefs id="mt" />
-        <Lin id="mt-car" stops={[[0, '#C8C8B8'], [1, '#7A7A6E']]} />
+        <Lin id="mt-car" stops={[[0, '#2A2A26'], [0.3, '#5A5A50'], [0.45, '#A8A89A'], [1, '#7A7A6E']]} />
         <Lin id="mt-wall" stops={[[0, '#5A4A3A'], [1, '#2A2018']]} />
       </defs>
       <g transform={cam.transform}>
@@ -39,8 +39,8 @@ export const Metro: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <g transform={L(0.5)}>
             <path d="M-200 -200 H1280 V600 H-200 Z M-200 940 H1280 V2200 H-200 Z" fill="url(#mt-car)" />
             {[0, 1, 2, 3].map((i) => <rect key={i} x={-150 + i * 330} y="600" width="290" height="340" rx="30" fill="none" stroke="#5A5A50" strokeWidth="16" />)}
-            {[0, 1, 2].map((i) => <rect key={i} x={20 + i * 380} y="500" width="240" height="26" rx="10" fill="#F4F8E8" opacity={(1 - dark) * neon} />)}
-            <Glow id="mt-neon" x={540} y={520} r={700} t={t} color="#E8F4E0" amp={0.03} rate={2} opacity={0.4 * (1 - dark) * neon} />
+            {[0, 1, 2].map((i) => <rect key={i} x={20 + i * 380} y="612" width="240" height="22" rx="10" fill="#F4F8E8" opacity={(1 - dark) * neon} />)}
+            <Glow id="mt-neon" x={540} y={590} r={700} t={t} color="#E8F4E0" amp={0.03} rate={2} opacity={0.4 * (1 - dark) * neon} />
           </g>
           <g transform={L(0.8)}>
             <rect x="-200" y="1060" width="1480" height="90" rx="20" fill="#E8742A" stroke={K} strokeWidth="7" />
@@ -55,6 +55,12 @@ export const Metro: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <g transform={L(1.3)}>
             <path d="M-200 380 H1280" stroke="#C8C8C0" strokeWidth="16" />
             {[100, 420, 740, 1000].map((x, i) => <g key={x} transform={`rotate(${Math.sin(t * 2 + i) * 6} ${x} 380)`}><path d={`M${x} 380 V460`} stroke="#C8C8C0" strokeWidth="6" /><circle cx={x} cy={486} r="26" fill="none" stroke="#C8C8C0" strokeWidth="9" /></g>)}
+          </g>
+          {/* in primo piano un palo e un sedile arancione vicino */}
+          <g transform={L(1.35)}>
+            <path d="M880 -200 V2200" stroke="#C8C8C0" strokeWidth="28" />
+            <rect x="-200" y="1600" width="620" height="140" rx="30" fill="#E8742A" stroke={K} strokeWidth="9" />
+            <rect x="-200" y="1740" width="620" height="500" fill="#D8642A" stroke={K} strokeWidth="9" />
           </g>
           <rect x="-200" y="-200" width="1480" height="2400" fill="#000" opacity={0.75 * dark} />
           <rect x="-200" y="-200" width="1480" height="2400" fill={P.accento} opacity={0.5 * flash} />
@@ -80,6 +86,9 @@ export const Metro: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           </g>
           <g transform={L(1.1)}>
             <path d="M-200 1260 H1280 V2200 H-200 Z" fill="#2A2420" />
+            {/* manifesti strappati e una maschera caduta sul marciapiede */}
+            {[[120, 1640, -20], [520, 1700, 12], [860, 1620, -6]].map(([x, y, a], i) => <rect key={i} x={x - 110} y={y - 70} width="220" height="140" fill="#D8C8A0" stroke={K} strokeWidth="5" transform={`rotate(${a} ${x} ${y})`} />)}
+            <g transform="translate(600 1820) rotate(18)"><ellipse rx="70" ry="84" fill="#F2EEE4" stroke={K} strokeWidth="6" /><circle cy="16" r="15" fill={P.accento} /><path d="M-34 42 Q0 66 34 42" stroke={P.accento} strokeWidth="8" fill="none" /></g>
             <Glow id="mt-street" x={900} y={1100} r={300} t={t} color="#F2C46A" amp={0.05} rate={2} opacity={0.4} />
           </g>
         </g>

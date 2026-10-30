@@ -73,6 +73,8 @@ export const Sola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             </g>
             <path d="M380 1140 V1020 H1000 V1140" fill="none" stroke="#C8CCD0" strokeWidth="12" />
             <rect x="380" y="1060" width="620" height="90" rx="10" fill="#E8ECEE" stroke={K} strokeWidth="6" />
+            <path d="M400 1150 H980 M420 1150 V1210 M960 1150 V1210" stroke="#8A9094" strokeWidth="10" />
+            {[420, 960].map((x) => <circle key={x} cx={x} cy={1214} r="10" fill={K} />)}
             <path d="M-200 1180 H1280 V2200 H-200 Z" fill="#4A5654" />
           </g>
           <g transform={L(1.05)}>

@@ -79,12 +79,12 @@ export const Risata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <Glow id="rs-al" x={540} y={820} r={400} t={t} color="#F2C46A" amp={0.06} rate={2} opacity={0.4} />
           </g>
           <g transform={L(1.05)}>
-            <path d="M-200 1240 L360 1240 H720 L1280 1240 V2200 H-200 Z" fill="#2A2622" />
+            <path d="M360 1240 H720 L1280 1600 V2200 H-200 V1600 Z" fill="#2A2622" />
             <g transform="translate(420 1180) rotate(-24)"><rect x="-120" y="-70" width="150" height="140" fill="#F2E6D0" stroke={K} strokeWidth="6" /><circle cx="-50" cy="0" r="34" fill="none" stroke={P.accento} strokeWidth="8" /></g>
             <g transform="translate(640 1210) rotate(18)"><path d="M-40 -70 L80 -70 L80 70 L-60 70 L-20 0 Z" fill="#F2E6D0" stroke={K} strokeWidth="6" /><path d="M0 -30 H60 M10 0 H70 M0 30 H50" stroke="#5A4A3A" strokeWidth="7" /></g>
             <path d="M300 1240 V1150" stroke={K} strokeWidth="8" />
             {/* bidone e mattoni del vicolo in primo piano */}
-            <g transform="translate(880 1620)"><rect x="-140" y="-160" width="280" height="560" rx="16" fill="#3A4440" stroke={K} strokeWidth="9" /><path d="M-140 -90 H140 M-140 40 H140" stroke="#2A3230" strokeWidth="10" /><rect x="-160" y="-190" width="320" height="40" rx="12" fill="#4A5450" stroke={K} strokeWidth="8" /></g>
+            <g transform="translate(880 1670)"><rect x="-140" y="-160" width="280" height="560" rx="16" fill="#3A4440" stroke={K} strokeWidth="9" /><path d="M-140 -90 H140 M-140 40 H140" stroke="#2A3230" strokeWidth="10" /><rect x="-160" y="-190" width="320" height="40" rx="12" fill="#4A5450" stroke={K} strokeWidth="8" /></g>
             {Array.from({ length: 4 }, (_, i) => <rect key={i} x={-150 + (i % 2) * 140} y={1640 + Math.floor(i / 2) * 70} width="130" height="60" fill="#5A3426" stroke={K} strokeWidth="6" />)}
           </g>
         </g>

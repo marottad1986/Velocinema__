@@ -38,7 +38,8 @@ export const Rivolta: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <g transform={L(0.35)}>
             <Palazzo x={-180} y={1120} w={440} h={560} t={t} color="#3A2018" lit={0.15} seed={6} />
             <Palazzo x={780} y={1120} w={460} h={600} t={t} color="#2E1A14" lit={0.1} seed={8} />
-            <Fire id="rv-f1" t={t} x={200} y={700} scale={0.9} />
+            <rect x="150" y="700" width="100" height="120" fill="#1A0A06" stroke={K} strokeWidth="6" />
+            <Fire id="rv-f1" t={t} x={200} y={790} scale={0.7} />
           </g>
           <g transform={L(0.7)}>
             <path d="M-200 1120 H1280 V2200 H-200 Z" fill="#1E1614" />
@@ -92,6 +93,17 @@ export const Rivolta: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             {[490, 525, 560, 595].map((x) => <path key={x} d={`M${x} 740 V910`} stroke={K} strokeWidth="6" />)}
             <Glow id="rv-win" x={540} y={860} r={300} t={t} color="#FFFFFF" amp={0.04} rate={1} opacity={0.5} />
             <path d="M380 1000 H700 L1280 1500 V2200 H-200 V1500 Z" fill="#C8CCC8" />
+            {/* neon a soffitto con alone, porta con lo spioncino sul muro di destra */}
+            <rect x="460" y="660" width="160" height="16" rx="6" fill="#F4FFF4" />
+            <Glow id="rv-neon" x={540} y={680} r={360} t={t} color="#E8FFF0" amp={0.06} rate={6} opacity={0.6} />
+            <path d="M840 860 L960 960 V1230 L840 1110 Z" fill="#A8B0AC" stroke={K} strokeWidth="6" />
+            <rect x="880" y="930" width="30" height="20" fill="#2A2E2C" />
+          </g>
+          {/* in primo piano: il bordo di una branda con la coperta */}
+          <g transform={L(1.3)}>
+            <rect x="-200" y="1620" width="760" height="60" rx="10" fill="#C8CCD0" stroke={K} strokeWidth="8" />
+            <path d="M-200 1680 H560 V2200 H-200 Z" fill="#E8ECEE" stroke={K} strokeWidth="8" />
+            <path d="M-160 1760 H520" stroke="#B8C0C4" strokeWidth="10" />
           </g>
           <g transform={L(1.0)}>
             {Array.from({ length: 10 }, (_, i) => {
