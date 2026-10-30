@@ -119,7 +119,7 @@ export default (mix, T) => {
   clip(mix, 'rombo', { t: T.metro, da: 31, durata: cue('metro', 2) - T.metro, gain: 0.12, lp: 500, fadeIn: 0.4, fadeOut: 0.6, largo: 2 });
   pulse(B(T.metro), B(cue('metro', 2)), { vel: 64, gain: 0.5 });
   trem(T.metro + 0.3, cue('metro', 1) + 0.6 - T.metro - 0.3, [48, 51, 72, 75], { vel: 54, gain: 0.34 });
-  [0, 0.35, 0.7].forEach((d) => timp(cue('metro', 1) + 0.6 + d, 36, 100, 0.65)); // Metro.tsx: i tre lampi
+  [0, 0.45, 0.9].forEach((d) => timp(cue('metro', 1) + 0.6 + d, 36, 100, 0.65)); // Metro.tsx: i tre lampi
   gong(cue('metro', 1) + 1.4, 0.25);
   strings(B(cue('metro', 2)), B(T.madre), { vel: 50, gain: 0.38, high: true });
   carillon(B(cue('metro', 2)), B(T.madre), { vel: 50, gain: 0.2 });
