@@ -90,7 +90,7 @@ export default (mix, T) => {
   carillon(1.2, T.gotham, { vel: 46, gain: 0.18 });
 
   // ---- gotham: il motivo al pianoforte, archi, la città; il cartello e il sogno della TV
-  city(T.gotham, T.risata - T.gotham, 0.05, 10);
+  city(T.gotham, T.risata - T.gotham, 0.05, 4);
   strings(B(T.gotham), B(T.risata), { half: true, vel: 46, gain: 0.34 });
   motif(B(T.gotham), B(T.risata), { vel: 58 });
   carillon(B(cue('gotham', 1)), B(T.risata), { vel: 42, gain: 0.15 });
@@ -99,8 +99,8 @@ export default (mix, T) => {
   // ---- risata: l'autobus, il cartoncino; le luci a scatti come una risata (pizzicati a scatti); il vicolo
   strings(B(T.risata), B(T.pistola), { half: true, vel: 44, gain: 0.32, k0: 2 });
   motif(B(T.risata), B(T.pistola), { vel: 54, oct: 12, gain: 0.4 });
-  clip(mix, 'rombo', { t: T.risata, da: 31, durata: cue('risata', 2) - T.risata, gain: 0.08, lp: 600, fadeIn: 0.5, fadeOut: 0.8, largo: 2 }); // il motore dell'autobus
-  for (let t = cue('risata', 1), k = 0; t < cue('risata', 2) - 0.1; t += BEAT / 2, k++) // la risata che non si ferma: pizzicati a scatti
+  clip(mix, 'rombo', { t: T.risata, da: 31, durata: cue('risata', 2) - T.risata, gain: 0.05, lp: 600, fadeIn: 0.5, fadeOut: 0.8, largo: 2 }); // il motore dell'autobus
+  for (let t = T.gotham + Math.ceil((cue('risata', 1) - T.gotham) / (BEAT / 2)) * (BEAT / 2), k = 0; t < cue('risata', 2) - 0.1; t += BEAT / 2, k++) // la risata che non si ferma: pizzicati a scatti
     suona(mix, 'contrabbasso_pizz', [43, 46, 43, 48][k % 4], { t, dur: BEAT / 2, vel: 60 + (k % 2) * 10, pan: 0.2, rev: 0.3, gain: 0.35, release: 0.2 });
   trem(cue('risata', 2), T.pistola - cue('risata', 2), [48, 49, 72], { vel: 50, gain: 0.3 });
   timp(cue('risata', 2) + 0.4, 36, 90, 0.7);
@@ -110,8 +110,8 @@ export default (mix, T) => {
   motif(B(T.pistola), B(cue('pistola', 1)), { vel: 54 });
   carillon(B(cue('pistola', 1)), B(cue('pistola', 2)), { vel: 50, gain: 0.22 });
   strings(B(cue('pistola', 1)), B(T.metro), { vel: 40, gain: 0.26, bass: false, high: true, k0: 1 });
-  clip(mix, 'metallo_cade', { t: cue('pistola', 1) + 1.7, da: 0.66, durata: 0.6, gain: 0.35, fadeOut: 0.2, rev: 0.3 }); // Pistola.tsx: la pistola tocca terra
-  timp(cue('pistola', 1) + 1.75, 36, 80, 0.6);
+  clip(mix, 'metallo_cade', { t: cue('pistola', 1) + 1.61, da: 0.66, durata: 0.6, gain: 0.35, fadeOut: 0.2, rev: 0.3 }); // Pistola.tsx: la pistola tocca terra
+  timp(cue('pistola', 1) + 1.8, 36, 80, 0.6);
   clip(mix, 'serratura', { t: cue('pistola', 2) + 0.2, da: 2.45, durata: 0.42, gain: 0.3, rev: 0.3, pan: 0.2 }); // l'armadietto
   motif(B(cue('pistola', 2)), B(T.metro), { vel: 52, gain: 0.5 });
 
@@ -135,9 +135,9 @@ export default (mix, T) => {
   strings(B(T.verita), B(cue('verita', 2)), { vel: 46, gain: 0.34, k0: 2 });
   motif(B(T.verita), B(T.sola), { vel: 54 });
   clip(mix, 'pagine', { t: cue('verita', 0) + 0.6, da: 0.9, durata: 0.6, gain: 0.2, fadeOut: 0.2, rev: 0.2, pan: -0.2 });
-  clip(mix, 'colpi_legno', { t: cue('verita', 1) + 0.8, da: 1.55, durata: 0.25, gain: 0.3, rev: 0.3 }); // il timbro
-  timp(cue('verita', 1) + 0.8, 36, 80, 0.6);
-  trem(cue('verita', 2), T.sola - cue('verita', 2), [48, 49, 72, 73], { vel: 56, gain: 0.38 });
+  clip(mix, 'colpi_legno', { t: cue('verita', 1) + 1.0 - 0.02, da: 1.46, durata: 0.3, gain: 0.3, rev: 0.3 }); // il timbro
+  timp(cue('verita', 1) + 1.0, 36, 80, 0.6);
+  trem(cue('verita', 2), T.sola - cue('verita', 2), [48, 49, 72, 73], { vel: 56, gain: 0.3 });
 
   // ---- sola: la luce calda della vicina (archi più chiari), che si spegne; l'ospedale, il monitor che si ferma
   strings(B(T.sola), B(cue('sola', 1)), { vel: 52, gain: 0.5, high: true, k0: 1 });
@@ -156,7 +156,7 @@ export default (mix, T) => {
   clip(mix, 'applauso_breve', { t: T.murray + 0.3, da: 4.5, durata: 2, gain: 0.18, fadeIn: 0.3, fadeOut: 0.8, rev: 0.3 });
   clip(mix, 'disturbo', { t: cue('murray', 1), da: 2, durata: 0.5, gain: 0.1, fadeIn: 0.05, fadeOut: 0.2, rev: 0.2 }); // il video della serata
   timp(cue('murray', 1) + 1.4, 36, 90, 0.7); // «joker»
-  clip(mix, 'applauso_breve', { t: cue('murray', 2) - 0.2, da: 4.5, durata: 2.2, gain: 0.25, fadeIn: 0.2, fadeOut: 0.8, rev: 0.3 }); // l'applausometro
+  clip(mix, 'applauso_breve', { t: cue('murray', 2) - 0.2, da: 4.5, durata: 2.2, gain: 0.18, fadeIn: 0.2, fadeOut: 0.8, rev: 0.3 }); // l'applausometro
   roll(cue('murray', 2) + 0.2, 0.2);
 
   // ---- scalinata: la porta di Randall che sbatte; il completo rosso; la discesa a passo pieno con tamburi e ottoni
@@ -183,16 +183,17 @@ export default (mix, T) => {
   colpo(mix, 'grancassa_rullo', 'bdrum_roll1', { t: shot - 2, vel: 70, rev: 0.4, gain: 0.28, dur: 2, release: 0.3 });
   timp(shot, 36, 110, 0.9);
   gong(shot + 0.05, 0.45, 'gong_hit_mp');
-  clip(mix, 'disturbo', { t: shot + 0.3, da: 2, durata: T.rivolta - shot - 0.3, gain: 0.12, fadeIn: 0.05, fadeOut: 0.4, rev: 0.15 });
-  suona(mix, 'contrabbasso', 36, { t: shot + 0.3, dur: T.rivolta - shot - 0.3, vel: 44, gain: 0.35, attack: 0.5, release: 0.8, rev: 0.5 });
+  clip(mix, 'disturbo', { t: shot + 0.3, da: 2, durata: B(T.rivolta) + BAR - 2 * BEAT - shot - 0.3, gain: 0.12, fadeIn: 0.05, fadeOut: 0.4, rev: 0.15 });
+  suona(mix, 'contrabbasso', 36, { t: shot + 0.3, dur: B(T.rivolta) + BAR - 2 * BEAT - shot - 0.3, vel: 44, gain: 0.35, attack: 0.5, release: 0.8, rev: 0.5 });
 
   // ---- rivolta: tamburi e ottoni a passo pieno, fuoco e folla; il vicolo e le perle; il manicomio e il carillon
-  const R0 = B(T.rivolta), R1 = B(cue('rivolta', 1));
+  const R0 = B(T.rivolta) + BAR, R1 = B(cue('rivolta', 1)); // a 96 bpm la battuta più vicina (104) cadrebbe prima del taglio: si entra con un levare e il pieno alla battuta dopo
+  colpo(mix, 'grancassa_rullo', 'bdrum_roll1', { t: R0 - 2 * BEAT, vel: 70, rev: 0.4, gain: 0.3, dur: 2 * BEAT, release: 0.2 });
   clip(mix, 'fuoco', { t: T.rivolta, da: 1, durata: R1 - T.rivolta, gain: 0.08, fadeIn: 0.3, fadeOut: 0.6, largo: 3, rev: 0.15 });
   clip(mix, 'voci_sala', { t: T.rivolta, da: 8, durata: R1 - T.rivolta, gain: 0.07, fadeIn: 0.3, fadeOut: 0.6, largo: 4, rev: 0.2 });
   clip(mix, 'vetri', { t: T.rivolta + 1.2, da: 3.66, durata: 0.8, gain: 0.25, fadeOut: 0.3, rev: 0.3, pan: 0.3 });
   for (let t = R0, k = 0; t < R1 - 0.1; t += BEAT, k++) {
-    colpo(mix, 'cassa', 'v3', { t, vel: 95, rev: 0.3, gain: 0.5 });
+    colpo(mix, 'cassa', 'v3', { t, vel: 95, rev: 0.3, gain: 0.6 });
     colpo(mix, 'rullante', 'v2', { t: t + BEAT / 2, vel: 70, rev: 0.3, gain: 0.3 });
     if (k % 2 === 0) timp(t, 36, 90, 0.6);
   }
@@ -201,13 +202,13 @@ export default (mix, T) => {
   trem(R1, cue('rivolta', 2) - R1, [36, 48, 49], { vel: 46, gain: 0.32 }); // il vicolo
   [99, 96, 94, 91].forEach((m, j) => suona(mix, 'glockenspiel', m, { t: cue('rivolta', 1) + 1 + j * BEAT / 4, dur: 1.2, vel: 46, pan: -0.2 + j * 0.15, rev: 0.6, gain: 0.14, release: 1 })); // le perle
   gong(cue('rivolta', 1) + 1, 0.3);
-  carillon(B(cue('rivolta', 2)), T.finale, { vel: 44, gain: 0.2 }); // il manicomio: il carillon storto torna
-  motif(B(cue('rivolta', 2)), T.finale, { vel: 50, gain: 0.45 });
+  carillon(B(cue('rivolta', 2)), B(T.finale), { vel: 44, gain: 0.2 }); // il manicomio: il carillon storto torna
+  motif(B(cue('rivolta', 2)), B(T.finale), { vel: 50, gain: 0.45 });
 
   // ---- finale: un accordo di Do minore che non si risolve, con il carillon che si ferma su una nota storta
-  const F = T.finale;
+  const F = B(T.finale);
   [['contrabbasso', 36], ['celli', 48], ['viole', 63], ['viole', 67], ['violini', 74]].forEach(([id, n], k) =>
     suona(mix, id, n, { t: F, dur: T.END - F, vel: 56, pan: (k - 2) * 0.2, gain: 0.6, attack: 0.3, release: 1.4, rev: 0.55, seed: 30 + k }));
   suona(mix, 'glockenspiel', 85, { t: F + 1, dur: 2, vel: 44, pan: 0.3, rev: 0.6, gain: 0.16, release: 1.4, cents: -40 });
-  city(F, T.END - F, 0.03, 20);
+  city(F, T.END - F, 0.03, 8);
 };
