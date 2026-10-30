@@ -87,7 +87,7 @@ export default (mix, T) => {
   city(0, T.gotham + 0.5, 0.04);
   suona(mix, 'contrabbasso', 36, { t: 0.2, dur: 3.8, vel: 50, gain: 0.45, attack: 0.6, release: 1, rev: 0.5 });
   [48, 51, 55].forEach((m, j) => suona(mix, 'celli', m, { t: 0.4 + j * 0.2, dur: 3.4 - j * 0.2, vel: 50, pan: (j - 1) * 0.3, gain: 0.48, attack: 0.5, release: 1, rev: 0.5 }));
-  carillon(1.2, T.gotham, { vel: 46, gain: 0.18 });
+  carillon(1.5, T.gotham, { vel: 46, gain: 0.18 });
 
   // ---- gotham: il motivo al pianoforte, archi, la città; il cartello e il sogno della TV
   city(T.gotham, T.risata - T.gotham, 0.05, 4);
@@ -110,9 +110,9 @@ export default (mix, T) => {
   motif(B(T.pistola), B(cue('pistola', 1)), { vel: 54 });
   carillon(B(cue('pistola', 1)), B(cue('pistola', 2)), { vel: 50, gain: 0.22 });
   strings(B(cue('pistola', 1)), B(T.metro), { vel: 40, gain: 0.26, bass: false, high: true, k0: 1 });
-  clip(mix, 'metallo_cade', { t: cue('pistola', 1) + 1.61, da: 0.66, durata: 0.6, gain: 0.35, fadeOut: 0.2, rev: 0.3 }); // Pistola.tsx: la pistola tocca terra
+  clip(mix, 'metallo_cade', { t: cue('pistola', 1) + 1.775, da: 0.72, durata: 0.6, gain: 0.35, fadeOut: 0.2, rev: 0.3 }); // Pistola.tsx: la pistola tocca terra
   timp(cue('pistola', 1) + 1.8, 36, 80, 0.6);
-  clip(mix, 'serratura', { t: cue('pistola', 2) + 0.2, da: 2.45, durata: 0.42, gain: 0.3, rev: 0.3, pan: 0.2 }); // l'armadietto
+  clip(mix, 'serratura', { t: cue('pistola', 2) + 0.18, da: 2.43, durata: 0.42, gain: 0.3, rev: 0.3, pan: 0.2 }); // l'armadietto
   motif(B(cue('pistola', 2)), B(T.metro), { vel: 52, gain: 0.5 });
 
   // ---- metro: il vagone che corre, il battito; tre colpi di timpano coi lampi; il muro delle maschere
@@ -120,7 +120,7 @@ export default (mix, T) => {
   pulse(B(T.metro), B(cue('metro', 2)), { vel: 64, gain: 0.5 });
   trem(T.metro + 0.3, cue('metro', 1) + 0.6 - T.metro - 0.3, [48, 51, 72, 75], { vel: 54, gain: 0.34 });
   [0, 0.45, 0.9].forEach((d) => timp(cue('metro', 1) + 0.6 + d, 36, 100, 0.65)); // Metro.tsx: i tre lampi
-  gong(cue('metro', 1) + 1.4, 0.25);
+  gong(cue('metro', 1) + 1.5, 0.25);
   strings(B(cue('metro', 2)), B(T.madre), { vel: 50, gain: 0.38, high: true });
   carillon(B(cue('metro', 2)), B(T.madre), { vel: 50, gain: 0.2 });
 
@@ -198,7 +198,7 @@ export default (mix, T) => {
     if (k % 2 === 0) timp(t, 36, 90, 0.6);
   }
   strings(R0, R1, { vel: 60, gain: 0.45, high: true });
-  [55, 58, 60].forEach((m, j) => suona(mix, 'corno', m, { t: R0 + j * BAR / 2, dur: BAR, vel: 64, gain: 0.32, attack: 0.2, release: 0.8, rev: 0.45, pan: 0.2 }));
+  [55, 58, 60].forEach((m, j) => suona(mix, 'corno', m, { t: R0 + j * BAR / 2, dur: Math.min(BAR, R1 - (R0 + j * BAR / 2)), vel: 64, gain: 0.32, attack: 0.2, release: 0.8, rev: 0.45, pan: 0.2 }));
   trem(R1, cue('rivolta', 2) - R1, [36, 48, 49], { vel: 46, gain: 0.32 }); // il vicolo
   [99, 96, 94, 91].forEach((m, j) => suona(mix, 'glockenspiel', m, { t: cue('rivolta', 1) + 1 + j * BEAT / 4, dur: 1.2, vel: 46, pan: -0.2 + j * 0.15, rev: 0.6, gain: 0.14, release: 1 })); // le perle
   gong(cue('rivolta', 1) + 1, 0.3);

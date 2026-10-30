@@ -17,7 +17,7 @@ export const Sola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const warm = eo(seg(t, cues[0] + 0.4, cues[0] + 1.2)) * (1 - eio(seg(t, cues[1] + 0.6, cues[1] + 1.8))); // la luce calda che si spegne
   const room = eio(seg(t, cues[2] - 0.2, cues[2] + 0.7)); // la stanza d'ospedale
   const flat = seg(t, cues[2] + 1.6, cues[2] + 1.8);
-  const beat = flat ? 0 : Math.max(0, Math.sin(t * 6)) ** 8;
+  const beat = flat ? 0 : Math.max(0, Math.cos((t * 2 * Math.PI) / 0.625)) ** 8; // un battito a tempo (96 bpm), come i bip dello spartito
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
