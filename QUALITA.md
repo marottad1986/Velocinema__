@@ -223,6 +223,25 @@ film; titolo in Playfair Display.
 - La nave si spezza: la poppa che si alza, la rottura, il mare gelato, la porta che si rovescia, la brina, i rottami.
 - Il Cuore dell'Oceano: dall'alba dei soccorsi alla notte di oggi, il diamante che affonda, la porta lontana.
 
+### Joker
+Look da città sporca anni Ottanta: mattoni anneriti, verde malato e senape, luci gialle dei lampioni e verdi dei neon,
+il rosso dell'accento (#D2382E) solo sugli oggetti del clown e sui momenti chiave (cartello, completo, «JOKER» in
+sovrimpressione, impronte). Elementi comuni in `src/scenes/joker/Comuni.tsx` (palazzi con scale antincendio, sacchi della
+spazzatura, parrucca, scarpa, completo rosso, pistola, televisore). Persone mai, né il volto truccato: Arthur si racconta
+con i suoi oggetti; la violenza è suggerita da lampi, luci che si spengono, oggetti a terra (mai armi puntate né corpi).
+Niente locandina, figura sulle scale o logo del film; titolo in Anton.
+- Un clown a Gotham: sacchi dello sciopero, vapore dai tombini, taxi, cartello da clown, televisore in vetrina.
+- La risata che non si ferma: autobus di notte con le luci che sfarfallano, il cartoncino della malattia, il vicolo.
+- La pistola sbagliata: spogliatoio, corridoio colorato dell'ospedale, la pistola che cade, l'armadietto vuoto.
+- La notte in metropolitana: vagone che corre, tre lampi rossi, il muro delle maschere da clown.
+- La lettera della madre: poltrona e televisione, la villa lontana che si accende, la lettera sottolineata in rosso.
+- La verità sulla madre: archivio del manicomio, il timbro «ADOZIONE», foto girate, lampada che sfarfalla.
+- Da solo: la porta della vicina con la luce che si spegne, la stanza d'ospedale con il monitor che si ferma.
+- L'invito in TV: studio con «IN ONDA», il video della serata con «JOKER», l'applausometro, l'invito.
+- Il ballo sulla scalinata: la porta di Randall, il completo rosso al vento, cartacce che scendono a ritmo, la polizia.
+- In diretta: occhio di bue sulla poltrona vuota, lampo, «COLLEGAMENTO INTERROTTO».
+- Gotham brucia: auto rovesciata, fuochi, maschere a terra; le perle che rotolano nel vicolo; impronte rosse nel corridoio.
+
 ### Dark, stagione 1 (Spiegato semplice, schema)
 L'albero che si annoda (`src/scenes/dark-stagione-1/Albero.tsx`): fondo scuro verde-grigio, un quadrante d'orologio
 appena visibile che gira, due famiglie in colonna (Kahnwald, Nielsen), anni dall'alto in basso, il passaggio della
