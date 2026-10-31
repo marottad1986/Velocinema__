@@ -13,6 +13,17 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 - Struttura: copertina 4 s + capitoli (112 s in tutto) + finale 4 s.
 - Lingua: italiano.
 
+## Le due regole più importanti (vincolanti, tutti i contenuti: film, Spiegato semplice, canzoni, quadri, serie)
+- **La qualità del video dipende soprattutto da quanto sono curate le scene.** Grafica e dettagli delle immagini
+  sono fondamentali: ogni scena va disegnata con la cura dei primi film (Shutter Island, Interstellar, Truman,
+  La La Land, Frankenstein Junior), mai di fretta né a gruppi. Prima di ogni film rileggere `BRIEF-SCENA.md`,
+  `QUALITA.md` e la scena di riferimento; una scena alla volta, controllata sui fotogrammi prima di passare alla
+  successiva; una sola immagine per capitolo, non più immagini in dissolvenza; oggetti ricchi di dettaglio, non
+  schematici. Se un revisore trova problemi di fondo (inquadratura vuota, oggetto illeggibile), si ripensa la scena,
+  non si rattoppa. Meglio un film in più giorni che un film meno curato.
+- **I testi si scrivono sempre immaginando che lo spettatore non conosca la trama**: chi guarda non ha visto il film
+  (o non conosce la canzone, il quadro, la serie) e deve capire tutto solo da quello che sente (regole sotto).
+
 ## Stile grafico
 - Illustrazioni piatte con contorni scuri, a tutto schermo, una sola immagine animata per capitolo
   (lento avvicinamento di camera + piccole animazioni: onde, pioggia, fiamme, luci, fumo, note).
