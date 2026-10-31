@@ -176,7 +176,7 @@ export const Madre: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         </g>
 
         {/* PIANO 5 — tenda in primo piano a destra (1,25) */}
-        <g transform={`${L(1.25)} translate(-90 0)`}>
+        <g transform={`${L(1.25)} translate(-35 0)`}>
           <path d={`M1020 -200 H1300 V2200 H1060 Q${1040 + Math.sin(t * 0.8) * 10} 1600 1000 1200 Q${980 + Math.sin(t * 0.8 + 1) * 8} 700 1020 -200 Z`} fill="url(#md-curtain)" stroke={K} strokeWidth="9" />
           {[1080, 1140].map((x) => <path key={x} d={`M${x} -200 Q${x - 30} 900 ${x - 10} 2200`} stroke="#2A1E12" strokeWidth="6" fill="none" />)}
           <path d="M-110 1500 Q190 1440 450 1500 V2200 H-110 Z" fill="url(#md-chair)" stroke={K} strokeWidth="9" />

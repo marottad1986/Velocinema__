@@ -28,7 +28,7 @@ export const Pistola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const fall = seg(t, fallT, hitT);
   const bounce = t > hitT ? Math.abs(Math.sin((t - hitT) * 14)) * 30 * Math.exp(-(t - hitT) * 6) : 0;
   const gy = lerp(880, 1190, fall * fall) - bounce;
-  const grot = t < hitT ? lerp(-30, 372, fall) : 372 + 8 * Math.exp(-(t - hitT) * 5) * Math.sin((t - hitT) * 20); // si posa di piatto
+  const grot = t < hitT ? lerp(-30, 365, fall) : 365 + 8 * Math.exp(-(t - hitT) * 5) * Math.sin((t - hitT) * 20); // si posa di piatto
   const shake = t > hitT ? Math.exp(-(t - hitT) * 3) * Math.sin((t - hitT) * 18) * 10 : 0;
   const stamp = seg(t, cues[2] + 0.04, cues[2] + 0.18);
   const stampUp = seg(t, cues[2] + 0.3, cues[2] + 0.6);
