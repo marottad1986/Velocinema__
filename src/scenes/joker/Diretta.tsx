@@ -1,98 +1,146 @@
 import React from 'react';
 import { camera, eo, rng, seg } from '../../lib/anim';
-import { Dust, Glow, NearMotes } from '../../lib/elements';
+import { Dust, Glow, NearMotes, Rain, Reflection, flashAt } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { ANTON, SANS } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
-import { K, Tv } from './Comuni';
+import { JokerDefs, K, Palazzo, Tv } from './Comuni';
 
-// In diretta: lo studio visto dal palco, la scrivania, le luci, la telecamera con la lucina rossa; sulla prima frase un
-// televisore di casa mostra in sovrimpressione «JOKER» (accento); su «confessa i tre omicidi» le luci dello studio si
-// abbassano e rimane un solo occhio di bue sulla poltrona vuota; su «spara a Murray» un lampo bianco, poi la scritta «IN
-// ONDA» si spegne e il televisore diventa disturbo con «COLLEGAMENTO INTERROTTO». Nessuna persona, nessuna arma in vista.
-// Piani: sipario e luci (0,25) · scrivania e poltrone (0,6) · televisore (0,9) · telecamera (1,2) · pulviscolo (1,6)
+// In diretta: di notte, sotto la pioggia, la vetrina del negozio di televisori del primo capitolo: una parete di sei
+// televisori che trasmettono tutti la stessa diretta, davanti a tutta la città. Sugli schermi lo studio con la poltrona.
+// Eventi: prima frase su tutti gli schermi compare «JOKER» in sovrimpressione (cue 0 + 1, timpano); seconda frase le luci
+// dello studio si abbassano e resta un solo occhio di bue sulla poltrona; terza frase lo sparo a cue 2 + 1,2 (timpano e
+// gong): un solo lampo bianco su tutti gli schermi, poi disturbo e «COLLEGAMENTO INTERROTTO», l'insegna si spegne.
+// Nessuna persona, nessuna arma in vista.
+// Piani: palazzi di notte (0,3) · facciata del negozio (0,55) · parete di televisori (0,7) · marciapiede bagnato (0,9)
+//        · tenda e pali in primo piano (1,2) · pioggia vicina e particelle (1,5–1,8)
 
-const r = rng(13);
-const NOISE = Array.from({ length: 120 }, () => ({ x: r() * 250 - 160, y: r() * 220 - 110, w: 4 + r() * 20 }));
+const TVS = [[320, 800], [780, 800], [320, 1110], [780, 1110]] as const;
+const r = rng(10);
+const NOISE = Array.from({ length: 12 }, () => r());
 
 export const Diretta: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
-  const name = eo(seg(t, cues[0] + 1, cues[0] + 1.6)); // «Joker»
-  const spot = eo(seg(t, cues[1], cues[1] + 1)); // resta un solo occhio di bue
   const shot = cues[2] + 1.2;
-  const flash = seg(t, shot, shot + 0.05) * (1 - seg(t, shot + 0.12, shot + 0.6)); // lampo con dissolvenza
-  const cut = seg(t, shot + 0.3, shot + 0.5); // collegamento interrotto
+  const name = eo(seg(t, cues[0] + 1, cues[0] + 1.5));
+  const spot = eo(seg(t, cues[1], cues[1] + 1));
+  const flash = flashAt(t, [shot], [1]);
+  const cut = seg(t, shot + 0.3, shot + 0.5);
+  const neon = cut > 0 ? (Math.sin(t * 30) > 0.6 ? 0.3 : 0.05) : 0.9 + 0.1 * Math.sin(t * 11);
+
+  const Screen: React.FC<{ i: number }> = ({ i }) => (
+    <g>
+      {/* lo studio in diretta */}
+      <g opacity={1 - cut}>
+        <rect x="-172" y="-118" width="258" height="234" fill="#2A1A3A" />
+        <rect x="-172" y="-118" width="258" height="234" fill="#000" opacity={0.6 * spot} />
+        <path d="M-172 -118 H-140 V116 H-172 Z M86 -118 H54 V116 H86 Z" fill="#7A1A22" />
+        <path d="M-43 -118 L-110 116 H24 Z" fill="#FFF0C0" opacity={0.12 + 0.25 * spot} />
+        <ellipse cx="-43" cy="80" rx="70" ry="14" fill="#FFF0C0" opacity={0.25 + 0.3 * spot} />
+        <path d="M-80 70 V0 Q-80 -24 -56 -24 H-30 Q-6 -24 -6 0 V70 Z" fill="#3A6A9A" stroke={K} strokeWidth="5" />
+        <rect x="-92" y="20" width="98" height="30" rx="10" fill="#2A5A8A" stroke={K} strokeWidth="4" />
+        <path d="M-150 60 H-100 V96 H-150 Z" fill="#6A4428" opacity={1 - spot} />
+        <g opacity={name}>
+          <rect x="-160" y="-110" width="234" height="62" fill="#0A0A0A" opacity=".75" />
+          <text x="-43" y="-62" textAnchor="middle" fontFamily={ANTON} fontSize="54" fill={P.accento}>JOKER</text>
+        </g>
+        <circle cx="66" cy="-100" r="7" fill={P.accento} opacity={Math.sin(t * 4 + i) > 0 ? 1 : 0.3} />
+      </g>
+      {/* collegamento interrotto */}
+      <g opacity={cut}>
+        <rect x="-172" y="-118" width="258" height="234" fill="#1A1E22" />
+        {Array.from({ length: 13 }, (_, k) => <rect key={k} x={-172} y={-118 + k * 18} width="258" height="9" fill="#C8D8E0" opacity={0.2 + 0.5 * Math.abs(Math.sin(t * 31 + k * 2.3 + i + NOISE[k] * 6))} />)}
+              </g>
+      <rect x="-172" y="-118" width="258" height="234" fill="#FFFFFF" opacity={flash} />
+    </g>
+  );
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
         <FxDefs id="dr" />
-        <Lin id="dr-curtain" x2={1} y2={0} stops={[[0, '#5A1A3A'], [0.5, '#8A2A5A'], [1, '#5A1A3A']]} />
-        <radialGradient id="dr-spot" cx=".5" cy="0" r="1"><stop offset="0" stopColor="#FFF4D8" stopOpacity=".7" /><stop offset="1" stopColor="#FFF4D8" stopOpacity="0" /></radialGradient>
+        <JokerDefs id="dr" />
+        <Lin id="dr-sky" stops={[[0, '#06080C'], [0.5, '#121822'], [1, '#1E2430']]} />
+        <Lin id="dr-shop" x2={1} y2={0} stops={[[0, '#141C18'], [0.5, '#22302A'], [1, '#121A16']]} />
+        <Lin id="dr-walk" stops={[[0, '#3A3A3C'], [1, '#141416']]} />
+        <Lin id="dr-awn" x2={1} y2={0} stops={[[0, '#5A1A18'], [0.5, '#7A2420'], [1, '#4A1412']]} />
       </defs>
+
       <g transform={cam.transform}>
-        <g transform={L(0.25)}>
-          <rect x="-200" y="-200" width="1480" height="2400" fill="url(#dr-curtain)" />
-          {Array.from({ length: 16 }, (_, i) => <path key={i} d={`M${-180 + i * 95} -200 V1400`} stroke="#3A0E26" strokeWidth="10" opacity=".5" />)}
-          {[120, 400, 680, 960].map((x, i) => <g key={x}><circle cx={x} cy="560" r="22" fill="#FFF4D8" opacity={1 - spot * (i === 1 ? 0 : 0.85)} /><Glow id={`dr-l${i}`} x={x} y={560} r={200} t={t} color="#FFF4D8" amp={0.04} rate={2} opacity={0.4 * (1 - spot * (i === 1 ? 0 : 0.9))} /></g>)}
-          <rect x="-200" y="-200" width="1480" height="2400" fill="#000" opacity={0.55 * spot + 0.3 * cut} />
-          <g transform="translate(860 680)">
-            <rect x="-90" y="-26" width="180" height="52" rx="8" fill="#2A0A0A" stroke={K} strokeWidth="5" />
-            <text x="0" y="12" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="32" fill={cut ? '#3A1A1A' : '#FF4A3A'}>IN ONDA</text>
-            <Glow id="dr-air" x={0} y={0} r={140} t={t} color="#FF4A3A" amp={0.1} rate={3} opacity={0.5 * (1 - cut)} />
+        {/* PIANO 0 — palazzi di notte sotto la pioggia (0,3) */}
+        <g transform={L(0.3)}>
+          <rect x="-200" y="-200" width="1480" height="2400" fill="url(#dr-sky)" />
+          <Palazzo id="dr" x={-200} y={1200} w={300} h={620} t={t} lit={0.25} seed={3} dark />
+          <Palazzo id="dr" x={980} y={1200} w={300} h={640} t={t} lit={0.2} seed={6} dark />
+          <Rain t={t} level="far" seed={4} color="#6A7A90" opacity={0.35} />
+        </g>
+
+        {/* PIANO 1 — facciata del negozio, insegna che si spegne, tenda (0,55) */}
+        <g transform={L(0.55)}>
+          <rect x="60" y="560" width="960" height="720" fill="url(#dr-shop)" stroke={K} strokeWidth="9" />
+          <rect x="250" y="566" width="580" height="80" rx="10" fill="#0E1210" stroke={K} strokeWidth="7" />
+          <text x="540" y="626" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="58" fill="none" stroke="#6AF0A0" strokeWidth="5" opacity={neon}>TV · RADIO</text>
+          <Glow id="dr-neon" x={540} y={606} r={340} t={t} color="#6AF0A0" amp={0.04} rate={3} opacity={0.4 * neon} />
+        </g>
+
+        {/* PIANO 2 — la parete di sei televisori (0,7) */}
+        <g transform={L(0.7)}>
+          <rect x="90" y="650" width="900" height="620" fill="#0A0E0C" stroke={K} strokeWidth="7" />
+          <path d="M90 958 H990" stroke="#3A2A1C" strokeWidth="14" />
+          {TVS.map(([x, y], i) => (
+            <g key={i}>
+              <Tv id="dr" x={x} y={y} s={0.9} antenna={false}>
+                <Screen i={i} />
+              </Tv>
+              <Glow id={`dr-g${i}`} x={x - 20} y={y} r={220} t={t + i} color={cut > 0 ? '#C8D8E0' : spot > 0.5 ? '#FFF0C0' : '#B8A0E0'} amp={0.08} rate={6} opacity={0.25 + 0.5 * flash} />
+            </g>
+          ))}
+          <rect x="90" y="650" width="900" height="620" fill="url(#dr-glass)" />
+          {/* fascia unica sulla vetrina: collegamento interrotto */}
+          <g opacity={cut}>
+            <rect x="70" y="905" width="940" height="106" fill="#0A0C10" opacity=".9" stroke={K} strokeWidth="6" />
+            <text x="540" y="976" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="52" fill="#F2EEE4" letterSpacing="2">COLLEGAMENTO INTERROTTO</text>
+          </g>
+          <path d="M140 660 L340 1260 M200 660 L400 1260" stroke="#FFFFFF" strokeWidth="10" opacity=".06" />
+        </g>
+
+        {/* PIANO 3 — il marciapiede bagnato con i riflessi degli schermi (0,9) */}
+        <g transform={L(0.9)}>
+          <path d="M-200 1270 H1280 V2200 H-200 Z" fill="url(#dr-walk)" />
+          <path d="M-200 1272 H1280" stroke="#8A867C" strokeWidth="6" />
+          {Array.from({ length: 7 }, (_, i) => <path key={i} d={`M${-200 + i * 220} 1290 L${-300 + i * 260} 2200`} stroke="#000" strokeWidth="4" opacity=".4" />)}
+          {[320, 780].map((x, i) => <Reflection key={x} t={t + i} x={x - 20} y={1310} color={cut > 0 ? '#C8D8E0' : '#B8A0E0'} n={8} w={220} gap={30} opacity={0.35 + 0.4 * flash} />)}
+          <Reflection t={t + 2} x={540} y={1320} color="#6AF0A0" n={5} w={300} gap={34} opacity={0.3 * neon} />
+          {/* una maschera da clown caduta sul marciapiede */}
+          <g transform="translate(880 1600) rotate(22)">
+            <ellipse rx="70" ry="84" fill="#F2EEE4" stroke={K} strokeWidth="6" />
+            <ellipse cx="-24" cy="-12" rx="12" ry="9" fill={K} /><ellipse cx="24" cy="-12" rx="12" ry="9" fill={K} />
+            <circle cy="16" r="15" fill={P.accento} stroke={K} strokeWidth="3" />
+            <path d="M-34 42 Q0 66 34 42" stroke={P.accento} strokeWidth="8" fill="none" />
           </g>
         </g>
-        <g transform={L(0.6)}>
-          <path d="M-200 1100 H1280 V2200 H-200 Z" fill="#1A1218" />
-          <path d="M220 560 L120 1180 H500 L400 560 Z" fill="url(#dr-spot)" opacity={spot} />
-          <rect x="560" y="980" width="440" height="160" rx="10" fill="#3A2A20" stroke={K} strokeWidth="7" />
-          <rect x="560" y="960" width="440" height="30" fill="#5A4030" stroke={K} strokeWidth="6" />
-          <g transform="translate(310 1100)">
-            <path d="M-110 0 V-150 Q-110 -200 -60 -200 H60 Q110 -200 110 -150 V0 Z" fill="#2A4A6A" stroke={K} strokeWidth="7" />
-            <rect x="-130" y="-70" width="260" height="70" rx="14" fill="#3A5A7A" stroke={K} strokeWidth="6" />
-          </g>
-        </g>
-        {/* il televisore di casa che trasmette la diretta */}
-        <g transform={L(0.6)}>
-          <Tv x={760} y={856} s={0.55} glow={1}>
-            {!cut ? (
-              <g>
-                <rect x="-160" y="-110" width="250" height="220" fill="#3A1A2A" />
-                <path d="M-150 60 H80 V110 H-150 Z" fill="#3A2A20" />
-                {name > 0 && (
-                  <g transform={`translate(-35 -20) scale(${name})`}>
-                    <rect x="-90" y="-28" width="180" height="48" fill={P.accento} />
-                    <text x="0" y="12" textAnchor="middle" fontFamily={ANTON} fontSize="38" fill="#F2E6D0">JOKER</text>
-                  </g>
-                )}
-              </g>
-            ) : (
-              <g>
-                <rect x="-160" y="-110" width="250" height="220" fill="#3A3A3A" />
-                {NOISE.map((n, i) => <rect key={i} x={n.x + ((t * 997 + i * 37) % 30) - 15} y={n.y} width={n.w} height="3" fill={(i + Math.floor(t * 30)) % 2 ? '#E8E8E8' : '#141414'} />)}
-                <rect x="-155" y="-50" width="240" height="100" fill="#14181C" opacity={cut} />
-                <text x="-35" y="-8" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="30" fill="#E8E8E8" opacity={cut}>COLLEGAMENTO</text>
-                <text x="-35" y="30" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="30" fill="#E8E8E8" opacity={cut}>INTERROTTO</text>
-              </g>
-            )}
-          </Tv>
-        </g>
+
+        {/* PIANO 4 — tenda strappata in alto e pali in primo piano (1,2) */}
         <g transform={L(1.2)}>
-          <g transform="translate(180 1600)">
-            <rect x="-150" y="-180" width="300" height="200" rx="16" fill="#3A3A40" stroke={K} strokeWidth="8" />
-            <rect x="150" y="-140" width="120" height="120" fill="#2A2A30" stroke={K} strokeWidth="7" />
-            <circle cx="120" cy="-160" r="12" fill={cut ? '#3A1A1A' : '#FF3A2A'} />
-            <path d="M0 20 V400 M0 220 L-120 420 M0 220 L120 420" stroke={K} strokeWidth="18" />
-          </g>
+          <path d="M-200 1700 Q100 1640 400 1700 V2200 H-200 Z" fill="#1A1A1C" stroke={K} strokeWidth="9" />
+          <rect x="-50" y="560" width="40" height="1640" fill="url(#dr-steel)" />
+          <rect x="1050" y="560" width="40" height="1640" fill="url(#dr-steel)" />
+          <path d="M-200 1500 H1280" stroke="#2A2A2C" strokeWidth="12" opacity=".6" />
         </g>
-        <g transform={L(1.6)}>
-          <Dust t={t} top={{ y: 580, x0: 360, x1: 460 }} bottom={{ y: 1180, x0: 140, x1: 480 }} seed={4} n={26} color="#FFF4D8" boost={spot * 0.5} />
-          <NearMotes id="dr-near" t={t} color="#FFE8D0" n={6} opacity={0.08} />
+
+        {/* PIANO 5 — pioggia vicina e particelle (1,5–1,8) */}
+        <g transform={L(1.5)}>
+          <Rain t={t} level="near" seed={9} color="#9AAAC0" opacity={0.2} />
+          <Dust t={t} top={{ y: 700, x0: 100, x1: 980 }} bottom={{ y: 1260, x0: 60, x1: 1020 }} seed={10} n={18} color="#C8D0E8" />
         </g>
+        <g transform={L(1.8)}>
+          <NearMotes id="dr-near" t={t} color="#C8D0E8" n={6} opacity={0.08} />
+        </g>
+        <rect x="-200" y="-200" width="1480" height="2400" fill="#FFFFFF" opacity={flash * 0.25} />
       </g>
-      <rect width="1080" height="1920" fill="#FFFFFF" opacity={0.7 * flash} />
-      <Finish id="dr" tint="#2A1A2A" tintOpacity={0.14} />
+      <Finish id="dr" tint="#1A1A2A" tintOpacity={0.14} />
     </svg>
   );
 };
+// Tempi evento (s nel capitolo): «JOKER» cue0 + 1 · occhio di bue cue1 → + 1 · sparo cue2 + 1,2 (lampo) · interrotto + 0,3.

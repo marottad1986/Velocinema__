@@ -21,7 +21,7 @@ export const JOKER_SCENES: Record<string, SceneDef> = {
   verita: { Component: Verita, title: { top: 392, size: 100, width: 900 } },
   sola: { Component: Sola, title: { top: 392, size: 108 } },
   murray: { Component: Murray, title: { top: 392, size: 100, width: 900 } },
-  scalinata: { Component: Scalinata, title: { top: 392, size: 96, width: 900, dark: true } },
+  scalinata: { Component: Scalinata, title: { top: 392, size: 96, width: 900 } },
   diretta: { Component: Diretta, title: { top: 392, size: 108 } },
   rivolta: { Component: Rivolta, title: { top: 392, size: 108 } },
 };
