@@ -27,8 +27,8 @@ export const Pistola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const fallT = cues[1] + 1.2, hitT = cues[1] + 1.775;
   const fall = seg(t, fallT, hitT);
   const bounce = t > hitT ? Math.abs(Math.sin((t - hitT) * 14)) * 30 * Math.exp(-(t - hitT) * 6) : 0;
-  const gy = lerp(880, 1180, fall * fall) - bounce;
-  const grot = t < hitT ? lerp(-30, 160, fall) : 172 + 8 * Math.exp(-(t - hitT) * 5) * Math.sin((t - hitT) * 20);
+  const gy = lerp(880, 1190, fall * fall) - bounce;
+  const grot = t < hitT ? lerp(-30, 372, fall) : 372 + 8 * Math.exp(-(t - hitT) * 5) * Math.sin((t - hitT) * 20); // si posa di piatto
   const shake = t > hitT ? Math.exp(-(t - hitT) * 3) * Math.sin((t - hitT) * 18) * 10 : 0;
   const stamp = seg(t, cues[2] + 0.04, cues[2] + 0.18);
   const stampUp = seg(t, cues[2] + 0.3, cues[2] + 0.6);
@@ -73,7 +73,7 @@ export const Pistola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               {k === 0 && <><circle cx={x + 30} cy={y - 40} r="20" fill="#F2C230" stroke="#E89A20" strokeWidth="4" /><path d={`M${x - 50} ${y + 50} L${x - 50} ${y} L${x - 15} ${y - 26} L${x + 20} ${y} V${y + 50} Z`} fill="#E85A4A" stroke={K} strokeWidth="3" /><path d={`M${x - 64} ${y + 56} H${x + 64}`} stroke="#6AC86A" strokeWidth="8" /></>}
               {k === 1 && <>{[0, 1, 2].map((f) => <g key={f}><path d={`M${x - 40 + f * 40} ${y + 60} V${y + 10}`} stroke="#3A8A3A" strokeWidth="5" /><circle cx={x - 40 + f * 40} cy={y} r="16" fill={['#E85A4A', '#F2C230', '#B86AD8'][f]} stroke={K} strokeWidth="3" /></g>)}<path d={`M${x - 60} ${y - 50} q30 -20 60 0 q30 20 60 0`} stroke="#4AA0E0" strokeWidth="6" fill="none" /></>}
               {k === 2 && <><path d={`M${x - 40} ${y + 40} q40 -100 80 0`} stroke="#E85A4A" strokeWidth="8" fill="none" /><path d={`M${x - 30} ${y + 40} q30 -76 60 0`} stroke="#F2C230" strokeWidth="8" fill="none" /><path d={`M${x - 20} ${y + 40} q20 -52 40 0`} stroke="#4AA0E0" strokeWidth="8" fill="none" /></>}
-              {k === 3 && <><circle cx={x} cy={y - 10} r="34" fill="#F2E6C8" stroke={K} strokeWidth="4" /><circle cx={x - 12} cy={y - 16} r="4" fill={K} /><circle cx={x + 12} cy={y - 16} r="4" fill={K} /><path d={`M${x - 14} ${y + 2} q14 12 28 0`} stroke={K} strokeWidth="4" fill="none" /><circle cx={x} cy={y - 4} r="7" fill="#E85A4A" /></>}
+              {k === 3 && <><circle cx={x} cy={y - 30} r="26" fill="#F2C230" stroke="#E89A20" strokeWidth="4" />{Array.from({ length: 8 }, (_, q) => <path key={q} d={`M${x + Math.cos(q * 0.785) * 34} ${y - 30 + Math.sin(q * 0.785) * 34} l${Math.cos(q * 0.785) * 14} ${Math.sin(q * 0.785) * 14}`} stroke="#E89A20" strokeWidth="4" />)}<path d={`M${x - 60} ${y + 56} q30 -30 60 0 q30 -30 60 0`} stroke="#6AC86A" strokeWidth="8" fill="none" /></>}
             </g>
           ))}
           {/* porta del reparto con l'oblò */}
@@ -136,13 +136,13 @@ export const Pistola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <rect x="156" y="-16" width="34" height="32" rx="6" fill="#5A3A20" stroke={K} strokeWidth="5" />
             {[-6, -2, 2, 6].map((y) => <path key={y} d={`M-80 ${y} H170`} stroke="#E8E0D0" strokeWidth="1.5" />)}
           </g>
-          <Scarpa id="ps" x={860} y={1214} s={0.8} rot={6} />
-          <Ombra id="ps" x={860} y={1218} rx={110} ry={14} />
+          <Scarpa id="ps" x={920} y={1214} s={0.8} rot={6} />
+          <Ombra id="ps" x={920} y={1218} rx={110} ry={14} />
           {/* la pistola che cade e rimbalza */}
           {t > fallT - 0.2 && (
             <g>
-              <Ombra id="ps" x={650} y={1222} rx={100 * (0.4 + 0.6 * fall)} ry={12} opacity={fall} />
-              <Rivoltella id="ps" x={lerp(230, 600, Math.min(1, fall * 1.3))} y={gy} s={1.1} rot={grot} />
+              <Ombra id="ps" x={700} y={1222} rx={100 * (0.4 + 0.6 * fall)} ry={12} opacity={fall} />
+              <Rivoltella id="ps" x={lerp(230, 620, Math.min(1, fall * 1.3))} y={gy} s={1.1} rot={grot} />
             </g>
           )}
         </g>
@@ -180,7 +180,7 @@ export const Pistola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <path d="M-120 30 V600 M120 30 V600" stroke="#3A3A3A" strokeWidth="22" />
             <path d="M-110 -190 H110" stroke="#F4A098" strokeWidth="6" opacity=".6" />
           </g>
-          <g transform="translate(1000 1600)">
+          <g transform="translate(1000 1650)">
             <path d="M-170 0 L-150 -220 H150 L170 0 V600 H-170 Z" fill="#4AA0E0" stroke={K} strokeWidth="10" />
             <path d="M-150 -220 H150" stroke="#AAD8F8" strokeWidth="6" />
             <text x="0" y="-100" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="46" fill="#FFFFFF" stroke={K} strokeWidth="2">GIOCHI</text>

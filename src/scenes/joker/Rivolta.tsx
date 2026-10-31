@@ -17,7 +17,7 @@ import { JokerDefs, K, Ombra, Palazzo } from './Comuni';
 //        · perle e maschere a terra (0,95) · transenne e bidone in primo piano (1,2) · braci e particelle (1,5–1,8)
 
 const r = rng(1981);
-const PEARLS = Array.from({ length: 16 }, (_, i) => ({ dx: (r() - 0.5) * 520, dy: r() * 50, d: 0.6 + r() * 0.8, s: 9 + r() * 4, i }));
+const PEARLS = Array.from({ length: 16 }, (_, i) => ({ dx: (r() - 0.5) * 520, dy: r() * 70, d: 0.6 + r() * 0.8, s: 12 + r() * 4, i }));
 
 export const Rivolta: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const cam = camera(t, dur);
@@ -110,14 +110,14 @@ export const Rivolta: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           </g>
           {/* collana: intera fino allo strappo, poi le perle rotolano */}
           {t < snap ? (
-            <path d="M740 1190 Q800 1240 860 1190" stroke="url(#rv-pearl)" strokeWidth="14" strokeDasharray="0.1 18" strokeLinecap="round" fill="none" />
+            <path d="M760 1100 Q860 1170 960 1100" stroke="#F4F2EA" strokeWidth="26" strokeDasharray="0.1 30" strokeLinecap="round" fill="none" />
           ) : (
             PEARLS.map((p) => {
               const k = roll(p);
-              return <circle key={p.i} cx={800 + p.dx * k} cy={1205 + p.dy * k + Math.abs(Math.sin(k * 9)) * -14 * (1 - k)} r={p.s} fill="url(#rv-pearl)" stroke={K} strokeWidth="2" />;
+              return <circle key={p.i} cx={860 + p.dx * k} cy={1130 + p.dy * k + Math.abs(Math.sin(k * 9)) * -14 * (1 - k)} r={p.s} fill="url(#rv-pearl)" stroke={K} strokeWidth="2" />;
             })
           )}
-          <Glow id="rv-pg" x={800} y={1210} r={120} t={t} color="#FFFFFF" amp={0.1} rate={5} opacity={0.3 * seg(t, snap, snap + 0.2)} />
+          <Glow id="rv-pg" x={860} y={1130} r={220} t={t} color="#FFFFFF" amp={0.1} rate={5} opacity={0.6 * seg(t, snap, snap + 0.2) * (1 - 0.5 * seg(t, snap + 0.6, snap + 1.6))} />
           {/* maschere da clown a terra */}
           {[[400, 1240, -18], [640, 1252, 26]].map(([x, y, a], i) => (
             <g key={i} transform={`translate(${x} ${y}) rotate(${a}) scale(0.7 0.55)`}>

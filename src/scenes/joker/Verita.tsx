@@ -145,7 +145,7 @@ export const Verita: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <text x="300" y="1190" textAnchor="middle" fontFamily={HAND} fontSize="24" fill="#5A4A3A">ricovero 1958</text>
           </g>
           {/* il referto che scivola fuori sulla pagina sinistra */}
-          <g transform={`translate(${lerp(540, 380, report)} ${lerp(1260, 1086, report)}) rotate(${lerp(6, -5, report)})`} opacity={seg(t, cues[2] + 0.1, cues[2] + 0.3)}>
+          <g transform={`translate(${lerp(540, 320, report)} ${lerp(1260, 1086, report)}) rotate(${lerp(6, -5, report)})`} opacity={seg(t, cues[2] + 0.1, cues[2] + 0.3)}>
             <rect x="-180" y="-110" width="360" height="220" fill="url(#vr-paper)" stroke={K} strokeWidth="6" />
             <text x="0" y="-68" textAnchor="middle" fontFamily={TYPEWRITER} fontSize="30" fill={K}>REFERTO MEDICO</text>
             <text x="-150" y="-26" fontFamily={TYPEWRITER} fontSize="24" fill="#3A3A3A">Arthur, 5 anni:</text>

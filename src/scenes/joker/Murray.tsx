@@ -40,7 +40,7 @@ export const Murray: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <FxDefs id="mu" />
         <JokerDefs id="mu" />
         <Lin id="mu-back" stops={[[0, '#0E0A16'], [0.4, '#1E1636'], [0.75, '#3A2A5A'], [1, '#4A3A5A']]} />
-        <Lin id="mu-curtain" x2={1} y2={0} stops={[[0, '#4A0E14'], [0.5, '#8A1E26'], [1, '#3A0A10']]} />
+        <Lin id="mu-curtain" x2={1} y2={0} stops={[[0, '#26103A'], [0.5, '#4A2468'], [1, '#1A0A2A']]} />
         <Lin id="mu-floor" stops={[[0, '#3A2A3A'], [1, '#120C14']]} />
         <Lin id="mu-desk" x2={1} y2={0} stops={[[0, '#4A2E1A'], [0.5, '#8A5A34'], [1, '#3A2414']]} />
         <Lin id="mu-chair" x2={1} y2={0} stops={[[0, '#1E3A5A'], [0.5, '#3A6A9A'], [1, '#16304A']]} />
@@ -62,7 +62,7 @@ export const Murray: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           {[[-200, 160], [920, 1280]].map(([a, b], i) => (
             <g key={i}>
               <path d={`M${a} 540 H${b} V1240 H${a} Z`} fill="url(#mu-curtain)" stroke={K} strokeWidth="8" />
-              {Array.from({ length: 5 }, (_, k) => <path key={k} d={`M${a + 30 + k * 70} 540 Q${a + 10 + k * 70 + Math.sin(t + k) * 4} 900 ${a + 30 + k * 70} 1240`} stroke="#3A0A10" strokeWidth="8" fill="none" />)}
+              {Array.from({ length: 5 }, (_, k) => <path key={k} d={`M${a + 30 + k * 70} 540 Q${a + 10 + k * 70 + Math.sin(t + k) * 4} 900 ${a + 30 + k * 70} 1240`} stroke="#1A0A2A" strokeWidth="8" fill="none" />)}
             </g>
           ))}
           <path d="M-200 540 H1280 V600 Q540 640 -200 600 Z" fill="url(#mu-curtain)" stroke={K} strokeWidth="8" />
@@ -165,7 +165,7 @@ export const Murray: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             return (
               <g key={`${row}-${i}`}>
                 <path d={`M${x - 80} ${y + 200} V${y} Q${x - 80} ${y - 50} ${x - 30} ${y - 50} H${x + 30} Q${x + 80} ${y - 50} ${x + 80} ${y} V${y + 200} Z`} fill="url(#mu-curtain)" stroke={K} strokeWidth="8" />
-                <path d={`M${x - 60} ${y - 26} Q${x - 50} ${y - 40} ${x - 20} ${y - 40}`} stroke="#E86A6A" strokeWidth="5" fill="none" opacity=".45" />
+                <path d={`M${x - 60} ${y - 26} Q${x - 50} ${y - 40} ${x - 20} ${y - 40}`} stroke="#9A7AC8" strokeWidth="5" fill="none" opacity=".45" />
               </g>
             );
           }))}

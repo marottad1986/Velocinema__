@@ -80,9 +80,9 @@ const Copertina_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
         <Scala id="jc" t={t} L={L} night />
         {/* in cima, la giacca rossa e la parrucca abbandonate su un gradino */}
         <g transform={L(0.8)}>
-          <g transform={`translate(470 ${step(3).y - 20}) rotate(-70)`}><Completo id="jc" x={0} y={0} s={0.5} /></g>
-          <Parrucca x={640} y={step(4).y - 14} s={0.4} rot={12} />
-          <Glow id="jc-red" x={540} y={step(3).y - 30} r={200} t={t} color="#FF6A4A" amp={0.05} rate={2} opacity={0.18} />
+          <g transform={`translate(440 ${step(5).y - 20}) rotate(-70)`}><Completo id="jc" x={0} y={0} s={0.75} /></g>
+          <Parrucca x={680} y={step(6).y - 16} s={0.6} rot={12} />
+          <Glow id="jc-red" x={540} y={step(5).y - 30} r={320} t={t} color="#FF6A4A" amp={0.04} rate={2} opacity={0.1} />
         </g>
         <g transform={L(1.3)}>
           <Smoke id="jc-st1" t={t} x={260} y={1640} color="#8A8478" rise={500} wind={80} r0={50} r1={200} speed={0.2} opacity={0.55} />

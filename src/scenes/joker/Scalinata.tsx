@@ -67,7 +67,7 @@ export const Scalinata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
               {Array.from({ length: 6 }, (_, k) => <rect key={k} x={x + 20 + (k % 3) * (w / 3)} y={top + 30 + Math.floor(k / 3) * 60} width={w / 3 - 30} height="34" fill="#4A4038" />)}
             </g>
           ))}
-          <Smoke id="sc-chim" t={t} x={560} y={610} color="#E8E4D8" n={7} rise={200} wind={160} r0={20} r1={80} speed={0.15} opacity={0.5} />
+          <Smoke id="sc-chim" t={t} x={560} y={660} color="#E8E4D8" n={7} rise={90} wind={160} r0={20} r1={80} speed={0.15} opacity={0.5} />
         </g>
 
         {/* PIANO 2 — i due muri alti e la scalinata, con la porta sul pianerottolo in cima (0,65) */}
@@ -131,7 +131,7 @@ export const Scalinata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
             const s = 0.3 + (a.hw / 640) * 1.1;
             const fresh = seg(t, D + k * BEAT, D + k * BEAT + 0.12);
             return (
-              <g key={k} transform={`translate(${540 + side * a.hw * 0.25 + Math.sin(k * 1.7) * a.hw * 0.08} ${a.y + a.h * 0.6}) rotate(${side * 25 + (k % 3) * 20}) scale(${s} ${s * 0.6})`} opacity={fresh}>
+              <g key={k} transform={`translate(${540 + side * a.hw * 0.25 + Math.sin(k * 1.7) * a.hw * 0.08} ${(a.y + step(2 + k * 2).y - step(2 + k * 2).h) / 2}) scale(${s} ${s * 0.35}) rotate(${side * 25 + (k % 3) * 20})`} opacity={fresh}>
                 <path d="M-30 -80 Q0 -104 30 -80 Q42 -40 30 0 Q22 14 -22 14 Q-40 -30 -30 -80 Z" fill={P.accento} stroke={K} strokeWidth="5" />
                 <path d="M-22 34 Q0 24 22 34 Q26 64 0 70 Q-26 64 -22 34 Z" fill={P.accento} stroke={K} strokeWidth="5" />
               </g>
@@ -152,8 +152,8 @@ export const Scalinata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
 
         {/* PIANO 5 — cartacce e foglie che scendono nel vento, particelle (1,5–1,8) */}
         <g transform={L(1.5)}>
-          <Flyers t={t} seed={7} n={8} color="#E8DCC0" outline={K} y0={600} y1={1500} speed={0.6} shape="paper" />
-          <Flyers t={t + 3} seed={11} n={6} color="#B88A3A" outline={K} y0={700} y1={1500} speed={0.5} shape="leaf" />
+          <Flyers t={t} seed={7} n={8} color="#E8DCC0" outline={K} y0={780} y1={1500} speed={0.6} shape="paper" />
+          <Flyers t={t + 3} seed={11} n={6} color="#B88A3A" outline={K} y0={820} y1={1500} speed={0.5} shape="leaf" />
         </g>
         <g transform={L(1.8)}>
           <NearMotes id="sc-near" t={t} color="#F2EEE4" n={6} opacity={0.09} />

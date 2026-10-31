@@ -98,8 +98,10 @@ export const Metro: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M-200 -200 H1280 V650 H-200 Z" fill="url(#mt-ceil)" />
           {[60, 420, 780].map((x, i) => (
             <g key={x}>
-              <rect x={x} y="640" width="260" height="10" rx="4" fill={pop[i] ? '#3A3E3A' : '#F4F8E8'} />
-              <Glow id={`mt-n${i}`} x={x + 130} y={656} r={380} t={t} color="#E8F4E0" amp={0.03} rate={2} opacity={pop[i] ? 0 : 0.42 * (Math.sin(t * 17 + i) > 0.9 ? 0.6 : 1)} />
+              <rect x={x - 14} y="606" width="20" height="34" rx="4" fill="#3A3E3A" stroke={K} strokeWidth="4" /><rect x={x + 254} y="606" width="20" height="34" rx="4" fill="#3A3E3A" stroke={K} strokeWidth="4" />
+              <rect x={x} y="610" width="260" height="26" rx="12" fill={pop[i] ? '#2A2E2A' : '#F4F8E8'} stroke={K} strokeWidth="4" />
+              {pop[i] && <path d={`M${x + 90} 610 l20 26 l14 -18 l18 18 l16 -26`} stroke="#9AA29A" strokeWidth="4" fill="none" />}
+              <Glow id={`mt-n${i}`} x={x + 130} y={630} r={380} t={t} color="#E8F4E0" amp={0.03} rate={2} opacity={pop[i] ? 0 : 0.6 * (Math.sin(t * 17 + i) > 0.9 ? 0.6 : 1)} />
             </g>
           ))}
           <path d="M-200 650 H1280 V740 H-200 Z M-200 1030 H1280 V1300 H-200 Z" fill="url(#mt-car)" stroke={K} strokeWidth="7" />
@@ -142,7 +144,7 @@ export const Metro: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         {/* PIANO 3 — la valigetta che cade e si apre, la cravatta a terra (0,85) */}
         <g transform={L(0.85)}>
           {/* la valigetta: dalla rastrelliera al pavimento */}
-          <g transform={`translate(${lerp(700, 690, drop)} ${lerp(660, 1196, drop * drop)}) rotate(${lerp(0, 8, drop)})`}>
+          <g transform={`translate(${lerp(700, 690, drop)} ${lerp(700, 1196, drop * drop)}) rotate(${lerp(0, 8, drop)})`}>
             <Ombra id="mt" x={0} y={60} rx={150 * drop} ry={14} opacity={drop} />
             {/* fogli sparsi */}
             {[[-150, 50, -20], [150, 56, 14], [-60, 64, 6]].map(([x, y, a], i) => (
@@ -166,17 +168,17 @@ export const Metro: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             {[-70, -30, 10, 50].map((y) => <path key={y} d={`M-18 ${y} L18 ${y + 22}`} stroke="#E8C060" strokeWidth="7" />)}
           </g>
           {/* scintille dei neon che scoppiano */}
-          {sparkT.map((p, i) => p > 0 && p < 1 && <g key={i}><Embers t={t * 3} x={190 + i * 360} y={620 + p * 400} w={160} h={300} seed={i + 5} n={10} hot="#FFF4C0" warm="#F2C46A" drift={60} /></g>)}
+          {sparkT.map((p, i) => p > 0 && p < 1 && <g key={i}><Embers t={t * 3} x={190 + i * 360} y={700 + p * 300} w={240} h={260} seed={i + 5} n={18} hot="#FFFFFF" warm="#FFE080" drift={80} /><Glow id={`mt-sp${i}`} x={190 + i * 360} y={630} r={200} t={t} color="#FFF4C0" amp={0} opacity={0.8 * (1 - p)} /></g>)}
         </g>
 
         {/* PIANO 4 — palo, maniglie che oscillano, sedile in primo piano (1,2) */}
         <g transform={L(1.2)}>
-          <rect x="-200" y="610" width="1480" height="20" fill="url(#mt-steel)" />
+          <rect x="-200" y="684" width="1480" height="20" fill="url(#mt-steel)" />
           {[40, 300, 560, 820, 1080].map((x, i) => (
-            <g key={x} transform={`rotate(${swing * (i % 2 ? 1 : 0.8)} ${x} 620)`}>
-              <path d={`M${x} 620 V700`} stroke="#5A5E56" strokeWidth="8" />
-              <circle cx={x} cy={736} r="34" fill="none" stroke={K} strokeWidth="16" />
-              <circle cx={x} cy={736} r="34" fill="none" stroke="#C8CCC4" strokeWidth="8" />
+            <g key={x} transform={`rotate(${swing * (i % 2 ? 1 : 0.8)} ${x} 694)`}>
+              <path d={`M${x} 694 V760`} stroke="#5A5E56" strokeWidth="8" />
+              <circle cx={x} cy={796} r="34" fill="none" stroke={K} strokeWidth="16" />
+              <circle cx={x} cy={796} r="34" fill="none" stroke="#C8CCC4" strokeWidth="8" />
             </g>
           ))}
           <path d="M920 -200 V2200" stroke={K} strokeWidth="40" />
