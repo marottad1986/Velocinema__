@@ -230,17 +230,22 @@ sovrimpressione, impronte). Elementi comuni in `src/scenes/joker/Comuni.tsx` (pa
 spazzatura, parrucca, scarpa, completo rosso, pistola, televisore). Persone mai, né il volto truccato: Arthur si racconta
 con i suoi oggetti; la violenza è suggerita da lampi, luci che si spengono, oggetti a terra (mai armi puntate né corpi).
 Niente locandina, figura sulle scale o logo del film; titolo in Anton.
-- Un clown a Gotham: sacchi dello sciopero, vapore dai tombini, taxi, cartello da clown, televisore in vetrina.
-- La risata che non si ferma: autobus di notte con le luci che sfarfallano, il cartoncino della malattia, il vicolo.
-- La pistola sbagliata: spogliatoio, corridoio colorato dell'ospedale, la pistola che cade, l'armadietto vuoto.
-- La notte in metropolitana: vagone che corre, tre lampi rossi, il muro delle maschere da clown.
-- La lettera della madre: poltrona e televisione, la villa lontana che si accende, la lettera sottolineata in rosso.
-- La verità sulla madre: archivio del manicomio, il timbro «ADOZIONE», foto girate, lampada che sfarfalla.
-- Da solo: la porta della vicina con la luce che si spegne, la stanza d'ospedale con il monitor che si ferma.
-- L'invito in TV: studio con «IN ONDA», il video della serata con «JOKER», l'applausometro, l'invito.
-- Il ballo sulla scalinata: la porta di Randall, il completo rosso al vento, cartacce che scendono a ritmo, la polizia.
-- In diretta: occhio di bue sulla poltrona vuota, lampo, «COLLEGAMENTO INTERROTTO».
-- Gotham brucia: auto rovesciata, fuochi, maschere a terra; le perle che rotolano nel vicolo; impronte rosse nel corridoio.
+Una sola immagine per capitolo, con un oggetto protagonista grande tra y 520 e 1260 e gli eventi delle tre frasi dentro
+la stessa immagine (mai dissolvenze tra luoghi diversi). Oggetti con materiali (gradienti luce/ombra, bordi illuminati):
+`JokerDefs` in `Comuni.tsx`. Attenzione: un gradiente su una linea perfettamente verticale o orizzontale non si vede
+(riquadro di larghezza zero): per pali e barre usare `rect`.
+- Un clown a Gotham: la vetrina «TV · RADIO» con il televisore che passa dal disturbo al palco col microfono, taxi e topo, cartello «SALDI!», sacchi e vapore.
+- La risata che non si ferma: interno dell'autobus, il cartoncino della malattia sul sedile, luci a scatti, frenata e cartoncino strappato con l'impronta.
+- La pistola sbagliata: corridoio di pediatria con disegni e palloncini, la pistola che cade dalla borsa del clown, il timbro «LICENZIATO».
+- La notte in metropolitana: vagone con valigetta e cravatta, i tre neon che scoppiano (niente lampi), la stazione con «SIAMO TUTTI CLOWN».
+- La lettera della madre: soggiorno con poltrona, lampada e TV «WAYNE SINDACO», la villa che si accende, la lettera aperta con la riga rossa.
+- La verità sulla madre: archivio con schedario e lampada che oscilla, la cartella FLECK vista dall'alto, timbro «ADOZIONE», referto medico.
+- Da solo: stanza d'ospedale con la finestra sulla casa della vicina (luce calda che si spegne), monitor a tempo con la musica che si appiattisce.
+- L'invito in TV: studio visto dal pubblico, lampadine dell'insegna, schermo con il palco e «JOKER», applausometro, biglietto d'invito.
+- Il ballo sulla scalinata: scalinata dal basso tra due muri, la porta che sbatte, il completo sulla ringhiera, impronte rosse a tempo, luci della polizia.
+- In diretta: la vetrina dei sei televisori del primo capitolo sotto la pioggia, «JOKER», un solo lampo allo sparo, «COLLEGAMENTO INTERROTTO».
+- Gotham brucia: auto della polizia rovesciata davanti al cinema, vetrina che si incrina, perle che rotolano, tutto svanisce nel grigio del manicomio
+  e resta la maschera.
 
 ### Dark, stagione 1 (Spiegato semplice, schema)
 L'albero che si annoda (`src/scenes/dark-stagione-1/Albero.tsx`): fondo scuro verde-grigio, un quadrante d'orologio
