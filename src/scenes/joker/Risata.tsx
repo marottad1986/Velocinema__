@@ -105,7 +105,7 @@ export const Risata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               {[0, 1, 2].map((k) => <path key={k} d={`M${x - 120} ${930 + k * 60} H${x + 120}`} stroke="#1E4A38" strokeWidth="6" />)}
               <path d={`M${x - 136} 904 Q${x - 130} 892 ${x - 100} 892 H${x + 60}`} stroke="#9AD8B4" strokeWidth="5" fill="none" opacity=".5" />
               <rect x={x - 165} y="1130" width="330" height="70" rx="22" fill="url(#rs-seat2)" stroke={K} strokeWidth="8" />
-              <path d={`M${x - 120} 1200 V1256 M${x + 120} 1200 V1256`} stroke="url(#rs-steel)" strokeWidth="18" />
+              <><rect x={x - 129} y="1200" width="18" height="56" fill="url(#rs-steel)" /><rect x={x + 111} y="1200" width="18" height="56" fill="url(#rs-steel)" /></>
               {i === 0 && <path d={`M${x - 60} 1000 q20 -14 40 0 q-10 20 -40 0`} fill="#C8B890" stroke={K} strokeWidth="3" />}
               {i === 3 && <g transform={`translate(${x - 40} 1120) rotate(-6)`}><rect x="-70" y="-24" width="140" height="40" fill="#D8CCAA" stroke={K} strokeWidth="4" /><path d="M-60 -12 h90 M-60 0 h70" stroke="#5A4A3A" strokeWidth="4" /></g>}
             </g>
@@ -139,7 +139,7 @@ export const Risata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
 
         {/* PIANO 4 — palo giallo e maniglie che oscillano, schienali in primo piano (1,2) */}
         <g transform={L(1.2)}>
-          <path d="M-200 600 H1280" stroke="url(#rs-steel)" strokeWidth="22" />
+          <rect x="-200" y="589" width="1480" height="22" fill="url(#rs-steel)" />
           {[40, 300, 560, 820, 1080].map((x, i) => (
             <g key={x} transform={`rotate(${swing + Math.sin(t * 2 + i) * 2} ${x} 600)`}>
               <path d={`M${x} 600 V690`} stroke="#3A3A34" strokeWidth="10" />

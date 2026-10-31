@@ -111,7 +111,7 @@ export const Metro: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             </g>
           ))}
           {/* rastrelliera per i bagagli */}
-          <path d="M-200 690 H1280" stroke="url(#mt-steel)" strokeWidth="12" />
+          <rect x="-200" y="684" width="1480" height="12" fill="url(#mt-steel)" />
           {Array.from({ length: 16 }, (_, i) => <path key={i} d={`M${-190 + i * 95} 690 v28`} stroke="#5A5E56" strokeWidth="5" />)}
           {/* mappa della linea */}
           <rect x="400" y="1044" width="280" height="50" rx="6" fill="#F2EEE4" stroke={K} strokeWidth="5" />
@@ -171,7 +171,7 @@ export const Metro: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
 
         {/* PIANO 4 — palo, maniglie che oscillano, sedile in primo piano (1,2) */}
         <g transform={L(1.2)}>
-          <path d="M-200 620 H1280" stroke="url(#mt-steel)" strokeWidth="20" />
+          <rect x="-200" y="610" width="1480" height="20" fill="url(#mt-steel)" />
           {[40, 300, 560, 820, 1080].map((x, i) => (
             <g key={x} transform={`rotate(${swing * (i % 2 ? 1 : 0.8)} ${x} 620)`}>
               <path d={`M${x} 620 V700`} stroke="#5A5E56" strokeWidth="8" />
@@ -180,7 +180,7 @@ export const Metro: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             </g>
           ))}
           <path d="M920 -200 V2200" stroke={K} strokeWidth="40" />
-          <path d="M920 -200 V2200" stroke="url(#mt-steel)" strokeWidth="30" />
+          <rect x="905" y="-200" width="30" height="2400" fill="url(#mt-steel)" />
           <path d="M-200 1560 Q-200 1500 -140 1500 H460 Q520 1500 520 1560 V1640 H-200 Z" fill="url(#mt-bench)" stroke={K} strokeWidth="10" />
           <path d="M-180 1520 H480" stroke="#FFC08A" strokeWidth="6" opacity=".5" />
           <path d="M-200 1640 H520 V2200 H-200 Z" fill="#9A3E18" stroke={K} strokeWidth="10" />
