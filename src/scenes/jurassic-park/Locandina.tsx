@@ -107,7 +107,7 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
           <WaveBand t={t} y={1640} fill="#2A5060" foam="#F2E0C8" amp={22} w={340} speed={0.7} ph={1} />
           <WaveBand t={t} y={1820} fill="#1E3E4C" foam="#F2E0C8" amp={26} w={380} speed={0.9} ph={2} />
         </g>
-        <g transform={L(0.7)}><Gulls t={t} y={760} h={260} color="#1E2028" n={6} size={1.6} period={12} /></g>
+        <g transform={L(0.7)}><Gulls t={t} y={1040} h={180} color="#1E2028" n={6} size={1.3} period={12} /></g>
         <g transform={L(1.6)}><NearMotes id="jf-near" t={t} color="#FFE0B0" n={6} y0={1300} opacity={0.1} /></g>
       </g>
       <Finish id="jf" tint="#1E4A30" tintOpacity={0.08} />

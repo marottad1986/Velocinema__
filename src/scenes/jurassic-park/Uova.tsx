@@ -15,7 +15,7 @@ import { Fern, JPDefs, JungleTree, K, Ombra } from './Comuni';
 // Piani: luce e alberi lontani (0,2) · nebbia (0,4) · alberi vicini (0,55) · nido e impronte (0,75) · rana e foglia (0,9)
 //        · felci in primo piano (1,25) · pulviscolo nei raggi (1,5–1,8)
 
-const PRINTS = Array.from({ length: 6 }, (_, k) => ({ x: 680 + k * 72, y: 1250 + (k % 2) * 14, a: 84 + (k % 2) * 14 }));
+const PRINTS = Array.from({ length: 6 }, (_, k) => ({ x: 620 + k * 34, y: 1210 + (k % 2) * 16 + k * 4, a: 84 + (k % 2) * 14 }));
 
 export const Uova: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const cam = camera(t, dur);
@@ -43,8 +43,10 @@ export const Uova: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         {/* PIANO 0 — luce del mattino e alberi lontani (0,2) */}
         <g transform={L(0.2)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="url(#uo-sky)" />
-          <SunRays id="uo-rays" x={880} y={360} t={t} color="#FFF8D0" n={9} length={1400} width={60} opacity={0.3} />
-          {Array.from({ length: 7 }, (_, i) => <rect key={i} x={-160 + i * 200} y="540" width={30 + (i % 3) * 12} height="700" fill="#7A9A78" opacity=".55" />)}
+          <SunRays id="uo-rays" x={960} y={600} t={t} color="#FFF8D0" n={9} length={1300} width={70} from={100} to={190} opacity={0.32} />
+          {Array.from({ length: 6 }, (_, i) => <path key={i} d={`M${-100 + i * 220} 1240 Q${-90 + i * 220} 800 ${-60 + i * 220} 520 h${30 + (i % 3) * 14} Q${-40 + i * 220 + (i % 3) * 14} 800 ${-50 + i * 220 + (i % 3) * 14} 1240 Z`} fill="#6A8A68" opacity=".5" />)}
+          <Glow id="uo-sun" x={960} y={600} r={380} t={t} color="#FFF4C0" amp={0.04} rate={1} opacity={0.75} />
+          <circle cx="960" cy="600" r="54" fill="#FFF8D8" opacity=".9" />
         </g>
         <g transform={L(0.4)}>
           <Fog id="uo-fog" t={t} y={1040} rx={900} ry={90} color="#F2F6E8" opacity={0.55} />
@@ -60,6 +62,7 @@ export const Uova: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M-200 1080 H1280 V2200 H-200 Z" fill="url(#uo-ground)" />
           {Array.from({ length: 18 }, (_, i) => <ellipse key={i} cx={(i * 223) % 1400 - 160} cy={1300 + ((i * 113) % 600)} rx={12 + (i % 4) * 8} ry={6 + (i % 3) * 3} fill={i % 3 ? '#4A3A24' : '#5A7A3A'} stroke={K} strokeWidth="3" />)}
           <ellipse cx="420" cy="1160" rx="460" ry="60" fill="#FFF0B0" opacity={0.12 + 0.25 * glow} />
+          <g transform="translate(470 1110) scale(1.6) translate(-420 -1160)">
           <Ombra id="uo" x={420} y={1196} rx={300} ry={34} />
           {/* il nido: anello di rami e foglie secche */}
           <ellipse cx="420" cy="1160" rx="280" ry="70" fill="url(#uo-nest)" stroke={K} strokeWidth="8" />
@@ -77,6 +80,7 @@ export const Uova: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <path key={i} d="M-22 -10 Q0 -24 22 -10 l-6 12 l-8 -6 l-8 8 l-8 -6 Z" fill="#F4ECD8" stroke={K} strokeWidth="4" transform={`translate(${x} ${y}) rotate(${a})`} />
           ))}
           <Glow id="uo-nestglow" x={420} y={1110} r={260} t={t} color="#FFF0B0" amp={0.05} rate={2} opacity={0.35 * glow} />
+          </g>
         </g>
 
         {/* PIANO 3 — il nastro di DNA nel raggio di sole, la pietra e la rana (0,9) */}
@@ -96,9 +100,11 @@ export const Uova: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             })}
             <Glow id="uo-dna" x={0} y={0} r={360} t={t} color="#FFF8D0" amp={0.05} rate={2} opacity={0.3} />
           </g>
-          <path d="M760 1250 Q770 1110 880 1100 Q1000 1104 1010 1250 Z" fill="url(#uo-stone)" stroke={K} strokeWidth="8" />
-          <path d="M700 1110 Q860 1040 1040 1110 Q860 1150 700 1110 Z" fill="#3E8A50" stroke={K} strokeWidth="6" />
-          <path d="M720 1110 Q860 1090 1020 1110" stroke="#9AD8A0" strokeWidth="4" fill="none" />
+          {/* la pozza con la ninfea dove arriva la rana */}
+          <ellipse cx="880" cy="1190" rx="190" ry="46" fill="#5A8A90" stroke={K} strokeWidth="7" />
+          <ellipse cx="860" cy="1182" rx="150" ry="28" fill="#8AC0C8" opacity=".5" />
+          {[0, 1].map((k) => { const p = (t * 0.5 + k / 2) % 1; return <ellipse key={k} cx="900" cy="1192" rx={20 + 120 * p} ry={5 + 26 * p} fill="none" stroke="#E8F8FF" strokeWidth="3" opacity={(1 - p) * 0.6} />; })}
+          <path d="M800 1176 A70 18 0 1 0 940 1176 L870 1176 Z" fill="#3E8A50" stroke={K} strokeWidth="5" />
           {/* piccole impronte che si allontanano dal nido */}
           {PRINTS.map((p, k) => (
             <g key={k} transform={`translate(${p.x} ${p.y}) scale(1.6 0.9) rotate(${p.a})`} opacity={print(k)}>
@@ -107,7 +113,7 @@ export const Uova: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             </g>
           ))}
           {/* la rana */}
-          <g transform={`translate(${lerp(1200, 870, frog) + 120 * hop} ${1090 - Math.sin(hop * Math.PI) * 180})`} opacity={seg(frog, 0, 0.2) * (1 - seg(hop, 0.8, 1))}>
+          <g transform={`translate(${lerp(1200, 870, frog) + 120 * hop} ${1170 - Math.sin(hop * Math.PI) * 180})`} opacity={seg(frog, 0, 0.2) * (1 - seg(hop, 0.8, 1))}>
             <ellipse cx="0" cy="-26" rx="54" ry="34" fill="#5AC85A" stroke={K} strokeWidth="6" />
             <circle cx="-26" cy="-58" r="16" fill="#5AC85A" stroke={K} strokeWidth="5" />
             <circle cx="22" cy="-58" r="16" fill="#5AC85A" stroke={K} strokeWidth="5" />

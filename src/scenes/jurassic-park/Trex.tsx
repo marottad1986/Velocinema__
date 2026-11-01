@@ -44,6 +44,8 @@ export const Trex: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
 
       <g transform={cam.transform}>
         <g transform={`rotate(${-38 * roll} 540 1000) translate(0 ${shake})`}>
+          <clipPath id="tx-win"><path d="M-400 -400 H1480 V1120 Q540 1060 -400 1120 Z" /></clipPath>
+          <g clipPath="url(#tx-win)">
           {/* PIANO 0 — cielo e lampi (0,2) */}
           <g transform={L(0.2)}>
             <rect x="-400" y="-400" width="1880" height="2800" fill="url(#tx-sky)" />
@@ -62,9 +64,9 @@ export const Trex: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             {broken > 0 && broken < 1 && Array.from({ length: 10 }, (_, i) => <circle key={i} cx={540 + Math.cos(i) * 200 * broken} cy={860 + Math.sin(i * 1.7) * 140 * broken} r="6" fill="#FFE8A0" opacity={1 - broken} />)}
           </g>
           {/* PIANO 3 — il T-rex che sfonda e ruggisce (0,65) */}
-          <g transform={L(0.65)} opacity={enter}>
-            <TRex id="tx" x={lerp(-200, 120, enter)} y={1160} s={1.05} t={t} jaw={roar} />
-            <Glow id="tx-eye" x={lerp(-200, 120, enter) + 420} y={1160 - 490} r={60} t={t} color="#F2C14E" amp={0.1} rate={4} opacity={0.5} />
+          <g transform={L(0.65)}>
+            <TRex id="tx" x={lerp(-760, 120, enter)} y={1160} s={1.05} t={t} jaw={roar} />
+            <Glow id="tx-eye" x={lerp(-760, 120, enter) + 432} y={1160 - 490} r={60} t={t} color="#F2C14E" amp={0.1} rate={4} opacity={0.5} />
           </g>
           {/* PIANO 4 — la valigetta dell'avvocato che vola nel fango (0,75) */}
           <g transform={L(0.75)} opacity={seg(brief, 0, 0.1)}>
@@ -75,6 +77,7 @@ export const Trex: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             </g>
           </g>
 
+          </g>
           {/* PIANO 5 — parabrezza con le gocce, cruscotto e il bicchiere d'acqua (1,05) */}
           <g transform={L(1.05)}>
             <GlassDrops t={t} x={-100} y={560} w={1280} h={560} seed={7} n={18} color="#C8E0E8" />
@@ -97,8 +100,13 @@ export const Trex: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <g transform={`translate(${540 + thump * 4 * Math.sin(t * 60)} 1110)`}>
               <ellipse cx="0" cy="8" rx="100" ry="14" fill="#000" opacity=".4" />
               <path d="M-80 -240 L-64 0 H64 L80 -240 Z" fill="url(#tx-glass)" stroke={K} strokeWidth="7" />
-              <path d="M-74 -150 L-64 0 H64 L74 -150 Z" fill="url(#tx-water)" />
-              <ellipse cx="0" cy="-150" rx="74" ry="14" fill="#B8E0EC" stroke="#E8F8FF" strokeWidth="3" />
+              <clipPath id="tx-cupclip"><path d="M-78 -238 L-64 -2 H64 L78 -238 Z" /></clipPath>
+              <g clipPath="url(#tx-cupclip)">
+                <g transform={`rotate(${38 * roll} 0 -80)`}>
+                  <rect x="-200" y="-150" width="400" height="300" fill="url(#tx-water)" />
+                  <path d="M-200 -150 H200" stroke="#E8F8FF" strokeWidth="5" />
+                </g>
+              </g>
               {[0, 1, 2].map((k) => {
                 const rr = (since * 1.2 + k * 0.25) % 1;
                 return since < 1.1 ? <ellipse key={k} cx="0" cy="-150" rx={8 + 64 * rr} ry={2 + 12 * rr} fill="none" stroke="#FFFFFF" strokeWidth="3" opacity={(1 - rr) * 0.9} /> : null;

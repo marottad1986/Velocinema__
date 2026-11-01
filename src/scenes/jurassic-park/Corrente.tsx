@@ -76,7 +76,7 @@ export const Corrente: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
 
         {/* PIANO 3 — la recinzione con le lampade che si accendono (0,65) */}
         <g transform={L(0.65)}>
-          <Fence id="cr" x0={-60} x1={1140} y={1120} h={480} posts={5} accent={P.accento} glow={glow} />
+          <Fence id="cr" x0={-60} x1={1140} y={1120} h={480} posts={5} signX={700} accent={P.accento} glow={glow} />
           {[-60, 240, 540, 840, 1140].map((x, i) => (
             <g key={i}>
               <rect x={x - 20} y="630" width="40" height="26" rx="6" fill={lampOn(i) > 0.5 ? '#FFF4C0' : '#4A4E48'} stroke={K} strokeWidth="5" />
@@ -85,9 +85,9 @@ export const Corrente: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
           ))}
           {/* la scossa: scintille sul cavo in alto e il berrettino che cade */}
           <g transform="translate(700 640)">
-            {zap > 0 && zap < 1 && SPARKS.map((s, i) => <circle key={i} cx={Math.cos(s.a) * s.v * zap} cy={Math.sin(s.a) * s.v * zap + 160 * zap * zap} r={s.s} fill="#FFF8D0" opacity={1 - zap} />)}
-            <path d="M-60 -20 L-20 10 L-40 30 L10 60 L-10 80 L40 110" fill="none" stroke="#E9F6FF" strokeWidth="7" opacity={zap > 0 && zap < 1 ? 1 - zap : 0} />
-            <Glow id="cr-zap" x={0} y={0} r={260} t={t} color="#DFF4FF" amp={0} opacity={0.8 * (zap > 0 ? 1 - zap : 0)} />
+            {zap > 0 && zap < 1 && SPARKS.map((s, i) => <circle key={i} cx={Math.cos(s.a) * s.v * zap} cy={Math.sin(s.a) * s.v * zap + 160 * zap * zap} r={s.s * 2} fill="#FFF8D0" opacity={1 - zap} />)}
+            <path d="M-60 -20 L-20 10 L-40 30 L10 60 L-10 80 L40 110" fill="none" stroke="#E9F6FF" strokeWidth="12" opacity={zap > 0 && zap < 1 ? 1 - zap : 0} />
+            <Glow id="cr-zap" x={0} y={0} r={320} t={t} color="#DFF4FF" amp={0} opacity={zap > 0 ? 1 - zap : 0} />
           </g>
           <g transform={`translate(${lerp(700, 640, cap)} ${lerp(660, 1090, cap)}) rotate(${cap * 260})`} opacity={seg(t, cues[4] + 1.25, cues[4] + 1.35)}>
             <path d="M-34 0 Q-32 -36 0 -38 Q32 -36 34 0 Z" fill="#4AA0E0" stroke={K} strokeWidth="5" />

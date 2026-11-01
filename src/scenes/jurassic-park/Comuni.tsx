@@ -52,8 +52,8 @@ export const Jeep: React.FC<{ id?: string; x: number; y: number; s?: number; acc
 );
 
 /** Recinzione elettrica alta: pali, cavi e cartello di pericolo; `broken` 0..1 fa cadere i cavi di un tratto. */
-export const Fence: React.FC<{ id?: string; x0: number; x1: number; y: number; h?: number; posts?: number; broken?: number; sign?: boolean; accent: string; glow?: number }> = ({
-  id, x0, x1, y, h = 520, posts = 5, broken = 0, sign = true, accent, glow = 0,
+export const Fence: React.FC<{ id?: string; x0: number; x1: number; y: number; h?: number; posts?: number; broken?: number; sign?: boolean; signX?: number; accent: string; glow?: number }> = ({
+  id, x0, x1, y, h = 520, posts = 5, broken = 0, sign = true, signX, accent, glow = 0,
 }) => {
   const xs = Array.from({ length: posts }, (_, i) => x0 + ((x1 - x0) * i) / (posts - 1));
   const mid = Math.floor(posts / 2);
@@ -77,7 +77,7 @@ export const Fence: React.FC<{ id?: string; x0: number; x1: number; y: number; h
         </g>
       ))}
       {sign && (
-        <g transform={`translate(${xs[1] + (xs[2] - xs[1]) / 2} ${y - h * 0.42})`}>
+        <g transform={`translate(${signX ?? xs[1] + (xs[2] - xs[1]) / 2} ${y - h * 0.42})`}>
           <rect x="-90" y="-60" width="180" height="120" fill={accent} stroke={K} strokeWidth="7" />
           <path d="M-70 -40 H70 M-70 40 H70" stroke={K} strokeWidth="4" />
           <text x="0" y="-6" textAnchor="middle" fontFamily="Figtree" fontWeight={800} fontSize="30" fill={K}>PERICOLO</text>
@@ -213,42 +213,53 @@ export const Brachio: React.FC<{ id?: string; x: number; y: number; s?: number; 
   );
 };
 
-/** T-rex di profilo, rivolto a destra, origine ai piedi; `jaw` 0..1 apre la bocca (ruggito), `step` muove le zampe. */
+/** T-rex di profilo, rivolto a destra, origine ai piedi: busto inclinato in avanti, coda tesa come contrappeso, coscia
+ *  muscolosa con stinco piegato e piede a tre dita, braccino a due dita, cranio profondo. `jaw` 0..1 apre la mascella. */
 export const TRex: React.FC<{ id?: string; x: number; y: number; s?: number; t: number; jaw?: number; flip?: boolean }> = ({ id, x, y, s = 1, t, jaw = 0, flip = false }) => {
   const skin = id ? `url(#${id}-skin)` : '#7A8650';
-  const breath = Math.sin(t * 1.6) * 4;
-  const a = 26 * jaw;
+  const b = Math.sin(t * 1.6) * 4;
+  const a = 24 * jaw;
+  const far = '#4E5A36';
   return (
     <g transform={`translate(${x} ${y}) scale(${flip ? -s : s} ${s})`} strokeLinejoin="round" strokeLinecap="round">
-      {/* coda */}
-      <path d={`M-140 -330 Q-380 -330 -640 ${-300 + breath} Q-380 -250 -120 -240 Z`} fill="#6E7A4A" stroke={K} strokeWidth="9" />
-      {/* zampa dietro */}
-      <path d="M-80 -260 Q-140 -140 -110 -60 L-140 0 H-40 L-60 -60 Q-20 -150 0 -230 Z" fill="#5A6640" stroke={K} strokeWidth="8" />
-      {/* corpo */}
-      <path d={`M-160 -330 Q-60 ${-450 + breath} 140 -420 Q230 -400 250 -330 Q230 -230 100 -220 Q-60 -200 -160 -260 Z`} fill={skin} stroke={K} strokeWidth="9" />
-      <path d="M-100 -260 Q40 -230 200 -300" fill="none" stroke="#C4BE8E" strokeWidth="18" opacity=".7" />
-      {[-60, 0, 60, 120].map((sx) => <path key={sx} d={`M${sx} -410 q14 40 -6 80`} stroke="#4A5432" strokeWidth="10" fill="none" opacity=".7" />)}
-      {/* zampa davanti */}
-      <path d="M40 -250 Q0 -130 30 -60 L0 0 H110 L90 -60 Q110 -150 120 -240 Z" fill="#6E7A4A" stroke={K} strokeWidth="8" />
-      {/* braccino */}
-      <path d="M200 -320 q40 20 30 50 l14 6 M230 -270 l-4 16" stroke={K} strokeWidth="14" fill="none" />
-      <path d="M200 -320 q40 20 30 50" stroke="#7A8650" strokeWidth="7" fill="none" />
-      {/* collo e testa: mascella che si apre */}
-      <path d="M180 -400 Q240 -470 300 -470 L330 -380 Q260 -350 220 -330 Z" fill="#7A8650" stroke={K} strokeWidth="8" />
+      {/* zampa lontana, più scura */}
+      <path d="M-70 -330 Q30 -350 40 -260 Q34 -200 0 -186 Q-50 -220 -90 -270 Z" fill={far} stroke={K} strokeWidth="7" />
+      <path d="M-6 -196 L22 -186 L-24 -66 L-50 -76 Z" fill={far} stroke={K} strokeWidth="7" />
+      <path d="M-56 -70 L-20 -62 L46 -16 L56 0 H-64 Z" fill={far} stroke={K} strokeWidth="7" />
+      {/* coda tesa e lunga */}
+      <path d={`M-40 -400 Q-320 -400 -680 ${-330 + b} Q-330 -318 -60 -290 Z`} fill={skin} stroke={K} strokeWidth="9" />
+      {/* busto inclinato in avanti */}
+      <path d={`M-120 -390 Q0 ${-470 + b} 170 -440 Q250 -420 290 -380 L300 -330 Q250 -270 150 -248 Q20 -228 -100 -280 Q-150 -320 -120 -390 Z`} fill={skin} stroke={K} strokeWidth="9" />
+      <path d="M-90 -290 Q40 -250 200 -290" stroke="#C8C08E" strokeWidth="22" fill="none" opacity=".55" />
+      {[-80, -20, 40, 100, 160].map((sx, i) => <path key={sx} d={`M${sx} ${-438 + i * 2} q10 34 -4 66`} stroke="#3E4A2A" strokeWidth="8" fill="none" opacity=".35" />)}
+      <path d="M-60 -432 Q60 -462 200 -434" stroke="#B4C080" strokeWidth="6" fill="none" opacity=".6" />
+      {/* collo e cranio profondo */}
+      <path d="M200 -430 Q260 -470 320 -480 L360 -400 Q300 -360 260 -330 Z" fill={skin} stroke={K} strokeWidth="8" />
       <g transform="translate(300 -470)">
-        <g transform={`rotate(${a} 0 40)`}>
-          <path d="M0 40 L210 70 Q230 90 200 104 L20 100 Z" fill="#6E7A4A" stroke={K} strokeWidth="8" />
-          {Array.from({ length: 7 }, (_, i) => <path key={i} d={`M${40 + i * 24} ${72 + i * 3} l8 -16 l8 16`} fill="#F4EBD0" stroke={K} strokeWidth="3" />)}
-          {jaw > 0.2 && <path d="M30 80 L190 92" stroke="#8E2A22" strokeWidth="10" />}
+        <g transform={`rotate(${a} 30 50)`}>
+          <path d="M20 46 L220 50 Q228 70 200 84 L40 86 Q14 76 20 46 Z" fill={far} stroke={K} strokeWidth="8" />
+          {Array.from({ length: 7 }, (_, i) => <path key={i} d={`M${54 + i * 22} 50 l7 -14 l7 14`} fill="#F4EBD0" stroke={K} strokeWidth="3" />)}
+          {jaw > 0.2 && <path d="M50 64 L190 66" stroke="#8E2A22" strokeWidth="12" />}
         </g>
-        <path d="M-20 50 Q-30 -50 60 -60 Q190 -60 240 10 Q250 40 230 60 L10 60 Z" fill={skin} stroke={K} strokeWidth="9" />
-        {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${30 + i * 26} 58 l9 18 l9 -18`} fill="#F4EBD0" stroke={K} strokeWidth="3" />)}
-        <path d="M60 -40 Q100 -54 140 -40" stroke="#4A5432" strokeWidth="10" fill="none" />
-        <circle cx="96" cy="-10" r="12" fill="#F2C14E" stroke={K} strokeWidth="4" />
-        <circle cx="98" cy="-10" r="5" fill={K} />
-        <circle cx="216" cy="12" r="5" fill={K} />
-        <path d="M20 -30 Q60 -54 120 -52" stroke="#C4BE8E" strokeWidth="6" fill="none" opacity=".7" />
+        <path d="M0 50 Q-20 -40 70 -64 Q170 -76 236 -20 Q252 10 240 48 L20 52 Z" fill={skin} stroke={K} strokeWidth="9" />
+        {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${40 + i * 24} 48 l8 16 l8 -16`} fill="#F4EBD0" stroke={K} strokeWidth="3" />)}
+        <path d="M70 -46 Q110 -64 150 -50" stroke="#3E4A2A" strokeWidth="12" fill="none" />
+        <circle cx="112" cy="-24" r="12" fill="#F2C14E" stroke={K} strokeWidth="4" />
+        <circle cx="114" cy="-24" r="5" fill={K} />
+        <circle cx="222" cy="-2" r="5" fill={K} />
+        <path d="M30 -30 Q80 -60 150 -62" stroke="#C8C08E" strokeWidth="6" fill="none" opacity=".7" />
+        <path d="M40 10 Q100 0 160 16" stroke="#3E4A2A" strokeWidth="5" fill="none" opacity=".4" />
       </g>
+      {/* braccino a due dita */}
+      <path d="M232 -320 q30 18 26 46" stroke={K} strokeWidth="16" fill="none" />
+      <path d="M232 -320 q30 18 26 46" stroke="#7A8650" strokeWidth="8" fill="none" />
+      <path d="M258 -274 l16 8 M258 -274 l6 16" stroke={K} strokeWidth="5" />
+      {/* zampa vicina: coscia muscolosa, stinco piegato, piede a tre dita */}
+      <path d="M-50 -350 Q90 -380 120 -270 Q118 -190 76 -170 Q10 -200 -50 -260 Q-80 -310 -50 -350 Z" fill={skin} stroke={K} strokeWidth="9" />
+      <path d="M-20 -330 Q70 -350 96 -280" stroke="#C8C08E" strokeWidth="8" fill="none" opacity=".5" />
+      <path d="M60 -182 L100 -168 L50 -56 L18 -66 Z" fill={skin} stroke={K} strokeWidth="8" />
+      <path d="M10 -64 L52 -54 L136 -14 L148 0 H0 Z" fill={skin} stroke={K} strokeWidth="8" />
+      {[60, 100, 140].map((cx) => <path key={cx} d={`M${cx} -4 l14 4 l-14 4`} fill="#F4EBD0" stroke={K} strokeWidth="3" />)}
     </g>
   );
 };

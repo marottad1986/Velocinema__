@@ -129,6 +129,13 @@ export const Sabotaggio: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =
           {[1600, 1700, 1800].map((y) => <path key={y} d={`M-180 ${y} Q80 ${y - 30} 330 ${y}`} stroke="#1E2420" strokeWidth="8" fill="none" />)}
           <path d="M-160 1540 Q0 1500 200 1520" stroke="#7A847E" strokeWidth="6" fill="none" />
           <ellipse cx="540" cy="1400" rx="300" ry="40" fill="#E8483A" opacity={0.12 * alarm} />
+          <rect x="-200" y="1260" width="1480" height="300" fill="#E8483A" opacity={0.06 + 0.08 * alarm} />
+          <path d="M-200 1262 H1280" stroke="#FF8A7A" strokeWidth="6" opacity={0.3 + 0.4 * alarm} />
+          <g transform="translate(860 1760) rotate(-12)">
+            <rect x="-260" y="-60" width="520" height="120" rx="12" fill="#2A2E2C" stroke={K} strokeWidth="9" />
+            {Array.from({ length: 24 }, (_, k) => <rect key={k} x={-240 + (k % 12) * 40} y={-44 + Math.floor(k / 12) * 44} width="34" height="36" rx="5" fill="#4A504C" stroke={K} strokeWidth="2" />)}
+            <path d="M-250 -54 H250" stroke="#8A928A" strokeWidth="4" opacity=".6" />
+          </g>
           <path d="M1280 1500 Q1000 1600 900 1900" stroke="#2A2E2C" strokeWidth="20" fill="none" />
           <path d="M1280 1560 Q1050 1650 980 1950" stroke="#3A3E3A" strokeWidth="14" fill="none" />
         </g>

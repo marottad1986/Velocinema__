@@ -57,7 +57,7 @@ export const Fuga: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           </g>
           {/* PIANO 1 — l'elicottero che parte, gli uccelli sul mare (0,3) */}
           <g transform={L(0.3)}>
-            <g opacity={seg(t, cues[3], cues[3] + 0.4)}><Helicopter x={lerp(560, 1100, heli)} y={lerp(960, 640, heli)} s={0.32} t={t} tilt={-8} color="#E9E2CF" /></g>
+            <g opacity={seg(t, cues[3], cues[3] + 0.3)}><Helicopter x={lerp(400, 1000, heli)} y={lerp(760, 660, heli)} s={lerp(0.6, 0.35, heli)} t={t} tilt={-8} color="#E9E2CF" /></g>
             <g opacity={birds}><Gulls t={t} seed={9} n={6} y={760} h={200} color="#2A2A30" size={1.1} period={5} /></g>
           </g>
 
@@ -100,7 +100,7 @@ export const Fuga: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
 
           {/* PIANO 5 — lo striscione che si stacca e cade (0,85) */}
           <g transform={L(0.85)}>
-            <g transform={`translate(0 ${520 * fall * fall}) rotate(${fall * 9} 540 660)`}>
+            <g transform={`translate(0 ${900 * fall * fall}) rotate(${fall * 7} 540 660)`}>
               <path d={`M80 ${640 + 20 * fall} Q540 ${690 + 30 * fall} 1000 ${640 - 10 * fall} V${780 + 40 * fall} Q540 ${830 + 30 * fall} 80 ${780} Z`} fill="url(#fg-banner)" stroke={K} strokeWidth="7" />
               <text x="540" y={724 + 30 * fall} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" fill="#5A3A1E" transform={`rotate(${fall * 2} 540 720)`}>QUANDO I DINOSAURI</text>
               <text x="540" y={768 + 30 * fall} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" fill="#5A3A1E" transform={`rotate(${fall * 2} 540 760)`}>DOMINAVANO LA TERRA</text>
@@ -112,8 +112,10 @@ export const Fuga: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           {/* PIANO 6 — il bastone di Hammond col pomo d'ambra, ossa a terra (1,1) */}
           <g transform={L(1.1)}>
             <g transform="translate(960 1250) rotate(-12)" opacity={seg(t, cues[4] - 0.2, cues[4] + 0.4)}>
-              <path d="M0 0 V-340" stroke="url(#fg-wood)" strokeWidth="22" strokeLinecap="round" />
-              <path d="M-8 -20 V-320" stroke="#B88A5A" strokeWidth="5" opacity=".6" />
+              <ellipse cx="10" cy="4" rx="60" ry="10" fill="#000" opacity=".35" />
+              <path d="M0 0 V-340" stroke={K} strokeWidth="28" strokeLinecap="round" />
+              <path d="M0 0 V-340" stroke="#B88A5A" strokeWidth="18" strokeLinecap="round" />
+              <path d="M-4 -20 V-320" stroke="#E8C898" strokeWidth="5" opacity=".7" />
               <Amber id="fg" x={0} y={-370} s={0.42} accent={P.accento} />
               <Glow id="fg-cane" x={0} y={-370} r={120} t={t} color="#FFB040" amp={0.08} rate={2} opacity={0.6 * (1 - cane * 0.7)} />
             </g>

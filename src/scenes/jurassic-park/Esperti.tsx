@@ -92,11 +92,11 @@ export const Esperti: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             return <path key={i} d={`M${x} 1170 q${8 + bend * 30 * Math.sign(d || 1)} -20 ${6 + bend * 40 * d} -40`} stroke="#5FA672" strokeWidth="5" fill="none" />;
           })}
           <ellipse cx="660" cy="1210" rx="360" ry="60" fill="url(#ex-pad)" stroke={K} strokeWidth="7" />
-          <ellipse cx="660" cy="1210" rx="290" ry="44" fill="none" stroke={P.accento} strokeWidth="8" strokeDasharray="30 20" />
+          <ellipse cx="660" cy="1210" rx="290" ry="44" fill="none" stroke="#E8D070" strokeWidth="8" strokeDasharray="30 20" />
           <text x="660" y="1230" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="54" fill="#F2EEE4" opacity=".85">H</text>
           <Ombra id="ex" x={700} y={1212} rx={260 * (0.5 + 0.5 * land)} ry={30} opacity={0.4 + 0.6 * land} />
           <Smoke id="ex-dust" t={t} x={700} y={1200} color="#C8D8B8" n={8} rise={60} wind={300} r0={40} r1={150} speed={0.5} opacity={0.4 * wash * land} />
-          <Helicopter x={720} y={lerp(560, 1140, land)} s={1.1} t={t} tilt={lerp(-6, 0, land)} color="url(#ex-heli)" />
+          <Helicopter x={720} y={lerp(700, 1140, land)} s={1.1} t={t} tilt={lerp(-6, 0, land)} color="url(#ex-heli)" />
         </g>
 
         {/* PIANO 4 — le borse dei tre esperti con i cartellini (0,85) */}
