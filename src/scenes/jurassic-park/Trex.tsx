@@ -68,7 +68,7 @@ export const Trex: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           </g>
           {/* PIANO 4 — la valigetta dell'avvocato che vola nel fango (0,75) */}
           <g transform={L(0.75)} opacity={seg(brief, 0, 0.1)}>
-            <g transform={`translate(${lerp(760, 960, brief)} ${lerp(1000, 1150, brief) - Math.sin(brief * Math.PI) * 120}) rotate(${brief * 300})`}>
+            <g transform={`translate(${lerp(700, 980, brief)} ${lerp(900, 1000, brief) - Math.sin(brief * Math.PI) * 220}) rotate(${brief * 300}) scale(1.3)`}>
               <rect x="-50" y="-34" width="100" height="68" rx="8" fill="url(#tx-wood)" stroke={K} strokeWidth="5" />
               <path d="M-20 -34 V-48 H20 V-34" stroke={K} strokeWidth="5" fill="none" />
               <rect x="-8" y="-6" width="16" height="12" fill="#E8C060" />
@@ -84,6 +84,14 @@ export const Trex: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <rect x="1180" y="530" width="300" height="1900" fill="#14181A" transform="rotate(-8 1180 530)" />
             <path d="M-400 1140 Q540 1080 1480 1140 V2400 H-400 Z" fill="url(#tx-dash)" stroke={K} strokeWidth="10" />
             <path d="M-300 1130 Q540 1074 1380 1130" stroke="#6A7068" strokeWidth="5" fill="none" />
+            {/* radio, cassettino e pomello */}
+            <rect x="380" y="1300" width="320" height="110" rx="10" fill="#1E2220" stroke={K} strokeWidth="7" />
+            <rect x="400" y="1320" width="180" height="40" rx="4" fill="#3A6A4A" opacity={0.5 + 0.3 * Math.sin(t * 3)} />
+            {[620, 670].map((x) => <circle key={x} cx={x} cy={1345} r="16" fill="url(#tx-steel)" stroke={K} strokeWidth="4" />)}
+            <rect x="760" y="1420" width="420" height="160" rx="12" fill="#1A1E1C" stroke={K} strokeWidth="7" />
+            <rect x="930" y="1480" width="80" height="20" rx="10" fill="url(#tx-steel)" stroke={K} strokeWidth="4" />
+            <rect x="-120" y="1420" width="380" height="160" rx="12" fill="#1A1E1C" stroke={K} strokeWidth="7" />
+            <path d="M-100 1440 H240" stroke="#4A504C" strokeWidth="4" />
             {[[200, 1240], [880, 1240]].map(([x, y], i) => <g key={i}><circle cx={x} cy={y} r="56" fill="#1A1E1C" stroke={K} strokeWidth="7" /><path d={`M${x} ${y} l${Math.cos(i + t * 0.1) * 40} ${-30}`} stroke={P.accento} strokeWidth="6" /><circle cx={x} cy={y} r="8" fill="#9AA29A" /></g>)}
             {/* il bicchiere d'acqua */}
             <g transform={`translate(${540 + thump * 4 * Math.sin(t * 60)} 1110)`}>
@@ -107,7 +115,7 @@ export const Trex: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
 
         {/* PIANO 7 — pioggia vicina (1,6) */}
         <g transform={L(1.6)}>
-          <Rain t={t} level="near" seed={4} color="#B8C8D0" opacity={0.35} />
+          <Rain t={t} level="near" seed={4} color="#B8C8D0" opacity={0.18} />
         </g>
         <g transform={L(1.8)}>
           <NearMotes id="tx-near" t={t} color="#C8D8E0" n={5} opacity={0.07} />
