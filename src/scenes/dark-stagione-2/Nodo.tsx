@@ -18,12 +18,12 @@ import { Badge, Collar, Letter, RED, Raincoat, TINT, YELLOW, Yarn } from '../dar
 const CHALK = '#E8E2D2';
 const BLUE = '#5A9AE0';
 const PASS_X = 120;
-const Y = { 1921: 540, 2019: 760, 2020: 900, 2053: 1170 };
+const Y = { 1921: 570, 2019: 770, 2020: 900, 2053: 1160 };
 const N = {
   adam: [520, Y[1921]], noah: [800, Y[1921] + 20],
   michael: [300, Y[2019]], jonas: [400, Y[2020]], martha: [640, Y[2020]],
   charlotte: [880, Y[2019] + 40], lisa: [880, Y[2020] + 100], lisaAdulta: [880, Y[2053]],
-  rovine: [470, Y[2053]], amici: [290, Y[2020] + 192], altra: [720, Y[2053] + 10],
+  rovine: [440, Y[2053]], amici: [290, Y[2020] + 192], altra: [650, Y[2053] + 14],
 } as const;
 type P = readonly [number, number];
 
@@ -49,23 +49,17 @@ const pop = (T: number, t0: number) => eob(seg(T, t0, t0 + 0.45), 1.7);
 type Shot = { at: number; x: number; y: number; z: number };
 const WIDE = { x: 560, y: 860, z: 1 };
 const SHOTS: Shot[] = [
-  { at: at('futuro', 0), x: 420, y: 1000, z: 1.3 },
-  { at: at('futuro', 2), x: 520, y: 960, z: 1.15 },
-  { at: at('padre', 0), x: 360, y: 830, z: 1.4 },
-  { at: at('padre', 3), x: 380, y: 830, z: 1.25 },
-  { at: at('setta', 0), x: 620, y: 620, z: 1.35 },
-  { at: at('setta', 2), x: 680, y: 620, z: 1.25 },
-  { at: at('adam', 0), x: 460, y: 720, z: 1.15 },
-  { at: at('adam', 2), x: 470, y: 720, z: 1.05 },
-  { at: at('charlotte', 0), x: 800, y: 800, z: 1.25 },
-  { at: at('charlotte', 2), x: 780, y: 960, z: 1.05 },
-  { at: at('piano', 0), ...WIDE, z: 1.02 },
-  { at: at('martha', 0), x: 540, y: 820, z: 1.3 },
-  { at: at('martha', 2), x: 480, y: 740, z: 1.12 },
-  { at: at('fine', 0), x: 520, y: 900, z: 1.1 },
-  { at: at('fine', 2), x: 420, y: 960, z: 1.15 },
-  { at: at('mondo', 0), x: 620, y: 960, z: 1.2 },
-  { at: at('mondo', 3, 0.3), ...WIDE, z: 0.97 },
+  // visibile sullo schermo: y da cy − 340/z a cy + 390/z (tra il titolo e i sottotitoli)
+  { at: at('futuro', 0), x: 520, y: 960, z: 1.0 },
+  { at: at('padre', 0), x: 440, y: 870, z: 1.0 },
+  { at: at('setta', 0), x: 520, y: 780, z: 1.0 },
+  { at: at('adam', 0), x: 520, y: 790, z: 1.0 },
+  { at: at('charlotte', 0), x: 680, y: 870, z: 1.0 },
+  { at: at('piano', 0), ...WIDE, z: 0.92 },
+  { at: at('martha', 0), x: 560, y: 840, z: 1.0 },
+  { at: at('fine', 0), x: 500, y: 880, z: 1.0 },
+  { at: at('mondo', 0), x: 600, y: 880, z: 1.0 },
+  { at: at('mondo', 3, 0.3), ...WIDE, z: 0.92 },
 ];
 const camAt = (T: number) => {
   let o = { x: SHOTS[0].x, y: SHOTS[0].y, z: SHOTS[0].z };
@@ -213,7 +207,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         return (
           <g key={yr} opacity={seg(T, t0, t0 + 0.5) * dim} transform={`translate(${yr === 2020 ? shake : 0} 0)`}>
             <path d={`M190 ${y} H${190 + 850 * eo(seg(T, t0, t0 + 0.8))}`} stroke="#3A4A44" strokeWidth="2" />
-            <text x="1030" y={y - 10} textAnchor="end" fontFamily={STENCIL} fontWeight={800} fontSize="34" fill="#7A8A82">{label}</text>
+            <text x="1030" y={y + 36} textAnchor="end" fontFamily={STENCIL} fontWeight={800} fontSize="34" fill="#A8B8B0">{label}</text>
           </g>
         );
       })}
@@ -225,17 +219,19 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       {/* il nodo: tutto lo schema si stringe intorno al 27 giugno 2020 */}
       {knot > 0 && (
         <g opacity={off('piano') * 0.9 + 0.1 * knot}>
-          <ellipse cx="560" cy="860" rx={lerp(560, 470, knot)} ry={lerp(440, 380, knot)} fill="none" stroke={YELLOW} strokeWidth="7" strokeDasharray="18 12" strokeDashoffset={-T * 30} pathLength={1} />
+          <ellipse cx="560" cy="860" rx={lerp(560, 470, knot)} ry={lerp(420, 360, knot)} fill="none" stroke={YELLOW} strokeWidth="7" strokeDasharray="18 12" strokeDashoffset={-T * 30} />
           <path d={`M300 860 C${lerp(300, 520, knot)} 700 ${lerp(820, 600, knot)} 1020 820 860 C${lerp(820, 600, knot)} 700 ${lerp(300, 520, knot)} 1020 300 860`} fill="none" stroke={YELLOW} strokeWidth="6" opacity={0.6 * knot} />
         </g>
       )}
-      <Tag T={T} t0={at('piano', 0, 0.8)} x={560} y={1050} text="il nodo" size={30} rot={-3} until={end('piano') - 0.4} />
-      <Tag T={T} t0={at('piano', 1, 0.3)} x={560} y={460 + 10} text="la fine deve arrivare" bg={CHALK} size={26} rot={2} until={end('piano') - 0.4} />
+      <Tag T={T} t0={at('piano', 0, 0.8)} x={600} y={1040} text="il nodo" size={30} rot={-3} until={at('piano', 2)} />
+      <Tag T={T} t0={at('piano', 1, 0.3)} x={640} y={1100} text="la fine deve arrivare" bg={CHALK} size={24} rot={2} until={end('piano') - 0.4} />
+      <Tag T={T} t0={at('piano', 2, 0.4)} x={600} y={1040} text="27 giugno 2020" bg={RED} fg="#FFFFFF" size={28} rot={-2} until={end('piano') - 0.4} />
 
       {/* legami */}
-      <Link T={T} t0={at('futuro', 0, 0.4)} a={[N.jonas[0] - 40, N.jonas[1] + 50]} b={[N.rovine[0] - 50, N.rovine[1] - 40]} c={[300, 1080]} color={YELLOW} dashed w={7} flow label="bloccato" lx={-60} size={30} arrow />
+      <Link T={T} t0={at('futuro', 0, 0.4)} a={[N.jonas[0] - 40, N.jonas[1] + 50]} b={[N.rovine[0] - 50, N.rovine[1] - 40]} c={[300, 1080]} color={YELLOW} dashed w={7} flow label="bloccato" lx={-60} size={30} arrow fade={off('futuro')} />
+      <Link T={T} t0={at('futuro', 3, 0.1)} a={[N.rovine[0] + 50, N.rovine[1] - 40]} b={[N.jonas[0] + 40, N.jonas[1] + 52]} c={[520, 1060]} color={YELLOW} dashed w={7} flow label="fugge indietro" lx={70} size={28} arrow fade={off('futuro')} />
       <Link T={T} t0={at('setta', 2, 0.3)} a={[N.noah[0] - 56, N.noah[1]]} b={[N.adam[0] + 56, N.adam[1]]} label="lo serve" ly={-22} size={28} />
-      <Link T={T} t0={at('adam', 2, 0.1)} a={[N.jonas[0], N.jonas[1] - 56]} b={[N.adam[0] - 30, N.adam[1] + 54]} c={[380, 680]} color={YELLOW} dashed w={7} flow label="da vecchio" lx={-80} size={30} arrow />
+      <Link T={T} t0={at('adam', 2, 0.1)} a={[N.jonas[0], N.jonas[1] - 56]} b={[N.adam[0] - 30, N.adam[1] + 54]} c={[380, 680]} color={YELLOW} dashed w={7} flow label="da vecchio" lx={60} size={28} arrow />
       <Link T={T} t0={at('charlotte', 1, 0.2)} a={[N.noah[0] + 30, N.noah[1] + 52]} b={[N.charlotte[0], N.charlotte[1] - 54]} label="padre" lx={44} arrow />
       <Link T={T} t0={at('charlotte', 2, 0.1)} a={[N.charlotte[0], N.charlotte[1] + 54]} b={[N.lisa[0], N.lisa[1] - 50]} label="figlia" lx={46} arrow />
       <Link T={T} t0={at('charlotte', 2, 0.8)} a={[N.lisa[0], N.lisa[1] + 50]} b={[N.lisaAdulta[0], N.lisaAdulta[1] - 54]} color={YELLOW} dashed w={6} flow label="da grande" lx={-74} size={26} arrow />
@@ -253,10 +249,9 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       <Tag T={T} t0={at('padre', 3, 0.8)} x={200} y={Y[2020] + 40} text="l'ha causato lui" bg={RED} fg="#FFFFFF" size={24} rot={-4} until={end('padre') - 0.4} />
       <Link T={T} t0={at('martha', 0, 0.4)} a={[N.jonas[0] + 54, N.jonas[1]]} b={[N.martha[0] - 54, N.martha[1]]} color="#E07060" dashed label="la ama" ly={-22} size={28} />
       <Link T={T} t0={at('martha', 1, 0.1)} a={[N.adam[0] + 30, N.adam[1] + 54]} b={[N.martha[0] - 10, N.martha[1] - 56]} c={[640, 700]} color={RED} w={6} arrow />
-      <Cross T={T} t0={at('martha', 1, 0.6)} x={N.martha[0]} y={N.martha[1]} />
       <Link T={T} t0={at('martha', 2, 0.2)} a={[N.jonas[0] + 30, N.jonas[1] - 50]} b={[N.adam[0] + 10, N.adam[1] + 56]} c={[520, 760]} color={YELLOW} dashed w={6} flow label="diventerà lui" lx={70} ly={10} size={26} arrow fade={off('martha')} />
       {/* la fine del mondo e gli amici nel rifugio che finiscono nel 2053 */}
-      <Tag T={T} t0={at('fine', 0, 0.2)} x={560} y={Y[2020] + 112} text="la fine del mondo" bg={RED} fg="#FFFFFF" size={30} rot={-2} until={end('fine') - 0.4} />
+      <Tag T={T} t0={at('fine', 0, 0.2)} x={620} y={Y[2020] + 190} text="la fine del mondo" bg={RED} fg="#FFFFFF" size={30} rot={-2} until={end('fine') - 0.4} />
       {T >= at('fine', 1, 0.1) && (
         <g opacity={seg(T, at('fine', 1, 0.1), at('fine', 1, 0.4))}>
           <rect x="170" y={Y[2020] + 150} width="240" height="84" rx="8" fill="none" stroke={CHALK} strokeWidth="4" strokeDasharray="10 8" />
@@ -264,12 +259,12 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         </g>
       )}
       {[0, 1, 2].map((k) => T >= at('fine', 1, 0.3 + k * 0.15) && <circle key={k} cx={220 + k * 70} cy={Y[2020] + 192} r={pop(T, at('fine', 1, 0.3 + k * 0.15)) * 24} fill="#22302B" stroke={CHALK} strokeWidth="4" />)}
-      <Tag T={T} t0={at('fine', 2, 0.3)} x={290} y={Y[2020] + 280} text="sopravvissuti" bg={CHALK} size={24} />
+      <Tag T={T} t0={at('fine', 2, 0.3)} x={250} y={Y[2020] + 268} text="sopravvissuti" bg={CHALK} size={24} />
       {/* un altro mondo: il gomitolo blu arriva da fuori e porta via Jonas */}
-      <Link T={T} t0={at('mondo', 1, 0.1)} a={[N.altra[0] - 30, N.altra[1] - 50]} b={[N.jonas[0] + 44, N.jonas[1] + 40]} c={[600, 1000]} color={BLUE} w={7} label="via con sé" ly={40} size={28} arrow />
-      <Tag T={T} t0={at('mondo', 2, 0.2)} x={720} y={Y[2053] - 92} text="un altro mondo" bg={BLUE} fg="#FFFFFF" size={28} rot={3} />
+      <Link T={T} t0={at('mondo', 1, 0.1)} a={[N.altra[0] - 40, N.altra[1] - 44]} b={[N.jonas[0] + 44, N.jonas[1] + 40]} c={[480, 1040]} color={BLUE} w={7} label="via con sé" ly={40} size={28} arrow />
+      <Tag T={T} t0={at('mondo', 2, 0.2)} x={640} y={Y[2020] + 190} text="un altro mondo" bg={BLUE} fg="#FFFFFF" size={28} rot={3} />
       <Tag T={T} t0={at('futuro', 2, 0.3)} x={680} y={Y[2020] + 120} text="27 giugno 2020: la fine" bg={RED} fg="#FFFFFF" size={26} rot={-2} until={end('futuro') - 0.4} />
-      <Tag T={T} t0={at('adam', 2, 0.6)} x={560} y={Y[1921] + 120} text="Adam = Jonas da vecchio" size={28} rot={-2} />
+      <Tag T={T} t0={at('adam', 2, 0.6)} x={640} y={Y[1921] + 150} text="Adam = Jonas da vecchio" size={26} rot={-2} />
       <Tag T={T} t0={at('setta', 3, 0.2)} x={700} y={Y[1921] - 70} text="fermare il giro" bg={CHALK} size={24} until={end('setta') - 0.4} />
 
       {/* nodi */}
@@ -295,7 +290,8 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         <Letter scale={0.24} open={lettera} />
       </Node>
       <Node T={T} t0={at('martha', 0, 0.1)} p={N.martha} name="Martha" ring={focus(at('martha', 0), at('martha', 1))}><Yarn r={28} /></Node>
-      <Node T={T} t0={at('mondo', 0, 0.1)} p={N.altra} name="un'altra Martha" side="below" stroke={BLUE} ring={focus(at('mondo', 0), at('mondo', 2))}>
+      <Cross T={T} t0={at('martha', 1, 0.6)} x={N.martha[0]} y={N.martha[1]} />
+      <Node T={T} t0={at('mondo', 0, 0.1)} p={N.altra} name="altra Martha" side="below" stroke={BLUE} ring={focus(at('mondo', 0), at('mondo', 2))}>
         <g>
           <circle r="28" fill={BLUE} stroke="#000" strokeWidth="6" />
           {[-0.6, -0.2, 0.2, 0.6].map((k, i) => <path key={i} d={`M${-25} ${k * 28} Q0 ${k * 28 - 14} 25 ${k * 28 + 4}`} fill="none" stroke="#2A5A9A" strokeWidth="3" />)}
