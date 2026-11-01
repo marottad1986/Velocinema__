@@ -25,6 +25,8 @@ export type FilmData = {
   formato?: 'riassunto' | 'spiegato';
   /** Formato "spiegato" disegnato come un unico schema che si costruisce (niente linea del tempo né cartellini sopra). */
   schema?: boolean;
+  /** Formato "spiegato": false toglie la sigla di 1,5 s (la copertina parte subito e porta «SPIEGATO SEMPLICE» in alto). */
+  sigla?: boolean;
   tipo?: 'film' | 'serie';
   stagione?: number;
   regista?: string;

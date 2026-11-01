@@ -9,6 +9,7 @@ import castAway from '../films/cast-away.json';
 import jurassicPark from '../films/jurassic-park.json';
 import harryPotter1 from '../films/harry-potter-pietra-filosofale.json';
 import darkStagione1 from '../films/dark-stagione-1.json';
+import darkStagione2 from '../films/dark-stagione-2.json';
 import inception from '../films/inception.json';
 import bohemianRhapsody from '../films/bohemian-rhapsody.json';
 import gliAnni from '../films/gli-anni.json';
@@ -30,9 +31,11 @@ import { Copertina as JurassicCover, Finale as JurassicEnd } from './scenes/jura
 import { HARRY_POTTER_1_SCENES } from './scenes/harry-potter-pietra-filosofale';
 import { Copertina as HP1Cover, Finale as HP1End } from './scenes/harry-potter-pietra-filosofale/Locandina';
 import { DARK_S1_SCENES } from './scenes/dark-stagione-1';
+import { DARK_S2_SCENES } from './scenes/dark-stagione-2';
 import { INCEPTION_SCENES } from './scenes/inception';
 import { Copertina as IncCover, Finale as IncEnd } from './scenes/inception/Locandina';
 import { Copertina as DarkCover, Finale as DarkEnd } from './scenes/dark-stagione-1/Locandina';
+import { Copertina as Dark2Cover, Finale as Dark2End } from './scenes/dark-stagione-2/Locandina';
 import notteStellata from '../quadri/notte-stellata.json';
 import { NOTTE_STELLATA_SCENES, Copertina as NotteCover, Finale as NotteEnd } from './scenes/notte-stellata';
 import grandeOnda from '../quadri/grande-onda.json';
@@ -63,6 +66,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'jurassic-park', data: jurassicPark as FilmData, scenes: JURASSIC_PARK_SCENES, cover: JurassicCover, ending: JurassicEnd, posterFont: ANTON },
   { slug: 'harry-potter-pietra-filosofale', data: harryPotter1 as FilmData, scenes: HARRY_POTTER_1_SCENES, cover: HP1Cover, ending: HP1End, posterFont: CINZEL },
   { slug: 'dark-stagione-1', data: darkStagione1 as FilmData, scenes: DARK_S1_SCENES, cover: DarkCover, ending: DarkEnd, posterFont: STENCIL },
+  { slug: 'dark-stagione-2', data: darkStagione2 as FilmData, scenes: DARK_S2_SCENES, cover: Dark2Cover, ending: Dark2End, posterFont: STENCIL },
   { slug: 'inception', data: inception as FilmData, scenes: INCEPTION_SCENES, cover: IncCover, ending: IncEnd, posterFont: BEBAS },
   { slug: 'notte-stellata', data: notteStellata as FilmData, scenes: NOTTE_STELLATA_SCENES, cover: NotteCover, ending: NotteEnd },
   { slug: 'grande-onda', data: grandeOnda as FilmData, scenes: GRANDE_ONDA_SCENES, cover: OndaCover, ending: OndaEnd },

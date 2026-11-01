@@ -1,0 +1,209 @@
+{
+  "formato": "spiegato",
+  "tipo": "serie",
+  "titolo": "Dark",
+  "stagione": 2,
+  "regista": "Baran bo Odar e Jantje Friese",
+  "anno": 2019,
+  "sigla": false,
+  "palette": {
+    "chiaro": "#E4E7E1",
+    "principale": "#3D5A4C",
+    "scuro": "#0A0E0D",
+    "accento": "#F2C230"
+  },
+  "linea_tempo": [
+    1921,
+    1954,
+    1987,
+    2020,
+    2053
+  ],
+  "personaggi": [
+    {
+      "nome": "Jonas",
+      "ruolo": "un liceale di Winden",
+      "oggetto": "impermeabile giallo"
+    },
+    {
+      "nome": "Adam",
+      "ruolo": "il capo di una setta che viaggia nel tempo",
+      "oggetto": "clessidra d'ottone"
+    },
+    {
+      "nome": "Noah",
+      "ruolo": "un uomo vestito da prete",
+      "oggetto": "colletto bianco da prete"
+    },
+    {
+      "nome": "Charlotte",
+      "ruolo": "la capa della polizia di Winden",
+      "oggetto": "distintivo della polizia"
+    },
+    {
+      "nome": "Elisabeth",
+      "ruolo": "la figlia di Charlotte",
+      "oggetto": "lavagnetta col gessetto"
+    },
+    {
+      "nome": "Michael",
+      "ruolo": "il padre di Jonas",
+      "oggetto": "busta chiusa con sigillo di ceralacca"
+    },
+    {
+      "nome": "Martha",
+      "ruolo": "la ragazza che Jonas ama",
+      "oggetto": "gomitolo di filo rosso"
+    }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Il futuro è già scritto. Anche il tuo.",
+    "immagine": "Locandina senza sigla, con «SPIEGATO SEMPLICE · SERIE» in alto: Winden distrutta del 2053 sotto un cielo color cenere, le torri della centrale spezzate; in primo piano una clessidra d'ottone appoggiata su una roccia accanto all'impermeabile giallo coperto di polvere. Titolo grande in carattere stretto e spaziato, 'STAGIONE 2' sotto. NON usare il logo ufficiale, il simbolo a tre archi (triquetra) né le locandine con i volti.",
+    "voce": "Dark, stagione 2. Spiegata semplice."
+  },
+  "capitoli": [
+    {
+      "id": "futuro",
+      "titolo": "Dov'è finito Jonas?",
+      "durata": 12,
+      "anno": 2053,
+      "personaggi": [
+        "Jonas"
+      ],
+      "scena": "In basso si accende la fascia del 2053 con le rovine di Winden; il cerchio di Jonas (impermeabile) arriva dal 2020 con un tratteggio giallo; compare il cartellino pieno «27 giugno 2020: la fine».",
+      "sottotitoli": [
+        "Jonas è ancora nel futuro: ormai è il 2053.",
+        "Quasi lo impiccano, e gli resta una cicatrice sul collo.",
+        "E scopre il giorno della fine: il 27 giugno 2020,",
+        "così fugge indietro per impedirla."
+      ]
+    },
+    {
+      "id": "padre",
+      "titolo": "Si può salvare Michael?",
+      "durata": 13,
+      "anno": 2020,
+      "personaggi": [
+        "Michael"
+      ],
+      "scena": "Un tratteggio giallo porta Jonas indietro fino al giorno prima della morte di Michael (busta); la busta si apre e un filo rosso torna da Michael a Jonas: «l'ha causato lui»; anello rosso.",
+      "sottotitoli": [
+        "Ma sbuca il giorno prima che suo padre Michael si uccida.",
+        "Vuole salvarlo, e gli mostra la sua lettera d'addio.",
+        "Ma Michael non l'ha ancora scritta:",
+        "la scrive perché l'ha vista: senza volerlo, Jonas ne è la causa."
+      ]
+    },
+    {
+      "id": "setta",
+      "titolo": "Chi è Adam?",
+      "durata": 12,
+      "anno": 1921,
+      "personaggi": [
+        "Adam",
+        "Noah"
+      ],
+      "scena": "In alto si accende la fascia del 1921: il cerchio di Adam (clessidra) con la scritta «la setta»; sotto, il cerchio di Noah (colletto) legato ad Adam con «lo serve»; frecce tratteggiate gialle tra gli anni: la setta viaggia nel tempo.",
+      "sottotitoli": [
+        "Nel 1921, intanto, un vecchio guida una setta.",
+        "Si chiama Adam, e la setta viaggia nel tempo.",
+        "Con lui c'è Noah, il finto prete che rapiva i bambini.",
+        "Adam vuole fermare il cerchio del tempo."
+      ]
+    },
+    {
+      "id": "adam",
+      "titolo": "Chi è davvero Adam?",
+      "durata": 13,
+      "anno": 1921,
+      "personaggi": [],
+      "scena": "Un filo giallo tratteggiato va da Jonas (2020) ad Adam (1921): compare il cartellino pieno «Adam = Jonas da vecchio»; una piccola cicatrice uguale accanto ai due cerchi.",
+      "sottotitoli": [
+        "Jonas lo raggiunge nel 1921, e Adam gli mostra il collo.",
+        "C'è la stessa cicatrice di Jonas, nello stesso punto,",
+        "perché Adam è Jonas da vecchio:",
+        "il ragazzo che vuole salvare tutti diventerà il capo della setta."
+      ]
+    },
+    {
+      "id": "charlotte",
+      "titolo": "Da chi nasce Charlotte?",
+      "durata": 12,
+      "anno": 2053,
+      "personaggi": [
+        "Charlotte",
+        "Elisabeth"
+      ],
+      "scena": "Il cerchio di Charlotte (distintivo) nel 2020 con un punto interrogativo; un filo «padre» da Noah; il cerchio di Elisabeth bambina (lavagnetta) sotto Charlotte con «figlia»; poi Elisabeth adulta nel 2053 e un filo «madre» che risale a Charlotte: anello rosso madre-figlia.",
+      "sottotitoli": [
+        "Anche Charlotte, la capa della polizia, non conosce i suoi genitori.",
+        "Suo padre è Noah, il finto prete.",
+        "E sua madre è Elisabeth, la figlia di Charlotte, da adulta.",
+        "Figlia e madre insieme, come un cerchio chiuso."
+      ]
+    },
+    {
+      "id": "piano",
+      "titolo": "Cosa vuole Adam?",
+      "durata": 12,
+      "anno": 2020,
+      "personaggi": [],
+      "scena": "Tutto lo schema si stringe in un grande nodo giallo intorno alla data «27 giugno 2020»; il cartellino «il nodo» e una freccia di Adam che lo indica: la fine del mondo non va fermata.",
+      "sottotitoli": [
+        "Adam spiega che il tempo è un nodo, dove tutto si ripete.",
+        "Per scioglierlo, la fine del mondo deve arrivare per forza.",
+        "Così il 27 giugno 2020 Adam lascia che la fine arrivi."
+      ]
+    },
+    {
+      "id": "martha",
+      "titolo": "Chi muore nel finale?",
+      "durata": 12,
+      "anno": 2020,
+      "personaggi": [
+        "Martha"
+      ],
+      "scena": "Il cerchio di Martha (gomitolo) accanto a Jonas con il filo «la ama»; un filo rosso da Adam a Martha e una croce rossa; un tratteggio giallo da Jonas ad Adam con «diventerà lui».",
+      "sottotitoli": [
+        "Quel giorno Adam raggiunge Jonas e Martha, la ragazza che Jonas ama.",
+        "Davanti a lui uccide Martha,",
+        "perché quel dolore serve a far diventare Jonas come lui."
+      ]
+    },
+    {
+      "id": "fine",
+      "titolo": "Cosa succede il 27 giugno?",
+      "durata": 13,
+      "anno": 2020,
+      "personaggi": [],
+      "scena": "La fascia del 2020 trema e si scurisce: cartellino «la fine del mondo»; nel rifugio tratteggiato sotto la fascia compaiono tre piccoli cerchi senza nome (gli amici) e il cartellino «sopravvissuti».",
+      "sottotitoli": [
+        "Poco dopo arriva la fine del mondo, e Winden viene distrutta.",
+        "Intanto alcuni amici di Jonas si salvano in un rifugio sotto terra,",
+        "e restano vivi tra le rovine della città."
+      ]
+    },
+    {
+      "id": "mondo",
+      "titolo": "Come finisce la stagione?",
+      "durata": 13,
+      "anno": 2020,
+      "personaggi": [],
+      "scena": "Accanto alla croce di Martha si accende un secondo gomitolo, blu, che arriva da fuori dallo schema; un filo lo lega a Jonas e lo porta fuori: cartellino «un altro mondo»; la camera si allarga su tutto lo schema.",
+      "sottotitoli": [
+        "Mentre tutto crolla, compare un'altra Martha, viva.",
+        "Prende Jonas e lo porta via con sé,",
+        "perché lei viene da un altro mondo, uguale ma diverso.",
+        "E la terza stagione riparte proprio da quell'altro mondo."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "In una frase: Jonas diventerà il suo stesso nemico.",
+    "immagine": "Lo schema completo della stagione 2 che si chiude in un nodo sopra le rovine di Winden, con la clessidra d'ottone al centro e un gomitolo blu che spunta dal bordo; scritta 'Commenta con la spiegazione che vorresti.'; riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina'."
+  },
+  "musica": "Originale e strumentale, stessa famiglia sonora della stagione 1: droni gravi, archi lenti, un ticchettio d'orologio come metronomo e il motivo di quattro note del cerchio, qui più spezzato; più cupo nel 1921 della setta, quasi fermo nel 2053; niente brani o motivi della serie.",
+  "schema": true
+}

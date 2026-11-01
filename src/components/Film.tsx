@@ -75,8 +75,8 @@ export const PosterView: React.FC<{ slug: string; end?: boolean }> = ({ slug, en
   const { fps } = useVideoConfig();
   const Comp = end ? film.ending : film.cover;
   const total = end ? film.data.finale.durata : film.data.copertina.durata;
-  // Formato "spiegato": la copertina parte dopo la sigla e dura il resto dei 4 s.
-  const sigla = !end && film.data.formato === 'spiegato' ? SIGLA : 0;
+  // Formato "spiegato": la copertina parte dopo la sigla e dura il resto dei 4 s (salvo "sigla": false nel JSON).
+  const sigla = !end && film.data.formato === 'spiegato' && film.data.sigla !== false ? SIGLA : 0;
   const t = Math.max(0, frame / fps - sigla);
   return (
     <AbsoluteFill style={{ background: film.data.palette.scuro, overflow: 'hidden' }}>
