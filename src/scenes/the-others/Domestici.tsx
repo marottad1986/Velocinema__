@@ -151,8 +151,8 @@ export const Domestici: React.FC<SceneProps> = ({ t, dur, cues }) => {
             return <circle key={i} cx={-100 + w * 1280} cy={1360 + v * 700} r={2 + v * 4} fill="#9A9C92" opacity=".4" />;
           })}
           {STEPS.map((p, i) => (
-            <g key={i} transform={`translate(${p.x} ${p.y}) rotate(${p.r}) scale(${1.4 + i * 0.1})`} opacity={prints(i)}>
-              <ellipse cx="0" cy="-10" rx="16" ry="26" fill="#121410" />
+            <g key={i} transform={`translate(${p.x} ${p.y}) rotate(${p.r}) scale(${1.4 + i * 0.1})`} opacity={prints(i) * 0.9}>
+              <ellipse cx="0" cy="-10" rx="16" ry="26" fill="#060806" />
               <ellipse cx="0" cy="24" rx="12" ry="12" fill="#1A1C18" />
             </g>
           ))}

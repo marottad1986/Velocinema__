@@ -125,11 +125,11 @@ export const Marito: React.FC<SceneProps> = ({ t, dur, cues }) => {
         <g transform={L(1.2)}>
           <path d="M-200 -200 H60 Q90 600 70 1200 Q60 1700 110 2200 H-200 Z" fill="#141A18" stroke={K} strokeWidth="10" />
           <path d="M40 -100 Q66 600 50 1200" stroke="#3A4642" strokeWidth="6" fill="none" opacity=".6" />
-          <path d="M60 640 Q200 600 360 640 Q440 660 520 640" stroke={K} strokeWidth="30" fill="none" strokeLinecap="round" />
-          <path d="M200 616 Q240 560 300 548 M380 648 Q420 600 470 600" stroke={K} strokeWidth="12" fill="none" strokeLinecap="round" />
-          <path d="M70 628 Q200 590 360 630" stroke="#4A5652" strokeWidth="5" fill="none" opacity=".6" />
+          <path d="M60 670 Q200 630 360 670 Q440 690 520 670" stroke={K} strokeWidth="30" fill="none" strokeLinecap="round" />
+          <path d="M200 646 Q240 600 300 590 M380 678 Q420 640 470 640" stroke={K} strokeWidth="12" fill="none" strokeLinecap="round" />
+          <path d="M70 658 Q200 620 360 660" stroke="#4A5652" strokeWidth="5" fill="none" opacity=".6" />
           {/* lanterna a tempesta */}
-          <g transform={`translate(190 626) rotate(${swing}) scale(1.15)`}>
+          <g transform={`translate(190 656) rotate(${swing}) scale(1.15)`}>
             <path d="M0 0 V40" stroke={K} strokeWidth="6" />
             <Glow id="ma-lan" x={0} y={170} r={330} t={t} color="#FFC870" amp={0.06} rate={9} opacity={0.7} />
             <path d="M-46 60 Q0 20 46 60" stroke={K} strokeWidth="8" fill="none" />
