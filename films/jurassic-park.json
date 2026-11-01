@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Un'isola. Dinosauri veri. Che cosa può andare storto?",
     "immagine": "Il grande cancello di legno del parco al tramonto, con due torce accese e la giungla fitta dietro; davanti, il binario delle jeep che entra; in primo piano una goccia d'ambra con dentro una zanzara che brilla. Titolo grande (Anton). NON usare il logo del film (scheletro nel cerchio rosso) né dinosauri o persone.",
-    "voce": "Jurassic Park, di Steven Spielberg: un parco di dinosauri veri su un'isola."
+    "voce": "Jurassic Park, di Steven Spielberg: dinosauri veri su un'isola."
   },
   "capitoli": [
     {
@@ -71,7 +71,7 @@
         "Intanto Dennis Nedry, il programmatore del parco,",
         "pagato da un'azienda rivale per rubare embrioni,",
         "spegne la sicurezza",
-        "e scappa con le provette nascoste in una bomboletta da barba.",
+        "e scappa con le provette in una bomboletta da barba.",
         "Così le recinzioni elettriche si spengono."
       ]
     },
@@ -110,7 +110,7 @@
         "Al mattino Grant trova gusci di uova schiuse:",
         "i dinosauri si riproducono lo stesso,",
         "perché per completare il loro DNA",
-        "gli scienziati hanno usato quello di una rana,",
+        "hanno usato quello di una rana,",
         "che in natura può cambiare sesso.",
         "Malcolm aveva ragione."
       ]
@@ -148,7 +148,7 @@
       "sottotitoli": [
         "Nell'atrio i raptor li circondano,",
         "ma arriva il T-rex e li assale,",
-        "e mentre crolla lo striscione del parco",
+        "e mentre crolla lo striscione",
         "tutti fuggono in elicottero.",
         "Così Hammond rinuncia al parco,",
         "e sul mare volano uccelli, i discendenti dei dinosauri."
