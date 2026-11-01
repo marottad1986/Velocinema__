@@ -6,21 +6,45 @@ import React from 'react';
 
 export const K = '#0F1F17'; // contorni
 
+/** Gradienti dei materiali comuni (una volta per scena, dentro <defs>): lato in luce a sinistra, in ombra a destra. */
+export const JPDefs: React.FC<{ id: string }> = ({ id }) => (
+  <>
+    <linearGradient id={`${id}-steel`} x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#3A3E3A" /><stop offset=".4" stopColor="#9AA29A" /><stop offset=".6" stopColor="#6A706A" /><stop offset="1" stopColor="#2E322E" /></linearGradient>
+    <linearGradient id={`${id}-jeep`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#FFFAEC" /><stop offset=".6" stopColor="#E2D9C2" /><stop offset="1" stopColor="#A89E86" /></linearGradient>
+    <linearGradient id={`${id}-skin`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#95A266" /><stop offset=".6" stopColor="#6E7A4A" /><stop offset="1" stopColor="#4A5432" /></linearGradient>
+    <linearGradient id={`${id}-brachio`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#9AB4A6" /><stop offset=".6" stopColor="#7E9A8E" /><stop offset="1" stopColor="#56706A" /></linearGradient>
+    <linearGradient id={`${id}-trunk`} x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#6A5438" /><stop offset=".45" stopColor="#4A3A28" /><stop offset="1" stopColor="#2A2016" /></linearGradient>
+    <linearGradient id={`${id}-wood`} x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#8A6A44" /><stop offset=".5" stopColor="#6A4E30" /><stop offset="1" stopColor="#3E2C1A" /></linearGradient>
+    <radialGradient id={`${id}-amber`} cx=".4" cy=".35"><stop offset="0" stopColor="#FFE6A0" /><stop offset=".55" stopColor="#F2A23A" /><stop offset="1" stopColor="#B85E14" /></radialGradient>
+    <radialGradient id={`${id}-shadow`}><stop offset="0" stopColor="#000" stopOpacity=".55" /><stop offset="1" stopColor="#000" stopOpacity="0" /></radialGradient>
+  </>
+);
+
+/** Ombra morbida a terra. */
+export const Ombra: React.FC<{ id: string; x: number; y: number; rx: number; ry?: number; opacity?: number }> = ({ id, x, y, rx, ry = rx * 0.18, opacity = 1 }) => (
+  <ellipse cx={x} cy={y} rx={rx} ry={ry} fill={`url(#${id}-shadow)`} opacity={opacity} />
+);
+
 /** Jeep elettrica del parco vista di lato (verde con fascia accento, nessun logo). `tilt` per inclinarla. */
-export const Jeep: React.FC<{ x: number; y: number; s?: number; accent: string; lights?: number; tilt?: number }> = ({ x, y, s = 1, accent, lights = 0, tilt = 0 }) => (
+export const Jeep: React.FC<{ id?: string; x: number; y: number; s?: number; accent: string; lights?: number; tilt?: number }> = ({ id, x, y, s = 1, accent, lights = 0, tilt = 0 }) => (
   <g transform={`translate(${x} ${y}) rotate(${tilt}) scale(${s})`} strokeLinejoin="round">
     <ellipse cx="0" cy="44" rx="200" ry="16" fill={K} opacity=".3" />
-    <path d="M-190 20 V-40 Q-186 -60 -160 -64 L-110 -120 H70 L120 -64 Q170 -60 186 -40 V20 Z" fill="#E9E2CF" stroke={K} strokeWidth="8" />
+    <path d="M-190 20 V-40 Q-186 -60 -160 -64 L-110 -120 H70 L120 -64 Q170 -60 186 -40 V20 Z" fill={id ? `url(#${id}-jeep)` : '#E9E2CF'} stroke={K} strokeWidth="8" />
+    <path d="M-150 -64 V16 M60 -64 V16" stroke={K} strokeWidth="4" opacity=".5" />
+    <rect x="-40" y="-52" width="26" height="8" rx="3" fill="#8A8676" />
+    <path d="M-110 -120 L-130 -150 M-128 -150 h-20" stroke={K} strokeWidth="5" />
     <path d="M-188 -20 H184 V0 H-188 Z" fill={accent} />
     <path d="M-100 -110 H-10 V-64 H-140 Z M4 -110 H64 L104 -64 H4 Z" fill="#2E4A5A" stroke={K} strokeWidth="5" />
     <path d="M-96 -104 L-50 -70" stroke="#9FC0CC" strokeWidth="5" opacity=".6" />
     <path d="M-120 -124 H80" stroke={K} strokeWidth="8" strokeLinecap="round" />
     <rect x="166" y="-36" width="22" height="16" rx="4" fill={lights > 0 ? '#FFF6D0' : '#C9C2B2'} stroke={K} strokeWidth="3" />
+    {lights > 0 && <path d="M188 -28 L560 -110 L560 60 Z" fill="#FFF6D0" opacity={0.18 * lights} />}
     <rect x="-192" y="-36" width="12" height="16" fill="#C2301E" stroke={K} strokeWidth="3" />
     {[-118, 118].map((wx) => (
       <g key={wx}>
         <circle cx={wx} cy="24" r="38" fill="#1C1E1C" stroke={K} strokeWidth="6" />
-        <circle cx={wx} cy="24" r="15" fill="#9A9A90" />
+        <circle cx={wx} cy="24" r="15" fill="#9A9A90" stroke={K} strokeWidth="3" />
+        {[0, 1, 2, 3, 4].map((k) => <path key={k} d={`M${wx} 24 l${Math.cos(k * 1.256) * 14} ${Math.sin(k * 1.256) * 14}`} stroke="#5A5A52" strokeWidth="3" />)}
       </g>
     ))}
     <path d="M-170 -50 Q-60 -56 160 -54" fill="none" stroke="#FFFFFF" strokeWidth="5" opacity=".6" />
@@ -28,8 +52,8 @@ export const Jeep: React.FC<{ x: number; y: number; s?: number; accent: string; 
 );
 
 /** Recinzione elettrica alta: pali, cavi e cartello di pericolo; `broken` 0..1 fa cadere i cavi di un tratto. */
-export const Fence: React.FC<{ x0: number; x1: number; y: number; h?: number; posts?: number; broken?: number; sign?: boolean; accent: string; glow?: number }> = ({
-  x0, x1, y, h = 520, posts = 5, broken = 0, sign = true, accent, glow = 0,
+export const Fence: React.FC<{ id?: string; x0: number; x1: number; y: number; h?: number; posts?: number; broken?: number; sign?: boolean; accent: string; glow?: number }> = ({
+  id, x0, x1, y, h = 520, posts = 5, broken = 0, sign = true, accent, glow = 0,
 }) => {
   const xs = Array.from({ length: posts }, (_, i) => x0 + ((x1 - x0) * i) / (posts - 1));
   const mid = Math.floor(posts / 2);
@@ -46,7 +70,8 @@ export const Fence: React.FC<{ x0: number; x1: number; y: number; h?: number; po
       })}
       {xs.map((px, i) => (
         <g key={i}>
-          <rect x={px - 16} y={y - h} width="32" height={h} fill="#5A5E58" stroke={K} strokeWidth="6" />
+          <rect x={px - 16} y={y - h} width="32" height={h} fill={id ? `url(#${id}-steel)` : '#5A5E58'} stroke={K} strokeWidth="6" />
+          <path d={`M${px - 10} ${y - h + 10} V${y - 10}`} stroke="#C8D0C8" strokeWidth="3" opacity=".35" />
           <rect x={px - 24} y={y - h - 14} width="48" height="18" fill="#3E423E" stroke={K} strokeWidth="5" />
           {Array.from({ length: 9 }, (_, k) => <circle key={k} cx={px} cy={y - 40 - k * ((h - 80) / 8)} r="5" fill={glow > 0 ? '#E9F6FF' : '#8A8E86'} />)}
         </g>
@@ -99,9 +124,10 @@ export const JungleTree: React.FC<{ x: number; y: number; h?: number; t: number;
 };
 
 /** Goccia d'ambra con la zanzara dentro, illuminata. */
-export const Amber: React.FC<{ x: number; y: number; s?: number; accent: string }> = ({ x, y, s = 1, accent }) => (
+export const Amber: React.FC<{ id?: string; x: number; y: number; s?: number; accent: string }> = ({ id, x, y, s = 1, accent }) => (
   <g transform={`translate(${x} ${y}) scale(${s})`} strokeLinejoin="round" strokeLinecap="round">
-    <path d="M0 -110 Q70 -60 80 10 Q80 90 0 104 Q-80 90 -80 10 Q-70 -60 0 -110 Z" fill={accent} stroke={K} strokeWidth="9" opacity=".95" />
+    <path d="M0 -110 Q70 -60 80 10 Q80 90 0 104 Q-80 90 -80 10 Q-70 -60 0 -110 Z" fill={id ? `url(#${id}-amber)` : accent} stroke={K} strokeWidth="9" opacity=".95" />
+    {[[-30, 50, 6], [36, 40, 4], [-10, 70, 5], [40, -20, 3]].map(([bx, by, br], i) => <circle key={i} cx={bx} cy={by} r={br} fill="#FFF0C8" opacity=".55" />)}
     <path d="M0 -84 Q48 -46 56 6 Q56 66 0 78 Q-56 66 -56 6 Q-48 -46 0 -84 Z" fill="#FFC56A" opacity=".6" />
     {/* zanzara */}
     <g stroke="#3A1E08" strokeWidth="4" fill="none">
@@ -161,7 +187,8 @@ export const Egg: React.FC<{ x: number; y: number; s?: number; crack?: number; o
 // ---------------------------------------------------------------- dinosauri generici (nel nostro stile, non come nel film)
 
 /** Brachiosauro di profilo, rivolto a destra, origine ai piedi. `reach` 0..1 alza la testa verso le foglie, `chew` mastica. */
-export const Brachio: React.FC<{ x: number; y: number; s?: number; t: number; reach?: number }> = ({ x, y, s = 1, t, reach = 0 }) => {
+export const Brachio: React.FC<{ id?: string; x: number; y: number; s?: number; t: number; reach?: number }> = ({ id, x, y, s = 1, t, reach = 0 }) => {
+  const skin = id ? `url(#${id}-brachio)` : '#7E9A8E';
   const sway = Math.sin(t * 0.7) * 10;
   const hx = 330 + sway + 30 * reach, hy = -860 - 120 * reach;
   const chew = Math.max(0, Math.sin(t * 6)) * 6;
@@ -171,9 +198,10 @@ export const Brachio: React.FC<{ x: number; y: number; s?: number; t: number; re
       {[[-150, 0], [-60, 0], [90, 0], [170, 0]].map(([lx], i) => (
         <path key={i} d={`M${lx - 30} -250 V0 H${lx + 30} V-250 Z`} fill={i % 2 ? '#5E7A70' : '#6E8A80'} stroke={K} strokeWidth="8" />
       ))}
-      <ellipse cx="0" cy="-280" rx="240" ry="120" fill="#7E9A8E" stroke={K} strokeWidth="9" />
+      <ellipse cx="0" cy="-280" rx="240" ry="120" fill={skin} stroke={K} strokeWidth="9" />
+      {[-120, -40, 40, 120].map((sx) => <path key={sx} d={`M${sx} -390 q12 30 -4 60`} stroke="#56706A" strokeWidth="6" fill="none" opacity=".6" />)}
       <path d="M-200 -240 Q0 -170 200 -250" fill="none" stroke="#A8C0B4" strokeWidth="8" opacity=".7" />
-      <path d={`M150 -330 Q${200 + sway * 0.4} -600 ${hx - 20} ${hy + 40} L${hx + 20} ${hy + 60} Q${240 + sway * 0.4} -580 230 -250 Z`} fill="#7E9A8E" stroke={K} strokeWidth="8" />
+      <path d={`M150 -330 Q${200 + sway * 0.4} -600 ${hx - 20} ${hy + 40} L${hx + 20} ${hy + 60} Q${240 + sway * 0.4} -580 230 -250 Z`} fill={skin} stroke={K} strokeWidth="8" />
       <path d={`M190 -330 Q${230 + sway * 0.4} -600 ${hx + 4} ${hy + 60}`} fill="none" stroke="#A8C0B4" strokeWidth="6" opacity=".7" />
       <g transform={`translate(${hx} ${hy})`}>
         <path d={`M-40 30 Q-50 -20 0 -30 Q60 -30 80 0 Q90 ${20 + chew} 40 ${30 + chew} Q0 40 -40 30 Z`} fill="#7E9A8E" stroke={K} strokeWidth="7" />
@@ -186,7 +214,8 @@ export const Brachio: React.FC<{ x: number; y: number; s?: number; t: number; re
 };
 
 /** T-rex di profilo, rivolto a destra, origine ai piedi; `jaw` 0..1 apre la bocca (ruggito), `step` muove le zampe. */
-export const TRex: React.FC<{ x: number; y: number; s?: number; t: number; jaw?: number; flip?: boolean }> = ({ x, y, s = 1, t, jaw = 0, flip = false }) => {
+export const TRex: React.FC<{ id?: string; x: number; y: number; s?: number; t: number; jaw?: number; flip?: boolean }> = ({ id, x, y, s = 1, t, jaw = 0, flip = false }) => {
+  const skin = id ? `url(#${id}-skin)` : '#7A8650';
   const breath = Math.sin(t * 1.6) * 4;
   const a = 26 * jaw;
   return (
@@ -196,7 +225,7 @@ export const TRex: React.FC<{ x: number; y: number; s?: number; t: number; jaw?:
       {/* zampa dietro */}
       <path d="M-80 -260 Q-140 -140 -110 -60 L-140 0 H-40 L-60 -60 Q-20 -150 0 -230 Z" fill="#5A6640" stroke={K} strokeWidth="8" />
       {/* corpo */}
-      <path d={`M-160 -330 Q-60 ${-450 + breath} 140 -420 Q230 -400 250 -330 Q230 -230 100 -220 Q-60 -200 -160 -260 Z`} fill="#7A8650" stroke={K} strokeWidth="9" />
+      <path d={`M-160 -330 Q-60 ${-450 + breath} 140 -420 Q230 -400 250 -330 Q230 -230 100 -220 Q-60 -200 -160 -260 Z`} fill={skin} stroke={K} strokeWidth="9" />
       <path d="M-100 -260 Q40 -230 200 -300" fill="none" stroke="#C4BE8E" strokeWidth="18" opacity=".7" />
       {[-60, 0, 60, 120].map((sx) => <path key={sx} d={`M${sx} -410 q14 40 -6 80`} stroke="#4A5432" strokeWidth="10" fill="none" opacity=".7" />)}
       {/* zampa davanti */}
@@ -212,7 +241,7 @@ export const TRex: React.FC<{ x: number; y: number; s?: number; t: number; jaw?:
           {Array.from({ length: 7 }, (_, i) => <path key={i} d={`M${40 + i * 24} ${72 + i * 3} l8 -16 l8 16`} fill="#F4EBD0" stroke={K} strokeWidth="3" />)}
           {jaw > 0.2 && <path d="M30 80 L190 92" stroke="#8E2A22" strokeWidth="10" />}
         </g>
-        <path d="M-20 50 Q-30 -50 60 -60 Q190 -60 240 10 Q250 40 230 60 L10 60 Z" fill="#7A8650" stroke={K} strokeWidth="9" />
+        <path d="M-20 50 Q-30 -50 60 -60 Q190 -60 240 10 Q250 40 230 60 L10 60 Z" fill={skin} stroke={K} strokeWidth="9" />
         {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${30 + i * 26} 58 l9 18 l9 -18`} fill="#F4EBD0" stroke={K} strokeWidth="3" />)}
         <path d="M60 -40 Q100 -54 140 -40" stroke="#4A5432" strokeWidth="10" fill="none" />
         <circle cx="96" cy="-10" r="12" fill="#F2C14E" stroke={K} strokeWidth="4" />
