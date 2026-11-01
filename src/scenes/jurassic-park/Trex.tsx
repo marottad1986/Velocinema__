@@ -1,104 +1,121 @@
 import React from 'react';
-import { camera, eio, mod, seg } from '../../lib/anim';
+import { camera, eio, eo, lerp, seg } from '../../lib/anim';
+import { Beam, GlassDrops, Glow, Lightning, NearMotes, Rain, flashAt } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
-import { Beam, Glow, GlassDrops, Lightning, NearMotes, Rain, flashAt } from '../../lib/elements';
 import type { SceneProps } from '../../types';
-import { Fence, K, TRex } from './Comuni';
+import { Fence, JPDefs, JungleTree, K, TRex } from './Comuni';
 
-// Il T-rex: notte di pioggia vista da dentro la jeep ferma; sul cruscotto il bicchiere d'acqua con i cerchi che tremano
-// a ogni passo; fuori i cavi della recinzione che si spezzano e cadono; torce, luci rosse; poi la jeep si rovescia.
-// Il T-rex (generico, nel nostro stile) compare solo quando sfonda la recinzione, illuminato da lampi e torcia.
-// Piani: cielo e lampi (0,2) · giungla (0,4) · recinzione (0,55) · impronta e torcia (0,7) · parabrezza e cruscotto (1,05) · pioggia vicina (1,6)
+// Il T-rex: di notte, sotto la pioggia, la vista da dentro la jeep ferma: il parabrezza con le gocce, il cruscotto e,
+// grande al centro, il bicchiere d'acqua (oggetto chiave). Fuori la recinzione del T-rex con i cavi spenti.
+// Eventi: seconda frase a ogni passo (cue 1 + 0,2 + 1,1·k, come i passi dello spartito) l'acqua del bicchiere fa cerchi
+// e il bicchiere trema; terza frase lampo, i cavi si spezzano e il T-rex (generico, nel nostro stile) sfonda la
+// recinzione e ruggisce (cue 2 + 0,5); quarta frase una valigetta da avvocato vola via nel fango (nessuna persona);
+// quinta frase secondo lampo e la vista si rovescia (la jeep dei bambini); sesta frase il fascio di una torcia (Grant).
+// Piani: cielo e lampi (0,2) · giungla (0,4) · recinzione (0,55) · T-rex (0,65) · valigetta nel fango (0,75)
+//        · parabrezza, cruscotto e bicchiere (1,05) · pioggia vicina e gocce (1,5–1,8)
 
 export const Trex: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
-  // passi: uno ogni 1,1 s a partire dalla frase dell'acqua che trema
-  const steps = [0, 1, 2, 3, 4].map((k) => cues[1] + 0.2 + k * 1.1);
-  const lastStep = steps.filter((s) => s <= t).pop();
-  const since = lastStep === undefined ? 9 : t - lastStep;
-  const quake = since < 0.5 ? Math.sin(since * 60) * (1 - since / 0.5) : 0;
-  const broken = eio(seg(t, cues[2], cues[2] + 0.8)); // «abbatte il recinto»
-  const roll = eio(seg(t, cues[4], cues[4] + 1.0)); // «rovescia la jeep»: la vista si inclina
-  const flash = flashAt(t, [cues[2] + 0.1, cues[4] + 0.2]);
-  const torch = seg(t, cues[5], cues[5] + 0.4); // una torcia: Grant porta via i bambini
-  const enter = eio(seg(t, cues[2] - 0.5, cues[2] + 0.5)); // il T-rex sfonda il recinto
-  const roar = seg(t, cues[2] + 0.5, cues[2] + 0.8) * (1 - seg(t, cues[2] + 2, cues[2] + 2.5)) + seg(t, cues[4], cues[4] + 0.3) * (1 - seg(t, cues[4] + 1, cues[4] + 1.4));
   const cam = camera(t, dur);
   const L = cam.layer;
-  const shake = `translate(${quake * 10} ${quake * 6}) rotate(${roll * 32} 540 1100)`;
+  const steps = [0, 1, 2, 3, 4].map((k) => cues[1] + 0.2 + k * 1.1);
+  const last = steps.filter((s) => s <= t).pop();
+  const since = last === undefined ? 9 : t - last;
+  const thump = last === undefined ? 0 : Math.exp(-since * 5);
+  const broken = eio(seg(t, cues[2], cues[2] + 0.8));
+  const enter = eio(seg(t, cues[2] - 0.5, cues[2] + 0.5));
+  const roar = seg(t, cues[2] + 0.5, cues[2] + 0.8) * (1 - seg(t, cues[2] + 2, cues[2] + 2.5)) + seg(t, cues[4], cues[4] + 0.3) * (1 - seg(t, cues[4] + 1, cues[4] + 1.4));
+  const flash = flashAt(t, [cues[2] + 0.1, cues[4] + 0.2]);
+  const brief = eo(seg(t, cues[3] + 0.2, cues[3] + 1.2));
+  const roll = eio(seg(t, cues[4], cues[4] + 1.0));
+  const torch = seg(t, cues[5], cues[5] + 0.4);
+  const shake = thump * 6 + (roll > 0 && roll < 1 ? Math.sin(t * 40) * 6 : 0);
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
-        <FxDefs id="tr" />
-        <Lin id="tr-sky" stops={[[0, '#03070A'], [0.5, '#0A1614'], [1, '#14241E']]} />
-        <Lin id="tr-mud" stops={[[0, '#2A3020'], [1, '#0E120C']]} />
-        <Lin id="tr-dash" stops={[[0, '#2A2A26'], [1, '#0A0A08']]} />
-        <Lin id="tr-water" stops={[[0, '#BFE4EC', 0.7], [1, '#7FB4C4', 0.8]]} />
+        <FxDefs id="tx" />
+        <JPDefs id="tx" />
+        <Lin id="tx-sky" stops={[[0, '#04080A'], [0.6, '#0E1A1E'], [1, '#1A2A2A']]} />
+        <Lin id="tx-mud" stops={[[0, '#2A2418'], [1, '#100C08']]} />
+        <Lin id="tx-dash" stops={[[0, '#3A3E36'], [0.2, '#24282A'], [1, '#101412']]} />
+        <Lin id="tx-glass" x2={1} y2={0} stops={[[0, '#C8E8F0', 0.55], [0.35, '#FFFFFF', 0.25], [0.7, '#C8E8F0', 0.15], [1, '#C8E8F0', 0.5]]} />
+        <Lin id="tx-water" stops={[[0, '#9AC8D8', 0.75], [1, '#4A7A90', 0.85]]} />
       </defs>
-      <g transform={`${cam.transform} ${shake}`}>
-        {/* PIANO 0 — cielo nero e lampi */}
-        <g transform={L(0.2)}>
-          <rect x="-400" y="-400" width="1880" height="2800" fill="url(#tr-sky)" />
-          <rect x="-400" y="-400" width="1880" height="2800" fill="#CFE2E8" opacity={flash * 0.3} />
-          <Lightning x={820} y={520} h={380} flash={flash} seed={12} />
-        </g>
-        {/* PIANO 1 — giungla scura */}
-        <g transform={L(0.4)}>
-          {[-100, 150, 420, 700, 980, 1200].map((x, i) => <ellipse key={x} cx={x} cy={900 + (i % 2) * 40} rx="180" ry="240" fill="#0C1A12" />)}
-          <Rain t={t} level="far" seed={4} color="#6E8A86" opacity={0.4} angle={14} />
-        </g>
-        {/* PIANO 2 — la recinzione che si spezza */}
-        <g transform={L(0.55)}>
-          <Fence x0={-60} x1={1140} y={1140} h={460} posts={5} broken={broken} sign={false} accent={P.accento} />
-          {enter > 0 && (
-            <g opacity={0.55 + 0.45 * Math.max(flash, torch * 0.6, 0.35)}>
-              <TRex x={-300 + 620 * enter} y={1180} s={1.05} t={t} jaw={roar} />
-            </g>
-          )}
-          {broken > 0 && broken < 1 && Array.from({ length: 10 }, (_, i) => (
-            <circle key={i} cx={540 + Math.cos(i) * 200 * broken} cy={900 + Math.sin(i * 1.7) * 140 * broken} r="6" fill="#FFE8A0" opacity={1 - broken} />
-          ))}
-        </g>
-        {/* PIANO 3 — fango con l'impronta enorme e la torcia */}
-        <g transform={L(0.7)}>
-          <path d="M-400 1140 H1480 V2400 H-400 Z" fill="url(#tr-mud)" />
-          <g transform="translate(760 1230)" opacity={seg(t, cues[3], cues[3] + 0.6)}>
-            <path d="M0 40 Q-60 30 -50 -20 L-110 -110 L-70 -120 L-20 -50 L0 -150 L40 -150 L40 -50 L90 -110 L120 -90 L60 -10 Q60 40 0 40 Z" fill="#141810" stroke="#3A4030" strokeWidth="5" />
-            <ellipse cx="0" cy="0" rx="40" ry="14" fill="#5A7A84" opacity=".6" />
+
+      <g transform={cam.transform}>
+        <g transform={`rotate(${-38 * roll} 540 1000) translate(0 ${shake})`}>
+          {/* PIANO 0 — cielo e lampi (0,2) */}
+          <g transform={L(0.2)}>
+            <rect x="-400" y="-400" width="1880" height="2800" fill="url(#tx-sky)" />
+            <rect x="-400" y="-400" width="1880" height="2800" fill="#DCE8F0" opacity={0.4 * flash} />
+            <Lightning x={900} y={520} h={360} flash={flash} seed={9} width={7} />
+            <Rain t={t} level="far" seed={2} color="#5A7080" opacity={0.5} />
           </g>
-          {torch > 0 && (
-            <g>
-              <Beam id="tr-torch" x={140} y={1180} t={t} length={700} spread={150} color="#FFF4D0" angle={-20 + Math.sin(t * 3) * 10} opacity={0.4 * torch} />
-              <Glow id="tr-torchg" x={140} y={1180} r={80} t={t} color="#FFF4D0" amp={0.1} rate={5} opacity={0.8 * torch} />
+          {/* PIANO 1 — giungla nera (0,4) */}
+          <g transform={L(0.4)}>
+            {Array.from({ length: 8 }, (_, i) => <JungleTree key={i} x={-160 + i * 200} y={1080} h={260 + (i % 3) * 60} t={t * 2} ph={i} leaf="#0E1E16" trunk="#0A140E" outline={false} />)}
+            <path d="M-400 1060 H1480 V2400 H-400 Z" fill="url(#tx-mud)" />
+          </g>
+          {/* PIANO 2 — la recinzione che si spezza (0,55) */}
+          <g transform={L(0.55)}>
+            <Fence id="tx" x0={-60} x1={1140} y={1080} h={460} posts={5} broken={broken} sign={false} accent={P.accento} />
+            {broken > 0 && broken < 1 && Array.from({ length: 10 }, (_, i) => <circle key={i} cx={540 + Math.cos(i) * 200 * broken} cy={860 + Math.sin(i * 1.7) * 140 * broken} r="6" fill="#FFE8A0" opacity={1 - broken} />)}
+          </g>
+          {/* PIANO 3 — il T-rex che sfonda e ruggisce (0,65) */}
+          <g transform={L(0.65)} opacity={enter}>
+            <TRex id="tx" x={lerp(-200, 120, enter)} y={1160} s={1.05} t={t} jaw={roar} />
+            <Glow id="tx-eye" x={lerp(-200, 120, enter) + 420} y={1160 - 490} r={60} t={t} color="#F2C14E" amp={0.1} rate={4} opacity={0.5} />
+          </g>
+          {/* PIANO 4 — la valigetta dell'avvocato che vola nel fango (0,75) */}
+          <g transform={L(0.75)} opacity={seg(brief, 0, 0.1)}>
+            <g transform={`translate(${lerp(760, 960, brief)} ${lerp(1000, 1150, brief) - Math.sin(brief * Math.PI) * 120}) rotate(${brief * 300})`}>
+              <rect x="-50" y="-34" width="100" height="68" rx="8" fill="url(#tx-wood)" stroke={K} strokeWidth="5" />
+              <path d="M-20 -34 V-48 H20 V-34" stroke={K} strokeWidth="5" fill="none" />
+              <rect x="-8" y="-6" width="16" height="12" fill="#E8C060" />
             </g>
-          )}
-        </g>
-        {/* PIANO 4 — parabrezza bagnato e cruscotto con il bicchiere (accento sulla luce di emergenza) */}
-        <g transform={L(1.05)}>
-          <GlassDrops t={t} x={0} y={540} w={1080} h={640} seed={9} n={16} color="#9FC0C8" />
-          <path d="M-400 -400 H-20 L140 1240 H-400 Z" fill="#050505" />
-          <path d="M1480 -400 H1100 L940 1240 H1480 Z" fill="#050505" />
-          <path d="M-400 1240 Q540 1180 1480 1240 V2400 H-400 Z" fill="url(#tr-dash)" stroke={K} strokeWidth="8" />
-          <rect x="760" y="1190" width="120" height="40" rx="8" fill={P.accento} opacity={0.4 + 0.6 * (mod(t, 1) < 0.5 ? 1 : 0)} />
-          <Glow id="tr-hazard" x={820} y={1210} r={120} t={t} color={P.accento} amp={0} opacity={mod(t, 1) < 0.5 ? 0.5 : 0.1} />
-          {/* il bicchiere: a ogni passo, cerchi concentrici sull'acqua */}
-          <g transform="translate(400 1150)">
-            <path d="M-70 -120 L-56 60 H56 L70 -120 Z" fill="#DDEFF4" opacity=".35" stroke="#E8F4F8" strokeWidth="5" />
-            <path d="M-66 -70 L-56 60 H56 L66 -70 Z" fill="url(#tr-water)" />
-            <ellipse cx="0" cy={-70 + quake * 3} rx="66" ry="14" fill="#DDF2F8" stroke="#FFFFFF" strokeWidth="3" />
-            {since < 1.2 && [0, 1, 2].map((k) => {
-              const p = seg(since, k * 0.12, 0.7 + k * 0.12);
-              return <ellipse key={k} cx="0" cy={-70 + quake * 3} rx={8 + 56 * p} ry={2 + 11 * p} fill="none" stroke="#5A8A9A" strokeWidth="3" opacity={(1 - p) * 0.9} />;
-            })}
-            <path d="M-56 -110 L-48 40" stroke="#FFFFFF" strokeWidth="6" opacity=".5" />
+          </g>
+
+          {/* PIANO 5 — parabrezza con le gocce, cruscotto e il bicchiere d'acqua (1,05) */}
+          <g transform={L(1.05)}>
+            <GlassDrops t={t} x={-100} y={560} w={1280} h={560} seed={7} n={18} color="#C8E0E8" />
+            <path d="M-400 -400 H1480 V560 Q540 500 -400 560 Z" fill="#0E1210" stroke={K} strokeWidth="10" />
+            <path d="M-400 560 Q540 500 1480 560" stroke="#3A3E36" strokeWidth="14" fill="none" />
+            <rect x="-400" y="530" width="300" height="1900" fill="#14181A" transform="rotate(8 -100 530)" />
+            <rect x="1180" y="530" width="300" height="1900" fill="#14181A" transform="rotate(-8 1180 530)" />
+            <path d="M-400 1140 Q540 1080 1480 1140 V2400 H-400 Z" fill="url(#tx-dash)" stroke={K} strokeWidth="10" />
+            <path d="M-300 1130 Q540 1074 1380 1130" stroke="#6A7068" strokeWidth="5" fill="none" />
+            {[[200, 1240], [880, 1240]].map(([x, y], i) => <g key={i}><circle cx={x} cy={y} r="56" fill="#1A1E1C" stroke={K} strokeWidth="7" /><path d={`M${x} ${y} l${Math.cos(i + t * 0.1) * 40} ${-30}`} stroke={P.accento} strokeWidth="6" /><circle cx={x} cy={y} r="8" fill="#9AA29A" /></g>)}
+            {/* il bicchiere d'acqua */}
+            <g transform={`translate(${540 + thump * 4 * Math.sin(t * 60)} 1110)`}>
+              <ellipse cx="0" cy="8" rx="100" ry="14" fill="#000" opacity=".4" />
+              <path d="M-80 -240 L-64 0 H64 L80 -240 Z" fill="url(#tx-glass)" stroke={K} strokeWidth="7" />
+              <path d="M-74 -150 L-64 0 H64 L74 -150 Z" fill="url(#tx-water)" />
+              <ellipse cx="0" cy="-150" rx="74" ry="14" fill="#B8E0EC" stroke="#E8F8FF" strokeWidth="3" />
+              {[0, 1, 2].map((k) => {
+                const rr = (since * 1.2 + k * 0.25) % 1;
+                return since < 1.1 ? <ellipse key={k} cx="0" cy="-150" rx={8 + 64 * rr} ry={2 + 12 * rr} fill="none" stroke="#FFFFFF" strokeWidth="3" opacity={(1 - rr) * 0.9} /> : null;
+              })}
+              <path d="M-56 -224 L-48 -20" stroke="#FFFFFF" strokeWidth="8" opacity=".6" strokeLinecap="round" />
+              <Glow id="tx-cup" x={0} y={-140} r={180} t={t} color="#B8E0EC" amp={0.05} rate={2} opacity={0.25} />
+            </g>
+          </g>
+          {/* PIANO 6 — la torcia di Grant (1,2) */}
+          <g transform={L(1.2)} opacity={torch}>
+            <Beam id="tx-torch" x={-60} y={700} t={t} length={1200} spread={360} color="#FFF4C8" angle={20} sweep={8} sweepRate={1.4} opacity={0.5} />
           </g>
         </g>
+
+        {/* PIANO 7 — pioggia vicina (1,6) */}
         <g transform={L(1.6)}>
-          <Rain t={t} level="near" seed={19} color="#B8CCD0" opacity={0.45} angle={14} />
-          <NearMotes id="tr-near" t={t} color="#B8CCD0" n={5} y0={1300} opacity={0.07} />
+          <Rain t={t} level="near" seed={4} color="#B8C8D0" opacity={0.35} />
         </g>
+        <g transform={L(1.8)}>
+          <NearMotes id="tx-near" t={t} color="#C8D8E0" n={5} opacity={0.07} />
+        </g>
+        <rect x="-200" y="-200" width="1480" height="2400" fill="#000" opacity={0.3 * roll} />
       </g>
-      <Finish id="tr" tint="#0F1F17" tintOpacity={0.13} />
+      <Finish id="tx" tint="#0F1F17" tintOpacity={0.14} />
     </svg>
   );
 };
+// Tempi evento (s nel capitolo): passi cue1 + 0,2 + 1,1·k · recinto cue2 → + 0,8, ruggito cue2 + 0,5 · valigetta cue3 + 0,2 · jeep rovesciata cue4 · torcia cue5.
