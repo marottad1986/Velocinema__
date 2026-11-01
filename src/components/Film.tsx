@@ -1,3 +1,4 @@
+import { grigliaMusicale } from '../lib/anim';
 import React from 'react';
 import { AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig } from 'remotion';
 import { ChapterOverlay, subtitleTimes } from './ChapterOverlay';
@@ -32,7 +33,8 @@ export const ChapterView: React.FC<{ slug: string; index: number }> = ({ slug, i
   return (
     <AbsoluteFill style={{ background: film.data.palette.scuro, overflow: 'hidden' }}>
       {def ? (
-        <def.Component t={t} dur={ch.durata} palette={film.data.palette} cues={subtitleTimes(ch.sottotitoli, ch.durata).map(([a]) => a)} />
+        <def.Component t={t} dur={ch.durata} palette={film.data.palette} cues={subtitleTimes(ch.sottotitoli, ch.durata).map(([a]) => a)}
+          griglia={grigliaMusicale(film.data.bpm, start, film.data.copertina.durata)} />
       ) : (
         <Placeholder film={film} text={ch.scena} />
       )}

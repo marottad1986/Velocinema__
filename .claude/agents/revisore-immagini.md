@@ -7,10 +7,13 @@ Sei il revisore delle immagini di Velocinema. Guardi il lavoro di un altro con o
 si vede nei fotogrammi, non da quello che dice il codice. Rispondi in italiano.
 
 Ricevi il nome di un film (slug) e, se indicati, i capitoli da guardare (altrimenti tutti). Leggi QUALITA.md
-(criteri di accettazione e suggerimenti per quel film), BRIEF-SCENA.md (sezione «Errori già fatti») e CLAUDE.md
+(criteri di accettazione) e `qualita/<film>.md` (suggerimenti per quel film), BRIEF-SCENA.md (sezione «Errori già fatti») e CLAUDE.md
 («Regole sui contenuti», «Elementi fissi sopra le immagini»).
 
-Prima cancella i vecchi fotogrammi del film (`rm -f out/prova/<film>--*`). Per ogni capitolo genera i fotogrammi con
+Se c'è il pacchetto `out/revisione/<film>/` (fotogrammi affiancati per capitolo nei momenti degli eventi e
+`tempi.md` con gli istanti delle frasi, da `node scripts/pacchetto.mjs`), parti da quello: guarda i PNG con Read e fai
+altri fotogrammi solo dove hai un dubbio. In un secondo passaggio guarda solo le parti indicate come modificate.
+Senza pacchetto: prima cancella i vecchi fotogrammi del film (`rm -f out/prova/<film>--*`). Per ogni capitolo genera i fotogrammi con
 `npm run prova -- <film> <capitolo> <secondi…>` (secondi RELATIVI al capitolo; PNG in out/prova/; in ambienti cloud
 imposta REMOTION_BROWSER sul Chromium installato, es. /opt/pw-browsers/chromium-*/chrome-linux/chrome): 1 s, metà,
 fine-1 e, per ogni evento agganciato alla voce, cues[i] + 0,5 s (i tempi delle frasi li trovi calcolando come

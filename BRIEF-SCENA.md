@@ -6,7 +6,7 @@ per scena): qui c'è il metodo per applicarle senza rileggere tutto il progetto.
 
 ## 1. Cosa leggere (e solo questo)
 1. `films/<film>.json`: il capitolo (titolo, durata, `scena`, `sottotitoli`) e la palette.
-2. `QUALITA.md` §8 (criteri) e §9 (suggerimenti per la tua scena) e la velatura del film in §6.
+2. `QUALITA.md` §8 (criteri) e la velatura del film in §6; `qualita/<film>.md` (look e suggerimenti per la tua scena).
 3. `src/lib/elements.tsx`: gli elementi pronti (elenco al §3). **Usali invece di ridisegnarli.**
 4. Una sola scena d'esempio, la più simile alla tua (vedi §6). Non leggere le altre.
 
@@ -92,9 +92,22 @@ funzione pura di `t`, seme, `id`, niente filtri) e mettilo nel catalogo. Il rest
 - **Lampi.** Massimo due per scena, mai più di 3 al secondo: usa sempre `flashAt`.
 - **Personaggi.** Mai persone, nemmeno sagome o mani: si raccontano luoghi e oggetti (cappello, scarpe, biglietto, tazza).
   Animali e dinosauri sì, generici e nel nostro stile (mai il design del film).
+- **Oggetto protagonista solo in una frase.** Se compare e sparisce, per gran parte del capitolo l'inquadratura è vuota:
+  l'oggetto chiave c'è sempre (in sagoma, nella nebbia, spento) e la frase lo fa emergere o lo cambia.
+- **Oggetti sospesi o incollati.** Chiavi che cadono e si fermano a mezz'aria, foglie appiccicate sulle facce verticali:
+  ogni oggetto poggia su qualcosa (pavimento con ombra, mucchio alla base) o pende da un gancio visibile.
+- **Tagliati da bordi o primo piano.** Oggetti importanti tagliati dal bordo o coperti dal primo piano a fine camera
+  (la camera sposta il primo piano di ~50 px): tenerli ad almeno 80 px dal bordo e dal primo piano.
+- **Nella zona del titolo.** Rami, cornicioni, uccelli, note o fumo che salgono attraversano le lettere: niente sopra
+  y ≈ 640 dove c'è il titolo (anche le particelle che salgono e i `Gulls`).
+- **Giocattoli figurativi.** Soldatini, bambole, pupazzi con il viso contano come figure umane: trottole, cubi, palle.
+- **Oggetti fuori scala.** Rastrelli, scope, attrezzi: confrontare con la porta o il mobile vicino (es. ~2/3 della porta).
+- **Evento invisibile.** Un evento che cambia solo l'opacità di una patina non si vede: serve un cambio netto (luce,
+  movimento, cornice, alone).
+- **Eventi fuori tempo.** Gli istanti degli eventi si scrivono con `griglia(...)`, così cadono sul battito della musica.
 - **Props non JSON.** Le composizioni ricevono solo lo slug: non passare componenti o funzioni come props.
 
-## 5. Verifica (due fotogrammi bastano)
+## 5. Verifica (due fotogrammi bastano), e controllo da sé prima dei revisori
 In PowerShell (Node/ffmpeg non sono nel PATH di Bash):
 ```
 $env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
@@ -106,7 +119,8 @@ In un ambiente cloud (Linux, Node e ffmpeg già nel PATH) basta indicare il Chro
 (i secondi sono relativi all'inizio del capitolo).
 - Guarda i PNG in `out/prova/` con lo strumento di lettura immagini: uno nel momento dell'evento principale
   (lampo, oggetto che entra, scritta), uno in un momento tranquillo con un sottotitolo lungo a schermo.
-- Controlla i criteri di QUALITA §8 e la lista del §4. Correggi e riguarda **solo** se qualcosa non va:
+- Controlla i criteri di QUALITA §8 e la lista del §4 (punto per punto, è la lista di ciò che i revisori trovano più
+  spesso). Correggi e riguarda **solo** se qualcosa non va:
   di solito basta un giro di correzioni.
 - Video del capitolo con musica: `npm run render -- <film> <id>`.
 

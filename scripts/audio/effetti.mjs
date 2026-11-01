@@ -135,11 +135,21 @@ const carica = (id) => {
  * rate = velocità (cambia anche il tono); largo = per i tappeti (vento, pioggia): il canale destro legge
  * lo stesso file spostato di largo secondi, così il suono si apre in stereo.
  */
+const PRESE_AVVISATE = new Set();
 export const clip = (mix, id, { t, da = 0, durata, gain = 1, pan = 0, rev = 0.15, fadeIn = 0.005, fadeOut = 0.05, lp = 0, rate = 1, largo = 0 }) => {
   if (globalThis.VELOCINEMA_STEM === 'musica') return; // scripts/livelli.mjs: misura della sola musica
   const { sr, x } = carica(id);
   const step = (sr / SR) * rate;
   const dur = durata ?? (x.length / sr - da);
+  // presa oltre la fine del file: il tratto mancante sarebbe silenzio (avviso una volta per presa)
+  const fine = x.length / sr;
+  if (da + dur * rate > fine + 0.05) {
+    const chiave = `${id}@${da}`;
+    if (!PRESE_AVVISATE.has(chiave)) {
+      PRESE_AVVISATE.add(chiave);
+      console.warn(`ATTENZIONE effetto «${id}»: presa da ${da} s per ${dur.toFixed(2)} s, ma il file dura ${fine.toFixed(2)} s (${(da + dur * rate - fine).toFixed(2)} s di silenzio)`);
+    }
+  }
   const len = Math.ceil((dur * SR) / rate);
   const read = (pos) => {
     const k = Math.floor(pos), f = pos - k;
