@@ -85,7 +85,7 @@ export const Cucina: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               <text x="160" y="794" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="16" fill="#6AF0A0">☎ TELEFONI OK</text>
             </g>
           </g>
-          <Glow id="cu-term" x={160} y={735} r={220} t={t} color="#6AF0A0" amp={0.06} rate={4} opacity={0.35 * screen} />
+          <Glow id="cu-term" x={160} y={735} r={160} t={t} color="#6AF0A0" amp={0.06} rate={4} opacity={0.2 * screen} />
         </g>
 
         {/* PIANO 2 — rastrelliera con i mestoli che oscillano, la cappa (0,6) */}
@@ -115,7 +115,7 @@ export const Cucina: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           ))}
           {/* pentole sul bancone di destra, una cade */}
           <g transform="translate(860 960)"><rect x="-50" y="-70" width="100" height="70" rx="8" fill="url(#cu-steel)" stroke={K} strokeWidth="6" /><path d="M-60 -70 H60" stroke={K} strokeWidth="8" /><Wisps t={t} x={0} y={-74} color="#E8F0EC" n={2} h={110} opacity={0.4} /></g>
-          <g transform={`translate(${lerp(1000, 1040, pot)} ${lerp(930, 1150, pot * pot)}) rotate(${pot * 120})`}>
+          <g transform={`translate(${lerp(980, 840, pot)} ${lerp(930, 1220, pot * pot)}) rotate(${pot * 150})`}>
             <rect x="-44" y="-40" width="88" height="60" rx="8" fill="url(#cu-steel)" stroke={K} strokeWidth="6" />
             <path d="M44 -20 H90" stroke={K} strokeWidth="10" strokeLinecap="round" />
           </g>
