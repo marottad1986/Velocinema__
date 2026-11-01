@@ -119,16 +119,16 @@ export default (mix, T) => {
   // copertina: la trottola che parte
   clip(mix, 'passaggio', { t: 0.2, da: 0.56, durata: 1.0, gain: 0.25, fadeOut: 0.3, rev: 0.3 });
   // capitolo 1: il sogno che compare, i segreti che tornano, la trottola
-  bell(mix, 76, { t: at('estrazione', 1), vel: 34 });
-  bell(mix, 79, { t: at('estrazione', 1, 1.1), vel: 34, pan: 0.2 });
-  bell(mix, 83, { t: at('estrazione', 2, 0.1), vel: 38 });
+  bell(mix, 79, { t: at('estrazione', 1), vel: 34 });
+  bell(mix, 83, { t: at('estrazione', 1, 1.1), vel: 34, pan: 0.2 });
+  bell(mix, 86, { t: at('estrazione', 2, 0.1), vel: 38 });
   // capitolo 2: il seme compare in mano a Saito e passa a Fischer
   bell(mix, 88, { t: at('innesto', 1, 0.5), vel: 38 });
   bell(mix, 83, { t: at('innesto', 2, 0.4), vel: 34, pan: 0.2 });
   // capitolo 3: i tre piani dei sogni che compaiono uno sotto l'altro
-  [0.1, 0.55, 1.0].forEach((d, k) => bell(mix, [71, 67, 64][k], { t: at('livelli', 2, d), vel: 40 }));
+  [0.1, 0.55, 1.0].forEach((d, k) => bell(mix, [88, 83, 79][k], { t: at('livelli', 2, d), vel: 40 }));
   // capitolo 4: gli orologi di ogni piano
-  [['tempo', 0, 0.4, 83], ['tempo', 2, 0.2, 79], ['tempo', 3, 0.1, 76], ['tempo', 3, 0.9, 71]].forEach(([id, n, d, m]) => bell(mix, m, { t: at(id, n, d), vel: 34 }));
+  [['tempo', 0, 0.4, 95], ['tempo', 2, 0.2, 91], ['tempo', 3, 0.1, 88], ['tempo', 3, 0.9, 83]].forEach(([id, n, d, m]) => bell(mix, m, { t: at(id, n, d), vel: 34 }));
   // capitolo 5: il furgone che cade dal ponte, i calci in salita, poi tutti insieme
   clip(mix, 'passaggio', { t: at('calcio', 0, 0.6) - 0.2, da: 12.27, durata: 1.2, gain: 0.3, fadeOut: 0.4, rev: 0.35 });
   colpo(mix, 'grancassa', 'bdrum_mp', { t: at('calcio', 0, 1.6), vel: 100, gain: 0.8, rev: 0.4 });
