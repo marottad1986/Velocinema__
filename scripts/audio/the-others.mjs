@@ -133,7 +133,7 @@ export default (mix, T) => {
     }
   }
 
-  // ---- album: la soffitta, il lenzuolo che scivola (telo), l'album che si apre (pagine), le quattro foto (glockenspiel)
+  // ---- album: la soffitta, il lenzuolo che scivola (telo), l'album che si apre (pagine), la foto protagonista (glockenspiel)
   strings(B(T.album), B(T.marito), { half: true, vel: 48, gain: 0.44, k0: 1 });
   harp(B(T.album), B(cue('album', 2)), { vel: 44, gain: 0.26, k0: 1 });
   clip(mix, 'telo', { t: cue('album', 0) + 0.6, da: 4.57, durata: 1.0, gain: 0.22, fadeOut: 0.4, rev: 0.3, pan: -0.4 });
@@ -191,9 +191,9 @@ export default (mix, T) => {
   lullaby(quiete, B(T.fine), { vel: 44, gain: 0.32 });
 
   // ---- fine: l'elmetto un'ultima volta (corno), l'auto che se ne va, il sole: tutto in Re maggiore
-  wind(T.fine, cue('fine', 2) - T.fine, 0.05, 2);
+  wind(T.fine, cue('fine', 2) - T.fine, 0.035, 2);
   const sole = T.villa + Math.round((cue('fine', 2) - T.villa) / BEAT) * BEAT; // Fine.tsx: il sole e le tende
-  clip(mix, 'auto_epoca', { t: cue('fine', 1) + 0.1, da: 16.3, durata: 3.6, gain: 0.1, fadeIn: 0.5, fadeOut: 0.8, lp: 2500, rev: 0.2 }); // l'auto che se ne va
+  clip(mix, 'auto_epoca', { t: cue('fine', 1) + 0.1, da: 19.0, durata: 3.6, gain: 0.1, fadeIn: 0.5, fadeOut: 0.8, lp: 2500, rev: 0.2 }); // l'auto che se ne va
   strings(B(T.fine), sole, { half: true, vel: 46, gain: 0.34 });
   suona(mix, 'corno', 57, { t: cue('fine', 0) + 0.2, dur: 2.6, vel: 50, gain: 0.26, attack: 0.5, release: 1.4, rev: 0.7, pan: -0.3 });
   harp(B(cue('fine', 1)), sole, { vel: 44, gain: 0.24, chords: CHM });
