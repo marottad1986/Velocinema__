@@ -21,8 +21,8 @@ export const Tende: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const ringSwing = seg(t, cues[0] + 0.4, cues[0] + 0.8) * Math.exp(-Math.max(0, t - cues[0] - 0.8) * 0.8);
   const fall = seg(t, cues[2] + 0.4, cues[2] + 0.9);
   const bounce = t > cues[2] + 0.9 ? Math.abs(Math.sin((t - cues[2] - 0.9) * 9)) * 30 * Math.exp(-(t - cues[2] - 0.9) * 5) : 0;
-  const keyY = lerp(1300, 1640, fall) - Math.sin(Math.PI * fall) * 260 - bounce;
-  const keyX = lerp(1180, 660, fall);
+  const keyY = lerp(1300, 1830, fall) - Math.sin(Math.PI * fall) * 260 - bounce;
+  const keyX = lerp(1180, 760, fall);
   const light = 0.15 + 0.85 * gone;
 
   return (
@@ -77,7 +77,7 @@ export const Tende: React.FC<SceneProps> = ({ t, dur, cues }) => {
               <circle cx="0" cy="10" r="13" fill="none" stroke="#D8B868" strokeWidth="4" />
             </g>
           ))}
-          <Glow id="te-win" x={540} y={950} r={520} t={t} color="#FFF6D8" amp={0.03} rate={1} opacity={0.65 * gone} />
+          <Glow id="te-win" x={540} y={950} r={520} t={t} color="#FFF6D8" amp={0.03} rate={1} opacity={0.35 * gone} />
         </g>
 
         {/* PIANO 2 — pavimento e fasci di sole (0,6) */}
@@ -125,7 +125,7 @@ export const Tende: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <circle cx="0" cy="75" r="8" fill="url(#te-brass)" stroke={K} strokeWidth="3" />
           </g>
           <Lampada id="te" x={430} y={1544} t={t} s={0.5} lit={0} glow={0} />
-          <g opacity={fall > 0 ? 1 : 0}><Chiavi id="te" x={keyX} y={keyY} s={0.9} rot={lerp(-200, 160, fall)} /></g>
+          <g opacity={fall > 0 ? 1 : 0}><Ombra id="te" x={keyX + 10} y={1900} rx={90} ry={12} opacity={fall} /><Chiavi id="te" x={keyX} y={keyY} s={0.9} rot={lerp(-200, 160, fall)} /></g>
         </g>
 
         {/* PIANO 5 — pulviscolo nel sole (1,5–1,8) */}

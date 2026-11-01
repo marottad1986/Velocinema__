@@ -2,6 +2,7 @@ import React from 'react';
 import { camera, eio, eo, lerp, seg } from '../../lib/anim';
 import { Dust, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
+import { SERIF } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
 import { Chiavi, K, Lampada, OthersDefs, Ombra, Porta, Tenda } from './Comuni';
 
@@ -77,8 +78,8 @@ export const Luce: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <Porta id="lu" x={620} y={1250} w={300} h={560} turn={turn} />
           <Glow id="lu-key" x={874} y={1005} r={110} t={t} color="#FFD878" amp={0.1} rate={4} opacity={0.7 * seg(t, cues[2] + 0.3, cues[2] + 0.6) * (1 - 0.6 * seg(t, cues[2] + 1.6, cues[2] + 3))} />
           {/* gancio e mazzo di chiavi */}
-          <circle cx="1000" cy="830" r="8" fill={`url(#lu-brass)`} stroke={K} strokeWidth="4" />
-          <Chiavi id="lu" x={1000} y={860} s={0.8} swing={18 * swing} t={t * 3} />
+          <circle cx="985" cy="830" r="8" fill={`url(#lu-brass)`} stroke={K} strokeWidth="4" />
+          <Chiavi id="lu" x={985} y={860} s={0.8} swing={18 * swing} t={t * 3} />
         </g>
 
         {/* PIANO 2 — la lama di sole sul pavimento (0,7) */}
@@ -113,16 +114,21 @@ export const Luce: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 4 — soldatino di legno a terra e bordo di una tenda in primo piano (1,25) */}
         <g transform={L(1.25)}>
-          <g transform="translate(170 1700) rotate(-8)">
-            <Ombra id="lu" x={0} y={6} rx={60} ry={10} />
-            <rect x="-20" y="-90" width="40" height="60" fill="#B83A2E" stroke={K} strokeWidth="5" />
-            <rect x="-18" y="-30" width="16" height="30" fill="#1E2A44" stroke={K} strokeWidth="4" />
-            <rect x="2" y="-30" width="16" height="30" fill="#1E2A44" stroke={K} strokeWidth="4" />
-            <circle cx="0" cy="-108" r="18" fill="#E8C8A0" stroke={K} strokeWidth="4" />
-            <rect x="-16" y="-160" width="32" height="40" fill="#141414" stroke={K} strokeWidth="4" />
-            <path d="M-20 -70 H20" stroke="#E8C878" strokeWidth="5" />
+          {/* trottola di legno e cubi dei bambini sul pavimento */}
+          <g transform={`translate(190 1720) rotate(${-10 + 3 * Math.sin(t * 2)})`}>
+            <Ombra id="lu" x={0} y={8} rx={80} ry={12} />
+            <path d="M0 0 L-70 -70 Q-74 -96 -40 -104 H40 Q74 -96 70 -70 Z" fill="#B83A2E" stroke={K} strokeWidth="6" />
+            <path d="M-64 -84 H64" stroke="#E8C878" strokeWidth="8" />
+            <path d="M-50 -98 Q0 -108 50 -98" stroke="#F2A090" strokeWidth="4" fill="none" opacity=".7" />
+            <rect x="-8" y="-140" width="16" height="38" rx="6" fill="url(#lu-wood)" stroke={K} strokeWidth="5" />
           </g>
-          <Tenda id="lu" x={980} y={-100} w={200} h={2300} t={t} side="right" sway={6} folds={3} />
+          {[[330, 1790, '#3A6AA0', 'A'], [420, 1800, '#D8A030', 'B'], [372, 1720, '#5A8A4A', 'C']].map(([x, y, c, l], i) => (
+            <g key={i} transform={`translate(${x} ${y}) rotate(${i * 7 - 6})`}>
+              <rect x="-42" y="-42" width="84" height="84" rx="6" fill={String(c)} stroke={K} strokeWidth="6" />
+              <text x="0" y="16" textAnchor="middle" fontFamily={SERIF} fontSize="48" fill="#F2EAD4">{l}</text>
+            </g>
+          ))}
+          <Tenda id="lu" x={1060} y={-100} w={200} h={2300} t={t} side="right" sway={6} folds={3} />
         </g>
 
         {/* PIANO 5 — pulviscolo nel sole e vicino alla camera (1,5–1,8) */}

@@ -13,7 +13,7 @@ import { loadFilm, timeline } from './film.mjs';
 
 export const strumenti = ['pianoforte_coda', 'violini', 'viole', 'celli', 'contrabbasso', 'violini_trem', 'celli_trem', 'contrabbasso_pizz',
   'arpa', 'glockenspiel', 'timpani', 'gong', 'corno', 'piatto_sospeso'];
-export const effetti = ['vento_leggero', 'vento_raffiche', 'fiammifero', 'stoffa', 'serratura', 'campanello', 'legno_cigolio', 'telo', 'pagine',
+export const effetti = ['auto_epoca', 'catene', 'vento_leggero', 'vento_raffiche', 'fiammifero', 'stoffa', 'serratura', 'campanello', 'legno_cigolio', 'telo', 'pagine',
   'monete', 'campana_grave', 'tintinnio', 'colpi_legno', 'porta_cigolio'];
 /** Casa grande e vuota: coda lunga, alte smorzate. */
 export const sala = { rt60: 2.6, brillo: 4200, predelay: 0.03, wet: 0.5 };
@@ -88,10 +88,10 @@ export default (mix, T) => {
   wind(0, T.villa + 0.5, 0.035);
   suona(mix, 'contrabbasso', 38, { t: 0.2, dur: 3.8, vel: 46, gain: 0.45, attack: 0.8, release: 1.2, rev: 0.6 });
   [50, 53, 57].forEach((m, j) => suona(mix, 'celli', m, { t: 0.4 + j * 0.25, dur: 3.4 - j * 0.25, vel: 44, pan: (j - 1) * 0.3, gain: 0.4, attack: 0.7, release: 1.2, rev: 0.6 }));
-  [74, 77, 81].forEach((m, j) => glock(1.4 + j * BEAT, m, 0.14));
+  [74, 77, 81].forEach((m, j) => glock(1.5 + j * BEAT, m, 0.14));
 
   // ---- villa: archi a metà passo, la ninna nanna; due finestre che si accendono (arpa); la lampada (fiammifero)
-  wind(T.villa, T.luce - T.villa, 0.07, 6);
+  wind(T.villa, T.luce - T.villa, 0.04, 6);
   strings(B(T.villa), B(T.luce), { half: true, vel: 44, gain: 0.32 });
   lullaby(B(T.villa), B(T.luce), { vel: 48, gain: 0.36 });
   [cue('villa', 1) + 0.3, cue('villa', 1) + 1.3].forEach((t, j) => suona(mix, 'arpa', [62, 65][j], { t, dur: 2, vel: 50, pan: -0.2, rev: 0.6, gain: 0.3, release: 1.4 }));
@@ -100,35 +100,36 @@ export default (mix, T) => {
 
   // ---- luce: la lama di sole (archi acuti), le tende che si chiudono (stoffa), la chiave che gira (serratura)
   strings(B(T.luce), B(cue('luce', 1)), { vel: 46, gain: 0.32, high: true, k0: 1 });
-  harp(B(T.luce), B(T.domestici), { vel: 48, gain: 0.36 });
+  harp(B(T.luce), B(T.domestici), { vel: 48, gain: 0.28 });
   lullaby(B(T.luce), B(cue('luce', 1)), { vel: 44, gain: 0.3 });
   clip(mix, 'stoffa', { t: cue('luce', 1) + 0.1, da: 15, durata: 1.3, gain: 0.22, fadeIn: 0.15, fadeOut: 0.5, pan: -0.35, rev: 0.3 }); // Luce.tsx: le tende si chiudono
   strings(B(cue('luce', 1)), B(T.domestici), { vel: 42, gain: 0.3, k0: 2 });
-  clip(mix, 'serratura', { t: cue('luce', 2) + 0.4, da: 2.43, durata: 0.45, gain: 0.32, rev: 0.35, pan: 0.3 }); // la chiave gira
+  clip(mix, 'serratura', { t: cue('luce', 2) + 0.4, da: 2.43, durata: 0.62, gain: 0.32, rev: 0.35, pan: 0.3 }); // la chiave gira
+  clip(mix, 'catene', { t: cue('luce', 2) + 0.45, da: 1.45, durata: 0.6, gain: 0.12, fadeOut: 0.2, pan: 0.4 }); // il mazzo di chiavi oscilla
   suona(mix, 'contrabbasso_pizz', 38, { t: cue('luce', 2) + 0.45, dur: 1, vel: 60, gain: 0.35, rev: 0.4, release: 0.4 });
 
   // ---- domestici: le orme che se ne vanno (pizzicati), la campanella, i tre oggetti che compaiono (arpa)
-  wind(T.domestici, T.pianoforte - T.domestici, 0.035, 12);
-  strings(B(T.domestici), B(T.pianoforte), { half: true, vel: 44, gain: 0.32, k0: 2 });
-  for (let k = 0; k < 6; k++) suona(mix, 'contrabbasso_pizz', [50, 48, 46, 45, 43, 41][k], { t: B(cue('domestici', 0)) + BEAT / 2 + k * BEAT / 2, dur: 0.5, vel: 54 - k * 3, pan: -0.3 + k * 0.1, rev: 0.45, gain: 0.3, release: 0.4 });
-  clip(mix, 'campanello', { t: cue('domestici', 1) + 0.3, da: 0, durata: 2, gain: 0.3, fadeOut: 0.8, rev: 0.5, pan: 0.3 }); // Domestici.tsx: la campanella oscilla
+  wind(T.domestici, T.pianoforte - T.domestici, 0.035, 1);
+  strings(B(T.domestici), B(T.pianoforte), { half: true, vel: 48, gain: 0.44, k0: 2 });
+  for (let k = 0; k < 9; k++) suona(mix, 'contrabbasso_pizz', [50, 48, 46, 45, 43, 41, 40, 38, 36][k], { t: T.domestici + BEAT / 2 + (k * BEAT) / 4, dur: 0.5, vel: 54 - k * 2, pan: -0.3 + k * 0.07, rev: 0.45, gain: 0.3, release: 0.4 });
+  clip(mix, 'campanello', { t: cue('domestici', 1) + 0.3, da: 0, durata: 2, gain: 0.18, fadeOut: 0.8, rev: 0.5, pan: 0.3 }); // Domestici.tsx: la campanella oscilla
   [0.4, 1.2, 2.0].forEach((d, j) => suona(mix, 'arpa', [57, 62, 69][j], { t: cue('domestici', 2) + d, dur: 2, vel: 54, pan: -0.3 + j * 0.3, rev: 0.6, gain: 0.34, release: 1.4 }));
   lullaby(B(cue('domestici', 2)), B(T.pianoforte), { vel: 44, gain: 0.3 });
 
   // ---- pianoforte: tremolo grave; il cavallo a dondolo (legno che cigola); la tenda (vento); il pianoforte da solo
   trem(T.pianoforte, cue('pianoforte', 2) + 1.2 - T.pianoforte, [50, 51, 74], { vel: 44, gain: 0.3 });
   strings(B(T.pianoforte), B(cue('pianoforte', 2) + 1.2), { half: true, vel: 42, gain: 0.36, k0: 3 });
-  clip(mix, 'legno_cigolio', { t: cue('pianoforte', 0) + 0.3, da: 0.25, durata: 1.6, gain: 0.3, fadeOut: 0.5, rev: 0.4, pan: -0.4 }); // Pianoforte.tsx: il cavallo dondola
+  for (let k = 0; k < 6; k++) clip(mix, 'legno_cigolio', { t: cue('pianoforte', 0) + 0.625 + k * 1.25, da: 0.25, durata: 0.8, gain: 0.14 - k * 0.016, fadeOut: 0.3, rev: 0.4, pan: -0.4 }); // Pianoforte.tsx: il cavallo dondola
   clip(mix, 'vento_raffiche', { t: cue('pianoforte', 1) + 0.1, da: 10, durata: 2.2, gain: 0.08, fadeIn: 0.5, fadeOut: 0.8, largo: 2 }); // la tenda si gonfia
   {
     // i tasti che si abbassano da soli: crome a tempo (stessa sequenza di Pianoforte.tsx)
-    const seq = [14, 18, 21, 16, 19, 23, 21, 18, 14, 16, 25, 21, 19, 18, 16, 14];
+    const seq = [15, 19, 22, 17, 20, 24, 22, 19, 15, 17, 26, 22, 20, 19, 17, 15];
     const midi = (i) => 36 + 12 * Math.floor(i / 7) + [0, 2, 4, 5, 7, 9, 11][i % 7];
     const p0 = cue('pianoforte', 2) + 1.2;
     for (let k = 0; p0 + k / 2.4 < T.album - 0.3; k++) {
       const n = seq[k % seq.length];
-      suona(mix, 'pianoforte_coda', midi(n), { t: p0 + k / 2.4, dur: 0.6, vel: 56, pan: 0, rev: 0.6, gain: 0.5, release: 0.8 });
-      suona(mix, 'pianoforte_coda', midi(n - 7), { t: p0 + k / 2.4 + 0.01, dur: 0.6, vel: 46, pan: -0.1, rev: 0.6, gain: 0.3, release: 0.8 });
+      suona(mix, 'pianoforte_coda', midi(n), { t: p0 + k / 2.4, dur: 0.6, vel: 56, pan: 0, rev: 0.6, gain: 0.25, release: 0.8 });
+      suona(mix, 'pianoforte_coda', midi(n - 7), { t: p0 + k / 2.4 + 0.01, dur: 0.6, vel: 46, pan: -0.1, rev: 0.6, gain: 0.15, release: 0.8 });
     }
   }
 
@@ -137,11 +138,12 @@ export default (mix, T) => {
   harp(B(T.album), B(cue('album', 2)), { vel: 44, gain: 0.26, k0: 1 });
   clip(mix, 'telo', { t: cue('album', 0) + 0.6, da: 4.57, durata: 1.0, gain: 0.22, fadeOut: 0.4, rev: 0.3, pan: -0.4 });
   clip(mix, 'pagine', { t: cue('album', 1) + 0.2, da: 1, durata: 0.9, gain: 0.25, fadeOut: 0.3, rev: 0.3 });
-  [0, 1, 2, 3].forEach((i) => glock(cue('album', 2) + 0.2 + i * 0.45, [81, 79, 77, 74][i], 0.14));
+  glock(cue('album', 2) + 0.2, 81, 0.16); // Album.tsx: la foto protagonista si illumina
+  glock(cue('album', 2) + 0.2 + 5 / 12, 74, 0.12);
   trem(cue('album', 2), T.marito - cue('album', 2), [62, 63], { vel: 40, gain: 0.22 });
 
-  // ---- marito: nebbia nel bosco; l'elmetto appare (corno lontano); svanisce (archi che scendono)
-  wind(T.marito, T.tende - T.marito, 0.04, 3);
+  // ---- marito: nebbia nel bosco; l'elmetto appare (corno lontano); svanisce (gli archi tornano piano)
+  wind(T.marito, T.tende - T.marito, 0.03, 3);
   strings(B(T.marito), B(cue('marito', 1)), { half: true, vel: 42, gain: 0.3, k0: 2 });
   lullaby(B(T.marito), B(cue('marito', 1)), { vel: 42, gain: 0.28, oct: -12 });
   suona(mix, 'corno', 57, { t: cue('marito', 1) + 0.3, dur: 3, vel: 52, gain: 0.3, attack: 0.6, release: 1.4, rev: 0.7, pan: 0.3 });
@@ -152,7 +154,7 @@ export default (mix, T) => {
   clip(mix, 'stoffa', { t: cue('tende', 0) + 0.4, da: 20, durata: 1.4, gain: 0.2, fadeIn: 0.2, fadeOut: 0.6, rev: 0.35 });
   strings(B(cue('tende', 0)), B(cue('tende', 2)), { vel: 50, gain: 0.38, high: true });
   harp(B(cue('tende', 0)), B(cue('tende', 2)), { vel: 48, gain: 0.26 });
-  clip(mix, 'monete', { t: cue('tende', 2) + 0.9, da: 1.5, durata: 0.6, gain: 0.3, fadeOut: 0.15, rev: 0.3, pan: 0.2 }); // Tende.tsx: le chiavi toccano terra
+  clip(mix, 'monete', { t: cue('tende', 2) + 0.9, da: 1.42, durata: 0.6, gain: 0.3, fadeOut: 0.15, rev: 0.3, pan: 0.2 }); // Tende.tsx: le chiavi toccano terra
   timp(cue('tende', 2) + 0.9, 38, 70, 0.4);
   strings(B(cue('tende', 2)), B(T.tombe), { vel: 42, gain: 0.3, k0: 3 });
 
@@ -161,41 +163,44 @@ export default (mix, T) => {
   strings(B(T.tombe), B(T.seduta), { half: true, vel: 46, gain: 0.42 });
   lullaby(B(T.tombe), B(cue('tombe', 2)), { vel: 42, gain: 0.28, oct: -12 });
   glock(cue('tombe', 0) + 0.3, 81, 0.12); // la foto
-  [0, 0.7, 1.4].forEach((d, j) => suona(mix, 'arpa', [50, 53, 57][j], { t: cue('tombe', 1) + 0.25 + d, dur: 2, vel: 52, pan: -0.3 + j * 0.3, rev: 0.6, gain: 0.32, release: 1.4 }));
-  clip(mix, 'campana_grave', { t: cue('tombe', 2) + 1.0, da: 0, durata: 3, gain: 0.2, fadeOut: 1, rev: 0.4 }); // Tombe.tsx: 1891
+  [0, 0.7, 1.4].forEach((d, j) => suona(mix, 'arpa', [50, 53, 57][j], { t: cue('tombe', 1) + 0.25 + d * (5 / 6) / 0.7, dur: 2, vel: 52, pan: -0.3 + j * 0.3, rev: 0.6, gain: 0.32, release: 1.4 }));
+  clip(mix, 'campana_grave', { t: cue('tombe', 2) + 1.0, da: 0.53, durata: 2.4, gain: 0.13, fadeOut: 1, rev: 0.4 }); // Tombe.tsx: 1891
   trem(cue('tombe', 2), T.seduta - cue('tombe', 2), [38, 50, 57], { vel: 44, gain: 0.28 });
 
   // ---- seduta: le candele (arpa), il tavolo che trema (bicchieri e legno), la scrittura e i fogli; tensione in crescita
-  [0, 1, 2].forEach((i) => suona(mix, 'arpa', [62, 65, 69][i], { t: cue('seduta', 0) + 0.3 + i * 0.4, dur: 1.6, vel: 50, pan: -0.3 + i * 0.3, rev: 0.6, gain: 0.3, release: 1.2 }));
+  [0, 1, 2].forEach((i) => suona(mix, 'arpa', [62, 65, 69][i], { t: cue('seduta', 0) + 0.3 + (i * 5) / 12, dur: 1.6, vel: 50, pan: -0.3 + i * 0.3, rev: 0.6, gain: 0.3, release: 1.2 }));
   strings(B(T.seduta), B(cue('seduta', 1)), { vel: 44, gain: 0.32, k0: 3 });
   clip(mix, 'tintinnio', { t: cue('seduta', 1) + 0.35, da: 0.16, durata: 0.9, gain: 0.25, fadeOut: 0.3, rev: 0.3 }); // Seduta.tsx: i bicchieri
   clip(mix, 'colpi_legno', { t: cue('seduta', 1) + 0.4, da: 1.4, durata: 0.4, gain: 0.25, rev: 0.35 });
-  trem(cue('seduta', 1), T.verita - cue('seduta', 1), [38, 50, 51, 74, 75], { vel: 50, gain: 0.32 });
-  for (let t = B(cue('seduta', 1)), k = 0; t < T.verita - 0.2; t += BEAT, k++) suona(mix, 'contrabbasso_pizz', 38, { t, dur: BEAT, vel: 54 + k * 2, pan: -0.1, rev: 0.4, gain: 0.32, release: 0.3 });
+  trem(cue('seduta', 1), T.verita - cue('seduta', 1), [38, 50, 51, 74, 75], { vel: 50, gain: 0.4 });
+  for (let t = B(cue('seduta', 1)), k = 0; t < T.verita - 0.2; t += BEAT, k++) suona(mix, 'contrabbasso_pizz', 38, { t, dur: BEAT, vel: 54 + k * 2, pan: -0.1, rev: 0.4, gain: 0.38, release: 0.3 });
   clip(mix, 'pagine', { t: cue('seduta', 2) + 1.2, da: 0.9, durata: 0.8, gain: 0.22, fadeOut: 0.3, rev: 0.3, pan: 0.3 }); // i fogli volano
   colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: T.verita - 1.6, vel: 54, rev: 0.5, gain: 0.2, dur: 1.6, release: 0.4 });
 
   // ---- verita: la lampada che si spegne (archi che calano), un colpo solo (timpano e gong) e il silenzio; la porta
-  const shot = cue('verita', 1) + (cue('verita', 2) - cue('verita', 1)) * 0.72; // Verita.tsx: il lampo
+  const shot = cue('verita', 1) + (cue('verita', 2) - cue('verita', 1)) * 0.76; // Verita.tsx: il lampo, sulla battuta
   strings(B(T.verita), shot - 0.15, { vel: 42, gain: 0.3, k0: 0 });
   suona(mix, 'pianoforte_coda', 74, { t: cue('verita', 0) + 0.3, dur: 2, vel: 44, gain: 0.3, rev: 0.6, release: 1.4 });
   suona(mix, 'pianoforte_coda', 73, { t: cue('verita', 1) + 0.3, dur: 2, vel: 44, gain: 0.3, rev: 0.6, release: 1.4 });
   timp(shot, 38, 100, 0.8);
   gong(shot + 0.03, 0.32);
-  suona(mix, 'contrabbasso', 38, { t: shot + 0.3, dur: cue('verita', 2) + 0.4 - shot - 0.3, vel: 40, gain: 0.3, attack: 0.6, release: 0.8, rev: 0.6 });
-  clip(mix, 'porta_cigolio', { t: cue('verita', 2) + 0.4, da: 10.68, durata: 1.6, gain: 0.16, fadeOut: 0.5, rev: 0.4, pan: 0.4 }); // la porta si socchiude
-  strings(B(cue('verita', 2)), B(T.fine), { vel: 44, gain: 0.34, high: true, k0: 1 });
-  lullaby(B(cue('verita', 2)), B(T.fine), { vel: 44, gain: 0.32 });
+  suona(mix, 'contrabbasso', 38, { t: shot + 0.3, dur: B(T.fine) - shot - 0.3, vel: 40, gain: 0.3, attack: 0.6, release: 0.8, rev: 0.6 });
+  clip(mix, 'porta_cigolio', { t: cue('verita', 2) + 0.4, da: 10.68, durata: 1.6, gain: 0.07, fadeOut: 0.5, rev: 0.4, pan: 0.4 }); // la porta si socchiude
+  const quiete = T.villa + 118 * BEAT; // due battiti di silenzio dopo il colpo
+  strings(quiete, B(T.fine), { vel: 44, gain: 0.34, high: true, k0: 1 });
+  lullaby(quiete, B(T.fine), { vel: 44, gain: 0.32 });
 
   // ---- fine: l'elmetto un'ultima volta (corno), l'auto che se ne va, il sole: tutto in Re maggiore
-  wind(T.fine, cue('fine', 2) - T.fine, 0.06, 28);
-  strings(B(T.fine), B(cue('fine', 2)), { half: true, vel: 46, gain: 0.34 });
+  wind(T.fine, cue('fine', 2) - T.fine, 0.05, 2);
+  const sole = T.villa + Math.round((cue('fine', 2) - T.villa) / BEAT) * BEAT; // Fine.tsx: il sole e le tende
+  clip(mix, 'auto_epoca', { t: cue('fine', 1) + 0.1, da: 16.3, durata: 3.6, gain: 0.1, fadeIn: 0.5, fadeOut: 0.8, lp: 2500, rev: 0.2 }); // l'auto che se ne va
+  strings(B(T.fine), sole, { half: true, vel: 46, gain: 0.34 });
   suona(mix, 'corno', 57, { t: cue('fine', 0) + 0.2, dur: 2.6, vel: 50, gain: 0.26, attack: 0.5, release: 1.4, rev: 0.7, pan: -0.3 });
-  harp(B(cue('fine', 1)), B(cue('fine', 2)), { vel: 44, gain: 0.24, chords: CHM });
+  harp(B(cue('fine', 1)), sole, { vel: 44, gain: 0.24, chords: CHM });
   clip(mix, 'stoffa', { t: cue('fine', 2) + 0.4, da: 15, durata: 1.6, gain: 0.16, fadeIn: 0.3, fadeOut: 0.6, rev: 0.35 }); // Fine.tsx: le tende si aprono
-  strings(B(cue('fine', 2)), B(T.finale), { vel: 50, gain: 0.4, high: true, chords: CHM });
-  lullaby(B(cue('fine', 2)), B(T.finale), { half: false, vel: 50, gain: 0.36, major: true });
-  colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: B(cue('fine', 2)) - 1.4, vel: 50, rev: 0.5, gain: 0.16, dur: 1.4, release: 0.4 });
+  strings(sole, B(T.finale), { vel: 50, gain: 0.4, high: true, chords: CHM });
+  lullaby(sole, B(T.finale), { half: false, vel: 50, gain: 0.36, major: true });
+  colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: sole - 1.4, vel: 50, rev: 0.5, gain: 0.16, dur: 1.4, release: 0.4 });
 
   // ---- finale: un accordo di Re maggiore aperto, l'arpa e l'ultima nota del carillon
   const F = B(T.finale);

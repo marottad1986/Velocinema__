@@ -19,7 +19,7 @@ const LINES = Array.from({ length: 6 }, (_, i) => ({ y: -56 + i * 22, w: 140 + r
 export const Seduta: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
-  const c = (i: number) => eo(seg(t, cues[0] + 0.3 + i * 0.4, cues[0] + 0.6 + i * 0.4));
+  const c = (i: number) => eo(seg(t, cues[0] + 0.3 + (i * 5) / 12, cues[0] + 0.6 + (i * 5) / 12));
   const shake = seg(t, cues[1] + 0.3, cues[1] + 0.6) * (1 - seg(t, cues[1] + 1.6, cues[1] + 2.2));
   const jx = shake * 4 * Math.sin(t * 47), jy = shake * 2 * Math.sin(t * 61);
   const write = seg(t, cues[2] + 0.3, dur - 0.5);

@@ -49,7 +49,7 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; dawn: boolean }> = 
               <circle cx="820" cy="820" r="44" fill="#C8D2D0" opacity=".5" />
             </>
           )}
-          <Gulls t={t} seed={3} n={4} y={780} h={120} color={dawn ? '#2A3032' : '#0A0D0E'} size={0.75} period={13} />
+          <Gulls t={t} seed={3} n={4} y={dawn ? 960 : 780} h={dawn ? 60 : 120} color={dawn ? '#2A3032' : '#0A0D0E'} size={0.75} period={13} />
         </g>
         <g transform={L(0.45)}>
           {Array.from({ length: 16 }, (_, i) => (

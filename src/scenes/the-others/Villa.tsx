@@ -61,7 +61,7 @@ export const Villa: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 0 — cielo crepuscolare e luna velata (0,25) */}
         <g transform={L(0.25)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="url(#vi-sky)" />
-          <Glow id="vi-moon" x={840} y={640} r={260} t={t} color="#DDE6E0" amp={0.03} rate={0.8} opacity={0.45} />
+          <Glow id="vi-moon" x={840} y={640} r={330} t={t} color="#DDE6E0" amp={0.03} rate={0.8} opacity={0.6} />
           <circle cx="840" cy="640" r="46" fill="#D8E0DA" opacity=".55" />
           <Fog id="vi-cl1" t={t} y={620} x={700} rx={520} ry={40} color="#8A9894" opacity={0.35} speed={0.12} drift={60} />
           <Gulls t={t} seed={5} n={4} y={560} h={120} color="#0E1214" size={0.8} period={14} />
@@ -141,7 +141,7 @@ export const Villa: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <Ombra id="vi" x={925} y={1272} rx={90} ry={10} />
           <Lampada id="vi" x={925} y={1270} t={t} s={0.66} lit={0.12 + 0.88 * lamp} glow={lamp} ph={0.7} />
           {/* rami in primo piano che entrano dall'alto a sinistra */}
-          <g strokeLinecap="round" fill="none">
+          <g strokeLinecap="round" fill="none" transform="translate(0 150)">
             <path d="M-80 520 Q120 560 260 640 Q330 680 380 700" stroke={K} strokeWidth="26" />
             <path d="M120 580 Q170 520 240 500 M260 640 Q300 600 360 600" stroke={K} strokeWidth="12" />
             <path d="M-80 514 Q120 552 260 632" stroke="#4A5654" strokeWidth="4" opacity=".6" />

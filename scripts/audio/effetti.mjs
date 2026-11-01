@@ -94,6 +94,7 @@ export const CATALOGO = {
   macchina_scrivere: ['Red_Library_Communications', 'R20-10-Fast Typing on Manual Typewriter.wav', -18.6],
   giornale: ['Red_Library_Foley_Props_1', 'R15-04-Newspaper Being Opened.wav', -18],
   ronzio_neon: ['Red_Library_Sci-Fi', 'R21-41-Electric Light Hum.wav', -15],
+  auto_epoca: ['SSE_Library_VEHICLES', 'CAR/VEHCar_Large 1946 buick with bad exhaust by slowly_CS_USC.wav', -6.4],
   risacca: ['SSE_Library_WATER', 'SURF/WATRSurf_Surf; medium distance; loopable_CS_USC.wav', -9],
 };
 

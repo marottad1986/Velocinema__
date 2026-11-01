@@ -4,7 +4,7 @@ import { Dust, Fog, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { HAND } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
-import { K, Lampada, OthersDefs, Ombra } from './Comuni';
+import { AMBRA, K, Lampada, OthersDefs, Ombra } from './Comuni';
 
 // L'album dei morti: la soffitta della villa. Parete di intonaco scrostato (zona calma dietro il titolo), a destra il
 // soffitto spiovente con l'abbaino nella nebbia; mobili coperti da lenzuoli bianchi; al centro, sopra un baule, il grande
@@ -18,8 +18,8 @@ import { K, Lampada, OthersDefs, Ombra } from './Comuni';
 const Foto: React.FC<{ x: number; y: number; w: number; h: number; rot: number; kind: number; lit: number; label: string }> = ({ x, y, w, h, rot, kind, lit, label }) => (
   <g transform={`translate(${x} ${y}) rotate(${rot})`}>
     <rect x={-w / 2 - 8} y={-h / 2 - 8} width={w + 16} height={h + 34} fill="#F2EAD4" stroke={K} strokeWidth="4" />
-    <rect x={-w / 2} y={-h / 2} width={w} height={h} fill="#8A6A44" />
-    <rect x={-w / 2} y={-h / 2} width={w} height={h} fill="#C8A878" opacity={0.25 + 0.5 * lit} />
+    <rect x={-w / 2} y={-h / 2} width={w} height={h} fill="#5E4630" />
+    <rect x={-w / 2} y={-h / 2} width={w} height={h} fill="#D8B888" opacity={0.15 + 0.8 * lit} />
     {kind === 0 && (
       <g>
         {/* letto con il cuscino e i fiori */}
@@ -64,7 +64,7 @@ export const Album: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const L = cam.layer;
   const sheet = eio(seg(t, cues[0] + 0.6, cues[0] + 1.6));
   const open = eio(seg(t, cues[1] + 0.2, cues[1] + 1.2));
-  const ph = (i: number) => eo(seg(t, cues[2] + 0.2 + i * 0.45, cues[2] + 0.7 + i * 0.45));
+  const hero = eo(seg(t, cues[2] + 0.2, cues[2] + 1.0));
   const flick = seg(t, cues[2] + 0.4, cues[2] + 0.8) * (1 - seg(t, cues[2] + 2.2, cues[2] + 3));
   const bend = 10 * flick * Math.sin(t * 9);
 
@@ -134,29 +134,48 @@ export const Album: React.FC<SceneProps> = ({ t, dur, cues }) => {
           {/* l'album di pelle */}
           <g transform="translate(510 1216) scale(1.14)">
             <Ombra id="al" x={0} y={-6} rx={360} ry={20} />
-            {/* pagine aperte */}
-            <path d="M-340 -16 L-326 -300 Q-160 -320 0 -290 Q160 -320 326 -300 L340 -16 Q160 -30 0 -6 Q-160 -30 -340 -16 Z" fill="url(#al-leather)" stroke={K} strokeWidth="8" />
-            <g opacity={open}>
+            <g opacity={seg(open, 0.35, 0.6)}>
+              {/* pagine aperte */}
+              <path d="M-340 -16 L-326 -300 Q-160 -320 0 -290 Q160 -320 326 -300 L340 -16 Q160 -30 0 -6 Q-160 -30 -340 -16 Z" fill="url(#al-leather)" stroke={K} strokeWidth="8" />
               <path d="M-326 -24 L-314 -290 Q-160 -306 0 -280 V-14 Q-160 -40 -326 -24 Z" fill="url(#al-page)" stroke={K} strokeWidth="5" />
               <path d="M326 -24 L314 -290 Q160 -306 0 -280 V-14 Q160 -40 326 -24 Z" fill="url(#al-page)" stroke={K} strokeWidth="5" />
               <path d="M0 -280 V-14" stroke="#8A7A5A" strokeWidth="6" />
-              <Foto x={-232} y={-200} w={118} h={86} rot={-3} kind={0} lit={ph(0)} label="1891" />
-              <Foto x={-92} y={-176} w={100} h={110} rot={2} kind={1} lit={ph(1)} label="1891" />
-              <Foto x={96} y={-194} w={110} h={92} rot={-2} kind={2} lit={ph(2)} label="1888" />
-              <Foto x={236} y={-168} w={104} h={88} rot={4} kind={3} lit={ph(3)} label="1891" />
+              <Foto x={-232} y={-206} w={110} h={80} rot={-3} kind={1} lit={0.35} label="1891" />
+              <Foto x={-100} y={-100} w={110} h={80} rot={2} kind={3} lit={0.35} label="1888" />
+              <path d="M-280 -60 H-170 M-280 -40 H-200" stroke="#8A7A5A" strokeWidth="3" opacity=".6" />
+              {/* la foto protagonista: un letto con i fiori e il nastro nero, che si illumina */}
+              <g transform={`translate(165 -158) scale(${1 + 0.06 * hero})`}>
+                <rect x="-128" y="-98" width="256" height="210" fill="none" stroke={AMBRA} strokeWidth="8" opacity={hero} />
+                <Foto x={0} y={-6} w={220} h={150} rot={0} kind={0} lit={hero} label="1891" />
+              </g>
             </g>
-            {/* copertina che si apre: ruota sul dorso */}
-            <g transform={`scale(${1 - 2 * Math.min(open, 0.5)} 1)`} opacity={open < 0.5 ? 1 : 0}>
+            {/* album chiuso visto da sopra; si apre ruotando sul dorso */}
+            <g transform={`translate(${-172 * (1 - 2 * Math.min(open, 0.5))} 0) scale(${1 - 2 * Math.min(open, 0.5)} 1)`} opacity={open < 0.5 ? 1 : 0}>
+              <path d="M-4 -2 L-4 -296 Q160 -326 334 -306 L348 -12 Q160 -26 -4 -2 Z" fill="#E8DCC0" stroke={K} strokeWidth="6" />
               <path d="M0 -6 L0 -292 Q160 -322 330 -302 L344 -16 Q160 -30 0 -6 Z" fill="url(#al-leather)" stroke={K} strokeWidth="8" />
-              <rect x="110" y="-210" width="130" height="90" rx="6" fill="none" stroke="#C8A050" strokeWidth="5" />
-              <path d="M140 -166 H210" stroke="#C8A050" strokeWidth="5" />
+              <path d="M20 -20 V-280" stroke="#2A1210" strokeWidth="10" />
+              <rect x="90" y="-230" width="170" height="120" rx="8" fill="none" stroke="#C8A050" strokeWidth="6" />
+              <rect x="104" y="-216" width="142" height="92" rx="6" fill="none" stroke="#C8A050" strokeWidth="3" />
+              <path d="M130 -170 H220" stroke="#C8A050" strokeWidth="6" />
+              {[[10, -280], [320, -290], [10, -30], [326, -30]].map(([x, y], i) => <path key={i} d={`M${x} ${y} l20 0 l-20 20 Z`} fill="url(#al-brass)" stroke={K} strokeWidth="3" />)}
             </g>
           </g>
+          <Glow id="al-hero" x={510 + 165 * 1.14} y={1216 - 164 * 1.14} r={260} t={t} color="#FFD898" amp={0.06} rate={4} opacity={0.55 * hero} />
           <Lampada id="al" x={965} y={1222} t={t} s={0.74} ph={2.1} bend={bend} glow={0.5} />
         </g>
 
         {/* PIANO 3 — trave verticale e ragnatela in primo piano (1,25) */}
         <g transform={L(1.25)}>
+          {/* lenzuolo caduto a terra e scatola di lastre fotografiche in basso */}
+          <path d="M-120 1980 Q-100 1700 60 1660 Q240 1640 360 1720 Q460 1800 440 1980 Z" fill="url(#al-sheet)" stroke={K} strokeWidth="9" />
+          {[40, 160, 280].map((x) => <path key={x} d={`M${x} 1680 Q${x + 20} 1820 ${x - 10} 1980`} stroke="#8A8C84" strokeWidth="5" fill="none" />)}
+          <g transform="translate(860 1720) rotate(-6)">
+            <rect x="-170" y="-90" width="340" height="250" fill="url(#al-wood)" stroke={K} strokeWidth="9" />
+            {[-120, -60, 0, 60, 120].map((x, i) => <rect key={x} x={x - 22} y={-150 + (i % 2) * 14} width="44" height="80" fill="#2A3436" stroke={K} strokeWidth="5" />)}
+            {[-120, -60, 0, 60, 120].map((x) => <path key={`g${x}`} d={`M${x - 12} -138 l10 30`} stroke="#9AB0B4" strokeWidth="3" opacity=".6" />)}
+            <rect x="-150" y="-20" width="300" height="40" fill="#E8DCC0" stroke={K} strokeWidth="4" />
+            <text x="0" y="10" textAnchor="middle" fontFamily={HAND} fontSize="30" fill="#4A3A2A">lastre 1891</text>
+          </g>
           <rect x="-120" y="-200" width="170" height="2400" fill="url(#al-wood)" stroke={K} strokeWidth="9" />
           {[300, 900, 1500].map((y) => <path key={y} d={`M-110 ${y} q60 -20 150 10`} stroke="#1E140C" strokeWidth="5" fill="none" />)}
           <g stroke="#C8C8BC" strokeWidth="2" fill="none" opacity=".45">

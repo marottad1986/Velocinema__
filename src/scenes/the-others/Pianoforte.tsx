@@ -19,13 +19,13 @@ const BLACK = [1, 2, 4, 5, 6]; // nei gruppi da 7 tasti bianchi, i neri dopo il 
 export const Pianoforte: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
-  const rock = seg(t, cues[0] + 0.3, cues[0] + 1) * Math.sin((t - cues[0]) * 2.6) * 9;
+  const rock = seg(t, cues[0] + 0.3, cues[0] + 1) * Math.sin(((t - cues[0]) * 2 * Math.PI) / 2.5) * 9;
   const draft = Math.sin(Math.PI * seg(t, cues[1] + 0.1, cues[1] + 2.2));
   const playing = seg(t, cues[2] + 1.2, cues[2] + 1.6);
   const pressed = (i: number) => {
     if (playing <= 0) return 0;
     const k = Math.floor((t - cues[2] - 1.2) * 2.4); // crome a 72 bpm, come il pianoforte dello spartito
-    const seq = [14, 18, 21, 16, 19, 23, 21, 18, 14, 16, 25, 21, 19, 18, 16, 14];
+    const seq = [15, 19, 22, 17, 20, 24, 22, 19, 15, 17, 26, 22, 20, 19, 17, 15]; // Re dorico, solo tasti bianchi
     const n = seq[((k % seq.length) + seq.length) % seq.length];
     return i === n || i === n - 7 ? 1 : 0;
   };
@@ -49,10 +49,10 @@ export const Pianoforte: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <rect x="-200" y="-200" width="1480" height="2400" fill="url(#pf-wall)" />
           {Array.from({ length: 14 }, (_, i) => <path key={i} d={`M${-180 + i * 110} 600 V1060`} stroke="#3A4636" strokeWidth="18" opacity=".25" />)}
           <path d="M-200 1060 H1280" stroke="#3A2A1C" strokeWidth="24" />
-          <rect x="900" y="640" width="230" height="420" fill="url(#pf-night)" stroke={K} strokeWidth="8" />
-          <path d="M1015 640 V1060 M900 850 H1130" stroke="#2A302C" strokeWidth="9" />
-          <Tenda id="pf" x={880} y={610} w={210 + 60 * draft} h={480} t={t} side="left" sway={4 + 10 * draft} folds={4} />
-          <rect x="860" y="596" width="300" height="16" rx="8" fill="url(#pf-brass)" stroke={K} strokeWidth="4" />
+          <rect x="810" y="640" width="230" height="420" fill="url(#pf-night)" stroke={K} strokeWidth="8" />
+          <path d="M925 640 V1060 M810 850 H1040" stroke="#2A302C" strokeWidth="9" />
+          <Tenda id="pf" x={790} y={610} w={150 + 120 * draft} h={480} t={t} side="left" sway={4 + 10 * draft} folds={4} />
+          <rect x="770" y="596" width="300" height="16" rx="8" fill="url(#pf-brass)" stroke={K} strokeWidth="4" />
           {/* cornice con un paesaggio scuro, nessuna persona */}
           <g transform="translate(120 760)">
             <rect x="-90" y="-110" width="180" height="220" fill="url(#pf-brass)" stroke={K} strokeWidth="6" />
@@ -64,8 +64,8 @@ export const Pianoforte: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 1 — il pianoforte verticale con le candele (0,65) */}
         <g transform={L(0.65)}>
-          <Glow id="pf-c1" x={262} y={810} r={300} t={t} color="#FFC870" amp={0.08} rate={8} opacity={0.75} />
-          <Glow id="pf-c2" x={818} y={810} r={300} t={t} color="#FFC870" amp={0.08} rate={8} ph={2} opacity={0.75} />
+          <Glow id="pf-c1" x={262} y={790} r={400} t={t} color="#FFC870" amp={0.08} rate={8} opacity={0.9} />
+          <Glow id="pf-c2" x={818} y={790} r={400} t={t} color="#FFC870" amp={0.08} rate={8} ph={2} opacity={0.9} />
           <Ombra id="pf" x={540} y={1262} rx={430} ry={34} />
           {/* cassa superiore */}
           <path d="M180 690 H900 V1000 H180 Z" fill="url(#pf-ebony)" stroke={K} strokeWidth="9" />
@@ -112,7 +112,7 @@ export const Pianoforte: React.FC<SceneProps> = ({ t, dur, cues }) => {
           {[500, 580].map((x) => <rect key={x} x={x - 14} y="1226" width="28" height="14" rx="6" fill="url(#pf-brass)" stroke={K} strokeWidth="3" />)}
           <path d="M196 1010 V1240" stroke="#C88A5A" strokeWidth="4" opacity=".4" />
           <Glow id="pf-keys" x={540} y={1040} r={340} t={t} color="#FFD27A" amp={0.12} rate={7} opacity={0.6 * playing} />
-          <g opacity={playing}><Notes t={t} x={540} y={980} n={7} color="#E8A848" outline={K} rise={230} spread={460} size={1.1} speed={0.35} seed={7} /></g>
+          <g opacity={playing}><Notes t={t} x={540} y={850} n={7} color="#E8A848" outline={K} rise={200} spread={520} size={1.1} speed={0.35} seed={7} /></g>
         </g>
 
         {/* PIANO 2 — pavimento e tappeto (0,8) */}
@@ -126,8 +126,8 @@ export const Pianoforte: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 3 — cavallo a dondolo dei bambini (1,1) */}
         <g transform={L(1.1)}>
-          <Ombra id="pf" x={170} y={1752} rx={190} ry={20} />
-          <g transform={`translate(170 1740) rotate(${rock}) scale(.85)`}>
+          <Ombra id="pf" x={170} y={1830} rx={190} ry={20} />
+          <g transform={`translate(170 1820) rotate(${rock}) scale(.75)`}>
             <path d="M-210 -20 Q0 40 210 -20" stroke={K} strokeWidth="26" fill="none" strokeLinecap="round" />
             <path d="M-210 -20 Q0 40 210 -20" stroke="url(#pf-wood)" strokeWidth="14" fill="none" strokeLinecap="round" />
             {[-110, 110].map((x) => <path key={x} d={`M${x} 2 L${x * 0.7} -120`} stroke={K} strokeWidth="14" />)}

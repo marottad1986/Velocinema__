@@ -2,6 +2,7 @@ import React from 'react';
 import { camera, eio, lerp, rng, seg } from '../../lib/anim';
 import { Flyers, Fog, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
+import { SERIF } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
 import { Fiamma, K, OthersDefs, Ombra } from './Comuni';
 
@@ -22,7 +23,7 @@ export const Marito: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const spire = eio(seg(t, cues[0], cues[0] + 2));
   const come = eio(seg(t, cues[1] + 0.3, cues[1] + 1.5));
   const go = eio(seg(t, cues[2] + 1.0, dur - 0.4));
-  const vis = come * (1 - go);
+  const vis = 0.32 + 0.68 * come * (1 - go); // sempre in scena: sagoma nella nebbia, poi netta, poi di nuovo sagoma
   const swing = 7 * Math.sin(t * 1.6);
 
   return (
@@ -42,7 +43,7 @@ export const Marito: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 0 — cielo di nebbia e il campanile del paese che affiora (0,25) */}
         <g transform={L(0.25)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="url(#ma-sky)" />
-          <g opacity={0.15 + 0.4 * spire} fill="#3A4644">
+          <g opacity={0.35 + 0.5 * spire} fill="#2E3836">
             <path d="M800 1060 V820 L830 700 L860 820 V1060 Z" />
             <rect x="740" y="900" width="200" height="160" />
             <path d="M740 900 L840 840 L940 900 Z" />
@@ -77,6 +78,17 @@ export const Marito: React.FC<SceneProps> = ({ t, dur, cues }) => {
           ))}
           <path d="M640 1030 L690 1080 L760 1110 L860 1140" stroke="#2A2218" strokeWidth="8" fill="none" opacity=".7" />
           <path d="M640 1060 L690 1110 L760 1150 L860 1190" stroke="#2A2218" strokeWidth="8" fill="none" opacity=".7" />
+          {/* cartello di legno verso il paese e la chiesa (Grace cerca un prete) */}
+          <g transform="translate(380 1250)">
+            <Ombra id="ma" x={0} y={4} rx={90} ry={12} />
+            <rect x="-12" y="-330" width="24" height="334" fill="url(#ma-post)" stroke={K} strokeWidth="6" />
+            <g transform={`rotate(${-4 + 2 * spire})`}>
+              <path d="M-30 -320 H170 L210 -284 L170 -248 H-30 Z" fill="#7A5E3E" stroke={K} strokeWidth="7" />
+              <path d="M-22 -312 H160" stroke="#B8946A" strokeWidth="4" opacity=".6" />
+              <text x="80" y="-272" textAnchor="middle" fontFamily={SERIF} fontSize="34" fill="#1E140C" letterSpacing="2">CHIESA</text>
+            </g>
+            <path d="M-30 -230 H130 L100 -200 H-30 Z" fill="#5E4830" stroke={K} strokeWidth="6" transform="rotate(6 -30 -215)" />
+          </g>
           {/* il palo grande */}
           <Ombra id="ma" x={880} y={1270} rx={160} ry={18} />
           <rect x="852" y="940" width="56" height="330" fill="url(#ma-post)" stroke={K} strokeWidth="8" />
@@ -105,7 +117,7 @@ export const Marito: React.FC<SceneProps> = ({ t, dur, cues }) => {
             </g>
           </g>
           {/* la nebbia che si apre e si richiude sul palo */}
-          <Fog id="ma-veil" t={t} y={1060} x={860} rx={320} ry={300} color="#9AA6A2" opacity={0.9 * (1 - vis) + 0.15} speed={0.3} drift={30} />
+          <Fog id="ma-veil" t={t} y={1060} x={860} rx={320} ry={300} color="#9AA6A2" opacity={0.75 * (1 - vis) + 0.1} speed={0.3} drift={30} />
           <Fog id="ma-f2" t={t} y={1240} rx={900} ry={110} color="#B0BAB6" opacity={0.5} speed={0.25} ph={2} />
         </g>
 
@@ -117,7 +129,7 @@ export const Marito: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <path d="M200 616 Q240 560 300 548 M380 648 Q420 600 470 600" stroke={K} strokeWidth="12" fill="none" strokeLinecap="round" />
           <path d="M70 628 Q200 590 360 630" stroke="#4A5652" strokeWidth="5" fill="none" opacity=".6" />
           {/* lanterna a tempesta */}
-          <g transform={`translate(330 642) rotate(${swing})`}>
+          <g transform={`translate(190 626) rotate(${swing}) scale(1.15)`}>
             <path d="M0 0 V40" stroke={K} strokeWidth="6" />
             <Glow id="ma-lan" x={0} y={170} r={330} t={t} color="#FFC870" amp={0.06} rate={9} opacity={0.7} />
             <path d="M-46 60 Q0 20 46 60" stroke={K} strokeWidth="8" fill="none" />
@@ -128,6 +140,15 @@ export const Marito: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <rect x="-44" y="206" width="88" height="26" rx="6" fill="#2A2E2E" stroke={K} strokeWidth="6" />
             <path d="M-24 100 Q-30 140 -22 180" stroke="#FFFFFF" strokeWidth="4" opacity=".5" fill="none" />
           </g>
+          {/* rocce con muschio e pozzanghera che riflette la lanterna */}
+          <ellipse cx="440" cy="1820" rx="200" ry="40" fill="#3A4444" opacity=".8" />
+          <ellipse cx={420 + swing * 3} cy="1816" rx="40" ry="10" fill="#FFC870" opacity=".35" />
+          {[[-20, 1760, 170, 120], [960, 1740, 190, 140], [820, 1860, 140, 90]].map(([x, y, w, h], i) => (
+            <g key={`r${i}`}>
+              <path d={`M${x - w} ${y + h} Q${x - w} ${y} ${x} ${y - h * 0.2} Q${x + w} ${y} ${x + w} ${y + h} Z`} fill="#3A403C" stroke={K} strokeWidth="8" />
+              <path d={`M${x - w * 0.7} ${y + h * 0.1} Q${x} ${y - h * 0.25} ${x + w * 0.6} ${y + h * 0.05}`} stroke="#3E5A38" strokeWidth="16" fill="none" strokeLinecap="round" />
+            </g>
+          ))}
           {/* felci e radici in basso */}
           {Array.from({ length: 6 }, (_, i) => (
             <path key={i} d={`M${i < 3 ? 60 + i * 70 : 820 + (i - 3) * 90} 1920 Q${i < 3 ? 100 + i * 80 : 780 + (i - 3) * 90} 1660 ${i < 3 ? 200 + i * 60 : 700 + (i - 3) * 110} 1560`} stroke="#1A2620" strokeWidth="26" fill="none" strokeLinecap="round" />

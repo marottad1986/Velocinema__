@@ -18,7 +18,7 @@ export const Verita: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
   const dim = 1 - 0.45 * seg(t, cues[0] + 0.5, cues[1]) - 0.55 * eio(seg(t, cues[1] + 0.2, cues[1] + 0.9));
-  const shot = cues[1] + (cues[2] - cues[1]) * 0.72;
+  const shot = cues[1] + (cues[2] - cues[1]) * 0.76;
   const flash = flashAt(t, [shot], [1]);
   const door = eo(seg(t, cues[2] + 0.4, cues[2] + 1.8));
   const night = 1 - dim;
@@ -95,9 +95,9 @@ export const Verita: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 3 — sponda di ferro di un letto in primo piano in basso (1,2) */}
         <g transform={L(1.2)}>
-          <path d="M-100 1680 Q300 1620 700 1700" stroke={K} strokeWidth="26" fill="none" />
-          <path d="M-100 1680 Q300 1620 700 1700" stroke="url(#ve-iron)" strokeWidth="12" fill="none" />
-          {[40, 180, 320, 460, 600].map((x) => <path key={x} d={`M${x} ${1660 + Math.abs(x - 300) * 0.06} V2000`} stroke={K} strokeWidth="14" />)}
+          <path d="M-100 1680 Q540 1600 1180 1690" stroke={K} strokeWidth="26" fill="none" />
+          <path d="M-100 1680 Q540 1600 1180 1690" stroke="url(#ve-iron)" strokeWidth="12" fill="none" />
+          {[40, 180, 320, 460, 600, 740, 880, 1020].map((x) => <path key={x} d={`M${x} ${1650 + Math.abs(x - 540) * 0.07} V2000`} stroke={K} strokeWidth="14" />)}
           <circle cx="-60" cy="1676" r="26" fill="url(#ve-brass)" stroke={K} strokeWidth="6" />
         </g>
 

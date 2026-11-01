@@ -23,7 +23,8 @@ export const Fine: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const open = eio(seg(t, cues[2] + 0.4, cues[2] + 2.2));
   const signSwing = 6 * Math.sin(t * 2.1) * (0.3 + 0.7 * seg(t, cues[1] + 0.5, cues[1] + 1.5));
   // l'auto scende il viale verso la camera e esce in basso a sinistra
-  const carX = lerp(545, 120, drive), carY = lerp(1215, 1820, drive * drive), carS = lerp(0.3, 1.25, drive * drive);
+  const d1 = seg(drive, 0, 0.4), d2 = seg(drive, 0.4, 1);
+  const carX = lerp(lerp(545, 600, d1), 1240, d2), carY = lerp(1215, 1250, d1) - 6 * d2, carS = lerp(0.26, 0.42, d1);
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
@@ -49,7 +50,7 @@ export const Fine: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <Glow id="fi-sun" x={860} y={720} r={300} t={t} color="#FFF4D0" amp={0.04} rate={1} opacity={0.8} />
             <circle cx="860" cy="720" r="60" fill="#FFFBEA" opacity=".9" />
           </g>
-          <Gulls t={t} seed={4} n={4} y={600} h={140} color="#2A3032" size={0.8} period={13} />
+          <Gulls t={t} seed={4} n={4} y={760} h={80} color="#2A3032" size={0.8} period={13} />
         </g>
 
         {/* PIANO 1 — bosco lontano e nebbia che si dirada (0,45) */}
@@ -80,7 +81,7 @@ export const Fine: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <path key={i} d={`M${hx} ${hy} q${hw * 0.25} -50 ${hw * 0.5} -10 q${hw * 0.25} -50 ${hw * 0.5} 10 v60 h${-hw} Z`} fill="#2E4232" stroke={K} strokeWidth="6" />
           ))}
           {/* auto anni Quaranta vista di fronte, con i fari accesi */}
-          <g transform={`translate(${carX} ${carY}) scale(${carS})`} opacity={1 - seg(drive, 0.9, 1)}>
+          <g transform={`translate(${carX} ${carY}) scale(${carS})`} opacity={1 - seg(drive, 0.92, 1)}>
             <Ombra id="fi" x={0} y={8} rx={190} ry={22} />
             <Glow id="fi-hl" x={0} y={-60} r={260} t={t} color="#FFF0C0" amp={0.03} rate={2} opacity={0.5} />
             <path d="M-170 0 V-80 Q-170 -110 -130 -116 L-100 -190 Q-90 -210 -60 -212 H60 Q90 -210 100 -190 L130 -116 Q170 -110 170 -80 V0 Z" fill="url(#fi-car)" stroke={K} strokeWidth="9" />
@@ -112,7 +113,7 @@ export const Fine: React.FC<SceneProps> = ({ t, dur, cues }) => {
             );
           })}
           {[1560, 1760].map((by) => <rect key={by} x="30" y={by} width="290" height="14" fill="url(#fi-iron)" stroke={K} strokeWidth="4" />)}
-          {[[-10, 1100], [830, 1300]].map(([px, py], i) => (
+          {[[20, 1100], [830, 1300]].map(([px, py], i) => (
             <g key={i}>
               <rect x={px} y={py} width="190" height={2000 - py} fill="url(#fi-pillar)" stroke={K} strokeWidth="9" />
               {Array.from({ length: 9 }, (_, k) => <path key={k} d={`M${px} ${py + 70 + k * 80} H${px + 190}`} stroke="#000" strokeWidth="3" opacity=".25" />)}
@@ -128,12 +129,12 @@ export const Fine: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <text x="80" y="104" textAnchor="middle" fontFamily={SERIF} fontSize="48" fill="#8A2A1E" letterSpacing="3">VENDESI</text>
           </g>
           {/* l'elmetto di Charles sul pilastro, un'ultima volta */}
-          <g transform="translate(85 1068) rotate(-4)" opacity={helmet}>
+          <g transform="translate(118 1068) rotate(-4)" opacity={helmet}>
             <ellipse cx="0" cy="0" rx="100" ry="24" fill="url(#fi-khaki)" stroke={K} strokeWidth="8" />
             <path d="M-62 -4 Q-62 -74 0 -78 Q62 -74 62 -4 Z" fill="url(#fi-khaki)" stroke={K} strokeWidth="8" />
             <path d="M-44 -36 Q-36 -64 0 -68" stroke="#C8C498" strokeWidth="6" fill="none" opacity=".6" strokeLinecap="round" />
           </g>
-          <Glow id="fi-helm" x={85} y={1040} r={160} t={t} color="#E8E2C8" amp={0.05} rate={2} opacity={0.4 * helmet} />
+          <Glow id="fi-helm" x={118} y={1040} r={160} t={t} color="#E8E2C8" amp={0.05} rate={2} opacity={0.4 * helmet} />
           <Lampada id="fi" x={925} y={1270} t={t} s={0.66} lit={0.25 * (1 - sun)} glow={0.2 * (1 - sun)} ph={0.7} />
         </g>
 

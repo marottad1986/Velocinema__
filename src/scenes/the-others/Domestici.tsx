@@ -3,7 +3,7 @@ import { camera, eob, seg } from '../../lib/anim';
 import { Fog, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Chiavi, K, OthersDefs, Ombra, Porta } from './Comuni';
+import { Chiavi, Fiamma, K, OthersDefs, Ombra, Porta } from './Comuni';
 
 // Tre domestici sconosciuti: il portone della villa nella nebbia, visto dal viale. Il portico di pietra con le colonne,
 // la lunetta sopra la porta con la luce calda, la campanella sul muro, la ghiaia del viale.
@@ -24,7 +24,7 @@ export const Domestici: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const o1 = eob(seg(t, cues[2] + 0.4, cues[2] + 1.0));
   const o2 = eob(seg(t, cues[2] + 1.2, cues[2] + 1.8));
   const o3 = eob(seg(t, cues[2] + 2.0, cues[2] + 2.6));
-  const prints = (i: number) => seg(t, cues[0] + 0.2 + i * 0.22, cues[0] + 0.5 + i * 0.22) * (1 - seg(t, cues[1] + 0.5 + i * 0.1, cues[1] + 1.6 + i * 0.1));
+  const prints = (i: number) => seg(t, 5 / 12 + (i * 5) / 24, 5 / 12 + 0.3 + (i * 5) / 24) * (1 - seg(t, cues[1] + 0.5 + i * 0.1, cues[1] + 1.6 + i * 0.1));
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
@@ -47,6 +47,7 @@ export const Domestici: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 1 — facciata di pietra, portico, lunetta accesa, porta e campanella (0,6) */}
         <g transform={L(0.6)}>
           <rect x="-200" y="560" width="1480" height="700" fill="url(#dm-stone)" />
+          <linearGradient id="dm-veil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#2A3436" stopOpacity=".95" /><stop offset="1" stopColor="#2A3436" stopOpacity="0" /></linearGradient>
           {Array.from({ length: 30 }, (_, i) => <path key={i} d={`M-200 ${580 + i * 24} H1280`} stroke="#000" strokeWidth="2" opacity=".15" />)}
           {Array.from({ length: 60 }, (_, i) => <path key={`v${i}`} d={`M${-200 + (i % 15) * 100 + (Math.floor(i / 15) % 2) * 50} ${580 + Math.floor(i / 15) * 24 * 7} v24`} stroke="#000" strokeWidth="2" opacity=".12" />)}
           {/* finestre con le tende chiuse ai lati */}
@@ -62,7 +63,7 @@ export const Domestici: React.FC<SceneProps> = ({ t, dur, cues }) => {
           {/* lunetta sopra la porta */}
           <path d="M400 790 A140 90 0 0 1 680 790 Z" fill="#FFC870" opacity=".85" stroke={K} strokeWidth="7" />
           {[-60, -30, 0, 30, 60].map((a) => <path key={a} d={`M540 790 L${540 + Math.sin((a * Math.PI) / 180) * 140} ${790 - Math.cos((a * Math.PI) / 180) * 90}`} stroke={K} strokeWidth="5" />)}
-          <Glow id="dm-fan" x={540} y={770} r={240} t={t} color="#FFC870" amp={0.06} rate={5} opacity={0.5} />
+          <Glow id="dm-fan" x={540} y={770} r={240} t={t} color="#FFC870" amp={0.06} rate={5} opacity={0.85} />
           <Porta id="dm" x={395} y={1200} w={290} h={396} withKey={false} />
           {/* colonne e architrave del portico */}
           {[230, 770].map((cx) => (
@@ -91,6 +92,7 @@ export const Domestici: React.FC<SceneProps> = ({ t, dur, cues }) => {
               <path key={k} d={`M${74 + k * 16} ${30 + k * 0} q${12 + k * 4} 24 0 ${48 + k * 8}`} stroke="#E8E2D2" strokeWidth="5" fill="none" strokeLinecap="round" opacity={ring * (0.9 - k * 0.2)} />
             ))}
           </g>
+          <rect x="-200" y="555" width="1480" height="110" fill="url(#dm-veil)" />
           <Fog id="dm-f1" t={t} y={1150} rx={700} ry={70} color="#A8B4AE" opacity={0.35} speed={0.3 + ring} ph={1} drift={60} />
         </g>
 
@@ -115,8 +117,8 @@ export const Domestici: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <Chiavi id="dm" x={90} y={-150} s={0.6} rot={-30} />
           </g>
           {/* 2 — rastrello appoggiato alla colonna col cappello del giardiniere */}
-          <g transform={`translate(860 ${1250 + 30 * (1 - o2)})`} opacity={Math.min(1, o2)}>
-            <g transform="rotate(-14)">
+          <g transform={`translate(840 ${1250 + 30 * (1 - o2)})`} opacity={Math.min(1, o2)}>
+            <g transform="rotate(-10) scale(.62)">
               <rect x="-8" y="-560" width="16" height="560" fill="url(#dm-wood)" stroke={K} strokeWidth="5" />
               <rect x="-70" y="-596" width="140" height="22" fill="#5A6168" stroke={K} strokeWidth="5" />
               {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${-62 + i * 17.7} -574 v36`} stroke={K} strokeWidth="7" strokeLinecap="round" />)}
@@ -149,7 +151,7 @@ export const Domestici: React.FC<SceneProps> = ({ t, dur, cues }) => {
             return <circle key={i} cx={-100 + w * 1280} cy={1360 + v * 700} r={2 + v * 4} fill="#9A9C92" opacity=".4" />;
           })}
           {STEPS.map((p, i) => (
-            <g key={i} transform={`translate(${p.x} ${p.y}) rotate(${p.r}) scale(${1 + i * 0.08})`} opacity={prints(i)}>
+            <g key={i} transform={`translate(${p.x} ${p.y}) rotate(${p.r}) scale(${1.4 + i * 0.1})`} opacity={prints(i)}>
               <ellipse cx="0" cy="-10" rx="16" ry="26" fill="#121410" />
               <ellipse cx="0" cy="24" rx="12" ry="12" fill="#1A1C18" />
             </g>
@@ -163,6 +165,19 @@ export const Domestici: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <Fog id="dm-f2" t={t} y={1700} rx={800} ry={120} color="#A8B4AE" opacity={0.35} speed={0.2} ph={2} />
         </g>
 
+        {/* PIANO 4b — lanterna posata sulla ghiaia in basso a sinistra (1,2) */}
+        <g transform={L(1.2)}>
+          <Glow id="dm-lan" x={150} y={1640} r={300} t={t} color="#FFC870" amp={0.06} rate={8} opacity={0.6} />
+          <g transform="translate(150 1800) scale(1.1)">
+            <Ombra id="dm" x={0} y={4} rx={70} ry={12} />
+            <path d="M-46 -196 Q0 -236 46 -196" stroke={K} strokeWidth="8" fill="none" />
+            <rect x="-40" y="-196" width="80" height="24" rx="6" fill="#2A2E2E" stroke={K} strokeWidth="6" />
+            <path d="M-34 -172 Q-48 -100 -34 -26 H34 Q48 -100 34 -172 Z" fill="#FFE8B0" opacity=".35" stroke={K} strokeWidth="6" />
+            <Fiamma id="dm" x={0} y={-60} t={t} s={1} ph={0.6} />
+            {[-36, 0, 36].map((x) => <path key={x} d={`M${x} -172 Q${x * 1.35} -100 ${x} -26`} stroke="#2A2E2E" strokeWidth="6" fill="none" />)}
+            <rect x="-44" y="-30" width="88" height="30" rx="6" fill="#2A2E2E" stroke={K} strokeWidth="6" />
+          </g>
+        </g>
         {/* PIANO 4 — ramo che entra dall'alto a destra (1,3) */}
         <g transform={L(1.3)} strokeLinecap="round" fill="none">
           <path d="M1200 600 Q1000 640 900 720 Q860 760 820 770" stroke={K} strokeWidth="24" />

@@ -26,7 +26,7 @@ export const Tombe: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
   const photo = eo(seg(t, cues[0] + 0.2, cues[0] + 1.0));
-  const blow = (i: number) => eio(seg(t, cues[1] + 0.2 + i * 0.7, cues[1] + 1.2 + i * 0.7));
+  const blow = (i: number) => eio(seg(t, cues[1] + 0.2 + (i * 5) / 6, cues[1] + 1.2 + (i * 5) / 6));
   const year = eo(seg(t, cues[2] + 1.0, cues[2] + 1.8));
   const fogUp = seg(t, cues[2], dur);
 
@@ -44,13 +44,15 @@ export const Tombe: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 0 — cielo al crepuscolo con i corvi (0,2) */}
         <g transform={L(0.2)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="url(#to-sky)" />
-          <Glow id="to-sun" x={300} y={1000} r={420} t={t} color="#C8A070" amp={0.02} rate={0.6} opacity={0.35} />
+          <Glow id="to-sun" x={300} y={980} r={520} t={t} color="#D8B080" amp={0.03} rate={0.6} opacity={0.6} />
+          <circle cx="300" cy="980" r="54" fill="#E8D0A8" opacity=".55" />
           <Gulls t={t} seed={9} n={5} y={600} h={160} color="#0A0D0E" size={0.75} period={12} />
         </g>
 
         {/* PIANO 1 — la villa lontana nella nebbia, una finestra accesa (0,35) */}
         <g transform={L(0.35)} opacity=".55">
           <Casa id="to" x={700} y={1020} t={t} s={0.42} lit={[0, 0, 0, 0, 0, 0, 0, 0, 0.9]} />
+          <Glow id="to-win" x={700 - 106 * 0.42} y={1020 - 350 * 0.42} r={140} t={t} color="#FFC870" amp={0.08} rate={5} opacity={0.9} />
           <Fog id="to-f0" t={t} y={990} rx={800} ry={90} color="#8A928A" opacity={0.7} speed={0.15} />
         </g>
 
@@ -87,8 +89,9 @@ export const Tombe: React.FC<SceneProps> = ({ t, dur, cues }) => {
                 <Glow id={`to-y${i}`} x={st.x} y={1262 - st.h + 150 + st.name.length * 46 + 6} r={110} t={t} color={AMBRA} amp={0.08} rate={3} ph={i} opacity={0.6 * year} />
                 {/* mucchio di foglie che il vento porta via */}
                 {LEAVES[i].map((lf, k) => {
-                  const lx = st.x + lf.dx * st.w + b * (300 + lf.c * 500);
-                  const ly = 1262 - lf.dy * st.h * 0.92 - b * (120 + lf.c * 260) + b * b * 60;
+                  const hh = Math.pow(lf.dy, 1.6) * st.h * 0.62; // mucchio appoggiato alla lapide: più fitto in basso
+                  const lx = st.x + lf.dx * st.w * (1.15 - 0.7 * lf.dy) + b * (300 + lf.c * 500);
+                  const ly = 1268 - hh - b * (120 + lf.c * 260) + b * b * 60;
                   return (
                     <path key={k} d="M0 -18 Q14 0 0 18 Q-14 0 0 -18 Z" fill={lf.c > 0.6 ? '#8A5A2A' : lf.c > 0.3 ? '#6A4A24' : '#A07030'} stroke={K} strokeWidth="3"
                       transform={`translate(${lx} ${ly}) rotate(${lf.a + b * 400}) scale(${1.4 + lf.c})`} opacity={1 - seg(b, 0.6, 1)} />
@@ -101,9 +104,14 @@ export const Tombe: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <g transform={`translate(${lerp(640, 560, photo)} ${lerp(1180, 1236, photo)}) rotate(${lerp(30, -8, photo)})`} opacity={photo}>
             <Glow id="to-ph" x={0} y={-20} r={150} t={t} color="#FFE0A0" amp={0.08} rate={3} opacity={0.5 * (1 - 0.6 * seg(t, cues[1] + 1, cues[1] + 2))} />
             <rect x="-110" y="-70" width="220" height="130" fill="url(#to-paper)" stroke={K} strokeWidth="5" />
-            <text x="0" y="-30" textAnchor="middle" fontFamily={HAND} fontSize="21" fill="#4A3A2A">Bertha · Edmund · Lydia</text>
-            <text x="0" y="12" textAnchor="middle" fontFamily={HAND} fontSize="32" fill="#7A2A1E">1891</text>
-            <path d="M-70 36 H70" stroke="#8A7A5A" strokeWidth="3" />
+            <rect x="-96" y="-58" width="192" height="88" fill="#8A6A44" />
+            <rect x="-96" y="-58" width="192" height="88" fill="#D8B888" opacity=".45" />
+            {/* i tre oggetti dei domestici nella foto: valigia, rastrello, lavagnetta */}
+            <rect x="-76" y="-14" width="44" height="30" rx="4" fill="#3A2414" />
+            <path d="M-62 -14 q8 -10 16 0" stroke="#3A2414" strokeWidth="4" fill="none" />
+            <path d="M-4 16 L4 -44 M-14 -44 H22" stroke="#3A2414" strokeWidth="5" />
+            <rect x="40" y="-20" width="40" height="34" fill="#2A2018" stroke="#3A2414" strokeWidth="3" />
+            <text x="0" y="52" textAnchor="middle" fontFamily={HAND} fontSize="22" fill="#7A2A1E">1891</text>
           </g>
           <Fog id="to-f2" t={t} y={lerp(1300, 1180, fogUp)} rx={900} ry={110} color="#A8B0A8" opacity={0.35 + 0.25 * fogUp} speed={0.25} ph={2} />
         </g>
