@@ -11,7 +11,7 @@
   "copertina": {
     "durata": 4,
     "frase_lancio": "Una risata che nessuno voleva sentire.",
-    "immagine": "Notte in una città sporca degli anni Ottanta: una lunga scalinata tra palazzi di mattoni, con la luce gialla dei lampioni e il fumo dei tombini; in cima, su un gradino, una giacca rossa abbandonata; in alto le insegne al neon spente. Titolo in un carattere spesso e condensato (Anton). NON usare la locandina ufficiale (il volto truccato, la figura che balla sulle scale), persone o il logo del film.",
+    "immagine": "Notte in una città sporca degli anni Ottanta: una lunga scalinata tra palazzi di mattoni, con la luce gialla dei lampioni e il fumo dei tombini; il completo rosso appeso alla ringhiera; in alto le insegne al neon spente. Titolo in un carattere spesso e condensato (Anton). NON usare la locandina ufficiale (il volto truccato, la figura che balla sulle scale), persone o il logo del film.",
     "voce": "Joker, di Todd Phillips: un clown, una città, una risata."
   },
   "capitoli": [
@@ -139,7 +139,7 @@
   ],
   "finale": {
     "durata": 4,
-    "immagine": "L'alba sulla scalinata vuota, con la giacca rossa dimenticata su un gradino e il fumo che sale dai tombini; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
+    "immagine": "L'alba sulla scalinata vuota, con il completo rosso ancora appeso alla ringhiera e il fumo che sale dai tombini; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
   "musica": "Originale e strumentale: archi gravi, pianoforte nel registro basso, contrabbasso e timpani, un piccolo valzer storto da carillon per il clown; tensione che cresce fino alla diretta e alla rivolta; niente brani del film (né il tema degli archi né la canzone della scalinata). Rumori di città, metropolitana, televisione, sirene, folla."
 }
