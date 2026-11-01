@@ -6,6 +6,9 @@
 // Codice comune (resto di src/, scripts/, motore audio in scripts/audio/, package.json, remotion.config.ts): tutti i film.
 // Eccezione: se in scripts/audio/effetti.mjs sono state solo AGGIUNTE voci al CATALOGO (serve A B per leggere il diff),
 // si rigenerano solo i film il cui spartito usa le voci nuove: un effetto nuovo vale per il film che lo introduce.
+// Eccezione: se in src/films.ts sono state solo AGGIUNTE righe di un film (import del suo JSON, delle sue scene, della
+// sua locandina e la riga del registro; al massimo cambia l'elenco dei font importati), si rigenerano solo quei film:
+// registrare un film nuovo non cambia gli altri video.
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 
@@ -39,8 +42,29 @@ const soloVociNuove = () => {
   });
 };
 
+const REGISTRO = 'src/films.ts';
+/** Film aggiunti al registro, o null se il diff di src/films.ts tocca altro (film esistenti, codice). */
+const soloFilmAggiunti = () => {
+  if (!A || !B) return null;
+  const diff = execFileSync('git', ['diff', '-U0', A, B, '--', REGISTRO], { encoding: 'utf8' });
+  const righe = diff.split('\n').filter((l) => /^[+-]/.test(l) && !/^(\+\+\+|---) /.test(l));
+  const FONT = /^[+-]import \{[A-Z_, ]+\} from '\.\/lib\/fonts';$/;
+  const slugs = new Set();
+  for (const l of righe) {
+    if (FONT.test(l)) continue; // un font in più nell'elenco importato non cambia gli altri film
+    if (!l.startsWith('+')) return null; // righe tolte o modificate: cambia il registro dei film esistenti
+    const m = l.match(/^\+import \w+ from '\.\.\/(?:films|quadri)\/([a-z0-9-]+)\.json';$/)
+      ?? l.match(/^\+import \{[^}]+\} from '\.\/scenes\/([a-z0-9-]+)(?:\/\w+)?';$/)
+      ?? l.match(/^\+  \{ slug: '([a-z0-9-]+)',.*\},$/);
+    if (!m) return null;
+    slugs.add(m[1]);
+  }
+  return tutti.filter((f) => slugs.has(f));
+};
+
 const scelti = (file) => {
   if (file === EFFETTI) return soloVociNuove() ?? tutti;
+  if (file === REGISTRO) return soloFilmAggiunti() ?? tutti;
   if (AUDIO_COMUNE.test(file)) return tutti; // motore audio: campioni, effetti, riverbero
   if (file.startsWith('src/scenes/quadri/')) return quadri; // scene comuni a tutti i quadri
   for (const re of PROPRI) {
