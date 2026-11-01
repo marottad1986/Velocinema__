@@ -21,7 +21,7 @@ export const JURASSIC_PARK_SCENES: Record<string, SceneDef> = {
   trex: { Component: Trex, title: { top: 392, size: 108 } },
   notte: { Component: Notte, title: { top: 392, size: 100, width: 900 } },
   uova: { Component: Uova, title: { top: 392, size: 108, dark: true } },
-  corrente: { Component: Corrente, title: { top: 392, size: 108, dark: true } },
+  corrente: { Component: Corrente, title: { top: 392, size: 108 } },
   cucina: { Component: Cucina, title: { top: 392, size: 108 } },
   fuga: { Component: Fuga, title: { top: 392, size: 108 } },
 };

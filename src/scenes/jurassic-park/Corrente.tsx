@@ -36,7 +36,7 @@ export const Corrente: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
       <defs>
         <FxDefs id="cr" />
         <JPDefs id="cr" />
-        <Lin id="cr-sky" stops={[[0, '#3A4A5A'], [0.45, '#C88A6A'], [0.7, '#F2B87A'], [1, '#E8C890']]} />
+        <Lin id="cr-sky" stops={[[0, '#2A3448'], [0.3, '#6A5A6A'], [0.45, '#C88A6A'], [0.55, '#F2B87A'], [1, '#E8C890']]} />
         <Lin id="cr-ground" stops={[[0, '#5A4A30'], [1, '#22180E']]} />
         <Lin id="cr-box" x2={1} y2={0} stops={[[0, '#5A6A5A'], [0.45, '#A8B8A8'], [1, '#3A4A3A']]} />
         <Lin id="cr-cage" stops={[[0, '#2A2E2A'], [1, '#141614']]} />
@@ -46,8 +46,8 @@ export const Corrente: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
         {/* PIANO 0 — cielo del tramonto (0,2) */}
         <g transform={L(0.2)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="url(#cr-sky)" />
-          <circle cx="300" cy="900" r="90" fill="#FFE0A0" opacity=".8" />
-          <Glow id="cr-sun" x={300} y={900} r={360} t={t} color="#FFD090" amp={0.03} rate={1} opacity={0.5} />
+          <circle cx="900" cy="790" r="80" fill="#FFE0A0" opacity=".9" />
+          <Glow id="cr-sun" x={900} y={790} r={360} t={t} color="#FFD090" amp={0.03} rate={1} opacity={0.5} />
         </g>
         {/* PIANO 1 — giungla (0,4) */}
         <g transform={L(0.4)}>
@@ -56,6 +56,10 @@ export const Corrente: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
         {/* PIANO 2 — il cancello delle gabbie dei raptor che si apre, il raptor che spunta (0,5) */}
         <g transform={L(0.5)}>
           <path d="M-200 1040 H1280 V2200 H-200 Z" fill="url(#cr-ground)" />
+          <rect x="-200" y="1130" width="1480" height="40" fill="#E8C030" stroke={K} strokeWidth="5" />
+          {Array.from({ length: 30 }, (_, i) => <path key={i} d={`M${-200 + i * 52} 1170 l26 -40 h24 l-26 40 Z`} fill={K} />)}
+          {Array.from({ length: 16 }, (_, i) => <ellipse key={i} cx={(i * 233) % 1400 - 160} cy={1320 + ((i * 127) % 520)} rx={12 + (i % 4) * 7} ry={6 + (i % 3) * 3} fill="#4A3A24" stroke={K} strokeWidth="3" />)}
+          <path d="M-200 1400 Q300 1360 600 1460 T1280 1420" stroke="#1A1E1A" strokeWidth="14" fill="none" />
           <rect x="520" y="760" width="420" height="300" fill="url(#cr-cage)" stroke={K} strokeWidth="8" />
           <rect x="500" y="736" width="460" height="34" fill="#3A3E3A" stroke={K} strokeWidth="6" />
           <text x="730" y="762" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="24" fill="#F2C14E">RAPTOR</text>
@@ -72,11 +76,11 @@ export const Corrente: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => 
 
         {/* PIANO 3 — la recinzione con le lampade che si accendono (0,65) */}
         <g transform={L(0.65)}>
-          <Fence id="cr" x0={-60} x1={1140} y={1120} h={540} posts={5} accent={P.accento} glow={glow} />
+          <Fence id="cr" x0={-60} x1={1140} y={1120} h={480} posts={5} accent={P.accento} glow={glow} />
           {[-60, 240, 540, 840, 1140].map((x, i) => (
             <g key={i}>
-              <rect x={x - 20} y="570" width="40" height="26" rx="6" fill={lampOn(i) > 0.5 ? '#FFF4C0' : '#4A4E48'} stroke={K} strokeWidth="5" />
-              <Glow id={`cr-l${i}`} x={x} y={590} r={160} t={t} color="#FFF4C0" amp={0.05} rate={3} opacity={0.6 * lampOn(i)} />
+              <rect x={x - 20} y="630" width="40" height="26" rx="6" fill={lampOn(i) > 0.5 ? '#FFF4C0' : '#4A4E48'} stroke={K} strokeWidth="5" />
+              <Glow id={`cr-l${i}`} x={x} y={650} r={160} t={t} color="#FFF4C0" amp={0.05} rate={3} opacity={0.6 * lampOn(i)} />
             </g>
           ))}
           {/* la scossa: scintille sul cavo in alto e il berrettino che cade */}
