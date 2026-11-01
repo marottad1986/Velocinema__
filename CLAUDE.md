@@ -214,6 +214,9 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   QUALITA.md), `revisore-musica` (sincronia, livelli, strumenti veri). Si chiamano solo quelli della parte toccata.
   La pull request riporta i verdetti; si unisce solo con controlli verdi e revisori APPROVATO (o con i punti aperti
   spiegati nella pull request).
+- Secondo passaggio dei revisori: solo se dopo il primo si è modificato qualcosa, e solo sulle parti modificate (le scene
+  ridisegnate o ritoccate, le righe di testo cambiate, i tratti di musica ed effetti toccati), non su tutto il film: ciò
+  che non è cambiato resta approvato dal primo passaggio. Nel messaggio al revisore elencare con precisione cosa è cambiato.
 
 ## Struttura del codice (Remotion, 30 fps)
 - **Per disegnare scene (anche di un film nuovo) seguire `BRIEF-SCENA.md`**: metodo, scheletro, errori da evitare, verifica.
