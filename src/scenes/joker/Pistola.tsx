@@ -4,11 +4,11 @@ import { Dust, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { HAND, SANS } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
-import { JokerDefs, K, Ombra, Parrucca, Pistola as Rivoltella, Scarpa } from './Comuni';
+import { Completo, JokerDefs, K, Ombra, Pistola as Rivoltella, Scarpa } from './Comuni';
 
 // La pistola sbagliata: il corridoio colorato di un ospedale per bambini, visto di fronte: disegni dei bambini appesi,
 // palloncini legati al termosifone, la porta del reparto con l'oblò, una fascia di cerchi colorati. A sinistra, appesa
-// a un gancio, la borsa del clown con la parrucca che spunta; per terra l'ukulele e una scarpa da clown; a destra la
+// a un gancio, la borsa del clown con la giacca rossa che spunta; per terra l'ukulele e una scarpa da clown; a destra la
 // cartellina con il foglio dello spettacolo.
 // Eventi: prima frase un sacchetto di carta con la pistola scivola dentro la borsa (il regalo di Randall); seconda frase
 // la pistola cade dalla borsa e tocca terra a cue 1 + 1,775 (metallo e timpano dello spartito), i palloncini sobbalzano;
@@ -111,7 +111,7 @@ export const Pistola: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M185 780 V820" stroke={K} strokeWidth="8" />
           <g transform={`rotate(${sway + shake * 0.4} 185 820)`}>
             <path d="M150 840 Q185 790 220 840" stroke="#2A1E3A" strokeWidth="14" fill="none" />
-            <Parrucca x={185} y={862} s={0.5} rot={10} />
+            <g transform="rotate(-18 150 780)"><Completo id="ps" x={150} y={760} s={0.42} /></g>
             <path d="M80 870 H290 Q310 870 306 900 L290 1040 Q286 1070 256 1070 H114 Q84 1070 80 1040 L64 900 Q60 870 80 870 Z" fill="url(#ps-bag)" stroke={K} strokeWidth="8" />
             <path d="M90 900 H280" stroke={K} strokeWidth="5" />
             <path d="M100 892 H270" stroke="#C8B8E8" strokeWidth="4" opacity=".5" />

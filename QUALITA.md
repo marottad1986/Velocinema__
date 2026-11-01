@@ -227,7 +227,7 @@ film; titolo in Playfair Display.
 Look da città sporca anni Ottanta: mattoni anneriti, verde malato e senape, luci gialle dei lampioni e verdi dei neon,
 il rosso dell'accento (#D2382E) solo sugli oggetti del clown e sui momenti chiave (cartello, completo, «JOKER» in
 sovrimpressione, impronte). Elementi comuni in `src/scenes/joker/Comuni.tsx` (palazzi con scale antincendio, sacchi della
-spazzatura, parrucca, scarpa, completo rosso, pistola, televisore). Persone mai, né il volto truccato: Arthur si racconta
+spazzatura, scarpa, completo rosso, pistola, televisore; niente parrucca: è il completo rosso a dire «Joker»). Persone mai, né il volto truccato: Arthur si racconta
 con i suoi oggetti; la violenza è suggerita da lampi, luci che si spengono, oggetti a terra (mai armi puntate né corpi).
 Niente locandina, figura sulle scale o logo del film; titolo in Anton.
 Una sola immagine per capitolo, con un oggetto protagonista grande tra y 520 e 1260 e gli eventi delle tre frasi dentro

@@ -3,12 +3,12 @@ import { camera, eo, eob, lerp, rng, seg } from '../../lib/anim';
 import { Flyers, Glow, NearMotes, Smoke } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Completo, JokerDefs, K, Ombra, Parrucca } from './Comuni';
+import { Completo, JokerDefs, K } from './Comuni';
 
 // Il ballo sulla scalinata: la lunga scalinata di città tra due muri alti, vista dal basso in un giorno nuvoloso;
 // in cima un pianerottolo con la porta di un palazzo, ringhiera di ferro su un lato, cartacce sui gradini.
 // Eventi: prima frase la porta in cima sbatte (cue 1 − 0,7, la porta dello spartito: Randall); seconda frase il completo
-// rosso cade e resta appeso alla ringhiera, la parrucca sul gradino; terza frase impronte rosse di scarpe da clown
+// rosso cade e resta appeso alla ringhiera; terza frase impronte rosse di scarpe da clown
 // scendono i gradini una per battito (griglia a 96 bpm dalla battuta di cue 2, come cassa e ottoni), con un mezzo giro
 // come passi di danza; a cue 2 + 1,2 (timpano) le luci della polizia, rosse e blu, si accendono sui muri. Nessuna persona.
 // Piani: cielo nuvoloso (0,2) · palazzi in cima (0,4) · muri e scalinata (0,65) · ringhiera, completo, impronte (0,8)
@@ -107,7 +107,7 @@ export const Scalinata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
           </g>
         </g>
 
-        {/* PIANO 3 — ringhiera, il completo rosso, la parrucca, le impronte che scendono (0,8) */}
+        {/* PIANO 3 — ringhiera, il completo rosso, le impronte che scendono (0,8) */}
         <g transform={L(0.8)}>
           {/* ringhiera lungo il lato destro */}
           <path d={`M${540 + step(0).hw - 20} ${step(0).y - 70} L${540 + step(STEPS).hw - 60} ${step(STEPS).y - 160}`} stroke={K} strokeWidth="14" />
@@ -119,10 +119,6 @@ export const Scalinata: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
           {/* il completo rosso che cade sulla ringhiera */}
           <g transform={`translate(${540 + step(7).hw - 40} ${lerp(300, step(7).y - 120, suitIn)})`} opacity={seg(t, cues[1] + 0.2, cues[1] + 0.35)}>
             <Completo id="sc" x={0} y={0} s={0.55} sway={Math.sin(t * 2.4) * 6 + (1 - suitIn) * 30} />
-          </g>
-          <g opacity={seg(t, cues[1] + 0.6, cues[1] + 0.8)}>
-            <Ombra id="sc" x={420} y={step(9).y + 6} rx={70} ry={10} />
-            <Parrucca x={420} y={step(9).y - 26} s={0.42} rot={-10} />
           </g>
           {/* impronte rosse: una per battito, alternate e con un mezzo giro */}
           {Array.from({ length: Math.min(prints, 12) }, (_, k) => {

@@ -5,12 +5,12 @@ import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Glow, NearMotes, Smoke, SunRays } from '../../lib/elements';
 import { Speciale } from '../../components/Speciale';
 import type { PosterProps } from '../../types';
-import { Completo, JokerDefs, K, Parrucca } from './Comuni';
+import { Completo, JokerDefs, K } from './Comuni';
 
 // Copertina e finale di Joker. Locandina originale: niente volto truccato, niente figura che balla sulle scale, niente
 // logo del film. Copertina: notte, la lunga scalinata tra i palazzi con la luce gialla dei lampioni e il vapore dei
-// tombini; in cima, sui gradini, la giacca rossa e la parrucca abbandonate. Finale: l'alba sulla scalinata vuota
-// con la parrucca dimenticata su un gradino. La scalinata è la stessa del capitolo 9 (vista dal basso, tra due muri).
+// tombini; in cima, sui gradini, la giacca rossa abbandonata. Finale: l'alba sulla scalinata vuota
+// con la giacca rossa dimenticata su un gradino. La scalinata è la stessa del capitolo 9 (vista dal basso, tra due muri).
 
 const STEPS = 30;
 const step = (k: number) => {
@@ -78,10 +78,9 @@ const Copertina_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
       <g transform={cam.transform}>
         <g transform={L(0.15)}><rect x="-200" y="-200" width="1480" height="2400" fill="url(#jc-sky)" /></g>
         <Scala id="jc" t={t} L={L} night />
-        {/* in cima, la giacca rossa e la parrucca abbandonate su un gradino */}
+        {/* in cima, la giacca rossa abbandonata su un gradino */}
         <g transform={L(0.8)}>
           <g transform={`translate(440 ${step(5).y - 20}) rotate(-70)`}><Completo id="jc" x={0} y={0} s={0.75} /></g>
-          <Parrucca x={680} y={step(6).y - 16} s={0.6} rot={12} />
           <Glow id="jc-red" x={540} y={step(5).y - 30} r={320} t={t} color="#FF6A4A" amp={0.04} rate={2} opacity={0.1} />
         </g>
         <g transform={L(1.3)}>
@@ -117,7 +116,7 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
         </g>
         <Scala id="jf" t={t} L={L} night={false} />
         <g transform={L(0.9)}>
-          <Parrucca x={600} y={step(13).y - 24} s={0.7} rot={-8} />
+          <g transform={`translate(560 ${step(13).y - 20}) rotate(-75)`}><Completo id="jf" x={0} y={0} s={0.6} /></g>
         </g>
         <g transform={L(1.3)}>
           <Smoke id="jf-st1" t={t} x={300} y={1760} color="#E8E0D0" rise={400} wind={60} r0={40} r1={160} speed={0.2} opacity={0.4} />
