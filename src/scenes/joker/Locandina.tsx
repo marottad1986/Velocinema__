@@ -9,8 +9,8 @@ import { Completo, JokerDefs, K } from './Comuni';
 
 // Copertina e finale di Joker. Locandina originale: niente volto truccato, niente figura che balla sulle scale, niente
 // logo del film. Copertina: notte, la lunga scalinata tra i palazzi con la luce gialla dei lampioni e il vapore dei
-// tombini; in cima, sui gradini, la giacca rossa abbandonata. Finale: l'alba sulla scalinata vuota
-// con la giacca rossa dimenticata su un gradino. La scalinata è la stessa del capitolo 9 (vista dal basso, tra due muri).
+// tombini; il completo rosso appeso alla ringhiera. Finale: l'alba sulla scalinata vuota
+// con il completo rosso ancora appeso alla ringhiera. La scalinata è la stessa del capitolo 9 (vista dal basso, tra due muri).
 
 const STEPS = 30;
 const step = (k: number) => {
@@ -18,6 +18,10 @@ const step = (k: number) => {
   const p2 = p * p * 0.55 + p * 0.45;
   return { y: 900 + p2 * 520, hw: 110 + p2 * 500, h: 10 + p2 * 32 };
 };
+
+/** Punto della ringhiera (f 0 = in cima, 1 = in basso): lì è appeso il completo, come nel capitolo 9. */
+const railX = (f: number) => 540 + step(0).hw - 20 + f * (step(16).hw - 60 - step(0).hw + 20);
+const railY = (f: number) => step(0).y - 74 + f * (step(16).y - 164 - step(0).y + 74);
 
 /** La scalinata tra due muri alti, vista dal basso (la stessa del capitolo 9). */
 const Scala: React.FC<{ id: string; t: number; L: (f: number) => string; night: boolean }> = ({ id, t, L, night }) => (
@@ -78,10 +82,10 @@ const Copertina_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
       <g transform={cam.transform}>
         <g transform={L(0.15)}><rect x="-200" y="-200" width="1480" height="2400" fill="url(#jc-sky)" /></g>
         <Scala id="jc" t={t} L={L} night />
-        {/* in cima, la giacca rossa abbandonata su un gradino */}
+        {/* il completo rosso appeso alla ringhiera, come nel capitolo 9 */}
         <g transform={L(0.8)}>
-          <g transform={`translate(440 ${step(5).y - 20}) rotate(-70)`}><Completo id="jc" x={0} y={0} s={0.75} /></g>
-          <Glow id="jc-red" x={540} y={step(5).y - 30} r={320} t={t} color="#FF6A4A" amp={0.04} rate={2} opacity={0.1} />
+          <Glow id="jc-red" x={railX(0.45)} y={railY(0.45) + 120} r={320} t={t} color="#FF6A4A" amp={0.04} rate={2} opacity={0.1} />
+          <Completo id="jc" x={railX(0.45)} y={railY(0.45)} s={0.6} sway={Math.sin(t * 1.6) * 4} />
         </g>
         <g transform={L(1.3)}>
           <Smoke id="jc-st1" t={t} x={260} y={1640} color="#8A8478" rise={500} wind={80} r0={50} r1={200} speed={0.2} opacity={0.55} />
@@ -116,7 +120,7 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
         </g>
         <Scala id="jf" t={t} L={L} night={false} />
         <g transform={L(0.9)}>
-          <g transform={`translate(560 ${step(13).y - 20}) rotate(-75)`}><Completo id="jf" x={0} y={0} s={0.6} /></g>
+          <Completo id="jf" x={railX(0.5)} y={railY(0.5)} s={0.6} sway={Math.sin(t * 1.4) * 5} />
         </g>
         <g transform={L(1.3)}>
           <Smoke id="jf-st1" t={t} x={300} y={1760} color="#E8E0D0" rise={400} wind={60} r0={40} r1={160} speed={0.2} opacity={0.4} />
