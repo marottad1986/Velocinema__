@@ -30,9 +30,9 @@ const drone = (mix, m, { t, dur, vel = 40, gain = 1, seed = 1 }) =>
 const strings = (mix, m, { t, dur, vel = 40, pan = 0, gain = 1, att = 1.2, seed = 1 }) =>
   archi(mix, m, { t, dur, vel: vel + 8, pan, rev: 0.65, gain: gain * 1.4, attack: att, release: 1.4, seed });
 
-/** Campanella: glockenspiel. */
+/** Campanella: glockenspiel (sotto il Sol 79 non ha campioni: le note più gravi salgono di ottava). */
 const bell = (mix, m, { t, vel = 46, pan = 0, gain = 1 }) =>
-  suona(mix, 'glockenspiel', m - 12, { t, dur: 2.5, vel: vel * 1.3, pan, rev: 0.75, gain: gain * 0.45, release: 1.5 });
+  suona(mix, 'glockenspiel', m < 79 ? m + 12 * Math.ceil((79 - m) / 12) : m, { t, dur: 2.5, vel: vel * 1.3, pan, rev: 0.75, gain: gain * 0.45, release: 1.5 });
 
 /** Motivo della discesa: pianoforte (era il vibrafono sintetico). */
 const motif = (mix, m, { t, dur, vel }) =>
@@ -72,7 +72,7 @@ export default (mix, T) => {
    * pulse: colpo sordo a ogni battuta · broken: il motivo salta note e si abbassa (2052)
    */
   const sec = (from, to, o) => {
-    from = snap(from); to = snap(to);
+    from = from <= 0 ? 0 : snap(from); to = snap(to);
     const beat = (60 / BPM) * (o.passo === 'meta' ? 2 : 1), bar = 4 * beat;
     const R = rng(7000 + sid++ * 131);
     if (o.drone) {
@@ -113,7 +113,7 @@ export default (mix, T) => {
   // finale: il motivo risale in campanelle e un accordo di Mi minore aperto
   const F = snap(T.finale); // sulla griglia, dove finisce l'ultima sezione
   [28, 40, 47, 52, 55, 59].forEach((m, j) => strings(mix, m, { t: F, dur: 3.4, vel: 46, gain: 0.6, pan: (j - 2.5) * 0.2, att: 0.5, seed: 40 + j }));
-  [...MOTIF].reverse().forEach(([b, m], k) => bell(mix, m + 12, { t: F + 0.3 + k * 0.45, vel: 44, pan: -0.3 + k * 0.2 }));
+  [...MOTIF].reverse().forEach(([b, m], k) => bell(mix, m + 12, { t: F + CROMA * (k + 1), vel: 44, pan: -0.3 + k * 0.2 }));
 
   // ---------------------------------------------------------------- effetti sonori (gli istanti degli eventi di Piani.tsx)
   // copertina: la trottola che parte
@@ -137,16 +137,19 @@ export default (mix, T) => {
   clip(mix, 'passaggio', { t: at('calcio', 3, 0.2) - 0.4, da: 12.27, durata: 1.6, gain: 0.3, fadeOut: 0.5, rev: 0.4 });
   // capitolo 6: il sonnifero, poi il limbo che si apre (rombo grave)
   bell(mix, 64, { t: at('limbo', 1, 0.2), vel: 40 });
+  bell(mix, 79, { t: at('limbo', 3, 0.3), vel: 32 }); // l'orologio del limbo
   clip(mix, 'rombo', { t: at('limbo', 2, 0.1), da: 31, durata: 2.4, gain: 0.3, fadeIn: 0.5, fadeOut: 1, largo: 2 });
-  // capitolo 7: «niente è vero», Mal che si spegne, i suoi anelli nei piani
+  // capitolo 7: «niente è vero», Mal che si spegne (pianoforte grave), i suoi anelli nei piani
+  motif(mix, 52, { t: at('mal', 2, 0.6), dur: 2.5, vel: 34 });
   bell(mix, 70, { t: at('mal', 1, 0.3), vel: 36, pan: 0.2 });
-  [0.5, 0.75, 1.0].forEach((d, k) => bell(mix, [64, 63, 59][k], { t: at('mal', 3, d), vel: 32, pan: -0.3 + k * 0.3 }));
+  [0.5, 0.8].forEach((d, k) => bell(mix, [64, 59][k], { t: at('mal', 3, d), vel: 32, pan: -0.3 + k * 0.6 })); // Piani.tsx: gli anelli di Mal nei sogni 1 e 2
   // capitolo 8: Mal colpisce Fischer, che cade; la cassaforte si apre; l'idea piantata
   colpo(mix, 'grancassa', 'bdrum_f', { t: at('missione', 0, 0.3), vel: 100, gain: 0.7, rev: 0.45 });
   clip(mix, 'rombo', { t: at('missione', 0, 0.3), da: 31, durata: 1.6, gain: 0.25, fadeIn: 0.2, fadeOut: 0.8, largo: 2 });
   clip(mix, 'scatti', { t: at('missione', 2, 0.7), da: 6.49, durata: 0.12, gain: 0.25, rev: 0.25 });
   bell(mix, 88, { t: at('missione', 3, 0.2), vel: 42 });
-  // capitolo 9: il risveglio e la trottola che vacilla
+  // capitolo 9: il risveglio, la trottola fatta girare e poi vacillante
+  clip(mix, 'passaggio', { t: at('trottola', 2, 0.3), da: 0.56, durata: 0.8, gain: 0.2, fadeOut: 0.3, rev: 0.3 });
   colpo(mix, 'grancassa', 'bdrum_f', { t: at('trottola', 1, 0.1), vel: 110, gain: 0.85, rev: 0.45 });
   [0, 0.45, 0.9].forEach((d, k) => bell(mix, [76, 74, 71][k], { t: at('trottola', 3, 0.2 + d), vel: 40 - k * 4 }));
 };

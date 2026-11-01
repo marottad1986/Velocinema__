@@ -65,30 +65,36 @@ const pop = (T: number, t0: number) => eob(seg(T, t0, t0 + 0.45), 1.7);
 
 type Shot = { at: number; x: number; y: number; z: number };
 // inquadrature larghe: la torre riempie tutta l'altezza dello schermo (dal titolo in giù, anche dietro i sottotitoli)
-const WIDE = { x: 540, y: 1284, z: 0.43 };
-const FLOORS = { x: 540, y: 1091, z: 0.55 };
+const WIDE = { x: 540, y: 1098, z: 0.43 };
+const FLOORS = { x: 540, y: 945, z: 0.55 };
 const SHOTS: Shot[] = [
   { at: at('estrazione', 0), x: 520, y: 690, z: 1.12 },
   { at: at('estrazione', 1), x: 530, y: 720, z: 1.1 },
   { at: at('estrazione', 2), x: 560, y: 700, z: 1.12 },
   { at: at('innesto', 0), x: 530, y: 700, z: 1.1 },
   { at: at('innesto', 2), x: 550, y: 700, z: 1.1 },
-  { at: at('livelli', 1), x: 540, y: 1020, z: 0.75 },
-  { at: at('livelli', 2), ...FLOORS },
-  { at: at('tempo', 0), x: 580, y: 660, z: 1.1 },
+  { at: at('livelli', 1), x: 540, y: 1080, z: 0.75 },
+  // il seme scende: la camera lo segue piano per piano, poi la torre intera come chiusura
+  { at: at('livelli', 2), x: 540, y: 1720, z: 0.55 },
+  { at: at('livelli', 2, 1.4), x: 540, y: 2380, z: 0.55 },
+  { at: at('livelli', 3), ...FLOORS },
+  { at: at('tempo', 0), x: 540, y: 680, z: 1.05 },
   { at: at('tempo', 1), ...FLOORS },
+  { at: at('tempo', 2), x: 560, y: 1360, z: 0.95 },
+  { at: at('tempo', 3), x: 560, y: 2380, z: 0.55 },
   { at: at('calcio', 0), x: 560, y: 1380, z: 1.08 },
-  { at: at('calcio', 2), ...FLOORS },
+  { at: at('calcio', 2), x: 540, y: 2020, z: 0.45 },
+  { at: at('calcio', 3), ...WIDE },
   { at: at('limbo', 0), x: 540, y: 1000, z: 0.62 },
   { at: at('limbo', 2), x: 540, y: 3030, z: 0.5 },
   { at: at('limbo', 3), x: 540, y: 3360, z: 1.0 },
   { at: at('mal', 0), x: 520, y: 3330, z: 1.1 },
-  { at: at('mal', 3), ...WIDE },
+  { at: at('mal', 3), x: 540, y: 1250, z: 0.37 },
   { at: at('missione', 0), x: 540, y: 3030, z: 0.5 },
   { at: at('missione', 2), x: 520, y: 2720, z: 1.05 },
-  { at: at('trottola', 0), ...WIDE },
+  { at: at('trottola', 0), x: 540, y: 3250, z: 0.62 },
   { at: at('trottola', 1), x: 540, y: 700, z: 1.1 },
-  { at: at('trottola', 2), x: 790, y: 720, z: 1.6 },
+  { at: at('trottola', 2), x: 850, y: 700, z: 2.4 },
   { at: at('trottola', 3, 0.4), ...WIDE },
 ];
 const camAt = (T: number) => {
@@ -243,7 +249,7 @@ const SNOW = Array.from({ length: 40 }, () => ({ x: X0 + rr() * (X1 - X0), y: rr
 const SKY = Array.from({ length: 9 }, (_, i) => ({ x: 96 + i * 104, w: 70 + ((i * 37) % 30), h: 180 + ((i * 53) % 160) }));
 const L = { fill: 'none', stroke: INK, strokeLinejoin: 'round', strokeLinecap: 'round' } as const;
 
-export const ArtRealta: React.FC<{ T: number; wake: number }> = ({ T, wake }) => {
+export const ArtRealta: React.FC<{ T: number; wake: number; closeUp?: number }> = ({ T, wake, closeUp = 0 }) => {
   const y0 = ROW.realta.y0;
   return (
     <g>
@@ -283,7 +289,7 @@ export const ArtRealta: React.FC<{ T: number; wake: number }> = ({ T, wake }) =>
       {[N.cobb, N.saito, N.fischer].map(([x], i) => (
         <path key={`t${i}`} d={`M${430 + i * 20} ${y0 + 488} Q${(x + 460) / 2} ${y0 + 560} ${x + 30} ${y0 + 360}`} stroke={DIM} strokeWidth="3" fill="none" strokeDasharray="6 6" />
       ))}
-      <text x="460" y={y0 + 580} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize="30" fill={DIM}>la macchina dei sogni</text>
+      <text x="460" y={y0 + 580} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize="30" fill={DIM} opacity={1 - closeUp}>la macchina dei sogni</text>
       {/* tavolino della trottola */}
       <path d={`M${N.trottola[0] - 80} ${N.trottola[1] + 50} H${N.trottola[0] + 80} M${N.trottola[0]} ${N.trottola[1] + 50} V${y0 + 470} M${N.trottola[0] - 40} ${y0 + 470} H${N.trottola[0] + 40}`} {...L} strokeWidth="4" />
     </g>
@@ -370,7 +376,6 @@ export const ArtP3: React.FC<{ T: number }> = ({ T }) => {
       {/* abeti e la stanza della cassaforte */}
       {[120, 200, 880, 960].map((x, i) => <path key={x} d={`M${x} ${y0 + 470} l-34 0 l34 -${70 + i * 10} l34 ${70 + i * 10} Z M${x} ${y0 + 470} v20`} {...L} fill="#183A5C" strokeWidth="3" />)}
       <rect x="250" y={y0 + 300} width="520" height="250" rx="10" {...L} fill="#0F2740" strokeWidth="3" strokeDasharray="10 8" />
-      <text x="510" y={y0 + 540} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize="30" fill={DIM}>la stanza blindata</text>
       {SNOW.map((s, i) => <circle key={i} cx={s.x + Math.sin(T + s.ph) * 14} cy={y0 + 20 + mod(s.y * 560 + T * 560 * s.v, 560)} r="4" fill={INK} opacity=".55" />)}
     </g>
   );
@@ -394,9 +399,10 @@ export const ArtLimbo: React.FC<{ T: number }> = ({ T }) => {
         <rect x="-18" y="-50" width="36" height="50" fill="none" stroke={RED} strokeWidth="3" />
       </g>
       {/* il mare continua sotto il piano, nel buio: niente fondo */}
-      <rect x={X0 - 200} y={y0 + 690} width={X1 - X0 + 400} height="900" fill="#0C1C2E" opacity=".85" />
+      <linearGradient id="in-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#0C1C2E" stopOpacity=".9" /><stop offset="1" stopColor="#0C1C2E" stopOpacity="0" /></linearGradient>
+      <rect x={X0} y={y0 + 680} width={X1 - X0} height="700" fill="url(#in-sea)" />
       {Array.from({ length: 9 }, (_, i) => (
-        <path key={`m${i}`} d={`M${X0 - 200} ${y0 + 740 + i * 70} ${Array.from({ length: 16 }, (_, k) => `q40 ${-14 + Math.sin(T * 0.8 + i * 0.7 + k) * 6} 80 0`).join(' ')}`} stroke={i % 2 ? RED : INK} strokeWidth="3" fill="none" opacity={0.4 - i * 0.035} />
+        <path key={`m${i}`} d={`M${X0} ${y0 + 740 + i * 70} ${Array.from({ length: 12 }, (_, k) => `q40 ${-14 + Math.sin(T * 0.8 + i * 0.7 + k) * 6} 80 0`).join(' ')}`} stroke={i % 2 ? RED : INK} strokeWidth="3" fill="none" opacity={0.4 - i * 0.035} />
       ))}
       {/* spiaggia e onde grigie */}
       <path d={`M${X0} ${y0 + 520} H${X1}`} stroke={RED} strokeWidth="3" />
@@ -435,7 +441,8 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
   const path: P[] = [[N.fischer[0] + 70, N.fischer[1] - 40], [N.fischer1[0] + 64, N.fischer1[1] - 40], [N.fischer2[0] + 64, N.fischer2[1] - 40], [N.fischer3[0] + 64, N.fischer3[1] - 40]];
   const sp = seedDown * 3, si = Math.min(2, Math.floor(sp)), sf = sp - si;
   const seedPos: P = [lerp(path[si][0], path[si + 1][0], sf), lerp(path[si][1], path[si + 1][1], sf)];
-  const big = (z: number) => z; // promemoria: le scritte delle inquadrature larghe sono grandi (si vedono a z 0,22–0,3)
+  const big = (z: number) => z;
+  const close = seg(T, at('trottola', 2) - 0.2, at('trottola', 2) + 0.4) * (1 - seg(T, at('trottola', 3, 0.3), at('trottola', 3, 0.9))); // promemoria: le scritte delle inquadrature larghe sono grandi (si vedono a z 0,22–0,3)
 
   return (
     <g>
@@ -464,7 +471,7 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
                 <path d={`M${X0} ${row.y0} H${X0 + (X1 - X0) * p} M${X0} ${row.y0 + row.h} H${X0 + (X1 - X0) * p}`} stroke={red ? RED : INK} strokeWidth="5" />
                 <path d={`M${X0} ${row.y0} V${row.y0 + row.h} M${X1} ${row.y0} V${row.y0 + row.h}`} stroke={red ? RED : INK} strokeWidth="5" opacity={seg(p, 0.9, 1)} />
                 <g opacity={seg(p, 0.5, 1)}>
-                  {row.key === 'realta' && <ArtRealta T={T} wake={wake} />}
+                  {row.key === 'realta' && <ArtRealta T={T} wake={wake} closeUp={close} />}
                   {row.key === 'p1' && <ArtP1 T={T} van={van} />}
                   {row.key === 'p2' && <ArtP2 />}
                   {row.key === 'p3' && <ArtP3 T={T} />}
@@ -496,15 +503,15 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
       {/* capitolo 1: Cobb entra nel sogno e ruba i segreti; la trottola */}
       {T < end('estrazione') + 0.6 && T >= at('estrazione', 1) && (
         <g opacity={1 - seg(T, end('estrazione') - 0.3, end('estrazione') + 0.4)}>
-          <g transform={`translate(420 ${ROW.realta.y0 + 470}) scale(${pop(T, at('estrazione', 1))})`}>
+          <g transform={`translate(480 ${ROW.realta.y0 + 515}) scale(${pop(T, at('estrazione', 1)) * 0.85})`}>
             <path d="M-90 30 Q-118 30 -112 0 Q-108 -32 -70 -30 Q-58 -64 -14 -58 Q20 -78 50 -50 Q96 -56 96 -14 Q122 -2 108 26 Q102 38 82 36 Z" fill="#1E3A56" stroke={INK} strokeWidth="5" />
             <text y="12" textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize="40" fill={INK}>un sogno</text>
           </g>
-          <Link T={T} t0={at('estrazione', 1, 0.3)} a={[N.cobb[0] + 20, N.cobb[1] + 66]} b={[330, ROW.realta.y0 + 448]} c={[230, ROW.realta.y0 + 440]} dashed flow arrow label="entra" lx={-60} ly={10} />
+          <Link T={T} t0={at('estrazione', 1, 0.3)} a={[N.cobb[0] + 20, N.cobb[1] + 66]} b={[400, ROW.realta.y0 + 500]} c={[250, ROW.realta.y0 + 500]} dashed flow arrow label="entra" lx={-60} ly={10} />
           <Link T={T} t0={at('estrazione', 1, 1.1)} a={[500, ROW.realta.y0 + 430]} b={[N.cobb[0] + 64, N.cobb[1] + 10]} c={[480, ROW.realta.y0 + 300]} color={ORANGE} arrow label="segreti" lx={60} ly={-10} />
         </g>
       )}
-      <Tag T={T} t0={at('estrazione', 3, 0.1)} x={N.trottola[0] - 40} y={N.trottola[1] - 120} text="nel sogno non si ferma" size={38} until={end('estrazione') - 0.4} />
+      <Tag T={T} t0={at('estrazione', 3, 0.1)} x={N.trottola[0] - 140} y={N.trottola[1] - 120} text="nel sogno non si ferma" size={38} until={end('estrazione') - 0.4} />
 
       {/* capitolo 2: Saito chiede di piantare un'idea in Fischer */}
       <Tag T={T} t0={at('innesto', 1, 0.2)} x={N.saito[0] + 60} y={ROW.realta.y0 + 150} text="non rubare: piantare" size={40} until={at('innesto', 3, 0.6)} />
@@ -514,8 +521,8 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
         </g>
       )}
       <Link T={T} t0={at('innesto', 3, 0.1)} a={[N.fischer[0], N.fischer[1] - 70]} b={[N.fischer[0] + 140, ROW.realta.y0 + 190]} c={[N.fischer[0] + 40, ROW.realta.y0 + 170]} color={ORANGE} arrow fade={off('innesto')} />
-      <Tag T={T} t0={at('innesto', 3, 0.4)} x={N.fischer[0] + 150} y={ROW.realta.y0 + 150} text="smonta l'impero del padre" size={34} until={end('innesto') - 0.4} />
-      <Tag T={T} t0={at('innesto', 4, 0.1)} x={N.cobb[0] + 150} y={N.cobb[1] - 110} text="in cambio: torna dai figli" bg={INK} size={34} until={end('innesto') - 0.4} />
+      <Tag T={T} t0={at('innesto', 3, 0.4)} x={740} y={ROW.realta.y0 + 150} text="smonta l'impero del padre" size={34} until={end('innesto') - 0.4} />
+      <Tag T={T} t0={at('innesto', 4, 0.1)} x={300} y={ROW.realta.y0 + 150} text="in cambio: torna dai figli" bg={INK} size={34} until={end('innesto') - 0.4} />
 
       {/* capitolo 3: il seme scende; Fischer portato giù nei sogni; i piani di un palazzo */}
       <Tag T={T} t0={at('livelli', 0, 0.2)} x={N.fischer[0] + 40} y={N.fischer[1] - 120} text="deve sembrare sua" size={40} until={at('livelli', 1, 0.6)} />
@@ -525,7 +532,7 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
       <Link T={T} t0={at('livelli', 2, 0.2)} a={[N.fischer[0], N.fischer[1] + 70]} b={[N.fischer3[0], N.fischer3[1] - 72]} c={[600, 1700]} color={DIM} dashed w={8} />
       <Link T={T} t0={at('livelli', 1, 0.3)} a={[X1 + 40, ROW.realta.y0 + 120]} b={[X1 + 40, ROW.p3.y0 + 300]} color={INK} arrow w={14} fade={off('livelli')} />
       <Tag T={T} t0={at('livelli', 1, 0.6)} x={700} y={ROW.p1.y0 - 30} text="più giù = più sua" size={big(64)} until={end('livelli') - 0.4} />
-      <Tag T={T} t0={at('livelli', 3, 0.2)} x={540} y={ROW.p2.y0 - 30} text="come i piani di un palazzo" bg={INK} size={big(70)} until={end('livelli') - 0.4} />
+      <Tag T={T} t0={at('livelli', 3, 0.2)} x={600} y={ROW.p2.y0 + 520} text="come i piani di un palazzo" bg={INK} size={big(70)} until={end('livelli') - 0.4} />
       {T >= at('livelli', 0) && seedIn < 1 && T > at('livelli', 1) && (
         <g transform={`translate(${seedPos[0]} ${seedPos[1]}) scale(${1 + 1.6 * Math.sin(Math.PI * Math.min(1, seedDown)) })`} opacity={1 - seedIn}>
           <Seed T={T} s={1.1} />
@@ -546,19 +553,19 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })}
-      <Tag T={T} t0={at('calcio', 3, 0.2)} x={460} y={ROW.p2.y0 - 30} text="tutti insieme!" size={big(80)} until={end('calcio') - 0.4} />
+      <Tag T={T} t0={at('calcio', 3, 0.2)} x={480} y={ROW.p1.y0 + 540} text="tutti insieme!" size={big(80)} until={end('calcio') - 0.4} />
 
       {/* capitolo 6: morire sveglia… ma il sonnifero manda nel limbo */}
       <Link T={T} t0={at('limbo', 0, 0.3)} a={[200, ROW.p1.y0 + 300]} b={[200, ROW.realta.y0 + 420]} color={INK} dashed arrow w={12} label="muori → ti svegli" lx={300} ly={0} size={80} fade={off('limbo')} />
       {T >= at('limbo', 1, 0.2) && (
-        <g transform={`translate(760 ${ROW.p1.y0 + 330}) scale(${pop(T, at('limbo', 1, 0.2)) * 2.4})`} opacity={off('limbo')}>
+        <g transform={`translate(300 ${ROW.p1.y0 - 30}) scale(${pop(T, at('limbo', 1, 0.2)) * 2})`} opacity={off('limbo')}>
           <rect x="-40" y="-18" width="80" height="36" rx="18" fill={RED} stroke={INK} strokeWidth="4" />
           <path d="M0 -18 V18" stroke={INK} strokeWidth="4" />
           <path d="M-30 -8 H-10" stroke="#FFFFFF" strokeWidth="3" opacity=".6" />
         </g>
       )}
-      <Tag T={T} t0={at('limbo', 1, 0.6)} x={640} y={ROW.p1.y0 + 470} text="sonnifero fortissimo" bg={RED} fg="#FFFFFF" size={big(80)} until={end('limbo') - 0.4} />
-      <Link T={T} t0={at('limbo', 2, 0.3)} a={[200, ROW.p3.y0 + 330]} b={[200, ROW.limbo.y0 + 200]} color={RED} dashed arrow w={14} label="muori → limbo" lx={280} size={90} fade={off('limbo')} />
+      <Tag T={T} t0={at('limbo', 1, 0.6)} x={680} y={ROW.p1.y0 - 30} text="sonnifero fortissimo" bg={RED} fg="#FFFFFF" size={big(80)} until={end('limbo') - 0.4} />
+      <Link T={T} t0={at('limbo', 2, 0.3)} a={[200, ROW.p3.y0 + 330]} b={[200, ROW.limbo.y0 + 200]} color={RED} dashed arrow w={14} label="muori → limbo" lx={280} size={90} fade={1 - seg(T, at('limbo', 3) - 0.3, at('limbo', 3))} />
       <Tag T={T} t0={at('limbo', 3, 0.5)} x={470} y={ROW.limbo.y0 + 250} text="dimentichi cos'è reale" bg={RED} fg="#FFFFFF" size={44} until={end('limbo') - 0.4} />
 
       {/* capitolo 7: Cobb e Mal nel limbo, anni fa; l'idea «niente è vero»; Mal lo perseguita */}
@@ -568,12 +575,12 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
         <Ring />
       </Node>
       <Link T={T} t0={at('mal', 1, 0.3)} a={[N.cobbLimbo[0] + 50, N.cobbLimbo[1] - 50]} b={[N.mal[0] - 56, N.mal[1] - 50]} c={[575, ROW.limbo.y0 + 120]} color={RED} arrow w={7} label="«niente è vero»" ly={-30} size={48} fade={off('mal')} />
-      <Tag T={T} t0={at('mal', 2, 0.4)} x={N.mal[0] + 10} y={N.mal[1] + 170} text="crede di sognare" bg={RED} fg="#FFFFFF" size={40} until={at('mal', 3, 0.4)} />
-      {(['p1', 'p2', 'p3'] as const).map((k, i) => (
-        <Node key={k} T={T} t0={at('mal', 3, 0.5 + i * 0.25)} p={[300 + i * 220, ROW[k].y0 + 320]} name="" red ring={1} r={90} fade={off('mal')}><Ring /></Node>
+      <Tag T={T} t0={at('mal', 2, 0.4)} x={N.mal[0] - 40} y={N.mal[1] + 230} text="crede di sognare" bg={RED} fg="#FFFFFF" size={40} until={at('mal', 3, 0.4)} />
+      {(['p1', 'p2'] as const).map((k, i) => (
+        <Node key={k} T={T} t0={at('mal', 3, 0.5 + i * 0.3)} p={[340 + i * 300, ROW[k].y0 + 300]} name="" red ring={1} r={90} fade={off('mal')}><Ring /></Node>
       ))}
-      <Tag T={T} t0={at('mal', 3, 0.3)} x={N.cobb[0] + 240} y={ROW.realta.y0 + 120} text="Cobb ricercato" bg={RED} fg="#FFFFFF" size={big(70)} until={end('mal') - 0.4} />
-      <Tag T={T} t0={at('mal', 3, 1.2)} x={540} y={ROW.p2.y0 + 40} text="lei lo perseguita" bg={RED} fg="#FFFFFF" size={big(70)} until={end('mal') - 0.4} />
+      <Tag T={T} t0={at('mal', 3, 0.3)} x={600} y={ROW.realta.y0 + 560} text="Cobb ricercato" bg={RED} fg="#FFFFFF" size={big(70)} until={end('mal') - 0.4} />
+      <Tag T={T} t0={at('mal', 3, 1.2)} x={560} y={ROW.p2.y0 + 530} text="lei lo perseguita" bg={RED} fg="#FFFFFF" size={big(70)} until={end('mal') - 0.4} />
 
       {/* capitolo 8: Fischer cade nel limbo e torna; la cassaforte; l'idea attecchisce */}
       <Node T={T} t0={at('missione', 0, 0.1)} p={[870, N.fischer3[1] - 20]} name="Mal" red ring={1} r={60} size={44} fade={1 - seg(T, at('missione', 1, 0), at('missione', 1, 0.6))}><Ring /></Node>
@@ -589,7 +596,7 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
         </g>
       )}
       <Link T={T} t0={at('missione', 1, 0.2)} a={[N.padre[0] - 120, ROW.p3.y0 + 380]} b={[N.cobbLimbo[0] - 40, N.cobbLimbo[1] - 80]} c={[150, ROW.limbo.y0]} color={ORANGE} dashed flow arrow w={12} label="Cobb scende" lx={240} ly={30} size={80} fade={off('missione')} />
-      <Tag T={T} t0={at('missione', 1, 1.2)} x={N.mal[0]} y={N.mal[1] - 140} text="addio" bg={RED} fg="#FFFFFF" size={big(80)} until={at('missione', 2, 0.2)} />
+      <Tag T={T} t0={at('missione', 1, 1.2)} x={860} y={N.mal[1] + 150} text="addio" bg={RED} fg="#FFFFFF" size={big(80)} until={at('missione', 2, 0.2)} />
       <Link T={T} t0={at('missione', 2, 1.0)} a={[N.padre[0] + 66, N.padre[1]]} b={[N.fischer3[0] - 66, N.fischer3[1]]} color={ORANGE} arrow w={7} label="sii te stesso" ly={-24} size={46} />
       <Tag T={T} t0={at('missione', 3, 0.6)} x={N.fischer3[0] + 40} y={N.fischer3[1] - 150} text="idea piantata!" size={46} />
 
@@ -600,11 +607,11 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
       <Tag T={T} t0={at('trottola', 2, 0.5)} x={N.cobb[0] + 120} y={ROW.realta.y0 + 130} text="corre dai figli" bg={INK} size={34} until={at('trottola', 3, 0.3)} />
 
       {/* nodi della realtà, sopra a tutto */}
-      <Node T={T} t0={at('estrazione', 0, 0.1)} p={N.cobb} name="Cobb" sub="ladro di sogni" ring={focus(at('estrazione', 0), at('estrazione', 2)) + focus(at('trottola', 1), at('trottola', 2))}>
+      <Node T={T} t0={at('estrazione', 0, 0.1)} p={N.cobb} name="Cobb" sub="ladro di sogni" fade={1 - close} ring={focus(at('estrazione', 0), at('estrazione', 2)) + focus(at('trottola', 1), at('trottola', 2))}>
         <Top T={T} s={0.85} />
       </Node>
-      <Node T={T} t0={at('innesto', 0, 0.1)} p={N.saito} name="Saito" sub="uomo d'affari" ring={focus(at('innesto', 0), at('innesto', 1, 1))}><Briefcase /></Node>
-      <Node T={T} t0={at('innesto', 2, 0.1)} p={N.fischer} name="Fischer" sub="l'erede" ring={focus(at('innesto', 2), at('innesto', 4)) + focus(at('tempo', 0), at('tempo', 1))}><Pinwheel T={T} s={0.95} /></Node>
+      <Node T={T} t0={at('innesto', 0, 0.1)} p={N.saito} name="Saito" sub="uomo d'affari" fade={1 - close} ring={focus(at('innesto', 0), at('innesto', 1, 1))}><Briefcase /></Node>
+      <Node T={T} t0={at('innesto', 2, 0.1)} p={N.fischer} name="Fischer" sub="l'erede" fade={1 - close} ring={focus(at('innesto', 2), at('innesto', 4)) + focus(at('tempo', 0), at('tempo', 1))}><Pinwheel T={T} s={0.95} /></Node>
       {/* la trottola, grande, nella realtà */}
       {T >= at('estrazione', 2, 0.1) && (() => {
         const fast = seg(T, at('estrazione', 3), at('estrazione', 3, 0.4)) * (1 - seg(T, end('estrazione') - 0.3, end('estrazione')));
@@ -619,7 +626,7 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })()}
-      <Tag T={T} t0={at('trottola', 3, 0.6)} x={540} y={ROW.p1.y0 + 40} text="sogno o realtà?" size={big(96)} rot={-3} />
+      <Tag T={T} t0={at('trottola', 3, 0.6)} x={560} y={ROW.p1.y0 + 520} text="sogno o realtà?" size={big(96)} rot={-3} />
     </g>
   );
 };
@@ -639,7 +646,7 @@ export const makePiani = (chapterId: string): React.FC<SceneProps> => {
           </radialGradient>
           <linearGradient id="in-scrim" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="#081626" stopOpacity=".96" />
-            <stop offset=".8" stopColor="#081626" stopOpacity=".8" />
+            <stop offset=".82" stopColor="#081626" stopOpacity=".9" />
             <stop offset="1" stopColor="#081626" stopOpacity="0" />
           </linearGradient>
           <pattern id="in-grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -656,7 +663,7 @@ export const makePiani = (chapterId: string): React.FC<SceneProps> => {
           <Tower T={T} />
         </g>
         {/* velo scuro in alto: il titolo resta leggibile anche quando la torre ci passa sotto */}
-        <rect width="1080" height="470" fill="url(#in-scrim)" />
+        <rect width="1080" height="575" fill="url(#in-scrim)" />
         {MOTES.map((m, i) => (
           <circle key={i} cx={mod(m.x + Math.sin(T * 0.5 + m.ph) * 30, 1080)} cy={mod(m.y - T * m.v, 1920)} r={m.s} fill={INK} opacity={0.1 + 0.07 * Math.sin(T * 2 + m.ph)} />
         ))}

@@ -56,6 +56,7 @@ const Blueprint: React.FC<{ t: number; id: string; wobble?: number; build?: numb
               </g>
             </g>
             <rect x={540 - w / 2} y={top} width={w} height={h} fill="none" stroke={red ? '#E0605A' : INK} strokeWidth="4" />
+            <rect x={540 - w / 2 + 4} y={top + 4} width={f.name.length * 21 + 22} height="40" fill="#0B1A2A" opacity=".85" />
             <text x={540 - w / 2 + 14} y={top + 34} fontFamily={SANS} fontWeight={900} fontSize="28" letterSpacing="4" fill={red ? '#E0605A' : ORANGE} stroke="#0B1A2A" strokeWidth="6" paintOrder="stroke">{f.name}</text>
             {i < 4 && <path d={`M${540 - w / 2} ${top + h} L${540 - WIDTHS[i + 1] / 2} ${top + h + 14} M${540 + w / 2} ${top + h} L${540 + WIDTHS[i + 1] / 2} ${top + h + 14}`} stroke={INK} strokeWidth="3" opacity=".7" />}
           </g>
@@ -114,7 +115,7 @@ export const Finale: React.FC<PosterProps> = ({ t, film }) => {
         </div>
         <p style={{ margin: '24px 0 0', fontSize: 34, fontWeight: 400, opacity: seg(t, 1.0, 1.4) }}>Commenta con la spiegazione che vorresti.</p>
       </div>
-      <p style={{ position: 'absolute', left: 60, right: 60, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 960, boxSizing: 'border-box', padding: '12px 26px 14px',
+      <p style={{ position: 'absolute', left: 60, right: 60, top: 1340, margin: '0 auto', width: 'fit-content', maxWidth: 960, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 44, fontWeight: 800, textAlign: 'center', lineHeight: 1.25,
         opacity: line, transform: `translateY(${(1 - line) * 14}px)` }}>
         {film.finale.voce}
