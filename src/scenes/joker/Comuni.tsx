@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Elementi comuni di Joker: i palazzi di mattoni di Gotham con le scale antincendio, i sacchi della spazzatura dello
-// sciopero, gli oggetti del clown (parrucca, scarpa, completo rosso), la pistola e il televisore.
+// sciopero, gli oggetti del clown (scarpa e completo rosso: è il completo a dire «Joker»), la pistola e il televisore.
 // Mai persone (né il volto truccato): Arthur si racconta con i suoi oggetti, le luci e la città.
 // Ogni oggetto ha materiale (gradiente con lato in luce e lato in ombra), bordo illuminato e dettagli da 4–6 px:
 // chi lo usa passa un `id` unico per i gradienti.
@@ -97,23 +97,6 @@ export const Sacchi: React.FC<{ id: string; x: number; y: number; s?: number; se
     <g transform="translate(-200 -12) rotate(-70)"><rect x="-14" y="-24" width="28" height="48" rx="6" fill="#B8302A" stroke={K} strokeWidth="4" /><path d="M-14 -10 h28" stroke="#E8E0D0" strokeWidth="4" /></g>
   </g>
 );
-
-/** Parrucca da clown verde, riccia e voluminosa (riccioli a strati con riflessi). Origine al centro. */
-export const Parrucca: React.FC<{ x: number; y: number; s?: number; rot?: number }> = ({ x, y, s = 1, rot = 0 }) => {
-  const curls: [number, number, number][] = [[-96, 10, 30], [-110, -24, 28], [-84, -50, 30], [-56, -70, 28], [-24, -82, 26], [10, -84, 26], [42, -76, 28], [72, -58, 30], [98, -30, 28], [108, 4, 30], [-70, 34, 26], [84, 36, 26], [-40, -40, 24], [0, -50, 24], [40, -40, 24]];
-  return (
-    <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${s})`}>
-      <ellipse cx="0" cy="-10" rx="80" ry="50" fill="#1E4A28" stroke={K} strokeWidth="6" />
-      {curls.map(([cx, cy, r], i) => (
-        <g key={i}>
-          <circle cx={cx} cy={cy} r={r} fill={i % 3 === 0 ? '#2E6A3A' : '#3E8A4A'} stroke={K} strokeWidth="5" />
-          <path d={`M${cx - r * 0.5} ${cy - r * 0.2} a${r * 0.5} ${r * 0.5} 0 1 1 ${r * 0.6} ${r * 0.5}`} fill="none" stroke="#1E4A28" strokeWidth="4" />
-          <path d={`M${cx - r * 0.55} ${cy - r * 0.45} q${r * 0.3} ${-r * 0.3} ${r * 0.6} ${-r * 0.2}`} fill="none" stroke="#9AD8A0" strokeWidth="4" strokeLinecap="round" opacity=".6" />
-        </g>
-      ))}
-    </g>
-  );
-};
 
 /** Grande scarpa da clown rossa, lucida, con lacci e suola bianca. Origine sotto la suola, al centro. */
 export const Scarpa: React.FC<{ id: string; x: number; y: number; s?: number; rot?: number }> = ({ id, x, y, s = 1, rot = 0 }) => (

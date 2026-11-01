@@ -4,12 +4,12 @@ import { Dust, Flyers, Glow, NearMotes, Neon, Reflection, Smoke } from '../../li
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { SANS } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
-import { JokerDefs, K, Ombra, Palazzo, Parrucca, Sacchi, Scarpa, Tv } from './Comuni';
+import { Completo, JokerDefs, K, Ombra, Palazzo, Sacchi, Scarpa, Tv } from './Comuni';
 
 // Un clown a Gotham: una via sporca del 1981 vista di fronte, un negozio di televisori e radio con l'insegna al neon
 // verde, i sacchi dello sciopero ammucchiati ai lati, il vapore che esce dal tombino, l'asfalto bagnato che riflette.
 // Eventi: prima frase un taxi giallo attraversa la via e un topo corre lungo il marciapiede (città sporca e arrabbiata);
-// seconda frase il cartello da clown («SALDI!», accento) cade appoggiato al muro, con parrucca e scarpe nella
+// seconda frase il cartello da clown («SALDI!», accento) cade appoggiato al muro, con la giacca rossa e una scarpa nella
 // cassa; terza frase il grande televisore in vetrina passa dal disturbo a un palco con il microfono sotto il riflettore
 // (il sogno della TV, cue 2 + 0,2 come il glockenspiel dello spartito). Nessuna persona.
 // Piani: cielo di smog e grattacieli (0,25) · palazzi ai lati (0,45) · negozio con vetrina (0,65) · strada (0,85)
@@ -165,7 +165,7 @@ export const Gotham: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <Ombra id="gt" x={880} y={1256} rx={140} ry={18} />
             <path d="M770 1256 L786 1140 H980 L996 1256 Z" fill="url(#gt-wood)" stroke={K} strokeWidth="9" />
             <path d="M780 1180 H990 M776 1216 H994" stroke={K} strokeWidth="5" />
-            <Parrucca x={840} y={1120} s={0.55} rot={-8} />
+            <g transform="translate(790 1146) rotate(-84)"><Completo id="gt" x={0} y={0} s={0.42} /></g>
             <Scarpa id="gt" x={940} y={1132} s={0.55} rot={-14} />
           </g>
         </g>
