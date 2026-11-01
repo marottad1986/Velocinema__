@@ -1,0 +1,145 @@
+{
+  "titolo": "The Others",
+  "regista": "Alejandro Amenábar",
+  "anno": 2001,
+  "palette": {
+    "chiaro": "#E8E2D2",
+    "principale": "#4E5E5A",
+    "scuro": "#0C1011",
+    "accento": "#E8A848"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "In questa casa qualcuno non se n'è mai andato.",
+    "immagine": "Notte di nebbia: una grande villa vittoriana isolata, tutte le finestre chiuse da tende pesanti tranne una, dove trema la luce calda di una lampada a petrolio; davanti il cancello di ferro e alberi spogli; in primo piano una lampada a petrolio accesa su un pilastro del cancello. Titolo in un carattere serif elegante. NON usare la locandina ufficiale (la donna con i bambini), persone o il logo del film.",
+    "voce": "The Others, di Alejandro Amenábar: una villa nella nebbia."
+  },
+  "capitoli": [
+    {
+      "id": "villa",
+      "titolo": "Una villa nella nebbia",
+      "durata": 10,
+      "scena": "Una grande villa vittoriana isolata nella nebbia, di sera: facciata di pietra scura, finestre chiuse da tende, una sola finestra con una lampada accesa; il viale di ghiaia, alberi spogli, il cancello; lontano la strada che sparisce nella nebbia.",
+      "sottotitoli": [
+        "Nel 1945, su un'isola della Manica sempre coperta di nebbia,",
+        "Grace vive in una villa isolata con i figli Anne e Nicholas,",
+        "e aspetta che il marito Charles torni dalla guerra."
+      ]
+    },
+    {
+      "id": "luce",
+      "titolo": "I bambini e la luce",
+      "durata": 10,
+      "scena": "Un corridoio della villa in penombra: a sinistra una finestra con una tenda pesante da cui filtra una lama di sole che si stringe e sparisce quando la tenda si chiude; al centro un tavolino con una lampada a petrolio; a destra una porta con una grossa chiave nella serratura che gira, un mazzo di chiavi appeso.",
+      "sottotitoli": [
+        "Ma i bambini hanno una malattia: la luce del sole può ucciderli,",
+        "così le tende restano sempre chiuse",
+        "e ogni porta si chiude a chiave prima di aprirne un'altra."
+      ]
+    },
+    {
+      "id": "domestici",
+      "titolo": "Tre domestici sconosciuti",
+      "durata": 10,
+      "scena": "Il portone d'ingresso della villa visto dal viale, nella nebbia: la campanella che oscilla; sui gradini compaiono uno dopo l'altro tre oggetti: una valigia di cuoio con un mazzo di chiavi da governante, un rastrello appoggiato con un cappello da giardiniere, una piccola lavagna con il gessetto per la ragazza muta.",
+      "sottotitoli": [
+        "I vecchi domestici, però, se ne sono andati senza avvisare,",
+        "e arrivano tre sconosciuti che dicono di aver già servito lì:",
+        "la governante Mills, un giardiniere e Lydia, una ragazza muta."
+      ]
+    },
+    {
+      "id": "pianoforte",
+      "titolo": "Rumori nella casa",
+      "durata": 10,
+      "scena": "La stanza della musica al buio: un pianoforte verticale con il coperchio aperto e una candela; un cavallo a dondolo che si muove da solo; sulla parete l'ombra delle tende; poi i tasti del pianoforte che si abbassano da soli e note che salgono.",
+      "sottotitoli": [
+        "Poco dopo Anne dice di vedere in casa un bambino, Victor,",
+        "con i suoi genitori e una vecchia,",
+        "e Grace non le crede, finché sente un pianoforte suonare da solo."
+      ]
+    },
+    {
+      "id": "album",
+      "titolo": "L'album dei morti",
+      "durata": 10,
+      "scena": "La soffitta della villa: mobili coperti da lenzuoli bianchi, un baule aperto, la luce di una lampada a petrolio con il pulviscolo; su un baule un grande album aperto con vecchie foto color seppia di letti con fiori e nastri neri, senza persone visibili, e didascalie a mano.",
+      "sottotitoli": [
+        "Convinta che ci siano degli intrusi, Grace fruga in tutta la casa,",
+        "ma trova solo un album di foto di persone morte,",
+        "fotografate come se dormissero, come si usava nell'Ottocento."
+      ]
+    },
+    {
+      "id": "marito",
+      "titolo": "Il marito nella nebbia",
+      "durata": 10,
+      "scena": "Un sentiero nel bosco immerso nella nebbia fitta, alberi spogli; una lanterna posata a terra che illumina un tratto di sentiero; su un vecchio palo di legno un elmetto militare e lo zaino di un soldato che compaiono dalla nebbia e poi svaniscono.",
+      "sottotitoli": [
+        "Spaventata, esce nella nebbia a cercare un prete,",
+        "ma si perde e ritrova Charles, che sta tornando a casa;",
+        "lui però è distante, quasi non parla, e dopo una notte riparte."
+      ]
+    },
+    {
+      "id": "tende",
+      "titolo": "Le tende sparite",
+      "durata": 10,
+      "scena": "La camera dei bambini al mattino: la grande finestra senza tende, con gli anelli vuoti sul bastone, e il sole che entra a fasci con il pulviscolo; due lettini con i cuscini; a terra un mazzo di chiavi.",
+      "sottotitoli": [
+        "Una mattina tutte le tende della casa sono sparite",
+        "e la luce entra sui bambini, che urlano ma non si fanno niente:",
+        "Grace accusa i domestici e li caccia via."
+      ]
+    },
+    {
+      "id": "tombe",
+      "titolo": "Le tombe sotto le foglie",
+      "durata": 10,
+      "scena": "Il giardino della villa al crepuscolo: tre lapidi coperte di foglie secche che il vento spazza via, una alla volta, rivelando i nomi dei tre domestici e l'anno 1891; nebbia bassa, alberi spogli, la villa in fondo.",
+      "sottotitoli": [
+        "Poi Grace trova nell'album la foto dei domestici,",
+        "e i bambini, fuggiti a cercare il padre, scoprono in giardino tre tombe:",
+        "sono morti nel 1891: sono fantasmi."
+      ]
+    },
+    {
+      "id": "seduta",
+      "titolo": "La seduta spiritica",
+      "durata": 10,
+      "scena": "La camera di Anne di notte: un tavolino rotondo con la tovaglia bianca, candele accese le cui fiamme si piegano, fogli su cui compare una scrittura a mano che si allunga da sola; il tavolo trema e i fogli volano.",
+      "sottotitoli": [
+        "Una notte Grace trova la vecchia seduta a un tavolo",
+        "con i genitori di Victor, che ora vivono nella villa:",
+        "è una medium, e sta parlando con i morti della casa."
+      ]
+    },
+    {
+      "id": "verita",
+      "titolo": "I fantasmi sono loro",
+      "durata": 11,
+      "scena": "La camera dei bambini di notte, nel 1945: due lettini, un cuscino caduto a terra, la lampada a petrolio che si spegne; un solo lampo; poi tutto resta immobile e coperto di polvere, come fermo nel tempo.",
+      "sottotitoli": [
+        "Perché i morti sono Grace e i figli: impazzita di solitudine,",
+        "lei aveva soffocato i bambini con un cuscino e poi si era sparata,",
+        "e i domestici fantasmi volevano solo farglielo capire."
+      ]
+    },
+    {
+      "id": "fine",
+      "titolo": "Per sempre nella villa",
+      "durata": 11,
+      "scena": "La villa di giorno nella nebbia che si dirada: le tende delle finestre aperte, il cartello «VENDESI» appeso al cancello che oscilla; un'auto degli anni Quaranta che si allontana lungo il viale con i fari accesi; il sole che buca la nebbia.",
+      "sottotitoli": [
+        "Anche Charles era morto in guerra, ed era tornato solo per salutarli,",
+        "mentre la famiglia di Victor, spaventata, se ne va:",
+        "Grace e i figli restano nella villa, ormai senza paura della luce."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "La villa all'alba nella nebbia che si alza, con le tende delle finestre aperte e una lampada a petrolio ancora accesa sul pilastro del cancello; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
+  },
+  "musica": "Originale e strumentale: archi lenti e sospesi, arpa, pianoforte nel registro acuto come un carillon, celesta, timpani lontani; tensione trattenuta che cresce fino alla seduta e alla rivelazione, poi un finale malinconico e luminoso; niente brani o temi del film. Rumori: vento, porte, chiavi, campanella, passi, tende."
+}

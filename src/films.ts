@@ -47,11 +47,14 @@ import { Copertina as BohemianCover, Finale as BohemianEnd } from './scenes/bohe
 import shining from '../films/shining.json';
 import titanic from '../films/titanic.json';
 import joker from '../films/joker.json';
+import theOthers from '../films/the-others.json';
 import { SHINING_SCENES } from './scenes/shining';
 import { Copertina as ShiningCover, Finale as ShiningEnd } from './scenes/shining/Locandina';
 import { TITANIC_SCENES } from './scenes/titanic';
 import { Copertina as TitanicCover, Finale as TitanicEnd } from './scenes/titanic/Locandina';
 import { JOKER_SCENES } from './scenes/joker';
+import { THE_OTHERS_SCENES } from './scenes/the-others';
+import { Copertina as OthersCover, Finale as OthersEnd } from './scenes/the-others/Locandina';
 import { Copertina as JokerCover, Finale as JokerEnd } from './scenes/joker/Locandina';
 
 // Registro dei film e dei quadri: un JSON in films/ (o quadri/, vedi QUADRI.md) + le scene in src/scenes/<slug>/.
@@ -74,6 +77,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'bohemian-rhapsody', data: bohemianRhapsody as FilmData, scenes: BOHEMIAN_RHAPSODY_SCENES, cover: BohemianCover, ending: BohemianEnd, posterFont: PLAYFAIR },
   { slug: 'shining', data: shining as FilmData, scenes: SHINING_SCENES, cover: ShiningCover, ending: ShiningEnd, posterFont: TYPEWRITER },
   { slug: 'titanic', data: titanic as FilmData, scenes: TITANIC_SCENES, cover: TitanicCover, ending: TitanicEnd, posterFont: PLAYFAIR },
+  { slug: 'the-others', data: theOthers as FilmData, scenes: THE_OTHERS_SCENES, cover: OthersCover, ending: OthersEnd, posterFont: SERIF },
   { slug: 'joker', data: joker as FilmData, scenes: JOKER_SCENES, cover: JokerCover, ending: JokerEnd, posterFont: ANTON },
 ];
 
