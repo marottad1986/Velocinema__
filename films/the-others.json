@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "In questa casa qualcuno non se n'è mai andato.",
     "immagine": "Notte di nebbia: una grande villa vittoriana isolata, tutte le finestre chiuse da tende pesanti tranne una, dove trema la luce calda di una lampada a petrolio; davanti il cancello di ferro e alberi spogli; in primo piano una lampada a petrolio accesa su un pilastro del cancello. Titolo in un carattere serif elegante. NON usare la locandina ufficiale (la donna con i bambini), persone o il logo del film.",
-    "voce": "The Others, di Alejandro Amenábar: una villa, la nebbia, un segreto."
+    "voce": "The Others, di Alejandro Amenábar: una villa nella nebbia."
   },
   "capitoli": [
     {
@@ -98,9 +98,9 @@
       "durata": 10,
       "scena": "Il giardino della villa al crepuscolo: tre lapidi coperte di foglie secche che il vento spazza via, una alla volta, rivelando i nomi dei tre domestici e l'anno 1891; nebbia bassa, alberi spogli, la villa in fondo.",
       "sottotitoli": [
-        "Poi Grace trova nell'album la foto dei tre domestici,",
+        "Poi Grace trova nell'album la foto dei domestici,",
         "e i bambini, fuggiti a cercare il padre, scoprono in giardino tre tombe:",
-        "i domestici sono morti nel 1891, e sono fantasmi."
+        "sono morti nel 1891: sono fantasmi."
       ]
     },
     {
