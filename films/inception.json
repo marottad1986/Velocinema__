@@ -2,9 +2,11 @@
   "formato": "spiegato",
   "tipo": "film",
   "schema": true,
+  "sigla": false,
   "titolo": "Inception",
   "regista": "Christopher Nolan",
   "anno": 2010,
+  "bpm": 68,
   "palette": {
     "chiaro": "#EDEFF2",
     "principale": "#44617A",
@@ -41,7 +43,7 @@
   "copertina": {
     "durata": 4,
     "frase_lancio": "Un sogno. Dentro un sogno. Dentro un sogno.",
-    "immagine": "Sigla 'Spiegato semplice' (badge FILM), poi una trottola di metallo che gira su un tavolo scuro; sotto il tavolo, come in uno spaccato, tre piani che scendono (città sotto la pioggia, corridoio d'albergo, fortezza nella neve) e in fondo una spiaggia grigia. NON usare città che si piega, persone, né locandine ufficiali.",
+    "immagine": "Locandina senza sigla, con «SPIEGATO SEMPLICE · FILM» in alto: una trottola di metallo che gira su un tavolo scuro; sotto il tavolo, come in uno spaccato, tre piani che scendono (città sotto la pioggia, corridoio d'albergo, fortezza nella neve) e in fondo una spiaggia grigia. NON usare città che si piega, persone, né locandine ufficiali.",
     "voce": "Inception, spiegato semplice."
   },
   "capitoli": [
@@ -52,24 +54,24 @@
       "personaggi": [],
       "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
       "sottotitoli": [
-        "Cobb è un ladro speciale: ruba segreti dai sogni.",
-        "Entra nel sogno di chi dorme e si fa dire tutto.",
-        "Per capire se sta sognando, fa girare una trottola:",
-        "nei sogni non si ferma mai."
+        "Cobb è un ladro, ma ruba segreti dai sogni:",
+        "entra nel sogno di chi dorme e si fa dire tutto.",
+        "E per capire se sta sognando, fa girare una trottola:",
+        "nei sogni, infatti, non si ferma mai."
       ]
     },
     {
       "id": "innesto",
-      "titolo": "Cosa gli chiede Saito?",
+      "titolo": "Cosa chiede Saito a Cobb?",
       "durata": 13,
       "personaggi": [],
       "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
       "sottotitoli": [
         "Saito, un ricco uomo d'affari, gli chiede il contrario:",
         "non rubare un'idea, ma piantarne una",
-        "nella testa di Fischer, l'erede di un'azienda rivale.",
-        "Fischer deve decidere da solo di smontare l'impero del padre.",
-        "In cambio Cobb, che è ricercato, potrà tornare dai figli."
+        "nella testa di Fischer, l'erede di un'azienda rivale,",
+        "così Fischer smonterà l'impero del padre.",
+        "In cambio Cobb, ricercato, potrà tornare dai figli."
       ]
     },
     {
@@ -79,20 +81,20 @@
       "personaggi": [],
       "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
       "sottotitoli": [
-        "Un'idea attecchisce solo se sembra nata da te,",
-        "e più si scende in profondità, più sembra tua.",
-        "Così il piano è un sogno dentro un sogno dentro un sogno,",
+        "Ma un'idea resta solo se sembra nata da te,",
+        "e più la pianti in fondo, più sembra tua.",
+        "Per questo il piano è un sogno dentro un sogno dentro un sogno,",
         "come i piani di un palazzo: tre livelli sotto la realtà."
       ]
     },
     {
       "id": "tempo",
-      "titolo": "Perché il tempo rallenta?",
+      "titolo": "Perché nei sogni il tempo si allunga?",
       "durata": 12,
       "personaggi": [],
       "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
       "sottotitoli": [
-        "Addormentano Fischer in aereo, durante un volo di dieci ore.",
+        "Così Cobb addormenta Fischer su un volo di dieci ore.",
         "Nei sogni però la mente corre, e il tempo si allunga:",
         "dieci ore diventano una settimana al primo piano,",
         "sei mesi al secondo, dieci anni al terzo."
@@ -105,7 +107,7 @@
       "personaggi": [],
       "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
       "sottotitoli": [
-        "Per risalire serve una caduta improvvisa,",
+        "Ma per risalire serve una caduta improvvisa,",
         "come quando sogni di cadere e ti svegli di colpo.",
         "La chiamano «calcio», e va data su ogni piano,",
         "tutti nello stesso momento."
@@ -131,23 +133,23 @@
       "personaggi": [],
       "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
       "sottotitoli": [
-        "Cobb lo sa bene: ci finì anni fa con la moglie, Mal.",
-        "Per riportarla su, le mise in testa un'idea: «niente è vero».",
-        "Ma l'idea restò anche da sveglia, e Mal si tolse la vita.",
-        "Per questo Cobb è ricercato, e lei lo tormenta nei sogni."
+        "Cobb ci finì anni fa, con la moglie Mal.",
+        "Per farla risalire, le mise in testa un'idea: «niente è vero»,",
+        "ma l'idea restò anche da sveglia: Mal, convinta di sognare, si uccise.",
+        "Accusato della sua morte, Cobb è ricercato, e nei sogni lei lo perseguita."
       ]
     },
     {
       "id": "missione",
-      "titolo": "Funziona?",
+      "titolo": "La missione riesce?",
       "durata": 13,
       "personaggi": [],
       "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
       "sottotitoli": [
-        "Al terzo piano Fischer muore e precipita nel limbo.",
+        "Ma al terzo piano Mal colpisce Fischer, che cade nel limbo.",
         "Cobb scende a riprenderlo, e lì dice addio a Mal.",
         "Fischer risale e in una cassaforte trova una copia del padre,",
-        "che gli chiede di essere se stesso. L'idea ha attecchito."
+        "che gli dice di essere se stesso: l'idea ha funzionato."
       ]
     },
     {
@@ -157,10 +159,10 @@
       "personaggi": [],
       "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
       "sottotitoli": [
-        "Cobb ritrova Saito, invecchiato nel limbo, e lo riporta su.",
+        "Poi Cobb salva Saito, morto nel sogno e invecchiato nel limbo.",
         "Si svegliano in aereo, e Cobb torna a casa.",
-        "Fa girare la trottola, ma corre dai figli senza guardarla.",
-        "Sogno o realtà? Il film non lo dice. Tu che dici?"
+        "Fa girare la trottola, ma corre dai figli senza aspettare.",
+        "Sogno o realtà? Il film non lo dice."
       ]
     }
   ],

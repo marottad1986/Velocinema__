@@ -2,7 +2,7 @@
 // VSCO-2 CE) con un battito sordo che va a metà passo nei sogni più profondi, come il tempo nei sogni. Il motivo è inventato qui: quattro note in Mi minore che
 // scendono (Mi, Re, Si, Sol), come la discesa nei sogni; risale nel finale. Niente brani o temi del film (né la colonna
 // sonora originale né canzoni usate nel film). Effetti agganciati agli eventi dello schema in src/scenes/inception/Piani.tsx.
-import { put, rng, FX } from './synth.mjs';
+import { rng } from './synth.mjs';
 import { suona, archi, colpo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
@@ -12,13 +12,13 @@ export const effetti = ['passaggio', 'scatti', 'rombo'];
 /** Sala ampia e scura. */
 export const sala = { rt60: 3.0, brillo: 5500, predelay: 0.03, wet: 0.55 };
 
-const TAU = Math.PI * 2;
-const SR = 44100;
-const vamp = (v) => (v / 127) ** 1.6;
 /** Un solo tempo (68 bpm) su una griglia continua: nei sogni più profondi si va a metà passo (34). */
 const BPM = 68;
 const GRID = (4 * 60) / BPM;
-const snap = (t) => Math.round(t / GRID) * GRID;
+/** La griglia parte dalla fine della copertina (4 s), come `griglia` nelle scene. */
+const G0 = 4;
+const snap = (t) => G0 + Math.round((t - G0) / GRID) * GRID;
+const CROMA = 60 / BPM / 2;
 
 // ---------------------------------------------------------------- strumenti (campionati)
 
@@ -38,15 +38,9 @@ const bell = (mix, m, { t, vel = 46, pan = 0, gain = 1 }) =>
 const motif = (mix, m, { t, dur, vel }) =>
   suona(mix, 'pianoforte', m, { t, dur: Math.min(dur, 4), vel: vel * 1.2, pan: 0.15, rev: 0.6, gain: 4, release: 0.6 });
 
-/** Tic dell'orologio: clic secco e brevissimo, alternato tic/tac. */
-const tick = (mix, t, { vel = 34, tac = false } = {}) => {
-  const f = tac ? 2600 : 3400;
-  const r = rng(Math.round(t * 1000));
-  put(mix, t, Math.ceil(0.03 * SR), (i) => {
-    const x = i / SR;
-    return (Math.sin(TAU * f * x) * 0.6 + (r() * 2 - 1) * 0.4) * Math.exp(-x / 0.004);
-  }, { gain: FX * vamp(vel) * 0.3, pan: tac ? -0.2 : 0.2, rev: 0.15 });
-};
+/** Tic dell'orologio: uno scatto metallico registrato, alternato tic/tac. */
+const tick = (mix, t, { vel = 34, tac = false } = {}) =>
+  clip(mix, 'scatti', { t, da: tac ? 12.68 : 6.49, durata: 0.08, gain: 0.12 * (vel / 34), pan: tac ? -0.2 : 0.2, rev: 0.15 });
 
 // ---------------------------------------------------------------- materiale musicale
 
@@ -68,7 +62,8 @@ export default (mix, T) => {
     for (let k = 0; k < n; k++) cur += (w[k] / tot) * (s.dur - 0.35);
     return s.start + cur;
   };
-  const SIGLA = 1.5;
+  /** Istante (assoluto) della frase n più d, sulla croma della griglia: gli stessi istanti degli eventi di Piani.tsx. */
+  const at = (id, n, d = 0) => G0 + Math.round((C(id, n) + d - G0) / CROMA) * CROMA;
   let sid = 0;
 
   /**
@@ -104,7 +99,7 @@ export default (mix, T) => {
   };
 
   // ---- sezioni (tempi dal JSON): più si scende nei sogni, più il passo rallenta (metà passo sulla stessa griglia)
-  sec(SIGLA, T.estrazione, { drone: 34, mel: 44, bells: 28 });
+  sec(0, T.estrazione, { drone: 34, mel: 44, bells: 28 });
   sec(T.estrazione, T.innesto, { drone: 34, mel: 42, ticks: 28, pad: 30 });
   sec(T.innesto, T.livelli, { drone: 38, mel: 44, str: 30, ticks: 26 });
   sec(T.livelli, T.tempo, { drone: 42, mel: 46, pad: 38, pulse: 30 });
@@ -120,26 +115,38 @@ export default (mix, T) => {
   [28, 40, 47, 52, 55, 59].forEach((m, j) => strings(mix, m, { t: F, dur: 3.4, vel: 46, gain: 0.6, pan: (j - 2.5) * 0.2, att: 0.5, seed: 40 + j }));
   [...MOTIF].reverse().forEach(([b, m], k) => bell(mix, m + 12, { t: F + 0.3 + k * 0.45, vel: 44, pan: -0.3 + k * 0.2 }));
 
-  // ---------------------------------------------------------------- effetti sonori (tempi dello schema)
-  // sigla: il filo che si scioglie, il nome, il badge
-  clip(mix, 'passaggio', { t: 0.15 - 0.3, da: 0.56, durata: 1.0, gain: 0.3, fadeOut: 0.3, rev: 0.3 });
-  clip(mix, 'scatti', { t: 0.55, da: 6.49, durata: 0.1, gain: 0.2, rev: 0.2 });
-  clip(mix, 'scatti', { t: 0.85, da: 12.68, durata: 0.12, gain: 0.25, rev: 0.2 });
-  // la trottola che si accende e gira veloce
-  bell(mix, 83, { t: C('estrazione', 2) + 0.1, vel: 38 });
-  // i tre piani dei sogni che compaiono uno sotto l'altro
-  [0.1, 0.6, 1.1].forEach((d, k) => bell(mix, [71, 67, 64][k], { t: C('livelli', 2) + d, vel: 40 }));
-  // gli orologi che rallentano
-  [0.2, 1.0].forEach((d, k) => bell(mix, [79, 74][k], { t: C('tempo', 2 + k) + d, vel: 34 }));
-  // i calci: tre colpi in salita, poi tutti insieme
-  [0.1, 0.5, 0.9].forEach((d, k) => colpo(mix, 'grancassa', 'bdrum_mp', { t: C('calcio', 2) + d, vel: 90 + k * 12, gain: 0.9, rev: 0.4, seed: k }));
-  colpo(mix, 'grancassa', 'bdrum_ff', { t: C('calcio', 3) + 0.1, vel: 110, gain: 0.9, rev: 0.45 });
-  clip(mix, 'passaggio', { t: C('calcio', 3) + 0.1 - 0.4, da: 12.27, durata: 1.6, gain: 0.35, fadeOut: 0.5, rev: 0.4 });
-  // il limbo: rombo grave quando si apre
-  clip(mix, 'rombo', { t: C('limbo', 2), da: 31, durata: 2.4, gain: 0.35, fadeIn: 0.5, fadeOut: 1, largo: 2 });
-  // l'idea piantata
-  bell(mix, 88, { t: C('missione', 3) + 0.6, vel: 42 });
-  // il risveglio e la trottola che vacilla
-  colpo(mix, 'grancassa', 'bdrum_f', { t: C('trottola', 1) + 0.1, vel: 110, gain: 0.85, rev: 0.45 });
-  [0, 0.35, 0.8].forEach((d, k) => bell(mix, [76, 74, 71][k], { t: C('trottola', 3) + 0.2 + d, vel: 40 - k * 4 }));
+  // ---------------------------------------------------------------- effetti sonori (gli istanti degli eventi di Piani.tsx)
+  // copertina: la trottola che parte
+  clip(mix, 'passaggio', { t: 0.2, da: 0.56, durata: 1.0, gain: 0.25, fadeOut: 0.3, rev: 0.3 });
+  // capitolo 1: il sogno che compare, i segreti che tornano, la trottola
+  bell(mix, 76, { t: at('estrazione', 1), vel: 34 });
+  bell(mix, 79, { t: at('estrazione', 1, 1.1), vel: 34, pan: 0.2 });
+  bell(mix, 83, { t: at('estrazione', 2, 0.1), vel: 38 });
+  // capitolo 2: il seme compare in mano a Saito e passa a Fischer
+  bell(mix, 88, { t: at('innesto', 1, 0.5), vel: 38 });
+  bell(mix, 83, { t: at('innesto', 2, 0.4), vel: 34, pan: 0.2 });
+  // capitolo 3: i tre piani dei sogni che compaiono uno sotto l'altro
+  [0.1, 0.55, 1.0].forEach((d, k) => bell(mix, [71, 67, 64][k], { t: at('livelli', 2, d), vel: 40 }));
+  // capitolo 4: gli orologi di ogni piano
+  [['tempo', 0, 0.4, 83], ['tempo', 2, 0.2, 79], ['tempo', 3, 0.1, 76], ['tempo', 3, 0.9, 71]].forEach(([id, n, d, m]) => bell(mix, m, { t: at(id, n, d), vel: 34 }));
+  // capitolo 5: il furgone che cade dal ponte, i calci in salita, poi tutti insieme
+  clip(mix, 'passaggio', { t: at('calcio', 0, 0.6) - 0.2, da: 12.27, durata: 1.2, gain: 0.3, fadeOut: 0.4, rev: 0.35 });
+  colpo(mix, 'grancassa', 'bdrum_mp', { t: at('calcio', 0, 1.6), vel: 100, gain: 0.8, rev: 0.4 });
+  [0.2, 0.65, 1.1].forEach((d, k) => colpo(mix, 'grancassa', 'bdrum_mp', { t: at('calcio', 2, d), vel: 90 + k * 12, gain: 0.9, rev: 0.4, seed: k }));
+  colpo(mix, 'grancassa', 'bdrum_ff', { t: at('calcio', 3, 0.2), vel: 110, gain: 0.9, rev: 0.45 });
+  clip(mix, 'passaggio', { t: at('calcio', 3, 0.2) - 0.4, da: 12.27, durata: 1.6, gain: 0.3, fadeOut: 0.5, rev: 0.4 });
+  // capitolo 6: il sonnifero, poi il limbo che si apre (rombo grave)
+  bell(mix, 64, { t: at('limbo', 1, 0.2), vel: 40 });
+  clip(mix, 'rombo', { t: at('limbo', 2, 0.1), da: 31, durata: 2.4, gain: 0.3, fadeIn: 0.5, fadeOut: 1, largo: 2 });
+  // capitolo 7: «niente è vero», Mal che si spegne, i suoi anelli nei piani
+  bell(mix, 70, { t: at('mal', 1, 0.3), vel: 36, pan: 0.2 });
+  [0.5, 0.75, 1.0].forEach((d, k) => bell(mix, [64, 63, 59][k], { t: at('mal', 3, d), vel: 32, pan: -0.3 + k * 0.3 }));
+  // capitolo 8: Mal colpisce Fischer, che cade; la cassaforte si apre; l'idea piantata
+  colpo(mix, 'grancassa', 'bdrum_f', { t: at('missione', 0, 0.3), vel: 100, gain: 0.7, rev: 0.45 });
+  clip(mix, 'rombo', { t: at('missione', 0, 0.3), da: 31, durata: 1.6, gain: 0.25, fadeIn: 0.2, fadeOut: 0.8, largo: 2 });
+  clip(mix, 'scatti', { t: at('missione', 2, 0.7), da: 6.49, durata: 0.12, gain: 0.25, rev: 0.25 });
+  bell(mix, 88, { t: at('missione', 3, 0.2), vel: 42 });
+  // capitolo 9: il risveglio e la trottola che vacilla
+  colpo(mix, 'grancassa', 'bdrum_f', { t: at('trottola', 1, 0.1), vel: 110, gain: 0.85, rev: 0.45 });
+  [0, 0.45, 0.9].forEach((d, k) => bell(mix, [76, 74, 71][k], { t: at('trottola', 3, 0.2 + d), vel: 40 - k * 4 }));
 };
