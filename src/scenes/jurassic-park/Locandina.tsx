@@ -2,9 +2,9 @@ import React from 'react';
 import { camera, eo, eob, lerp, seg } from '../../lib/anim';
 import { ANTON, SANS, DISPLAY } from '../../lib/fonts';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
-import { Embers, Fire, Fog, Glow, Gulls, NearMotes, Reflection, SunRays, WaveLines } from '../../lib/elements';
+import { Embers, Fire, Fog, Glow, Gulls, NearMotes, Reflection, SunRays, WaveBand, WaveLines } from '../../lib/elements';
 import type { PosterProps } from '../../types';
-import { Amber, Fern, JungleTree, K } from './Comuni';
+import { Amber, Fern, Helicopter, JungleTree, K } from './Comuni';
 
 // Copertina e finale di Jurassic Park. Locandina originale: niente logo (scheletro nel cerchio), niente dinosauri né persone.
 // Copertina: il grande cancello di legno al tramonto con due torce, la giungla dietro, il binario che entra; in primo piano
@@ -101,7 +101,13 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
           <Fog id="jf-fog" t={t} x={220} y={980} color="#F2D8C0" rx={300} ry={50} drift={30} opacity={0.6} />
           <WaveLines t={t} ys={[1100, 1220, 1380, 1560]} color="#F2C9A0" amp={6} w={240} speed={20} opacity={0.45} />
         </g>
-        <g transform={L(0.7)}><Gulls t={t} y={760} h={260} color="#1E2028" n={6} size={1.6} period={12} /></g>
+        <g transform={L(0.5)}><Helicopter x={lerp(700, 940, seg(t, 0, dur))} y={lerp(975, 950, seg(t, 0, dur))} s={0.2} t={t} tilt={-6} /></g>
+        <g transform={L(0.9)}>
+          <WaveBand t={t} y={1460} fill="#3A6A7A" foam="#F2E0C8" amp={18} w={300} speed={0.5} />
+          <WaveBand t={t} y={1640} fill="#2A5060" foam="#F2E0C8" amp={22} w={340} speed={0.7} ph={1} />
+          <WaveBand t={t} y={1820} fill="#1E3E4C" foam="#F2E0C8" amp={26} w={380} speed={0.9} ph={2} />
+        </g>
+        <g transform={L(0.7)}><Gulls t={t} y={1040} h={180} color="#1E2028" n={6} size={1.3} period={12} /></g>
         <g transform={L(1.6)}><NearMotes id="jf-near" t={t} color="#FFE0B0" n={6} y0={1300} opacity={0.1} /></g>
       </g>
       <Finish id="jf" tint="#1E4A30" tintOpacity={0.08} />

@@ -1,109 +1,143 @@
 import React from 'react';
-import { camera, eio, eo, mod, seg } from '../../lib/anim';
-import { Beam, Dust, Glow, NearMotes } from '../../lib/elements';
+import { camera, eio, eo, lerp, seg } from '../../lib/anim';
+import { Glow, NearMotes, Reflection, Wisps } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
+import { SANS } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
-import { K, RaptorHead } from './Comuni';
+import { JPDefs, K, Ombra, RaptorHead } from './Comuni';
 
-// Raptor in cucina: banconi d'acciaio, mestoli appesi che oscillano, una pentola caduta, la maniglia della porta che si
-// abbassa da sola, dietro l'oblò la testa di un raptor piumato; poi un monitor che si accende (Lex al computer) e la spia
-// della porta che diventa rossa: bloccata.
-// Piani: parete e cappa (0,25) · porta con l'oblò e la maniglia (0,45) · mestoli (0,6) · banconi (0,85) · bancone in primo piano (1,25) · vapore (1,6)
+// Raptor in cucina: la cucina del centro visitatori, piastrelle bianche e banconi d'acciaio, la cappa, i mestoli appesi;
+// al centro la porta a battente con l'oblò (oggetto chiave); a sinistra un terminale a muro.
+// Eventi: prima frase dietro l'oblò spunta la testa di un raptor piumato e la maniglia si abbassa da sola (cue 0 + 1,2,
+// la serratura); seconda frase i mestoli urtati oscillano e una pentola cade dal bancone (cue 1 + 0,8, il metallo); terza
+// frase il terminale si accende (cue 2, i bip); quarta frase sul terminale «PORTE BLOCCATE» e la spia della porta diventa
+// rossa, con l'icona del telefono che torna (cue 3). Nessuna persona.
+// Piani: parete con piastrelle e cappa (0,25) · porta con l'oblò e il terminale (0,45) · mestoli (0,6) · banconi (0,85)
+//        · bancone in primo piano (1,2) · vapore e particelle (1,5–1,8)
 
 export const Cucina: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
-  const handle = seg(t, cues[0] + 1.2, cues[0] + 1.6) * (1 - seg(t, cues[0] + 2.4, cues[0] + 2.8)); // la maniglia si abbassa
-  const swing = Math.sin(t * 3) * 6 + 18 * Math.sin(t * 5) * Math.exp(-Math.max(0, t - cues[1]) * 1.2) * (t > cues[1] ? 1 : 0); // mestoli urtati
-  const pot = eio(seg(t, cues[1] + 0.3, cues[1] + 0.8)); // la pentola cade
-  const screen = eo(seg(t, cues[2], cues[2] + 0.8)); // il computer si accende
-  const locked = seg(t, cues[3], cues[3] + 0.2); // «blocca le porte»: la spia diventa rossa
-  const peek = eio(seg(t, cues[0] + 0.5, cues[0] + 1.2)) * (1 - eio(seg(t, cues[2], cues[2] + 0.8))); // il raptor dietro l'oblò
+  const handle = seg(t, cues[0] + 1.2, cues[0] + 1.6) * (1 - seg(t, cues[0] + 2.4, cues[0] + 2.8));
+  const peek = eio(seg(t, cues[0] + 0.5, cues[0] + 1.2)) * (1 - eio(seg(t, cues[2], cues[2] + 0.8)));
+  const swing = Math.sin(t * 3) * 6 + (t > cues[1] ? 18 * Math.sin(t * 5) * Math.exp(-(t - cues[1]) * 1.2) : 0);
+  const pot = eio(seg(t, cues[1] + 0.3, cues[1] + 0.8));
+  const screen = eo(seg(t, cues[2], cues[2] + 0.8));
+  const locked = seg(t, cues[3], cues[3] + 0.2);
+  const doorPush = t < cues[3] ? Math.max(0, Math.sin((t - cues[0]) * 3)) * 3 * seg(t, cues[0] + 1.6, cues[0] + 2) : 0;
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
         <FxDefs id="cu" />
-        <Lin id="cu-wall" stops={[[0, '#1E2A28'], [0.5, '#2E3E3A'], [1, '#1A2422']]} />
-        <Lin id="cu-steel" stops={[[0, '#C9D2D0'], [0.4, '#8A9694'], [1, '#4A5654']]} />
-        <Lin id="cu-floor" stops={[[0, '#3A4644'], [1, '#121A18']]} />
+        <JPDefs id="cu" />
+        <Lin id="cu-wall" stops={[[0, '#2A3430'], [0.4, '#6A7A72'], [1, '#8A9A92']]} />
+        <Lin id="cu-floor" stops={[[0, '#5A6A62'], [1, '#1E2622']]} />
+        <Lin id="cu-door" x2={1} y2={0} stops={[[0, '#7A8A84'], [0.45, '#D8E0DC'], [1, '#5A6A64']]} />
+        <Lin id="cu-hood" x2={1} y2={0} stops={[[0, '#4A524E'], [0.5, '#A8B0AC'], [1, '#3A423E']]} />
+        <Lin id="cu-top" stops={[[0, '#E8F0EC'], [0.2, '#A8B4AE'], [1, '#5A6460']]} />
+        <Lin id="cu-term" x2={1} y2={0} stops={[[0, '#2A302C'], [0.5, '#4A524E'], [1, '#22282A']]} />
       </defs>
+
       <g transform={cam.transform}>
+        {/* PIANO 0 — parete con le piastrelle e la cappa (0,25) */}
         <g transform={L(0.25)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="url(#cu-wall)" />
-          {Array.from({ length: 12 }, (_, i) => <path key={i} d={`M-200 ${560 + i * 50} H1280`} stroke="#263432" strokeWidth="3" />)}
-          <path d="M-200 520 L100 520 L160 600 H-200 Z M1280 520 L980 520 L920 600 H1280 Z" fill="#4A5654" stroke={K} strokeWidth="6" />
+          {Array.from({ length: 13 }, (_, r) => Array.from({ length: 16 }, (_, c) => <rect key={`${r}-${c}`} x={-200 + c * 96 + (r % 2) * 48} y={620 + r * 50} width="92" height="46" fill="#C8D4CE" opacity=".18" />))}
+          <Glow id="cu-light" x={540} y={560} r={600} t={t} color="#E8F4F0" amp={0.03} rate={1.5} opacity={0.3} />
         </g>
-        {/* porta della cucina con oblò, maniglia e spia */}
+
+        {/* PIANO 1 — la porta a battente con l'oblò e il raptor, il terminale a muro (0,45) */}
         <g transform={L(0.45)}>
-          <rect x="400" y="640" width="280" height="460" fill="url(#cu-steel)" stroke={K} strokeWidth="9" />
-          <clipPath id="cu-portclip"><circle cx="540" cy="780" r="56" /></clipPath>
-          <circle cx="540" cy="780" r="60" fill="#0E1816" />
-          <g clipPath="url(#cu-portclip)">
-            <RaptorHead x={420 + 90 * peek} y={790 + Math.sin(t * 2) * 4} s={0.62} t={t} open={peek * Math.max(0, Math.sin(t * 2.5))} />
-          </g>
-          <circle cx="540" cy="780" r="60" fill="none" stroke={K} strokeWidth="8" />
-          <Glow id="cu-port" x={540} y={780} r={90} t={t} color="#6EA89A" amp={0.1} rate={1.2} opacity={0.35} />
-          <path d="M500 750 Q520 730 550 734" stroke="#9FC4BA" strokeWidth="5" fill="none" opacity=".6" />
-          <g transform={`rotate(${-35 * handle} 640 900)`}>
-            <rect x="590" y="890" width="60" height="18" rx="8" fill="#E2E8E6" stroke={K} strokeWidth="5" />
-          </g>
-          <circle cx="640" cy="900" r="10" fill="#4A5654" stroke={K} strokeWidth="3" />
-          <rect x="700" y="760" width="60" height="90" rx="8" fill="#2A3432" stroke={K} strokeWidth="5" />
-          <circle cx="730" cy="790" r="14" fill={locked > 0.5 ? '#E8503A' : '#7CFF8A'} />
-          <Glow id="cu-lock" x={730} y={790} r={90} t={t} color={locked > 0.5 ? '#E8503A' : '#7CFF8A'} amp={0.1} rate={3} opacity={0.6} />
-          <rect x="712" y="814" width="36" height="22" rx="3" fill="#0E1816" />
-          <path d="M716 818 h28" stroke={locked > 0.5 ? '#E8503A' : '#7CFF8A'} strokeWidth="3" />
-          {/* il monitor sul muro che si accende */}
-          <rect x="90" y="700" width="220" height="150" rx="10" fill="#0A1A16" stroke={K} strokeWidth="8" />
-          <g opacity={screen}>
-            <rect x="104" y="714" width="192" height="122" fill="#0E3A30" />
-            {[0, 1, 2, 3, 4].map((i) => <rect key={i} x={116 + (i % 2) * 20} y={726 + i * 20} width={60 + ((i * 47) % 90)} height="10" fill="#8EF0C0" />)}
-            <Glow id="cu-scr" x={200} y={775} r={180} t={t} color="#5FE0A0" amp={0.06} rate={3} opacity={0.4} />
-          </g>
-        </g>
-        {/* mestoli appesi che oscillano */}
-        <g transform={L(0.6)}>
-          <path d="M-60 560 H1140" stroke={K} strokeWidth="12" />
-          {[60, 180, 300, 780, 900, 1020].map((x, i) => (
-            <g key={x} transform={`rotate(${swing * (i % 2 ? 1 : -0.8)} ${x} 566)`}>
-              <path d={`M${x} 566 V${700 + (i % 3) * 30}`} stroke="#C9D2D0" strokeWidth="8" />
-              {i % 2 ? <ellipse cx={x} cy={720 + (i % 3) * 30} rx="30" ry="22" fill="url(#cu-steel)" stroke={K} strokeWidth="5" />
-                : <path d={`M${x - 26} ${700 + (i % 3) * 30} h52 l-8 60 h-36 Z`} fill="url(#cu-steel)" stroke={K} strokeWidth="5" />}
+          <rect x="350" y="600" width="380" height="580" fill="#1A2220" stroke={K} strokeWidth="9" />
+          {[0, 1].map((side) => (
+            <g key={side} transform={`translate(${side ? doorPush * 0.6 : doorPush} 0)`}>
+              <rect x={side ? 544 : 364} y="612" width="172" height="566" fill="url(#cu-door)" stroke={K} strokeWidth="7" />
+              <path d={`M${side ? 556 : 376} 630 H${side ? 704 : 524}`} stroke="#FFFFFF" strokeWidth="5" opacity=".5" />
+              <rect x={side ? 544 : 364} y="1080" width="172" height="40" fill="#5A6A64" stroke={K} strokeWidth="4" />
+              {/* oblò alto */}
+              <circle cx={side ? 630 : 450} cy="740" r="62" fill="#0E1614" stroke={K} strokeWidth="9" />
+              <clipPath id={`cu-port${side}`}><circle cx={side ? 630 : 450} cy="740" r="56" /></clipPath>
+              <g clipPath={`url(#cu-port${side})`}>
+                <rect x={side ? 570 : 390} y="680" width="120" height="120" fill="#14201C" />
+                {side === 1 && <g opacity={peek} transform={`translate(${lerp(110, 0, peek)} 0)`}><RaptorHead x={580} y={740} s={0.42} t={t} open={0.25} /></g>}
+              </g>
+              <circle cx={side ? 630 : 450} cy="740" r="62" fill="none" stroke="url(#cu-steel)" strokeWidth="12" />
+              <path d={`M${side ? 590 : 410} 706 Q${side ? 606 : 426} 690 ${side ? 626 : 446} 688`} stroke="#FFFFFF" strokeWidth="5" opacity=".45" fill="none" />
             </g>
           ))}
-          <Beam id="cu-lamp" x={540} y={560} t={t} length={700} spread={420} color="#DDF2EC" angle={90} opacity={0.15} />
+          {/* maniglione a leva che si abbassa */}
+          <g transform={`rotate(${28 * handle} 560 930)`}>
+            <rect x="560" y="918" width="110" height="24" rx="12" fill="url(#cu-steel)" stroke={K} strokeWidth="5" />
+          </g>
+          <circle cx="560" cy="930" r="18" fill="url(#cu-steel)" stroke={K} strokeWidth="5" />
+          {/* spia sopra la porta */}
+          <rect x="500" y="560" width="80" height="30" rx="8" fill={locked > 0.5 ? '#E8483A' : '#3A8A5A'} stroke={K} strokeWidth="5" />
+          <Glow id="cu-led" x={540} y={575} r={110} t={t} color={locked > 0.5 ? '#E8483A' : '#6AF0A0'} amp={0.1} rate={5} opacity={0.6} />
+          {/* terminale a muro */}
+          <rect x="40" y="620" width="290" height="250" rx="12" fill="url(#cu-term)" stroke={K} strokeWidth="8" />
+          <rect x="58" y="638" width="254" height="200" rx="6" fill={screen > 0.1 ? '#06140E' : '#101412'} />
+          <g opacity={screen}>
+            {[0, 1].map((k) => <rect key={k} x="74" y={654 + k * 22} width={60 + ((k * 47 + Math.floor(t * 5)) % 140)} height="10" fill="#6AF0A0" opacity=".7" />)}
+            <g opacity={locked}>
+              <rect x="64" y="702" width="242" height="128" fill="#2A0A08" stroke="#E8483A" strokeWidth="3" />
+              <text x="185" y="744" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" fill="#FF6A5A">PORTE</text>
+              <text x="185" y="780" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" fill="#FF6A5A">BLOCCATE</text>
+              <text x="185" y="818" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="28" fill="#6AF0A0">☎ TELEFONI OK</text>
+            </g>
+          </g>
+          <Glow id="cu-term" x={185} y={740} r={160} t={t} color="#6AF0A0" amp={0.06} rate={4} opacity={0.2 * screen} />
         </g>
-        {/* banconi d'acciaio e la pentola che cade (accento sul coperchio) */}
+
+        {/* PIANO 2 — rastrelliera con i mestoli che oscillano, la cappa (0,6) */}
+        <g transform={L(0.6)}>
+          <path d="M760 600 H1120 L1080 680 H800 Z" fill="url(#cu-hood)" stroke={K} strokeWidth="7" />
+          <rect x="760" y="720" width="380" height="16" fill="url(#cu-steel)" stroke={K} strokeWidth="5" />
+          {[800, 870, 940, 1010, 1080].map((x, i) => (
+            <g key={x} transform={`rotate(${swing * (i % 2 ? 1 : -0.8)} ${x} 728)`}>
+              <path d={`M${x} 728 V${840 + (i % 3) * 30}`} stroke="url(#cu-steel)" strokeWidth="8" />
+              {i % 2 ? <ellipse cx={x} cy={860 + (i % 3) * 30} rx="26" ry="18" fill="url(#cu-steel)" stroke={K} strokeWidth="5" /> : <rect x={x - 22} y={836 + (i % 3) * 30} width="44" height="40" rx="6" fill="url(#cu-steel)" stroke={K} strokeWidth="5" />}
+            </g>
+          ))}
+        </g>
+
+        {/* PIANO 3 — pavimento, banconi d'acciaio, la pentola che cade (0,85) */}
         <g transform={L(0.85)}>
-          <rect x="-200" y="1100" width="1480" height="1100" fill="url(#cu-floor)" />
-          {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${-200 + i * 200} 1100 L${-400 + i * 260} 1920`} stroke="#2A3634" strokeWidth="4" />)}
-          <path d="M-200 1060 H330 V1220 H-200 Z" fill="url(#cu-steel)" stroke={K} strokeWidth="8" />
-          <path d="M750 1060 H1280 V1220 H750 Z" fill="url(#cu-steel)" stroke={K} strokeWidth="8" />
-          <path d="M-200 1066 H330 M750 1066 H1280" stroke="#F2F6F4" strokeWidth="5" opacity=".7" />
-          <g transform={`translate(${880 - 80 * pot} ${1020 + 190 * pot}) rotate(${-100 * pot})`}>
-            <path d="M-56 -40 H56 L48 30 H-48 Z" fill="url(#cu-steel)" stroke={K} strokeWidth="6" />
-            <path d="M-70 -40 H70" stroke={K} strokeWidth="10" strokeLinecap="round" />
+          <path d="M-200 1160 H1280 V2200 H-200 Z" fill="url(#cu-floor)" />
+          {Array.from({ length: 10 }, (_, i) => <path key={i} d={`M${-200 + i * 160} 1170 L${-400 + i * 200} 2200`} stroke="#3A4A42" strokeWidth="3" opacity=".6" />)}
+          <Reflection t={t} x={540} y={1190} color="#C8D8D0" n={6} w={200} gap={24} opacity={0.3} />
+          {[[-200, 340], [740, 1280]].map(([a, b], i) => (
+            <g key={i}>
+              <Ombra id="cu" x={(a + b) / 2} y={1170} rx={(b - a) / 2} ry={18} />
+              <rect x={a} y="980" width={b - a} height="190" fill="url(#cu-door)" stroke={K} strokeWidth="8" />
+              <rect x={a - 10} y="960" width={b - a + 20} height="30" rx="4" fill="url(#cu-top)" stroke={K} strokeWidth="7" />
+              {Array.from({ length: 3 }, (_, k) => <rect key={k} x={a + 30 + k * ((b - a - 60) / 3)} y="1010" width={(b - a - 60) / 3 - 20} height="130" rx="6" fill="none" stroke={K} strokeWidth="5" />)}
+            </g>
+          ))}
+          {/* pentole sul bancone di destra, una cade */}
+          <g transform="translate(860 960)"><rect x="-50" y="-70" width="100" height="70" rx="8" fill="url(#cu-steel)" stroke={K} strokeWidth="6" /><path d="M-60 -70 H60" stroke={K} strokeWidth="8" /><Wisps t={t} x={0} y={-74} color="#E8F0EC" n={2} h={110} opacity={0.4} /></g>
+          <g transform={`translate(${lerp(980, 840, pot)} ${lerp(930, 1220, pot * pot)}) rotate(${pot * 150})`}>
+            <rect x="-44" y="-40" width="88" height="60" rx="8" fill="url(#cu-steel)" stroke={K} strokeWidth="6" />
+            <path d="M44 -20 H90" stroke={K} strokeWidth="10" strokeLinecap="round" />
           </g>
-          {pot > 0.9 && <ellipse cx="800" cy="1240" rx={60 + 40 * seg(t, cues[1] + 0.8, cues[1] + 1.6)} ry="10" fill="#E8F2EE" opacity={0.4 * (1 - seg(t, cues[1] + 0.8, cues[1] + 1.6))} />}
-          <g transform={`translate(${720 - 160 * pot} ${1050 + 200 * pot}) rotate(${300 * pot})`}>
-            <ellipse cx="0" cy="0" rx="64" ry="14" fill={P.accento} stroke={K} strokeWidth="5" />
-            <circle cx="0" cy="-12" r="8" fill={K} />
-          </g>
         </g>
-        {/* bancone in primo piano: ci si nasconde dietro */}
-        <g transform={L(1.25)}>
-          <path d="M-200 1560 H1280 V2200 H-200 Z" fill="url(#cu-steel)" stroke={K} strokeWidth="10" />
-          <path d="M-200 1570 H1280" stroke="#F2F6F4" strokeWidth="8" opacity=".6" />
-          {[100, 400, 700, 1000].map((x) => <rect key={x} x={x - 90} y="1640" width="180" height="240" rx="8" fill="none" stroke={K} strokeWidth="6" />)}
-          {[100, 400, 700, 1000].map((x) => <rect key={x} x={x - 30} y="1700" width="60" height="12" rx="6" fill="#E2E8E6" stroke={K} strokeWidth="3" />)}
+
+        {/* PIANO 4 — il bancone in primo piano che incornicia (1,2) */}
+        <g transform={L(1.2)}>
+          <rect x="-200" y="1560" width="1480" height="640" fill="url(#cu-door)" stroke={K} strokeWidth="10" />
+          <rect x="-220" y="1530" width="1520" height="44" rx="6" fill="url(#cu-top)" stroke={K} strokeWidth="9" />
+          {[-100, 260, 620, 980].map((x) => <g key={x}><rect x={x} y="1620" width="300" height="240" rx="8" fill="none" stroke={K} strokeWidth="6" /><rect x={x + 110} y="1650" width="80" height="18" rx="9" fill="url(#cu-steel)" stroke={K} strokeWidth="4" /></g>)}
+          <Reflection t={t} x={540} y={1546} color="#FFFFFF" n={4} w={500} gap={8} opacity={0.25} />
         </g>
-        <g transform={L(1.6)}>
-          <Dust t={t} top={{ y: 560, x0: 420, x1: 660 }} bottom={{ y: 1260, x0: 200, x1: 880 }} seed={7} n={20} color="#DDF2EC" />
-          <NearMotes id="cu-near" t={t} color="#DDF2EC" n={5} y0={1300} opacity={0.07 + 0.03 * mod(t, 1)} />
+
+        {/* PIANO 5 — particelle vicine (1,8) */}
+        <g transform={L(1.8)}>
+          <NearMotes id="cu-near" t={t} color="#E8F4F0" n={6} opacity={0.08} />
         </g>
+        <rect x="-200" y="-200" width="1480" height="2400" fill="#E8483A" opacity={0.06 * locked} />
       </g>
       <Finish id="cu" tint="#0F1F17" tintOpacity={0.12} />
     </svg>
   );
 };
+// Tempi evento (s nel capitolo): raptor cue0 + 0,5 · maniglia cue0 + 1,2 · mestoli cue1 · pentola cue1 + 0,3 → 0,8 · terminale cue2 · bloccate cue3.
