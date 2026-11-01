@@ -51,7 +51,7 @@ const WIDE = { x: 560, y: 860, z: 1 };
 const SHOTS: Shot[] = [
   // visibile sullo schermo: y da cy − 340/z a cy + 390/z (tra il titolo e i sottotitoli)
   { at: at('futuro', 0), x: 520, y: 960, z: 1.0 },
-  { at: at('padre', 0), x: 440, y: 870, z: 1.0 },
+  { at: at('padre', 0), x: 500, y: 870, z: 0.96 },
   { at: at('setta', 0), x: 520, y: 780, z: 1.0 },
   { at: at('adam', 0), x: 520, y: 790, z: 1.0 },
   { at: at('charlotte', 0), x: 680, y: 870, z: 1.0 },
@@ -229,10 +229,10 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
 
       {/* legami */}
       <Link T={T} t0={at('futuro', 0, 0.4)} a={[N.jonas[0] - 40, N.jonas[1] + 50]} b={[N.rovine[0] - 50, N.rovine[1] - 40]} c={[300, 1080]} color={YELLOW} dashed w={7} flow label="bloccato" lx={-60} size={30} arrow fade={off('futuro')} />
-      <Link T={T} t0={at('futuro', 3, 0.1)} a={[N.rovine[0] + 50, N.rovine[1] - 40]} b={[N.jonas[0] + 40, N.jonas[1] + 52]} c={[520, 1060]} color={YELLOW} dashed w={7} flow label="fugge indietro" lx={70} size={28} arrow fade={off('futuro')} />
+      <Link T={T} t0={at('futuro', 3, 0.1)} a={[N.rovine[0] + 50, N.rovine[1] - 40]} b={[N.jonas[0] + 40, N.jonas[1] + 52]} c={[520, 1060]} color={YELLOW} dashed w={7} flow label="fugge indietro" lx={10} ly={60} size={28} arrow fade={off('futuro')} />
       <Link T={T} t0={at('setta', 2, 0.3)} a={[N.noah[0] - 56, N.noah[1]]} b={[N.adam[0] + 56, N.adam[1]]} label="lo serve" ly={-22} size={28} />
-      <Link T={T} t0={at('adam', 2, 0.1)} a={[N.jonas[0], N.jonas[1] - 56]} b={[N.adam[0] - 30, N.adam[1] + 54]} c={[380, 680]} color={YELLOW} dashed w={7} flow label="da vecchio" lx={60} size={28} arrow />
-      <Link T={T} t0={at('charlotte', 1, 0.2)} a={[N.noah[0] + 30, N.noah[1] + 52]} b={[N.charlotte[0], N.charlotte[1] - 54]} label="padre" lx={44} arrow />
+      <Link T={T} t0={at('adam', 2, 0.1)} a={[N.jonas[0], N.jonas[1] - 56]} b={[N.adam[0] - 30, N.adam[1] + 54]} c={[380, 680]} color={YELLOW} dashed w={7} flow arrow />
+      <Link T={T} t0={at('charlotte', 1, 0.2)} a={[N.noah[0] + 30, N.noah[1] + 52]} b={[N.charlotte[0], N.charlotte[1] - 54]} label="padre" lx={-44} arrow />
       <Link T={T} t0={at('charlotte', 2, 0.1)} a={[N.charlotte[0], N.charlotte[1] + 54]} b={[N.lisa[0], N.lisa[1] - 50]} label="figlia" lx={46} arrow />
       <Link T={T} t0={at('charlotte', 2, 0.8)} a={[N.lisa[0], N.lisa[1] + 50]} b={[N.lisaAdulta[0], N.lisaAdulta[1] - 54]} color={YELLOW} dashed w={6} flow label="da grande" lx={-74} size={26} arrow />
       <Link T={T} t0={at('charlotte', 2, 1.4)} a={[N.lisaAdulta[0] + 56, N.lisaAdulta[1] - 20]} b={[N.charlotte[0] + 56, N.charlotte[1] + 10]} c={[1070, 1000]} color={RED} w={6} label="madre" lx={18} size={30} arrow />
@@ -262,8 +262,8 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       <Tag T={T} t0={at('fine', 2, 0.3)} x={250} y={Y[2020] + 268} text="sopravvissuti" bg={CHALK} size={24} />
       {/* un altro mondo: il gomitolo blu arriva da fuori e porta via Jonas */}
       <Link T={T} t0={at('mondo', 1, 0.1)} a={[N.altra[0] - 40, N.altra[1] - 44]} b={[N.jonas[0] + 44, N.jonas[1] + 40]} c={[480, 1040]} color={BLUE} w={7} label="via con sé" ly={40} size={28} arrow />
-      <Tag T={T} t0={at('mondo', 2, 0.2)} x={640} y={Y[2020] + 190} text="un altro mondo" bg={BLUE} fg="#FFFFFF" size={28} rot={3} />
-      <Tag T={T} t0={at('futuro', 2, 0.3)} x={680} y={Y[2020] + 120} text="27 giugno 2020: la fine" bg={RED} fg="#FFFFFF" size={26} rot={-2} until={end('futuro') - 0.4} />
+      <Tag T={T} t0={at('mondo', 2, 0.2)} x={560} y={Y[2020] + 150} text="un altro mondo" bg={BLUE} fg="#FFFFFF" size={28} rot={3} />
+      <Tag T={T} t0={at('futuro', 2, 0.3)} x={720} y={Y[2020] + 150} text="27 giugno 2020: la fine" bg={RED} fg="#FFFFFF" size={26} rot={-2} until={end('futuro') - 0.4} />
       <Tag T={T} t0={at('adam', 2, 0.6)} x={640} y={Y[1921] + 150} text="Adam = Jonas da vecchio" size={26} rot={-2} />
       <Tag T={T} t0={at('setta', 3, 0.2)} x={700} y={Y[1921] - 70} text="fermare il giro" bg={CHALK} size={24} until={end('setta') - 0.4} />
 

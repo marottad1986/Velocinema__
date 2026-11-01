@@ -19,7 +19,9 @@ const vamp = (v) => (v / 127) ** 1.6;
 /** Un solo tempo (66 bpm, come la stagione 1) su una griglia continua: il 2053 va a metà passo (33). */
 const BPM = 66;
 const GRID = (4 * 60) / BPM;
-const snap = (t) => Math.round(t / GRID) * GRID;
+const BEAT_ = 60 / BPM / 2; // mezzo battito (0,4545 s): passo delle figure ripetute
+const OFF = 0.36; // sfasamento della griglia: i cambi di sezione cadono più vicini all'inizio dei capitoli (futuro esatto a 4 s)
+const snap = (t) => (t <= 0 ? 0 : Math.round((t - OFF) / GRID) * GRID + OFF);
 
 // ---------------------------------------------------------------- strumenti (campionati)
 
@@ -104,10 +106,10 @@ export default (mix, T) => {
   };
 
   // ---- sezioni (tempi dal JSON): lo schema si annoda, la musica cresce con il nodo
-  sec(0, T.futuro, { passo: 'meta', drone: 40, mel: 40, oct: -12, broken: true, keep: 0.7 });
+  sec(0, T.futuro, { passo: 'meta', drone: 46, mel: 40, oct: -12, broken: true, keep: 1 });
   sec(T.futuro, T.padre, { passo: 'meta', drone: 50, mel: 38, oct: -12, broken: true, keep: 0.6, ticks: 26 });
   sec(T.padre, T.setta, { drone: 38, str: 40, mel: 44, ticks: 28 });
-  sec(T.setta, T.adam, { drone: 52, mel: 40, oct: -12, pulse: 40, str: 30 });
+  sec(T.setta, T.adam, { drone: 44, mel: 40, oct: -12, pulse: 34, str: 30 });
   sec(T.adam, T.charlotte, { drone: 44, mel: 50, oct: 12, bells: 36, ticks: 30, pad: 40 });
   sec(T.charlotte, T.piano, { drone: 38, str: 38, mel: 44, ticks: 28 });
   sec(T.piano, T.martha, { drone: 46, str: 44, mel: 46, pulse: 34, ticks: 32 });
@@ -126,18 +128,21 @@ export default (mix, T) => {
   colpo(mix, 'grancassa', 'bdrum_p', { t: C('futuro', 2) + 0.3, vel: 110, gain: 0.7, rev: 0.5 });
   // il padre: la lettera che si apre, poi l'anello rosso
   clip(mix, 'pagine', { t: C('padre', 1) + 0.2, da: 1, durata: 0.7, gain: 0.25, fadeOut: 0.2, rev: 0.3 });
-  [0, 0.5].forEach((d, k) => bell(mix, [63, 60][k], { t: C('padre', 3) + 0.2 + d, vel: 40 }));
+  [0, BEAT_].forEach((d, k) => bell(mix, [63, 60][k], { t: C('padre', 3) + 0.2 + d, vel: 40 }));
   // la setta: i viaggi nel tempo lungo il passaggio
-  [0.2, 0.6, 1.0].forEach((d, k) => bell(mix, [60, 67, 72][k], { t: C('setta', 1) + d, vel: 38 }));
+  [0, 1, 2].forEach((k) => bell(mix, [60, 67, 72][k], { t: C('setta', 1) + 0.2 + k * BEAT_, vel: 38 }));
   // la rivelazione: Adam = Jonas da vecchio
   [0, 0.45, 0.9, 1.35].forEach((d, k) => bell(mix, MOTIF[k][1] + 12, { t: C('adam', 2) + 0.6 + d, vel: 46, pan: -0.3 + k * 0.2 }));
   // il cerchio madre-figlia
-  [0, 0.4].forEach((d, k) => bell(mix, [75, 72][k], { t: C('charlotte', 3) + d, vel: 40 }));
+  [0, BEAT_].forEach((d, k) => bell(mix, [75, 72][k], { t: C('charlotte', 3) + d, vel: 40 }));
+  // il nodo che si stringe e il suo cartellino
+  colpo(mix, 'grancassa', 'bdrum_pp', { t: C('piano', 0), vel: 110, gain: 0.6, rev: 0.5 });
+  bell(mix, 60, { t: C('piano', 0) + 0.8, vel: 40 });
   // Martha: la croce rossa, un colpo sordo
   colpo(mix, 'grancassa', 'bdrum_p', { t: C('martha', 1) + 0.6, vel: 110, gain: 0.8, rev: 0.6 });
   // la fine del mondo: rombo lungo e la fascia che trema
-  clip(mix, 'rombo', { t: C('fine', 0), da: 31, durata: 4, gain: 0.45, fadeIn: 0.2, fadeOut: 1.5, largo: 3 });
-  clip(mix, 'scatti', { t: C('fine', 1) + 0.3, da: 6.49, durata: 0.1, gain: 0.2, rev: 0.2 });
+  clip(mix, 'rombo', { t: C('fine', 0), da: 31, durata: 3, gain: 0.25, fadeIn: 0.2, fadeOut: 1.2, largo: 3 });
+  [0, 1, 2].forEach((k) => clip(mix, 'scatti', { t: C('fine', 1) + 0.3 + k * BEAT_ / 2, da: 6.49, durata: 0.1, gain: 0.15, rev: 0.2 })); // i tre sopravvissuti
   // un altro mondo: campanelle che salgono quando arriva il gomitolo blu
   [0, 0.3, 0.6].forEach((d, k) => bell(mix, [67, 72, 79][k], { t: C('mondo', 0) + 0.1 + d, vel: 42, pan: 0.3 }));
 };
