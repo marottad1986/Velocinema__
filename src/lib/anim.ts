@@ -22,6 +22,17 @@ export const rng = (seed: number) => {
  * Camera standard di QUALITA.md: pan laterale ±40 px e zoom 1,04 → 1,09 su tutta la scena.
  * `layer(f)` restituisce la traslazione di un piano con fattore di parallasse f.
  */
+/**
+ * Griglia della musica vista da un capitolo: la griglia dello spartito parte dalla fine della copertina (`origine`) a
+ * `bpm` battiti al minuto; `inizio` è il secondo d'inizio del capitolo. Restituisce l'istante (relativo al capitolo) più
+ * vicino a `s` che cade su 1/div di battito.
+ */
+export const grigliaMusicale = (bpm: number | undefined, inizio: number, origine: number) => (s: number, div = 2) => {
+  if (!bpm) return s;
+  const passo = 60 / bpm / div;
+  return origine + Math.round((inizio + s - origine) / passo) * passo - inizio;
+};
+
 export const camera = (t: number, dur: number, cx = 540, cy = 1000) => {
   const p = eio(seg(t, 0, dur));
   const pan = lerp(-40, 40, p);

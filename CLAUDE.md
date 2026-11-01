@@ -17,7 +17,7 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 - **La qualità del video dipende soprattutto da quanto sono curate le scene.** Grafica e dettagli delle immagini
   sono fondamentali: ogni scena va disegnata con la cura dei primi film (Shutter Island, Interstellar, Truman,
   La La Land, Frankenstein Junior), mai di fretta né a gruppi. Prima di ogni film rileggere `BRIEF-SCENA.md`,
-  `QUALITA.md` e la scena di riferimento; una scena alla volta, controllata sui fotogrammi prima di passare alla
+  `QUALITA.md` (più `qualita/<film>.md` del film) e la scena di riferimento; una scena alla volta, controllata sui fotogrammi prima di passare alla
   successiva; una sola immagine per capitolo, non più immagini in dissolvenza; oggetti ricchi di dettaglio, non
   schematici. Se un revisore trova problemi di fondo (inquadratura vuota, oggetto illeggibile), si ripensa la scena,
   non si rattoppa. Meglio un film in più giorni che un film meno curato.
@@ -168,7 +168,9 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   Se si cambiano i tempi di un evento in una scena, aggiornare anche lo spartito.
 - Un solo tempo (bpm) per film, su una griglia continua: le scene lente vanno a metà passo, quelle concitate a passo
   doppio, e i cambi di sezione cadono sulla battuta più vicina all'inizio del capitolo (mai tempi diversi per capitolo:
-  si sente la musica accelerare e rallentare). Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
+  si sente la musica accelerare e rallentare). Lo stesso bpm va nel JSON (`"bpm": 72`): le scene ricevono `griglia(s, div)`,
+  che arrotonda un istante del capitolo al battito (div 2 = crome), e gli eventi si scrivono già a tempo, es.
+  `seg(t, griglia(cues[2] + 0.4), …)`; `controlli.mjs` verifica che il bpm del JSON sia quello dello spartito. Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
   Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute), Joker 96, The Others 72; Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 e 2053 a metà passo, anche la stagione 2);
   quadri: Grande onda 88, Notte stellata 92;
   Bohemian Rhapsody 70 (opera e rock a passo doppio, 140), Gli anni 600/7 ≈ 85,7 (14 s = 5 battute).
@@ -182,6 +184,10 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   equivalente registrato (gesso, spazzole jazz, bip Morse, neon, cambio canale, risucchio). Per tarare i volumi
   confrontare musica ed effetti misurati separatamente; i vecchi strumenti sintetici di synth.mjs non vanno più usati
   per la musica.
+- Prima del revisore musica, controllo da fare da sé: ogni evento visibile importante ha il suo suono (e viceversa);
+  dopo un colpo forte la musica tace almeno un battito; i tappeti stanno sotto la musica; nessun avviso «ATTENZIONE
+  effetto … presa oltre la fine» da `npm run musica` (lo stampa `clip()` quando `da`+`durata` supera il file); il cambio
+  di carattere (es. il maggiore del finale) cade con l'evento visivo, non sulla battuta prima.
 - `node scripts/livelli.mjs <film> [--finestre]`: livelli per capitolo di mix, sola musica e soli effetti (con la stessa
   normalizzazione), buchi e tratti in cui gli effetti coprono la musica: da usare per tarare i volumi.
 - `npm run musica -- <film>` → `out/<film>-musica.wav`. `npm run render` la rigenera e la unisce al video con ffmpeg
@@ -203,6 +209,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 
 ## Metodo di lavoro e controllo qualità (vincolante)
 - Si parte sempre da `main`: una conversazione e un ramo per film (o per modifica), una pull request per film.
+  Tra un film e l'altro si comprime la conversazione (o se ne apre una nuova): il contesto dei film già fatti non serve.
   Niente rami paralleli di lunga durata: a lavoro finito si unisce su main.
 - `node scripts/controlli.mjs [<film>...]` (`scripts/controlli.mjs`): regole verificabili in automatico (durata 2:00, ritmo della
   voce, frasi vietate, finale con «Commenta con…», scene registrate, musica con strumenti campionati e senza note()
@@ -212,11 +219,16 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Prima della pull request di un film nuovo o modificato, i tre revisori in `.claude/agents/` (subagenti):
   `revisore-testi` (legge da spettatore che non ha visto il film), `revisore-immagini` (fotogrammi di prova contro
   QUALITA.md), `revisore-musica` (sincronia, livelli, strumenti veri). Si chiamano solo quelli della parte toccata.
+  Prima di chiamarli: `node scripts/pacchetto.mjs <film> [--musica]` prepara in `out/revisione/<film>/` i fotogrammi
+  affiancati di ogni capitolo nei momenti degli eventi, `tempi.md` (istanti delle frasi) e `livelli.txt`; nel messaggio al
+  revisore si indica il pacchetto e, per ogni scena, gli eventi agganciati a ogni frase. Il revisore parte da lì e fa
+  altri fotogrammi o misure solo se ha un dubbio. Prima ancora, il controllo da sé di BRIEF-SCENA §5 e di «Musica».
   La pull request riporta i verdetti; si unisce solo con controlli verdi e revisori APPROVATO (o con i punti aperti
   spiegati nella pull request).
 - Secondo passaggio dei revisori: solo se dopo il primo si è modificato qualcosa, e solo sulle parti modificate (le scene
   ridisegnate o ritoccate, le righe di testo cambiate, i tratti di musica ed effetti toccati), non su tutto il film: ciò
-  che non è cambiato resta approvato dal primo passaggio. Nel messaggio al revisore elencare con precisione cosa è cambiato.
+  che non è cambiato resta approvato dal primo passaggio. Nel messaggio al revisore elencare con precisione cosa è cambiato
+  (pacchetto con `--capitoli` solo delle scene modificate).
 
 ## Struttura del codice (Remotion, 30 fps)
 - **Per disegnare scene (anche di un film nuovo) seguire `BRIEF-SCENA.md`**: metodo, scheletro, errori da evitare, verifica.
@@ -226,7 +238,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - `src/scenes/<film>/<Scena>.tsx`: una scena per capitolo; `index.ts` mappa id capitolo → componente + posizione titolo.
 - `src/components/ChapterOverlay.tsx`: barra, etichetta, titolo, sottotitoli. `src/lib/anim.ts`: camera/parallasse e utilità del tempo. `src/lib/fx.tsx`: grana, vignettatura, velatura, gradienti.
 - Le props delle composizioni devono essere JSON (si passa lo slug del film, non l'oggetto).
-- Comandi: `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run dividi -- <film> <file>`, `node scripts/genera-voce.mjs <film>`, `npm run voce -- <film>`.
+- Comandi: `node scripts/pacchetto.mjs <film> [--capitoli a,b] [--musica]` (materiale per i revisori), `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run dividi -- <film> <file>`, `node scripts/genera-voce.mjs <film>`, `npm run voce -- <film>`.
 - Audio: `scripts/musica.mjs`, `scripts/voce.mjs`, `scripts/genera-voce.mjs`, `scripts/audio/` (sintetizzatore, spartiti, tempi dal JSON e helper ffmpeg in `film.mjs`).
 
 ## Tecnologia suggerita

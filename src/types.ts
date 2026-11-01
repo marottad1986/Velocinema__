@@ -40,6 +40,8 @@ export type FilmData = {
   capitoli: Capitolo[];
   finale: { durata: number; immagine: string; voce?: string };
   musica?: string;
+  /** Tempo unico della colonna sonora (lo stesso BPM dello spartito): attiva `griglia` nelle scene. */
+  bpm?: number;
   /** Fonti dei fatti citati (canzoni: obbligatorie). */
   fonti?: string[];
 };
@@ -48,7 +50,12 @@ export type FilmData = {
  * Props ricevute da ogni scena: t e dur in secondi, relativi al capitolo.
  * cues[i] = secondo in cui compare la frase i dei sottotitoli (per sincronizzare gli eventi con la voce).
  */
-export type SceneProps = { t: number; dur: number; palette: Palette; cues: number[] };
+export type SceneProps = {
+  t: number; dur: number; palette: Palette; cues: number[];
+  /** Arrotonda un istante del capitolo (s) al battito della musica più vicino (`div` = suddivisioni del battito, 2 = crome).
+   *  Presente solo se il JSON ha `bpm`; senza `bpm` restituisce l'istante com'è. Così gli eventi nascono già a tempo con lo spartito. */
+  griglia: (s: number, div?: number) => number;
+};
 
 /** Dove e come mettere il titolo del capitolo per una scena. */
 export type TitleSpec = { top: number; size?: number; dark?: boolean; width?: number };
