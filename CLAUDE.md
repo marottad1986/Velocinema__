@@ -95,7 +95,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   `films/<serie>-stagione-<N>.json` (serie brevi/concluse: un solo file per tutta la serie, senza `stagione`).
   Il campo `regista` resta (per le serie: ideatori o regista principale).
 - Struttura: sigla 1,5 s dentro la copertina da 4 s (nome "Spiegato semplice" + badge FILM o SERIE, uguale per tutti
-  gli episodi) + capitoli (112 s) + finale 4 s. Capitoli più lunghi e meno numerosi (8–10, 11–14 s ciascuno).
+  gli episodi) + capitoli (112 s) + finale 4 s. Dagli episodi nuovi (da Dark stagione 2) niente sigla: `"sigla": false` nel
+  JSON, la copertina parte subito e porta «SPIEGATO SEMPLICE · SERIE» (o FILM) in alto; il formato si riconosce dalla playlist. Capitoli più lunghi e meno numerosi (8–10, 11–14 s ciascuno).
 - Capitoli per concetti, non per scene: ognuno spiega una sola idea (una regola, un luogo, un colpo di scena) e
   il titolo la dice (es. «La regola dei 33 anni»), in ordine di comprensione.
 - Scrittura: frasi brevi (max ~12 parole), parole comuni; ogni idea difficile ha un paragone quotidiano
@@ -118,7 +119,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Finale: la voce dice il riassunto «in una frase» (`finale.voce`); per le serie si annuncia la stagione successiva.
 - Codice: sigla in `src/components/Sigla.tsx` (la copertina del film riceve `t` già spostato di 1,5 s); linea del tempo
   e cartellini dei personaggi in `src/components/ChapterOverlay.tsx`, attivi quando il JSON ha `linea_tempo` e `personaggi`.
-  Episodi: Dark (`films/dark-stagione-1.json`, schema `src/scenes/dark-stagione-1/Albero.tsx`), Inception
+  Episodi: Dark (`films/dark-stagione-1.json`, schema `src/scenes/dark-stagione-1/Albero.tsx`; stagione 2 in
+  `films/dark-stagione-2.json`, schema `src/scenes/dark-stagione-2/Nodo.tsx`), Inception
   (`films/inception.json`, schema `src/scenes/inception/Piani.tsx`); musica in `scripts/audio/<slug>.mjs`.
 - Priorità: serie intricate (Dark, Lost, Westworld, Severance, Twin Peaks, 1899; una stagione per video se lunghe),
   film (Inception, Tenet, Mulholland Drive, Donnie Darko, Primer). Libri solo dopo ~10 episodi.
@@ -167,7 +169,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Un solo tempo (bpm) per film, su una griglia continua: le scene lente vanno a metà passo, quelle concitate a passo
   doppio, e i cambi di sezione cadono sulla battuta più vicina all'inizio del capitolo (mai tempi diversi per capitolo:
   si sente la musica accelerare e rallentare). Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
-  Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute); Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 a metà passo);
+  Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute); Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 e 2053 a metà passo, anche la stagione 2);
   quadri: Grande onda 88, Notte stellata 92;
   Bohemian Rhapsody 70 (opera e rock a passo doppio, 140), Gli anni 600/7 ≈ 85,7 (14 s = 5 battute).
 - Effetti sonori registrati: `scripts/audio/effetti.mjs` (archivio CC0 di Craig Smith, USC / Sunset Editorial, "SSE Library"
