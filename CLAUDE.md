@@ -197,7 +197,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Speciali (Halloween, Natale…): `"speciale": "Halloween"` nella `copertina` del JSON mette il bollino «SPECIALE HALLOWEEN»
   accanto all'etichetta (`src/components/Speciale.tsx`); niente nella voce né nel disegno, così togliendo il campo il video torna normale.
 - Archivio su MEGA (`.github/workflows/video-mega.yml`): a ogni push su main GitHub Actions rigenera i film toccati
-  (`scripts/cambiati.mjs`; codice comune = tutti) e carica `<film>.mp4` e `<film>-voce.mp4` in `/Velocinema/<film>/`.
+  (`scripts/cambiati.mjs`; codice comune = tutti, ma registrare un film nuovo in `src/films.ts` o aggiungere un effetto al catalogo rigenera solo quel film) e carica `<film>.mp4` e `<film>-voce.mp4` in `/Velocinema/<film>/`.
   Clip voce lette da `/Velocinema/<film>/voce/` su MEGA (o da `audio/<film>/`). Segreti `MEGA_EMAIL`, `MEGA_PASSWORD`.
   A mano: Actions → "Video su MEGA" → Run workflow.
 
