@@ -82,8 +82,8 @@ const SHOTS: Shot[] = [
   { at: at('tempo', 1), ...FLOORS },
   { at: at('tempo', 2), x: 560, y: 1360, z: 0.95 },
   { at: at('tempo', 3), x: 560, y: 2380, z: 0.55 },
-  { at: at('calcio', 0), x: 560, y: 1380, z: 1.08 },
-  { at: at('calcio', 2), x: 540, y: 2020, z: 0.45 },
+  { at: at('calcio', 0), x: 560, y: 1270, z: 1.08 },
+  { at: at('calcio', 2), x: 540, y: 1580, z: 0.52 },
   { at: at('calcio', 3), ...WIDE },
   { at: at('limbo', 0), x: 540, y: 1000, z: 0.62 },
   { at: at('limbo', 2), x: 540, y: 3030, z: 0.5 },
@@ -498,7 +498,7 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })}
-      <Tag T={T} t0={at('tempo', 1, 0.5)} x={540} y={ROW.p1.y0 - 30} text="nei sogni la mente corre" size={big(70)} until={end('tempo') - 0.4} />
+      <Tag T={T} t0={at('tempo', 1, 0.5)} x={540} y={ROW.p1.y0 - 30} text="nei sogni la mente corre" size={big(70)} until={at('tempo', 2) - 0.4} />
 
       {/* capitolo 1: Cobb entra nel sogno e ruba i segreti; la trottola */}
       {T < end('estrazione') + 0.6 && T >= at('estrazione', 1) && (
@@ -521,7 +521,7 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
         </g>
       )}
       <Link T={T} t0={at('innesto', 3, 0.1)} a={[N.fischer[0], N.fischer[1] - 70]} b={[N.fischer[0] + 140, ROW.realta.y0 + 190]} c={[N.fischer[0] + 40, ROW.realta.y0 + 170]} color={ORANGE} arrow fade={off('innesto')} />
-      <Tag T={T} t0={at('innesto', 3, 0.4)} x={740} y={ROW.realta.y0 + 150} text="smonta l'impero del padre" size={34} until={end('innesto') - 0.4} />
+      <Tag T={T} t0={at('innesto', 3, 0.4)} x={740} y={ROW.realta.y0 + 150} text="smonta l'impero del padre" size={34} until={at('innesto', 4) - 0.4} />
       <Tag T={T} t0={at('innesto', 4, 0.1)} x={300} y={ROW.realta.y0 + 150} text="in cambio: torna dai figli" bg={INK} size={34} until={end('innesto') - 0.4} />
 
       {/* capitolo 3: il seme scende; Fischer portato giù nei sogni; i piani di un palazzo */}
@@ -558,7 +558,7 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
       {/* capitolo 6: morire sveglia… ma il sonnifero manda nel limbo */}
       <Link T={T} t0={at('limbo', 0, 0.3)} a={[200, ROW.p1.y0 + 300]} b={[200, ROW.realta.y0 + 420]} color={INK} dashed arrow w={12} label="muori → ti svegli" lx={300} ly={0} size={80} fade={off('limbo')} />
       {T >= at('limbo', 1, 0.2) && (
-        <g transform={`translate(300 ${ROW.p1.y0 - 30}) scale(${pop(T, at('limbo', 1, 0.2)) * 2})`} opacity={off('limbo')}>
+        <g transform={`translate(840 ${ROW.p1.y0 + 170}) scale(${pop(T, at('limbo', 1, 0.2)) * 2})`} opacity={off('limbo')}>
           <rect x="-40" y="-18" width="80" height="36" rx="18" fill={RED} stroke={INK} strokeWidth="4" />
           <path d="M0 -18 V18" stroke={INK} strokeWidth="4" />
           <path d="M-30 -8 H-10" stroke="#FFFFFF" strokeWidth="3" opacity=".6" />
