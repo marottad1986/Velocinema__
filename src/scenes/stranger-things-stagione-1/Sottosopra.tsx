@@ -122,7 +122,7 @@ export const Sottosopra: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <path d={`M360 ${936 - hop(1)} l16 -26 l18 26 l-18 10 Z`} fill="#B8352F" stroke={K} strokeWidth="5" strokeLinejoin="round" />
           <path d={`M780 ${934 - hop(2)} l22 -14 l22 14 l-22 14 Z`} fill="#4A7AB8" stroke={K} strokeWidth="5" strokeLinejoin="round" />
           {/* dado a venti facce grande e torre del castello */}
-          <g transform={`translate(176 ${900 - hop(3)})`}>
+          <g transform={`translate(176 ${928 - hop(3)})`}>
             <path d="M0 -40 L34 -20 L34 20 L0 40 L-34 20 L-34 -20 Z" fill="#7A4AB8" stroke={K} strokeWidth="5" strokeLinejoin="round" />
             <path d="M0 -40 L-20 8 L20 8 Z M-34 -20 L-20 8 M34 -20 L20 8 M-20 8 L0 40 L20 8 M-34 20 L-20 8 M34 20 L20 8" fill="none" stroke={K} strokeWidth="3" />
             <path d="M-4 -30 L4 -30" stroke="#C8A8F0" strokeWidth="3" />
