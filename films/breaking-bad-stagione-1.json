@@ -13,7 +13,7 @@
   },
   "copertina": {
     "durata": 4,
-    "frase_lancio": "Gli resta poco da vivere. Decide di usarlo male.",
+    "frase_lancio": "Gli resta poco tempo. Decide di usarlo male.",
     "immagine": "Il deserto del New Mexico al tramonto: mesa rosse all'orizzonte, cactus e cespugli, una strada sterrata; al centro un vecchio camper bianco e beige con il fumo che esce dal tetto; in primo piano una boccetta da laboratorio con cristalli che brillano. Titolo in un carattere stencil da cartello industriale. NON usare la locandina ufficiale, persone, né il logo della serie con i simboli della tavola periodica.",
     "voce": "Breaking Bad, prima stagione, di Vince Gilligan: un professore diventa criminale."
   },
@@ -57,8 +57,8 @@
       "durata": 10,
       "scena": "Il deserto di giorno sotto un cielo azzurro: mesa lontane, cactus, cespugli che rotolano, il tremolio del caldo; al centro il vecchio camper con la porta aperta e il fumo che esce dallo sfiato del tetto; su un tavolino pieghevole un vassoio di cristalli che brillano al sole.",
       "sottotitoli": [
-        "Con i risparmi di Walter comprano un vecchio camper",
-        "e lo trasformano in un laboratorio, nascosto in mezzo al deserto:",
+        "Quindi, con i risparmi di Walter, comprano un vecchio camper",
+        "e lo trasformano in un laboratorio nascosto nel deserto:",
         "la droga che ne esce è la più pura della città."
       ]
     },
@@ -68,9 +68,9 @@
       "durata": 10,
       "scena": "Il camper nel deserto con la porta chiusa: dalle fessure e dai finestrini esce un gas bianco e rossastro, i vetri si appannano; a terra davanti ai gradini una maschera antigas e un fornello da campeggio; un'auto scura parcheggiata accanto, cielo che si scurisce.",
       "sottotitoli": [
-        "Ma due spacciatori soci di Jesse, Emilio e Krazy-8, li scoprono",
-        "e vogliono ucciderli: così Walter, fingendo di cucinare per loro,",
-        "li chiude nel camper con un gas velenoso."
+        "Ma Emilio, socio di Jesse, crede Walter una spia dell'antidroga",
+        "e col cugino Krazy-8 vuole ucciderli: Walter finge di cucinargli la droga",
+        "ma li chiude nel camper con un gas velenoso."
       ]
     },
     {
@@ -79,8 +79,8 @@
       "durata": 10,
       "scena": "Il corridoio della casa di Jesse: dal soffitto sfondato è precipitata una vasca da bagno spaccata, il pavimento è coperto da una melma scura che fuma; calcinacci e polvere che cadono dal buco, una tanica di acido con l'etichetta di pericolo, una lampadina che oscilla.",
       "sottotitoli": [
-        "Emilio muore, e Jesse lo deve sciogliere nell'acido,",
-        "ma lo versa nella vasca invece che in un bidone di plastica,",
+        "Emilio muore, e Jesse deve sciogliere il corpo nell'acido,",
+        "ma usa la vasca, non il bidone di plastica voluto da Walter,",
         "così l'acido corrode anche la vasca, che sfonda il pavimento."
       ]
     },
@@ -97,24 +97,24 @@
     },
     {
       "id": "famiglia",
-      "titolo": "Cure pagate col segreto",
+      "titolo": "Le cure pagate con la droga",
       "durata": 10,
       "scena": "La cucina di casa White di notte: il tavolo con una pila di bollette dell'ospedale, flaconi di medicine, un assegno non incassato; la culla nuova ancora imballata in un angolo; dietro la griglia di una bocchetta d'aria nel muro, mazzette di banconote nascoste; la lampada sopra il tavolo e la finestra con le luci del quartiere.",
       "sottotitoli": [
-        "Intanto la famiglia scopre la malattia e lo convince a curarsi,",
-        "ma per orgoglio rifiuta i soldi di Elliott, un amico ricco,",
+        "Intanto la famiglia, scoperto il tumore, lo convince a curarsi,",
+        "ma Walter per orgoglio rifiuta i soldi di Elliott, un amico ricco,",
         "e paga le cure di nascosto con la droga."
       ]
     },
     {
       "id": "heisenberg",
-      "titolo": "Il nome Heisenberg",
+      "titolo": "Il nome falso: Heisenberg",
       "durata": 11,
       "scena": "L'ufficio di Tuco al primo piano di un capannone: scrivania, divano, una borsa di cristalli sul tavolo; a un tratto un'esplosione fa saltare i vetri delle finestre, fumo e frammenti volano, i fogli si sparpagliano; sul lavandino di un bagno un rasoio e ciocche di capelli tagliati.",
       "sottotitoli": [
-        "Poi Tuco, un boss violento, picchia Jesse e gli ruba la droga;",
+        "Poi Jesse va a venderla a Tuco, un boss violento, che lo picchia e gliela ruba;",
         "allora Walter, rasato e con il nome falso di Heisenberg,",
-        "gli fa saltare l'ufficio con un esplosivo e si fa pagare."
+        "gli fa esplodere l'ufficio e si fa pagare."
       ]
     },
     {
@@ -124,7 +124,7 @@
       "scena": "Un magazzino di prodotti chimici di notte: la recinzione metallica, una porta di ferro con il lucchetto che si scioglie tra scintille bianchissime; dentro, un bidone con l'etichetta METILAMMINA caricato su un carrello; un lampione arancione e la luna.",
       "sottotitoli": [
         "Tuco però ora vuole comprare tanta droga ogni settimana,",
-        "e per farla serve la metilammina: così Walter e Jesse la rubano",
+        "e serve tanta metilammina, l'ingrediente base: così Walter e Jesse la rubano",
         "da un magazzino, sciogliendo la serratura con una polvere incendiaria."
       ]
     },
@@ -134,9 +134,9 @@
       "durata": 11,
       "scena": "Uno sfasciacarrozze al tramonto: cataste di auto schiacciate, una gru con il magnete, la polvere sollevata dal vento; sul cofano di un'auto mazzette di banconote e un pacco di cristalli; a terra un paio di occhiali da sole rotti; un corvo che vola via.",
       "sottotitoli": [
-        "Alla consegna, in uno sfasciacarrozze, Tuco uccide di botte un suo uomo",
-        "per una parola di troppo: Walter e Jesse sono soci di un pazzo,",
-        "e la seconda stagione riparte proprio da questa paura."
+        "Alla consegna, in uno sfasciacarrozze, Tuco uccide di botte un complice",
+        "per una parola sbagliata: Walter e Jesse sono soci di un pazzo,",
+        "e la seconda stagione riparte dalla paura di essere i prossimi."
       ]
     }
   ],

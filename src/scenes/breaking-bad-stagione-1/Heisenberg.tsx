@@ -6,7 +6,7 @@ import { HAND } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
 import { BBDefs, Cristalli, K, Ombra, ORO } from './Comuni';
 
-// Il nome Heisenberg: l'ufficio di Tuco, al piano di sopra di un capannone, di giorno. Eventi: prima frase sulla
+// Il nome falso: Heisenberg: l'ufficio di Tuco, al piano di sopra di un capannone, di giorno. Eventi: prima frase sulla
 // scrivania cade il sacchetto di droga rubato a Jesse, con un paio di occhiali da sole rotti accanto (il pestaggio); seconda frase
 // accanto compare un secondo sacchetto, di cristalli grigi (l'esplosivo travestito da droga che porta Walter) e sul
 // blocco degli appunti si scrive da sola la parola «HEISENBERG»; terza frase un lampo: il sacchetto esplode, i vetri

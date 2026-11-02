@@ -6,7 +6,7 @@ import { HAND } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
 import { BBDefs, K, Ombra, ORO } from './Comuni';
 
-// Cure pagate col segreto: la cucina di casa White di notte. Eventi: prima frase sul calendario appeso compare il cerchio
+// Le cure pagate con la droga: la cucina di casa White di notte. Eventi: prima frase sul calendario appeso compare il cerchio
 // rosso «CHEMIO» e la lampada si accende sui flaconi di medicine (la famiglia lo convince a curarsi); seconda frase
 // l'assegno del vecchio amico ricco Elliott si strappa in due (Walter rifiuta i suoi soldi per orgoglio); terza frase la
 // griglia della bocchetta d'aria nel muro si apre e mostra le mazzette nascoste, e sulle bollette dell'ospedale cade il

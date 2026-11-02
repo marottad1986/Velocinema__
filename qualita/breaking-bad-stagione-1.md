@@ -17,7 +17,7 @@ della tavola periodica; titolo in Big Shoulders Stencil.
 - Il gas velenoso: l'auto scura arriva, luce del fornello, porta che sbatte, vetri pieni di gas rossastro, maschera antigas a terra.
 - La vasca e l'acido: macchia e gocce dal soffitto, il bidone blu giusto che si illumina, la vasca che sfonda il soffitto e la melma che fuma.
 - Il prigioniero in cantina: lampadina che oscilla, lucchetto sul tubo, chiave, coccio mancante del piatto, «UCCIDERLO» sottolineato, catena tesa.
-- Cure pagate col segreto: «CHEMIO» sul calendario, assegno di Elliott strappato, griglia con le mazzette, timbro PAGATO sulle bollette.
-- Il nome Heisenberg: sacchetto rubato, sacchetto grigio dell'esplosivo, «HEISENBERG» sul blocco, un lampo e i vetri che saltano, le mazzette.
+- Le cure pagate con la droga: «CHEMIO» sul calendario, assegno di Elliott strappato, griglia con le mazzette, timbro PAGATO sulle bollette.
+- Il nome falso: Heisenberg: sacchetto rubato, sacchetto grigio dell'esplosivo, «HEISENBERG» sul blocco, un lampo e i vetri che saltano, le mazzette.
 - Il furto della metilammina: insegna che si accende, torcia sul bidone, termite che scintilla sul lucchetto, porta socchiusa.
 - Soci di un pazzo: soldi e cristalli sul cofano, colpo e polvere, occhiali da sole a terra, corvi in volo, fari che si accendono al tramonto.
