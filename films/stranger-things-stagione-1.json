@@ -15,7 +15,7 @@
   "copertina": {
     "durata": 4,
     "frase_lancio": "Un bambino sparisce. Le luci di casa cominciano a parlare.",
-    "immagine": "Strada asfaltata nel bosco di notte, nebbia bassa tra i tronchi: in primo piano una bicicletta da ragazzo rovesciata con la ruota che gira ancora e una torcia accesa nell'erba; in fondo, tra gli alberi, la recinzione illuminata di un laboratorio con un lampione che sfarfalla. Etichetta 'LA SERIE IN 2 MINUTI · STAGIONE 1'. Titolo in un sans condensato color crema. NON usare il logo ufficiale (serif rosso con il bordo luminoso), le locandine con i ragazzi né il mostro.",
+    "immagine": "Strada asfaltata nel bosco di notte, nebbia bassa tra i tronchi: in primo piano una bicicletta da ragazzo rovesciata con la ruota che gira ancora e una torcia accesa nell'erba; in fondo, tra gli alberi, la recinzione illuminata di un laboratorio con un lampione che sfarfalla. Etichetta 'LA SERIE IN 2 MINUTI · STAGIONE 1'. Titolo in un sans condensato color crema (Bebas Neue). NON usare il logo ufficiale (serif rosso con il bordo luminoso), le locandine con i ragazzi né il mostro.",
     "voce": "Stranger Things, stagione 1, dei fratelli Duffer: un bambino scomparso."
   },
   "capitoli": [
@@ -143,7 +143,7 @@
   ],
   "finale": {
     "durata": 4,
-    "immagine": "La casa dei Byers nella neve di notte, con le lucine di Natale accese alle finestre; nel bosco vicino una scatola di legno con dei waffle sopra; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la serie che vorresti.'"
+    "immagine": "Casa Byers nella neve la notte di Natale, con le lucine sul tetto e le finestre accese; la bici rossa della copertina appoggiata alla staccionata innevata (Will è tornato a casa); neve che cade; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la serie che vorresti.'"
   },
   "musica": "Originale e strumentale: archi gravi che pulsano a crome, celesta e pianoforte in arpeggi ripetuti, timpani lontani, ottoni scuri nello scontro finale; tensione da racconto di paura per ragazzi, un tema caldo di quattro note per l'amicizia che torna nei capitoli dei ragazzi e nel Natale; niente sintetizzatori, niente brani né motivi della serie (in particolare nessun arpeggio che ricordi la sigla). Rumori: lampadine che ronzano, bici, vento nel bosco, radio, acqua, fuoco, porte che sbattono."
 }
