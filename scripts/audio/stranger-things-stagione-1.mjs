@@ -310,7 +310,7 @@ export default (mix, T) => {
   // ---- natale: la neve; Will a casa (il tema in Sol maggiore, finestre); la finestrella fredda del bagno; la lanterna e i waffle
   {
     const id = 'natale';
-    clip(mix, 'vento_invernale', { t: T.natale, da: 4, durata: S[id].dur + 0.3, gain: 0.03, fadeIn: 1, fadeOut: 1, largo: 3, lp: 4000 });
+    clip(mix, 'vento_invernale', { t: T.natale, da: 4, durata: S[id].dur + 0.3, gain: 0.018, fadeIn: 1, fadeOut: 1, largo: 3, lp: 4000 });
     const tHome = G(at(id, c(id, 0) + 1.0));
     [71, 74, 79].forEach((m, k) => glock(tHome + k * 0.36, m, 0.16)); // Natale.tsx: le finestre si accendono
     strings(B(T.natale), Q(cue(id, 1)), { vel: 46, gain: 0.32, chords: CHM });
