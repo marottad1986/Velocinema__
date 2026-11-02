@@ -12,6 +12,9 @@ export const K = '#0A0E18'; // contorni
 export const GIALLO = '#F5B83D'; // accento: lampadine e lucine
 export const SOTTO = '#7FB8D8'; // luce fredda del Sottosopra
 export const VELATURA = '#142036';
+/** Tempo della colonna sonora (uguale a `bpm` nel JSON): una croma = 60 / BPM / 2 secondi. */
+export const BPM = 84;
+export const CROMA = 60 / BPM / 2;
 
 /** Gradienti dei materiali comuni (una volta per scena, dentro <defs>). */
 export const StDefs: React.FC<{ id: string }> = ({ id }) => (
