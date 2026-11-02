@@ -276,10 +276,10 @@ export default (mix, T) => {
     horn(tBulge + 0.6, 41, 1, 0.3);
     roll(G(at(id, c(id, 2) + 1.5)), 1.0, 0.2);
     const tFire = G(at(id, c(id, 2) + 1.5));
-    clip(mix, 'metallo_colpi', { t: tFire - 0.03, da: 0.53, durata: 0.4, gain: 0.25, rev: 0.3 }); // la tagliola scatta
-    clip(mix, 'fiammata', { t: tFire - 0.03, da: 0.22, durata: 1.6, gain: 0.3, fadeOut: 0.6, rev: 0.3 }); // la fiammata
-    timp(tFire, 40, 104, 0.75);
-    colpo(mix, 'grancassa', 'bdrum_f', { t: tFire, vel: 100, rev: 0.5, gain: 0.2, dur: 2, release: 0.6 });
+    clip(mix, 'metallo_colpi', { t: tFire - 0.03, da: 0.53, durata: 0.4, gain: 0.14, rev: 0.3 }); // la tagliola scatta
+    clip(mix, 'fiammata', { t: tFire - 0.03, da: 0.22, durata: 1.6, gain: 0.12, fadeOut: 0.6, rev: 0.3 }); // la fiammata
+    timp(tFire, 40, 104, 0.42);
+    colpo(mix, 'grancassa', 'bdrum_f', { t: tFire, vel: 100, rev: 0.5, gain: 0.1, dur: 2, release: 0.6 });
     clip(mix, 'fuoco', { t: tFire + 0.3, da: 2, durata: B(T.aula) - 0.1 - tFire - 0.3, gain: 0.08, fadeIn: 0.3, fadeOut: 0.5, rev: 0.2 });
     strings(tFire + 2 * BEAT, B(T.aula), { vel: 40, gain: 0.26, k0: 3 }); // due battiti di silenzio, poi gli archi che calano
   }
