@@ -63,7 +63,8 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 
 ## Finale (vincolante, tutti i formati)
 - Nell'immagine finale, sotto «Metti like» / «Segui la pagina», l'invito a commentare (mai «Il prossimo … arriva presto»):
-  riassunti di film → «Commenta con il film che vorresti.»; Spiegato semplice → «Commenta con la spiegazione che vorresti.»;
+  riassunti di film → «Commenta con il film che vorresti.»; riassunti di serie (es. Breaking Bad, una stagione per video:
+  etichetta «STAGIONE N IN 2 MINUTI», finale «Fine della stagione N») → «Commenta con la serie che vorresti.»; Spiegato semplice → «Commenta con la spiegazione che vorresti.»;
   canzoni → «Commenta con la canzone che vorresti.»; quadri → «Commenta con il quadro che vorresti.»
 - Mai frasi come «La prossima volta che lo vedi…» (né nel finale né altrove).
 
@@ -171,7 +172,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   si sente la musica accelerare e rallentare). Lo stesso bpm va nel JSON (`"bpm": 72`): le scene ricevono `griglia(s, div)`,
   che arrotonda un istante del capitolo al battito (div 2 = crome), e gli eventi si scrivono già a tempo, es.
   `seg(t, griglia(cues[2] + 0.4), …)`; `controlli.mjs` verifica che il bpm del JSON sia quello dello spartito. Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
-  Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute), Joker 96, The Others 72; Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 e 2053 a metà passo, anche la stagione 2);
+  Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute), Joker 96, The Others 72, Breaking Bad stagione 1 96 (10 s = 4 battute); Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 e 2053 a metà passo, anche la stagione 2);
   quadri: Grande onda 88, Notte stellata 92;
   Bohemian Rhapsody 70 (opera e rock a passo doppio, 140), Gli anni 600/7 ≈ 85,7 (14 s = 5 battute).
 - Effetti sonori registrati: `scripts/audio/effetti.mjs` (archivio CC0 di Craig Smith, USC / Sunset Editorial, "SSE Library"
