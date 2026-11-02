@@ -53,7 +53,8 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
   connettivi espliciti («perché», «infatti», «intanto», «così», «quindi», «ma», «alla fine»), così i collegamenti li fa
   la voce e chi guarda non deve ricostruirli; anche un capitolo si aggancia al precedente. Niente elenchi secchi di fatti
   né frasi telegrafiche; mai frasi che parlano dello schema o del video stesso (es. «Tutto in due minuti», «Ecco lo schema
-  completo»; l'etichetta «IL FILM IN 2 MINUTI» sopra il titolo resta, ma solo nelle copertine dei riassunti di film; canzoni e quadri
+  completo»; l'etichetta «IL FILM IN 2 MINUTI» sopra il titolo resta, ma solo nelle copertine dei riassunti di film;
+  i riassunti di serie usano «LA SERIE IN 2 MINUTI · STAGIONE N»; canzoni e quadri
   usano il nome della serie, «CANZONI SPIEGATE» e «QUADRI SPIEGATI»). Le righe dei sottotitoli sono pezzi dello stesso discorso. L'ultima frase della storia chiude o lascia una
   domanda chiara (per le serie: da dove riparte la stagione dopo).
 - Spiegato facile: parole di tutti i giorni, nessun termine tecnico senza spiegarlo subito, una cosa alla volta.
@@ -63,7 +64,7 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 
 ## Finale (vincolante, tutti i formati)
 - Nell'immagine finale, sotto «Metti like» / «Segui la pagina», l'invito a commentare (mai «Il prossimo … arriva presto»):
-  riassunti di film → «Commenta con il film che vorresti.»; Spiegato semplice → «Commenta con la spiegazione che vorresti.»;
+  riassunti di film → «Commenta con il film che vorresti.»; riassunti di serie → «Commenta con la serie che vorresti.»; Spiegato semplice → «Commenta con la spiegazione che vorresti.»;
   canzoni → «Commenta con la canzone che vorresti.»; quadri → «Commenta con il quadro che vorresti.»
 - Mai frasi come «La prossima volta che lo vedi…» (né nel finale né altrove).
 
@@ -87,6 +88,15 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 - Sottotitoli in basso (tra y 1270 e 1490), una frase alla volta su fascia scura semitrasparente,
   tempi distribuiti in proporzione alla lunghezza delle frasi.
 - Zone coperte dalle app: niente testo nei primi 250 px in alto e negli ultimi 420 px in basso.
+
+## Riassunti di serie TV (stesso formato dei film)
+- Una stagione per video, raccontata come un film: JSON `films/<serie>-stagione-<N>.json` con `"tipo": "serie"` e
+  `"stagione": N`, 11 capitoli, etichetta in copertina «LA SERIE IN 2 MINUTI · STAGIONE N», finale con
+  «Commenta con la serie che vorresti.». L'ultima frase lascia la domanda da cui riparte la stagione dopo.
+- Creature e mostri della serie: mai la sagoma intera né i tratti che li rendono riconoscibili (es. la testa a petali
+  del mostro di Stranger Things); si mostrano con tracce e parti generiche nel nostro stile (pareti che si gonfiano,
+  bava, cenere, un artiglio non umano che sfonda una membrana).
+- Primo episodio: Stranger Things stagione 1 (`films/stranger-things-stagione-1.json`).
 
 ## Secondo formato: "Spiegato semplice" (film e serie TV)
 Trame complesse spiegate nel modo più semplice possibile, «come a un bambino di 5 anni». Valgono tutte le regole

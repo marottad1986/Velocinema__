@@ -1,0 +1,144 @@
+{
+  "formato": "riassunto",
+  "tipo": "serie",
+  "titolo": "Stranger Things",
+  "stagione": 1,
+  "regista": "Matt e Ross Duffer",
+  "anno": 2016,
+  "bpm": 84,
+  "palette": { "chiaro": "#F2E3C6", "principale": "#B8352F", "scuro": "#0E1424", "accento": "#F5B83D" },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Un bambino sparisce. Le luci di casa cominciano a parlare.",
+    "immagine": "Strada asfaltata nel bosco di notte, nebbia bassa tra i tronchi: in primo piano una bicicletta da ragazzo rovesciata con la ruota che gira ancora e una torcia accesa nell'erba; in fondo, tra gli alberi, la recinzione illuminata di un laboratorio con un lampione che sfarfalla. Etichetta 'LA SERIE IN 2 MINUTI · STAGIONE 1'. Titolo in un sans condensato color crema. NON usare il logo ufficiale (serif rosso con il bordo luminoso), le locandine con i ragazzi né il mostro.",
+    "voce": "Stranger Things, stagione 1, dei fratelli Duffer: un bambino scomparso."
+  },
+  "capitoli": [
+    {
+      "id": "capanno",
+      "titolo": "La sera in cui Will sparisce",
+      "durata": 10,
+      "scena": "Il capanno degli attrezzi dietro una casa di legno, di notte: la porta spalancata, dentro una lampadina che pende dal filo e sfarfalla, attrezzi appesi, un fucile da caccia appoggiato; fuori, nell'erba bagnata, una bicicletta a terra con il fanale acceso; nebbia tra gli alberi. La lampadina si spegne di colpo sull'ultima frase.",
+      "sottotitoli": [
+        "Nel 1983, a Hawkins, una piccola città americana,",
+        "Will, un ragazzino, pedala verso casa dopo una serata con gli amici,",
+        "ma qualcosa lo insegue e nel capanno di casa sparisce."
+      ]
+    },
+    {
+      "id": "laboratorio",
+      "titolo": "La bambina scappata dal laboratorio",
+      "durata": 10,
+      "scena": "Il cancello di un laboratorio governativo nel bosco, di notte: recinzione con filo spinato, cartelli di divieto, la garitta vuota con la sbarra alzata, l'edificio di cemento sullo sfondo con le finestre accese; un lampeggiante rosso che gira e spazza la nebbia; in primo piano, sul fango, piccole impronte di piedi nudi che escono dal cancello.",
+      "sottotitoli": [
+        "Quella stessa notte, dal laboratorio segreto del governo,",
+        "scappa una bambina rasata, con il numero undici tatuato sul polso.",
+        "E gli uomini del laboratorio si mettono subito a cercarla."
+      ]
+    },
+    {
+      "id": "lucine",
+      "titolo": "Una mamma parla con le luci",
+      "durata": 10,
+      "scena": "La parete del soggiorno di casa Byers: carta da parati a fiori, l'alfabeto dipinto a mano con la vernice nera, sopra ogni lettera una lucina di Natale colorata; una poltrona, un telefono a filo staccato, una lampada da terra. Sull'ultima frase le lucine si accendono una alla volta su S-C-A-P-P-A.",
+      "sottotitoli": [
+        "Joyce, la mamma di Will, è sicura che sia vivo,",
+        "perché le lampadine si accendono quando gli parla.",
+        "Così dipinge l'alfabeto sul muro e Will, con le lucine, scrive: scappa."
+      ]
+    },
+    {
+      "id": "scantinato",
+      "titolo": "Undici nello scantinato",
+      "durata": 10,
+      "scena": "Lo scantinato di casa Wheeler: una tenda fatta di coperte tra il divano e una poltrona, cuscini, due walkie-talkie con l'antenna, fumetti, un tavolo da gioco con dadi e miniature; la scala di legno e una porta che sbatte da sola sull'ultima frase; luce calda di una lampada da tavolo.",
+      "sottotitoli": [
+        "Intanto i migliori amici di Will, Mike, Dustin e Lucas,",
+        "cercandolo nel bosco trovano Undici e la nascondono nello scantinato di Mike,",
+        "dove scoprono che muove le cose col pensiero."
+      ]
+    },
+    {
+      "id": "cava",
+      "titolo": "Il corpo nella cava è finto",
+      "durata": 10,
+      "scena": "La cava di pietra di notte: pareti di roccia a gradoni, l'acqua nera in fondo, le torce e i fari delle ricerche che si riflettono, transenne della polizia, una barella vuota coperta da un telo. Sull'ultima frase, in primo piano, uno squarcio nel telo lascia uscire ovatta bianca.",
+      "sottotitoli": [
+        "Poi dalla cava ripescano il corpo di Will.",
+        "Ma Hopper, il capo della polizia, lo esamina di nascosto",
+        "e scopre che è un pupazzo: il laboratorio vuole fermare le ricerche."
+      ]
+    },
+    {
+      "id": "piscina",
+      "titolo": "Barb sparisce in piscina",
+      "durata": 10,
+      "scena": "La piscina di una villetta di notte, dopo una festa: l'acqua illuminata da sotto, un trampolino, lattine e bicchieri sul bordo, una sdraio rovesciata, gli occhiali tondi di una ragazza sulle piastrelle; l'acqua si increspa da sola e la luce subacquea sfarfalla.",
+      "sottotitoli": [
+        "Anche Nancy, la sorella di Mike, perde qualcuno:",
+        "a una festa la sua amica Barb sparisce accanto alla piscina,",
+        "così si allea con Jonathan, il fratello di Will, per cercarli entrambi."
+      ]
+    },
+    {
+      "id": "sottosopra",
+      "titolo": "Il mondo capovolto",
+      "durata": 10,
+      "scena": "Il tavolo da gioco nello scantinato: il tabellone capovolto, dadi, miniature di cavalieri e draghi, una bussola con l'ago che gira impazzito; dietro, la stessa stanza riflessa sotto il tavolo come in uno specchio, buia, coperta di radici e spore che fluttuano.",
+      "sottotitoli": [
+        "Undici risponde rovesciando un tabellone da gioco:",
+        "esiste un mondo gemello del nostro, buio e marcio: il Sottosopra.",
+        "Lì vive un mostro, e lì è nascosto Will."
+      ]
+    },
+    {
+      "id": "piscinetta",
+      "titolo": "Will è ancora vivo",
+      "durata": 10,
+      "scena": "La palestra della scuola di notte: una piscinetta gonfiabile piena d'acqua al centro del campo, sacchi di sale aperti, una radio a transistor accesa, le linee del parquet, i canestri; la luce di una sola lampada; sull'acqua cerchi concentrici che si allargano.",
+      "sottotitoli": [
+        "Galleggiando nell'acqua salata di una piscinetta,",
+        "Undici raggiunge Will con la mente: è vivo, ma resiste a fatica.",
+        "E si scopre che il passaggio l'ha aperto lei, in un esperimento."
+      ]
+    },
+    {
+      "id": "trappola",
+      "titolo": "Una trappola per il mostro",
+      "durata": 10,
+      "scena": "Il soggiorno di casa Byers preparato per la trappola: una tagliola aperta sul tappeto, una tanica di benzina, una mazza da baseball piena di chiodi, le lucine di Natale lungo le pareti. La parete si gonfia come una membrana che si tende; le lucine sfarfallano; sull'ultima frase una fiammata e poi solo la tagliola chiusa e annerita.",
+      "sottotitoli": [
+        "Nancy e Jonathan, invece, preparano una trappola in casa Byers:",
+        "si tagliano una mano, perché il mostro sente il sangue,",
+        "e quando esce dal muro gli danno fuoco, ma lui scappa."
+      ]
+    },
+    {
+      "id": "aula",
+      "titolo": "Undici contro il mostro",
+      "durata": 11,
+      "scena": "Un'aula di scienze devastata, di notte: banchi rovesciati, una lavagna crepata, provette rotte, un muro sfondato; un fascio di luce dalla finestra in cui vortica cenere scura; sull'ultima frase la cenere esplode verso l'alto e poi ricade lenta.",
+      "sottotitoli": [
+        "Gli uomini del laboratorio catturano i ragazzi a scuola, e Undici li ferma;",
+        "ma arriva anche il mostro, attirato dal sangue.",
+        "Undici lo inchioda al muro e lo dissolve, sparendo insieme a lui."
+      ]
+    },
+    {
+      "id": "natale",
+      "titolo": "Natale, ma non è finita",
+      "durata": 11,
+      "scena": "Il bagno di casa Byers la sera di Natale: lo specchio con le lucine colorate riflesse dal corridoio, il lavandino di ceramica, un asciugamano, uno spazzolino; sull'ultima frase la luce diventa per un attimo fredda e blu, con spore che fluttuano, poi torna calda. Fuori dalla finestra, la neve sul bosco.",
+      "sottotitoli": [
+        "Intanto Joyce e Hopper vanno nel Sottosopra e salvano Will.",
+        "Ma a Natale Will sputa una strana lumaca e rivede il Sottosopra.",
+        "Hopper lascia dei waffle nel bosco: Undici forse è viva."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "La casa dei Byers nella neve di notte, con le lucine di Natale accese alle finestre; nel bosco vicino una scatola di legno con dei waffle sopra; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la serie che vorresti.'"
+  },
+  "musica": "Originale e strumentale: archi gravi che pulsano a crome, celesta e pianoforte in arpeggi ripetuti, timpani lontani, ottoni scuri nello scontro finale; tensione da racconto di paura per ragazzi, un tema caldo di quattro note per l'amicizia che torna nei capitoli dei ragazzi e nel Natale; niente sintetizzatori, niente brani né motivi della serie (in particolare nessun arpeggio che ricordi la sigla). Rumori: lampadine che ronzano, bici, vento nel bosco, radio, acqua, fuoco, porte che sbattono."
+}
