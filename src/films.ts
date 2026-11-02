@@ -48,6 +48,8 @@ import shining from '../films/shining.json';
 import titanic from '../films/titanic.json';
 import joker from '../films/joker.json';
 import theOthers from '../films/the-others.json';
+import strangerThings1 from '../films/stranger-things-stagione-1.json';
+import { STRANGER_THINGS_1_SCENES } from './scenes/stranger-things-stagione-1';
 import { SHINING_SCENES } from './scenes/shining';
 import { Copertina as ShiningCover, Finale as ShiningEnd } from './scenes/shining/Locandina';
 import { TITANIC_SCENES } from './scenes/titanic';
@@ -78,6 +80,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'shining', data: shining as FilmData, scenes: SHINING_SCENES, cover: ShiningCover, ending: ShiningEnd, posterFont: TYPEWRITER },
   { slug: 'titanic', data: titanic as FilmData, scenes: TITANIC_SCENES, cover: TitanicCover, ending: TitanicEnd, posterFont: PLAYFAIR },
   { slug: 'the-others', data: theOthers as FilmData, scenes: THE_OTHERS_SCENES, cover: OthersCover, ending: OthersEnd, posterFont: SERIF },
+  { slug: 'stranger-things-stagione-1', data: strangerThings1 as FilmData, scenes: STRANGER_THINGS_1_SCENES },
   { slug: 'joker', data: joker as FilmData, scenes: JOKER_SCENES, cover: JokerCover, ending: JokerEnd, posterFont: ANTON },
 ];
 

@@ -6,7 +6,12 @@
   "regista": "Matt e Ross Duffer",
   "anno": 2016,
   "bpm": 84,
-  "palette": { "chiaro": "#F2E3C6", "principale": "#B8352F", "scuro": "#0E1424", "accento": "#F5B83D" },
+  "palette": {
+    "chiaro": "#F2E3C6",
+    "principale": "#B8352F",
+    "scuro": "#0E1424",
+    "accento": "#F5B83D"
+  },
   "copertina": {
     "durata": 4,
     "frase_lancio": "Un bambino sparisce. Le luci di casa cominciano a parlare.",
@@ -18,7 +23,7 @@
       "id": "capanno",
       "titolo": "La sera in cui Will sparisce",
       "durata": 10,
-      "scena": "Il capanno degli attrezzi dietro una casa di legno, di notte: la porta spalancata, dentro una lampadina che pende dal filo e sfarfalla, attrezzi appesi, un fucile da caccia appoggiato; fuori, nell'erba bagnata, una bicicletta a terra con il fanale acceso; nebbia tra gli alberi. La lampadina si spegne di colpo sull'ultima frase.",
+      "scena": "Il capanno degli attrezzi di legno dietro casa Byers, di notte: la porta spalancata, dentro una lampadina nuda che pende dal filo, attrezzi appesi, scaffali con barattoli e il fucile da caccia appoggiato allo stipite; a sinistra il retro della casa con la veranda e le finestre accese; abeti e nebbia sullo sfondo, foglie che cadono. Seconda frase: la porta a zanzariera della casa sbatte (Will è arrivato). Terza frase: la lampadina sfarfalla sempre più forte e poi si spegne; dal capanno resta solo un bagliore freddo con spore che escono.",
       "sottotitoli": [
         "Nel 1983, a Hawkins, una piccola città americana,",
         "Will, un ragazzino, pedala verso casa dopo una serata con gli amici,",
