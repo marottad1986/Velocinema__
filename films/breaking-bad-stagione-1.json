@@ -1,0 +1,148 @@
+{
+  "titolo": "Breaking Bad",
+  "tipo": "serie",
+  "stagione": 1,
+  "regista": "Vince Gilligan",
+  "anno": 2008,
+  "bpm": 96,
+  "palette": {
+    "chiaro": "#F2E4C4",
+    "principale": "#3F7A55",
+    "scuro": "#0F1410",
+    "accento": "#F0B53A"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Gli resta poco da vivere. Decide di usarlo male.",
+    "immagine": "Il deserto del New Mexico al tramonto: mesa rosse all'orizzonte, cactus e cespugli, una strada sterrata; al centro un vecchio camper bianco e beige con il fumo che esce dal tetto; in primo piano una boccetta da laboratorio con cristalli che brillano. Titolo in un carattere stencil da cartello industriale. NON usare la locandina ufficiale, persone, né il logo della serie con i simboli della tavola periodica.",
+    "voce": "Breaking Bad, prima stagione, di Vince Gilligan: un professore diventa criminale."
+  },
+  "capitoli": [
+    {
+      "id": "diagnosi",
+      "titolo": "Il professore malato",
+      "durata": 10,
+      "scena": "Un'aula di chimica di un liceo al tramonto: la lavagna con le formule scritte col gesso, la tavola periodica appesa, la cattedra con beute, provette e un becco Bunsen acceso; sulla cattedra una busta della clinica che si apre e mostra un referto con un cerchio rosso; la luce arancione entra dalle finestre a lamelle.",
+      "sottotitoli": [
+        "Walter White insegna chimica in un liceo del New Mexico,",
+        "e per arrotondare lavora anche in un autolavaggio;",
+        "poi, a cinquant'anni, scopre un tumore ai polmoni: gli resta poco tempo."
+      ]
+    },
+    {
+      "id": "blitz",
+      "titolo": "Il blitz dell'antidroga",
+      "durata": 10,
+      "scena": "Una strada di periferia di notte: una casetta con il fumo chimico che esce dal tetto, le auto della polizia con le luci rosse e blu che lampeggiano, una finestra al primo piano spalancata con la tenda che sventola; sul prato cade un berretto di lana lasciato dal ragazzo in fuga.",
+      "sottotitoli": [
+        "Intanto Hank, suo cognato e agente dell'antidroga, lo porta a un blitz",
+        "in un laboratorio clandestino di metanfetamina, una droga,",
+        "e Walter vede fuggire dalla finestra Jesse, un suo ex studente."
+      ]
+    },
+    {
+      "id": "patto",
+      "titolo": "Il patto con l'ex studente",
+      "durata": 10,
+      "scena": "Il magazzino del laboratorio di chimica della scuola di notte: scaffali pieni di vetreria, bottiglie di reagenti con le etichette, una torcia accesa appoggiata che fa un fascio di luce; su una cassa uno scatolone pieno di beute e storte e una busta gonfia di banconote.",
+      "sottotitoli": [
+        "Così Walter ha un'idea: con la chimica può fare una droga purissima",
+        "e Jesse può venderla, per lasciare dei soldi alla famiglia,",
+        "cioè alla moglie Skyler, incinta, e al figlio adolescente."
+      ]
+    },
+    {
+      "id": "deserto",
+      "titolo": "Un laboratorio nel deserto",
+      "durata": 10,
+      "scena": "Il deserto di giorno sotto un cielo azzurro: mesa lontane, cactus, cespugli che rotolano, il tremolio del caldo; al centro il vecchio camper con la porta aperta e il fumo che esce dallo sfiato del tetto; su un tavolino pieghevole un vassoio di cristalli che brillano al sole.",
+      "sottotitoli": [
+        "Con i risparmi di Walter comprano un vecchio camper",
+        "e lo trasformano in un laboratorio, nascosto in mezzo al deserto:",
+        "la droga che ne esce è la più pura della città."
+      ]
+    },
+    {
+      "id": "gas",
+      "titolo": "Il gas velenoso",
+      "durata": 10,
+      "scena": "Il camper nel deserto con la porta chiusa: dalle fessure e dai finestrini esce un gas bianco e rossastro, i vetri si appannano; a terra davanti ai gradini una maschera antigas e un fornello da campeggio; un'auto scura parcheggiata accanto, cielo che si scurisce.",
+      "sottotitoli": [
+        "Ma due spacciatori soci di Jesse, Emilio e Krazy-8, li scoprono",
+        "e vogliono ucciderli: così Walter, fingendo di cucinare per loro,",
+        "li chiude nel camper con un gas velenoso."
+      ]
+    },
+    {
+      "id": "acido",
+      "titolo": "La vasca e l'acido",
+      "durata": 10,
+      "scena": "Il corridoio della casa di Jesse: dal soffitto sfondato è precipitata una vasca da bagno spaccata, il pavimento è coperto da una melma scura che fuma; calcinacci e polvere che cadono dal buco, una tanica di acido con l'etichetta di pericolo, una lampadina che oscilla.",
+      "sottotitoli": [
+        "Emilio muore, e Jesse lo deve sciogliere nell'acido,",
+        "ma lo versa nella vasca invece che in un bidone di plastica,",
+        "così l'acido corrode anche la vasca, che sfonda il pavimento."
+      ]
+    },
+    {
+      "id": "cantina",
+      "titolo": "Il prigioniero in cantina",
+      "durata": 10,
+      "scena": "Una cantina buia con una sola lampadina appesa che oscilla: un tubo dell'acqua con un lucchetto da bicicletta e una catena, a terra un piatto rotto a cui manca un pezzo, un panino e una bottiglia; su una cassa un quaderno con due colonne scritte a mano, una per liberarlo e una per ucciderlo; un coccio appuntito che brilla.",
+      "sottotitoli": [
+        "Krazy-8 invece è sopravvissuto, e lo tengono incatenato in cantina.",
+        "Walter sta per liberarlo, ma scopre che nasconde un coccio di piatto",
+        "per colpirlo: così, alla fine, lo uccide."
+      ]
+    },
+    {
+      "id": "famiglia",
+      "titolo": "Cure pagate col segreto",
+      "durata": 10,
+      "scena": "La cucina di casa White di notte: il tavolo con una pila di bollette dell'ospedale, flaconi di medicine, un assegno non incassato; la culla nuova ancora imballata in un angolo; dietro la griglia di una bocchetta d'aria nel muro, mazzette di banconote nascoste; la lampada sopra il tavolo e la finestra con le luci del quartiere.",
+      "sottotitoli": [
+        "Intanto la famiglia scopre la malattia e lo convince a curarsi,",
+        "ma per orgoglio rifiuta i soldi di Elliott, un amico ricco,",
+        "e paga le cure di nascosto con la droga."
+      ]
+    },
+    {
+      "id": "heisenberg",
+      "titolo": "Il nome Heisenberg",
+      "durata": 11,
+      "scena": "L'ufficio di Tuco al primo piano di un capannone: scrivania, divano, una borsa di cristalli sul tavolo; a un tratto un'esplosione fa saltare i vetri delle finestre, fumo e frammenti volano, i fogli si sparpagliano; sul lavandino di un bagno un rasoio e ciocche di capelli tagliati.",
+      "sottotitoli": [
+        "Poi Tuco, un boss violento, picchia Jesse e gli ruba la droga;",
+        "allora Walter, rasato e con il nome falso di Heisenberg,",
+        "gli fa saltare l'ufficio con un esplosivo e si fa pagare."
+      ]
+    },
+    {
+      "id": "furto",
+      "titolo": "Il furto della metilammina",
+      "durata": 10,
+      "scena": "Un magazzino di prodotti chimici di notte: la recinzione metallica, una porta di ferro con il lucchetto che si scioglie tra scintille bianchissime; dentro, un bidone con l'etichetta METILAMMINA caricato su un carrello; un lampione arancione e la luna.",
+      "sottotitoli": [
+        "Tuco però ora vuole comprare tanta droga ogni settimana,",
+        "e per farla serve la metilammina: così Walter e Jesse la rubano",
+        "da un magazzino, sciogliendo la serratura con una polvere incendiaria."
+      ]
+    },
+    {
+      "id": "fine",
+      "titolo": "Soci di un pazzo",
+      "durata": 11,
+      "scena": "Uno sfasciacarrozze al tramonto: cataste di auto schiacciate, una gru con il magnete, la polvere sollevata dal vento; sul cofano di un'auto mazzette di banconote e un pacco di cristalli; a terra un paio di occhiali da sole rotti; un corvo che vola via.",
+      "sottotitoli": [
+        "Alla consegna, in uno sfasciacarrozze, Tuco uccide di botte un suo uomo",
+        "per una parola di troppo: Walter e Jesse sono soci di un pazzo,",
+        "e la seconda stagione riparte proprio da questa paura."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Il camper nel deserto di notte sotto un cielo di stelle, con una lampada accesa dentro e il fumo che sale dal tetto; 'Fine della stagione 1' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la serie che vorresti.'"
+  },
+  "musica": "Originale e strumentale: chitarre acustiche ed elettriche pulite dal sapore western del deserto, contrabbasso pizzicato, percussioni secche, archi bassi e tesi che salgono con il pericolo; finale cupo e sospeso. Niente brani o temi della serie. Rumori: vento del deserto, sirene, gorgoglio di laboratorio, crollo, esplosione, scintille, corvo."
+}
