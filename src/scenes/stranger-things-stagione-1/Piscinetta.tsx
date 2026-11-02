@@ -142,7 +142,8 @@ export const Piscinetta: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <path d="M210 1290 Q260 1270 330 1300 Q290 1320 210 1310 Z" fill="#F2EEE4" stroke="#B8B0A0" strokeWidth="3" />
           {/* sedia pieghevole con la radio */}
           <path d="M830 1200 H1020 L1030 1226 H820 Z" fill="#8A929A" stroke={K} strokeWidth="7" />
-          <path d="M840 1226 L800 1960 M1010 1226 L1060 1960 M1020 1200 L1036 1030 M812 1700 H1050" stroke="#6A727A" strokeWidth="12" />
+          <path d="M840 1226 L826 1310 M1010 1226 L1026 1310 M1020 1200 L1036 1030" stroke="#6A727A" strokeWidth="10" />
+          <Ombra id="pt" x={926} y={1314} rx={110} ry={10} />
           <rect x="850" y="1100" width="170" height="100" rx="12" fill="#3A3026" stroke={K} strokeWidth="7" />
           <rect x="866" y="1116" width="80" height="68" rx="6" fill="#1A1C22" stroke={K} strokeWidth="4" />
           {Array.from({ length: 6 }, (_, i) => <path key={i} d={`M872 ${1124 + i * 10} H940`} stroke="#3A3E46" strokeWidth="3" />)}
@@ -160,6 +161,13 @@ export const Piscinetta: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           {[[30, 1610], [120, 1600], [210, 1614], [80, 1560], [170, 1556]].map(([x, y], i) => (
             <g key={i}><circle cx={x} cy={y} r="50" fill="#D8642A" stroke={K} strokeWidth="6" /><path d={`M${x - 50} ${y} H${x + 50} M${x} ${y - 50} V${y + 50}`} stroke={K} strokeWidth="4" /></g>
           ))}
+          {/* sacco di sale aperto, grande, in primo piano a destra */}
+          <g transform="translate(760 1600) rotate(-8)">
+            <path d="M0 40 Q-10 0 30 -10 H340 Q370 0 362 40 V340 H0 Z" fill="url(#pt-sack)" stroke={K} strokeWidth="10" />
+            <text x="180" y="150" textAnchor="middle" fontFamily="Figtree, sans-serif" fontWeight="800" fontSize="64" fill="#2E5A8A">SALE</text>
+            <path d="M30 -8 Q110 -60 180 -20 Q250 -60 330 -8" fill="#F2EEE4" stroke="#B8B0A0" strokeWidth="4" />
+            <path d="M20 60 Q180 40 340 60" stroke="#8A7E62" strokeWidth="4" fill="none" />
+          </g>
           {/* pallone a terra */}
           <circle cx="720" cy="1380" r="56" fill="#D8642A" stroke={K} strokeWidth="7" />
           <path d="M664 1380 H776 M720 1324 V1436 M684 1336 Q720 1380 684 1424 M756 1336 Q720 1380 756 1424" stroke={K} strokeWidth="4" fill="none" />
