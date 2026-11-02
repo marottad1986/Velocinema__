@@ -101,14 +101,14 @@ export default (mix, T) => {
   const timp = (t, m = 40, vel = 90, gain = 0.6) => suona(mix, 'timpani', m, { t, dur: 2, vel, gain, rev: 0.45, release: 0.8, seed: Math.round(t * 10) });
   const glock = (t, m, gain = 0.16) => suona(mix, 'glockenspiel', m, { t, dur: 1.4, vel: 50, pan: 0.25, rev: 0.6, gain, release: 1 });
   const trem = (t, dur, notes, { vel = 46, gain = 0.28 } = {}) => notes.forEach((m, j) =>
-    suona(mix, m < 60 ? 'celli_trem' : 'violini_trem', m, { t, dur, vel, pan: (j - (notes.length - 1) / 2) * 0.35, gain: gain * 1.3, attack: 0.5, release: 0.9, rev: 0.5, seed: j + 3 }));
+    suona(mix, m < 60 ? 'celli_trem' : 'violini_trem', m, { t, dur, vel: 66, pan: (j - (notes.length - 1) / 2) * 0.35, gain: gain * 0.75, attack: 0.5, release: 0.9, rev: 0.5, seed: j + 3 }));
   const wind = (t, durata, gain, da = 1) => clip(mix, 'vento_leggero', { t, da, durata, gain, fadeIn: 1, fadeOut: 1, largo: 4, rev: 0.1 });
 
   // ---- copertina: il vento del deserto, un Mi grave, la tromba lontana che chiama
   wind(0, T0 + 0.6, 0.04);
   suona(mix, 'contrabbasso', 28, { t: 0.1, dur: 3.9, vel: 50, gain: 0.5, attack: 0.6, release: 1, rev: 0.5 });
-  pizz(0.2, T0, { half: true, vel: 54, gain: 0.32 });
-  tromba(0.2 + BEAT, [[0, 71, 1.5], [1.5, 76, 2], [3.5, 77, 0.5]], { gain: 0.24 });
+  pizz(T0 - 6 * BEAT, T0, { half: true, vel: 54, gain: 0.32 });
+  tromba(T0 - 6 * BEAT + BEAT, [[0, 71, 1.5], [1.5, 76, 2], [3.5, 77, 0.5]], { gain: 0.24 });
   tom(T0 - BEAT, 50, -2);
 
   // ---- diagnosi: aula di chimica, metà passo; il gesso (marimba leggera), la spugna (glockenspiel), il referto
@@ -132,7 +132,7 @@ export default (mix, T) => {
   tom(E('blitz', 2, 0.3), 64, 0);
 
   // ---- patto: il magazzino della scuola; la torcia (scatto), i soldi (fruscio), «per la famiglia» (arpa, Re maggiore)
-  clip(mix, 'scatti', { t: E('patto', 0, 0.1), da: 0.2, durata: 0.25, gain: 0.25, rev: 0.25, pan: 0.4 }); // Patto.tsx: la torcia si accende
+  clip(mix, 'scatti', { t: E('patto', 0, 0.1) - 0.05, da: 0.47, durata: 0.35, gain: 0.15, rev: 0.25, pan: 0.4 }); // Patto.tsx: la torcia si accende
   strings(B(T.patto), B(T.deserto), { half: true, vel: 44, gain: 0.32, k0: 0, chords: CHD });
   motif(B(T.patto), B(cue('patto', 2)), { vel: 54, gain: 0.28 });
   glock(E('patto', 0, 0.3) + BEAT, 83, 0.12); // i cristalli nel fascio
@@ -151,14 +151,14 @@ export default (mix, T) => {
   [83, 88, 91].forEach((m, j) => glock(shine + j * BEAT / 2, m, 0.16)); // il vassoio di cristalli
 
   // ---- gas: l'auto degli spacciatori, la cucina, la porta che sbatte e il gas; tensione a passo doppio
-  clip(mix, 'auto_epoca', { t: T.gas, da: 12, durata: E('gas', 0, 1.2) - T.gas + 0.4, gain: 0.12, fadeIn: 0.5, fadeOut: 0.6, lp: 2000, rev: 0.15, pan: -0.4 }); // Gas.tsx: l'auto scura arriva
+  clip(mix, 'auto_epoca', { t: T.gas, da: 15, durata: E('gas', 0, 1.2) - T.gas + 0.4, gain: 0.14, fadeIn: 0.5, fadeOut: 0.6, lp: 2000, rev: 0.15, pan: -0.4 }); // Gas.tsx: l'auto scura arriva
   pizz(B(T.gas), B(cue('gas', 2)), { vel: 58, gain: 0.38, k0: 1 });
   groove(B(cue('gas', 1)), E('gas', 2, 0.2) - BEAT / 2, { vel: 38, snr: false });
   clip(mix, 'fuoco', { t: E('gas', 1, 0.6), da: 2, durata: T.acido - E('gas', 1, 0.6), gain: 0.06, fadeIn: 0.5, fadeOut: 0.8, rev: 0.15 }); // il fornello
   const slam = E('gas', 2, 0.2);
-  clip(mix, 'porta_sbatte', { t: slam - 0.05, da: 1.0, durata: 0.8, gain: 0.3, fadeOut: 0.3, rev: 0.25 }); // la porta sbatte
+  clip(mix, 'porta_sbatte', { t: slam - 0.05, da: 2.9, durata: 0.5, gain: 0.15, fadeOut: 0.2, rev: 0.25 }); // la porta sbatte
   timp(slam, 40, 96, 0.6);
-  clip(mix, 'sibilo', { t: slam + 0.2, da: 4, durata: T.acido - slam - 0.1, gain: 0.08, fadeIn: 0.6, fadeOut: 0.6, rev: 0.15, largo: 2 }); // il gas
+  clip(mix, 'sibilo', { t: slam + 0.2, da: 4, durata: T.acido - slam - 0.1, gain: 0.05, fadeIn: 0.6, fadeOut: 0.6, rev: 0.15, largo: 2 }); // il gas
   clip(mix, 'legno_cade', { t: slam + 0.42, da: 0, durata: 0.4, gain: 0.08, fadeOut: 0.15, rev: 0.2, lp: 2500 }); // la maschera cade
   trem(slam + BEAT, T.acido - slam - BEAT, [52, 53, 64, 65], { vel: 50, gain: 0.32 });
 
@@ -177,14 +177,14 @@ export default (mix, T) => {
 
   // ---- cantina: la lampadina (ronzio), la chiave (catene), il coccio (glockenspiel), «UCCIDERLO»: la catena e il timpano
   clip(mix, 'ronzio_neon', { t: E('cantina', 0, 0.1), da: 1, durata: T.famiglia - E('cantina', 0, 0.1) - 0.2, gain: 0.05, fadeIn: 0.2, fadeOut: 0.6, rev: 0.1 }); // Cantina.tsx: la lampadina
-  strings(B(T.cantina), B(T.famiglia), { half: true, vel: 44, gain: 0.32, k0: 3 });
+  const taut = E('cantina', 2, 0.6);
+  strings(B(T.cantina), taut, { half: true, vel: 44, gain: 0.32, k0: 3 });
   pizz(B(T.cantina), B(cue('cantina', 2)), { half: true, vel: 52, gain: 0.3 });
   clip(mix, 'catene', { t: E('cantina', 1, 0.1) + 0.5, da: 1.45, durata: 0.5, gain: 0.12, fadeOut: 0.2, pan: 0.3 }); // la chiave si avvicina
   glock(E('cantina', 1, 1.4), 89, 0.18); // il pezzo che manca del piatto
-  clip(mix, 'ceramica', { t: E('cantina', 1, 1.4), da: 0.4, durata: 0.5, gain: 0.08, fadeOut: 0.2, rev: 0.2, lp: 4000 });
-  trem(E('cantina', 2, 0.1), T.famiglia - E('cantina', 2, 0.1), [52, 53, 76, 77], { vel: 52, gain: 0.3 });
-  const taut = E('cantina', 2, 0.6);
-  clip(mix, 'catene', { t: taut, da: 0.3, durata: 0.9, gain: 0.28, fadeOut: 0.3, rev: 0.2 }); // la catena si tende
+  clip(mix, 'ceramica', { t: E('cantina', 1, 1.4), da: 0.08, durata: 0.5, gain: 0.08, fadeOut: 0.2, rev: 0.2, lp: 4000 });
+  trem(E('cantina', 2, 0.1), taut - E('cantina', 2, 0.1), [52, 53, 76, 77], { vel: 52, gain: 0.3 });
+  clip(mix, 'catene', { t: taut, da: 28.08, durata: 0.7, gain: 0.2, fadeOut: 0.3, rev: 0.2 }); // la catena si tende
   timp(taut, 40, 104, 0.7);
 
   // ---- famiglia: cucina di notte, pianoforte e archi in Re; il calendario, l'assegno strappato, i soldi nascosti, il timbro
@@ -194,17 +194,18 @@ export default (mix, T) => {
     for (let k = 0; k < 8; k++) suona(mix, 'pianoforte_coda', notes[k], { t: B(T.famiglia) + k * BEAT, dur: BEAT * 1.5, vel: 46, pan: 0.15, rev: 0.5, gain: 0.26, release: 1 });
   }
   glock(E('famiglia', 0, 0.2), 81, 0.12); // il cerchio sul calendario
-  clip(mix, 'giornale', { t: E('famiglia', 1, 0.6), da: 0.4, durata: 0.6, gain: 0.3, fadeOut: 0.2, rev: 0.2, pan: 0.3 }); // Famiglia.tsx: l'assegno si strappa
+  clip(mix, 'giornale', { t: E('famiglia', 1, 0.6) - 0.2, da: 0.85, durata: 0.5, gain: 0.15, fadeOut: 0.2, rev: 0.2, pan: 0.3 }); // Famiglia.tsx: l'assegno si strappa
   suona(mix, 'celli', 41, { t: E('famiglia', 1, 0.6), dur: 2.4, vel: 50, gain: 0.3, attack: 0.1, release: 1, rev: 0.5 });
   clip(mix, 'scatti', { t: E('famiglia', 2, 0.1), da: 1.0, durata: 0.3, gain: 0.18, rev: 0.2, pan: -0.1 }); // la griglia si apre
   motif(E('famiglia', 2, 0.1), T.heisenberg - 0.2, { vel: 50, gain: 0.24, oct: -12 });
-  clip(mix, 'martelletto', { t: E('famiglia', 2, 1.0) + 0.25, da: 0.5, durata: 0.3, gain: 0.28, fadeOut: 0.1, rev: 0.2 }); // il timbro PAGATO
+  clip(mix, 'martelletto', { t: E('famiglia', 2, 1.0) + 0.05, da: 0.5, durata: 0.3, gain: 0.28, fadeOut: 0.1, rev: 0.2 }); // il timbro PAGATO
 
   // ---- heisenberg: il sacchetto rubato, l'esplosivo travestito e il nome; tensione, poi l'esplosione e un battito di silenzio
   pizz(B(T.heisenberg), B(cue('heisenberg', 1)), { vel: 58, gain: 0.38, k0: 2 });
   clip(mix, 'sacchi', { t: E('heisenberg', 0, 0.3) + 0.4, da: 0.3, durata: 0.5, gain: 0.22, fadeOut: 0.15, rev: 0.2 }); // Heisenberg.tsx: il sacchetto cade
   tom(E('heisenberg', 0, 0.3) + 0.4, 60, -3);
   glock(E('heisenberg', 1, 0.1), 77, 0.14); // il sacchetto grigio
+  for (let k = 0; k < 5; k++) suona(mix, 'violini_pizz', [76, 79, 83, 82, 79][k], { t: E('heisenberg', 1, 0.8) + k * BEAT / 2, dur: 0.3, vel: 40, pan: 0.3, rev: 0.3, gain: 0.1, release: 0.2 }); // si scrive HEISENBERG
   const boom = E('heisenberg', 2, 0.5);
   trem(B(cue('heisenberg', 1)), boom - B(cue('heisenberg', 1)) - 0.05, [40, 41, 64, 65], { vel: 54, gain: 0.32 });
   groove(B(cue('heisenberg', 1)), boom - BEAT / 2, { vel: 42 });
@@ -218,16 +219,16 @@ export default (mix, T) => {
   clip(mix, 'pagine', { t: boom + 1.3, da: 2.5, durata: 0.6, gain: 0.2, fadeOut: 0.2, rev: 0.2 }); // le mazzette di Tuco
 
   // ---- furto: l'insegna (ronzio), la torcia sul bidone, la termite che brucia il lucchetto, il lucchetto che cade, la porta
-  wind(T.furto, T.fine - T.furto, 0.03, 2);
-  clip(mix, 'ronzio_neon', { t: E('furto', 0, 0.3), da: 1, durata: T.fine - E('furto', 0, 0.3), gain: 0.035, fadeIn: 0.1, fadeOut: 0.6, rev: 0.1, pan: -0.2 }); // Furto.tsx: l'insegna
+  wind(T.furto, T.fine - T.furto, 0.02, 2);
+  clip(mix, 'ronzio_neon', { t: E('furto', 0, 0.3), da: 1, durata: T.fine - E('furto', 0, 0.3), gain: 0.025, fadeIn: 0.1, fadeOut: 0.6, rev: 0.1, pan: -0.2 }); // Furto.tsx: l'insegna
   pizz(B(T.furto), B(T.fine), { vel: 58, gain: 0.36, k0: 3 });
   groove(B(cue('furto', 1)), B(T.fine), { vel: 38 });
-  clip(mix, 'scatti', { t: E('furto', 1, 0.6) - 0.1, da: 0.2, durata: 0.25, gain: 0.2, rev: 0.2, pan: 0.3 }); // la torcia
+  clip(mix, 'scatti', { t: E('furto', 1, 0.6) - 0.1, da: 0.47, durata: 0.35, gain: 0.12, rev: 0.2, pan: 0.3 }); // la torcia
   glock(E('furto', 1, 0.6) + BEAT / 2, 76, 0.14); // METILAMMINA
   const burn = E('furto', 2, 0.3);
   clip(mix, 'termite', { t: burn - 0.3, da: 0.3, durata: 2.6, gain: 0.22, fadeOut: 0.5, rev: 0.2 }); // la termite brucia
   trem(burn, 2.2, [64, 65, 76, 77], { vel: 52, gain: 0.26 });
-  clip(mix, 'metallo_cade', { t: burn + 2.55, da: 0, durata: 0.6, gain: 0.2, fadeOut: 0.2, rev: 0.2 }); // il lucchetto a terra
+  clip(mix, 'metallo_cade', { t: burn + 2.5, da: 0.55, durata: 0.6, gain: 0.14, fadeOut: 0.2, rev: 0.2 }); // il lucchetto a terra
   clip(mix, 'porta_cigolio', { t: burn + 2.6, da: 10.68, durata: 1.0, gain: 0.08, fadeOut: 0.3, rev: 0.3, pan: -0.2 }); // la porta si socchiude
 
   // ---- fine: la consegna, il colpo (cassa e timpano), gli occhiali, i corvi; il tramonto e i fari: la paura che resta
@@ -236,17 +237,19 @@ export default (mix, T) => {
   const hit = E('fine', 0, 1.6);
   clip(mix, 'colpi_legno', { t: hit, da: 1.4, durata: 0.4, gain: 0.32, rev: 0.25 }); // Fine.tsx: il colpo, l'auto sobbalza
   kick(hit, 70); timp(hit, 40, 110, 0.7);
-  clip(mix, 'tintinnio', { t: hit + 0.45, da: 0.16, durata: 0.4, gain: 0.14, fadeOut: 0.15, rev: 0.2, pan: -0.1 }); // gli occhiali a terra
+  clip(mix, 'tintinnio', { t: hit + 0.45, da: 0.13, durata: 0.4, gain: 0.14, fadeOut: 0.15, rev: 0.2, pan: -0.1 }); // gli occhiali a terra
   const silenzio = hit + 2 * BEAT;
-  strings(silenzio, T.finale, { vel: 46, gain: 0.32, k0: 0 });
+  strings(silenzio, B(T.fine) + 2 * BAR, { vel: 46, gain: 0.32, k0: 0 });
+  strings(B(T.fine) + 2 * BAR, B(T.finale), { vel: 46, gain: 0.32, k0: 1 });
   clip(mix, 'ali', { t: E('fine', 1, 0.2), da: 0, durata: 1.6, gain: 0.16, fadeOut: 0.5, rev: 0.25, pan: 0.2 }); // i corvi si alzano
-  motif(B(cue('fine', 1)) + BAR, T.finale, { half: true, vel: 50, gain: 0.24, oct: -12 });
+  motif(B(cue('fine', 1)) + BAR, B(T.finale), { half: true, vel: 50, gain: 0.24, oct: -12 });
   const eyes = E('fine', 2, 1.0);
   tromba(eyes, [[0, 64, 3], [3, 65, 3]], { gain: 0.24 }); // i fari come due occhi
-  trem(E('fine', 2), T.finale - E('fine', 2) + 1, [40, 41], { vel: 46, gain: 0.26 });
+  trem(E('fine', 2), B(T.finale) - E('fine', 2) + 1, [40, 41], { vel: 46, gain: 0.26 });
 
   // ---- finale: il camper sotto le stelle, il motivo che si ferma sospeso sul Fa
-  pizz(T.finale, T.END - 0.4, { half: true, vel: 50, gain: 0.3 });
-  suona(mix, 'contrabbasso', 28, { t: T.finale, dur: 3.6, vel: 46, gain: 0.45, attack: 0.3, release: 1.2, rev: 0.5 });
-  tromba(T.finale + BEAT, [[0, 71, 1.5], [1.5, 76, 1.5], [3, 77, 2.5]], { gain: 0.22 });
+  const F = B(T.finale);
+  pizz(F, T.END - 0.4, { half: true, vel: 50, gain: 0.3 });
+  suona(mix, 'contrabbasso', 28, { t: F, dur: 3.6, vel: 46, gain: 0.45, attack: 0.3, release: 1.2, rev: 0.5 });
+  tromba(F + BEAT, [[0, 71, 1.5], [1.5, 76, 1.5], [3, 77, 2.5]], { gain: 0.22 });
 };
