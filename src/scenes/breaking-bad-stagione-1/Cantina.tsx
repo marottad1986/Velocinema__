@@ -149,7 +149,7 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             </g>
           </g>
           {/* piatto rotto a terra con il pezzo che manca */}
-          <g transform="translate(560 1250)">
+          <g transform="translate(600 1250) scale(1.35)">
             <Ombra id="cn" x={0} y={6} rx={170} ry={18} />
             <Glow id="cn-sh" x={0} y={-10} r={180} t={t} color={ORO} amp={0.08} rate={4} opacity={0.5 * shard} />
             <path d="M-120 -6 A120 34 0 0 1 -10 -40 L10 -6 Z" fill="#F2EEE4" stroke={K} strokeWidth="5" />
