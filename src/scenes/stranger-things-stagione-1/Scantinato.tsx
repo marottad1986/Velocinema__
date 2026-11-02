@@ -173,7 +173,7 @@ export const Scantinato: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <Walkie id="sc-w0" x={760} y={1196} on={wOn(0)} t={t} ph={0} />
           <Walkie id="sc-w1" x={850} y={1196} on={wOn(1)} t={t} ph={1.3} />
           <Walkie id="sc-w2" x={940} y={1196} on={wOn(2)} t={t} ph={2.6} />
-          {/* dadi e miniatura del drago, che si alzano sospesi */}
+          {/* dadi che si alzano sospesi */}
           <g transform={`translate(0 ${-110 * lift + bob(0)}) rotate(${lift * 24} 640 1176)`}>
             <path d="M622 1194 L640 1160 L664 1176 L646 1206 Z" fill="#E8E2D2" stroke={K} strokeWidth="5" strokeLinejoin="round" />
             <path d="M640 1160 L646 1206 M622 1194 L664 1176" stroke={K} strokeWidth="2.5" />
