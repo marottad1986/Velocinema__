@@ -132,7 +132,7 @@ export default (mix, T) => {
   tom(E('blitz', 2, 0.3), 64, 0);
 
   // ---- patto: il magazzino della scuola; la torcia (scatto), i soldi (fruscio), «per la famiglia» (arpa, Re maggiore)
-  clip(mix, 'scatti', { t: E('patto', 0, 0.1) - 0.05, da: 0.47, durata: 0.35, gain: 0.15, rev: 0.25, pan: 0.4 }); // Patto.tsx: la torcia si accende
+  clip(mix, 'scatti', { t: E('patto', 0, 0.1) - 0.05, da: 0.47, durata: 0.12, fadeOut: 0.03, gain: 0.15, rev: 0.25, pan: 0.4 }); // Patto.tsx: la torcia si accende
   strings(B(T.patto), B(T.deserto), { half: true, vel: 44, gain: 0.32, k0: 0, chords: CHD });
   motif(B(T.patto), B(cue('patto', 2)), { vel: 54, gain: 0.28 });
   glock(E('patto', 0, 0.3) + BEAT, 83, 0.12); // i cristalli nel fascio
@@ -151,7 +151,7 @@ export default (mix, T) => {
   [83, 88, 91].forEach((m, j) => glock(shine + j * BEAT / 2, m, 0.16)); // il vassoio di cristalli
 
   // ---- gas: l'auto degli spacciatori, la cucina, la porta che sbatte e il gas; tensione a passo doppio
-  clip(mix, 'auto_epoca', { t: T.gas, da: 15, durata: E('gas', 0, 1.2) - T.gas + 0.4, gain: 0.14, fadeIn: 0.5, fadeOut: 0.6, lp: 2000, rev: 0.15, pan: -0.4 }); // Gas.tsx: l'auto scura arriva
+  clip(mix, 'auto_epoca', { t: T.gas, da: 15, durata: E('gas', 0, 1.2) - T.gas + 0.4, gain: 0.22, fadeIn: 0.5, fadeOut: 0.6, lp: 2000, rev: 0.15, pan: -0.4 }); // Gas.tsx: l'auto scura arriva
   pizz(B(T.gas), B(cue('gas', 2)), { vel: 58, gain: 0.38, k0: 1 });
   groove(B(cue('gas', 1)), E('gas', 2, 0.2) - BEAT / 2, { vel: 38, snr: false });
   clip(mix, 'fuoco', { t: E('gas', 1, 0.6), da: 2, durata: T.acido - E('gas', 1, 0.6), gain: 0.06, fadeIn: 0.5, fadeOut: 0.8, rev: 0.15 }); // il fornello
@@ -185,7 +185,7 @@ export default (mix, T) => {
   clip(mix, 'ceramica', { t: E('cantina', 1, 1.4), da: 0.08, durata: 0.5, gain: 0.08, fadeOut: 0.2, rev: 0.2, lp: 4000 });
   trem(E('cantina', 2, 0.1), taut - E('cantina', 2, 0.1), [52, 53, 76, 77], { vel: 52, gain: 0.3 });
   clip(mix, 'catene', { t: taut, da: 28.08, durata: 0.7, gain: 0.2, fadeOut: 0.3, rev: 0.2 }); // la catena si tende
-  timp(taut, 40, 104, 0.7);
+  timp(taut, 40, 104, 0.6);
 
   // ---- famiglia: cucina di notte, pianoforte e archi in Re; il calendario, l'assegno strappato, i soldi nascosti, il timbro
   strings(B(T.famiglia), B(T.heisenberg), { half: true, vel: 42, gain: 0.3, chords: CHD });
@@ -223,7 +223,7 @@ export default (mix, T) => {
   clip(mix, 'ronzio_neon', { t: E('furto', 0, 0.3), da: 1, durata: T.fine - E('furto', 0, 0.3), gain: 0.025, fadeIn: 0.1, fadeOut: 0.6, rev: 0.1, pan: -0.2 }); // Furto.tsx: l'insegna
   pizz(B(T.furto), B(T.fine), { vel: 58, gain: 0.36, k0: 3 });
   groove(B(cue('furto', 1)), B(T.fine), { vel: 38 });
-  clip(mix, 'scatti', { t: E('furto', 1, 0.6) - 0.1, da: 0.47, durata: 0.35, gain: 0.12, rev: 0.2, pan: 0.3 }); // la torcia
+  clip(mix, 'scatti', { t: E('furto', 1, 0.6) - 0.1, da: 0.47, durata: 0.12, fadeOut: 0.03, gain: 0.12, rev: 0.2, pan: 0.3 }); // la torcia
   glock(E('furto', 1, 0.6) + BEAT / 2, 76, 0.14); // METILAMMINA
   const burn = E('furto', 2, 0.3);
   clip(mix, 'termite', { t: burn - 0.3, da: 0.3, durata: 2.6, gain: 0.22, fadeOut: 0.5, rev: 0.2 }); // la termite brucia
@@ -232,7 +232,7 @@ export default (mix, T) => {
   clip(mix, 'porta_cigolio', { t: burn + 2.6, da: 10.68, durata: 1.0, gain: 0.08, fadeOut: 0.3, rev: 0.3, pan: -0.2 }); // la porta si socchiude
 
   // ---- fine: la consegna, il colpo (cassa e timpano), gli occhiali, i corvi; il tramonto e i fari: la paura che resta
-  wind(T.fine, T.END - T.fine, 0.04, 0.5);
+  wind(T.fine, T.END - T.fine, 0.03, 0.5);
   pizz(B(T.fine), E('fine', 0, 1.6) - BEAT / 2, { vel: 56, gain: 0.34 });
   const hit = E('fine', 0, 1.6);
   clip(mix, 'colpi_legno', { t: hit, da: 1.4, durata: 0.4, gain: 0.32, rev: 0.25 }); // Fine.tsx: il colpo, l'auto sobbalza
@@ -251,5 +251,5 @@ export default (mix, T) => {
   const F = B(T.finale);
   pizz(F, T.END - 0.4, { half: true, vel: 50, gain: 0.3 });
   suona(mix, 'contrabbasso', 28, { t: F, dur: 3.6, vel: 46, gain: 0.45, attack: 0.3, release: 1.2, rev: 0.5 });
-  tromba(F + BEAT, [[0, 71, 1.5], [1.5, 76, 1.5], [3, 77, 2.5]], { gain: 0.22 });
+  tromba(F, [[0, 71, 1], [1, 76, 1], [2, 77, 4]], { gain: 0.24 });
 };
