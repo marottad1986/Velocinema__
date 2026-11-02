@@ -3,7 +3,7 @@ import { camera, eo, lerp, seg } from '../../lib/anim';
 import { Embers, Fire, Glow, NearMotes, Smoke, StringLights, flashAt } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { K, Ombra, StDefs, VELATURA } from './Comuni';
+import { CROMA, K, Ombra, StDefs, VELATURA } from './Comuni';
 
 // Una trappola per il mostro: il soggiorno di casa Byers preparato per la notte. Al centro la tagliola aperta sul
 // tappeto, la tanica di benzina, la mazza piena di chiodi, le lucine lungo le pareti. Eventi: prima frase la stanza è
@@ -19,9 +19,10 @@ export const Trappola: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
 
-  const drop = (k: number) => griglia(cues[1] + 0.5 + k * 0.36, 2);
-  const flick = t > cues[1] + 1.4 && t < cues[2] + 1.6 ? 0.55 + 0.45 * Math.abs(Math.sin(t * 7.5)) : 1;
-  const tBulge = cues[2] + 0.1;
+  const drop = (k: number) => griglia(cues[1] + 0.5, 2) + k * CROMA;
+  const fl0 = griglia(cues[1] + 1.4), fl1 = griglia(cues[2] + 1.6);
+  const flick = t > fl0 && t < fl1 ? 0.55 + 0.45 * Math.abs(Math.sin(t * 7.5)) : 1;
+  const tBulge = griglia(cues[2] + 0.1);
   const bulge = eo(seg(t, tBulge, tBulge + 0.9));
   const tFire = griglia(cues[2] + 1.5);
   const fired = seg(t, tFire, tFire + 0.05);
@@ -69,8 +70,16 @@ export const Trappola: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           })}
           <path d={`M${BX - 140} ${BY - 70} Q${BX} ${BY - 150 - 40 * swell} ${BX + 140} ${BY - 70}`} stroke="#C89A7A" strokeWidth="4" fill="none" opacity={0.6 * swell} />
           <g opacity={torn}>
-            <path d={`M${BX - 110} ${BY - 20} L${BX - 60} ${BY - 90} L${BX - 10} ${BY - 50} L${BX + 50} ${BY - 110} L${BX + 100} ${BY - 30} L${BX + 80} ${BY + 50} L${BX + 20} ${BY + 100} L${BX - 50} ${BY + 70} L${BX - 120} ${BY + 60} Z`} fill="url(#tr-hole)" stroke={K} strokeWidth="7" strokeLinejoin="round" />
-            {[[-110, -20], [-60, -90], [50, -110], [100, -30], [20, 100], [-120, 60]].map(([dx, dy], i) => <path key={i} d={`M${BX + dx} ${BY + dy} q${dx * 0.2} ${dy * 0.2} ${dx * 0.3} ${dy * 0.5}`} stroke="#6A4A3A" strokeWidth="8" strokeLinecap="round" fill="none" />)}
+            {(() => {
+              const pts = Array.from({ length: 22 }, (_, i) => {
+                const a = (i / 22) * Math.PI * 2, rr = (i % 2 ? 0.62 : 1) * (1 + 0.18 * Math.sin(i * 2.7));
+                return `${(BX + Math.cos(a) * 130 * rr).toFixed(0)} ${(BY + Math.sin(a) * 110 * rr).toFixed(0)}`;
+              });
+              return <path d={`M${pts.join(' L')} Z`} fill="url(#tr-hole)" stroke={K} strokeWidth="7" strokeLinejoin="miter" />;
+            })()}
+            {[[-120, -30, 18], [-70, 70, -10], [10, 96, 6], [90, 60, 14], [120, -50, -16]].map(([dx, dy, a], i) => (
+              <path key={i} d={`M${BX + dx - 18} ${BY + dy} l36 0 l-6 ${50 + i * 8} l-12 -14 l-10 18 Z`} fill="#4A3A2A" stroke={K} strokeWidth="4" transform={`rotate(${a} ${BX + dx} ${BY + dy})`} />
+            ))}
           </g>
           {/* artiglio nero non umano: tre lame ricurve che spingono dalla membrana */}
           <g opacity={claw} transform={`translate(${BX} ${BY}) scale(${0.6 + 0.4 * claw})`}>
@@ -141,14 +150,24 @@ export const Trappola: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           )}
           {/* gocce di sangue */}
           {[0, 1, 2].map((k) => {
-            const a = drop(k), p = seg(t, a - 0.3, a);
-            return t > a - 0.3 && (
+            const a = drop(k), p = seg(t, a - 0.32, a);
+            return t > a - 0.32 && p < 1 && (
               <g key={k}>
-                {p < 1 && <circle cx={420 + k * 50} cy={lerp(1060, 1240, p * p)} r="6" fill="#8A1A1A" />}
-                {p >= 1 && <ellipse cx={420 + k * 50} cy={1244} rx={14 + k * 2} ry={5} fill="#7A1414" opacity=".9" />}
+                <path d={`M${330 + k * 8} ${lerp(700, 1240, p * p) - 20} q-14 20 0 30 q14 -10 0 -30 Z`} fill="#B01E1E" stroke={K} strokeWidth="3" />
               </g>
             );
           })}
+          {/* pozza che si allarga sul tappeto, a ogni goccia */}
+          {t > drop(0) && (() => {
+            const g = Math.min(1, seg(t, drop(0), drop(0) + 0.2) * 0.45 + seg(t, drop(1), drop(1) + 0.2) * 0.3 + seg(t, drop(2), drop(2) + 0.2) * 0.25 + 0.15 * seg(t, drop(2), drop(2) + 2));
+            return (
+              <g>
+                <ellipse cx={338} cy={1250} rx={22 + 40 * g} ry={6 + 10 * g} fill="#8A1414" stroke={K} strokeWidth="3" />
+                <ellipse cx={330} cy={1246} rx={8 + 14 * g} ry={2 + 3 * g} fill="#E85A4A" opacity=".7" />
+                {[0, 1, 2].map((k) => { const q = seg(t, drop(k), drop(k) + 0.35); return q > 0 && q < 1 && <ellipse key={k} cx={338} cy={1250} rx={10 + 70 * q} ry={3 + 16 * q} fill="none" stroke="#C83A2A" strokeWidth="3" opacity={1 - q} />; })}
+              </g>
+            );
+          })()}
           {/* fuoco sul tappeto dopo la fiammata */}
           {fire > 0 && (
             <g opacity={fire}>

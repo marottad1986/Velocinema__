@@ -163,13 +163,15 @@ export const Cava: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         <g transform={L(1.1)}>
           <path d="M1010 1176 L560 1010 L530 1070 Z" fill="url(#cv-torch)" opacity={0.9 * torch} />
           <Glow id="cv-hit" x={580} y={1030} r={220} t={t} color="#FFE8B0" amp={0.04} rate={4} opacity={0.5 * torch} />
-          <path d="M-200 1200 Q-40 1130 160 1150 Q300 1166 330 1240 Q330 1300 300 1340 V2200 H-200 Z" fill="url(#cv-rockh)" stroke={K} strokeWidth="10" />
+          <path d="M-200 1200 Q-40 1130 160 1150 Q300 1166 336 1236 Q350 1300 392 1380 Q440 1480 470 1600 L500 1700 Q530 1820 560 2200 H-200 Z" fill="url(#cv-rockh)" stroke={K} strokeWidth="10" />
           <path d="M-180 1196 Q-40 1136 150 1156" stroke="#9AA4B4" strokeWidth="5" fill="none" opacity=".6" />
-          <path d="M1280 1210 Q1060 1150 900 1200 Q800 1240 790 1320 V2200 H1280 Z" fill="url(#cv-rockh)" stroke={K} strokeWidth="10" />
+          <path d="M1280 1210 Q1060 1150 900 1200 Q800 1240 776 1330 Q740 1440 690 1560 L650 1700 Q620 1820 600 2200 H1280 Z" fill="url(#cv-rockh)" stroke={K} strokeWidth="10" />
           <path d="M1270 1214 Q1060 1156 906 1206" stroke="#9AA4B4" strokeWidth="5" fill="none" opacity=".5" />
+          {[[120, 1300, 1460], [260, 1420, 1600], [880, 1320, 1480], [1000, 1460, 1640]].map(([x, y0, y1], i) => <path key={`k${i}`} d={`M${x} ${y0} l-14 ${(y1 - y0) / 3} l18 ${(y1 - y0) / 3} l-10 ${(y1 - y0) / 3}`} stroke="#14181E" strokeWidth="5" fill="none" />)}
+          {[[300, 1250], [420, 1470], [800, 1300], [700, 1560]].map(([x, y], i) => <path key={`c${i}`} d={`M${x} ${y} q-6 -30 -18 -40 M${x} ${y} q2 -36 6 -46 M${x} ${y} q10 -26 22 -34`} stroke="#2E4A30" strokeWidth="6" fill="none" strokeLinecap="round" />)}
           {/* cappello posato */}
-          <Ombra id="cv" x={130} y={1172} rx={120} ry={14} />
-          <Cappello x={130} y={1150} s={0.85} />
+          <Ombra id="cv" x={210} y={1172} rx={120} ry={14} />
+          <Cappello x={210} y={1150} s={0.85} />
           {/* torcia posata che punta la barella */}
           <g transform="translate(1010 1176) rotate(200)">
             <rect x="-96" y="-22" width="100" height="44" rx="8" fill="#2A2E36" stroke={K} strokeWidth="7" />

@@ -3,7 +3,7 @@ import { camera, eo, lerp, rng, seg } from '../../lib/anim';
 import { Glow, NearMotes, Stars, StringLights } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Abete, GIALLO, K, Ombra, SOTTO, StDefs, VELATURA } from './Comuni';
+import { Abete, CROMA, GIALLO, K, Ombra, SOTTO, StDefs, VELATURA } from './Comuni';
 
 // Natale, ma non è finita: il bosco innevato vicino a casa Byers, la notte di Natale. Eventi: prima frase le finestre
 // di casa si accendono una dopo l'altra e le lucine sul tetto prendono vita (Will è tornato a casa); seconda frase la
@@ -33,13 +33,13 @@ export const Natale: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const L = cam.layer;
 
   const tHome = griglia(cues[0] + 1.0);
-  const win = (k: number) => eo(seg(t, tHome + k * 0.36, tHome + k * 0.36 + 0.25));
+  const win = (k: number) => eo(seg(t, tHome + k * CROMA, tHome + k * CROMA + 0.25));
   const tBath = griglia(cues[1] + 1.6);
   const bath = eo(seg(t, tBath, tBath + 0.2)) * (1 - eo(seg(t, tBath + 1.2, tBath + 1.7)));
   const bathSpores = seg(t, tBath, tBath + 0.3);
   const tLamp = griglia(cues[2] + 0.4);
   const lamp = eo(seg(t, tLamp, tLamp + 0.3));
-  const boot = (k: number) => eo(seg(t, tLamp + 0.5 + k * 0.3, tLamp + 0.7 + k * 0.3));
+  const boot = (k: number) => eo(seg(t, tLamp + 2 * CROMA + k * CROMA, tLamp + 2 * CROMA + 0.2 + k * CROMA));
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>

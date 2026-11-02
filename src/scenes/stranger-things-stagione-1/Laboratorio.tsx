@@ -3,7 +3,7 @@ import { camera, eo, lerp, rng, seg } from '../../lib/anim';
 import { Beam, Fog, Glow, NearMotes, Rain, Reflection } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Abete, K, Ombra, StDefs, VELATURA } from './Comuni';
+import { Abete, BEAT, CROMA, K, Ombra, StDefs, VELATURA } from './Comuni';
 
 // La bambina scappata dal laboratorio: il cancello del laboratorio segreto nel bosco, di notte sotto una pioggerella.
 // Eventi: prima frase l'edificio di cemento con le finestre fredde si accende piano dietro la recinzione; seconda frase
@@ -36,9 +36,9 @@ export const Laboratorio: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => 
   const L = cam.layer;
 
   // prima frase: le finestre del laboratorio si accendono una fila alla volta
-  const winOn = (row: number) => eo(seg(t, 0.3 + row * 0.5, 0.9 + row * 0.5));
+  const winOn = (row: number) => { const a = griglia(0.3 + row * BEAT, 2); return eo(seg(t, a, a + 0.6)); };
   // seconda frase: le impronte compaiono una alla volta, a tempo di croma
-  const stepAt = (i: number) => griglia(cues[1] + 0.25 + i * 0.36, 2);
+  const stepAt = (i: number) => griglia(cues[1] + 0.25, 2) + i * CROMA;
   // terza frase: l'allarme
   const tAlarm = griglia(cues[2] + 0.2);
   const alarm = eo(seg(t, tAlarm, tAlarm + 0.3));

@@ -17,12 +17,15 @@ const MIRROR = 1000;
 const r = rng(707);
 const SPORES = Array.from({ length: 34 }, () => ({ x: -100 + r() * 1280, y: 1020 + r() * 900, s: 3 + r() * 7, v: 6 + r() * 16, ph: r() * 6 }));
 const ROOTS = Array.from({ length: 9 }, (_, i) => ({ x: -60 + i * 140 + r() * 60, len: 160 + r() * 260, bend: (r() - 0.5) * 120, w: 10 + r() * 14 }));
+/** Viticci che salgono dal bordo basso (il pavimento capovolto del Sottosopra). */
+const VINES = Array.from({ length: 8 }, (_, i) => ({ x: -40 + i * 160 + r() * 60, h: 260 + r() * 260, bend: (r() - 0.5) * 160, w: 16 + r() * 18 }));
+const BIG = Array.from({ length: 8 }, () => ({ x: r() * 1200 - 60, y: 1500 + r() * 400, s: 14 + r() * 14, ph: r() * 6 }));
 
 export const Sottosopra: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
 
-  const tFlip = griglia(cues[0] + 1.0);
+  const tFlip = griglia(cues[0] + 2.5);
   const flip = eo(seg(t, tFlip, tFlip + 0.5));
   const boardScale = Math.cos(flip * Math.PI);
   const hop = (k: number) => Math.max(0, Math.sin(seg(t, tFlip + 0.25 + k * 0.05, tFlip + 0.75 + k * 0.05) * Math.PI)) * 40;
@@ -118,8 +121,13 @@ export const Sottosopra: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <path d={`M300 ${930 - hop(0)} l20 -18 l22 8 l-4 26 l-22 6 Z`} fill="#E8E2D2" stroke={K} strokeWidth="5" strokeLinejoin="round" />
           <path d={`M360 ${936 - hop(1)} l16 -26 l18 26 l-18 10 Z`} fill="#B8352F" stroke={K} strokeWidth="5" strokeLinejoin="round" />
           <path d={`M780 ${934 - hop(2)} l22 -14 l22 14 l-22 14 Z`} fill="#4A7AB8" stroke={K} strokeWidth="5" strokeLinejoin="round" />
-          {/* drago di peltro e torre del castello */}
-          <path d={`M200 ${936 - hop(3)} h-46 q4 -16 14 -22 q-6 -18 4 -30 q14 4 14 18 q12 -14 26 -10 q-10 10 -8 22 q10 8 6 22 Z`} fill="#8A929E" stroke={K} strokeWidth="5" strokeLinejoin="round" />
+          {/* dado a venti facce grande e torre del castello */}
+          <g transform={`translate(176 ${900 - hop(3)})`}>
+            <path d="M0 -40 L34 -20 L34 20 L0 40 L-34 20 L-34 -20 Z" fill="#7A4AB8" stroke={K} strokeWidth="5" strokeLinejoin="round" />
+            <path d="M0 -40 L-20 8 L20 8 Z M-34 -20 L-20 8 M34 -20 L20 8 M-20 8 L0 40 L20 8 M-34 20 L-20 8 M34 20 L20 8" fill="none" stroke={K} strokeWidth="3" />
+            <path d="M-4 -30 L4 -30" stroke="#C8A8F0" strokeWidth="3" />
+            <text x="0" y="0" textAnchor="middle" fontFamily="Figtree, sans-serif" fontWeight="800" fontSize="16" fill="#F2E3C6">20</text>
+          </g>
           <path d="M860 936 V880 h12 v-10 h12 v10 h12 v-10 h12 v10 h12 v56 Z" fill="#9A9A9A" stroke={K} strokeWidth="5" />
           {/* bussola con l'ago che impazzisce */}
           <g transform="translate(680 922)">
@@ -155,6 +163,19 @@ export const Sottosopra: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             );
           })}
           <path d="M-200 1700 Q200 1640 540 1700 Q860 1760 1280 1680 V2200 H-200 Z" fill="#0A1018" stroke={K} strokeWidth="8" />
+          <path d="M-200 1706 Q200 1646 540 1706 Q860 1766 1280 1686" stroke="#3A5A7A" strokeWidth="4" fill="none" opacity=".6" />
+          {VINES.map((v, i) => {
+            const sway = Math.sin(t * 0.7 + i * 1.3) * 10;
+            const d = `M${v.x} 1960 Q${v.x + v.bend * 0.5 + sway} ${1960 - v.h * 0.6} ${v.x + v.bend + sway} ${1960 - v.h}`;
+            return (
+              <g key={i}>
+                <path d={d} stroke="#0A0E14" strokeWidth={v.w + 8} fill="none" strokeLinecap="round" />
+                <path d={d} stroke="#222C3E" strokeWidth={v.w} fill="none" strokeLinecap="round" />
+                <path d={`M${v.x + v.bend * 0.3 + sway} ${1960 - v.h * 0.45} q${(i % 2 ? 1 : -1) * 40} -20 ${(i % 2 ? 1 : -1) * 60} -70`} stroke="#222C3E" strokeWidth={v.w * 0.45} fill="none" strokeLinecap="round" />
+                <path d={d} stroke="#6A8AB0" strokeWidth="2.5" fill="none" opacity=".45" transform="translate(-4 0)" />
+              </g>
+            );
+          })}
         </g>
 
         {/* PIANO 3 — spore che fluttuano verso l'alto nel mondo di sotto (1,4) */}
@@ -163,6 +184,9 @@ export const Sottosopra: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             const y = 1020 + ((sp.y - 1020 - t * sp.v) % 900 + 900) % 900;
             return <circle key={i} cx={sp.x + Math.sin(t * 0.7 + sp.ph) * 16} cy={y} r={sp.s} fill="url(#ss-spore)" opacity={0.75 * seg(y, 1020, 1080)} />;
           })}
+        </g>
+        <g transform={L(1.6)} opacity={world}>
+          {BIG.map((b, i) => <circle key={i} cx={b.x + Math.sin(t * 0.5 + b.ph) * 20} cy={b.y - ((t * 14 + i * 40) % 220)} r={b.s} fill="url(#ss-spore)" opacity=".55" />)}
         </g>
         <g transform={L(1.8)}>
           <NearMotes id="ss-near" t={t} color={SOTTO} n={6} r0={90} r1={170} opacity={0.08 * world} y0={1040} />

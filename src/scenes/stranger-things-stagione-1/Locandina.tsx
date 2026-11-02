@@ -145,6 +145,12 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; finale: boolean }> 
               <Bici x={780} y={1300} s={0.9} lying={false} spin={0} />
               <path d="M650 1166 H790 M840 1176 Q880 1166 900 1180" stroke="#F2F6FC" strokeWidth="8" strokeLinecap="round" />
             </g>
+            <g transform={L(1.2)}>
+              <Abete x={-20} y={2000} h={520} w={360} color="#0E1A28" seed={4} />
+              <Abete x={1100} y={2000} h={600} w={380} color="#0E1A28" seed={7} />
+              {[[-20, 1560, 160], [1100, 1480, 170]].map(([x, y, w], i) => <path key={i} d={`M${x - w * 0.6} ${y} Q${x} ${y - 40} ${x + w * 0.6} ${y}`} stroke="#E8EEF8" strokeWidth="12" fill="none" strokeLinecap="round" />)}
+              <path d="M200 1960 Q420 1800 640 1880 Q820 1940 900 1960 Z" fill="#DCE4F0" stroke="#5A6A84" strokeWidth="5" />
+            </g>
             <g transform={L(0.6)}>
               {SNOW.map((f, i) => <circle key={i} cx={f.x + Math.sin(t * 0.8 + f.ph) * 18} cy={660 + mod(f.y + t * f.v, 1300)} r={f.s} fill="#F2F6FC" opacity=".85" />)}
             </g>

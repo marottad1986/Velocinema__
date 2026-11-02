@@ -9,7 +9,8 @@ import { CROMA, K, Ombra, StDefs, VELATURA } from './Comuni';
 // Una mamma parla con le luci: la parete del soggiorno di casa Byers con l'alfabeto dipinto a mano e una lucina di
 // Natale sopra ogni lettera. Eventi: prima frase la stanza in penombra (telefono staccato, posacenere che fuma, vernice
 // e pennello ancora a terra); seconda frase le lucine si accendono a onda da sinistra, come quando Joyce parla al
-// figlio; terza frase si spengono tutte e si accendono una alla volta S-C-A-P-P-A, poi la parola resta accesa insieme.
+// figlio; terza frase si spengono tutte e si accendono una alla volta S-C-A-P-P-A: ogni lettera resta accesa, così la parola
+// si costruisce, e alla fine brilla tutta insieme.
 // Piani: parete con la carta da parati, lettere e lucine (0,28) · zoccolo e pavimento (0,4) · lampada a stelo e
 //        tavolino con il telefono (0,66) · bracciolo della poltrona, barattolo di vernice (1,15) · pulviscolo (1,5)
 //        · velo vicino (1,8)
@@ -55,7 +56,7 @@ export const Lucine: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
     let spell = 0;
     for (const k of spellOf(b.ch)) {
       const a = tSpell + k * step;
-      spell = Math.max(spell, seg(t, a, a + 0.06) * (1 - 0.85 * seg(t, a + step * 0.75, a + step * 0.95)));
+      spell = Math.max(spell, seg(t, a, a + 0.06) * (1 - 0.3 * seg(t, a + step * 0.75, a + step * 0.95)));
     }
     const inWord = WORD.includes(b.ch) ? 1 : 0;
     return Math.max(before, spell, inWord * wordAll * (0.85 + 0.15 * Math.sin(t * 6)));
