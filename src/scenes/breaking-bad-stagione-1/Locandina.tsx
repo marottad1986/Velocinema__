@@ -114,7 +114,7 @@ export const Finale: React.FC<PosterProps> = ({ t, dur, film }) => {
         </div>
         <p style={{ margin: '30px 0 0', fontSize: 34, fontWeight: 400, opacity: seg(t, 1.0, 1.4) }}>Commenta con la serie che vorresti.</p>
       </div>
-      <h1 style={{ position: 'absolute', left: 0, right: 0, top: 672, margin: 0, textAlign: 'center', fontFamily: STENCIL, fontWeight: 800, fontSize: 110, lineHeight: 1,
+      <h1 style={{ position: 'absolute', left: 0, right: 0, top: 660, margin: 0, textAlign: 'center', fontFamily: STENCIL, fontWeight: 800, fontSize: 110, lineHeight: 1,
         color: P.accento, textShadow: `0 6px 0 ${P.scuro}`, opacity: seg(t, 0.3, 0.6), transform: `scale(${lerp(0.9, 1, end)})` }}>
         FINE DELLA<br />STAGIONE {film.stagione}
       </h1>

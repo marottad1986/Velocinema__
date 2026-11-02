@@ -145,7 +145,7 @@ export const Blitz: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           </g>
           {/* il berretto di lana che cade dalla finestra */}
           {t > tOpen + 0.15 && (
-            <g transform={`translate(${capX} ${capY}) rotate(${capRot}) scale(1.3)`}>
+            <g transform={`translate(${capX} ${capY}) rotate(${capRot}) scale(0.65)`}>
               <Ombra id="bz" x={0} y={8} rx={50} ry={8} opacity={fall >= 1 ? 1 : 0} />
               <path d="M-40 0 Q-46 -40 -20 -56 Q0 -66 20 -56 Q46 -40 40 0 Z" fill="#3A3E5A" stroke={K} strokeWidth="6" />
               <path d="M-40 -26 Q0 -34 40 -26" stroke="#C83A2A" strokeWidth="7" fill="none" />

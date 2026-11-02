@@ -143,7 +143,7 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               <path d="M14 -90 h110" stroke="#D8322A" strokeWidth="5" strokeDasharray="110" strokeDashoffset={110 * (1 - kill)} />
             </g>
             {/* bottiglia di birra */}
-            <g transform="translate(215 0)">
+            <g transform="translate(195 0)">
               <path d="M-14 0 V-60 Q-14 -76 -6 -84 V-110 H6 V-84 Q14 -76 14 -60 V0 Z" fill="#6A4A1E" stroke={K} strokeWidth="5" />
               <path d="M-8 -64 V-10" stroke="#E8C080" strokeWidth="4" opacity=".6" />
             </g>

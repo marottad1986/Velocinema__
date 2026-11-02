@@ -80,14 +80,14 @@ export const Gas: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         <g transform={L(0.7, shake)}>
           <path d="M-200 1240 H1280 V2200 H-200 Z" fill="url(#gs-sand)" />
           <g opacity={cook * (1 - gas * 0.4)}>
-            <Smoke id="gs-cook" t={t} x={600 - 165 * 0.9} y={1240 - 520 * 0.9} color="#F4F2EC" n={6} rise={140} wind={120} r0={26} r1={80} speed={0.4} opacity={0.8} />
+            <Smoke id="gs-cook" t={t} x={575 - 165 * 0.9} y={1240 - 520 * 0.9} color="#F4F2EC" n={6} rise={140} wind={120} r0={26} r1={80} speed={0.4} opacity={0.8} />
           </g>
           <g opacity={gas}>
-            <Smoke id="gs-gas1" t={t} x={600 - 165 * 0.9} y={1240 - 520 * 0.9} color="#E8A090" n={8} rise={170} wind={180} r0={40} r1={130} speed={0.5} opacity={1} />
+            <Smoke id="gs-gas1" t={t} x={575 - 165 * 0.9} y={1240 - 520 * 0.9} color="#E8A090" n={8} rise={170} wind={180} r0={40} r1={130} speed={0.5} opacity={1} />
           </g>
-          <Camper id="gs" x={600} y={1240} s={0.9} door={door} lamp={lamp} fog={gas} fogColor="#E89A86" t={t} />
+          <Camper id="gs" x={575} y={1240} s={0.9} door={door} lamp={lamp} fog={gas} fogColor="#E89A86" t={t} />
           {/* gas che filtra dalle fessure della porta e dai finestrini */}
-          {gas > 0 && [[600 - 10 * 0.9, 1240 - 270], [600 + 110 * 0.9, 1240 - 200], [600 - 270 * 0.9, 1240 - 340], [600 + 210 * 0.9, 1240 - 340], [600 + 400 * 0.9, 1240 - 330]].map(([gx, gy], i) => (
+          {gas > 0 && [[575 - 10 * 0.9, 1240 - 270], [575 + 110 * 0.9, 1240 - 200], [575 - 270 * 0.9, 1240 - 340], [575 + 210 * 0.9, 1240 - 340], [575 + 400 * 0.9, 1240 - 330]].map(([gx, gy], i) => (
             <g key={i}>
               {[0, 1, 2].map((k) => {
                 const p = mod(t * 0.45 + k / 3 + i * 0.2, 1);
@@ -95,7 +95,7 @@ export const Gas: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               })}
             </g>
           ))}
-          <Glow id="gs-lamp" x={600 - 150} y={1240 - 380} r={300} t={t} color="#FFC878" amp={0.05} rate={6} opacity={0.35 * lamp * (1 - gas * 0.5)} />
+          <Glow id="gs-lamp" x={575 - 150} y={1240 - 380} r={300} t={t} color="#FFC878" amp={0.05} rate={6} opacity={0.35 * lamp * (1 - gas * 0.5)} />
         </g>
 
         {/* PIANO 4 — maschera antigas e fornello da campeggio davanti al gradino (0,95) */}
@@ -110,7 +110,7 @@ export const Gas: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           </g>
           {/* maschera antigas */}
           {t > tSlam && (
-            <g transform={`translate(${lerp(620, 680, maskFall)} ${maskY}) rotate(${lerp(-30, 12, maskFall)})`}>
+            <g transform={`translate(${lerp(595, 655, maskFall)} ${maskY}) rotate(${lerp(-30, 12, maskFall)})`}>
               <Ombra id="gs" x={0} y={6} rx={80} ry={10} opacity={maskFall} />
               <Glow id="gs-mg" x={0} y={-40} r={110} t={t} color={ORO} amp={0.06} rate={3} opacity={0.35 * gas} />
               <path d="M-60 -10 Q-70 -70 -30 -90 Q0 -100 30 -90 Q70 -70 60 -10 Q30 10 0 10 Q-30 10 -60 -10 Z" fill="#2A2E2A" stroke={K} strokeWidth="6" />

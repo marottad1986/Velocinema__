@@ -80,7 +80,7 @@ export const Furto: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               <rect x="820" y="930" width="110" height="150" fill="url(#fu-drum)" stroke={K} strokeWidth="5" />
               <ellipse cx="875" cy="930" rx="55" ry="12" fill="#5A8AC8" stroke={K} strokeWidth="4" />
               <rect x="826" y="976" width="98" height="46" fill="#F2F0E4" stroke={K} strokeWidth="3" />
-              <text x="875" y="1004" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontSize="14" fill="#1A1A1A">METILAMMINA</text>
+              <text x="875" y="1004" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontSize="11" fill="#1A1A1A">METILAMMINA</text>
               <rect x="826" y="1010" width="98" height="10" fill={ORO} />
             </g>
             <Glow id="fu-drumg" x={875} y={990} r={150} t={t} color={ORO} amp={0.06} rate={3} opacity={0.4 * torch} />

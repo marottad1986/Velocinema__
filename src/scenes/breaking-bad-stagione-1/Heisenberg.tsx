@@ -62,9 +62,6 @@ export const Heisenberg: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
 
           {/* PIANO 1 — parete con la finestra, scaffale con bottiglie, poster (0,45) */}
           <g transform={L(0.45)}>
-            <Glow id="hb-win" x={600} y={850} r={440} t={t} color="#FFE0A8" amp={0.05} rate={1.2} opacity={0.45} />
-            <path d="M320 1000 L120 1250 H760 L880 1000 Z" fill="#FFE0A8" opacity=".1" />
-            <Dust t={t} top={{ y: 1000, x0: 340, x1: 860 }} bottom={{ y: 1240, x0: 140, x1: 740 }} n={26} color="#FFF0C8" seed={31} />
             <path d="M-200 -200 H1280 V2200 H-200 Z M300 690 V1010 H900 V690 Z" fill="url(#hb-wall)" fillRule="evenodd" />
             <rect x="300" y="690" width="600" height="320" fill="none" stroke={K} strokeWidth="12" />
             {/* vetri: interi, poi esplosi */}
@@ -79,6 +76,9 @@ export const Heisenberg: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               </g>
             )}
             {[500, 700].map((x) => <path key={x} d={`M${x} 690 V1010`} stroke={K} strokeWidth="10" />)}
+            <Glow id="hb-win" x={600} y={850} r={440} t={t} color="#FFE0A8" amp={0.05} rate={1.2} opacity={0.5} />
+            <path d="M320 1000 L120 1250 H760 L880 1000 Z" fill="#FFE0A8" opacity=".1" />
+            <Dust t={t} top={{ y: 1000, x0: 340, x1: 860 }} bottom={{ y: 1240, x0: 140, x1: 740 }} n={26} color="#FFF0C8" seed={31} />
             {/* scaffale con bottiglie */}
             <rect x="-120" y="900" width="340" height="16" fill="#3A2614" stroke={K} strokeWidth="5" />
             {[-90, -30, 30, 90, 150].map((x, i) => (
@@ -139,7 +139,7 @@ export const Heisenberg: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             {/* bruciatura dopo l'esplosione e mazzette di Tuco */}
             {boom && <ellipse cx="600" cy="1120" rx="150" ry="30" fill="#140C08" opacity={0.85} />}
             {cash > 0 && [0, 1, 2, 3, 4].map((k) => (
-              <g key={k} transform={`translate(${520 + (k % 3) * 70} ${1120 - Math.floor(k / 3) * 30}) scale(${cash})`}>
+              <g key={k} transform={`translate(${465 + (k % 3) * 70} ${1120 - Math.floor(k / 3) * 30}) scale(${cash})`}>
                 <rect x="-36" y="-26" width="72" height="30" rx="4" fill="#A8C08A" stroke={K} strokeWidth="4" />
                 <rect x="-8" y="-26" width="16" height="30" fill={ORO} stroke={K} strokeWidth="3" />
               </g>
