@@ -51,7 +51,7 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; night: boolean }> =
         </g>
         <g transform={L(0.68)}>
           <path d="M-200 1330 H1280 V2200 H-200 Z" fill={`url(#${id}-sand)`} />
-          <Smoke id={`${id}-sm`} t={t} x={560 - 165 * 0.86} y={1340 - 520 * 0.86} color={night ? '#C8C8D8' : '#F4EEE4'} n={6} rise={180} wind={-140} r0={26} r1={84} speed={0.4} opacity={0.75} />
+          <Smoke id={`${id}-sm`} t={t} x={560 - 165 * 0.86} y={1340 - 520 * 0.86} color={night ? '#C8C8D8' : '#F4EEE4'} n={6} rise={night ? 90 : 180} wind={-140} r0={26} r1={84} speed={0.4} opacity={0.75} />
           <Camper id={id} x={560} y={1340} s={0.86} lamp={night ? 1 : 0} door={night ? 0.6 : 0} t={t} />
         </g>
         <g transform={L(1.1)}>
@@ -114,7 +114,7 @@ export const Finale: React.FC<PosterProps> = ({ t, dur, film }) => {
         </div>
         <p style={{ margin: '30px 0 0', fontSize: 34, fontWeight: 400, opacity: seg(t, 1.0, 1.4) }}>Commenta con la serie che vorresti.</p>
       </div>
-      <h1 style={{ position: 'absolute', left: 0, right: 0, top: 628, margin: 0, textAlign: 'center', fontFamily: STENCIL, fontWeight: 800, fontSize: 110, lineHeight: 1,
+      <h1 style={{ position: 'absolute', left: 0, right: 0, top: 672, margin: 0, textAlign: 'center', fontFamily: STENCIL, fontWeight: 800, fontSize: 110, lineHeight: 1,
         color: P.accento, textShadow: `0 6px 0 ${P.scuro}`, opacity: seg(t, 0.3, 0.6), transform: `scale(${lerp(0.9, 1, end)})` }}>
         FINE DELLA<br />STAGIONE {film.stagione}
       </h1>

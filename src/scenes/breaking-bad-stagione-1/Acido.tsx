@@ -7,7 +7,7 @@ import { BBDefs, K, Ombra, ORO } from './Comuni';
 
 // La vasca e l'acido: il corridoio al piano terra della casa di Jesse, visto dal soggiorno. Eventi: prima frase sul
 // soffitto si allarga una macchia scura e cominciano a cadere gocce che fumano (al piano di sopra Jesse sta usando
-// l'acido); seconda frase si accende la luce sul bidone di plastica bianco rimasto nell'angolo, quello giusto, mai
+// l'acido); seconda frase si accende la luce sul bidone di plastica blu rimasto nell'angolo, quello giusto, mai
 // usato; terza frase il soffitto cede: la vasca da bagno corrosa precipita, si spacca sul pavimento e una melma scura
 // che fuma si allarga, tra calcinacci e polvere.
 // Piani: parete del fondo con la porta (0,3) · pareti del corridoio e soffitto (0,5) · vasca, bidone, tanica (0,72)
@@ -100,18 +100,7 @@ export const Acido: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <g transform={L(0.72)}>
             <path d="M-200 1500 L340 1180 H780 L1280 1500 V2200 H-200 Z" fill="url(#ac-floor)" />
             {Array.from({ length: 9 }, (_, i) => <path key={i} d={`M${340 + i * 55} 1180 L${-200 + i * 185} 2200`} stroke="#1A120A" strokeWidth="4" opacity=".7" />)}
-            {/* tanica di acido con il simbolo di pericolo */}
-            <g transform="translate(250 1290)">
-              <Ombra id="ac" x={0} y={0} rx={100} ry={14} />
-              <path d="M-70 0 V-170 Q-70 -186 -54 -186 H30 L50 -210 H70 V0 Z" fill="#DDE2DA" stroke={K} strokeWidth="7" />
-              <rect x="-50" y="-140" width="96" height="96" fill="#F2F0E8" stroke={K} strokeWidth="4" />
-              <g transform="translate(-2 -92) rotate(45)">
-                <rect x="-30" y="-30" width="60" height="60" fill="#F28A1A" stroke={K} strokeWidth="4" />
-              </g>
-              <text x="-2" y="-76" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontSize="40" fill={K}>!</text>
-              <text x="-2" y="-28" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontSize="20" fill="#C82A1A">ACIDO</text>
-            </g>
-            {/* bidone di plastica bianco: quello che andava usato */}
+            {/* bidone di plastica blu: quello che andava usato */}
             <g transform="translate(900 1270)">
               <Glow id="ac-drum" x={0} y={-150} r={240} t={t} color={ORO} amp={0.05} rate={2} opacity={0.5 * drum} />
               <Ombra id="ac" x={0} y={0} rx={130} ry={16} />
@@ -138,6 +127,17 @@ export const Acido: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
                 <Wisps t={t + 1.3} x={640} y={1200} color="#C8B898" n={3} h={220} opacity={0.5 * ooze} />
               </g>
             )}
+            {/* tanica di acido con il simbolo di pericolo */}
+            <g transform="translate(250 1290)">
+              <Ombra id="ac" x={0} y={0} rx={100} ry={14} />
+              <path d="M-70 0 V-170 Q-70 -186 -54 -186 H30 L50 -210 H70 V0 Z" fill="#DDE2DA" stroke={K} strokeWidth="7" />
+              <rect x="-50" y="-140" width="96" height="96" fill="#F2F0E8" stroke={K} strokeWidth="4" />
+              <g transform="translate(-2 -92) rotate(45)">
+                <rect x="-30" y="-30" width="60" height="60" fill="#F28A1A" stroke={K} strokeWidth="4" />
+              </g>
+              <text x="-2" y="-76" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontSize="40" fill={K}>!</text>
+              <text x="-2" y="-28" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontSize="20" fill="#C82A1A">ACIDO</text>
+            </g>
             {/* la vasca: cade dal buco e si spacca */}
             {t >= tFall && (
               <g transform={`translate(560 ${tubY}) rotate(${landed ? 6 : lerp(-4, 6, fall)})`}>
@@ -167,9 +167,9 @@ export const Acido: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             <rect x="1010" y="-200" width="240" height="2400" fill="#2A1E12" stroke={K} strokeWidth="10" />
             <path d="M1020 -200 V2200" stroke="#8A6A44" strokeWidth="6" opacity=".7" />
             {/* schienale del divano */}
-            <path d="M-100 1960 V1720 Q-100 1660 -40 1660 H1120 Q1180 1660 1180 1720 V1960 Z" fill="#4A3A5A" stroke={K} strokeWidth="10" />
-            <path d="M-80 1680 H1160" stroke="#7A6A8A" strokeWidth="6" opacity=".7" />
-            {[260, 560, 860].map((x) => <path key={x} d={`M${x} 1680 V1960`} stroke="#2A2038" strokeWidth="6" />)}
+            <path d="M-100 1960 V1720 Q-100 1660 -40 1660 H1120 Q1180 1660 1180 1720 V1960 Z" fill="#5A3424" stroke={K} strokeWidth="10" />
+            <path d="M-80 1680 H1160" stroke="#8A5A40" strokeWidth="6" opacity=".7" />
+            {[260, 560, 860].map((x) => <path key={x} d={`M${x} 1680 V1960`} stroke="#3A2014" strokeWidth="6" />)}
             {/* lattine e scatola di pizza sul divano */}
             <rect x="180" y="1600" width="50" height="70" rx="6" fill="#C83A2A" stroke={K} strokeWidth="5" />
             <path d="M600 1660 L640 1600 H860 L840 1660 Z" fill="#D8B888" stroke={K} strokeWidth="6" />

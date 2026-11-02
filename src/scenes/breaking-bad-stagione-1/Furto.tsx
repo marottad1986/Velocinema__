@@ -84,11 +84,10 @@ export const Furto: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               <rect x="826" y="1010" width="98" height="10" fill={ORO} />
             </g>
             <Glow id="fu-drumg" x={875} y={990} r={150} t={t} color={ORO} amp={0.06} rate={3} opacity={0.4 * torch} />
-            <path d="M870 880 V1070 M740 975 H1000" stroke={K} strokeWidth="6" />
+            <path d="M740 975 H820 M930 975 H1000" stroke={K} strokeWidth="6" />
             {/* inferriata */}
             {[770, 810, 930, 970].map((x) => <path key={x} d={`M${x} 880 V1070`} stroke="#3A4048" strokeWidth="6" />)}
           </g>
-          <Beam id="fu-torch" x={640} y={1200} t={t} length={420} spread={160} color="#FFF4D8" angle={-40 + torchA} opacity={0.55 * torch} />
           {/* lampione al sodio */}
           <g>
             <path d="M40 1260 V820 Q40 790 80 790 H130" stroke="#2A2E34" strokeWidth="12" fill="none" />
@@ -144,6 +143,14 @@ export const Furto: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           )}
           {/* riflesso della luce della termite sulla facciata */}
           <rect x="-200" y="700" width="1480" height="600" fill="#FFF4D8" opacity={0.12 * spark} />
+          {/* torcia a terra accanto al carrello, con il fascio verso la finestra */}
+          <Beam id="fu-torch" x={585} y={1214} t={t} length={460} spread={170} color="#FFF4D8" angle={-42 + torchA} opacity={0.55 * torch} />
+          <g transform="translate(585 1226) rotate(-42)">
+            <rect x="-70" y="-12" width="60" height="24" rx="6" fill="#2A2E32" stroke={K} strokeWidth="4" />
+            <path d="M-10 -16 L10 -20 V20 L-10 16 Z" fill="url(#fu-metal)" stroke={K} strokeWidth="4" />
+            <ellipse cx="10" cy="0" rx="4" ry="18" fill="#FFF6D8" opacity={0.3 + 0.7 * torch} />
+          </g>
+          <Glow id="fu-tg" x={595} y={1216} r={70} t={t} color="#FFF4D8" amp={0.05} rate={6} opacity={0.7 * torch} />
           {/* carrello a mano */}
           <g transform="translate(680 1250)">
             <Ombra id="fu" x={0} y={0} rx={110} ry={14} />

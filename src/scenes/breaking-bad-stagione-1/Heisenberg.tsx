@@ -1,6 +1,6 @@
 import React from 'react';
 import { camera, eo, eob, lerp, rng, seg } from '../../lib/anim';
-import { flashAt, Flyers, Glow, NearMotes, Smoke } from '../../lib/elements';
+import { Dust, flashAt, Flyers, Glow, NearMotes, Smoke } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { HAND } from '../../lib/fonts';
 import type { SceneProps } from '../../types';
@@ -62,6 +62,9 @@ export const Heisenberg: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
 
           {/* PIANO 1 — parete con la finestra, scaffale con bottiglie, poster (0,45) */}
           <g transform={L(0.45)}>
+            <Glow id="hb-win" x={600} y={850} r={440} t={t} color="#FFE0A8" amp={0.05} rate={1.2} opacity={0.45} />
+            <path d="M320 1000 L120 1250 H760 L880 1000 Z" fill="#FFE0A8" opacity=".1" />
+            <Dust t={t} top={{ y: 1000, x0: 340, x1: 860 }} bottom={{ y: 1240, x0: 140, x1: 740 }} n={26} color="#FFF0C8" seed={31} />
             <path d="M-200 -200 H1280 V2200 H-200 Z M300 690 V1010 H900 V690 Z" fill="url(#hb-wall)" fillRule="evenodd" />
             <rect x="300" y="690" width="600" height="320" fill="none" stroke={K} strokeWidth="12" />
             {/* vetri: interi, poi esplosi */}

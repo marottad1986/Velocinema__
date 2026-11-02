@@ -31,9 +31,9 @@ export const Blitz: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   // berretto: cade dal davanzale (y 900) al prato (y 1300) con un rimbalzo
   const fall = seg(t, tOpen + 0.2, tOpen + 1.0);
   const bounce = seg(t, tOpen + 1.0, tOpen + 1.4);
-  const capY = fall < 1 ? lerp(890, 1300, fall * fall) : 1300 - Math.sin(bounce * Math.PI) * 30;
+  const capY = fall < 1 ? lerp(890, 1235, fall * fall) : 1235 - Math.sin(bounce * Math.PI) * 30;
   const capX = lerp(850, 760, eo(seg(t, tOpen + 0.2, tOpen + 1.4)));
-  const capRot = lerp(0, 200, eo(seg(t, tOpen + 0.2, tOpen + 1.4)));
+  const capRot = lerp(0, 360, eo(seg(t, tOpen + 0.2, tOpen + 1.4)));
   const l1 = lamp(t, 0), l2 = lamp(t, 0.37);
   const red = arrive * Math.max(l1.red, l2.red * 0.8), blue = arrive * Math.max(l1.blue, l2.blue * 0.8);
   const curtain = open * (0.6 + 0.4 * Math.sin(t * 5)) ;
@@ -85,7 +85,7 @@ export const Blitz: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <Ombra id="bz" x={640} y={1250} rx={460} ry={30} />
           {/* fumo chimico dal tetto, piegato dal vento verso destra */}
           <g opacity={0.25 + 0.75 * smoke}>
-            <Smoke id="bz-sm" t={t} x={560} y={700} color="#D8DED0" n={8} rise={130} wind={340} r0={40} r1={130} speed={0.35} opacity={0.9} />
+            <Smoke id="bz-sm" t={t} x={560} y={720} color="#D8DED0" n={8} rise={60} wind={380} r0={40} r1={130} speed={0.35} opacity={0.9} />
           </g>
           <rect x="530" y="690" width="50" height="80" fill="url(#bz-stucco)" stroke={K} strokeWidth="7" />
           {/* piano terra con il garage */}
@@ -121,7 +121,7 @@ export const Blitz: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               <path d="M835 896 L880 812" stroke="#FFFFFF" strokeWidth="4" opacity=".25" />
             </g>
             {/* tenda che sventola fuori */}
-            <path d={`M770 806 Q${790 + curtain * 40} ${840 + curtain * 10} ${780 + curtain * 120} ${880 + curtain * 30} Q${770 + curtain * 60} ${900} 770 906 Z`} fill="#D8D0E0" stroke={K} strokeWidth="4" opacity={0.3 + 0.7 * open} />
+            <path d={`M770 806 Q${790 + curtain * 40} ${840 + curtain * 10} ${800 + curtain * 170} ${900 + curtain * 40} Q${780 + curtain * 90} ${920} 770 906 Z`} fill="#D8D0E0" stroke={K} strokeWidth="4" opacity={0.3 + 0.7 * open} />
             <rect x="750" y="904" width="150" height="14" fill="#B8AC90" stroke={K} strokeWidth="4" />
           </g>
           {/* riflessi rossi e blu sulla facciata */}
@@ -147,8 +147,10 @@ export const Blitz: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           {t > tOpen + 0.15 && (
             <g transform={`translate(${capX} ${capY}) rotate(${capRot}) scale(1.3)`}>
               <Ombra id="bz" x={0} y={8} rx={50} ry={8} opacity={fall >= 1 ? 1 : 0} />
-              <path d="M-40 0 Q-42 -46 0 -50 Q42 -46 40 0 Z" fill="#6A6E74" stroke={K} strokeWidth="6" />
-              <rect x="-44" y="-10" width="88" height="18" rx="6" fill="#4A4E54" stroke={K} strokeWidth="5" />
+              <path d="M-40 0 Q-46 -40 -20 -56 Q0 -66 20 -56 Q46 -40 40 0 Z" fill="#3A3E5A" stroke={K} strokeWidth="6" />
+              <path d="M-40 -26 Q0 -34 40 -26" stroke="#C83A2A" strokeWidth="7" fill="none" />
+              <circle cx="0" cy="-64" r="13" fill="#C83A2A" stroke={K} strokeWidth="4" />
+              <rect x="-44" y="-12" width="88" height="20" rx="6" fill="#2A2E44" stroke={K} strokeWidth="5" />
               {[-24, -8, 8, 24].map((x) => <path key={x} d={`M${x} -10 V-40`} stroke="#4A4E54" strokeWidth="3" />)}
             </g>
           )}

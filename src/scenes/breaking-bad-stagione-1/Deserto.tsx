@@ -21,7 +21,7 @@ export const Deserto: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const L = cam.layer;
   const tStop = griglia(cues[0] + 1.6);
   const drive = eo(seg(t, 0.2, tStop));
-  const rvX = lerp(1500, 470, drive);
+  const rvX = lerp(-520, 470, drive);
   const dust = seg(t, 0.2, tStop) * (1 - seg(t, tStop, tStop + 1.5));
   const door = eo(seg(t, griglia(cues[1] + 0.1), griglia(cues[1] + 0.1) + 0.6));
   const smoke = eo(seg(t, griglia(cues[1] + 0.6), griglia(cues[1] + 0.6) + 1.2));
@@ -75,11 +75,11 @@ export const Deserto: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         <g transform={L(0.68)}>
           <path d="M-200 1220 H1280 V2200 H-200 Z" fill="url(#ds-sand)" />
           {/* solchi delle ruote */}
-          <path d={`M${rvX + 360} 1236 L1400 1236 M${rvX + 300} 1250 L1400 1258`} stroke="#B8905A" strokeWidth="8" opacity=".7" />
-          <Smoke id="ds-dust" t={t} x={rvX + 380} y={1200} color="#E8D0A0" n={6} rise={110} wind={260} r0={40} r1={120} speed={0.6} opacity={0.7 * dust} />
+          <path d={`M${rvX - 360} 1236 L-300 1236 M${rvX - 300} 1250 L-300 1258`} stroke="#B8905A" strokeWidth="8" opacity=".7" />
+          <Smoke id="ds-dust" t={t} x={rvX - 380} y={1200} color="#E8D0A0" n={6} rise={110} wind={-260} r0={40} r1={120} speed={0.6} opacity={0.7 * dust} />
           <g transform={`translate(0 ${bob})`}>
             <g opacity={smoke}>
-              <Smoke id="ds-sm" t={t} x={rvX - 140} y={1220 - 520 * 0.82} color="#F4F2EC" n={7} rise={150} wind={-110} r0={26} r1={80} speed={0.4} opacity={0.85} />
+              <Smoke id="ds-sm" t={t} x={rvX - 140} y={1220 - 520 * 0.82} color="#B8A890" n={7} rise={130} wind={-110} r0={28} r1={84} speed={0.4} opacity={0.95} />
             </g>
             <Camper id="ds" x={rvX} y={1236} s={0.82} door={door} t={t} />
             {/* dentro la porta: vetreria e luce */}

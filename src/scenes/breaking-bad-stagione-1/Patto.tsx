@@ -73,10 +73,10 @@ export const Patto: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             </g>
           ))}
           {/* cartello di pericolo sulla parete */}
-          <g transform="translate(560 720) rotate(45)">
-            <rect x="-46" y="-46" width="92" height="92" fill={ORO} stroke={K} strokeWidth="6" opacity=".9" />
+          <g transform="translate(640 1000) rotate(45) scale(0.4)">
+            <rect x="-46" y="-46" width="92" height="92" fill="#8A7A4A" stroke={K} strokeWidth="10" opacity=".9" />
           </g>
-          <text x="560" y="740" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontSize="54" fill={K}>!</text>
+          <text x="640" y="1010" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontSize="24" fill={K}>!</text>
         </g>
 
         {/* PIANO 2 — scaffale metallico con la vetreria (0,65) */}

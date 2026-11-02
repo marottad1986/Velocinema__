@@ -149,10 +149,10 @@ export const Famiglia: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             </g>
           ))}
           {/* l'assegno di Elliott che si strappa */}
-          <g transform="translate(800 1250) skewX(-18) scale(0.9)">
+          <g transform="translate(740 1250) skewX(-18) scale(0.9)">
             <g transform={`translate(${-tear * 40} ${-tear * 6}) rotate(${-tear * 10} 0 0)`}>
               <path d={`M-150 0 V-80 H0 L${-8 + 0} -60 L6 -40 L-6 -20 L4 0 Z`} fill="url(#fm-cheque)" stroke={K} strokeWidth="4" />
-              <text x="-140" y="-56" fontFamily="sans-serif" fontWeight="800" fontSize="15" fill="#2A4A3A">PAGATE A WALTER WHITE</text>
+              <text x="-140" y="-56" fontFamily="sans-serif" fontWeight="800" fontSize="15" fill="#2A4A3A">A WALTER W.</text>
               <path d="M-140 -36 h120" stroke="#5A7A6A" strokeWidth="3" />
             </g>
             <g transform={`translate(${tear * 40} ${tear * 4}) rotate(${tear * 8} 0 0)`}>

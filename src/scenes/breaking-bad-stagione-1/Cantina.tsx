@@ -136,14 +136,14 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               <rect x="-130" y="-120" width="270" height="116" fill="url(#cn-paper)" stroke={K} strokeWidth="5" />
               <path d="M5 -116 V-8" stroke="#8A8A9A" strokeWidth="3" />
               {Array.from({ length: 5 }, (_, i) => <path key={i} d={`M-124 ${-88 + i * 18} H134`} stroke="#AFC4E0" strokeWidth="2" />)}
-              <text x="-120" y="-96" fontFamily={HAND} fontSize="22" fill="#1E2A5A">LIBERARLO</text>
-              <text x="14" y="-96" fontFamily={HAND} fontSize="22" fill="#1E2A5A">UCCIDERLO</text>
+              <text x="-122" y="-96" fontFamily={HAND} fontSize="27" fill="#1E2A5A">LIBERARLO</text>
+              <text x="10" y="-96" fontFamily={HAND} fontSize="27" fill="#1E2A5A">UCCIDERLO</text>
               {[0, 1, 2, 3].map((i) => <path key={i} d={`M-116 ${-74 + i * 18} h${70 + (i % 2) * 30}`} stroke="#3A4A7A" strokeWidth="3" />)}
               <path d="M20 -74 h90" stroke="#3A4A7A" strokeWidth="3" />
               <path d="M14 -90 h110" stroke="#D8322A" strokeWidth="5" strokeDasharray="110" strokeDashoffset={110 * (1 - kill)} />
             </g>
             {/* bottiglia di birra */}
-            <g transform="translate(120 -170)">
+            <g transform="translate(215 0)">
               <path d="M-14 0 V-60 Q-14 -76 -6 -84 V-110 H6 V-84 Q14 -76 14 -60 V0 Z" fill="#6A4A1E" stroke={K} strokeWidth="5" />
               <path d="M-8 -64 V-10" stroke="#E8C080" strokeWidth="4" opacity=".6" />
             </g>

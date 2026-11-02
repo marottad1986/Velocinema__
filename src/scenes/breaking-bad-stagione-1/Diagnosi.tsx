@@ -133,13 +133,13 @@ export const Diagnosi: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <g transform="translate(300 1172)">
             <Ombra id="dg" x={140} y={0} rx={190} ry={16} />
             <clipPath id="dg-clip"><rect x="-200" y="-700" width="700" height="700" /></clipPath>
-            <g clipPath="url(#dg-clip)"><g transform={`translate(${30 + open * 40} ${60 - open * 210}) rotate(${-6 + open * 4})`}>
+            <g clipPath="url(#dg-clip)"><g transform={`translate(${30 + open * 40} ${60 - open * 130}) rotate(${-6 + open * 4})`}>
               <rect x="0" y="-210" width="230" height="200" fill="url(#dg-paper)" stroke={K} strokeWidth="5" />
               <text x="16" y="-176" fontFamily="sans-serif" fontWeight="800" fontSize="20" fill="#2A3A4A">REFERTO</text>
-              {[0, 1, 2, 3].map((k) => <rect key={k} x="16" y={-160 + k * 22} width={150 - k * 20} height="7" fill="#9AA4AA" />)}
-              <text x="18" y="-46" fontFamily="sans-serif" fontWeight="800" fontSize="26" fill="#1A1A1A">TUMORE</text>
-              <ellipse cx="74" cy="-56" rx="78" ry="30" fill="none" stroke="#D8322A" strokeWidth="6"
-                strokeDasharray="360" strokeDashoffset={360 * (1 - circle)} transform="rotate(-4 74 -56)" />
+              {[0, 1, 2, 3].map((k) => <rect key={k} x="16" y={-96 + k * 22} width={150 - k * 20} height="7" fill="#9AA4AA" />)}
+              <text x="18" y="-122" fontFamily="sans-serif" fontWeight="800" fontSize="26" fill="#1A1A1A">TUMORE</text>
+              <ellipse cx="74" cy="-132" rx="78" ry="30" fill="none" stroke="#D8322A" strokeWidth="6"
+                strokeDasharray="360" strokeDashoffset={360 * (1 - circle)} transform="rotate(-4 74 -132)" />
             </g></g>
             <path d="M0 -150 H260 V0 H0 Z" fill="#F4F0E4" stroke={K} strokeWidth="7" />
             <path d="M0 -150 L130 -60 L260 -150" fill="none" stroke="#B8B0A0" strokeWidth="4" />
@@ -148,12 +148,12 @@ export const Diagnosi: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             <path d="M200 -40 h40 v24 h-40 z" fill="#D8322A" opacity=".8" />
           </g>
           {/* spugna gialla e cartellino del secondo lavoro */}
-          <g transform="translate(610 1170)">
+          <g transform="translate(590 1170)">
             <Glow id="dg-sp" x={30} y={-40} r={140} t={t} color={ORO} amp={0.05} rate={3} opacity={0.5 * sponge} />
             <Ombra id="dg" x={30} y={0} rx={90} ry={10} />
             <path d="M-40 0 Q-46 -50 -30 -62 H80 Q96 -50 90 0 Z" fill="#F2C842" stroke={K} strokeWidth="6" />
             {Array.from({ length: 9 }, (_, i) => <circle key={i} cx={-24 + (i % 5) * 26} cy={-16 - Math.floor(i / 5) * 22} r="5" fill="#C89A1E" />)}
-            <g transform={`translate(110 -6) rotate(${-8 + sponge * 4})`}>
+            <g transform={`translate(-30 -64) rotate(${-8 + sponge * 4})`}>
               <rect x="0" y="-60" width="120" height="60" rx="6" fill="#F4F0E4" stroke={K} strokeWidth="5" />
               <rect x="0" y="-60" width="120" height="18" rx="4" fill="#3A6AC8" />
               <text x="8" y="-14" fontFamily="sans-serif" fontWeight="800" fontSize="15" fill="#1A1A1A">AUTOLAVAGGIO</text>
