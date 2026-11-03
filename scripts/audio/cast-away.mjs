@@ -56,7 +56,9 @@ export default (mix, T) => {
     return s.start + acc;
   };
   /** Battuta della griglia più vicina all'istante t: i cambi di sezione cadono sempre sul battere. */
-  const B = (t) => Math.round(t / BAR) * BAR;
+  const B = (t) => T.tempo + Math.round((t - T.tempo) / BAR) * BAR; // griglia che parte dalla fine della copertina, come nelle scene
+  /** Come `griglia` delle scene: istante assoluto arrotondato a 1/div di battito. */
+  const G = (t, div = 2) => T.tempo + Math.round((t - T.tempo) / (BEAT / div)) * (BEAT / div);
   const archi = { attack: 0.35, release: 1.1, rev: 0.5 };
   /** Colpo di timpano intonato (Re o La gravi). */
   const timp = (t, m, vel, gain, seed = 1) => suona(mix, 'timpani', m, { t, dur: 1.2, vel, pan: -0.15, rev: 0.45, gain, release: 0.6, seed });
@@ -123,17 +125,21 @@ export default (mix, T) => {
 
   // ---- promessa: il tema nasce piano, dolce; campanelli quando si apre l'orologio da tasca (seconda frase)
   theme(B(T.promessa), B(T.schianto), { vel: 56, str: 40, keep: 0.85, harpVel: 40, seed: 2 });
-  [86, 90, 93].forEach((m, j) => glock(mix, m, cue('promessa', 1) + 0.3 + j * 0.12, 50, -0.3 + j * 0.3));
-  clip(mix, 'scatti', { t: cue('promessa', 2) + 0.1, da: 1.1, durata: 0.15, gain: 0.3, rev: 0.25 }); // l'orologio si chiude
+  const WATCH = G(cue('promessa', 1) + 0.4), GIFT = G(cue('promessa', 2) + 0.2), TICKET = G(cue('promessa', 3) + 0.3); // come in Promessa.tsx
+  clip(mix, 'scatti', { t: WATCH - 0.02, da: 1.1, durata: 0.15, gain: 0.3, rev: 0.25 }); // l'orologio si apre
+  [86, 90, 93].forEach((m, j) => glock(mix, m, WATCH + 0.1 + j * 0.12, 50, -0.3 + j * 0.3));
+  [81, 86].forEach((m, j) => glock(mix, m, GIFT + 0.1 + j * 0.2, 46, 0.4)); // la scatolina con l'anello
+  clip(mix, 'stoffa', { t: TICKET - 0.05, da: 1, durata: 0.5, gain: 0.25, fadeOut: 0.2, rev: 0.25, pan: 0.3 }); // il biglietto del ritorno
 
   // ---- schianto: tempesta, motore che cede (tremoli e timpani), lampo, impatto in mare; poi il gommone che si gonfia
-  const IMPACT = cue('schianto', 2) + 0.9; // come in Schianto.tsx
+  const STRIKE = G(cue('schianto', 1) + 0.35), IMPACT = G(cue('schianto', 2) + 0.8), RAFT = G(cue('schianto', 3) + 0.2); // come in Schianto.tsx
   clip(mix, 'pioggia_vento', { t: T.schianto - 0.3, da: 34, durata: T.isola - T.schianto, gain: 0.25, fadeIn: 0.8, fadeOut: 1.2, largo: 2.5, rev: 0.1 });
   clip(mix, 'vento_raffiche', { t: T.schianto, da: 10, durata: T.isola - T.schianto - 0.5, gain: 0.22, fadeIn: 1, fadeOut: 1.2, largo: 3 });
   [50, 51].forEach((m, j) => suona(mix, 'celli_trem', m, { t: T.schianto, dur: IMPACT - T.schianto, vel: 54, pan: (j - 0.5) * 0.6, gain: 0.32, attack: 0.8, release: 0.4, rev: 0.5 }));
   suona(mix, 'violini_trem', 69, { t: cue('schianto', 1), dur: IMPACT - cue('schianto', 1), vel: 50, pan: 0.4, gain: 0.22, attack: 1, release: 0.3, rev: 0.55 });
   suona(mix, 'contrabbasso', 38, { t: T.schianto, dur: IMPACT - T.schianto, vel: 50, gain: 0.42, attack: 0.8, release: 0.5, rev: 0.4 });
-  clip(mix, 'tuono_classico', { t: cue('schianto', 1) + 0.4 + 0.15, da: 0.98, durata: 4, gain: 0.22, fadeIn: 0.03, fadeOut: 1.4, rev: 0.35 }); // primo lampo
+  clip(mix, 'tuono_classico', { t: STRIKE + 0.05, da: 0.98, durata: 4, gain: 0.26, fadeIn: 0.03, fadeOut: 1.4, rev: 0.35 }); // il fulmine colpisce
+  clip(mix, 'fiammata', { t: STRIKE + 0.1, da: 0.25, durata: 1.2, gain: 0.3, fadeOut: 0.5, rev: 0.3, pan: -0.2 }); // il motore prende fuoco
   // il motore cede: rullo dei timpani che cresce fino all'impatto
   for (let t = IMPACT - 2.4, k = 0; t < IMPACT - 0.05; t += 0.09, k++) timp(t, 38, 46 + (k * 50) / 27, 0.3 + k * 0.012, k);
   clip(mix, 'esplosioni', { t: IMPACT - 0.05, da: 30.2, durata: 2.4, gain: 0.3, fadeIn: 0.02, fadeOut: 1.6, rev: 0.35 });
@@ -142,13 +148,14 @@ export default (mix, T) => {
   colpo(mix, 'grancassa', 'bdrum_f', { t: IMPACT, vel: 100, rev: 0.5, gain: 0.5 });
   colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: IMPACT - 1.3, vel: 70, rev: 0.4, gain: 0.3, dur: 1.4, release: 0.3 });
   clip(mix, 'onde_tonanti', { t: IMPACT + 0.3, da: 5.9, durata: 4, gain: 0.4, fadeIn: 0.3, fadeOut: 1.5, largo: 2.5, rev: 0.2 });
-  clip(mix, 'telo', { t: cue('schianto', 3) - 0.05, da: 11.15, durata: 0.9, gain: 0.35, fadeOut: 0.3, rev: 0.25, pan: 0.2 }); // il gommone si gonfia
-  [62, 66, 69].forEach((m, j) => suona(mix, 'violini', m + 12, { t: cue('schianto', 3) + 0.3, dur: T.isola - cue('schianto', 3), vel: 32, pan: (j - 1) * 0.3, gain: 0.2, attack: 1.2, release: 1.4, rev: 0.6 }));
+  clip(mix, 'telo', { t: RAFT - 0.05, da: 11.15, durata: 0.9, gain: 0.35, fadeOut: 0.3, rev: 0.25, pan: 0.2 }); // il gommone si gonfia
+  [62, 66, 69].forEach((m, j) => suona(mix, 'violini', m + 12, { t: RAFT + 0.3, dur: T.isola - RAFT, vel: 32, pan: (j - 1) * 0.3, gain: 0.2, attack: 1.2, release: 1.4, rev: 0.6 }));
 
   // ---- isola: quasi silenzio, solo risacca, vento leggero e un'onda grande sulla barriera (quarta frase)
   onde(T.isola - 0.5, T.fuoco + 0.5, 14, 0.3);
-  clip(mix, 'vento_leggero', { t: T.isola, da: 0.5, durata: T.anni - T.isola, gain: 0.05, fadeIn: 2, fadeOut: 2, largo: 4 });
-  clip(mix, 'onde_tonanti', { t: cue('isola', 3) + 0.1, da: 5.9, durata: 3.4, gain: 0.45, fadeIn: 0.6, fadeOut: 1.4, largo: 2.5, rev: 0.2 });
+  clip(mix, 'vento_leggero', { t: T.isola, da: 0.5, durata: Math.min(15.5, T.anni - T.isola), gain: 0.05, fadeIn: 2, fadeOut: 2, largo: 4 });
+  const WALL = G(cue('isola', 3) + 0.2); // il muro d'onda si alza, si rompe a WALL + 1,9 (Isola.tsx)
+  clip(mix, 'onde_tonanti', { t: WALL + 0.3, da: 5.9, durata: 3.4, gain: 0.5, fadeIn: 1.4, fadeOut: 1.4, largo: 2.5, rev: 0.2 });
   suona(mix, 'pianoforte', 62, { t: cue('isola', 2), dur: 3, vel: 40, pan: 0.1, rev: 0.6, gain: 0.45, release: 2 });
   suona(mix, 'pianoforte', 57, { t: cue('isola', 2) + 2 * BEAT, dur: 3, vel: 34, pan: -0.1, rev: 0.6, gain: 0.4, release: 2 });
   suona(mix, 'celli', 38 + 12, { t: B(T.isola), dur: T.pacchi - B(T.isola), vel: 28, pan: -0.3, gain: 0.25, attack: 2, release: 2, rev: 0.6 });
@@ -160,17 +167,19 @@ export default (mix, T) => {
   [74, 78, 81, 86].forEach((m, j) => glock(mix, m + 12, cue('pacchi', 3) + 0.2 + j * 0.15, 50, 0.3));
 
   // ---- fuoco: il legnetto sfregato avanti e indietro, il pallone lanciato con rabbia, la fiamma che finalmente prende
-  clip(mix, 'torcia', { t: T.fuoco + 0.4, da: 2, durata: cue('fuoco', 1) - T.fuoco - 0.2, gain: 0.3, fadeIn: 0.3, fadeOut: 0.4, rev: 0.2 });
-  clip(mix, 'colpi_cavi', { t: cue('fuoco', 1) + 2 - 0.01, da: 0.5, durata: 0.5, gain: 0.45, fadeOut: 0.15, rev: 0.3 });
-  suona(mix, 'pianoforte', 57, { t: cue('fuoco', 2) + 0.4, dur: 2.5, vel: 40, pan: -0.1, rev: 0.6, gain: 0.45, release: 1.5 });
-  suona(mix, 'pianoforte', 62, { t: cue('fuoco', 2) + 0.4 + BEAT, dur: 2.5, vel: 38, pan: 0.1, rev: 0.6, gain: 0.42, release: 1.5 });
-  clip(mix, 'torcia', { t: cue('fuoco', 3) + 0.2, da: 9, durata: cue('fuoco', 4) - cue('fuoco', 3), gain: 0.3, fadeIn: 0.3, fadeOut: 0.3, rev: 0.2 });
-  for (let t = cue('fuoco', 4) - 1.2, k = 0; t < cue('fuoco', 4) + 0.15; t += 0.09, k++) timp(t, 38, 40 + k * 3, 0.35 + k * 0.02, 40 + k);
-  clip(mix, 'fiammata', { t: cue('fuoco', 4) + 0.2, da: 0.25, durata: 1.3, gain: 0.45, fadeOut: 0.5, rev: 0.3 });
-  clip(mix, 'fuoco', { t: cue('fuoco', 4) + 0.3, da: 1, durata: T.anni - cue('fuoco', 4) + 0.5, gain: 0.25, fadeIn: 0.4, fadeOut: 0.6, largo: 3, rev: 0.15 });
-  colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: cue('fuoco', 4) - 1.1, vel: 64, rev: 0.4, gain: 0.25, dur: 1.3, release: 0.3 });
-  harp(mix, CH_MAJ[0], cue('fuoco', 4) + 0.3, { step: 0.08, vel: 60 });
-  [50, 57, 62, 66].forEach((m, j) => suona(mix, ['celli', 'viole', 'viole', 'violini'][j], m, { t: cue('fuoco', 4) + 0.3, dur: T.anni - cue('fuoco', 4) - 0.3, vel: 44, pan: (j - 1.5) * 0.3, gain: 0.32, attack: 0.6, release: 1.2, rev: 0.55, seed: 50 + j }));
+  const THROW = G(cue('fuoco', 1) + 0.6), FACE = G(cue('fuoco', 2) + 0.5), FIRE = G(cue('fuoco', 4) + 0.4); // come in Fuoco.tsx
+  clip(mix, 'torcia', { t: T.fuoco + 0.3, da: 2, durata: THROW - 0.2 - T.fuoco - 0.3, gain: 0.3, fadeIn: 0.3, fadeOut: 0.3, rev: 0.2 }); // l'arco sfrega
+  clip(mix, 'colpi_cavi', { t: THROW + 1.0 - 0.01, da: 0.5, durata: 0.5, gain: 0.45, fadeOut: 0.15, rev: 0.3 }); // il pallone atterra
+  suona(mix, 'pianoforte', 57, { t: FACE, dur: 2.5, vel: 40, pan: -0.1, rev: 0.6, gain: 0.45, release: 1.5 }); // compare la faccia
+  suona(mix, 'pianoforte', 62, { t: FACE + BEAT, dur: 2.5, vel: 38, pan: 0.1, rev: 0.6, gain: 0.42, release: 1.5 });
+  glock(mix, 86, FACE + 0.02, 44, 0.2);
+  clip(mix, 'torcia', { t: cue('fuoco', 3) + 0.3, da: 9, durata: FIRE + 0.5 - cue('fuoco', 3) - 0.3, gain: 0.3, fadeIn: 0.3, fadeOut: 0.3, rev: 0.2 });
+  for (let t = FIRE - 1.35, k = 0; t < FIRE - 0.05; t += 0.09, k++) timp(t, 38, 40 + k * 3, 0.35 + k * 0.02, 40 + k);
+  clip(mix, 'fiammata', { t: FIRE - 0.05, da: 0.25, durata: 1.3, gain: 0.45, fadeOut: 0.5, rev: 0.3 });
+  clip(mix, 'fuoco', { t: FIRE + 0.1, da: 1, durata: T.anni - FIRE + 0.5, gain: 0.25, fadeIn: 0.4, fadeOut: 0.6, largo: 3, rev: 0.15 });
+  colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: FIRE - 1.3, vel: 64, rev: 0.4, gain: 0.25, dur: 1.3, release: 0.3 });
+  harp(mix, CH_MAJ[0], FIRE + 0.1, { step: 0.08, vel: 60 });
+  [50, 57, 62, 66].forEach((m, j) => suona(mix, ['celli', 'viole', 'viole', 'violini'][j], m, { t: FIRE + 0.1, dur: T.anni - FIRE - 0.1, vel: 44, pan: (j - 1.5) * 0.3, gain: 0.32, attack: 0.6, release: 1.2, rev: 0.55, seed: 50 + j }));
 
   // ---- anni: grotta, fuoco basso, pianoforte solitario a metà passo; si scalda quando sogna di tornare
   clip(mix, 'fuoco', { t: T.anni, da: 12, durata: T.vela - T.anni - 0.3, gain: 0.2, fadeIn: 0.6, fadeOut: 0.8, largo: 3, rev: 0.2 });
@@ -181,7 +190,8 @@ export default (mix, T) => {
   // ---- vela: il tema caldo parte con la zattera, poi cresce a passo pieno con timpani e corno quando supera la barriera
   onde(T.vela - 0.3, T.wilson + 0.5, 2, 0.3);
   clip(mix, 'vento_raffiche', { t: cue('vela', 3), da: 40, durata: T.wilson - cue('vela', 3), gain: 0.16, fadeIn: 1, fadeOut: 1, largo: 2 });
-  clip(mix, 'telo', { t: cue('vela', 2) + 0.2, da: 12.85, durata: 0.9, gain: 0.3, fadeOut: 0.3, rev: 0.25 }); // la vela si gonfia
+  clip(mix, 'onde_tonanti', { t: cue('vela', 3) + 0.1, da: 5.9, durata: 2.2, gain: 0.3, fadeIn: 0.6, fadeOut: 1, largo: 2.5, rev: 0.2 }); // la barriera si alza
+  clip(mix, 'telo', { t: cue('vela', 2) + 0.5, da: 12.85, durata: 0.9, gain: 0.3, fadeOut: 0.3, rev: 0.25 }); // la vela si gonfia
   const VELA = B(cue('vela', 4));
   theme(B(T.vela), VELA, { vel: 52, str: 36, keep: 0.9, harpVel: 46, seed: 6 });
   theme(VELA, B(T.wilson), { vel: 62, str: 50, big: true, harpVel: 50, seed: 7 });
@@ -189,14 +199,23 @@ export default (mix, T) => {
   clip(mix, 'onde_tonanti', { t: VELA + 0.55 * (T.wilson - VELA) - 0.6, da: 5.9, durata: 3, gain: 0.5, fadeIn: 0.3, fadeOut: 1.2, largo: 2.5, rev: 0.2 }); // l'onda della barriera
 
   // ---- wilson: il tema in minore agli archi; il pallone scivola via; la sirena lontana di una nave (sesta frase)
+  const FLASH1 = G(cue('wilson', 0) + 0.25), TEAR = G(cue('wilson', 0) + 1.0), SLIP = G(cue('wilson', 1) + 0.35); // come in Wilson.tsx
+  const CALM = cue('wilson', 4) + 0.6, SHIP = G(cue('wilson', 5) + 0.3);
   onde(T.wilson, T.ritorno, 24, 0.2, 1500);
+  // tempesta che si placa tra la terza e la quinta frase
+  clip(mix, 'pioggia_vento', { t: T.wilson - 0.3, da: 34, durata: CALM - T.wilson + 0.3, gain: 0.16, fadeIn: 0.6, fadeOut: 2.4, largo: 2.5, rev: 0.1 });
+  clip(mix, 'vento_raffiche', { t: T.wilson, da: 10, durata: CALM - T.wilson, gain: 0.12, fadeIn: 0.6, fadeOut: 2.4, largo: 3 });
+  clip(mix, 'onde_tonanti', { t: T.wilson + 0.2, da: 5.9, durata: 3.5, gain: 0.2, fadeIn: 0.5, fadeOut: 1.6, largo: 2.5, rev: 0.2 });
+  clip(mix, 'tuono_secco', { t: FLASH1 + 0.1, da: 0.78, durata: 2.6, gain: 0.2, fadeIn: 0.03, fadeOut: 1, rev: 0.35, lp: 3000 });
+  clip(mix, 'tuono_classico', { t: TEAR + 0.05, da: 0.98, durata: 3.4, gain: 0.24, fadeIn: 0.03, fadeOut: 1.4, rev: 0.35 });
+  clip(mix, 'telo', { t: TEAR - 0.02, da: 11.15, durata: 0.8, gain: 0.4, fadeOut: 0.3, rev: 0.25, pan: 0.15 }); // la vela si squarcia
   theme(B(T.wilson), B(cue('wilson', 5)), { vel: 54, str: 50, minor: true, keep: 0.9, seed: 8 });
   suona(mix, 'violini', 74, { t: cue('wilson', 2), dur: cue('wilson', 4) - cue('wilson', 2), vel: 40, pan: -0.2, gain: 0.25, attack: 1, release: 1.4, rev: 0.6 });
-  clip(mix, 'onde', { t: cue('wilson', 1) + 0.6, da: 7.2, durata: 1.2, gain: 0.25, fadeIn: 0.1, fadeOut: 0.6, rev: 0.2, pan: 0.3 }); // tonfo leggero in acqua
+  clip(mix, 'onde', { t: SLIP + 0.85, da: 7.2, durata: 1.2, gain: 0.25, fadeIn: 0.1, fadeOut: 0.6, rev: 0.2, pan: 0.3 }); // tonfo leggero in acqua
   theme(B(cue('wilson', 5)), B(T.ritorno), { vel: 46, str: 34, keep: 0.7, seed: 9 });
   // sirena di nave: canne d'organo gravi e corni all'unisono, attacco lento, lontani
   [[38, 'organo_pedale', 0.4], [43, 'organo_pedale', 0.3], [38, 'corno', 0.22]].forEach(([m, id, g], k) =>
-    suona(mix, id, m, { t: cue('wilson', 5) + 0.4, dur: 2.4, vel: 60, pan: -0.4, gain: g, attack: 0.3, release: 0.8, rev: 0.7, seed: 30 + k }));
+    suona(mix, id, m, { t: SHIP + 0.1, dur: 2.4, vel: 60, pan: -0.4, gain: g, attack: 0.3, release: 0.8, rev: 0.7, seed: 30 + k }));
 
   // ---- ritorno: pioggia su Memphis, tema minore a metà passo; la porta che si chiude, l'auto che si allontana
   clip(mix, 'pioggia_dura', { t: T.ritorno, da: 5.4, durata: T.bivio - T.ritorno - 0.2, gain: 0.9, fadeIn: 1.2, fadeOut: 1.2, largo: 3, rev: 0.12 });
@@ -210,6 +229,7 @@ export default (mix, T) => {
   theme(B(T.bivio), B(cue('bivio', 2)), { vel: 50, str: 40, harpVel: 44, seed: 11 });
   theme(B(cue('bivio', 2)), B(T.finale), { vel: 62, str: 52, big: true, harpVel: 50, mar: true, seed: 12 });
   [74, 78, 81, 86, 90].forEach((m, j) => glock(mix, m + 12, cue('bivio', 3) + 0.1 + j * 0.12, 50, -0.4 + j * 0.2));
+  clip(mix, 'rombo', { t: cue('bivio', 4) + 1.0, da: 31, durata: 2.4, gain: 0.18, lp: 600, fadeIn: 0.4, fadeOut: 1.4, largo: 2 }); // il furgone riparte
 
   // ---- finale: accordo di Re maggiore degli archi e del corno, arpa e pianoforte che si sciolgono
   const F = B(T.finale);
