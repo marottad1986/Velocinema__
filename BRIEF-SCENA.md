@@ -92,6 +92,8 @@ funzione pura di `t`, seme, `id`, niente filtri) e mettilo nel catalogo. Il rest
 - **Lampi.** Massimo due per scena, mai più di 3 al secondo: usa sempre `flashAt`.
 - **Personaggi.** Mai persone, nemmeno sagome o mani: si raccontano luoghi e oggetti (cappello, scarpe, biglietto, tazza).
   Animali e dinosauri sì, generici e nel nostro stile (mai il design del film).
+- **Testo tagliato o sotto le icone.** Il titolo della locandina deve entrare tutto (lo riduce da solo `PosterView`, ma
+  va guardato nel fotogramma); nessuna fascia di testo oltre x 900 da y ≈ 800 in giù (colonna delle icone delle app).
 - **Oggetto protagonista solo in una frase.** Se compare e sparisce, per gran parte del capitolo l'inquadratura è vuota:
   l'oggetto chiave c'è sempre (in sagoma, nella nebbia, spento) e la frase lo fa emergere o lo cambia.
 - **Oggetti sospesi o incollati.** Chiavi che cadono e si fermano a mezz'aria, foglie appiccicate sulle facce verticali:
