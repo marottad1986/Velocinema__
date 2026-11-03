@@ -40,18 +40,18 @@ export const copertinaQuadro = (opera: Opera, da: Chiave['v'], a: Chiave['v']): 
     <AbsoluteFill>
       <Quadro opera={opera} t={t} chiavi={[{ t: 0, v: da }, { t: dur, v: a }]} />
       <AbsoluteFill style={{ background: 'linear-gradient(rgba(5,10,25,.75), rgba(5,10,25,0) 45%, rgba(5,10,25,0) 60%, rgba(5,10,25,.7))' }} />
-      <p style={{ position: 'absolute', top: 290, left: 80, margin: 0, fontFamily: SANS, fontWeight: 800, fontSize: 30, letterSpacing: '0.35em', color: P.accento, opacity: k }}>
+      <p style={{ position: 'absolute', top: 290, left: 120, margin: 0, fontFamily: SANS, fontWeight: 800, fontSize: 30, letterSpacing: '0.35em', color: P.accento, opacity: k }}>
         QUADRI SPIEGATI
       </p>
       <h1 style={{ position: 'absolute', top: 340, left: 72, margin: 0, fontFamily: SERIF, fontWeight: 400, fontSize: size, lineHeight: 0.88, color: CREMA,
         opacity: k, transform: `translateY(${(1 - k) * 30}px)`, textShadow: '0 6px 30px rgba(0,0,0,.5)' }}>
         {r.map((x, i) => <React.Fragment key={i}>{i > 0 && <br />}{x}</React.Fragment>)}
       </h1>
-      <p style={{ position: 'absolute', top: 340 + size * 0.88 * 2 + 30, left: 80, margin: 0, fontFamily: SANS, fontWeight: 800, fontSize: 40, color: CREMA, opacity: sub }}>
+      <p style={{ position: 'absolute', top: 340 + size * 0.88 * 2 + 30, left: 120, margin: 0, fontFamily: SANS, fontWeight: 800, fontSize: 40, color: CREMA, opacity: sub }}>
         {film.autore} · {film.anno}
       </p>
       {film.copertina.frase_lancio && (
-        <p style={{ position: 'absolute', top: 1360, left: 80, right: 80, margin: 0, fontFamily: SERIF, fontStyle: 'italic', fontSize: 60, lineHeight: 1.15, color: CREMA,
+        <p style={{ position: 'absolute', top: 1360, left: 120, right: 180, margin: 0, fontFamily: SERIF, fontStyle: 'italic', fontSize: 60, lineHeight: 1.15, color: CREMA,
           opacity: lancio, transform: `translateY(${(1 - lancio) * 14}px)` }}>
           {film.copertina.frase_lancio}
         </p>
@@ -67,7 +67,7 @@ export const finaleQuadro = (opera: Opera): React.FC<PosterProps> => ({ t, film 
   return (
     <AbsoluteFill>
       <Quadro opera={opera} t={t} chiavi={[{ t: 0, v: intera(opera, 0.5, 0.42) }]} />
-      <div style={{ position: 'absolute', left: 90, top: 300, width: 900, boxSizing: 'border-box', padding: '40px 40px 36px', borderRadius: 24,
+      <div style={{ position: 'absolute', left: 120, top: 300, width: 840, boxSizing: 'border-box', padding: '40px 40px 36px', borderRadius: 24,
         background: 'rgba(10,16,32,.84)', border: '2px solid rgba(255,255,255,.2)', color: CREMA, fontFamily: SANS, textAlign: 'center',
         opacity: card, transform: `translateY(${(1 - card) * 20}px)` }}>
         <p style={{ margin: 0, fontFamily: SERIF, fontWeight: 400, fontSize: 84, lineHeight: 1 }}>{film.titolo}</p>

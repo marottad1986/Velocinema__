@@ -98,7 +98,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
       <Rovine_ t={t} dur={dur} id="dc2" />
-      <div style={{ position: 'absolute', left: 80, top: 290, width: 920, fontFamily: SANS }}>
+      <div style={{ position: 'absolute', left: 120, top: 290, width: 840, fontFamily: SANS }}>
         <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.accento, opacity: tag, textShadow: `0 2px 0 ${P.scuro}` }}>SPIEGATO SEMPLICE · SERIE</p>
         <h1 style={{ margin: '10px 0 0', fontFamily: STENCIL, fontWeight: 800, fontSize: 250, lineHeight: 0.9, letterSpacing: '0.12em', color: P.chiaro,
           textShadow: `0 8px 0 ${P.scuro}`, opacity: seg(t, 0.1, 0.3), transform: `translateY(${(1 - l1) * 50}px)` }}>
@@ -107,7 +107,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
         <p style={{ margin: '14px 0 0', fontFamily: STENCIL, fontWeight: 800, fontSize: 64, letterSpacing: '0.3em', color: P.accento, opacity: sub, textShadow: `0 4px 0 ${P.scuro}` }}>STAGIONE {film.stagione}</p>
         <p style={{ margin: '14px 0 0', fontSize: 34, fontWeight: 800, opacity: sub, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>una serie di {film.regista} · {film.anno}</p>
       </div>
-      <p style={{ position: 'absolute', left: 60, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 840, boxSizing: 'border-box', padding: '12px 26px 14px',
+      <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 40, fontWeight: 800, textAlign: 'center',
         opacity: line, transform: `translateY(${(1 - line) * 14}px)` }}>
         {film.copertina.frase_lancio}
@@ -150,7 +150,7 @@ export const Finale: React.FC<PosterProps> = ({ t, dur, film }) => {
       <Rovine_ t={t + 4} dur={dur} id="de2" objects={false} />
       <div style={{ position: 'absolute', inset: 0, background: `${P.scuro}66` }} />
       <Anello t={t} years={film.linea_tempo ?? []} accent={P.accento} ink={P.chiaro} dark={P.scuro} />
-      <div style={{ position: 'absolute', left: 90, top: 300, width: 900, boxSizing: 'border-box', padding: '34px 40px 30px', borderRadius: 32,
+      <div style={{ position: 'absolute', left: 120, top: 300, width: 840, boxSizing: 'border-box', padding: '34px 40px 30px', borderRadius: 32,
         background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, textAlign: 'center', opacity: card, transform: `translateY(${(1 - card) * 24}px)` }}>
         <p style={{ margin: 0, fontFamily: DISPLAY, fontWeight: 800, fontSize: 68, lineHeight: 1 }}>Ti è servito?</p>
         <div style={{ display: 'flex', gap: 24, justifyContent: 'center', marginTop: 28 }}>
@@ -159,7 +159,7 @@ export const Finale: React.FC<PosterProps> = ({ t, dur, film }) => {
         </div>
         <p style={{ margin: '24px 0 0', fontSize: 34, fontWeight: 400, opacity: seg(t, 1.0, 1.4) }}>Commenta con la spiegazione che vorresti.</p>
       </div>
-      <p style={{ position: 'absolute', left: 60, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 840, boxSizing: 'border-box', padding: '12px 26px 14px',
+      <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 44, fontWeight: 800, textAlign: 'center', lineHeight: 1.25,
         opacity: line, transform: `translateY(${(1 - line) * 14}px)` }}>
         {film.finale.voce}

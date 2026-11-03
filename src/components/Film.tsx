@@ -81,31 +81,30 @@ export const PosterView: React.FC<{ slug: string; end?: boolean }> = ({ slug, en
   const sigla = !end && film.data.formato === 'spiegato' && film.data.sigla !== false ? SIGLA : 0;
   const t = Math.max(0, frame / fps - sigla);
   const ref = useRef<HTMLDivElement>(null);
-  // Titoli grandi delle locandine (h1): se il testo esce dallo schermo (margine 40 px), il carattere si riduce finché entra.
-  // Si misura il testo vero (righe del Range), a caratteri caricati, prima di consegnare il fotogramma.
+  // Titoli grandi delle locandine (h1): devono stare nella zona sicura, 840 px di larghezza (120 px di margine per lato,
+  // perché TikTok taglia fino a ~100 px per lato). Si misura ogni riga (o parola, se il titolo va a capo) con il suo carattere
+  // su un canvas, che non dipende dall'impaginazione, e se è più larga si riduce il carattere.
   useLayoutEffect(() => {
-    const handle = delayRender('Titolo della locandina che entra nello schermo');
+    const handle = delayRender('Titolo della locandina nella zona sicura');
     let fatto = false;
     const fine = () => { if (!fatto) { fatto = true; continueRender(handle); } };
     document.fonts.ready.then(() => {
       if (fatto) return;
       const box = ref.current;
-      if (box) {
-        const b = box.getBoundingClientRect();
-        const k = b.width / 1080;
-        const limiteDx = b.left + (1080 - 40) * k, limiteSx = b.left + 40 * k;
+      const ctx = document.createElement('canvas').getContext('2d');
+      if (box && ctx) {
         box.querySelectorAll('h1').forEach((h) => {
-          for (let giro = 0; giro < 3; giro++) {
-            const r = document.createRange();
-            r.selectNodeContents(h);
-            const righe = Array.from(r.getClientRects()).filter((x) => x.width > 0);
-            if (!righe.length) break;
-            const sx = Math.min(...righe.map((x) => x.left)), dx = Math.max(...righe.map((x) => x.right));
-            if (dx <= limiteDx + 0.5 && sx >= limiteSx - 0.5) break;
-            const fattore = (limiteDx - Math.max(sx, limiteSx)) / (dx - sx);
-            const ora = parseFloat(getComputedStyle(h).fontSize);
-            h.style.fontSize = `${Math.floor(ora * Math.min(0.98, fattore))}px`;
-          }
+          const cs = getComputedStyle(h);
+          const size = parseFloat(cs.fontSize);
+          const spazio = cs.letterSpacing === 'normal' ? 0 : parseFloat(cs.letterSpacing) || 0;
+          ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${size}px ${cs.fontFamily}`;
+          const testo = cs.textTransform === 'uppercase' ? (h.textContent ?? '').toUpperCase() : h.textContent ?? '';
+          const nowrap = cs.whiteSpace === 'nowrap' || cs.whiteSpace === 'pre';
+          // le righe vere: a capo con <br> o con blocchi; se il titolo può andare a capo conta la parola più lunga
+          const blocchi = Array.from(h.childNodes).map((n) => (n.textContent ?? '').trim()).filter(Boolean);
+          const righe = (blocchi.length > 1 ? blocchi : [testo.trim()]).flatMap((r) => (nowrap ? [r] : r.split(/\s+/)));
+          const larga = Math.max(...righe.map((r) => ctx.measureText(cs.textTransform === 'uppercase' ? r.toUpperCase() : r).width + spazio * Math.max(0, r.length - 1)));
+          if (larga > 840) h.style.fontSize = `${Math.floor(size * (840 / larga) * 0.98)}px`;
         });
       }
       fine();
@@ -113,8 +112,10 @@ export const PosterView: React.FC<{ slug: string; end?: boolean }> = ({ slug, en
     return fine;
   });
   return (
-    <AbsoluteFill ref={ref} style={{ background: film.data.palette.scuro, overflow: 'hidden' }}>
-      {Comp ? <Comp t={t} dur={total - sigla} film={film.data} /> : <PosterPlaceholder film={film} end={end} />}
+    <AbsoluteFill style={{ background: film.data.palette.scuro, overflow: 'hidden' }}>
+      <div ref={ref} style={{ position: 'absolute', inset: 0 }}>
+        {Comp ? <Comp t={t} dur={total - sigla} film={film.data} /> : <PosterPlaceholder film={film} end={end} />}
+      </div>
       {sigla > 0 && <Sigla t={frame / fps} tipo={film.data.tipo ?? 'film'} />}
     </AbsoluteFill>
   );

@@ -80,7 +80,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
       <Blueprint t={t} id="ic" build={seg(t, 0, dur * 0.8)} />
-      <div style={{ position: 'absolute', left: 80, top: 290, width: 920, fontFamily: SANS }}>
+      <div style={{ position: 'absolute', left: 120, top: 290, width: 840, fontFamily: SANS }}>
         <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.accento, opacity: tag }}>SPIEGATO SEMPLICE · FILM</p>
         <h1 style={{ margin: '6px 0 0', fontFamily: BEBAS, fontWeight: 400, fontSize: 220, lineHeight: 0.9, letterSpacing: '0.06em', color: P.chiaro,
           textShadow: `0 8px 0 ${P.scuro}`, opacity: seg(t, 0.1, 0.3), transform: `translateY(${(1 - l1) * 50}px)` }}>
@@ -88,7 +88,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
         </h1>
         <p style={{ margin: '4px 0 0', fontSize: 34, fontWeight: 800, opacity: seg(t, 0.4, 0.8), color: P.chiaro }}>un film di {film.regista} · {film.anno}</p>
       </div>
-      <p style={{ position: 'absolute', left: 60, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 840, boxSizing: 'border-box', padding: '12px 26px 14px',
+      <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 40, fontWeight: 800, textAlign: 'center',
         opacity: line, transform: `translateY(${(1 - line) * 14}px)` }}>
         {film.copertina.frase_lancio}
@@ -106,7 +106,7 @@ export const Finale: React.FC<PosterProps> = ({ t, film }) => {
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
       <Blueprint t={t + 3} id="ie" wobble={lerp(0.4, 1, seg(t, 0, 4))} />
-      <div style={{ position: 'absolute', left: 90, top: 300, width: 900, boxSizing: 'border-box', padding: '34px 40px 30px', borderRadius: 32,
+      <div style={{ position: 'absolute', left: 120, top: 300, width: 840, boxSizing: 'border-box', padding: '34px 40px 30px', borderRadius: 32,
         background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, textAlign: 'center', opacity: card, transform: `translateY(${(1 - card) * 24}px)` }}>
         <p style={{ margin: 0, fontFamily: DISPLAY, fontWeight: 800, fontSize: 68, lineHeight: 1 }}>Ti è servito?</p>
         <div style={{ display: 'flex', gap: 24, justifyContent: 'center', marginTop: 28 }}>
@@ -115,7 +115,7 @@ export const Finale: React.FC<PosterProps> = ({ t, film }) => {
         </div>
         <p style={{ margin: '24px 0 0', fontSize: 34, fontWeight: 400, opacity: seg(t, 1.0, 1.4) }}>Commenta con la spiegazione che vorresti.</p>
       </div>
-      <p style={{ position: 'absolute', left: 60, right: 180, top: 1340, margin: '0 auto', width: 'fit-content', maxWidth: 840, boxSizing: 'border-box', padding: '12px 26px 14px',
+      <p style={{ position: 'absolute', left: 120, right: 180, top: 1340, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 44, fontWeight: 800, textAlign: 'center', lineHeight: 1.25,
         opacity: line, transform: `translateY(${(1 - line) * 14}px)` }}>
         {film.finale.voce}

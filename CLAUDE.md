@@ -88,9 +88,12 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 - Sottotitoli in basso (tra y 1270 e 1490), una frase alla volta su fascia scura semitrasparente,
   tempi distribuiti in proporzione alla lunghezza delle frasi.
 - Zone coperte dalle app: niente testo nei primi 250 px in alto e negli ultimi 420 px in basso, e nessuna fascia di testo
-  nella colonna delle icone a destra (like, commenti, condivisioni: ultimi 180 px, da y ≈ 800 in giù): sottotitoli e frase di
-  lancio stanno tra x 60 e 900 (`maxWidth: 840`). I titoli grandi delle locandine (h1) entrano sempre tutti nello schermo:
-  se il testo è troppo largo, `PosterView` in `src/components/Film.tsx` riduce il carattere da solo (margine 40 px).
+  nella colonna delle icone a destra (like, commenti, condivisioni: ultimi 180 px, da y ≈ 800 in giù).
+- Zona sicura ai lati: TikTok riempie gli schermi più lunghi del 9:16 e taglia fino a ~100 px per lato (Instagram no). Tutti
+  i testi fissi stanno tra x 120 e 960: etichetta e titolo del capitolo da x 120, sottotitoli e frase di lancio tra x 120 e 900
+  (`maxWidth: 780`), testate e riquadro del finale da x 120 larghi 840. I titoli grandi delle locandine (h1) entrano sempre in
+  840 px: se il testo è più largo, `PosterView` in `src/components/Film.tsx` riduce il carattere da solo (misura su canvas).
+  Nelle scene gli oggetti chiave stanno lontani dai bordi (lo sfondo ai lati può essere tagliato).
 
 ## Secondo formato: "Spiegato semplice" (film e serie TV)
 Trame complesse spiegate nel modo più semplice possibile, «come a un bambino di 5 anni». Valgono tutte le regole
