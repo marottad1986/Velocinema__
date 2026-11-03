@@ -10,9 +10,9 @@
   },
   "copertina": {
     "durata": 4,
-    "frase_lancio": "Una donna sola per strada. E dentro, il suo autore.",
-    "immagine": "Strada di città di notte dopo la pioggia: marciapiede bagnato che riflette un lampione arancione, una panchina vuota, una borsetta dimenticata sulla panchina, vetrine spente, foglie che il vento sposta sull'asfalto. Titolo grande in corsivo, come scritto a mano. NON usare foto, ritratti o sagome di Vasco Rossi, copertine dei dischi o loghi.",
-    "voce": "Sally, di Vasco Rossi: chi è la donna che cammina da sola?"
+    "frase_lancio": "Una donna sola per strada. E se fosse il suo autore?",
+    "immagine": "Strada di città di notte dopo la pioggia: marciapiede bagnato che riflette un lampione arancione, una panchina vuota, una sciarpa rossa appoggiata sullo schienale della panchina, vetrine spente, foglie che il vento sposta sull'asfalto. Titolo grande in corsivo, come scritto a mano. NON usare foto, ritratti o sagome di Vasco Rossi, copertine dei dischi o loghi.",
+    "voce": "Sally, di Vasco Rossi: chi è quella donna sola per strada?"
   },
   "capitoli": [
     {
@@ -21,23 +21,23 @@
       "durata": 14,
       "scena": "Sala prove vuota di sera: chitarra elettrica appoggiata a un amplificatore con la spia rossa accesa, asta del microfono, cavi a terra; su un tavolino un vecchio giradischi con un 45 giri che gira e un quaderno di testi aperto; alla parete un poster di concerto senza volti (solo uno stadio di luci).",
       "sottotitoli": [
-        "Vasco Rossi, cantautore emiliano, è uno dei rocker più amati d'Italia.",
+        "Vasco Rossi, cantautore, è uno dei rocker più amati d'Italia,",
         "Ma accanto ai pezzi più duri scrive anche ritratti di donne:",
         "infatti il suo primo disco, nel 1977, parla di Jenny,",
-        "una ragazza fragile e confusa.",
+        "una ragazza fragile e disillusa.",
         "E quasi vent'anni dopo arriva Sally."
       ]
     },
     {
       "id": "barca",
-      "titolo": "Scritta in una notte",
+      "titolo": "Scritta d'un fiato in vacanza",
       "durata": 14,
       "scena": "Porto di Saint-Tropez di notte: barche ormeggiate che dondolano, acqua con i riflessi delle luci del lungomare, in fondo un locale illuminato con musica (lucine colorate); in primo piano il ponte di una barca con un tavolino, una lampada a olio, un foglio e una penna, un bicchiere; la luna dietro le nuvole.",
       "sottotitoli": [
         "La canzone nasce quasi per caso, in vacanza:",
-        "Vasco è a Saint-Tropez, dove dorme su una barca,",
+        "Vasco è a Saint-Tropez, in Francia, e sta su una barca,",
         "e passa la serata in un locale pieno di donne bellissime.",
-        "Poi torna in barca da solo e, racconta, la scrive di getto."
+        "Poi torna a bordo e, racconta, la scrive tutta d'un fiato."
       ]
     },
     {
@@ -56,24 +56,36 @@
       "id": "sally",
       "titolo": "Chi è Sally?",
       "durata": 14,
-      "scena": "Una lunga strada di città all'alba: marciapiede bagnato, lampioni che si spengono uno dopo l'altro, sul selciato un paio di scarpe col tacco lasciate a terra, un ombrello chiuso appoggiato al muro; vetrine con i riflessi del cielo che schiarisce; foglie e carte portate dal vento.",
+      "scena": "Una lunga strada di città all'alba: marciapiede bagnato, lampioni che si spengono uno dopo l'altro, un ombrello rosso aperto appoggiato al muro accanto a una porta, una cabina telefonica con la luce accesa; vetrine con i riflessi del cielo che schiarisce; foglie e carte portate dal vento.",
       "sottotitoli": [
         "Ma chi è Sally? Non è una persona precisa:",
-        "è una donna che cammina per strada, sola,",
-        "e intanto ripensa alla sua vita: gli errori, le scelte difficili, il dolore.",
+        "è una donna sola che attraversa la città a piedi,",
+        "e intanto ripensa alla sua vita: gli errori, il male subito dagli altri.",
         "Così capisce che ha smesso di lottare contro tutto."
       ]
     },
     {
       "id": "senso",
-      "titolo": "La vita non segue i piani",
+      "titolo": "La vita su un filo",
       "durata": 14,
       "scena": "Tetto di un palazzo al tramonto: un filo da equilibrista teso tra due comignoli sopra la città, un ombrellino rosso appoggiato su un'estremità, rondini che passano, panni stesi che si muovono nel vento; in basso le luci della città che si accendono.",
       "sottotitoli": [
         "E proprio qui c'è il cuore della canzone:",
-        "la vita non segue i nostri piani e passa in fretta,",
+        "la vita è breve, fatta di emozioni che durano un attimo,",
         "e ci teniamo in piedi come chi cammina su un filo.",
-        "Per molti è il pensiero più famoso di Vasco, citato ovunque."
+        "Quindi, per la canzone, conviene vivere fino in fondo ogni momento."
+      ]
+    },
+    {
+      "id": "mannoia",
+      "titolo": "Sally nella voce di Fiorella Mannoia",
+      "durata": 14,
+      "scena": "Palco di un teatro a luci basse: un solo microfono su asta al centro, illuminato da un faro caldo; fasci di luce nel fumo, un pianoforte a coda di lato con lo sgabello vuoto, fiori sul bordo del palco; a fine scena le luci del pubblico in platea si accendono come tante piccole stelle.",
+      "sottotitoli": [
+        "Intanto la canzone piace a Fiorella Mannoia, celebre cantante italiana,",
+        "che dal 1998 la canta nei suoi concerti",
+        "e l'anno dopo la incide in un suo album dal vivo.",
+        "Così Sally diventa un classico anche fuori dal rock."
       ]
     },
     {
@@ -85,20 +97,8 @@
         "Ma Vasco dice che Sally, in fondo, è lui:",
         "pensava a una donna di trent'anni, racconta,",
         "ma poi nel pezzo ci è finito moltissimo di sé.",
-        "Nel 2020 la chiama la sua parte femminile,",
+        "Poi la chiama la sua parte femminile,",
         "e dice che continua la storia di Jenny."
-      ]
-    },
-    {
-      "id": "mannoia",
-      "titolo": "Una canzone a due voci",
-      "durata": 14,
-      "scena": "Studio televisivo anni '90 a luci basse: due microfoni su asta uno accanto all'altro al centro di un palco, fasci di luce che si incrociano, telecamere ferme, un pianoforte a coda di lato; a fine scena le luci del pubblico si accendono come tante piccole stelle.",
-      "sottotitoli": [
-        "Intanto la canzone piace a Fiorella Mannoia, celebre cantante italiana,",
-        "che nel 1998 la canta in tv insieme a Vasco",
-        "e l'anno dopo la incide in un suo album dal vivo.",
-        "Così Sally diventa un classico anche fuori dal rock."
       ]
     },
     {
@@ -107,16 +107,16 @@
       "durata": 14,
       "scena": "Palco di un grande teatro visto dalla platea: un leggio illuminato da un solo faro, sul leggio fogli scritti, fiori sul bordo del palco, sipario rosso; a fine scena la strada della copertina all'alba, con la panchina vuota e il sole che sorge.",
       "sottotitoli": [
-        "A Sanremo 2020 la giornalista Rula Jebreal parla di violenza sulle donne",
-        "e cita Sally pensando a sua madre.",
+        "Nel 2020, al Festival di Sanremo, la giornalista Rula Jebreal",
+        "parla di sua madre, vittima di violenza, e cita Sally.",
         "Così Vasco la ringrazia: ha dato alla canzone una nuova vita.",
-        "Perché Sally sembra arresa, ma alla fine è più forte di tutto."
+        "Perché, dice Vasco, Sally sembra arresa ma è più forte di tutto."
       ]
     }
   ],
   "finale": {
     "durata": 4,
-    "immagine": "La strada della copertina all'alba: la panchina vuota, la borsetta non c'è più, il lampione che si spegne e il cielo che si schiarisce; 'Fine' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la canzone che vorresti.'"
+    "immagine": "La strada della copertina all'alba: la panchina vuota, la sciarpa rossa mossa dal vento, il lampione che si spegne e il cielo che si schiarisce; 'Fine' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la canzone che vorresti.'"
   },
   "musica": "Originale e strumentale: ballata lenta con pianoforte, archi e chitarra pulita, che cresce piano fino a un'apertura piena nell'ultimo capitolo; niente melodie, accordi o ritmi di Sally (meglio in un'altra tonalità).",
   "fonti": [
@@ -124,13 +124,14 @@
     "Album pubblicato il 24 gennaio 1996, primo in classifica in Italia dalla seconda settimana (Adnkronos, 5 febbraio 1996); nella tabella delle tracce Sally è l'unico brano con testo e musica del solo Vasco (gli altri hanno musica di Tullio Ferro, Guido Elmi o Massimo Riva): https://it.wikipedia.org/wiki/Nessun_pericolo..._per_te e https://www.hitparadeitalia.it/hp_yenda/lpe1996.htm (posizione massima 1, settimo album più venduto del 1996)",
     "Scritta di getto a bordo di una barca durante una vacanza a Saint-Tropez, dopo una serata in un locale pieno di donne bellissime (racconto di Vasco allo Speciale Tg1 «Sono nate così» di Vincenzo Mollica, Rai1, 22 maggio 2016). Alcuni articoli dicono che la barca era del manager, altri di un amico, e uno che pensasse a una ragazza in particolare: non confermato, per questo il testo non lo dice: https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi) e https://www.rds.it/scopri/magazine/musica/storia-della-musica/vasco-rossi-la-sua-sally-compie-26-anni",
     "«Pensavo a una donna di trenta, trentacinque anni, poi mi sono accorto che nel pezzo era finito tantissimo di me» (libro La storia dietro le canzoni, 2017, citato da Wikipedia): https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi)",
-    "Post di Vasco del 2020: «È la parte femminile di me… ci sono dentro soprattutto io»; Sally prosecuzione di Jenny, «ero Jenny prima e Sally dopo»: https://www.rollingstone.it/musica/news-musica/vasco-rossi-celebra-sally-nellanniversario-della-pubblicazione-e-la-parte-femminile-di-me/530205/",
+    "Post Instagram di Vasco del settembre 2020 (24 anni della canzone): «È la parte femminile di me… ci sono dentro soprattutto io»; Sally prosecuzione di Jenny, «ero Jenny prima e Sally dopo»: https://www.rollingstone.it/musica/news-musica/vasco-rossi-celebra-sally-nellanniversario-della-pubblicazione-e-la-parte-femminile-di-me/530205/; anche https://tg24.sky.it/spettacolo/musica/approfondimenti/vasco-rossi-donne-canzoni (Jenny «disillusa e fragile»)",
     "Primo 45 giri (15 giugno 1977) con Jenny sul lato A: https://www.vascorossi.net/it/news/jenny-e-silvia-40-anni-fa-il-primo-45-giri-di-vasco-rossi/16-33941.html",
-    "Contenuto del testo (una donna che ripensa alla sua vita, agli errori, al dolore subito; nel finale trova la forza per andare avanti), raccontato con parole proprie: https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi); lettura del Corriere della Sera (23 gennaio 1996): un malessere interiore che cessa per la voglia di porre fine ai conflitti: https://it.wikipedia.org/wiki/Nessun_pericolo..._per_te",
-    "Versione di Fiorella Mannoia nell'album dal vivo Certe piccole voci (1999); una sua esecuzione dal vivo del 1998 è nella raccolta Radio Italia - Mi piace (2011): https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi); duetto con Vasco a Vota la Voce nel 1998: https://www.tgcom24.mediaset.it/rubriche/speciale-amarcord/sally-vasco-rossi-30-anni-esibizione-fiorella-mannoia_116130003-202602k.shtml",
-    "Rula Jebreal a Sanremo 2020 (4 febbraio) cita Sally nel monologo sulla violenza contro le donne, parlando di sua madre; Vasco: «Grazie. Le hai dato nuova vita»; a Repubblica: la canzone sembra negativa ma la protagonista è più forte di tutto: https://www.open.online/2020/02/06/rula-jebreal-e-quella-sally-nel-suo-monologo-vasco-rossi-grazie-le-hai-dato-nuova-vita"
+    "Contenuto del testo (una donna che ripensa alla sua vita, agli errori, al dolore subito; nel finale trova la forza per andare avanti), raccontato con parole proprie: https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi); lettura del Corriere della Sera (23 gennaio 1996): un malessere interiore che cessa per la voglia di porre fine ai conflitti: https://it.wikipedia.org/wiki/Nessun_pericolo..._per_te; voglia di vivere pienamente ogni istante (Corriere della Sera, 18 agosto 2009, «L'evoluzione rock del signor Rossi», citato nella stessa pagina)",
+    "Versione di Fiorella Mannoia dal vivo: un'esecuzione del 1998 (poi nella raccolta Radio Italia - Mi piace, 2011) e l'album dal vivo Certe piccole voci (1999): https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi) e https://it.wikipedia.org/wiki/Nessun_pericolo..._per_te",
+    "Rula Jebreal a Sanremo 2020 (4 febbraio) cita Sally nel monologo sulla violenza contro le donne, parlando di sua madre, morta suicida dopo anni di violenze; Vasco: «Grazie. Le hai dato nuova vita»; a Repubblica: la canzone sembra negativa ma la protagonista è più forte di tutto: https://www.open.online/2020/02/06/rula-jebreal-e-quella-sally-nel-suo-monologo-vasco-rossi-grazie-le-hai-dato-nuova-vita e https://www.sorrisi.com/tv/il-monologo-di-rula-jebreal-a-sanremo-2020-violenza-sulle-donne/"
   ],
   "pronuncia": {
-    "Saint-Tropez": "Sen Tropé"
+    "Saint-Tropez": "Sen Tropé",
+    "Jebreal": "Jebrèal"
   }
 }
