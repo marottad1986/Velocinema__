@@ -68,32 +68,32 @@ type Shot = { at: number; x: number; y: number; z: number };
 const WIDE = { x: 540, y: 1098, z: 0.43 };
 const FLOORS = { x: 540, y: 945, z: 0.55 };
 const SHOTS: Shot[] = [
-  { at: at('estrazione', 0), x: 520, y: 690, z: 1.12 },
-  { at: at('estrazione', 1), x: 530, y: 720, z: 1.1 },
-  { at: at('estrazione', 2), x: 560, y: 700, z: 1.12 },
-  { at: at('innesto', 0), x: 530, y: 700, z: 1.1 },
-  { at: at('innesto', 2), x: 550, y: 700, z: 1.1 },
+  { at: at('estrazione', 0), x: 520, y: 690, z: 0.9 },
+  { at: at('estrazione', 1), x: 530, y: 720, z: 0.9 },
+  { at: at('estrazione', 2), x: 560, y: 700, z: 0.9 },
+  { at: at('innesto', 0), x: 530, y: 700, z: 0.9 },
+  { at: at('innesto', 2), x: 550, y: 700, z: 0.9 },
   { at: at('livelli', 1), x: 540, y: 1080, z: 0.75 },
   // il seme scende: la camera lo segue piano per piano, poi la torre intera come chiusura
   { at: at('livelli', 2), x: 540, y: 1720, z: 0.55 },
   { at: at('livelli', 2, 1.4), x: 540, y: 2380, z: 0.55 },
   { at: at('livelli', 3), ...FLOORS },
-  { at: at('tempo', 0), x: 540, y: 680, z: 1.05 },
+  { at: at('tempo', 0), x: 540, y: 680, z: 0.9 },
   { at: at('tempo', 1), ...FLOORS },
-  { at: at('tempo', 2), x: 560, y: 1360, z: 0.95 },
+  { at: at('tempo', 2), x: 560, y: 1360, z: 0.9 },
   { at: at('tempo', 3), x: 560, y: 2380, z: 0.55 },
-  { at: at('calcio', 0), x: 560, y: 1270, z: 1.08 },
+  { at: at('calcio', 0), x: 560, y: 1270, z: 0.9 },
   { at: at('calcio', 2), x: 540, y: 1580, z: 0.52 },
   { at: at('calcio', 3), ...WIDE },
   { at: at('limbo', 0), x: 540, y: 1000, z: 0.62 },
   { at: at('limbo', 2), x: 540, y: 3030, z: 0.5 },
-  { at: at('limbo', 3), x: 540, y: 3360, z: 1.0 },
-  { at: at('mal', 0), x: 520, y: 3330, z: 1.1 },
+  { at: at('limbo', 3), x: 540, y: 3360, z: 0.9 },
+  { at: at('mal', 0), x: 520, y: 3330, z: 0.9 },
   { at: at('mal', 3), x: 540, y: 1250, z: 0.37 },
   { at: at('missione', 0), x: 540, y: 3030, z: 0.5 },
-  { at: at('missione', 2), x: 520, y: 2720, z: 1.05 },
+  { at: at('missione', 2), x: 520, y: 2720, z: 0.9 },
   { at: at('trottola', 0), x: 540, y: 3250, z: 0.62 },
-  { at: at('trottola', 1), x: 540, y: 700, z: 1.1 },
+  { at: at('trottola', 1), x: 540, y: 700, z: 0.9 },
   { at: at('trottola', 2), x: 850, y: 700, z: 2.4 },
   { at: at('trottola', 3, 0.4), ...WIDE },
 ];
@@ -522,7 +522,7 @@ const Tower: React.FC<{ T: number }> = ({ T }) => {
       )}
       <Link T={T} t0={at('innesto', 3, 0.1)} a={[N.fischer[0], N.fischer[1] - 70]} b={[N.fischer[0] + 140, ROW.realta.y0 + 190]} c={[N.fischer[0] + 40, ROW.realta.y0 + 170]} color={ORANGE} arrow fade={off('innesto')} />
       <Tag T={T} t0={at('innesto', 3, 0.4)} x={740} y={ROW.realta.y0 + 150} text="smonta l'impero del padre" size={34} until={at('innesto', 4) - 0.4} />
-      <Tag T={T} t0={at('innesto', 4, 0.1)} x={300} y={ROW.realta.y0 + 150} text="in cambio: torna dai figli" bg={INK} size={34} until={end('innesto') - 0.4} />
+      <Tag T={T} t0={at('innesto', 4, 0.1)} x={420} y={ROW.realta.y0 + 150} text="in cambio: torna dai figli" bg={INK} size={34} until={end('innesto') - 0.4} />
 
       {/* capitolo 3: il seme scende; Fischer portato giù nei sogni; i piani di un palazzo */}
       <Tag T={T} t0={at('livelli', 0, 0.2)} x={N.fischer[0] + 40} y={N.fischer[1] - 120} text="deve sembrare sua" size={40} until={at('livelli', 1, 0.6)} />

@@ -72,7 +72,7 @@ export const Famiglia: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             <rect x="800" y="760" width="14" height="80" rx="6" fill="#8A8A86" stroke={K} strokeWidth="3" />
             <rect x="800" y="900" width="14" height="120" rx="6" fill="#8A8A86" stroke={K} strokeWidth="3" />
             {/* calendario attaccato al frigo con il cerchio rosso */}
-            <g transform="translate(850 890)">
+            <g transform="translate(720 890)">
               <rect x="0" y="0" width="160" height="170" fill="url(#fm-paper)" stroke={K} strokeWidth="5" />
               <rect x="0" y="0" width="160" height="34" fill="#3F7A55" />
               <text x="80" y="25" textAnchor="middle" fontFamily="sans-serif" fontWeight="800" fontSize="18" fill="#F2E4C4">MARZO</text>
@@ -149,7 +149,7 @@ export const Famiglia: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             </g>
           ))}
           {/* l'assegno di Elliott che si strappa */}
-          <g transform="translate(740 1250) skewX(-18) scale(0.9)">
+          <g transform="translate(620 1250) skewX(-18) scale(0.9)">
             <g transform={`translate(${-tear * 40} ${-tear * 6}) rotate(${-tear * 10} 0 0)`}>
               <path d={`M-150 0 V-80 H0 L${-8 + 0} -60 L6 -40 L-6 -20 L4 0 Z`} fill="url(#fm-cheque)" stroke={K} strokeWidth="4" />
               <text x="-140" y="-56" fontFamily="sans-serif" fontWeight="800" fontSize="15" fill="#2A4A3A">A WALTER W.</text>

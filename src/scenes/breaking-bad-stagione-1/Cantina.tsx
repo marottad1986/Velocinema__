@@ -128,7 +128,7 @@ export const Cantina: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         {/* PIANO 4 — cassa con il quaderno, piatto rotto con il pezzo mancante, panino, bottiglia (0,85) */}
         <g transform={L(0.85)}>
           {/* cassa con il quaderno delle due colonne */}
-          <g transform="translate(830 1240)">
+          <g transform="translate(660 1240)">
             <Ombra id="cn" x={0} y={0} rx={200} ry={20} />
             <rect x="-170" y="-170" width="340" height="170" fill="url(#cn-crate)" stroke={K} strokeWidth="8" />
             {[-120, -60].map((y) => <path key={y} d={`M-166 ${y} H166`} stroke="#4A3018" strokeWidth="4" />)}

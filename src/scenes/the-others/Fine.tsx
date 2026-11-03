@@ -113,7 +113,7 @@ export const Fine: React.FC<SceneProps> = ({ t, dur, cues }) => {
             );
           })}
           {[1560, 1760].map((by) => <rect key={by} x="30" y={by} width="290" height="14" fill="url(#fi-iron)" stroke={K} strokeWidth="4" />)}
-          {[[20, 1100], [830, 1300]].map(([px, py], i) => (
+          {[[120, 1100], [830, 1300]].map(([px, py], i) => (
             <g key={i}>
               <rect x={px} y={py} width="190" height={2000 - py} fill="url(#fi-pillar)" stroke={K} strokeWidth="9" />
               {Array.from({ length: 9 }, (_, k) => <path key={k} d={`M${px} ${py + 70 + k * 80} H${px + 190}`} stroke="#000" strokeWidth="3" opacity=".25" />)}
@@ -129,7 +129,7 @@ export const Fine: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <text x="80" y="104" textAnchor="middle" fontFamily={SERIF} fontSize="48" fill="#8A2A1E" letterSpacing="3">VENDESI</text>
           </g>
           {/* l'elmetto di Charles sul pilastro, un'ultima volta */}
-          <g transform="translate(118 1068) rotate(-4)" opacity={helmet}>
+          <g transform="translate(215 1068) rotate(-4)" opacity={helmet}>
             <ellipse cx="0" cy="0" rx="100" ry="24" fill="url(#fi-khaki)" stroke={K} strokeWidth="8" />
             <path d="M-62 -4 Q-62 -74 0 -78 Q62 -74 62 -4 Z" fill="url(#fi-khaki)" stroke={K} strokeWidth="8" />
             <path d="M-44 -36 Q-36 -64 0 -68" stroke="#C8C498" strokeWidth="6" fill="none" opacity=".6" strokeLinecap="round" />

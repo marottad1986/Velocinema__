@@ -89,6 +89,7 @@ export const Marito: React.FC<SceneProps> = ({ t, dur, cues }) => {
             </g>
             <path d="M-30 -230 H130 L100 -200 H-30 Z" fill="#5E4830" stroke={K} strokeWidth="6" transform="rotate(6 -30 -215)" />
           </g>
+          <g transform="translate(-120 0)">
           {/* il palo grande */}
           <Ombra id="ma" x={880} y={1270} rx={160} ry={18} />
           <rect x="852" y="940" width="56" height="330" fill="url(#ma-post)" stroke={K} strokeWidth="8" />
@@ -118,6 +119,7 @@ export const Marito: React.FC<SceneProps> = ({ t, dur, cues }) => {
           </g>
           {/* la nebbia che si apre e si richiude sul palo */}
           <Fog id="ma-veil" t={t} y={1060} x={860} rx={320} ry={300} color="#9AA6A2" opacity={0.75 * (1 - vis) + 0.1} speed={0.3} drift={30} />
+          </g>
           <Fog id="ma-f2" t={t} y={1240} rx={900} ry={110} color="#B0BAB6" opacity={0.5} speed={0.25} ph={2} />
         </g>
 
