@@ -94,7 +94,7 @@ export const Deserto: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
 
         {/* PIANO 4 — tavolino pieghevole con il vassoio di cristalli, sedia da campeggio, secchio (0,9) */}
         <g transform={L(0.9)}>
-          <g opacity={seg(t, tStop - 0.6, tStop + 0.2)}>
+          <g opacity={seg(t, tStop - 0.6, tStop + 0.2)} transform="translate(-110 0)">
             <Ombra id="ds" x={870} y={1262} rx={170} ry={20} />
             <path d="M760 1260 L840 1180 M980 1260 L900 1180 M760 1180 L980 1260 M980 1180 L760 1260" stroke="#5A6064" strokeWidth="9" />
             <rect x="740" y="1166" width="260" height="22" rx="4" fill="url(#ds-table)" stroke={K} strokeWidth="6" />

@@ -52,7 +52,7 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; night: boolean }> =
         <g transform={L(0.68)}>
           <path d="M-200 1330 H1280 V2200 H-200 Z" fill={`url(#${id}-sand)`} />
           <Smoke id={`${id}-sm`} t={t} x={560 - 165 * 0.86} y={1340 - 520 * 0.86} color={night ? '#C8C8D8' : '#F4EEE4'} n={6} rise={night ? 90 : 180} wind={-140} r0={26} r1={84} speed={0.4} opacity={0.75} />
-          <Camper id={id} x={560} y={1340} s={0.86} lamp={night ? 1 : 0} door={night ? 0.6 : 0} t={t} />
+          <Camper id={id} x={530} y={1340} s={0.8} lamp={night ? 1 : 0} door={night ? 0.6 : 0} t={t} />
         </g>
         <g transform={L(1.1)}>
           <Cespuglio x={940} y={1760} s={1.4} seed={3} color={night ? '#3A3A2A' : '#7A7A44'} />

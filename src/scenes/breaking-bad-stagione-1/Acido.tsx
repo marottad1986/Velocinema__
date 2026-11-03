@@ -101,7 +101,7 @@ export const Acido: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             <path d="M-200 1500 L340 1180 H780 L1280 1500 V2200 H-200 Z" fill="url(#ac-floor)" />
             {Array.from({ length: 9 }, (_, i) => <path key={i} d={`M${340 + i * 55} 1180 L${-200 + i * 185} 2200`} stroke="#1A120A" strokeWidth="4" opacity=".7" />)}
             {/* bidone di plastica blu: quello che andava usato */}
-            <g transform="translate(900 1270)">
+            <g transform="translate(760 1270)">
               <Glow id="ac-drum" x={0} y={-150} r={240} t={t} color={ORO} amp={0.05} rate={2} opacity={0.5 * drum} />
               <Ombra id="ac" x={0} y={0} rx={130} ry={16} />
               <path d="M-90 0 V-290 A90 22 0 0 1 90 -290 V0 A90 22 0 0 1 -90 0 Z" fill="#2E6AB0" stroke={K} strokeWidth="8" />

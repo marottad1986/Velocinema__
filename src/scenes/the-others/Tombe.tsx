@@ -15,9 +15,9 @@ import { AMBRA, K, OthersDefs, Ombra, Villa as Casa } from './Comuni';
 //        · cancellata del piccolo cimitero (1,15) · foglie e nebbia vicina (1,5–1,8)
 
 const STONES = [
-  { x: 230, w: 230, h: 330, name: ['BERTHA', 'MILLS'], rot: -3 },
+  { x: 300, w: 230, h: 330, name: ['BERTHA', 'MILLS'], rot: -3 },
   { x: 540, w: 250, h: 390, name: ['EDMUND', 'TUTTLE'], rot: 1 },
-  { x: 850, w: 220, h: 310, name: ['LYDIA'], rot: 4 },
+  { x: 780, w: 220, h: 310, name: ['LYDIA'], rot: 4 },
 ];
 const r = rng(808);
 const LEAVES = STONES.map(() => Array.from({ length: 44 }, () => ({ dx: (r() - 0.5) * 1.1, dy: r(), a: r() * 360, c: r() })));

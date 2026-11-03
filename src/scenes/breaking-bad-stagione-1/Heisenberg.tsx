@@ -132,7 +132,7 @@ export const Heisenberg: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               </g>
             )}
             {/* blocco degli appunti con il nome */}
-            <g transform="translate(760 1132) skewX(-20)">
+            <g transform="translate(680 1132) skewX(-20)">
               <rect x="-90" y="-60" width="180" height="56" fill="url(#hb-paper)" stroke={K} strokeWidth="4" />
               <text x="-80" y="-20" fontFamily={HAND} fontSize="30" fill="#1E2A5A">{nome.slice(0, Math.floor(name * nome.length))}</text>
             </g>
