@@ -250,7 +250,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       <Link T={T} t0={at('martha', 0, 0.4)} a={[N.jonas[0] + 54, N.jonas[1]]} b={[N.martha[0] - 54, N.martha[1]]} color="#E07060" dashed label="la ama" ly={-22} size={28} />
       <Link T={T} t0={at('martha', 1, 0.1)} a={[N.adam[0] + 30, N.adam[1] + 54]} b={[N.martha[0] - 10, N.martha[1] - 56]} c={[640, 700]} color={RED} w={6} arrow />
       <Link T={T} t0={at('martha', 2, 0.2)} a={[N.jonas[0] + 30, N.jonas[1] - 50]} b={[N.adam[0] + 10, N.adam[1] + 56]} c={[520, 760]} color={YELLOW} dashed w={6} flow label="diventerà lui" lx={70} ly={10} size={26} arrow fade={off('martha')} />
-      {/* la fine del mondo e gli amici nel rifugio che finiscono nel 2053 */}
+      {/* la fine del mondo e il rifugio: tra i pochi che si salvano c'è la piccola Elisabeth, che da grande guiderà i sopravvissuti */}
       <Tag T={T} t0={at('fine', 0, 0.2)} x={620} y={Y[2020] + 190} text="la fine del mondo" bg={RED} fg="#FFFFFF" size={30} rot={-2} until={end('fine') - 0.4} />
       {T >= at('fine', 1, 0.1) && (
         <g opacity={seg(T, at('fine', 1, 0.1), at('fine', 1, 0.4))}>
@@ -258,7 +258,13 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           <text x="290" y={Y[2020] + 140} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize="26" fill="#D8D2C0">il rifugio</text>
         </g>
       )}
-      {[0, 1, 2].map((k) => T >= at('fine', 1, 0.3 + k * 0.15) && <circle key={k} cx={220 + k * 70} cy={Y[2020] + 192} r={pop(T, at('fine', 1, 0.3 + k * 0.15)) * 24} fill="#22302B" stroke={CHALK} strokeWidth="4" />)}
+      {[0, 1, 2].map((k) => T >= at('fine', 1, 0.3 + k * 0.15) && (
+        <g key={k} transform={`translate(${220 + k * 70} ${Y[2020] + 192}) scale(${pop(T, at('fine', 1, 0.3 + k * 0.15))})`}>
+          <circle r={24} fill="#22302B" stroke={k === 0 ? YELLOW : CHALK} strokeWidth="4" />
+          {k === 0 && <Slate scale={0.34} />}
+        </g>
+      ))}
+      <Link T={T} t0={at('fine', 1, 0.6)} a={[N.lisa[0] - 46, N.lisa[1] + 20]} b={[246, Y[2020] + 186]} color={YELLOW} dashed w={4} arrow fade={off('fine')} />
       <Tag T={T} t0={at('fine', 2, 0.3)} x={250} y={Y[2020] + 268} text="sopravvissuti" bg={CHALK} size={24} />
       {/* un altro mondo: il gomitolo blu arriva da fuori e porta via Jonas */}
       <Link T={T} t0={at('mondo', 1, 0.1)} a={[N.altra[0] - 40, N.altra[1] - 44]} b={[N.jonas[0] + 44, N.jonas[1] + 40]} c={[480, 1040]} color={BLUE} w={7} label="via con sé" ly={40} size={28} arrow />
@@ -285,7 +291,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       </Node>
       {T >= at('charlotte', 0, 0.4) && T < at('charlotte', 1, 0.4) && <text x={N.charlotte[0] + 70} y={N.charlotte[1] + 20} fontFamily={STENCIL} fontWeight={800} fontSize="56" fill="#D8D2C0">?</text>}
       <Node T={T} t0={at('charlotte', 2, 0.1)} p={N.lisa} name="Elisabeth" sub="bambina" side="left" r={44}><Slate scale={0.62} /></Node>
-      <Node T={T} t0={at('charlotte', 2, 0.9)} p={N.lisaAdulta} name="Elisabeth" sub="da grande" side="left" ring={focus(at('charlotte', 2, 0.9), at('charlotte', 3, 1.2))}><Slate scale={0.72} /></Node>
+      <Node T={T} t0={at('charlotte', 2, 0.9)} p={N.lisaAdulta} name="Elisabeth" sub="da grande" side="left" ring={focus(at('charlotte', 2, 0.9), at('charlotte', 3, 1.2)) + focus(at('fine', 2, 0.1), end('fine'))}><Slate scale={0.72} /></Node>
       <Node T={T} t0={at('padre', 0, 0.3)} p={N.michael} name="Michael" sub="padre di Jonas" side="left" ring={focus(at('padre', 0), at('padre', 3, 1.2))}>
         <Letter scale={0.24} open={lettera} />
       </Node>
