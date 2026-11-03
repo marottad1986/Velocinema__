@@ -27,6 +27,7 @@ for (const [slug, path] of lista) {
   const E = [], A = [];
   const j = JSON.parse(readFileSync(path, 'utf8'));
   const spiegato = j.formato === 'spiegato';
+  const canzone = j.tipo === 'canzone';
 
   // ---- formato: copertina 4 s + capitoli 112 s + finale 4 s = 2:00
   const somma = j.capitoli.reduce((a, c) => a + c.durata, 0);
@@ -51,6 +52,13 @@ for (const [slug, path] of lista) {
   const testi = [j.copertina.voce, j.finale.voce, ...j.capitoli.flatMap((c) => [c.titolo, ...c.sottotitoli])].filter(Boolean);
   for (const [re, perche] of VIETATE) for (const t of testi) if (re.test(t)) E.push(`«${t}»: ${perche}`);
 
+  // ---- fonti: ogni fatto citato confermato da un link («<fatti>: <url>»); obbligatorie per le canzoni, avviso per film e serie
+  if (!path.startsWith('quadri/')) {
+    const fonti = Array.isArray(j.fonti) ? j.fonti : [];
+    if (!fonti.length) (canzone ? E : A).push('manca il campo «fonti» con i link che confermano i fatti citati');
+    for (const f of fonti) if (!/https?:\/\/\S+/.test(f)) E.push(`fonte senza link: «${f.slice(0, 60)}…»`);
+  }
+
   // ---- scene: una per capitolo (salvo gli schemi "spiegato", un unico diagramma) e invito a commentare nel finale
   const dirScene = existsSync(`src/scenes/${slug}`) ? `src/scenes/${slug}` : null;
   const reg = readFileSync('src/films.ts', 'utf8');
@@ -62,7 +70,7 @@ for (const [slug, path] of lista) {
   const locandine = [dirScene && `${dirScene}/Locandina.tsx`, dirScene && `${dirScene}/Finale.tsx`, path.startsWith('quadri/') && 'src/scenes/quadri/Locandina.tsx'].filter((p) => p && existsSync(p));
   if (!locandine.some((p) => /Commenta con (il film|la serie|la spiegazione|la canzone|il quadro) che vorresti\./.test(readFileSync(p, 'utf8')))) E.push('finale senza «Commenta con … che vorresti.»');
   // etichetta «… IN 2 MINUTI» sopra il titolo: ammessa solo nei riassunti di film (canzoni, quadri, Spiegato semplice usano il nome della serie)
-  const soloFilm = !path.startsWith('quadri/') && !spiegato && !j.fonti;
+  const soloFilm = !path.startsWith('quadri/') && !spiegato && !canzone;
   if (!soloFilm) for (const p of locandine) if (/IN 2 MINUTI/i.test(readFileSync(p, 'utf8'))) E.push(`${p}: «… IN 2 MINUTI» ammesso solo nelle copertine dei film (usare il nome della serie)`);
 
   // ---- musica: spartito con strumenti campionati, niente strumenti sintetici, risorse dichiarate, agganci validi

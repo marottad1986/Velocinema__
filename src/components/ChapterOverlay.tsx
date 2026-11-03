@@ -57,7 +57,7 @@ export const ChapterOverlay: React.FC<Props> = ({ film, index, t, chapterStart, 
 
       <div
         style={{
-          position: 'absolute', left: 50, top: 262, display: 'flex', alignItems: 'center', gap: 14,
+          position: 'absolute', left: 120, top: 262, display: 'flex', alignItems: 'center', gap: 14,
           padding: '10px 22px', borderRadius: 999, background: alpha(P.scuro, 0.72), color: P.chiaro,
           fontSize: 26, fontWeight: 800, letterSpacing: '0.12em',
         }}
@@ -72,7 +72,7 @@ export const ChapterOverlay: React.FC<Props> = ({ film, index, t, chapterStart, 
 
       <h2
         style={{
-          position: 'absolute', left: 80, top: Math.max(title.top, 380), margin: 0, width: title.width,
+          position: 'absolute', left: 120, top: Math.max(title.top, 380), margin: 0, width: Math.min(title.width ?? 840, 840), maxWidth: 840,
           fontFamily: DISPLAY, fontWeight: 800, fontSize: title.size ?? 104, lineHeight: 1,
           color: title.dark ? P.scuro : P.chiaro,
           textShadow: title.dark ? `0 3px 0 ${alpha(P.chiaro, 0.55)}` : `0 5px 0 ${P.scuro}`,
@@ -82,7 +82,8 @@ export const ChapterOverlay: React.FC<Props> = ({ film, index, t, chapterStart, 
         {ch.titolo}
       </h2>
 
-      <div style={{ position: 'absolute', left: 60, top: 1270, width: 960, height: 220 }}>
+      {/* fascia dei sottotitoli: a destra resta libera la colonna delle icone delle app (like, commenti, condivisioni) */}
+      <div style={{ position: 'absolute', left: 120, top: 1270, width: 780, height: 220 }}>
         {ch.sottotitoli.map((line, i) => {
           const [a, b] = times[i];
           const p = seg(t, a, a + 0.12);
@@ -93,7 +94,7 @@ export const ChapterOverlay: React.FC<Props> = ({ film, index, t, chapterStart, 
             <p
               key={i}
               style={{
-                position: 'absolute', left: 0, right: 0, bottom: 0, margin: '0 auto', width: 'fit-content', maxWidth: 960,
+                position: 'absolute', left: 0, right: 0, bottom: 0, margin: '0 auto', width: 'fit-content', maxWidth: 780,
                 boxSizing: 'border-box', padding: '12px 26px 14px', borderRadius: 16, background: alpha(P.scuro, 0.82),
                 color: P.chiaro, fontSize: 46, lineHeight: 1.25, fontWeight: 800, textAlign: 'center',
                 opacity: o, visibility: o > 0 ? 'visible' : 'hidden', transform: `translateY(${(1 - p) * 10}px)`,
@@ -118,10 +119,10 @@ const Timeline: React.FC<{ film: FilmData; index: number; t: number }> = ({ film
   const now = film.capitoli[index].anno;
   const seen = new Set(film.capitoli.slice(0, index).map((c) => c.anno));
   const pop = eo(seg(t, 0.2, 0.6));
-  const x0 = 634, step = 116;
+  const x0 = 564, step = 116;
   return (
-    <div style={{ position: 'absolute', left: 584, top: 262, width: 446, height: 52, borderRadius: 999, background: alpha(P.scuro, 0.72) }}>
-      <div style={{ position: 'absolute', left: x0 - 584 + 6, right: 446 - (x0 - 584 + step * (years.length - 1)) + 6, top: 25, height: 3, background: alpha(P.chiaro, 0.3) }} />
+    <div style={{ position: 'absolute', left: 514, top: 262, width: 446, height: 52, borderRadius: 999, background: alpha(P.scuro, 0.72) }}>
+      <div style={{ position: 'absolute', left: x0 - 514 + 6, right: 446 - (x0 - 514 + step * (years.length - 1)) + 6, top: 25, height: 3, background: alpha(P.chiaro, 0.3) }} />
       {years.map((y, i) => {
         const cur = y === now;
         const known = seen.has(y) || cur;
@@ -131,7 +132,7 @@ const Timeline: React.FC<{ film: FilmData; index: number; t: number }> = ({ film
           <span
             key={y}
             style={{
-              position: 'absolute', left: x0 - 584 + i * step, top: 26, transform: `translate(-50%, -50%) scale(${cur ? 1 + 0.12 * (1 - pop) : 1})`,
+              position: 'absolute', left: x0 - 514 + i * step, top: 26, transform: `translate(-50%, -50%) scale(${cur ? 1 + 0.12 * (1 - pop) : 1})`,
               padding: '4px 10px', borderRadius: 999, background: cur ? P.accento : alpha(P.scuro, 0.9),
               color: cur ? P.scuro : P.chiaro, fontSize: 24, fontWeight: 800, letterSpacing: '0.04em', fontVariantNumeric: 'tabular-nums',
               opacity: known ? (cur ? 1 : 0.85) * o + (1 - o) * 0.35 : 0.35,
@@ -171,7 +172,7 @@ const CharacterTags: React.FC<{ film: FilmData; index: number; t: number; times:
           <div
             key={def.nome}
             style={{
-              position: 'absolute', left: 60, top: 1172 - k * 82, display: 'flex', alignItems: 'baseline', gap: 14,
+              position: 'absolute', left: 120, top: 1172 - k * 82, display: 'flex', alignItems: 'baseline', gap: 14,
               padding: '10px 22px 12px', borderRadius: 14, background: alpha(P.scuro, 0.82), borderLeft: `8px solid ${P.accento}`,
               color: P.chiaro, opacity: o, visibility: o > 0 ? 'visible' : 'hidden', transform: `translateX(${(1 - p) * -30}px)`,
             }}

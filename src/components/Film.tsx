@@ -1,6 +1,6 @@
 import { grigliaMusicale } from '../lib/anim';
-import React from 'react';
-import { AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig } from 'remotion';
+import React, { useLayoutEffect, useRef } from 'react';
+import { AbsoluteFill, continueRender, delayRender, Sequence, useCurrentFrame, useVideoConfig } from 'remotion';
 import { ChapterOverlay, subtitleTimes } from './ChapterOverlay';
 import { SIGLA, Sigla } from './Sigla';
 import { DISPLAY, SANS } from '../lib/fonts';
@@ -80,9 +80,42 @@ export const PosterView: React.FC<{ slug: string; end?: boolean }> = ({ slug, en
   // Formato "spiegato": la copertina parte dopo la sigla e dura il resto dei 4 s (salvo "sigla": false nel JSON).
   const sigla = !end && film.data.formato === 'spiegato' && film.data.sigla !== false ? SIGLA : 0;
   const t = Math.max(0, frame / fps - sigla);
+  const ref = useRef<HTMLDivElement>(null);
+  // Titoli grandi delle locandine (h1): devono stare nella zona sicura, 840 px di larghezza (120 px di margine per lato,
+  // perché TikTok taglia fino a ~100 px per lato). Si misura ogni riga (o parola, se il titolo va a capo) con il suo carattere
+  // su un canvas, che non dipende dall'impaginazione, e se è più larga si riduce il carattere.
+  useLayoutEffect(() => {
+    const handle = delayRender('Titolo della locandina nella zona sicura');
+    let fatto = false;
+    const fine = () => { if (!fatto) { fatto = true; continueRender(handle); } };
+    document.fonts.ready.then(() => {
+      if (fatto) return;
+      const box = ref.current;
+      const ctx = document.createElement('canvas').getContext('2d');
+      if (box && ctx) {
+        box.querySelectorAll('h1').forEach((h) => {
+          const cs = getComputedStyle(h);
+          const size = parseFloat(cs.fontSize);
+          const spazio = cs.letterSpacing === 'normal' ? 0 : parseFloat(cs.letterSpacing) || 0;
+          ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${size}px ${cs.fontFamily}`;
+          const testo = cs.textTransform === 'uppercase' ? (h.textContent ?? '').toUpperCase() : h.textContent ?? '';
+          const nowrap = cs.whiteSpace === 'nowrap' || cs.whiteSpace === 'pre';
+          // le righe vere: a capo con <br> o con blocchi; se il titolo può andare a capo conta la parola più lunga
+          const blocchi = Array.from(h.childNodes).map((n) => (n.textContent ?? '').trim()).filter(Boolean);
+          const righe = (blocchi.length > 1 ? blocchi : [testo.trim()]).flatMap((r) => (nowrap ? [r] : r.split(/\s+/)));
+          const larga = Math.max(...righe.map((r) => ctx.measureText(cs.textTransform === 'uppercase' ? r.toUpperCase() : r).width + spazio * Math.max(0, r.length - 1)));
+          if (larga > 840) h.style.fontSize = `${Math.floor(size * (840 / larga) * 0.98)}px`;
+        });
+      }
+      fine();
+    });
+    return fine;
+  });
   return (
     <AbsoluteFill style={{ background: film.data.palette.scuro, overflow: 'hidden' }}>
-      {Comp ? <Comp t={t} dur={total - sigla} film={film.data} /> : <PosterPlaceholder film={film} end={end} />}
+      <div ref={ref} style={{ position: 'absolute', inset: 0 }}>
+        {Comp ? <Comp t={t} dur={total - sigla} film={film.data} /> : <PosterPlaceholder film={film} end={end} />}
+      </div>
       {sigla > 0 && <Sigla t={frame / fps} tipo={film.data.tipo ?? 'film'} />}
     </AbsoluteFill>
   );

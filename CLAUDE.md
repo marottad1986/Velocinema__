@@ -48,6 +48,9 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 - Niente battute, citazioni o soprannomi che capisce solo chi ha visto il film; se si usa una gag famosa, va spiegata
   nella stessa frase.
 - Il finale deve dire chiaramente come va a finire, compresi i colpi di scena.
+- Fatti verificati: ogni fatto della trama citato va confermato su fonti (prima la voce Wikipedia italiana del film, sezione
+  «Trama», poi quella inglese o le pagine degli episodi) e il JSON porta il campo `fonti`, una voce per fonte nel formato
+  «<fatti confermati>: <url>». `controlli.mjs` lo segnala se manca (errore per le canzoni, `"tipo": "canzone"`).
 - Titoli dei capitoli chiari anche fuori contesto.
 - Testo discorsivo (tutti i formati): si racconta come a voce a un amico. Ogni frase si aggancia alla precedente con
   connettivi espliciti («perché», «infatti», «intanto», «così», «quindi», «ma», «alla fine»), così i collegamenti li fa
@@ -70,7 +73,7 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 - Mai frasi come «La prossima volta che lo vedi…» (né nel finale né altrove).
 
 ## Canzoni spiegate (stesso schema dei film)
-- Un JSON in `films/` come per i film (es. `films/bohemian-rhapsody.json`): `regista` = artista, numero di capitoli libero
+- Un JSON in `films/` come per i film (es. `films/bohemian-rhapsody.json`) con `"tipo": "canzone"`: `regista` = artista, numero di capitoli libero
   (l'etichetta diventa "CAPITOLO N DI M"), campo `fonti` obbligatorio con i link che confermano ogni fatto citato.
 - Testi: mai riportare il testo della canzone, nemmeno a pezzi; si racconta con parole proprie. Ammesse solo parole
   singole o nomi (es. «Scaramouche») per spiegarli nella stessa frase.
@@ -88,7 +91,13 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 - Titolo del capitolo sovrapposto, nel punto più leggibile dell'immagine (chiaro su scuro o viceversa).
 - Sottotitoli in basso (tra y 1270 e 1490), una frase alla volta su fascia scura semitrasparente,
   tempi distribuiti in proporzione alla lunghezza delle frasi.
-- Zone coperte dalle app: niente testo nei primi 250 px in alto e negli ultimi 420 px in basso.
+- Zone coperte dalle app: niente testo nei primi 250 px in alto e negli ultimi 420 px in basso, e nessuna fascia di testo
+  nella colonna delle icone a destra (like, commenti, condivisioni: ultimi 180 px, da y ≈ 800 in giù).
+- Zona sicura ai lati: TikTok riempie gli schermi più lunghi del 9:16 e taglia fino a ~100 px per lato (Instagram no). Tutti
+  i testi fissi stanno tra x 120 e 960: etichetta e titolo del capitolo da x 120, sottotitoli e frase di lancio tra x 120 e 900
+  (`maxWidth: 780`), testate e riquadro del finale da x 120 larghi 840. I titoli grandi delle locandine (h1) entrano sempre in
+  840 px: se il testo è più largo, `PosterView` in `src/components/Film.tsx` riduce il carattere da solo (misura su canvas).
+  Nelle scene gli oggetti chiave stanno lontani dai bordi (lo sfondo ai lati può essere tagliato).
 
 ## Riassunti di serie TV (stesso formato dei film)
 - Una stagione per video, raccontata come un film: JSON `films/<serie>-stagione-<N>.json` con `"tipo": "serie"` e

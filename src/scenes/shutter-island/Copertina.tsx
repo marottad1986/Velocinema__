@@ -144,7 +144,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
       </svg>
 
       {/* testi della locandina */}
-      <div style={{ position: 'absolute', left: 80, top: 290, width: 920, fontFamily: SANS, color: P.chiaro }}>
+      <div style={{ position: 'absolute', left: 120, top: 290, width: 840, fontFamily: SANS, color: P.chiaro }}>
         <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.accento, opacity: tag }}>IL FILM IN 2 MINUTI</p>
         <h1 style={{ margin: '18px 0 0', fontFamily: ANTON, fontWeight: 400, fontSize: 250, lineHeight: 0.86, letterSpacing: '0.01em', textShadow: `0 8px 0 ${P.scuro}` }}>
           <span style={{ display: 'block', opacity: seg(t, 0.15, 0.4), transform: `translateY(${(1 - l1) * 60}px)` }}>SHUTTER</span>
@@ -156,7 +156,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
       </div>
       <p
         style={{
-          position: 'absolute', left: 60, right: 60, top: 1384, margin: '0 auto', width: 'fit-content', padding: '12px 26px 14px',
+          position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
           borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 40, fontWeight: 800, textAlign: 'center',
           opacity: tagline, transform: `translateY(${(1 - tagline) * 14}px)`,
         }}

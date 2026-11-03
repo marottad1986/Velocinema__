@@ -110,7 +110,7 @@ export const Finale: React.FC<PosterProps> = ({ t, dur, film }) => {
       {/* riquadro in alto */}
       <div
         style={{
-          position: 'absolute', left: 90, top: 300, width: 900, boxSizing: 'border-box', padding: '40px 40px 36px', borderRadius: 32,
+          position: 'absolute', left: 120, top: 300, width: 840, boxSizing: 'border-box', padding: '40px 40px 36px', borderRadius: 32,
           background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, textAlign: 'center',
           opacity: card, transform: `translateY(${(1 - card) * 24}px)`,
         }}
