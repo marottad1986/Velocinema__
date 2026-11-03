@@ -35,7 +35,7 @@
       "scena": "Porto di Saint-Tropez di notte: barche ormeggiate che dondolano, acqua con i riflessi delle luci del lungomare, in fondo un locale illuminato con musica (lucine colorate); in primo piano il ponte di una barca con un tavolino, una lampada a olio, un foglio e una penna, un bicchiere; la luna dietro le nuvole.",
       "sottotitoli": [
         "La canzone nasce quasi per caso, in vacanza:",
-        "Vasco è a Saint-Tropez, sulla barca del suo manager,",
+        "Vasco è a Saint-Tropez, dove dorme su una barca,",
         "e passa la serata in un locale pieno di donne bellissime.",
         "Poi torna in barca da solo e, racconta, la scrive di getto."
       ]
@@ -46,10 +46,10 @@
       "durata": 14,
       "scena": "Negozio di dischi anni '90 chiuso, visto dalla vetrina: espositore con tanti CD tutti uguali senza grafica riconoscibile, un cartello scritto a mano «Primo in classifica», una piccola radio sul bancone con la lancetta che si accende, chitarre elettriche appese, un singolo CD in evidenza illuminato da un faretto.",
       "sottotitoli": [
-        "Così Sally finisce in Nessun pericolo… per te, l'album del 1996,",
-        "che arriva primo in classifica in Italia.",
-        "Ma in mezzo a pezzi rock è una ballata lenta e malinconica,",
-        "e il 5 settembre diventa anche un singolo."
+        "Così Sally finisce nell'album Nessun pericolo… per te, primo in classifica nel 1996.",
+        "Ma è diversa dagli altri pezzi del disco:",
+        "è l'unica in cui Vasco scrive da solo parole e musica,",
+        "e quella ballata lenta a settembre diventa un singolo."
       ]
     },
     {
@@ -120,14 +120,14 @@
   },
   "musica": "Originale e strumentale: ballata lenta con pianoforte, archi e chitarra pulita, che cresce piano fino a un'apertura piena nell'ultimo capitolo; niente melodie, accordi o ritmi di Sally (meglio in un'altra tonalità).",
   "fonti": [
-    "Sally esce come singolo il 5 settembre 1996; traccia dell'album Nessun pericolo… per te: https://www.rollingstone.it/musica/news-musica/vasco-rossi-celebra-sally-nellanniversario-della-pubblicazione-e-la-parte-femminile-di-me/530205/",
-    "Album Nessun pericolo… per te pubblicato il 24 gennaio 1996, primo in classifica in Italia dalla seconda settimana: https://it.wikipedia.org/wiki/Nessun_pericolo..._per_te e https://www.rds.it/scopri/magazine/musica/storia-della-musica/compie-gli-anni-nessun-pericolo-per-te-undicesimo-album-di-vasco-rossi-2",
-    "Scritta di getto in vacanza a Saint-Tropez, sulla barca del manager, dopo una serata in un locale pieno di donne bellissime (racconto di Vasco; le fonti non concordano se la barca fosse del manager o di un amico, e se pensasse a una ragazza in particolare: per questo il testo non lo dice): https://www.rds.it/scopri/magazine/musica/storia-della-musica/vasco-rossi-la-sua-sally-compie-26-anni e https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi)",
+    "Sally: testo e musica di Vasco Rossi, arrangiamento di Celso Valli, durata 4:45; singolo del 5 settembre 1996 (EMI) dall'album Nessun pericolo… per te: https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi) (che cita discografia.dds.it)",
+    "Album pubblicato il 24 gennaio 1996, primo in classifica in Italia dalla seconda settimana (Adnkronos, 5 febbraio 1996); nella tabella delle tracce Sally è l'unico brano con testo e musica del solo Vasco (gli altri hanno musica di Tullio Ferro, Guido Elmi o Massimo Riva): https://it.wikipedia.org/wiki/Nessun_pericolo..._per_te",
+    "Scritta di getto a bordo di una barca durante una vacanza a Saint-Tropez, dopo una serata in un locale pieno di donne bellissime (racconto di Vasco allo Speciale Tg1 «Sono nate così» di Vincenzo Mollica, Rai1, 22 maggio 2016). Alcuni articoli dicono che la barca era del manager, altri di un amico, e uno che pensasse a una ragazza in particolare: non confermato, per questo il testo non lo dice: https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi) e https://www.rds.it/scopri/magazine/musica/storia-della-musica/vasco-rossi-la-sua-sally-compie-26-anni",
     "«Pensavo a una donna di trenta, trentacinque anni, poi mi sono accorto che nel pezzo era finito tantissimo di me» (libro La storia dietro le canzoni, 2017, citato da Wikipedia): https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi)",
     "Post di Vasco del 2020: «È la parte femminile di me… ci sono dentro soprattutto io»; Sally prosecuzione di Jenny, «ero Jenny prima e Sally dopo»: https://www.rollingstone.it/musica/news-musica/vasco-rossi-celebra-sally-nellanniversario-della-pubblicazione-e-la-parte-femminile-di-me/530205/",
     "Primo 45 giri (15 giugno 1977) con Jenny sul lato A: https://www.vascorossi.net/it/news/jenny-e-silvia-40-anni-fa-il-primo-45-giri-di-vasco-rossi/16-33941.html",
-    "Contenuto del testo (donna che cammina per strada e ripensa a errori e scelte della vita), raccontato con parole proprie: https://www.tgcom24.mediaset.it/rubriche/speciale-amarcord/sally-vasco-rossi-30-anni-esibizione-fiorella-mannoia_116130003-202602k.shtml e https://music.fanpage.it/il-significato-di-sally-canzone-di-vasco-rossi-diventata-un-classico/",
-    "Duetto con Fiorella Mannoia a Vota la Voce nel 1998; versione di Mannoia nell'album dal vivo Certe piccole voci (1999): https://www.tgcom24.mediaset.it/rubriche/speciale-amarcord/sally-vasco-rossi-30-anni-esibizione-fiorella-mannoia_116130003-202602k.shtml e https://music.fanpage.it/il-significato-di-sally-canzone-di-vasco-rossi-diventata-un-classico/",
+    "Contenuto del testo (una donna che ripensa alla sua vita, agli errori, al dolore subito; nel finale trova la forza per andare avanti), raccontato con parole proprie: https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi); lettura del Corriere della Sera (23 gennaio 1996): un malessere interiore che cessa per la voglia di porre fine ai conflitti: https://it.wikipedia.org/wiki/Nessun_pericolo..._per_te",
+    "Versione di Fiorella Mannoia nell'album dal vivo Certe piccole voci (1999); una sua esecuzione dal vivo del 1998 è nella raccolta Radio Italia - Mi piace (2011): https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi); duetto con Vasco a Vota la Voce nel 1998: https://www.tgcom24.mediaset.it/rubriche/speciale-amarcord/sally-vasco-rossi-30-anni-esibizione-fiorella-mannoia_116130003-202602k.shtml",
     "Rula Jebreal a Sanremo 2020 (4 febbraio) cita Sally nel monologo sulla violenza contro le donne, parlando di sua madre; Vasco: «Grazie. Le hai dato nuova vita»; a Repubblica: la canzone sembra negativa ma la protagonista è più forte di tutto: https://www.open.online/2020/02/06/rula-jebreal-e-quella-sally-nel-suo-monologo-vasco-rossi-grazie-le-hai-dato-nuova-vita"
   ],
   "pronuncia": {
