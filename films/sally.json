@@ -1,0 +1,136 @@
+{
+  "titolo": "Sally",
+  "regista": "Vasco Rossi",
+  "anno": 1996,
+  "palette": {
+    "chiaro": "#F3E9DC",
+    "principale": "#3E5C8A",
+    "scuro": "#0D1220",
+    "accento": "#E8A54B"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Una donna sola per strada. E dentro, il suo autore.",
+    "immagine": "Strada di città di notte dopo la pioggia: marciapiede bagnato che riflette un lampione arancione, una panchina vuota, una borsetta dimenticata sulla panchina, vetrine spente, foglie che il vento sposta sull'asfalto. Titolo grande in corsivo, come scritto a mano. NON usare foto, ritratti o sagome di Vasco Rossi, copertine dei dischi o loghi.",
+    "voce": "Sally, di Vasco Rossi: chi è la donna che cammina da sola?"
+  },
+  "capitoli": [
+    {
+      "id": "vasco",
+      "titolo": "Il rocker che racconta le donne",
+      "durata": 14,
+      "scena": "Sala prove vuota di sera: chitarra elettrica appoggiata a un amplificatore con la spia rossa accesa, asta del microfono, cavi a terra; su un tavolino un vecchio giradischi con un 45 giri che gira e un quaderno di testi aperto; alla parete un poster di concerto senza volti (solo uno stadio di luci).",
+      "sottotitoli": [
+        "Vasco Rossi, cantautore emiliano, è uno dei rocker più amati d'Italia.",
+        "Ma accanto ai pezzi più duri scrive anche ritratti di donne:",
+        "infatti il suo primo disco, nel 1977, parla di Jenny,",
+        "una ragazza fragile e confusa.",
+        "E quasi vent'anni dopo arriva Sally."
+      ]
+    },
+    {
+      "id": "barca",
+      "titolo": "Scritta in una notte",
+      "durata": 14,
+      "scena": "Porto di Saint-Tropez di notte: barche ormeggiate che dondolano, acqua con i riflessi delle luci del lungomare, in fondo un locale illuminato con musica (lucine colorate); in primo piano il ponte di una barca con un tavolino, una lampada a olio, un foglio e una penna, un bicchiere; la luna dietro le nuvole.",
+      "sottotitoli": [
+        "La canzone nasce quasi per caso, in vacanza:",
+        "Vasco è a Saint-Tropez, sulla barca del suo manager,",
+        "e passa la serata in un locale pieno di donne bellissime.",
+        "Poi torna in barca da solo e, racconta, la scrive di getto."
+      ]
+    },
+    {
+      "id": "uscita",
+      "titolo": "Una ballata in un disco rock",
+      "durata": 14,
+      "scena": "Negozio di dischi anni '90 chiuso, visto dalla vetrina: espositore con tanti CD tutti uguali senza grafica riconoscibile, un cartello scritto a mano «Primo in classifica», una piccola radio sul bancone con la lancetta che si accende, chitarre elettriche appese, un singolo CD in evidenza illuminato da un faretto.",
+      "sottotitoli": [
+        "Così Sally finisce in Nessun pericolo… per te, l'album del 1996,",
+        "che arriva primo in classifica in Italia.",
+        "Ma in mezzo a pezzi rock è una ballata lenta e malinconica,",
+        "e il 5 settembre diventa anche un singolo."
+      ]
+    },
+    {
+      "id": "sally",
+      "titolo": "Chi è Sally?",
+      "durata": 14,
+      "scena": "Una lunga strada di città all'alba: marciapiede bagnato, lampioni che si spengono uno dopo l'altro, sul selciato un paio di scarpe col tacco lasciate a terra, un ombrello chiuso appoggiato al muro; vetrine con i riflessi del cielo che schiarisce; foglie e carte portate dal vento.",
+      "sottotitoli": [
+        "Ma chi è Sally? Non è una persona precisa:",
+        "è una donna che cammina per strada, sola,",
+        "e intanto ripensa alla sua vita: gli errori, le scelte difficili, il dolore.",
+        "Così capisce che ha smesso di lottare contro tutto."
+      ]
+    },
+    {
+      "id": "senso",
+      "titolo": "La vita non segue i piani",
+      "durata": 14,
+      "scena": "Tetto di un palazzo al tramonto: un filo da equilibrista teso tra due comignoli sopra la città, un ombrellino rosso appoggiato su un'estremità, rondini che passano, panni stesi che si muovono nel vento; in basso le luci della città che si accendono.",
+      "sottotitoli": [
+        "E proprio qui c'è il cuore della canzone:",
+        "la vita non segue i nostri piani e passa in fretta,",
+        "e ci teniamo in piedi come chi cammina su un filo.",
+        "Per molti è il pensiero più famoso di Vasco, citato ovunque."
+      ]
+    },
+    {
+      "id": "vasco-dentro",
+      "titolo": "Sally è Vasco",
+      "durata": 14,
+      "scena": "Camerino vuoto: specchio con le lampadine intorno, sul ripiano un rossetto e un giubbotto di pelle appoggiati vicini, un foglio con il nome Sally scritto a mano e cerchiato, un vecchio 45 giri infilato nella cornice dello specchio; luce calda che pulsa.",
+      "sottotitoli": [
+        "Ma Vasco dice che Sally, in fondo, è lui:",
+        "pensava a una donna di trent'anni, racconta,",
+        "ma poi nel pezzo ci è finito moltissimo di sé.",
+        "Nel 2020 la chiama la sua parte femminile,",
+        "e dice che continua la storia di Jenny."
+      ]
+    },
+    {
+      "id": "mannoia",
+      "titolo": "Una canzone a due voci",
+      "durata": 14,
+      "scena": "Studio televisivo anni '90 a luci basse: due microfoni su asta uno accanto all'altro al centro di un palco, fasci di luce che si incrociano, telecamere ferme, un pianoforte a coda di lato; a fine scena le luci del pubblico si accendono come tante piccole stelle.",
+      "sottotitoli": [
+        "Intanto la canzone piace a Fiorella Mannoia, celebre cantante italiana,",
+        "che nel 1998 la canta in tv insieme a Vasco",
+        "e l'anno dopo la incide in un suo album dal vivo.",
+        "Così Sally diventa un classico anche fuori dal rock."
+      ]
+    },
+    {
+      "id": "nuova-vita",
+      "titolo": "Più forte di tutto",
+      "durata": 14,
+      "scena": "Palco di un grande teatro visto dalla platea: un leggio illuminato da un solo faro, sul leggio fogli scritti, fiori sul bordo del palco, sipario rosso; a fine scena la strada della copertina all'alba, con la panchina vuota e il sole che sorge.",
+      "sottotitoli": [
+        "A Sanremo 2020 la giornalista Rula Jebreal parla di violenza sulle donne",
+        "e cita Sally pensando a sua madre.",
+        "Così Vasco la ringrazia: ha dato alla canzone una nuova vita.",
+        "Perché Sally sembra arresa, ma alla fine è più forte di tutto."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "La strada della copertina all'alba: la panchina vuota, la borsetta non c'è più, il lampione che si spegne e il cielo che si schiarisce; 'Fine' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la canzone che vorresti.'"
+  },
+  "musica": "Originale e strumentale: ballata lenta con pianoforte, archi e chitarra pulita, che cresce piano fino a un'apertura piena nell'ultimo capitolo; niente melodie, accordi o ritmi di Sally (meglio in un'altra tonalità).",
+  "fonti": [
+    "Sally esce come singolo il 5 settembre 1996; traccia dell'album Nessun pericolo… per te: https://www.rollingstone.it/musica/news-musica/vasco-rossi-celebra-sally-nellanniversario-della-pubblicazione-e-la-parte-femminile-di-me/530205/",
+    "Album Nessun pericolo… per te pubblicato il 24 gennaio 1996, primo in classifica in Italia dalla seconda settimana: https://it.wikipedia.org/wiki/Nessun_pericolo..._per_te e https://www.rds.it/scopri/magazine/musica/storia-della-musica/compie-gli-anni-nessun-pericolo-per-te-undicesimo-album-di-vasco-rossi-2",
+    "Scritta di getto in vacanza a Saint-Tropez, sulla barca del manager, dopo una serata in un locale pieno di donne bellissime (racconto di Vasco; le fonti non concordano se la barca fosse del manager o di un amico, e se pensasse a una ragazza in particolare: per questo il testo non lo dice): https://www.rds.it/scopri/magazine/musica/storia-della-musica/vasco-rossi-la-sua-sally-compie-26-anni e https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi)",
+    "«Pensavo a una donna di trenta, trentacinque anni, poi mi sono accorto che nel pezzo era finito tantissimo di me» (libro La storia dietro le canzoni, 2017, citato da Wikipedia): https://it.wikipedia.org/wiki/Sally_(Vasco_Rossi)",
+    "Post di Vasco del 2020: «È la parte femminile di me… ci sono dentro soprattutto io»; Sally prosecuzione di Jenny, «ero Jenny prima e Sally dopo»: https://www.rollingstone.it/musica/news-musica/vasco-rossi-celebra-sally-nellanniversario-della-pubblicazione-e-la-parte-femminile-di-me/530205/",
+    "Primo 45 giri (15 giugno 1977) con Jenny sul lato A: https://www.vascorossi.net/it/news/jenny-e-silvia-40-anni-fa-il-primo-45-giri-di-vasco-rossi/16-33941.html",
+    "Contenuto del testo (donna che cammina per strada e ripensa a errori e scelte della vita), raccontato con parole proprie: https://www.tgcom24.mediaset.it/rubriche/speciale-amarcord/sally-vasco-rossi-30-anni-esibizione-fiorella-mannoia_116130003-202602k.shtml e https://music.fanpage.it/il-significato-di-sally-canzone-di-vasco-rossi-diventata-un-classico/",
+    "Duetto con Fiorella Mannoia a Vota la Voce nel 1998; versione di Mannoia nell'album dal vivo Certe piccole voci (1999): https://www.tgcom24.mediaset.it/rubriche/speciale-amarcord/sally-vasco-rossi-30-anni-esibizione-fiorella-mannoia_116130003-202602k.shtml e https://music.fanpage.it/il-significato-di-sally-canzone-di-vasco-rossi-diventata-un-classico/",
+    "Rula Jebreal a Sanremo 2020 (4 febbraio) cita Sally nel monologo sulla violenza contro le donne, parlando di sua madre; Vasco: «Grazie. Le hai dato nuova vita»; a Repubblica: la canzone sembra negativa ma la protagonista è più forte di tutto: https://www.open.online/2020/02/06/rula-jebreal-e-quella-sally-nel-suo-monologo-vasco-rossi-grazie-le-hai-dato-nuova-vita"
+  ],
+  "pronuncia": {
+    "Saint-Tropez": "Sen Tropé"
+  }
+}
