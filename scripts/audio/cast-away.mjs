@@ -155,7 +155,7 @@ export default (mix, T) => {
   [62, 66, 69].forEach((m, j) => suona(mix, 'violini', m + 12, { t: RAFT + 0.3, dur: T.isola - RAFT, vel: 32, pan: (j - 1) * 0.3, gain: 0.2, attack: 1.2, release: 1.4, rev: 0.6 }));
 
   // ---- isola: quasi silenzio, solo risacca, vento leggero e un'onda grande sulla barriera (quarta frase)
-  onde(T.isola - 0.5, T.fuoco + 0.5, 14, 0.18);
+  onde(T.isola - 0.5, T.fuoco + 0.5, 14, 0.14);
   clip(mix, 'vento_leggero', { t: T.isola, da: 0.5, durata: Math.min(15.5, T.anni - T.isola), gain: 0.05, fadeIn: 2, fadeOut: 2, largo: 4 });
   const WALL = G(cue('isola', 3) + 0.2); // il muro d'onda si alza, si rompe a WALL + 1,9 (Isola.tsx)
   clip(mix, 'onde_tonanti', { t: WALL + 0.3, da: 5.9, durata: 3.4, gain: 0.5, fadeIn: 1.4, fadeOut: 1.4, largo: 2.5, rev: 0.2 });
