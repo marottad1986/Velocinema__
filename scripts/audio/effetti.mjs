@@ -96,6 +96,11 @@ export const CATALOGO = {
   ronzio_neon: ['Red_Library_Sci-Fi', 'R21-41-Electric Light Hum.wav', -15],
   auto_epoca: ['SSE_Library_VEHICLES', 'CAR/VEHCar_Large 1946 buick with bad exhaust by slowly_CS_USC.wav', -6.4],
   risacca: ['SSE_Library_WATER', 'SURF/WATRSurf_Surf; medium distance; loopable_CS_USC.wav', -9],
+  // Breaking Bad, stagione 1
+  sirene: ['Red_Library_Sirens', 'R18-55-Two Vehicles Arrive with Sirens.wav', -18.4],
+  termite: ['SSE_Library_FIRE', 'SIZZLE/FIRESizz_Fire bomb; lights and hisses; fuse_CS_USC.wav', -11.2],
+  sibilo: ['SSE_Library_WATER', 'STEAM/WATRStm_Steam or air hissing_CS_USC.wav', -23],
+  esplosione_detriti: ['SSE_Library_EXPLOSIONS', 'REAL/EXPLReal_Explosion with falling debris_CS_USC.wav', -12.8],
 };
 
 const percorso = (id) => `${CACHE}/${CATALOGO[id][0]}/${CATALOGO[id][1].replace(/[/;?]/g, '_')}`;
