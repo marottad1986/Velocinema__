@@ -121,7 +121,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
       <Copertina_ t={t} dur={dur} />
-      <div style={{ position: 'absolute', left: 80, top: 290, width: 920, fontFamily: SANS }}>
+      <div style={{ position: 'absolute', left: 120, top: 290, width: 840, fontFamily: SANS }}>
         <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.accento, opacity: tag, textShadow: `0 2px 0 ${P.scuro}` }}>IL FILM IN 2 MINUTI</p>
         <h1 style={{ margin: '22px 0 0', fontFamily: SYNCOPATE, fontWeight: 700, fontSize: 80, lineHeight: 1, letterSpacing: '0.06em', color: P.chiaro,
           textShadow: `0 6px 0 ${P.scuro}`, opacity: seg(t, 0.15, 0.4), transform: `translateY(${(1 - l1) * 50}px)` }}>
@@ -129,7 +129,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
         </h1>
         <p style={{ margin: '26px 0 0', fontSize: 40, fontWeight: 800, opacity: dir, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>un film di {film.regista} · {film.anno}</p>
       </div>
-      <p style={{ position: 'absolute', left: 60, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 840, boxSizing: 'border-box', padding: '12px 26px 14px',
+      <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 40, fontWeight: 800, textAlign: 'center',
         opacity: line, transform: `translateY(${(1 - line) * 14}px)` }}>
         {film.copertina.frase_lancio}
@@ -147,7 +147,7 @@ export const Finale: React.FC<PosterProps> = ({ t, dur, film }) => {
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
       <Finale_ t={t} dur={dur} />
-      <div style={{ position: 'absolute', left: 90, top: 300, width: 900, boxSizing: 'border-box', padding: '40px 40px 36px', borderRadius: 32,
+      <div style={{ position: 'absolute', left: 120, top: 300, width: 840, boxSizing: 'border-box', padding: '40px 40px 36px', borderRadius: 32,
         background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, textAlign: 'center', opacity: card, transform: `translateY(${(1 - card) * 24}px)` }}>
         <p style={{ margin: 0, fontFamily: DISPLAY, fontWeight: 800, fontSize: 72, lineHeight: 1 }}>Ti è piaciuto?</p>
         <div style={{ display: 'flex', gap: 24, justifyContent: 'center', marginTop: 34 }}>
