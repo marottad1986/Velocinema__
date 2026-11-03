@@ -17,7 +17,7 @@ export const Ritorno: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   // l'auto accende i fari e parte su «e Chuck riparte da solo»
   const lights = seg(t, cues[4] - 0.4, cues[4]);
   const drive = eio(seg(t, cues[4] + 0.3, dur + 1.5));
-  const cx = 760 + 520 * drive;
+  const cx = 620 + 620 * drive;
   const win = (i: number) => (i === 2 ? 0.25 : 0.85 - 0.5 * seg(t, cues[3] + 0.4 * i, cues[3] + 0.4 * i + 0.5));
 
   return (
@@ -87,8 +87,13 @@ export const Ritorno: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           {/* fuoristrada: si accendono i fari e se ne va */}
           <g transform={`translate(${cx} 1200)`}>
             {lights > 0 && <Beam id="ri-head" x={150} y={-10} t={t} length={700} spread={180} color="#FFF4D0" angle={0} opacity={0.4 * lights} />}
-            <path d="M-170 20 V-40 Q-160 -60 -120 -64 L-80 -120 H90 L140 -60 Q170 -56 170 -30 V20 Z" fill="url(#ri-car)" stroke={K} strokeWidth="8" strokeLinejoin="round" />
-            <path d="M-66 -110 H20 V-64 H-100 Z M34 -110 H82 L120 -64 H34 Z" fill="#33485E" stroke={K} strokeWidth="5" />
+            {/* fuoristrada squadrato: portapacchi, ruota di scorta, paraurti */}
+            <rect x="-190" y="-96" width="40" height="70" rx="16" fill="#1A1E24" stroke={K} strokeWidth="6" />
+            <path d="M-180 24 V-50 Q-178 -66 -150 -70 L-120 -150 H110 L150 -74 Q182 -70 184 -40 V24 Z" fill="url(#ri-car)" stroke={K} strokeWidth="8" strokeLinejoin="round" />
+            <path d="M-118 -164 H112 M-100 -164 V-152 M0 -164 V-152 M96 -164 V-152" stroke={K} strokeWidth="7" />
+            <path d="M-104 -140 H-10 V-78 H-134 Z M6 -140 H100 L134 -78 H6 Z" fill="#33485E" stroke={K} strokeWidth="5" />
+            <path d="M-176 0 H184" stroke="#6E2414" strokeWidth="8" />
+            <rect x="-192" y="4" width="390" height="20" rx="6" fill="#3A3F46" stroke={K} strokeWidth="5" />
             <path d="M-60 -104 L-10 -70" stroke="#9FB8CC" strokeWidth="5" opacity=".6" />
             <rect x="140" y="-34" width="28" height="18" rx="4" fill={lights > 0 ? '#FFF8E0' : '#C9C2B2'} stroke={K} strokeWidth="3" />
             <rect x="-172" y="-34" width="14" height="18" fill="#8E1E14" stroke={K} strokeWidth="3" />
@@ -111,9 +116,21 @@ export const Ritorno: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               })}
             </g>
           ))}
-          <path d="M1000 1940 V1500" stroke={K} strokeWidth="18" />
-          <rect x="930" y="1420" width="150" height="90" rx="40" fill="#5A6470" stroke={K} strokeWidth="8" />
-          <path d="M1060 1430 V1380 h30 v26 h-30" fill={P.accento} stroke={K} strokeWidth="5" />
+          {/* staccionata bagnata e siepe che incorniciano il fondo; cassetta delle lettere dentro lo schermo */}
+          {Array.from({ length: 9 }, (_, i) => (
+            <g key={i}>
+              <path d={`M${-80 + i * 70} 1960 V${1770 + (i % 2) * 6} l22 -26 l22 26 V1960 Z`} fill="#C9CED6" stroke={K} strokeWidth="6" strokeLinejoin="round" />
+              <path d={`M${-70 + i * 70} 1790 V1940`} stroke="#EEF2F6" strokeWidth="4" opacity=".5" />
+            </g>
+          ))}
+          <path d="M-100 1820 H560 M-100 1890 H560" stroke={K} strokeWidth="14" />
+          <path d="M-100 1820 H560 M-100 1890 H560" stroke="#AEB4BE" strokeWidth="7" />
+          <path d="M640 1980 Q660 1780 800 1790 Q900 1740 1000 1800 Q1120 1780 1180 1980 Z" fill="#1E3A2E" stroke={K} strokeWidth="7" />
+          {[700, 790, 880, 960].map((x, i) => <circle key={x} cx={x} cy={1830 + (i % 2) * 20} r="34" fill="#28503E" opacity=".8" />)}
+          <path d="M200 1790 V1600" stroke={K} strokeWidth="18" />
+          <path d="M200 1790 V1600" stroke="#6E5638" strokeWidth="10" />
+          <rect x="130" y="1520" width="150" height="90" rx="40" fill="#5A6470" stroke={K} strokeWidth="8" />
+          <path d="M260 1530 V1480 h30 v26 h-30" fill={P.accento} stroke={K} strokeWidth="5" />
         </g>
 
         {/* PIANO 5 — pioggia vicina */}
