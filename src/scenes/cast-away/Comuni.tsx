@@ -103,8 +103,8 @@ export const islandPath = (x: number, y: number, s = 1) =>
   `M${x - 520 * s} ${y} Q${x - 380 * s} ${y - 90 * s} ${x - 230 * s} ${y - 120 * s} Q${x - 120 * s} ${y - 160 * s} ${x - 60 * s} ${y - 330 * s} Q${x - 20 * s} ${y - 420 * s} ${x + 40 * s} ${y - 380 * s} Q${x + 110 * s} ${y - 300 * s} ${x + 170 * s} ${y - 180 * s} Q${x + 330 * s} ${y - 120 * s} ${x + 520 * s} ${y} Z`;
 
 /** Zattera di tronchi con albero e vela fatta con il pannello di plastica. `sail` 0..1 la issa, `torn` la strappa. */
-export const Raft: React.FC<{ t: number; sail?: number; torn?: number; ball?: boolean; accent?: string }> = ({ t, sail = 1, torn = 0, ball = true }) => {
-  const flap = Math.sin(t * 3) * 6;
+export const Raft: React.FC<{ t: number; sail?: number; torn?: number; ball?: boolean; accent?: string; flapAmp?: number }> = ({ t, sail = 1, torn = 0, ball = true, flapAmp = 6 }) => {
+  const flap = Math.sin(t * 3) * flapAmp;
   return (
     <g strokeLinejoin="round" strokeLinecap="round">
       {/* tronchi */}
@@ -159,3 +159,38 @@ export const PocketWatch: React.FC<{ x: number; y: number; s?: number; open?: nu
     <path d="M40 -44 Q60 -64 90 -66" fill="none" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" opacity=".7" />
   </g>
 );
+
+/** Mare mosso: fascia d'acqua con creste a punta (non sinusoidi), faccia più chiara sotto la cresta e schiuma sulle punte.
+ *  Scorre di `speed` px/s e si ripete ogni `w` px; `foam` 0..1 dosa le creste bianche (tempesta = 1). */
+export const Chop: React.FC<{ t: number; y: number; fill: string; face?: string; amp?: number; w?: number; speed?: number; bob?: number; ph?: number; foam?: number; foamColor?: string; line?: string }> = ({
+  t, y, fill, face = '#FFFFFF', amp = 40, w = 300, speed = 60, bob = 10, ph = 0, foam = 1, foamColor = '#F2FBFC', line,
+}) => {
+  const x0 = -500, x1 = 1600;
+  const off = -((t * speed + ph * w * 0.37) % w) - w;
+  const dy = Math.sin(t * 1.7 + ph) * bob;
+  let d = `M${x0} ${y}`;
+  for (let x = x0; x < x1; x += w) {
+    d += ` c${w * 0.32} 0 ${w * 0.44} ${-amp * 0.55} ${w * 0.5} ${-amp}`; // risale e si appuntisce
+    d += ` c${w * 0.07} ${amp * 0.45} ${w * 0.22} ${amp} ${w * 0.5} ${amp}`; // ricade nel cavo
+  }
+  const crests = Array.from({ length: Math.ceil((x1 - x0) / w) }, (_, i) => x0 + i * w + w * 0.5);
+  return (
+    <g transform={`translate(${off} ${dy})`}>
+      <path d={`${d} V${y + 1400} H${x0} Z`} fill={fill} />
+      {/* faccia dell'onda: fascia chiara che segue la cresta */}
+      <path d={d} fill="none" stroke={face} strokeWidth={amp * 0.35} strokeLinejoin="round" opacity=".12" transform={`translate(0 ${amp * 0.2})`} />
+      {line && <path d={d} fill="none" stroke={line} strokeWidth="5" strokeLinejoin="round" />}
+      {foam > 0.02 && crests.map((cx, i) => {
+        const k = 0.75 + 0.25 * Math.sin(t * 2.3 + i * 1.9);
+        return (
+          <g key={i} opacity={foam * k}>
+            <path d={`M${cx - w * 0.16} ${y - amp * 0.42} Q${cx - w * 0.05} ${y - amp * 1.08} ${cx + w * 0.03} ${y - amp * 0.98} Q${cx + w * 0.12} ${y - amp * 0.7} ${cx + w * 0.22} ${y - amp * 0.18} Q${cx + w * 0.06} ${y - amp * 0.5} ${cx - w * 0.16} ${y - amp * 0.42} Z`} fill={foamColor} />
+            <circle cx={cx + w * 0.1} cy={y - amp * 1.15 - 8 * Math.abs(Math.sin(t * 3 + i))} r={amp * 0.07 + 2} fill={foamColor} opacity=".8" />
+            <circle cx={cx - w * 0.02} cy={y - amp * 1.25 - 12 * Math.abs(Math.sin(t * 2.4 + i * 2))} r={amp * 0.05 + 2} fill={foamColor} opacity=".7" />
+            <path d={`M${cx + w * 0.2} ${y - amp * 0.1} q${w * 0.08} ${amp * 0.25} ${w * 0.2} ${amp * 0.3}`} fill="none" stroke={foamColor} strokeWidth="4" strokeLinecap="round" opacity=".55" />
+          </g>
+        );
+      })}
+    </g>
+  );
+};
