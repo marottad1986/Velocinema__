@@ -26,7 +26,7 @@ const righe = (titolo: string) => {
 };
 
 /** Corpo del titolo: 230 px, ridotto perché la riga più lunga stia nei 920 px disponibili. */
-const corpo = (r: string[]) => Math.min(230, Math.floor(920 / (Math.max(...r.map((x) => x.length)) * 0.43)));
+const corpo = (r: string[]) => Math.min(230, Math.floor(840 / (Math.max(...r.map((x) => x.length)) * 0.43)));
 
 /** Copertina: dettaglio a tutto schermo (camera da `da` a `a`), titolo grande in alto a sinistra. */
 export const copertinaQuadro = (opera: Opera, da: Chiave['v'], a: Chiave['v']): React.FC<PosterProps> => ({ t, dur, film }) => {
@@ -43,7 +43,7 @@ export const copertinaQuadro = (opera: Opera, da: Chiave['v'], a: Chiave['v']): 
       <p style={{ position: 'absolute', top: 290, left: 120, margin: 0, fontFamily: SANS, fontWeight: 800, fontSize: 30, letterSpacing: '0.35em', color: P.accento, opacity: k }}>
         QUADRI SPIEGATI
       </p>
-      <h1 style={{ position: 'absolute', top: 340, left: 72, margin: 0, fontFamily: SERIF, fontWeight: 400, fontSize: size, lineHeight: 0.88, color: CREMA,
+      <h1 style={{ position: 'absolute', top: 340, left: 120, margin: 0, fontFamily: SERIF, fontWeight: 400, fontSize: size, lineHeight: 0.88, color: CREMA,
         opacity: k, transform: `translateY(${(1 - k) * 30}px)`, textShadow: '0 6px 30px rgba(0,0,0,.5)' }}>
         {r.map((x, i) => <React.Fragment key={i}>{i > 0 && <br />}{x}</React.Fragment>)}
       </h1>
@@ -66,7 +66,7 @@ export const finaleQuadro = (opera: Opera): React.FC<PosterProps> => ({ t, film 
   const card = eo(seg(t, 0.1, 0.6));
   return (
     <AbsoluteFill>
-      <Quadro opera={opera} t={t} chiavi={[{ t: 0, v: intera(opera, 0.5, 0.42) }]} />
+      <Quadro opera={opera} t={t} chiavi={[{ t: 0, v: intera(opera, 0.5, 0.17) }]} />
       <div style={{ position: 'absolute', left: 120, top: 300, width: 840, boxSizing: 'border-box', padding: '40px 40px 36px', borderRadius: 24,
         background: 'rgba(10,16,32,.84)', border: '2px solid rgba(255,255,255,.2)', color: CREMA, fontFamily: SANS, textAlign: 'center',
         opacity: card, transform: `translateY(${(1 - card) * 20}px)` }}>
