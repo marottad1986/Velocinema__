@@ -2,6 +2,7 @@
   "titolo": "Sally",
   "regista": "Vasco Rossi",
   "anno": 1996,
+  "bpm": 68.57142857142857,
   "palette": {
     "chiaro": "#F3E9DC",
     "principale": "#3E5C8A",
@@ -21,7 +22,7 @@
       "durata": 14,
       "scena": "Sala prove vuota di sera: chitarra elettrica appoggiata a un amplificatore con la spia rossa accesa, asta del microfono, cavi a terra; su un tavolino un vecchio giradischi con un 45 giri che gira e un quaderno di testi aperto; alla parete un poster di concerto senza volti (solo uno stadio di luci).",
       "sottotitoli": [
-        "Vasco Rossi, cantautore, è uno dei rocker più amati d'Italia,",
+        "Vasco Rossi, cantautore, è uno dei rocker più amati d'Italia.",
         "Ma accanto ai pezzi più duri scrive anche ritratti di donne:",
         "infatti il suo primo disco, nel 1977, parla di Jenny,",
         "una ragazza fragile e disillusa.",
@@ -97,7 +98,7 @@
         "Ma Vasco dice che Sally, in fondo, è lui:",
         "pensava a una donna di trent'anni, racconta,",
         "ma poi nel pezzo ci è finito moltissimo di sé.",
-        "Poi la chiama la sua parte femminile,",
+        "E più tardi la chiama la sua parte femminile,",
         "e dice che continua la storia di Jenny."
       ]
     },

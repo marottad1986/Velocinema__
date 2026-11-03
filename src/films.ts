@@ -1,5 +1,5 @@
 import type { FilmData, FilmDef } from './types';
-import { ANTON, BEBAS, CINZEL, CREEPSTER, PACIFICO, PLAYFAIR, SERIF, STENCIL, SYNCOPATE, TYPEWRITER } from './lib/fonts';
+import { ANTON, BEBAS, CINZEL, CREEPSTER, HAND, PACIFICO, PLAYFAIR, SERIF, STENCIL, SYNCOPATE, TYPEWRITER } from './lib/fonts';
 import shutterIsland from '../films/shutter-island.json';
 import laLaLand from '../films/la-la-land.json';
 import trumanShow from '../films/the-truman-show.json';
@@ -13,6 +13,7 @@ import darkStagione2 from '../films/dark-stagione-2.json';
 import inception from '../films/inception.json';
 import bohemianRhapsody from '../films/bohemian-rhapsody.json';
 import gliAnni from '../films/gli-anni.json';
+import sally from '../films/sally.json';
 import { SHUTTER_ISLAND_SCENES } from './scenes/shutter-island';
 import { Copertina as ShutterCover } from './scenes/shutter-island/Copertina';
 import { Finale as ShutterEnd } from './scenes/shutter-island/Finale';
@@ -57,6 +58,7 @@ import { THE_OTHERS_SCENES } from './scenes/the-others';
 import { Copertina as OthersCover, Finale as OthersEnd } from './scenes/the-others/Locandina';
 import { Copertina as JokerCover, Finale as JokerEnd } from './scenes/joker/Locandina';
 import breakingBad1 from '../films/breaking-bad-stagione-1.json';
+import { SALLY_SCENES } from './scenes/sally';
 import { BREAKING_BAD_1_SCENES } from './scenes/breaking-bad-stagione-1';
 import { Copertina as BB1Cover, Finale as BB1End } from './scenes/breaking-bad-stagione-1/Locandina';
 
@@ -83,6 +85,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'the-others', data: theOthers as FilmData, scenes: THE_OTHERS_SCENES, cover: OthersCover, ending: OthersEnd, posterFont: SERIF },
   { slug: 'joker', data: joker as FilmData, scenes: JOKER_SCENES, cover: JokerCover, ending: JokerEnd, posterFont: ANTON },
   { slug: 'breaking-bad-stagione-1', data: breakingBad1 as FilmData, scenes: BREAKING_BAD_1_SCENES, cover: BB1Cover, ending: BB1End, posterFont: STENCIL },
+  { slug: 'sally', data: sally as FilmData, scenes: SALLY_SCENES, posterFont: HAND },
 ];
 
 export const getFilm = (slug: string): FilmDef => {
