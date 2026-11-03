@@ -27,7 +27,7 @@ export const Pacchi: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
         <FxDefs id="pc" />
-        <Lin id="pc-sky" stops={[[0, '#4FA7D8'], [0.35, '#8ED0E8'], [0.55, '#D6EEF0'], [0.6, '#F2F6EC']]} />
+        <Lin id="pc-sky" stops={[[0, '#4FA7D8'], [0.5, '#9AD6EA'], [0.86, '#EAF6F0']]} />
         <Lin id="pc-sea" stops={[[0, '#3FA6B0'], [0.5, '#5FC2C0'], [1, '#9EE0D6']]} />
         <Lin id="pc-sand" stops={[[0, '#F7E9C8'], [0.6, '#EED8A8'], [1, '#DDBF88']]} />
         <Lin id="pc-rock" x2={1} y2={0} stops={[[0, '#7E8274'], [0.6, '#9A9C88'], [1, '#62665A']]} />
@@ -52,7 +52,7 @@ export const Pacchi: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         <g transform={L(0.7, 0, -150)}>
           <path d={`M-200 ${1200 + wash * 30} Q300 ${1180 + wash * 30} 1280 ${1210 + wash * 30} V1260 H-200 Z`} fill="#BFEBE2" opacity={0.7} />
           {FOAM.map((f, i) => <ellipse key={i} cx={f.x} cy={f.y + wash * 30} rx={30 + 20 * Math.sin(t + f.ph * 6)} ry="6" fill="#FFFFFF" opacity={0.7 * (1 - wash)} />)}
-          <Parcel x={900 - 260 * drift} y={1150 + 60 * drift + Math.sin(t * 2) * 8 * (1 - drift)} w={140} h={96} d={40} rot={-10 + 10 * drift + Math.sin(t * 1.6) * 4 * (1 - drift)} wet={1} />
+          <Parcel x={1000 - 520 * drift} y={1150 + 60 * drift + Math.sin(t * 2) * 8 * (1 - drift)} w={140} h={96} d={40} rot={-10 + 10 * drift + Math.sin(t * 1.6) * 4 * (1 - drift)} wet={1} />
         </g>
 
         {/* PIANO 3 — la sabbia con i pacchi aperti e gli oggetti */}
@@ -63,11 +63,14 @@ export const Pacchi: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <Parcel x={0} y={0} w={190} h={110} d={50} />
             <path d="M-95 -55 l-50 -70 l120 0 Z" fill="#D7AE78" stroke={K} strokeWidth="6" />
             <g transform={`translate(-10 ${-80 - 70 * pop(0)}) rotate(${-14 + 10 * pop(0)}) scale(${pop(0)})`}>
-              <path d="M-70 0 V-70 Q-70 -96 -40 -96 H0 Q20 -96 20 -70 V-30 Q60 -24 70 0 Z" fill="#F4EFE2" stroke={K} strokeWidth="6" />
-              <path d="M-50 -80 l50 0 M-50 -64 l50 0 M-50 -48 l50 0" stroke="#8A8A8A" strokeWidth="4" />
-              <path d="M-84 18 H90 Q100 18 96 8" fill="none" stroke="#C7D0D6" strokeWidth="8" strokeLinecap="round" />
-              <path d="M-60 0 V16 M40 0 V16" stroke={K} strokeWidth="5" />
-              <path d="M-70 18 H70" stroke="#FFFFFF" strokeWidth="3" />
+              <g transform="scale(1.25)">
+                <path d="M-70 -90 Q-76 -20 -60 20 H70 Q86 0 70 -20 Q20 -30 6 -90 Z" fill="#F2EEE6" stroke={K} strokeWidth="6" strokeLinejoin="round" />
+                {[-70, -50, -30].map((y) => <path key={y} d={`M-50 ${y} l40 4`} stroke="#8A7A5C" strokeWidth="4" />)}
+                <path d="M-60 20 V40 M60 20 V40" stroke={K} strokeWidth="6" />
+                <path d="M-96 42 H96 Q110 42 104 30" fill="none" stroke="#C9D3DA" strokeWidth="10" strokeLinecap="round" />
+                <path d="M-96 42 H96" stroke={K} strokeWidth="3" />
+                <path d="M-70 38 H40" stroke="#FFFFFF" strokeWidth="3" />
+              </g>
             </g>
           </g>
           {/* vestito da sera steso sulla sabbia */}
@@ -87,17 +90,18 @@ export const Pacchi: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             ))}
           </g>
           {/* il pallone che rotola fuori */}
-          <Ball x={240 + 100 * pop(2)} y={1300} r={58} rot={pop(2) * 200} face={0} />
+          <Ball x={300 + 120 * pop(2)} y={1196} r={62} rot={pop(2) * 200} face={0} />
           {/* nastro e cartone strappato sparsi */}
           <path d="M60 1420 l60 -14 l10 20 l-50 18 Z M700 1460 l70 6 l-6 24 l-70 -8 Z" fill="#C69559" stroke={K} strokeWidth="5" />
         </g>
 
         {/* PIANO 4 — roccia con il pacco chiuso con le ali (accento) */}
         <g transform={L(1.0, 0, -560)}>
-          <path d="M620 1880 Q640 1760 760 1740 Q900 1720 980 1780 Q1060 1840 1080 1940 H600 Z" fill="url(#pc-rock)" stroke={K} strokeWidth="8" />
-          <path d="M700 1780 Q780 1760 860 1770" fill="none" stroke="#C6C8B4" strokeWidth="5" opacity=".7" />
-          <Glow id="pc-wing" x={840} y={1680} r={240} t={t} color="#FFD3B8" amp={0.08} rate={2} opacity={0.15 + 0.5 * wingGlow} />
-          <Parcel x={840} y={1690} w={210} h={130} d={56} wings={P.accento} rot={-3} />
+          <path d="M600 1890 Q610 1790 690 1770 Q790 1750 850 1800 Q920 1850 930 1940 H590 Z" fill="url(#pc-rock)" stroke={K} strokeWidth="8" />
+          <path d="M650 1792 Q710 1776 780 1784" fill="none" stroke="#C6C8B4" strokeWidth="5" opacity=".7" />
+          <Glow id="pc-wing" x={765} y={1680} r={300} t={t} color="#FFD3B8" amp={0.08} rate={2} opacity={0.15 + 0.85 * wingGlow} />
+          <circle cx="765" cy="1680" r={120 + 160 * mod(t * 0.7, 1)} fill="none" stroke="#FFE1C8" strokeWidth="8" opacity={wingGlow * (1 - mod(t * 0.7, 1))} />
+          <Parcel x={765} y={1700} w={180} h={112} d={48} wings={P.accento} rot={-3} />
         </g>
 
         {/* PIANO 5 — palme che incorniciano, conchiglie e alghe sulla sabbia in primo piano */}
