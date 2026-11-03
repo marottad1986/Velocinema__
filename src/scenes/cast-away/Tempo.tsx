@@ -13,7 +13,7 @@ const r = rng(1203);
 const FAR = Array.from({ length: 9 }, (_, i) => ({ o: i / 9, w: 70 + r() * 40, h: 46 + r() * 24, c: ['#C69559', '#B8874E', '#D3A469'][i % 3] }));
 const NEAR = Array.from({ length: 6 }, (_, i) => ({ o: i / 6, w: 150 + r() * 50, h: 100 + r() * 30 }));
 
-export const Tempo: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
+export const Tempo: React.FC<SceneProps> = ({ t, dur, palette: P, cues, griglia }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
   // il nastro accelera quando «ogni pacco deve arrivare in tempo»
@@ -23,8 +23,9 @@ export const Tempo: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const snap = eob(seg(t - tick, 0, 0.18), 3);
   const sec = ((tick - 1 + snap) / 60) * 360 + 200;
   const stop = eob(seg(t, cues[1], cues[1] + 0.4), 2); // il cronometro parte su «l'orologio in mano»
-  const page = seg(t, cues[3], cues[3] + 0.3); // il cercapersone di Kelly vibra, ignorato
-  const buzz = page * (mod(t, 0.9) < 0.5 ? 1 : 0);
+  const pageAt = griglia(cues[3], 1);
+  const page = seg(t, pageAt, pageAt + 0.2); // il cercapersone di Kelly vibra a ogni battito, ignorato
+  const buzz = page * (t >= pageAt && mod(t - pageAt, 60 / 72) < 0.35 ? 1 : 0);
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>

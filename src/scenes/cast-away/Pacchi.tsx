@@ -12,15 +12,15 @@ import { Ball, K, Palm, Parcel } from './Comuni';
 const r = rng(5150);
 const FOAM = Array.from({ length: 12 }, () => ({ x: r() * 1200 - 60, y: 1180 + r() * 60, ph: r() }));
 
-export const Pacchi: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
+export const Pacchi: React.FC<SceneProps> = ({ t, dur, palette: P, cues, griglia }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
   // un pacco arriva galleggiando con la marea
   const drift = eo(seg(t, 0, cues[1]));
   // gli oggetti escono dai pacchi aperti, uno dopo l'altro, su «pattini, un vestito, un pallone»
-  const pop = (i: number) => eob(seg(t, cues[2] + i * 0.45, cues[2] + i * 0.45 + 0.5), 2);
+  const pop = (i: number) => eob(seg(t, griglia(cues[2]) + i * (30 / 72), griglia(cues[2]) + i * (30 / 72) + 0.5), 2);
   // il pacco con le ali si illumina su «Solo uno… resta chiuso»
-  const wingGlow = seg(t, cues[3], cues[3] + 0.8);
+  const wingGlow = seg(t, griglia(cues[3]), griglia(cues[3]) + 0.8);
   const wash = mod(t * 0.3, 1);
 
   return (

@@ -13,7 +13,7 @@ const r = rng(2000);
 const GRASS = Array.from({ length: 40 }, () => ({ x: r() * 1300 - 110, y: 1500 + r() * 420, h: 30 + r() * 50, ph: r() * 6 }));
 const DUST = Array.from({ length: 14 }, () => ({ ph: r(), dy: (r() - 0.5) * 40, s: 0.6 + r() * 0.8 }));
 
-export const Bivio: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
+export const Bivio: React.FC<SceneProps> = ({ t, dur, palette: P, cues, griglia }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
   const parcel = seg(t, 0.2, 0.9); // il pacco consegnato al cancello
@@ -22,7 +22,7 @@ export const Bivio: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const come = eio(seg(t, cues[2] - 0.6, cues[2] + 0.8));
   const leave = eio(seg(t, cues[4] + 1.0, dur + 3));
   const vx = -260 + 730 * come + 900 * leave, vy = 1240, vs = 1;
-  const wings = seg(t, cues[3], cues[3] + 0.6); // le ali sul portellone: è lei
+  const wings = seg(t, griglia(cues[3]), griglia(cues[3]) + 0.6); // le ali sul portellone: è lei
   const sun = 1 - 0.3 * seg(t, 0, dur);
 
   return (

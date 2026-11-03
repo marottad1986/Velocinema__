@@ -11,13 +11,13 @@ import { Ball, K, PocketWatch } from './Comuni';
 
 const TALLY = 60; // gruppi da cinque tacche disegnati sulla parete
 
-export const Anni: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
+export const Anni: React.FC<SceneProps> = ({ t, dur, palette: P, cues, griglia }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
   // le tacche si moltiplicano su «conta i giorni sulla parete»
   const shown = Math.floor(30 + (TALLY - 30) * eo(seg(t, cues[1], cues[2])));
   // l'orologio con la foto si apre su «guarda la foto di Kelly»
-  const watch = eo(seg(t, cues[2] + 0.6, cues[2] + 1.6));
+  const watch = eo(seg(t, griglia(cues[2] + 0.6), griglia(cues[2] + 0.6) + 1.0));
   // la luce dell'apertura si scalda su «sogna ancora di tornare»
   const dream = seg(t, cues[3], cues[3] + 1.2);
 
