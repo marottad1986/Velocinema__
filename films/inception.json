@@ -83,8 +83,8 @@
       "sottotitoli": [
         "Ma un'idea resta solo se sembra nata da te,",
         "e più la pianti in fondo, più sembra tua.",
-        "Per questo il piano è un sogno dentro un sogno dentro un sogno,",
-        "come i piani di un palazzo: tre livelli sotto la realtà."
+        "Per questo serve un sogno nel sogno nel sogno:",
+        "tre piani sotto la realtà, come in un palazzo."
       ]
     },
     {
@@ -94,8 +94,8 @@
       "personaggi": [],
       "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
       "sottotitoli": [
-        "Così Cobb addormenta Fischer su un volo di dieci ore.",
-        "Nei sogni però la mente corre, e il tempo si allunga:",
+        "Così, in volo, Cobb e Saito addormentano Fischer per dieci ore.",
+        "Nei sogni la mente corre, e il tempo si allunga:",
         "dieci ore diventano una settimana al primo piano,",
         "sei mesi al secondo, dieci anni al terzo."
       ]
@@ -121,7 +121,7 @@
       "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
       "sottotitoli": [
         "Di solito morire in un sogno ti sveglia.",
-        "Ma qui usano un sonnifero fortissimo:",
+        "Ma per tre piani serve un sonnifero fortissimo:",
         "chi muore precipita nel limbo, il piano più in fondo,",
         "dove si resta per anni e si dimentica cos'è reale."
       ]
@@ -134,9 +134,9 @@
       "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
       "sottotitoli": [
         "Cobb ci finì anni fa, con la moglie Mal.",
-        "Per farla risalire, le mise in testa un'idea: «niente è vero»,",
-        "ma l'idea restò anche da sveglia: Mal, convinta di sognare, si uccise.",
-        "Accusato della sua morte, Cobb è ricercato, e nei sogni lei lo perseguita."
+        "Per farla risalire, le mise in testa l'idea «niente è vero»,",
+        "ma da sveglia ci credeva ancora: si uccise.",
+        "Accusato di averla uccisa, Cobb è ricercato; e nei sogni lei lo perseguita."
       ]
     },
     {
@@ -146,10 +146,10 @@
       "personaggi": [],
       "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
       "sottotitoli": [
-        "Ma al terzo piano Mal colpisce Fischer, che cade nel limbo.",
-        "Cobb scende a riprenderlo, e lì dice addio a Mal.",
-        "Fischer risale e in una cassaforte trova una copia del padre,",
-        "che gli dice di essere se stesso: l'idea ha funzionato."
+        "Ma al terzo piano Mal uccide Fischer: cade nel limbo.",
+        "Cobb scende a riprenderlo, e dice addio a Mal.",
+        "Fischer risale e in cassaforte trova il padre sognato,",
+        "che gli dice di non imitarlo: Fischer smonterà l'impero."
       ]
     },
     {
@@ -159,8 +159,8 @@
       "personaggi": [],
       "scena": "Schema a piani (torre dei sogni): vedi Piani.tsx.",
       "sottotitoli": [
-        "Poi Cobb salva Saito, morto nel sogno e invecchiato nel limbo.",
-        "Si svegliano in aereo, e Cobb torna a casa.",
+        "Poi Cobb riporta su Saito, invecchiato nel limbo.",
+        "Si svegliano, e grazie a Saito Cobb torna a casa.",
         "Fa girare la trottola, ma corre dai figli senza guardarla.",
         "Sogno o realtà? Il film non lo dice."
       ]
@@ -171,5 +171,11 @@
     "voce": "In una frase: un'idea, una volta piantata, non se ne va più.",
     "immagine": "La torre dei piani completa con la trottola in cima che vacilla; riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la spiegazione che vorresti.'"
   },
-  "musica": "Originale e strumentale: archi gravi e pianoforte, un pulsare che rallenta a ogni piano più profondo, un ticchettio che si dilata; niente brani o temi del film (né la colonna sonora originale né canzoni usate nel film)."
+  "musica": "Originale e strumentale: archi gravi e pianoforte, un pulsare che rallenta a ogni piano più profondo, un ticchettio che si dilata; niente brani o temi del film (né la colonna sonora originale né canzoni usate nel film).",
+  "fonti": [
+    "Cobb ladro di segreti nei sogni; Saito potente uomo d'affari; inception su Robert Fischer per smembrare l'impero del padre morente (Fischer-Morrow); in cambio cancellata l'accusa di omicidio e ritorno dai figli; Cobb e Mal per cinquant'anni nel mondo dei sogni, l'idea che il mondo non fosse reale, suicidio di Mal e accusa a Cobb; calcio come brusca sensazione di caduta che sveglia; Mal uccide Fischer che precipita nel Limbo; caveau con testamento, girandola e padre deluso che il figlio volesse essere come lui; Saito muore al terzo livello e invecchia nel Limbo; Cobb torna dai figli e fa girare la trottola: https://it.wikipedia.org/wiki/Inception",
+    "Trottola come totem per capire se si sogna; tempo più lento a ogni livello; calcio sincronizzato che sveglia tutti i livelli; sedativo per cui morire porta nel Limbo; volo per l'America; finale con la trottola che gira e Cobb che raggiunge i figli senza guardarla: https://en.wikipedia.org/wiki/Inception",
+    "Dialogo del film: nel sogno la mente va circa 20 volte più veloce, una settimana al primo livello, sei mesi al secondo, dieci anni al terzo: https://clip.cafe/inception-2010/and-when-you-enter-a-dream-within-that-dream-the-effect-is-compounded/",
+    "Volo di dieci ore e calcolo dei livelli (10 ore × 20 ≈ 8 giorni, ≈ 6 mesi, ≈ 10 anni): https://ieet.org/index.php/IEET2/more/lyons20131117"
+  ]
 }

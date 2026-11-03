@@ -12,7 +12,7 @@
     "durata": 4,
     "frase_lancio": "Un'isola. Quattro anni. Un solo amico.",
     "immagine": "Tramonto su una spiaggia deserta: in primo piano un pacco di cartone con due ali disegnate, mezzo affondato nella sabbia bagnata; accanto, un pallone da pallavolo con una faccia dipinta con un'impronta di mano rossa (nessun logo); dietro, la laguna turchese, la barriera di onde bianche e il picco dell'isola. Titolo grande (Bricolage). NON usare la silhouette dell'uomo sulla spiaggia né il volto del protagonista (locandina ufficiale); nessun marchio di corrieri o di palloni.",
-    "voce": "Cast Away, di Robert Zemeckis: un naufrago solo su un'isola deserta."
+    "voce": "Cast Away, di Robert Zemeckis: un naufrago su un'isola."
   },
   "capitoli": [
     {
@@ -21,11 +21,11 @@
       "durata": 10,
       "scena": "Centro di smistamento di notte: nastri trasportatori pieni di pacchi che scorrono, luci al neon, un grande orologio da parete con la lancetta dei secondi che scatta, un cronometro appoggiato su una pila di scatole. Corriere inventato, nessun marchio reale.",
       "sottotitoli": [
-        "A Memphis, Chuck Noland lavora per un corriere espresso",
+        "Chuck Noland lavora a Memphis per un corriere espresso",
         "e vive con l'orologio in mano,",
         "perché ogni pacco deve arrivare in tempo.",
-        "Non rallenta mai, nemmeno con Kelly,",
-        "la donna che vuole sposare."
+        "Così trascura perfino Kelly,",
+        "la fidanzata che vuole sposare."
       ]
     },
     {
@@ -34,10 +34,10 @@
       "durata": 9,
       "scena": "Interno di un'auto ferma all'aeroporto, sera di Natale con neve leggera: sul cruscotto un orologio da tasca aperto con una piccola foto dentro e una scatolina regalo con il fiocco; fuori, le luci di un aereo cargo in pista.",
       "sottotitoli": [
-        "A Natale deve partire per lavoro:",
-        "Kelly gli regala l'orologio del nonno, con dentro la sua foto,",
-        "e lui le lascia una scatolina con un anello,",
-        "promettendo di tornare presto."
+        "A Natale però deve partire:",
+        "Kelly gli dà l'orologio del nonno, con la sua foto,",
+        "lui le lascia una scatolina con l'anello",
+        "e promette di tornare a Capodanno."
       ]
     },
     {
@@ -72,24 +72,24 @@
       "durata": 10,
       "scena": "Spiaggia di giorno: pacchi del corriere arrivati con la marea, aperti sulla sabbia (pattini da ghiaccio, un vestito da sera, videocassette, un pallone da pallavolo senza logo); un solo pacco chiuso, con due ali disegnate, messo in disparte su una roccia.",
       "sottotitoli": [
-        "Con la marea arrivano i pacchi dell'aereo,",
+        "Intanto la marea porta i pacchi dell'aereo,",
         "e lui, che li ha sempre consegnati, li apre:",
         "pattini, un vestito, un pallone.",
-        "Solo uno, con due ali disegnate, resta chiuso,",
-        "perché giura di consegnarlo."
+        "Solo quello con due ali resta chiuso,",
+        "perché vuole consegnarlo."
       ]
     },
     {
       "id": "fuoco",
-      "titolo": "Il fuoco e Wilson",
+      "titolo": "Il fuoco e il pallone Wilson",
       "durata": 11,
       "scena": "Sera sulla spiaggia: legnetti e cocco per accendere il fuoco, fumo che sale, poi una fiamma alta che illumina la sabbia; accanto, il pallone con la faccia fatta da un'impronta di mano rossa, appoggiato come un compagno; scintille verso le stelle.",
       "sottotitoli": [
         "Per giorni prova ad accendere il fuoco,",
-        "finché si ferisce la mano e lancia il pallone:",
-        "l'impronta di sangue sembra una faccia.",
-        "Lo chiama Wilson, la marca del pallone,",
-        "e con lui accanto, finalmente, accende la fiamma."
+        "finché si taglia e lancia il pallone:",
+        "sull'impronta di sangue disegna una faccia",
+        "e lo chiama Wilson, come la marca.",
+        "Con lui accanto, finalmente, accende la fiamma."
       ]
     },
     {
@@ -110,11 +110,11 @@
       "durata": 11,
       "scena": "Spiaggia al mattino: un grande pannello di plastica portato dalla marea; poco lontano una zattera di tronchi legati con corde e una vela fatta col pannello; bandierina che indica il vento; la barriera di onde all'orizzonte.",
       "sottotitoli": [
-        "Poi un giorno il mare porta un pannello di plastica",
-        "abbastanza grande da diventare una vela.",
-        "Chuck costruisce una zattera,",
+        "Poi il mare porta un grande pannello di plastica",
+        "che può fare da vela.",
+        "Così Chuck costruisce una zattera,",
         "aspetta il vento giusto per superare le onde",
-        "e lascia l'isola, con Wilson legato a bordo."
+        "e parte con Wilson e il pacco."
       ]
     },
     {
@@ -123,12 +123,12 @@
       "durata": 11,
       "scena": "Oceano aperto sotto un cielo enorme: la zattera malandata con la vela strappata; lontano, il pallone con la faccia che si allontana galleggiando; una corda che pende in acqua; all'orizzonte, la sagoma di una grande nave portacontainer.",
       "sottotitoli": [
-        "Dopo settimane in mezzo all'oceano,",
-        "mentre dorme, Wilson scivola in acqua.",
+        "Ma una tempesta strappa la vela",
+        "e intanto Wilson scivola in acqua.",
         "Chuck nuota per riprenderlo,",
-        "ma deve scegliere tra il pallone e la zattera,",
+        "ma rischia di perdere la zattera",
         "e lo lascia andare, piangendo.",
-        "Pochi giorni dopo una nave lo trova."
+        "Alla fine lo raccoglie una nave."
       ]
     },
     {
@@ -138,10 +138,10 @@
       "scena": "Notte di pioggia davanti a una casa di Memphis: veranda illuminata, un'auto fuoristrada parcheggiata nel vialetto, una bicicletta da bambina sul prato, l'ombrello aperto abbandonato sui gradini, pozzanghere che riflettono la luce.",
       "sottotitoli": [
         "A casa però lo credevano morto,",
-        "e Kelly si è sposata e ha una figlia.",
-        "Una notte di pioggia si dicono di amarsi ancora,",
-        "ma lei sceglie la sua famiglia",
-        "e Chuck riparte da solo."
+        "e Kelly ora è sposata, con una figlia.",
+        "Sotto la pioggia si dicono di amarsi ancora,",
+        "ma lui la rimanda dalla sua famiglia",
+        "e riparte da solo."
       ]
     },
     {
@@ -150,11 +150,11 @@
       "durata": 11,
       "scena": "Incrocio di quattro strade sterrate nella pianura del Texas, cielo enorme al tramonto: un cartello stradale con le direzioni, un furgone che si allontana con due ali dipinte sul portellone, sulla soglia di un cancello lontano il pacco con le ali consegnato.",
       "sottotitoli": [
-        "Alla fine consegna il pacco con le ali,",
-        "con un biglietto: questo pacco mi ha salvato la vita.",
-        "A un incrocio una donna gli indica la strada:",
-        "è lei ad averlo spedito,",
-        "e Chuck la guarda andare, sorridendo."
+        "Infine recapita il pacco con le ali",
+        "e un biglietto: mi ha salvato la vita.",
+        "A un incrocio incontra una donna",
+        "con le stesse ali sul furgone:",
+        "è la mittente. Chuck sorride: la seguirà?"
       ]
     }
   ],
@@ -162,5 +162,9 @@
     "durata": 4,
     "immagine": "Lo stesso incrocio nel Texas a sera, cartello stradale e strade che si perdono nella pianura, una stella che si accende; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
-  "musica": "Originale e strumentale: pianoforte, archi, tamburi leggeri; ticchettio d'orologio all'inizio, quasi silenzio sull'isola (solo onde e vento, il film non ha musica in quella parte), un tema caldo che nasce quando parte la zattera e si apre al bivio finale; niente brani del film."
+  "musica": "Originale e strumentale: pianoforte, archi, tamburi leggeri; ticchettio d'orologio all'inizio, quasi silenzio sull'isola (solo onde e vento, il film non ha musica in quella parte), un tema caldo che nasce quando parte la zattera e si apre al bivio finale; niente brani del film.",
+  "fonti": [
+    "Chuck Noland dirigente del corriere FedEx a Memphis, fidanzato con Kelly con cui sta per sposarsi; partenza per lavoro nel periodo natalizio; aereo cargo precipitato nel Pacifico in una tempesta, Chuck unico sopravvissuto su una zattera di salvataggio; isola deserta, fuoco; pallone con volto disegnato col sangue chiamato Wilson come l'azienda che lo fabbrica; quattro anni dopo pannello usato come vela per superare la barriera corallina; Wilson perso in mare, salvataggio da una nave portacontainer; Kelly sposata con una figlia, Chuck le dice di tornare dalla sua famiglia; pacco con le ali conservato chiuso, lasciato alla porta con il biglietto «Questo pacco mi ha salvato la vita»; all'incrocio una donna su un furgone con l'ala dipinta, finale aperto: https://it.wikipedia.org/wiki/Cast_Away",
+    "Orologio da tasca del nonno con la foto di Kelly; scatolina da aprire a Capodanno al ritorno, che fa pensare a un anello; pacchi aperti (pattini da ghiaccio), quello con le ali lasciato chiuso; mano tagliata nel tentativo di accendere il fuoco e impronta di sangue sul pallone Wilson; pesca con la lancia; zattera partita al cambio del vento con Wilson e il pacco a bordo; tempesta che distrugge la vela; nave portacontainer; creduto morto; dichiarazione d'amore con Kelly sotto la pioggia; pacco riportato alla mittente in Texas, ali sul portellone del suo furgone, Chuck sorride guardando la sua strada: https://en.wikipedia.org/wiki/Cast_Away"
+  ]
 }

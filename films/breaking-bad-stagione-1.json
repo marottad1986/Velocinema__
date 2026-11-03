@@ -26,7 +26,7 @@
       "sottotitoli": [
         "Walter White insegna chimica in un liceo del New Mexico,",
         "e per arrotondare lavora anche in un autolavaggio;",
-        "poi, a cinquant'anni, scopre un tumore ai polmoni: gli resta poco tempo."
+        "poi scopre un tumore e lo tiene segreto: gli resta poco tempo."
       ]
     },
     {
@@ -68,8 +68,8 @@
       "durata": 10,
       "scena": "Il camper nel deserto con la porta chiusa: dalle fessure e dai finestrini esce un gas bianco e rossastro, i vetri si appannano; a terra davanti ai gradini una maschera antigas e un fornello da campeggio; un'auto scura parcheggiata accanto, cielo che si scurisce.",
       "sottotitoli": [
-        "Ma Emilio, socio di Jesse, crede Walter una spia dell'antidroga",
-        "e col cugino Krazy-8 vuole ucciderli: Walter finge di cucinargli la droga",
+        "Ma Emilio, socio di Jesse preso nel blitz, crede Walter una spia",
+        "e col cugino Krazy-8 vuole ucciderli: Walter finge di cucinare",
         "ma chiude i due nel camper col gas velenoso."
       ]
     },
@@ -102,8 +102,8 @@
       "scena": "La cucina di casa White di notte: il tavolo con una pila di bollette dell'ospedale, flaconi di medicine, un assegno non incassato; la culla nuova ancora imballata in un angolo; dietro la griglia di una bocchetta d'aria nel muro, mazzette di banconote nascoste; la lampada sopra il tavolo e la finestra con le luci del quartiere.",
       "sottotitoli": [
         "Intanto la famiglia, scoperto il tumore, lo convince a curarsi,",
-        "ma Walter per orgoglio rifiuta i soldi di Elliott, un amico ricco,",
-        "e paga le cure di nascosto con la droga."
+        "ma per orgoglio rifiuta i soldi di Elliott, un amico ricco,",
+        "e paga di nascosto con i soldi della droga."
       ]
     },
     {
@@ -112,7 +112,7 @@
       "durata": 11,
       "scena": "L'ufficio di Tuco al primo piano di un capannone: scrivania, divano, una borsa di cristalli sul tavolo; a un tratto un'esplosione fa saltare i vetri delle finestre, fumo e frammenti volano, i fogli si sparpagliano; sul lavandino di un bagno un rasoio e ciocche di capelli tagliati.",
       "sottotitoli": [
-        "Poi Jesse va a venderla a Tuco, un boss violento, che lo picchia e gliela ruba;",
+        "Senza Krazy-8, Jesse la porta a Tuco, un boss violento, che lo picchia e la ruba;",
         "allora Walter, rasato e con il nome falso di Heisenberg,",
         "gli fa esplodere l'ufficio e si fa pagare."
       ]
@@ -123,8 +123,8 @@
       "durata": 10,
       "scena": "Un magazzino di prodotti chimici di notte: la recinzione metallica, una porta di ferro con il lucchetto che si scioglie tra scintille bianchissime; dentro, un bidone con l'etichetta METILAMMINA caricato su un carrello; un lampione arancione e la luna.",
       "sottotitoli": [
-        "Ora però Tuco vuole tanta droga ogni settimana,",
-        "e serve molta metilammina, l'ingrediente base: così i due la rubano",
+        "Ora però Walter promette a Tuco tanta droga a settimana,",
+        "e serve molta metilammina, l'ingrediente base: così la rubano",
         "da un magazzino, sciogliendo la serratura con una polvere incendiaria."
       ]
     },
@@ -144,5 +144,15 @@
     "durata": 4,
     "immagine": "Il camper nel deserto di notte sotto un cielo di stelle, con una lampada accesa dentro e il fumo che sale dal tetto; 'Fine della stagione 1' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la serie che vorresti.'"
   },
-  "musica": "Originale e strumentale: chitarre acustiche ed elettriche pulite dal sapore western del deserto, contrabbasso pizzicato, percussioni secche, archi bassi e tesi che salgono con il pericolo; finale cupo e sospeso. Niente brani o temi della serie. Rumori: vento del deserto, sirene, gorgoglio di laboratorio, crollo, esplosione, scintille, corvo."
+  "musica": "Originale e strumentale: chitarre acustiche ed elettriche pulite dal sapore western del deserto, contrabbasso pizzicato, percussioni secche, archi bassi e tesi che salgono con il pericolo; finale cupo e sospeso. Niente brani o temi della serie. Rumori: vento del deserto, sirene, gorgoglio di laboratorio, crollo, esplosione, scintille, corvo.",
+  "fonti": [
+    "Walter insegna chimica in un liceo di Albuquerque e lavora in un autolavaggio; tumore ai polmoni; blitz con il cognato Hank, agente DEA, e arresto di Emilio; Jesse ex studente in fuga; vasca e acido che sfonda il pavimento; coccio di piatto e Krazy-8 strangolato; Walter rivela il tumore e la famiglia lo convince a curarsi; Elliott offre di pagare le cure e Walter rifiuta per orgoglio; Tuco picchia Jesse; Heisenberg e 50.000 dollari; furto della metilammina con la termite; Tuco pesta No-Doze: https://it.wikipedia.org/wiki/Episodi_di_Breaking_Bad_(prima_stagione)",
+    "Diagnosi tenuta segreta alla famiglia; moglie Skyler incinta e figlio adolescente; vetreria rubata a scuola; camper per cucinare nel deserto; droga insolitamente pura; Emilio, cugino di Krazy-8, riconosce Walter dal blitz; gas fosfina che uccide Emilio e stordisce Krazy-8 nel camper: https://en.wikipedia.org/wiki/Pilot_(Breaking_Bad)",
+    "Walter dà a Jesse i suoi risparmi per comprare il camper; Jesse la definisce la droga più pura mai vista: https://en.wikipedia.org/wiki/Jesse_Pinkman",
+    "Emilio ex socio di Jesse e cugino di Krazy-8; i due credono Walter legato alla polizia; Krazy-8 prigioniero nella cantina di Jesse nasconde un coccio per colpire Walter; No-Doze ucciso di botte da Tuco per una frase presa come un insulto; Elliott vecchio socio di Walter, diventato ricco: https://en.wikipedia.org/wiki/List_of_characters_in_the_Breaking_Bad_franchise",
+    "Elliott offre lavoro e soldi per le cure, Walter rifiuta; riunione di famiglia e cure accettate: https://en.wikipedia.org/wiki/Gray_Matter_(Breaking_Bad)",
+    "Walter mente sull'assegno di Elliott e paga le cure con i soldi della droga; morto Krazy-8 serve un nuovo compratore, Tuco; Walter rasato per la chemio si presenta come Heisenberg, fa esplodere il fulminato di mercurio e si fa dare 50.000 dollari; promette droga ogni settimana: https://en.wikipedia.org/wiki/Crazy_Handful_of_Nothin%27",
+    "Walter promette a Tuco quattro libbre a settimana; furto di un bidone di metilammina con la termite che scioglie la serratura; consegna in uno sfasciacarrozze e pestaggio di No-Doze: https://en.wikipedia.org/wiki/A_No-Rough-Stuff-Type_Deal",
+    "No-Doze muore all'inizio della stagione 2; Walter e Jesse temono di essere uccisi da Tuco: https://en.wikipedia.org/wiki/Seven_Thirty-Seven"
+  ]
 }
