@@ -22,9 +22,9 @@
       "durata": 10,
       "scena": "Una grande villa vittoriana isolata nella nebbia, di sera: facciata di pietra scura, finestre chiuse da tende, una sola finestra con una lampada accesa; il viale di ghiaia, alberi spogli, il cancello; lontano la strada che sparisce nella nebbia.",
       "sottotitoli": [
-        "Nel 1945, su un'isola della Manica sempre coperta di nebbia,",
+        "Nel 1945, su un'isola della Manica avvolta dalla nebbia,",
         "Grace vive in una villa isolata con i figli Anne e Nicholas,",
-        "e aspetta che il marito Charles torni dalla guerra."
+        "e aspetta il marito Charles, mai tornato dalla guerra."
       ]
     },
     {
@@ -90,7 +90,7 @@
       "sottotitoli": [
         "Una mattina tutte le tende della casa sono sparite",
         "e la luce entra sui bambini, che urlano ma non si fanno niente:",
-        "Grace accusa i domestici e li caccia via."
+        "così Grace accusa i domestici e li caccia via."
       ]
     },
     {
@@ -99,9 +99,9 @@
       "durata": 10,
       "scena": "Il giardino della villa al crepuscolo: tre lapidi coperte di foglie secche che il vento spazza via, una alla volta, rivelando i nomi dei tre domestici e l'anno 1891; nebbia bassa, alberi spogli, la villa in fondo.",
       "sottotitoli": [
-        "Poi Grace trova nell'album la foto dei domestici,",
-        "e i bambini, fuggiti a cercare il padre, scoprono in giardino tre tombe:",
-        "sono morti nel 1891: sono fantasmi."
+        "Poi Grace trova la foto dei domestici tolta dall'album,",
+        "e i bambini scoprono sotto le foglie tre tombe:",
+        "con i nomi dei domestici, morti nel 1891: sono fantasmi."
       ]
     },
     {
@@ -132,7 +132,7 @@
       "durata": 11,
       "scena": "La villa di giorno nella nebbia che si dirada: le tende delle finestre aperte, il cartello «VENDESI» appeso al cancello che oscilla; un'auto degli anni Quaranta che si allontana lungo il viale con i fari accesi; il sole che buca la nebbia.",
       "sottotitoli": [
-        "Anche Charles era morto in guerra, ed era tornato solo per salutarli,",
+        "Anche Charles era morto in guerra, e per questo non poteva restare,",
         "mentre la famiglia di Victor, spaventata, se ne va:",
         "Grace e i figli restano nella villa, ormai senza paura della luce."
       ]
@@ -142,5 +142,9 @@
     "durata": 4,
     "immagine": "La villa all'alba nella nebbia che si alza, con le tende delle finestre aperte e una lampada a petrolio ancora accesa sul pilastro del cancello; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
-  "musica": "Originale e strumentale: archi lenti e sospesi, arpa, pianoforte nel registro acuto come un carillon, celesta, timpani lontani; tensione trattenuta che cresce fino alla seduta e alla rivelazione, poi un finale malinconico e luminoso; niente brani o temi del film. Rumori: vento, porte, chiavi, campanella, passi, tende."
+  "musica": "Originale e strumentale: archi lenti e sospesi, arpa, pianoforte nel registro acuto come un carillon, celesta, timpani lontani; tensione trattenuta che cresce fino alla seduta e alla rivelazione, poi un finale malinconico e luminoso; niente brani o temi del film. Rumori: vento, porte, chiavi, campanella, passi, tende.",
+  "fonti": [
+    "Jersey nel 1945, figli Anne e Nicholas malati e da tenere lontani dalla luce, marito Charles partito per la guerra, regola delle porte; arrivo della governante Bertha Mills, del giardiniere Edmund Tuttle e della cameriera muta Lydia; Anne vede Victor, i suoi genitori e un'anziana; ricerca degli intrusi e libro dei morti del XIX secolo; pianoforte che suona da solo; Grace persa nella nebbia ritrova Charles, creduto morto, che riparte dopo un giorno; tende sparite, bambini illesi, domestici cacciati; i bambini usciti a cercare Charles scoprono le lapidi dei domestici; foto tolta dal libro dei morti datata 1891; la medium e la seduta con i genitori di Victor; Grace isolata soffoca i figli con un cuscino e si uccide col fucile; anche Charles morto in guerra, non può restare; la famiglia di Victor se ne va, i bambini alla luce senza danni, la casa di nuovo in vendita: https://it.wikipedia.org/wiki/The_Others_(film_2001)",
+    "Grace assume i tre domestici che avevano già lavorato nella casa; anziana medium; Grace cerca il prete per benedire la casa; Mills fa coprire le lapidi con le foglie; Charles riparte per il fronte il mattino dopo; morte dei domestici nel 1891; omicidio-suicidio di Grace dopo la morte di Charles; i bambini al sole, Grace e i figli restano nella casa: https://en.wikipedia.org/wiki/The_Others_(2001_film)"
+  ]
 }
