@@ -3,7 +3,7 @@ import { camera, eio, eo, eob, mod, rng, seg } from '../../lib/anim';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Clouds, Glow, Gulls, NearMotes, Reflection, WaveBand, WaveLines } from '../../lib/elements';
 import type { SceneProps } from '../../types';
-import { K, Palm, Raft } from './Comuni';
+import { K, Palm, Parcel, Raft } from './Comuni';
 
 // La vela: spiaggia al mattino, un grande pannello di plastica portato dalla marea; poco lontano una zattera di tronchi
 // legati con corde e una vela fatta col pannello; bandierina che indica il vento; la barriera di onde all'orizzonte.
@@ -20,7 +20,9 @@ export const Vela: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const sail = eio(seg(t, cues[2] + 0.5, cues[2] + 1.6)); // il pannello diventa vela
   const wind = eio(seg(t, cues[3] + 0.3, cues[3] + 1.2)); // il vento gira: ora soffia verso il mare
   const go = eio(seg(t, cues[4], dur)); // parte, oltre le onde
-  const rx = 560 + 120 * go, ry = 1190 - 190 * go, rs = 1 - 0.45 * go;
+  const rx = 540 + 80 * go, ry = 1190 - 130 * go, rs = 1 - 0.28 * go;
+  const surge = Math.sin(Math.min(1, seg(t, cues[3], cues[3] + 1.6)) * Math.PI); // le onde della barriera si alzano
+  const surf = (x: number) => 0.5 + 0.5 * Math.sin(t * 2.4 + x * 0.013);
   const crash = go > 0.55 ? seg(go, 0.55, 0.9) : 0;
   const wash = mod(t * 0.3, 1);
 
@@ -47,6 +49,14 @@ export const Vela: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <Reflection t={t} x={180 - cam.pan * 0.2} y={990} color="#FFF8E6" n={6} w={90} opacity={0.45} />
           <WaveBand t={t} y={1004} fill="#EAF7F4" amp={16} w={150} speed={70} bob={5} foam="#FFFFFF" foamWidth={4} foamOpacity={0.9} />
           <WaveLines t={t} ys={[1050, 1090]} color="#E2F6F2" amp={6} w={200} speed={24} opacity={0.6} />
+          {/* barriera corallina: onde bianche che si rompono di continuo, più alte quando aspetta il vento */}
+          <path d={Array.from({ length: 16 }, (_, i) => {
+            const x = -200 + i * 96, h = (16 + 24 * surf(x)) * (1 + 1.6 * surge);
+            return `${i ? 'L' : 'M'}${x} 1006 Q${x + 24} ${1006 - h} ${x + 48} ${1006 - h * 0.7} Q${x + 72} ${1006 - h * 0.3} ${x + 96} 1006`;
+          }).join(' ') + ' V1030 H-200 Z'} fill="#F4FBFA" stroke={K} strokeWidth="4" strokeLinejoin="round" />
+          {Array.from({ length: 12 }, (_, i) => (
+            <circle key={i} cx={-140 + i * 110} cy={972 - (26 + 50 * surge) * surf(i * 110)} r={(6 + 4 * surf(i * 70)) * (1 + surge)} fill="#FFFFFF" opacity={0.85 * surf(i * 110)} />
+          ))}
         </g>
         <g transform={L(0.55)}><Gulls t={t} y={800} h={160} color={K} n={3} /></g>
 
@@ -58,8 +68,8 @@ export const Vela: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
 
         {/* PIANO 3 — il pannello portato dal mare, poi la zattera con la vela (accento sulle corde) */}
         <g transform={L(0.85)}>
-          {sail < 0.98 && (
-            <g transform={`translate(${980 - 220 * arrive} ${1060 + 80 * arrive + Math.sin(t * 2) * 6 * (1 - arrive)}) rotate(${-74 + Math.sin(t * 1.5) * 3 * (1 - arrive)})`} opacity={1 - sail}>
+          {t < cues[2] + 0.4 && (
+            <g transform={`translate(${1060 - 420 * arrive} ${1060 + 80 * arrive + Math.sin(t * 2) * 6 * (1 - arrive)}) rotate(${-74 + Math.sin(t * 1.5) * 3 * (1 - arrive)})`} opacity={1 - seg(t, cues[2] - 0.1, cues[2] + 0.3)}>
               <rect x="-60" y="-150" width="120" height="300" rx="10" fill="#A9C3CF" stroke={K} strokeWidth="8" />
               {[-110, -40, 30, 100].map((y) => <circle key={y} cx="-44" cy={y} r="6" fill={K} />)}
               <path d="M-40 -130 V120" stroke="#DCE8EE" strokeWidth="6" opacity=".8" />
@@ -69,6 +79,7 @@ export const Vela: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <g transform={`translate(${rx} ${ry + Math.sin(t * 2.4) * 8 * go}) scale(${rs * Math.min(1, build)}) rotate(${Math.sin(t * 2.2) * 5 * go})`}>
               <Glow id="ve-raftg" x={0} y={-160} r={260} t={t} color="#FFF4D8" amp={0.05} rate={1.4} opacity={0.3} />
               <Raft t={t} sail={sail} ball />
+              <Parcel x={-110} y={-62} w={96} h={62} d={26} wings={P.accento} rot={-4} />
               <path d="M-180 -4 H180 M-180 20 H180" stroke={P.accento} strokeWidth="4" opacity=".9" />
             </g>
           )}

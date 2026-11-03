@@ -21,7 +21,7 @@ export const CAST_AWAY_SCENES: Record<string, SceneDef> = {
   fuoco: { Component: Fuoco, title: { top: 392, size: 108 } },
   anni: { Component: Anni, title: { top: 392, size: 108 } },
   vela: { Component: Vela, title: { top: 392, size: 108, dark: true } },
-  wilson: { Component: Wilson, title: { top: 392, size: 108, dark: true } },
+  wilson: { Component: Wilson, title: { top: 392, size: 108 } },
   ritorno: { Component: Ritorno, title: { top: 392, size: 108 } },
   bivio: { Component: Bivio, title: { top: 392, size: 108 } },
 };
