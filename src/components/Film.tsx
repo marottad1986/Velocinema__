@@ -1,6 +1,6 @@
 import { grigliaMusicale } from '../lib/anim';
-import React from 'react';
-import { AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig } from 'remotion';
+import React, { useLayoutEffect, useRef } from 'react';
+import { AbsoluteFill, continueRender, delayRender, Sequence, useCurrentFrame, useVideoConfig } from 'remotion';
 import { ChapterOverlay, subtitleTimes } from './ChapterOverlay';
 import { SIGLA, Sigla } from './Sigla';
 import { DISPLAY, SANS } from '../lib/fonts';
@@ -80,8 +80,40 @@ export const PosterView: React.FC<{ slug: string; end?: boolean }> = ({ slug, en
   // Formato "spiegato": la copertina parte dopo la sigla e dura il resto dei 4 s (salvo "sigla": false nel JSON).
   const sigla = !end && film.data.formato === 'spiegato' && film.data.sigla !== false ? SIGLA : 0;
   const t = Math.max(0, frame / fps - sigla);
+  const ref = useRef<HTMLDivElement>(null);
+  // Titoli grandi delle locandine (h1): se il testo esce dallo schermo (margine 40 px), il carattere si riduce finché entra.
+  // Si misura il testo vero (righe del Range), a caratteri caricati, prima di consegnare il fotogramma.
+  useLayoutEffect(() => {
+    const handle = delayRender('Titolo della locandina che entra nello schermo');
+    let fatto = false;
+    const fine = () => { if (!fatto) { fatto = true; continueRender(handle); } };
+    document.fonts.ready.then(() => {
+      if (fatto) return;
+      const box = ref.current;
+      if (box) {
+        const b = box.getBoundingClientRect();
+        const k = b.width / 1080;
+        const limiteDx = b.left + (1080 - 40) * k, limiteSx = b.left + 40 * k;
+        box.querySelectorAll('h1').forEach((h) => {
+          for (let giro = 0; giro < 3; giro++) {
+            const r = document.createRange();
+            r.selectNodeContents(h);
+            const righe = Array.from(r.getClientRects()).filter((x) => x.width > 0);
+            if (!righe.length) break;
+            const sx = Math.min(...righe.map((x) => x.left)), dx = Math.max(...righe.map((x) => x.right));
+            if (dx <= limiteDx + 0.5 && sx >= limiteSx - 0.5) break;
+            const fattore = (limiteDx - Math.max(sx, limiteSx)) / (dx - sx);
+            const ora = parseFloat(getComputedStyle(h).fontSize);
+            h.style.fontSize = `${Math.floor(ora * Math.min(0.98, fattore))}px`;
+          }
+        });
+      }
+      fine();
+    });
+    return fine;
+  });
   return (
-    <AbsoluteFill style={{ background: film.data.palette.scuro, overflow: 'hidden' }}>
+    <AbsoluteFill ref={ref} style={{ background: film.data.palette.scuro, overflow: 'hidden' }}>
       {Comp ? <Comp t={t} dur={total - sigla} film={film.data} /> : <PosterPlaceholder film={film} end={end} />}
       {sigla > 0 && <Sigla t={frame / fps} tipo={film.data.tipo ?? 'film'} />}
     </AbsoluteFill>

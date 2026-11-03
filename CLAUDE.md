@@ -87,7 +87,10 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 - Titolo del capitolo sovrapposto, nel punto più leggibile dell'immagine (chiaro su scuro o viceversa).
 - Sottotitoli in basso (tra y 1270 e 1490), una frase alla volta su fascia scura semitrasparente,
   tempi distribuiti in proporzione alla lunghezza delle frasi.
-- Zone coperte dalle app: niente testo nei primi 250 px in alto e negli ultimi 420 px in basso.
+- Zone coperte dalle app: niente testo nei primi 250 px in alto e negli ultimi 420 px in basso, e nessuna fascia di testo
+  nella colonna delle icone a destra (like, commenti, condivisioni: ultimi 180 px, da y ≈ 800 in giù): sottotitoli e frase di
+  lancio stanno tra x 60 e 900 (`maxWidth: 840`). I titoli grandi delle locandine (h1) entrano sempre tutti nello schermo:
+  se il testo è troppo largo, `PosterView` in `src/components/Film.tsx` riduce il carattere da solo (margine 40 px).
 
 ## Secondo formato: "Spiegato semplice" (film e serie TV)
 Trame complesse spiegate nel modo più semplice possibile, «come a un bambino di 5 anni». Valgono tutte le regole

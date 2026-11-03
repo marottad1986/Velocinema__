@@ -30,7 +30,8 @@ Controlla per ogni capitolo:
    alle locandine ufficiali; niente loghi o marchi.
 3. L'immagine racconta quello che dice la voce in quel momento (confronta con i sottotitoli del JSON).
 4. Leggibilità: titolo nel punto più leggibile, sottotitoli tra y 1270 e 1490 su fascia scura, nessun testo nei primi
-   250 px e negli ultimi 420 px; nessun elemento importante coperto da titolo o sottotitoli.
+   250 px e negli ultimi 420 px né oltre x 900 da y ≈ 800 in giù (icone delle app a destra); titolo della locandina tutto
+   dentro lo schermo, senza lettere tagliate; nessun elemento importante coperto da titolo o sottotitoli.
 5. Errori tecnici: oggetti tagliati male ai bordi, buchi nello sfondo durante la camera, sfarfallii, elementi che
    compaiono o spariscono di colpo, trasparenze sbagliate.
 6. Proporzioni e appoggi credibili: niente oggetti che galleggiano o poggiano sul nulla, vetri e riempimenti che

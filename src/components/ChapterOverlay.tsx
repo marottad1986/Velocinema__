@@ -82,7 +82,8 @@ export const ChapterOverlay: React.FC<Props> = ({ film, index, t, chapterStart, 
         {ch.titolo}
       </h2>
 
-      <div style={{ position: 'absolute', left: 60, top: 1270, width: 960, height: 220 }}>
+      {/* fascia dei sottotitoli: a destra resta libera la colonna delle icone delle app (like, commenti, condivisioni) */}
+      <div style={{ position: 'absolute', left: 60, top: 1270, width: 840, height: 220 }}>
         {ch.sottotitoli.map((line, i) => {
           const [a, b] = times[i];
           const p = seg(t, a, a + 0.12);
@@ -93,7 +94,7 @@ export const ChapterOverlay: React.FC<Props> = ({ film, index, t, chapterStart, 
             <p
               key={i}
               style={{
-                position: 'absolute', left: 0, right: 0, bottom: 0, margin: '0 auto', width: 'fit-content', maxWidth: 960,
+                position: 'absolute', left: 0, right: 0, bottom: 0, margin: '0 auto', width: 'fit-content', maxWidth: 840,
                 boxSizing: 'border-box', padding: '12px 26px 14px', borderRadius: 16, background: alpha(P.scuro, 0.82),
                 color: P.chiaro, fontSize: 46, lineHeight: 1.25, fontWeight: 800, textAlign: 'center',
                 opacity: o, visibility: o > 0 ? 'visible' : 'hidden', transform: `translateY(${(1 - p) * 10}px)`,
