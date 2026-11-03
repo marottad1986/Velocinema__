@@ -9,13 +9,13 @@ import { Ball, K, PocketWatch } from './Comuni';
 // una lancia appoggiata, pesci ad affumicare sul fuoco, l'orologio da tasca aperto, il pallone su una sporgenza; fuori la laguna.
 // Piani: apertura con la laguna (0,25) · parete con tacche (0,5) · sporgenza con Wilson e orologio (0,7) · fuoco e pesci (0,9) · rocce in primo piano (1,25) · pulviscolo (1,6)
 
-const TALLY = 104; // gruppi da cinque tacche disegnati sulla parete
+const TALLY = 60; // gruppi da cinque tacche disegnati sulla parete
 
 export const Anni: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
   // le tacche si moltiplicano su «conta i giorni sulla parete»
-  const shown = Math.floor(40 + (TALLY - 40) * eo(seg(t, cues[1], cues[2])));
+  const shown = Math.floor(30 + (TALLY - 30) * eo(seg(t, cues[1], cues[2])));
   // l'orologio con la foto si apre su «guarda la foto di Kelly»
   const watch = eo(seg(t, cues[2] + 0.6, cues[2] + 1.6));
   // la luce dell'apertura si scalda su «sogna ancora di tornare»
@@ -34,20 +34,20 @@ export const Anni: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
         {/* PIANO 0 — fuori: la laguna luminosa vista dall'apertura */}
         <g transform={L(0.25)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="#1A1512" />
-          <path d="M60 560 Q120 420 300 400 Q460 390 520 520 L540 1060 H40 Z" fill="url(#an-out)" />
-          <path d="M40 900 H540" stroke="#FFFFFF" strokeWidth="6" opacity=".7" />
-          <WaveLines t={t} ys={[940, 990, 1040]} color="#E8F8F4" amp={5} w={140} speed={20} opacity={0.6} />
-          <Glow id="an-sun" x={290} y={620} r={340} t={t} color="#FFF2D0" amp={0.04} rate={1} opacity={0.45 + 0.3 * dream} />
-          <Beam id="an-beam" x={300} y={560} t={t} length={1200} spread={420} color="#FFF2D0" angle={62} opacity={0.18 + 0.12 * dream} />
+          <path d="M60 820 Q120 700 300 690 Q460 680 520 800 L540 1160 H40 Z" fill="url(#an-out)" />
+          <path d="M40 980 H540" stroke="#FFFFFF" strokeWidth="6" opacity=".7" />
+          <WaveLines t={t} ys={[1010, 1050, 1100]} color="#E8F8F4" amp={5} w={140} speed={20} opacity={0.6} />
+          <Glow id="an-sun" x={290} y={860} r={340} t={t} color="#FFF2D0" amp={0.04} rate={1} opacity={0.45 + 0.3 * dream} />
+          <Beam id="an-beam" x={300} y={800} t={t} length={1200} spread={420} color="#FFF2D0" angle={62} opacity={0.18 + 0.12 * dream} />
         </g>
 
         {/* PIANO 1 — parete di roccia con le tacche dei giorni e i disegni a carbone */}
         <g transform={L(0.5)}>
-          <path d="M520 300 Q700 250 1300 300 V1300 H560 Q540 900 560 560 Q560 420 520 300 Z" fill="url(#an-wall)" stroke={K} strokeWidth="8" />
-          <path d="M60 560 Q120 420 300 400 Q460 390 520 520" fill="none" stroke={K} strokeWidth="10" />
+          <path d="M520 300 Q700 250 1300 300 V1300 H560 Q540 1000 560 820 Q560 660 520 560 Z" fill="url(#an-wall)" stroke={K} strokeWidth="8" />
+          <path d="M60 820 Q120 700 300 690 Q460 680 520 800" fill="none" stroke={K} strokeWidth="10" />
           {Array.from({ length: shown }, (_, i) => {
-            const col = i % 14, row = Math.floor(i / 14);
-            const x = 600 + col * 34, y = 520 + row * 50;
+            const col = i % 10, row = Math.floor(i / 10);
+            const x = 600 + col * 33, y = 680 + row * 42;
             return (
               <g key={i} stroke="#E9DCC0" strokeWidth="4" strokeLinecap="round" opacity=".85">
                 <path d={`M${x} ${y} v32 M${x + 6} ${y} v32 M${x + 12} ${y} v32 M${x + 18} ${y} v32`} />
@@ -57,25 +57,23 @@ export const Anni: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           })}
           {/* disegni: sole, nave, isola, cuore (nessuna figura umana) */}
           <g fill="none" stroke="#1A1512" strokeWidth="6" strokeLinecap="round" opacity=".8">
-            <circle cx="680" cy="990" r="34" />
-            {Array.from({ length: 8 }, (_, i) => { const a = (i / 8) * 6.283; return <path key={i} d={`M${680 + Math.cos(a) * 44} ${990 + Math.sin(a) * 44} l${Math.cos(a) * 18} ${Math.sin(a) * 18}`} />; })}
-            <path d="M780 1010 h140 l-20 30 h-100 Z M850 1010 v-80 l50 70" />
-            <path d="M1080 860 q40 -70 80 0" />
+
           </g>
-          <path d="M1110 960 q-20 -30 -40 -10 q-20 -20 -40 10 q20 30 40 44 q20 -14 40 -44 Z" fill="none" stroke="#B23A2A" strokeWidth="6" opacity=".8" />
+          <path d="M936 1030 q-20 -30 -40 -10 q-20 -20 -40 10 q20 30 40 44 q20 -14 40 -44 Z" fill="none" stroke="#B23A2A" strokeWidth="6" opacity=".8" />
         </g>
 
         {/* PIANO 2 — sporgenza con Wilson e l'orologio aperto */}
-        <g transform={L(0.7, 0, -170)}>
-          <path d="M600 1240 Q760 1200 1000 1220 Q1060 1236 1080 1280 L560 1290 Z" fill="#3E3229" stroke={K} strokeWidth="7" />
-          <Glow id="an-ballg" x={940} y={1150} r={150} t={t} color="#FFD3B8" amp={0.05} rate={1.4} opacity={0.3} />
-          <Ball x={940} y={1160} r={68} rot={-10} face={1} dirty={0.6} />
-          <Glow id="an-watchg" x={700} y={1180} r={160} t={t} color="#FFD58A" amp={0.08} rate={2.2} opacity={0.15 + 0.45 * watch} />
-          <PocketWatch x={690} y={1190} s={0.55} open={watch} t={t + 3600 * 3} />
+        <g transform={L(0.7, 0, -110)}>
+          <path d="M360 1250 Q600 1196 900 1214 Q960 1230 980 1280 L340 1300 Z" fill="#3E3229" stroke={K} strokeWidth="7" />
+          <path d="M380 1252 Q600 1204 900 1220" fill="none" stroke="#8A6E54" strokeWidth="5" opacity=".7" />
+          <Glow id="an-ballg" x={830} y={1120} r={220} t={t} color="#FFD3B8" amp={0.05} rate={1.4} opacity={0.3} />
+          <Ball x={830} y={1130} r={92} rot={-10} face={1} dirty={0.6} />
+          <Glow id="an-watchg" x={560} y={1170} r={220} t={t} color="#FFD58A" amp={0.08} rate={2.2} opacity={0.15 + 0.45 * watch} />
+          <PocketWatch x={590} y={1170} s={0.85} open={watch} t={t + 3600 * 3} />
         </g>
 
         {/* PIANO 3 — pavimento, fuoco con i pesci ad affumicare, lancia */}
-        <g transform={L(0.9, 0, -300)}>
+        <g transform={L(0.9, -150, -300)}>
           <path d="M-200 1430 Q540 1400 1280 1430 V2500 H-200 Z" fill="url(#an-floor)" stroke={K} strokeWidth="7" />
           <Glow id="an-fireg" x={420} y={1500} r={460} t={t} color="#FF9A4A" amp={0.14} rate={7} opacity={0.45} />
           {/* stendino di bastoni con i pesci */}
@@ -90,9 +88,9 @@ export const Anni: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <Fire id="an-fire" t={t} x={440} y={1560} scale={0.9} outline={K} />
           {[380, 440, 500].map((x) => <ellipse key={x} cx={x} cy="1570" rx="34" ry="14" fill="#6E6258" stroke={K} strokeWidth="4" />)}
           {/* lancia appoggiata alla parete */}
-          <path d="M780 2000 L1010 900" stroke={K} strokeWidth="16" strokeLinecap="round" />
-          <path d="M780 2000 L1010 900" stroke="#9B7A50" strokeWidth="8" strokeLinecap="round" />
-          <path d="M1010 900 l-14 -60 l30 56 Z" fill="#D8D2C2" stroke={K} strokeWidth="4" />
+          <path d="M1150 2000 L1090 1000" stroke={K} strokeWidth="16" strokeLinecap="round" />
+          <path d="M1150 2000 L1090 1000" stroke="#9B7A50" strokeWidth="8" strokeLinecap="round" />
+          <path d="M1090 1000 l-16 -58 l26 54 Z" fill="#D8D2C2" stroke={K} strokeWidth="4" />
         </g>
 
         {/* PIANO 4 — rocce scure in primo piano ai bordi */}
@@ -101,6 +99,23 @@ export const Anni: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M1280 2000 V1400 Q1120 1380 1020 1560 Q960 1720 1000 2000 Z" fill="url(#an-rock)" stroke={K} strokeWidth="9" />
           <path d="M-200 -200 H1280 V200 Q900 320 600 260 Q300 200 -200 320 Z" fill="#100C0A" />
           <path d="M-60 1520 Q20 1500 60 1560" fill="none" stroke="#7A5E44" strokeWidth="5" opacity=".6" />
+          {/* sul pavimento: cima arrotolata, gusci di cocco usati come ciotole, conchiglie e una cesta di foglie intrecciate */}
+          <g transform="translate(330 1720)">
+            {[56, 42, 28].map((rr, i) => <ellipse key={i} cx="0" cy="0" rx={rr * 1.5} ry={rr * 0.6} fill="none" stroke={K} strokeWidth="13" />)}
+            {[56, 42, 28].map((rr, i) => <ellipse key={i} cx="0" cy="0" rx={rr * 1.5} ry={rr * 0.6} fill="none" stroke="#C9B080" strokeWidth="8" />)}
+          </g>
+          {[[560, 1690], [650, 1730]].map(([x, y], i) => (
+            <g key={i}>
+              <path d={`M${x - 50} ${y} a50 36 0 0 0 100 0 Z`} fill="#5B4127" stroke={K} strokeWidth="6" />
+              <ellipse cx={x} cy={y} rx="50" ry="12" fill="#E9E0CC" stroke={K} strokeWidth="5" />
+            </g>
+          ))}
+          <g transform="translate(780 1700)">
+            <path d="M-80 -60 L-64 40 H64 L80 -60 Z" fill="#7A8A4A" stroke={K} strokeWidth="7" strokeLinejoin="round" />
+            {[-40, -10, 20, 50].map((y) => <path key={y} d={`M-76 ${y - 20} H76`} stroke="#4E5A2E" strokeWidth="5" />)}
+            {[-50, -20, 10, 40].map((x) => <path key={x} d={`M${x} -60 V40`} stroke="#4E5A2E" strokeWidth="4" />)}
+            <path d="M-50 -60 q-10 -40 20 -50 M40 -60 q20 -30 0 -60" fill="none" stroke="#B88A5A" strokeWidth="9" strokeLinecap="round" />
+          </g>
         </g>
 
         {/* PIANO 5 — pulviscolo nella luce e braci */}
