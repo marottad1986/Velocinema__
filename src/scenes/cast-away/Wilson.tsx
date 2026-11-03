@@ -155,6 +155,10 @@ export const Wilson: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           </g>
           {/* bordo d'acqua davanti alla zattera: i tronchi pescano nell'onda */}
           <Chop t={t} y={1268} fill="url(#wi-band)" amp={12 + 18 * storm} w={210} speed={50 + 40 * storm} bob={6} ph={3} foam={0.2 + 0.6 * storm} />
+          {/* corda legata alla zattera: tesa verso gli spruzzi, poi allentata in acqua */}
+          {swimming > 0 && (
+            <path d={`M${kx} ${ky} Q${(kx + sx) / 2} ${(ky + sy) / 2 + ropeSag} ${sx} ${sy}`} fill="none" stroke={taut > 0.6 ? "#F6E8C4" : "#E6D3A8"} strokeWidth={taut > 0.6 ? 11 : 7} strokeLinecap="round" opacity={swimming} />
+          )}
           {/* pallone in acqua, con alone caldo perché l'occhio lo segua mentre si allontana */}
           {t >= slip && (
             <g>
@@ -164,10 +168,6 @@ export const Wilson: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               {fall >= 1 && <path d={`M${bx - br * 1.3} ${by + br * 0.6} q${br * 0.65} ${-br * 0.25} ${br * 1.3} 0 t${br * 1.3} 0`} fill="none" stroke="#F2FBFC" strokeWidth="5" strokeLinecap="round" opacity=".8" />}
               {fall > 0 && fall < 1 && <Splash x={bx1} y={by1 + 10} t={t} k={0.6} />}
             </g>
-          )}
-          {/* corda legata alla zattera: tesa verso gli spruzzi, poi allentata in acqua */}
-          {swimming > 0 && (
-            <path d={`M${kx} ${ky} Q${(kx + sx) / 2} ${(ky + sy) / 2 + ropeSag} ${sx} ${sy}`} fill="none" stroke={taut > 0.6 ? "#F6E8C4" : "#E6D3A8"} strokeWidth={taut > 0.6 ? 11 : 7} strokeLinecap="round" opacity={swimming} />
           )}
           <Splash x={sx} y={sy} t={t} k={swimming} />
           {/* brandello di vela portato via dal vento */}
