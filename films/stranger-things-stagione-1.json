@@ -27,7 +27,7 @@
       "sottotitoli": [
         "Nel 1983, a Hawkins, una piccola città americana,",
         "Will, un ragazzino, pedala verso casa dopo una serata con gli amici,",
-        "ma qualcosa lo insegue e nel capanno di casa sparisce."
+        "ma qualcosa lo insegue fino a casa, e lì sparisce."
       ]
     },
     {
@@ -37,7 +37,7 @@
       "scena": "Il cancello di un laboratorio governativo nel bosco, di notte: recinzione con filo spinato, cartelli di divieto, la garitta vuota con la sbarra alzata, l'edificio di cemento sullo sfondo con le finestre accese; un lampeggiante rosso che gira e spazza la nebbia; in primo piano, sul fango, piccole impronte di piedi nudi che escono dal cancello.",
       "sottotitoli": [
         "Quella stessa notte, dal laboratorio segreto del governo,",
-        "scappa Undici, una bambina rasata con quel numero tatuato sul polso.",
+        "scappa Undici, una bambina in camice con quel numero tatuato sul braccio.",
         "E gli uomini del laboratorio si mettono subito a cercarla."
       ]
     },
@@ -59,7 +59,7 @@
       "scena": "Lo scantinato di casa Wheeler: una tenda fatta di coperte tra il divano e una poltrona, cuscini, due walkie-talkie con l'antenna, fumetti, un tavolo da gioco con dadi e miniature; la scala di legno e una porta che sbatte da sola sull'ultima frase; luce calda di una lampada da tavolo.",
       "sottotitoli": [
         "Intanto i migliori amici di Will, Mike, Dustin e Lucas,",
-        "cercandolo nel bosco trovano Undici e la nascondono nello scantinato di Mike,",
+        "cercandolo nel bosco trovano Undici e la nascondono a casa di Mike,",
         "dove scoprono che muove le cose col pensiero."
       ]
     },
@@ -82,7 +82,7 @@
       "sottotitoli": [
         "Anche Nancy, la sorella di Mike, perde qualcuno:",
         "a una festa la sua amica Barb sparisce accanto alla piscina,",
-        "così si allea con Jonathan, il fratello di Will, per cercarli entrambi."
+        "così si allea con Jonathan, il fratello di Will, contro il mostro."
       ]
     },
     {
@@ -102,7 +102,7 @@
       "durata": 10,
       "scena": "La palestra della scuola di notte: una piscinetta gonfiabile piena d'acqua al centro del campo, sacchi di sale aperti, una radio a transistor accesa, le linee del parquet, i canestri; la luce di una sola lampada; sull'acqua cerchi concentrici che si allargano.",
       "sottotitoli": [
-        "Poi, a scuola, galleggiando in una piscinetta d'acqua salata,",
+        "Poi, a scuola, galleggiando in una vasca improvvisata,",
         "Undici raggiunge Will con la mente: è vivo, ma stremato.",
         "Il passaggio tra i mondi, però, l'ha aperto lei in un esperimento."
       ]
@@ -126,7 +126,7 @@
       "sottotitoli": [
         "Gli uomini del laboratorio arrivano a scuola per riprendersi Undici, ma lei li ferma;",
         "però arriva anche il mostro, attirato dal sangue.",
-        "Undici lo inchioda al muro e lo dissolve, sparendo insieme a lui."
+        "Undici lo disintegra con la mente, sparendo insieme a lui."
       ]
     },
     {
@@ -145,5 +145,9 @@
     "durata": 4,
     "immagine": "Casa Byers nella neve la notte di Natale, con le lucine sul tetto e le finestre accese; la bici rossa della copertina appoggiata alla staccionata innevata (Will è tornato a casa); neve che cade; 'Fine della stagione 1' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la serie che vorresti.'"
   },
-  "musica": "Originale e strumentale: archi gravi che pulsano a crome, celesta e pianoforte in arpeggi ripetuti, timpani lontani, ottoni scuri nello scontro finale; tensione da racconto di paura per ragazzi, un tema caldo di quattro note per l'amicizia che torna nei capitoli dei ragazzi e nel Natale; niente sintetizzatori, niente brani né motivi della serie (in particolare nessun arpeggio che ricordi la sigla). Rumori: lampadine che ronzano, bici, vento nel bosco, radio, acqua, fuoco, porte che sbattono."
+  "musica": "Originale e strumentale: archi gravi che pulsano a crome, celesta e pianoforte in arpeggi ripetuti, timpani lontani, ottoni scuri nello scontro finale; tensione da racconto di paura per ragazzi, un tema caldo di quattro note per l'amicizia che torna nei capitoli dei ragazzi e nel Natale; niente sintetizzatori, niente brani né motivi della serie (in particolare nessun arpeggio che ricordi la sigla). Rumori: lampadine che ronzano, bici, vento nel bosco, radio, acqua, fuoco, porte che sbattono.",
+  "fonti": [
+    "6 novembre 1983, Hawkins; Will torna in bici dopo una partita a Dungeons & Dragons, è inseguito fino a casa e sparisce nel nulla; Undici fugge dal laboratorio; Mike, Dustin e Lucas la trovano nel bosco e Mike la porta a casa sua; poteri psicocinetici; il tabellone del gioco per spiegare dov'è Will; Nancy sorella di Mike e la festa con Barbara che sparisce a bordo piscina; Joyce comunica con le lucine natalizie e Will le dice di scappare; il corpo ritrovato è un pupazzo e Hopper sospetta il laboratorio; la vasca di deprivazione; Undici confessa di aver aperto il varco negli esperimenti; Nancy e Jonathan sulle tracce della creatura; trappola con il sangue in casa Byers, trappola per orsi e fuoco; Undici disintegra la creatura e scompare; a Natale Hopper lascia degli Eggo, i waffle che Undici apprezza, in una cassetta nel bosco: https://it.wikipedia.org/wiki/Episodi_di_Stranger_Things_(prima_stagione)",
+    "Will Byers, 12 anni, sparisce tornando in bici; tatuaggio 011 sul braccio e camice d'ospedale; Joyce dipinge l'alfabeto con le lucine e Will scrive RUN; corpo ripescato nella cava, falso, Hopper sospetta Brenner; vasca di deprivazione improvvisata nella scuola media, Will vivo nel fortino; Nancy e Jonathan si tagliano le mani per attirare il Demogorgone; gli agenti arrivano a scuola per riprendersi Undici, lei li uccide e il sangue attira il mostro; Joyce e Hopper nel Sottosopra trovano Barb morta e salvano Will; a Natale Will tossisce una creatura simile a una lumaca e rivede il Sottosopra; Eggo cibo preferito di Undici: https://en.wikipedia.org/wiki/Stranger_Things_season_1"
+  ]
 }
