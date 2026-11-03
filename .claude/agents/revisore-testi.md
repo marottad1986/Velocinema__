@@ -25,9 +25,11 @@ Controlla:
    video stesso; le righe dei sottotitoli sono pezzi dello stesso discorso; l'ultima frase chiude o lascia una domanda chiara.
 6. Finale: dice chiaramente come va a finire, compresi i colpi di scena.
 7. Titoli dei capitoli chiari anche fuori contesto.
-8. Fedeltà: i fatti della trama sono corretti; nei dubbi verifica sulla voce del film di Wikipedia in italiano (sezione
-   «Trama») e dillo nel rapporto («verificato su…» oppure «a memoria»); per canzoni e quadri,
-   distinzione tra ciò che è documentato e ciò che è ipotesi, con le fonti del campo `fonti`.
+8. Fedeltà: ogni fatto della trama citato è corretto e confermato dalle fonti del campo `fonti` (voce Wikipedia italiana
+   del film, sezione «Trama», poi quella inglese o le pagine degli episodi); dillo nel rapporto («verificato su…»).
+   Se `fonti` manca o non copre un fatto, verifica tu e chiudi il rapporto con una sezione «FONTI» da copiare nel JSON
+   («<fatti confermati>: <url>», una voce per fonte). Per canzoni e quadri, distinzione tra ciò che è documentato e
+   ciò che è ipotesi.
 9. Italiano: grammatica, punteggiatura, accenti, ripetizioni, parole difficili da pronunciare per la voce.
 10. Se proponi di riscrivere una frase di un film già disegnato: stesso numero di righe per capitolo e stesso contenuto
    per riga (scene e spartito si agganciano all'indice della riga). Conta le parole come controlli.mjs (si divide sugli

@@ -48,6 +48,9 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 - Niente battute, citazioni o soprannomi che capisce solo chi ha visto il film; se si usa una gag famosa, va spiegata
   nella stessa frase.
 - Il finale deve dire chiaramente come va a finire, compresi i colpi di scena.
+- Fatti verificati: ogni fatto della trama citato va confermato su fonti (prima la voce Wikipedia italiana del film, sezione
+  «Trama», poi quella inglese o le pagine degli episodi) e il JSON porta il campo `fonti`, una voce per fonte nel formato
+  «<fatti confermati>: <url>». `controlli.mjs` lo segnala se manca (errore per le canzoni, `"tipo": "canzone"`).
 - Titoli dei capitoli chiari anche fuori contesto.
 - Testo discorsivo (tutti i formati): si racconta come a voce a un amico. Ogni frase si aggancia alla precedente con
   connettivi espliciti («perché», «infatti», «intanto», «così», «quindi», «ma», «alla fine»), così i collegamenti li fa
@@ -69,7 +72,7 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 - Mai frasi come «La prossima volta che lo vedi…» (né nel finale né altrove).
 
 ## Canzoni spiegate (stesso schema dei film)
-- Un JSON in `films/` come per i film (es. `films/bohemian-rhapsody.json`): `regista` = artista, numero di capitoli libero
+- Un JSON in `films/` come per i film (es. `films/bohemian-rhapsody.json`) con `"tipo": "canzone"`: `regista` = artista, numero di capitoli libero
   (l'etichetta diventa "CAPITOLO N DI M"), campo `fonti` obbligatorio con i link che confermano ogni fatto citato.
 - Testi: mai riportare il testo della canzone, nemmeno a pezzi; si racconta con parole proprie. Ammesse solo parole
   singole o nomi (es. «Scaramouche») per spiegarli nella stessa frase.
