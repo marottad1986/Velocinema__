@@ -59,6 +59,9 @@ import { JOKER_SCENES } from './scenes/joker';
 import { THE_OTHERS_SCENES } from './scenes/the-others';
 import { Copertina as OthersCover, Finale as OthersEnd } from './scenes/the-others/Locandina';
 import { Copertina as JokerCover, Finale as JokerEnd } from './scenes/joker/Locandina';
+import breakingBad1 from '../films/breaking-bad-stagione-1.json';
+import { BREAKING_BAD_1_SCENES } from './scenes/breaking-bad-stagione-1';
+import { Copertina as BB1Cover, Finale as BB1End } from './scenes/breaking-bad-stagione-1/Locandina';
 
 // Registro dei film e dei quadri: un JSON in films/ (o quadri/, vedi QUADRI.md) + le scene in src/scenes/<slug>/.
 // Le scene non ancora ricostruite compaiono come segnaposto.
@@ -83,6 +86,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'the-others', data: theOthers as FilmData, scenes: THE_OTHERS_SCENES, cover: OthersCover, ending: OthersEnd, posterFont: SERIF },
   { slug: 'stranger-things-stagione-1', data: strangerThings1 as FilmData, scenes: STRANGER_THINGS_1_SCENES, cover: ST1Cover, ending: ST1End, posterFont: BEBAS },
   { slug: 'joker', data: joker as FilmData, scenes: JOKER_SCENES, cover: JokerCover, ending: JokerEnd, posterFont: ANTON },
+  { slug: 'breaking-bad-stagione-1', data: breakingBad1 as FilmData, scenes: BREAKING_BAD_1_SCENES, cover: BB1Cover, ending: BB1End, posterFont: STENCIL },
 ];
 
 export const getFilm = (slug: string): FilmDef => {

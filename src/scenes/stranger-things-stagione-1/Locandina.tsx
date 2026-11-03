@@ -109,11 +109,11 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; finale: boolean }> 
         ) : (
           <>
             {/* casa Byers nella neve con le lucine, la bici appoggiata alla staccionata */}
-            <g transform={L(0.4, 0, 100)}>
+            <g transform={L(0.4, 0, 140)}>
               {[...TREES_L, ...TREES_R].map((f, i) => <Abete key={i} x={f.x + (i > 6 ? 60 : 0)} y={1080} h={f.h * 0.8} w={f.w} color="#16223A" seed={i + 30} />)}
               <rect x="-200" y="1060" width="1480" height="200" fill="#8A9AB4" />
             </g>
-            <g transform={L(0.55, 0, 100)}>
+            <g transform={L(0.55, 0, 140)}>
               <Glow id={`${id}-hg`} x={560} y={1000} r={420} t={t} color="#FFC870" amp={0.03} rate={1.5} opacity={0.4} />
               <path d="M300 900 L560 790 L820 900 V1150 H300 Z" fill={`url(#${id}-siding)`} stroke={K} strokeWidth="8" />
               {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M300 ${930 + i * 28} H820`} stroke="#000" strokeWidth="3" opacity=".22" />)}
@@ -131,7 +131,7 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; finale: boolean }> 
               <rect x="560" y="1030" width="80" height="120" fill="#5A2A22" stroke={K} strokeWidth="6" />
               <circle cx="600" cy="1070" r="22" fill="none" stroke="#2E5A34" strokeWidth="10" />
             </g>
-            <g transform={L(0.75, 0, 100)}>
+            <g transform={L(0.75, 0, 140)}>
               <path d="M-200 1150 Q300 1130 600 1150 Q900 1170 1280 1140 V2200 H-200 Z" fill={`url(#${id}-ground)`} stroke="#3A4A64" strokeWidth="5" />
               <path d="M-200 1154 Q300 1134 600 1154 Q900 1174 1280 1144" stroke="#F2F6FC" strokeWidth="5" fill="none" opacity=".7" />
               {Array.from({ length: 8 }, (_, i) => (
@@ -179,7 +179,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
       <Sfondo id="sc0" t={t} dur={dur} finale={false} />
       <div style={{ position: 'absolute', left: 80, top: 290, width: 920, fontFamily: SANS, color: P.chiaro }}>
         <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: GIALLO, opacity: tag, textShadow: `0 2px 0 ${P.scuro}` }}>
-          LA SERIE IN 2 MINUTI · STAGIONE {film.stagione}<Speciale nome={film.copertina.speciale} scale={eob(seg(t, 0.4, 0.8), 1.6)} />
+          STAGIONE {film.stagione} IN 2 MINUTI<Speciale nome={film.copertina.speciale} scale={eob(seg(t, 0.4, 0.8), 1.6)} />
         </p>
         <h1 style={{ margin: '10px 0 0', fontFamily: BEBAS, fontWeight: 400, fontSize: 210, lineHeight: 0.9, letterSpacing: '0.04em', color: P.chiaro,
           textShadow: `0 6px 0 ${P.scuro}`, opacity: seg(t, 0.15, 0.4), transform: `translateY(${(1 - l1) * 50}px)` }}>
@@ -214,9 +214,9 @@ export const Finale: React.FC<PosterProps> = ({ t, dur, film }) => {
         </div>
         <p style={{ margin: '30px 0 0', fontSize: 34, fontWeight: 400, opacity: seg(t, 1.0, 1.4) }}>Commenta con la serie che vorresti.</p>
       </div>
-      <h1 style={{ position: 'absolute', left: 0, right: 0, top: 690, margin: 0, textAlign: 'center', fontFamily: BEBAS, fontWeight: 400, fontSize: 190, lineHeight: 1,
+      <h1 style={{ position: 'absolute', left: 0, right: 0, top: 650, margin: 0, textAlign: 'center', fontFamily: BEBAS, fontWeight: 400, fontSize: 130, lineHeight: 0.95,
         letterSpacing: '0.06em', color: P.chiaro, textShadow: `0 6px 0 ${P.scuro}`, opacity: seg(t, 0.3, 0.6), transform: `scale(${lerp(0.9, 1, end)})` }}>
-        The End
+        Fine della<br />stagione {film.stagione}
       </h1>
     </div>
   );

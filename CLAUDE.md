@@ -54,7 +54,7 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
   la voce e chi guarda non deve ricostruirli; anche un capitolo si aggancia al precedente. Niente elenchi secchi di fatti
   né frasi telegrafiche; mai frasi che parlano dello schema o del video stesso (es. «Tutto in due minuti», «Ecco lo schema
   completo»; l'etichetta «IL FILM IN 2 MINUTI» sopra il titolo resta, ma solo nelle copertine dei riassunti di film;
-  i riassunti di serie usano «LA SERIE IN 2 MINUTI · STAGIONE N»; canzoni e quadri
+  i riassunti di serie usano «STAGIONE N IN 2 MINUTI»; canzoni e quadri
   usano il nome della serie, «CANZONI SPIEGATE» e «QUADRI SPIEGATI»). Le righe dei sottotitoli sono pezzi dello stesso discorso. L'ultima frase della storia chiude o lascia una
   domanda chiara (per le serie: da dove riparte la stagione dopo).
 - Spiegato facile: parole di tutti i giorni, nessun termine tecnico senza spiegarlo subito, una cosa alla volta.
@@ -64,7 +64,8 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 
 ## Finale (vincolante, tutti i formati)
 - Nell'immagine finale, sotto «Metti like» / «Segui la pagina», l'invito a commentare (mai «Il prossimo … arriva presto»):
-  riassunti di film → «Commenta con il film che vorresti.»; riassunti di serie → «Commenta con la serie che vorresti.»; Spiegato semplice → «Commenta con la spiegazione che vorresti.»;
+  riassunti di film → «Commenta con il film che vorresti.»; riassunti di serie (es. Breaking Bad, una stagione per video:
+  etichetta «STAGIONE N IN 2 MINUTI», finale «Fine della stagione N») → «Commenta con la serie che vorresti.»; Spiegato semplice → «Commenta con la spiegazione che vorresti.»;
   canzoni → «Commenta con la canzone che vorresti.»; quadri → «Commenta con il quadro che vorresti.»
 - Mai frasi come «La prossima volta che lo vedi…» (né nel finale né altrove).
 
@@ -91,12 +92,13 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 
 ## Riassunti di serie TV (stesso formato dei film)
 - Una stagione per video, raccontata come un film: JSON `films/<serie>-stagione-<N>.json` con `"tipo": "serie"` e
-  `"stagione": N`, 11 capitoli, etichetta in copertina «LA SERIE IN 2 MINUTI · STAGIONE N», finale con
+  `"stagione": N`, 11 capitoli, etichetta in copertina «STAGIONE N IN 2 MINUTI», finale «Fine della stagione N» con
   «Commenta con la serie che vorresti.». L'ultima frase lascia la domanda da cui riparte la stagione dopo.
 - Creature e mostri della serie: mai la sagoma intera né i tratti che li rendono riconoscibili (es. la testa a petali
   del mostro di Stranger Things); si mostrano con tracce e parti generiche nel nostro stile (pareti che si gonfiano,
   bava, cenere, un artiglio non umano che sfonda una membrana).
-- Primo episodio: Stranger Things stagione 1 (`films/stranger-things-stagione-1.json`).
+- Episodi: Breaking Bad stagione 1 (`films/breaking-bad-stagione-1.json`), Stranger Things stagione 1
+  (`films/stranger-things-stagione-1.json`).
 
 ## Secondo formato: "Spiegato semplice" (film e serie TV)
 Trame complesse spiegate nel modo più semplice possibile, «come a un bambino di 5 anni». Valgono tutte le regole
@@ -181,7 +183,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   si sente la musica accelerare e rallentare). Lo stesso bpm va nel JSON (`"bpm": 72`): le scene ricevono `griglia(s, div)`,
   che arrotonda un istante del capitolo al battito (div 2 = crome), e gli eventi si scrivono già a tempo, es.
   `seg(t, griglia(cues[2] + 0.4), …)`; `controlli.mjs` verifica che il bpm del JSON sia quello dello spartito. Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
-  Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute), Joker 96, The Others 72; Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 e 2053 a metà passo, anche la stagione 2);
+  Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute), Joker 96, The Others 72, Breaking Bad stagione 1 96 (10 s = 4 battute); Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 e 2053 a metà passo, anche la stagione 2);
   quadri: Grande onda 88, Notte stellata 92;
   Bohemian Rhapsody 70 (opera e rock a passo doppio, 140), Gli anni 600/7 ≈ 85,7 (14 s = 5 battute).
 - Effetti sonori registrati: `scripts/audio/effetti.mjs` (archivio CC0 di Craig Smith, USC / Sunset Editorial, "SSE Library"
