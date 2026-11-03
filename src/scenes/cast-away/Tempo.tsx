@@ -23,6 +23,8 @@ export const Tempo: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const snap = eob(seg(t - tick, 0, 0.18), 3);
   const sec = ((tick - 1 + snap) / 60) * 360 + 200;
   const stop = eob(seg(t, cues[1], cues[1] + 0.4), 2); // il cronometro parte su «l'orologio in mano»
+  const page = seg(t, cues[3], cues[3] + 0.3); // il cercapersone di Kelly vibra, ignorato
+  const buzz = page * (mod(t, 0.9) < 0.5 ? 1 : 0);
 
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
@@ -43,7 +45,7 @@ export const Tempo: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
               <path d={`M${x + 100} 560 V710 M${x} 635 H${x + 200}`} stroke="#07111A" strokeWidth="5" />
               {Array.from({ length: 6 }, (_, k) => {
                 const yy = 560 + mod(t * 30 + k * 27 + i * 13, 150);
-                return <circle key={k} cx={x + 18 + ((k * 37 + i * 11) % 170)} cy={yy} r="3" fill="#DDE8F0" opacity=".7" />;
+                return <circle key={k} cx={x + 18 + ((k * 37 + i * 11) % 170)} cy={yy} r="5" fill="#EEF4F8" opacity=".85" />;
               })}
             </g>
           ))}
@@ -118,8 +120,17 @@ export const Tempo: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <Parcel x={10} y={1430} w={240} h={180} d={60} rot={-3} />
           <Parcel x={1010} y={1660} w={320} h={240} d={70} />
           <Parcel x={1050} y={1440} w={240} h={170} d={60} rot={4} />
+          {/* scatola al centro con il cercapersone che vibra (Kelly) */}
+          <Parcel x={760} y={1220} w={280} h={120} d={50} rot={2} />
+          <g transform={`translate(${880 + (buzz ? Math.sin(t * 90) * 4 : 0)} 1132) rotate(-8)`}>
+            <Glow id="tp-pager" x={0} y={0} r={110} t={t} color="#9FF0C0" amp={0} opacity={0.6 * buzz} />
+            <rect x="-56" y="-30" width="112" height="60" rx="12" fill="#2A3440" stroke={K} strokeWidth="6" />
+            <rect x="-42" y="-18" width="84" height="30" rx="4" fill={page > 0 ? (buzz ? '#B8F5D0' : '#7FD8A8') : '#3E5A4A'} />
+            {page > 0 && <text x="0" y="5" textAnchor="middle" fontFamily="Figtree, sans-serif" fontWeight="900" fontSize="17" fill="#123222">KELLY ♥</text>}
+            {buzz > 0 && <path d="M-74 -20 q-10 20 0 40 M74 -20 q10 20 0 40 M-88 -30 q-16 30 0 60 M88 -30 q16 30 0 60" fill="none" stroke="#9FF0C0" strokeWidth="5" strokeLinecap="round" />}
+          </g>
           {/* cronometro */}
-          <g transform={`translate(960 1300) scale(${0.9 + 0.1 * stop})`}>
+          <g transform={`translate(690 1080) scale(${0.9 + 0.1 * stop})`}>
             <Glow id="tp-sw" x={0} y={0} r={140} t={t} color="#FFD9A0" amp={0.1} rate={4} opacity={0.3 * stop} />
             <rect x="-14" y="-104" width="28" height="22" rx="6" fill="#C9CED2" stroke={K} strokeWidth="5" />
             <circle r="86" fill="#D4D9DD" stroke={K} strokeWidth="9" />
