@@ -59,6 +59,29 @@ const Copertina_: React.FC<{ t: number; dur: number; accent: string }> = ({ t, d
           </g>
           <Ball x={760} y={1280} r={86} rot={-12} face={1} dirty={0.3} />
         </g>
+        {/* primo piano: orme che vanno verso il mare, stella marina, conchiglie, alghe e una cima arrotolata */}
+        <g transform={L(1.12)}>
+          {Array.from({ length: 7 }, (_, i) => {
+            const x = 300 + i * 60 + (i % 2) * 26, y = 1880 - i * 70;
+            return <ellipse key={i} cx={x} cy={y} rx={22 - i * 1.5} ry={34 - i * 2} fill="#C89A68" stroke="#9A7048" strokeWidth="3" transform={`rotate(20 ${x} ${y})`} />;
+          })}
+          <g transform="translate(760 1640) rotate(14)">
+            <path d="M0 -60 L16 -18 L60 -18 L24 8 L38 52 L0 26 L-38 52 L-24 8 L-60 -18 L-16 -18 Z" fill="#E8875E" stroke={K} strokeWidth="6" strokeLinejoin="round" />
+            {[[0, -36], [22, -8], [12, 26], [-12, 26], [-22, -8]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r="4" fill="#FFD0A8" />)}
+          </g>
+          {[[580, 1560, 1.3, -10], [900, 1760, 1.1, 20], [200, 1640, 1, 30]].map(([x, y, sc, a], i) => (
+            <g key={i} transform={`translate(${x} ${y}) rotate(${a}) scale(${sc})`}>
+              <path d="M0 18 L-30 -8 Q-24 -30 0 -32 Q24 -30 30 -8 Z" fill="#F4E4CC" stroke={K} strokeWidth="5" strokeLinejoin="round" />
+              <path d="M0 18 L-18 -24 M0 18 L0 -30 M0 18 L18 -24" stroke="#C8A888" strokeWidth="3" />
+            </g>
+          ))}
+          <path d="M60 1500 q60 -30 120 0 t120 0" fill="none" stroke="#3E6B4A" strokeWidth="12" strokeLinecap="round" />
+          <path d="M80 1530 q50 -20 110 6" fill="none" stroke="#2C5A3A" strokeWidth="9" strokeLinecap="round" />
+          <g transform="translate(860 1520)">
+            {[44, 32, 20].map((rr, i) => <ellipse key={i} cx="0" cy="0" rx={rr * 1.6} ry={rr * 0.7} fill="none" stroke={K} strokeWidth="12" />)}
+            {[44, 32, 20].map((rr, i) => <ellipse key={i} cx="0" cy="0" rx={rr * 1.6} ry={rr * 0.7} fill="none" stroke="#E6D3A8" strokeWidth="7" />)}
+          </g>
+        </g>
         <g transform={L(1.25)}>
           <Palm x={-60} y={1900} h={1050} lean={200} t={t} ph={0.4} leaf="#1E3A30" trunk="#4A3622" />
           <Palm x={1160} y={1800} h={820} lean={-200} t={t} ph={2} leaf="#1E3A30" trunk="#4A3622" />
@@ -91,7 +114,7 @@ const Finale_: React.FC<{ t: number; dur: number; accent: string }> = ({ t, dur,
           <Glow id="cf-dusk" x={540} y={1010} r={600} t={t} color="#FFB070" amp={0.03} rate={0.8} opacity={0.4} />
         </g>
         <g transform={L(0.45)}>
-          <rect x="-200" y="1000" width="1480" height="700" fill="url(#cf-plain)" />
+          <rect x="-200" y="1000" width="1480" height="1300" fill="url(#cf-plain)" />
           {Array.from({ length: 14 }, (_, i) => <path key={i} d={`M${-150 + i * 60} 1040 v-28`} stroke="#2E2014" strokeWidth="5" />)}
           <path d="M-150 1020 H690" stroke="#2E2014" strokeWidth="3" />
         </g>
@@ -100,7 +123,7 @@ const Finale_: React.FC<{ t: number; dur: number; accent: string }> = ({ t, dur,
           <path d="M-200 1200 Q540 1160 1280 1210 V1300 Q540 1250 -200 1300 Z" fill="url(#cf-road)" />
           <path d="M540 1000 L540 1920" stroke="#E2B880" strokeWidth="6" strokeDasharray="30 40" opacity=".5" />
         </g>
-        <g transform={L(1.0)}>
+        <g transform={`${L(1.0)} translate(0 200)`}>
           <path d="M240 1330 V880" stroke={K} strokeWidth="18" />
           <path d="M240 1330 V880" stroke="#6B4E2E" strokeWidth="10" />
           {[[-1, 920, -6], [1, 990, 5], [-1, 1060, 3]].map(([dir, y, rot], i) => (

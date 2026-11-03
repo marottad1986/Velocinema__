@@ -20,8 +20,8 @@ export const Bivio: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
   const note = eo(seg(t, cues[1], cues[1] + 0.6)); // il biglietto sul pacco
   // il furgone arriva da sinistra, si ferma all'incrocio, poi riparte lungo la strada verso l'orizzonte
   const come = eio(seg(t, cues[2] - 0.6, cues[2] + 0.8));
-  const leave = eio(seg(t, cues[3] + 0.8, dur + 2));
-  const vx = -260 + 820 * come + 900 * leave, vy = 1240, vs = 1;
+  const leave = eio(seg(t, cues[4] + 1.0, dur + 3));
+  const vx = -260 + 730 * come + 900 * leave, vy = 1240, vs = 1;
   const wings = seg(t, cues[3], cues[3] + 0.6); // le ali sul portellone: è lei
   const sun = 1 - 0.3 * seg(t, 0, dur);
 
@@ -29,7 +29,7 @@ export const Bivio: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
         <FxDefs id="bv" />
-        <Lin id="bv-sky" stops={[[0, '#3B4F86'], [0.3, '#B86A7A'], [0.48, '#F2A65E'], [0.55, '#FCD58C']]} />
+        <Lin id="bv-sky" stops={[[0, '#202C58'], [0.46, '#5E4A70'], [0.66, '#D98060'], [0.86, '#FCD58C']]} />
         <Lin id="bv-plain" stops={[[0, '#C99A5C'], [0.4, '#A87A44'], [1, '#6B4A28']]} />
         <Lin id="bv-road" stops={[[0, '#E2B880'], [1, '#C7955A']]} />
       </defs>
@@ -47,18 +47,27 @@ export const Bivio: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
 
         {/* PIANO 1 — pianura piatta, recinto e il cancello lontano con il pacco */}
         <g transform={L(0.4)}>
-          <rect x="-200" y="1000" width="1480" height="600" fill="url(#bv-plain)" />
+          <rect x="-200" y="1000" width="1480" height="1200" fill="url(#bv-plain)" />
           <path d="M-200 1000 H1280" stroke="#7A5A34" strokeWidth="4" />
           {Array.from({ length: 12 }, (_, i) => <path key={i} d={`M${-150 + i * 60} 1040 v-28`} stroke="#5A3E22" strokeWidth="5" />)}
           <path d="M-150 1020 H520" stroke="#5A3E22" strokeWidth="3" />
-          <g transform="translate(900 1030)">
-            <path d="M-60 0 V-70 M60 0 V-70 M-60 -60 H60 M-60 -30 H60" stroke="#5A3E22" strokeWidth="7" />
-            <path d="M-110 -20 Q-90 -90 -40 -80 L-30 0 Z" fill="#7A6A4A" />
-            <g opacity={parcel} transform="translate(0 -6) scale(.42)">
-              <Parcel x={0} y={-50} w={170} h={110} d={44} wings={P.accento} />
-              {note > 0 && <rect x={-30} y={-80} width={70 * note} height={46} fill="#FFFFFF" stroke={K} strokeWidth="4" transform="rotate(-8)" />}
+          <g transform="translate(800 1110)">
+            {/* cancello di legno con la cassetta delle lettere; sulla soglia il pacco con il biglietto */}
+            <path d="M-110 0 V-150 M110 0 V-150" stroke={K} strokeWidth="16" />
+            <path d="M-110 0 V-150 M110 0 V-150" stroke="#8B6A43" strokeWidth="9" />
+            <path d="M-110 -130 H110 M-110 -70 H110 M-60 -130 L-10 -70 M40 -130 L90 -70" stroke="#6B4E2E" strokeWidth="9" strokeLinecap="round" />
+            <rect x="-160" y="-120" width="42" height="30" rx="8" fill="#5D8A5A" stroke={K} strokeWidth="4" />
+            <path d="M-139 -90 V0" stroke="#5A3E22" strokeWidth="6" />
+            <ellipse cx="0" cy="8" rx="130" ry="12" fill={K} opacity=".2" />
+            <g opacity={parcel}>
+              <Parcel x={0} y={-48} w={150} h={96} d={40} wings={P.accento} />
+              <g transform={`translate(-30 -60) rotate(-8) scale(${note})`}>
+                <rect x="-8" y="-26" width="96" height="54" fill="#FFFDF4" stroke={K} strokeWidth="4" />
+                <path d="M4 -10 h70 M4 2 h60 M4 14 h66" stroke="#4A4A6A" strokeWidth="3" strokeLinecap="round" />
+                <path d="M70 -16 q6 -8 10 0 q4 -8 10 0 q-4 8 -10 12 q-6 -4 -10 -12" fill={P.accento} />
+              </g>
             </g>
-            <Glow id="bv-parcelg" x={0} y={-30} r={110} t={t} color="#FFE1C8" amp={0.08} rate={2} opacity={0.4 * parcel} />
+            <Glow id="bv-parcelg" x={0} y={-50} r={170} t={t} color="#FFE1C8" amp={0.08} rate={2} opacity={0.5 * parcel} />
           </g>
           <path d="M60 1000 l40 -50 l30 50 Z" fill="#5A4A3A" opacity=".6" />
         </g>
@@ -84,8 +93,9 @@ export const Bivio: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <path d="M80 -140 H150 V-96 H62 Z" fill="#3E5A78" stroke={K} strokeWidth="5" />
             {/* portellone posteriore con le due ali dipinte */}
             <g transform="translate(-110 -42)">
-              <Glow id="bv-wingg" x={0} y={0} r={110} t={t} color="#FFD3B8" amp={0.08} rate={2.4} opacity={0.6 * wings} />
-              <Wings color={P.accento} s={1} />
+              <Glow id="bv-wingg" x={0} y={0} r={110} t={t} color="#FFD3B8" amp={0.08} rate={2.4} opacity={wings} />
+              <circle r={60 + 70 * mod(t * 0.8, 1)} fill="none" stroke="#FFE1C8" strokeWidth="6" opacity={wings * (1 - mod(t * 0.8, 1))} />
+              <Wings color={P.accento} s={1.2} />
             </g>
             <rect x="-174" y="-30" width="12" height="20" fill="#B5301E" />
             {[-110, 110].map((x) => <g key={x}><circle cx={x} cy="4" r="32" fill="#2A2420" stroke={K} strokeWidth="6" /><circle cx={x} cy="4" r="12" fill="#9A8F80" /></g>)}
@@ -95,7 +105,7 @@ export const Bivio: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
 
         {/* PIANO 4 — il cartello stradale con le direzioni */}
         <g transform={L(1.0)}>
-          <g transform="translate(-140 0)">
+          <g transform="translate(-40 0)">
           <path d="M300 1330 V880" stroke={K} strokeWidth="18" />
           <path d="M300 1330 V880" stroke="#8B6A43" strokeWidth="10" />
           {[[-1, 920, -6], [1, 990, 5], [-1, 1060, 3]].map(([dir, y, rot], i) => (
