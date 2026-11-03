@@ -157,7 +157,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
       <Copertina_ t={t} dur={dur} accent={P.accento} />
       <div style={{ position: 'absolute', left: 120, top: 290, width: 840, fontFamily: SANS, color: P.chiaro }}>
         <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.chiaro, opacity: tag, textShadow: `0 2px 0 ${P.scuro}` }}>IL FILM IN 2 MINUTI</p>
-        <h1 style={{ margin: '14px 0 0', fontFamily: DISPLAY, fontWeight: 800, fontSize: 172, lineHeight: 0.9, whiteSpace: 'nowrap', letterSpacing: '-0.02em', color: P.chiaro,
+        <h1 style={{ margin: '14px 0 0', fontFamily: DISPLAY, fontWeight: 800, fontSize: 160, lineHeight: 0.9, whiteSpace: 'nowrap', letterSpacing: '-0.02em', color: P.chiaro,
           textShadow: `0 8px 0 ${P.scuro}`, opacity: seg(t, 0.15, 0.4), transform: `translateY(${(1 - l1) * 50}px)` }}>
           Cast Away
         </h1>

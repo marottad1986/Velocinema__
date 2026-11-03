@@ -130,7 +130,7 @@ export const Ritorno: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M200 1790 V1600" stroke={K} strokeWidth="18" />
           <path d="M200 1790 V1600" stroke="#6E5638" strokeWidth="10" />
           <rect x="130" y="1520" width="150" height="90" rx="40" fill="#5A6470" stroke={K} strokeWidth="8" />
-          <path d="M260 1530 V1480 h30 v26 h-30" fill={P.accento} stroke={K} strokeWidth="5" />
+          <path d="M280 1530 V1470 h34 v28 h-34" fill={P.accento} stroke={K} strokeWidth="5" />
         </g>
 
         {/* PIANO 5 — pioggia vicina */}

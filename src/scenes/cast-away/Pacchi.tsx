@@ -79,16 +79,6 @@ export const Pacchi: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
             <path d="M-20 -20 Q0 40 -50 110 M30 -10 Q40 50 80 116" fill="none" stroke="#9A7CD0" strokeWidth="5" />
             <path d="M-40 -110 L-30 -140 M40 -110 L30 -140" stroke={K} strokeWidth="5" />
           </g>
-          {/* videocassette */}
-          <g transform={`translate(600 1110) scale(${0.7 * pop(1)})`}>
-            {[0, 1].map((i) => (
-              <g key={i} transform={`translate(${i * 30} ${-i * 34}) rotate(${-6 + i * 12})`}>
-                <rect x="-80" y="-24" width="160" height="48" rx="6" fill="#20262C" stroke={K} strokeWidth="5" />
-                <rect x="-50" y="-14" width="100" height="18" fill="#E9E2CF" />
-                <circle cx="-26" cy="10" r="6" fill="#6A737C" /><circle cx="26" cy="10" r="6" fill="#6A737C" />
-              </g>
-            ))}
-          </g>
           {/* il pallone che rotola fuori */}
           <Ball x={300 + 120 * pop(2)} y={1196} r={62} rot={pop(2) * 200} face={0} />
           {/* nastro e cartone strappato sparsi */}
@@ -100,7 +90,8 @@ export const Pacchi: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) => {
           <path d="M600 1890 Q610 1790 690 1770 Q790 1750 850 1800 Q920 1850 930 1940 H590 Z" fill="url(#pc-rock)" stroke={K} strokeWidth="8" />
           <path d="M650 1792 Q710 1776 780 1784" fill="none" stroke="#C6C8B4" strokeWidth="5" opacity=".7" />
           <Glow id="pc-wing" x={765} y={1680} r={300} t={t} color="#FFD3B8" amp={0.08} rate={2} opacity={0.15 + 0.85 * wingGlow} />
-          <circle cx="765" cy="1680" r={120 + 160 * mod(t * 0.7, 1)} fill="none" stroke="#FFE1C8" strokeWidth="8" opacity={wingGlow * (1 - mod(t * 0.7, 1))} />
+          <circle cx="765" cy="1670" r="130" fill="#FFE6CC" opacity={0.35 * wingGlow} />
+          <circle cx="765" cy="1670" r={110 + 50 * mod(t * 0.9, 1)} fill="none" stroke="#FFF2E0" strokeWidth="10" opacity={wingGlow * (1 - mod(t * 0.9, 1))} />
           <Parcel x={765} y={1700} w={180} h={112} d={48} wings={P.accento} rot={-3} />
         </g>
 

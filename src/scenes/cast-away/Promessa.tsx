@@ -125,7 +125,7 @@ export const Promessa: React.FC<SceneProps> = ({ t, dur, palette: P, cues, grigl
           <PocketWatch x={400} y={1060} s={1.55} open={watch} t={t + 3600 * 9} />
           <Glow id="pm-photo" x={270} y={1060} r={170} t={t} color="#FFE0B0" amp={0.05} rate={2} opacity={0.4 * watch} />
           {/* scatolina dell'anello col fiocco (accento) */}
-          <g transform={`translate(825 1070) scale(${0.2 + 1.0 * gift})`} opacity={seg(t, giftAt, giftAt + 0.2)}>
+          <g transform={`translate(825 1090) scale(${0.15 + 0.7 * gift})`} opacity={seg(t, giftAt, giftAt + 0.2)}>
             <ellipse cx="0" cy="62" rx="100" ry="14" fill="#000" opacity=".4" />
             <rect x="-78" y="-26" width="156" height="90" rx="12" fill="#7A1E2A" stroke={K} strokeWidth="7" />
             <rect x="-86" y="-58" width="172" height="40" rx="12" fill="#9A2A38" stroke={K} strokeWidth="7" />

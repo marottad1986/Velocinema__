@@ -167,7 +167,7 @@ export const Wilson: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           )}
           {/* corda legata alla zattera: tesa verso gli spruzzi, poi allentata in acqua */}
           {swimming > 0 && (
-            <path d={`M${kx} ${ky} Q${(kx + sx) / 2} ${(ky + sy) / 2 + ropeSag} ${sx} ${sy}`} fill="none" stroke="#E6D3A8" strokeWidth={taut > 0.6 ? 7 : 6} strokeLinecap="round" opacity={swimming} />
+            <path d={`M${kx} ${ky} Q${(kx + sx) / 2} ${(ky + sy) / 2 + ropeSag} ${sx} ${sy}`} fill="none" stroke={taut > 0.6 ? "#F6E8C4" : "#E6D3A8"} strokeWidth={taut > 0.6 ? 11 : 7} strokeLinecap="round" opacity={swimming} />
           )}
           <Splash x={sx} y={sy} t={t} k={swimming} />
           {/* brandello di vela portato via dal vento */}

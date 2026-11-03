@@ -24,7 +24,8 @@ export const Isola: React.FC<SceneProps> = ({ t, dur, palette: P, cues, griglia 
   const bigAt = griglia(cues[3] + 0.2);
   const rise = eio(seg(t, bigAt, bigAt + 0.8));
   const crash = seg(t, bigAt + 1.9, bigAt + 3.0);
-  const wall = rise * (1 - eo(crash));
+  const wall = rise * (1 - eo(seg(crash, 0.35, 1))); // l'acqua resta opaca e si abbassa solo dopo che la schiuma è ricaduta
+  const curtain = eo(seg(crash, 0, 0.45)); // la cresta crolla in avanti: una cortina di schiuma scende sulla faccia dell'onda
   const wash = mod(t * 0.35, 1); // risacca sulla spiaggia
   const surf = (x: number) => 0.5 + 0.5 * Math.sin(t * 2.4 + x * 0.013);
 
@@ -77,7 +78,13 @@ export const Isola: React.FC<SceneProps> = ({ t, dur, palette: P, cues, griglia 
           {crash > 0 && crash < 1 && SPRAY.map((s, i) => (
             <circle key={i} cx={s.x + (s.ph - 0.5) * 120 * crash} cy={940 - 200 * Math.sin(Math.min(1, crash * 1.3) * Math.PI) * (s.h / 120) - 20 * s.ph} r={s.s * (1 + crash)} fill="#FFFFFF" opacity={0.9 * (1 - crash)} />
           ))}
-          {crash > 0 && crash < 1 && <rect x="-200" y={900 - 120 * (1 - crash)} width="1480" height={90 + 120 * (1 - crash)} fill="#F4FBFA" opacity={0.6 * (1 - crash)} />}
+          {crash > 0 && wall > 0.01 && (() => {
+            const top = (x: number) => 960 - (240 - Math.abs(x - 540) * 0.3) * wall;
+            const xs = Array.from({ length: 15 }, (_, i) => -200 + i * 106);
+            const edge = xs.map((x, i) => `${i ? 'L' : 'M'}${x} ${top(x) - 6}`).join(' ');
+            const low = xs.slice().reverse().map((x, i) => `L${x} ${top(x) + (960 - top(x)) * curtain + 10 * Math.sin(x * 0.05 + t * 6)}`).join(' ');
+            return <path d={`${edge} ${low} Z`} fill="#F4FBFA" stroke={K} strokeWidth="4" strokeLinejoin="round" />;
+          })()}
           {/* cresta bianca continua sulla barriera */}
           <path d={Array.from({ length: 16 }, (_, i) => {
             const x = -200 + i * 96, h = 14 + 22 * surf(x);
