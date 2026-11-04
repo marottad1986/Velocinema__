@@ -115,7 +115,7 @@ export default (mix, T) => {
   const F = snap(T.finale); // sulla griglia, dove finisce l'ultima sezione
   [38, 50, 57, 62, 66, 69].forEach((m, j) => strings(mix, m, { t: F, dur: 4.8, vel: 46, gain: BODY * 0.8, pan: (j - 2.5) * 0.2, att: 0.6, seed: 30 + j }));
   [62, 66, 69, 74, 78].forEach((m, j) => piano(mix, m, { t: F + j * (60 / BPM / 4), dur: 3, vel: 46, gain: BODY, pan: -0.2 + j * 0.1 }));
-  [62, 74].forEach((m, j) => piano(mix, m, { t: F + 2 * GRID + j * (60 / BPM / 2), dur: 3, vel: 40, gain: BODY, pan: 0.1 }));
+  [62, 74].forEach((m, j) => piano(mix, m, { t: F + GRID + j * (60 / BPM / 2), dur: 3, vel: 40, gain: BODY, pan: 0.1 }));
 
   // fallimento: tre anelli sulle stelle «troppo grandi», uno per croma (come in index.tsx: griglia(cues[1] + 0.3))
   const G = (t, div = 2) => T0 + Math.round((t - T0) / (60 / BPM / div)) * (60 / BPM / div);
@@ -127,5 +127,5 @@ export default (mix, T) => {
   clip(mix, 'vento_leggero', { t: T.vortici, da: 0.2, durata: T.tecnica - T.vortici, gain: 0.08, fadeIn: 1.5, fadeOut: 1.5, largo: 4 });
   // passaggi verso la clinica e verso il quadro intero: crescendo di piatto sospeso
   crescendo(mix, T.ospedale, 1.5, { gain: 0.3 });
-  crescendo(mix, snap(T.oggi) - 1.4, 1.4, { gain: 0.3 }); // culmina sul cambio di sezione
+  crescendo(mix, snap(T.oggi), 1.4, { gain: 0.3 }); // culmina sul cambio di sezione (il secondo argomento è la fine del rullo)
 };
