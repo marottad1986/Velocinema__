@@ -107,11 +107,11 @@ export const Amici: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <path d={`M-210 -40 q-30 ${20 + Math.sin(t * 3) * 6} -60 ${30 + Math.sin(t * 3 + 1) * 8} M-210 -30 q-24 ${30 + Math.sin(t * 3 + 2) * 6} -40 ${50}`} stroke="#F4ECDD" strokeWidth="4" fill="none" />
           </g>
           {/* panchina e passeggino */}
-          <g transform="translate(760 1210)">
+          <g transform="translate(620 1210)">
             <path d="M-120 -40 H120 M-120 -70 H120 M-110 -40 V0 M110 -40 V0" stroke="#6A4A32" strokeWidth="14" strokeLinecap="round" />
             <path d="M-120 -40 H120" stroke={K} strokeWidth="4" />
           </g>
-          <g transform="translate(900 1236)">
+          <g transform="translate(780 1236)">
             <path d="M-60 -120 Q-60 -40 0 -40 H60 V-90 Q60 -130 0 -130 Z" fill="#4A7AB0" stroke={K} strokeWidth="7" strokeLinejoin="round" />
             <path d="M-60 -120 Q-20 -170 50 -130" fill="#2F5A8A" stroke={K} strokeWidth="7" />
             <path d="M60 -90 L100 -150 H120" stroke={K} strokeWidth="7" fill="none" />

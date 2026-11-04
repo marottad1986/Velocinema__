@@ -85,7 +85,7 @@ export const Uscita: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <circle r="4" fill={K} />
           </g>
           {/* classifica: il disco sale al primo posto */}
-          <g transform="translate(730 720)">
+          <g transform="translate(700 720)">
             <rect x="0" y="0" width="220" height="290" rx="8" fill="#F4ECDD" stroke={K} strokeWidth="6" />
             {[0, 1, 2, 3, 4].map((i) => {
               const gold = i === 4;
@@ -116,7 +116,7 @@ export const Uscita: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <g opacity={seg(t, c4, c4 + 0.6)}>
             <path d="M560 1180 L700 960 H980 V1180 Z" fill="#14121C" opacity=".55" />
             <Glow id="us-barg" x={820} y={1120} r={200} t={t} color="#FF6A8A" amp={0.08} rate={3} opacity={0.6} />
-            <Neon id="us-bar" t={t} x={820} y={1150} text="BAR" color="#FF6A8A" font={SANS} size={90} onAt={c4} />
+            <Neon id="us-bar" t={t} x={760} y={1150} text="BAR" color="#FF6A8A" font={SANS} size={90} onAt={c4} />
           </g>
           <rect x="100" y="680" width="880" height="500" fill="none" stroke={K} strokeWidth="12" />
           <path d="M540 680 V1180" stroke={K} strokeWidth="8" />
