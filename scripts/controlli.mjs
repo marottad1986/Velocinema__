@@ -82,7 +82,8 @@ for (const [slug, path] of lista) {
     const strumenti = lista('strumenti'), effetti = lista('effetti');
     if (!strumenti.length) E.push('lo spartito non usa strumenti campionati (export strumenti vuoto o assente)');
     // bpm nel JSON (griglia delle scene) = tempo dello spartito
-    const bpmSp = Number((src.match(/^const BPM = ([\d.]+)/m) ?? [])[1]);
+    const espr = (src.match(/^const BPM = ([\d.\s/*+-]+);/m) ?? [])[1]; // anche frazioni come 600 / 7
+    const bpmSp = espr ? Number(Function(`return (${espr})`)()) : NaN;
     if (j.bpm && bpmSp && Math.abs(j.bpm - bpmSp) > 1e-6) E.push(`bpm ${j.bpm} nel JSON ma ${bpmSp} nello spartito: scene e musica fuori griglia`);
     const daSynth = (src.match(/import \{([^}]*)\} from '\.\/synth\.mjs'/) ?? [, ''])[1];
     // import solo relativi: un percorso assoluto della macchina locale fa fallire musica e render in GitHub Actions

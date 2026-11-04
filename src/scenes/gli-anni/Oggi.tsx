@@ -69,7 +69,7 @@ export const Oggi: React.FC<SceneProps> = ({ t, dur, cues }) => {
         {/* PIANO 2 — palco lontano con i fiori e i fari */}
         <g transform={L(0.5)}>
           {/* insegna di un bar oltre gli spalti: spenta, si accende sulla domanda finale */}
-          <g transform="translate(900 860)">
+          <g transform="translate(760 860)">
             <path d="M0 22 V120" stroke="#2A2840" strokeWidth="8" />
             <rect x="-70" y="-40" width="140" height="62" rx="8" fill="#1A1220" stroke={K} strokeWidth="5" />
             <Neon id="og-bar" t={t} x={0} y={8} text="BAR" color={ORANGE} font={SANS} size={40} onAt={c3 + 0.4} />

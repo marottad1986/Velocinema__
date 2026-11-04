@@ -77,7 +77,7 @@ export const Bar: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <circle cx="96" cy="736" r="10" fill="#FFF3CF" opacity=".8" />
           <rect x="-10" y="620" width="300" height="460" fill="none" stroke={K} strokeWidth="12" />
           <path d="M140 620 V700" stroke={K} strokeWidth="8" />
-          <Neon id="ba-neon" t={t} x={140} y={770} text="BAR" color="#FF6A8A" font={SANS} size={80} onAt={-1} />
+          <Neon id="ba-neon" t={t} x={230} y={770} text="BAR" color="#FF6A8A" font={SANS} size={80} onAt={-1} />
           {/* fascio di luce dalla porta */}
           <Beam id="ba-door" x={240} y={800} t={t} length={900} spread={lerp(60, 380, door)} angle={18} color="#FFE0A8" opacity={0.15 + 0.4 * door} />
         </g>
@@ -114,7 +114,7 @@ export const Bar: React.FC<SceneProps> = ({ t, dur, cues }) => {
 
         {/* PIANO 3 — flipper a sinistra e jukebox a destra */}
         <g transform={L(0.75)}>
-          <g transform="translate(130 1270)">
+          <g transform="translate(220 1270)">
             <path d="M-120 -40 L120 -40 L80 -200 L-80 -200 Z" fill="#2F6EA6" stroke={K} strokeWidth="8" strokeLinejoin="round" />
             <path d="M-104 -50 L104 -50 L70 -190 L-70 -190 Z" fill="#1A3A60" stroke={K} strokeWidth="4" />
             <path d="M-104 -50 L104 -50 L70 -190 L-70 -190 Z" fill="#FFFFFF" opacity=".08" />
@@ -128,8 +128,8 @@ export const Bar: React.FC<SceneProps> = ({ t, dur, cues }) => {
             <path d="M-70 -300 Q0 -250 70 -300" stroke="#E86A8A" strokeWidth="6" fill="none" opacity=".8" />
             <path d="M-100 -40 V30 M100 -40 V30" stroke={K} strokeWidth="12" />
           </g>
-          <Jukebox id="ba-juke" x={900} y={1280} s={0.95} t={t} on={0.2 + 0.8 * juke} />
-          <Notes t={t - c4} x={860} y={1000} n={6} spread={200} rise={200} color={ORANGE} outline={K} size={0.9 * juke} speed={0.25} />
+          <Jukebox id="ba-juke" x={800} y={1280} s={0.95} t={t} on={0.2 + 0.8 * juke} />
+          <Notes t={t - c4} x={760} y={1000} n={6} spread={200} rise={200} color={ORANGE} outline={K} size={0.9 * juke} speed={0.25} />
         </g>
 
         {/* PIANO 4 — tavolino con due bicchieri e carte, bordo della porta */}
