@@ -280,7 +280,7 @@ const Villaggio: React.FC<SceneProps> = ({ t, dur, cues }) => {
       sopra={
         <Annotazioni>
           <Richiamo t={t} da={0.5} a={cues[1] - 0.2} to={at({ x: 0.66, y: 0.79 })} lab={{ x: 380, y: 1150 }} kicker="Il paese" sub="aggiunto da Van Gogh" accento={ACC} />
-          <Richiamo t={t} da={cues[1] + 0.2} a={cues[2] - 0.8} to={at(P.campanile)} lab={add(at(P.campanile), 150, px(0.1))} kicker="Il campanile" sub="a punta, forse olandese" accento={ACC} />
+          <Richiamo t={t} da={cues[1] + 0.2} a={cues[2] - 0.8} to={at(P.campanile)} lab={add(at(P.campanile), 90, px(0.1))} kicker="Il campanile" sub="a punta, forse olandese" accento={ACC} />
           <Riquadro t={t} da={cues[2] - 0.6} at={{ x: 680, y: 1000 }} titolo="Olanda · Provenza" accento={ACC} h={320}>
             <Chiese />
           </Riquadro>
