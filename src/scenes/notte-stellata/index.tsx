@@ -200,7 +200,7 @@ const ColpoDOcchio: React.FC<SceneProps> = ({ t, cues }) => {
 const Arles: React.FC<SceneProps> = ({ t, dur, cues }) => {
   const map = eo(seg(t, 0.2, 0.9));
   const route = eo(seg(t, dur - 1.8, dur - 0.5));
-  const anno = eo(seg(t, cues[1], cues[1] + 0.6));
+  const anno = eo(seg(t, cues[0] + 0.6, cues[0] + 1.2));
   const A = { x: 440, y: 1000 }, S = { x: 730, y: 850 };
   return (
     <Quadro opera={OPERA} t={t} fondo={0.75} chiavi={[{ t: 0, v: { x: 0.5, y: 0.5, h: 0.6 } }, { t: dur, v: { x: 0.56, y: 0.5, h: 0.48 } }]}
@@ -259,7 +259,7 @@ const Finestra: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <OmbraSbarre t={t} da={0.2} a={cues[1] - 0.2} forza={0.5} />
           <Annotazioni>
             <Richiamo t={t} da={1.2} a={cues[1] - 0.2} to={at(P.colline)} lab={{ x: 300, y: 1130 }} kicker="Le Alpilles" sub="le colline di Saint-Rémy" accento={ACC} />
-            <Riquadro t={t} da={cues[1] + 0.2} a={cues[2] - 0.2} at={{ x: 680, y: 980 }} titolo="Di notte" nota="in camera non può dipingere" accento={ACC}>
+            <Riquadro t={t} da={cues[1] + 0.2} a={cues[2] - 0.2} at={{ x: 680, y: 980 }} titolo="In camera" nota="non può dipingere" accento={ACC}>
               <Notte />
             </Riquadro>
             <Riquadro t={t} da={cues[2]} at={{ x: 540, y: 980 }} titolo="Nello studio" nota="di giorno, quello visto di notte" accento={ACC}>
