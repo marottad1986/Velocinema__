@@ -53,8 +53,8 @@ const Clinica = () => (
 const Tele = () => (
   <g>
     {[0, 1, 2].map((i) => <rect key={i} x={30 + i * 22} y={60 - i * 18} width="120" height="90" {...LINEA} transform={`rotate(${-4 + i * 4} ${90 + i * 22} ${105 - i * 18})`} />)}
-    <text x="270" y="130" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="96" fill={ACC}>150</text>
-    <Testo x={270} y={170}>quadri</Testo>
+    <text x="285" y="130" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="96" fill={ACC}>150</text>
+    <Testo x={285} y={170}>quadri</Testo>
   </g>
 );
 
@@ -181,13 +181,13 @@ const Museo = () => (
 // ---------------------------------------------------------------- scene
 
 const ColpoDOcchio: React.FC<SceneProps> = ({ t, cues }) => {
-  const chiavi = [{ t: 0, v: { x: 0.55, y: 0.5, h: 1 } }, { t: cues[1], v: { x: 0.48, y: 0.36, h: 0.85 } }, { t: 9, v: { x: 0.78, y: 0.43, h: 0.95 } }];
+  const chiavi = [{ t: 0, v: { x: 0.62, y: 0.76, h: 0.4 } }, { t: cues[1] - 0.5, v: { x: 0.6, y: 0.74, h: 0.45 } }, { t: cues[1] + 0.6, v: { x: 0.48, y: 0.36, h: 0.85 } }, { t: 9, v: { x: 0.78, y: 0.43, h: 0.95 } }];
   const { at, px } = camera(chiavi, t);
   return (
     <Quadro opera={OPERA} t={t} chiavi={chiavi}
       sopra={
         <Annotazioni>
-          <Richiamo t={t} da={0.6} a={cues[1] - 0.2} to={at(P.villaggio)} lab={{ x: 420, y: 1100 }} kicker="Il paese" sub="addormentato" accento={ACC} />
+          <Richiamo t={t} da={0.6} a={cues[1] - 0.5} to={at({ x: 0.62, y: 0.8 })} lab={{ x: 420, y: 1060 }} kicker="Il paese" sub="addormentato" accento={ACC} />
           <Spirale t={t} da={cues[1]} a={cues[2]} c={at(P.vortice)} r={px(0.09)} />
           <Richiamo t={t} da={cues[2]} to={add(at(P.luna), -px(0.05), px(0.04))} lab={{ x: 700, y: 1100 }} kicker="La luna" sub="e undici stelle" accento={ACC} />
         </Annotazioni>
@@ -280,7 +280,7 @@ const Villaggio: React.FC<SceneProps> = ({ t, dur, cues }) => {
       sopra={
         <Annotazioni>
           <Richiamo t={t} da={0.5} a={cues[1] - 0.2} to={at({ x: 0.66, y: 0.79 })} lab={{ x: 380, y: 1150 }} kicker="Il paese" sub="aggiunto da Van Gogh" accento={ACC} />
-          <Richiamo t={t} da={cues[1] + 0.2} a={cues[2] - 0.8} to={at(P.campanile)} lab={add(at(P.campanile), 150, px(0.1))} kicker="Il campanile" sub="a punta, per alcuni olandese" accento={ACC} />
+          <Richiamo t={t} da={cues[1] + 0.2} a={cues[2] - 0.8} to={at(P.campanile)} lab={add(at(P.campanile), 150, px(0.1))} kicker="Il campanile" sub="a punta, forse olandese" accento={ACC} />
           <Riquadro t={t} da={cues[2] - 0.6} at={{ x: 680, y: 1000 }} titolo="Olanda · Provenza" accento={ACC} h={320}>
             <Chiese />
           </Riquadro>
@@ -291,14 +291,14 @@ const Villaggio: React.FC<SceneProps> = ({ t, dur, cues }) => {
 };
 
 const Cipresso: React.FC<SceneProps> = ({ t, dur, cues }) => {
-  const chiavi = [{ t: 0, v: { x: 0.3, y: 0.67, h: 0.62 } }, { t: cues[1], v: { x: 0.28, y: 0.52, h: 0.72 } }, { t: dur, v: { x: 0.26, y: 0.32, h: 0.6 } }];
+  const chiavi = [{ t: 0, v: { x: 0.3, y: 0.67, h: 0.62 } }, { t: cues[1], v: { x: 0.28, y: 0.42, h: 0.72 } }, { t: dur, v: { x: 0.26, y: 0.32, h: 0.6 } }];
   const { at } = camera(chiavi, t);
   return (
     <Quadro opera={OPERA} t={t} chiavi={chiavi}
       sopra={
         <Annotazioni>
           <Richiamo t={t} da={0.6} a={cues[1] - 0.2} to={add(at(P.cipresso[1]), 20, 0)} lab={{ x: 560, y: 1120 }} kicker="Cipresso" sub="alto come una fiamma" accento={ACC} />
-          <Richiamo t={t} da={cues[1]} a={cues[2] - 0.2} to={at({ x: 0.2, y: 0.12 })} lab={{ x: 640, y: 1120 }} kicker="Fino alle stelle" sub="unisce la terra e il cielo" accento={ACC} />
+          <Richiamo t={t} da={cues[1]} a={cues[2] - 0.2} to={at(P.cipresso[2])} lab={{ x: 640, y: 1120 }} kicker="Fino alle stelle" sub="unisce la terra e il cielo" accento={ACC} />
           <Riquadro t={t} da={cues[2]} at={{ x: 700, y: 1000 }} titolo="In Provenza" nota="l'albero dei cimiteri" accento={ACC}>
             <Provenza />
           </Riquadro>
@@ -318,10 +318,10 @@ const Venere: React.FC<SceneProps> = ({ t, dur, cues }) => {
         <Annotazioni>
           <Anello t={t} da={0.5} c={ve} r={r} />
           <Richiamo t={t} da={0.8} to={add(ve, r * 0.71, -r * 0.71)} lab={add(ve, r * 0.71 + 110, -r * 0.71 - 110)} kicker="Venere" sub="un pianeta" accento={ACC} punto={false} />
-          <Riquadro t={t} da={cues[1]} a={cues[2] - 0.2} at={{ x: 700, y: 1060 }} titolo="Lettera a Theo · 1889" accento={ACC}>
+          <Riquadro t={t} da={cues[1]} a={cues[2] - 0.2} at={{ x: 700, y: 1060 }} titolo="A Theo · 1889" accento={ACC}>
             <Lettera />
           </Riquadro>
-          <Riquadro t={t} da={cues[2]} at={{ x: 700, y: 1060 }} titolo="Sole · Venere · Terra" nota="visibile prima dell'alba" accento={ACC}>
+          <Riquadro t={t} da={cues[2]} at={{ x: 700, y: 1060 }} titolo="Prima dell'alba" nota="Sole · Venere · Terra" accento={ACC}>
             <Pianeti />
           </Riquadro>
         </Annotazioni>
@@ -341,7 +341,7 @@ const Vortici: React.FC<SceneProps> = ({ t, dur, cues }) => {
           <Spirale t={t} da={0.4} c={v1} r={px(0.085)} />
           <Spirale t={t} da={0.9} c={v2} r={px(0.055)} verso={-1} />
           <Richiamo t={t} da={1.4} a={cues[3] - 0.2} to={add(v1, -px(0.085), 30)} lab={{ x: 220, y: 1120 }} kicker="Due spirali" sub="il cielo si avvolge" accento={ACC} />
-          <Riquadro t={t} da={cues[3]} at={{ x: 330, y: 1090 }} titolo="Mulinelli" nota="vortici dentro vortici" accento={ACC} h={300}>
+          <Riquadro t={t} da={cues[3]} at={{ x: 330, y: 1090 }} titolo="Mulinelli" nota="vortici dentro vortici" accento={ACC} h={340}>
             <Turbolenza />
           </Riquadro>
         </Annotazioni>
@@ -401,12 +401,12 @@ const Fallimento: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
 };
 
 const Oggi: React.FC<SceneProps> = ({ t, dur, cues }) => {
-  const chiavi = [{ t: 0, v: { x: 0.5, y: 0.8, h: 5 } }, { t: cues[2], v: { x: 0.5, y: 0.5, h: 3 } }, { t: dur, v: { x: 0.5, y: 0.42, h: 2.8 } }];
+  const chiavi = [{ t: 0, v: { x: 0.5, y: 0.8, h: 5 } }, { t: cues[2], v: { x: 0.5, y: 0.45, h: 3 } }, { t: dur, v: { x: 0.5, y: 0.42, h: 2.8 } }];
   return (
     <Quadro opera={OPERA} t={t} fondo={0.75} chiavi={chiavi}
       sopra={
         <Annotazioni>
-          <Riquadro t={t} da={0.4} a={cues[2] - 0.2} at={{ x: 540, y: 1110 }} h={300} titolo="Museum of Modern Art" nota="New York, dal 1941" accento={ACC}>
+          <Riquadro t={t} da={0.4} a={cues[2] - 0.2} at={{ x: 540, y: 1090 }} h={340} titolo="Museum of Modern Art" nota="New York, dal 1941" accento={ACC}>
             <Museo />
           </Riquadro>
         </Annotazioni>
