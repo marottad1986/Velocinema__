@@ -56,6 +56,7 @@ nell'app (es. «piano cupo e lento»).
 
 ## Testi di pubblicazione (didascalia TikTok, titolo e descrizione YouTube)
 Per ogni video del canale «In 2 minuti» (@in.2.minuti). Lingua: italiano.
+Instagram e Facebook usano la stessa didascalia di TikTok, senza modifiche.
 
 **Dati per ogni video:** titolo dell'opera (titolo italiano ufficiale, se esiste); rubrica; stagione o parte, se è una
 serie (es. Dark – Stagione 2); prossimo video in programma e quando esce (dal calendario della settimana); eventuale
