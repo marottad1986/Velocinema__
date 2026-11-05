@@ -8,6 +8,10 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 Serie parallela con la stessa grafica: **quadri famosi** spiegati in 2 minuti, JSON in `quadri/`.
 Regole proprie (solo opere di pubblico dominio, immagine originale animata): vedi `QUADRI.md`.
 
+Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni lunedì
+la settimana successiva con i dati TikTok; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.
+Comandi per aprire una sessione: `/manager` (team social media manager) e `/produzione` (un video per sessione).
+
 ## Formato (vincolante)
 - 1080×1920, 30 o 60 fps, durata esatta 2:00 (120 s).
 - Struttura: copertina 4 s + capitoli (112 s in tutto) + finale 4 s.
@@ -226,9 +230,10 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   sintetiche, strumenti ed effetti dichiarati, agganci a capitoli e frasi esistenti, un solo tempo). Gira anche nel
   workflow MEGA prima del render: con un errore il video di quel film non viene fatto. Una regola nuova che si può
   verificare in automatico va aggiunta anche lì, così vale per tutti i film già fatti.
-- Prima della pull request di un film nuovo o modificato, i tre revisori in `.claude/agents/` (subagenti):
+- Prima della pull request di un film nuovo o modificato, i quattro revisori in `.claude/agents/` (subagenti):
   `revisore-testi` (legge da spettatore che non ha visto il film), `revisore-immagini` (fotogrammi di prova contro
-  QUALITA.md), `revisore-musica` (sincronia, livelli, strumenti veri). Si chiamano solo quelli della parte toccata.
+  QUALITA.md), `revisore-musica` (sincronia, livelli, strumenti veri), `revisore-voce` (pronuncia, cadenza e volume delle clip ElevenLabs,
+  misurati con `node scripts/strumenti/ascolta-voce.mjs <film>`). Si chiamano solo quelli della parte toccata.
   Prima di chiamarli: `node scripts/pacchetto.mjs <film> [--musica]` prepara in `out/revisione/<film>/` i fotogrammi
   affiancati di ogni capitolo nei momenti degli eventi, `tempi.md` (istanti delle frasi) e `livelli.txt`; nel messaggio al
   revisore si indica il pacchetto e, per ogni scena, gli eventi agganciati a ogni frase. Il revisore parte da lì e fa
@@ -248,7 +253,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - `src/scenes/<film>/<Scena>.tsx`: una scena per capitolo; `index.ts` mappa id capitolo → componente + posizione titolo.
 - `src/components/ChapterOverlay.tsx`: barra, etichetta, titolo, sottotitoli. `src/lib/anim.ts`: camera/parallasse e utilità del tempo. `src/lib/fx.tsx`: grana, vignettatura, velatura, gradienti.
 - Le props delle composizioni devono essere JSON (si passa lo slug del film, non l'oggetto).
-- Comandi: `node scripts/pacchetto.mjs <film> [--capitoli a,b] [--musica]` (materiale per i revisori), `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run dividi -- <film> <file>`, `node scripts/genera-voce.mjs <film>`, `npm run voce -- <film>`.
+- Comandi: `node scripts/pacchetto.mjs <film> [--capitoli a,b] [--musica]` (materiale per i revisori), `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run dividi -- <film> <file>`, `node scripts/genera-voce.mjs <film>`, `node scripts/strumenti/ascolta-voce.mjs <film> [--capitoli a,b]` (pronuncia e cadenza della voce, report in `out/revisione/<film>/voce.md`), `npm run voce -- <film>`.
 - Audio: `scripts/musica.mjs`, `scripts/voce.mjs`, `scripts/genera-voce.mjs`, `scripts/audio/` (sintetizzatore, spartiti, tempi dal JSON e helper ffmpeg in `film.mjs`).
 
 ## Tecnologia suggerita
