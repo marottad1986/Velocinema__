@@ -49,6 +49,12 @@ Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere
 - Dopo un video che va molto bene, entro 3–4 giorni esce qualcosa di simile (il seguito, lo stesso regista, lo stesso genere).
 - Il video migliore del momento si fissa in alto sul profilo.
 
+## Fonti per le analisi
+- Classifiche: Top 10 Netflix Italia (www.netflix.com/tudum/top10/italy), JustWatch Italia (popolari e dove vederli),
+  box office Cinetel; FlixPatrol blocca i programmi (403), si usa la ricerca web.
+- Tendenze: Google Trends Italia, TikTok Creative Center (hashtag e brani di tendenza in Italia).
+- Uscite e calendari: MyMovies, FilmTV, ComingSoon, Sorrisi; trame e date su Wikipedia.
+
 ## Cosa dicono i dati (aggiornare ogni lunedì)
 - 5 novembre 2026: i più visti hanno mistero o una trama da capire (Dark stagione 1 in Spiegato semplice 52.838,
   Interstellar 48.317, Truman Show 36.277, Shutter Island 30.437); rendono poco i film d'atmosfera o d'avventura
