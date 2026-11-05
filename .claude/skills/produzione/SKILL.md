@@ -13,7 +13,7 @@ Metodo (vincolante, da `CLAUDE.md`):
 3. Testo: fatti verificati su fonti (campo `fonti`), scritto per chi non conosce l'opera, ritmo della voce.
 4. Scene: una alla volta, controllata sui fotogrammi prima di passare alla successiva.
 5. Musica originale con strumenti campionati, un solo bpm; voce con `node scripts/genera-voce.mjs` e controllo con
-   `node scripts/ascolta-voce.mjs`.
+   `node scripts/strumenti/ascolta-voce.mjs`.
 6. `node scripts/controlli.mjs <film>` verde, poi `node scripts/pacchetto.mjs <film>` e i revisori della parte toccata
    (`revisore-testi`, `revisore-immagini`, `revisore-musica`, `revisore-voce`); secondo passaggio solo sulle parti cambiate.
 7. Pull request con i verdetti dei revisori; a contenuto unito su main, il video arriva su MEGA.

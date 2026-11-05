@@ -1,4 +1,4 @@
-// node scripts/ascolta-voce.mjs <film> [--capitoli a,b] [--cartella <dir>] [--senza-trascrizione] [--rifai-trascrizione]
+// node scripts/strumenti/ascolta-voce.mjs <film> [--capitoli a,b] [--cartella <dir>] [--senza-trascrizione] [--rifai-trascrizione]
 //   Misure per il revisore della voce, clip per clip (audio/<film>/NN_<id>):
 //   - cadenza: durata del parlato, parole al secondo, accelerazione che servirà a npm run voce, pause lunghe;
 //   - volume: loudness integrata (LUFS) e picco, per trovare clip più forti o più deboli delle altre;
@@ -11,7 +11,7 @@
 //   senza, lo script lo dice e fa solo le misure di cadenza e volume.
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
-import { duration, loadFilm, run, timeline } from './audio/film.mjs';
+import { duration, loadFilm, run, timeline } from '../audio/film.mjs';
 
 const API = 'https://api.elevenlabs.io';
 const TMP = 'out/voce-tmp';
@@ -29,7 +29,7 @@ const opt = (name, def) => {
 const flag = (name) => args.includes(`--${name}`);
 const slug = args.find((a, i) => !a.startsWith('--') && !(i > 0 && ['--capitoli', '--cartella'].includes(args[i - 1])));
 if (!slug) {
-  console.error('Uso: node scripts/ascolta-voce.mjs <film> [--capitoli a,b] [--cartella <dir>] [--senza-trascrizione] [--rifai-trascrizione]');
+  console.error('Uso: node scripts/strumenti/ascolta-voce.mjs <film> [--capitoli a,b] [--cartella <dir>] [--senza-trascrizione] [--rifai-trascrizione]');
   process.exit(1);
 }
 const dir = opt('cartella', `audio/${slug}`);

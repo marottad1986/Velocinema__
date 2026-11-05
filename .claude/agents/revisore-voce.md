@@ -12,7 +12,7 @@ Ricevi il nome di un film (slug) e, in un secondo passaggio, l'elenco dei capito
 Leggi prima CLAUDE.md (sezione «Voce») e il JSON del film (`films/<film>.json` o `quadri/<film>.json`), compreso il
 campo facoltativo `pronuncia` (parole riscritte solo per la voce, es. `{ "883": "otto otto tre" }`).
 
-Misure: `node scripts/ascolta-voce.mjs <film> [--capitoli a,b]` (report anche in `out/revisione/<film>/voce.md`).
+Misure: `node scripts/strumenti/ascolta-voce.mjs <film> [--capitoli a,b]` (report anche in `out/revisione/<film>/voce.md`).
 Per ogni clip dà durata del parlato, accelerazione che servirà a `npm run voce`, parole al secondo, loudness e picco,
 pause lunghe; con la trascrizione di ElevenLabs (Speech to Text) dà le parole sentite diverse da quelle scritte e il
 ritmo e la pausa dopo ogni frase. Se la trascrizione non è disponibile (permesso mancante sulla chiave) dillo nel
