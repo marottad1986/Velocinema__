@@ -10,6 +10,7 @@ Regole proprie (solo opere di pubblico dominio, immagine originale animata): ved
 
 Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni lunedì
 la settimana successiva con i dati TikTok; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.
+Comandi per aprire una sessione: `/manager` (team social media manager) e `/produzione` (un video per sessione).
 
 ## Formato (vincolante)
 - 1080×1920, 30 o 60 fps, durata esatta 2:00 (120 s).
