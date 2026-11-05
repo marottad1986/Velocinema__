@@ -22,14 +22,13 @@ proporre la settimana.
    - scadenze di produzione: «⏳ Titolo: pronto entro oggi», due giorni prima dell'uscita.
 5. **Subito dopo l'approvazione** (sempre, senza aspettare che venga chiesto) si prepara il materiale social di ogni
    uscita della settimana in `calendario/<aaaa-mm-gg>-social.md`, così è pronto in anticipo:
-   - **titolo** del post (breve, che fa fermare lo scorrimento; per YouTube Shorts entro 100 caratteri);
-   - **descrizione** per TikTok, Instagram e YouTube: 1–3 frasi che incuriosiscono senza svelare il colpo di scena,
-     un invito a commentare e 3–5 hashtag;
+   - **testi di pubblicazione** di ogni video (didascalia TikTok, titolo e descrizione YouTube), un blocco pronto per
+     WhatsApp secondo il modello in `calendario/modelli-social.md`, con il prossimo video preso dal calendario;
    - **storia del giorno prima**: una locandina PNG per ogni uscita, secondo il modello in `calendario/modelli-social.md`
      (consegnata con titolo, format, data, orario e un suggerimento per la musica).
    Titoli, descrizioni e storie seguono i modelli di `calendario/modelli-social.md`.
    Valgono le regole sui testi di CLAUDE.md: fatti verificati, niente frasi come «La prossima volta che lo vedi…».
-   Titolo e descrizione vanno anche nella descrizione dell'evento su Google Calendar, per averli sul telefono.
+   Didascalia e titolo vanno anche nella descrizione dell'evento su Google Calendar, per averli sul telefono.
 
 ## Come si sceglie un titolo (la parte più importante)
 Gli eventi della settimana (anniversari, uscite al cinema e in streaming, festività, eventi TV) danno 2–3 titoli.
