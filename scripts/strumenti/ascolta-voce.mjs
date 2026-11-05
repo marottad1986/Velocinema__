@@ -218,7 +218,7 @@ for (const c of clips) {
     const interne = c.pause.filter((p) => p.da > t0 + 0.05 && p.a < t1 - 0.05 && p.dur > 0.6);
     const note = [
       wps > 3.4 ? 'veloce' : wps < 2.2 ? 'trascinata' : '',
-      dopo !== null && dopo < 0.15 ? 'attaccata alla frase dopo' : '',
+      dopo !== null && dopo < 0.15 && /[.!?»:;]$/.test(f.trim()) ? 'attaccata alla frase dopo' : '',
       dopo !== null && dopo > 0.9 ? 'pausa lunga dopo' : '',
       interne.length ? `pausa a metà frase a ${interne.map((p) => p.da.toFixed(1)).join(', ')} s` : '',
     ].filter(Boolean);
