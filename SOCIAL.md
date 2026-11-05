@@ -25,8 +25,9 @@ proporre la settimana.
    - **titolo** del post (breve, che fa fermare lo scorrimento; per YouTube Shorts entro 100 caratteri);
    - **descrizione** per TikTok, Instagram e YouTube: 1–3 frasi che incuriosiscono senza svelare il colpo di scena,
      un invito a commentare e 3–5 hashtag;
-   - **storia del giorno prima** (una per giorno, che annuncia le uscite di domani con l'orario): testo breve, adesivo
-     consigliato (sondaggio «L'hai visto?», conto alla rovescia) e immagine (fotogramma della copertina del video).
+   - **storia del giorno prima**: una locandina PNG per ogni uscita, secondo il modello in `calendario/modelli-social.md`
+     (consegnata con titolo, format, data, orario e un suggerimento per la musica).
+   Titoli, descrizioni e storie seguono i modelli di `calendario/modelli-social.md`.
    Valgono le regole sui testi di CLAUDE.md: fatti verificati, niente frasi come «La prossima volta che lo vedi…».
    Titolo e descrizione vanno anche nella descrizione dell'evento su Google Calendar, per averli sul telefono.
 
