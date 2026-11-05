@@ -16,7 +16,7 @@ proporre la settimana.
 2. Si aggiorna `calendario/pubblicati.md` e si legge cosa sta funzionando (generi, formati, giorni).
 3. Si propone la **settimana successiva** (lunedì–domenica) in `calendario/<aaaa-mm-gg>.md`, con un'alternativa
    pronta per ogni contenuto da produrre e l'ordine in cui produrre.
-4. Dopo l'approvazione si scrivono gli eventi nel Google Calendar **«In 2 Minuti»** (via IFTTT):
+4. Dopo l'approvazione si scrivono gli eventi nel **calendario principale** di Google Calendar (marottahs@gmail.com, via IFTTT; mai prima dell'approvazione):
    - uscita: «🎬 Film · Titolo», «📺 Serie · …», «💡 Spiegato · …», «🎨 Quadro · …», «🎵 Canzone · …», «📖 Storia · …»;
      descrizione con aggancio, stato (pronto / da produrre) e alternativa;
    - scadenze di produzione: «⏳ Titolo: pronto entro oggi», due giorni prima dell'uscita.
