@@ -8,6 +8,9 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 Serie parallela con la stessa grafica: **quadri famosi** spiegati in 2 minuti, JSON in `quadri/`.
 Regole proprie (solo opere di pubblico dominio, immagine originale animata): vedi `QUADRI.md`.
 
+Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni lunedì
+la settimana successiva con i dati TikTok; Google Calendar «In 2 Minuti»): vedi `SOCIAL.md` e `calendario/`.
+
 ## Formato (vincolante)
 - 1080×1920, 30 o 60 fps, durata esatta 2:00 (120 s).
 - Struttura: copertina 4 s + capitoli (112 s in tutto) + finale 4 s.

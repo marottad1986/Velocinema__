@@ -2,7 +2,9 @@
 
 Bozza del team social (test). Date verificate il 5 novembre 2026: da ricontrollare una settimana prima.
 
-## Regole del calendario
+Regole, orari e criteri di scelta: `SOCIAL.md`. Già pubblicati: `calendario/pubblicati.md`.
+
+## Regole del calendario (riassunto)
 - **Un'uscita al giorno**, a rotazione tra **film**, **serie TV** e **Spiegato semplice** (in equilibrio sulla settimana).
 - **Sabato e domenica un'uscita in più**: quadri, canzoni, storie vere o storie.
 - Ogni uscita è un titolo **forte e molto cercato**; quando c'è, si aggancia a un evento (anniversario, uscita al cinema
@@ -26,17 +28,17 @@ Notte stellata, Bohemian Rhapsody, Gli anni, Grande onda (per le ultime tre la v
 
 ## La settimana (9 uscite)
 
-| Giorno | Tipo | Contenuto | Stato | Perché proprio quel giorno |
+| Giorno e ora | Tipo | Contenuto | Stato | Perché proprio quel giorno |
 |---|---|---|---|---|
-| mar 1 | Film | **Shining** | pronto | Horror e mistero: il genere che rende di più sul nostro profilo. |
-| mer 2 | Serie | **Breaking Bad – stagione 1** | pronto | Una delle serie più cercate di sempre; apre il racconto a puntate (la stagione 2 esce sabato). |
-| gio 3 | Spiegato | **Inception** | pronto | Il film «difficile» per eccellenza: Spiegato semplice è il formato che rende di più. |
-| ven 4 | Film | **Titanic** | pronto | Venerdì, titolo di grande richiamo e finale che tutti vogliono rivedere. |
-| sab 5 | Serie | **Breaking Bad – stagione 2** | da produrre (riusa luoghi e oggetti della stagione 1) · alternativa: Cast Away (film) | Il seguito tre giorni dopo: chi ha visto la stagione 1 torna a cercarlo. |
-| sab 5 | Quadro | **«Impressione, levar del sole» di Monet** | da produrre · alternativa: Notte stellata | **100 anni dalla morte di Monet** (5 dicembre 1926). È il quadro che ha dato il nome all'Impressionismo. |
-| dom 6 | Film | **Frankenstein Junior** | pronto | Domenica, commedia per tutti. Harry Potter (25 anni in Italia il 6 dicembre) è già uscito: si rilancia nelle storie o sugli altri canali. |
-| dom 6 | Canzone | **Bohemian Rhapsody** | pronto (voce da verificare) · alternativa: Gli anni | Canzone famosissima, con una storia da spiegare. |
-| lun 7 | Spiegato | **Otello spiegato semplice** | da produrre · alternativa: nessuna pronta (Inception slitta da giovedì) | **Prima della Scala**: Otello di Verdi apre la stagione il 7 dicembre, in diretta su Rai 1. La trama si regge su un oggetto, il fazzoletto, e su un inganno. |
+| mar 1 · 17:30 | Film | **Shining** | pronto | Horror e mistero: il genere che rende di più sul nostro profilo. |
+| mer 2 · 17:30 | Serie | **Breaking Bad – stagione 1** | pronto | Una delle serie più cercate di sempre; apre il racconto a puntate (la stagione 2 esce sabato). |
+| gio 3 · 17:30 | Spiegato | **Inception** | pronto | Il film «difficile» per eccellenza: Spiegato semplice è il formato che rende di più. |
+| ven 4 · 17:30 | Film | **Titanic** | pronto | Venerdì, titolo di grande richiamo e finale che tutti vogliono rivedere. |
+| sab 5 · 17:30 | Serie | **Breaking Bad – stagione 2** | da produrre (riusa luoghi e oggetti della stagione 1) · alternativa: Cast Away (film) | Il seguito tre giorni dopo: chi ha visto la stagione 1 torna a cercarlo. |
+| sab 5 · 10:00 | Quadro | **«Impressione, levar del sole» di Monet** | da produrre · alternativa: Notte stellata | **100 anni dalla morte di Monet** (5 dicembre 1926). È il quadro che ha dato il nome all'Impressionismo. |
+| dom 6 · 17:30 | Film | **Frankenstein Junior** | pronto | Domenica, commedia per tutti. Harry Potter (25 anni in Italia il 6 dicembre) è già uscito: si rilancia nelle storie o sugli altri canali. |
+| dom 6 · 10:00 | Canzone | **Bohemian Rhapsody** | pronto (voce da verificare) · alternativa: Gli anni | Canzone famosissima, con una storia da spiegare. |
+| lun 7 · 17:30 | Spiegato | **Otello spiegato semplice** | da produrre · alternativa: nessuna pronta (Inception slitta da giovedì) | **Prima della Scala**: Otello di Verdi apre la stagione il 7 dicembre, in diretta su Rai 1. La trama si regge su un oggetto, il fazzoletto, e su un inganno. |
 
 **Equilibrio:** 3 film, 2 serie, 2 Spiegato semplice, più 1 quadro e 1 canzone nel fine settimana.
 **Scorte:** dopo questa settimana restano pronti solo Cast Away, Notte stellata, Gli anni e Grande onda.
