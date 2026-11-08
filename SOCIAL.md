@@ -1,6 +1,6 @@
 # Programmazione delle uscite (team social)
 
-Come si sceglie e si programma cosa pubblicare sulla pagina «In 2 Minuti». Si rilegge ogni martedì, prima di
+Come si sceglie e si programma cosa pubblicare sulla pagina «In 2 Minuti». Si rilegge ogni domenica, prima di
 proporre la settimana.
 
 ## Ritmo e orari (vincolante)
@@ -10,9 +10,13 @@ proporre la settimana.
 - 9 uscite a settimana. Due titoli dello stesso genere (es. due horror) non stanno in giorni vicini.
 - Mai ripubblicare un video già uscito sullo stesso canale (elenco in `calendario/pubblicati.md`).
 
-## Il martedì
-Si lavora il martedì perché i dati di TikTok arrivano su Metricool con circa un giorno di ritardo: così ci sono
-anche i video della domenica.
+## La domenica alle 15:00
+Ogni domenica alle 15:00 (attività programmata che apre da sola una sessione `/manager`) si studia l'andamento, si
+programma la settimana che inizia il giorno dopo e si avvia subito la produzione: così i dati sono i più freschi
+possibili (fino al sabato; quelli di TikTok arrivano con circa un giorno di ritardo) e la produzione lavora la domenica
+per la settimana che viene.
+Attività programmata: «In 2 minuti – programmazione della settimana» (`trig_01ErsayWy5XJvQ6RMrpNndyF`), ogni domenica alle
+14:52 ora italiana, apre una sessione nuova con notifica sul telefono.
 1. Dati del profilo dal connettore **Metricool** (piano gratuito, brand «In 2 minuti», id `7728942`, fuso Europe/Rome),
    strumento `getAnalyticsDataByMetrics`. Metriche usate:
    - TikTok, per video (`TKPO`): 02 data e ora, 05 descrizione, 07 visualizzazioni, 08 like, 09 commenti, 10 condivisioni;
@@ -23,17 +27,21 @@ anche i video della domenica.
      l'utente manda i dati di YouTube Studio quando servono.
    - I dati di TikTok arrivano con circa un giorno di ritardo. Se il connettore non risponde, l'utente manda gli screenshot.
 2. Si aggiorna `calendario/pubblicati.md` e si legge cosa sta funzionando (generi, formati, giorni).
-3. Si propone la **settimana successiva** (lunedì–domenica) in `calendario/<aaaa-mm-gg>.md`, con un'alternativa
-   pronta per ogni contenuto da produrre e l'ordine in cui produrre. I contenuti **da produrre** si scelgono con una
-   settimana in più di anticipo (proposti nella programmazione precedente, nell'elenco «Produzioni da avviare»), perché
-   dal martedì al lunedì dopo non c'è il tempo di produrli con la cura richiesta; nella settimana successiva entrano
-   solo contenuti già pronti o già in produzione.
+3. Si propone la **settimana che inizia il giorno dopo** (lunedì–domenica) in `calendario/<aaaa-mm-gg>.md`, con
+   un'alternativa pronta per ogni contenuto da produrre e l'ordine in cui produrre. Lunedì e martedì sono i giorni più
+   stretti: lì vanno i contenuti già pronti o quelli che la produzione può finire la domenica stessa; i contenuti nuovi
+   più lunghi vanno da mercoledì in poi. Nella tabella c'è anche l'elenco «Produzioni da avviare» per la settimana
+   dopo, così i titoli più impegnativi partono in anticipo.
 4. Dopo l'approvazione si scrivono gli eventi nel **calendario principale** di Google Calendar (id `marottahs@gmail.com`, fuso Europe/Rome, via IFTTT con l'azione «Create a detailed event»; mai prima
    dell'approvazione):
    - uscita: «🎬 Film · Titolo», «📺 Serie · …», «💡 Spiegato · …», «🎨 Quadro · …», «🎵 Canzone · …», «📖 Storia · …»;
      descrizione con aggancio, stato (pronto / da produrre) e alternativa;
    - scadenze di produzione: «⏳ Titolo: pronto entro oggi», due giorni prima dell'uscita.
-5. **Subito dopo l'approvazione** (sempre, senza aspettare che venga chiesto) si prepara il materiale social di ogni
+5. **Sempre dopo l'approvazione**, si passa il lavoro alla produzione: una sessione `/produzione` per ogni contenuto
+   da produrre o da verificare (strumento `create_session`, repository `marottad1986/Velocinema__`), con titolo, giorno
+   e ora di uscita, scadenza (video su MEGA entro la sera prima) e l'ordine di avvisare subito l'utente se la data non è
+   raggiungibile con la qualità richiesta. Prima si unisce su `main` il calendario, così le sessioni lo trovano.
+6. **Subito dopo l'approvazione** (sempre, senza aspettare che venga chiesto) si prepara il materiale social di ogni
    uscita della settimana in `calendario/<aaaa-mm-gg>-social.md`, così è pronto in anticipo:
    - **testi di pubblicazione** di ogni video (didascalia TikTok, titolo e descrizione YouTube), un blocco pronto per
      WhatsApp secondo il modello in `calendario/modelli-social.md`, con il prossimo video preso dal calendario;
@@ -68,7 +76,7 @@ Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere
 - Tendenze: Google Trends Italia, TikTok Creative Center (hashtag e brani di tendenza in Italia).
 - Uscite e calendari: MyMovies, FilmTV, ComingSoon, Sorrisi; trame e date su Wikipedia.
 
-## Cosa dicono i dati (aggiornare ogni martedì)
+## Cosa dicono i dati (aggiornare ogni domenica)
 - 8 novembre 2026 (Metricool, TikTok + Instagram): **Spiegato semplice è il formato più forte** (Dark stagione 1:
   59.360 TikTok + 70.658 Instagram, 922 condivisioni su Instagram; Inception: 56.289 su Instagram in un giorno e mezzo;
   Dark stagione 2: 12.403 + 49.029). Seguono i film con colpo di scena (Interstellar, Truman, Shutter Island, The Others).
