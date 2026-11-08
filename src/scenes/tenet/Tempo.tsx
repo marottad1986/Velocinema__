@@ -42,7 +42,7 @@ const cy = (k: BandKey) => BAND[k].y0 + 265;
 export const N = {
   prot: [235, 650], tenet: [585, 520],
   sator: [300, 1250], kat: [780, 1250],
-  prot2: [300, 1830], neil: [310, 2025], masked: [800, 1870], turn: [575, 1910],
+  prot2: [300, 1830], neil: [310, 2025], masked: [760, 1870], turn: [575, 1910],
   katT: [300, 2470], satorT: [820, 2440], turnT: [600, 2650],
   algo: [520, 3180], gate: [835, 3150], soldier: [712, 3300],
   protF: [560, 3690],
@@ -71,9 +71,9 @@ const pop = (T: number, t0: number) => eob(seg(T, t0, t0 + 0.45), 1.7);
 // ---------------------------------------------------------------- camera
 
 type Shot = { at: number; x: number; y: number; z: number };
-const Z = 1.12;
+const Z = 1.04;
 // inquadratura finale: lo schema intero, con il futuro (dove compare il Protagonista anni dopo) sopra la zona delle app
-const WIDE = { x: 540, y: 1590, z: 0.29 };
+const WIDE = { x: 540, y: 1700, z: 0.29 };
 const band = (k: BandKey, z = Z, dx = 0, dy = 0) => ({ x: 540 + dx, y: cy(k) + dy, z });
 const SHOTS: Shot[] = [
   { at: at('invertiti', 0), ...band('lab', 1.0) },
@@ -91,7 +91,7 @@ const SHOTS: Shot[] = [
   { at: at('sator', 3), ...band('yacht', 1.1) },
   { at: at('tornello', 0), ...band('oslo') },
   { at: at('tornello', 2), ...band('oslo', 1.12, 30) },
-  { at: at('tornello', 3), ...band('oslo', 1.2, 50, -20) },
+  { at: at('tornello', 3), ...band('oslo', 1.12, 30, -20) },
   { at: at('algoritmo', 0), ...band('covo') },
   { at: at('algoritmo', 2), x: 540, y: 1420, z: 0.5 },
   { at: at('algoritmo', 3), x: 540, y: 3500, z: 0.8 },
@@ -120,7 +120,8 @@ const SHOTS: Shot[] = [
 ];
 /** Zoom attuale della camera: le scritte dello schema crescono quando la camera si allontana, così restano leggibili. */
 let UI_K = 1;
-const fit = (size: number) => Math.max(size, Math.min(size * UI_K, 130));
+let WIDEV = false;
+const fit = (size: number) => Math.max(size, Math.min(size * UI_K, WIDEV ? 95 : 130));
 const camAt = (T: number) => {
   let o = { x: SHOTS[0].x, y: SHOTS[0].y, z: SHOTS[0].z };
   for (const s of SHOTS.slice(1)) {
@@ -226,8 +227,8 @@ const Piece: React.FC<{ lit?: number; color?: string }> = ({ lit = 0, color = WA
 
 // ---------------------------------------------------------------- elementi dello schema
 
-const Node: React.FC<{ T: number; t0: number; p: P; name: string; sub?: string; ring?: number; r?: number; fade?: number; color?: string; side?: 'below' | 'above'; children?: React.ReactNode; size?: number; dead?: number }> = ({
-  T, t0, p, name, sub, ring = 0, r = 62, fade = 1, color = INK, side = 'below', children, size: size0 = 38, dead = 0,
+const Node: React.FC<{ T: number; t0: number; p: P; name: string; sub?: string; subFill?: string; ring?: number; r?: number; fade?: number; color?: string; side?: 'below' | 'above'; children?: React.ReactNode; size?: number; dead?: number }> = ({
+  T, t0, p, name, sub, subFill = '#AEB8C4', ring = 0, r = 62, fade = 1, color = INK, side = 'below', children, size: size0 = 38, dead = 0,
 }) => {
   if (T < t0 || fade <= 0) return null;
   const size = fit(size0);
@@ -244,7 +245,7 @@ const Node: React.FC<{ T: number; t0: number; p: P; name: string; sub?: string; 
         {dead > 0 && <path d={`M${-r * 0.55} ${-r * 0.55} L${r * 0.55} ${r * 0.55} M${r * 0.55} ${-r * 0.55} L${-r * 0.55} ${r * 0.55}`} stroke={DIM} strokeWidth="7" strokeLinecap="round" opacity={dead} />}
       </g>
       {name && <text y={ly} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize={size} fill={INK} stroke={DARK} strokeWidth="6" paintOrder="stroke" opacity={seg(T, t0 + 0.2, t0 + 0.5)}>{name}</text>}
-      {sub && <text y={ly + size * 0.85} textAnchor="middle" fontFamily={SANS} fontWeight={400} fontSize={size * 0.72} fill="#AEB8C4" stroke={DARK} strokeWidth="5" paintOrder="stroke" opacity={seg(T, t0 + 0.3, t0 + 0.6)}>{sub}</text>}
+      {sub && (!WIDEV || subFill !== '#AEB8C4') && <text y={ly + size * 0.85} textAnchor="middle" fontFamily={SANS} fontWeight={subFill === '#AEB8C4' ? 400 : 800} fontSize={size * 0.72} fill={subFill} stroke={DARK} strokeWidth="5" paintOrder="stroke" opacity={seg(T, t0 + 0.3, t0 + 0.6)}>{sub}</text>}
     </g>
   );
 };
@@ -266,7 +267,7 @@ const Link: React.FC<{ T: number; t0: number; a: P; b: P; c?: P; color?: string;
       <mask id={id} maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="6000" height="9000"><path d={d} fill="none" stroke="#fff" strokeWidth={w + 10} pathLength={1} strokeDasharray={`${p} 1`} /></mask>
       <path d={d} fill="none" stroke={color} strokeWidth={w} strokeDasharray={dashed ? `${w * 3} ${w * 2.2}` : undefined} strokeDashoffset={flow ? -T * 60 : 0} strokeLinecap="round" mask={`url(#${id})`} />
       {arrow && p > 0.95 && <path d={`M${-w * 3.4} ${-w * 2.3} L0 0 L${-w * 3.4} ${w * 2.3}`} fill="none" stroke={color} strokeWidth={w} strokeLinecap="round" strokeLinejoin="round" transform={`translate(${b[0]} ${b[1]}) rotate(${ang})`} />}
-      {label && (
+      {label && !WIDEV && (
         <text x={tx + lx} y={ty + ly} textAnchor="middle" fontFamily={hand ? HAND : SANS} fontWeight={700} fontSize={size} fill={color} stroke={DARK} strokeWidth="7" paintOrder="stroke" opacity={seg(T, t0 + 0.4, t0 + 0.8)}>{label}</text>
       )}
     </g>
@@ -576,7 +577,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
   const dead = seg(T, at('neil', 1, 0.8), at('neil', 1, 1.1));
   const beat = (1 - flat) * (1 - dead) * (T > at('tenaglia', 2) && T < at('neil', 1) ? 1.25 : 0.8);
   const redFlash = flat > 0 ? seg(T, at('battito', 2, 0.3), at('battito', 2, 0.45)) * (1 - seg(T, at('battito', 2, 0.6), at('battito', 2, 1.5))) : 0;
-  const katHit = seg(T, at('mascherato', 0, 1.0), at('mascherato', 0, 1.15));
+  const katHit = seg(T, at('mascherato', 0, 2.625), at('mascherato', 0, 2.775));
   const reveal = seg(T, at('mascherato', 3, 0.2), at('mascherato', 3, 0.7));
   const gate = eio(seg(T, at('neil', 0, 0.5), at('neil', 0, 1.5)));
   const soldierDead = seg(T, at('neil', 0, 1.6), at('neil', 0, 2.2));
@@ -702,7 +703,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         </g>
       )}
       {[1590, 2210, 2830].map((y, i) => (
-        <Tag key={y} T={T} t0={at('futuro', 0, 0.3 + i * 0.3)} x={720} y={y + 12} text="▲ armi dal futuro" bg={BLUE} size={44} until={end('futuro') - 0.5} />
+        <Tag key={y} T={T} t0={at('futuro', 0, 0.3 + i * 0.3)} x={720} y={y + 12} text="▲ armi dal futuro" bg={BLUE} size={44} until={at('futuro', 1, 0.6)} />
       ))}
       <Tag T={T} t0={at('futuro', 1, 0.2)} x={560} y={BAND.futuro.y0 + 410} text="una guerra contro di noi" bg={RED} fg="#FFFFFF" size={44} until={end('futuro') - 0.4} />
       {T >= at('futuro', 2, 0.1) && (() => {
@@ -843,12 +844,12 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       <Tag T={T} t0={at('battito', 0, 0.3)} x={N.sator[0]} y={N.sator[1] - 115} text="tumore" bg={RED} fg="#FFFFFF" size={36} until={at('battito', 1, 0.3)} />
       {T >= at('battito', 1, 0.1) && (() => {
         // il cavo del battito, dal braccialetto all'Algoritmo: gli impulsi rossi scendono a ogni battito
-        const a: P = [N.sator[0] - 50, N.sator[1] + 60], b: P = [N.algo[0] - 250, N.algo[1] - 80], c: P = [140, 2300];
+        const a: P = [N.sator[0] - 50, N.sator[1] + 60], b: P = [N.algo[0] - 250, N.algo[1] - 80], c: P = [30, 2300];
         const d = `M${a[0]} ${a[1]} Q${c[0]} ${c[1]} ${b[0]} ${b[1]}`;
         const p = eo(seg(T, at('battito', 1, 0.1), at('battito', 1, 1.0)));
         const cut = seg(T, at('neil', 1, 0.1), at('neil', 1, 0.6));
         const hot = focus(at('tenaglia', 3), at('neil', 1)) + focus(at('battito', 1), at('battito', 2, 2));
-        const show = focus(at('battito', 1, 0.1), end('battito') - 0.3) + focus(at('tenaglia', 3), at('neil', 2));
+        const show = focus(at('battito', 1, 0.1), at('battito', 3)) + focus(at('tenaglia', 3), at('neil', 2));
         if (show <= 0) return null;
         return (
           <g opacity={Math.min(1, show) * (1 - 0.7 * cut)}>
@@ -857,12 +858,12 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
               <path d={d} fill="none" stroke={RED} strokeWidth={10 + 6 * Math.min(1, hot)} opacity={0.5 + 0.5 * Math.min(1, hot)} strokeLinecap="round" />
               {flat < 0.5 && cut < 0.5 && <path d={d} fill="none" stroke={WARM} strokeWidth="18" pathLength={1} strokeDasharray="0.02 0.2" strokeDashoffset={-((T - G0) * 0.22) / (60 / film.bpm)} strokeLinecap="round" />}
             </g>
-            <text x="250" y="2250" textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize="80" fill={RED} stroke={DARK} strokeWidth="9" paintOrder="stroke" opacity={seg(T, at('battito', 1, 0.6), at('battito', 1, 1)) * (1 - cut)} transform="rotate(-62 250 2250)">legato al suo battito</text>
+            <text x="150" y="2226" fontFamily={HAND} fontWeight={700} fontSize="56" fill={RED} stroke={DARK} strokeWidth="8" paintOrder="stroke" opacity={seg(T, at('battito', 1, 0.6), at('battito', 1, 1)) * (1 - cut)}>legato al suo battito</text>
           </g>
         );
       })()}
       {T >= at('battito', 1, 0.8) && (() => {
-        const show = focus(at('battito', 1, 0.8), end('battito') - 0.3) + focus(at('tenaglia', 3), at('neil', 2));
+        const show = focus(at('battito', 1, 0.8), at('battito', 3)) + focus(at('tenaglia', 3), at('neil', 2));
         if (show <= 0) return null;
         const [mx, my] = [N.algo[0] - 250, N.algo[1] - 30];
         return (
@@ -878,14 +879,14 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
 
       {/* ---- capitolo 7: Tallinn, Kat ferita, il tornello, il ritorno a Oslo */}
       <Node T={T} t0={at('mascherato', 0, 0.1)} p={N.satorT} name="Sator" color={RED} r={52} size={34} fade={off('mascherato')}><Bracelet T={T} beat={0.8} /></Node>
-      <Node T={T} t0={at('mascherato', 0, 0.3)} p={N.katT} name="Kat, ferita" r={56} size={34} color={katHit > 0 ? RED : INK} ring={katHit} fade={off('mascherato')}><Painting crack={katHit} /></Node>
-      {T >= at('mascherato', 0, 0.5) && T < at('mascherato', 0, 0.95) && (() => {
-        const u = eio(seg(T, at('mascherato', 0, 0.5), at('mascherato', 0, 0.95)));
+      <Node T={T} t0={at('mascherato', 0, 0.3)} p={N.katT} name={katHit > 0.5 ? 'Kat, ferita' : 'Kat'} r={56} size={34} color={katHit > 0 ? RED : INK} ring={katHit} fade={off('mascherato')}><Painting crack={katHit} /></Node>
+      {T >= at('mascherato', 0, 2.25) && T < at('mascherato', 0, 2.625) && (() => {
+        const u = eio(seg(T, at('mascherato', 0, 2.25), at('mascherato', 0, 2.625)));
         return <g transform={`translate(${lerp(N.satorT[0] - 60, N.katT[0] + 60, u)} ${lerp(N.satorT[1], N.katT[1] - 10, u)}) rotate(180)`}><Bullet s={1.6} /></g>;
       })()}
       <Tag T={T} t0={at('mascherato', 1, 0.2)} x={560} y={BAND.tallinn.y0 + 110} text="si cura solo all'indietro" bg={BLUE} size={38} until={at('mascherato', 2, 0.5)} />
       <Link T={T} t0={at('mascherato', 2, 0.1)} a={[N.katT[0] + 60, N.katT[1] + 60]} b={[N.turnT[0] - 60, N.turnT[1]]} color={RED} arrow w={8} fade={off('mascherato')} />
-      <Link T={T} t0={at('mascherato', 2, 0.6)} a={[N.turnT[0] + 70, N.turnT[1] - 20]} b={[masked[0] + 72, masked[1] + 30]} c={[1000, 2400]} color={BLUE} dashed flow arrow w={14} label="indietro fino a Oslo" lx={-110} ly={30} size={64} />
+      <Link T={T} t0={at('mascherato', 2, 0.6)} a={[N.turnT[0] + 70, N.turnT[1] - 20]} b={[masked[0] + 72, masked[1] + 30]} c={[1000, 2400]} color={BLUE} dashed flow arrow w={14} label="indietro fino a Oslo" lx={-280} ly={30} size={60} fade={off('mascherato')} />
       {reveal > 0 && (
         <g opacity={reveal}>
           <ellipse cx={(N.prot2[0] + masked[0]) / 2} cy={(N.prot2[1] + masked[1]) / 2 + 10} rx="410" ry="150" fill="none" stroke={WARM} strokeWidth="7" strokeDasharray="22 14" strokeDashoffset={-T * 40} />
@@ -907,8 +908,8 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           <g opacity={fade}>
             {sq(230, BAND.covo.y0 + 100, RED, 0)}
             {sq(860, BAND.covo.y0 + 460, BLUE, 1)}
-            <text x="230" y={BAND.covo.y0 + 168} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="36" fill={RED} stroke={DARK} strokeWidth="6" paintOrder="stroke">squadra avanti</text>
-            <text x="790" y={BAND.covo.y0 + 400} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="36" fill={BLUE} stroke={DARK} strokeWidth="6" paintOrder="stroke">squadra indietro</text>
+            <text x="255" y={BAND.covo.y0 + 168} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="36" fill={RED} stroke={DARK} strokeWidth="6" paintOrder="stroke">squadra avanti</text>
+            <text x="800" y={BAND.covo.y0 + 478} textAnchor="end" fontFamily={SANS} fontWeight={800} fontSize="36" fill={BLUE} stroke={DARK} strokeWidth="6" paintOrder="stroke">squadra indietro</text>
             <Link T={T} t0={at('tenaglia', 0, 0.6)} a={[260, BAND.covo.y0 + 140]} b={[ax - 130, ay - 30]} c={[200, ay - 40]} color={RED} arrow w={10} />
             <Link T={T} t0={at('tenaglia', 0, 0.9)} a={[830, BAND.covo.y0 + 420]} b={[ax + 130, ay + 30]} c={[880, ay + 40]} color={BLUE} arrow w={10} />
             {/* la tenaglia: due ganasce che si chiudono sull'Algoritmo */}
@@ -931,9 +932,9 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       <Tag T={T} t0={at('neil', 1, 1.4)} x={N.sator[0] + 120} y={N.sator[1] - 130} text="Kat uccide Sator" bg={RED} fg="#FFFFFF" size={50} until={end('neil') + 1} />
       <Link T={T} t0={at('neil', 2, 0.2)} a={[N.soldier[0] - 40, N.soldier[1] - 70]} b={[N.neil[0] + 40, N.neil[1] + 80]} c={[440, 2650]} color={RED} dashed flow arrow w={12} label="lo stesso filo rosso" lx={-60} ly={-20} size={64} />
       <Tag T={T} t0={at('neil', 2, 0.7)} x={N.neil[0] + 260} y={N.neil[1] + 40} text="era Neil" bg={RED} fg="#FFFFFF" size={80} rot={-3} />
-      <Node T={T} t0={at('neil', 3, 0.1)} p={N.protF} name="il Protagonista, anni dopo" sub="fonderà Tenet" r={110} size={76} ring={1}><Badge color={WARM} /></Node>
-      <Link T={T} t0={at('neil', 3, 0.5)} a={[N.protF[0] - 60, N.protF[1] - 90]} b={[N.neil[0] + 10, N.neil[1] + 100]} c={[200, 2900]} color={WARM} dashed flow arrow w={16} label="lo recluta" lx={-60} size={110} />
-      <Link T={T} t0={at('neil', 3, 0.9)} a={[N.protF[0] + 80, N.protF[1] - 70]} b={[N.tenet[0] + 80, N.tenet[1] + 60]} c={[1060, 2200]} color={WARM} dashed flow arrow w={16} label="fonderà Tenet" lx={-120} ly={420} size={110} />
+      <Node T={T} t0={at('neil', 3, 0.1)} p={N.protF} name="il Protagonista" sub="anni dopo: fonderà Tenet" subFill={WARM} side="above" r={110} size={56} ring={1}><Badge color={WARM} /></Node>
+      <Link T={T} t0={at('neil', 3, 0.5)} a={[N.protF[0] - 115, N.protF[1] + 10]} b={[N.neil[0] + 10, N.neil[1] + 100]} c={[200, 2900]} color={WARM} dashed flow arrow w={16} label="lo recluta" lx={-60} size={110} />
+      <Link T={T} t0={at('neil', 3, 0.9)} a={[N.protF[0] + 115, N.protF[1] + 10]} b={[N.tenet[0] + 80, N.tenet[1] + 60]} c={[1060, 2200]} color={WARM} dashed flow arrow w={16} label="fonderà Tenet" lx={-120} ly={420} size={110} />
 
       {/* lampo rosso del cuore che si ferma (un solo lampo nella scena) */}
       {redFlash > 0 && <rect x="-200" y="0" width="1500" height="4400" fill={RED} opacity={0.22 * redFlash} />}
@@ -946,6 +947,7 @@ export const makeTempo = (chapterId: string): React.FC<SceneProps> => {
     const T = STARTS[chapterId] + t;
     const c = camAt(T);
     UI_K = Math.max(1, 0.85 / c.z);
+    WIDEV = c.z < 0.4;
     return (
       <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
         <defs>

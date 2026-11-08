@@ -168,8 +168,8 @@ export default (mix, T) => {
   timp(mix, flat0, { vel: 115, gain: 0.8 });
   [50, 53, 57, 62].forEach((m, j) => strings(mix, m + 8, { t: at('battito', 3, 0.1), dur: 3, vel: 40, gain: 0.45, pan: (j - 1.5) * 0.3, att: 0.6, seed: 70 + j })); // il tramonto: Si bemolle maggiore
   // capitolo 7: lo sparo invertito, la ferita, il tornello, la rivelazione
-  clip(mix, 'passaggio', { t: at('mascherato', 0, 0.5), da: 0.56, durata: 0.6, gain: 0.3, fadeOut: 0.15, rev: 0.3 });
-  timp(mix, at('mascherato', 0, 1.0), { vel: 115, gain: 0.8 });
+  clip(mix, 'passaggio', { t: at('mascherato', 0, 2.25), da: 0.56, durata: 0.6, gain: 0.3, fadeOut: 0.15, rev: 0.3 });
+  timp(mix, at('mascherato', 0, 2.625), { vel: 115, gain: 0.8 });
   clip(mix, 'portone_motore', { t: at('mascherato', 2, 0.1), da: 1.9, durata: 1.6, gain: 0.15, fadeIn: 0.2, fadeOut: 0.5, rev: 0.3 });
   clip(mix, 'passaggio', { t: at('mascherato', 2, 0.6), da: 12.27, durata: 1.4, gain: 0.25, fadeOut: 0.4, rev: 0.35 });
   [62, 65, 69, 73, 69, 65, 62].forEach((m, k) => bell(mix, m + 12, { t: at('mascherato', 3, 0.2) + k * CROMA / 2, vel: 44 }));
