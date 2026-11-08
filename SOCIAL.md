@@ -1,6 +1,6 @@
 # Programmazione delle uscite (team social)
 
-Come si sceglie e si programma cosa pubblicare sulla pagina «In 2 Minuti». Si rilegge ogni lunedì, prima di
+Come si sceglie e si programma cosa pubblicare sulla pagina «In 2 Minuti». Si rilegge ogni martedì, prima di
 proporre la settimana.
 
 ## Ritmo e orari (vincolante)
@@ -10,7 +10,9 @@ proporre la settimana.
 - 9 uscite a settimana. Due titoli dello stesso genere (es. due horror) non stanno in giorni vicini.
 - Mai ripubblicare un video già uscito sullo stesso canale (elenco in `calendario/pubblicati.md`).
 
-## Il lunedì
+## Il martedì
+Si lavora il martedì perché i dati di TikTok arrivano su Metricool con circa un giorno di ritardo: così ci sono
+anche i video della domenica.
 1. Dati del profilo dal connettore **Metricool** (piano gratuito, brand «In 2 minuti», id `7728942`, fuso Europe/Rome),
    strumento `getAnalyticsDataByMetrics`. Metriche usate:
    - TikTok, per video (`TKPO`): 02 data e ora, 05 descrizione, 07 visualizzazioni, 08 like, 09 commenti, 10 condivisioni;
@@ -22,7 +24,10 @@ proporre la settimana.
    - I dati di TikTok arrivano con circa un giorno di ritardo. Se il connettore non risponde, l'utente manda gli screenshot.
 2. Si aggiorna `calendario/pubblicati.md` e si legge cosa sta funzionando (generi, formati, giorni).
 3. Si propone la **settimana successiva** (lunedì–domenica) in `calendario/<aaaa-mm-gg>.md`, con un'alternativa
-   pronta per ogni contenuto da produrre e l'ordine in cui produrre.
+   pronta per ogni contenuto da produrre e l'ordine in cui produrre. I contenuti **da produrre** si scelgono con una
+   settimana in più di anticipo (proposti nella programmazione precedente, nell'elenco «Produzioni da avviare»), perché
+   dal martedì al lunedì dopo non c'è il tempo di produrli con la cura richiesta; nella settimana successiva entrano
+   solo contenuti già pronti o già in produzione.
 4. Dopo l'approvazione si scrivono gli eventi nel **calendario principale** di Google Calendar (id `marottahs@gmail.com`, fuso Europe/Rome, via IFTTT con l'azione «Create a detailed event»; mai prima
    dell'approvazione):
    - uscita: «🎬 Film · Titolo», «📺 Serie · …», «💡 Spiegato · …», «🎨 Quadro · …», «🎵 Canzone · …», «📖 Storia · …»;
@@ -63,7 +68,7 @@ Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere
 - Tendenze: Google Trends Italia, TikTok Creative Center (hashtag e brani di tendenza in Italia).
 - Uscite e calendari: MyMovies, FilmTV, ComingSoon, Sorrisi; trame e date su Wikipedia.
 
-## Cosa dicono i dati (aggiornare ogni lunedì)
+## Cosa dicono i dati (aggiornare ogni martedì)
 - 8 novembre 2026 (Metricool, TikTok + Instagram): **Spiegato semplice è il formato più forte** (Dark stagione 1:
   59.360 TikTok + 70.658 Instagram, 922 condivisioni su Instagram; Inception: 56.289 su Instagram in un giorno e mezzo;
   Dark stagione 2: 12.403 + 49.029). Seguono i film con colpo di scena (Interstellar, Truman, Shutter Island, The Others).
