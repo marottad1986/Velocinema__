@@ -1,6 +1,6 @@
 # Programmazione delle uscite (team social)
 
-Come si sceglie e si programma cosa pubblicare sulla pagina «In 2 Minuti». Si rilegge ogni lunedì, prima di
+Come si sceglie e si programma cosa pubblicare sulla pagina «In 2 Minuti». Si rilegge ogni martedì, prima di
 proporre la settimana.
 
 ## Ritmo e orari (vincolante)
@@ -10,12 +10,24 @@ proporre la settimana.
 - 9 uscite a settimana. Due titoli dello stesso genere (es. due horror) non stanno in giorni vicini.
 - Mai ripubblicare un video già uscito sullo stesso canale (elenco in `calendario/pubblicati.md`).
 
-## Il lunedì
-1. L'utente manda i dati attuali del profilo TikTok (visualizzazioni per video; se possibile anche like, commenti,
-   condivisioni, salvataggi, follower guadagnati e percentuale di visione completa).
+## Il martedì
+Si lavora il martedì perché i dati di TikTok arrivano su Metricool con circa un giorno di ritardo: così ci sono
+anche i video della domenica.
+1. Dati del profilo dal connettore **Metricool** (piano gratuito, brand «In 2 minuti», id `7728942`, fuso Europe/Rome),
+   strumento `getAnalyticsDataByMetrics`. Metriche usate:
+   - TikTok, per video (`TKPO`): 02 data e ora, 05 descrizione, 07 visualizzazioni, 08 like, 09 commenti, 10 condivisioni;
+     andamento (`TKEV`): 07 follower, 08 nuovi follower al giorno.
+   - Instagram Reels (`IGRE`): 02 data e ora, 03 testo, 23 visualizzazioni, 10 like, 07 commenti, 21 condivisioni,
+     12 salvataggi, 11 copertura, 24 tempo medio di visione (s).
+   - YouTube (`YTVP`): con il piano gratuito arrivano solo titoli e date, non i numeri (8 novembre 2026): per YouTube
+     l'utente manda i dati di YouTube Studio quando servono.
+   - I dati di TikTok arrivano con circa un giorno di ritardo. Se il connettore non risponde, l'utente manda gli screenshot.
 2. Si aggiorna `calendario/pubblicati.md` e si legge cosa sta funzionando (generi, formati, giorni).
 3. Si propone la **settimana successiva** (lunedì–domenica) in `calendario/<aaaa-mm-gg>.md`, con un'alternativa
-   pronta per ogni contenuto da produrre e l'ordine in cui produrre.
+   pronta per ogni contenuto da produrre e l'ordine in cui produrre. I contenuti **da produrre** si scelgono con una
+   settimana in più di anticipo (proposti nella programmazione precedente, nell'elenco «Produzioni da avviare»), perché
+   dal martedì al lunedì dopo non c'è il tempo di produrli con la cura richiesta; nella settimana successiva entrano
+   solo contenuti già pronti o già in produzione.
 4. Dopo l'approvazione si scrivono gli eventi nel **calendario principale** di Google Calendar (id `marottahs@gmail.com`, fuso Europe/Rome, via IFTTT con l'azione «Create a detailed event»; mai prima
    dell'approvazione):
    - uscita: «🎬 Film · Titolo», «📺 Serie · …», «💡 Spiegato · …», «🎨 Quadro · …», «🎵 Canzone · …», «📖 Storia · …»;
@@ -56,7 +68,12 @@ Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere
 - Tendenze: Google Trends Italia, TikTok Creative Center (hashtag e brani di tendenza in Italia).
 - Uscite e calendari: MyMovies, FilmTV, ComingSoon, Sorrisi; trame e date su Wikipedia.
 
-## Cosa dicono i dati (aggiornare ogni lunedì)
+## Cosa dicono i dati (aggiornare ogni martedì)
+- 8 novembre 2026 (Metricool, TikTok + Instagram): **Spiegato semplice è il formato più forte** (Dark stagione 1:
+  59.360 TikTok + 70.658 Instagram, 922 condivisioni su Instagram; Inception: 56.289 su Instagram in un giorno e mezzo;
+  Dark stagione 2: 12.403 + 49.029). Seguono i film con colpo di scena (Interstellar, Truman, Shutter Island, The Others).
+  Deboli: Cast Away (1.550 + 2.378), Jurassic Park, La La Land, Harry Potter e il primo quadro (Notte stellata,
+  566 + 774, sabato alle 10:00). Le condivisioni, che portano follower, sono soprattutto sugli Spiegato.
 - 5 novembre 2026: i più visti hanno mistero o una trama da capire (Dark stagione 1 in Spiegato semplice 52.838,
   Interstellar 48.317, Truman Show 36.277, Shutter Island 30.437); rendono poco i film d'atmosfera o d'avventura
   senza mistero (La La Land 2.473, Jurassic Park 1.235). Un commento: «finale inaspettato».

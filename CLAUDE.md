@@ -8,13 +8,19 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 Serie parallela con la stessa grafica: **quadri famosi** spiegati in 2 minuti, JSON in `quadri/`.
 Regole proprie (solo opere di pubblico dominio, immagine originale animata): vedi `QUADRI.md`.
 
-Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni lunedì
+Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni martedì
 la settimana successiva con i dati TikTok; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.
 Comandi per aprire una sessione: `/manager` (team social media manager) e `/produzione` (un video per sessione).
 
 ## Formato (vincolante)
 - 1080×1920, 30 o 60 fps, durata esatta 2:00 (120 s).
 - Struttura: copertina 4 s + capitoli (112 s in tutto) + finale 4 s.
+- **La copertina è anche la miniatura del post e l'aggancio dei primi secondi** (vincolante): il primo fotogramma del video
+  è già la copertina completa (titolo leggibile, immagine forte, nessuna dissolvenza dal nero né sigla prima), così sui
+  social la miniatura è giusta senza sceglierla a mano. Va curata quanto la scena migliore del film: soggetto chiaro anche
+  in piccolo, titolo grande nella zona sicura, contrasto forte. Nei primi 2–3 secondi deve esserci un motivo per
+  restare (domanda o promessa nella frase di lancio della voce, un movimento che incuriosisce). Il revisore delle
+  immagini controlla il fotogramma 0 e i primi 3 secondi come una scena a sé.
 - Lingua: italiano.
 
 ## Le due regole più importanti (vincolanti, tutti i contenuti: film, Spiegato semplice, canzoni, quadri, serie)

@@ -38,6 +38,9 @@ Controlla per ogni capitolo:
    seguono la sagoma della cornice, prospettive che reggono (scacchiere, pavimenti), animali con anatomia plausibile.
 7. Coerenza tra scene: gli elementi riusati (castello, oggetti comuni in Comuni.tsx) sono uguali e corretti ovunque.
 8. Finale con «Metti like» / «Segui la pagina» e l'invito «Commenta con … che vorresti.»
+9. Copertina come miniatura e aggancio (CLAUDE.md, «Formato»): il fotogramma 0 è già la copertina completa (niente
+   nero, dissolvenza o sigla prima), leggibile anche ridotta a miniatura (prova a 270×480), titolo grande nella zona
+   sicura, contrasto forte; nei primi 3 secondi c'è un motivo per restare. Giudicala come una scena a sé.
 
 Formato della risposta: per ogni capitolo «OK» oppure l'elenco dei problemi con il fotogramma (PNG), cosa si vede e la
 correzione proposta (file e componente). Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.
