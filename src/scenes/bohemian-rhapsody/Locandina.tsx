@@ -2,13 +2,15 @@ import React from 'react';
 import { camera, eo, eob, lerp, seg } from '../../lib/anim';
 import { DISPLAY, PLAYFAIR, SANS } from '../../lib/fonts';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
-import { Beam, Dust, Glow, Lightning, NearMotes, Stars, flashAt } from '../../lib/elements';
+import { Beam, Dust, Glow, Lightning, NearMotes, Notes, Stars, flashAt } from '../../lib/elements';
 import type { PosterProps } from '../../types';
 import { GOLD, Gong, Grand, K, TINT } from './Comune';
 
 // Copertina e finale di Bohemian Rhapsody. Locandina originale: niente volti, niente stemma dell'album, niente foto del gruppo.
-// Copertina: palco d'opera vuoto con sipario rosso socchiuso; pianoforte a coda aperto con la partitura; dietro un grande
-// gong dorato e, sul fondale dipinto, un fulmine.
+// Copertina (è anche la miniatura del post: il fotogramma 0 è già completo, sipario aperto e testi a schermo): palco d'opera
+// vuoto con sipario rosso aperto; pianoforte a coda aperto con la partitura; dietro un grande
+// gong dorato e, sul fondale dipinto, un fulmine. Aggancio nei primi secondi: lampo a 0,9 s, colpo di gong a 1,1 s con gli
+// anelli d'oro (stessi istanti dello spartito), poi le note che salgono dal pianoforte.
 // Finale: lo stesso palco a luci basse, il gong che vibra ancora, il pianoforte chiuso con una rosa sul coperchio.
 // Piani: parete (0,2) · fondale dipinto (0,35) · gong (0,45) · pianoforte e faro (0,65) · sipario e boccascena (1,0) · pulviscolo (1,6)
 
@@ -18,7 +20,8 @@ const Stage: React.FC<{ id: string; t: number; dur: number; end?: boolean }> = (
   const flash = end ? 0 : flashAt(t, [0.9], [0.8]);
   const open = end ? 0.08 : 1;
   const light = end ? 0.45 : 1;
-  const part = end ? lerp(1, 0.62, eo(seg(t, 0.8, dur))) : eo(seg(t, 0, 1.2));
+  // copertina: il sipario è già aperto al fotogramma 0 e si assesta appena (respiro del velluto)
+  const part = end ? lerp(1, 0.62, eo(seg(t, 0.8, dur))) : 1 - 0.04 * (1 - eo(seg(t, 0, 2.2))) + 0.01 * Math.sin(t * 1.6);
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
@@ -56,6 +59,7 @@ const Stage: React.FC<{ id: string; t: number; dur: number; end?: boolean }> = (
           <ellipse cx="540" cy="1420" rx="380" ry="70" fill="#FFE7A0" opacity={0.25 * light} />
           <Dust t={t} top={{ y: 640, x0: 480, x1: 600 }} bottom={{ y: 1400, x0: 300, x1: 780 }} n={26} color="#FFF3CF" boost={-0.2} />
           <Grand id={`${id}-pno`} x={560} y={1430} s={1.2} t={t} open={open} lit={light} />
+          {!end && <g opacity={eo(seg(t, 1.15, 1.6))}><Notes t={t - 1.15} x={750} y={1120} n={5} rise={360} spread={110} color={GOLD} outline={K} size={1.25} speed={0.3} /></g>}
           {end && (
             <g transform="translate(600 1140) rotate(-14)">
               <path d="M-120 0 Q-40 -10 40 0" stroke="#3A5A2E" strokeWidth="7" fill="none" />
@@ -86,25 +90,24 @@ const Stage: React.FC<{ id: string; t: number; dur: number; end?: boolean }> = (
 
 export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
   const P = film.palette;
-  const tag = eo(seg(t, 0.05, 0.45));
-  const l1 = eob(seg(t, 0.15, 0.7), 1.4);
-  const l2 = eob(seg(t, 0.3, 0.85), 1.4);
-  const by = eo(seg(t, 0.6, 1.0));
-  const line = eo(seg(t, 1.2, 1.7));
+  // Fotogramma 0 = miniatura del post: etichetta, titolo, autore e frase di lancio già a schermo, niente dissolvenze.
+  // Sul colpo di gong (1,1 s) il titolo prende un riflesso d'oro che si spegne.
+  const hit = Math.max(0, t - 1.1);
+  const shine = t >= 1.1 ? Math.exp(-hit * 1.6) : 0;
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
       <Stage id="bc" t={t} dur={dur} />
       <div style={{ position: 'absolute', left: 120, top: 286, width: 840, fontFamily: SANS }}>
-        <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.accento, opacity: tag, textShadow: `0 2px 0 ${P.scuro}` }}>CANZONI SPIEGATE</p>
-        <h1 style={{ margin: '18px 0 0', fontFamily: PLAYFAIR, fontWeight: 900, fontSize: 132, lineHeight: 0.95, color: P.chiaro, textShadow: `0 6px 0 ${P.scuro}` }}>
-          <span style={{ display: 'block', opacity: seg(t, 0.15, 0.4), transform: `translateY(${(1 - l1) * 50}px)` }}>Bohemian</span>
-          <span style={{ display: 'block', opacity: seg(t, 0.3, 0.55), transform: `translateY(${(1 - l2) * 50}px)` }}>Rhapsody</span>
+        <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.accento, textShadow: `0 2px 0 ${P.scuro}` }}>CANZONI SPIEGATE</p>
+        <h1 style={{ margin: '18px 0 0', fontFamily: PLAYFAIR, fontWeight: 900, fontSize: 132, lineHeight: 0.95, color: P.chiaro,
+          textShadow: `0 6px 0 ${P.scuro}, 0 0 ${Math.round(40 * shine)}px rgba(233,185,73,${(0.8 * shine).toFixed(3)})` }}>
+          <span style={{ display: 'block' }}>Bohemian</span>
+          <span style={{ display: 'block' }}>Rhapsody</span>
         </h1>
-        <p style={{ margin: '22px 0 0', fontSize: 40, fontWeight: 800, opacity: by, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>una canzone dei {film.regista} · {film.anno}</p>
+        <p style={{ margin: '22px 0 0', fontSize: 40, fontWeight: 800, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>una canzone dei {film.regista} · {film.anno}</p>
       </div>
       <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
-        borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 40, fontWeight: 800, textAlign: 'center',
-        opacity: line, transform: `translateY(${(1 - line) * 14}px)` }}>
+        borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 40, fontWeight: 800, textAlign: 'center' }}>
         {film.copertina.frase_lancio}
       </p>
     </div>
