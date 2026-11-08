@@ -20,4 +20,7 @@ Metodo (vincolante, da `CLAUDE.md`):
    Telegram e mandagli il video in questa chat (SendUserFile), come in `SOCIAL.md`, «Avvisi all'utente su Telegram»;
    anche un problema che fa saltare la data va segnalato lì subito. A contenuto unito su main, il video arriva su MEGA.
 
+Diario (vincolante, `PARACADUTE.md` §2): tieni `diario/<slug>.md` sul ramo e fai commit e push a ogni passo concluso
+(testo, ogni scena, musica, voce, revisori), così un'altra sessione o un altro account può riprendere con `/riprendi`.
+
 Non decidi cosa pubblicare né quando: quello è il compito del team social (`/manager`).
