@@ -13,6 +13,7 @@ import darkStagione2 from '../films/dark-stagione-2.json';
 import inception from '../films/inception.json';
 import bohemianRhapsody from '../films/bohemian-rhapsody.json';
 import gliAnni from '../films/gli-anni.json';
+import tenet from '../films/tenet.json';
 import { SHUTTER_ISLAND_SCENES } from './scenes/shutter-island';
 import { Copertina as ShutterCover } from './scenes/shutter-island/Copertina';
 import { Finale as ShutterEnd } from './scenes/shutter-island/Finale';
@@ -59,6 +60,8 @@ import { Copertina as JokerCover, Finale as JokerEnd } from './scenes/joker/Loca
 import breakingBad1 from '../films/breaking-bad-stagione-1.json';
 import { BREAKING_BAD_1_SCENES } from './scenes/breaking-bad-stagione-1';
 import { Copertina as BB1Cover, Finale as BB1End } from './scenes/breaking-bad-stagione-1/Locandina';
+import { TENET_SCENES } from './scenes/tenet';
+import { Copertina as TenetCover, Finale as TenetEnd } from './scenes/tenet/Locandina';
 
 // Registro dei film e dei quadri: un JSON in films/ (o quadri/, vedi QUADRI.md) + le scene in src/scenes/<slug>/.
 // Le scene non ancora ricostruite compaiono come segnaposto.
@@ -82,6 +85,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'titanic', data: titanic as FilmData, scenes: TITANIC_SCENES, cover: TitanicCover, ending: TitanicEnd, posterFont: PLAYFAIR },
   { slug: 'the-others', data: theOthers as FilmData, scenes: THE_OTHERS_SCENES, cover: OthersCover, ending: OthersEnd, posterFont: SERIF },
   { slug: 'joker', data: joker as FilmData, scenes: JOKER_SCENES, cover: JokerCover, ending: JokerEnd, posterFont: ANTON },
+  { slug: 'tenet', data: tenet as FilmData, scenes: TENET_SCENES, cover: TenetCover, ending: TenetEnd, posterFont: ANTON },
   { slug: 'breaking-bad-stagione-1', data: breakingBad1 as FilmData, scenes: BREAKING_BAD_1_SCENES, cover: BB1Cover, ending: BB1End, posterFont: STENCIL },
 ];
 
