@@ -51,7 +51,7 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
         {SATOR.map((w, i) => <text key={i} x="540" y={700 + i * 150} textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="150" letterSpacing="40" fill={INK}>{w}</text>)}
       </g>
       {/* l'orologio: lancetta rossa in avanti, lancetta blu all'indietro */}
-      <g transform="translate(540 860)">
+      <g transform="translate(540 830) scale(.94)">
         <Glow id={`${id}-cg`} x={0} y={0} r={360} t={t} color={BLUE} amp={0.06} rate={2} opacity={0.3} />
         <circle r="250" fill="#18212C" stroke={INK} strokeWidth="10" />
         <circle r="226" fill="none" stroke="#3A4656" strokeWidth="3" />
@@ -71,6 +71,13 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
       <g opacity={1 - fly}>
         {[[26, -18], [-20, -22], [18, 24], [-26, 12], [34, 6]].map(([dx, dy], i) => <path key={i} d={`M${from[0]} ${from[1]} l${dx} ${dy} l${dx * 0.4} ${-dy * 0.3}`} stroke={INK} strokeWidth="3" fill="none" />)}
       </g>
+      {/* il pavimento in prospettiva fino al bordo basso, con il nastro di pericolo e la polvere */}
+      <rect x="0" y="1380" width="1080" height="540" fill="#10151C" />
+      <path d="M0 1380 H1080" stroke={INK} strokeWidth="6" />
+      {Array.from({ length: 12 }, (_, i) => <path key={i} d={`M${540 + (i - 5.5) * 90} 1380 L${540 + (i - 5.5) * 260} 1920`} stroke="#3A4656" strokeWidth="2.5" />)}
+      {[1450, 1560, 1720].map((y) => <path key={y} d={`M0 ${y} H1080`} stroke="#3A4656" strokeWidth="2" opacity=".7" />)}
+      {Array.from({ length: 22 }, (_, i) => <path key={`h${i}`} d={`M${i * 52} 1412 l30 -24`} stroke={WARM} strokeWidth="8" opacity=".5" />)}
+      {Array.from({ length: 24 }, (_, i) => <circle key={`d${i}`} cx={(i * 211 + t * (12 + (i % 5) * 4)) % 1080} cy={1460 + ((i * 137) % 440) - ((t * (8 + (i % 3) * 5)) % 60)} r={2 + (i % 3)} fill="#C8D2DC" opacity={0.25 + 0.1 * Math.sin(t * 2 + i)} />)}
       {/* il tavolo con la pistola posata */}
       <path d="M120 1220 H760" stroke={INK} strokeWidth="10" strokeLinecap="round" />
       <path d="M160 1226 V1380 M720 1226 V1380" stroke={INK} strokeWidth="7" />
@@ -90,7 +97,7 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
       {/* frecce del riavvolgimento sopra la traiettoria */}
       {[0, 1, 2].map((k) => {
         const x = lerp(780, 520, mod(t * 0.6 + k / 3, 1));
-        return <path key={k} d={`M${x + 18} 1050 L${x} 1064 L${x + 18} 1078 M${x + 40} 1050 L${x + 22} 1064 L${x + 40} 1078`} fill="none" stroke={BLUE} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" opacity={0.75} />;
+        return <path key={k} d={`M${x + 18} 1080 L${x} 1094 L${x + 18} 1108 M${x + 40} 1080 L${x + 22} 1094 L${x + 40} 1108`} fill="none" stroke={BLUE} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" opacity={0.75} />;
       })}
       <Finish id={id} tint="#1E2A3A" tintOpacity={0.1} />
     </svg>
@@ -120,7 +127,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, film }) => {
         borderRadius: 16, background: `${P.scuro}E0`, color: P.chiaro, fontFamily: SANS, fontSize: 44, fontWeight: 800, textAlign: 'center' }}>
         {film.copertina.frase_lancio}
       </p>
-      <p style={{ position: 'absolute', left: 120, width: 840, top: 1404, margin: 0, textAlign: 'center', fontFamily: SANS, fontSize: 30, fontWeight: 800, color: '#AEB8C4' }}>un film di {film.regista} · {film.anno}</p>
+      <p style={{ position: 'absolute', left: 120, width: 840, top: 1318, margin: 0, textAlign: 'center', fontFamily: SANS, fontSize: 30, fontWeight: 800, color: '#AEB8C4' }}>un film di {film.regista} · {film.anno}</p>
     </div>
   );
 };

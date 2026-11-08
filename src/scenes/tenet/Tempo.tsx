@@ -42,10 +42,10 @@ const cy = (k: BandKey) => BAND[k].y0 + 265;
 export const N = {
   prot: [235, 650], tenet: [585, 520],
   sator: [300, 1250], kat: [780, 1250],
-  prot2: [235, 1850], neil: [395, 2050], masked: [855, 1870], turn: [575, 1910],
+  prot2: [300, 1830], neil: [310, 2025], masked: [800, 1870], turn: [575, 1910],
   katT: [300, 2470], satorT: [820, 2440], turnT: [600, 2650],
   algo: [520, 3180], gate: [835, 3150], soldier: [712, 3300],
-  protF: [560, 3800],
+  protF: [560, 3690],
 } as const;
 const RX = 70, BX = 1010; // i due binari: rosso (avanti) a sinistra, blu (all'indietro) a destra
 
@@ -71,46 +71,56 @@ const pop = (T: number, t0: number) => eob(seg(T, t0, t0 + 0.45), 1.7);
 // ---------------------------------------------------------------- camera
 
 type Shot = { at: number; x: number; y: number; z: number };
-const Z = 1.2;
-const WIDE = { x: 540, y: 1330, z: 0.37 };
+const Z = 1.12;
+// inquadratura finale: lo schema intero, con il futuro (dove compare il Protagonista anni dopo) sopra la zona delle app
+const WIDE = { x: 540, y: 1590, z: 0.29 };
 const band = (k: BandKey, z = Z, dx = 0, dy = 0) => ({ x: 540 + dx, y: cy(k) + dy, z });
 const SHOTS: Shot[] = [
   { at: at('invertiti', 0), ...band('lab', 1.0) },
-  { at: at('invertiti', 1, 0.2), ...band('lab', 1.12, 60, 40) },
-  { at: at('invertiti', 2), ...band('lab', 1.4, 120, 90) },
-  { at: at('invertiti', 3, 0.3), ...band('lab', 0.86, 0, 40) },
+  { at: at('invertiti', 1, 0.2), ...band('lab', 1.12, 30, 40) },
+  { at: at('invertiti', 2), ...band('lab', 1.2, 0, 60) },
+  { at: at('invertiti', 3, 0.3), ...band('lab', 0.9, 0, 40) },
   // la camera scende lungo il binario blu fino al futuro, mentre i proiettili salgono
-  { at: at('futuro', 0), x: 640, y: 1500, z: 0.55 },
-  { at: at('futuro', 0, 1.6), x: 640, y: 2900, z: 0.55 },
-  { at: at('futuro', 1), ...band('futuro', 1.05) },
+  { at: at('futuro', 0), x: 600, y: 1550, z: 0.62 },
+  { at: at('futuro', 0, 1.6), x: 600, y: 2900, z: 0.62 },
+  { at: at('futuro', 1), ...band('futuro', 1.05, 0, 60) },
   { at: at('futuro', 2), ...band('lab', 1.0, 0, -20) },
   { at: at('sator', 0), ...band('yacht') },
-  { at: at('sator', 1), x: 540, y: 960, z: 0.6 },
-  { at: at('sator', 3), ...band('yacht', 1.1, 60) },
+  // Sator e le armi del laboratorio insieme, poi Kat
+  { at: at('sator', 1), x: 540, y: 1010, z: 0.82 },
+  { at: at('sator', 3), ...band('yacht', 1.1) },
   { at: at('tornello', 0), ...band('oslo') },
-  { at: at('tornello', 2), ...band('oslo', 1.1, 60) },
-  { at: at('tornello', 3), ...band('oslo', 1.3, 180, -20) },
+  { at: at('tornello', 2), ...band('oslo', 1.12, 30) },
+  { at: at('tornello', 3), ...band('oslo', 1.2, 50, -20) },
   { at: at('algoritmo', 0), ...band('covo') },
   { at: at('algoritmo', 2), x: 540, y: 1420, z: 0.5 },
-  { at: at('algoritmo', 3), x: 540, y: 3420, z: 0.78 },
-  { at: at('battito', 0), ...band('yacht', 1.25, -180, 0) },
+  { at: at('algoritmo', 3), x: 540, y: 3500, z: 0.8 },
+  { at: at('battito', 0), ...band('yacht', 1.15, -30, 0) },
   // la camera segue il cavo dal braccialetto fino all'Algoritmo
-  { at: at('battito', 1), x: 420, y: 1700, z: 0.6 },
-  { at: at('battito', 1, 1.3), x: 440, y: 2700, z: 0.6 },
-  { at: at('battito', 2), ...band('covo', 0.95, 0, -60) },
+  { at: at('battito', 1), x: 320, y: 1750, z: 0.82 },
+  { at: at('battito', 1, 1.3), x: 340, y: 2650, z: 0.82 },
+  { at: at('battito', 2), ...band('covo', 1.0, 0, -40) },
   { at: at('battito', 3), ...band('yacht', 1.05) },
   { at: at('mascherato', 0), ...band('tallinn') },
-  { at: at('mascherato', 2), x: 600, y: 2200, z: 0.6 },
-  { at: at('mascherato', 3), ...band('oslo', 1.1, 120, -20) },
-  { at: at('tenaglia', 0), ...band('covo', 0.98) },
+  // dal tornello di Tallinn la camera risale lungo la freccia blu fino a Oslo
+  { at: at('mascherato', 2), x: 620, y: 2560, z: 0.9 },
+  { at: at('mascherato', 2, 1.3), x: 620, y: 2120, z: 0.88 },
+  { at: at('mascherato', 3), ...band('oslo', 1.1) },
+  { at: at('tenaglia', 0), ...band('covo', 1.0) },
   { at: at('tenaglia', 2), ...band('yacht') },
-  { at: at('tenaglia', 3, 0.1), x: 440, y: 1650, z: 0.5 },
-  { at: at('neil', 0), ...band('covo', 1.15, 130, 40) },
+  { at: at('tenaglia', 3, 0.1), x: 520, y: 1380, z: 0.92 },
+  { at: at('neil', 0), ...band('covo', 1.12, 40, 40) },
   { at: at('neil', 1), ...band('covo', 1.05) },
   { at: at('neil', 1, 1.4), ...band('yacht', 1.05) },
-  { at: at('neil', 2), x: 600, y: 2700, z: 0.5 },
-  { at: at('neil', 3, 0.3), ...WIDE },
+  // dallo zaino del soldato allo zaino di Neil, lungo il filo rosso
+  { at: at('neil', 2), x: 640, y: 3150, z: 1.0 },
+  { at: at('neil', 2, 1.2), x: 540, y: 2150, z: 0.9 },
+  { at: at('neil', 3), ...band('futuro', 1.0, 0, -40) },
+  { at: at('neil', 3, 1.6), ...WIDE },
 ];
+/** Zoom attuale della camera: le scritte dello schema crescono quando la camera si allontana, così restano leggibili. */
+let UI_K = 1;
+const fit = (size: number) => Math.max(size, Math.min(size * UI_K, 130));
 const camAt = (T: number) => {
   let o = { x: SHOTS[0].x, y: SHOTS[0].y, z: SHOTS[0].z };
   for (const s of SHOTS.slice(1)) {
@@ -186,11 +196,14 @@ export const Backpack: React.FC<{ T: number; s?: number; color?: string }> = ({ 
 /** L'uomo mascherato: una maschera da sub/antigas con il punto di domanda. */
 const Mask: React.FC = () => (
   <g strokeLinejoin="round">
-    <path d="M-30 -18 Q-30 -34 0 -34 Q30 -34 30 -18 V8 Q30 30 0 34 Q-30 30 -30 8 Z" fill="#1E3346" stroke={BLUE} strokeWidth="4" />
-    <ellipse cx="-12" cy="-12" rx="9" ry="8" fill="#0B1620" stroke={INK} strokeWidth="2.5" />
-    <ellipse cx="12" cy="-12" rx="9" ry="8" fill="#0B1620" stroke={INK} strokeWidth="2.5" />
-    <rect x="-9" y="6" width="18" height="18" rx="5" fill="#2A4258" stroke={INK} strokeWidth="2.5" />
-    {[-4, 0, 4].map((x) => <path key={x} d={`M${x} 10 V20`} stroke={INK} strokeWidth="1.5" />)}
+    <path d="M-28 -24 Q-28 -36 0 -36 Q28 -36 28 -24 V0 Q24 18 0 20 Q-24 18 -28 0 Z" fill="#1E3346" stroke={BLUE} strokeWidth="4" />
+    <rect x="-20" y="-26" width="40" height="14" rx="7" fill="#0B1620" stroke={INK} strokeWidth="2.5" />
+    <path d="M-18 -22 H18" stroke={BLUE} strokeWidth="2" opacity=".6" />
+    {/* il filtro rotondo sotto e il tubo che va di lato */}
+    <circle cx="0" cy="22" r="14" fill="#2A4258" stroke={INK} strokeWidth="3" />
+    {[0, 60, 120].map((a) => <path key={a} d="M-9 0 H9" stroke={INK} strokeWidth="2" transform={`translate(0 22) rotate(${a})`} />)}
+    <path d="M14 26 Q34 30 34 10 Q34 -8 26 -14" fill="none" stroke={INK} strokeWidth="6" strokeLinecap="round" />
+    <path d="M14 26 Q34 30 34 10 Q34 -8 26 -14" fill="none" stroke="#3A4656" strokeWidth="3" strokeLinecap="round" strokeDasharray="3 3" />
   </g>
 );
 /** Proiettile visto di lato, punta a destra. */
@@ -214,9 +227,10 @@ const Piece: React.FC<{ lit?: number; color?: string }> = ({ lit = 0, color = WA
 // ---------------------------------------------------------------- elementi dello schema
 
 const Node: React.FC<{ T: number; t0: number; p: P; name: string; sub?: string; ring?: number; r?: number; fade?: number; color?: string; side?: 'below' | 'above'; children?: React.ReactNode; size?: number; dead?: number }> = ({
-  T, t0, p, name, sub, ring = 0, r = 62, fade = 1, color = INK, side = 'below', children, size = 38, dead = 0,
+  T, t0, p, name, sub, ring = 0, r = 62, fade = 1, color = INK, side = 'below', children, size: size0 = 38, dead = 0,
 }) => {
   if (T < t0 || fade <= 0) return null;
+  const size = fit(size0);
   const s = pop(T, t0);
   const ly = side === 'below' ? r + size + 6 : -r - (sub ? size * 0.95 + 18 : 18);
   const hi = color === INK ? WARM : color;
@@ -237,8 +251,9 @@ const Node: React.FC<{ T: number; t0: number; p: P; name: string; sub?: string; 
 
 /** Linea dello schema che si disegna (maschera). `flow` fa scorrere il tratteggio; `back` lo fa scorrere al contrario. */
 const Link: React.FC<{ T: number; t0: number; a: P; b: P; c?: P; color?: string; dashed?: boolean; label?: string; arrow?: boolean; w?: number; lx?: number; ly?: number; size?: number; fade?: number; flow?: boolean; hand?: boolean }> = ({
-  T, t0, a, b, c, color = INK, dashed = false, label, arrow = false, w = 6, lx = 0, ly = 0, size = 44, fade = 1, flow = false, hand = true,
+  T, t0, a, b, c, color = INK, dashed = false, label, arrow = false, w = 6, lx = 0, ly = 0, size: size0 = 44, fade = 1, flow = false, hand = true,
 }) => {
+  const size = fit(size0);
   if (T < t0 || fade <= 0) return null;
   const p = eo(seg(T, t0, t0 + 0.6));
   const [mx, my] = c ?? [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
@@ -260,8 +275,9 @@ const Link: React.FC<{ T: number; t0: number; a: P; b: P; c?: P; color?: string;
 
 /** Cartellino pieno = colpo di scena o parola chiave. */
 const Tag: React.FC<{ T: number; t0: number; x: number; y: number; text: string; bg?: string; fg?: string; size?: number; rot?: number; until?: number }> = ({
-  T, t0, x, y, text, bg = WARM, fg = DARK, size = 36, rot = 0, until = 1e9,
+  T, t0, x, y, text, bg = WARM, fg = DARK, size: size0 = 36, rot = 0, until = 1e9,
 }) => {
+  const size = fit(size0);
   if (T < t0 || T > until + 0.5) return null;
   const w = text.length * size * 0.56 + size;
   return (
@@ -603,6 +619,19 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         </g>
       )}
 
+      {/* sotto il futuro la terra spaccata continua fino al bordo: primo piano delle inquadrature basse */}
+      {T >= bandAt.futuro && (
+        <g opacity={eo(seg(T, bandAt.futuro, bandAt.futuro + 0.8))}>
+          <rect x="-600" y={BAND.futuro.y0 + H + 30} width="2280" height="1400" fill="#2A221B" />
+          <path d={`M-600 ${BAND.futuro.y0 + H + 30} H1680`} stroke="#5A4638" strokeWidth="4" />
+          {Array.from({ length: 30 }, (_, i) => {
+            const x = -500 + (i % 10) * 220 + (Math.floor(i / 10) % 2) * 100, y = BAND.futuro.y0 + H + 90 + Math.floor(i / 10) * 150;
+            return <path key={i} d={`M${x} ${y} l60 24 l-12 52 l70 16 M${x + 60} ${y + 24} l80 -28`} stroke="#14100C" strokeWidth="6" fill="none" />;
+          })}
+          {DUST.map((d, i) => <circle key={i} cx={mod(d.x * 2 - T * d.v * 2, 2000) - 460} cy={BAND.futuro.y0 + H + 60 + d.y * 500} r={d.s * 2} fill="#F2C08A" opacity={0.2 + 0.15 * Math.sin(T * 2 + d.ph)} />)}
+        </g>
+      )}
+
       {/* le stazioni: prima tratteggiate e appena accennate, poi disegnate */}
       {BANDS.map((b) => {
         const t0 = bandAt[b.key];
@@ -672,13 +701,9 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           })}
         </g>
       )}
-      {T >= at('futuro', 0, 0.3) && (
-        <g opacity={seg(T, at('futuro', 0, 0.3), at('futuro', 0, 0.8)) * off('futuro')}>
-          {[1250, 2050, 2900].map((y) => (
-            <text key={y} x={BX - 50} y={y} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize="72" fill={BLUE} stroke={DARK} strokeWidth="8" paintOrder="stroke" transform={`rotate(-90 ${BX - 50} ${y})`}>armi dal futuro ▲</text>
-          ))}
-        </g>
-      )}
+      {[1590, 2210, 2830].map((y, i) => (
+        <Tag key={y} T={T} t0={at('futuro', 0, 0.3 + i * 0.3)} x={720} y={y + 12} text="▲ armi dal futuro" bg={BLUE} size={44} until={end('futuro') - 0.5} />
+      ))}
       <Tag T={T} t0={at('futuro', 1, 0.2)} x={560} y={BAND.futuro.y0 + 410} text="una guerra contro di noi" bg={RED} fg="#FFFFFF" size={44} until={end('futuro') - 0.4} />
       {T >= at('futuro', 2, 0.1) && (() => {
         const p = pop(T, at('futuro', 2, 0.1));
@@ -700,10 +725,10 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       })()}
       <Link T={T} t0={at('futuro', 2, 0.6)} a={[N.tenet[0] - 80, N.tenet[1] + 30]} b={[N.prot[0] + 70, N.prot[1] - 30]} color={WARM} arrow w={6} label="lo recluta" ly={-26} size={38} />
       {T >= at('futuro', 3, 0.2) && (
-        <g transform={`translate(${BX - 40} ${BAND.lab.y0 + 470}) scale(${pop(T, at('futuro', 3, 0.2))})`} opacity={1 - seg(T, end('futuro') - 0.3, end('futuro') + 0.4)}>
+        <g transform={`translate(800 ${BAND.lab.y0 + 455}) scale(${pop(T, at('futuro', 3, 0.2))})`} opacity={1 - seg(T, end('futuro') - 0.3, end('futuro') + 0.4)}>
           <rect x="-90" y="-22" width="180" height="44" rx="8" fill={WARM} stroke={INK} strokeWidth="4" />
           {[-60, -20, 20, 60].map((x) => <path key={x} d={`M${x - 14} -22 L${x + 14} 22`} stroke={DARK} strokeWidth="9" />)}
-          <text x="70" y="64" textAnchor="end" fontFamily={HAND} fontWeight={700} fontSize="40" fill={WARM} stroke={DARK} strokeWidth="6" paintOrder="stroke">fermarla prima</text>
+          <text x="60" y="-36" textAnchor="end" fontFamily={HAND} fontWeight={700} fontSize="40" fill={WARM} stroke={DARK} strokeWidth="6" paintOrder="stroke">fermarla prima</text>
         </g>
       )}
 
@@ -711,12 +736,14 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       <Node T={T} t0={at('sator', 0, 0.1)} p={N.sator} name="Sator" sub="ricco russo" color={RED} ring={focus(at('sator', 0), at('sator', 1, 1)) + focus(at('battito', 0), at('battito', 2, 1.5))} dead={dead}>
         <Bracelet T={T} beat={beat} />
       </Node>
-      <Link T={T} t0={at('sator', 0, 0.6)} a={[N.sator[0] - 70, N.sator[1] + 30]} b={[160, BAND.futuro.y0 + 120]} c={[90, 2400]} color={BLUE} dashed flow w={7} label="parla col futuro" lx={150} ly={-260} size={62} fade={off('sator')} />
-      <Link T={T} t0={at('sator', 1, 0.2)} a={[N.sator[0] + 40, N.sator[1] - 70]} b={[640, BAND.lab.y0 + 390]} c={[560, 1060]} color={BLUE} arrow w={8} label="fa invertire le armi" lx={60} ly={10} size={56} fade={off('sator')} />
+      <Link T={T} t0={at('sator', 0, 0.6)} a={[N.sator[0] - 70, N.sator[1] + 30]} b={[160, BAND.futuro.y0 + 120]} c={[90, 2400]} color={BLUE} dashed flow w={7} fade={off('sator')} />
+      <Tag T={T} t0={at('sator', 0, 0.8)} x={N.sator[0] + 20} y={N.sator[1] + 175} text="parla col futuro" bg={BLUE} size={30} until={at('sator', 2)} />
+      <Link T={T} t0={at('sator', 1, 0.2)} a={[N.sator[0] + 55, N.sator[1] - 55]} b={[630, BAND.lab.y0 + 395]} c={[560, 1040]} color={BLUE} arrow w={8} label="fa invertire le armi" lx={150} ly={20} size={46} fade={1 - seg(T, at('sator', 3), at('sator', 3, 0.5))} />
       <Node T={T} t0={at('sator', 2, 0.2)} p={N.kat} name="Kat" sub="la moglie di Sator" ring={focus(at('sator', 2), at('sator', 3, 1.5)) + focus(at('tenaglia', 2), end('neil'))}>
         <Painting stamp={seg(T, at('sator', 3, 0.5), at('sator', 3, 0.8)) * (1 - seg(T, end('sator') - 0.3, end('sator')))} />
       </Node>
       <Link T={T} t0={at('sator', 2, 0.5)} a={[N.prot[0] + 40, N.prot[1] + 110]} b={[N.kat[0] - 40, N.kat[1] - 80]} c={[600, 860]} color={WARM} arrow w={6} label="la aiuta" ly={-20} size={40} fade={off('sator')} />
+      <Tag T={T} t0={at('sator', 3, 0.5)} x={N.kat[0]} y={N.kat[1] - 112} text="quadro FALSO" bg={RED} fg="#FFFFFF" size={34} rot={-4} until={end('sator') - 0.4} />
       <Link T={T} t0={at('sator', 3, 0.2)} a={[N.sator[0] + 70, N.sator[1]]} b={[N.kat[0] - 72, N.kat[1]]} color={RED} arrow w={7} label="ricatto" ly={-24} size={44} fade={off('sator')} />
 
       {/* ---- capitolo 4: Oslo, Neil, il tornello, l'uomo mascherato */}
@@ -761,7 +788,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
             <Glow id="tn-algo" x={ax} y={ay} r={220} t={T} color={algoSafe > 0.5 ? WARM : RED} amp={0.1} rate={2.4} opacity={0.25 + 0.35 * Math.min(1, lit)} />
             {Array.from({ length: 9 }, (_, i) => {
               const a = (i / 9) * Math.PI * 2 - Math.PI / 2;
-              const sx = 120 + i * 86 + (i % 2) * 10, sy = BAND.covo.y0 + 400 + (i % 3) * 30;
+              const sx = 210 + i * 80 + (i % 2) * 10, sy = BAND.covo.y0 + 400 + (i % 3) * 30;
               const tx = ax + Math.cos(a) * 96, ty = ay + Math.sin(a) * 82;
               const pp = pop(T, at('algoritmo', 0, 0.2 + i * 0.05));
               return <g key={i} transform={`translate(${lerp(sx, tx, assemble)} ${lerp(sy, ty, assemble)}) scale(${pp * 1.15})`}><Piece lit={Math.min(1, lit)} color={algoSafe > 0.5 ? WARM : RED} /></g>;
@@ -777,7 +804,12 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         );
       })()}
       <text x={N.algo[0]} y={N.algo[1] - 122} textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="44" fill={RED} stroke={DARK} strokeWidth="7" paintOrder="stroke" opacity={seg(T, at('algoritmo', 0, 0.5), at('algoritmo', 0, 0.9))}>l'Algoritmo</text>
-      <Link T={T} t0={at('algoritmo', 1, 0.6)} a={[N.algo[0], N.algo[1] - 130]} b={[N.algo[0], 600]} c={[300, 1800]} color={RED} dashed arrow w={14} label="inverte il mondo intero" lx={-30} size={82} fade={1 - seg(T, at('algoritmo', 2, 1.4), at('algoritmo', 2, 1.9))} />
+      {T >= at('algoritmo', 1, 0.6) && T < at('algoritmo', 2, 0.6) && [0, 1, 2].map((k) => {
+        // l'inversione che si allarga dall'Algoritmo: tre anelli rossi
+        const u = mod((T - at('algoritmo', 1, 0.6)) / 1.5 + k / 3, 1);
+        return <circle key={k} cx={N.algo[0]} cy={N.algo[1]} r={110 + u * 420} fill="none" stroke={RED} strokeWidth={10 * (1 - u) + 2} opacity={(1 - u) * seg(T, at('algoritmo', 1, 0.6), at('algoritmo', 1, 0.9))} />;
+      })}
+      <Tag T={T} t0={at('algoritmo', 1, 0.6)} x={540} y={BAND.covo.y0 + 92} text="può invertire il mondo intero" bg={RED} fg="#FFFFFF" size={36} until={at('algoritmo', 2, 0.3)} />
       {erase > 0 && (() => {
         // la lavagna cancellata: un cancellino passa sulle stazioni del passato e le copre
         const top = BAND.lab.y0 - 40, bot = BAND.tallinn.y0 + H + 40;
@@ -804,14 +836,14 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })()}
-      <Link T={T} t0={at('algoritmo', 3, 0.2)} a={[N.algo[0] + 160, BAND.futuro.y0 + 140]} b={[N.algo[0] + 130, N.algo[1] + 60]} c={[820, 3420]} color={RED} arrow w={10} label="lo vuole il futuro" lx={150} ly={0} size={60} fade={off('algoritmo')} />
+      <Link T={T} t0={at('algoritmo', 3, 0.2)} a={[N.algo[0] + 160, BAND.futuro.y0 + 140]} b={[N.algo[0] + 130, N.algo[1] + 60]} c={[820, 3420]} color={RED} arrow w={10} label="lo vuole il futuro" lx={-20} ly={-10} size={48} fade={off('algoritmo')} />
       <Tag T={T} t0={at('algoritmo', 3, 0.7)} x={560} y={BAND.futuro.y0 + 440} text="clima rovinato" bg={RED} fg="#FFFFFF" size={52} until={end('algoritmo') - 0.4} />
 
       {/* ---- capitolo 6: il tumore, il cuore legato all'Algoritmo, il Vietnam */}
       <Tag T={T} t0={at('battito', 0, 0.3)} x={N.sator[0]} y={N.sator[1] - 115} text="tumore" bg={RED} fg="#FFFFFF" size={36} until={at('battito', 1, 0.3)} />
       {T >= at('battito', 1, 0.1) && (() => {
         // il cavo del battito, dal braccialetto all'Algoritmo: gli impulsi rossi scendono a ogni battito
-        const a: P = [N.sator[0] - 50, N.sator[1] + 60], b: P = [N.algo[0] - 120, N.algo[1] - 40], c: P = [140, 2300];
+        const a: P = [N.sator[0] - 50, N.sator[1] + 60], b: P = [N.algo[0] - 250, N.algo[1] - 80], c: P = [140, 2300];
         const d = `M${a[0]} ${a[1]} Q${c[0]} ${c[1]} ${b[0]} ${b[1]}`;
         const p = eo(seg(T, at('battito', 1, 0.1), at('battito', 1, 1.0)));
         const cut = seg(T, at('neil', 1, 0.1), at('neil', 1, 0.6));
@@ -829,7 +861,19 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })()}
-      <Tag T={T} t0={at('battito', 2, 0.4)} x={540} y={BAND.covo.y0 + 70} text="cuore fermo = fine del mondo" bg={RED} fg="#FFFFFF" size={40} until={at('battito', 3, 0.2)} />
+      {T >= at('battito', 1, 0.8) && (() => {
+        const show = focus(at('battito', 1, 0.8), end('battito') - 0.3) + focus(at('tenaglia', 3), at('neil', 2));
+        if (show <= 0) return null;
+        const [mx, my] = [N.algo[0] - 250, N.algo[1] - 30];
+        return (
+          <g transform={`translate(${mx} ${my})`} opacity={Math.min(1, show)}>
+            <rect x="-78" y="-46" width="156" height="92" rx="10" fill={DARK} stroke={INK} strokeWidth="5" />
+            <path d={ecgPath(130, T, beat)} transform="translate(0 6)" fill="none" stroke={beat > 0.05 ? RED : DIM} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+            <text y="76" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="26" fill={INK} stroke={DARK} strokeWidth="5" paintOrder="stroke">battito di Sator</text>
+          </g>
+        );
+      })()}
+      <Tag T={T} t0={at('battito', 2, 0.4)} x={540} y={BAND.covo.y0 + 470} text="cuore fermo = fine del mondo" bg={RED} fg="#FFFFFF" size={40} until={at('battito', 3, 0.2)} />
       <Tag T={T} t0={at('battito', 3, 0.6)} x={560} y={BAND.yacht.y0 + 92} text="Vietnam: l'ultimo giorno felice" size={36} until={end('battito') - 0.3} />
 
       {/* ---- capitolo 7: Tallinn, Kat ferita, il tornello, il ritorno a Oslo */}
@@ -841,7 +885,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       })()}
       <Tag T={T} t0={at('mascherato', 1, 0.2)} x={560} y={BAND.tallinn.y0 + 110} text="si cura solo all'indietro" bg={BLUE} size={38} until={at('mascherato', 2, 0.5)} />
       <Link T={T} t0={at('mascherato', 2, 0.1)} a={[N.katT[0] + 60, N.katT[1] + 60]} b={[N.turnT[0] - 60, N.turnT[1]]} color={RED} arrow w={8} fade={off('mascherato')} />
-      <Link T={T} t0={at('mascherato', 2, 0.6)} a={[N.turnT[0] + 70, N.turnT[1] - 20]} b={[masked[0] + 20, masked[1] + 80]} c={[1000, 2400]} color={BLUE} dashed flow arrow w={14} label="indietro fino a Oslo" lx={-110} ly={30} size={64} />
+      <Link T={T} t0={at('mascherato', 2, 0.6)} a={[N.turnT[0] + 70, N.turnT[1] - 20]} b={[masked[0] + 72, masked[1] + 30]} c={[1000, 2400]} color={BLUE} dashed flow arrow w={14} label="indietro fino a Oslo" lx={-110} ly={30} size={64} />
       {reveal > 0 && (
         <g opacity={reveal}>
           <ellipse cx={(N.prot2[0] + masked[0]) / 2} cy={(N.prot2[1] + masked[1]) / 2 + 10} rx="410" ry="150" fill="none" stroke={WARM} strokeWidth="7" strokeDasharray="22 14" strokeDashoffset={-T * 40} />
@@ -864,7 +908,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
             {sq(230, BAND.covo.y0 + 100, RED, 0)}
             {sq(860, BAND.covo.y0 + 460, BLUE, 1)}
             <text x="230" y={BAND.covo.y0 + 168} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="36" fill={RED} stroke={DARK} strokeWidth="6" paintOrder="stroke">squadra avanti</text>
-            <text x="840" y={BAND.covo.y0 + 400} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="36" fill={BLUE} stroke={DARK} strokeWidth="6" paintOrder="stroke">squadra indietro</text>
+            <text x="790" y={BAND.covo.y0 + 400} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="36" fill={BLUE} stroke={DARK} strokeWidth="6" paintOrder="stroke">squadra indietro</text>
             <Link T={T} t0={at('tenaglia', 0, 0.6)} a={[260, BAND.covo.y0 + 140]} b={[ax - 130, ay - 30]} c={[200, ay - 40]} color={RED} arrow w={10} />
             <Link T={T} t0={at('tenaglia', 0, 0.9)} a={[830, BAND.covo.y0 + 420]} b={[ax + 130, ay + 30]} c={[880, ay + 40]} color={BLUE} arrow w={10} />
             {/* la tenaglia: due ganasce che si chiudono sull'Algoritmo */}
@@ -889,7 +933,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       <Tag T={T} t0={at('neil', 2, 0.7)} x={N.neil[0] + 260} y={N.neil[1] + 40} text="era Neil" bg={RED} fg="#FFFFFF" size={80} rot={-3} />
       <Node T={T} t0={at('neil', 3, 0.1)} p={N.protF} name="il Protagonista, anni dopo" sub="fonderà Tenet" r={110} size={76} ring={1}><Badge color={WARM} /></Node>
       <Link T={T} t0={at('neil', 3, 0.5)} a={[N.protF[0] - 60, N.protF[1] - 90]} b={[N.neil[0] + 10, N.neil[1] + 100]} c={[200, 2900]} color={WARM} dashed flow arrow w={16} label="lo recluta" lx={-60} size={110} />
-      <Link T={T} t0={at('neil', 3, 0.9)} a={[N.protF[0] + 80, N.protF[1] - 70]} b={[N.tenet[0] + 80, N.tenet[1] + 60]} c={[1060, 2200]} color={WARM} dashed flow arrow w={16} label="fonderà Tenet" lx={-170} size={110} />
+      <Link T={T} t0={at('neil', 3, 0.9)} a={[N.protF[0] + 80, N.protF[1] - 70]} b={[N.tenet[0] + 80, N.tenet[1] + 60]} c={[1060, 2200]} color={WARM} dashed flow arrow w={16} label="fonderà Tenet" lx={-120} ly={420} size={110} />
 
       {/* lampo rosso del cuore che si ferma (un solo lampo nella scena) */}
       {redFlash > 0 && <rect x="-200" y="0" width="1500" height="4400" fill={RED} opacity={0.22 * redFlash} />}
@@ -901,6 +945,7 @@ export const makeTempo = (chapterId: string): React.FC<SceneProps> => {
   const Scene: React.FC<SceneProps> = ({ t }) => {
     const T = STARTS[chapterId] + t;
     const c = camAt(T);
+    UI_K = Math.max(1, 0.85 / c.z);
     return (
       <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
         <defs>
