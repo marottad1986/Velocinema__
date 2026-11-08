@@ -1,7 +1,7 @@
 # Già pubblicati
 
 Aggiornato ogni lunedì con i dati di Metricool (vedi `SOCIAL.md`). Questi contenuti non si ripubblicano sullo stesso canale.
-Visualizzazioni all'8 novembre 2026 (TikTok non ha ancora i dati di Inception e Breaking Bad, usciti il 7 e l'8).
+Visualizzazioni all'8 novembre 2026. Inception e Breaking Bad su TikTok mancano: caricati a mano (limite di pubblicazione del piano gratuito di Metricool), Metricool non li ha ancora letti; da ricontrollare, altrimenti screenshot.
 
 | Uscita | Contenuto | Tipo | TikTok | Instagram | Condivisioni IG |
 |---|---|---|---|---|---|
