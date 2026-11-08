@@ -55,14 +55,16 @@ const scelti = [
 ];
 const serveUrl = await bundle({ entryPoint: path.join(process.cwd(), 'src/index.ts') });
 const browserExecutable = process.env.REMOTION_BROWSER || undefined;
+// Dietro un proxy con certificato proprio (ambiente cloud) i font di Google non si caricano: REMOTION_IGNORA_CERTIFICATI=1.
+const chromiumOptions = { ignoreCertificateErrors: !!process.env.REMOTION_IGNORA_CERTIFICATI };
 const tmp = `${dir}/tmp`;
 mkdirSync(tmp, { recursive: true });
 for (const s of scelti) {
-  const composition = await selectComposition({ serveUrl, id: `${film}--${s.id}`, browserExecutable });
+  const composition = await selectComposition({ serveUrl, id: `${film}--${s.id}`, browserExecutable, chromiumOptions });
   const files = [];
   for (const sec of s.t) {
     const output = `${tmp}/${s.id}-${sec}.png`;
-    await renderStill({ serveUrl, composition, frame: Math.min(Math.round(sec * 30), composition.durationInFrames - 1), output, browserExecutable, scale: 0.5 });
+    await renderStill({ serveUrl, composition, frame: Math.min(Math.round(sec * 30), composition.durationInFrames - 1), output, browserExecutable, chromiumOptions, scale: 0.5 });
     files.push(output);
   }
   const ff = spawnSync('ffmpeg', ['-loglevel', 'error', '-y', ...files.flatMap((f) => ['-i', f]), '-filter_complex', `hstack=${files.length}`, `${dir}/${s.id}.png`]);

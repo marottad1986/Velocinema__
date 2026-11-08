@@ -178,11 +178,11 @@ export const Furto: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             <path d="M360 1320 Q420 1500 380 1700 L360 1960 M720 1320 Q660 1500 700 1700 L720 1960" stroke="#6A6E74" strokeWidth="5" fill="none" />
             <path d="M360 1320 L400 1360 L370 1400 L410 1440 M720 1320 L680 1360 L710 1400" stroke="#6A6E74" strokeWidth="4" fill="none" />
             {/* cartello sulla rete */}
-            <rect x="820" y="1580" width="220" height="130" fill="#F2F0E4" stroke={K} strokeWidth="6" />
-            <rect x="820" y="1580" width="220" height="40" fill="#C83A2A" />
-            <text x="930" y="1610" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontSize="26" fill="#FFFFFF">PERICOLO</text>
-            <text x="930" y="1660" textAnchor="middle" fontFamily="sans-serif" fontWeight="800" fontSize="20" fill="#1A1A1A">VIETATO</text>
-            <text x="930" y="1686" textAnchor="middle" fontFamily="sans-serif" fontWeight="800" fontSize="20" fill="#1A1A1A">L'ACCESSO</text>
+            <rect x="600" y="1520" width="220" height="130" fill="#F2F0E4" stroke={K} strokeWidth="6" />
+            <rect x="600" y="1520" width="220" height="40" fill="#C83A2A" />
+            <text x="710" y="1550" textAnchor="middle" fontFamily="sans-serif" fontWeight="900" fontSize="26" fill="#FFFFFF">PERICOLO</text>
+            <text x="710" y="1600" textAnchor="middle" fontFamily="sans-serif" fontWeight="800" fontSize="20" fill="#1A1A1A">VIETATO</text>
+            <text x="710" y="1626" textAnchor="middle" fontFamily="sans-serif" fontWeight="800" fontSize="20" fill="#1A1A1A">L'ACCESSO</text>
           </g>
         </g>
 

@@ -2,6 +2,7 @@
   "titolo": "Notte stellata",
   "autore": "Vincent van Gogh",
   "anno": 1889,
+  "bpm": 92,
   "opera": {
     "tecnica": "Olio su tela",
     "misure": "73,7 × 92,1 cm",
@@ -31,19 +32,19 @@
       "scena": "Panoramica lenta da sinistra a destra su tutto il quadro: cipresso, cielo a vortici, stelle, luna, villaggio. Stelle e luna pulsano piano.",
       "sottotitoli": [
         "Guarda questo cielo: sembra girare sopra un paese addormentato.",
-        "È la Notte stellata, che Vincent van Gogh dipinse nel 1889,",
-        "e ogni suo dettaglio nasconde una storia."
+        "È la Notte stellata, dipinta da Van Gogh nel 1889,",
+        "e ogni dettaglio nasconde una storia."
       ]
     },
     {
       "id": "arles",
-      "titolo": "Prima del quadro",
+      "titolo": "Il viaggio al sud",
       "durata": 10,
       "scena": "Mappa disegnata della Francia del sud nello stile dei film: Arles e Saint-Rémy unite da una linea tratteggiata; sopra, un foglio di lettera con la firma «Vincent».",
       "sottotitoli": [
-        "Van Gogh, pittore olandese, nel 1888 si trasferisce ad Arles,",
-        "nel sud della Francia, perché cerca luce e colore.",
-        "Intanto però soffre di crisi violente, e in una si ferisce un orecchio."
+        "Nel 1888 Van Gogh, pittore olandese, va ad Arles,",
+        "nel sud della Francia, cercando luce e colore.",
+        "Ma lì soffre di crisi violente: in una si taglia un orecchio."
       ]
     },
     {
@@ -53,7 +54,7 @@
       "scena": "Avvicinamento al villaggio in basso a destra; le finestre gialle delle case si accendono una alla volta.",
       "sottotitoli": [
         "Così, nel maggio del 1889, sceglie di farsi curare",
-        "nella clinica di Saint-Rémy, a pochi chilometri da Arles,",
+        "nella clinica di Saint-Rémy, non lontano da Arles,",
         "e lì continua a dipingere: in un anno fa circa 150 quadri."
       ]
     },
@@ -64,8 +65,8 @@
       "scena": "Inquadratura sulle colline all'orizzonte; per un istante l'ombra di sbarre di finestra scorre davanti e sparisce.",
       "sottotitoli": [
         "Dalla finestra, chiusa da sbarre, vede colline e cielo,",
-        "ma lì non può dipingere: lavora di giorno, in un'altra stanza.",
-        "Così osserva il cielo di notte e lo dipinge a memoria."
+        "ma in camera non gli permettono di dipingere.",
+        "Così di notte osserva il cielo, e di giorno lo dipinge altrove."
       ]
     },
     {
@@ -75,8 +76,8 @@
       "scena": "Zoom sul campanile appuntito; il resto del quadro si scurisce leggermente; alone sulla punta del campanile.",
       "sottotitoli": [
         "Eppure, dalla finestra, il paese non si vedeva:",
-        "infatti Van Gogh lo aggiunge a memoria, con un campanile appuntito",
-        "che ricorda le chiese olandesi della sua infanzia."
+        "quindi Van Gogh lo aggiunge, con un campanile appuntito",
+        "che per alcuni storici ricorda le chiese della sua Olanda."
       ]
     },
     {
@@ -85,9 +86,9 @@
       "durata": 10,
       "scena": "Panoramica dal basso verso l'alto lungo il cipresso a sinistra; alla fine il resto del quadro si scurisce e resta in luce la punta, contro il cielo.",
       "sottotitoli": [
-        "In primo piano, invece, un cipresso sale come una fiamma",
-        "e così unisce la terra al cielo, fino alle stelle.",
-        "In Provenza è l'albero dei cimiteri: parla di morte, ma anche di eternità."
+        "Davanti, invece, un cipresso sale come una fiamma",
+        "e per molti unisce la terra alle stelle.",
+        "In Provenza è l'albero dei cimiteri, segno di morte ma anche di eternità."
       ]
     },
     {
@@ -96,21 +97,21 @@
       "durata": 10,
       "scena": "Zoom sulla stella bianca grande vicino al cipresso; brilla e pulsa; sullo schermo, una riga di lettera tradotta.",
       "sottotitoli": [
-        "Accanto al cipresso brilla la stella più grande, che però è Venere:",
-        "Van Gogh infatti scrive al fratello Theo di averla vista all'alba,",
-        "e gli astronomi confermano: in quei giorni era visibile."
+        "Accanto al cipresso, la stella più grande è il pianeta Venere:",
+        "Van Gogh lo scrive al fratello Theo: l'ha vista prima dell'alba,",
+        "e gli astronomi confermano che allora era visibile."
       ]
     },
     {
       "id": "vortici",
-      "titolo": "Il cielo in movimento",
+      "titolo": "I vortici e la fisica",
       "durata": 11,
       "scena": "Avvicinamento al grande vortice centrale; le pennellate scorrono lentamente lungo le spirali, come vento.",
       "sottotitoli": [
-        "Al centro, intanto, il cielo si avvolge in due grandi spirali,",
-        "perché Van Gogh non dipinge il vento, ma il movimento.",
+        "Al centro, intanto, il cielo si avvolge in due spirali,",
+        "come se Van Gogh dipingesse l'aria in movimento.",
         "E alcuni fisici, misurando questi vortici,",
-        "hanno visto che somigliano alla turbolenza vera dell'aria."
+        "hanno visto che somigliano ai mulinelli veri dell'aria."
       ]
     },
     {
@@ -119,9 +120,9 @@
       "durata": 10,
       "scena": "Inquadratura molto ravvicinata della luna; luce radente che si sposta e fa risaltare lo spessore delle pennellate.",
       "sottotitoli": [
-        "Da vicino, poi, il colore è steso spesso, quasi scolpito,",
-        "perché ogni pennellata lascia un solco: è la tecnica dell'impasto.",
-        "Così il blu del cielo e il giallo delle stelle sembrano vibrare."
+        "Da vicino, nella luna, il colore è spesso, quasi scolpito:",
+        "è la tecnica dell'impasto: ogni pennellata resta in rilievo.",
+        "Così il blu del cielo e il giallo delle stelle vibrano."
       ]
     },
     {
@@ -132,8 +133,8 @@
       "sottotitoli": [
         "Eppure a Van Gogh questo quadro non piaceva:",
         "scrive infatti a un amico pittore di aver fatto stelle troppo grandi.",
-        "Muore l'anno dopo, nel 1890, a 37 anni,",
-        "senza sapere quanto sarebbe diventato amato."
+        "Muore l'anno dopo, a 37 anni,",
+        "senza sapere quanto il quadro sarebbe piaciuto."
       ]
     },
     {
@@ -143,8 +144,8 @@
       "scena": "Il quadro intero al centro, piccolo, su fondo scuro; si ingrandisce fino a riempire lo schermo.",
       "sottotitoli": [
         "Alla fine, nel 1941, arriva al MoMA di New York,",
-        "il Museo d'arte moderna, dove si trova ancora oggi.",
-        "Così le stelle «troppo grandi» sono le più famose del mondo.",
+        "il Museo d'arte moderna, dove è ancora oggi.",
+        "E così quelle stelle «troppo grandi» sono diventate famosissime.",
         "Avresti dato ragione a Van Gogh?"
       ]
     }
@@ -153,5 +154,17 @@
     "durata": 4,
     "immagine": "Il quadro intero, fermo; riquadro in alto: titolo, autore e anno + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il quadro che vorresti.'"
   },
-  "musica": "Originale e strumentale: elegante e luminosa, in Re maggiore; pianoforte, archi leggeri, contrabbasso e una pulsazione discreta di spazzole; tema in arpeggi che girano su sé stessi come i vortici. Più raccolta, senza pulsazione, quando Vincent sta male e quando il quadro non gli piace; si apre nel finale."
+  "musica": "Originale e strumentale: elegante e luminosa, in Re maggiore; pianoforte, archi leggeri, contrabbasso e una pulsazione discreta di spazzole; tema in arpeggi che girano su sé stessi come i vortici. Più raccolta, senza pulsazione, quando Vincent sta male e quando il quadro non gli piace; si apre nel finale.",
+  "fonti": [
+    "Dipinto nel giugno 1889 dalla finestra a est della camera nella clinica di Saint-Rémy; finestra con sbarre; in camera non gli era permesso dipingere, dipinto di giorno nello studio al pianterreno; paese immaginario, non visibile dalla finestra; campanile «più olandese che provenzale» (ipotesi di Pickvance); cipresso albero della morte nei paesi mediterranei e legame tra terra e cielo (interpretazioni); lettera 777 a Theo sulla stella del mattino vista molto prima dell'alba; lettera a Émile Bernard di fine novembre 1889 sulle stelle troppo grandi; al MoMA dal 1941 (lascito Lillie P. Bliss): https://en.wikipedia.org/wiki/The_Starry_Night",
+    "Notte stellata, giugno 1889, a Saint-Rémy; Venere stella del mattino; acquisto del MoMA nel 1941: https://it.wikipedia.org/wiki/Notte_stellata",
+    "Ad Arles nel febbraio 1888; orecchio sinistro tagliato con un rasoio il 23 dicembre 1888; ricovero a Saint-Paul-de-Mausole l'8 maggio 1889, a meno di 30 km da Arles; impasto denso nei quadri del 1889; morto nel luglio 1890 a 37 anni: https://en.wikipedia.org/wiki/Vincent_van_Gogh",
+    "Va nel sud cercando luce e colori; vicenda dell'orecchio: https://it.wikipedia.org/wiki/Vincent_van_Gogh",
+    "Circa 150 quadri in un anno a Saint-Rémy (maggio 1889 – maggio 1890): https://www.vangoghmuseum.nl/en/art-and-stories/vincents-life-1853-1890/hospitalization",
+    "Vortici della Notte stellata compatibili con la teoria della turbolenza di Kolmogorov (Ma e altri, Physics of Fluids 36, 2024): https://arxiv.org/abs/2310.03415",
+    "Lettera 777 a Theo, tra il 31 maggio e il 6 giugno 1889, «the morning star, which looked very big»: https://vangoghletters.org/vg/letters/let777/letter.html"
+  ],
+  "pronuncia": {
+    "MoMA": "Moma"
+  }
 }

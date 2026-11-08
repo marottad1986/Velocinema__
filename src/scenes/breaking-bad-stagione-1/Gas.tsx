@@ -85,7 +85,7 @@ export const Gas: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <g opacity={gas}>
             <Smoke id="gs-gas1" t={t} x={575 - 165 * 0.9} y={1240 - 520 * 0.9} color="#E8A090" n={8} rise={170} wind={180} r0={40} r1={130} speed={0.5} opacity={1} />
           </g>
-          <Camper id="gs" x={575} y={1240} s={0.9} door={door} lamp={lamp} fog={gas} fogColor="#E89A86" t={t} />
+          <Camper id="gs" x={530} y={1240} s={0.84} door={door} lamp={lamp} fog={gas} fogColor="#E89A86" t={t} />
           {/* gas che filtra dalle fessure della porta e dai finestrini */}
           {gas > 0 && [[575 - 10 * 0.9, 1240 - 270], [575 + 110 * 0.9, 1240 - 200], [575 - 270 * 0.9, 1240 - 340], [575 + 210 * 0.9, 1240 - 340], [575 + 400 * 0.9, 1240 - 330]].map(([gx, gy], i) => (
             <g key={i}>
