@@ -113,6 +113,10 @@ export default (mix, T) => {
   [52, 55, 59].forEach((m, j) => suona(mix, 'celli', m, { t: 0.4 + j * 0.25, dur: 3.4 - j * 0.25, vel: 44, pan: (j - 1) * 0.3, gain: 0.36, attack: 0.7, release: 1.2, rev: 0.6 }));
   clip(mix, 'scatti', { t: 0.3, da: 0.5, durata: 2.6, gain: 0.08, fadeIn: 0.2, fadeOut: 1.4, rev: 0.2, pan: -0.2 }); // Locandina.tsx: la ruota che gira
   [71, 76, 74].forEach((m, j) => glock(1.4 + j * BEAT, m, 0.13));
+  // Locandina.tsx: lampione e torcia sfarfallano a 3 battiti e si spengono a 4; poi la luce fredda (tremolo acuto)
+  [[3 * BEAT, 0.05], [3 * BEAT + 0.19, 0.07], [3 * BEAT + 0.38, 0.08]].forEach(([t, g]) => clip(mix, 'scariche', { t: t - 0.03, da: 1.2, durata: 0.2, gain: g, fadeOut: 0.06, rev: 0.25, pan: 0.3 }));
+  clip(mix, 'scariche', { t: 4 * BEAT - 0.04, da: 2.4, durata: 0.3, gain: 0.1, fadeOut: 0.1, rev: 0.25, pan: 0.3 });
+  trem(4 * BEAT + 0.05, 4 - 4 * BEAT - 0.05, [88, 89], { vel: 38, gain: 0.13 });
 
   // ---- capanno: la sera tranquilla (archi a metà passo, tema); la porta a zanzariera; la lampadina che sfarfalla e si spegne
   {
