@@ -144,8 +144,8 @@ export const Badge: React.FC<{ color?: string; s?: number }> = ({ color = INK, s
   </g>
 );
 /** Il battito: linea dell'elettrocardiogramma larga w, centrata in 0. `amp` 0 = piatta. */
-const ecgPath = (w: number, T: number, amp: number, rate = 1.2) => {
-  const ph = mod(T * rate, 1);
+const ecgPath = (w: number, T: number, amp: number) => {
+  const ph = mod((T - G0) / (60 / film.bpm), 1); // un battito per battito della musica (80 al minuto)
   const pts: string[] = [];
   for (let i = 0; i <= 40; i++) {
     const u = i / 40, x = -w / 2 + u * w;
@@ -755,7 +755,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         const s = pop(T, at('tornello', 2, 0.1));
         const enter = eo(seg(T, at('tornello', 2, 0.1), at('tornello', 2, 0.9)));
         const x = lerp(N.turn[0] + 40, masked[0], enter);
-        const jitter = fight > 0 ? Math.sin(T * 9) * 8 * fight : 0;
+        const jitter = fight > 0 ? Math.sin((2 * Math.PI * (T - G0)) / (60 / film.bpm)) * 8 * fight : 0;
         const rv = reveal;
         return (
           <g transform={`translate(${x - jitter} ${masked[1]}) scale(${s})`}>
@@ -790,7 +790,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
               const a = (i / 9) * Math.PI * 2 - Math.PI / 2;
               const sx = 210 + i * 80 + (i % 2) * 10, sy = BAND.covo.y0 + 400 + (i % 3) * 30;
               const tx = ax + Math.cos(a) * 96, ty = ay + Math.sin(a) * 82;
-              const pp = pop(T, at('algoritmo', 0, 0.2 + i * 0.05));
+              const pp = pop(T, at('algoritmo', 0, 0.2) + i * CROMA / 2);
               return <g key={i} transform={`translate(${lerp(sx, tx, assemble)} ${lerp(sy, ty, assemble)}) scale(${pp * 1.15})`}><Piece lit={Math.min(1, lit)} color={algoSafe > 0.5 ? WARM : RED} /></g>;
             })}
             <text x={ax} y={ay + 12} textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="30" fill={INK} stroke={DARK} strokeWidth="6" paintOrder="stroke" opacity={assemble}>9 pezzi</text>
@@ -804,10 +804,10 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         );
       })()}
       <text x={N.algo[0]} y={N.algo[1] - 122} textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="44" fill={RED} stroke={DARK} strokeWidth="7" paintOrder="stroke" opacity={seg(T, at('algoritmo', 0, 0.5), at('algoritmo', 0, 0.9))}>l'Algoritmo</text>
-      {T >= at('algoritmo', 1, 0.6) && T < at('algoritmo', 2, 0.6) && [0, 1, 2].map((k) => {
+      {T >= at('algoritmo', 1, 1.2) && T < at('algoritmo', 2, 0.6) && [0, 1, 2].map((k) => {
         // l'inversione che si allarga dall'Algoritmo: tre anelli rossi
-        const u = mod((T - at('algoritmo', 1, 0.6)) / 1.5 + k / 3, 1);
-        return <circle key={k} cx={N.algo[0]} cy={N.algo[1]} r={110 + u * 420} fill="none" stroke={RED} strokeWidth={10 * (1 - u) + 2} opacity={(1 - u) * seg(T, at('algoritmo', 1, 0.6), at('algoritmo', 1, 0.9))} />;
+        const u = mod((T - at('algoritmo', 1, 1.2)) / 1.5 + k / 3, 1);
+        return <circle key={k} cx={N.algo[0]} cy={N.algo[1]} r={110 + u * 420} fill="none" stroke={RED} strokeWidth={10 * (1 - u) + 2} opacity={(1 - u) * seg(T, at('algoritmo', 1, 1.2), at('algoritmo', 1, 1.5))} />;
       })}
       <Tag T={T} t0={at('algoritmo', 1, 0.6)} x={540} y={BAND.covo.y0 + 92} text="può invertire il mondo intero" bg={RED} fg="#FFFFFF" size={36} until={at('algoritmo', 2, 0.3)} />
       {erase > 0 && (() => {
@@ -855,7 +855,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
             <mask id="tn-cable" maskUnits="userSpaceOnUse" x="-500" y="0" width="2000" height="4500"><path d={d} fill="none" stroke="#fff" strokeWidth="40" pathLength={1} strokeDasharray={`${p} 1`} /></mask>
             <g mask="url(#tn-cable)">
               <path d={d} fill="none" stroke={RED} strokeWidth={10 + 6 * Math.min(1, hot)} opacity={0.5 + 0.5 * Math.min(1, hot)} strokeLinecap="round" />
-              {flat < 0.5 && cut < 0.5 && <path d={d} fill="none" stroke={WARM} strokeWidth="18" pathLength={1} strokeDasharray="0.02 0.2" strokeDashoffset={-T * 0.18} strokeLinecap="round" />}
+              {flat < 0.5 && cut < 0.5 && <path d={d} fill="none" stroke={WARM} strokeWidth="18" pathLength={1} strokeDasharray="0.02 0.2" strokeDashoffset={-((T - G0) * 0.22) / (60 / film.bpm)} strokeLinecap="round" />}
             </g>
             <text x="250" y="2250" textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize="80" fill={RED} stroke={DARK} strokeWidth="9" paintOrder="stroke" opacity={seg(T, at('battito', 1, 0.6), at('battito', 1, 1)) * (1 - cut)} transform="rotate(-62 250 2250)">legato al suo battito</text>
           </g>
@@ -879,8 +879,8 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       {/* ---- capitolo 7: Tallinn, Kat ferita, il tornello, il ritorno a Oslo */}
       <Node T={T} t0={at('mascherato', 0, 0.1)} p={N.satorT} name="Sator" color={RED} r={52} size={34} fade={off('mascherato')}><Bracelet T={T} beat={0.8} /></Node>
       <Node T={T} t0={at('mascherato', 0, 0.3)} p={N.katT} name="Kat, ferita" r={56} size={34} color={katHit > 0 ? RED : INK} ring={katHit} fade={off('mascherato')}><Painting crack={katHit} /></Node>
-      {T >= at('mascherato', 0, 0.5) && T < at('mascherato', 0, 1.2) && (() => {
-        const u = eio(seg(T, at('mascherato', 0, 0.5), at('mascherato', 0, 1.05)));
+      {T >= at('mascherato', 0, 0.5) && T < at('mascherato', 0, 0.95) && (() => {
+        const u = eio(seg(T, at('mascherato', 0, 0.5), at('mascherato', 0, 0.95)));
         return <g transform={`translate(${lerp(N.satorT[0] - 60, N.katT[0] + 60, u)} ${lerp(N.satorT[1], N.katT[1] - 10, u)}) rotate(180)`}><Bullet s={1.6} /></g>;
       })()}
       <Tag T={T} t0={at('mascherato', 1, 0.2)} x={560} y={BAND.tallinn.y0 + 110} text="si cura solo all'indietro" bg={BLUE} size={38} until={at('mascherato', 2, 0.5)} />
@@ -899,7 +899,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         const fade = 1 - seg(T, at('neil', 0, 0.2), at('neil', 0, 0.8));
         const [ax, ay] = N.algo;
         const sq = (x: number, y: number, col: string, k: number) => (
-          <g transform={`translate(${x} ${y}) scale(${1.7 * pop(T, at('tenaglia', 0, 0.2 + k * 0.15))})`}>
+          <g transform={`translate(${x} ${y}) scale(${1.7 * pop(T, at('tenaglia', 0, 0.2) + k * CROMA)})`}>
             {[-26, 0, 26].map((dx, i) => <path key={i} d={`M${dx - 12} 10 L${dx} -14 L${dx + 12} 10 Z`} fill={col} stroke={INK} strokeWidth="3" strokeLinejoin="round" transform={col === BLUE ? 'rotate(180)' : undefined} />)}
           </g>
         );
