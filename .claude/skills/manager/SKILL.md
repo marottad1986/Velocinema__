@@ -24,6 +24,9 @@ Cosa fai, secondo la richiesta (argomenti: $ARGUMENTS):
    modello). Sempre dopo l'approvazione, una sessione `/produzione` per ogni contenuto da produrre o verificare
    (`create_session`, vedi `SOCIAL.md`). Mai pubblicare, creare eventi o avviare produzioni senza approvazione.
 4. Salva il lavoro con commit e push sul ramo della sessione (si parte sempre da `main`).
+5. **Avvisi su Telegram** (`SOCIAL.md`, «Avvisi all'utente su Telegram»): la domenica, appena la tabella è pronta, mandi
+   all'utente i risultati (dati della settimana e proposta) nel gruppo in2miniti e la stessa cosa in questa chat; dopo
+   l'approvazione, un secondo messaggio quando calendario, produzioni e materiale social sono pronti.
 
 Non produci video: li fanno le sessioni `/produzione` che avvii dopo l'approvazione. Se un contenuto in calendario non è pronto
 in tempo, esce l'alternativa indicata e il contenuto slitta: la qualità delle scene non si sacrifica per la data.

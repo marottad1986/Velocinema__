@@ -51,6 +51,26 @@ Attività programmata: «In 2 minuti – programmazione della settimana» (`trig
    Valgono le regole sui testi di CLAUDE.md: fatti verificati, niente frasi come «La prossima volta che lo vedi…».
    Didascalia e titolo vanno anche nella descrizione dell'evento su Google Calendar, per averli sul telefono.
 
+## Avvisi all'utente su Telegram (vincolante, manager e produzione)
+Gli avvisi arrivano nel gruppo Telegram **in2miniti** via IFTTT: servizio `telegram`, azione `send_message`,
+account `461715660`, chat `-5515136307`, `include_web_page_preview` `"0"`. Il testo accetta solo i tag HTML
+`b`, `i`, `a`, `br`, `pre`, `code`. Ogni messaggio costa 15 crediti IFTTT: solo gli avvisi qui sotto, niente messaggi di stato intermedi.
+Telegram serve solo ad avvisare: l'utente risponde (approvazioni, modifiche) nella chat della sessione, quindi ogni avviso
+dice in quale sessione rispondere. Lo stesso contenuto va mandato **anche nella chat della sessione** (SendUserMessage /
+SendUserFile), così l'utente lo trova lì quando apre la conversazione.
+- **Manager, domenica — proposta pronta**: appena la tabella della settimana è pronta (prima dell'approvazione), un messaggio
+  con i dati della settimana in 3–4 righe (follower, video migliore, cosa funziona), le 9 uscite (giorno, ora, titolo, stato)
+  e «Rispondi nella sessione del manager per approvare».
+- **Manager, domenica — dopo l'approvazione**: un messaggio quando eventi in calendario, sessioni di produzione e materiale
+  social sono pronti (elenco delle produzioni avviate, con la scadenza di ciascuna).
+- **Produzione — video pronto**: quando il video finale con la voce è pronto da controllare (controlli verdi e revisori
+  APPROVATO), un messaggio con titolo, data di uscita, link alla pull request e cartella MEGA. Nella chat della sessione si
+  manda anche il video (`out/<film>-voce.mp4`, o `out/<film>.mp4` se la voce manca) con SendUserFile, così l'utente lo
+  guarda subito e dice se va bene prima di unire su main.
+- **Produzione — problema**: se la data di uscita non è raggiungibile con la qualità richiesta, o la sessione è bloccata
+  (chiave, connettore, errore), un messaggio subito con il motivo e l'alternativa prevista dal calendario.
+Se il connettore IFTTT non è disponibile, si avvisa solo nella chat della sessione (SendUserMessage, e notifica push se c'è).
+
 ## Come si sceglie un titolo (la parte più importante)
 Gli eventi della settimana (anniversari, uscite al cinema e in streaming, festività, eventi TV) danno 2–3 titoli.
 **Tutti gli altri si scelgono per quanto sono appetibili**: devono portare visualizzazioni, like e follower.
