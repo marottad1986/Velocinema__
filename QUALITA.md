@@ -44,6 +44,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - Harry Potter e la pietra filosofale: blu-viola notturno (#1E1A3A, opacità 12%), caldo dorato di giorno (#E8B04A, 8%).
   - Dark (Spiegato semplice): verde-grigio freddo da bosco bagnato (#2F4A40, opacità 12%); nel 2052 seppia di cenere (#5A4E3C). Unico colore deciso il giallo dell'impermeabile (#F2C230) sugli oggetti chiave.
   - Bohemian Rhapsody: bordeaux da teatro (#3A1028, opacità 12%).
+  - Tenet (Spiegato semplice): blu acciaio da dossier (#1E2A3A, opacità 10%); rosso (#E8553F) per il tempo che va avanti, blu (#4FB0EE) per quello invertito.
   - Gli anni (883): tramonto caldo di provincia (#E8913A, opacità 10%), blu sera nelle scene di notte (#1E2448).
   - Breaking Bad (stagione 1): ocra caldo del deserto di giorno (#D8A040, opacità 10%), blu notte di periferia (#142235), bruno negli interni chiusi (#4A3A1E), rosso nei tramonti di pericolo (#8A3A2A); unico colore deciso il giallo-oro (#F0B53A) sui cristalli e sugli oggetti chiave.
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
@@ -84,5 +85,6 @@ leggono solo questo file e quello del film. Un film nuovo aggiunge il suo file q
 - The Others: `qualita/the-others.md`
 - Dark, stagione 1 (Spiegato semplice, schema): `qualita/dark-stagione-1.md`
 - Inception (Spiegato semplice, schema): `qualita/inception.md`
+- Tenet (Spiegato semplice, schema): `qualita/tenet.md`
 - Bohemian Rhapsody: `qualita/bohemian-rhapsody.md`
 - Gli anni (883): `qualita/gli-anni.md`
