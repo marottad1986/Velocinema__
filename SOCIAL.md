@@ -16,7 +16,7 @@ programma la settimana che inizia il giorno dopo e si avvia subito la produzione
 possibili (fino al sabato; quelli di TikTok arrivano con circa un giorno di ritardo) e la produzione lavora la domenica
 per la settimana che viene.
 Attività programmata: «In 2 minuti – programmazione della settimana» (`trig_01ErsayWy5XJvQ6RMrpNndyF`), ogni domenica alle
-14:52 ora italiana, apre una sessione nuova con notifica sul telefono.
+15:05 ora italiana (dopo le 15:00, quando riparte la settimana dei token), apre una sessione nuova con notifica sul telefono.
 1. Dati del profilo dal connettore **Metricool** (piano gratuito, brand «In 2 minuti», id `7728942`, fuso Europe/Rome),
    strumento `getAnalyticsDataByMetrics`. Metriche usate:
    - TikTok, per video (`TKPO`): 02 data e ora, 05 descrizione, 07 visualizzazioni, 08 like, 09 commenti, 10 condivisioni;
