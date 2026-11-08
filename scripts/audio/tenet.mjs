@@ -21,6 +21,8 @@ const GRID = 4 * BEAT; // una battuta = 3 s
 const G0 = 4;
 const snap = (t) => G0 + Math.round((t - G0) / GRID) * GRID;
 const CROMA = BEAT / 2;
+/** Il primo battito intero (sulla griglia) da t in poi: il battito del cuore coincide con il picco del monitor in Tempo.tsx. */
+const onBeat = (t) => G0 + Math.ceil((t - G0) / BEAT - 1e-9) * BEAT;
 
 // ---------------------------------------------------------------- strumenti (campionati)
 
@@ -74,16 +76,17 @@ export default (mix, T) => {
    * mel: motivo palindromo al pianoforte (rev = suonato dall'acuto) · bells
    */
   const sec = (from, to, o) => {
-    const t00 = from <= 0 ? 0 : snap(from); // il bordone parte da 0, le figure dalla griglia (G0 - 2 battute)
+    const t00 = from <= 0 ? 0 : snap(from);
+    const fino = o.fino ?? snap(to); // dove finiscono bordone e archi tenuti (l'ultima sezione arriva fino al finale) // il bordone parte da 0, le figure dalla griglia (G0 - 2 battute)
     from = from <= 0 ? G0 - 2 * GRID : snap(from); to = snap(to);
     const R = rng(9000 + sid++ * 131);
     if (o.drone) {
-      drone(mix, 26, { t: t00, dur: to - t00, vel: o.drone, gain: 0.7, seed: sid });
-      drone(mix, 38, { t: t00, dur: to - t00, vel: o.drone * 0.8, gain: 0.5, seed: sid + 50 });
+      drone(mix, 26, { t: t00, dur: fino - t00, vel: o.drone, gain: 0.7, seed: sid });
+      drone(mix, 38, { t: t00, dur: fino - t00, vel: o.drone * 0.8, gain: 0.5, seed: sid + 50 });
     }
     for (let k = 0, t = from; t < to - 0.3; k++, t += GRID) {
       const [root, iv] = CHORDS[k % 4];
-      const d = Math.min(GRID * 1.02, to - t);
+      const d = Math.min(GRID * 1.02, Math.max(to, fino) - t);
       const tacet = (x) => x < 0 || (o.pausa && x >= o.pausa[0] && x < o.pausa[1]);
       if (o.str && t >= 0) iv.forEach((v, j) => strings(mix, root + 12 + v, { t: t + j * 0.04, dur: d, vel: o.str, gain: 0.55, pan: (j - 1) * 0.35, seed: j + k }));
       if (o.spic) {
@@ -116,9 +119,9 @@ export default (mix, T) => {
   sec(T.tornello, T.algoritmo, { drone: 42, spic: 36, inv: true, str: 32, mel: 42, rev: true });
   sec(T.algoritmo, T.battito, { drone: 46, spic: 34, str: 40, mel: 34, oct: -12 });
   sec(T.battito, T.mascherato, { drone: 42, str: 36, mel: 38, keep: 0.8 });
-  sec(T.mascherato, T.tenaglia, { drone: 44, spic: 38, inv: true, str: 36, mel: 44, rev: true, bells: 30 });
+  sec(T.mascherato, T.tenaglia, { drone: 44, spic: 38, inv: true, str: 36, mel: 44, rev: true, bells: 30, pausa: [at('mascherato', 0, 2.625), at('mascherato', 0, 2.625) + BEAT] });
   sec(T.tenaglia, T.neil, { drone: 48, spic: 50, doppio: true, str: 42, pausa: [at('tenaglia', 1, 1.0), at('tenaglia', 1, 1.0) + BEAT] });
-  sec(T.neil, T.finale, { drone: 44, str: 40, mel: 46, bells: 34, pausa: [at('neil', 1, 0.8), at('neil', 1, 0.8) + BEAT] });
+  sec(T.neil, T.finale, { fino: G0 + Math.round((T.finale - G0) / BEAT) * BEAT + 0.3, drone: 44, str: 40, mel: 46, bells: 34, pausa: [at('neil', 1, 0.8), at('neil', 1, 0.8) + BEAT] });
 
   // finale: Re maggiore aperto (la fine della guerra) e il motivo palindromo in campanelle
   const F = G0 + Math.round((T.finale - G0) / BEAT) * BEAT;
@@ -153,17 +156,17 @@ export default (mix, T) => {
   // capitolo 4: il tornello che gira, l'uomo che esce, la lotta, «chi è?»
   clip(mix, 'portone_motore', { t: at('tornello', 1), da: 1.9, durata: 2.0, gain: 0.15, fadeIn: 0.3, fadeOut: 0.6, rev: 0.3 });
   clip(mix, 'passaggio', { t: at('tornello', 2, 0.1), da: 0.56, durata: 0.8, gain: 0.28, fadeOut: 0.2, rev: 0.3 });
-  [0.75, 1.5, 2.25].forEach((d, k) => clip(mix, 'metallo_colpi', { t: at('tornello', 2, d), da: [0.52, 2.87, 5.07][k], durata: 0.3, gain: 0.25, rev: 0.25, pan: k % 2 ? 0.3 : -0.3 }));
+  [0.75, 1.5, 2.25].forEach((d, k) => clip(mix, 'metallo_colpi', { t: at('tornello', 2, d), da: [0.54, 2.87, 5.1][k], durata: 0.3, gain: 0.25, rev: 0.25, pan: k % 2 ? 0.3 : -0.3 }));
   bell(mix, 88, { t: at('tornello', 3, 0.1), vel: 44 });
   // capitolo 5: i nove pezzi, l'Algoritmo che si chiude, il cancellino, il vento del futuro
   for (let i = 0; i < 9; i++) bell(mix, [62, 65, 69, 73, 74, 73, 69, 65, 62][i] + 12, { t: at('algoritmo', 0, 0.2) + i * CROMA / 2, vel: 26 });
   clip(mix, 'scatti', { t: at('algoritmo', 1, 1.2), da: 6.49, durata: 0.15, gain: 0.35, rev: 0.25 });
   timp(mix, at('algoritmo', 1, 1.2), { vel: 100, gain: 0.6 });
   clip(mix, 'telo', { t: at('algoritmo', 2, 0.2), da: 0.2, durata: 1.6, gain: 0.35, fadeOut: 0.4, rev: 0.3 });
-  clip(mix, 'vento_leggero', { t: at('algoritmo', 3), da: 4, durata: 3.5, gain: 0.12, fadeIn: 0.8, fadeOut: 1.2, largo: 1.5 });
+  clip(mix, 'vento_leggero', { t: at('algoritmo', 3), da: 4, durata: 3.5, gain: 0.05, fadeIn: 0.8, fadeOut: 1.2, largo: 1.5 });
   // capitolo 6: il battito (80 al minuto, sulla griglia), il cuore che si ferma (silenzio e nota tesa), il Vietnam
   const flat0 = at('battito', 2, 0.3), flat1 = at('battito', 2, 1.6);
-  for (let t = at('battito', 1, 0.1); t < T.mascherato - 0.4; t += BEAT) if (t < flat0 - 0.1 || t >= flat1) heart(mix, t, { gain: 0.55 });
+  for (let t = onBeat(at('battito', 1, 0.1)); t < T.mascherato - 0.4; t += BEAT) if (t < flat0 - 0.1 || t >= flat1) heart(mix, t, { gain: 0.55 });
   suona(mix, 'violini_trem', 81, { t: flat0, dur: flat1 - flat0, vel: 60, gain: 0.3, attack: 0.05, release: 0.2, rev: 0.4 });
   timp(mix, flat0, { vel: 115, gain: 0.8 });
   [50, 53, 57, 62].forEach((m, j) => strings(mix, m + 8, { t: at('battito', 3, 0.1), dur: 3, vel: 40, gain: 0.45, pan: (j - 1.5) * 0.3, att: 0.6, seed: 70 + j })); // il tramonto: Si bemolle maggiore
@@ -171,14 +174,14 @@ export default (mix, T) => {
   clip(mix, 'passaggio', { t: at('mascherato', 0, 2.25), da: 0.56, durata: 0.6, gain: 0.3, fadeOut: 0.15, rev: 0.3 });
   timp(mix, at('mascherato', 0, 2.625), { vel: 115, gain: 0.8 });
   clip(mix, 'portone_motore', { t: at('mascherato', 2, 0.1), da: 1.9, durata: 1.6, gain: 0.15, fadeIn: 0.2, fadeOut: 0.5, rev: 0.3 });
-  clip(mix, 'passaggio', { t: at('mascherato', 2, 0.6), da: 12.27, durata: 1.4, gain: 0.25, fadeOut: 0.4, rev: 0.35 });
+  clip(mix, 'passaggio', { t: at('mascherato', 2, 0.6), da: 12.27, durata: 1.4, gain: 0.17, fadeOut: 0.4, rev: 0.35 });
   [62, 65, 69, 73, 69, 65, 62].forEach((m, k) => bell(mix, m + 12, { t: at('mascherato', 3, 0.2) + k * CROMA / 2, vel: 44 }));
   colpo(mix, 'grancassa', 'bdrum_f', { t: at('mascherato', 3, 0.2), vel: 100, gain: 0.6, rev: 0.45 });
   // capitolo 8: le due squadre, la tenaglia che si chiude, il battito di nuovo, «non ancora!»
   timp(mix, at('tenaglia', 0, 0.2), { vel: 100, gain: 0.6, pan: -0.3 });
   timp(mix, at('tenaglia', 0, 0.2) + CROMA, { vel: 100, gain: 0.6, pan: 0.3 });
   colpo(mix, 'grancassa', 'bdrum_ff', { t: at('tenaglia', 1, 1.0), vel: 110, gain: 0.8, rev: 0.45 });
-  for (let t = at('tenaglia', 2); t < at('neil', 1, 0.8) - 0.1; t += BEAT) heart(mix, t, { gain: t > at('tenaglia', 3) ? 0.75 : 0.5 });
+  for (let t = onBeat(at('tenaglia', 2)); t < at('neil', 1, 0.8) - 0.1; t += BEAT) heart(mix, t, { gain: t > at('tenaglia', 3) ? 0.75 : 0.5 });
   bell(mix, 81, { t: at('tenaglia', 3, 0.6), vel: 44 });
   // capitolo 9: il cancello, il soldato che cade, l'Algoritmo salvo, Sator muore (il battito si ferma), «era Neil», il fondatore
   clip(mix, 'cancello', { t: at('neil', 0, 0.5), da: 2.7, durata: 1.6, gain: 0.35, fadeOut: 0.5, rev: 0.35 });
