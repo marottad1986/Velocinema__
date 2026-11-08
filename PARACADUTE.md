@@ -10,11 +10,23 @@ solo **accessi** (da preparare una volta) e **lavoro a metà** (salvato nei rami
 Da fare con calma, non il giorno dell'emergenza. Spuntare ogni voce.
 - [ ] **GitHub**: in claude.ai/code collegare lo stesso account GitHub (`marottad1986`) e installare/abilitare l'app
       Claude sul repository `marottad1986/Velocinema__`. Provare ad aprire una sessione sul repository.
-- [ ] **Ambiente cloud**: creare un ambiente (es. «velocinema») con rete limitata più i registri di pacchetti
-      (npm), e l'host `archive.org` e `github.com` se le sessioni devono scaricare campioni ed effetti
-      (nell'account principale: stesse impostazioni dell'ambiente attuale, da copiare guardandole in Settings).
+- [ ] **Ambiente cloud**: creare un ambiente personale «VeloCinema», rete **limitata**, con «registri di pacchetti» e
+      «server MCP» attivi e questi host consentiti (copia dell'ambiente dell'account principale all'8 novembre 2026):
+      ```
+      api.elevenlabs.io swedencentral.tts.speech.microsoft.com archive.org *.archive.org freesound.org cdn.freesound.org
+      it.wikipedia.org en.wikipedia.org www.wikidata.org commons.wikimedia.org upload.wikimedia.org
+      www.imdb.com www.themoviedb.org www.mymovies.it www.comingsoon.it www.filmtv.it www.rottentomatoes.com
+      www.fandom.com www.tvmaze.com www.netflix.com flixpatrol.com www.justwatch.com ads.tiktok.com trends.google.com
+      www.cinetel.it cinetel.it www.sorrisi.com www.songfacts.com genius.com www.officialcharts.com www.billboard.com
+      www.rollingstone.com www.rollingstone.it www.discogs.com api.discogs.com musicbrainz.org www.hitparadeitalia.it
+      www.angolotesti.it www.rockol.it www.wikiart.org www.metmuseum.org www.moma.org www.louvre.fr www.uffizi.it
+      www.vangoghmuseum.nl www.rijksmuseum.nl www.nationalgallery.org.uk smarthistory.org www.treccani.it
+      www.britannica.com www.worldhistory.org www.history.com
+      ```
+      Basta anche chiedere alla prima sessione del secondo account: «crea l'ambiente come in PARACADUTE.md».
 - [ ] **Voce ElevenLabs**: nell'ambiente, segreto di rete per l'host `api.elevenlabs.io`, intestazione `xi-api-key`,
-      valore = chiave ElevenLabs (permessi Text to Speech e Voices: read). La voce Brando sta sull'account ElevenLabs,
+      valore = chiave ElevenLabs (permessi Text to Speech e Voices: read). Se si usa anche la voce Microsoft: segreto per
+      `swedencentral.tts.speech.microsoft.com`, intestazione `Ocp-Apim-Subscription-Key`. La voce Brando sta sull'account ElevenLabs,
       non su Claude: la chiave è la stessa e `scripts/audio/voce.json` ha già il `voice_id`.
 - [ ] **Connettori** (claude.ai → Impostazioni → Connettori), solo se il secondo account deve fare anche il manager:
       Metricool (brand «In 2 minuti», id `7728942`), IFTTT (Google Calendar `marottahs@gmail.com` e Telegram, gruppo
