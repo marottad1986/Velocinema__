@@ -78,7 +78,7 @@
         "Le tracce portano a Sator, un ricco russo che parla col futuro:",
         "è lui a far invertire le armi.",
         "Per arrivarci, il Protagonista aiuta Kat, la moglie di Sator,",
-        "ricattata dal marito per un quadro falso venduto da lei."
+        "ricattata dal marito: gli ha venduto un quadro falso."
       ]
     },
     {
@@ -101,9 +101,9 @@
       "personaggi": [],
       "scena": "Schema del tempo a due binari: vedi Tempo.tsx.",
       "sottotitoli": [
-        "Intanto si scopre cosa cerca Sator: l'Algoritmo,",
+        "Intanto si scopre che Sator cerca l'Algoritmo,",
         "una macchina in nove pezzi che inverte il mondo intero.",
-        "Noi, il loro passato, spariremmo come una lavagna cancellata.",
+        "Così noi, il passato, spariremmo come una lavagna cancellata.",
         "Il futuro lo vuole per sfuggire al clima rovinato."
       ]
     },
@@ -129,7 +129,7 @@
       "sottotitoli": [
         "Prima, mentre rubano un pezzo dell'Algoritmo, Sator spara a Kat:",
         "il proiettile è invertito: la ferita si cura solo all'indietro.",
-        "Così la porta nel tornello e torna indietro fino a Oslo,",
+        "Così l'eroe la inverte nel tornello e torna indietro a Oslo,",
         "e scopre: l'uomo mascherato era lui, invertito."
       ]
     },
@@ -140,9 +140,9 @@
       "personaggi": [],
       "scena": "Schema del tempo a due binari: vedi Tempo.tsx.",
       "sottotitoli": [
-        "Infine Tenet attacca il covo con due squadre:",
+        "Infine Tenet attacca il covo dell'Algoritmo con due squadre:",
         "una avanti nel tempo, una indietro: come una tenaglia.",
-        "Intanto Kat, in quel giorno, distrae Sator:",
+        "Intanto Kat, in Vietnam, distrae Sator:",
         "vorrebbe ucciderlo, ma se muore prima, l'Algoritmo scatta."
       ]
     },
