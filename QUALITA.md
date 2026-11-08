@@ -86,3 +86,42 @@ leggono solo questo file e quello del film. Un film nuovo aggiunge il suo file q
 - Inception (Spiegato semplice, schema): `qualita/inception.md`
 - Bohemian Rhapsody: `qualita/bohemian-rhapsody.md`
 - Gli anni (883): `qualita/gli-anni.md`
+
+## 10. Lista di controllo comune (chi disegna e revisore immagini)
+
+La stessa lista, sugli stessi fotogrammi, per chi disegna (dopo ogni scena, BRIEF-SCENA §5) e per il revisore
+(`.claude/agents/revisore-immagini.md`): così il revisore trova poco, e un difetto lo trova chi disegna mentre la scena
+è ancora aperta. Fotogrammi: `node scripts/pacchetto.mjs <film> --capitoli <id>` (in `out/revisione/<film>/`).
+
+**Parte automatica** (`misure.md` del pacchetto, da `scripts/strumenti/misure.mjs`, avvisi stampati anche a schermo).
+Le soglie sono tarate sui film già approvati; un avviso non blocca, ma va guardato nel fotogramma e spiegato o corretto.
+- metà bassa (y 1500–1920) quasi uniforme → manca un primo piano che tocca il bordo;
+- poco dettaglio tra y 660 e 1260 → inquadratura vuota, oggetto chiave mancante o troppo piccolo;
+- quasi niente cambia tra due fotogrammi vicini (metà capitolo) → mancano particelle o piccole animazioni;
+- immagine quasi uguale a inizio e fine capitolo → camera e parallasse non si vedono;
+- nessuna frase (dalla seconda) porta un cambiamento visibile → evento invisibile;
+- copertina: fotogramma 0 scuro (parte dal nero), oltre un quarto dell'immagine che cambia tra 0 e 1 s (dissolvenza:
+  il fotogramma 0 non è completo), contrasto basso in miniatura.
+
+**Parte da guardare** (per ogni capitolo, sui PNG del pacchetto; copertina e finale come scene a sé):
+1. Criteri del §8: sfondo e primo piano che si spostano in misura diversa tra il primo e l'ultimo fotogramma, una fonte
+   di luce con alone ben visibile, almeno 3 dettagli secondari, particelle in movimento. Grana, vignettatura e velatura
+   sono comuni (Finish): una volta sola. Metà bassa mai vuota.
+2. Nessun personaggio umano, nemmeno sagome o mani; animali solo generici. Copertina e finale originali, non simili alle
+   locandine ufficiali; niente loghi o marchi.
+3. L'immagine racconta quello che dice la voce in quel momento (`tempi.md` del pacchetto: frase per frase).
+4. Leggibilità: titolo nel punto più leggibile, su una zona calma; sottotitoli tra y 1270 e 1490 su fascia scura;
+   nessun testo nei primi 250 px e negli ultimi 420 px né oltre x 900 da y ≈ 800 in giù; testi e oggetti chiave tra
+   x 120 e 960; titolo della locandina tutto dentro; nessun elemento importante coperto da titolo o sottotitoli.
+5. Errori tecnici: oggetti tagliati male ai bordi, buchi nello sfondo durante la camera, sfarfallii, elementi che
+   compaiono o spariscono di colpo, trasparenze sbagliate (se si sospetta, due fotogrammi vicini, es. 4,0 e 4,1 s).
+6. Proporzioni e appoggi credibili: niente oggetti che galleggiano o poggiano sul nulla, vetri e riempimenti che seguono
+   la sagoma della cornice, prospettive che reggono, oggetti in scala con porte e mobili, animali plausibili.
+7. Coerenza tra scene: gli elementi riusati (oggetti comuni in `Comuni.tsx`) uguali e corretti ovunque.
+8. Finale con «Metti like» / «Segui la pagina» e «Commenta con … che vorresti.»
+9. Copertina come miniatura e aggancio (CLAUDE.md, «Formato»): fotogramma 0 già completo, leggibile ridotto a 270×480,
+   titolo grande nella zona sicura, contrasto forte, nei primi 3 secondi un motivo per restare.
+10. La lista «Errori già fatti» di BRIEF-SCENA §4, punto per punto.
+
+Ogni difetto che il revisore trova e che non è in questa lista si aggiunge a BRIEF-SCENA §4; se si può misurare sui
+fotogrammi, anche a `scripts/strumenti/misure.mjs` (con la soglia tarata sui film approvati).

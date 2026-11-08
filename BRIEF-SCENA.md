@@ -110,21 +110,23 @@ funzione pura di `t`, seme, `id`, niente filtri) e mettilo nel catalogo. Il rest
 - **Eventi fuori tempo.** Gli istanti degli eventi si scrivono con `griglia(...)`, così cadono sul battito della musica.
 - **Props non JSON.** Le composizioni ricevono solo lo slug: non passare componenti o funzioni come props.
 
-## 5. Verifica (due fotogrammi bastano), e controllo da sé prima dei revisori
-In PowerShell (Node/ffmpeg non sono nel PATH di Bash):
+## 5. Verifica di ogni scena: la stessa lista del revisore (QUALITA §10)
+Finita una scena, prima di passare alla successiva, si controlla con gli stessi fotogrammi e la stessa lista del
+revisore immagini: così i difetti si trovano mentre la scena è ancora aperta e il revisore finale trova poco.
 ```
-$env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
 npx tsc --noEmit
-node scripts/prova.mjs <film> <id> <secondo-evento> <secondo-tranquillo>
+node scripts/pacchetto.mjs <film> --capitoli <id>
 ```
-In un ambiente cloud (Linux, Node e ffmpeg già nel PATH) basta indicare il Chromium installato:
-`REMOTION_BROWSER=/opt/pw-browsers/chromium-*/chrome-linux/chrome node scripts/prova.mjs <film> <id> <secondi…>`
-(i secondi sono relativi all'inizio del capitolo).
-- Guarda i PNG in `out/prova/` con lo strumento di lettura immagini: uno nel momento dell'evento principale
-  (lampo, oggetto che entra, scritta), uno in un momento tranquillo con un sottotitolo lungo a schermo.
-- Controlla i criteri di QUALITA §8 e la lista del §4 (punto per punto, è la lista di ciò che i revisori trovano più
-  spesso). Correggi e riguarda **solo** se qualcosa non va:
-  di solito basta un giro di correzioni.
+In un ambiente cloud (Linux, Node e ffmpeg già nel PATH) indicare il Chromium installato e, dietro il proxy, ignorare
+i certificati: `REMOTION_BROWSER=/opt/pw-browsers/chromium-*/chrome-linux64/chrome REMOTION_IGNORA_CERTIFICATI=1`.
+In PowerShell, prima: `$env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')`.
+- Leggi gli avvisi di `out/revisione/<film>/misure.md` (stampati anche a schermo): ognuno si guarda nel fotogramma e si
+  corregge, o si scrive perché va bene così (lo si dice poi al revisore).
+- Guarda `out/revisione/<film>/<id>.png` (1 s, eventi della 2ª e 3ª frase, fine) con lo strumento di lettura immagini e
+  passa la lista di QUALITA §10, punto per punto, con `tempi.md` accanto (cosa dice la voce in ogni fotogramma).
+- Un momento non coperto dal pacchetto (un evento su un'altra frase): `npm run prova -- <film> <id> <secondi…>`.
+- Correggi e rifai il pacchetto **solo** del capitolo toccato; di solito basta un giro.
+- Copertina e finale: `--capitoli copertina,finale`, giudicate come scene a sé (QUALITA §10, punti 8–9).
 - Video del capitolo con musica: `npm run render -- <film> <id>`.
 
 ## 6. Scene d'esempio (Shutter Island)

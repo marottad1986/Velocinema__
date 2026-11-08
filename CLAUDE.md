@@ -244,6 +244,9 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   affiancati di ogni capitolo nei momenti degli eventi, `tempi.md` (istanti delle frasi) e `livelli.txt`; nel messaggio al
   revisore si indica il pacchetto e, per ogni scena, gli eventi agganciati a ogni frase. Il revisore parte da lì e fa
   altri fotogrammi o misure solo se ha un dubbio. Prima ancora, il controllo da sé di BRIEF-SCENA §5 e di «Musica».
+  Chi disegna e il revisore immagini usano la stessa lista (QUALITA.md §10) sugli stessi fotogrammi: chi disegna la passa
+  dopo ogni scena (`pacchetto.mjs --capitoli <id>`, con gli avvisi automatici di `misure.md`), così il revisore finale
+  trova poco. I difetti nuovi trovati dal revisore si aggiungono alla lista (BRIEF-SCENA §4 o `scripts/strumenti/misure.mjs`).
   La pull request riporta i verdetti; si unisce solo con controlli verdi e revisori APPROVATO (o con i punti aperti
   spiegati nella pull request).
 - Secondo passaggio dei revisori: solo se dopo il primo si è modificato qualcosa, e solo sulle parti modificate (le scene
@@ -259,7 +262,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - `src/scenes/<film>/<Scena>.tsx`: una scena per capitolo; `index.ts` mappa id capitolo → componente + posizione titolo.
 - `src/components/ChapterOverlay.tsx`: barra, etichetta, titolo, sottotitoli. `src/lib/anim.ts`: camera/parallasse e utilità del tempo. `src/lib/fx.tsx`: grana, vignettatura, velatura, gradienti.
 - Le props delle composizioni devono essere JSON (si passa lo slug del film, non l'oggetto).
-- Comandi: `node scripts/pacchetto.mjs <film> [--capitoli a,b] [--musica]` (materiale per i revisori), `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run dividi -- <film> <file>`, `node scripts/genera-voce.mjs <film>`, `node scripts/strumenti/ascolta-voce.mjs <film> [--capitoli a,b]` (pronuncia e cadenza della voce, report in `out/revisione/<film>/voce.md`), `npm run voce -- <film>`.
+- Comandi: `node scripts/pacchetto.mjs <film> [--capitoli a,b] [--musica]` (materiale per i revisori e misure automatiche in `misure.md`), `npm run studio` (anteprima, senza musica), `npm run render -- <film> [capitolo]`, `npm run prova -- <film> <capitolo> [secondi...]` (PNG in `out/prova/`), `npm run musica -- <film>`, `npm run dividi -- <film> <file>`, `node scripts/genera-voce.mjs <film>`, `node scripts/strumenti/ascolta-voce.mjs <film> [--capitoli a,b]` (pronuncia e cadenza della voce, report in `out/revisione/<film>/voce.md`), `npm run voce -- <film>`.
 - Audio: `scripts/musica.mjs`, `scripts/voce.mjs`, `scripts/genera-voce.mjs`, `scripts/audio/` (sintetizzatore, spartiti, tempi dal JSON e helper ffmpeg in `film.mjs`).
 
 ## Tecnologia suggerita

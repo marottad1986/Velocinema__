@@ -21,26 +21,11 @@ ChapterOverlay, o leggendo i commenti delle scene). Guardali con Read. Guarda an
 Sfarfallii e buchi durante i movimenti di camera non si vedono dai fotogrammi fermi: se sospetti un problema,
 rendi il capitolo (`npm run render -- <film> <capitolo>`) e controlla due fotogrammi vicini (es. 4,0 e 4,1 s).
 
-Controlla per ogni capitolo:
-1. Criteri di accettazione di QUALITA.md: sfondo e primo piano che si spostano in misura diversa tra il primo e
-   l'ultimo fotogramma, una fonte di luce con alone ben visibile, almeno 3 dettagli secondari, particelle in movimento.
-   Grana, vignettatura e velatura sono comuni a tutte le scene (Finish): controllale una volta sola.
-   Metà bassa (y 1500–1920) mai vuota: un primo piano che tocca il bordo (BRIEF-SCENA, «Errori già fatti»).
-2. Nessun personaggio umano, nemmeno sagome o mani; animali solo generici. Copertina e finale originali, non simili
-   alle locandine ufficiali; niente loghi o marchi.
-3. L'immagine racconta quello che dice la voce in quel momento (confronta con i sottotitoli del JSON).
-4. Leggibilità: titolo nel punto più leggibile, sottotitoli tra y 1270 e 1490 su fascia scura, nessun testo nei primi
-   250 px e negli ultimi 420 px né oltre x 900 da y ≈ 800 in giù (icone delle app a destra); testi e oggetti chiave tra x 120 e 960
-   (TikTok taglia i lati); titolo della locandina tutto dentro, senza lettere tagliate; nessun elemento importante coperto da titolo o sottotitoli.
-5. Errori tecnici: oggetti tagliati male ai bordi, buchi nello sfondo durante la camera, sfarfallii, elementi che
-   compaiono o spariscono di colpo, trasparenze sbagliate.
-6. Proporzioni e appoggi credibili: niente oggetti che galleggiano o poggiano sul nulla, vetri e riempimenti che
-   seguono la sagoma della cornice, prospettive che reggono (scacchiere, pavimenti), animali con anatomia plausibile.
-7. Coerenza tra scene: gli elementi riusati (castello, oggetti comuni in Comuni.tsx) sono uguali e corretti ovunque.
-8. Finale con «Metti like» / «Segui la pagina» e l'invito «Commenta con … che vorresti.»
-9. Copertina come miniatura e aggancio (CLAUDE.md, «Formato»): il fotogramma 0 è già la copertina completa (niente
-   nero, dissolvenza o sigla prima), leggibile anche ridotta a miniatura (prova a 270×480), titolo grande nella zona
-   sicura, contrasto forte; nei primi 3 secondi c'è un motivo per restare. Giudicala come una scena a sé.
+Controlla per ogni capitolo la lista comune di QUALITA.md §10, la stessa che chi disegna ha già passato dopo ogni
+scena: la parte automatica (`misure.md` del pacchetto: guarda nel fotogramma ogni avviso e la spiegazione di chi ha
+disegnato, se c'è) e i punti 1–10 da guardare. Visto che la lista è già stata passata, cerca soprattutto ciò che a chi
+ha scritto il codice sfugge: giudica solo da quello che si vede. Se trovi un difetto che non è nella lista, scrivilo
+a parte («Da aggiungere alla lista»), così entra in BRIEF-SCENA §4 o nelle misure.
 
 Formato della risposta: per ogni capitolo «OK» oppure l'elenco dei problemi con il fotogramma (PNG), cosa si vede e la
 correzione proposta (file e componente). Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.
