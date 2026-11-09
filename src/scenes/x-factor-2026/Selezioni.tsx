@@ -92,7 +92,7 @@ export const Selezioni: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
                 {on > 0.01 && <Glow id={`sl-si${i}`} x={XS[i] - 30} y={760} r={110} t={t} color={VERDE} amp={0.1} rate={5} opacity={0.7 * on} />}
                 {/* palette: verde (sì) che si alza, rossa (no) ferma */}
                 <g transform={`translate(${XS[i] + 62} 770)`}>
-                  <g opacity={1 - Math.min(1, pal)} transform={`translate(0 ${lerp(0, 60, Math.min(1, pal))})`}>
+                  <g opacity={(1 - Math.min(1, pal)) * (1 - si[i])} transform={`translate(0 ${lerp(0, 60, Math.min(1, pal))})`}>
                     <path d="M16 0 V-70" stroke="#C8B89A" strokeWidth="8" />
                     <circle cx="16" cy="-92" r="26" fill="#E8505B" stroke={K} strokeWidth="6" />
                   </g>

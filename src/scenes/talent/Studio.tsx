@@ -262,7 +262,7 @@ export const Foschia: React.FC<{ id: string; t: number; y: number; x?: number; c
 // ─────────────────────────────── IL CONCORRENTE: L'ASTA ───────────────────────────────
 
 const parti = (nome: string) => {
-  if (nome.length <= 11 || !nome.includes(' ')) return [nome];
+  if (nome.length <= 10 || !nome.includes(' ')) return [nome];
   const i = nome.indexOf(' ', Math.floor(nome.length / 2) - 3);
   const k = i > 0 ? i : nome.indexOf(' ');
   return [nome.slice(0, k), nome.slice(k + 1)];

@@ -19,5 +19,5 @@ export const X_FACTOR_2026_SCENES: Record<string, SceneDef> = {
   ripescaggio: { Component: Ripescaggio, title },
   'live-2': { Component: makeBallottaggio({ live: 2, id: 'b2' }), title },
   'live-3': { Component: makeBallottaggio({ live: 3, id: 'b3', jukebox: true }), title },
-  'chi-resta': { Component: makeTabellone({ dopoLive: 3, prossimo: 'LIVE 4 · GIOVEDÌ 12 NOVEMBRE', avviso: 'ESCONO IN 3' }), title: { top: 392, size: 74, width: 900 } },
+  'chi-resta': { Component: makeTabellone({ dopoLive: 3, prossimo: 'LIVE 4 · 12 NOVEMBRE', avviso: 'ESCONO IN 3' }), title: { top: 392, size: 74, width: 900 } },
 };

@@ -25,4 +25,4 @@ Cose da controllare a ogni episodio (gli errori già visti):
 - Come funziona una serata dal vivo?: due turni, telefono del televoto, le due aste avanti sotto i fasci rossi, «1 VOTO» / «3 VOTI».
 - Ballottaggi (Live 1–3): data sulla parete, nomi, gettoni dei giudici sopra l'asta votata, asta spenta e barrata, pedana di chi esce sul fondo (Live 3 con il jukebox della serata di vecchie canzoni, Live 1 con il microfono dorato).
 - Chi rientra in gara?: «RIPESCAGGIO», due aste col pass, corsa delle barre, cartellino di Teo Bok che diventa corallo, il posto di Alice che si riaccende col pass.
-- Chi è ancora in gara?: tabellone a quattro squadre, numeri dei rimasti, riga della prossima puntata, bollino «ESCONO IN 3».
+- Chi è ancora in gara?: tabellone a quattro squadre, numeri dei rimasti, riga della prossima puntata a sinistra («LIVE 4 · 12 NOVEMBRE»), bollino «ESCONO IN 3» a destra senza coprirla.

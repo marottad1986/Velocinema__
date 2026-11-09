@@ -114,10 +114,10 @@ export const makeTabellone = (opz: { dopoLive: number; prossimo: string; avviso:
             })}
             {/* riga in basso: la prossima puntata */}
             <rect x={BX + 20} y={BY + BH - 78} width={BW - 40} height="60" rx="12" fill="#06040C" stroke="#2A2244" strokeWidth="4" />
-            <text x={540} y={BY + BH - 36} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="32" letterSpacing="5" fill="#F6F2EA" opacity={piede}>{prossimo}</text>
+            <text x={BX + 50} y={BY + BH - 36} textAnchor="start" fontFamily={SANS} fontWeight={800} fontSize="32" letterSpacing="5" fill="#F6F2EA" opacity={piede}>{prossimo}</text>
             {/* bollino d'oro */}
             {oro > 0.01 && (
-              <g transform={`translate(540 ${BY + BH - 6}) rotate(-4) scale(${oro})`}>
+              <g transform={`translate(${BX + BW - 170} ${BY + BH - 48}) rotate(-4) scale(${0.72 * oro})`}>
                 <Glow id={`${id}-og`} x={0} y={0} r={190} t={t} color={ORO} amp={0.1} rate={5} opacity={0.6} />
                 <rect x="-185" y="-46" width="370" height="92" rx="46" fill={ORO} stroke={K} strokeWidth="7" />
                 <text y="16" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="44" letterSpacing="3" fill={K}>{avviso}</text>
