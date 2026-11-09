@@ -48,6 +48,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - Gli anni (883): tramonto caldo di provincia (#E8913A, opacità 10%), blu sera nelle scene di notte (#1E2448).
   - Breaking Bad (stagione 1): ocra caldo del deserto di giorno (#D8A040, opacità 10%), blu notte di periferia (#142235), bruno negli interni chiusi (#4A3A1E), rosso nei tramonti di pericolo (#8A3A2A); unico colore deciso il giallo-oro (#F0B53A) sui cristalli e sugli oggetti chiave.
   - Il sesto senso: fredda azzurro-grigia di Filadelfia (#22303E di notte, #3A4450 di giorno, opacità 12–14%); unico colore deciso il rosso (#D0342C) sugli oggetti toccati dall'aldilà.
+  - X Factor 2026 (talent spiegati): viola notte da studio televisivo (#2A1E4A, opacità 12%); colori delle squadre sulle luci, oro solo sull'oggetto chiave.
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
 
@@ -90,3 +91,4 @@ leggono solo questo file e quello del film. Un film nuovo aggiunge il suo file q
 - Tenet (Spiegato semplice, schema): `qualita/tenet.md`
 - Bohemian Rhapsody: `qualita/bohemian-rhapsody.md`
 - Gli anni (883): `qualita/gli-anni.md`
+- X Factor 2026 (talent spiegati, studio e ballottaggi riusabili): `qualita/x-factor-2026.md`
