@@ -215,7 +215,7 @@ export default (mix, T) => {
   const cade = E('fede', 1, 1.4), gelo = E('fede', 2, 0.6);
   // il video delle nozze in maggiore, che si incrina in minore quando la fede cade
   harp(B(T.fede), cade, { vel: 42, gain: 0.22, chords: CHM });
-  strings(B(T.fede), cade, { half: true, vel: 44, gain: 0.38, chords: CHM });
+  strings(B(T.fede), cade, { vel: 44, gain: 0.38, chords: CHM });
   motif(B(T.fede), cade, { vel: 44, gain: 0.28, major: true });
   strings(cade, gelo, { half: true, vel: 44, gain: 0.38, k0: 2 });
   suona(mix, 'pianoforte_coda', 83, { t: cade, dur: 1.5, vel: 46, gain: 0.26, rev: 0.6, release: 1.2 }); // Fede.tsx: la fede scivola
