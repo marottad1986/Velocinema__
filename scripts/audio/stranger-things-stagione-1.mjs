@@ -220,9 +220,9 @@ export default (mix, T) => {
     clip(mix, 'scariche', { t: tOut - 0.55, da: 1.2, durata: 0.2, gain: 0.06, fadeOut: 0.06, rev: 0.25 }); // lo sfarfallio
     clip(mix, 'scariche', { t: tOut - 0.04, da: 2.4, durata: 0.3, gain: 0.1, fadeOut: 0.1, rev: 0.25 }); // la luce si spegne
     timp(tOut, 40, 80, 0.45);
-    trem(tOut + BEAT, cue(id, 2) - tOut - BEAT + 1, [52, 53, 76], { vel: 42, gain: 0.24 });
-    for (let k = 0; k < 6; k++) suona(mix, 'arpa', [40, 47, 52, 55, 59, 64][k], { t: tOut + BEAT + k * 0.12, dur: 2, vel: 44, pan: -0.3 + k * 0.1, rev: 0.6, gain: 0.22, release: 1.2 }); // i cerchi
     const tFlash = G(at(id, c(id, 2) + 1.0));
+    trem(tOut + BEAT, tFlash - tOut - BEAT, [52, 53, 76], { vel: 42, gain: 0.24 }); // chiude prima del flash: un battito pulito dopo il colpo
+    for (let k = 0; k < 6; k++) suona(mix, 'arpa', [40, 47, 52, 55, 59, 64][k], { t: tOut + BEAT + k * 0.12, dur: 2, vel: 44, pan: -0.3 + k * 0.1, rev: 0.6, gain: 0.22, release: 1.2 }); // i cerchi
     pulse(Q(cue(id, 2)), tFlash - 0.1, { vel: 50, gain: 0.26 });
     clip(mix, 'scatti', { t: tFlash - 0.03, da: 1, durata: 0.25, gain: 0.26, fadeOut: 0.08, rev: 0.25, pan: 0.35 }); // il lampo della macchina fotografica
     timp(tFlash, 45, 84, 0.5);
@@ -291,8 +291,8 @@ export default (mix, T) => {
   // ---- aula: le torce che frugano (pulsazione); le torce cadono; la luce del corridoio si spegne e la bava; le crepe; la cenere
   {
     const id = 'aula';
-    pulse(B(T.aula), G(at(id, c(id, 0) + 2.8)) - 0.05, { vel: 56, gain: 0.32 });
-    const tDrop = G(at(id, c(id, 0) + 2.8));
+    pulse(B(T.aula), G(at(id, c(id, 0) + 4.0)) - 0.05, { vel: 56, gain: 0.32 });
+    const tDrop = G(at(id, c(id, 0) + 4.0));
     strings(B(T.aula), tDrop - 0.05, { vel: 46, gain: 0.32, k0: 1 });
     strings(tDrop + BEAT, G(at(id, c(id, 1) + 0.4)) + 0.3, { vel: 46, gain: 0.32, k0: 2 });
     clip(mix, 'metallo_cade', { t: tDrop - 0.03, da: 0.64, durata: 0.9, gain: 0.25, fadeOut: 0.4, rev: 0.3, pan: 0.3 }); // Aula.tsx: le torce cadono

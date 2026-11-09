@@ -51,8 +51,8 @@ export const Aula: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
 
-  const tDrop = griglia(cues[0] + 2.8);
-  const beams = seg(t, cues[0] + 0.3, cues[0] + 0.8) * (1 - seg(t, tDrop - 0.1, tDrop));
+  const tDrop = griglia(cues[0] + 4.0);
+  const beams = seg(t, griglia(cues[0] + 2.6), griglia(cues[0] + 3.1)) * (1 - seg(t, tDrop - 0.1, tDrop));
   const floorTorch = seg(t, tDrop, tDrop + 0.1);
   const tMon = griglia(cues[1] + 0.4);
   const corridor = 1 - seg(t, tMon, tMon + 0.15);
