@@ -21,6 +21,9 @@ Comandi per aprire una sessione: `/manager` (team social media manager) e `/prod
   in piccolo, titolo grande nella zona sicura, contrasto forte. Nei primi 2–3 secondi deve esserci un motivo per
   restare (domanda o promessa nella frase di lancio della voce, un movimento che incuriosisce). Il revisore delle
   immagini controlla il fotogramma 0 e i primi 3 secondi come una scena a sé.
+  Nel fotogramma 0 (la miniatura) non c'è la fascia della frase di lancio né altri sottotitoli: solo immagine, etichetta,
+  titolo e riga del regista. La frase di lancio entra subito dopo (da ~0,4 s, entrata breve di ~0,3 s) e poi resta.
+  Vale per le copertine nuove e per quelle in produzione non ancora disegnate; le copertine già fatte restano come sono.
 - Lingua: italiano.
 
 ## Le due regole più importanti (vincolanti, tutti i contenuti: film, Spiegato semplice, canzoni, quadri, serie)
