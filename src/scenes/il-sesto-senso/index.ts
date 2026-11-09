@@ -7,6 +7,7 @@ import { Nastro } from './Nastro';
 import { Kyra } from './Kyra';
 import { Cassetta } from './Cassetta';
 import { Recita } from './Recita';
+import { Nonna } from './Nonna';
 
 // Scene di Il sesto senso, per id del capitolo (films/il-sesto-senso.json).
 export const IL_SESTO_SENSO_SCENES: Record<string, SceneDef> = {
@@ -17,5 +18,6 @@ export const IL_SESTO_SENSO_SCENES: Record<string, SceneDef> = {
   kyra: { Component: Kyra, title: { top: 392, size: 104, width: 900 } },
   cassetta: { Component: Cassetta, title: { top: 392, size: 104, width: 900 } },
   recita: { Component: Recita, title: { top: 392, size: 104, width: 900 } },
+  nonna: { Component: Nonna, title: { top: 392, size: 104, width: 900 } },
   premio: { Component: Premio, title: { top: 392, size: 104, width: 900 } },
 };
