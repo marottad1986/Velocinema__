@@ -53,7 +53,9 @@ Attività programmata: «In 2 minuti – programmazione della settimana» (`trig
 
 ## Avvisi all'utente su Telegram (vincolante, manager e produzione)
 Gli avvisi arrivano nel gruppo Telegram **in2miniti** via IFTTT: servizio `telegram`, azione `send_message`,
-account `461715660`, chat `-5515136307`, `include_web_page_preview` `"0"`. Il testo accetta solo i tag HTML
+`account_id` `461715660`, campi `chat_id` `"-5515136307"` (il nome del campo è `chat_id`, non `chat`: con un nome
+sbagliato l'azione fallisce), `text` e `include_web_page_preview` `"0"`. Dopo l'invio controllare che la risposta sia
+`success: true` (in caso di dubbio: `get_activity_feed` con `service_slug` `telegram`). Il testo accetta solo i tag HTML
 `b`, `i`, `a`, `br`, `pre`, `code`. Ogni messaggio costa 15 crediti IFTTT: solo gli avvisi qui sotto, niente messaggi di stato intermedi.
 Telegram serve solo ad avvisare: l'utente risponde (approvazioni, modifiche) nella chat della sessione, quindi ogni avviso
 dice in quale sessione rispondere. Lo stesso contenuto va mandato **anche nella chat della sessione** (SendUserMessage /

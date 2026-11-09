@@ -19,5 +19,7 @@ Metodo (vincolante, da `CLAUDE.md`):
 7. Pull request con i verdetti dei revisori. Appena il video finale è pronto da controllare, avvisa l'utente su
    Telegram e mandagli il video in questa chat (SendUserFile), come in `SOCIAL.md`, «Avvisi all'utente su Telegram»;
    anche un problema che fa saltare la data va segnalato lì subito. A contenuto unito su main, il video arriva su MEGA.
+   L'avviso «video pronto» è obbligatorio e va mandato prima di chiudere la sessione (anche se l'unione su main è già
+   avvenuta): una produzione non è finita finché l'avviso Telegram non risulta inviato (`success: true`).
 
 Non decidi cosa pubblicare né quando: quello è il compito del team social (`/manager`).
