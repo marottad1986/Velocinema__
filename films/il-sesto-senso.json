@@ -3,6 +3,9 @@
   "regista": "M. Night Shyamalan",
   "anno": 1999,
   "bpm": 72,
+  "pronuncia": {
+    "Kyra": "Kira"
+  },
   "palette": {
     "chiaro": "#ECE8E0",
     "principale": "#4C5A68",
