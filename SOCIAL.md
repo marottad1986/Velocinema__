@@ -111,6 +111,13 @@ Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere
   Interstellar 48.317, Truman Show 36.277, Shutter Island 30.437); rendono poco i film d'atmosfera o d'avventura
   senza mistero (La La Land 2.473, Jurassic Park 1.235). Un commento: «finale inaspettato».
 
+## Richieste dell'utente per la prossima programmazione
+Titoli che l'utente ha chiesto di mettere nella prossima settimana: la domenica si inseriscono nella proposta (giorno e
+formato scelti con i dati) e, a calendario approvato, si tolgono da qui.
+- **Eyes Wide Shut** (Stanley Kubrick, 1999), chiesto il 9 novembre 2026 per la settimana 16–22 novembre. Formato da
+  scegliere: film (mistero e finale aperto) o Spiegato semplice (trama ambigua da capire). Stesso regista di Shining
+  (uscito venerdì 13): meglio non metterli troppo vicini.
+
 ## Riserva di titoli (da riordinare con i dati)
 - **Film con colpo di scena:** Il sesto senso, Fight Club, The Prestige, Seven, I soliti sospetti, Memento, Matrix,
   Parasite, Scappa – Get Out, Il silenzio degli innocenti, Psyco.
