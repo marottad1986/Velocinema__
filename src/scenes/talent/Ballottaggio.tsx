@@ -4,7 +4,7 @@ import { Glow, NearMotes } from '../../lib/elements';
 import { SANS } from '../../lib/fonts';
 import { Finish, FxDefs } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Americana, Asta, Faro, Foschia, Gettone, K, Lampada, ORO, Parete, Pavimento, RiflessoAsta, Spia, TalentDefs, TINTA, Torre } from './Studio';
+import { Americana, Asta, Faro, Foschia, Gettone, K, Lampada, ORO, Parete, Pavimento, RiflessoAsta, Spia, Cavi, TalentDefs, TINTA, Torre } from './Studio';
 import { CONCORRENTI, concorrente, GIUDICI, giudice, LIVE, type GiudiceId } from './x-factor-2026';
 
 // Il ballottaggio di un Live (riusabile in ogni episodio, TALENT.md): le due aste meno votate sotto due fasci rossi, con
@@ -122,7 +122,7 @@ export const makeBallottaggio = (opz: { live: number; id?: string; fondo?: 'squa
               </g>
             )}
             {fondo === 'conduttrice' && <Asta id={id} t={t} x={540} y={1050} s={0.26} colore={ORO} oro cartellino={false} luce={0.8} />}
-            {jukebox && <Jukebox id={id} t={t} x={905} y={1058} s={0.5} on={data} />}
+            {jukebox && <Jukebox id={id} t={t} x={880} y={1058} s={0.46} on={data} />}
           </g>
 
           {/* PIANO 2 — le due aste del ballottaggio sotto i fasci rossi */}
@@ -147,8 +147,8 @@ export const makeBallottaggio = (opz: { live: number; id?: string; fondo?: 'squa
               perAsta[c.id].map((gid, k, arr) => {
                 const g = giudice(gid);
                 const i = ordine.indexOf(gid);
-                const passo = 128, meta = ((arr.length - 1) * passo) / 2 + 62;
-                const cx = Math.min(960 - meta, Math.max(120 + meta, xOf(c)));
+                const passo = 124, meta = ((arr.length - 1) * passo) / 2 + 62;
+                const cx = Math.min(930 - meta, Math.max(150 + meta, xOf(c)));
                 return <Gettone key={gid} x={cx + (k - (arr.length - 1) / 2) * passo} y={772} nome={g.corto} colore={g.colore} o={voti[i]} s={0.72} />;
               }),
             )}
@@ -164,6 +164,7 @@ export const makeBallottaggio = (opz: { live: number; id?: string; fondo?: 'squa
             ))}
           </g>
           <g transform={L(1.2)}>
+            <Cavi y={1840} />
             <Spia id={id} x={130} y={1780} s={1.1} colore={ROSSO} />
             <Spia id={id} x={950} y={1780} s={1.1} colore={ROSSO} flip />
           </g>

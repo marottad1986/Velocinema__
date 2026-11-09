@@ -13,7 +13,9 @@ import { GIUDICI } from '../talent/x-factor-2026';
 // Piani: parete di led e americana (0,25) · palco e microfono (0,45) · tavolo e poltrone (0,7) · telecamera e spia (1,2) · particelle (1,7)
 
 const COLORI = GIUDICI.map((g) => g.colore);
-const XS = [180, 420, 660, 900];
+const XS = [240, 420, 600, 780];
+// ordine in cui la voce nomina i giudici (frase 3): Gabbani, Paola Iezzi, Jake La Furia, Irama
+const ORDINE_VOCE = [0, 2, 1, 3];
 
 export const ComeFunziona: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const cam = camera(t, dur);
@@ -22,7 +24,7 @@ export const ComeFunziona: React.FC<SceneProps> = ({ t, dur, cues, griglia }) =>
   const tHost = griglia(cues[1] + 0.3);
   const host = eo(seg(t, tHost, tHost + 0.5));
   const tChairs = cues[2];
-  const sedia = GIUDICI.map((_, i) => eob(seg(t, griglia(tChairs + 0.25 + i * 0.75), griglia(tChairs + 0.25 + i * 0.75) + 0.4), 1.4));
+  const sedia = GIUDICI.map((_, i) => eob(seg(t, griglia(tChairs + 0.25 + ORDINE_VOCE[i] * 0.75), griglia(tChairs + 0.25 + ORDINE_VOCE[i] * 0.75) + 0.4), 1.4));
   const tTeams = griglia(cues[3] + 0.2);
   const squadre = GIUDICI.map((_, i) => eo(seg(t, tTeams + i * 0.25, tTeams + i * 0.25 + 0.6)));
   const luce = lerp(0.35, 1, accende);
@@ -49,15 +51,15 @@ export const ComeFunziona: React.FC<SceneProps> = ({ t, dur, cues, griglia }) =>
           <path d="M330 990 L360 950 H720 L750 990 Z" fill="#1C1630" stroke="#07050C" strokeWidth="5" />
           <path d="M360 950 L385 915 H695 L720 950 Z" fill="#241C3C" stroke="#07050C" strokeWidth="5" />
           <path d="M362 952 H718 M387 917 H693" stroke={ORO} strokeWidth="3" opacity={0.3 + 0.5 * luce} />
+          {/* fasci delle squadre: dalle poltrone verso il palco */}
+          {GIUDICI.map((g, i) => (
+            <Faro key={g.id} id={`cf-s${i}`} t={t} x={300 + i * 160} y={1050} da={{ x: XS[i], y: 1180 }} colore={g.colore} o={squadre[i]} largo={170} polvere={false} />
+          ))}
           <Faro id="cf-f0" t={t} x={540} y={1010} da={{ x: 1060, y: 700 }} colore="#FFF2D0" o={0.25 + 0.75 * accende} largo={240} />
           <Faro id="cf-fh" t={t} x={540} y={1010} da={{ x: 20, y: 700 }} colore={ORO} o={host} largo={200} polvere={false} />
           <RiflessoAsta t={t} x={540} y={1012} s={0.42} colore={ORO} o={host} />
           <Asta id="cf" t={t} x={540} y={1010} s={0.42} colore={ORO} oro luce={0.4 + 0.6 * host} cartellino={false} />
           <Cartellino x={540} y={1024} nome="GIORGIA" colore={ORO} oro nota="CONDUCE" s={0.62} w={260} o={host} />
-          {/* fasci delle squadre: dalle poltrone verso il palco */}
-          {GIUDICI.map((g, i) => (
-            <Faro key={g.id} id={`cf-s${i}`} t={t} x={300 + i * 160} y={1050} da={{ x: XS[i], y: 1180 }} colore={g.colore} o={squadre[i]} largo={170} polvere={false} />
-          ))}
           <Spia id="cf" x={300} y={1080} s={0.42} colore={ORO} />
           <Spia id="cf" x={780} y={1080} s={0.42} colore={ORO} flip />
           <Foschia id="cf-fo" t={t} y={1090} o={0.6 + 0.4 * accende} />
@@ -70,7 +72,7 @@ export const ComeFunziona: React.FC<SceneProps> = ({ t, dur, cues, griglia }) =>
           {GIUDICI.map((g, i) => (
             <g key={g.id}>
               <Poltrona id="cf" t={t} x={XS[i]} y={1335} s={0.52} colore={g.colore} luce={sedia[i]} ph={i} />
-              <Cartellino x={XS[i]} y={1165} nome={g.nome} colore={g.colore} s={0.62 + 0.08 * (1 - Math.min(1, sedia[i]))} w={300} o={Math.min(1, sedia[i])} />
+              <Cartellino x={XS[i]} y={1165} nome={g.nome} colore={g.colore} s={0.62 + 0.08 * (1 - Math.min(1, sedia[i]))} w={250} o={Math.min(1, sedia[i])} />
             </g>
           ))}
           <rect x="-200" y="1335" width="1480" height="700" fill="#06040A" />

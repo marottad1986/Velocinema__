@@ -92,9 +92,11 @@ export const Selezioni: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
                 {on > 0.01 && <Glow id={`sl-si${i}`} x={XS[i] - 30} y={760} r={110} t={t} color={VERDE} amp={0.1} rate={5} opacity={0.7 * on} />}
                 {/* palette: verde (sì) che si alza, rossa (no) ferma */}
                 <g transform={`translate(${XS[i] + 62} 770)`}>
-                  <path d="M16 0 V-70" stroke="#C8B89A" strokeWidth="8" />
-                  <circle cx="16" cy="-92" r="26" fill="#E8505B" stroke={K} strokeWidth="6" />
-                  <g transform={`translate(-14 ${-lerp(0, 90, pal)}) rotate(${lerp(14, -6, pal)})`}>
+                  <g opacity={1 - Math.min(1, pal)} transform={`translate(0 ${lerp(0, 60, Math.min(1, pal))})`}>
+                    <path d="M16 0 V-70" stroke="#C8B89A" strokeWidth="8" />
+                    <circle cx="16" cy="-92" r="26" fill="#E8505B" stroke={K} strokeWidth="6" />
+                  </g>
+                  <g opacity={Math.min(1, pal * 3)} transform={`translate(-14 ${-lerp(-60, 90, pal)}) rotate(${lerp(14, -6, pal)})`}>
                     <path d="M0 0 V-80" stroke="#C8B89A" strokeWidth="8" />
                     <circle cx="0" cy="-104" r="32" fill={VERDE} stroke={K} strokeWidth="6" />
                     <path d="M-12 -104 l9 10 l16 -20" stroke={K} strokeWidth="7" fill="none" strokeLinecap="round" />

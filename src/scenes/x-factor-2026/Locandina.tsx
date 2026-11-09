@@ -82,7 +82,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
       <Sfondo id="xc" t={t} dur={dur} />
       <div style={{ position: 'absolute', left: 120, top: 280, width: 840, fontFamily: SANS, color: P.chiaro }}>
         <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.chiaro, textShadow: `0 2px 0 ${P.scuro}` }}>TALENT SPIEGATI</p>
-        <h1 style={{ margin: '4px 0 0', fontFamily: ANTON, fontWeight: 400, fontSize: 150, lineHeight: 0.95, color: P.chiaro, whiteSpace: 'nowrap',
+        <h1 style={{ margin: '4px 0 0', fontFamily: ANTON, fontWeight: 400, fontSize: 146, lineHeight: 0.95, color: P.chiaro, whiteSpace: 'nowrap',
           textShadow: `0 7px 0 ${P.scuro}, 0 0 50px ${P.scuro}`, transform: `scale(${breath})`, transformOrigin: 'left center' }}>
           X FACTOR <span style={{ color: P.accento }}>2026</span>
         </h1>

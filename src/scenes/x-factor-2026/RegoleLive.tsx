@@ -4,7 +4,7 @@ import { NearMotes } from '../../lib/elements';
 import { SANS } from '../../lib/fonts';
 import { Finish, FxDefs } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Americana, Asta, Faro, Foschia, K, Lampada, ORO, Parete, Pavimento, RiflessoAsta, Spia, TalentDefs, Telefono, TINTA, Torre } from '../talent/Studio';
+import { Americana, Asta, Faro, Foschia, K, Lampada, ORO, Parete, Pavimento, RiflessoAsta, Spia, Cavi, TalentDefs, Telefono, TINTA, Torre } from '../talent/Studio';
 import { GIUDICI } from '../talent/x-factor-2026';
 
 // Come funziona una serata dal vivo? Sei aste senza nome in due gruppi (i due turni) sul fondo del palco. Eventi: frase 1
@@ -18,7 +18,7 @@ const NEUTRO = '#C8B8FF';
 const ROSSO = '#FF4A5A';
 const FONDO = [150, 285, 420, 660, 795, 930];
 const SCELTE = [1, 4]; // le meno votate di ogni turno
-const DAVANTI = [370, 710];
+const DAVANTI = [370, 728];
 const LX = [150, 285, 795, 930];
 
 export const RegoleLive: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
@@ -72,7 +72,7 @@ export const RegoleLive: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             const sc = j >= 0 ? lerp(0.34, 0.44, avanti) : 0.34;
             const rosso = j >= 0 ? segno : 0;
             const fuori = j === 1 ? spegne : 0;
-            const luce = lerp(0.2, 1, acc) * (j < 0 ? 1 - 0.55 * avanti : 1);
+            const luce = lerp(0.2, 1, acc) * (j < 0 ? 1 - 0.8 * avanti : 1);
             return (
               <g key={k}>
                 <RiflessoAsta t={t} x={x} y={y + 4} s={sc} colore={rosso > 0.5 ? ROSSO : NEUTRO} o={luce} />
@@ -81,18 +81,6 @@ export const RegoleLive: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             );
           })}
           {/* conteggio dei voti dei giudici sulle due aste del ballottaggio */}
-          {[0, 1].map((j) => {
-            const n = j === 0 ? (voti[0] > 0.5 ? 1 : 0) : [1, 2, 3].filter((i) => voti[i] > 0.5).length;
-            const o = j === 0 ? voti[0] : voti[1];
-            return (
-              <g key={j} opacity={o}>
-                <rect x={DAVANTI[j] - 95} y={1196} width="190" height="58" rx="29" fill={j === 1 ? ROSSO : '#2A2440'} stroke={K} strokeWidth="5" />
-                <text x={DAVANTI[j]} y={1237} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" fill="#F6F2EA">
-                  {Math.max(1, n)} {Math.max(1, n) === 1 ? 'VOTO' : 'VOTI'}
-                </text>
-              </g>
-            );
-          })}
           <Foschia id="rl-fo" t={t} y={1120} />
         </g>
 
@@ -103,6 +91,19 @@ export const RegoleLive: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             <Lampada key={g.id} id="rl" t={t} x={LX[i]} y={1300} s={0.55} colore={g.colore}
               mira={{ x: DAVANTI[i === 0 ? 0 : 1], y: 880 }} voto={voti[i]} />
           ))}
+          {[0, 1].map((j) => {
+            const n = j === 0 ? (voti[0] > 0.5 ? 1 : 0) : [1, 2, 3].filter((i) => voti[i] > 0.5).length;
+            const o = j === 0 ? voti[0] : voti[1];
+            return (
+              <g key={j} opacity={o}>
+                <rect x={DAVANTI[j] - 95} y={1150} width="190" height="58" rx="29" fill={j === 1 ? ROSSO : '#2A2440'} stroke={K} strokeWidth="5" />
+                <text x={DAVANTI[j]} y={1191} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" fill="#F6F2EA">
+                  {Math.max(1, n)} {Math.max(1, n) === 1 ? 'VOTO' : 'VOTI'}
+                </text>
+              </g>
+            );
+          })}
+          <Cavi y={1840} />
           <Spia id="rl" x={120} y={1760} s={1.1} colore={NEUTRO} />
           <Spia id="rl" x={960} y={1760} s={1.1} colore={NEUTRO} flip />
         </g>

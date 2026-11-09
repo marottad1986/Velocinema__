@@ -1,10 +1,10 @@
 import React from 'react';
 import { camera, eio, eo, lerp, seg } from '../../lib/anim';
-import { NearMotes } from '../../lib/elements';
+import { Glow, NearMotes } from '../../lib/elements';
 import { SANS } from '../../lib/fonts';
 import { Finish, FxDefs } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Americana, Asta, Faro, Foschia, K, ORO, Parete, Pavimento, RiflessoAsta, Spia, TalentDefs, Telefono, TINTA, Torre } from '../talent/Studio';
+import { Americana, Asta, Faro, Foschia, K, ORO, Parete, Pavimento, RiflessoAsta, Spia, Cavi, TalentDefs, Telefono, TINTA, Torre } from '../talent/Studio';
 import { giudice } from '../talent/x-factor-2026';
 
 // Chi rientra in gara? Il ripescaggio del primo Live. Sul fondo la pedana di Gabbani con il posto di Alice spento.
@@ -15,7 +15,7 @@ import { giudice } from '../talent/x-factor-2026';
 // Piani: parete e americana (0,25) · pedana di Gabbani (0,4) · palco con le due aste (0,6) · telefono (1,0) · spie (1,2) · particelle (1,7)
 
 const NEUTRO = '#E8DCC0';
-const XA = 300, XB = 780, YB = 1165, SB = 0.46;
+const XA = 330, XB = 770, YB = 1165, SB = 0.46;
 
 export const Ripescaggio: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const cam = camera(t, dur);
@@ -63,7 +63,8 @@ export const Ripescaggio: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => 
           <text x="540" y="1090" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="20" letterSpacing="5" fill={gb.colore}>SQUADRA GABBANI</text>
           <Asta id="rp" t={t} x={440} y={1058} s={0.22} colore={gb.colore} luce={0.9} cartellino={false} ph={1} />
           {/* il posto di Alice: spento, poi l'asta di Teo Bok col pass */}
-          <Asta id="rp" t={t} x={540} y={1058} s={0.22} colore={gb.colore} luce={posto} fuori={1 - posto} pass={posto} cartellino={false} ph={2} />
+          <Glow id="rp-posto" x={540} y={950} r={230} t={t} color={ORO} amp={0.1} rate={4} opacity={0.75 * posto} />
+          <Asta id="rp" t={t} x={540} y={1066} s={0.3} colore={gb.colore} luce={posto} fuori={1 - posto} pass={posto} cartellino={false} ph={2} />
           <Asta id="rp" t={t} x={640} y={1058} s={0.22} colore={gb.colore} luce={0.9} band cartellino={false} ph={3} />
         </g>
 
@@ -90,6 +91,7 @@ export const Ripescaggio: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => 
           )}
         </g>
         <g transform={L(1.2)}>
+          <Cavi y={1840} />
           <Spia id="rp" x={130} y={1780} s={1.1} colore={ORO} />
           <Spia id="rp" x={950} y={1780} s={1.1} colore={ORO} flip />
         </g>

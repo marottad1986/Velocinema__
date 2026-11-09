@@ -4,7 +4,7 @@ import { Glow, NearMotes } from '../../lib/elements';
 import { SANS } from '../../lib/fonts';
 import { Finish, FxDefs } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Americana, Asta, Foschia, K, ORO, Parete, Pavimento, SPENTO, Spia, TalentDefs, TINTA, Torre } from './Studio';
+import { Americana, Asta, Foschia, K, ORO, Parete, Pavimento, SPENTO, Spia, Cavi, TalentDefs, TINTA, Torre } from './Studio';
 import { CONCORRENTI, GIUDICI, stato } from './x-factor-2026';
 
 // «Chi è ancora in gara?» (riusabile in ogni episodio, TALENT.md): il tabellone luminoso appeso sopra il palco, diviso
@@ -117,7 +117,7 @@ export const makeTabellone = (opz: { dopoLive: number; prossimo: string; avviso:
             <text x={540} y={BY + BH - 36} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="32" letterSpacing="5" fill="#F6F2EA" opacity={piede}>{prossimo}</text>
             {/* bollino d'oro */}
             {oro > 0.01 && (
-              <g transform={`translate(540 ${BY + BH + 62}) rotate(-4) scale(${oro})`}>
+              <g transform={`translate(540 ${BY + BH - 6}) rotate(-4) scale(${oro})`}>
                 <Glow id={`${id}-og`} x={0} y={0} r={190} t={t} color={ORO} amp={0.1} rate={5} opacity={0.6} />
                 <rect x="-185" y="-46" width="370" height="92" rx="46" fill={ORO} stroke={K} strokeWidth="7" />
                 <text y="16" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="44" letterSpacing="3" fill={K}>{avviso}</text>
@@ -125,6 +125,7 @@ export const makeTabellone = (opz: { dopoLive: number; prossimo: string; avviso:
             )}
           </g>
           <g transform={L(1.2)}>
+            <Cavi y={1840} />
             <Spia id={id} x={130} y={1780} s={1.1} colore={ORO} />
             <Spia id={id} x={950} y={1780} s={1.1} colore={ORO} flip />
           </g>
