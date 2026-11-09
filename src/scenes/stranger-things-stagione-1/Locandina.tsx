@@ -220,7 +220,7 @@ const BoscoCopertina: React.FC<{ id: string; t: number; dur: number }> = ({ id, 
           })}
           {/* crepe e toppe dell'asfalto */}
           <path d="M700 1500 l40 30 l-10 40 l50 26 M340 1660 l-30 50 l20 30" stroke="#0A0C10" strokeWidth="5" fill="none" opacity=".7" />
-          <path d="M420 1380 h120 v26 h-120 Z" fill="#1E232A" opacity=".8" />
+          <path d="M400 1384 L500 1380 L506 1410 L392 1414 Z" fill="#1E232A" opacity=".8" />
           {/* lampione a destra */}
           <path d="M930 1180 V760 Q930 726 892 726 H812" stroke={K} strokeWidth="16" fill="none" />
           <path d="M930 1180 V760 Q930 726 892 726 H812" stroke="#4A5058" strokeWidth="8" fill="none" />
@@ -318,7 +318,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
         </h1>
         <p style={{ margin: '18px 0 0', fontSize: 40, fontWeight: 800, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>una serie di {film.regista} · {film.anno}</p>
       </div>
-      <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
+      <p style={{ position: 'absolute', left: 120, right: 180, top: 1364, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}E0`, color: P.chiaro, fontFamily: SANS, fontSize: 42, fontWeight: 800, textAlign: 'center',
         opacity: lancio, transform: `translateY(${(1 - lancio) * 16}px)` }}>
         {film.copertina.frase_lancio}
