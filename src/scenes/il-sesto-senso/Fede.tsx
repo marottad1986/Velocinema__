@@ -22,9 +22,9 @@ export const Fede: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const drop = seg(t, fall, fall + 0.45);
   const roll = eo(seg(t, fall + 0.45, fall + 2.4));
   const bounce = Math.abs(Math.sin(seg(t, fall + 0.45, fall + 0.9) * Math.PI * 2)) * 22 * (1 - seg(t, fall + 0.45, fall + 0.9));
-  const ringX = lerp(560, 760, roll);
-  const ringY = drop < 1 ? lerp(1176, 1330, drop * drop) : 1330 - bounce;
-  const ringRot = roll * 540;
+  const ringX = lerp(590, 400, roll);
+  const ringY = drop < 1 ? lerp(1106, 1330, drop * drop) : 1330 - bounce;
+  const ringRot = -roll * 540;
   const cold = eio(seg(t, griglia(cues[2] + 0.6), griglia(cues[2] + 0.6) + 2));
   const glint = Math.max(0, Math.sin(t * 2.4)) * (drop < 1 ? 0.6 : 1);
   const SX = 150, SY = 820, SW = 300, SH = 220;
@@ -103,7 +103,7 @@ export const Fede: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         </g>
 
         {/* PIANO 2 — il divano con lo scialle rosso e la fede sul bordo del cuscino (0,7) */}
-        <g transform={L(0.7)} strokeLinejoin="round">
+        <g transform={L(0.7, 0, -110)} strokeLinejoin="round">
           <Ombra id="fd" x={760} y={1300} rx={330} ry={30} />
           <path d="M480 940 Q480 900 520 900 H1000 Q1040 900 1040 940 V1150 H480 Z" fill="url(#fd-sofa)" stroke={K} strokeWidth="9" />
           {[600, 760, 920].map((x) => <path key={x} d={`M${x} 920 V1130`} stroke="#1A2028" strokeWidth="5" opacity=".6" />)}
@@ -123,7 +123,7 @@ export const Fede: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         </g>
 
         {/* la fede d'oro: scivola, cade, rimbalza e rotola (stesso piano del divano) */}
-        <g transform={L(0.7)}>
+        <g transform={L(0.7, 0, -110)}>
           <Ombra id="fd" x={ringX} y={1342} rx={26 * (drop < 1 ? 0.6 : 1)} ry={6} opacity={drop > 0.6 ? 1 : 0} />
           <g transform={`translate(${ringX} ${ringY}) rotate(${ringRot})`}>
             <ellipse cx="0" cy="0" rx="22" ry="22" fill="none" stroke={K} strokeWidth="14" />
@@ -136,7 +136,7 @@ export const Fede: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
 
         {/* PIANO 3 — nebbia fredda sul pavimento (0,9) */}
         <g transform={L(0.9)}>
-          <Fog id="fd-cold" t={t} y={1330} rx={700} ry={90} color="#BCDCF4" opacity={0.55 * cold} speed={0.5} drift={100} />
+          <Fog id="fd-cold" t={t} y={1230} rx={700} ry={90} color="#BCDCF4" opacity={0.55 * cold} speed={0.5} drift={100} />
           <Glow id="fd-coldglow" x={760} y={1200} r={520} t={t} color="#9CC8F0" amp={0.05} rate={1.5} opacity={0.3 * cold} />
         </g>
 
