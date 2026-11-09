@@ -295,8 +295,8 @@ export default (mix, T) => {
     const tDrop = G(at(id, c(id, 0) + 4.0));
     strings(B(T.aula), tDrop - 0.05, { vel: 46, gain: 0.32, k0: 1 });
     strings(tDrop + BEAT, G(at(id, c(id, 1) + 0.4)) + 0.3, { vel: 46, gain: 0.32, k0: 2 });
-    clip(mix, 'metallo_cade', { t: tDrop - 0.03, da: 0.64, durata: 0.9, gain: 0.25, fadeOut: 0.4, rev: 0.3, pan: 0.3 }); // Aula.tsx: le torce cadono
-    timp(tDrop, 45, 88, 0.5);
+    clip(mix, 'metallo_cade', { t: tDrop - 0.03, da: 0.64, durata: 0.9, gain: 0.2, fadeOut: 0.4, rev: 0.3, pan: 0.3 }); // Aula.tsx: le torce cadono
+    timp(tDrop, 45, 82, 0.38); // sotto la cenere: il colpo più forte resta quello dell'aula
     const tMon = G(at(id, c(id, 1) + 0.4));
     clip(mix, 'scariche', { t: tMon - 0.04, da: 2.4, durata: 0.25, gain: 0.08, fadeOut: 0.08, rev: 0.25, pan: 0.4 }); // la luce del corridoio si spegne
     trem(tMon + BEAT, G(at(id, c(id, 2) + 0.2)) - tMon - BEAT, [40, 41, 76, 77], { vel: 50, gain: 0.3 }); // la bava, i banchi che tremano
@@ -325,9 +325,8 @@ export default (mix, T) => {
     harp(Q(tHome), Q(cue(id, 1)), { vel: 44, gain: 0.22, chords: CHM });
     const tBath = G(at(id, c(id, 1) + 1.6));
     gong(tBath, 0.22); // la luce fredda del bagno
-    trem(tBath, 1.6, [88, 89, 52, 53], { vel: 46, gain: 0.26 });
-    strings(Q(tBath + 1.7), Q(cue(id, 2)), { vel: 40, gain: 0.26, k0: 2 });
     const tLamp = G(at(id, c(id, 2) + 0.4));
+    trem(tBath, tLamp - tBath, [88, 89, 52, 53], { vel: 46, gain: 0.26 }); // ponte fino alla lanterna
     [55, 59, 62, 67, 71].forEach((m, j) => suona(mix, 'arpa', m, { t: tLamp + j * 0.08, dur: 2.2, vel: 50, pan: -0.3 + j * 0.15, rev: 0.6, gain: 0.18, release: 1.3 })); // la lanterna
     for (let k = 0; k < 7; k++) pizz(tLamp + 2 * CROMA + k * CROMA, 43 + (k % 2) * 7, 0.18, 50 - k * 2); // gli stivali di Hopper
     tema(Q(tLamp) + 2 * BEAT, B(T.finale), { vel: 46, gain: 0.3, glk: 0.3 });
