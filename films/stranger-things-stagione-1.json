@@ -1,0 +1,153 @@
+{
+  "formato": "riassunto",
+  "tipo": "serie",
+  "titolo": "Stranger Things",
+  "stagione": 1,
+  "regista": "Matt e Ross Duffer",
+  "anno": 2016,
+  "bpm": 96,
+  "palette": {
+    "chiaro": "#F2E3C6",
+    "principale": "#B8352F",
+    "scuro": "#0E1424",
+    "accento": "#F5B83D"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Un bambino sparisce. Le luci di casa cominciano a parlare.",
+    "immagine": "Strada asfaltata nel bosco di notte, nebbia bassa tra i tronchi: in primo piano una bicicletta da ragazzo rovesciata con la ruota che gira ancora e una torcia accesa nell'erba; in fondo al bosco filtra una luce fredda azzurra con spore che vengono verso la camera; a destra un lampione. Aggancio: la ruota rallenta, lampione e torcia sfarfallano e si spengono (a 3 e 4 battiti) mentre la luce fredda cresce; il primo fotogramma è già la copertina completa. Etichetta 'STAGIONE 1 IN 2 MINUTI'. Titolo in un sans condensato color crema (Bebas Neue). NON usare il logo ufficiale (serif rosso con il bordo luminoso), le locandine con i ragazzi né il mostro.",
+    "voce": "Stranger Things, stagione 1: un bambino sparisce nel nulla. Dove è finito?"
+  },
+  "capitoli": [
+    {
+      "id": "capanno",
+      "titolo": "La sera in cui Will sparisce",
+      "durata": 10,
+      "scena": "Il capanno degli attrezzi di legno dietro casa Byers, di notte: la porta spalancata, dentro una lampadina nuda che pende dal filo, attrezzi appesi, scaffali con barattoli e il fucile da caccia appoggiato allo stipite; a sinistra il retro della casa con la veranda e le finestre accese; abeti e nebbia sullo sfondo, foglie che cadono. Seconda frase: la porta a zanzariera della casa sbatte (Will è arrivato). Terza frase: la lampadina sfarfalla sempre più forte e poi si spegne; dal capanno resta solo un bagliore freddo con spore che escono.",
+      "sottotitoli": [
+        "Nel 1983, a Hawkins, una piccola città americana,",
+        "Will, un ragazzino, pedala verso casa dopo una serata con gli amici,",
+        "ma qualcosa lo insegue fino a casa, e lì sparisce."
+      ]
+    },
+    {
+      "id": "laboratorio",
+      "titolo": "La bambina scappata dal laboratorio",
+      "durata": 10,
+      "scena": "Il cancello di un laboratorio governativo nel bosco, di notte: recinzione con filo spinato, cartelli di divieto, la garitta vuota con la sbarra alzata, l'edificio di cemento sullo sfondo con le finestre accese; un lampeggiante rosso che gira e spazza la nebbia; in primo piano, sul fango, piccole impronte di piedi nudi che escono dal cancello.",
+      "sottotitoli": [
+        "Quella stessa notte, dal laboratorio segreto del governo,",
+        "scappa Undici, una bambina in camice con quel numero tatuato sul braccio.",
+        "E gli uomini del laboratorio si mettono subito a cercarla."
+      ]
+    },
+    {
+      "id": "lucine",
+      "titolo": "Una mamma parla con le luci",
+      "durata": 10,
+      "scena": "La parete del soggiorno di casa Byers: carta da parati a fiori, l'alfabeto dipinto a mano con la vernice nera, sopra ogni lettera una lucina di Natale colorata; una poltrona, un telefono a filo staccato, una lampada da terra. Sull'ultima frase le lucine si accendono una alla volta su S-C-A-P-P-A.",
+      "sottotitoli": [
+        "Joyce, la mamma di Will, è sicura che sia vivo,",
+        "perché le lampadine si accendono quando gli parla.",
+        "Così dipinge l'alfabeto sul muro e Will, con le lucine, scrive: scappa."
+      ]
+    },
+    {
+      "id": "scantinato",
+      "titolo": "Undici nello scantinato",
+      "durata": 10,
+      "scena": "Lo scantinato di casa Wheeler: una tenda fatta di coperte tra il divano e una poltrona, cuscini, due walkie-talkie con l'antenna, fumetti, un tavolo da gioco con dadi e miniature; la scala di legno e una porta che sbatte da sola sull'ultima frase; luce calda di una lampada da tavolo.",
+      "sottotitoli": [
+        "Intanto i migliori amici di Will, Mike, Dustin e Lucas,",
+        "cercandolo nel bosco trovano Undici e la nascondono a casa di Mike,",
+        "dove scoprono che muove le cose col pensiero."
+      ]
+    },
+    {
+      "id": "cava",
+      "titolo": "Il corpo nella cava è finto",
+      "durata": 10,
+      "scena": "La cava di pietra di notte: pareti di roccia a gradoni, l'acqua nera in fondo, le torce e i fari delle ricerche che si riflettono, transenne della polizia, una barella vuota coperta da un telo. Sull'ultima frase, in primo piano, uno squarcio nel telo lascia uscire ovatta bianca.",
+      "sottotitoli": [
+        "Poi dalla cava ripescano il corpo di Will.",
+        "Ma Hopper, il capo della polizia, lo esamina",
+        "e scopre che è un pupazzo, messo lì dal laboratorio per fermare le ricerche."
+      ]
+    },
+    {
+      "id": "piscina",
+      "titolo": "Barb sparisce in piscina",
+      "durata": 10,
+      "scena": "La piscina di una villetta di notte, dopo una festa: l'acqua illuminata da sotto, un trampolino, lattine e bicchieri sul bordo, una sdraio rovesciata, gli occhiali tondi di una ragazza sulle piastrelle; l'acqua si increspa da sola e la luce subacquea sfarfalla.",
+      "sottotitoli": [
+        "Anche Nancy, la sorella di Mike, perde qualcuno:",
+        "a una festa la sua amica Barb sparisce accanto alla piscina,",
+        "così si allea con Jonathan, il fratello di Will, contro il mostro."
+      ]
+    },
+    {
+      "id": "sottosopra",
+      "titolo": "Il mondo capovolto",
+      "durata": 10,
+      "scena": "Il tavolo da gioco nello scantinato: il tabellone capovolto, dadi, miniature di cavalieri e draghi, una bussola con l'ago che gira impazzito; dietro, la stessa stanza riflessa sotto il tavolo come in uno specchio, buia, coperta di radici e spore che fluttuano.",
+      "sottotitoli": [
+        "Quando i ragazzi le chiedono di Will, Undici capovolge il tabellone:",
+        "esiste un mondo gemello del nostro, buio e marcio: il Sottosopra.",
+        "Lì vive un mostro, e lì è nascosto Will."
+      ]
+    },
+    {
+      "id": "piscinetta",
+      "titolo": "Will è ancora vivo",
+      "durata": 10,
+      "scena": "La palestra della scuola di notte: una piscinetta gonfiabile piena d'acqua al centro del campo, sacchi di sale aperti, una radio a transistor accesa, le linee del parquet, i canestri; la luce di una sola lampada; sull'acqua cerchi concentrici che si allargano.",
+      "sottotitoli": [
+        "Poi, a scuola, galleggiando in una vasca improvvisata,",
+        "Undici raggiunge Will con la mente: è vivo, ma stremato.",
+        "Il passaggio tra i mondi, però, l'ha aperto lei in un esperimento."
+      ]
+    },
+    {
+      "id": "trappola",
+      "titolo": "Una trappola per il mostro",
+      "durata": 10,
+      "scena": "Il soggiorno di casa Byers preparato per la trappola: una tagliola aperta sul tappeto, una tanica di benzina, una mazza da baseball piena di chiodi, le lucine di Natale lungo le pareti. La parete si gonfia come una membrana che si tende; le lucine sfarfallano; sull'ultima frase una fiammata e poi solo la tagliola chiusa e annerita.",
+      "sottotitoli": [
+        "Nancy e Jonathan, invece, preparano una trappola in casa Byers:",
+        "si tagliano una mano, perché il mostro sente il sangue,",
+        "e quando esce dal muro gli danno fuoco, ma lui scappa."
+      ]
+    },
+    {
+      "id": "aula",
+      "titolo": "Undici contro il mostro",
+      "durata": 11,
+      "scena": "Un'aula di scienze devastata, di notte: banchi rovesciati, una lavagna crepata, provette rotte, un muro sfondato; un fascio di luce dalla finestra in cui vortica cenere scura; sull'ultima frase la cenere esplode verso l'alto e poi ricade lenta.",
+      "sottotitoli": [
+        "Gli uomini del laboratorio arrivano a scuola per riprendersi Undici, ma lei li ferma;",
+        "però arriva anche il mostro, attirato dal sangue.",
+        "Undici lo disintegra con la mente, sparendo insieme a lui."
+      ]
+    },
+    {
+      "id": "natale",
+      "titolo": "Natale, ma non è finita",
+      "durata": 11,
+      "scena": "Il bosco innevato vicino a casa Byers, la notte di Natale: in fondo la casa con le lucine sul tetto e le finestre accese, in primo piano una scatola di legno ai piedi di un abete con dentro dei waffle. Prima frase: le finestre di casa si accendono (Will è tornato). Seconda frase: la finestrella del bagno si accende per un attimo di luce fredda azzurra e ne escono spore. Terza frase: accanto alla scatola si accende una lanterna e compaiono le impronte di stivali che se ne vanno (Hopper ha lasciato i waffle).",
+      "sottotitoli": [
+        "Intanto Joyce e Hopper, nel Sottosopra, trovano Barb morta ma salvano Will.",
+        "A Natale, però, Will sputa una lumaca: rivede il Sottosopra.",
+        "Hopper lascia nel bosco i waffle che Undici adora: forse è viva."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Casa Byers nella neve la notte di Natale, con le lucine sul tetto e le finestre accese; la bici rossa della copertina appoggiata alla staccionata innevata (Will è tornato a casa); neve che cade; 'Fine della stagione 1' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la serie che vorresti.'"
+  },
+  "musica": "Originale e strumentale: archi gravi che pulsano a crome, celesta e pianoforte in arpeggi ripetuti, timpani lontani, ottoni scuri nello scontro finale; tensione da racconto di paura per ragazzi, un tema caldo di quattro note per l'amicizia che torna nei capitoli dei ragazzi e nel Natale; niente sintetizzatori, niente brani né motivi della serie (in particolare nessun arpeggio che ricordi la sigla). Rumori: lampadine che ronzano, bici, vento nel bosco, radio, acqua, fuoco, porte che sbattono.",
+  "fonti": [
+    "6 novembre 1983, Hawkins; Will torna in bici dopo una partita a Dungeons & Dragons, è inseguito fino a casa e sparisce nel nulla; Undici fugge dal laboratorio; Mike, Dustin e Lucas la trovano nel bosco e Mike la porta a casa sua; poteri psicocinetici; il tabellone del gioco per spiegare dov'è Will; Nancy sorella di Mike e la festa con Barbara che sparisce a bordo piscina; Joyce comunica con le lucine natalizie e Will le dice di scappare; il corpo ritrovato è un pupazzo e Hopper sospetta il laboratorio; la vasca di deprivazione; Undici confessa di aver aperto il varco negli esperimenti; Nancy e Jonathan sulle tracce della creatura; trappola con il sangue in casa Byers, trappola per orsi e fuoco; Undici disintegra la creatura e scompare; a Natale Hopper lascia degli Eggo, i waffle che Undici apprezza, in una cassetta nel bosco: https://it.wikipedia.org/wiki/Episodi_di_Stranger_Things_(prima_stagione)",
+    "Will Byers, 12 anni, sparisce tornando in bici; tatuaggio 011 sul braccio e camice d'ospedale; Joyce dipinge l'alfabeto con le lucine e Will scrive RUN; corpo ripescato nella cava, falso, Hopper sospetta Brenner; vasca di deprivazione improvvisata nella scuola media, Will vivo nel fortino; Nancy e Jonathan si tagliano le mani per attirare il Demogorgone; gli agenti arrivano a scuola per riprendersi Undici, lei li uccide e il sangue attira il mostro; Joyce e Hopper nel Sottosopra trovano Barb morta e salvano Will; a Natale Will tossisce una creatura simile a una lumaca e rivede il Sottosopra; Eggo cibo preferito di Undici: https://en.wikipedia.org/wiki/Stranger_Things_season_1"
+  ]
+}
