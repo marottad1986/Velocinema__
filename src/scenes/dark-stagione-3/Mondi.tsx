@@ -22,7 +22,7 @@ const F = [540, 1090] as const; // dove il tronco si divide: la macchina di Tann
 const N = {
   jonas: [300, 850], martha: [780, 850], bambino: [540, 790], adam: [260, 640], eva: [820, 640],
   fantasma: [660, 680], claudia: [540, 985], tannhaus: [330, 1290], incrocio: [540, 1330],
-  casa: [540, 640], hannah: [760, 860],
+  casa: [540, 690], hannah: [720, 860],
 } as const;
 type P = readonly [number, number];
 
@@ -64,8 +64,8 @@ const SHOTS: Shot[] = [
   { at: at('bambino', 0), x: 540, y: 800, z: 1.06 },
   { at: at('sfera', 0), x: 560, y: 790, z: 1.02 },
   { at: at('claudia', 0), x: 540, y: 900, z: 0.98 },
-  { at: at('origine', 0), x: 560, y: 1190, z: 1.04 },
-  { at: at('ponte', 0), x: 560, y: 1190, z: 1.0 },
+  { at: at('origine', 0), x: 540, y: 1080, z: 0.82 },
+  { at: at('ponte', 0), x: 550, y: 1090, z: 0.84 },
   { at: at('svanire', 0), ...WIDE },
   { at: at('fine', 0), x: 560, y: 970, z: 0.86 },
   { at: at('fine', 2, 0.4), x: 550, y: 980, z: 0.84 },
@@ -306,6 +306,8 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
   // i due mondi svaniscono: prima i rami (dal basso), poi Jonas e Martha, poi tutti gli altri, Adam ed Eva per ultimi
   const tBr = at('svanire', 0, 0.3), tJM = at('svanire', 1, 0.2), tAll = at('svanire', 1, 1.6), tAE = end('svanire') - 0.9;
   const gone = (t0: number) => 1 - seg(T, t0, t0 + 0.8);
+  // nel mondo d'origine (capitoli origine e ponte) la parte alta dello schema si spegne del tutto, per lasciare spazio al titolo
+  const top = 1 - seg(T, at('origine', 0) - 0.3, at('origine', 0) + 0.3) * (1 - seg(T, at('svanire', 0) - 0.6, at('svanire', 0)));
   const branches = 1 - eio(seg(T, tBr, tBr + 2.2));
   const leftOn = eo(seg(T, at('altromondo', 0, 0.1), at('altromondo', 0, 1.1)));
   const rightOn = eo(seg(T, at('altromondo', 0, 0.9), at('altromondo', 0, 1.9)));
@@ -340,8 +342,8 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           <path d={LEFT} fill="none" stroke={CHALK} strokeWidth="9" strokeLinecap="round" pathLength={1} strokeDasharray={`${leftOn * branches} 1`} />
           {rightOn > 0 && <path d={RIGHT} fill="none" stroke={BLUE} strokeWidth="9" strokeLinecap="round" pathLength={1} strokeDasharray={`${rightOn * branches} 1`} />}
           <path d={`M${F[0]} 580 V${F[1] - 40}`} stroke="#5E6E66" strokeWidth="3" strokeDasharray="6 14" opacity={rightOn * 0.8} />
-          <text x="330" y="556" textAnchor="middle" fontFamily={STENCIL} fontWeight={800} fontSize="34" letterSpacing="3" fill="#B8C4BC" opacity={leftOn}>MONDO DI JONAS</text>
-          <text x="750" y="556" textAnchor="middle" fontFamily={STENCIL} fontWeight={800} fontSize="34" letterSpacing="3" fill="#9CC0EC" opacity={rightOn}>L'ALTRO MONDO</text>
+          <text x="330" y="556" textAnchor="middle" fontFamily={STENCIL} fontWeight={800} fontSize="34" letterSpacing="3" fill="#B8C4BC" opacity={leftOn * top}>MONDO DI JONAS</text>
+          <text x="750" y="556" textAnchor="middle" fontFamily={STENCIL} fontWeight={800} fontSize="34" letterSpacing="3" fill="#9CC0EC" opacity={rightOn * top}>L'ALTRO MONDO</text>
           {/* la luce che sale dalla macchina: il mondo che si spacca in due */}
           {split > 0 && split < 1 && (
             <>
@@ -370,7 +372,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           <path d={KNOT} fill="none" stroke={YELLOW} strokeWidth="7" strokeDasharray="18 12" strokeDashoffset={-T * 30} mask="url(#m3-knot)" />
         </g>
       )}
-      <Tag T={T} t0={at('eva', 2, 0.9)} x={540} y={690} text="il nodo" size={26} rot={-2} until={end('eva') - 0.4} />
+      <Tag T={T} t0={at('eva', 2, 0.9)} x={540} y={790} text="il nodo" size={26} rot={-2} until={end('eva') - 0.4} />
 
       {/* capitolo 1: Jonas portato nell'altro mondo, dove non è mai nato */}
       <Link T={T} t0={at('altromondo', 0, 1.6)} a={[N.jonas[0] + 56, N.jonas[1] + 10]} b={[N.martha[0] - 60, N.martha[1] + 14]} c={[540, 960]} color={YELLOW} dashed w={7} flow arrow label="nell'altro mondo" ly={56} size={28} fade={off('altromondo')} />
@@ -381,12 +383,12 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           <path d="M-30 -30 L30 30" stroke={RED} strokeWidth="6" strokeLinecap="round" opacity={seg(T, at('altromondo', 1, 0.6), at('altromondo', 1, 0.9))} />
         </g>
       )}
-      <Tag T={T} t0={at('altromondo', 1, 0.8)} x={N.fantasma[0] + 110} y={N.fantasma[1] + 10} text="mai nato" bg={CHALK} size={24} rot={3} until={end('altromondo') - 0.4} />
+      <Tag T={T} t0={at('altromondo', 1, 0.8)} x={N.fantasma[0] + 130} y={N.fantasma[1] + 10} text="mai nato" bg={CHALK} size={24} rot={3} until={end('altromondo') - 0.4} />
       <Tag T={T} t0={at('altromondo', 2, 0.2)} x={540} y={1050} text="la fine è vicina" bg={RED} fg="#FFFFFF" size={26} rot={-2} until={end('altromondo') - 0.4} />
 
       {/* capitolo 2: Eva e Adam, i due vecchi */}
-      <Link T={T} t0={at('eva', 0, 0.5)} a={[N.martha[0] + 20, N.martha[1] - 54]} b={[N.eva[0] - 4, N.eva[1] + 56]} c={[830, 740]} color={BLUE} dashed w={5} flow arrow label="da vecchia" lx={58} size={26} fade={gone(tAll) * off('eva')} />
-      <Link T={T} t0={at('eva', 1, 0.5)} a={[N.jonas[0] - 20, N.jonas[1] - 54]} b={[N.adam[0] + 4, N.adam[1] + 56]} c={[250, 740]} color={YELLOW} dashed w={5} flow arrow label="da vecchio" lx={-58} size={26} fade={gone(tAll) * off('eva')} />
+      <Link T={T} t0={at('eva', 0, 0.5)} a={[N.martha[0] + 20, N.martha[1] - 54]} b={[N.eva[0] - 4, N.eva[1] + 56]} c={[830, 740]} color={BLUE} dashed w={5} flow arrow label="da vecchia" lx={-58} size={26} fade={gone(tAll) * off('eva')} />
+      <Link T={T} t0={at('eva', 1, 0.5)} a={[N.jonas[0] - 20, N.jonas[1] - 54]} b={[N.adam[0] + 4, N.adam[1] + 56]} c={[250, 740]} color={YELLOW} dashed w={5} flow arrow label="da vecchio" lx={58} size={26} fade={gone(tAll) * off('eva')} />
       <Tag T={T} t0={at('eva', 2, 0.3)} x={320} y={1010} text="Adam: spezzarlo" bg={CHALK} size={24} rot={-3} until={end('eva') - 0.4} />
       <Tag T={T} t0={at('eva', 2, 1.1)} x={760} y={1010} text="Eva: tenerlo" bg={BLUE} fg="#FFFFFF" size={24} rot={3} until={end('eva') - 0.4} />
 
@@ -395,19 +397,18 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       <Link T={T} t0={at('bambino', 1, 0.4)} a={[N.bambino[0] - 46, N.bambino[1] + 4]} b={[N.jonas[0] + 54, N.jonas[1] - 6]} c={[410, 790]} color={RED} w={7} arrow fade={off('bambino')} />
       <Link T={T} t0={at('bambino', 1, 0.7)} a={[N.bambino[0] + 46, N.bambino[1] + 4]} b={[N.martha[0] - 54, N.martha[1] - 6]} c={[670, 790]} color={RED} w={7} arrow fade={off('bambino')} />
       <Tag T={T} t0={at('bambino', 1, 1.2)} x={540} y={915} text="antenato di tutti e due" bg={RED} fg="#FFFFFF" size={24} rot={-2} until={end('bambino') - 0.4} />
-      <Link T={T} t0={at('bambino', 2, 0.2)} a={[N.eva[0] - 40, N.eva[1] + 40]} b={[N.bambino[0] + 50, N.bambino[1] - 26]} c={[660, 660]} color={BLUE} w={6} arrow label="lo protegge" lx={-70} ly={24} size={26} fade={off('bambino')} />
+      <Link T={T} t0={at('bambino', 2, 0.2)} a={[N.eva[0], N.eva[1] + 56]} b={[N.bambino[0] + 50, N.bambino[1] - 26]} c={[720, 760]} color={BLUE} w={6} arrow label="lo protegge" lx={60} ly={10} size={26} fade={off('bambino')} />
 
       {/* capitolo 4: la sfera nera di Adam */}
-      <Link T={T} t0={at('sfera', 0, 0.3)} a={[N.adam[0] + 50, N.adam[1] + 30]} b={[N.bambino[0] - 50, N.bambino[1] - 30]} c={[400, 640]} color={RED} w={7} arrow fade={off('sfera')} />
+      <Link T={T} t0={at('sfera', 0, 0.3)} a={[N.adam[0], N.adam[1] + 56]} b={[N.bambino[0] - 50, N.bambino[1] - 30]} c={[330, 760]} color={RED} w={7} arrow fade={off('sfera')} />
       {sphere > 0 && <g transform={`translate(${(N.martha[0] + N.bambino[0]) / 2 + 20} ${N.bambino[1] + 30})`}><Sphere T={T} k={sphere} /></g>}
       <Tag T={T} t0={at('sfera', 2, 0.3)} x={540} y={960} text="non funziona" bg={RED} fg="#FFFFFF" size={26} rot={-3} until={end('sfera') - 0.4} />
-      {T >= at('sfera', 2, 0.8) && T < end('sfera') && <text x={N.adam[0] - 20} y={N.adam[1] + 120} fontFamily={STENCIL} fontWeight={800} fontSize="56" fill="#D8D2C0" opacity={seg(T, at('sfera', 2, 0.8), at('sfera', 2, 1.1)) * off('sfera')}>?</text>}
 
       {/* capitolo 5: Claudia fa la spola tra i due mondi e trova il terzo */}
       <Link T={T} t0={at('claudia', 0, 0.6)} a={[N.claudia[0] - 60, N.claudia[1] - 10]} b={[300, 1000]} c={[420, 940]} color={CHALK} dashed w={4} flow arrow fade={off('claudia')} />
       <Link T={T} t0={at('claudia', 0, 1.0)} a={[N.claudia[0] + 60, N.claudia[1] - 10]} b={[780, 1000]} c={[660, 940]} color={BLUE} dashed w={4} flow arrow fade={off('claudia')} />
       <Tag T={T} t0={at('claudia', 1, 0.2)} x={N.claudia[0] + 230} y={N.claudia[1] + 62} text="salvare Regina" bg={CHALK} size={24} rot={2} until={end('claudia') - 0.4} />
-      <Link T={T} t0={at('claudia', 2, 0.1)} a={[N.claudia[0] + 44, N.claudia[1] + 40]} b={[F[0] + 16, 1160]} c={[640, 1090]} color={WARM} dashed w={5} flow arrow fade={off('claudia')} />
+      <Link T={T} t0={at('claudia', 2, 0.1)} a={[N.claudia[0] + 56, N.claudia[1]]} b={[F[0] + 16, 1160]} c={[700, 1080]} color={WARM} dashed w={5} flow arrow fade={off('claudia')} />
       <Tag T={T} t0={at('claudia', 2, 1.0)} x={330} y={1180} text="un terzo mondo" size={28} rot={-3} until={end('claudia') - 0.4} />
 
       {/* capitolo 6: Tannhaus, l'incidente, la macchina che spacca il mondo */}
@@ -429,7 +430,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       )}
       <Tag T={T} t0={at('origine', 1, 0.4)} x={F[0] + 190} y={F[1] + 10} text="la macchina" size={26} rot={2} until={at('origine', 2, 0.2)} />
       <Tag T={T} t0={at('origine', 2, 1.2)} x={F[0]} y={990} text="il mondo si spacca in due" bg={CHALK} size={26} rot={-2} until={end('origine') - 0.4} />
-      <Tag T={T} t0={at('ponte', 2, 0.9)} x={F[0] + 190} y={F[1] + 10} text="mai costruita" bg={RED} fg="#FFFFFF" size={26} rot={3} until={end('ponte') - 0.4} />
+      <Tag T={T} t0={at('ponte', 2, 0.9)} x={F[0] + 210} y={F[1] - 30} text="mai costruita" bg={RED} fg="#FFFFFF" size={26} rot={3} until={end('ponte') - 0.4} />
 
       {/* capitolo 7: Jonas e Martha scendono nel mondo d'origine e fermano l'auto prima del ponte */}
       <Link T={T} t0={at('ponte', 0, 0.3)} a={[N.jonas[0] + 30, N.jonas[1] + 52]} b={[N.incrocio[0] + 60, road - 52]} c={[340, 1200]} color={YELLOW} dashed w={6} flow arrow fade={off('ponte')} />
@@ -446,16 +447,16 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
 
       {/* capitolo 8: Adam ed Eva fanno pace prima di sparire */}
       <Tag T={T} t0={at('svanire', 0, 1.2)} x={540} y={820} text="mai esistiti" bg={RED} fg="#FFFFFF" size={34} rot={-3} until={end('svanire') - 0.4} />
-      <Link T={T} t0={at('svanire', 2, 0.2)} a={[N.adam[0] + 56, N.adam[1]]} b={[N.eva[0] - 56, N.eva[1]]} c={[540, 560]} color="#FFFFFF" w={5} label="fanno pace" ly={-18} size={30} fade={gone(tAE)} />
+      <Link T={T} t0={at('svanire', 2, 0.2)} a={[N.adam[0], N.adam[1] - 56]} b={[N.eva[0], N.eva[1] - 56]} c={[540, 520]} color="#FFFFFF" w={5} label="fanno pace" ly={-14} size={38} fade={gone(tAE)} />
 
       {/* capitolo 9: il mondo d'origine, la casa illuminata, Hannah */}
       {trunkUp > 0 && (
         <g transform={`translate(${N.casa[0]} ${N.casa[1]})`} opacity={seg(T, at('fine', 0, 1.0), at('fine', 0, 1.4))}>
-          {RAIN.map((d, i) => <path key={i} d={`M${d.x - 540} ${mod(d.y + T * d.v, 260) - 200} l-6 22`} stroke="#9AB0B8" strokeWidth="2.5" opacity=".55" />)}
-          <House T={T} lit={lit} />
+          {RAIN.map((d, i) => <path key={i} d={`M${d.x - 540} ${mod(d.y + T * d.v, 200) - 120} l-6 22`} stroke="#9AB0B8" strokeWidth="2.5" opacity=".55" />)}
+          <g transform="scale(1.4)"><House T={T} lit={lit} /></g>
         </g>
       )}
-      <Tag T={T} t0={at('fine', 0, 1.6)} x={N.casa[0] - 230} y={N.casa[1] + 30} text="Regina è viva" bg={WARM} size={26} rot={-3} />
+      <Tag T={T} t0={at('fine', 0, 1.6)} x={N.casa[0] - 270} y={N.casa[1] + 60} text="Regina è viva" bg={WARM} size={26} rot={-3} />
       <Link T={T} t0={at('fine', 1, 0.3)} a={[F[0] + 8, 900]} b={[N.hannah[0] - 56, N.hannah[1] + 10]} c={[640, 900]} color={WARM} w={5} />
       <Node T={T} t0={at('fine', 1, 0.2)} p={N.hannah} name="Hannah" sub="nel mondo d'origine" side="right" ring={focus(at('fine', 1, 0.2), end('fine'))} ringColor={WARM}><Cradle T={T} /></Node>
       {T >= at('fine', 2, 0.5) && (
@@ -471,10 +472,10 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         ring={focus(at('altromondo', 0, 1.3), at('altromondo', 1)) + focus(at('bambino', 0), at('bambino', 1)) + focus(at('ponte', 0, 0.4), at('ponte', 2))}>
         <BlueYarn />
       </Node>
-      <Node T={T} t0={at('eva', 0, 0.2)} p={N.eva} name="Eva" sub="Martha da vecchia" side="left" stroke={BLUE} ringColor={BLUE} fade={gone(tAE)} ring={focus(at('eva', 0), at('eva', 1)) + focus(at('bambino', 2), end('bambino')) + focus(at('svanire', 2), end('svanire'))}>
+      <Node T={T} t0={at('eva', 0, 0.2)} p={N.eva} name="Eva" sub="Martha da vecchia" side="left" stroke={BLUE} ringColor={BLUE} fade={gone(tAE) * top} ring={focus(at('eva', 0), at('eva', 1)) + focus(at('bambino', 2), end('bambino')) + focus(at('svanire', 2), end('svanire'))}>
         <Lantern T={T} />
       </Node>
-      <Node T={T} t0={at('eva', 1, 0.2)} p={N.adam} name="Adam" sub="Jonas da vecchio" side="right" fade={gone(tAE)} ring={focus(at('eva', 1), at('eva', 2)) + focus(at('sfera', 0), end('sfera')) + focus(at('svanire', 2), end('svanire'))}>
+      <Node T={T} t0={at('eva', 1, 0.2)} p={N.adam} name="Adam" sub="Jonas da vecchio" side="right" fade={gone(tAE) * top} ring={focus(at('eva', 1), at('eva', 2)) + focus(at('sfera', 0), end('sfera')) + focus(at('svanire', 2), end('svanire'))}>
         <Hourglass T={T} scale={0.55} />
       </Node>
       <Node T={T} t0={at('bambino', 0, 1.2)} p={N.bambino} name="" r={44} fade={gone(tJM) * (1 - lost)} ring={focus(at('bambino', 0, 1.2), end('bambino') - 0.5)}><Bootie /></Node>

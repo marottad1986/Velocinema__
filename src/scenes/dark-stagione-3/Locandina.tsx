@@ -79,8 +79,8 @@ const Scena: React.FC<{ t: number; dur: number; id: string; merge?: number; watc
         <g clipPath={`url(#${id}-right)`}>
           <g transform="translate(1080 0) scale(-1 1)"><Veduta t={t + 3} id={`${id}-b`} gid={id} L={(f) => `translate(${(pan * f).toFixed(2)} 0)`} coat={false} /></g>
           <rect x="540" y="-200" width="740" height="2400" fill="#1C4A8A" opacity={0.32 * (1 - merge)} />
-          {merge < 0.5 && (
-            <g transform={`translate(930 650) scale(${1})`} opacity={1 - 2 * merge}>
+          {(
+            <g transform="translate(930 650)">
               {/* nell'altro mondo, al posto dell'impermeabile, il gomitolo blu di Martha appeso al ramo */}
               <path d="M0 -10 V20" stroke={K} strokeWidth="4" />
               <circle cy="64" r="44" fill={BLUE} stroke={K} strokeWidth="8" />
@@ -99,8 +99,10 @@ const Scena: React.FC<{ t: number; dur: number; id: string; merge?: number; watc
         <g transform={L(1.4)}><Rain t={t} level="far" seed={5} color="#B8C8C4" opacity={0.35} /></g>
         {/* l'orologio da taschino appeso alla catena */}
         <g transform={`translate(${W.x} -40) rotate(${swing}) translate(${-W.x} 40)`}>
-          <path d={`M${W.x} -40 V${watchY - 92 * watchScale - 120}`} stroke={BRASS} strokeWidth="10" strokeDasharray="14 8" />
-          <path d={`M${W.x} -40 V${watchY - 92 * watchScale - 120}`} stroke={K} strokeWidth="2" opacity=".5" />
+          {/* la catena: interrotta dietro il titolo, così non si vede tra le lettere */}
+          {[[-40, 260], [660, watchY - 92 * watchScale - 120]].filter(([a, b]) => b > a).map(([a, b]) => (
+            <g key={a}><path d={`M${W.x} ${a} V${b}`} stroke={BRASS} strokeWidth="10" strokeDasharray="14 8" /><path d={`M${W.x} ${a} V${b}`} stroke={K} strokeWidth="2" opacity=".5" /></g>
+          ))}
           <g transform={`translate(${W.x} ${watchY})`}>
             <Glow id={`${id}-w`} x={0} y={0} r={140 * watchScale} t={t} color="#F2D48A" amp={0.05} rate={2} opacity={0.4} />
             <Orologio t={t} s={watchScale} crack={1 - merge} gid={id} />
