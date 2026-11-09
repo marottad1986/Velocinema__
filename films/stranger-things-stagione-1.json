@@ -16,7 +16,7 @@
     "durata": 4,
     "frase_lancio": "Un bambino sparisce. Le luci di casa cominciano a parlare.",
     "immagine": "Strada asfaltata nel bosco di notte, nebbia bassa tra i tronchi: in primo piano una bicicletta da ragazzo rovesciata con la ruota che gira ancora e una torcia accesa nell'erba; in fondo al bosco filtra una luce fredda azzurra con spore che vengono verso la camera; a destra un lampione. Aggancio: la ruota rallenta, lampione e torcia sfarfallano e si spengono (a 3 e 4 battiti) mentre la luce fredda cresce; il primo fotogramma è già la copertina completa. Etichetta 'STAGIONE 1 IN 2 MINUTI'. Titolo in un sans condensato color crema (Bebas Neue). NON usare il logo ufficiale (serif rosso con il bordo luminoso), le locandine con i ragazzi né il mostro.",
-    "voce": "Stranger Things, stagione 1: un bambino sparisce nel nulla. Dove è finito?"
+    "voce": "Stranger Things, stagione 1: un bambino sparisce nel nulla. Dov'è finito?"
   },
   "capitoli": [
     {
@@ -27,7 +27,7 @@
       "sottotitoli": [
         "Nel 1983, a Hawkins, una piccola città americana,",
         "Will, un ragazzino, pedala verso casa dopo una serata con gli amici,",
-        "ma qualcosa lo insegue fino a casa, e lì sparisce."
+        "ma qualcosa lo insegue fino al capanno, e lì sparisce."
       ]
     },
     {
@@ -59,7 +59,7 @@
       "scena": "Lo scantinato di casa Wheeler: una tenda fatta di coperte tra il divano e una poltrona, cuscini, due walkie-talkie con l'antenna, fumetti, un tavolo da gioco con dadi e miniature; la scala di legno e una porta che sbatte da sola sull'ultima frase; luce calda di una lampada da tavolo.",
       "sottotitoli": [
         "Intanto i migliori amici di Will, Mike, Dustin e Lucas,",
-        "cercandolo nel bosco trovano Undici e la nascondono a casa di Mike,",
+        "cercandolo nel bosco trovano Undici e la nascondono nello scantinato di Mike,",
         "dove scoprono che muove le cose col pensiero."
       ]
     },
@@ -82,7 +82,7 @@
       "sottotitoli": [
         "Anche Nancy, la sorella di Mike, perde un'amica:",
         "a una festa Barb sparisce accanto alla piscina,",
-        "e una foto di Jonathan, il fratello di Will, mostra un'ombra: la cercano insieme."
+        "e una foto di Jonathan, fratello di Will, mostra un'ombra: lui e Nancy la inseguono."
       ]
     },
     {
@@ -92,7 +92,7 @@
       "scena": "Il tavolo da gioco nello scantinato: il tabellone capovolto, dadi, miniature di cavalieri e draghi, una bussola con l'ago che gira impazzito; dietro, la stessa stanza riflessa sotto il tavolo come in uno specchio, buia, coperta di radici e spore che fluttuano.",
       "sottotitoli": [
         "Quando i ragazzi le chiedono di Will, Undici capovolge il tabellone:",
-        "esiste un mondo gemello del nostro, buio e marcio: il Sottosopra.",
+        "esiste un mondo gemello del nostro, buio e marcio, chiamato Sottosopra.",
         "Lì vive un mostro, e lì è nascosto Will."
       ]
     },
@@ -124,7 +124,7 @@
       "durata": 11,
       "scena": "Un'aula di scienze devastata, di notte: banchi rovesciati, una lavagna crepata, provette rotte, un muro sfondato; un fascio di luce dalla finestra in cui vortica cenere scura; sull'ultima frase la cenere esplode verso l'alto e poi ricade lenta.",
       "sottotitoli": [
-        "Gli uomini del laboratorio arrivano a scuola per riprendersi Undici, ma lei li ferma;",
+        "Hopper, per salvare Will, rivela al laboratorio dov'è Undici: arrivano a scuola, ma lei li uccide;",
         "però arriva anche il mostro, attirato dal sangue.",
         "Undici lo disintegra con la mente, sparendo insieme a lui."
       ]
@@ -147,7 +147,7 @@
   },
   "musica": "Originale e strumentale: archi gravi che pulsano a crome, celesta e pianoforte in arpeggi ripetuti, timpani lontani, ottoni scuri nello scontro finale; tensione da racconto di paura per ragazzi, un tema caldo di quattro note per l'amicizia che torna nei capitoli dei ragazzi e nel Natale; niente sintetizzatori, niente brani né motivi della serie (in particolare nessun arpeggio che ricordi la sigla). Rumori: lampadine che ronzano, bici, vento nel bosco, radio, acqua, fuoco, porte che sbattono.",
   "fonti": [
-    "6 novembre 1983, Hawkins; Will torna in bici dopo una partita a Dungeons & Dragons, è inseguito fino a casa e sparisce nel nulla; Undici fugge dal laboratorio; Mike, Dustin e Lucas la trovano nel bosco e Mike la porta a casa sua; poteri psicocinetici; il tabellone del gioco per spiegare dov'è Will; Nancy sorella di Mike e la festa con Barbara che sparisce a bordo piscina; Joyce comunica con le lucine natalizie e Will le dice di scappare; il corpo ritrovato è un pupazzo e Hopper sospetta il laboratorio; la vasca di deprivazione; Undici confessa di aver aperto il varco negli esperimenti; Nancy e Jonathan sulle tracce della creatura; trappola con il sangue in casa Byers, trappola per orsi e fuoco; Undici disintegra la creatura e scompare; a Natale Hopper lascia degli Eggo, i waffle che Undici apprezza, in una cassetta nel bosco: https://it.wikipedia.org/wiki/Episodi_di_Stranger_Things_(prima_stagione)",
+    "6 novembre 1983, Hawkins; Will torna in bici dopo una partita a Dungeons & Dragons, è inseguito fino a casa e sparisce nel nulla; Undici fugge dal laboratorio; Mike, Dustin e Lucas la trovano nel bosco e Mike la porta a casa sua; poteri psicocinetici; il tabellone del gioco per spiegare dov'è Will; Nancy sorella di Mike e la festa con Barbara che sparisce a bordo piscina; Joyce comunica con le lucine natalizie e Will le dice di scappare; il corpo ritrovato è un pupazzo e Hopper sospetta il laboratorio; la vasca di deprivazione; Undici confessa di aver aperto il varco negli esperimenti; Nancy e Jonathan sulle tracce della creatura; trappola con il sangue in casa Byers, trappola per orsi e fuoco; Undici disintegra la creatura e scompare; Hopper si accorda con Brenner (il portale in cambio della posizione di Undici); a Natale Hopper lascia degli Eggo, i waffle che Undici apprezza, in una cassetta nel bosco: https://it.wikipedia.org/wiki/Episodi_di_Stranger_Things_(prima_stagione)",
     "Will Byers, 12 anni, sparisce tornando in bici; tatuaggio 011 sul braccio e camice d'ospedale; Joyce dipinge l'alfabeto con le lucine e Will scrive RUN; corpo ripescato nella cava, falso, Hopper sospetta Brenner; vasca di deprivazione improvvisata nella scuola media, Will vivo nel fortino; Nancy e Jonathan si tagliano le mani per attirare il Demogorgone; gli agenti arrivano a scuola per riprendersi Undici, lei li uccide e il sangue attira il mostro; Joyce e Hopper nel Sottosopra trovano Barb morta e salvano Will; a Natale Will tossisce una creatura simile a una lumaca e rivede il Sottosopra; Eggo cibo preferito di Undici: https://en.wikipedia.org/wiki/Stranger_Things_season_1"
   ]
 }
