@@ -86,7 +86,7 @@ export const TalentDefs: React.FC<{ id: string }> = ({ id }) => (
     <mask id={`${id}-ledmask`}>
       <rect x="-3000" y="-2000" width="8000" height="6000" fill="#000" />
       <pattern id={`${id}-ledholes`} width="18" height="18" patternUnits="userSpaceOnUse">
-        <circle cx="9" cy="9" r="5.6" fill="#FFF" />
+        <circle cx="9" cy="9" r="4.6" fill="#FFF" />
       </pattern>
       <rect x="-3000" y="-2000" width="8000" height="6000" fill={`url(#${id}-ledholes)`} />
     </mask>
@@ -119,7 +119,8 @@ export const Parete: React.FC<{
       ))}
       <rect x={x0 - 400} y={top - 34} width={w + 800} height="14" fill="#1E1834" />
       {/* lo schermo di led */}
-      <g mask={`url(#${id}-ledmask)`}>
+      <clipPath id={`${id}-ledclip`}><rect x={x0} y={top} width={w} height={bottom - top} /></clipPath>
+      <g mask={`url(#${id}-ledmask)`} clipPath={`url(#${id}-ledclip)`}>
         <rect x={x0} y={top} width={w} height={bottom - top} fill="#140E26" />
         {Array.from({ length: n }, (_, i) => {
           const c = colori[i % colori.length];
@@ -190,6 +191,46 @@ export const Pavimento: React.FC<{ id: string; t: number; y?: number; x0?: numbe
   );
 };
 
+/** Torre di americana ai lati del palco con tre fari colorati (le luci partono da qui, sotto il titolo). */
+export const Torre: React.FC<{ id: string; t: number; x: number; y: number; h?: number; colori: string[]; flip?: boolean }> = ({ id, t, x, y, h = 460, colori, flip }) => (
+  <g transform={`translate(${x} ${y}) scale(${flip ? -1 : 1} 1)`}>
+    <path d={`M-26 0 V${h} M26 0 V${h}`} stroke="#2A2638" strokeWidth="9" />
+    {Array.from({ length: Math.round(h / 40) }, (_, i) => <path key={i} d={`M-26 ${i * 40} L26 ${i * 40 + 40}`} stroke="#2A2638" strokeWidth="5" />)}
+    {[0, 1, 2].map((k) => (
+      <g key={k} transform={`translate(30 ${40 + k * 120}) rotate(${-20 + k * 14})`}>
+        <rect x="0" y="-26" width="64" height="52" rx="8" fill="#16141E" stroke={K} strokeWidth="5" />
+        <ellipse cx="64" cy="0" rx="8" ry="22" fill={colori[k % colori.length]} opacity={0.8 + 0.2 * Math.sin(t * 2 + k)} />
+      </g>
+    ))}
+    <Glow id={`${id}-tw${Math.round(x)}`} x={90} y={160} r={160} t={t} color={colori[0]} amp={0.05} rate={1.5} opacity={0.35} />
+  </g>
+);
+
+/** File di poltroncine vuote della platea, di spalle, in primo piano in basso (incorniciano, niente pubblico). */
+export const Platea: React.FC<{ id: string; t: number; y: number; file?: number; colore?: string; luce?: string }> = ({ id, t, y, file = 2, colore = '#3A1830', luce = '#B89AFF' }) => (
+  <g>
+    {Array.from({ length: file }, (_, f) => {
+      const yy = y + f * 170, sc = 1 + f * 0.28, w = 190 * sc;
+      const n = Math.ceil(1500 / w) + 1;
+      return (
+        <g key={f}>
+          {Array.from({ length: n }, (_, i) => {
+            const x = -260 + i * w + (f % 2) * w * 0.5;
+            return (
+              <g key={i} transform={`translate(${x} ${yy}) scale(${sc})`}>
+                <path d="M-80 0 Q-86 -120 -60 -150 Q0 -168 60 -150 Q86 -120 80 0 Z" fill={colore} stroke={K} strokeWidth="8" />
+                <path d="M-60 -150 Q0 -168 60 -150" stroke={luce} strokeWidth="5" opacity=".55" fill="none" />
+                <path d="M-40 -130 Q0 -140 40 -130 M-44 -90 Q0 -98 44 -90" stroke={K} strokeWidth="4" opacity=".5" fill="none" />
+                <rect x="-94" y="-40" width="20" height="60" rx="8" fill="#1A0E18" stroke={K} strokeWidth="5" />
+              </g>
+            );
+          })}
+        </g>
+      );
+    })}
+  </g>
+);
+
 /** Fascio di luce dall'alto su un punto del palco, con la pozza sul pavimento e il pulviscolo. */
 export const Faro: React.FC<{ id: string; t: number; x: number; y: number; da: { x: number; y: number }; colore: string; o?: number; largo?: number; polvere?: boolean }> = ({
   id, t, x, y, da, colore, o = 1, largo = 220, polvere = true,
@@ -201,7 +242,7 @@ export const Faro: React.FC<{ id: string; t: number; x: number; y: number; da: {
     <g opacity={o}>
       <Beam id={`${id}-b`} x={da.x} y={da.y} t={t} length={len * 1.05} spread={largo} angle={ang} color={colore} opacity={0.5} />
       <ellipse cx={x} cy={y} rx={largo * 0.95} ry={largo * 0.2} fill={`url(#${id.split('-')[0]}-pool)`} opacity=".22" />
-      <ellipse cx={x} cy={y} rx={largo * 0.95} ry={largo * 0.2} fill={colore} opacity=".18" />
+      <ellipse cx={x} cy={y} rx={largo * 0.95} ry={largo * 0.2} fill={colore} opacity=".3" />
       {polvere && <Dust t={t} seed={id.length * 7 + Math.round(x)} n={14} top={{ y: da.y + 80, x0: da.x - 20, x1: da.x + 20 }} bottom={{ y, x0: x - largo / 2, x1: x + largo / 2 }} color="#FFF6E8" />}
     </g>
   );

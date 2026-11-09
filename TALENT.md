@@ -65,7 +65,8 @@ Componenti in `src/scenes/talent/` (studio, oggetti e tabellone), dati della gar
   (suggerimenti in `qualita/x-factor-2026.md`).
 
 ## Copertina e finale
-- Copertina (è anche la miniatura): al fotogramma 0 già completa, senza dissolvenze: la fila delle aste accese nei
+- Copertina (è anche la miniatura): al fotogramma 0 già completa, senza dissolvenze (la fascia della frase di lancio
+  no: entra da ~0,4 s, come da `CLAUDE.md`): la fila delle aste accese nei
   colori delle squadre con quelle spente, titolo grande «X FACTOR 2026» (nostro carattere), sopra «TALENT SPIEGATI»,
   sotto il sottotitolo della puntata («Chi è ancora in gara», «Com'è andato il Live 4»…). L'aggancio dei primi 2–3 s
   è nella voce (domanda) e nei fasci che cercano le aste.
