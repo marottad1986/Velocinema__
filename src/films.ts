@@ -1,5 +1,5 @@
 import type { FilmData, FilmDef } from './types';
-import { ANTON, BEBAS, CINZEL, CREEPSTER, PACIFICO, PLAYFAIR, SERIF, STENCIL, SYNCOPATE, TYPEWRITER } from './lib/fonts';
+import { ANTON, BEBAS, CINZEL, CREEPSTER, PACIFICO, PLAYFAIR, SERIF, STENCIL, SYNCOPATE, TYPEWRITER, CRIMSON } from './lib/fonts';
 import shutterIsland from '../films/shutter-island.json';
 import laLaLand from '../films/la-la-land.json';
 import trumanShow from '../films/the-truman-show.json';
@@ -60,6 +60,9 @@ import { Copertina as JokerCover, Finale as JokerEnd } from './scenes/joker/Loca
 import breakingBad1 from '../films/breaking-bad-stagione-1.json';
 import { BREAKING_BAD_1_SCENES } from './scenes/breaking-bad-stagione-1';
 import { Copertina as BB1Cover, Finale as BB1End } from './scenes/breaking-bad-stagione-1/Locandina';
+import ilSestoSenso from '../films/il-sesto-senso.json';
+import { IL_SESTO_SENSO_SCENES } from './scenes/il-sesto-senso';
+import { Copertina as SestoCover, Finale as SestoEnd } from './scenes/il-sesto-senso/Locandina';
 import { TENET_SCENES } from './scenes/tenet';
 import { Copertina as TenetCover, Finale as TenetEnd } from './scenes/tenet/Locandina';
 
@@ -87,6 +90,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'joker', data: joker as FilmData, scenes: JOKER_SCENES, cover: JokerCover, ending: JokerEnd, posterFont: ANTON },
   { slug: 'tenet', data: tenet as FilmData, scenes: TENET_SCENES, cover: TenetCover, ending: TenetEnd, posterFont: ANTON },
   { slug: 'breaking-bad-stagione-1', data: breakingBad1 as FilmData, scenes: BREAKING_BAD_1_SCENES, cover: BB1Cover, ending: BB1End, posterFont: STENCIL },
+  { slug: 'il-sesto-senso', data: ilSestoSenso as FilmData, scenes: IL_SESTO_SENSO_SCENES, cover: SestoCover, ending: SestoEnd, posterFont: CRIMSON },
 ];
 
 export const getFilm = (slug: string): FilmDef => {
