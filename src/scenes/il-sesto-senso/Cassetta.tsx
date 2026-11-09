@@ -26,7 +26,8 @@ export const Cassetta: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const ins = eio(seg(t, griglia(cues[0] + 0.6), griglia(cues[0] + 0.6) + 1.0));
   const on = seg(t, griglia(cues[0] + 1.6), griglia(cues[0] + 1.7));
   const img = eo(seg(t, griglia(cues[1] + 0.3), griglia(cues[1] + 0.3) + 0.6));
-  const drop = (t - cues[1]) > 0.8 ? ((t - cues[1] - 0.8) * 1.4) % 1 : -1;
+  const g0 = griglia(cues[1] + 0.8);
+  const drop = t > g0 ? ((t - g0) / (2 * 60 / 72)) % 1 : -1; // due gocce per giro: una tocca la scodella a ogni battito (72 bpm)
   const pause = seg(t, griglia(cues[2] + 0.4), griglia(cues[2] + 0.5));
   const warm = eo(seg(t, griglia(cues[2] + 0.4), griglia(cues[2] + 0.4) + 1.6));
   const SX = 350, SY = 800, SW = 380, SH = 290; // schermo
