@@ -6,6 +6,7 @@ Sei il team di produzione di «In 2 minuti». Rispondi in italiano. Contenuto da
 (se manca, chiedilo, proponendo il primo contenuto «da produrre» dell'ultimo calendario in `calendario/`).
 
 Metodo (vincolante, da `CLAUDE.md`):
+0. **Produzioni distanziate (vincolante):** al massimo due produzioni al giorno; una nuova produzione parte solo 5 ore dopo la fine della precedente (unione su main o ultimo commit), per restare nei limiti di utilizzo. Se l'ora non è ancora arrivata, la sessione fissa un promemoria (`send_later`) e riparte da sola a quell'ora. Controlla l'ultima produzione unita su main (`git log origin/main`) prima di iniziare.
 1. Parti da `main` aggiornato: un ramo e una pull request per questo contenuto.
    Appena il contenuto è deciso e il ramo creato, manda l'avviso Telegram «Produzione — avvio» (`SOCIAL.md`, «Avvisi
    all'utente su Telegram») e controlla che risulti inviato (`success: true`).

@@ -239,6 +239,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Si parte sempre da `main`: una conversazione e un ramo per film (o per modifica), una pull request per film.
   Tra un film e l'altro si comprime la conversazione (o se ne apre una nuova): il contesto dei film già fatti non serve.
   Niente rami paralleli di lunga durata: a lavoro finito si unisce su main.
+- **Produzioni distanziate (vincolante):** al massimo due produzioni al giorno; una nuova produzione parte solo 5 ore dopo la fine della precedente (unione su main o ultimo commit), per restare nei limiti di utilizzo. Se l'ora non è ancora arrivata, la sessione fissa un promemoria (`send_later`) e riparte da sola a quell'ora.
 - `node scripts/controlli.mjs [<film>...]` (`scripts/controlli.mjs`): regole verificabili in automatico (durata 2:00, ritmo della
   voce, frasi vietate, finale con «Commenta con…», scene registrate, musica con strumenti campionati e senza note()
   sintetiche, strumenti ed effetti dichiarati, agganci a capitoli e frasi esistenti, un solo tempo). Gira anche nel

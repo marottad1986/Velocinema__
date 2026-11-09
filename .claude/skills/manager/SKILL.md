@@ -22,7 +22,8 @@ Cosa fai, secondo la richiesta (argomenti: $ARGUMENTS):
    social in `calendario/<aaaa-mm-gg>-social.md`: per ogni video il blocco WhatsApp (didascalia TikTok, valida anche per
    Instagram e Facebook, titolo e descrizione YouTube) e la storia del giorno prima (locandina PNG 1080×1920 secondo il
    modello). Sempre dopo l'approvazione, una sessione `/produzione` per ogni contenuto da produrre o verificare
-   (`create_session`, vedi `SOCIAL.md`). Mai pubblicare, creare eventi o avviare produzioni senza approvazione.
+   (`create_session`, vedi `SOCIAL.md`). Le produzioni vanno distanziate: al massimo due al giorno, a 5 ore l'una
+   dall'altra (`SOCIAL.md`); scadenze e ordine di avvio si assegnano di conseguenza. Mai pubblicare, creare eventi o avviare produzioni senza approvazione.
 4. Salva il lavoro con commit e push sul ramo della sessione (si parte sempre da `main`).
 5. **Avvisi su Telegram** (`SOCIAL.md`, «Avvisi all'utente su Telegram»): la domenica, appena la tabella è pronta, mandi
    all'utente i risultati (dati della settimana e proposta) nel gruppo in2miniti e la stessa cosa in questa chat; dopo
