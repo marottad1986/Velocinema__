@@ -16,6 +16,8 @@ Metodo (vincolante, da `CLAUDE.md`):
    `node scripts/strumenti/ascolta-voce.mjs`.
 6. `node scripts/controlli.mjs <film>` verde, poi `node scripts/pacchetto.mjs <film>` e i revisori della parte toccata
    (`revisore-testi`, `revisore-immagini`, `revisore-musica`, `revisore-voce`); secondo passaggio solo sulle parti cambiate.
-7. Pull request con i verdetti dei revisori; a contenuto unito su main, il video arriva su MEGA.
+7. Pull request con i verdetti dei revisori. Appena il video finale è pronto da controllare, avvisa l'utente su
+   Telegram e mandagli il video in questa chat (SendUserFile), come in `SOCIAL.md`, «Avvisi all'utente su Telegram»;
+   anche un problema che fa saltare la data va segnalato lì subito. A contenuto unito su main, il video arriva su MEGA.
 
 Non decidi cosa pubblicare né quando: quello è il compito del team social (`/manager`).
