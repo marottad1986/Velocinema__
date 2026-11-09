@@ -115,8 +115,8 @@ Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere
 Titoli che l'utente ha chiesto di mettere nella prossima settimana: la domenica si inseriscono nella proposta (giorno e
 formato scelti con i dati) e, a calendario approvato, si tolgono da qui.
 - **Eyes Wide Shut** (Stanley Kubrick, 1999), chiesto il 9 novembre 2026 per la settimana 16–22 novembre. Formato da
-  scegliere: film (mistero e finale aperto) o Spiegato semplice (trama ambigua da capire). Dalla proposta: rischio che
-  il pubblico confronti con Shining (stesso regista, in uscita venerdì 13), quindi tenerli distanti nella settimana.
+  scegliere: film (mistero e finale aperto) o Spiegato semplice (trama ambigua da capire). Stesso regista di Shining
+  (uscito venerdì 13): meglio non metterli troppo vicini.
 
 ## Riserva di titoli (da riordinare con i dati)
 - **Film con colpo di scena:** Il sesto senso, Fight Club, The Prestige, Seven, I soliti sospetti, Memento, Matrix,
