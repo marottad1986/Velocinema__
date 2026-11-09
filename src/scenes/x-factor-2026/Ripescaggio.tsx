@@ -25,7 +25,7 @@ export const Ripescaggio: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => 
   const scritta = eo(seg(t, t0, t0 + 0.5));
   const t1 = griglia(cues[1] + 0.1);
   const entraA = eio(seg(t, t1, t1 + 1.0));
-  const entraB = eio(seg(t, t1 + 0.8, t1 + 1.8));
+  const entraB = eio(seg(t, t1 + 0.75, t1 + 1.75));
   const t2 = griglia(cues[2] + 0.2);
   const tel = eo(seg(t, t2, t2 + 0.5)) * (1 - eio(seg(t, griglia(cues[3]) - 0.2, griglia(cues[3]) + 0.3)));
   const corsa = seg(t, t2 + 0.5, t2 + 2.6);

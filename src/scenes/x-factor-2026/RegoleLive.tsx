@@ -30,11 +30,11 @@ export const RegoleLive: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const tTel = griglia(cues[1] + 0.1);
   const tel = eo(seg(t, tTel, tTel + 0.5)) * (1 - eio(seg(t, griglia(cues[2]) - 0.1, griglia(cues[2]) + 0.4)));
   const barre = eo(seg(t, tTel + 0.4, tTel + 1.6));
-  const segno = seg(t, tTel + 1.6, tTel + 1.9);
+  const segno = seg(t, tTel + 1.5, tTel + 1.8);
   const tAv = griglia(cues[2] + 0.2);
   const avanti = eio(seg(t, tAv, tAv + 1.0));
   const tVoto = griglia(cues[3] + 0.1);
-  const voti = GIUDICI.map((_, i) => eo(seg(t, tVoto + i * 0.3, tVoto + i * 0.3 + 0.35)));
+  const voti = GIUDICI.map((_, i) => eo(seg(t, tVoto + i * 0.25, tVoto + i * 0.25 + 0.35)));
   const spegne = eo(seg(t, tVoto + 1.5, tVoto + 2.0));
   const BAR = [[0.8, 0.45, 0.66], [0.72, 0.4, 0.86]];
 

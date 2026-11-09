@@ -28,9 +28,9 @@ export const makeTabellone = (opz: { dopoLive: number; prossimo: string; avviso:
     const cam = camera(t, dur);
     const L = cam.layer;
     const t0 = griglia(cues[0] + 0.1);
-    const riga = (k: number) => eo(seg(t, t0 + k * 0.12, t0 + k * 0.12 + 0.3));
+    const riga = (k: number) => eo(seg(t, t0 + k * 0.125, t0 + k * 0.125 + 0.3));
     const t1 = griglia(cues[1] + 0.2);
-    const conta = GIUDICI.map((_, i) => eob(seg(t, t1 + i * 0.6, t1 + i * 0.6 + 0.35), 2));
+    const conta = GIUDICI.map((_, i) => eob(seg(t, t1 + i * 0.5, t1 + i * 0.5 + 0.35), 2));
     const t2 = griglia(cues[2] + 0.2);
     const piede = eo(seg(t, t2, t2 + 0.5));
     const t3 = griglia(cues[3] + 0.5);

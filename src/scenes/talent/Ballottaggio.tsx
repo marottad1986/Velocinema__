@@ -73,9 +73,9 @@ export const makeBallottaggio = (opz: { live: number; id?: string; fondo?: 'squa
     const rossi = eo(seg(t, tD + 0.6, tD + 1.2));
     const tN = griglia(cues[1] + 0.1);
     const accA = eo(seg(t, tN, tN + 0.4));
-    const accB = eo(seg(t, tN + 1.2, tN + 1.6));
+    const accB = eo(seg(t, tN + 1.0, tN + 1.4));
     const tV = griglia(cues[2] + 0.3);
-    const voti = ordine.map((_, i) => eo(seg(t, tV + i * 0.55, tV + i * 0.55 + 0.35)));
+    const voti = ordine.map((_, i) => eo(seg(t, tV + i * 0.5, tV + i * 0.5 + 0.35)));
     const tF = griglia(cues[3] + 0.2);
     const spegne = eo(seg(t, tF, tF + 0.6));
     const restano = eo(seg(t, tF + 0.8, tF + 1.4));

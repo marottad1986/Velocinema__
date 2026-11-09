@@ -11,6 +11,11 @@ import { suona, colpo, crescendo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
+// Ballottaggi (come src/scenes/talent/x-factor-2026.ts): per ogni giudice, in ordine Gabbani, Jake, Paola, Irama,
+// true se il suo voto difende un concorrente della sua squadra (vota l'altro).
+const DIFENDE = { 'live-1': [true, true, false, false], 'live-2': [false, true, false, true], 'live-3': [false, false, true, true] };
+const L0voti = (id) => DIFENDE[id];
+
 export const strumenti = ['pianoforte_coda', 'contrabbasso_pizz', 'contrabbasso', 'celli', 'viole', 'violini', 'violini_trem', 'celli_trem',
   'tromba', 'tromba_stacc', 'trombone', 'corno', 'glockenspiel', 'timpani', 'cassa', 'rullante', 'charleston', 'tom', 'piatto_crash', 'piatto_sospeso', 'grancassa_rullo'];
 export const effetti = ['applauso', 'applauso_breve', 'passaggio', 'scatti'];
@@ -103,7 +108,7 @@ export default (mix, T) => {
   const stacc = (t, m, gain = 0.2) => suona(mix, 'tromba_stacc', m, { t, dur: BEAT / 2, vel: 70, pan: 0.25, gain, release: 0.2, rev: 0.3 });
   const glock = (t, m, gain = 0.14) => suona(mix, 'glockenspiel', m, { t, dur: 1.2, vel: 50, pan: 0.25, rev: 0.5, gain, release: 1 });
   const applausi = (t, durata, gain = 0.1, breve = false) => clip(mix, breve ? 'applauso_breve' : 'applauso', { t, da: 1, durata, gain, fadeIn: 0.3, fadeOut: Math.min(1.2, durata / 2), rev: 0.15, largo: 3 });
-  const scatto = (t, pan = 0, gain = 0.1) => clip(mix, 'scatti', { t: t - 0.03, da: 0.47, durata: 0.12, fadeOut: 0.03, gain, rev: 0.2, pan });
+  const scatto = (t, pan = 0, gain = 0.2) => clip(mix, 'scatti', { t: t - 0.02, da: 0.46, durata: 0.12, fadeOut: 0.03, gain, rev: 0.2, pan });
   /** Una sezione normale: groove, basso, piano. */
   const sezione = (from, to, opz = {}) => { groove(from, to, opz); basso(from, to, opz); piano(from, to, opz); };
   /** Una sezione di ballottaggio: Si minore a metà passo, cassa come un battito, archi in tremolo. */
@@ -118,7 +123,7 @@ export default (mix, T) => {
   crash(0.02, 0.26);
   kick(0.02, 70);
   applausi(0.3, 3.2, 0.06);
-  for (let k = 0; k < 6; k++) stacc(BEAT * 2 + k * BEAT / 2, [62, 64, 66, 69, 71, 74][k], 0.16);
+  for (let k = 0; k < 6; k++) stacc(BEAT * 2 + k * BEAT / 2, [62, 64, 66, 69, 71, 74][k], 0.3);
   rullo(T0 - 1.6, 1.6, 0.26);
   basso(T0 - BAR, T0, { vel: 54, gain: 0.34 });
 
@@ -136,19 +141,19 @@ export default (mix, T) => {
   basso(B(T[sl]), B(T.squadre), { half: true, vel: 54, gain: 0.36 });
   piano(B(T[sl]), B(T.squadre), { half: true, vel: 46, gain: 0.3 });
   archi(B(T[sl]), B(T.squadre), { half: true, vel: 38, gain: 0.18 });
-  for (let t = B(T[sl]); t < B(T.squadre) - 0.1; t += BEAT) hat(t, 34);
+  for (let t = B(T[sl]); t < B(T.squadre) - 0.1; t += BEAT) if (Math.abs(t - E(sl, 3, 0.4)) > 0.01) hat(t, 34); // un battito senza charleston sul colpo di 12 AI LIVE
   for (let i = 0; i < 3; i++) glock(E(sl, 0, 0.6) + i * 0.25, [76, 79, 83][i], 0.13); // Selezioni.tsx: tre sì su quattro
-  for (let i = 0; i < 4; i++) { scatto(E(sl, 1, 0.5) + i * 0.18, -0.3 + i * 0.2, 0.08); stacc(E(sl, 1, 0.5) + i * 0.18, [69, 74, 78, 81][i], 0.14); } // le palette verdi
+  for (let i = 0; i < 4; i++) { scatto(E(sl, 1, 0.5) + i * 0.125, -0.3 + i * 0.2); stacc(E(sl, 1, 0.5) + i * 0.125, [69, 74, 78, 81][i], 0.14); } // le palette verdi
   for (let k = 0; k < 3; k++) { const t = E(sl, 2, 0.6) + k * 0.5; suona(mix, 'pianoforte_coda', [62, 66, 69][k], { t, dur: 1.5, vel: 56, gain: 0.3, rev: 0.4, release: 1 }); } // le tre sedie
-  { const t = E(sl, 3, 0.4); ottoni(t, [50, 57, 62, 66, 69], { dur: BEAT * 2, gain: 0.26, vel: 76 }); crash(t, 0.18); kick(t, 64); } // 12 AI LIVE
+  { const t = E(sl, 3, 0.4); ottoni(t, [50, 57, 62, 66, 69], { dur: BEAT * 2, gain: 0.22, vel: 76 }); crash(t, 0.14); kick(t, 64); } // 12 AI LIVE
 
   // ---- squadre: groove pieno, un colpo a ogni squadra e una nota a ogni asta che si accende
   const sq = 'squadre';
-  sezione(B(T[sq]), B(T['regole-live']), { vel: 46 });
-  archi(B(T[sq]), B(T['regole-live']), { vel: 40, gain: 0.2, half: true });
+  sezione(B(T[sq]), B(T['regole-live']), { vel: 42 });
+  archi(B(T[sq]), B(T['regole-live']), { vel: 40, gain: 0.16, half: true });
   for (let i = 0; i < 4; i++) {
     const tap = G(cue(sq, i)) - 0.25;
-    if (i > 0) clip(mix, 'passaggio', { t: tap - 0.2, da: 0.1, durata: 0.8, gain: 0.05, fadeOut: 0.3, rev: 0.2, pan: 0.3 }); // Squadre.tsx: la camera passa alla squadra
+    if (i > 0) clip(mix, 'passaggio', { t: tap - 0.2, da: 0.5, durata: 1.0, gain: 0.15, fadeOut: 0.4, rev: 0.2, pan: 0.3 }); // Squadre.tsx: la camera passa alla squadra
     for (let k = 0; k < 3; k++) glock(G(cue(sq, i) + 0.9 + k * 0.95), [74, 78, 81, 86][(i + k) % 4], 0.12); // le aste si accendono
   }
 
@@ -158,12 +163,11 @@ export default (mix, T) => {
   sezione(B(T[rl]), B(cue(rl, 2)), { vel: 40 });
   stacc(E(rl, 0, 0.3), 69, 0.18); stacc(E(rl, 0, 0.3) + 1.5, 74, 0.18); // RegoleLive.tsx: turno 1 e turno 2
   trem(E(rl, 1, 0.5), 1.4, [62, 66, 69], { gain: 0.16 }); // le barre del televoto
-  [0, 1, 2].forEach((j) => glock(E(rl, 1, 0.1) + 1.6 + j * 0.1, 88, 0.1)); // la barra più corta lampeggia
+  [0, 1, 2].forEach((j) => glock(E(rl, 1, 0.1) + 1.5 + j * 0.125, 88, 0.1)); // la barra più corta lampeggia
   tensione(B(cue(rl, 2)), rlV + 1.5);
   rullo(E(rl, 2, 0.2), 1.0, 0.22); // le due aste avanti, sotto i fasci rossi
-  for (let i = 0; i < 4; i++) { scatto(rlV + i * 0.3, -0.4 + i * 0.27, 0.08); tom(rlV + i * 0.3, 50, -2 + i); } // le quattro lampade
+  for (let i = 0; i < 4; i++) { scatto(rlV + i * 0.25, -0.4 + i * 0.27); tom(rlV + i * 0.25, 50, -2 + i); } // le quattro lampade
   timp(rlV + 1.5, 35, 96, 0.5); // l'asta si spegne
-  archi(rlV + 1.5 + 2 * BEAT, B(T['live-1']) + 0.4, { vel: 40, gain: 0.2 });
 
   // ---- i tre ballottaggi (Ballottaggio.tsx): data e fasci rossi, i nomi, i quattro voti, l'eliminazione e chi resta
   const ballottaggio = (id, next) => {
@@ -172,19 +176,19 @@ export default (mix, T) => {
     tensione(B(T[id]), E(id, 3, 0.2));
     rullo(tD + 0.6, 0.8, 0.18); // i due fasci rossi
     suona(mix, 'pianoforte_coda', 71, { t: E(id, 1, 0.1), dur: 1.2, vel: 54, gain: 0.26, rev: 0.4 }); // la prima asta
-    suona(mix, 'pianoforte_coda', 74, { t: E(id, 1, 0.1) + 1.2, dur: 1.2, vel: 54, gain: 0.26, rev: 0.4 }); // la seconda
+    suona(mix, 'pianoforte_coda', 74, { t: E(id, 1, 0.1) + 1.0, dur: 1.2, vel: 54, gain: 0.26, rev: 0.4 }); // la seconda
     const tV = E(id, 2, 0.3);
-    trem(tV - 0.2, 4 * 0.55 + 0.4, [47, 59, 71], { gain: 0.2 });
-    for (let i = 0; i < 4; i++) { scatto(tV + i * 0.55, -0.45 + i * 0.3, 0.09); tom(tV + i * 0.55, 54, -3 + i); } // le lampade dei giudici
+    trem(tV - 0.2, 4 * 0.5 + 0.4, [47, 59, 71], { gain: 0.2 });
+    for (let i = 0; i < 4; i++) { const difende = L0voti(id)[i]; scatto(tV + i * 0.5, -0.45 + i * 0.3); tom(tV + i * 0.5, 54, difende ? 5 : -3 + i); if (difende) glock(tV + i * 0.5, 81, 0.1); } // chi difende il suo concorrente: tom più alto e glockenspiel // le lampade dei giudici
     const tF = E(id, 3, 0.2);
-    timp(tF, 35, 104, 0.6); colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: tF - 1.2, vel: 90, gain: 0.16, rev: 0.4, dur: 1.3, release: 0.1 }); // l'asta si spegne
+    timp(tF, 35, 104, 0.45); colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: tF - 1.2, vel: 90, gain: 0.16, rev: 0.4, dur: 1.3, release: 0.1 }); // l'asta si spegne
     const dopo = tF + 2 * BEAT; // due battiti di silenzio
     archi(dopo, next, { vel: 40, gain: 0.24, ch: MAG, k0: 1 });
     piano(dopo, next, { half: true, vel: 42, gain: 0.24, k0: 1 });
   };
-  ballottaggio('live-1', B(T.ripescaggio) + 0.3);
-  ballottaggio('live-2', B(T['live-3']) + 0.3);
-  ballottaggio('live-3', B(T['chi-resta']) + 0.3);
+  ballottaggio('live-1', E('ripescaggio', 0, 0.6));
+  ballottaggio('live-2', E('live-3', 0, 0.2));
+  ballottaggio('live-3', B(T['chi-resta']));
   // live-3: la serata di vecchie canzoni, il jukebox si accende (Ballottaggio.tsx, frase 1)
   [62, 66, 69, 74].forEach((m, j) => suona(mix, 'pianoforte_coda', m + 12, { t: E('live-3', 0, 0.2) + j * BEAT / 2, dur: 0.4, vel: 50, gain: 0.18, rev: 0.3 }));
 
@@ -193,8 +197,8 @@ export default (mix, T) => {
   const rpV = E(rp, 3, 0.3);
   sezione(B(T[rp]), B(cue(rp, 2)), { vel: 44, k0: 0 });
   { const t = E(rp, 0, 0.6); ottoni(t, [50, 57, 62, 66, 69], { dur: BEAT, gain: 0.24 }); [81, 86, 90].forEach((m, j) => glock(t + 0.1 + j * BEAT / 2, m, 0.14)); } // Ripescaggio.tsx: RIPESCAGGIO
-  clip(mix, 'passaggio', { t: E(rp, 1, 0.1), da: 0.1, durata: 1.0, gain: 0.06, fadeOut: 0.3, rev: 0.2, pan: -0.5 }); // entra Teo Bok
-  clip(mix, 'passaggio', { t: E(rp, 1, 0.1) + 0.8, da: 0.1, durata: 1.0, gain: 0.06, fadeOut: 0.3, rev: 0.2, pan: 0.5 }); // entra Timothée Bonnardel
+  clip(mix, 'passaggio', { t: E(rp, 1, 0.1), da: 0.5, durata: 1.0, gain: 0.15, fadeOut: 0.3, rev: 0.2, pan: -0.5 }); // entra Teo Bok
+  clip(mix, 'passaggio', { t: E(rp, 1, 0.1) + 0.75, da: 0.5, durata: 1.0, gain: 0.15, fadeOut: 0.3, rev: 0.2, pan: 0.5 }); // entra Timothée Bonnardel
   groove(B(cue(rp, 2)), rpV - BEAT / 2, { vel: 40 });
   basso(B(cue(rp, 2)), rpV, { vel: 56, gain: 0.36 });
   trem(E(rp, 2, 0.7), rpV - E(rp, 2, 0.7), [62, 69, 74], { gain: 0.2 });
@@ -206,12 +210,12 @@ export default (mix, T) => {
 
   // ---- chi resta: il tabellone si accende riga per riga, i numeri delle squadre, il Live 4, «ESCONO IN 3»
   const cr = 'chi-resta';
-  sezione(B(T[cr]), B(T.finale), { vel: 44 });
+  sezione(B(T[cr]), E(cr, 3, 0.5), { vel: 44 }); // dopo «ESCONO IN 3» solo archi e ottoni: la domanda resta sospesa
   archi(B(cue(cr, 2)), B(T.finale), { vel: 42, gain: 0.22 });
-  for (let k = 0; k < 6; k++) glock(E(cr, 0, 0.1) + k * 0.24, [74, 76, 78, 81, 83, 86][k], 0.08); // Tabellone.tsx: le righe
-  for (let i = 0; i < 4; i++) { const t = E(cr, 1, 0.2) + i * 0.6; tom(t, 56, i); stacc(t, [69, 69, 66, 66][i], 0.16); } // 3, 3, 2, 2
+  for (let k = 0; k < 8; k++) glock(E(cr, 0, 0.1) + k * 0.25, [74, 76, 78, 81, 83, 86, 88, 90][k], 0.08); // Tabellone.tsx: le righe
+  for (let i = 0; i < 4; i++) { const t = E(cr, 1, 0.2) + i * 0.5; tom(t, 56, i); stacc(t, [69, 69, 66, 66][i], 0.16); } // 3, 3, 2, 2
   suona(mix, 'pianoforte_coda', 74, { t: E(cr, 2, 0.2), dur: 1.5, vel: 56, gain: 0.26, rev: 0.4 }); // LIVE 4 · GIOVEDÌ 12 NOVEMBRE
-  { const t = E(cr, 3, 0.5); rullo(t - 1.0, 1.0, 0.22); ottoni(t, [45, 52, 57, 61, 64], { dur: BEAT * 2, gain: 0.28, vel: 82 }); crash(t, 0.22); kick(t, 66); } // ESCONO IN 3
+  { const t = E(cr, 3, 0.5); rullo(t - 1.0, 1.0, 0.22); ottoni(t, [45, 52, 57, 61, 64], { dur: BEAT * 2, gain: 0.32, vel: 82 }); crash(t, 0.22); kick(t, 66); } // ESCONO IN 3
 
   // ---- finale: accordo pieno di Re, applausi
   const F = B(T.finale);

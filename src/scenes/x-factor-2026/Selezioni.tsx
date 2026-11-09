@@ -31,7 +31,7 @@ export const Selezioni: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const tA = griglia(cues[0] + 0.6);
   const si = GIUDICI.map((_, i) => (i < 3 ? eo(seg(t, tA + i * 0.25, tA + i * 0.25 + 0.3)) : 0));
   const tB = griglia(cues[1] + 0.5);
-  const palette = GIUDICI.map((_, i) => eob(seg(t, tB + i * 0.18, tB + i * 0.18 + 0.4), 1.6));
+  const palette = GIUDICI.map((_, i) => eob(seg(t, tB + i * 0.125, tB + i * 0.125 + 0.4), 1.6));
   const siB = eo(seg(t, tB, tB + 0.3));
   const tC = griglia(cues[2] + 0.6);
   const sedie = [0, 1, 2].map((k) => eo(seg(t, tC + k * 0.5, tC + k * 0.5 + 0.5)));
