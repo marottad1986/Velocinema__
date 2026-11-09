@@ -57,6 +57,8 @@ export const NomeScena: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
 - `cues[i]` = secondo in cui compare la frase `i` dei sottotitoli: usalo per far coincidere gli eventi con la voce.
 - Copertina e finale ricevono `PosterProps` (`t`, `dur`, `film`) e scrivono i propri testi:
   vedi `src/scenes/shutter-island/Copertina.tsx` e `Finale.tsx`; si collegano in `src/films.ts` (`cover`, `ending`).
+  In copertina la fascia della frase di lancio non c'è nel fotogramma 0 (miniatura): entra da ~0,4 s, ad es.
+  `opacity: eo(seg(t, 0.4, 0.7))` con un piccolo `translateY`, poi resta.
 
 ## 3. Elementi pronti (`src/lib/elements.tsx`)
 Tutti funzione di `t`, con seme e `id` per i gradienti. Catalogo visivo: composizioni `libreria--esterni` e `libreria--interni`.

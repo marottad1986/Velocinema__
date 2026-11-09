@@ -12,8 +12,8 @@ Serie **talent spiegati**: programmi TV in corso con persone reali (X Factor 202
 con `"tipo": "talent"`. Regole proprie (nessuna persona disegnata, niente canzoni cantate né imitazioni, niente logo,
 fatti della gara verificati su fonti, vocabolario visivo fisso): vedi `TALENT.md`.
 
-Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni martedì
-la settimana successiva con i dati TikTok; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.
+Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni domenica alle 15:00
+la settimana che inizia il giorno dopo, con i dati di Metricool, e avvio della produzione; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.
 Comandi per aprire una sessione: `/manager` (team social media manager) e `/produzione` (un video per sessione).
 
 ## Formato (vincolante)
@@ -25,6 +25,9 @@ Comandi per aprire una sessione: `/manager` (team social media manager) e `/prod
   in piccolo, titolo grande nella zona sicura, contrasto forte. Nei primi 2–3 secondi deve esserci un motivo per
   restare (domanda o promessa nella frase di lancio della voce, un movimento che incuriosisce). Il revisore delle
   immagini controlla il fotogramma 0 e i primi 3 secondi come una scena a sé.
+  Nel fotogramma 0 (la miniatura) non c'è la fascia della frase di lancio né altri sottotitoli: solo immagine, etichetta,
+  titolo e riga del regista. La frase di lancio entra subito dopo (da ~0,4 s, entrata breve di ~0,3 s) e poi resta.
+  Vale per le copertine nuove e per quelle in produzione non ancora disegnate; le copertine già fatte restano come sono.
 - Lingua: italiano.
 
 ## Le due regole più importanti (vincolanti, tutti i contenuti: film, Spiegato semplice, canzoni, quadri, serie)
@@ -196,7 +199,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   si sente la musica accelerare e rallentare). Lo stesso bpm va nel JSON (`"bpm": 72`): le scene ricevono `griglia(s, div)`,
   che arrotonda un istante del capitolo al battito (div 2 = crome), e gli eventi si scrivono già a tempo, es.
   `seg(t, griglia(cues[2] + 0.4), …)`; `controlli.mjs` verifica che il bpm del JSON sia quello dello spartito. Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
-  Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute), Joker 96, The Others 72, Breaking Bad stagione 1 96 (10 s = 4 battute); Spiegato semplice: Inception 68 (sogni profondi a metà passo), Dark 66 (2052 e 2053 a metà passo, anche la stagione 2);
+  Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute), Joker 96, The Others 72, Il sesto senso 72 (10 s = 3 battute), Breaking Bad stagione 1 96 (10 s = 4 battute); Spiegato semplice: Inception 68 (sogni profondi a metà passo), Tenet 80 (12 s = 4 battute; la tenaglia a passo doppio), Dark 66 (2052 e 2053 a metà passo, anche la stagione 2);
   quadri: Grande onda 88, Notte stellata 92;
   Bohemian Rhapsody 70 (opera e rock a passo doppio, 140), Gli anni 600/7 ≈ 85,7 (14 s = 5 battute).
 - Effetti sonori registrati: `scripts/audio/effetti.mjs` (archivio CC0 di Craig Smith, USC / Sunset Editorial, "SSE Library"
