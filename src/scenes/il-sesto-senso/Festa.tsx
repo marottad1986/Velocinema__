@@ -76,7 +76,7 @@ export const Festa: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             );
           })}
           {/* la porticina dello sgabuzzino con il chiavistello */}
-          <g transform={`translate(${shake} 0) rotate(${shake * 0.25} ${DX} ${DY})`}>
+          <g transform={`translate(${shake} 0) rotate(${shake * 0.12} ${DX} ${DY})`}>
             <rect x={DX} y={DY - DH} width={DW} height={DH} fill="#05070A" stroke={K} strokeWidth="7" />
             <rect x={DX} y={DY - DH} width={DW} height={DH} fill="url(#fe-cold)" opacity={Math.max(open, 0)} />
             {open > 0 && <Glow id="fe-coldglow" x={DX + DW / 2} y={DY - DH / 2} r={340} t={t} color="#BFE0FF" amp={0.08} rate={4} opacity={0.8 * Math.min(1, open)} />}
