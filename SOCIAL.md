@@ -53,7 +53,9 @@ Attività programmata: «In 2 minuti – programmazione della settimana» (`trig
 
 ## Avvisi all'utente su Telegram (vincolante, manager e produzione)
 Gli avvisi arrivano nel gruppo Telegram **in2miniti** via IFTTT: servizio `telegram`, azione `send_message`,
-account `461715660`, chat `-5515136307`, `include_web_page_preview` `"0"`. Il testo accetta solo i tag HTML
+`account_id` `461715660`, campi `chat_id` `"-5515136307"` (il nome del campo è `chat_id`, non `chat`: con un nome
+sbagliato l'azione fallisce), `text` e `include_web_page_preview` `"0"`. Dopo l'invio controllare che la risposta sia
+`success: true` (in caso di dubbio: `get_activity_feed` con `service_slug` `telegram`). Il testo accetta solo i tag HTML
 `b`, `i`, `a`, `br`, `pre`, `code`. Ogni messaggio costa 15 crediti IFTTT: solo gli avvisi qui sotto, niente messaggi di stato intermedi.
 Telegram serve solo ad avvisare: l'utente risponde (approvazioni, modifiche) nella chat della sessione, quindi ogni avviso
 dice in quale sessione rispondere. Lo stesso contenuto va mandato **anche nella chat della sessione** (SendUserMessage /
@@ -63,6 +65,9 @@ SendUserFile), così l'utente lo trova lì quando apre la conversazione.
   e «Rispondi nella sessione del manager per approvare».
 - **Manager, domenica — dopo l'approvazione**: un messaggio quando eventi in calendario, sessioni di produzione e materiale
   social sono pronti (elenco delle produzioni avviate, con la scadenza di ciascuna).
+- **Produzione — avvio**: appena la sessione di produzione parte (contenuto scelto, ramo creato), un messaggio con titolo,
+  formato, data e ora di uscita dal calendario, scadenza prevista e «Rispondi nella sessione di produzione di <titolo>»
+  (le domande sul contenuto si fanno lì).
 - **Produzione — video pronto**: quando il video finale con la voce è pronto da controllare (controlli verdi e revisori
   APPROVATO), un messaggio con titolo, data di uscita, link alla pull request e cartella MEGA. Nella chat della sessione si
   manda anche il video (`out/<film>-voce.mp4`, o `out/<film>.mp4` se la voce manca) con SendUserFile, così l'utente lo
