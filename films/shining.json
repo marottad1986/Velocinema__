@@ -10,7 +10,6 @@
   },
   "copertina": {
     "durata": 4,
-    "speciale": "Halloween",
     "frase_lancio": "Un inverno da soli. Un albergo che ricorda.",
     "immagine": "Notte di tormenta: un enorme albergo di montagna isolato nella neve con una sola fila di finestre accese; davanti, visto dall'alto, un labirinto di siepi coperto di neve; in primo piano una macchina da scrivere con un foglio pieno di righe uguali. Titolo con carattere da macchina da scrivere (Special Elite). NON usare la locandina ufficiale (volto disegnato a puntini, volto dietro la porta), persone o il tappeto originale.",
     "voce": "Shining, di Stanley Kubrick: un albergo vuoto, una famiglia sola."
@@ -151,5 +150,9 @@
     "durata": 4,
     "immagine": "L'albergo all'alba sotto la neve, silenzioso, con una sola finestra ancora accesa; le tracce del mezzo per la neve che si allontanano; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
-  "musica": "Originale e strumentale: organo grave, archi in tremolo e glissando, pianoforte nel registro basso, timpani e gong; un motivo lento e sospeso in Re minore che si incrina capitolo dopo capitolo; vento della tormenta, macchina da scrivere, porte che cigolano, legno che si spacca; niente brani del film."
+  "musica": "Originale e strumentale: organo grave, archi in tremolo e glissando, pianoforte nel registro basso, timpani e gong; un motivo lento e sospeso in Re minore che si incrina capitolo dopo capitolo; vento della tormenta, macchina da scrivere, porte che cigolano, legno che si spacca; niente brani del film.",
+  "fonti": [
+    "Jack accetta il posto di custode invernale dell'Overlook per scrivere il suo romanzo in pace; albergo sperduto tra le montagne del Colorado; il custode precedente Grady uccise moglie e due figlie; Danny ha la luccicanza e ha visioni; Hallorann ha lo stesso dono, l'albergo conserva le cose brutte del passato, lo avverte di non entrare nella stanza 237; la neve blocca i collegamenti e i telefoni, restano radio e gatto delle nevi; triciclo, incontro con le gemelle di Grady, Danny esce dalla 237 con segni sul collo; il barista fantasma Lloyd e Grady che gli consiglia di eliminare la famiglia; pagine piene di una sola frase ripetuta all'infinito; Wendy lo tramortisce e lo chiude nella dispensa, Grady lo libera, radio e gatto delle nevi sabotati da Jack; parola al contrario sulla porta (Redrum), porta sfondata con l'ascia; Danny chiama Hallorann con la mente, Jack lo uccide con l'ascia; Danny torna sulle sue orme nel labirinto, Jack si perde e muore assiderato, Wendy e Danny fuggono col gatto delle nevi; foto del ricevimento del 4 luglio 1921 con Jack; film del 1980 di Stanley Kubrick: https://it.wikipedia.org/wiki/Shining_(film)",
+    "Grady uccise moglie, figlie e sé stesso; Hallorann chiama il dono «shining» e avverte Danny di evitare la stanza 237; Lloyd serve da bere a Jack e Grady lo spinge a «correggere» moglie e figlio; ripetizioni infinite della stessa frase nel manoscritto; Wendy lo colpisce con la mazza e lo chiude nella dispensa, Grady lo libera; Danny scrive la parola sulla porta del bagno e Wendy nello specchio legge MURDER; Danny chiama Hallorann con la telepatia, Jack lo uccide con l'ascia; Danny torna sulle sue orme nella neve, Jack muore congelato nel labirinto, fuga col gatto delle nevi di Hallorann; foto del 4 luglio 1921 nel corridoio dell'albergo con Jack: https://en.wikipedia.org/wiki/The_Shining_(film)"
+  ]
 }
