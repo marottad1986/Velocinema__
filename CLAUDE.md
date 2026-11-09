@@ -8,6 +8,10 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 Serie parallela con la stessa grafica: **quadri famosi** spiegati in 2 minuti, JSON in `quadri/`.
 Regole proprie (solo opere di pubblico dominio, immagine originale animata): vedi `QUADRI.md`.
 
+Serie **talent spiegati**: programmi TV in corso con persone reali (X Factor 2026, un episodio a settimana), JSON in `films/`
+con `"tipo": "talent"`. Regole proprie (nessuna persona disegnata, niente canzoni cantate né imitazioni, niente logo,
+fatti della gara verificati su fonti, vocabolario visivo fisso): vedi `TALENT.md`.
+
 Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni martedì
 la settimana successiva con i dati TikTok; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.
 Comandi per aprire una sessione: `/manager` (team social media manager) e `/produzione` (un video per sessione).
@@ -66,8 +70,8 @@ Comandi per aprire una sessione: `/manager` (team social media manager) e `/prod
   connettivi espliciti («perché», «infatti», «intanto», «così», «quindi», «ma», «alla fine»), così i collegamenti li fa
   la voce e chi guarda non deve ricostruirli; anche un capitolo si aggancia al precedente. Niente elenchi secchi di fatti
   né frasi telegrafiche; mai frasi che parlano dello schema o del video stesso (es. «Tutto in due minuti», «Ecco lo schema
-  completo»; l'etichetta «IL FILM IN 2 MINUTI» sopra il titolo resta, ma solo nelle copertine dei riassunti di film; canzoni e quadri
-  usano il nome della serie, «CANZONI SPIEGATE» e «QUADRI SPIEGATI»). Le righe dei sottotitoli sono pezzi dello stesso discorso. L'ultima frase della storia chiude o lascia una
+  completo»; l'etichetta «IL FILM IN 2 MINUTI» sopra il titolo resta, ma solo nelle copertine dei riassunti di film; canzoni, quadri e talent
+  usano il nome della serie, «CANZONI SPIEGATE», «QUADRI SPIEGATI» e «TALENT SPIEGATI»). Le righe dei sottotitoli sono pezzi dello stesso discorso. L'ultima frase della storia chiude o lascia una
   domanda chiara (per le serie: da dove riparte la stagione dopo).
 - Spiegato facile: parole di tutti i giorni, nessun termine tecnico senza spiegarlo subito, una cosa alla volta.
 - Queste regole sul testo valgono per tutti i progetti della serie (film, quadri, canzoni, serie TV spiegate…).
@@ -78,7 +82,8 @@ Comandi per aprire una sessione: `/manager` (team social media manager) e `/prod
 - Nell'immagine finale, sotto «Metti like» / «Segui la pagina», l'invito a commentare (mai «Il prossimo … arriva presto»):
   riassunti di film → «Commenta con il film che vorresti.»; riassunti di serie (es. Breaking Bad, una stagione per video:
   etichetta «STAGIONE N IN 2 MINUTI», finale «Fine della stagione N») → «Commenta con la serie che vorresti.»; Spiegato semplice → «Commenta con la spiegazione che vorresti.»;
-  canzoni → «Commenta con la canzone che vorresti.»; quadri → «Commenta con il quadro che vorresti.»
+  canzoni → «Commenta con la canzone che vorresti.»; quadri → «Commenta con il quadro che vorresti.»;
+  talent spiegati (`TALENT.md`) → «Commenta con chi vorresti in finale.»
 - Mai frasi come «La prossima volta che lo vedi…» (né nel finale né altrove).
 
 ## Canzoni spiegate (stesso schema dei film)
