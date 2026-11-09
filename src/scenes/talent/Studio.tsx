@@ -130,12 +130,15 @@ export const Parete: React.FC<{
         })}
         {/* onda chiara che scorre */}
         <rect x={x0 + mod(t * 260, w + 600) - 300} y={top} width="160" height={bottom - top} fill="#FFFFFF" opacity={0.12 * luce} />
-        {scritta && (
-          <text x={(x0 + x1) / 2} y={scrittaY} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize={scrittaSize} letterSpacing="8" fill={scrittaColore} opacity={scrittaO}>
+      </g>
+      {scritta && scrittaO > 0.01 && (
+        <g opacity={scrittaO}>
+          <rect x={(x0 + x1) / 2 - scritta.length * scrittaSize * 0.36 - 30} y={scrittaY - scrittaSize * 0.95} width={scritta.length * scrittaSize * 0.72 + 60} height={scrittaSize * 1.3} rx="12" fill="#06040C" opacity=".72" />
+          <text x={(x0 + x1) / 2} y={scrittaY} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize={scrittaSize} letterSpacing="6" fill={scrittaColore}>
             {scritta}
           </text>
-        )}
-      </g>
+        </g>
+      )}
       {/* cornice dello schermo e luce che cola sul pavimento */}
       <rect x={x0} y={top} width={w} height={bottom - top} fill="none" stroke="#2A2244" strokeWidth="10" />
       <rect x={x0} y={bottom} width={w} height="24" fill="#0A0814" />
@@ -335,8 +338,8 @@ export const Pass: React.FC<{ id: string; x: number; y: number; t: number; s?: n
  */
 export const Asta: React.FC<{
   id: string; t: number; x: number; y: number; s?: number; nome?: string; colore: string; luce?: number; fuori?: number;
-  nota?: string; band?: boolean; pass?: number; oro?: boolean; ph?: number; cartellino?: boolean; w?: number;
-}> = ({ id, t, x, y, s = 1, nome, colore, luce = 1, fuori = 0, nota, band, pass = 0, oro, ph = 0, cartellino = true, w = 290 }) => {
+  nota?: string; band?: boolean; pass?: number; oro?: boolean; ph?: number; cartellino?: boolean; w?: number; /** scala del cartellino (default s) */ cs?: number;
+}> = ({ id, t, x, y, s = 1, nome, colore, luce = 1, fuori = 0, nota, band, pass = 0, oro, ph = 0, cartellino = true, w = 290, cs }) => {
   const on = luce * (1 - fuori);
   const metal = fuori > 0.5 ? `url(#${id}-chrome-off)` : `url(#${id}-chrome)`;
   const grille = fuori > 0.5 ? `url(#${id}-grille-off)` : oro ? `url(#${id}-gold)` : `url(#${id}-grille)`;
@@ -384,7 +387,7 @@ export const Asta: React.FC<{
       {/* alone sulla griglia */}
       {on > 0.02 && <Glow id={`${id}-h${Math.round(x)}`} x={x - 37 * s} y={y - 680 * s} r={150 * s} t={t} color={c} amp={0.06} rate={2.2} ph={ph} opacity={0.55 * on} />}
       {pass > 0.01 && <g opacity={eo(pass)}><Pass id={`${id}-p${Math.round(x)}`} x={x + 18 * s} y={y - 452 * s} t={t} s={s * 0.9} brillo={pass} /></g>}
-      {cartellino && nome && <Cartellino x={x} y={y + 30 * s} nome={nome} colore={colore} fuori={fuori} nota={nota} s={s} w={w} oro={oro} />}
+      {cartellino && nome && <Cartellino x={x} y={y + 30 * s} nome={nome} colore={colore} fuori={fuori} nota={nota} s={cs ?? s} w={w} oro={oro} />}
     </g>
   );
 };
@@ -460,12 +463,12 @@ export const Lampada: React.FC<{ id: string; t: number; x: number; y: number; co
 };
 
 /** Gettone del voto sopra l'asta: cerchio nel colore del giudice con il suo nome. */
-export const Gettone: React.FC<{ x: number; y: number; nome: string; colore: string; o?: number }> = ({ x, y, nome, colore, o = 1 }) => {
+export const Gettone: React.FC<{ x: number; y: number; nome: string; colore: string; o?: number; s?: number }> = ({ x, y, nome, colore, o = 1, s = 1 }) => {
   if (o <= 0.01) return null;
   const p = eo(clamp01(o));
   const size = Math.min(30, 150 / (nome.length * 0.6));
   return (
-    <g transform={`translate(${x} ${y}) scale(${0.6 + 0.4 * p})`} opacity={p}>
+    <g transform={`translate(${x} ${y}) scale(${s * (0.6 + 0.4 * p)})`} opacity={p}>
       <rect x="-86" y="-32" width="172" height="64" rx="32" fill={colore} stroke={K} strokeWidth="6" />
       <text x="0" y={size * 0.36} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize={size} fill={K}>{nome}</text>
     </g>
