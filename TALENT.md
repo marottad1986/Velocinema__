@@ -22,7 +22,8 @@ nascono dal fatto che **si parla di persone vere, in una gara ancora aperta**.
   niente sigla o jingle del programma, nessuna voce che imita un concorrente o un giudice.
 - Musica originale e strumentale con strumenti campionati (come per i film), nel carattere di un varietà del giovedì
   sera; un solo bpm per il programma (X Factor 2026: 120), così gli episodi della stagione suonano come una serie.
-- I titoli delle canzoni si nominano solo se servono a capire (es. il tema della serata), mai i testi.
+- I **titoli delle canzoni cantate** (con l'artista originale) si dicono e si scrivono: fanno parte del riepilogo della
+  puntata. Mai i testi, nemmeno a pezzi, e nessuna melodia: nello spartito si sentono solo colpi e colori quando entra un disco.
 
 ## Fatti verificati (vincolante)
 - Ogni fatto ha una fonte nel campo `fonti` (prima la voce Wikipedia italiana dell'edizione, tabella delle
@@ -38,15 +39,34 @@ nascono dal fatto che **si parla di persone vere, in una gara ancora aperta**.
 Valgono le regole di `CLAUDE.md` e il passo dello Spiegato semplice: frasi brevi (al massimo ~12 parole), parole di
 tutti i giorni, al massimo 3,4 parole al secondo (meglio intorno a 3,1), capitoli come domande (8–10 capitoli da
 10–14 s). In più:
-- chi guarda può non aver mai visto il programma: la prima volta si spiega cos'è (gara tra cantanti e band, chi
-  la presenta, i giudici che guidano una squadra) e ogni parola del programma si spiega al primo uso
-  («ballottaggio, cioè…», «pass», «manche» → meglio «turno»);
+- **non si spiega cos'è il programma**: ogni video è il riepilogo dell'ultima puntata, per chi segue o vuole rimettersi
+  in pari; si spiegano solo le regole nuove o speciali della serata (es. l'«Hell Factor» del Live 4) e si dice
+  «turno» invece di «manche»;
 - ogni concorrente si nomina la prima volta con la sua squadra («Lenanie, della squadra di Irama»);
 - ogni eliminazione dice perché: chi era al ballottaggio, come hanno votato i giudici, con quanti voti;
 - l'ultima frase dice cosa succede alla puntata dopo (una domanda aperta, non un pronostico);
 - pronuncia dei nomi stranieri nel campo `pronuncia` (es. «Jake» → «Gèik», «Live» → «Làiv»).
 
-## Vocabolario visivo fisso (lo stesso in tutti gli episodi)
+## Vocabolario visivo fisso: lo schema (lo stesso in tutti gli episodi)
+Tutto il video è **un unico schema** su lavagna scura, come lo Spiegato semplice, che si costruisce frase dopo frase; la
+camera va sulla parte di cui parla la voce e alla fine si allarga. Motore comune in `src/scenes/talent/SchemaLive.tsx`
+(`makeSchemaLive(dati)`), dati della puntata in `src/scenes/<slug>/index.ts`, dati della gara in
+`src/scenes/talent/x-factor-2026.ts`. Mai aste del microfono, palchi disegnati o persone.
+- **disco in vinile** con l'etichetta nel colore della squadra = concorrente; accanto il nome, la canzone scritta a mano
+  e l'artista originale; il disco gira mentre la voce ne parla;
+- **gettone** tondo colorato col nome = giudice; le sue frecce puntano il disco che vuole far uscire;
+- **anello / riquadro rosso** = ballottaggio; **freccia rossa tratteggiata** = va al ballottaggio; «ULTIMO» = il meno votato;
+- **stella d'oro** = applausi in piedi; **cartellino pieno** = fatto importante (apertura, ospite, «inizia senza musica»);
+- **disco grigio incrinato** + «FUORI» = eliminato; dischi grigi con «?» = posti ancora da decidere (mai pronostici);
+- in alto il tema della serata (es. il jukebox della Jukebox Night), in basso la puntata dopo e il bollino d'oro.
+- Colori delle squadre (X Factor 2026): Gabbani corallo #FF7A66, Jake La Furia verde lime #A8E063,
+  Paola Iezzi lilla #E08CFF, Irama azzurro #5CC8FF; rosso #FF4A5A solo per il ballottaggio, oro #FFC53D per stelle e avvisi.
+- Valgono luce, texture, particelle e colore di `QUALITA.md` (la parallasse è sostituita dai movimenti di camera);
+  suggerimenti in `qualita/x-factor-2026.md`.
+
+## (Superato) vocabolario a palco e aste
+Il primo episodio (recupero fino al Live 3, `x-factor-2026`) usava un palco con le aste del microfono: sostituito dallo
+schema su richiesta, il video resta su MEGA ma non si rifà più così. Le regole sotto valgono solo come storia.
 Componenti in `src/scenes/talent/` (studio, oggetti e tabellone), dati della gara in `src/scenes/talent/<programma>.ts`.
 - **Il palco**: uno studio inventato da noi, di sera, pavimento nero lucido con i riflessi, parete di led sullo sfondo,
   americane con i fari, foschia e pulviscolo nei fasci. Velatura viola notte (#2A1E4A, 12%).
@@ -66,21 +86,21 @@ Componenti in `src/scenes/talent/` (studio, oggetti e tabellone), dati della gar
 
 ## Copertina e finale
 - Copertina (è anche la miniatura): al fotogramma 0 già completa, senza dissolvenze (la fascia della frase di lancio
-  no: entra da ~0,4 s, come da `CLAUDE.md`): la fila delle aste accese nei
-  colori delle squadre con quelle spente, titolo grande «X FACTOR 2026» (nostro carattere), sopra «TALENT SPIEGATI»,
-  sotto il sottotitolo della puntata («Chi è ancora in gara», «Com'è andato il Live 4»…). L'aggancio dei primi 2–3 s
-  è nella voce (domanda) e nei fasci che cercano le aste.
-- Finale: il palco con le aste rimaste, riquadro «Ti è servito?» con «Metti like» / «Segui la pagina» e
+  no: entra da ~0,4 s, come da `CLAUDE.md`): l'oggetto del tema della serata con i dischi a ventaglio nei colori delle
+  squadre, il disco incrinato dell'eliminato e le stelle; titolo grande «X FACTOR 2026» (nostro carattere), sopra
+  «TALENT SPIEGATI», sotto «Com'è andato il Live N» e il bollino «PRIMA DEL LIVE N+1». Aggancio nella voce (domanda).
+- Finale: lo schema rimpicciolito con i dischi rimasti, riquadro «Ti è servito?» con «Metti like» / «Segui la pagina» e
   **«Commenta con chi vorresti in finale.»** (dopo la finale: «Commenta con il programma che vorresti.»).
 
 ## Episodi della stagione (per farli in fretta senza perdere qualità)
-- **Recupero** (`films/x-factor-2026.json`): cos'è, selezioni, squadre, regole dei Live, Live 1–3, chi resta.
-- **Un episodio a settimana** dopo ogni Live: `films/x-factor-2026-live-<N>.json`, scene in
-  `src/scenes/x-factor-2026-live-<N>/index.ts`. Schema dei capitoli, da adattare a ciò che è successo:
-  1. «Dove eravamo rimasti?» (chi era in gara: tabellone, 10–11 s);
-  2. «Cosa cambiava al Live N?» (regola nuova o tema della serata);
-  3–6. un capitolo per ogni turno e per ogni ballottaggio (scene `Ballottaggio` e `Pedana` con i dati della serata);
-  7. «Chi è ancora in gara?» (tabellone aggiornato) e cosa succede al Live dopo.
+- **Un episodio dopo ogni Live**, il riepilogo di quella puntata: `films/x-factor-2026-live-<N>.json`, dati in
+  `src/scenes/x-factor-2026-live-<N>/index.ts` (copiare quello del Live 3 e cambiare i dati), spartito
+  `scripts/audio/x-factor-2026-live-<N>.mjs` (stessa base, eventi ai nuovi istanti). Capitoli, da adattare alla serata:
+  1. «Che serata era?» (tema, apertura, ospiti, regole speciali);
+  2–5. i turni: chi canta cosa (un disco per frase, 3 per capitolo), stelle e cartellini dei momenti importanti, l'ultimo
+     di ogni turno;
+  6. il ballottaggio (le due canzoni, il voto di ogni giudice, chi esce);
+  7. chi resta e cosa succede alla puntata dopo, con la domanda finale.
 - Cosa si rifà ogni settimana: testo e fonti, i dati della serata in `src/scenes/talent/<programma>.ts` (stato di
   ogni concorrente dopo il Live N: `in gara`, `fuori` con il Live, `ripescato`), al massimo una scena nuova per una
   novità della serata (un tema, un ospite si racconta con un oggetto), la voce e lo spartito (stessa base, eventi ai

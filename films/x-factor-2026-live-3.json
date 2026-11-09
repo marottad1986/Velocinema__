@@ -1,0 +1,134 @@
+{
+  "titolo": "X Factor 2026",
+  "tipo": "talent",
+  "schema": true,
+  "programma": "X Factor",
+  "edizione": 2026,
+  "puntata": "Live 3 · Jukebox Night (5 novembre 2026)",
+  "aggiornato": "dopo il Live 3 del 5 novembre 2026",
+  "regista": "Sky Uno",
+  "anno": 2026,
+  "bpm": 120,
+  "palette": {
+    "chiaro": "#F3EEE6",
+    "principale": "#4B2E83",
+    "scuro": "#0B0912",
+    "accento": "#FFC53D"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Canzoni, sorprese ed eliminato, prima del Live 4 del 12 novembre.",
+    "immagine": "Lo schema della serata su lavagna scura: al centro un jukebox disegnato a linee chiare, intorno i dischi in vinile dei concorrenti con l'etichetta nel colore della squadra (uno incrinato e grigio: l'eliminato), due stelle d'oro (gli applausi in piedi), l'anello rosso del ballottaggio. Titolo grande «X FACTOR 2026» nel nostro carattere (mai il logo del programma), sopra «TALENT SPIEGATI», sotto «Com'è andato il Live 3». Niente persone, niente logo, niente microfoni.",
+    "voce": "Ti sei perso il terzo Live di X Factor? Ecco com'è andato."
+  },
+  "capitoli": [
+    {
+      "id": "serata",
+      "titolo": "Che serata era?",
+      "durata": 15,
+      "scena": "In alto lo schema si apre sul jukebox della serata con la scritta «JUKEBOX NIGHT · ANNI '60 E '70»; f2 escono dal jukebox note e dischi; f3 il cartellino «APERTURA: GIORGIA» con tre dischi (Beatles, Doors, Rolling Stones); f4 il cartellino «OSPITE: FULMINACCI».",
+      "sottotitoli": [
+        "Il 5 novembre il terzo Live di X Factor è la serata Jukebox:",
+        "si cantano solo successi degli anni Sessanta e Settanta.",
+        "Giorgia, la conduttrice, apre con Beatles, Doors e Rolling Stones,",
+        "e l'ospite della serata è il cantautore Fulminacci."
+      ]
+    },
+    {
+      "id": "turno-1",
+      "titolo": "Chi canta nel turno 1?",
+      "durata": 15,
+      "scena": "La colonna TURNO 1: a ogni frase entra un disco col colore della squadra, il nome e la canzone scritta a mano; f3 sul disco di Giacomo Calò una stella d'oro «IN PIEDI».",
+      "sottotitoli": [
+        "Nel primo turno apre Camilla Guerini, di Paola Iezzi, con Be My Baby.",
+        "Poi Lenanie, di Irama, canta Ma il cielo è sempre più blu,",
+        "e Giacomo Calò, di Gabbani, fa alzare in piedi il pubblico con All by Myself."
+      ]
+    },
+    {
+      "id": "turno-1b",
+      "titolo": "Chi è ultimo nel turno 1?",
+      "durata": 15,
+      "scena": "Continua la colonna TURNO 1: Alìa, Teo Bok, Le Distanze; f4 il disco di Lenanie si accende di rosso e una freccia tratteggiata lo porta verso il riquadro BALLOTTAGGIO.",
+      "sottotitoli": [
+        "Alìa, di Jake La Furia, canta Mamma Mia degli ABBA;",
+        "Teo Bok, di Gabbani, Have You Ever Seen the Rain;",
+        "Le Distanze, band di Irama, Another Brick in the Wall dei Pink Floyd.",
+        "Il meno votato dal pubblico è Lenanie, che va al ballottaggio."
+      ]
+    },
+    {
+      "id": "turno-2",
+      "titolo": "Chi canta nel turno 2?",
+      "durata": 14,
+      "scena": "La colonna TURNO 2: Scraffs, Manu, Alex Fontana, un disco per frase.",
+      "sottotitoli": [
+        "Nel secondo turno gli Scraffs, band di Gabbani, suonano God Save the Queen;",
+        "Manu, di Paola Iezzi, canta Mi ritorni in mente di Battisti;",
+        "Alex Fontana, di Jake, Nights in White Satin dei Moody Blues."
+      ]
+    },
+    {
+      "id": "turno-2b",
+      "titolo": "Chi è ultimo nel turno 2?",
+      "durata": 17,
+      "scena": "Continua la colonna TURNO 2: Mad-Dog, poi Patrizia Napolano con il cartellino «SENZA MUSICA» e la stella d'oro «IN PIEDI»; f4 il disco di Manu si accende di rosso e la freccia lo porta al BALLOTTAGGIO.",
+      "sottotitoli": [
+        "I Mad-Dog, band di Paola Iezzi, suonano Rebel Rebel di David Bowie.",
+        "Chiude Patrizia Napolano, di Irama, con Tu sì 'na cosa grande di Modugno:",
+        "la comincia senza musica, e il pubblico si alza in piedi.",
+        "Il meno votato è Manu, che sfiderà Lenanie."
+      ]
+    },
+    {
+      "id": "ballottaggio",
+      "titolo": "Chi esce al ballottaggio?",
+      "durata": 16,
+      "scena": "Il riquadro BALLOTTAGGIO con l'anello rosso: i due dischi grandi con la canzone della sfida; f3 i gettoni dei quattro giudici con le frecce verso il disco che vogliono far uscire; f4 il disco di Lenanie si incrina e diventa grigio, «FUORI».",
+      "sottotitoli": [
+        "Al ballottaggio i due ricantano: Lenanie Non mi avete fatto niente,",
+        "Manu Devastante di Olly.",
+        "Poi votano i giudici: Gabbani, Jake e Paola Iezzi mandano a casa Lenanie;",
+        "solo Irama, il suo giudice, lo difende, ma Lenanie è eliminato."
+      ]
+    },
+    {
+      "id": "live-4",
+      "titolo": "Cosa succede al Live 4?",
+      "durata": 20,
+      "scena": "In basso il riquadro LIVE 4 · 12 NOVEMBRE · HELL FACTOR: i dieci dischi rimasti in fila per squadra; f3 due dischi con la X (escono subito) e due nell'anello rosso; f5 la camera si allarga su tutto lo schema e compare «ESCONO IN 3».",
+      "sottotitoli": [
+        "Così restano in gara dieci concorrenti,",
+        "e il 12 novembre, al quarto Live, arriva l'Hell Factor:",
+        "i voti dei due turni si sommano, e i due meno votati escono subito;",
+        "il terzo e il quarto meno votati vanno al ballottaggio.",
+        "Tre eliminati in una sola sera: chi saranno?"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "Dieci in gara: il 12 novembre ne escono tre.",
+    "immagine": "Lo schema completo della serata rimpicciolito sullo sfondo; riquadro «Ti è servito?» con «Metti like» e «Segui la pagina» e sotto «Commenta con chi vorresti in finale.»; scritta «10 ANCORA IN GARA»."
+  },
+  "musica": "Originale e strumentale a 120 bpm, come tutta la stagione: groove da varietà del giovedì sera con batteria, basso, pianoforte, ottoni e archi campionati; un piccolo colpo a ogni disco che entra, rullo e Si minore sul ballottaggio. Nessuna delle canzoni della serata, né citazioni delle loro melodie.",
+  "fonti": [
+    "Terzo Live del 5 novembre 2026, Jukebox Night (anni Sessanta e Settanta); apertura di Giorgia con Come Together, Light My Fire e Satisfaction; ospite Fulminacci; ordine dei due turni con le cover (Camilla «Be My Baby», Lenanie «Ma il cielo è sempre più blu», Giacomo «All by Myself», Alìa «Mamma Mia», Teo «Have You Ever Seen the Rain?», Le Distanze «Another Brick in the Wall», Scraffs «God Save the Queen», Manu «Mi ritorni in mente», Alex «Nights in White Satin», Mad-Dog «Rebel Rebel», Patrizia «Tu sì 'na cosa grande»); ultimi dei turni Lenanie e Manu; ballottaggio con «Non mi avete fatto niente» e «Devastante»; voti: Gabbani, Jake e Paola per l'uscita di Lenanie, Irama per Manu; Live 4 del 12 novembre «Hell Factor» con voti dei due turni sommati, i due meno votati fuori e gli altri due al ballottaggio: https://it.wikipedia.org/wiki/X_Factor_(Italia)_(ventesima_edizione)",
+    "Patrizia Napolano chiude il secondo turno con Modugno, standing ovation del pubblico; Giacomo Calò e il resto della serata: https://www.sorrisi.com/tv/reality-e-talent/x-factor-2026-il-riassunto-del-terzo-live-esibizioni-ospiti-ed-eliminato/",
+    "Patrizia Napolano comincia l'esibizione a cappella: https://www.sisal.it/news/x-factor-gli-highlights-del-terzo-live",
+    "Standing ovation per Patrizia e Giacomo Calò, Lenanie eliminato: https://www.ilfattoquotidiano.it/2026/11/06/x-factor-2026-lenanie-stecca-su-rino-gaetano-e-viene-eliminato-standing-ovation-per-patrizia-e-giacomo-calo-il-racconto-del-terzo-live/8562955/",
+    "Canzoni assegnate della Jukebox Night: https://www.teamworld.it/spettacolo-tv/x-factor-2026-assegnazioni-terzo-live-5-novembre/",
+    "Ballottaggio Lenanie–Manu, tre voti a uno: https://www.besicilymag.it/2026/11/lifestyle/x-factor-2026-jukebox-night-manu-si-salva-al-ballottaggio/",
+    "Tre eliminazioni al quarto Live del 12 novembre: https://canaledieci.it/2026/11/06/x-factor-2026-lenanie-eliminato-nella-prossima-puntata-tre-concorrenti-fuori/"
+  ],
+  "pronuncia": {
+    "X Factor": "Ics Fàctor",
+    "Jake": "Gèik",
+    "Live": "Làiv",
+    "Scraffs": "Scràfs",
+    "Mad-Dog": "Med Dog",
+    "Teo Bok": "Tèo Bok",
+    "Lenanie": "Lenanì",
+    "Hell Factor": "Hel Fàctor"
+  }
+}
