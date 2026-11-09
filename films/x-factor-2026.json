@@ -16,9 +16,9 @@
   },
   "copertina": {
     "durata": 4,
-    "frase_lancio": "Chi è rimasto, chi è uscito e cosa succede giovedì.",
-    "immagine": "Il palco di uno studio televisivo di sera, scuro e lucido: dodici aste con il microfono in fila, ognuna con la luce della sua squadra (quattro colori) e il cartellino col nome; due sono spente e una è appena rientrata con un pass dorato; fasci di luce, foschia, parete di led sullo sfondo. Titolo grande «X FACTOR 2026» nel nostro carattere (mai il logo del programma), sopra «TALENT SPIEGATI», sotto «Chi è ancora in gara». Niente persone, niente logo, niente scenografia vera del programma.",
-    "voce": "Vuoi seguire X Factor da giovedì? Ecco chi è ancora in gara."
+    "frase_lancio": "Chi è rimasto, chi è uscito e cosa succede il 12 novembre.",
+    "immagine": "Il palco di uno studio televisivo di sera, scuro e lucido: tredici aste con il microfono in fila, ognuna con la luce della sua squadra (quattro colori) e il cartellino col nome; tre sono spente (gli eliminati) e una è rientrata con un pass dorato; fasci di luce, foschia, parete di led sullo sfondo. Titolo grande «X FACTOR 2026» nel nostro carattere (mai il logo del programma), sopra «TALENT SPIEGATI», sotto «Chi è ancora in gara». Niente persone, niente logo, niente scenografia vera del programma.",
+    "voce": "Vuoi iniziare a seguire X Factor? Ecco chi è ancora in gara."
   },
   "capitoli": [
     {
@@ -40,9 +40,9 @@
       "scena": "Il tavolo dei giudici visto dal palco: quattro postazioni con il cartellino del nome, un grande pulsante «SÌ» per ognuna e due palette, una verde e una rossa; davanti, sul pavimento lucido, tre sedie sotto i riflettori. Eventi: frase 1 si accendono tre «SÌ» su quattro; frase 2 tutte e quattro le palette verdi si alzano; frase 3 le tre sedie si accendono; frase 4 sulla striscia di led del tavolo compare «12 AI LIVE».",
       "sottotitoli": [
         "Alle audizioni passa chi convince tre giudici su quattro.",
-        "Ai Bootcamp, invece, servono quattro sì su quattro.",
+        "Poi, ai Bootcamp, di solito servono quattro sì.",
         "Alla fine ogni giudice ha solo tre sedie da riempire:",
-        "così ai Live arrivano dodici concorrenti."
+        "così ai Live, le serate in diretta, arrivano in dodici."
       ]
     },
     {
@@ -65,8 +65,8 @@
       "sottotitoli": [
         "Ogni giovedì i concorrenti cantano dal vivo, in due turni.",
         "Il meno votato dal pubblico di ogni turno va al ballottaggio,",
-        "cioè canta di nuovo, poi votano i giudici:",
-        "con tre voti su quattro, esce."
+        "cioè i due ricantano e i giudici votano:",
+        "chi prende tre voti su quattro esce."
       ]
     },
     {
@@ -90,7 +90,7 @@
         "Ma la stessa sera arriva una sorpresa: un ripescaggio.",
         "Due scartati delle selezioni, Teo Bok e Timothée Bonnardel,",
         "si sfidano, e il pubblico sceglie chi far rientrare.",
-        "Vince Teo Bok, che prende il posto di Alice."
+        "Vince Teo Bok, che entra nella squadra di Gabbani."
       ]
     },
     {
@@ -101,7 +101,7 @@
       "sottotitoli": [
         "Al secondo Live, il 29 ottobre, Veronica torna al ballottaggio,",
         "stavolta contro Lenanie, della squadra di Irama.",
-        "Solo Jake la difende, e lei esce:",
+        "Solo Jake difende Veronica, che esce:",
         "così a Jake restano due concorrenti."
       ]
     },
@@ -113,7 +113,7 @@
       "sottotitoli": [
         "Il terzo Live, il 5 novembre, è una serata di vecchie canzoni,",
         "e al ballottaggio torna Lenanie, contro Manu di Paola Iezzi.",
-        "Solo Irama lo difende, e Lenanie esce:",
+        "Solo Irama difende Lenanie, che esce:",
         "così anche Irama resta con due concorrenti."
       ]
     },
@@ -126,13 +126,13 @@
         "Quindi restano in gara dieci concorrenti:",
         "tre per Gabbani e Paola Iezzi, due per Jake e Irama.",
         "E giovedì 12 novembre, al quarto Live, cambia tutto:",
-        "per la prima volta ne escono tre in una sera."
+        "per la prima volta ne escono tre: chi saranno?"
       ]
     }
   ],
   "finale": {
     "durata": 4,
-    "voce": "Dieci ancora in gara: giovedì, tre di loro escono.",
+    "voce": "Dieci in gara: il 12 novembre ne escono tre.",
     "immagine": "Il palco di notte con le dieci aste accese nei colori delle squadre e tre fasci dorati che le cercano; riquadro in alto: «Ti è servito?» + «Metti like» e «Segui la pagina»; sotto «Commenta con chi vorresti in finale.»"
   },
   "musica": "Originale e strumentale, a 120 bpm: groove da varietà del giovedì sera con batteria, basso, pianoforte, archi e ottoni campionati; rullo di timpani e tamburo sotto i ballottaggi, accordo che si ferma sull'eliminazione, applausi registrati sui momenti di festa. Nessuna canzone cantata in gara, nessuna melodia del programma o delle cover.",
@@ -144,7 +144,10 @@
     "Lenanie è il nome d'arte di Danny Anania, della squadra di Irama: https://www.affaritaliani.it/mediatech/x-factor-2026-secondo-live-chi-e-stato-eliminato-e-chi-invece-si-e-salvato.html",
     "Al ballottaggio esce chi ha almeno tre voti dei giudici, in parità decide il pubblico; ballottaggio Lenanie–Manu del terzo Live: https://www.besicilymag.it/2026/11/lifestyle/x-factor-2026-jukebox-night-manu-si-salva-al-ballottaggio/",
     "Al quarto Live del 12 novembre, alle 21:15 su Sky Uno e Now, per la prima volta tre eliminazioni nella stessa puntata (annunciate da Giorgia alla fine del terzo Live); restano dieci concorrenti: https://canaledieci.it/2026/11/06/x-factor-2026-lenanie-eliminato-nella-prossima-puntata-tre-concorrenti-fuori/",
-    "Tre eliminazioni il 12 novembre: https://www.lanuovasardegna.it/tempo-libero/2026/11/08/news/x-factor-bookmaker-contro-i-mad-dog-ma-la-band-punta-sugli-inediti-che-cosa-succedera-nel-quarto-live-1.100939973"
+    "Tre eliminazioni il 12 novembre: https://www.lanuovasardegna.it/tempo-libero/2026/11/08/news/x-factor-bookmaker-contro-i-mad-dog-ma-la-band-punta-sugli-inediti-che-cosa-succedera-nel-quarto-live-1.100939973",
+    "Live 1: ballottaggio Veronica–Alice, voti decisivi di Irama e Paola, Alice eliminata; ripescaggio col televoto vinto da Teo Bok, che entra nella squadra di Gabbani: https://www.sorrisi.com/tv/reality-e-talent/x-factor-2026-il-riassunto-del-primo-live-esibizioni-ospiti-e-primo-eliminato/",
+    "Live 3: ballottaggio Lenanie–Manu, Jake e Gabbani votano per far proseguire Manu, Lenanie eliminato: https://www.sorrisi.com/tv/reality-e-talent/x-factor-2026-il-riassunto-del-terzo-live-esibizioni-ospiti-ed-eliminato/",
+    "Tre concorrenti eliminati al Live successivo al terzo: https://www.rollingstone.it/?p=1044569"
   ],
   "pronuncia": {
     "X Factor": "Ics Fàctor",
