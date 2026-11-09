@@ -47,9 +47,9 @@ const Veduta: React.FC<{ t: number; id: string; gid: string; L: (f: number) => s
     </g>
     {(
       <g transform={L(0.9)}>
-        <path d="M-40 640 Q60 660 150 640 Q190 632 214 650" fill="none" stroke="#1A1410" strokeWidth="18" strokeLinecap="round" />
-        <path d="M-40 640 Q60 660 150 640" fill="none" stroke={K} strokeWidth="4" />
-        {coat && <g transform="translate(150 650)"><Raincoat id={`${id}-rc`} t={t} scale={0.52} wind={0.8} glow={0.6} /></g>}
+        <path d="M-40 640 Q90 660 220 640 Q260 632 284 650" fill="none" stroke="#1A1410" strokeWidth="18" strokeLinecap="round" />
+        <path d="M-40 640 Q90 660 220 640" fill="none" stroke={K} strokeWidth="4" />
+        {coat && <g transform="translate(220 650)"><Raincoat id={`${id}-rc`} t={t} scale={0.52} wind={0.8} glow={0.6} /></g>}
       </g>
     )}
   </g>
@@ -80,7 +80,7 @@ const Scena: React.FC<{ t: number; dur: number; id: string; merge?: number; watc
           <g transform="translate(1080 0) scale(-1 1)"><Veduta t={t + 3} id={`${id}-b`} gid={id} L={(f) => `translate(${(pan * f).toFixed(2)} 0)`} coat={false} /></g>
           <rect x="540" y="-200" width="740" height="2400" fill="#1C4A8A" opacity={0.32 * (1 - merge)} />
           {(
-            <g transform="translate(930 650)">
+            <g transform="translate(860 650)">
               {/* nell'altro mondo, al posto dell'impermeabile, il gomitolo blu di Martha appeso al ramo */}
               <path d="M0 -10 V20" stroke={K} strokeWidth="4" />
               <circle cy="64" r="44" fill={BLUE} stroke={K} strokeWidth="8" />

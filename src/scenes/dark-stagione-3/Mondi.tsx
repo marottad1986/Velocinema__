@@ -100,8 +100,8 @@ const Node: React.FC<{ T: number; t0: number; p: P; name: string; sub?: string; 
         <g clipPath={`url(#m3-c${p[0]}${p[1]})`}>{children}</g>
         <path d={`M${-r * 0.62} ${-r * 0.62} A${r * 0.88} ${r * 0.88} 0 0 1 ${r * 0.2} ${-r * 0.86}`} fill="none" stroke="#FFFFFF" strokeWidth="3" opacity=".25" strokeLinecap="round" />
       </g>
-      {name && <text x={lx} y={ly} textAnchor={anchor} fontFamily={SANS} fontWeight={800} fontSize="28" fill={CHALK} opacity={seg(T, t0 + 0.2, t0 + 0.5)}>{name}</text>}
-      {sub && <text x={lx} y={ly + 28} textAnchor={anchor} fontFamily={SANS} fontWeight={400} fontSize="21" fill="#A8B4AC" opacity={seg(T, t0 + 0.3, t0 + 0.6)}>{sub}</text>}
+      {name && <text x={lx} y={ly} textAnchor={anchor} fontFamily={SANS} fontWeight={800} fontSize="28" fill={CHALK} stroke="#0C110F" strokeWidth={7} strokeLinejoin="round" paintOrder="stroke" opacity={seg(T, t0 + 0.2, t0 + 0.5)}>{name}</text>}
+      {sub && <text x={lx} y={ly + 28} textAnchor={anchor} fontFamily={SANS} fontWeight={400} fontSize="21" fill="#A8B4AC" stroke="#0C110F" strokeWidth={7} strokeLinejoin="round" paintOrder="stroke" opacity={seg(T, t0 + 0.3, t0 + 0.6)}>{sub}</text>}
     </g>
   );
 };
@@ -127,7 +127,7 @@ const Link: React.FC<{ T: number; t0: number; a: P; b: P; c?: P; color?: string;
       )}
       {arrow && p > 0.95 && <path d="M-18 -12 L0 0 L-18 12" fill="none" stroke={color} strokeWidth={w} strokeLinecap="round" strokeLinejoin="round" transform={`translate(${b[0]} ${b[1]}) rotate(${ang})`} />}
       {label && (
-        <text x={0.25 * a[0] + 0.5 * mx + 0.25 * b[0] + lx} y={0.25 * a[1] + 0.5 * my + 0.25 * b[1] + ly} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={size}
+        <text x={0.25 * a[0] + 0.5 * mx + 0.25 * b[0] + lx} y={0.25 * a[1] + 0.5 * my + 0.25 * b[1] + ly} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={size} stroke="#0C110F" strokeWidth={7} strokeLinejoin="round" paintOrder="stroke"
           fill={color === CHALK ? '#D8D2C0' : color} opacity={seg(T, t0 + 0.35, t0 + 0.7)}>{label}</text>
       )}
     </g>
@@ -397,7 +397,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       <Link T={T} t0={at('bambino', 1, 0.4)} a={[N.bambino[0] - 46, N.bambino[1] + 4]} b={[N.jonas[0] + 54, N.jonas[1] - 6]} c={[410, 790]} color={RED} w={7} arrow fade={off('bambino')} />
       <Link T={T} t0={at('bambino', 1, 0.7)} a={[N.bambino[0] + 46, N.bambino[1] + 4]} b={[N.martha[0] - 54, N.martha[1] - 6]} c={[670, 790]} color={RED} w={7} arrow fade={off('bambino')} />
       <Tag T={T} t0={at('bambino', 1, 1.2)} x={540} y={915} text="antenato di tutti e due" bg={RED} fg="#FFFFFF" size={24} rot={-2} until={end('bambino') - 0.4} />
-      <Link T={T} t0={at('bambino', 2, 0.2)} a={[N.eva[0], N.eva[1] + 56]} b={[N.bambino[0] + 50, N.bambino[1] - 26]} c={[720, 760]} color={BLUE} w={6} arrow label="lo protegge" lx={60} ly={10} size={26} fade={off('bambino')} />
+      <Link T={T} t0={at('bambino', 2, 0.2)} a={[N.eva[0], N.eva[1] + 56]} b={[N.bambino[0] + 50, N.bambino[1] - 26]} c={[720, 760]} color={BLUE} w={6} arrow label="lo protegge" lx={60} ly={-30} size={26} fade={off('bambino')} />
 
       {/* capitolo 4: la sfera nera di Adam */}
       <Link T={T} t0={at('sfera', 0, 0.3)} a={[N.adam[0], N.adam[1] + 56]} b={[N.bambino[0] - 50, N.bambino[1] - 30]} c={[330, 760]} color={RED} w={7} arrow fade={off('sfera')} />
@@ -408,7 +408,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       <Link T={T} t0={at('claudia', 0, 0.6)} a={[N.claudia[0] - 60, N.claudia[1] - 10]} b={[300, 1000]} c={[420, 940]} color={CHALK} dashed w={4} flow arrow fade={off('claudia')} />
       <Link T={T} t0={at('claudia', 0, 1.0)} a={[N.claudia[0] + 60, N.claudia[1] - 10]} b={[780, 1000]} c={[660, 940]} color={BLUE} dashed w={4} flow arrow fade={off('claudia')} />
       <Tag T={T} t0={at('claudia', 1, 0.2)} x={N.claudia[0] + 230} y={N.claudia[1] + 62} text="salvare Regina" bg={CHALK} size={24} rot={2} until={end('claudia') - 0.4} />
-      <Link T={T} t0={at('claudia', 2, 0.1)} a={[N.claudia[0] + 56, N.claudia[1]]} b={[F[0] + 16, 1160]} c={[700, 1080]} color={WARM} dashed w={5} flow arrow fade={off('claudia')} />
+      <Link T={T} t0={at('claudia', 2, 0.1)} a={[N.claudia[0] + 56, N.claudia[1]]} b={[F[0] + 16, 1160]} c={[740, 1110]} color={WARM} dashed w={5} flow arrow fade={off('claudia')} />
       <Tag T={T} t0={at('claudia', 2, 1.0)} x={330} y={1180} text="un terzo mondo" size={28} rot={-3} until={end('claudia') - 0.4} />
 
       {/* capitolo 6: Tannhaus, l'incidente, la macchina che spacca il mondo */}
@@ -430,7 +430,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       )}
       <Tag T={T} t0={at('origine', 1, 0.4)} x={F[0] + 190} y={F[1] + 10} text="la macchina" size={26} rot={2} until={at('origine', 2, 0.2)} />
       <Tag T={T} t0={at('origine', 2, 1.2)} x={F[0]} y={990} text="il mondo si spacca in due" bg={CHALK} size={26} rot={-2} until={end('origine') - 0.4} />
-      <Tag T={T} t0={at('ponte', 2, 0.9)} x={F[0] + 210} y={F[1] - 30} text="mai costruita" bg={RED} fg="#FFFFFF" size={26} rot={3} until={end('ponte') - 0.4} />
+      <Tag T={T} t0={at('ponte', 2, 0.9)} x={F[0] + 250} y={F[1] - 64} text="mai costruita" bg={RED} fg="#FFFFFF" size={26} rot={3} until={end('ponte') - 0.4} />
 
       {/* capitolo 7: Jonas e Martha scendono nel mondo d'origine e fermano l'auto prima del ponte */}
       <Link T={T} t0={at('ponte', 0, 0.3)} a={[N.jonas[0] + 30, N.jonas[1] + 52]} b={[N.incrocio[0] + 60, road - 52]} c={[340, 1200]} color={YELLOW} dashed w={6} flow arrow fade={off('ponte')} />
