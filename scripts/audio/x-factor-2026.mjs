@@ -135,6 +135,7 @@ export default (mix, T) => {
   const sl = 'selezioni';
   basso(B(T[sl]), B(T.squadre), { half: true, vel: 54, gain: 0.36 });
   piano(B(T[sl]), B(T.squadre), { half: true, vel: 46, gain: 0.3 });
+  archi(B(T[sl]), B(T.squadre), { half: true, vel: 38, gain: 0.18 });
   for (let t = B(T[sl]); t < B(T.squadre) - 0.1; t += BEAT) hat(t, 34);
   for (let i = 0; i < 3; i++) glock(E(sl, 0, 0.6) + i * 0.25, [76, 79, 83][i], 0.13); // Selezioni.tsx: tre sì su quattro
   for (let i = 0; i < 4; i++) { scatto(E(sl, 1, 0.5) + i * 0.18, -0.3 + i * 0.2, 0.08); stacc(E(sl, 1, 0.5) + i * 0.18, [69, 74, 78, 81][i], 0.14); } // le palette verdi
