@@ -69,6 +69,10 @@ import { Copertina as SestoCover, Finale as SestoEnd } from './scenes/il-sesto-s
 import { TENET_SCENES } from './scenes/tenet';
 import { Copertina as TenetCover, Finale as TenetEnd } from './scenes/tenet/Locandina';
 
+import xFactor2026 from '../films/x-factor-2026.json';
+import { X_FACTOR_2026_SCENES } from './scenes/x-factor-2026';
+import { Copertina as XF26Cover, Finale as XF26End } from './scenes/x-factor-2026/Locandina';
+
 // Registro dei film e dei quadri: un JSON in films/ (o quadri/, vedi QUADRI.md) + le scene in src/scenes/<slug>/.
 // Le scene non ancora ricostruite compaiono come segnaposto.
 export const FILMS: FilmDef[] = [
@@ -95,6 +99,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'tenet', data: tenet as FilmData, scenes: TENET_SCENES, cover: TenetCover, ending: TenetEnd, posterFont: ANTON },
   { slug: 'breaking-bad-stagione-1', data: breakingBad1 as FilmData, scenes: BREAKING_BAD_1_SCENES, cover: BB1Cover, ending: BB1End, posterFont: STENCIL },
   { slug: 'il-sesto-senso', data: ilSestoSenso as FilmData, scenes: IL_SESTO_SENSO_SCENES, cover: SestoCover, ending: SestoEnd, posterFont: CRIMSON },
+  { slug: 'x-factor-2026', data: xFactor2026 as FilmData, scenes: X_FACTOR_2026_SCENES, cover: XF26Cover, ending: XF26End, posterFont: ANTON },
 ];
 
 export const getFilm = (slug: string): FilmDef => {
