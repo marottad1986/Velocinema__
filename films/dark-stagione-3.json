@@ -28,17 +28,17 @@
     },
     {
       "nome": "Martha",
-      "ruolo": "la ragazza dell'altro mondo",
+      "ruolo": "la ragazza che Jonas ama, ma dell'altro mondo",
       "oggetto": "gomitolo di filo blu"
     },
     {
       "nome": "Eva",
-      "ruolo": "Martha da vecchia, capa di una setta",
+      "ruolo": "Martha da vecchia, a capo di una setta",
       "oggetto": "lanterna accesa"
     },
     {
       "nome": "Adam",
-      "ruolo": "Jonas da vecchio, capo di un'altra setta",
+      "ruolo": "Jonas da vecchio, a capo di un'altra setta",
       "oggetto": "clessidra d'ottone"
     },
     {
@@ -48,7 +48,7 @@
     },
     {
       "nome": "Claudia",
-      "ruolo": "la vecchia direttrice della centrale",
+      "ruolo": "una viaggiatrice del tempo, ormai anziana",
       "oggetto": "quaderno di appunti"
     },
     {
@@ -72,7 +72,7 @@
     {
       "id": "altromondo",
       "titolo": "Dove finisce Jonas?",
-      "durata": 12,
+      "durata": 13,
       "anno": 2019,
       "personaggi": [
         "Jonas",
@@ -80,8 +80,8 @@
       ],
       "scena": "Si accendono i due rami dello schema: a sinistra il mondo di Jonas (gesso e giallo), a destra un mondo uguale in blu. Il cerchio di Jonas (impermeabile) passa da sinistra a destra con un tratteggio giallo portato dal cerchio blu di Martha (gomitolo blu); nel ramo blu un cerchio tratteggiato vuoto «Jonas: mai nato»; cartellino rosso «la fine è vicina».",
       "sottotitoli": [
-        "Un'altra Martha porta Jonas nel suo mondo: un'altra Winden, quasi uguale.",
-        "Lì però Jonas non è mai nato, perché suo padre non è mai finito nel passato.",
+        "Distrutto il suo mondo, il giovane Jonas segue un'altra Martha in una Winden quasi uguale.",
+        "Lì però Jonas non esiste: suo padre, da bambino, non è mai finito nel passato.",
         "E anche lì la fine del mondo è vicina."
       ]
     },
@@ -96,9 +96,9 @@
       ],
       "scena": "In cima al ramo blu il cerchio di Eva (lanterna) legato a Martha con «da vecchia»; in cima al ramo di sinistra il cerchio di Adam (clessidra) legato a Jonas con «da vecchio»; tra i due rami si disegna il nodo, un otto tratteggiato giallo; cartellini «spezzarlo» sotto Adam e «tenerlo» sotto Eva.",
       "sottotitoli": [
-        "In quel mondo comanda Eva, che è Martha da vecchia.",
-        "Eva è la nemica di Adam, che invece è Jonas da vecchio.",
-        "Adam vuole spezzare il nodo del tempo; Eva vuole che resti com'è."
+        "Lì Eva, cioè Martha da vecchia, guida una setta.",
+        "Eva è la nemica di Adam, che è Jonas da vecchio.",
+        "Adam vuole spezzare il nodo del tempo, dove tutto si ripete come un disco rotto; Eva vuole tenerlo."
       ]
     },
     {
@@ -119,13 +119,13 @@
     {
       "id": "sfera",
       "titolo": "Cosa fa Adam?",
-      "durata": 12,
+      "durata": 11,
       "anno": 2053,
       "personaggi": [],
       "scena": "Una freccia rossa da Adam al centro del nodo; una sfera nera che gira inghiotte il cerchio di Martha e il bambino; poi lo schema resta tutto intero e intorno ad Adam compare il cartellino «non funziona».",
       "sottotitoli": [
         "Adam, invece, vuole cancellare tutto partendo da lì: dal bambino.",
-        "Così cattura Martha incinta e la fa sparire in una sfera nera.",
+        "Così cattura Martha incinta e la cancella in una sfera di energia nera.",
         "Ma non serve: Adam e il suo mondo esistono ancora."
       ]
     },
@@ -139,9 +139,9 @@
       ],
       "scena": "Sotto il nodo il cerchio di Claudia (quaderno) con un filo tratteggiato che fa la spola tra i due rami; cartellino «salvare Regina»; poi una freccia scende sotto il punto in cui i rami si dividono e accende il tronco: cartellino «un terzo mondo».",
       "sottotitoli": [
-        "Poi arriva Claudia, la vecchia direttrice della centrale: da anni studia i due mondi,",
+        "Poi da Adam arriva Claudia, una viaggiatrice anziana: da anni studia i due mondi,",
         "perché vuole salvare sua figlia Regina, che lì muore sempre.",
-        "E ha capito che esiste un terzo mondo, da cui è nato tutto."
+        "E gli spiega che esiste un terzo mondo, da cui è nato tutto."
       ]
     },
     {
@@ -154,9 +154,9 @@
       ],
       "scena": "Il tronco in basso, il mondo d'origine: il cerchio di Tannhaus (orologio da taschino) e un'auto con una croce rossa davanti a un ponte; poi un ingranaggio, la macchina, si accende dove il tronco si divide: lampo e i due rami si staccano, con «Adam» e «Eva» in cima.",
       "sottotitoli": [
-        "Nel terzo mondo vive Tannhaus, un orologiaio, che perde figlio, nuora e nipotina in un incidente.",
+        "Nel terzo mondo vive Tannhaus, un orologiaio, che perde figlio, nuora e nipotina in auto, su un ponte.",
         "Per salvarli costruisce una macchina del tempo,",
-        "ma quando la accende il mondo si spacca in due: quello di Adam e quello di Eva."
+        "ma accenderla spacca il mondo in due: quello di Adam e quello di Eva."
       ]
     },
     {
@@ -167,8 +167,8 @@
       "personaggi": [],
       "scena": "Un tratteggio giallo porta i cerchi di Jonas e di Martha giù fino al tronco; cartellino «8 novembre 1971»; l'auto si ferma prima del ponte e torna indietro, la croce rossa si spegne; sull'ingranaggio della macchina una croce: «mai costruita».",
       "sottotitoli": [
-        "Così Adam manda il giovane Jonas, con Martha, nel mondo d'origine.",
-        "È l'8 novembre 1971: fermano l'auto del figlio di Tannhaus prima del ponte.",
+        "Così Adam torna indietro e manda Jonas, con Martha, nel mondo d'origine.",
+        "È l'8 novembre 1971: fermano quell'auto prima del ponte.",
         "La famiglia torna indietro, e Tannhaus non costruirà mai la macchina."
       ]
     },
@@ -176,13 +176,13 @@
       "id": "svanire",
       "titolo": "Cosa succede ai due mondi?",
       "durata": 12,
-      "anno": 2053,
+      "anno": 2052,
       "personaggi": [],
       "scena": "I due rami si sciolgono in polvere luminosa dal basso verso l'alto; i cerchi di Jonas e Martha si sbriciolano, poi tutti gli altri; Adam ed Eva si avvicinano e un filo bianco li lega («fanno pace») prima di sparire per ultimi.",
       "sottotitoli": [
         "Senza la macchina, i mondi di Adam e di Eva non sono mai esistiti.",
         "Così Jonas e Martha svaniscono nel nulla, e con loro tutti quelli del nodo.",
-        "Prima di sparire, anche Adam ed Eva fanno pace."
+        "Adam ed Eva, prima di sparire, fanno pace."
       ]
     },
     {
@@ -193,23 +193,23 @@
       "personaggi": [
         "Hannah"
       ],
-      "scena": "Resta solo il tronco, che sale fino in alto: una casa con le finestre accese (Regina viva) sotto il temporale; la luce va via e torna; il cerchio di Hannah (culla) con la scritta a mano «Jonas?»; la camera si allarga sullo schema finale, un solo filo dritto.",
+      "scena": "Resta solo il tronco, che sale fino in alto: una casa con le finestre accese (Regina viva) sotto il temporale; il cerchio di Hannah (culla) con la scritta a mano «Jonas?»; la camera si allarga sullo schema finale, un solo filo dritto.",
       "sottotitoli": [
         "Resta solo il mondo d'origine, dove Regina è viva e festeggia con gli amici.",
         "Tra loro c'è Hannah, che negli altri mondi era la mamma di Jonas.",
-        "Ora aspetta un bambino, e dice che le piace il nome Jonas."
+        "Aspetta un bambino, e le piace un nome: Jonas."
       ]
     }
   ],
   "finale": {
     "durata": 4,
-    "voce": "In una frase: per salvare tutti, Jonas e Martha si cancellano.",
+    "voce": "In una frase: per sciogliere il nodo, Jonas e Martha si cancellano.",
     "immagine": "La stessa veduta della copertina, ma i due mondi si richiudono in uno solo, caldo; l'orologio da taschino al centro con gli anni della stagione in cerchio; scritta 'Commenta con la spiegazione che vorresti.'; riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina'."
   },
   "musica": "Originale e strumentale, stessa famiglia sonora delle stagioni 1 e 2: droni gravi, archi lenti, il ticchettio d'orologio come metronomo e il motivo di quattro note del cerchio; nel mondo di Eva il motivo rovesciato, come allo specchio; nel mondo d'origine il motivo si scioglie finalmente in maggiore; niente brani o motivi della serie.",
   "schema": true,
   "fonti": [
-    "Martha dell'altro mondo porta Jonas nel suo mondo; lì Mikkel non è mai tornato indietro e Jonas non esiste; Eva è la Martha anziana; Apocalisse dell'8 novembre 2019 nel mondo di Eva; Jonas e Martha si innamorano e Martha aspetta il figlio, «l'origine di tutto»; Eva difende il nodo perché solo così il figlio sopravvive; Adam fa sparire Martha incinta nella materia nera, ma lui e il suo mondo esistono ancora; Claudia studia i due mondi per salvare Regina e scopre il mondo d'origine; Tannhaus perde figlio Marek, nuora Sonja e nipotina in un incidente stradale (8 novembre 1971) e la sua macchina divide il mondo in due; Adam manda Jonas a prendere Martha; Jonas e Martha fermano Marek prima del ponte, Tannhaus non inventa la macchina, i due e gli altri personaggi svaniscono; Adam ed Eva si riappacificano; nel 2019 del mondo d'origine Regina, Hannah e gli amici festeggiano, Hannah aspetta un bambino e le piace il nome Jonas: https://it.wikipedia.org/wiki/Episodi_di_Dark_(terza_stagione)",
+    "Martha dell'altro mondo porta Jonas nel suo mondo; lì Mikkel non è mai tornato indietro e Jonas non esiste; Eva è la Martha anziana; Apocalisse dell'8 novembre 2019 nel mondo di Eva; Jonas e Martha si innamorano e Martha aspetta il figlio, «l'origine di tutto»; Eva difende il nodo perché solo così il figlio sopravvive; Adam fa sparire Martha incinta nella materia nera, ma lui e il suo mondo esistono ancora; Claudia studia i due mondi per salvare Regina e scopre il mondo d'origine; Tannhaus perde figlio Marek, nuora Sonja e nipotina in un incidente stradale (8 novembre 1971) e la sua macchina divide il mondo in due; Claudia spiega ad Adam il mondo d'origine; Adam torna al giorno della fine del mondo di Eva e manda Jonas a prendere Martha prima che la portino via; Jonas e Martha fermano Marek prima del ponte, Tannhaus non inventa la macchina, i due e gli altri personaggi svaniscono; Adam ed Eva si riappacificano; nel 2019 del mondo d'origine Regina, Hannah e gli amici festeggiano, Hannah aspetta un bambino e le piace il nome Jonas: https://it.wikipedia.org/wiki/Episodi_di_Dark_(terza_stagione)",
     "Il figlio di Jonas e Martha (lo Sconosciuto) è il padre di Tronte (con Agnes), e Tronte è il padre di Ulrich, padre di Martha e di Mikkel (il padre di Jonas): https://en.wikipedia.org/wiki/List_of_Dark_characters"
   ]
 }
