@@ -1,0 +1,174 @@
+{
+  "formato": "spiegato",
+  "tipo": "film",
+  "schema": true,
+  "sigla": false,
+  "titolo": "Tenet",
+  "regista": "Christopher Nolan",
+  "anno": 2020,
+  "bpm": 80,
+  "palette": {
+    "chiaro": "#EEF1F4",
+    "principale": "#3A4B5E",
+    "scuro": "#0B0E13",
+    "accento": "#E8553F"
+  },
+  "personaggi": [
+    {
+      "nome": "il Protagonista",
+      "ruolo": "un agente segreto senza nome",
+      "oggetto": "tesserino senza nome, con un punto di domanda"
+    },
+    {
+      "nome": "Sator",
+      "ruolo": "un ricco russo che parla col futuro",
+      "oggetto": "braccialetto che misura il battito del cuore"
+    },
+    {
+      "nome": "Kat",
+      "ruolo": "la moglie di Sator",
+      "oggetto": "quadro falso nella cornice"
+    },
+    {
+      "nome": "Neil",
+      "ruolo": "il socio del Protagonista",
+      "oggetto": "zaino con un filo rosso"
+    }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Un proiettile che torna nella pistola.",
+    "immagine": "Locandina senza sigla, con «SPIEGATO SEMPLICE · FILM» in alto e il titolo già completo dal primo fotogramma: un proiettile che vola all'indietro, metà rosso (il tempo che va avanti) e metà blu (il tempo che torna indietro), verso una pistola posata su un tavolo, con la scia che si riavvolge; dietro, il quadrato di lettere SATOR AREPO TENET OPERA ROTAS inciso nella pietra e un grande orologio con due lancette che girano in versi opposti. NON usare persone, maschere antigas indossate né locandine ufficiali.",
+    "voce": "Tenet: e se il tempo potesse andare all'indietro?"
+  },
+  "capitoli": [
+    {
+      "id": "invertiti",
+      "titolo": "Cosa vuol dire «invertito»?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema del tempo a due binari (rosso avanti, blu all'indietro): vedi Tempo.tsx.",
+      "sottotitoli": [
+        "L'eroe, una spia senza nome, è detto il Protagonista.",
+        "Una scienziata gli mostra dei proiettili strani:",
+        "non escono dalla pistola: ci rientrano, come un video riavvolto.",
+        "Sono «invertiti»: per loro il tempo va all'indietro."
+      ]
+    },
+    {
+      "id": "futuro",
+      "titolo": "Da dove arrivano quei proiettili?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema del tempo a due binari: vedi Tempo.tsx.",
+      "sottotitoli": [
+        "Arrivano dal futuro, dove si sa già invertire le cose.",
+        "Sono armi di una guerra del futuro contro di noi.",
+        "Per questo lo ha reclutato Tenet, un gruppo segreto",
+        "che deve fermare questa guerra prima che cominci."
+      ]
+    },
+    {
+      "id": "sator",
+      "titolo": "Chi è il nemico?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema del tempo a due binari: vedi Tempo.tsx.",
+      "sottotitoli": [
+        "Le tracce portano a Sator, un ricco russo che parla col futuro:",
+        "è lui a far invertire le armi.",
+        "Per arrivarci, il Protagonista aiuta Kat, la moglie di Sator,",
+        "ricattata dal marito: gli ha venduto un quadro falso."
+      ]
+    },
+    {
+      "id": "tornello",
+      "titolo": "Come si va all'indietro?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema del tempo a due binari: vedi Tempo.tsx.",
+      "sottotitoli": [
+        "Così, col socio Neil, va a Oslo a rubare quel quadro.",
+        "Il quadro non c'è: c'è un tornello, una porta girevole che inverte.",
+        "E ne esce un uomo mascherato che lotta con lui all'indietro.",
+        "Chi è quell'uomo?"
+      ]
+    },
+    {
+      "id": "algoritmo",
+      "titolo": "Cosa vuole il futuro?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema del tempo a due binari: vedi Tempo.tsx.",
+      "sottotitoli": [
+        "Intanto si scopre che Sator cerca l'Algoritmo,",
+        "una macchina in nove pezzi che inverte il mondo intero.",
+        "Così noi, il passato, spariremmo come una lavagna cancellata.",
+        "Il futuro lo vuole per sfuggire al clima rovinato."
+      ]
+    },
+    {
+      "id": "battito",
+      "titolo": "Perché Sator vuole morire?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema del tempo a due binari: vedi Tempo.tsx.",
+      "sottotitoli": [
+        "Ma Sator ha un tumore e morirà presto,",
+        "così lega l'Algoritmo al suo battito:",
+        "se il cuore si ferma, il mondo finisce con lui.",
+        "E vuole morire nel passato, nel suo ultimo giorno felice in Vietnam."
+      ]
+    },
+    {
+      "id": "mascherato",
+      "titolo": "Chi era l'uomo mascherato?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema del tempo a due binari: vedi Tempo.tsx.",
+      "sottotitoli": [
+        "Prima, mentre rubano un pezzo dell'Algoritmo, Sator spara a Kat:",
+        "il proiettile è invertito: la ferita si cura solo all'indietro.",
+        "Così l'eroe la inverte nel tornello e torna indietro a Oslo,",
+        "e scopre: l'uomo mascherato era lui, invertito."
+      ]
+    },
+    {
+      "id": "tenaglia",
+      "titolo": "Come si vince contro il tempo?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema del tempo a due binari: vedi Tempo.tsx.",
+      "sottotitoli": [
+        "Infine Tenet attacca il covo dell'Algoritmo con due squadre:",
+        "una avanti nel tempo, una indietro: come una tenaglia.",
+        "Intanto Kat, in Vietnam, distrae Sator:",
+        "vorrebbe ucciderlo, ma se muore prima, l'Algoritmo scatta."
+      ]
+    },
+    {
+      "id": "neil",
+      "titolo": "Chi è davvero Neil?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema del tempo a due binari: vedi Tempo.tsx.",
+      "sottotitoli": [
+        "Un soldato col filo rosso sullo zaino muore aprendo il cancello.",
+        "Così Tenet prende l'Algoritmo, e intanto Kat uccide Sator.",
+        "Ma quel soldato è Neil, che torna indietro a morire:",
+        "lo ha reclutato il Protagonista del futuro, che fonderà Tenet."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "In una frase: per salvare il mondo, bisogna andare all'indietro.",
+    "immagine": "La stessa scena della copertina (l'orologio con le lancette rossa e blu, la pistola e il proiettile che torna indietro), più calma; riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la spiegazione che vorresti.'"
+  },
+  "musica": "Originale e strumentale: archi gravi e pianoforte con un battito di timpani che ricorda un cuore; a ogni cosa invertita le note suonano anche al contrario (dal grave all'acuto e ritorno, come un palindromo); niente brani o temi del film (né la colonna sonora originale né canzoni usate nel film).",
+  "fonti": [
+    "Il Protagonista, agente della CIA indicato solo come «Protagonista»; pillola avvelenata non mortale come test e reclutamento in Tenet; la scienziata Laura e i proiettili con entropia invertita che si muovono all'indietro nel tempo, provenienti da una guerra futura; Priya e Sator, oligarca russo che fa invertire i proiettili e comunica con il futuro; Kat, moglie di Sator, ricattata con un falso Goya che gli aveva venduto; furto al deposito presso l'aeroporto di Oslo, il Tornello e i due uomini mascherati che sono la stessa persona; Tallinn, Sator ferisce Kat con un proiettile invertito, la invertono e tornano indietro fino a Oslo; Algoritmo che può invertire il mondo intero; cancro al pancreas e dispositivo al polso collegato al battito che attiva l'Algoritmo alla morte; ultimo giorno felice in Vietnam sullo yacht; manovra a tenaglia temporale con metà delle truppe avanti e metà all'indietro; soldato con il filo rosso sullo zaino che sblocca il cancello e muore: Neil, reclutato anni prima dal Protagonista del futuro, che creerà Tenet; Kat uccide Sator mentre l'Algoritmo viene recuperato: https://it.wikipedia.org/wiki/Tenet",
+    "Oggetti invertiti dal futuro; guerra del futuro contro il passato; Algoritmo in nove pezzi che inverte l'entropia del mondo e ne distrugge il passato, voluto dal futuro per sfuggire agli effetti del cambiamento climatico; dead man's switch legato alla vita di Sator, malato terminale; vacanza in Vietnam; tenaglia temporale con squadre invertite e non invertite; Neil reclutato in passato dal Protagonista del futuro, che si scopre creatore di Tenet; Kat uccide Sator: https://en.wikipedia.org/wiki/Tenet",
+    "Il titolo e i nomi (Sator, Arepo, Tenet, Opera, Rotas) richiamano il quadrato del Sator, un palindromo latino: https://it.wikipedia.org/wiki/Quadrato_del_Sator"
+  ]
+}
