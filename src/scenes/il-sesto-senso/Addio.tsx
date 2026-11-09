@@ -35,6 +35,12 @@ export const Addio: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         <Lin id="ad-floor" stops={[[0, '#5A4230'], [0.5, '#30221A'], [1, '#0A0604']]} />
         <Lin id="ad-coat" x2={1} y2={0} stops={[[0, '#1E222A'], [0.5, '#3E4450'], [1, '#14181E']]} />
         <Lin id="ad-rail" x2={1} y2={0} stops={[[0, '#1A100A'], [0.45, '#6A4A30'], [0.6, '#3A2414'], [1, '#120A06']]} />
+        <linearGradient id="ad-whiteg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#FFFBF0" stopOpacity="0" />
+          <stop offset=".3" stopColor="#FFFBF0" stopOpacity="0" />
+          <stop offset=".5" stopColor="#FFFBF0" stopOpacity=".5" />
+          <stop offset="1" stopColor="#FFFBF0" stopOpacity=".6" />
+        </linearGradient>
         <linearGradient id="ad-beam" x1="1" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#FFE6B8" stopOpacity=".6" />
           <stop offset="1" stopColor="#FFE6B8" stopOpacity="0" />
@@ -63,8 +69,8 @@ export const Addio: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           {Array.from({ length: 10 }, (_, i) => <path key={i} d={`M${-200 + i * 160} 1250 L${-440 + i * 220} 2200`} stroke="#000" strokeWidth="4" opacity=".3" />)}
           {/* fasci di sole dalla finestra sul pavimento */}
           <path d="M700 1040 L960 1040 L700 1800 L240 1800 Z" fill="url(#ad-beam)" opacity={dawn} />
-          <Glow id="ad-white" x={DX + DW / 2} y={DY - DH / 2} r={700} t={t} color="#FFFFFF" amp={0.04} rate={1.2} opacity={0.85 * open} />
-          <Porta id="ad" x={DX} y={DY} w={DW} h={DH} turn={0} open={open} behind="#FFFBF0" knob={30} />
+          <Glow id="ad-white" x={DX + DW / 2} y={DY - DH / 2 + 80} r={560} t={t} color="#FFFFFF" amp={0.04} rate={1.2} opacity={0.8 * open} />
+          <Porta id="ad" x={DX} y={DY} w={DW} h={DH} turn={0} open={open} behind="#FFFBF0" knob={30} spento={1 - redOff} />
           <Brina id="ad" x={DX} y={DY - 6} w={DW} p={0.9 * melt} />
           <Glow id="ad-knob" x={DX + DW - 52} y={DY - DH + DH * 0.54} r={120} t={t} color="#FF5A48" amp={0.1} rate={2.4} opacity={0.7 * redOff * (1 - open)} />
           {open > 0 && <path d={`M${DX} ${DY} H${DX + DW} L${DX + DW + 300} 1800 H${DX - 200} Z`} fill="#FFFBF0" opacity={0.5 * open} />}
@@ -114,7 +120,7 @@ export const Addio: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         </g>
         <g opacity={dawn * 0.6}><SunRays id="ad-rays" x={830} y={850} t={t} color="#FFF0D0" n={7} length={700} opacity={0.18} from={100} to={170} /></g>
       </g>
-      <rect width="1080" height="1920" fill="#FFFBF0" opacity={0.55 * white} />
+      <rect width="1080" height="1920" fill="url(#ad-whiteg)" opacity={white} />
       <Finish id="ad" tint="#3A3428" tintOpacity={0.1} />
     </svg>
   );

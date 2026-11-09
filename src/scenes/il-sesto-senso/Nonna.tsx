@@ -119,26 +119,31 @@ export const Nonna: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             <path d="M-120 0 V-90 H120 V0 Z" fill="url(#no-box)" stroke={K} strokeWidth="8" />
             <path d="M-100 -20 H100 M-100 -70 H100" stroke="#C8946A" strokeWidth="3" opacity=".5" />
             <rect x="-14" y="-62" width="28" height="22" rx="4" fill="url(#no-brass)" stroke={K} strokeWidth="4" />
-            {/* coperchio aperto: si alza dietro la scatola, con lo specchietto */}
-            <g opacity={seg(lid, 0.2, 0.6)}>
-              <path d={`M-120 -90 L${-116} ${-90 - 120 * lid} H116 L120 -90 Z`} fill="url(#no-box)" stroke={K} strokeWidth="8" />
-              <rect x="-90" y={-90 - 100 * lid} width="180" height={80 * lid} rx="6" fill="#A8B8C0" stroke={K} strokeWidth="5" />
-              <path d={`M-70 ${-90 - 90 * lid} L-40 ${-90 - 30 * lid}`} stroke="#FFFFFF" strokeWidth="5" opacity=".6" />
-            </g>
-            {/* interno di velluto e la spilla */}
-            <path d="M-108 -90 H108 L100 -78 H-100 Z" fill="url(#no-velvet)" stroke={K} strokeWidth="4" opacity={lid} />
-            <g opacity={lid} transform={`translate(0 ${-96 - 10 * lid})`}>
-              <ellipse cx="0" cy="0" rx="34" ry="24" fill="url(#no-gold)" stroke={K} strokeWidth="5" />
-              <ellipse cx="0" cy="0" rx="18" ry="12" fill="#6A2A5A" stroke={K} strokeWidth="3" />
-              {[0, 60, 120, 180, 240, 300].map((a) => <circle key={a} cx={Math.cos((a * Math.PI) / 180) * 28} cy={Math.sin((a * Math.PI) / 180) * 19} r="4" fill="#F2F0E8" />)}
-              <path d={`M-40 -40 L-28 -28 M40 -40 L28 -28 M0 -52 V-36`} stroke="#FFF6D8" strokeWidth="5" strokeLinecap="round" opacity={glint} />
-            </g>
-            {/* coperchio chiuso (sparisce mentre si alza) */}
-            <g opacity={1 - seg(lid, 0, 0.35)} transform={`translate(0 -90) scale(1 ${1 - 0.5 * lid})`}>
-              <path d="M-126 0 V-40 Q0 -64 126 -40 V0 Z" fill="url(#no-box)" stroke={K} strokeWidth="8" />
-              <path d="M-90 -30 Q0 -48 90 -30" stroke="#E8B860" strokeWidth="5" fill="none" />
-              <circle cx="0" cy="-28" r="10" fill="url(#no-brass)" stroke={K} strokeWidth="3" />
-            </g>
+            {/* coperchio: una sola forma opaca incernierata dietro; si alza e mostra lo specchietto interno */}
+            <path d={`M-126 -90 V${-90 - lerp(40, 130, lid)} Q0 ${-90 - lerp(64, 136, lid)} 126 ${-90 - lerp(40, 130, lid)} V-90 Z`} fill="url(#no-box)" stroke={K} strokeWidth="8" />
+            {lid < 0.4 ? (
+              <>
+                <path d={`M-90 ${-90 - lerp(30, 90, lid)} Q0 ${-90 - lerp(48, 100, lid)} 90 ${-90 - lerp(30, 90, lid)}`} stroke="#E8B860" strokeWidth="5" fill="none" />
+                <circle cx="0" cy={-90 - lerp(28, 80, lid)} r="10" fill="url(#no-brass)" stroke={K} strokeWidth="3" />
+              </>
+            ) : (
+              <>
+                <rect x="-92" y={-90 - lerp(40, 120, lid)} width="184" height={lerp(30, 96, lid)} rx="6" fill="#A8B8C0" stroke={K} strokeWidth="5" />
+                <path d={`M-70 ${-90 - lerp(34, 110, lid)} L-40 ${-90 - lerp(10, 34, lid)}`} stroke="#FFFFFF" strokeWidth="5" opacity=".6" />
+              </>
+            )}
+            {/* interno di velluto e la spilla (visibili solo a coperchio alzato) */}
+            {lid >= 0.4 && (
+              <>
+                <path d="M-108 -90 H108 L100 -78 H-100 Z" fill="url(#no-velvet)" stroke={K} strokeWidth="4" />
+                <g transform={`translate(0 ${-96 - 10 * lid})`}>
+                  <ellipse cx="0" cy="0" rx="34" ry="24" fill="url(#no-gold)" stroke={K} strokeWidth="5" />
+                  <ellipse cx="0" cy="0" rx="18" ry="12" fill="#6A2A5A" stroke={K} strokeWidth="3" />
+                  {[0, 60, 120, 180, 240, 300].map((a) => <circle key={a} cx={Math.cos((a * Math.PI) / 180) * 28} cy={Math.sin((a * Math.PI) / 180) * 19} r="4" fill="#F2F0E8" />)}
+                  <path d={`M-40 -40 L-28 -28 M40 -40 L28 -28 M0 -52 V-36`} stroke="#FFF6D8" strokeWidth="5" strokeLinecap="round" opacity={glint} />
+                </g>
+              </>
+            )}
           </g>
           <Glow id="no-brooch" x={540} y={1110} r={200} t={t} color="#FFE6A8" amp={0.1} rate={4} opacity={0.75 * lid} />
         </g>

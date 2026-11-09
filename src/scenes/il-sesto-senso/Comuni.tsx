@@ -60,14 +60,18 @@ export const Candela: React.FC<{ id: string; x: number; y: number; t: number; h?
 );
 
 /** Maniglia a pomolo rossa (la maniglia della cantina): sfera lucida con riflesso e rosetta d'ottone. */
-export const Pomolo: React.FC<{ id: string; x: number; y: number; r?: number; turn?: number }> = ({ id, x, y, r = 30, turn = 0 }) => (
+export const Pomolo: React.FC<{ id: string; x: number; y: number; r?: number; turn?: number; spento?: number }> = ({ id, x, y, r = 30, turn = 0, spento = 0 }) => (
   <g transform={`translate(${x} ${y})`}>
     <circle cx="0" cy="0" r={r * 1.35} fill={`url(#${id}-brass)`} stroke={K} strokeWidth="5" />
-    <circle cx="0" cy="0" r={r} fill={`url(#${id}-red)`} stroke={K} strokeWidth="6" />
-    <g transform={`rotate(${turn * 70})`}>
-      <ellipse cx={-r * 0.32} cy={-r * 0.38} rx={r * 0.34} ry={r * 0.2} fill="#FFFFFF" opacity=".75" transform={`rotate(-30 ${-r * 0.32} ${-r * 0.38})`} />
-      <path d={`M${-r * 0.7} ${r * 0.1} Q${-r * 0.6} ${r * 0.6} 0 ${r * 0.72}`} stroke="#FFB4A8" strokeWidth="3" fill="none" opacity=".5" />
+    {/* la sfera con una nervatura in rilievo e una tacca d'ottone: girando si vede ruotare */}
+    <g transform={`rotate(${turn * 90})`}>
+      <circle cx="0" cy="0" r={r} fill={`url(#${id}-red)`} stroke={K} strokeWidth="6" />
+      {spento > 0 && <circle cx="0" cy="0" r={r} fill={`url(#${id}-brass)`} opacity={spento} stroke={K} strokeWidth="6" />}
+      <path d={`M${-r * 0.92} 0 H${r * 0.92}`} stroke={K} strokeWidth={r * 0.32} strokeLinecap="round" />
+      <path d={`M${-r * 0.88} 0 H${r * 0.88}`} stroke="#E8C878" strokeWidth={r * 0.16} strokeLinecap="round" />
+      <circle cx={r * 0.62} cy="0" r={r * 0.14} fill="#FFF2C8" stroke={K} strokeWidth="2" />
     </g>
+    <ellipse cx={-r * 0.32} cy={-r * 0.42} rx={r * 0.3} ry={r * 0.16} fill="#FFFFFF" opacity=".7" transform={`rotate(-30 ${-r * 0.32} ${-r * 0.42})`} />
   </g>
 );
 
@@ -75,7 +79,7 @@ export const Pomolo: React.FC<{ id: string; x: number; y: number; r?: number; tu
  * Porta a pannelli di legno verniciato con stipite e pomolo rosso. Origine in basso a sinistra.
  * `turn` gira il pomolo, `open` 0–1 la apre verso l'interno (si stringe) e lascia passare la luce `behind`.
  */
-export const Porta: React.FC<{ id: string; x: number; y: number; w?: number; h?: number; turn?: number; open?: number; behind?: string; paint?: string; knob?: number }> = ({ id, x, y, w = 330, h = 700, turn = 0, open = 0, behind = '#BCD8F0', paint, knob = 26 }) => (
+export const Porta: React.FC<{ id: string; x: number; y: number; w?: number; h?: number; turn?: number; open?: number; behind?: string; paint?: string; knob?: number; spento?: number; dx?: number }> = ({ id, x, y, w = 330, h = 700, turn = 0, open = 0, behind = '#BCD8F0', paint, knob = 26, spento = 0, dx = 0 }) => (
   <g strokeLinejoin="round">
     <rect x={x - 34} y={y - h - 34} width={w + 68} height={h + 34} fill={`url(#${id}-woodv)`} stroke={K} strokeWidth="9" />
     <path d={`M${x - 24} ${y} V${y - h - 24} H${x + w + 24}`} stroke="#9A8064" strokeWidth="4" fill="none" opacity=".55" />
@@ -95,7 +99,7 @@ export const Porta: React.FC<{ id: string; x: number; y: number; w?: number; h?:
         );
       }))}
       {[0.1, 0.86].map((k) => <rect key={k} x="-8" y={h * k} width="18" height="52" fill="#3A3E40" stroke={K} strokeWidth="4" />)}
-      <Pomolo id={id} x={w - 52} y={h * 0.54} r={knob} turn={turn} />
+      <Pomolo id={id} x={w - 52 + dx} y={h * 0.54} r={knob} turn={turn} spento={spento} />
       <rect x={w - 60} y={h * 0.54 + 44} width="16" height="26" rx="4" fill="#1A1A1A" stroke={K} strokeWidth="3" />
     </g>
   </g>

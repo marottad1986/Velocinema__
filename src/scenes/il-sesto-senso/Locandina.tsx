@@ -55,7 +55,7 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; mattino: boolean }>
           <path d="M240 1010 H840" stroke={mattino ? '#E8E0CC' : '#3A4856'} strokeWidth="10" />
           {[268, 720].map((x) => <rect key={x} x={x} y="1050" width="90" height="200" fill="none" stroke={mattino ? '#7A705C' : '#05080C'} strokeWidth="6" />)}
           <Glow id={`${id}-door`} x={DX + DW / 2} y={DY - 40} r={mattino ? 520 : 380} t={t} color={mattino ? '#FFF2D8' : '#9CC8F0'} amp={0.06} rate={3} opacity={mattino ? 0.8 : 0.42 * under} />
-          <Porta id={id} x={DX} y={DY} w={DW} h={DH} turn={turn + rattle * 0.15} open={mattino ? 0.85 : 0} behind="#FFF8E8" paint={mattino ? undefined : `url(#${id}-doorN)`} knob={34} />
+          <Porta id={id} x={DX} y={DY} w={DW} h={DH} turn={turn} dx={rattle * 4} spento={mattino ? 1 : 0} open={mattino ? 0.85 : 0} behind="#FFF8E8" paint={mattino ? undefined : `url(#${id}-doorN)`} knob={34} />
           {!mattino && <path d={`M${DX + 8} ${DY - DH + 10} V${DY - 12}`} stroke="#9CC8F0" strokeWidth="5" opacity=".55" />}
           {mattino && <Glow id={`${id}-open`} x={DX + DW / 2} y={DY - DH / 2} r={420} t={t} color="#FFFFFF" amp={0.04} rate={1.5} opacity={0.8} />}
           {/* luce fredda sotto la porta e brina che sale sul legno */}

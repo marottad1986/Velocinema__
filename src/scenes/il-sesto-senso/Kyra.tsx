@@ -51,7 +51,8 @@ export const Kyra: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <circle cx="620" cy="720" r="34" fill="#E8EEF4" />
           <Glow id="ky-moon" x={620} y={720} r={260} t={t} color="#A8C4E8" amp={0.03} rate={0.6} opacity={0.4} />
           <path d="M540 640 V940 M380 790 H700" stroke="#3A4656" strokeWidth="10" />
-          <Brina id="ky" x={380} y={936} w={320} p={cold} />
+          <Brina id="ky" x={380} y={800} w={320} p={cold} />
+          <Brina id="ky" x={380} y={644} w={320} p={cold * 0.8} up={false} seed={7} />
           <rect x="380" y="640" width="320" height="300" fill="url(#ky-glass)" />
           <rect x="380" y="640" width="320" height="300" fill="none" stroke={K} strokeWidth="9" />
           <rect x="360" y="936" width="360" height="20" fill="#4A5260" stroke={K} strokeWidth="5" />
@@ -72,14 +73,14 @@ export const Kyra: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           ))}
           {/* la coperta rossa: tesa tra gli schienali e ricadente a terra */}
           <Glow id="ky-tentglow" x={540} y={1150} r={460} t={t} color="#F2A050" amp={0.05} rate={6} opacity={0.45 * tl} />
-          <path d={`M280 830 Q540 ${800 - 30 * billow} 800 830 L${880 + 30 * billow} 1270 Q540 ${1296 + 10 * billow} ${200 - 30 * billow} 1270 Z`} fill="url(#ky-redcloth)" stroke={K} strokeWidth="10" />
+          <path d={`M280 830 Q540 ${800 - 70 * billow} 800 830 L${880 + 70 * billow} 1270 Q540 ${1296 + 25 * billow} ${200 - 70 * billow} 1270 Z`} fill="url(#ky-redcloth)" stroke={K} strokeWidth="10" />
           {/* pieghe */}
-          {[340, 440, 640, 740].map((x, i) => <path key={x} d={`M${x} 840 Q${x + (i < 2 ? -30 : 30) - 20 * billow} 1060 ${x + (i < 2 ? -80 : 80)} 1270`} stroke="#4A0C0A" strokeWidth="8" fill="none" opacity=".7" />)}
-          <path d={`M290 836 Q540 ${808 - 30 * billow} 790 836`} stroke="#F28A7A" strokeWidth="5" fill="none" opacity=".6" />
+          {[340, 440, 640, 740].map((x, i) => <path key={x} d={`M${x} 840 Q${x + (i < 2 ? -30 : 30) - 45 * billow} 1060 ${x + (i < 2 ? -80 : 80)} 1270`} stroke="#4A0C0A" strokeWidth="8" fill="none" opacity=".7" />)}
+          <path d={`M290 836 Q540 ${808 - 70 * billow} 790 836`} stroke="#F28A7A" strokeWidth="5" fill="none" opacity=".6" />
           {/* l'apertura davanti, con la luce calda della torcia dentro */}
-          <path d={`M540 900 Q${470 - 20 * billow} 1100 ${420 - 30 * billow} 1272 H${660 + 40 * billow} Q${610 + 20 * billow} 1100 540 900 Z`} fill="url(#ky-inside)" stroke={K} strokeWidth="8" opacity={0.35 + 0.65 * tl} />
-          <path d={`M540 900 Q${470 - 20 * billow} 1100 ${420 - 30 * billow} 1272`} stroke="#8A1A16" strokeWidth="14" fill="none" />
-          <path d={`M540 900 Q${610 + 20 * billow} 1100 ${660 + 30 * billow} 1272`} stroke="#8A1A16" strokeWidth="14" fill="none" />
+          <path d={`M540 900 Q${470 - 45 * billow} 1100 ${420 - 70 * billow} 1272 H${660 + 70 * billow} Q${610 + 45 * billow} 1100 540 900 Z`} fill="url(#ky-inside)" stroke={K} strokeWidth="8" opacity={0.35 + 0.65 * tl} />
+          <path d={`M540 900 Q${470 - 45 * billow} 1100 ${420 - 70 * billow} 1272`} stroke="#8A1A16" strokeWidth="14" fill="none" />
+          <path d={`M540 900 Q${610 + 45 * billow} 1100 ${660 + 70 * billow} 1272`} stroke="#8A1A16" strokeWidth="14" fill="none" />
           {/* dentro: la torcia a terra e il cuscino */}
           <g opacity={0.6 + 0.4 * tl}>
             <ellipse cx="540" cy="1246" rx="80" ry="20" fill="#E8E0D0" stroke={K} strokeWidth="5" />
@@ -90,11 +91,11 @@ export const Kyra: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             </g>
           </g>
           {/* fascio della torcia che esce e illumina il biglietto a terra */}
-          <Beam id="ky-beam" x={600} y={1228} t={t} length={lerp(120, 360, sweep)} spread={lerp(60, 140, sweep)} angle={lerp(-12, 0, sweep)} color="#FFF0C8" opacity={0.75 * tl * (0.2 + 0.8 * sweep)} />
+          <Beam id="ky-beam" x={600} y={1228} t={t} length={lerp(100, 230, sweep)} spread={lerp(60, 120, sweep)} angle={lerp(-12, 6, sweep)} color="#FFF0C8" opacity={0.75 * tl * (0.2 + 0.8 * sweep)} />
         </g>
 
         <g transform={L(0.7)}>
-          <Fog id="ky-cold" t={t} y={1180} rx={620} ry={110} color="#BCDCF4" opacity={0.5 * cold} speed={0.6} drift={80} />
+          <Fog id="ky-cold" t={t} y={1180} rx={620} ry={110} color="#BCDCF4" opacity={0.8 * cold} speed={0.6} drift={80} />
           <Glow id="ky-coldglow" x={540} y={900} r={520} t={t} color="#9CC8F0" amp={0.06} rate={2} opacity={0.3 * cold} />
         </g>
         {/* PIANO 2 — giocattoli e il biglietto del funerale sul pavimento (0,8) */}
@@ -114,7 +115,7 @@ export const Kyra: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             <path d="M0 -36 V-60" stroke={K} strokeWidth="8" />
           </g>
           {/* il biglietto listato a lutto: compare nel fascio */}
-          <g transform="translate(940 1222) rotate(-8) scale(.62)">
+          <g transform="translate(790 1252) rotate(-8) scale(.6)">
             <Ombra id="ky" x={0} y={34} rx={130} ry={14} />
             <rect x="-120" y="-60" width="240" height="120" fill="url(#ky-paper)" stroke={K} strokeWidth="6" />
             <rect x="-108" y="-48" width="216" height="96" fill="none" stroke="#14100C" strokeWidth="8" />
@@ -122,7 +123,7 @@ export const Kyra: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             <path d="M-20 -40 h40" stroke="#14100C" strokeWidth="6" />
             <path d="M-120 -60 L-60 -60" stroke="#FFFFFF" strokeWidth="4" opacity=".6" />
           </g>
-          <Glow id="ky-note" x={940} y={1222} r={150} t={t} color="#FFF0C8" amp={0.06} rate={4} opacity={0.6 * note * tl} />
+          <Glow id="ky-note" x={790} y={1252} r={150} t={t} color="#FFF0C8" amp={0.06} rate={4} opacity={0.6 * note * tl} />
         </g>
 
         {/* PIANO 3 — bordo del letto con la coperta, in primo piano a destra (1,2) */}

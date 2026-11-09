@@ -101,7 +101,7 @@ export const Cassetta: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <text x="670" y="1212" fill="#5AE88A" opacity={on} fontFamily="monospace" fontWeight={700} fontSize="20" textAnchor="middle">{pause > 0 ? 'PAUSE' : on > 0 ? 'PLAY' : ''}</text>
           <circle cx="360" cy="1230" r="6" fill={on > 0 ? '#E83A3A' : '#3A1A1A'} />
           {/* la videocassetta che entra */}
-          <g transform={`translate(${490} ${lerp(1330, 1205, ins)})`} opacity={1 - seg(ins, 0.85, 1)}>
+          <g transform={`translate(490 1200) scale(.72 ${0.72 * (1 - ins)}) translate(0 18)`} opacity={ins >= 1 ? 0 : 1}>
             <rect x="-96" y="-18" width="192" height="110" rx="5" fill="#1A1A1C" stroke={K} strokeWidth="6" />
             <rect x="-70" y="10" width="140" height="44" fill="url(#ca-paper)" stroke={K} strokeWidth="3" />
             <path d="M-56 24 H40 M-56 38 H20" stroke="#3A3428" strokeWidth="4" />

@@ -145,7 +145,7 @@ export const Nastro: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           </g>
           {v > 0 && Array.from({ length: 4 }, (_, i) => {
             const p = ((t - voice) * 0.7 + i / 4) % 1;
-            return <path key={i} d={`M${820 + p * 200} ${1110 - 70 - p * 200} Q${860 + p * 280} ${1110} ${820 + p * 200} ${1110 + 70 + p * 200}`} stroke="#CFE8FF" strokeWidth={12 - 7 * p} fill="none" strokeLinecap="round" opacity={v * (1 - p)} />;
+            return <path key={i} d={`M${810 + p * 110} ${1100 - 60 - p * 180} Q${850 + p * 160} ${1100} ${810 + p * 110} ${1100 + 40 + p * 120}`} stroke="#CFE8FF" strokeWidth={12 - 7 * p} fill="none" strokeLinecap="round" opacity={v * (1 - p)} />;
           })}
           {v > 0 && <Glow id="na-voice" x={860} y={1100} r={260} t={t} color="#9CC8F0" amp={0.15} rate={6} opacity={0.5 * v} />}
           {/* cuffie */}
@@ -156,7 +156,7 @@ export const Nastro: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             <path d="M80 30 Q160 80 280 20" stroke="#14181C" strokeWidth="6" fill="none" />
           </g>
           {/* scatola dei nastri con l'etichetta */}
-          <g transform="translate(860 1240) rotate(-6)">
+          <g transform="translate(560 1262) rotate(-4) scale(.85)">
             <Ombra id="na" x={0} y={30} rx={150} ry={14} />
             <rect x="-140" y="-120" width="280" height="150" fill="url(#na-box)" stroke={K} strokeWidth="7" />
             <rect x="-118" y="-96" width="236" height="68" fill="url(#na-paper)" stroke={K} strokeWidth="4" />

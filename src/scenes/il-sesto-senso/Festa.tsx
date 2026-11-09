@@ -21,10 +21,10 @@ export const Festa: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const L = cam.layer;
   const lock = eo(seg(t, griglia(cues[0] + 1.2), griglia(cues[0] + 1.2) + 0.35));
   const shakeOn = seg(t, griglia(cues[1] + 0.2), griglia(cues[1] + 0.3)) * (1 - seg(t, griglia(cues[2] + 0.3), griglia(cues[2] + 0.4)));
-  const shake = shakeOn * (Math.sin(t * 47) * 5 + Math.sin(t * 23) * 3);
+  const shake = shakeOn * (Math.sin(t * 47) * 8 + Math.sin(t * 23) * 5);
   const burst = griglia(cues[2] + 0.4);
   const open = eob(seg(t, burst, burst + 0.45), 1.2);
-  const flick = shakeOn * (0.5 + 0.5 * Math.sin(t * 17) * Math.sin(t * 5.3));
+  const flick = shakeOn * (0.7 + 0.3 * Math.sin(t * 17) * Math.sin(t * 5.3));
   const rise = eo(seg(t, burst + 0.2, burst + 3.2));
   const DX = 650, DY = 1250, DW = 210, DH = 250;
   const KX = DX + DW - 30, KY = DY - DH * 0.5; // maniglia
@@ -76,12 +76,11 @@ export const Festa: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             );
           })}
           {/* la porticina dello sgabuzzino con il chiavistello */}
-          <g transform={`translate(${shake * 0.6} 0)`}>
+          <g transform={`translate(${shake} 0) rotate(${shake * 0.25} ${DX} ${DY})`}>
             <rect x={DX} y={DY - DH} width={DW} height={DH} fill="#05070A" stroke={K} strokeWidth="7" />
             <rect x={DX} y={DY - DH} width={DW} height={DH} fill="url(#fe-cold)" opacity={Math.max(open, 0)} />
             {open > 0 && <Glow id="fe-coldglow" x={DX + DW / 2} y={DY - DH / 2} r={340} t={t} color="#BFE0FF" amp={0.08} rate={4} opacity={0.8 * Math.min(1, open)} />}
             {/* fessura: luce fredda che lampeggia mentre la porta trema */}
-            <rect x={DX + DW - 6} y={DY - DH + 6} width="6" height={DH - 12} fill="#DCF0FF" opacity={flick} />
             <g transform={`translate(${DX} ${DY - DH}) scale(${1 - Math.min(1, open) * 0.82} 1)`}>
               <rect x="0" y="0" width={DW} height={DH} fill="url(#fe-paint)" stroke={K} strokeWidth="8" />
               {[[18, 18, DW - 36, 92], [18, 130, DW - 36, 100]].map(([x, y, w, h], i) => (
@@ -89,6 +88,9 @@ export const Festa: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               ))}
               <circle cx={DW - 30} cy={DH * 0.5} r="12" fill="url(#fe-brass)" stroke={K} strokeWidth="4" />
             </g>
+            <rect x={DX + DW - 4} y={DY - DH + 6} width="10" height={DH - 12} fill="#DCF0FF" opacity={flick} />
+            <rect x={DX + 6} y={DY - 4} width={DW - 12} height="8" fill="#DCF0FF" opacity={flick} />
+            <Glow id="fe-slit" x={DX + DW} y={DY - DH / 2} r={220} t={t} color="#9CC8F0" amp={0.12} rate={11} opacity={0.7 * flick} />
             {/* chiavistello sullo stipite: la barra scorre a destra e chiude */}
             <g opacity={1 - Math.min(1, open * 2)}>
               <rect x={DX + DW - 70} y={DY - DH * 0.72} width="92" height="22" rx="4" fill="url(#fe-steel)" stroke={K} strokeWidth="4" />

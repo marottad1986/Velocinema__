@@ -125,7 +125,7 @@ export const Anna: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <Candela id="an" x={500} y={1186} t={t} h={150} ph={0.4} />
           <Candela id="an" x={590} y={1186} t={t} h={150} ph={2.1} lit={lit2} />
           {[500, 590].map((x) => <ellipse key={x} cx={x} cy="1190" rx="34" ry="10" fill="url(#an-brass)" stroke={K} strokeWidth="5" />)}
-          <g opacity={smoke}><Wisps t={t - out} x={590} y={1020} color="#C8CCD0" n={2} h={220} width={5} opacity={0.75} /></g>
+          <g opacity={smoke}><Wisps t={t - out} x={590} y={1020} color="#D8DCE0" n={3} h={260} width={9} opacity={0.9} /></g>
           {/* vaso con i fiori nuovi e il biglietto */}
           <g transform="translate(150 1180)">
             <Ombra id="an" x={0} y={8} rx={60} ry={10} />

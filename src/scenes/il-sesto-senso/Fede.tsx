@@ -22,8 +22,8 @@ export const Fede: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const drop = seg(t, fall, fall + 0.45);
   const roll = eo(seg(t, fall + 0.45, fall + 2.4));
   const bounce = Math.abs(Math.sin(seg(t, fall + 0.45, fall + 0.9) * Math.PI * 2)) * 22 * (1 - seg(t, fall + 0.45, fall + 0.9));
-  const ringX = lerp(590, 400, roll);
-  const ringY = drop < 1 ? lerp(1106, 1330, drop * drop) : 1330 - bounce;
+  const ringX = drop > 0 ? lerp(lerp(700, 560, drop), 400, roll) : 700;
+  const ringY = drop < 1 ? lerp(1146, 1330, drop * drop) : 1330 - bounce;
   const ringRot = -roll * 540;
   const cold = eio(seg(t, griglia(cues[2] + 0.6), griglia(cues[2] + 0.6) + 2));
   const glint = Math.max(0, Math.sin(t * 2.4)) * (drop < 1 ? 0.6 : 1);
@@ -113,18 +113,20 @@ export const Fede: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <path d="M1000 1020 Q1000 980 1040 980 Q1080 980 1080 1020 V1280 H1000 Z" fill="url(#fd-sofa)" stroke={K} strokeWidth="9" />
           <path d="M470 1230 Q760 1250 1050 1230 V1280 H470 Z" fill="#141A20" stroke={K} strokeWidth="7" />
           <path d="M490 990 Q480 960 500 950" stroke="#8AA0B8" strokeWidth="5" opacity=".6" fill="none" />
-          {/* cuscino e scialle rosso stropicciato */}
-          <path d="M840 960 Q900 930 980 960 Q1000 1040 960 1100 Q890 1110 840 1090 Q820 1020 840 960 Z" fill="#C8C4BC" stroke={K} strokeWidth="7" />
-          <path d="M600 1000 Q700 960 820 990 Q900 1040 960 1110 Q980 1170 940 1210 Q840 1236 700 1226 Q620 1200 610 1130 Q590 1060 600 1000 Z" fill="url(#fd-redcloth)" stroke={K} strokeWidth="8" />
-          {[[640, 1020, 700, 1200], [720, 990, 780, 1220], [820, 1010, 880, 1210]].map(([a, b, c, d], i) => <path key={i} d={`M${a} ${b} Q${(a + c) / 2 + 20} ${(b + d) / 2} ${c} ${d}`} stroke="#4A0C0A" strokeWidth="7" fill="none" opacity=".7" />)}
-          {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${700 + i * 26} 1224 v24`} stroke="#8A1A16" strokeWidth="5" strokeLinecap="round" />)}
-          <path d="M610 1010 Q700 974 816 1000" stroke="#F28A7A" strokeWidth="4" fill="none" opacity=".55" />
-          <Glow id="fd-shawl" x={760} y={1110} r={240} t={t} color="#E04A3A" amp={0.05} rate={1.5} opacity={0.2} />
+          {/* cuscino appoggiato al bracciolo e scialle rosso lasciato piatto sulla seduta, che ricade dal bracciolo */}
+          <path d="M880 930 Q950 914 990 940 L1000 1100 Q950 1110 890 1100 Z" fill="#C8C4BC" stroke={K} strokeWidth="7" transform="rotate(-8 940 1010)" />
+          <path d="M590 1112 Q700 1100 820 1108 L860 1120 Q900 1150 880 1196 Q740 1214 610 1206 Q580 1160 590 1112 Z" fill="url(#fd-redcloth)" stroke={K} strokeWidth="8" />
+          <path d="M620 1150 Q720 1140 840 1150 M640 1180 Q740 1174 860 1180" stroke="#4A0C0A" strokeWidth="6" fill="none" opacity=".7" />
+          <path d="M1000 990 Q1050 980 1080 1000 L1080 1240 Q1040 1250 1010 1240 Z" fill="url(#fd-redcloth)" stroke={K} strokeWidth="8" />
+          {Array.from({ length: 6 }, (_, i) => <path key={i} d={`M${614 + i * 44} 1206 v22`} stroke="#8A1A16" strokeWidth="5" strokeLinecap="round" />)}
+          {Array.from({ length: 3 }, (_, i) => <path key={`b${i}`} d={`M${1018 + i * 22} 1242 v24`} stroke="#8A1A16" strokeWidth="5" strokeLinecap="round" />)}
+          <path d="M600 1116 Q700 1104 816 1112" stroke="#F28A7A" strokeWidth="4" fill="none" opacity=".55" />
+          <Glow id="fd-shawl" x={740} y={1160} r={240} t={t} color="#E04A3A" amp={0.05} rate={1.5} opacity={0.2} />
         </g>
 
         {/* la fede d'oro: scivola, cade, rimbalza e rotola (stesso piano del divano) */}
         <g transform={L(0.7, 0, -110)}>
-          <Ombra id="fd" x={ringX} y={1342} rx={26 * (drop < 1 ? 0.6 : 1)} ry={6} opacity={drop > 0.6 ? 1 : 0} />
+          <Ombra id="fd" x={ringX} y={drop > 0.6 ? 1342 : ringY + 20} rx={26} ry={6} />
           <g transform={`translate(${ringX} ${ringY}) rotate(${ringRot})`}>
             <ellipse cx="0" cy="0" rx="22" ry="22" fill="none" stroke={K} strokeWidth="14" />
             <ellipse cx="0" cy="0" rx="22" ry="22" fill="none" stroke="url(#fd-gold)" strokeWidth="8" />
