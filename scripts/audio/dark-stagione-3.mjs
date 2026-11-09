@@ -39,7 +39,7 @@ const strings = (mix, m, { t, dur, vel = 40, pan = 0, gain = 1, att = 1.2, seed 
 
 /** Campanella: glockenspiel. */
 const bell = (mix, m, { t, vel = 46, pan = 0, gain = 1 }) =>
-  suona(mix, 'glockenspiel', m - 12, { t, dur: 2.5, vel: vel * 1.3, pan, rev: 0.75, gain: gain * 0.45, release: 1.5 });
+  suona(mix, 'glockenspiel', m - 12, { t, dur: 2.5, vel: vel * 1.3, pan, rev: 0.75, gain: gain * 0.34, release: 1.5 });
 
 /** Motivo del cerchio: pianoforte. */
 const motif = (mix, m, { t, dur, vel }) =>
@@ -61,11 +61,13 @@ const tick = (mix, t, { vel = 34, tac = false } = {}) => {
 const MOTIF = [[0, 72, 2], [2, 75, 2], [4, 74, 2], [6, 67, 2]];
 // rovesciato intorno al Do, come allo specchio (il mondo di Eva)
 const MOTIF_SPECCHIO = MOTIF.map(([b, m, l]) => [b, 144 - m, l]);
-// in maggiore (il mondo d'origine): Do, Mi, Re, Sol
-const MOTIF_MAGG = [[0, 72, 2], [2, 76, 2], [4, 74, 2], [6, 67, 2]];
+// in maggiore (il mondo d'origine): Do, Mi, Re, La
+const MOTIF_MAGG = [[0, 72, 2], [2, 76, 2], [4, 74, 2], [6, 69, 2]]; // finisce sul La (non sul Sol: niente carillon di Westminster)
 // accordi per battuta (radice MIDI, intervalli): Do minore · La bemolle · Fa minore · Sol (sospeso)
 const CHORDS = [[48, [0, 3, 7]], [44, [0, 4, 7]], [41, [0, 3, 7]], [43, [0, 5, 7]]];
 // mondo d'origine: Do · Fa · La minore · Sol
+// mondo di Eva: Fa maggiore al posto del Fa minore, così il La dello specchio non stona
+const CHORDS_SPECCHIO = [[48, [0, 3, 7]], [44, [0, 4, 7]], [41, [0, 4, 7]], [43, [0, 5, 7]]];
 const CHORDS_MAGG = [[48, [0, 4, 7]], [41, [0, 4, 7]], [45, [0, 3, 7]], [43, [0, 4, 7]]];
 
 export default (mix, T) => {
@@ -94,7 +96,9 @@ export default (mix, T) => {
     from = snap(from); to = snap(to);
     const beat = BEAT * (o.passo === 'meta' ? 2 : 1), bar = 4 * beat;
     const R = rng(7000 + sid++ * 131);
-    const chords = o.magg ? CHORDS_MAGG : CHORDS;
+    const chords = o.magg ? CHORDS_MAGG : o.specchio ? CHORDS_SPECCHIO : CHORDS;
+    /** tace: [t0, t1] = niente attacchi nuovi in quella finestra (silenzio dopo un colpo forte) */
+    const zitto = (t) => o.tace && t >= o.tace[0] && t < o.tace[1];
     const mot = o.magg ? MOTIF_MAGG : o.specchio ? MOTIF_SPECCHIO : MOTIF;
     if (o.drone) {
       drone(mix, 36, { t: from, dur: to - from, vel: o.drone, gain: 0.7, seed: sid });
@@ -103,14 +107,15 @@ export default (mix, T) => {
     for (let k = 0, t = from; t < to - 0.3; k++, t += bar) {
       const [root, iv] = chords[k % 4];
       const d = Math.min(bar * 1.02, to - t);
-      if (o.str) iv.forEach((v, j) => strings(mix, root + 12 + v, { t: t + j * 0.04, dur: d, vel: o.str, gain: 0.6, pan: (j - 1) * 0.35, seed: j + k }));
-      if (o.pad) iv.forEach((v, j) => archi(mix, root + 12 + v, { t, dur: d, vel: o.pad + 10, rev: 0.6, pan: (j - 1) * 0.3, gain: 0.8, attack: 1, release: 1.4, seed: j + 1 }));
-      if (o.pulse) colpo(mix, 'grancassa', o.pulse >= 40 ? 'bdrum_p' : 'bdrum_pp', { t, vel: 110, gain: 0.8, rev: 0.4, seed: k });
-      if (o.ticks) for (let b = 0; b < 4; b++) if (t + b * beat < to) tick(mix, t + b * beat, { vel: o.ticks, tac: b % 2 === 1 });
+      const z = zitto(t);
+      if (o.str && !z) iv.forEach((v, j) => strings(mix, root + 12 + v, { t: t + j * 0.04, dur: d, vel: o.str, gain: 0.6, pan: (j - 1) * 0.35, seed: j + k }));
+      if (o.pad && !z) iv.forEach((v, j) => archi(mix, root + 12 + v, { t, dur: d, vel: o.pad + 10, rev: 0.6, pan: (j - 1) * 0.3, gain: 0.8, attack: 1, release: 1.4, seed: j + 1 }));
+      if (o.pulse && !z) colpo(mix, 'grancassa', o.pulse >= 40 ? 'bdrum_p' : 'bdrum_pp', { t, vel: 110, gain: 0.8, rev: 0.4, seed: k });
+      if (o.ticks) for (let b = 0; b < 4; b++) if (t + b * beat < to && !zitto(t + b * beat)) tick(mix, t + b * beat, { vel: o.ticks, tac: b % 2 === 1 });
       if (o.mel && k % 2 === 0) {
         for (const [b, m, len] of mot) {
           const tt = t + b * beat;
-          if (tt >= to - 0.2 || R() > (o.keep ?? 1)) continue;
+          if (tt >= to - 0.2 || R() > (o.keep ?? 1) || zitto(tt)) continue;
           const mm = m + (o.oct ?? 0) - (o.broken && R() > 0.5 ? 1 : 0);
           motif(mix, mm, { t: tt, dur: Math.min(len * beat, to - tt), vel: o.mel });
           if (o.bells) bell(mix, mm + 12, { t: tt + 0.01, vel: o.bells, pan: -0.25 });
@@ -121,24 +126,27 @@ export default (mix, T) => {
 
   // ---- copertina: la pioggia e l'orologio che scatta a mezzo secondo (lo stesso passo della lancetta in copertina)
   clip(mix, 'pioggia_dura', { t: 0, da: 5.4, durata: 4.6, gain: 0.55, fadeIn: 0.02, fadeOut: 1.2, largo: 3, rev: 0.12 });
-  for (let k = 0; k < 8; k++) tick(mix, k * 0.5, { vel: 40, tac: k % 2 === 1 });
-  drone(mix, 36, { t: 0, dur: 4.4, vel: 44, gain: 0.7, seed: 3 });
-  [0, 1, 2, 3].forEach((k) => motif(mix, MOTIF[k][1] - 12, { t: 0.15 + k * BEAT, dur: BEAT, vel: 36 }));
+  // sulla griglia: la lancetta della copertina scatta a ogni croma (Locandina.tsx)
+  for (let k = 0; k < 8; k++) tick(mix, C0 - (8 - k) * BEAT_, { vel: 40, tac: k % 2 === 1 });
+  drone(mix, 36, { t: 0, dur: OFF + 0.6, vel: 44, gain: 0.7, seed: 3 });
+  [0, 1, 2, 3].forEach((k) => motif(mix, MOTIF[k][1] - 12, { t: C0 - (4 - k) * BEAT, dur: BEAT, vel: 36 }));
+  tick(mix, C0, { vel: 30 });
+  tick(mix, C0 + BEAT, { vel: 30, tac: true });
 
   // ---- sezioni (tempi dal JSON): i due mondi, lo specchio, il nodo; il maggiore solo nel mondo d'origine
-  sec(T.altromondo, T.eva, { drone: 44, str: 34, mel: 40, ticks: 26 });
+  sec(OFF, T.eva, { drone: 44, str: 34, mel: 40, ticks: 26, tace: [at('altromondo', 2, 0.2) - 0.05, at('altromondo', 2, 0.2) + BEAT] });
   sec(T.eva, T.bambino, { drone: 42, mel: 42, specchio: true, ticks: 28, pad: 34 });
-  sec(T.bambino, T.sfera, { drone: 40, str: 40, mel: 46, specchio: true, bells: 32 });
-  sec(T.sfera, T.claudia, { passo: 'meta', drone: 54, mel: 36, oct: -12, broken: true, keep: 0.6, pulse: 42 });
+  sec(T.bambino, T.sfera, { drone: 40, str: 40, mel: 40, specchio: true, bells: 26 });
+  sec(T.sfera, T.claudia, { passo: 'meta', drone: 48, mel: 36, oct: -12, broken: true, keep: 0.6, pulse: 42 });
   sec(T.claudia, T.origine, { drone: 40, mel: 42, ticks: 30, pad: 36 });
-  sec(T.origine, T.ponte, { drone: 46, str: 42, mel: 40, oct: -12, pulse: 34, ticks: 32 });
+  sec(T.origine, T.ponte, { drone: 46, str: 42, mel: 40, oct: -12, pulse: 34, ticks: 32, tace: [at('origine', 2, 0.3) - 0.05, at('origine', 2, 0.3) + 2 * BEAT] });
   sec(T.ponte, T.svanire, { drone: 44, str: 46, mel: 46, ticks: 34, bells: 30 });
   sec(T.svanire, T.fine, { passo: 'meta', drone: 38, mel: 34, keep: 0.6, broken: true, pad: 30 });
-  sec(T.fine, T.finale, { drone: 36, str: 40, mel: 44, magg: true, bells: 34 });
+  sec(T.fine, T.finale, { drone: 36, str: 32, mel: 36, magg: true, bells: 24 });
 
   // finale: il motivo in maggiore in campanelle sopra un accordo di Do maggiore aperto, con la pioggia leggera
   const F = snap(T.finale);
-  [36, 48, 55, 60, 64, 67].forEach((m, j) => strings(mix, m, { t: F, dur: 3.4, vel: 46, gain: 0.6, pan: (j - 2.5) * 0.2, att: 0.5, seed: 40 + j }));
+  [36, 48, 55, 60, 64, 67].forEach((m, j) => strings(mix, m, { t: F, dur: 4.6, vel: 46, gain: 0.6, pan: (j - 2.5) * 0.2, att: 0.5, seed: 40 + j }));
   MOTIF_MAGG.forEach(([b, m], k) => bell(mix, m + 12, { t: F + 0.3 + k * BEAT_, vel: 44, pan: -0.3 + k * 0.2 }));
   clip(mix, 'pioggia_dura', { t: T.finale - 0.5, da: 12, durata: 4.5, gain: 0.3, fadeIn: 0.8, fadeOut: 1.4, largo: 3, rev: 0.12 });
 
@@ -156,7 +164,7 @@ export default (mix, T) => {
   MOTIF.forEach(([, m], k) => bell(mix, m + 12, { t: at('eva', 2, 0.2) + k * BEAT_, vel: 36, pan: -0.3 }));
   MOTIF_SPECCHIO.forEach(([, m], k) => bell(mix, m + 12, { t: at('eva', 2, 0.2) + (4 + k) * BEAT_, vel: 36, pan: 0.3 }));
   // bambino: il cerchio del bambino al centro del nodo, poi le due frecce rosse dell'antenato
-  [0, BEAT_].forEach((d, k) => bell(mix, [79, 84][k], { t: at('bambino', 0, 1.2) + d, vel: 40 }));
+  [0, BEAT_].forEach((d, k) => bell(mix, [79, 84][k], { t: at('bambino', 0, 1.2) + d, vel: 32 }));
   bell(mix, 63, { t: at('bambino', 1, 0.4), vel: 42, pan: -0.3 });
   bell(mix, 60, { t: at('bambino', 1, 0.7), vel: 42, pan: 0.3 });
   // sfera: la sfera nera che inghiotte Martha e il bambino; «non funziona»
@@ -164,24 +172,27 @@ export default (mix, T) => {
   colpo(mix, 'grancassa', 'bdrum_p', { t: at('sfera', 1, 0.6), vel: 110, gain: 0.8, rev: 0.6 });
   colpo(mix, 'grancassa', 'bdrum_pp', { t: at('sfera', 2, 0.3), vel: 110, gain: 0.6, rev: 0.5 });
   // claudia: il quaderno, la spola tra i mondi, il tronco del terzo mondo che si accende
+  bell(mix, 67, { t: at('claudia', 0, 0.6), vel: 32, pan: -0.3 }); // la spola tra i due mondi
+  bell(mix, 63, { t: at('claudia', 0, 1.0), vel: 32, pan: 0.3 });
   clip(mix, 'pagine', { t: at('claudia', 0, 0.1), da: 1, durata: 0.7, gain: 0.25, fadeOut: 0.2, rev: 0.3 });
-  [0, 1, 2, 3].forEach((k) => bell(mix, [55, 60, 64, 67][k], { t: at('claudia', 2, 0.5) + k * BEAT_, vel: 38 }));
+  [0, 1, 2, 3].forEach((k) => bell(mix, [55, 60, 63, 67][k], { t: at('claudia', 2, 0.5) + k * BEAT_, vel: 28 }));
   // origine: l'incidente sul ponte, la macchina che si accende, il mondo che si spacca (lampo)
   colpo(mix, 'grancassa', 'bdrum_p', { t: at('origine', 0, 0.9), vel: 110, gain: 0.7, rev: 0.5 });
   [0, 1, 2, 3, 4, 5].forEach((k) => clip(mix, 'scatti', { t: at('origine', 1, 0.1) + k * BEAT_ / 2, da: 6.49, durata: 0.1, gain: 0.14, rev: 0.2 })); // l'ingranaggio
-  colpo(mix, 'grancassa', 'bdrum_p', { t: at('origine', 2, 0.3), vel: 120, gain: 0.9, rev: 0.7 });
-  clip(mix, 'rombo', { t: at('origine', 2, 0.3), da: 31, durata: 3, gain: 0.3, fadeIn: 0.05, fadeOut: 1.5, largo: 3 });
+  colpo(mix, 'grancassa', 'bdrum_p', { t: at('origine', 2, 0.3), vel: 127, gain: 1.6, rev: 0.7 });
+  clip(mix, 'rombo', { t: at('origine', 2, 0.3), da: 31, durata: 3, gain: 0.4, fadeIn: 0.05, fadeOut: 1.5, largo: 3 });
   // ponte: Jonas e Martha scendono, il cartello, la macchina barrata
   clip(mix, 'passaggio', { t: at('ponte', 0, 0.3) - 0.3, da: 12.27, durata: 1.6, gain: 0.22, fadeOut: 0.6, rev: 0.4 });
   bell(mix, 72, { t: at('ponte', 1, 0.6), vel: 42 });
   colpo(mix, 'grancassa', 'bdrum_pp', { t: at('ponte', 2, 0.2), vel: 110, gain: 0.6, rev: 0.5 });
-  [0, 1, 2].forEach((k) => bell(mix, [67, 72, 76][k], { t: at('ponte', 2, 0.3) + k * BEAT_, vel: 38 }));
+  [0, 1, 2].forEach((k) => bell(mix, [67, 72, 75][k], { t: at('ponte', 2, 0.3) + k * BEAT_, vel: 38 }));
   // svanire: i rami che si sciolgono (campanelle che scendono), Jonas e Martha, poi Adam ed Eva che fanno pace
   [0, 1, 2, 3, 4].forEach((k) => bell(mix, [84, 79, 75, 72, 67][k], { t: at('svanire', 0, 0.3) + k * BEAT, vel: 34, pan: (k % 2 ? 0.3 : -0.3) }));
   [0, BEAT_].forEach((d, k) => bell(mix, [75, 72][k], { t: at('svanire', 1, 0.2) + d, vel: 38 }));
-  [60, 64, 67].forEach((m, j) => bell(mix, m + 12, { t: at('svanire', 2, 0.2) + j * 0.03, vel: 36, pan: (j - 1) * 0.3 })); // il primo accordo maggiore
+  [56, 60, 63].forEach((m, j) => bell(mix, m + 12, { t: at('svanire', 2, 0.2) + j * 0.03, vel: 26, pan: (j - 1) * 0.3 })); // il primo accordo maggiore (La bemolle, come gli archi)
   // fine: il tronco che sale, la casa che si accende, «Jonas?»
-  clip(mix, 'pioggia_dura', { t: at('fine', 0, 0.8), da: 5.4, durata: T.finale - at('fine', 0, 0.8), gain: 0.22, fadeIn: 1.2, fadeOut: 1.2, largo: 3, rev: 0.12 });
-  [0, 1, 2].forEach((k) => bell(mix, [72, 76, 79][k], { t: at('fine', 0, 1.2) + k * BEAT_, vel: 38 }));
+  clip(mix, 'pioggia_dura', { t: at('fine', 0, 0.8), da: 9, durata: T.finale - at('fine', 0, 0.8), gain: 0.22, fadeIn: 1.2, fadeOut: 1.2, largo: 3, rev: 0.12 });
+  [0, 1, 2].forEach((k) => bell(mix, [72, 79, 84][k], { t: at('fine', 0, 1.2) + k * BEAT_, vel: 18 }));
+  bell(mix, 76, { t: at('fine', 1, 0.2), vel: 34 }); // Hannah
   MOTIF_MAGG.slice(0, 2).forEach(([, m], k) => bell(mix, m + 12, { t: at('fine', 2, 0.5) + k * BEAT, vel: 40, pan: 0.2 }));
 };

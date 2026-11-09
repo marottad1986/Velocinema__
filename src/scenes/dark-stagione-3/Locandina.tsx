@@ -118,7 +118,8 @@ const Scena: React.FC<{ t: number; dur: number; id: string; merge?: number; watc
 
 /** Orologio da taschino grande, con quadrante a numeri, lancetta dei secondi e vetro incrinato al centro. */
 const Orologio: React.FC<{ t: number; s: number; crack: number; gid: string }> = ({ t, s, crack, gid }) => {
-  const tick = Math.floor(t * 2) * 6; // scatti di mezzo secondo: il movimento si vede subito
+  // scatti a ogni croma a 66 bpm, sulla griglia della musica (gli stessi tic dello spartito): il movimento si vede subito
+  const tick = Math.floor((t - 4 + (8 * 30) / 66) / (30 / 66)) * 6;
   return (
     <g transform={`scale(${s})`}>
       <circle r="100" fill="#000" opacity=".45" transform="translate(4 8)" />
