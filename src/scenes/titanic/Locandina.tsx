@@ -98,20 +98,20 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
 
 export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
   const P = film.palette;
-  const tag = eo(seg(t, 0.05, 0.45));
-  const l1 = eob(seg(t, 0.15, 0.7), 1.4);
-  const dir = eo(seg(t, 0.6, 1.0));
-  const line = eo(seg(t, 1.1, 1.6));
+  // completa dal fotogramma 0 (è la miniatura): etichetta, titolo e regista già al loro posto, solo un lieve respiro del
+  // titolo; la frase di lancio entra subito dopo (da 0,4 s, in 0,3 s) e poi resta
+  const breath = 1 + 0.008 * Math.sin(t * 1.6);
+  const line = eo(seg(t, 0.4, 0.7));
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
       <Copertina_ t={t} dur={dur} />
       <div style={{ position: 'absolute', left: 120, top: 290, width: 840, fontFamily: SANS, color: P.chiaro }}>
-        <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.chiaro, opacity: tag, textShadow: `0 2px 0 ${P.scuro}` }}>IL FILM IN 2 MINUTI<Speciale nome={film.copertina.speciale} scale={eob(seg(t, 0.4, 0.8), 1.6)} /></p>
+        <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.chiaro, textShadow: `0 2px 0 ${P.scuro}` }}>IL FILM IN 2 MINUTI<Speciale nome={film.copertina.speciale} scale={1} /></p>
         <h1 style={{ margin: '14px 0 0', fontFamily: PLAYFAIR, fontWeight: 900, fontSize: 196, lineHeight: 0.95, letterSpacing: '0.02em', color: P.chiaro,
-          textShadow: `0 6px 0 ${P.scuro}, 0 0 40px ${P.accento}66`, opacity: seg(t, 0.15, 0.4), transform: `translateY(${(1 - l1) * 50}px)` }}>
+          textShadow: `0 6px 0 ${P.scuro}, 0 0 40px ${P.accento}66`, transform: `scale(${breath})`, transformOrigin: 'left center' }}>
           TITANIC
         </h1>
-        <p style={{ margin: '20px 0 0', fontSize: 40, fontWeight: 800, opacity: dir, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>un film di {film.regista} · {film.anno}</p>
+        <p style={{ margin: '20px 0 0', fontSize: 40, fontWeight: 800, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>un film di {film.regista} · {film.anno}</p>
       </div>
       <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 40, fontWeight: 800, textAlign: 'center',

@@ -2,6 +2,7 @@
   "titolo": "Titanic",
   "regista": "James Cameron",
   "anno": 1997,
+  "bpm": 72,
   "palette": {
     "chiaro": "#F4EEE2",
     "principale": "#1E3A5A",
@@ -98,7 +99,7 @@
       "durata": 10,
       "scena": "Un corridoio sotto coperta che si allaga: tubi, una panca con un paio di manette agganciate al tubo, l'acqua che sale e le luci che tremolano; un'ascia antincendio in una teca di vetro rotta.",
       "sottotitoli": [
-        "Così Cal, geloso, gli fa infilare il diamante in tasca e lo fa arrestare come ladro,",
+        "Intanto Cal, furioso, fa nascondere il diamante in tasca a Jack per farlo arrestare come ladro,",
         "e Jack resta ammanettato sotto coperta mentre l'acqua sale,",
         "finché Rose lo libera con un'ascia."
       ]
@@ -141,5 +142,11 @@
     "durata": 4,
     "immagine": "L'oceano calmo all'alba, con una porta di legno che galleggia nella luce rosa e un piccolo luccichio blu che affonda; 'The End' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
-  "musica": "Originale e strumentale: pianoforte, archi e arpa con un tema ampio e malinconico in Mi bemolle maggiore; corni e timpani per la nave e l'iceberg; violino e pizzicati a passo doppio per la festa in terza classe (senza flauto irlandese né cori, niente melodie del film); mare, gabbiani, sirena della nave, campana d'allarme, ghiaccio e legno che scricchiola."
+  "musica": "Originale e strumentale: pianoforte, archi e arpa con un tema ampio e malinconico in Mi bemolle maggiore; corni e timpani per la nave e l'iceberg; violino e pizzicati a passo doppio per la festa in terza classe (senza flauto irlandese né cori, niente melodie del film); mare, gabbiani, sirena della nave, campana d'allarme, ghiaccio e legno che scricchiola.",
+  "fonti": [
+    "Trama del film (Lovett cerca il Cuore dell'oceano nel relitto e trova il disegno; Rose centenaria lo vede al telegiornale e racconta; fidanzamento con Cal imposto dalla madre per i debiti; Jack in terza classe col biglietto vinto a poker; Rose vuole buttarsi dalla poppa e Jack la convince, Cal lo invita a cena in prima classe; festa in terza classe; il bacio sulla prua al tramonto e il ritratto con addosso solo il diamante; l'iceberg con la nave molto veloce; Cal fa nascondere da Lovejoy il diamante nella tasca di Jack e lo fa arrestare; Rose lo libera con un'accetta; Cal le mette addosso il soprabito col diamante, lei salta giù dalla scialuppa; la nave si spezza in due; il pannello di legno regge una sola persona, Jack le fa promettere di sopravvivere e muore di ipotermia; Rose si nasconde da Cal sul Carpathia; da anziana getta il diamante in mare): https://it.wikipedia.org/wiki/Titanic_(film_1997)",
+    "Il diamante custodito da Rose per tutta la vita e gettato in mare vicino al relitto: https://it.wikipedia.org/wiki/Cuore_dell'oceano",
+    "La nave affonda 2 ore e 40 minuti dopo l'impatto; le lance avevano 1178 posti per circa 2223 persone a bordo, cioè poco più della metà: https://it.wikipedia.org/wiki/Lance_di_salvataggio_del_Titanic",
+    "Il disegno trovato nella cassaforte e il pannello di legno capace di reggere una sola persona: https://en.wikipedia.org/wiki/Titanic_(1997_film)"
+  ]
 }
