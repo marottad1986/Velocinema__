@@ -61,7 +61,7 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; mattino: boolean }>
           {/* luce fredda sotto la porta e brina che sale sul legno */}
           {!mattino && <rect x={DX + 6} y={DY - 8} width={DW - 12} height="10" fill="#DCF0FF" opacity={under} />}
           <Brina id={id} x={DX} y={DY - 6} w={DW} p={frost} />
-          <Glow id={`${id}-knob`} x={DX + DW - 52} y={DY - DH + DH * 0.54} r={110} t={t} color="#FF5A48" amp={0.12} rate={2.4} opacity={mattino ? 0.35 : 0.6 + 0.4 * Math.abs(turn)} />
+          <Glow id={`${id}-knob`} x={DX + DW - 52} y={DY - DH + DH * 0.54} r={110} t={t} color="#FF5A48" amp={0.12} rate={2.4} opacity={mattino ? 0 : 0.6 + 0.4 * Math.abs(turn)} />
         </g>
 
         {/* PIANO 1 — pareti laterali in prospettiva e pavimento a listelli (0,6) */}
