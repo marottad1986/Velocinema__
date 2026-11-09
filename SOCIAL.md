@@ -65,6 +65,9 @@ SendUserFile), così l'utente lo trova lì quando apre la conversazione.
   e «Rispondi nella sessione del manager per approvare».
 - **Manager, domenica — dopo l'approvazione**: un messaggio quando eventi in calendario, sessioni di produzione e materiale
   social sono pronti (elenco delle produzioni avviate, con la scadenza di ciascuna).
+- **Produzione — avvio**: appena la sessione di produzione parte (contenuto scelto, ramo creato), un messaggio con titolo,
+  formato, data e ora di uscita dal calendario, scadenza prevista e «Rispondi nella sessione di produzione di <titolo>»
+  (le domande sul contenuto si fanno lì).
 - **Produzione — video pronto**: quando il video finale con la voce è pronto da controllare (controlli verdi e revisori
   APPROVATO), un messaggio con titolo, data di uscita, link alla pull request e cartella MEGA. Nella chat della sessione si
   manda anche il video (`out/<film>-voce.mp4`, o `out/<film>.mp4` se la voce manca) con SendUserFile, così l'utente lo
