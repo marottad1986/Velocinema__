@@ -10,7 +10,7 @@ import { GOLD, K, TINT, Upright } from './Comune';
 // chitarra elettrica appoggiata che si illumina.
 // Piani: parete, finestra con pioggia (0,25) · porta e pianoforte (0,45) · tavolo, candela, lettera, valigia (0,7)
 //        · sedia e chitarra in primo piano (1,15) · pioggia vicina e pulviscolo (1,7)
-// Eventi: cues[1] riflesso sognante sul vetro (vita vera o fantasia) · cues[2] il pianoforte si illumina
+// Eventi: cues[1] riflesso sognante sul vetro (dubbio tra realtà e immaginazione) · cues[2] il pianoforte si illumina
 //         · cues[3] la lettera si accende, la porta si apre del tutto (deve andarsene) · cues[4] la chitarra si accende.
 
 export const Confessione: React.FC<SceneProps> = ({ t, dur, cues }) => {
