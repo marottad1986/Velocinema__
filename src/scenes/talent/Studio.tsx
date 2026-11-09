@@ -412,6 +412,21 @@ export const Poltrona: React.FC<{ id: string; t: number; x: number; y: number; s
   </g>
 );
 
+/** Sedia della Last Call: poltroncina da palco vista di tre quarti, con lo schienale imbottito e le gambe cromate. */
+export const Sedia: React.FC<{ id: string; t: number; x: number; y: number; s?: number; colore?: string; luce?: number }> = ({ id, t, x, y, s = 1, colore = ORO, luce = 1 }) => (
+  <g transform={`translate(${x} ${y}) scale(${s})`}>
+    <ellipse cx="0" cy="6" rx="190" ry="34" fill={colore} opacity={0.3 * luce} />
+    <ellipse cx="0" cy="4" rx="120" ry="16" fill="#000" opacity=".6" />
+    {[-90, 90, -60, 60].map((lx, i) => <path key={i} d={`M${lx * 0.8} -170 L${lx} ${i < 2 ? 0 : -14}`} stroke={`url(#${id}-chrome)`} strokeWidth="10" />)}
+    <path d="M-110 -190 Q0 -215 110 -190 L100 -160 Q0 -180 -100 -160 Z" fill="#1E1428" stroke={K} strokeWidth="7" />
+    <path d="M-104 -194 Q-120 -330 -80 -400 Q0 -430 80 -400 Q120 -330 104 -194 Z" fill="#241634" stroke={K} strokeWidth="8" />
+    <path d="M-80 -400 Q0 -430 80 -400" stroke={colore} strokeWidth="7" fill="none" opacity={0.3 + 0.7 * luce} strokeLinecap="round" />
+    <path d="M-60 -380 Q-70 -300 -64 -210 M0 -392 V-206 M60 -380 Q70 -300 64 -210" stroke={K} strokeWidth="4" opacity=".55" />
+    <path d="M-104 -194 Q-120 -330 -80 -400" stroke={colore} strokeWidth="4" opacity={0.5 * luce} fill="none" />
+    <Glow id={`${id}-sd${Math.round(x)}`} x={0} y={-300} r={220} t={t} color={colore} amp={0.05} rate={2} opacity={0.35 * luce} />
+  </g>
+);
+
 /**
  * Lampada da tavolo del giudice (voto al ballottaggio): testa orientabile che punta `mira`; quando `voto` > 0 la testa si
  * accende e parte un fascio verso l'asta votata. Il nome del giudice NON sta qui (zona coperta dalle app): sta sul
