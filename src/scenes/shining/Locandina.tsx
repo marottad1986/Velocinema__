@@ -27,7 +27,7 @@ const CoverTypewriter: React.FC<{ x: number; y: number; s: number; t: number; ac
   const typing = t >= TYPE0 && t < TYPE1;
   const tick = Math.floor(t * 10);
   const strike = typing ? 1 - mod(t * 10, 1) : 0; // martelletto: scatta a ogni battuta
-  const shift = -p * 120; // il carrello scorre verso sinistra mentre si scrive
+  const shift = 60 - p * 120; // il carrello parte a destra (inizio riga) e scorre verso sinistra mentre si scrive
   const rowWords = (fill: number) => {
     let acc = 0;
     return WORDS.map((w, i) => {
@@ -106,7 +106,19 @@ const Copertina_: React.FC<{ t: number; dur: number; accent: string }> = ({ t, d
         </g>
         <g transform={L(1.0)}>
           <Glow id="sc-tw" x={540} y={1180} r={360} t={t} color="#FFD8A0" amp={0.06} rate={2} opacity={0.45} />
-          <CoverTypewriter x={540} y={1300} s={1.4} t={t} accent={accent} />
+          {/* ombra di contatto: la macchina poggia sulla neve */}
+          <ellipse cx={540} cy={1352} rx={330} ry={26} fill="#1A2230" opacity={0.35} />
+          <CoverTypewriter x={540} y={1225} s={1.3} t={t} accent={accent} />
+        </g>
+        {/* primo piano: cumulo di neve con le punte gelate di una siepe del labirinto, fino al bordo basso */}
+        <g transform={L(1.3)}>
+          <path d="M-220 1640 Q-40 1560 140 1600 Q300 1540 470 1590 Q640 1550 820 1600 Q1000 1560 1300 1620 V2200 H-220 Z" fill="#2A3444" />
+          {Array.from({ length: 14 }, (_, i) => {
+            const x = -160 + i * 100 + (i % 3) * 18, h = 70 + ((i * 37) % 50);
+            return <path key={i} d={`M${x - 34} ${1640} Q${x - 20} ${1640 - h} ${x} ${1630 - h} Q${x + 22} ${1640 - h} ${x + 34} ${1640} Z`} fill="#1A2A22" stroke={K} strokeWidth="5" />;
+          })}
+          <path d="M-220 1650 Q-40 1586 140 1622 Q300 1570 470 1614 Q640 1580 820 1624 Q1000 1588 1300 1640" fill="none" stroke="#C8D4E0" strokeWidth="14" strokeLinecap="round" opacity=".85" />
+          <path d="M-220 1700 Q200 1650 540 1690 Q880 1650 1300 1700 V2200 H-220 Z" fill="#3A4656" />
         </g>
         <g transform={L(1.6)}>
           {SNOW.map((f, i) => <circle key={i} cx={mod(f.x - t * 220, 1440) - 180} cy={mod(f.y + t * f.v, 2000)} r={f.s} fill="#F4F6FA" opacity=".5" />)}
@@ -162,9 +174,10 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
         </h1>
         <p style={{ margin: '20px 0 0', fontSize: 40, fontWeight: 800, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>un film di {film.regista} · {film.anno}</p>
       </div>
-      <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
-        borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 40, fontWeight: 800, textAlign: 'center' }}>
-        {film.copertina.frase_lancio}
+      <p style={{ position: 'absolute', left: 120, right: 180, top: 1370, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
+        borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 40, fontWeight: 800, textAlign: 'center', textWrap: 'balance' } as React.CSSProperties}>
+        {/* una frase per riga: «Un inverno da soli. / Un albergo che ricorda.» */}
+        {(film.copertina.frase_lancio ?? "").split(/(?<=\.) /).map((f, k) => <span key={k} style={{ display: 'block' }}>{f}</span>)}
       </p>
     </div>
   );
