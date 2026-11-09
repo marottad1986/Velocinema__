@@ -108,7 +108,7 @@ export default (mix, T) => {
   const stacc = (t, m, gain = 0.2) => suona(mix, 'tromba_stacc', m, { t, dur: BEAT / 2, vel: 70, pan: 0.25, gain, release: 0.2, rev: 0.3 });
   const glock = (t, m, gain = 0.14) => suona(mix, 'glockenspiel', m, { t, dur: 1.2, vel: 50, pan: 0.25, rev: 0.5, gain, release: 1 });
   const applausi = (t, durata, gain = 0.1, breve = false) => clip(mix, breve ? 'applauso_breve' : 'applauso', { t, da: 1, durata, gain, fadeIn: 0.3, fadeOut: Math.min(1.2, durata / 2), rev: 0.15, largo: 3 });
-  const scatto = (t, pan = 0, gain = 0.2) => clip(mix, 'scatti', { t: t - 0.02, da: 0.46, durata: 0.12, fadeOut: 0.03, gain, rev: 0.2, pan });
+  const scatto = (t, pan = 0, gain = 0.2) => clip(mix, 'scatti', { t: t - 0.01, da: 0.515, durata: 0.07, fadeOut: 0.03, gain, rev: 0.2, pan });
   /** Una sezione normale: groove, basso, piano. */
   const sezione = (from, to, opz = {}) => { groove(from, to, opz); basso(from, to, opz); piano(from, to, opz); };
   /** Una sezione di ballottaggio: Si minore a metà passo, cassa come un battito, archi in tremolo. */
@@ -119,10 +119,10 @@ export default (mix, T) => {
   };
 
   // ---- copertina: colpo di ottoni e piatto al fotogramma 0 (l'aggancio), poi il rullo che porta al primo capitolo
-  ottoni(0.02, [50, 57, 62, 66, 69], { dur: BEAT * 1.5, gain: 0.3, vel: 80 });
+  ottoni(0.02, [50, 57, 62, 66, 69], { dur: BEAT * 1.5, gain: 0.26, vel: 80 });
   crash(0.02, 0.26);
   kick(0.02, 70);
-  applausi(0.3, 3.2, 0.06);
+  applausi(0.3, 3.2, 0.045);
   for (let k = 0; k < 6; k++) stacc(BEAT * 2 + k * BEAT / 2, [62, 64, 66, 69, 71, 74][k], 0.3);
   rullo(T0 - 1.6, 1.6, 0.26);
   basso(T0 - BAR, T0, { vel: 54, gain: 0.34 });
@@ -167,7 +167,7 @@ export default (mix, T) => {
   tensione(B(cue(rl, 2)), rlV + 1.5);
   rullo(E(rl, 2, 0.2), 1.0, 0.22); // le due aste avanti, sotto i fasci rossi
   for (let i = 0; i < 4; i++) { scatto(rlV + i * 0.25, -0.4 + i * 0.27); tom(rlV + i * 0.25, 50, -2 + i); } // le quattro lampade
-  timp(rlV + 1.5, 35, 96, 0.5); // l'asta si spegne
+  timp(rlV + 1.5, 35, 96, 0.38); // l'asta si spegne
 
   // ---- i tre ballottaggi (Ballottaggio.tsx): data e fasci rossi, i nomi, i quattro voti, l'eliminazione e chi resta
   const ballottaggio = (id, next) => {
@@ -179,9 +179,9 @@ export default (mix, T) => {
     suona(mix, 'pianoforte_coda', 74, { t: E(id, 1, 0.1) + 1.0, dur: 1.2, vel: 54, gain: 0.26, rev: 0.4 }); // la seconda
     const tV = E(id, 2, 0.3);
     trem(tV - 0.2, 4 * 0.5 + 0.4, [47, 59, 71], { gain: 0.2 });
-    for (let i = 0; i < 4; i++) { const difende = L0voti(id)[i]; scatto(tV + i * 0.5, -0.45 + i * 0.3); tom(tV + i * 0.5, 54, difende ? 5 : -3 + i); if (difende) glock(tV + i * 0.5, 81, 0.1); } // chi difende il suo concorrente: tom più alto e glockenspiel // le lampade dei giudici
+    for (let i = 0; i < 4; i++) { const difende = L0voti(id)[i]; scatto(tV + i * 0.5, -0.45 + i * 0.3); tom(tV + i * 0.5, 54, difende ? 5 : -3 + i); if (difende) glock(tV + i * 0.5, 81, 0.1); } // le lampade dei giudici; chi difende il suo concorrente ha un tom più alto e il glockenspiel
     const tF = E(id, 3, 0.2);
-    timp(tF, 35, 104, 0.45); colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: tF - 1.2, vel: 90, gain: 0.16, rev: 0.4, dur: 1.3, release: 0.1 }); // l'asta si spegne
+    timp(tF, 35, 104, id === 'live-1' ? 0.36 : 0.45); colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: tF - 1.2, vel: 90, gain: 0.16, rev: 0.4, dur: 1.3, release: 0.1 }); // l'asta si spegne
     const dopo = tF + 2 * BEAT; // due battiti di silenzio
     archi(dopo, next, { vel: 40, gain: 0.24, ch: MAG, k0: 1 });
     piano(dopo, next, { half: true, vel: 42, gain: 0.24, k0: 1 });
@@ -203,7 +203,7 @@ export default (mix, T) => {
   basso(B(cue(rp, 2)), rpV, { vel: 56, gain: 0.36 });
   trem(E(rp, 2, 0.7), rpV - E(rp, 2, 0.7), [62, 69, 74], { gain: 0.2 });
   crescendo(mix, rpV, 2.0, { gain: 0.18 }); // la corsa delle barre
-  ottoni(rpV, [50, 57, 62, 66, 69], { dur: BEAT * 2, gain: 0.28, vel: 80 }); crash(rpV, 0.22); kick(rpV, 66); // vince Teo Bok
+  ottoni(rpV, [50, 57, 62, 66, 69], { dur: BEAT * 2, gain: 0.24, vel: 80 }); crash(rpV, 0.22); kick(rpV, 66); // vince Teo Bok
   applausi(rpV + 0.1, T['live-2'] - rpV - 0.3, 0.08);
   sezione(rpV + BAR, B(T['live-2']) + 0.2, { vel: 42 });
   glock(rpV + 1.0, 86, 0.14); // l'asta col pass al posto di Alice
@@ -212,10 +212,10 @@ export default (mix, T) => {
   const cr = 'chi-resta';
   sezione(B(T[cr]), E(cr, 3, 0.5), { vel: 44 }); // dopo «ESCONO IN 3» solo archi e ottoni: la domanda resta sospesa
   archi(B(cue(cr, 2)), B(T.finale), { vel: 42, gain: 0.22 });
-  for (let k = 0; k < 8; k++) glock(E(cr, 0, 0.1) + k * 0.25, [74, 76, 78, 81, 83, 86, 88, 90][k], 0.08); // Tabellone.tsx: le righe
+  for (let k = 0; k < 9; k++) glock(E(cr, 0, 0.1) + k * 0.25, [74, 76, 78, 81, 83, 86, 88, 90, 93][k], 0.08); // Tabellone.tsx: le righe
   for (let i = 0; i < 4; i++) { const t = E(cr, 1, 0.2) + i * 0.5; tom(t, 56, i); stacc(t, [69, 69, 66, 66][i], 0.16); } // 3, 3, 2, 2
   suona(mix, 'pianoforte_coda', 74, { t: E(cr, 2, 0.2), dur: 1.5, vel: 56, gain: 0.26, rev: 0.4 }); // LIVE 4 · GIOVEDÌ 12 NOVEMBRE
-  { const t = E(cr, 3, 0.5); rullo(t - 1.0, 1.0, 0.22); ottoni(t, [45, 52, 57, 61, 64], { dur: BEAT * 2, gain: 0.32, vel: 82 }); crash(t, 0.22); kick(t, 66); } // ESCONO IN 3
+  { const t = E(cr, 3, 0.5); rullo(t - 1.0, 1.0, 0.22); ottoni(t, [45, 52, 57, 61, 64], { dur: BEAT * 2, gain: 0.44, vel: 84 }); crash(t, 0.3); kick(t, 72); } // ESCONO IN 3
 
   // ---- finale: accordo pieno di Re, applausi
   const F = B(T.finale);
