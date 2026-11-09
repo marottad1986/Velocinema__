@@ -40,7 +40,9 @@ Controlla per ogni capitolo:
 8. Finale con «Metti like» / «Segui la pagina» e l'invito «Commenta con … che vorresti.»
 9. Copertina come miniatura e aggancio (CLAUDE.md, «Formato»): il fotogramma 0 è già la copertina completa (niente
    nero, dissolvenza o sigla prima), leggibile anche ridotta a miniatura (prova a 270×480), titolo grande nella zona
-   sicura, contrasto forte; nei primi 3 secondi c'è un motivo per restare. Giudicala come una scena a sé.
+   sicura, contrasto forte; nei primi 3 secondi c'è un motivo per restare. Nel fotogramma 0 non c'è la fascia della
+   frase di lancio (né altri sottotitoli): deve comparire subito dopo, da ~0,4 s (controlla un fotogramma a 0 s e uno a
+   1 s). Giudicala come una scena a sé.
 
 Formato della risposta: per ogni capitolo «OK» oppure l'elenco dei problemi con il fotogramma (PNG), cosa si vede e la
 correzione proposta (file e componente). Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.
