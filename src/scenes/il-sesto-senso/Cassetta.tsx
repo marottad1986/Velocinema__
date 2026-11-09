@@ -132,16 +132,19 @@ export const Cassetta: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
                 <path d="M-50 -4 q20 -8 40 0 M10 2 q16 -6 30 2" stroke="#C8A050" strokeWidth="5" fill="none" />
                 <path d="M60 -10 L130 -60" stroke="#C8C8C8" strokeWidth="7" strokeLinecap="round" />
               </g>
-              <g transform={`translate(${SX + 270} ${SY + 196}) rotate(-24)`}>
-                <path d="M-30 0 V-110 Q-30 -130 -12 -136 V-160 H14 V-136 Q30 -130 30 -110 V0 Z" fill="#5AA8C8" stroke="#2A2A22" strokeWidth="5" />
-                <rect x="-16" y="-170" width="32" height="14" fill="#E8E8E8" stroke="#2A2A22" strokeWidth="3" />
-                <rect x="-22" y="-90" width="44" height="50" fill="#F2F0E8" stroke="#2A2A22" strokeWidth="3" />
-                <path d="M-12 -74 L12 -50 M12 -74 L-12 -50" stroke="#2A2A22" strokeWidth="4" />
+              {/* flacone di detersivo appoggiato sul tavolo, col beccuccio piegato sopra la scodella */}
+              <g transform={`translate(${SX + 275} ${SY + 230})`}>
+                <path d="M-34 0 V-120 Q-34 -142 -14 -148 V-166 H14 V-148 Q34 -142 34 -120 V0 Z" fill="#5AA8C8" stroke="#2A2A22" strokeWidth="5" />
+                <path d="M-6 -166 Q-10 -200 -50 -196 L-74 -188" stroke="#2A2A22" strokeWidth="14" fill="none" strokeLinecap="round" />
+                <path d="M-6 -166 Q-10 -200 -50 -196 L-74 -188" stroke="#E8E8E8" strokeWidth="7" fill="none" strokeLinecap="round" />
+                <rect x="-24" y="-100" width="48" height="56" fill="#F2F0E8" stroke="#2A2A22" strokeWidth="3" />
+                <path d="M-12 -84 L12 -58 M12 -84 L-12 -58" stroke="#2A2A22" strokeWidth="4" />
+                <path d="M-24 -130 V-10" stroke="#FFFFFF" strokeWidth="4" opacity=".4" />
               </g>
               {/* le gocce che cadono nella scodella */}
               {drop >= 0 && pause === 0 && [0, 0.5].map((o) => {
                 const d = (drop + o) % 1;
-                return <ellipse key={o} cx={SX + 196 + d * -16} cy={SY + 100 + d * 100} rx="6" ry="9" fill="#7AC8E8" stroke="#2A2A22" strokeWidth="2" />;
+                return <ellipse key={o} cx={SX + 200} cy={SY + 46 + d * 150} rx="6" ry="9" fill="#7AC8E8" stroke="#2A2A22" strokeWidth="2" />;
               })}
               <path d={`M${SX} ${SY + 40} H${SX + SW}`} stroke="#FFFFFF" strokeWidth="3" opacity={0.15 + 0.1 * Math.sin(t * 9)} />
               {/* segno di pausa */}
@@ -170,6 +173,8 @@ export const Cassetta: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <path d="M-180 1530 Q-20 1476 150 1530" stroke="#A88AA0" strokeWidth="6" fill="none" opacity=".6" />
           {Array.from({ length: 6 }, (_, i) => <circle key={i} cx={-120 + i * 52} cy={1600} r="7" fill="#1A121A" />)}
           <g transform="translate(980 1620)">
+            <path d="M-60 120 L-130 400 M60 120 L130 400 M0 160 V420" stroke={K} strokeWidth="18" strokeLinecap="round" />
+            <path d="M-60 120 L-130 400 M60 120 L130 400 M0 160 V420" stroke="#5A3E2A" strokeWidth="9" strokeLinecap="round" />
             <circle r="170" fill="none" stroke="#2A4A22" strokeWidth="60" />
             <circle r="170" fill="none" stroke={K} strokeWidth="4" />
             {Array.from({ length: 12 }, (_, i) => {
