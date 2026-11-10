@@ -73,7 +73,8 @@ Comandi per aprire una sessione: `/manager` (team social media manager) e `/prod
   connettivi espliciti («perché», «infatti», «intanto», «così», «quindi», «ma», «alla fine»), così i collegamenti li fa
   la voce e chi guarda non deve ricostruirli; anche un capitolo si aggancia al precedente. Niente elenchi secchi di fatti
   né frasi telegrafiche; mai frasi che parlano dello schema o del video stesso (es. «Tutto in due minuti», «Ecco lo schema
-  completo»; l'etichetta «IL FILM IN 2 MINUTI» sopra il titolo resta, ma solo nelle copertine dei riassunti di film; canzoni, quadri e talent
+  completo»; l'etichetta «IL FILM IN 2 MINUTI» sopra il titolo resta, ma solo nelle copertine dei riassunti di film;
+  i riassunti di serie usano «STAGIONE N IN 2 MINUTI»; canzoni, quadri e talent
   usano il nome della serie, «CANZONI SPIEGATE», «QUADRI SPIEGATI» e «TALENT SPIEGATI»). Le righe dei sottotitoli sono pezzi dello stesso discorso. L'ultima frase della storia chiude o lascia una
   domanda chiara (per le serie: da dove riparte la stagione dopo).
 - Spiegato facile: parole di tutti i giorni, nessun termine tecnico senza spiegarlo subito, una cosa alla volta.
@@ -115,6 +116,16 @@ Comandi per aprire una sessione: `/manager` (team social media manager) e `/prod
   (`maxWidth: 780`), testate e riquadro del finale da x 120 larghi 840. I titoli grandi delle locandine (h1) entrano sempre in
   840 px: se il testo è più largo, `PosterView` in `src/components/Film.tsx` riduce il carattere da solo (misura su canvas).
   Nelle scene gli oggetti chiave stanno lontani dai bordi (lo sfondo ai lati può essere tagliato).
+
+## Riassunti di serie TV (stesso formato dei film)
+- Una stagione per video, raccontata come un film: JSON `films/<serie>-stagione-<N>.json` con `"tipo": "serie"` e
+  `"stagione": N`, 11 capitoli, etichetta in copertina «STAGIONE N IN 2 MINUTI», finale «Fine della stagione N» con
+  «Commenta con la serie che vorresti.». L'ultima frase lascia la domanda da cui riparte la stagione dopo.
+- Creature e mostri della serie: mai la sagoma intera né i tratti che li rendono riconoscibili (es. la testa a petali
+  del mostro di Stranger Things); si mostrano con tracce e parti generiche nel nostro stile (pareti che si gonfiano,
+  bava, cenere, un artiglio non umano che sfonda una membrana).
+- Episodi: Breaking Bad stagione 1 (`films/breaking-bad-stagione-1.json`), Stranger Things stagione 1
+  (`films/stranger-things-stagione-1.json`).
 
 ## Secondo formato: "Spiegato semplice" (film e serie TV)
 Trame complesse spiegate nel modo più semplice possibile, «come a un bambino di 5 anni». Valgono tutte le regole
