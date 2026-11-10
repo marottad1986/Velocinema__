@@ -4,7 +4,7 @@ import { ANTON } from '../../lib/fonts';
 import { Fog, Glow, Gulls, NearMotes, Smoke, SunRays, flashAt } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Backpack, Cornucopia as Corno, Dome, HGDefs, K, Pine, PineRow } from './Comuni';
+import { Backpack, Cornucopia as Corno, Dome, HGDefs, K, Pine, PineRow, Sottobosco } from './Comuni';
 
 // La corsa alla Cornucopia: l'alba nella radura dell'arena. Il grande corno dorato pieno di armi e zaini, attorno il
 // cerchio delle piattaforme di partenza, in cielo il conto alla rovescia proiettato sulla cupola. Eventi: 1ª frase il
@@ -109,7 +109,7 @@ export const Cornucopia: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             const u = k / 7;
             const on = seg(trail, u * 0.9, u * 0.9 + 0.1);
             const fx = lerp(450, 1000, u) + (k % 2 ? 10 : -10), fy = lerp(1245, 1175, u);
-            return <ellipse key={k} cx={fx} cy={fy} rx={lerp(22, 12, u)} ry={lerp(9, 5, u)} fill="#1A200C" opacity={on * 0.9} />;
+            return <ellipse key={k} cx={fx} cy={fy} rx={lerp(32, 18, u)} ry={lerp(13, 7, u)} fill="#0C1006" opacity={on * 0.95} />;
           })}
         </g>
 
@@ -117,13 +117,12 @@ export const Cornucopia: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         <g transform={L(1.15)}>
           <Pine x={-60} y={1620} h={980} w={440} fill="#18241A" outline={K} lit="#8AA06A" seed={41} />
           <Pine x={1150} y={1640} h={1040} w={460} fill="#18241A" outline={K} lit="#8AA06A" seed={52} />
-          <path d="M-200 1600 Q100 1540 300 1600 Q540 1560 780 1600 Q980 1540 1280 1600 V2200 H-200 Z" fill="#141C10" stroke={K} strokeWidth="8" />
-          {Array.from({ length: 14 }, (_, k) => <path key={k} d={`M${-120 + k * 100} 1600 q14 -50 30 -70 q4 40 -4 70`} fill="#2A3A20" stroke={K} strokeWidth="4" />)}
+          <Sottobosco id="co" t={t} y0={1590} ground="#3A4A22" fern="#4E6A2A" stone="#8A8C7A" lit="#E8E0B0" seed={3} />
         </g>
 
         {/* PIANO 4 — polline nella luce e particelle vicine (1,6) */}
         <g transform={L(1.6)}>
-          <NearMotes id="co-near" t={t} color="#FFF0C8" n={8} r0={50} r1={140} y0={700} opacity={0.14} />
+          <NearMotes id="co-near" t={t} color="#FFF0C8" n={9} r0={50} r1={140} y0={700} y1={1900} opacity={0.14} />
         </g>
       </g>
       <Finish id="co" tint="#1E3A2A" tintOpacity={0.1} />

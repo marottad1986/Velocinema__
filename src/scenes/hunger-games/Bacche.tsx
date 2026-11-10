@@ -4,7 +4,7 @@ import { ANTON, SANS } from '../../lib/fonts';
 import { Fog, Glow, NearMotes, SunRays } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Berries, Cornucopia, Dome, EMBER, HGDefs, K, Pine, PineRow, WhiteRose } from './Comuni';
+import { Berries, Cornucopia, Dome, EMBER, HGDefs, K, Pine, PineRow, Sottobosco, WhiteRose } from './Comuni';
 
 // Le bacche velenose: l'alba sulla radura dell'arena, la Cornucopia lontana. In primo piano su una pietra il sacchetto
 // di cuoio e due mucchietti di bacche velenose (Katniss e Peeta, mai disegnati). Eventi: 1ª frase in cielo il «2»
@@ -113,7 +113,7 @@ export const Bacche: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         </g>
         {/* PIANO 4 — la rosa bianca di Snow e le felci in primo piano (1,2) */}
         <g transform={L(1.2)}>
-          <path d="M-200 1600 Q300 1550 640 1600 Q900 1560 1280 1610 V2200 H-200 Z" fill="#141A0C" stroke={K} strokeWidth="8" />
+          <Sottobosco id="bc" t={t} y0={1600} ground="#4A5226" fern="#6A7A34" stone="#A8A090" lit="#FFE0B0" seed={31} leaf="#A87A3A" />
           <Pine x={-80} y={1680} h={860} w={360} fill="#1E2A18" outline={K} lit="#A8A06A" seed={91} />
           <Glow id="bc-rg2" x={890} y={1120} r={260} t={t} color="#DCE8FF" amp={0.06} rate={3} opacity={0.6 * rose} />
           <g opacity={rose}>
@@ -122,7 +122,7 @@ export const Bacche: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         </g>
         {/* PIANO 5 — polline e particelle vicine (1,6) */}
         <g transform={L(1.6)}>
-          <NearMotes id="bc-near" t={t} color="#FFF0D0" n={7} r0={50} r1={140} y0={900} opacity={0.12} />
+          <NearMotes id="bc-near" t={t} color="#FFF0D0" n={8} r0={50} r1={140} y0={900} y1={1900} opacity={0.12} />
         </g>
       </g>
       {/* la luce fredda della sfida */}

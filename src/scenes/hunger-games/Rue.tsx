@@ -3,7 +3,7 @@ import { camera, eo, lerp, rng, seg } from '../../lib/anim';
 import { Flyers, Glow, NearMotes, Notes, SunRays, Fog } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Arrow, HGDefs, K, Pine, PineRow } from './Comuni';
+import { Arrow, HGDefs, K, Pine, PineRow, Sottobosco } from './Comuni';
 
 // L'amica Rue: una radura del bosco nel pomeriggio, con i raggi del sole tra gli alberi. Sulla pietra le foglie
 // medicinali, sull'erba la piccola fionda di Rue, a un ramo la rete di una trappola. Eventi: 1ª frase le foglie sulla
@@ -123,20 +123,13 @@ export const Rue: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           {GRASS.map((g, i) => (
             <path key={i} d={`M${g.x} ${g.y + 300} q${g.a * 40} ${-g.h * 0.6} ${g.a * 90 + Math.sin(t * 1.5 + i) * 4} ${-g.h * 1.4}`} stroke={i % 3 ? '#2E4A1E' : '#5A7A2E'} strokeWidth="6" fill="none" strokeLinecap="round" />
           ))}
-          <path d="M-200 1600 Q200 1540 540 1600 Q860 1550 1280 1610 V2200 H-200 Z" fill="#141E0C" stroke={K} strokeWidth="8" />
-          {[[-20, 1640, 1], [1100, 1660, -1]].map(([fx, fy, d], i) => (
-            <g key={i} transform={`translate(${fx} ${fy}) scale(${d} 1)`}>
-              {Array.from({ length: 5 }, (_, k) => (
-                <path key={k} d={`M0 0 Q${120 + k * 30} ${-200 - k * 40} ${240 + k * 20} ${-120 - k * 60}`} stroke="#2A4A1E" strokeWidth="12" fill="none" strokeLinecap="round" />
-              ))}
-            </g>
-          ))}
+          <Sottobosco id="ru" t={t} y0={1590} ground="#3E5A22" fern="#5A7A2E" stone="#9A9A8A" lit="#F8F0C0" seed={9} leaf="#9AB04A" />
           <Pine x={-120} y={1700} h={900} w={360} fill="#1E3018" outline={K} lit="#8AA86A" seed={88} />
         </g>
         {/* PIANO 5 — foglie che cadono e polline nei raggi (1,6) */}
         <g transform={L(1.6)}>
           <Flyers t={t} seed={17} n={5} color="#9AB04A" outline={K} w={26} h={34} y0={700} y1={1800} speed={0.07} shape="leaf" />
-          <NearMotes id="ru-near" t={t} color="#FFF6D0" n={7} r0={50} r1={130} y0={700} opacity={0.12} />
+          <NearMotes id="ru-near" t={t} color="#FFF6D0" n={8} r0={50} r1={130} y0={700} y1={1900} opacity={0.12} />
         </g>
       </g>
       {/* luce che si raffredda quando colpiscono Rue */}

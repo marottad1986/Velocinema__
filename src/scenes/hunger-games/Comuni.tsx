@@ -289,3 +289,64 @@ export const WhiteRose: React.FC<{ x: number; y: number; s?: number; rot?: numbe
 
 /** Ombra morbida a terra. */
 export const Ombra: React.FC<{ x: number; y: number; rx: number; ry: number; o?: number }> = ({ x, y, rx, ry, o = 0.35 }) => <ellipse cx={x} cy={y} rx={rx} ry={ry} fill="#000" opacity={o} />;
+
+/**
+ * Sottobosco in primo piano (da y0 in giù, fino al bordo): terra, sassi lucidi, radici, felci che escono dai bordi,
+ * fili d'erba che ondeggiano e foglie a terra. Serve a riempire la fascia bassa coperta dalle app (BRIEF-SCENA §4).
+ */
+export const Sottobosco: React.FC<{ id: string; t: number; y0?: number; ground: string; fern: string; stone: string; lit: string; seed?: number; leaf?: string }> = ({
+  id, t, y0 = 1580, ground, fern, stone, lit, seed = 7, leaf = '#8A6A2A',
+}) => {
+  const r = rng(seed);
+  const stones = Array.from({ length: 5 }, (_, i) => ({ x: 120 + i * 200 + r() * 80, y: y0 + 120 + r() * 160, w: 60 + r() * 50 }));
+  const blades = Array.from({ length: 34 }, (_, i) => ({ x: -40 + i * 34 + r() * 20, h: 50 + r() * 70, a: (r() - 0.5) * 0.8 }));
+  const leaves = Array.from({ length: 9 }, () => ({ x: 140 + r() * 800, y: y0 + 60 + r() * 260, a: r() * 360 }));
+  return (
+    <g strokeLinejoin="round" strokeLinecap="round">
+      <defs>
+        <linearGradient id={`${id}-sb`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={ground} />
+          <stop offset="1" stopColor="#000" />
+        </linearGradient>
+      </defs>
+      <path d={`M-200 ${y0} Q200 ${y0 - 50} 540 ${y0} Q860 ${y0 + 40} 1280 ${y0 - 20} V2200 H-200 Z`} fill={`url(#${id}-sb)`} stroke={K} strokeWidth="8" />
+      {/* radici che affiorano */}
+      <path d={`M-200 ${y0 + 90} Q120 ${y0 + 60} 300 ${y0 + 130} Q420 ${y0 + 170} 520 ${y0 + 150}`} stroke={K} strokeWidth="22" fill="none" />
+      <path d={`M-200 ${y0 + 90} Q120 ${y0 + 60} 300 ${y0 + 130} Q420 ${y0 + 170} 520 ${y0 + 150}`} stroke="#4A3420" strokeWidth="12" fill="none" />
+      {/* sassi con il riflesso */}
+      {stones.map((s, i) => (
+        <g key={i}>
+          <ellipse cx={s.x} cy={s.y + s.w * 0.28} rx={s.w * 1.05} ry={s.w * 0.2} fill="#000" opacity=".35" />
+          <path d={`M${s.x - s.w} ${s.y + s.w * 0.3} Q${s.x - s.w} ${s.y - s.w * 0.4} ${s.x} ${s.y - s.w * 0.45} Q${s.x + s.w} ${s.y - s.w * 0.4} ${s.x + s.w} ${s.y + s.w * 0.3} Z`} fill={stone} stroke={K} strokeWidth="7" />
+          <path d={`M${s.x - s.w * 0.6} ${s.y - s.w * 0.15} Q${s.x - s.w * 0.2} ${s.y - s.w * 0.4} ${s.x + s.w * 0.3} ${s.y - s.w * 0.32}`} stroke={lit} strokeWidth="5" fill="none" opacity=".7" />
+        </g>
+      ))}
+      {/* foglie cadute */}
+      {leaves.map((l, i) => (
+        <path key={i} d="M0 0 Q-14 -16 0 -34 Q14 -16 0 0 Z" fill={leaf} stroke={K} strokeWidth="3" transform={`translate(${l.x} ${l.y}) rotate(${l.a})`} />
+      ))}
+      {/* fili d'erba che ondeggiano */}
+      {blades.map((b, i) => (
+        <path key={i} d={`M${b.x} ${y0 + 30} q${b.a * 30} ${-b.h * 0.6} ${b.a * 60 + Math.sin(t * 1.4 + i) * 6} ${-b.h}`} stroke={i % 3 ? fern : lit} strokeWidth="6" fill="none" opacity={i % 3 ? 1 : 0.6} />
+      ))}
+      {/* felci che escono dai bordi */}
+      {[[-40, y0 + 260, 1], [1120, y0 + 280, -1]].map(([fx, fy, d], i) => (
+        <g key={i} transform={`translate(${fx} ${fy}) scale(${d} 1) rotate(${Math.sin(t * 0.9 + i) * 2})`}>
+          {Array.from({ length: 5 }, (_, k) => {
+            const ex = 230 + k * 30, ey = -150 - k * 55;
+            return (
+              <g key={k}>
+                <path d={`M0 0 Q${ex * 0.45} ${ey * 1.1} ${ex} ${ey}`} stroke={K} strokeWidth="14" fill="none" />
+                <path d={`M0 0 Q${ex * 0.45} ${ey * 1.1} ${ex} ${ey}`} stroke={fern} strokeWidth="8" fill="none" />
+                {Array.from({ length: 7 }, (_, j) => {
+                  const u = (j + 1) / 8, px = 2 * u * (1 - u) * ex * 0.45 + u * u * ex, py = 2 * u * (1 - u) * ey * 1.1 + u * u * ey;
+                  return <path key={j} d={`M${px} ${py} l${18 - j * 2} ${-14 + j} M${px} ${py} l${-6 + j} ${-22 + j * 2}`} stroke={fern} strokeWidth="6" />;
+                })}
+              </g>
+            );
+          })}
+        </g>
+      ))}
+    </g>
+  );
+};

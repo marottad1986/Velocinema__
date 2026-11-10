@@ -29,6 +29,7 @@ export const Pane: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const tip = eo(seg(t, tg, tg + 0.35));
   const roll = eo(seg(t, tg + 0.35, tg + 1.6));
   const spill = eo(seg(t, tg + 0.2, tg + 1.4));
+  const fallB = eo(seg(t, tg + 0.3, tg + 0.7)); // la bottiglia cade distesa
   const sway = Math.sin(t * 1.7) * 3;
 
   return (
@@ -90,14 +91,14 @@ export const Pane: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
 
           {/* PIANO 1 — parete della carrozza con il finestrino (0,65) */}
           <g transform={L(0.65)}>
-            <path d="M-200 -200 H1280 V2200 H-200 Z M190 640 H890 Q910 640 910 660 V1040 Q910 1060 890 1060 H190 Q170 1060 170 1040 V660 Q170 640 190 640 Z" fill="url(#pn-wall)" fillRule="evenodd" />
+            <path d="M-200 -200 H1280 V2200 H-200 Z M190 680 H890 Q910 680 910 700 V1060 Q910 1080 890 1080 H190 Q170 1080 170 1060 V700 Q170 680 190 680 Z" fill="url(#pn-wall)" fillRule="evenodd" />
             {/* cornice del finestrino */}
-            <rect x="170" y="640" width="740" height="420" rx="20" fill="none" stroke="#C8A050" strokeWidth="16" />
-            <rect x="170" y="640" width="740" height="420" rx="20" fill="none" stroke={K} strokeWidth="5" />
-            <path d="M540 640 V1060" stroke="#C8A050" strokeWidth="12" />
-            <path d="M540 640 V1060" stroke={K} strokeWidth="3" />
+            <rect x="170" y="680" width="740" height="400" rx="20" fill="none" stroke="#C8A050" strokeWidth="16" />
+            <rect x="170" y="680" width="740" height="400" rx="20" fill="none" stroke={K} strokeWidth="5" />
+            <path d="M540 680 V1080" stroke="#C8A050" strokeWidth="12" />
+            <path d="M540 680 V1080" stroke={K} strokeWidth="3" />
             {/* riflesso sul vetro */}
-            <path d="M220 700 L330 700 L240 1000 L200 1000 Z M600 700 L650 700 L580 960 L560 960 Z" fill="#FFFFFF" opacity=".08" />
+            <path d="M220 730 L330 730 L240 1020 L200 1020 Z M600 730 L650 730 L580 980 L560 980 Z" fill="#FFFFFF" opacity=".08" />
             {/* boiserie e applique */}
             {[60, 1020].map((ax, i) => (
               <g key={i}>
@@ -132,8 +133,6 @@ export const Pane: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               {Array.from({ length: 7 }, (_, k) => <path key={k} d={`M${-130 + k * 44} -36 Q${-120 + k * 44} 10 ${-110 + k * 42} 38`} stroke="#5A3618" strokeWidth="5" fill="none" />)}
               <path d="M-150 -40 Q0 -60 150 -40" stroke="#C88A4A" strokeWidth="10" fill="none" />
               <path d="M-90 -40 Q-80 -50 -60 -48" stroke={K} strokeWidth="0" />
-              {/* tovagliolo a quadretti */}
-              <path d="M-140 -44 L-170 10 L-110 -10 Z" fill="#E8E0D0" stroke={K} strokeWidth="5" />
               {/* pagnotta */}
               <path d="M-118 -44 Q-120 -150 0 -160 Q120 -150 118 -44 Q0 -30 -118 -44 Z" fill="url(#pn-bread)" stroke={K} strokeWidth="8" />
               {[-50, 0, 50].map((cx) => <path key={cx} d={`M${cx - 26} -120 Q${cx} -100 ${cx + 26} -128`} stroke="#5A3010" strokeWidth="7" fill="none" strokeLinecap="round" />)}
@@ -146,7 +145,7 @@ export const Pane: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               <Wisps t={t + 0.7} x={290} y={1096} color="#FFF4E0" n={2} h={150} width={5} opacity={0.6} />
             </g>
             {/* bottiglia di liquore e bicchiere (Haymitch) */}
-            <g transform={`translate(860 1240) rotate(${-38 * pour * (1 - 0.6 * tip)})`}>
+            <g transform={`translate(${860 + 40 * fallB} ${1240 - 40 * fallB}) rotate(${-38 * pour - 52 * fallB})`}>
               <path d="M-40 0 V-170 Q-40 -200 -16 -214 V-270 H16 V-214 Q40 -200 40 -170 V0 Z" fill="url(#pn-bottle)" stroke={K} strokeWidth="8" />
               <rect x="-20" y="-288" width="40" height="22" fill="#2A1A10" stroke={K} strokeWidth="5" />
               <rect x="-32" y="-130" width="64" height="70" fill="#F2E8D8" stroke={K} strokeWidth="5" />
@@ -154,13 +153,18 @@ export const Pane: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               <path d="M-28 -160 V-20" stroke="#FFF2C0" strokeWidth="6" opacity=".5" />
             </g>
             {/* il bicchiere che si rovescia e rotola */}
-            <g transform={`translate(${720 - 150 * roll} ${1230 + 4 * tip}) rotate(${lerp(0, -92, tip) - 300 * roll})`}>
+            <g transform={`translate(${720 - 200 * roll} ${1230 + 4 * tip}) rotate(${lerp(0, -90, tip) - 360 * roll})`}>
               <path d="M-30 0 L-38 -90 H38 L30 0 Z" fill="#DCEAF0" fillOpacity=".35" stroke={K} strokeWidth="6" />
               <path d="M-33 -40 H33 L30 0 H-30 Z" fill="#C8862A" opacity={0.85 * (1 - tip)} />
               <path d="M-24 -80 L-20 -10" stroke="#FFFFFF" strokeWidth="4" opacity=".6" />
             </g>
             {/* macchia di liquore sulla tovaglia */}
-            <ellipse cx={740 - 30 * spill} cy={1250} rx={80 * spill} ry={14 * spill} fill="#B8742A" opacity={0.55 * spill} />
+            <ellipse cx={640} cy={1252} rx={90 * spill} ry={16 * spill} fill="#B8742A" opacity={0.6 * spill} />
+            {/* il liquore che cola dal collo della bottiglia distesa */}
+            {fallB >= 1 && [0, 1, 2].map((k) => {
+              const p = ((t * 1.6 + k / 3) % 1);
+              return <ellipse key={k} cx={628} cy={1206 + p * 40} rx="5" ry="8" fill="#C8862A" stroke={K} strokeWidth="2" opacity={1 - p * 0.6} />;
+            })}
             {/* posate e piatto */}
             <ellipse cx="400" cy="1320" rx="0" ry="0" />
             <path d="M440 1240 l10 70 M470 1240 l-6 70" stroke="#B8B8BC" strokeWidth="6" strokeLinecap="round" />
@@ -179,8 +183,17 @@ export const Pane: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             {/* bordo della tavola in primo piano */}
             <path d="M-200 1560 H1280 V2200 H-200 Z" fill="#1A0C0C" />
             <path d="M-200 1560 H1280" stroke="#6A3A2A" strokeWidth="10" />
+            {/* valigia di cuoio sul sedile, a sinistra */}
+            <g transform="translate(250 1760) rotate(-4)">
+              <rect x="-170" y="-150" width="340" height="190" rx="18" fill="#7A4A26" stroke={K} strokeWidth="9" />
+              <path d="M-170 -96 H170" stroke="#4A2A14" strokeWidth="7" />
+              <path d="M-50 -150 Q-50 -196 0 -196 Q50 -196 50 -150" fill="none" stroke={K} strokeWidth="14" />
+              <rect x="-110" y="-110" width="26" height="30" rx="4" fill="#C8A050" stroke={K} strokeWidth="4" />
+              <rect x="84" y="-110" width="26" height="30" rx="4" fill="#C8A050" stroke={K} strokeWidth="4" />
+              <path d="M-150 -140 Q-60 -146 40 -142" stroke="#C8925A" strokeWidth="5" fill="none" />
+            </g>
             {/* tazzina e piattino in primo piano */}
-            <g transform={`translate(860 1700) rotate(${sway * 0.2})`}>
+            <g transform={`translate(700 1700) rotate(${sway * 0.2})`}>
               <ellipse cx="0" cy="0" rx="130" ry="26" fill="#F4ECDC" stroke={K} strokeWidth="8" />
               <path d="M70 -86 Q126 -84 108 -44 Q96 -24 62 -30" fill="none" stroke={K} strokeWidth="9" />
               <path d="M-80 -110 Q-76 -14 0 -8 Q76 -14 80 -110 Z" fill="#F4ECDC" stroke={K} strokeWidth="8" />
@@ -190,7 +203,7 @@ export const Pane: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             </g>
           </g>
           <g transform={L(1.6)}>
-            <Smoke id="pn-st" t={t} x={860} y={1590} color="#FFF4E0" n={6} rise={180} wind={-60} r0={14} r1={50} speed={0.35} opacity={0.4} />
+            <Smoke id="pn-st" t={t} x={700} y={1590} color="#FFF4E0" n={6} rise={180} wind={-60} r0={14} r1={50} speed={0.35} opacity={0.4} />
             <NearMotes id="pn-near" t={t} color="#FFE0A0" n={7} r0={50} r1={130} opacity={0.12} />
           </g>
         </g>

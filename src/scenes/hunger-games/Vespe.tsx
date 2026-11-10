@@ -3,7 +3,7 @@ import { camera, eo, lerp, rng, seg } from '../../lib/anim';
 import { Embers, Fire, Fireflies, Fog, Glow, Moon, NearMotes, Stars } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Backpack, Bow, Dome, EMBER, HGDefs, K, Pine, PineRow } from './Comuni';
+import { Backpack, Bow, Dome, EMBER, HGDefs, K, Pine, PineRow, Sottobosco } from './Comuni';
 
 // Il nido di vespe: notte nel bosco dell'arena. A sinistra il tronco altissimo dove si è rifugiata Katniss (mai
 // disegnata); da un ramo pende un grosso nido di vespe di carta grigia; sotto, a destra, il campo dei Favoriti con il
@@ -131,13 +131,12 @@ export const Vespe: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         </g>
         {/* PIANO 4 — rami di pino che incorniciano in basso (1,25) */}
         <g transform={L(1.25)}>
-          <path d="M-200 1560 Q300 1500 640 1560 Q900 1520 1280 1580 V2200 H-200 Z" fill="#050806" stroke={K} strokeWidth="8" />
-          {Array.from({ length: 12 }, (_, k) => <path key={k} d={`M${-100 + k * 110} 1560 l-30 -60 m30 60 l20 -70 m-20 70 l50 -50`} stroke="#0E1A10" strokeWidth="8" strokeLinecap="round" />)}
+          <Sottobosco id="ve" t={t} y0={1570} ground="#1E2A1A" fern="#2E4A26" stone="#4A5250" lit="#E8B070" seed={5} leaf="#5A4A2A" />
         </g>
         {/* PIANO 5 — lucciole e particelle vicine (1,6) */}
         <g transform={L(1.6)}>
           <Fireflies id="ve-ff" t={t} n={10} x={0} y={900} w={1080} h={500} color="#E8F08A" />
-          <NearMotes id="ve-near" t={t} color="#FFB060" n={5} r0={50} r1={130} y0={1100} opacity={0.08} />
+          <NearMotes id="ve-near" t={t} color="#FFB060" n={7} r0={50} r1={130} y0={1100} y1={1900} opacity={0.1} />
         </g>
       </g>
       <Finish id="ve" tint="#0F1A12" tintOpacity={0.12} />

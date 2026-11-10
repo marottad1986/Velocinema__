@@ -3,7 +3,7 @@ import { camera, eo, lerp, rng, seg } from '../../lib/anim';
 import { Fog, Glow, Moon, NearMotes, Stars, flashAt } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Berries, Cornucopia, Dome, HGDefs, K, PineRow } from './Comuni';
+import { Berries, Cornucopia, Dome, HGDefs, K, PineRow, Sottobosco } from './Comuni';
 
 // I cani mostruosi: notte nella radura, la Cornucopia alla luce della luna. In primo piano, su una pietra, un fazzoletto
 // con le bacche velenose. Eventi: 1ª frase le bacche luccicano e un colpo di cannone illumina il bosco (la rivale che
@@ -22,26 +22,44 @@ const DOGS = [
 ];
 const EYES = Array.from({ length: 7 }, () => ({ x: r() * 1000 + 40, y: 1080 + r() * 60, d: r() }));
 
-/** Cane enorme e generico, di profilo verso destra (f = verso sinistra), schiena irta, occhi rossi. Origine alle zampe. */
+/** Cane enorme e generico, di profilo verso destra (f = verso sinistra): muso lungo, orecchie a punta, pelo irto,
+ *  zampe con le giunture, coda bassa, occhio rosso; bordo di luce lunare sul dorso. Origine al suolo sotto il corpo. */
 const Cane: React.FC<{ x: number; y: number; s: number; f: boolean; t: number; ph: number }> = ({ x, y, s, f, t, ph }) => {
-  const g = t * 6 + ph;
-  const breathe = Math.sin(g * 0.5) * 3;
+  const g = t * 5 + ph;
+  const br = Math.sin(g * 0.6) * 3;
+  const step = (a: number) => Math.sin(g + a) * 8;
+  const fore = (hx: number, a: number) => `M${hx} -96 L${hx + 6 + step(a)} -46 L${hx + step(a) * 1.3} -4 l18 0`;
+  const hind = (hx: number, a: number) => `M${hx} -104 L${hx - 26 + step(a)} -52 L${hx - 2 + step(a)} -26 L${hx - 8 + step(a) * 1.2} -4 l18 0`;
+  const back = `M-158 -98 Q-120 ${-150 + br} -40 ${-152 + br} Q40 ${-158 + br} 92 -150 L122 -190 Q140 -214 170 -210`;
   return (
     <g transform={`translate(${x} ${y}) scale(${f ? -s : s} ${s})`} strokeLinejoin="round" strokeLinecap="round">
-      {[[-80, 0], [-50, Math.PI], [70, Math.PI], [100, 0]].map(([lx, a], i) => (
-        <path key={i} d={`M${lx} -70 L${lx + Math.sin(g + a) * 10} -30 L${lx + Math.sin(g + a) * 14 + 6} 0`} stroke="#050506" strokeWidth="22" fill="none" />
-      ))}
-      <path d={`M-130 -80 Q-150 -130 -110 -150 L-60 ${-170 + breathe} Q0 -190 70 -170 L120 -150 Q150 -160 170 -150 L210 -130 L220 -110 L180 -100 L150 -96 Q120 -60 80 -60 L-90 -56 Q-140 -50 -130 -80 Z`} fill="#0A0A0C" stroke={K} strokeWidth="8" />
-      {/* pelo irto sulla schiena */}
-      {Array.from({ length: 9 }, (_, k) => <path key={k} d={`M${-100 + k * 22} ${-166 + Math.abs(k - 4) * 2} l8 -22 l8 20`} fill="#0A0A0C" stroke={K} strokeWidth="4" />)}
-      {/* orecchie, coda */}
-      <path d="M140 -152 l10 -40 l16 34 Z" fill="#0A0A0C" stroke={K} strokeWidth="5" />
-      <path d={`M-128 -110 Q-180 ${-150 + Math.sin(g) * 8} -200 -110`} stroke="#0A0A0C" strokeWidth="16" fill="none" />
-      {/* riflesso della luna sul dorso */}
-      <path d={`M-128 -96 Q-146 -132 -110 -150 L-60 ${-170 + breathe} Q0 -190 70 -170 L120 -150 Q150 -160 170 -150 L210 -130`} stroke="#9AB0C8" strokeWidth="7" fill="none" opacity=".75" />
-      {/* zanne e occhio rosso */}
-      <path d="M190 -104 l6 12 l6 -12 M206 -110 l5 10 l5 -11" stroke="#E8E4D8" strokeWidth="3" fill="#E8E4D8" />
-      <circle cx="170" cy="-136" r="7" fill="#FF3A2A" />
+      {/* zampe lontane, più scure */}
+      <path d={hind(-96, Math.PI)} stroke="#000" strokeWidth="24" fill="none" />
+      <path d={fore(78, Math.PI)} stroke="#000" strokeWidth="22" fill="none" />
+      {/* coda */}
+      <path d={`M-154 -104 Q-210 ${-96 + Math.sin(g) * 6} -236 -52`} stroke={K} strokeWidth="26" fill="none" />
+      <path d={`M-154 -104 Q-210 ${-96 + Math.sin(g) * 6} -236 -52`} stroke="#0C0C10" strokeWidth="16" fill="none" />
+      {/* corpo, collo e testa */}
+      <path d={`${back} L182 -240 L192 -206 Q232 -200 264 -176 L274 -160 Q264 -146 236 -150 L200 -146 Q170 -140 150 -120 Q122 -92 110 -82 Q60 -70 -60 -76 Q-130 -78 -158 -98 Z`} fill="#0C0C10" stroke={K} strokeWidth="8" />
+      {/* pelo irto sul dorso */}
+      {Array.from({ length: 10 }, (_, k) => {
+        const px = -130 + k * 24, py = -150 - Math.sin((k / 9) * Math.PI) * 6 + br;
+        return <path key={k} d={`M${px - 8} ${py + 6} l10 -24 l8 22`} fill="#0C0C10" stroke={K} strokeWidth="4" />;
+      })}
+      {/* luce lunare sul profilo */}
+      <path d={back} stroke="#A8C0D8" strokeWidth="6" fill="none" opacity=".85" />
+      <path d="M192 -206 Q232 -200 264 -176" stroke="#A8C0D8" strokeWidth="5" fill="none" opacity=".8" />
+      <path d="M170 -210 L182 -240" stroke="#A8C0D8" strokeWidth="4" fill="none" opacity=".8" />
+      {/* zampe vicine */}
+      <path d={hind(-120, 0)} stroke={K} strokeWidth="26" fill="none" />
+      <path d={hind(-120, 0)} stroke="#121216" strokeWidth="16" fill="none" />
+      <path d={fore(104, 0)} stroke={K} strokeWidth="24" fill="none" />
+      <path d={fore(104, 0)} stroke="#121216" strokeWidth="14" fill="none" />
+      {/* zanne, naso, occhio rosso con l'alone */}
+      <path d="M232 -150 l4 12 l5 -12 M248 -152 l4 10 l5 -11" fill="#E8E4D8" stroke="#E8E4D8" strokeWidth="2" />
+      <circle cx="272" cy="-164" r="6" fill="#000" />
+      <circle cx="206" cy="-190" r="13" fill="#FF3A2A" opacity=".35" />
+      <circle cx="206" cy="-190" r="6" fill="#FF4A3A" />
     </g>
   );
 };
@@ -59,8 +77,8 @@ export const Cani: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const ts = griglia(cues[2] + 1.6);
   const fall = seg(t, ts, ts + 0.5);
   const bounce = seg(t, ts + 0.5, ts + 0.9);
-  const sx = lerp(560, 520, fall) - 50 * bounce;
-  const sy = lerp(660, 1150, fall * fall) - Math.sin(bounce * Math.PI) * 60;
+  const sx = lerp(660, 600, fall) - 60 * bounce;
+  const sy = lerp(680, 1190, fall * fall) - Math.sin(bounce * Math.PI) * 70;
   const close = eo(seg(t, ts + 0.5, ts + 1.6));
 
   return (
@@ -98,11 +116,12 @@ export const Cani: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         <g transform={L(0.65)}>
           <path d="M-200 1140 Q540 1120 1280 1140 V2200 H-200 Z" fill="url(#ca-ground)" />
           <ellipse cx="460" cy="1180" rx="520" ry="90" fill="#8AA0B0" opacity=".08" />
-          <Glow id="ca-hg" x={430} y={940} r={380} t={t} color="#C8D8E0" amp={0.03} rate={1} opacity={0.25} />
-          <Cornucopia id="ca" x={150} y={1150} s={0.9} t={t} night load={0.8} pack={0} />
+          <Glow id="ca-hg" x={540} y={940} r={380} t={t} color="#C8D8E0" amp={0.03} rate={1} opacity={0.25} />
+          <Cornucopia id="ca" x={270} y={1150} s={0.86} t={t} night load={0.8} pack={0} />
           {/* la spada che cade dalla cima del corno e rimbalza */}
           {fall > 0 && (
-            <g transform={`translate(${sx} ${sy}) rotate(${lerp(-30, 250, fall) + 40 * bounce})`}>
+            <g transform={`translate(${sx} ${sy}) rotate(${lerp(-30, 170, fall) + 10 * bounce}) scale(1.6)`}>
+              <Glow id="ca-sw" x={-70} y={0} r={90} t={t} color="#E8F4FF" amp={0} opacity={0.5 + 0.5 * seg(t, ts + 0.45, ts + 0.6) * (1 - bounce)} />
               <path d="M0 0 H-150" stroke={K} strokeWidth="14" strokeLinecap="round" />
               <path d="M0 0 H-150" stroke="#C8D0D8" strokeWidth="8" strokeLinecap="round" />
               <path d="M-140 0 l-14 -6 l-4 6 l4 6 Z" fill="#E8F0F4" stroke={K} strokeWidth="3" />
@@ -113,7 +132,7 @@ export const Cani: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           )}
           {fall >= 1 && bounce < 1 && (
             <g opacity={1 - bounce}>
-              {Array.from({ length: 6 }, (_, k) => <path key={k} d={`M520 1150 l${Math.cos(k) * 40 * (0.5 + bounce)} ${-Math.abs(Math.sin(k)) * 40 * (0.5 + bounce)}`} stroke="#FFF0C0" strokeWidth="4" strokeLinecap="round" />)}
+              {Array.from({ length: 6 }, (_, k) => <path key={k} d={`M600 1190 l${Math.cos(k) * 40 * (0.5 + bounce)} ${-Math.abs(Math.sin(k)) * 40 * (0.5 + bounce)}`} stroke="#FFF0C0" strokeWidth="4" strokeLinecap="round" />)}
             </g>
           )}
           {/* i cani che escono dagli alberi e si stringono sotto il corno */}
@@ -137,15 +156,12 @@ export const Cani: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         </g>
         {/* PIANO 4 — erba alta in primo piano (1,25) */}
         <g transform={L(1.25)}>
-          <path d="M-200 1580 Q540 1540 1280 1590 V2200 H-200 Z" fill="#030503" stroke={K} strokeWidth="8" />
-          {Array.from({ length: 40 }, (_, k) => (
-            <path key={k} d={`M${-150 + k * 36} 1590 q${8 + (k % 3) * 4} -60 ${(k % 2 ? 16 : -10) + Math.sin(t * 1.4 + k) * 4} -${90 + (k % 4) * 30}`} stroke="#0E1A12" strokeWidth="8" fill="none" strokeLinecap="round" />
-          ))}
+          <Sottobosco id="ca" t={t} y0={1580} ground="#1A2622" fern="#26383A" stone="#4A5660" lit="#B8D0E8" seed={21} leaf="#3A3A2A" />
         </g>
         {/* PIANO 5 — nebbia e particelle vicine (1,6) */}
         <g transform={L(1.6)}>
           <Fog id="ca-f2" t={t} y={1500} rx={900} ry={120} color="#2A3A40" opacity={0.4} speed={0.15} />
-          <NearMotes id="ca-near" t={t} color="#B8C8D0" n={6} r0={60} r1={140} y0={900} opacity={0.08} />
+          <NearMotes id="ca-near" t={t} color="#B8C8D0" n={8} r0={60} r1={140} y0={900} y1={1900} opacity={0.1} />
         </g>
       </g>
       <Finish id="ca" tint="#0F1A12" tintOpacity={0.12} />

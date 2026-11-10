@@ -1,7 +1,7 @@
 import React from 'react';
 import { camera, eo, eob, lerp, mod, rng, seg } from '../../lib/anim';
 import { ANTON, SANS } from '../../lib/fonts';
-import { Fog, Glow, Gulls, NearMotes } from '../../lib/elements';
+import { Fog, Glow, NearMotes } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
 import { Arrow, Bow, EMBER, HGDefs, K, Shack } from './Comuni';
@@ -33,6 +33,7 @@ export const Mietitura: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const rise = eo(seg(t, t0, t0 + 0.8)); // il biglietto sale dalla boccia
   const open = eob(seg(t, t0 + 0.8, t0 + 1.2), 1.4); // si apre
   const name1 = eo(seg(t, t0 + 1.1, t0 + 1.5));
+  const gone = eo(seg(t, t0 + 1.1, t0 + 1.6)); // il biglietto sale al tabellone e diventa il nome
   const t1 = griglia(cues[1] + 0.4);
   const bow = eo(seg(t, t1, t1 + 0.6));
   const t2 = griglia(cues[2] + 0.2);
@@ -62,8 +63,7 @@ export const Mietitura: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         <g transform={L(0.25)}>
           <rect x="-200" y="-200" width="1480" height="2400" fill="url(#mi-sky)" />
           <Fog id="mi-cl" t={t} y={700} rx={900} ry={120} color="#C8CCCC" opacity={0.3} speed={0.1} />
-          <Gulls t={t} seed={7} n={3} y={600} h={60} color="#2A2E32" size={0.7} period={12} />
-          {[[-60, 1060, 230], [170, 1060, 200], [880, 1060, 220], [1110, 1060, 210]].map(([x, y, w], i) => (
+                    {[[-60, 1060, 230], [170, 1060, 200], [880, 1060, 220], [1110, 1060, 210]].map(([x, y, w], i) => (
             <Shack key={i} x={x} y={y} w={w} h={120} wall="#6A6A66" roof="#7A8086" outline={false} seed={i + 3} />
           ))}
         </g>
@@ -80,16 +80,16 @@ export const Mietitura: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             </g>
           ))}
           {/* tabellone */}
-          <rect x="240" y="660" width="600" height="230" rx="8" fill="url(#mi-board)" stroke={K} strokeWidth="9" />
-          <rect x="252" y="672" width="576" height="206" fill="none" stroke="#5A6068" strokeWidth="3" />
-          <text x="540" y="712" textAnchor="middle" fontFamily={SANS} fontWeight="800" fontSize="26" letterSpacing="6" fill="#C8CCD0">DISTRETTO 12 · RAGAZZA</text>
+          <rect x="240" y="645" width="600" height="250" rx="8" fill="url(#mi-board)" stroke={K} strokeWidth="9" />
+          <rect x="252" y="657" width="576" height="226" fill="none" stroke="#5A6068" strokeWidth="3" />
+          <text x="540" y="694" textAnchor="middle" fontFamily={SANS} fontWeight="800" fontSize="26" letterSpacing="6" fill="#C8CCD0">DISTRETTO 12 · RAGAZZA</text>
           <g opacity={name1}>
-            <text x="540" y={782 - 30 * name2} textAnchor="middle" fontFamily={ANTON} fontSize={lerp(64, 40, name2)} fill="#F2E8D8" letterSpacing="2" opacity={1 - 0.45 * name2}>PRIMROSE EVERDEEN</text>
-            <path d={`M${330 + 60 * name2} ${762 - 30 * name2} H${330 + 60 * name2 + 420 * strike * (1 - 0.29 * name2)}`} stroke={EMBER} strokeWidth="7" strokeLinecap="round" />
+            <text x="540" y={784 - 34 * name2} textAnchor="middle" fontFamily={ANTON} fontSize={lerp(64, 36, name2)} fill="#F2E8D8" letterSpacing="2" opacity={1 - 0.45 * name2}>PRIMROSE EVERDEEN</text>
+            <path d={`M${330 + 80 * name2} ${762 - 24 * name2} H${330 + 80 * name2 + 420 * strike * (1 - 0.38 * name2)}`} stroke={EMBER} strokeWidth="7" strokeLinecap="round" />
           </g>
           <g opacity={name2} transform={`translate(540 820) scale(${0.6 + 0.4 * name2}) translate(-540 -820)`}>
-            <text x="540" y="828" textAnchor="middle" fontFamily={ANTON} fontSize="66" fill={EMBER} letterSpacing="2">KATNISS EVERDEEN</text>
-            <text x="540" y="866" textAnchor="middle" fontFamily={SANS} fontWeight="800" fontSize="26" letterSpacing="8" fill="#F2E8D8">VOLONTARIA</text>
+            <text x="540" y="830" textAnchor="middle" fontFamily={ANTON} fontSize="62" fill={EMBER} letterSpacing="2">KATNISS EVERDEEN</text>
+            <text x="540" y="872" textAnchor="middle" fontFamily={SANS} fontWeight="800" fontSize="26" letterSpacing="8" fill="#F2E8D8">VOLONTARIA</text>
           </g>
           <Glow id="mi-bg" x={540} y={800} r={300} t={t} color="#FFB060" amp={0.05} rate={3} opacity={0.35 * name2} />
           {/* tralicci del tabellone */}
@@ -121,8 +121,8 @@ export const Mietitura: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             </g>
           </g>
           {/* il biglietto estratto: sale, si apre */}
-          {rise > 0 && (
-            <g transform={`translate(${400 + 120 * rise} ${1000 - 120 * rise}) rotate(${lerp(20, -4, rise)})`}>
+          {rise > 0 && gone < 1 && (
+            <g opacity={1 - gone} transform={`translate(${400 + 120 * rise + 20 * gone} ${1000 - 120 * rise - 110 * gone}) rotate(${lerp(20, -4, rise)}) scale(${1 - 0.4 * gone})`}>
               <Glow id="mi-slipg" x={0} y={0} r={110} t={t} color="#FFF4D8" amp={0.06} rate={4} opacity={0.6 * rise * (1 - 0.6 * strike)} />
               <rect x={-30 - 40 * open} y={-16 - 14 * open} width={60 + 80 * open} height={32 + 28 * open} fill="#F8F2E4" stroke={K} strokeWidth="4" />
               {open > 0.5 && <path d="M-50 -6 H50 M-50 8 H30" stroke="#3A3428" strokeWidth="5" opacity={seg(open, 0.5, 1)} strokeLinecap="round" />}
@@ -154,13 +154,13 @@ export const Mietitura: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             <path key={k} d={`M-200 ${ry} Q145 ${ry + 50} 330 ${ry} Q540 ${ry + 50} 750 ${ry} Q935 ${ry + 50} 1280 ${ry}`} stroke={K} strokeWidth="2.5" strokeDasharray="10 8" fill="none" opacity=".5" />
           ))}
           {/* arco e faretra di Katniss appoggiati al palo di destra */}
-          <Glow id="mi-bowg" x={830} y={1700} r={260} t={t} color="#FFB060" amp={0.08} rate={4} opacity={0.15 + 0.55 * bow} />
-          <g transform="translate(870 1830) rotate(12)">
+          <Glow id="mi-bowg" x={710} y={1700} r={260} t={t} color="#FFB060" amp={0.08} rate={4} opacity={0.15 + 0.55 * bow} />
+          <g transform="translate(750 1830) rotate(12)">
             <rect x="-40" y="-260" width="80" height="260" rx="14" fill="#5A3A22" stroke={K} strokeWidth="8" />
             <path d="M-40 -200 H40 M-40 -60 H40" stroke="#2A1A10" strokeWidth="6" />
             {[-22, 0, 22].map((ax, k) => <Arrow key={k} x={ax} y={-250} rot={-90 + ax * 0.3} len={20} s={1.1} glow={bow} />)}
           </g>
-          <Bow id="mi" x={790} y={1680} s={0.9} rot={-10} />
+          <Bow id="mi" x={670} y={1680} s={0.9} rot={-10} />
         </g>
 
         {/* PIANO 4 — cenere che cade e polvere vicina (1,6) */}

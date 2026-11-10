@@ -4,7 +4,7 @@ import { ANTON, SANS } from '../../lib/fonts';
 import { Embers, Fire, Glow, NearMotes, Smoke, Stars } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { EMBER, HGDefs, K } from './Comuni';
+import { EMBER, HGDefs, K, Sottobosco } from './Comuni';
 
 // Il saluto per Rue: notte nel Distretto 11, il distretto dei frutteti. Tra i filari un maxischermo su un traliccio
 // trasmette i giochi: nell'erba dell'arena un mucchio di fiori bianchi e gialli. Eventi: 1ª frase sullo schermo
@@ -142,7 +142,11 @@ export const Fiori: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         </g>
         {/* PIANO 4 — rami carichi di frutti in primo piano (1,25) */}
         <g transform={L(1.25)}>
-          <path d="M-200 1600 Q540 1560 1280 1600 V2200 H-200 Z" fill="#070A06" stroke={K} strokeWidth="8" />
+          <Sottobosco id="fo" t={t} y0={1590} ground="#1E2614" fern="#2A3E1E" stone="#4A4A44" lit="#FFB070" seed={12} leaf="#3A5A24" />
+          {/* mele cadute nell'erba */}
+          {[[420, 1720], [560, 1780], [640, 1700], [760, 1830], [880, 1740], [330, 1850]].map(([ax, ay], i) => (
+            <g key={i}><circle cx={ax} cy={ay} r="20" fill="#C8502A" stroke={K} strokeWidth="5" /><path d={`M${ax - 8} ${ay - 8} q6 -6 12 -2`} stroke="#FFB090" strokeWidth="4" fill="none" /></g>
+          ))}
           {/* cassette di frutta */}
           {[[180, 1650], [300, 1640]].map(([cx, cy], i) => (
             <g key={i} transform={`translate(${cx} ${cy})`}>
@@ -158,7 +162,7 @@ export const Fiori: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           ))}
         </g>
         <g transform={L(1.6)}>
-          <NearMotes id="fo-near" t={t} color="#FFB070" n={6} r0={50} r1={130} y0={1000} opacity={0.08 + 0.06 * riot} />
+          <NearMotes id="fo-near" t={t} color="#FFB070" n={8} r0={50} r1={130} y0={1000} y1={1900} opacity={0.08 + 0.06 * riot} />
         </g>
       </g>
       <Finish id="fo" tint="#0F1A12" tintOpacity={0.1} />
