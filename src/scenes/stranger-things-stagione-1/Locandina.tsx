@@ -236,21 +236,21 @@ const BoscoCopertina: React.FC<{ id: string; t: number; dur: number }> = ({ id, 
               fill={f.c > 0.5 ? '#7A4A22' : '#5A3418'} stroke={K} strokeWidth="2.5" />
           ))}
           {/* fascio della torcia che attraversa la strada e prende la bici */}
-          <path d="M362 1318 L900 1110 L940 1290 Z" fill={`url(#${id}-torch)`} opacity={torch} />
+          <path d="M362 1292 L900 1100 L940 1270 Z" fill={`url(#${id}-torch)`} opacity={torch} />
           {/* la bicicletta rovesciata con la ruota che gira */}
           <Ombra id={id} x={540} y={1272} rx={370} ry={38} />
           <Bici x={540} y={1236} s={1.4} lying spin={spin} />
           {/* bordo caldo sulla bici dove la prende la torcia */}
           <path d="M394 1172 L472 1141 L564 1141" stroke="#FFE6B0" strokeWidth="4" fill="none" opacity={0.55 * torch} />
           {/* torcia accesa nell'erba a sinistra */}
-          <g transform="translate(330 1336) rotate(-20)">
+          <g transform="translate(330 1310) rotate(-20)">
             <rect x="-96" y="-22" width="100" height="44" rx="8" fill="#2A2E36" stroke={K} strokeWidth="7" />
             <path d="M-80 -22 V22 M-64 -22 V22 M-48 -22 V22" stroke="#4A505A" strokeWidth="3" />
             <rect x="-40" y="-30" width="18" height="10" rx="3" fill="#B8352F" stroke={K} strokeWidth="4" />
             <path d="M4 -28 L34 -36 V36 L4 28 Z" fill="#5A606A" stroke={K} strokeWidth="6" />
             <ellipse cx="34" cy="0" rx="8" ry="33" fill={torch > 0.05 ? '#FFF6D8' : '#4A4E56'} stroke={K} strokeWidth="3" />
           </g>
-          <Glow id={`${id}-tg`} x={364} y={1324} r={120} t={t} color="#FFF0C0" amp={0.05} rate={5} opacity={0.85 * torch} />
+          <Glow id={`${id}-tg`} x={364} y={1298} r={120} t={t} color="#FFF0C0" amp={0.05} rate={5} opacity={0.85 * torch} />
           {[[230, 1352, 1], [430, 1350, -1], [150, 1300, 1], [700, 1296, -1], [880, 1310, 1]].map(([x, y, d], k) => (
             <g key={k} transform={`translate(${x} ${y}) scale(${d} 1)`}>
               {([[-18, 70, -14, '#1A3222'], [-6, 96, -4, '#21402A'], [6, 84, 8, '#183020'], [16, 60, 18, '#22422C'], [0, 52, -22, '#14281A']] as [number, number, number, string][]).map(([dx, h, lean, c], j) => {
