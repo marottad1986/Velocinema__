@@ -255,7 +255,7 @@ export default (mix, T) => {
   pulse(tp + BEAT, tk - 0.1, { m: 38, vel: 50, gain: 0.26, every: 0.5 });
   clip(mix, 'metallo_colpi', { t: tk - 0.02, da: 2.9, durata: 0.22, fadeOut: 0.08, gain: 0.22, rev: 0.3, pan: 0.4 }); // il coltello nella roccia
   timp(tk, 45, 80, 0.4);
-  trem(tk + BEAT / 2, tdr - tk - BEAT / 2, [38, 39, 74], { vel: 44, gain: 0.32 });
+  trem(tk + BEAT / 2, tdr - tk - BEAT / 2, [38, 39, 74], { vel: 52, gain: 0.42 });
   clip(mix, 'metallo_cade', { t: tdr + 0.35, da: 0.72, durata: 0.6, gain: 0.2, fadeOut: 0.2, rev: 0.3, pan: 0.4 }); // il coltello cade
   harp(tdr + BEAT, B(T.cani) + 0.2, { vel: 44, gain: 0.24, chords: CHM }); // lo zaino dentro, accanto al fuoco
   strings(tdr + BEAT, B(T.cani) + 0.4, { vel: 42, gain: 0.3, chords: CHM });
