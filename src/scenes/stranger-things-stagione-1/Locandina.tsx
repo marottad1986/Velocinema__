@@ -302,7 +302,8 @@ const BoscoCopertina: React.FC<{ id: string; t: number; dur: number }> = ({ id, 
 
 export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
   const P = film.palette;
-  // Fotogramma 0 già completo (miniatura del post): nessuna dissolvenza sui testi.
+  // Fotogramma 0 = miniatura del post: immagine, etichetta, titolo e regista già pieni; la frase di lancio entra da 0,4 s.
+  const line = eo(seg(t, 0.4, 0.7));
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
       <BoscoCopertina id="sc0" t={t} dur={dur} />
@@ -317,7 +318,8 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
         <p style={{ margin: '18px 0 0', fontSize: 40, fontWeight: 800, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>una serie di {film.regista} · {film.anno}</p>
       </div>
       <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
-        borderRadius: 16, background: `${P.scuro}E0`, color: P.chiaro, fontFamily: SANS, fontSize: 42, fontWeight: 800, textAlign: 'center' }}>
+        borderRadius: 16, background: `${P.scuro}E0`, color: P.chiaro, fontFamily: SANS, fontSize: 42, fontWeight: 800, textAlign: 'center',
+        opacity: line, transform: `translateY(${(1 - line) * 14}px)` }}>
         {film.copertina.frase_lancio}
       </p>
     </div>
