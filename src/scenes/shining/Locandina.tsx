@@ -5,7 +5,7 @@ import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Fog, Glow, NearMotes, SunRays } from '../../lib/elements';
 import type { PosterProps } from '../../types';
 import { Speciale } from '../../components/Speciale';
-import { Hotel, K, Maze, Typewriter } from './Comuni';
+import { Hotel, K, Maze } from './Comuni';
 
 // Copertina e finale di Shining. Locandina originale: niente volto a puntini né volto dietro la porta, niente persone,
 // niente tappeto del film. Copertina: notte di tormenta, l'albergo con poche finestre accese, il labirinto innevato
@@ -15,30 +15,110 @@ import { Hotel, K, Maze, Typewriter } from './Comuni';
 const r = rng(237);
 const SNOW = Array.from({ length: 60 }, () => ({ x: r() * 1400 - 160, y: r() * 2000, s: 3 + r() * 8, v: 200 + r() * 300 }));
 
+// Macchina da scrivere della copertina, più grande e dettagliata di quella dei capitoli: il foglio è pieno di righe
+// tutte uguali (la stessa frase ripetuta, senza scriverla) e fra 1,1 e 2,4 s batte da sola l'ultima riga (stesso istante
+// del suono nello spartito): martelletti che scattano, tasti che si abbassano, carrello che scorre.
+const WORDS = [32, 14, 24, 12, 28, 18, 22]; // larghezze delle parole: uguali in ogni riga
+const ROW = WORDS.reduce((a, w) => a + w + 10, 0);
+const TYPE0 = 1.1, TYPE1 = 2.4;
+
+const CoverTypewriter: React.FC<{ x: number; y: number; s: number; t: number; accent: string }> = ({ x, y, s, t, accent }) => {
+  const p = seg(t, TYPE0, TYPE1);
+  const typing = t >= TYPE0 && t < TYPE1;
+  const tick = Math.floor(t * 10);
+  const strike = typing ? 1 - mod(t * 10, 1) : 0; // martelletto: scatta a ogni battuta
+  const shift = 60 - p * 120; // il carrello parte a destra (inizio riga) e scorre verso sinistra mentre si scrive
+  const rowWords = (fill: number) => {
+    let acc = 0;
+    return WORDS.map((w, i) => {
+      const x0 = acc; acc += w + 10;
+      const vis = Math.max(0, Math.min(w, fill * ROW - x0));
+      return vis > 0 ? <rect key={i} x={-110 + x0} y={-2} width={vis} height={6} rx={2} fill="#2E2A26" /> : null;
+    });
+  };
+  return (
+    <g transform={`translate(${x} ${y}) scale(${s})`} strokeLinejoin="round">
+      {/* foglio con il carrello */}
+      <g transform={`translate(${shift} 0)`}>
+        <path d="M-124 -180 H124 L120 -40 H-120 Z" fill="#F4F0E4" stroke={K} strokeWidth="5" />
+        <path d="M-124 -180 H124 L123 -168 H-123 Z" fill="#E4DCC8" opacity=".6" />
+        {Array.from({ length: 6 }, (_, i) => <g key={i} transform={`translate(0 ${-160 + i * 16})`}>{rowWords(1)}</g>)}
+        <g transform="translate(0 -66)">{rowWords(p)}</g>
+        {/* rullo con le manopole */}
+        <rect x="-170" y="-58" width="340" height="38" rx="18" fill="#1E1E22" stroke={K} strokeWidth="6" />
+        <path d="M-160 -48 H160" stroke="#4A4A52" strokeWidth="4" />
+        <circle cx="-182" cy="-39" r="16" fill="#5A5A60" stroke={K} strokeWidth="4" />
+        <circle cx="182" cy="-39" r="16" fill="#5A5A60" stroke={K} strokeWidth="4" />
+        <path d="M168 -58 l48 -26" stroke={K} strokeWidth="9" strokeLinecap="round" />
+        <path d="M168 -58 l48 -26" stroke="#8A8A90" strokeWidth="3" strokeLinecap="round" />
+      </g>
+      {/* corpo */}
+      <path d="M-190 -20 H190 L224 80 H-224 Z" fill="#2E3A34" stroke={K} strokeWidth="8" />
+      <path d="M-180 -20 H180 L190 8 H-190 Z" fill="#3E4C44" />
+      <path d="M-186 -12 H186" stroke="#7A8A80" strokeWidth="3" opacity=".8" />
+      {/* cesto dei martelletti e martelletto che scatta */}
+      <path d="M-60 -20 Q0 -44 60 -20" fill="#1A201C" stroke={K} strokeWidth="5" />
+      <path d={`M0 -20 L${-14 + 14 * strike} ${-20 - 30 * strike}`} stroke="#C8C8CE" strokeWidth="5" strokeLinecap="round" opacity={typing ? 1 : 0} />
+      {/* tasti: si abbassano mentre la macchina batte da sola */}
+      {Array.from({ length: 4 }, (_, r) => Array.from({ length: 11 }, (_, c) => {
+        const k = r * 11 + c;
+        const press = typing && (tick * 7) % 44 === k ? 4 : 0;
+        return <circle key={k} cx={-160 + c * 30 + r * 7} cy={14 + r * 16 + press} r="7.5" fill="#E8E2D0" stroke={K} strokeWidth="2.5" />;
+      }))}
+      <rect x="-110" y="76" width="220" height="14" rx="6" fill="#1E1E22" stroke={K} strokeWidth="4" />
+      <rect x="-224" y="80" width="448" height="12" rx="4" fill="#1A201C" stroke={K} strokeWidth="5" />
+      {/* l'unico punto di rosso: la spia sul frontale */}
+      <circle cx="0" cy="-6" r="6" fill={accent} />
+    </g>
+  );
+};
+
 const Copertina_: React.FC<{ t: number; dur: number; accent: string }> = ({ t, dur, accent }) => {
   const cam = camera(t, dur, 540, 1100);
   const L = cam.layer;
+  // sul graffio del gong (2,2 s) le finestre si spengono di colpo e si riaccendono; una resta rossa
+  const blink = t >= 2.2 && t < 2.42;
+  const red = eo(seg(t, 2.42, 2.9));
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
         <FxDefs id="sc" />
-        <Lin id="sc-sky" stops={[[0, '#05070C'], [0.5, '#141C28'], [1, '#2A3444']]} />
+        <Lin id="sc-sky" stops={[[0, '#05070C'], [0.45, '#141C28'], [0.8, '#2E3A4E'], [1, '#3A475C']]} />
         <Lin id="sc-ground" stops={[[0, '#C8D4E0'], [0.5, '#7A8A9E'], [1, '#3A4656']]} />
       </defs>
       <g transform={cam.transform}>
-        <g transform={L(0.2)}><rect x="-200" y="-200" width="1480" height="2400" fill="url(#sc-sky)" /></g>
+        <g transform={L(0.2)}>
+          <rect x="-200" y="-200" width="1480" height="2400" fill="url(#sc-sky)" />
+          {/* chiarore della luna dietro le nuvole: stacca la sagoma dell'albergo */}
+          <Glow id="sc-moon" x={540} y={800} r={560} t={t} color="#9AB0CC" amp={0.03} rate={0.6} opacity={0.35} />
+        </g>
         <g transform={L(0.4)}>
-          <Glow id="sc-hg" x={540} y={860} r={420} t={t} color="#FFC870" amp={0.04} rate={1} opacity={0.2} />
-          <Hotel x={540} y={960} s={0.68} t={t} lit={0.3} snow={1} />
-          <Fog id="sc-fog" t={t} y={960} color="#C8D4E0" rx={900} ry={60} opacity={0.5} />
+          <Glow id="sc-hg" x={540} y={900} r={460} t={t} color="#FFC870" amp={0.04} rate={1} opacity={blink ? 0.05 : 0.24} />
+          <Hotel x={540} y={1010} s={0.8} t={t} lit={blink ? 0 : 0.55} snow={1} />
+          {/* la finestra che resta rossa (centro, secondo piano) */}
+          <Glow id="sc-red" x={527} y={879} r={100} t={t} color={accent} amp={0.1} rate={2} opacity={0.7 * red} />
+          <rect x={516.8} y={866} width={20.8} height={25.6} fill={accent} opacity={red} />
+          <Fog id="sc-fog" t={t} y={1005} color="#C8D4E0" rx={900} ry={60} opacity={0.5} />
         </g>
         <g transform={L(0.6)}>
-          <path d="M-200 960 H1280 V2200 H-200 Z" fill="url(#sc-ground)" />
-          <Maze x={540} y={1140} w={900} h={260} persp={0.62} snow={1} />
+          <path d="M-200 1005 H1280 V2200 H-200 Z" fill="url(#sc-ground)" />
+          <Maze x={540} y={1170} w={940} h={240} persp={0.62} snow={1} />
         </g>
         <g transform={L(1.0)}>
-          <Glow id="sc-tw" x={540} y={1230} r={320} t={t} color="#FFD8A0" amp={0.06} rate={2} opacity={0.4} />
-          <Typewriter x={540} y={1260} s={1.3} t={t} lines={8} accent={accent} />
+          <Glow id="sc-tw" x={540} y={1180} r={360} t={t} color="#FFD8A0" amp={0.06} rate={2} opacity={0.45} />
+          {/* ombra di contatto: la macchina poggia sulla neve */}
+          <ellipse cx={540} cy={1352} rx={330} ry={26} fill="#1A2230" opacity={0.35} />
+          <CoverTypewriter x={540} y={1225} s={1.3} t={t} accent={accent} />
+        </g>
+        {/* primo piano: cumulo di neve con le punte gelate di una siepe del labirinto, fino al bordo basso */}
+        <g transform={L(1.3)}>
+          <path d="M-220 1640 Q-40 1560 140 1600 Q300 1540 470 1590 Q640 1550 820 1600 Q1000 1560 1300 1620 V2200 H-220 Z" fill="#2A3444" />
+          {Array.from({ length: 14 }, (_, i) => {
+            const x = -160 + i * 100 + (i % 3) * 18, h = 70 + ((i * 37) % 50);
+            return <path key={i} d={`M${x - 34} ${1640} Q${x - 20} ${1640 - h} ${x} ${1630 - h} Q${x + 22} ${1640 - h} ${x + 34} ${1640} Z`} fill="#1A2A22" stroke={K} strokeWidth="5" />;
+          })}
+          <path d="M-220 1650 Q-40 1586 140 1622 Q300 1570 470 1614 Q640 1580 820 1624 Q1000 1588 1300 1640" fill="none" stroke="#C8D4E0" strokeWidth="14" strokeLinecap="round" opacity=".85" />
+          <path d="M-220 1700 Q200 1650 540 1690 Q880 1650 1300 1700 V2200 H-220 Z" fill="#3A4656" />
         </g>
         <g transform={L(1.6)}>
           {SNOW.map((f, i) => <circle key={i} cx={mod(f.x - t * 220, 1440) - 180} cy={mod(f.y + t * f.v, 2000)} r={f.s} fill="#F4F6FA" opacity=".5" />)}
@@ -82,25 +162,22 @@ const Finale_: React.FC<{ t: number; dur: number }> = ({ t, dur }) => {
 
 export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
   const P = film.palette;
-  const tag = eo(seg(t, 0.05, 0.45));
-  const l1 = eob(seg(t, 0.15, 0.7), 1.4);
-  const dir = eo(seg(t, 0.6, 1.0));
-  const line = eo(seg(t, 1.1, 1.6));
+  // Fotogramma 0 = miniatura del post: etichetta, titolo, regista e frase di lancio già a schermo, niente dissolvenze.
   return (
     <div style={{ position: 'absolute', inset: 0 }}>
       <Copertina_ t={t} dur={dur} accent={P.accento} />
       <div style={{ position: 'absolute', left: 120, top: 290, width: 840, fontFamily: SANS, color: P.chiaro }}>
-        <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.chiaro, opacity: tag, textShadow: `0 2px 0 ${P.scuro}` }}>IL FILM IN 2 MINUTI<Speciale nome={film.copertina.speciale} scale={eob(seg(t, 0.4, 0.8), 1.6)} /></p>
+        <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.chiaro, textShadow: `0 2px 0 ${P.scuro}` }}>IL FILM IN 2 MINUTI<Speciale nome={film.copertina.speciale} /></p>
         <h1 style={{ margin: '14px 0 0', fontFamily: TYPEWRITER, fontWeight: 400, fontSize: 200, lineHeight: 0.95, letterSpacing: '0.04em', color: P.accento,
-          textShadow: `0 6px 0 ${P.scuro}`, opacity: seg(t, 0.15, 0.4), transform: `translateY(${(1 - l1) * 50}px)` }}>
+          textShadow: `0 6px 0 ${P.scuro}` }}>
           SHINING
         </h1>
-        <p style={{ margin: '20px 0 0', fontSize: 40, fontWeight: 800, opacity: dir, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>un film di {film.regista} · {film.anno}</p>
+        <p style={{ margin: '20px 0 0', fontSize: 40, fontWeight: 800, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>un film di {film.regista} · {film.anno}</p>
       </div>
-      <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
-        borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 40, fontWeight: 800, textAlign: 'center',
-        opacity: line, transform: `translateY(${(1 - line) * 14}px)` }}>
-        {film.copertina.frase_lancio}
+      <p style={{ position: 'absolute', left: 120, right: 180, top: 1370, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
+        borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 40, fontWeight: 800, textAlign: 'center', textWrap: 'balance' } as React.CSSProperties}>
+        {/* una frase per riga: «Un inverno da soli. / Un albergo che ricorda.» */}
+        {(film.copertina.frase_lancio ?? "").split(/(?<=\.) /).map((f, k) => <span key={k} style={{ display: 'block' }}>{f}</span>)}
       </p>
     </div>
   );

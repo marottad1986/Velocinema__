@@ -116,7 +116,7 @@ export const PosterView: React.FC<{ slug: string; end?: boolean }> = ({ slug, en
       <div ref={ref} style={{ position: 'absolute', inset: 0 }}>
         {Comp ? <Comp t={t} dur={total - sigla} film={film.data} /> : <PosterPlaceholder film={film} end={end} />}
       </div>
-      {sigla > 0 && <Sigla t={frame / fps} tipo={film.data.tipo ?? 'film'} />}
+      {sigla > 0 && <Sigla t={frame / fps} tipo={film.data.tipo === 'serie' ? 'serie' : 'film'} />}
     </AbsoluteFill>
   );
 };
