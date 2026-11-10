@@ -68,8 +68,8 @@ export const Disco: React.FC<{ T: number; x: number; y: number; r: number; label
         <circle r={r * 0.38} fill={lab} />
         <path d={`M${-r * 0.24} ${-r * 0.06} H${r * 0.24} M${-r * 0.18} ${r * 0.12} H${r * 0.18}`} stroke={DARK} strokeWidth={r * 0.04} opacity=".45" />
       </g>
-      {testo && <text y={r * 0.13} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize={r * 0.34} fill={DARK}>{testo}</text>}
       <circle r={r * 0.06} fill={DARK} />
+      {testo && <text y={r * 0.32} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize={r * 0.95} fill={INK} stroke={DARK} strokeWidth={r * 0.1} paintOrder="stroke">{testo}</text>}
       {fuori > 0.01 && (
         <path d={`M${-r * 0.2} ${-r * 0.98} L${-r * 0.02} ${-r * 0.4} L${-r * 0.24} ${r * 0.1} L${r * 0.12} ${r * 0.55} L${-r * 0.05} ${r * 0.98}`} fill="none" stroke={INK} strokeWidth={r * 0.06} strokeLinejoin="round"
           pathLength={1} strokeDasharray={`${eo(fuori)} 1`} />
@@ -294,11 +294,12 @@ export const makeSchemaLive = (D: DatiPuntata) => {
               {(() => {
                 const i = tu.righe.findIndex((r) => r.id === tu.ultimo);
                 const y = ROW0 + i * ROWH;
-                const dest: [number, number] = k === 0 ? [180, BAL_Y + 30] : [900, BAL_Y + 30];
+                const dest: [number, number] = k === 0 ? [180, BAL_Y + 30] : [620, BAL_Y + 30];
                 return (
                   <g>
-                    {T > tU && <Tag T={T} t0={tU + 0.2} x={x + 470} y={y - 4} testo="ULTIMO" size={22} bg={RED} fg={INK} anchor="start" rot={0} />}
-                    <Freccia T={T} t0={tU + 0.5} a={[x + 56, y + 58]} b={dest} c={[k === 0 ? x - 30 : x + 520, (y + BAL_Y) / 2 + 120]} color={RED} dashed w={5} />
+                    {T > tU && <Tag T={T} t0={tU + 0.2} x={x + 56} y={y + 52} testo="ULTIMO" size={20} bg={RED} fg={INK} rot={-6} />}
+                    {/* la freccia scende a sinistra dei dischi, fuori dalle scritte */}
+                    <Freccia T={T} t0={tU + 0.5} a={[x + 6, y + 20]} b={dest} c={[x - 26, (y + BAL_Y) / 2 + 160]} color={RED} dashed w={5} />
                   </g>
                 );
               })()}
@@ -376,7 +377,7 @@ export const makeSchemaLive = (D: DatiPuntata) => {
                   {[0, 1].map((k) => (
                     <g key={k} transform={`translate(${200 + k * 120} ${NEXT_Y + 660}) scale(${pop(T, tR + 0.5 + k * 0.25)})`}>
                       <Disco T={T} x={0} y={0} r={44} label={SPENTO} testo="?" />
-                      <path d="M-34 -34 L34 34 M34 -34 L-34 34" stroke={RED} strokeWidth="10" strokeLinecap="round" />
+                      <path d="M-40 -40 L40 40 M40 -40 L-40 40" stroke={RED} strokeWidth="5" strokeLinecap="round" opacity=".85" />
                     </g>
                   ))}
                   <Tag T={T} t0={tR + 1.0} x={260} y={NEXT_Y + 740} testo="ESCONO SUBITO" size={24} bg={RED} fg={INK} />
