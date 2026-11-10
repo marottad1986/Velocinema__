@@ -17,7 +17,7 @@ const N = 24;
 /** Posizione della luce i sull'arco del cielo. */
 const lightPos = (i: number) => {
   const u = i / (N - 1);
-  return { x: lerp(150, 930, u), y: 960 - Math.sin(u * Math.PI) * 70 };
+  return { x: lerp(150, 930, u), y: 990 - Math.sin(u * Math.PI) * 40 };
 };
 const r0 = rng(77);
 // ordine in cui si spengono (tutte tranne la 15, che resta accesa: è Katniss); in finale restano la 15 e la 9
@@ -83,7 +83,7 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; dawn: boolean }> = 
           <path d="M-200 1220 Q540 1190 1280 1220 V2200 H-200 Z" fill={`url(#${id}-ground)`} />
           <ellipse cx="540" cy="1300" rx="620" ry="120" fill={`url(#${id}-clear)`} />
           <Glow id={`${id}-cg`} x={430} y={1170} r={380} t={t} color={dawn ? '#FFD890' : '#E8C060'} amp={0.04} rate={1.2} opacity={dawn ? 0.35 : 0.3} />
-          <Cornucopia id={id} x={250} y={1320} s={0.72} t={t} />
+          <Cornucopia id={id} x={330} y={1350} s={0.6} t={t} />
           {/* piastre di partenza attorno alla radura */}
           {Array.from({ length: 9 }, (_, i) => {
             const a = Math.PI * (0.06 + (i / 8) * 0.88);
@@ -99,10 +99,15 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; dawn: boolean }> = 
         {/* PIANO 4 — arco e freccia piantata in primo piano (1,25) */}
         <g transform={L(1.25)}>
           <path d="M-200 1700 Q540 1640 1280 1720 V2200 H-200 Z" fill="#050805" />
-          <Bow id={id} x={250} y={1640} s={0.95} rot={-14} />
-          <Glow id={`${id}-ag`} x={800} y={1560} r={200} t={t} color="#FFB060" amp={0.1} rate={5} opacity={0.5} />
-          <Arrow x={860} y={1700} rot={-74} len={300} s={0.9} glow={0.6 + 0.4 * Math.sin(t * 4)} />
-          <path d="M790 1700 q30 -16 70 0" stroke="#1A2414" strokeWidth="10" fill="none" />
+          {/* roccia a destra con l'arco appoggiato */}
+          <path d="M760 1760 Q770 1600 880 1570 Q1000 1540 1120 1600 V1800 Z" fill="#2A322A" stroke={K} strokeWidth="9" />
+          <path d="M790 1640 Q840 1590 900 1584" stroke="#5A6A5A" strokeWidth="5" fill="none" opacity=".7" />
+          <Bow id={id} x={900} y={1500} s={0.8} rot={18} />
+          {/* freccia piantata nel terreno: punta in giù, impennaggio arancione in alto */}
+          <Glow id={`${id}-ag`} x={300} y={1560} r={190} t={t} color="#FFB060" amp={0.1} rate={5} opacity={0.5} />
+          <Arrow x={244} y={1478} rot={78} len={240} s={0.95} glow={0.6 + 0.4 * Math.sin(t * 4)} />
+          <path d="M236 1750 Q318 1630 410 1750 Z" fill="#26301E" stroke={K} strokeWidth="6" />
+          <path d="M296 1700 q24 -12 50 -4" stroke="#3A4A2A" strokeWidth="4" fill="none" />
         </g>
         {/* PIANO 5 — braci che salgono (restano sotto il titolo) e particelle vicine (1,5–1,8) */}
         <g transform={L(1.5)}>
@@ -122,6 +127,8 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
   // tutto è già al suo posto al fotogramma 0 (miniatura); si muovono solo luci, braci e un leggero respiro del titolo
   const breath = 1 + 0.012 * Math.sin(t * 1.6);
   const underline = 0.55 + 0.45 * eo(seg(t, 0, 0.8));
+  // frase di lancio: assente nel fotogramma 0 (miniatura), entra da 0,4 s in 0,3 s e poi resta
+  const line = eo(seg(t, 0.4, 0.7));
   return (
     <div style={{ position: 'absolute', inset: 0, background: P.scuro }}>
       <Sfondo id="hc" t={t} dur={dur} dawn={false} />
@@ -135,7 +142,8 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
         <p style={{ margin: '18px 0 0', fontSize: 40, fontWeight: 800, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>un film di {film.regista} · {film.anno}</p>
       </div>
       <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
-        borderRadius: 16, background: `${P.scuro}E0`, color: P.chiaro, fontFamily: SANS, fontSize: 42, fontWeight: 800, textAlign: 'center' }}>
+        borderRadius: 16, background: `${P.scuro}E0`, color: P.chiaro, fontFamily: SANS, fontSize: 42, fontWeight: 800, textAlign: 'center',
+        opacity: line, transform: `translateY(${(1 - line) * 14}px)` }}>
         {film.copertina.frase_lancio}
       </p>
     </div>

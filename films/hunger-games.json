@@ -23,7 +23,7 @@
       "scena": "Notte su un distretto minerario povero: baracche di legno, mucchi di carbone, la torre di una miniera, una recinzione elettrica; sul fondo, oltre le montagne, le torri di vetro di Capitol City che brillano; nella piazza un grande schermo con il numero 74.",
       "sottotitoli": [
         "A Panem, Capitol City comanda dodici distretti poveri",
-        "e, per punire un'antica rivolta, ogni anno ne estrae due ragazzi per distretto",
+        "e, per punire un'antica rivolta, ogni anno estrae due ragazzi per distretto",
         "che lottano fino alla morte in TV: gli Hunger Games."
       ]
     },
@@ -44,7 +44,7 @@
       "durata": 10,
       "scena": "La carrozza ristorante di un treno di lusso che corre verso Capitol City: tavola apparecchiata con una pagnotta calda in un cestino, dolci, una bottiglia di liquore e un bicchiere rovesciato; dal finestrino il paesaggio che scorre veloce, le luci della città lontana.",
       "sottotitoli": [
-        "Con lei viene estratto Peeta, che anni prima aveva dato di nascosto del pane alla sua famiglia,",
+        "Con lei viene estratto Peeta, che anni prima aveva dato di nascosto del pane alla famiglia di lei,",
         "e li guida Haymitch, l'unico vincitore vivo del distretto, che beve troppo."
       ]
     },
@@ -75,8 +75,8 @@
       "durata": 9,
       "scena": "Di notte, dal basso, il tronco altissimo di un albero: in alto, appeso a un ramo, un grosso nido di vespe di carta grigia; sotto, il fuoco da campo dei Favoriti con lance e zaini; il ramo viene segato, il nido cade e le vespe sciamano; un arco appoggiato al tronco.",
       "sottotitoli": [
-        "Lì la inseguono i Favoriti, una banda dei distretti 1 e 2,",
-        "così, aiutata dalla piccola Rue, fa cadere su di loro un nido di vespe velenose."
+        "Lì la inseguono i Favoriti, una banda di ragazzi allenati,",
+        "così, aiutata da Rue, la più piccola in gara, fa cadere su di loro un nido di vespe."
       ]
     },
     {
@@ -85,20 +85,20 @@
       "durata": 10,
       "scena": "Una radura del bosco al pomeriggio: una rete da trappola strappata appesa a un ramo, una lancia piantata nel terreno, una piccola fionda caduta sull'erba, foglie medicinali su una pietra; note di una canzone che salgono leggere.",
       "sottotitoli": [
-        "Punta anche lei, sviene, ma Rue la cura",
+        "Anche lei viene punta e sviene, ma Rue la cura",
         "e diventano amiche, finché un Favorito colpisce Rue con una lancia",
-        "e Katniss la vendica, poi le canta una canzone mentre muore."
+        "e Katniss la vendica, poi canta per lei mentre muore."
       ]
     },
     {
       "id": "fiori",
       "titolo": "Il saluto per Rue",
       "durata": 11,
-      "scena": "Il Distretto 11 di notte: filari di alberi da frutto, un maxischermo su un palo che mostra un mucchio di fiori bianchi e gialli nell'erba; tre lanterne che si accendono, fiaccole e scintille della rivolta tra gli alberi; sullo schermo, alla fine, una rosa bianca.",
+      "scena": "Il Distretto 11 di notte: filari di alberi da frutto, un maxischermo su un palo che mostra un mucchio di fiori bianchi e gialli nell'erba; tre lanterne che si accendono, fiaccole e scintille della rivolta tra gli alberi; alla fine sullo schermo compare un grande 2.",
       "sottotitoli": [
-        "Poi copre Rue di fiori e la saluta con tre dita,",
-        "e il distretto di Rue si ribella: così il presidente Snow, per distrarre tutti,",
-        "annuncia che possono vincere in due, se dello stesso distretto."
+        "Poi la copre di fiori, salutandola con tre dita,",
+        "così il distretto di Rue si ribella e il presidente Snow si arrabbia,",
+        "allora i registi dei giochi ammettono due vincitori, se dello stesso distretto."
       ]
     },
     {
@@ -107,9 +107,9 @@
       "durata": 11,
       "scena": "L'interno di una grotta sulla riva di un fiume, di notte: un letto di muschio, un piccolo fuoco, una pagnotta e una borraccia; fuori la pioggia sul fiume e le rocce bagnate; all'ingresso compare un piccolo zaino con il numero 12 che contiene la medicina.",
       "sottotitoli": [
-        "Allora Katniss trova Peeta ferito e lo nasconde in una grotta,",
-        "poi va a prendergli una medicina alla Cornucopia, ma una Favorita l'aggredisce,",
-        "e Thresh, del distretto di Rue, la uccide e risparmia Katniss."
+        "Così cerca Peeta, ferito, e lo nasconde in una grotta,",
+        "poi alla Cornucopia i registi offrono una medicina, ma una Favorita l'aggredisce,",
+        "e Thresh, del distretto di Rue, la uccide e, grato, risparmia Katniss."
       ]
     },
     {
@@ -119,8 +119,8 @@
       "scena": "Notte sulla Cornucopia: il grande corno dorato visto da vicino, illuminato dalla luna; in basso nel buio occhi rossi e sagome di cani enormi; in primo piano un fazzoletto con bacche viola scuro; una spada che cade e rimbalza sul metallo.",
       "sottotitoli": [
         "Intanto una rivale muore mangiando le bacche velenose che Peeta aveva raccolto,",
-        "poi i registi dei giochi liberano dei cani mostruosi,",
-        "e sulla Cornucopia i due fanno cadere tra loro Cato, l'ultimo rivale."
+        "poi i registi liberano dei cani mostruosi,",
+        "e i due, rifugiati sulla Cornucopia, fanno cadere tra i cani Cato, l'ultimo rivale."
       ]
     },
     {
@@ -129,16 +129,16 @@
       "durata": 12,
       "scena": "L'alba sull'arena: su una roccia due mucchietti di bacche viola accanto a un sacchetto di cuoio; la cupola del cielo che si accende di fuochi d'artificio e della scritta VINCITORI; in primo piano una rosa bianca, quella del presidente.",
       "sottotitoli": [
-        "Ma poi la regola viene ritirata,",
-        "così i due decidono di mangiare le bacche velenose, per lasciare i giochi senza vincitore,",
+        "Ma poi i registi ritirano la regola,",
+        "così i due decidono di mangiare le bacche velenose, per non lasciare nessun vincitore,",
         "e all'ultimo li dichiarano vincitori entrambi.",
-        "Ma per Snow è una sfida, e ora vuole vendetta."
+        "Per Snow, però, è una sfida, e ora vuole vendetta."
       ]
     }
   ],
   "finale": {
     "durata": 4,
-    "immagine": "Il Distretto 12 all'alba: il treno che arriva tra le baracche, fumo e braci che salgono, l'arco appoggiato alla staccionata; 'Fine' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
+    "immagine": "La stessa radura dell'arena della copertina all'alba: la Cornucopia, l'anello di luci in cielo con accese solo le due dei vincitori, l'arco sulla roccia; 'FINE' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
   },
   "musica": "Originale e strumentale a 90 bpm: tamburi militari (rullante, timpani) e ottoni per Capitol City e l'arena, pianoforte e archi gravi per il distretto, arpa e flauto per Rue; nessuna melodia del film (niente fischio a quattro note); effetti: vento, fuoco, colpo di cannone, vespe, ruscello, pioggia, fuochi d'artificio.",
   "fonti": [
