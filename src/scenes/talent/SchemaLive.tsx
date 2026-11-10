@@ -366,7 +366,7 @@ export const makeSchemaLive = (D: DatiPuntata) => {
                 return (
                   <g key={id}>
                     <g transform={`translate(${x} ${y}) scale(${pop(T, ti)}) translate(${-x} ${-y})`}><Disco T={T} x={x} y={y} r={52} label={colore(id)} gira={0.3} /></g>
-                    <text x={x} y={y + 88} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="25" fill={INK}>{nome(id).nome.length > 13 ? nome(id).nome.split(' ')[0] : nome(id).nome}</text>
+                    <text x={x} y={y + 88} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="25" fill={INK} opacity={seg(T, ti + 0.1, ti + 0.3)}>{nome(id).nome.length > 13 ? nome(id).nome.split(' ')[0] : nome(id).nome}</text>
                   </g>
                 );
               })}
