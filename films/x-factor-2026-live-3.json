@@ -17,7 +17,7 @@
   },
   "copertina": {
     "durata": 4,
-    "frase_lancio": "Canzoni, sorprese ed eliminato, prima del Live 4 del 12 novembre.",
+    "frase_lancio": "Canzoni, sorprese e chi è uscito, prima del Live 4 del 12 novembre.",
     "immagine": "Lo schema della serata su lavagna scura: al centro un jukebox disegnato a linee chiare, intorno i dischi in vinile dei concorrenti con l'etichetta nel colore della squadra (uno incrinato e grigio: l'eliminato), due stelle d'oro (gli applausi in piedi), l'anello rosso del ballottaggio. Titolo grande «X FACTOR 2026» nel nostro carattere (mai il logo del programma), sopra «TALENT SPIEGATI», sotto «Com'è andato il Live 3». Niente persone, niente logo, niente microfoni.",
     "voce": "Ti sei perso il terzo Live di X Factor? Ecco com'è andato."
   },
@@ -28,9 +28,9 @@
       "durata": 15,
       "scena": "In alto lo schema si apre sul jukebox della serata con la scritta «JUKEBOX NIGHT · ANNI '60 E '70»; f2 escono dal jukebox note e dischi; f3 il cartellino «APERTURA: GIORGIA» con tre dischi (Beatles, Doors, Rolling Stones); f4 il cartellino «OSPITE: FULMINACCI».",
       "sottotitoli": [
-        "Il 5 novembre il terzo Live di X Factor è la serata Jukebox:",
+        "Il 5 novembre il terzo Live di X Factor è la Jukebox Night:",
         "si cantano solo successi degli anni Sessanta e Settanta.",
-        "Giorgia, la conduttrice, apre con Beatles, Doors e Rolling Stones,",
+        "Giorgia, la conduttrice, apre cantando Beatles, Doors e Rolling Stones,",
         "e l'ospite della serata è il cantautore Fulminacci."
       ]
     },
@@ -40,8 +40,8 @@
       "durata": 15,
       "scena": "La colonna TURNO 1: a ogni frase entra un disco col colore della squadra, il nome e la canzone scritta a mano; f3 sul disco di Giacomo Calò una stella d'oro «IN PIEDI».",
       "sottotitoli": [
-        "Nel primo turno apre Camilla Guerini, di Paola Iezzi, con Be My Baby.",
-        "Poi Lenanie, di Irama, canta Ma il cielo è sempre più blu,",
+        "Apre il primo turno Camilla Guerini, della squadra di Paola Iezzi: Be My Baby delle Ronettes.",
+        "Poi Lenanie, di Irama, canta Ma il cielo è sempre più blu di Rino Gaetano,",
         "e Giacomo Calò, di Gabbani, fa alzare in piedi il pubblico con All by Myself."
       ]
     },
@@ -52,9 +52,9 @@
       "scena": "Continua la colonna TURNO 1: Alìa, Teo Bok, Le Distanze; f4 il disco di Lenanie si accende di rosso e una freccia tratteggiata lo porta verso il riquadro BALLOTTAGGIO.",
       "sottotitoli": [
         "Alìa, di Jake La Furia, canta Mamma Mia degli ABBA;",
-        "Teo Bok, di Gabbani, Have You Ever Seen the Rain;",
-        "Le Distanze, band di Irama, Another Brick in the Wall dei Pink Floyd.",
-        "Il meno votato dal pubblico è Lenanie, che va al ballottaggio."
+        "poi Teo Bok, di Gabbani, canta Have You Ever Seen the Rain;",
+        "e Le Distanze, band di Irama, suonano Another Brick in the Wall dei Pink Floyd.",
+        "Il meno votato è Lenanie, che va al ballottaggio."
       ]
     },
     {
@@ -63,9 +63,9 @@
       "durata": 14,
       "scena": "La colonna TURNO 2: Scraffs, Manu, Alex Fontana, un disco per frase.",
       "sottotitoli": [
-        "Nel secondo turno gli Scraffs, band di Gabbani, suonano God Save the Queen;",
-        "Manu, di Paola Iezzi, canta Mi ritorni in mente di Battisti;",
-        "Alex Fontana, di Jake, Nights in White Satin dei Moody Blues."
+        "Nel secondo turno gli Scraffs, band di Gabbani, suonano God Save the Queen dei Sex Pistols;",
+        "poi Manu, di Paola Iezzi, canta Mi ritorni in mente di Battisti;",
+        "e Alex Fontana, di Jake, canta Nights in White Satin dei Moody Blues."
       ]
     },
     {
@@ -86,10 +86,10 @@
       "durata": 16,
       "scena": "Il riquadro BALLOTTAGGIO con l'anello rosso: i due dischi grandi con la canzone della sfida; f3 i gettoni dei quattro giudici con le frecce verso il disco che vogliono far uscire; f4 il disco di Lenanie si incrina e diventa grigio, «FUORI».",
       "sottotitoli": [
-        "Al ballottaggio i due ricantano: Lenanie Non mi avete fatto niente,",
-        "Manu Devastante di Olly.",
+        "Al ballottaggio cantano ancora: Lenanie porta Non mi avete fatto niente,",
+        "e Manu porta Devastante di Olly.",
         "Poi votano i giudici: Gabbani, Jake e Paola Iezzi mandano a casa Lenanie;",
-        "solo Irama, il suo giudice, lo difende, ma Lenanie è eliminato."
+        "solo Irama, il suo giudice, lo difende: finisce tre a uno, Lenanie è eliminato."
       ]
     },
     {
@@ -99,7 +99,7 @@
       "scena": "In basso il riquadro LIVE 4 · 12 NOVEMBRE · HELL FACTOR: i dieci dischi rimasti in fila per squadra; f3 due dischi con la X (escono subito) e due nell'anello rosso; f5 la camera si allarga su tutto lo schema e compare «ESCONO IN 3».",
       "sottotitoli": [
         "Così restano in gara dieci concorrenti,",
-        "e il 12 novembre, al quarto Live, arriva l'Hell Factor:",
+        "e giovedì 12 novembre, al quarto Live, arriva l'Hell Factor:",
         "i voti dei due turni si sommano, e i due meno votati escono subito;",
         "il terzo e il quarto meno votati vanno al ballottaggio.",
         "Tre eliminati in una sola sera: chi saranno?"
@@ -129,6 +129,7 @@
     "Mad-Dog": "Med Dog",
     "Teo Bok": "Tèo Bok",
     "Lenanie": "Lenanì",
-    "Hell Factor": "Hel Fàctor"
+    "Hell Factor": "Hel Fàctor",
+    "Jukebox Night": "Giùbox Nàit"
   }
 }

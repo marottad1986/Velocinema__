@@ -53,7 +53,7 @@ export const DATI: DatiPuntata = {
     voti: { gabbani: 'lenanie', jake: 'lenanie', paola: 'lenanie', irama: 'manu' },
     quandoVoti: ['ballottaggio', 2, 0.9],
     fuori: 'lenanie',
-    quandoFuori: ['ballottaggio', 3, 1.8],
+    quandoFuori: ['ballottaggio', 3, 2.8],
   },
   prossimo: {
     titolo: 'LIVE 4 · 12 NOVEMBRE',

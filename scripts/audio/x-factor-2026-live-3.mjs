@@ -159,7 +159,7 @@ export default (mix, T) => {
 
   // ---- ballottaggio: Si minore, i due dischi, i quattro voti (Irama difende il suo: tom più alto e glockenspiel), l'eliminazione
   const bl = 'ballottaggio';
-  const tV = E(bl, 2, 0.9), tF = E(bl, 3, 1.8);
+  const tV = E(bl, 2, 0.9), tF = E(bl, 3, 2.8);
   tensione(B(T[bl]), tF);
   rullo(E(bl, 0, 1.2) - 0.8, 0.8, 0.18);
   suona(mix, 'pianoforte_coda', 71, { t: E(bl, 0, 1.2), dur: 1.2, vel: 54, gain: 0.26, rev: 0.4 }); // Lenanie
