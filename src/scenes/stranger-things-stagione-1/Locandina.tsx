@@ -236,30 +236,37 @@ const BoscoCopertina: React.FC<{ id: string; t: number; dur: number }> = ({ id, 
               fill={f.c > 0.5 ? '#7A4A22' : '#5A3418'} stroke={K} strokeWidth="2.5" />
           ))}
           {/* fascio della torcia che attraversa la strada e prende la bici */}
-          <path d="M196 1262 L880 1120 L900 1330 Z" fill={`url(#${id}-torch)`} opacity={torch} />
+          <path d="M362 1318 L900 1110 L940 1290 Z" fill={`url(#${id}-torch)`} opacity={torch} />
           {/* la bicicletta rovesciata con la ruota che gira */}
           <Ombra id={id} x={540} y={1272} rx={370} ry={38} />
           <Bici x={540} y={1236} s={1.4} lying spin={spin} />
           {/* bordo caldo sulla bici dove la prende la torcia */}
           <path d="M394 1172 L472 1141 L564 1141" stroke="#FFE6B0" strokeWidth="4" fill="none" opacity={0.55 * torch} />
           {/* torcia accesa nell'erba a sinistra */}
-          <g transform="translate(180 1268) rotate(-10)">
+          <g transform="translate(330 1336) rotate(-20)">
             <rect x="-96" y="-22" width="100" height="44" rx="8" fill="#2A2E36" stroke={K} strokeWidth="7" />
             <path d="M-80 -22 V22 M-64 -22 V22 M-48 -22 V22" stroke="#4A505A" strokeWidth="3" />
             <rect x="-40" y="-30" width="18" height="10" rx="3" fill="#B8352F" stroke={K} strokeWidth="4" />
             <path d="M4 -28 L34 -36 V36 L4 28 Z" fill="#5A606A" stroke={K} strokeWidth="6" />
             <ellipse cx="34" cy="0" rx="8" ry="33" fill={torch > 0.05 ? '#FFF6D8' : '#4A4E56'} stroke={K} strokeWidth="3" />
           </g>
-          <Glow id={`${id}-tg`} x={214} y={1262} r={120} t={t} color="#FFF0C0" amp={0.05} rate={5} opacity={0.85 * torch} />
-          {GRASS.slice(0, 14).map((g, i) => <path key={i} d={`M${g.x} 1300 q${g.b * 0.5} ${-g.h * 0.6} ${g.b} ${-g.h}`} stroke="#1E3424" strokeWidth="7" fill="none" strokeLinecap="round" />)}
+          <Glow id={`${id}-tg`} x={364} y={1324} r={120} t={t} color="#FFF0C0" amp={0.05} rate={5} opacity={0.85 * torch} />
+          {[[230, 1352, 1], [430, 1350, -1], [150, 1300, 1], [700, 1296, -1], [880, 1310, 1]].map(([x, y, d], k) => (
+            <g key={k} transform={`translate(${x} ${y}) scale(${d} 1)`}>
+              {([[-18, 70, -14, '#1A3222'], [-6, 96, -4, '#21402A'], [6, 84, 8, '#183020'], [16, 60, 18, '#22422C'], [0, 52, -22, '#14281A']] as [number, number, number, string][]).map(([dx, h, lean, c], j) => {
+                const sw = Math.sin(t * 1.3 + k + j) * 3;
+                return <path key={j} d={`M${dx - 5} 0 Q${dx + lean * 0.4} ${-h * 0.55} ${dx + lean + sw} ${-h} Q${dx + lean * 0.4 + 3} ${-h * 0.5} ${dx + 5} 0 Z`} fill={c} stroke={K} strokeWidth="2.5" strokeLinejoin="round" />;
+              })}
+            </g>
+          ))}
         </g>
         {/* PIANO 5 — primo piano: tronchi ai bordi ed erba alta in basso (1,15) */}
         <g transform={L(1.15)}>
-          <path d="M-120 -100 H40 Q20 900 70 2100 H-120 Z" fill={`url(#${id}-bark)`} stroke={K} strokeWidth="10" />
-          <path d="M36 200 Q24 900 62 1900" stroke="#5A6A84" strokeWidth="4" fill="none" opacity={0.35 + 0.25 * cold} />
-          <path d="M1200 -100 H1050 Q1072 900 1030 2100 H1200 Z" fill={`url(#${id}-bark)`} stroke={K} strokeWidth="10" />
-          <path d="M1054 200 Q1068 900 1036 1900" stroke="#5A6A84" strokeWidth="4" fill="none" opacity={0.35 + 0.25 * cold} />
-          {[[-10, 520], [10, 980], [1060, 700], [1046, 1300]].map(([x, y], i) => <path key={i} d={`M${x} ${y} q20 10 30 40`} stroke="#0A0806" strokeWidth="6" fill="none" />)}
+          <path d="M-120 -100 H60 Q40 900 90 2100 H-120 Z" fill={`url(#${id}-bark)`} stroke={K} strokeWidth="10" />
+          <path d="M56 200 Q44 900 84 1900" stroke="#5A6A84" strokeWidth="4" fill="none" opacity={0.35 + 0.25 * cold} />
+          <path d="M1200 -100 H1010 Q1032 900 990 2100 H1200 Z" fill={`url(#${id}-bark)`} stroke={K} strokeWidth="10" />
+          <path d="M1014 200 Q1028 900 996 1900" stroke="#5A6A84" strokeWidth="4" fill="none" opacity={0.35 + 0.25 * cold} />
+          {[[10, 520], [30, 980], [1030, 700], [1010, 1300]].map(([x, y], i) => <path key={i} d={`M${x} ${y} q20 10 30 40`} stroke="#0A0806" strokeWidth="6" fill="none" />)}
           {/* ciuffi d'erba e felci solo negli angoli, la strada al centro resta libera */}
           {GRASS.filter((g) => g.x < 300 || g.x > 800).map((g, i) => {
             const sway = Math.sin(t * 1.4 + i) * 6;
