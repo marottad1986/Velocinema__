@@ -6,6 +6,7 @@ import { Fiamme } from './Fiamme';
 import { Cornucopia } from './Cornucopia';
 import { Vespe } from './Vespe';
 import { Rue } from './Rue';
+import { Fiori } from './Fiori';
 
 // Scene di Hunger Games, per id del capitolo (films/hunger-games.json).
 export const HUNGER_GAMES_SCENES: Record<string, SceneDef> = {
@@ -16,4 +17,5 @@ export const HUNGER_GAMES_SCENES: Record<string, SceneDef> = {
   cornucopia: { Component: Cornucopia, title: { top: 392, size: 104, width: 900 } },
   vespe: { Component: Vespe, title: { top: 392, size: 104, width: 900 } },
   rue: { Component: Rue, title: { top: 392, size: 104, width: 900 } },
+  fiori: { Component: Fiori, title: { top: 392, size: 104, width: 900 } },
 };
