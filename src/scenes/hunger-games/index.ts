@@ -4,6 +4,7 @@ import { Mietitura } from './Mietitura';
 import { Pane } from './Pane';
 import { Fiamme } from './Fiamme';
 import { Cornucopia } from './Cornucopia';
+import { Vespe } from './Vespe';
 
 // Scene di Hunger Games, per id del capitolo (films/hunger-games.json).
 export const HUNGER_GAMES_SCENES: Record<string, SceneDef> = {
@@ -12,4 +13,5 @@ export const HUNGER_GAMES_SCENES: Record<string, SceneDef> = {
   pane: { Component: Pane, title: { top: 392, size: 104, width: 900 } },
   fiamme: { Component: Fiamme, title: { top: 392, size: 104, width: 900 } },
   cornucopia: { Component: Cornucopia, title: { top: 392, size: 104, width: 900 } },
+  vespe: { Component: Vespe, title: { top: 392, size: 104, width: 900 } },
 };
