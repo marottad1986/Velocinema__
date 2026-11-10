@@ -32,8 +32,8 @@ export const Mietitura: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const t0 = griglia(cues[0] + 1.0);
   const rise = eo(seg(t, t0, t0 + 0.8)); // il biglietto sale dalla boccia
   const open = eob(seg(t, t0 + 0.8, t0 + 1.2), 1.4); // si apre
-  const name1 = eo(seg(t, t0 + 1.1, t0 + 1.5));
-  const gone = eo(seg(t, t0 + 1.1, t0 + 1.6)); // il biglietto sale al tabellone e diventa il nome
+  const name1 = eo(seg(t, t0 + 1.0, t0 + 1.4));
+  const gone = eo(seg(t, t0 + 1.0, t0 + 1.5)); // il biglietto sale al tabellone e diventa il nome
   const t1 = griglia(cues[1] + 0.4);
   const bow = eo(seg(t, t1, t1 + 0.6));
   const t2 = griglia(cues[2] + 0.2);

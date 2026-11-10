@@ -13,8 +13,8 @@ import { loadFilm, timeline } from './film.mjs';
 export const strumenti = ['pianoforte_coda', 'violini', 'viole', 'celli', 'contrabbasso', 'violini_trem', 'celli_trem', 'contrabbasso_pizz',
   'violini_pizz', 'celli_pizz', 'violino_solo', 'arpa', 'glockenspiel', 'corno', 'tromba', 'tromba_sordina', 'trombone', 'timpani', 'gong',
   'piatto_sospeso', 'rullante', 'grancassa'];
-export const effetti = ['vento_leggero', 'ronzio_neon', 'campana_grave', 'tintinnio', 'applauso', 'nitriti', 'fiammata', 'esplosioni', 'stoffa',
-  'fuoco', 'legno_cigolio', 'legno_cade', 'sacchi', 'ali', 'colpi_legno', 'pioggia_dura', 'fiammifero', 'metallo_colpi', 'metallo_cade',
+export const effetti = ['api', 'vento_leggero', 'ronzio_neon', 'campana_grave', 'tintinnio', 'applauso', 'nitriti', 'fiammata', 'esplosioni', 'stoffa',
+  'fuoco', 'legno_cigolio', 'legno_cade', 'sacchi', 'colpi_legno', 'pioggia_dura', 'fiammifero', 'metallo_colpi', 'metallo_cade',
   'ringhio', 'lupo'];
 /** Bosco e grandi spazi aperti: coda media, alte morbide. */
 export const sala = { rt60: 2.0, brillo: 4800, predelay: 0.02, wet: 0.42 };
@@ -113,13 +113,13 @@ export default (mix, T) => {
   //      luce arancione che resta accesa (timpano e corno); nessun colpo dopo, così la voce resta chiara
   clip(mix, 'vento_leggero', { t: 0, da: 1, durata: O + 0.6, gain: 0.012, fadeIn: 0.3, fadeOut: 1, largo: 4, rev: 0.1 });
   suona(mix, 'contrabbasso', 26, { t: 0.05, dur: 3.9, vel: 52, gain: 0.6, attack: 0.05, release: 1.2, rev: 0.6 });
-  [38, 45, 50].forEach((m, j) => suona(mix, j ? 'viole' : 'celli', m + (j ? 12 : 0), { t: 0.05, dur: 3.9, vel: 46, gain: 0.34, pan: (j - 1) * 0.3, attack: 0.3, release: 1.2, rev: 0.6, seed: j }));
-  for (let k = 0; k < 23; k++) { // Locandina.tsx: la luce k si spegne a 0,4 + k·0,138 s
-    suona(mix, k % 2 ? 'violini_pizz' : 'celli_pizz', [86, 84, 81, 79, 77, 74, 72, 69][k % 8] - (k > 15 ? 12 : 0), { t: 0.4 + k * 0.138, dur: 0.3, vel: 50, gain: 0.2, pan: -0.5 + (k / 22), rev: 0.5, release: 0.3 });
+  [38, 45, 50].forEach((m, j) => suona(mix, j ? 'viole' : 'celli', m + (j ? 12 : 0), { t: 0.05, dur: 3.9, vel: 46, gain: 0.45, pan: (j - 1) * 0.3, attack: 0.1, release: 1.2, rev: 0.6, seed: j }));
+  for (let k = 0; k < 23; k++) { // Locandina.tsx: la luce k si spegne a 1/3 + k·2/15 s (un quinto di battito)
+    suona(mix, k % 2 ? 'violini_pizz' : 'celli_pizz', [86, 84, 81, 79, 77, 74, 72, 69][k % 8] - (k > 15 ? 12 : 0), { t: 1 / 3 + k * (BEAT / 5), dur: 0.3, vel: 50, gain: 0.28, pan: -0.5 + (k / 22), rev: 0.5, release: 0.3 });
   }
-  trem(0.05, 3.9, [62, 69, 74], { vel: 50, gain: 0.3 }); // l'attesa: archi che vibrano
-  timp(3.5, 38, 78, 0.6); // l'ultima luce si accende arancione
-  suona(mix, 'corno', 62, { t: 3.5, dur: 0.5, vel: 52, gain: 0.26, attack: 0.1, release: 0.4, rev: 0.55 });
+  [62, 69, 74].forEach((m, j) => suona(mix, 'violini_trem', m, { t: 0.05, dur: 3.9, vel: 50, pan: (j - 1) * 0.35, gain: 0.4, attack: 0.15, release: 0.9, rev: 0.55, seed: j + 3 })); // l'attesa: archi che vibrano
+  timp(10 / 3, 38, 78, 0.6); // l'ultima luce si accende arancione
+  suona(mix, 'corno', 62, { t: 10 / 3, dur: 0.5, vel: 52, gain: 0.26, attack: 0.1, release: 0.4, rev: 0.55 });
 
   // ---- panem: la marcia lenta del rullante e gli archi gravi; i riflettori di Capitol City (ottoni che si gonfiano);
   //      lo schermo che si accende (ronzio); il titolo dei giochi con il 74 (timpano e squillo di tromba)
@@ -137,7 +137,7 @@ export default (mix, T) => {
 
   // ---- mietitura: pianoforte e archi in attesa; il biglietto che sale (arpa), il nome (campana grave),
   //      l'arco (corno), il nome barrato e «volontaria» (timpano e archi che si alzano)
-  const slip = E('mietitura', 0, 1.0), nm = slip + 1.1, bow = E('mietitura', 1, 0.4), vol = E('mietitura', 2, 0.2);
+  const slip = E('mietitura', 0, 1.0), nm = slip + 1.0, bow = E('mietitura', 1, 0.4), vol = E('mietitura', 2, 0.2);
   strings(B(T.mietitura), vol, { vel: 42, gain: 0.32, k0: 0 });
   pulse(B(T.mietitura), slip, { m: 38, vel: 46, gain: 0.24, every: 2 });
   [69, 74, 77, 81].forEach((m, j) => arpa(slip + j * BEAT / 4, m, 0.22, -0.2 + j * 0.13)); // Mietitura.tsx: il biglietto sale
@@ -168,11 +168,12 @@ export default (mix, T) => {
   // ---- fiamme: la sfilata a passo doppio (rullante fitto, trombe e tromboni), i cavalli, la folla (applauso e flash);
   //      i mantelli che prendono fuoco (fiammata e piatto); il cuore sullo schermo (arpa e glockenspiel)
   const crowd = E('fiamme', 0, 0.6), tf = E('fiamme', 1, 1.4), th = E('fiamme', 2, 1.0);
-  march(B(T.fiamme), B(T.cornucopia), { vel: 46, dense: false });
-  for (let t = B(T.fiamme); t < B(T.cornucopia) - 0.2; t += BEAT) colpo(mix, 'grancassa', 'mp', { t, vel: 100, gain: 0.18, rev: 0.3, seed: Math.round(t * 10) });
+  const stopM = E('cornucopia', 0, 2.0) - 3 * BEAT; // la marcia lascia spazio al conto alla rovescia
+  march(B(T.fiamme), stopM, { vel: 46, dense: false });
+  for (let t = B(T.fiamme); t < stopM - 0.2; t += BEAT) colpo(mix, 'grancassa', 'mp', { t, vel: 100, gain: 0.18, rev: 0.3, seed: Math.round(t * 10) });
   strings(B(T.fiamme), th, { vel: 50, gain: 0.4, k0: 0 });
   clip(mix, 'nitriti', { t: T.fiamme + 0.6, da: 0.6, durata: 1.6, gain: 0.12, fadeOut: 0.4, pan: -0.4, rev: 0.4 }); // Fiamme.tsx: i cavalli
-  clip(mix, 'applauso', { t: crowd, da: 3, durata: th + 1.2 - crowd, gain: 0.06, fadeIn: 0.6, fadeOut: 1.2, largo: 3, rev: 0.3 }); // la folla
+  clip(mix, 'applauso', { t: crowd, da: 3, durata: th + 1.2 - crowd, gain: 0.035, fadeIn: 0.6, fadeOut: 1.2, largo: 3, rev: 0.3 }); // la folla
   fanfare(B(crowd), [62, 66, 69, 74], { vel: 58, gain: 0.24 });
   roll(tf, 1.2, 0.16);
   clip(mix, 'fiammata', { t: tf - 0.05, da: 0.25, durata: 1.3, gain: 0.32, fadeOut: 0.5, rev: 0.3, pan: 0.2 }); // i mantelli in fiamme
@@ -199,15 +200,15 @@ export default (mix, T) => {
   // ---- vespe: la notte (celli tremolo gravi), il fuoco dei Favoriti (crepitio e fiammata), la fionda di Rue (glockenspiel),
   //      il ramo che cede (scricchiolio), il nido che cade (tonfo, timpano) e lo sciame (tremolo acuto e ali)
   const roar = E('vespe', 0, 0.6), ts = E('vespe', 1, 0.8), tc = E('vespe', 1, 2.2);
-  strings(B(T.vespe), B(T.rue), { half: true, vel: 44, gain: 0.36, k0: 0 });
+  strings(B(T.vespe), B(T.rue), { half: true, vel: 48, gain: 0.36, k0: 0 });
   trem(B(T.vespe), tc - B(T.vespe), [38, 39], { vel: 40, gain: 0.22 });
   clip(mix, 'fuoco', { t: T.vespe, da: 2, durata: T.rue - T.vespe, gain: 0.025, fadeIn: 0.5, fadeOut: 0.8, rev: 0.15 });
   clip(mix, 'fiammata', { t: roar - 0.05, da: 0.25, durata: 1.0, gain: 0.14, fadeOut: 0.5, rev: 0.3, pan: 0.2 }); // Vespe.tsx: il fuoco divampa
   [81, 86].forEach((m, j) => glock(ts + j * BEAT / 2, m, 0.13)); // la fionda di Rue
   clip(mix, 'legno_cigolio', { t: tc - 0.45, da: 0.25, durata: 0.6, gain: 0.14, fadeOut: 0.2, rev: 0.3, pan: 0.1 }); // il ramo cede
-  clip(mix, 'sacchi', { t: tc + 0.53, da: 0.3, durata: 0.5, gain: 0.28, fadeOut: 0.2, rev: 0.2, pan: 0.15 }); // il nido tocca terra
+  clip(mix, 'sacchi', { t: tc + 0.53, da: 0.37, durata: 0.5, gain: 0.28, fadeOut: 0.2, rev: 0.2, pan: 0.15 }); // il nido tocca terra
   timp(tc + 0.55, 38, 88, 0.55);
-  clip(mix, 'ali', { t: tc + 0.6, da: 8.5, durata: T.rue - tc - 0.7, gain: 0.07, rate: 2.2, fadeIn: 0.1, fadeOut: 0.5, rev: 0.25, pan: 0.2 }); // lo sciame
+  clip(mix, 'api', { t: tc + 0.6, da: 2, durata: T.rue - tc - 0.7, gain: 0.06, fadeIn: 0.15, fadeOut: 0.5, rev: 0.25, pan: 0.2 }); // lo sciame
   trem(tc + 0.6, T.rue - tc - 0.6, [86, 87, 89], { vel: 48, gain: 0.24 });
 
   // ---- rue: il pomeriggio nella radura (arpa, archi caldi in maggiore); le foglie che curano (glockenspiel), l'amicizia
@@ -217,26 +218,27 @@ export default (mix, T) => {
   strings(B(T.rue), sp - 0.1, { half: true, vel: 42, gain: 0.3, chords: CHM });
   [81, 86, 90].forEach((m, j) => glock(heal + j * BEAT / 2, m, 0.12)); // Rue.tsx: le foglie si illuminano
   [74, 78, 81].forEach((m, j) => arpa(fr + j * BEAT / 4, m, 0.22, 0.2)); // la freccia accanto alla fionda
-  clip(mix, 'colpi_legno', { t: sp - 0.02, da: 1.4, durata: 0.4, gain: 0.26, rev: 0.3, pan: 0.3 }); // la lancia si pianta
+  clip(mix, 'colpi_legno', { t: sp - 0.02, da: 1.46, durata: 0.4, gain: 0.26, rev: 0.3, pan: 0.3 }); // la lancia si pianta
   timp(sp, 33, 88, 0.55);
-  suona(mix, 'celli', 38, { t: sp + BEAT, dur: ta - sp - BEAT, vel: 40, gain: 0.3, attack: 0.3, release: 0.6, rev: 0.6 });
-  clip(mix, 'colpi_legno', { t: ta - 0.02, da: 12.55, durata: 0.5, gain: 0.3, fadeOut: 0.2, rev: 0.35, pan: 0.35 }); // la freccia nel tronco
-  strings(B(song), B(T.fiori), { half: true, vel: 40, gain: 0.3, k0: 0 });
-  motif(B(song), B(T.fiori), { half: true, vel: 50, gain: 0.3, id: 'violino_solo', pan: -0.1 }); // la canzone per Rue
+  suona(mix, 'celli', 38, { t: sp + BEAT, dur: O + Math.ceil((song - O) / BEAT) * BEAT + 0.4 - sp - BEAT, vel: 44, gain: 0.36, attack: 0.3, release: 0.6, rev: 0.6 });
+  clip(mix, 'colpi_legno', { t: ta - 0.02, da: 12.55, durata: 0.28, gain: 0.3, fadeOut: 0.2, rev: 0.35, pan: 0.35 }); // la freccia nel tronco
+  const sb = O + Math.ceil((song - O) / BEAT) * BEAT; // la canzone parte dopo la freccia, con le note a schermo
+  strings(sb, B(T.fiori), { half: true, vel: 40, gain: 0.3, k0: 0 });
+  motif(sb, E('fiori', 0, 1.6), { half: true, vel: 50, gain: 0.3, id: 'violino_solo', pan: -0.1 }); // la canzone per Rue
 
   // ---- fiori: il frutteto di notte (archi gravi); i fiori sullo schermo (arpa), le tre lanterne (tre rintocchi);
   //      la rivolta (rullante, ottoni bassi, fuoco); Snow si arrabbia (tromba con sordina e timpano); il «2» (gong e ottoni)
   const lt = (k) => E('fiori', 0, 1.6 + k * 0.67), tr = E('fiori', 1, 0.8), tsn = E('fiori', 1, 2.6), two = E('fiori', 2, 1.2);
-  strings(T.fiori - 0.3, tr, { half: true, vel: 44, gain: 0.34, k0: 2 });
+  strings(B(T.fiori), tr, { half: true, vel: 44, gain: 0.34, k0: 2 });
   harp(B(T.fiori), lt(0), { vel: 40, gain: 0.2, k0: 2 }); // Fiori.tsx: i fiori sbocciano sullo schermo
   [74, 77, 81].forEach((m, k) => { glock(lt(k), m + 12, 0.14); arpa(lt(k), m, 0.2); }); // le tre lanterne
   march(tr, tsn, { vel: 50, dense: true });
   brass(tr, tsn - tr, [38, 45, 50], { vel: 56, gain: 0.26 });
-  clip(mix, 'fuoco', { t: tr, da: 6, durata: B(T.grotta) - tr, gain: 0.06, fadeIn: 0.8, fadeOut: 0.8, rev: 0.15 }); // le fiaccole
+  clip(mix, 'fuoco', { t: tr, da: 6, durata: B(T.grotta) - tr, gain: 0.035, fadeIn: 0.8, fadeOut: 0.8, rev: 0.15 }); // le fiaccole
   timp(tsn, 38, 90, 0.55);
   suona(mix, 'tromba_sordina', 75, { t: tsn, dur: 0.9, vel: 58, gain: 0.22, attack: 0.03, release: 0.4, rev: 0.45 }); // lo schermo rosso
   suona(mix, 'tromba_sordina', 74, { t: tsn + 0.02, dur: 0.9, vel: 58, gain: 0.2, attack: 0.03, release: 0.4, rev: 0.45 });
-  trem(tsn + BEAT, two - tsn - BEAT, [38, 74, 75], { vel: 44, gain: 0.24 });
+  trem(tsn + BEAT, two - tsn - BEAT, [38, 74, 75], { vel: 44, gain: 0.32 });
   gong(two, 0.28);
   brass(two, B(T.grotta) - two, [45, 57, 61, 64], { vel: 54, gain: 0.28 }); // la nuova regola
 
@@ -247,16 +249,16 @@ export default (mix, T) => {
   strings(B(T.grotta), tk, { half: true, vel: 46, gain: 0.38, k0: 1 });
   motif(B(T.grotta), tp, { vel: 48, gain: 0.36, oct: -12 });
   harp(B(T.grotta), tk, { vel: 40, gain: 0.18, k0: 1 });
-  clip(mix, 'fiammifero', { t: tf2 - 0.1, da: 0.2, durata: 1.2, gain: 0.16, fadeOut: 0.4, rev: 0.25, pan: 0.1 }); // Grotta.tsx: il fuoco
+  clip(mix, 'fiammifero', { t: tf2 - 0.5, da: 0.2, durata: 1.3, gain: 0.16, fadeOut: 0.4, rev: 0.25, pan: 0.1 }); // Grotta.tsx: il fuoco
   clip(mix, 'fuoco', { t: tf2 + 0.5, da: 2, durata: T.cani - tf2 - 0.5, gain: 0.02, fadeIn: 0.6, fadeOut: 0.8, rev: 0.15 });
   [86, 90].forEach((m, j) => glock(tp + j * BEAT / 2, m, 0.13)); // lo zaino col 12
   pulse(tp + BEAT, tk - 0.1, { m: 38, vel: 50, gain: 0.26, every: 0.5 });
-  clip(mix, 'metallo_colpi', { t: tk - 0.02, da: 2.9, durata: 0.4, gain: 0.22, rev: 0.3, pan: 0.4 }); // il coltello nella roccia
+  clip(mix, 'metallo_colpi', { t: tk - 0.02, da: 2.9, durata: 0.22, fadeOut: 0.08, gain: 0.22, rev: 0.3, pan: 0.4 }); // il coltello nella roccia
   timp(tk, 45, 80, 0.4);
-  trem(tk + BEAT / 2, tdr - tk - BEAT / 2, [38, 39, 74], { vel: 44, gain: 0.24 });
+  trem(tk + BEAT / 2, tdr - tk - BEAT / 2, [38, 39, 74], { vel: 44, gain: 0.32 });
   clip(mix, 'metallo_cade', { t: tdr + 0.35, da: 0.72, durata: 0.6, gain: 0.2, fadeOut: 0.2, rev: 0.3, pan: 0.4 }); // il coltello cade
-  harp(B(tdr + 0.6), B(T.cani), { vel: 44, gain: 0.24, chords: CHM });
-  strings(B(tdr + 0.6), B(T.cani), { vel: 42, gain: 0.3, chords: CHM });
+  harp(tdr + BEAT, B(T.cani) + 0.2, { vel: 44, gain: 0.24, chords: CHM }); // lo zaino dentro, accanto al fuoco
+  strings(tdr + BEAT, B(T.cani) + 0.4, { vel: 42, gain: 0.3, chords: CHM });
 
   // ---- cani: la notte sulla Cornucopia (tremolo grave, battito); le bacche (glockenspiel), il cannone (esplosione lontana);
   //      gli occhi rossi (ringhio), i cani che escono (ululato, archi che salgono); la spada che cade e rimbalza (metallo),
@@ -274,15 +276,15 @@ export default (mix, T) => {
   [50, 53, 57, 62].forEach((m, j) => suona(mix, 'violini', m + 12, { t: te + 1 + j * BEAT, dur: BEAT * 1.2, vel: 46, gain: 0.16, attack: 0.2, release: 0.6, rev: 0.55, pan: 0.2 }));
   clip(mix, 'metallo_colpi', { t: tsw + 0.48, da: 8.07, durata: 0.5, gain: 0.3, rev: 0.3, pan: 0 }); // la spada tocca terra
   clip(mix, 'metallo_colpi', { t: tsw + 0.86, da: 12.82, durata: 0.4, gain: 0.18, rev: 0.3, pan: -0.15 }); // rimbalza
-  timp(tsw + 0.5, 38, 96, 0.6);
-  suona(mix, 'contrabbasso', 26, { t: tsw + 0.5 + BEAT, dur: T.bacche - tsw - 0.5 - BEAT, vel: 42, gain: 0.32, attack: 0.4, release: 0.8, rev: 0.6 });
+  timp(tsw + 0.5, 38, 88, 0.5);
+  suona(mix, 'contrabbasso', 26, { t: tsw + 0.5 + BEAT, dur: T.bacche - tsw - 0.5 - BEAT, vel: 50, gain: 0.45, attack: 0.4, release: 0.8, rev: 0.6 });
 
   // ---- bacche: l'alba (archi a metà passo); la regola ritirata (tromba con sordina); le bacche che si illuminano
   //      (celli gravi, battito); «vincitori» (timpano, squillo in Re maggiore, fuochi lontani, applauso);
   //      la rosa bianca di Snow (archi in minore, tremolo freddo e il motivo al pianoforte)
   const t0 = E('bacche', 0, 0.5), t1 = E('bacche', 1, 1.4), t2 = E('bacche', 2, 0.4), t3 = E('bacche', 3, 0.3);
-  strings(T.bacche - 0.3, t1, { half: true, vel: 46, gain: 0.38, k0: 0 });
-  harp(B(T.bacche), t1, { vel: 44, gain: 0.22 });
+  strings(B(T.bacche - 1), t1, { half: true, vel: 46, gain: 0.38, k0: 0 });
+  harp(B(T.bacche - 1), t1, { vel: 44, gain: 0.22 });
   suona(mix, 'tromba_sordina', 69, { t: t0, dur: 0.5, vel: 52, gain: 0.18, attack: 0.03, release: 0.3, rev: 0.45 }); // Bacche.tsx: il 2 barrato
   suona(mix, 'tromba_sordina', 62, { t: t0 + BEAT, dur: 0.9, vel: 52, gain: 0.18, attack: 0.03, release: 0.4, rev: 0.45 }); // diventa 1
   trem(t1, t2 - t1, [38, 50, 74], { vel: 46, gain: 0.26 });
@@ -291,7 +293,8 @@ export default (mix, T) => {
   timp(t2, 38, 96, 0.65);
   fanfare(t2 + 0.02, [62, 66, 69, 74], { vel: 64, gain: 0.3 });
   strings(t2 + 0.02, t3, { vel: 52, gain: 0.38, high: true, chords: CHM });
-  [0, 0.35, 0.7, 1.05, 1.4, 1.75].forEach((d, k) => clip(mix, 'esplosioni', { t: t2 + d, da: 30.2, durata: 1.2, gain: 0.05, fadeIn: 0.02, fadeOut: 0.8, rev: 0.45, lp: 1500, pan: -0.6 + k * 0.24 })); // i fuochi
+  [0, 1, 2, 3, 4, 5].map((k) => k * BEAT / 2).forEach((d, k) => clip(mix, 'esplosioni', { t: t2 + d, da: 30.2, durata: 1.2, gain: 0.05, fadeIn: 0.02, fadeOut: 0.8, rev: 0.45, lp: 1500, pan: -0.6 + k * 0.24 })); // i fuochi
+  [0, 1, 2].forEach((k) => clip(mix, 'esplosioni', { t: t2 + 1.8 + k * BEAT / 2, da: 30.2, durata: 1.0, gain: 0.035, fadeIn: 0.02, fadeOut: 0.7, rev: 0.45, lp: 1500, pan: 0.5 - k * 0.3 })); // Bacche.tsx: il secondo gruppo di fuochi
   clip(mix, 'applauso', { t: t2 + 0.3, da: 3, durata: t3 - t2 + 0.5, gain: 0.1, fadeIn: 0.4, fadeOut: 1.0, largo: 3, rev: 0.3 });
   strings(t3, B(T.finale), { half: true, vel: 44, gain: 0.34, k0: 0 }); // la rosa bianca: di nuovo in minore
   trem(t3, B(T.finale) - t3, [86, 87], { vel: 40, gain: 0.2 });

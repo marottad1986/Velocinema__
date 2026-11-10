@@ -16,7 +16,7 @@ import { Berries, Cornucopia, Dome, HGDefs, K, Pine, PineRow, Sottobosco, WhiteR
 //        · rosa bianca e felci in primo piano (1,2) · polline e particelle vicine (1,6)
 
 const r = rng(1111);
-const FIREWORKS = Array.from({ length: 6 }, (_, i) => ({ x: 220 + r() * 640, y: 800 + r() * 160, c: ['#F08A2A', '#FFE08A', '#F4F0E8'][i % 3], d: i * 0.35 }));
+const FIREWORKS = Array.from({ length: 6 }, (_, i) => ({ x: 220 + r() * 640, y: 800 + r() * 160, c: ['#F08A2A', '#FFE08A', '#F4F0E8'][i % 3], d: i * (60 / 90 / 2) }));
 
 /** Fuoco d'artificio: raggiera di scintille che si apre e cade. */
 const Fuoco: React.FC<{ x: number; y: number; c: string; p: number }> = ({ x, y, c, p }) => {

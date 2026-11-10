@@ -30,13 +30,13 @@ const ORDER = (() => {
 const Sfondo: React.FC<{ id: string; t: number; dur: number; dawn: boolean }> = ({ id, t, dur, dawn }) => {
   const cam = camera(t, dur, 540, 1150);
   const L = cam.layer;
-  // copertina: dal secondo 0,4 al 3,6 si spengono 23 luci; finale: restano accese le due dei vincitori
+  // copertina: dal secondo 0,33 al 3,27 si spengono 23 luci; finale: restano accese le due dei vincitori
   const off = (i: number) => {
     if (dawn) return i === 15 || i === 14 ? 0 : 1;
     const k = ORDER.indexOf(i);
-    return k < 0 ? 0 : seg(t, 0.4 + k * 0.138, 0.4 + k * 0.138 + 0.18);
+    return k < 0 ? 0 : seg(t, 1 / 3 + k * (2 / 15), 1 / 3 + k * (2 / 15) + 0.18); // a tempo: un quinto di battito (90 bpm)
   };
-  const last = dawn ? 1 : seg(t, 3.4, 3.8);
+  const last = dawn ? 1 : seg(t, 3.333, 3.733);
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
