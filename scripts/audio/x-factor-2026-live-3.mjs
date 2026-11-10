@@ -151,7 +151,8 @@ export default (mix, T) => {
   const tSenza = E('turno-2b', 2, 0.2), tPiedi = E('turno-2b', 2, 1.8), u2 = E('turno-2b', 3, 0.3);
   sezione(B(T['turno-2b']), tSenza - BEAT / 2, { vel: 44, k0: 3 });
   disco(E('turno-2b', 0, 0.2), 74, -0.2); disco(E('turno-2b', 1, 0.3), 81, 0.2);
-  suona(mix, 'pianoforte_coda', 74, { t: tSenza, dur: tPiedi - tSenza, vel: 40, gain: 0.24, rev: 0.5, release: 1 }); // INIZIA SENZA MUSICA: resta un solo pianoforte
+  suona(mix, 'pianoforte_coda', 74, { t: tSenza, dur: tPiedi - tSenza, vel: 40, gain: 0.24, rev: 0.5, release: 1 });
+  suona(mix, 'pianoforte_coda', 78, { t: tSenza + 2 * BEAT, dur: tPiedi - tSenza - 2 * BEAT + 0.5, vel: 40, gain: 0.24, rev: 0.5, release: 1 }); // INIZIA SENZA MUSICA: resta un solo pianoforte
   inPiedi(tPiedi);
   sezione(tPiedi + BEAT, u2 - BEAT / 2, { vel: 42 });
   ultimo(u2);
@@ -167,14 +168,14 @@ export default (mix, T) => {
   trem(tV - 0.2, 4 * 0.5 + 0.4, [47, 59, 71], { gain: 0.2 });
   const DIFENDE = [false, false, false, true]; // Gabbani, Jake, Paola, Irama: chi vota l'altro sfidante difende il suo (dati del ballottaggio in src/scenes/x-factor-2026-live-3/index.ts)
   for (let i = 0; i < 4; i++) { const difende = DIFENDE[i]; scatto(tV + i * 0.5, -0.45 + i * 0.3); tom(tV + i * 0.5, 54, difende ? 5 : -3 + i); if (difende) glock(tV + i * 0.5, 81, 0.1); } // i gettoni dei giudici
-  timp(tF, 35, 104, 0.4); colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: tF - 1.0, vel: 90, gain: 0.16, rev: 0.4, dur: 1.1, release: 0.1 }); // il disco di Lenanie si incrina
+  timp(tF, 35, 104, 0.4); colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: tF - 1.0, da: 2.4, vel: 90, gain: 0.16, rev: 0.4, dur: 1.0, release: 0.1 }); // il disco di Lenanie si incrina
   archi(tF + 2 * BEAT, B(T['live-4']) + 0.3, { vel: 40, gain: 0.24, k0: 0 });
   piano(tF + 2 * BEAT, B(T['live-4']) + 0.3, { half: true, vel: 42, gain: 0.24, k0: 0 });
 
   // ---- live 4: i dieci dischi rimasti, la regola dell'Hell Factor (due fuori subito, due al ballottaggio), ESCONO IN 3
   const l4 = 'live-4';
   const tAv = E(l4, 4, 0.2);
-  sezione(B(T[l4]), tAv, { vel: 44 });
+  sezione(B(T[l4]), B(tAv), { vel: 44 });
   archi(B(cue(l4, 2)), B(tAv), { vel: 42, gain: 0.22 });
   archi(B(tAv), T.finale + 0.3, { vel: 44, gain: 0.3, ch: [MAG[3], MAG[3], MAG[3], MAG[3]] }); // il La resta sospeso sulla domanda e si risolve nel Re del finale
   [69, 73, 76, 81].forEach((m, j) => glock(E(l4, 4, 2.0) + j * BEAT / 2, m, 0.1)); // la camera si allarga su tutto lo schema
