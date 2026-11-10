@@ -220,11 +220,11 @@ export default (mix, T) => {
   [74, 78, 81].forEach((m, j) => arpa(fr + j * BEAT / 4, m, 0.22, 0.2)); // la freccia accanto alla fionda
   clip(mix, 'colpi_legno', { t: sp - 0.02, da: 1.46, durata: 0.4, gain: 0.26, rev: 0.3, pan: 0.3 }); // la lancia si pianta
   timp(sp, 33, 88, 0.55);
-  suona(mix, 'celli', 38, { t: sp + BEAT, dur: O + Math.ceil((song - O) / BEAT) * BEAT + 0.4 - sp - BEAT, vel: 44, gain: 0.36, attack: 0.3, release: 0.6, rev: 0.6 });
+  suona(mix, 'celli', 38, { t: sp + BEAT, dur: O + Math.ceil((song - O) / BEAT) * BEAT + 0.4 - sp - BEAT, vel: 50, gain: 0.48, attack: 0.3, release: 0.6, rev: 0.6 });
   clip(mix, 'colpi_legno', { t: ta - 0.02, da: 12.55, durata: 0.28, gain: 0.3, fadeOut: 0.2, rev: 0.35, pan: 0.35 }); // la freccia nel tronco
   const sb = O + Math.ceil((song - O) / BEAT) * BEAT; // la canzone parte dopo la freccia, con le note a schermo
-  strings(sb, B(T.fiori), { half: true, vel: 40, gain: 0.3, k0: 0 });
-  motif(sb, E('fiori', 0, 1.6), { half: true, vel: 50, gain: 0.3, id: 'violino_solo', pan: -0.1 }); // la canzone per Rue
+  strings(sb - BEAT, B(T.fiori), { half: true, vel: 48, gain: 0.4, k0: 0 });
+  motif(sb, E('fiori', 0, 1.6), { half: true, vel: 58, gain: 0.42, id: 'violino_solo', pan: -0.1 }); // la canzone per Rue
 
   // ---- fiori: il frutteto di notte (archi gravi); i fiori sullo schermo (arpa), le tre lanterne (tre rintocchi);
   //      la rivolta (rullante, ottoni bassi, fuoco); Snow si arrabbia (tromba con sordina e timpano); il «2» (gong e ottoni)
