@@ -20,7 +20,7 @@ const lightPos = (i: number) => {
   return { x: lerp(150, 930, u), y: 990 - Math.sin(u * Math.PI) * 40 };
 };
 const r0 = rng(77);
-// ordine in cui si spengono (tutte tranne la 15, che resta accesa: è Katniss); in finale restano la 15 e la 9
+// ordine in cui si spengono (tutte tranne la 15, che resta accesa: è Katniss); in finale restano la 15 e la 14
 const ORDER = (() => {
   const ids = Array.from({ length: N }, (_, i) => i).filter((i) => i !== 15);
   for (let i = ids.length - 1; i > 0; i--) { const j = Math.floor(r0() * (i + 1)); [ids[i], ids[j]] = [ids[j], ids[i]]; }
@@ -32,7 +32,7 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; dawn: boolean }> = 
   const L = cam.layer;
   // copertina: dal secondo 0,4 al 3,6 si spengono 23 luci; finale: restano accese le due dei vincitori
   const off = (i: number) => {
-    if (dawn) return i === 15 || i === 9 ? 0 : 1;
+    if (dawn) return i === 15 || i === 14 ? 0 : 1;
     const k = ORDER.indexOf(i);
     return k < 0 ? 0 : seg(t, 0.4 + k * 0.138, 0.4 + k * 0.138 + 0.18);
   };
@@ -59,7 +59,7 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; dawn: boolean }> = 
           <Dome y0={40} y1={1150} size={80} color={dawn ? '#FFF0D8' : '#9FE0E0'} opacity={dawn ? 0.1 : 0.09} t={t} />
           {dawn && <Glow id={`${id}-sun`} x={540} y={1180} r={520} t={t} color="#FFD8A0" amp={0.03} rate={1} opacity={0.75} />}
           {Array.from({ length: N }, (_, i) => {
-            const p = lightPos(i), o = off(i), win = i === 15 || (dawn && i === 9);
+            const p = lightPos(i), o = off(i), win = i === 15 || (dawn && i === 14);
             const c = win ? EMBER : '#F4ECD8';
             const sc = win ? 1 + 0.35 * last : 1;
             return (
