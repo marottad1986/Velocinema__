@@ -9,6 +9,7 @@ import { Rue } from './Rue';
 import { Fiori } from './Fiori';
 import { Grotta } from './Grotta';
 import { Cani } from './Cani';
+import { Bacche } from './Bacche';
 
 // Scene di Hunger Games, per id del capitolo (films/hunger-games.json).
 export const HUNGER_GAMES_SCENES: Record<string, SceneDef> = {
@@ -22,4 +23,5 @@ export const HUNGER_GAMES_SCENES: Record<string, SceneDef> = {
   fiori: { Component: Fiori, title: { top: 392, size: 104, width: 900 } },
   grotta: { Component: Grotta, title: { top: 392, size: 104, width: 900 } },
   cani: { Component: Cani, title: { top: 392, size: 104, width: 900 } },
+  bacche: { Component: Bacche, title: { top: 392, size: 104, width: 900 } },
 };

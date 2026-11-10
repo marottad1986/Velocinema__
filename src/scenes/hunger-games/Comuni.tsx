@@ -268,13 +268,21 @@ export const WhiteRose: React.FC<{ x: number; y: number; s?: number; rot?: numbe
     {[[-4, -90, -1], [0, -170, 1], [-2, -230, -1]].map(([sx, sy, dir], i) => <path key={i} d={`M${sx} ${sy} l${dir * 14} -6 l${-dir * 8} 14 Z`} fill="#2A4A2A" stroke={K} strokeWidth="3" />)}
     <path d="M-2 -140 Q-70 -170 -90 -120 Q-40 -110 -2 -140 Z" fill="#3E7040" stroke={K} strokeWidth="5" />
     <path d="M-2 -140 Q-50 -138 -82 -124" stroke="#8AB87A" strokeWidth="3" fill="none" />
-    <g transform={`translate(6 -330) scale(${0.6 + 0.4 * bloom})`}>
-      <path d="M-50 10 Q-70 -40 -30 -60 Q0 -80 30 -60 Q70 -40 50 10 Q20 40 0 40 Q-20 40 -50 10 Z" fill="#F2F0EA" stroke={K} strokeWidth="7" />
-      <path d="M-30 -10 Q-20 -50 10 -46 Q36 -40 26 -10 Q10 12 -10 6" fill="none" stroke="#B8B4AA" strokeWidth="5" />
-      <path d="M-12 -24 Q0 -36 12 -24" fill="none" stroke="#9A968C" strokeWidth="4" />
-      <path d="M-50 10 Q-30 30 0 30 Q30 30 50 10" fill="none" stroke="#D8D4CA" strokeWidth="4" />
-      <path d="M-36 -40 Q-20 -58 4 -60" stroke="#FFF" strokeWidth="4" opacity=".8" fill="none" />
-      <path d="M-30 30 L-46 46 L-14 40 Z M30 30 L46 46 L14 40 Z" fill="#3E7040" stroke={K} strokeWidth="4" />
+    <g transform={`translate(6 -320) scale(${0.6 + 0.4 * bloom})`}>
+      {/* sepali */}
+      <path d="M-10 10 L-46 30 L-14 22 Z M10 10 L46 30 L14 22 Z M0 12 L-6 40 L6 40 Z" fill="#3E7040" stroke={K} strokeWidth="4" />
+      {/* petali esterni dietro */}
+      <path d="M-8 4 Q-90 -10 -74 -70 Q-56 -110 -20 -90 Q-30 -40 -8 4 Z" fill="#DCD8CE" stroke={K} strokeWidth="6" />
+      <path d="M8 4 Q90 -10 74 -70 Q56 -110 20 -90 Q30 -40 8 4 Z" fill="#D4D0C6" stroke={K} strokeWidth="6" />
+      {/* bocciolo centrale avvolto */}
+      <path d="M-34 -50 Q-36 -112 0 -116 Q36 -112 34 -50 Q0 -36 -34 -50 Z" fill="#F4F2EC" stroke={K} strokeWidth="6" />
+      <path d="M-12 -104 Q14 -112 18 -88 Q20 -66 -6 -66 Q-20 -70 -16 -84 Q-10 -92 2 -86" fill="none" stroke="#A8A49A" strokeWidth="4" />
+      {/* due petali davanti, sovrapposti */}
+      <path d="M-66 -60 Q-72 4 -2 14 Q-6 -34 -30 -66 Q-50 -76 -66 -60 Z" fill="#FBFAF6" stroke={K} strokeWidth="6" />
+      <path d="M64 -54 Q70 8 2 14 Q12 -28 30 -62 Q50 -70 64 -54 Z" fill="#EEECE4" stroke={K} strokeWidth="6" />
+      <path d="M-56 -50 Q-50 -14 -14 2" fill="none" stroke="#C8C4BA" strokeWidth="4" />
+      <path d="M52 -44 Q46 -10 16 4" fill="none" stroke="#C8C4BA" strokeWidth="4" />
+      <path d="M-58 -62 Q-50 -72 -36 -68" fill="none" stroke="#FFFFFF" strokeWidth="5" />
     </g>
   </g>
 );
