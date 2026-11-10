@@ -67,7 +67,10 @@ export const Vespe: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <Fog id="ve-f1" t={t} y={1110} rx={900} ry={60} color="#3A5A4A" opacity={0.4} speed={0.2} />
           {/* l'albero di Rue, sulla destra, con la piccola fionda appesa */}
           <Pine x={1000} y={1200} h={620} w={300} fill="#0A140E" outline={K} lit="#2A4A3A" seed={77} />
-          <g transform="translate(930 800) scale(1.5)">
+          <path d="M1000 760 Q900 770 800 792" stroke={K} strokeWidth="18" fill="none" strokeLinecap="round" />
+          <path d="M1000 760 Q900 770 800 792" stroke="#2A1E14" strokeWidth="10" fill="none" strokeLinecap="round" />
+          {[850, 900, 950].map((nx) => <path key={nx} d={`M${nx} ${782 - (nx - 850) * 0.2} l-12 -22 m12 22 l12 -24`} stroke="#1E3A24" strokeWidth="5" strokeLinecap="round" />)}
+          <g transform="translate(840 830) scale(1.5)">
             <Glow id="ve-sl" x={0} y={20} r={110} t={t} color="#FFE0A0" amp={0.1} rate={6} opacity={0.75 * sling} />
             <path d="M0 -30 V0" stroke="#3A2A1A" strokeWidth="4" />
             <path d="M-16 40 L0 0 L16 40 M0 40 V80" stroke="#7A5430" strokeWidth="9" strokeLinecap="round" fill="none" />
@@ -93,9 +96,9 @@ export const Vespe: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           ))}
           <Backpack x={500} y={1260} s={0.55} color="#3A4A3A" />
           {/* l'arco appoggiato a un tronco caduto */}
-          <path d="M920 1250 H1100" stroke={K} strokeWidth="44" strokeLinecap="round" />
-          <path d="M920 1250 H1100" stroke="#4A3420" strokeWidth="32" strokeLinecap="round" />
-          <Bow id="ve" x={980} y={1170} s={0.42} rot={-60} />
+          <path d="M790 1250 H960" stroke={K} strokeWidth="44" strokeLinecap="round" />
+          <path d="M790 1250 H960" stroke="#4A3420" strokeWidth="32" strokeLinecap="round" />
+          <Bow id="ve" x={860} y={1172} s={0.42} rot={-60} />
           {/* il fuoco */}
           <path d="M680 1240 l80 -18 M690 1222 l70 22" stroke="#3A2414" strokeWidth="14" strokeLinecap="round" />
           <Fire id="ve-fire" t={t} x={720} y={1232} scale={0.5 + 0.18 * roar} outline={K} />

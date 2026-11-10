@@ -4,7 +4,7 @@ import { ANTON, SANS } from '../../lib/fonts';
 import { Fog, Glow, NearMotes, SunRays } from '../../lib/elements';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import type { SceneProps } from '../../types';
-import { Berries, Cornucopia, Dome, EMBER, HGDefs, K, Pine, PineRow, Sottobosco, WhiteRose } from './Comuni';
+import { Berries, Cornucopia, Dome, HGDefs, K, Pine, PineRow, Sottobosco, WhiteRose } from './Comuni';
 
 // Le bacche velenose: l'alba sulla radura dell'arena, la Cornucopia lontana. In primo piano su una pietra il sacchetto
 // di cuoio e due mucchietti di bacche velenose (Katniss e Peeta, mai disegnati). Eventi: 1ª frase in cielo il «2»
@@ -16,12 +16,12 @@ import { Berries, Cornucopia, Dome, EMBER, HGDefs, K, Pine, PineRow, Sottobosco,
 //        · rosa bianca e felci in primo piano (1,2) · polline e particelle vicine (1,6)
 
 const r = rng(1111);
-const FIREWORKS = Array.from({ length: 6 }, (_, i) => ({ x: 180 + r() * 720, y: 640 + r() * 280, c: ['#F08A2A', '#FFE08A', '#F4F0E8'][i % 3], d: i * 0.35 }));
+const FIREWORKS = Array.from({ length: 6 }, (_, i) => ({ x: 220 + r() * 640, y: 800 + r() * 160, c: ['#F08A2A', '#FFE08A', '#F4F0E8'][i % 3], d: i * 0.35 }));
 
 /** Fuoco d'artificio: raggiera di scintille che si apre e cade. */
 const Fuoco: React.FC<{ x: number; y: number; c: string; p: number }> = ({ x, y, c, p }) => {
   if (p <= 0 || p >= 1) return null;
-  const rad = 30 + 150 * eo(p);
+  const rad = 30 + 110 * eo(p);
   return (
     <g opacity={1 - p * p}>
       <circle cx={x} cy={y} r={rad * 0.6} fill={c} opacity={0.12 * (1 - p)} />
@@ -75,11 +75,11 @@ export const Bacche: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           </g>
           {/* fuochi d'artificio e la scritta VINCITORI */}
           {FIREWORKS.map((f, i) => <Fuoco key={i} x={f.x} y={f.y} c={f.c} p={seg(t, t2 + f.d, t2 + f.d + 1.4)} />)}
-          {FIREWORKS.slice(0, 3).map((f, i) => <Fuoco key={`b${i}`} x={1080 - f.x} y={f.y + 40} c={f.c} p={seg(t, t2 + 1.8 + f.d, t2 + 3.2 + f.d)} />)}
+          {FIREWORKS.slice(0, 3).map((f, i) => <Fuoco key={`b${i}`} x={1080 - f.x} y={f.y + 20} c={f.c} p={seg(t, t2 + 1.8 + f.d, t2 + 3.2 + f.d)} />)}
           <g opacity={win * (1 - 0.6 * cold)} transform={`translate(540 800) scale(${0.7 + 0.3 * win}) translate(-540 -800)`}>
             <Glow id="bc-wg" x={540} y={790} r={260} t={t} color="#FFC070" amp={0.06} rate={6} opacity={0.5} />
             <text x="540" y="830" textAnchor="middle" fontFamily={ANTON} fontSize="120" fill="#FFF4E0" stroke="#7A3A10" strokeWidth="5" letterSpacing="4">VINCITORI</text>
-            <text x="540" y="886" textAnchor="middle" fontFamily={SANS} fontWeight="800" fontSize="34" letterSpacing="8" fill={EMBER}>DISTRETTO 12</text>
+            <text x="540" y="878" textAnchor="middle" fontFamily={SANS} fontWeight="800" fontSize="36" letterSpacing="8" fill="#FFF4E0" stroke="#3A1A08" strokeWidth="6" paintOrder="stroke">DISTRETTO 12</text>
           </g>
         </g>
         {/* PIANO 1 — bosco lontano nella nebbia del mattino (0,4) */}

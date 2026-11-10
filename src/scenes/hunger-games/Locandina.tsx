@@ -58,25 +58,28 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; dawn: boolean }> = 
           {!dawn && <Stars t={t} seed={8} n={40} y={80} h={760} color="#DDEFEA" size={0.8} />}
           <Dome y0={40} y1={1150} size={80} color={dawn ? '#FFF0D8' : '#9FE0E0'} opacity={dawn ? 0.1 : 0.09} t={t} />
           {dawn && <Glow id={`${id}-sun`} x={540} y={1180} r={520} t={t} color="#FFD8A0" amp={0.03} rate={1} opacity={0.75} />}
-          {Array.from({ length: N }, (_, i) => {
-            const p = lightPos(i), o = off(i), win = i === 15 || (dawn && i === 14);
-            const c = win ? EMBER : '#F4ECD8';
-            const sc = win ? 1 + 0.35 * last : 1;
-            return (
-              <g key={i}>
-                <Glow id={`${id}-l${i}`} x={p.x} y={p.y} r={(win ? 90 : 46) * sc} t={t} color={win ? '#FFB060' : '#FFF4D8'} amp={0.1} rate={3 + (i % 4)} ph={i} opacity={(1 - o) * (win ? 0.9 : 0.6)} />
-                <circle cx={p.x} cy={p.y} r={(win ? 13 : 10) * sc * (1 - 0.6 * o)} fill={c} stroke={K} strokeWidth="3" opacity={1 - 0.82 * o} />
-                {/* spegnimento: un piccolo anello che si allarga */}
-                {o > 0 && o < 1 && <circle cx={p.x} cy={p.y} r={10 + 30 * o} fill="none" stroke="#F4ECD8" strokeWidth="3" opacity={1 - o} />}
-              </g>
-            );
-          })}
         </g>
         {/* PIANO 1 — bosco lontano senza contorni e nebbia (0,4) */}
         <g transform={L(0.4)}>
           <PineRow y={1170} n={20} h0={200} h1={340} fill={dawn ? '#3A4A3E' : '#0E1A16'} seed={4} />
           <PineRow y={1210} n={16} h0={160} h1={260} fill={dawn ? '#2E3E30' : '#0A140F'} seed={9} />
           <Fog id={`${id}-f1`} t={t} y={1190} rx={900} ry={70} color={dawn ? '#F2D8B0' : '#4A6A5A'} opacity={dawn ? 0.5 : 0.35} speed={0.25} />
+        </g>
+        {/* l'arco delle 24 luci, davanti al bosco lontano (stessa parallasse del cielo) */}
+        <g transform={L(0.2)}>
+          {Array.from({ length: N }, (_, i) => {
+            const p = lightPos(i), o = off(i), win = i === 15 || (dawn && i === 14);
+            const c = win ? EMBER : '#F4ECD8';
+            const sc = win ? 1 + 0.35 * last : 1;
+            return (
+              <g key={i}>
+                <Glow id={`${id}-l${i}`} x={p.x} y={p.y} r={(win ? 130 : 70) * sc} t={t} color={win ? '#FFB060' : '#FFF4D8'} amp={0.1} rate={3 + (i % 4)} ph={i} opacity={(1 - o) * (win ? 0.9 : 0.6)} />
+                <circle cx={p.x} cy={p.y} r={(win ? 20 : 15) * sc * (1 - 0.6 * o)} fill={c} stroke={K} strokeWidth="3" opacity={1 - 0.82 * o} />
+                {/* spegnimento: un piccolo anello che si allarga */}
+                {o > 0 && o < 1 && <circle cx={p.x} cy={p.y} r={15 + 40 * o} fill="none" stroke="#F4ECD8" strokeWidth="3" opacity={1 - o} />}
+              </g>
+            );
+          })}
         </g>
         {/* PIANO 2 — la radura e la Cornucopia (0,62) */}
         <g transform={L(0.62)}>
@@ -141,7 +144,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
         <div style={{ height: 10, width: 840 * underline, background: P.accento, borderRadius: 5, marginTop: 8, boxShadow: `0 3px 0 ${P.scuro}` }} />
         <p style={{ margin: '18px 0 0', fontSize: 40, fontWeight: 800, color: P.chiaro, textShadow: `0 3px 0 ${P.scuro}` }}>un film di {film.regista} · {film.anno}</p>
       </div>
-      <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
+      <p style={{ position: 'absolute', left: 120, right: 180, top: 1362, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}E0`, color: P.chiaro, fontFamily: SANS, fontSize: 42, fontWeight: 800, textAlign: 'center',
         opacity: line, transform: `translateY(${(1 - line) * 14}px)` }}>
         {film.copertina.frase_lancio}
