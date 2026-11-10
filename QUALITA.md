@@ -47,6 +47,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - Gli anni (883): tramonto caldo di provincia (#E8913A, opacità 10%), blu sera nelle scene di notte (#1E2448).
   - Breaking Bad (stagione 1): ocra caldo del deserto di giorno (#D8A040, opacità 10%), blu notte di periferia (#142235), bruno negli interni chiusi (#4A3A1E), rosso nei tramonti di pericolo (#8A3A2A); unico colore deciso il giallo-oro (#F0B53A) sui cristalli e sugli oggetti chiave.
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
+  - Hunger Games: grigio-blu di carbone nel Distretto 12 (#2A3038, opacità 12%), oro caldo a Capitol City (#C89A3A, 8%), verde bosco nell'arena (#1E3A2A, 10%; quasi nero di notte #0F1A12); unico colore deciso l'arancione-brace (#F08A2A) sulla freccia, le fiamme e gli oggetti chiave.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
 
 ## 7. Prestazioni (anteprima fluida)
@@ -86,3 +87,4 @@ leggono solo questo file e quello del film. Un film nuovo aggiunge il suo file q
 - Inception (Spiegato semplice, schema): `qualita/inception.md`
 - Bohemian Rhapsody: `qualita/bohemian-rhapsody.md`
 - Gli anni (883): `qualita/gli-anni.md`
+- Hunger Games: `qualita/hunger-games.md`
