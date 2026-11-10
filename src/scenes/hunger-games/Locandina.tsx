@@ -68,7 +68,9 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; dawn: boolean }> = 
         {/* l'arco delle 24 luci, davanti al bosco lontano (stessa parallasse del cielo) */}
         <g transform={L(0.2)}>
           {Array.from({ length: N }, (_, i) => {
-            const p = lightPos(i), o = off(i), win = i === 15 || (dawn && i === 14);
+            const p0 = lightPos(i), o = off(i), win = i === 15 || (dawn && i === 14);
+            // nel finale le due luci dei vincitori si staccano un poco l'una dall'altra
+            const p = dawn && win ? { x: p0.x + (i === 14 ? -14 : 14), y: p0.y - 6 } : p0;
             const c = win ? EMBER : '#F4ECD8';
             const sc = win ? 1 + 0.35 * last : 1;
             return (
@@ -79,6 +81,11 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; dawn: boolean }> = 
                 {o > 0 && o < 1 && <circle cx={p.x} cy={p.y} r={15 + 40 * o} fill="none" stroke="#F4ECD8" strokeWidth="3" opacity={1 - o} />}
               </g>
             );
+          })}
+          {/* nel finale i dischi dei due vincitori si ridisegnano sopra gli aloni, pieni tutti e due */}
+          {dawn && [14, 15].map((i) => {
+            const p0 = lightPos(i);
+            return <circle key={i} cx={p0.x + (i === 14 ? -14 : 14)} cy={p0.y - 6} r={20 * (1 + 0.35 * last)} fill={EMBER} stroke={K} strokeWidth="3" />;
           })}
         </g>
         {/* PIANO 2 — la radura e la Cornucopia (0,62) */}

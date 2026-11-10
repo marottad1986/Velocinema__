@@ -162,6 +162,7 @@ export default (mix, T) => {
   clip(mix, 'tintinnio', { t: tg - 0.5, da: 0.13, durata: 0.4, gain: 0.12, fadeOut: 0.12, rev: 0.25, pan: 0.3 }); // la bottiglia tocca il bicchiere
   clip(mix, 'tintinnio', { t: tg + 0.1, da: 0.13, durata: 0.6, gain: 0.2, fadeOut: 0.2, rev: 0.25, pan: 0.2 }); // il bicchiere si rovescia
   clip(mix, 'tintinnio', { t: tg + 0.7, da: 0.6, durata: 0.8, gain: 0.08, fadeOut: 0.4, rev: 0.25, pan: 0 }); // rotola
+  clip(mix, 'legno_cade', { t: tg + 0.68, da: 0, durata: 0.4, gain: 0.12, fadeOut: 0.15, rev: 0.2, lp: 2500, pan: 0.3 }); // Pane.tsx: la bottiglia cade distesa sul tavolo
   suona(mix, 'tromba_sordina', 63, { t: tg + 0.2, dur: 0.6, vel: 44, gain: 0.16, attack: 0.05, release: 0.4, rev: 0.45, cents: -20 }); // un sorriso storto
 
   // ---- fiamme: la sfilata a passo doppio (rullante fitto, trombe e tromboni), i cavalli, la folla (applauso e flash);
