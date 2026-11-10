@@ -27,7 +27,9 @@ export type FilmData = {
   schema?: boolean;
   /** Formato "spiegato": false toglie la sigla di 1,5 s (la copertina parte subito e porta «SPIEGATO SEMPLICE» in alto). */
   sigla?: boolean;
-  tipo?: 'film' | 'serie';
+  tipo?: 'film' | 'serie' | 'canzone' | 'talent';
+  /** Talent spiegati (TALENT.md): fin dove arriva il racconto, es. «dopo il Live 3 del 5 novembre 2026». */
+  aggiornato?: string;
   stagione?: number;
   regista?: string;
   autore?: string;

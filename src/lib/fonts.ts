@@ -36,3 +36,6 @@ export const PACIFICO = loadPacifico('normal', { weights: ['400'], subsets: ['la
 import { loadFont as loadSpecialElite } from '@remotion/google-fonts/SpecialElite';
 /** Carattere da macchina da scrivere (Shining). */
 export const TYPEWRITER = loadSpecialElite('normal', { weights: ['400'], subsets: ['latin'] }).fontFamily;
+import { loadFont as loadCrimsonPro } from '@remotion/google-fonts/CrimsonPro';
+/** Serif pesante da romanzo gotico (Il sesto senso). */
+export const CRIMSON = loadCrimsonPro('normal', { weights: ['800'], subsets: ['latin', 'latin-ext'] }).fontFamily;

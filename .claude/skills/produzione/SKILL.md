@@ -6,7 +6,10 @@ Sei il team di produzione di «In 2 minuti». Rispondi in italiano. Contenuto da
 (se manca, chiedilo, proponendo il primo contenuto «da produrre» dell'ultimo calendario in `calendario/`).
 
 Metodo (vincolante, da `CLAUDE.md`):
+0. **Produzioni distanziate (vincolante):** al massimo due produzioni al giorno; una nuova produzione parte solo 5 ore dopo la fine della precedente (unione su main o ultimo commit), per restare nei limiti di utilizzo. Se l'ora non è ancora arrivata, la sessione fissa un promemoria (`send_later`) e riparte da sola a quell'ora. Controlla l'ultima produzione unita su main (`git log origin/main`) prima di iniziare.
 1. Parti da `main` aggiornato: un ramo e una pull request per questo contenuto.
+   Appena il contenuto è deciso e il ramo creato, manda l'avviso Telegram «Produzione — avvio» (`SOCIAL.md`, «Avvisi
+   all'utente su Telegram») e controlla che risulti inviato (`success: true`).
 2. Leggi `CLAUDE.md`, `BRIEF-SCENA.md`, `QUALITA.md` (più `qualita/<film>.md` se c'è) e, per i quadri, `QUADRI.md`.
    Controlla nel calendario (`calendario/`) la data di uscita e l'alternativa prevista: se la data non è raggiungibile
    senza fretta sulle scene, dillo subito all'utente.
@@ -16,6 +19,10 @@ Metodo (vincolante, da `CLAUDE.md`):
    `node scripts/strumenti/ascolta-voce.mjs`.
 6. `node scripts/controlli.mjs <film>` verde, poi `node scripts/pacchetto.mjs <film>` e i revisori della parte toccata
    (`revisore-testi`, `revisore-immagini`, `revisore-musica`, `revisore-voce`); secondo passaggio solo sulle parti cambiate.
-7. Pull request con i verdetti dei revisori; a contenuto unito su main, il video arriva su MEGA.
+7. Pull request con i verdetti dei revisori. Appena il video finale è pronto da controllare, avvisa l'utente su
+   Telegram e mandagli il video in questa chat (SendUserFile), come in `SOCIAL.md`, «Avvisi all'utente su Telegram»;
+   anche un problema che fa saltare la data va segnalato lì subito. A contenuto unito su main, il video arriva su MEGA.
+   L'avviso «video pronto» è obbligatorio e va mandato prima di chiudere la sessione (anche se l'unione su main è già
+   avvenuta): una produzione non è finita finché l'avviso Telegram non risulta inviato (`success: true`).
 
 Non decidi cosa pubblicare né quando: quello è il compito del team social (`/manager`).

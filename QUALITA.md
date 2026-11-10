@@ -44,8 +44,13 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - Harry Potter e la pietra filosofale: blu-viola notturno (#1E1A3A, opacità 12%), caldo dorato di giorno (#E8B04A, 8%).
   - Dark (Spiegato semplice): verde-grigio freddo da bosco bagnato (#2F4A40, opacità 12%); nel 2052 seppia di cenere (#5A4E3C). Unico colore deciso il giallo dell'impermeabile (#F2C230) sugli oggetti chiave.
   - Bohemian Rhapsody: bordeaux da teatro (#3A1028, opacità 12%).
+  - Tenet (Spiegato semplice): blu acciaio da dossier (#1E2A3A, opacità 10%); rosso (#E8553F) per il tempo che va avanti, blu (#4FB0EE) per quello invertito.
   - Gli anni (883): tramonto caldo di provincia (#E8913A, opacità 10%), blu sera nelle scene di notte (#1E2448).
+  - Stranger Things (stagione 1): blu notte di provincia (#142036, opacità 12%); unico colore caldo il giallo delle lampadine
+    e delle lucine (#F5B83D), luce fredda azzurra del Sottosopra (#7FB8D8).
   - Breaking Bad (stagione 1): ocra caldo del deserto di giorno (#D8A040, opacità 10%), blu notte di periferia (#142235), bruno negli interni chiusi (#4A3A1E), rosso nei tramonti di pericolo (#8A3A2A); unico colore deciso il giallo-oro (#F0B53A) sui cristalli e sugli oggetti chiave.
+  - Il sesto senso: fredda azzurro-grigia di Filadelfia (#22303E di notte, #3A4450 di giorno, opacità 12–14%); unico colore deciso il rosso (#D0342C) sugli oggetti toccati dall'aldilà.
+  - X Factor 2026 (talent spiegati): viola notte da studio televisivo (#2A1E4A, opacità 12%); colori delle squadre sulle luci, oro solo sull'oggetto chiave.
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
   - Hunger Games: grigio-blu di carbone nel Distretto 12 (#2A3038, opacità 12%), oro caldo a Capitol City (#C89A3A, 8%), verde bosco nell'arena (#1E3A2A, 10%; quasi nero di notte #0F1A12); unico colore deciso l'arancione-brace (#F08A2A) sulla freccia, le fiamme e gli oggetti chiave.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
@@ -83,8 +88,12 @@ leggono solo questo file e quello del film. Un film nuovo aggiunge il suo file q
 - Joker: `qualita/joker.md`
 - Breaking Bad, stagione 1: `qualita/breaking-bad-stagione-1.md`
 - The Others: `qualita/the-others.md`
+- Stranger Things, stagione 1: `qualita/stranger-things-stagione-1.md`
+- Il sesto senso: `qualita/il-sesto-senso.md`
 - Dark, stagione 1 (Spiegato semplice, schema): `qualita/dark-stagione-1.md`
 - Inception (Spiegato semplice, schema): `qualita/inception.md`
+- Tenet (Spiegato semplice, schema): `qualita/tenet.md`
 - Bohemian Rhapsody: `qualita/bohemian-rhapsody.md`
 - Gli anni (883): `qualita/gli-anni.md`
+- X Factor 2026 (talent spiegati, studio e ballottaggi riusabili): `qualita/x-factor-2026.md`
 - Hunger Games: `qualita/hunger-games.md`

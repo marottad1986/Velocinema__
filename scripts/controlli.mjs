@@ -26,7 +26,8 @@ let errori = 0;
 for (const [slug, path] of lista) {
   const E = [], A = [];
   const j = JSON.parse(readFileSync(path, 'utf8'));
-  const spiegato = j.formato === 'spiegato';
+  // talent spiegati (TALENT.md): stesso passo dello Spiegato semplice
+  const spiegato = j.formato === 'spiegato' || j.tipo === 'talent';
   const canzone = j.tipo === 'canzone';
 
   // ---- formato: copertina 4 s + capitoli 112 s + finale 4 s = 2:00
@@ -34,6 +35,13 @@ for (const [slug, path] of lista) {
   if (j.copertina.durata !== 4) E.push(`copertina di ${j.copertina.durata} s (deve essere 4)`);
   if (j.finale.durata !== 4) E.push(`finale di ${j.finale.durata} s (deve essere 4)`);
   if (somma !== 112) E.push(`capitoli per ${somma} s in tutto (devono essere 112)`);
+
+  // ---- talent (TALENT.md): gara in corso, il JSON dice fin dove arriva il racconto; mai «stasera»/«domani»
+  if (j.tipo === 'talent') {
+    if (!j.aggiornato) E.push('talent: manca «aggiornato» (es. «dopo il Live 3 del 5 novembre 2026»)');
+    for (const r of [j.copertina.voce, j.finale.voce, ...j.capitoli.flatMap((c) => c.sottotitoli)].filter(Boolean))
+      if (/\b(stasera|domani|ieri)\b/i.test(r)) E.push(`talent: «${r}»: usare la data della puntata (il video resta online)`);
+  }
 
   // ---- testo: ritmo della voce, righe vuote, frasi vietate, titoli
   for (const c of j.capitoli) {
@@ -55,7 +63,7 @@ for (const [slug, path] of lista) {
   // ---- fonti: ogni fatto citato confermato da un link («<fatti>: <url>»); obbligatorie per le canzoni, avviso per film e serie
   if (!path.startsWith('quadri/')) {
     const fonti = Array.isArray(j.fonti) ? j.fonti : [];
-    if (!fonti.length) (canzone ? E : A).push('manca il campo «fonti» con i link che confermano i fatti citati');
+    if (!fonti.length) (canzone || j.tipo === 'talent' ? E : A).push('manca il campo «fonti» con i link che confermano i fatti citati');
     for (const f of fonti) if (!/https?:\/\/\S+/.test(f)) E.push(`fonte senza link: «${f.slice(0, 60)}…»`);
   }
 
@@ -68,7 +76,7 @@ for (const [slug, path] of lista) {
     for (const c of j.capitoli) if (!new RegExp(`['"]?${c.id}['"]?\\s*:`).test(idx)) A.push(`capitolo ${c.id}: nessuna scena in ${dirScene}/index.ts (compare il segnaposto)`);
   }
   const locandine = [dirScene && `${dirScene}/Locandina.tsx`, dirScene && `${dirScene}/Finale.tsx`, path.startsWith('quadri/') && 'src/scenes/quadri/Locandina.tsx'].filter((p) => p && existsSync(p));
-  if (!locandine.some((p) => /Commenta con (il film|la serie|la spiegazione|la canzone|il quadro) che vorresti\./.test(readFileSync(p, 'utf8')))) E.push('finale senza «Commenta con … che vorresti.»');
+  if (!locandine.some((p) => /Commenta con (il film|la serie|la spiegazione|la canzone|il quadro|il programma) che vorresti\.|Commenta con chi vorresti in finale\./.test(readFileSync(p, 'utf8')))) E.push('finale senza «Commenta con … che vorresti.»');
   // etichetta «… IN 2 MINUTI» sopra il titolo: ammessa solo nei riassunti di film (canzoni, quadri, Spiegato semplice usano il nome della serie)
   const soloFilm = !path.startsWith('quadri/') && !spiegato && !canzone;
   if (!soloFilm) for (const p of locandine) if (/IN 2 MINUTI/i.test(readFileSync(p, 'utf8'))) E.push(`${p}: «… IN 2 MINUTI» ammesso solo nelle copertine dei film (usare il nome della serie)`);

@@ -174,15 +174,17 @@ export default (mix, T) => {
   theme(B(cue('iceberg', 1)), B(T.manette), { vel: 54, gain: 0.42, oct: -12 });
 
   // ---- manette: il battito del contrabbasso e dei timpani, l'acqua che sale, l'ascia e la catena
+  const hitM = cue('manette', 2) + 0.8; // l'ascia: dopo il colpo l'orchestra tace un battito
   for (let t = B(T.manette); t < T.scialuppa - 0.3; t += BEAT) {
+    if (t > hitM - 0.05 && t < hitM + BEAT) continue;
     suona(mix, 'contrabbasso_pizz', 36, { t, dur: BEAT, vel: 66, pan: -0.1, rev: 0.3, gain: 0.5, release: 0.3 });
     if ((t - B(T.manette)) / BEAT % 2 < 0.5) timp(t, 36, 70, 0.6);
   }
-  trem(B(T.manette), B(T.scialuppa) - B(T.manette), [48, 51, 72, 75], { vel: 52, gain: 0.34 });
+  trem(B(T.manette), hitM - B(T.manette), [48, 51, 72, 75], { vel: 52, gain: 0.34 });
   clip(mix, 'onde', { t: cue('manette', 1), da: 2, durata: T.scialuppa - cue('manette', 1), gain: 0.08, lp: 1200, fadeIn: 1, fadeOut: 0.8, largo: 2, rev: 0.4 });
-  clip(mix, 'colpi_legno', { t: cue('manette', 2) + 0.8, da: 5.74, durata: 0.4, gain: 0.4, rev: 0.4 }); // l'ascia
+  clip(mix, 'colpi_legno', { t: hitM, da: 5.74, durata: 0.4, gain: 0.4, rev: 0.4 }); // l'ascia
   clip(mix, 'catene', { t: cue('manette', 2) + 0.82, da: 0.4, durata: 0.5, gain: 0.35, rev: 0.35, pan: -0.3 }); // la catena si spezza
-  timp(cue('manette', 2) + 0.8, 36, 100, 0.7);
+  timp(hitM, 36, 100, 0.7);
   clip(mix, 'scatti', { t: cue('manette', 0) + 1.15 - 0.18, da: 0.62, durata: 0.25, gain: 0.15, rev: 0.3, pan: 0.4 }); // il diamante infilato in tasca
 
   // ---- scialuppa: il tema in minore sugli archi, i razzi di soccorso, le funi che cigolano
