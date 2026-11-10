@@ -117,7 +117,7 @@ export default (mix, T) => {
   kick(0.02, 70);
   applausi(0.3, 3.2, 0.045);
   for (let k = 0; k < 6; k++) stacc(BEAT * 2 + k * BEAT / 2, [62, 64, 66, 69, 71, 74][k], 0.3);
-  rullo(T0 - 1.6, 1.6, 0.26);
+  rullo(T0 - 1.5, 1.5, 0.26);
   basso(T0 - BAR, T0, { vel: 54, gain: 0.34 });
 
   // ---- serata: il jukebox si accende (piatto e applausi), le note escono, l'apertura di Giorgia (tre dischi), l'ospite
@@ -128,7 +128,7 @@ export default (mix, T) => {
   for (let i = 0; i < 3; i++) stacc(E(se, 2, 0.3) + 0.25 + i * 0.25, [69, 74, 78][i], 0.18); // i tre dischi dell'apertura
   { const t = E(se, 3, 0.6); ottoni(t, [50, 57, 62, 66], { dur: BEAT * 2, gain: 0.18 }); glock(t + 0.3, 90, 0.12); } // l'ospite
 
-  /** Un disco che entra nello schema: nota di piano sul colore della squadra e un tocco di tom. */
+  /** Un disco che entra nello schema: nota di piano (sale riga dopo riga) e un tocco di tom. */
   const disco = (t, m, pan = 0) => { suona(mix, 'pianoforte_coda', m, { t, dur: 1.2, vel: 58, pan, gain: 0.26, rev: 0.35, release: 0.8 }); tom(t, 44, 2); };
   /** Applausi in piedi: applausi registrati e la stella (glockenspiel). */
   const inPiedi = (t) => { applausi(t, 2.6, 0.08); [86, 90, 93].forEach((m, j) => glock(t + j * BEAT / 2, m, 0.12)); };
@@ -140,42 +140,45 @@ export default (mix, T) => {
   disco(E('turno-1', 0, 1.0), 74, -0.2); disco(E('turno-1', 1, 0.3), 78, 0); disco(E('turno-1', 2, 0.4), 81, 0.2);
   inPiedi(E('turno-1', 2, 2.4));
   const u1 = E('turno-1b', 3, 0.5);
-  sezione(B(T['turno-1b']), u1 - BEAT / 2, { vel: 44, k0: 1 });
+  sezione(B(T['turno-1b']), u1 - BEAT / 2, { vel: 44, k0: 3 });
   disco(E('turno-1b', 0, 0.1), 74, -0.2); disco(E('turno-1b', 1, 0.1), 78, 0); disco(E('turno-1b', 2, 0.2), 81, 0.2);
   ultimo(u1);
-  archi(u1 + BEAT, B(T['turno-2']) + 0.3, { ch: MIN, vel: 40, gain: 0.22 });
+  archi(u1 + BEAT, B(T['turno-2']) + 0.3, { ch: MIN, vel: 40, gain: 0.3 });
 
   // ---- turno 2: Scraffs, Manu, Alex Fontana, poi Mad-Dog e Patrizia (comincia senza musica: la base si ferma, poi in piedi); Manu ultimo
   sezione(B(T['turno-2']), B(T['turno-2b']), { vel: 44 });
   disco(E('turno-2', 0, 0.9), 74, -0.2); disco(E('turno-2', 1, 0.1), 78, 0); disco(E('turno-2', 2, 0.1), 81, 0.2);
   const tSenza = E('turno-2b', 2, 0.2), tPiedi = E('turno-2b', 2, 1.8), u2 = E('turno-2b', 3, 0.3);
-  sezione(B(T['turno-2b']), tSenza - BEAT / 2, { vel: 44, k0: 2 });
+  sezione(B(T['turno-2b']), tSenza - BEAT / 2, { vel: 44, k0: 3 });
   disco(E('turno-2b', 0, 0.2), 74, -0.2); disco(E('turno-2b', 1, 0.3), 81, 0.2);
-  suona(mix, 'pianoforte_coda', 74, { t: tSenza, dur: tPiedi - tSenza, vel: 40, gain: 0.18, rev: 0.5, release: 1 }); // INIZIA SENZA MUSICA: resta un solo pianoforte
+  suona(mix, 'pianoforte_coda', 74, { t: tSenza, dur: tPiedi - tSenza, vel: 40, gain: 0.24, rev: 0.5, release: 1 }); // INIZIA SENZA MUSICA: resta un solo pianoforte
   inPiedi(tPiedi);
   sezione(tPiedi + BEAT, u2 - BEAT / 2, { vel: 42 });
   ultimo(u2);
-  archi(u2 + BEAT, B(T.ballottaggio) + 0.3, { ch: MIN, vel: 40, gain: 0.22 });
+  archi(u2 + BEAT, B(T.ballottaggio) + 0.3, { ch: MIN, vel: 40, gain: 0.3 });
 
   // ---- ballottaggio: Si minore, i due dischi, i quattro voti (Irama difende il suo: tom più alto e glockenspiel), l'eliminazione
   const bl = 'ballottaggio';
   const tV = E(bl, 2, 0.9), tF = E(bl, 3, 2.8);
   tensione(B(T[bl]), tF);
-  rullo(E(bl, 0, 1.2) - 0.8, 0.8, 0.18);
+  rullo(E(bl, 0, 1.2) - 1.0, 1.0, 0.18);
   suona(mix, 'pianoforte_coda', 71, { t: E(bl, 0, 1.2), dur: 1.2, vel: 54, gain: 0.26, rev: 0.4 }); // Lenanie
   suona(mix, 'pianoforte_coda', 74, { t: E(bl, 1, 0.1), dur: 1.2, vel: 54, gain: 0.26, rev: 0.4 }); // Manu
   trem(tV - 0.2, 4 * 0.5 + 0.4, [47, 59, 71], { gain: 0.2 });
-  for (let i = 0; i < 4; i++) { const difende = i === 3; scatto(tV + i * 0.5, -0.45 + i * 0.3); tom(tV + i * 0.5, 54, difende ? 5 : -3 + i); if (difende) glock(tV + i * 0.5, 81, 0.1); } // i gettoni dei giudici
-  timp(tF, 35, 104, 0.4); colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: tF - 1.2, vel: 90, gain: 0.16, rev: 0.4, dur: 1.3, release: 0.1 }); // il disco di Lenanie si incrina
-  archi(tF + 2 * BEAT, B(T['live-4']) + 0.3, { vel: 40, gain: 0.24, k0: 1 });
-  piano(tF + 2 * BEAT, B(T['live-4']) + 0.3, { half: true, vel: 42, gain: 0.24, k0: 1 });
+  const DIFENDE = [false, false, false, true]; // Gabbani, Jake, Paola, Irama: chi vota l'altro sfidante difende il suo (dati del ballottaggio in src/scenes/x-factor-2026-live-3/index.ts)
+  for (let i = 0; i < 4; i++) { const difende = DIFENDE[i]; scatto(tV + i * 0.5, -0.45 + i * 0.3); tom(tV + i * 0.5, 54, difende ? 5 : -3 + i); if (difende) glock(tV + i * 0.5, 81, 0.1); } // i gettoni dei giudici
+  timp(tF, 35, 104, 0.4); colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: tF - 1.0, vel: 90, gain: 0.16, rev: 0.4, dur: 1.1, release: 0.1 }); // il disco di Lenanie si incrina
+  archi(tF + 2 * BEAT, B(T['live-4']) + 0.3, { vel: 40, gain: 0.24, k0: 0 });
+  piano(tF + 2 * BEAT, B(T['live-4']) + 0.3, { half: true, vel: 42, gain: 0.24, k0: 0 });
 
   // ---- live 4: i dieci dischi rimasti, la regola dell'Hell Factor (due fuori subito, due al ballottaggio), ESCONO IN 3
   const l4 = 'live-4';
   const tAv = E(l4, 4, 0.2);
   sezione(B(T[l4]), tAv, { vel: 44 });
-  archi(B(cue(l4, 2)), T.finale + 0.3, { vel: 42, gain: 0.22 });
-  for (let i = 0; i < 10; i++) glock(E(l4, 0, 0.4) - 0.9 + i * 0.125, [74, 76, 78, 81, 83, 86, 88, 90, 93, 95][i], 0.07); // i dieci dischi
+  archi(B(cue(l4, 2)), B(tAv), { vel: 42, gain: 0.22 });
+  archi(B(tAv), T.finale + 0.3, { vel: 44, gain: 0.3, ch: [MAG[3], MAG[3], MAG[3], MAG[3]] }); // il La resta sospeso sulla domanda e si risolve nel Re del finale
+  [69, 73, 76, 81].forEach((m, j) => glock(E(l4, 4, 2.0) + j * BEAT / 2, m, 0.1)); // la camera si allarga su tutto lo schema
+  for (let i = 0; i < 10; i++) glock(E(l4, 0, 0.4) + i * 0.125, [74, 76, 78, 81, 83, 86, 88, 90, 93, 95][i], 0.07); // i dieci dischi
   { const t = E(l4, 2, 0.2); clip(mix, 'passaggio', { t: t - 0.05, da: 0.5, durata: 0.9, gain: 0.1, fadeOut: 0.3, rev: 0.2 }); tom(t + 0.5, 60, -4); tom(t + 0.75, 60, -4); } // somma dei voti, due X
   rullo(E(l4, 3, 0.2), 1.0, 0.2); // l'anello del ballottaggio
   rullo(tAv - 1.0, 1.0, 0.24); ottoni(tAv, [45, 52, 57, 61, 64], { dur: BEAT * 2, gain: 0.44, vel: 84 }); crash(tAv, 0.3); kick(tAv, 72); // ESCONO IN 3

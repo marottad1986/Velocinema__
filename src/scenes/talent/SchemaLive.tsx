@@ -361,7 +361,7 @@ export const makeSchemaLive = (D: DatiPuntata) => {
               {/* i dieci rimasti */}
               {P.rimasti.map((id, i) => {
                 const x = 160 + (i % 5) * 190, y = NEXT_Y + 230 + Math.floor(i / 5) * 160;
-                const ti = at(P.quando) - 0.9 + i * 0.125;
+                const ti = at(P.quando) + i * 0.125;
                 if (T < ti) return null;
                 return (
                   <g key={id}>
