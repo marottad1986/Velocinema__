@@ -109,14 +109,18 @@ export default (mix, T) => {
 
   // ---- copertina: il vento nel bosco, un Mi grave, la ruota della bici che gira (scatti) e tre note del glockenspiel
   wind(0, T.capanno + 0.5, 0.035);
-  suona(mix, 'contrabbasso', 40, { t: 0.02, dur: 4, vel: 50, gain: 0.5, attack: 0.25, release: 1.2, rev: 0.6 });
-  [52, 55, 59].forEach((m, j) => suona(mix, 'celli', m, { t: 0.4 + j * 0.25, dur: 3.4 - j * 0.25, vel: 44, pan: (j - 1) * 0.3, gain: 0.36, attack: 0.7, release: 1.2, rev: 0.6 }));
-  clip(mix, 'scatti', { t: 0.3, da: 0.5, durata: 2.6, gain: 0.08, fadeIn: 0.2, fadeOut: 1.4, rev: 0.2, pan: -0.2 }); // Locandina.tsx: la ruota che gira
-  [71, 76, 74].forEach((m, j) => glock(1.4 + j * BEAT, m, 0.13));
-  // Locandina.tsx: lampione e torcia sfarfallano a 3 battiti e si spengono a 4; poi la luce fredda (tremolo acuto)
-  [[3 * BEAT, 0.05], [3 * BEAT + 0.19, 0.07], [3 * BEAT + 0.38, 0.08]].forEach(([t, g]) => clip(mix, 'scariche', { t: t - 0.03, da: 1.2, durata: 0.2, gain: g, fadeOut: 0.06, rev: 0.25, pan: 0.3 }));
-  clip(mix, 'scariche', { t: 4 * BEAT - 0.04, da: 2.4, durata: 0.3, gain: 0.1, fadeOut: 0.1, rev: 0.25, pan: 0.3 });
-  trem(4 * BEAT + 0.05, 4 - 4 * BEAT - 0.05, [88, 89], { vel: 38, gain: 0.13 });
+  pizz(0.02, 40, 0.45, 62); // il fotogramma 0 ha già la musica
+  suona(mix, 'contrabbasso', 40, { t: 0.02, dur: 4, vel: 50, gain: 0.65, attack: 0.08, release: 1.2, rev: 0.6 });
+  [52, 55, 59].forEach((m, j) => suona(mix, 'celli', m, { t: 0.25 + j * CROMA, dur: 3.4 - j * 0.25, vel: 44, pan: (j - 1) * 0.3, gain: 0.42, attack: 0.7, release: 1.2, rev: 0.6 }));
+  clip(mix, 'scatti', { t: 0.3, da: 0.5, durata: 2.6, gain: 0.045, fadeIn: 0.2, fadeOut: 1.4, rev: 0.2, pan: -0.2 }); // Locandina.tsx: la ruota che gira
+  // Locandina.tsx: sulla griglia del film (che parte da T.capanno) lampione e torcia sfarfallano 3 battiti prima della
+  // fine della copertina, si spengono a 2 battiti, il lampione torna debole all'ultimo battito; poi la luce fredda
+  const FL = T.capanno - 3 * BEAT, OFF = T.capanno - 2 * BEAT, BK = T.capanno - BEAT;
+  [71, 76, 74].forEach((m, j) => glock(T.capanno - 5 * BEAT + j * BEAT, m, 0.13));
+  [[0.1, 0.05], [0.3, 0.07], [0.5, 0.08]].forEach(([d, g]) => clip(mix, 'scariche', { t: FL + d * BEAT - 0.03, da: 1.2, durata: 0.09, gain: g, fadeOut: 0.03, rev: 0.25, pan: 0.3 }));
+  clip(mix, 'scariche', { t: OFF - 0.2, da: 2.47, durata: 0.3, gain: 0.1, fadeOut: 0.05, rev: 0.25, pan: 0.3 }); // lo spegnimento
+  trem(OFF, T.capanno - 0.4 - OFF, [88, 89], { vel: 38, gain: 0.13 });
+  clip(mix, 'scariche', { t: BK - 0.03, da: 1.2, durata: 0.07, gain: 0.035, fadeOut: 0.03, rev: 0.25, pan: 0.3 }); // il lampione torna debole
 
   // ---- capanno: la sera tranquilla (archi a metà passo, tema); la porta a zanzariera; la lampadina che sfarfalla e si spegne
   {

@@ -133,11 +133,12 @@ const Sfondo: React.FC<{ id: string; t: number; dur: number; finale: boolean }> 
 // ---- copertina: è anche la miniatura del post (fotogramma 0 già completo) e l'aggancio dei primi secondi.
 // Tunnel di abeti su una strada di notte; al centro la bici rossa rovesciata con la ruota che gira ancora (rallenta),
 // la torcia accesa nell'erba che la illumina, il lampione a destra. In fondo al bosco filtra la luce fredda del
-// Sottosopra. Aggancio: a 3 battiti lampione e torcia sfarfallano, a 4 battiti si spengono; il bagliore freddo cresce e
+// Sottosopra. Aggancio: a 2,1 s lampione e torcia sfarfallano, a 2,75 s si spengono; il bagliore freddo cresce e
 // le spore vengono verso la camera (la voce: «un bambino sparisce nel nulla»).
-const T_FLICK = 3 * BEAT; // 1,875 s
-const T_OFF = 4 * BEAT; // 2,5 s
-const T_BACK = 5.5 * BEAT; // 3,44 s: il lampione torna, debole
+// Sulla griglia del film, che parte dalla fine della copertina (4 s): 3, 2 e 1 battito prima.
+const T_FLICK = 4 - 3 * BEAT; // 2,125 s
+const T_OFF = 4 - 2 * BEAT; // 2,75 s
+const T_BACK = 4 - BEAT; // 3,375 s: il lampione torna, debole
 const SPORE = Array.from({ length: 26 }, () => ({ a: r() * Math.PI * 2, d: r(), s: 4 + r() * 9, v: 0.12 + r() * 0.2, ph: r() * 6 }));
 const LEAVES = Array.from({ length: 14 }, () => ({ x: 200 + r() * 700, y: 1120 + r() * 520, rot: r() * 360, s: 0.7 + r() * 0.8, c: r() }));
 const GRASS = Array.from({ length: 46 }, (_, i) => ({ x: -60 + i * 26 + r() * 10, h: 70 + r() * 110, b: (r() - 0.5) * 50 }));
