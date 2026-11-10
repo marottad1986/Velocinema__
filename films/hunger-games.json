@@ -3,6 +3,18 @@
   "regista": "Gary Ross",
   "anno": 2012,
   "bpm": 90,
+  "pronuncia": {
+    "Hunger Games": "Hànger Ghèims",
+    "Capitol City": "Càpitol Sìti",
+    "Katniss": "Kàtniss",
+    "Peeta": "Pìta",
+    "Haymitch": "Hèimitch",
+    "Primrose": "Prìmrous",
+    "Rue": "Rù",
+    "Cato": "Kèito",
+    "Snow": "Snòu",
+    "Gary Ross": "Ghèri Ross"
+  },
   "palette": {
     "chiaro": "#F2E8D8",
     "principale": "#2E3A2C",
@@ -13,7 +25,7 @@
     "durata": 4,
     "frase_lancio": "Ventiquattro ragazzi entrano nell'arena: ne uscirà vivo uno solo?",
     "immagine": "Notte nel bosco dell'arena, sotto una cupola di cielo a esagoni appena visibili: al centro della radura un grande corno di metallo dorato (la Cornucopia) pieno di armi e zaini; in cielo un anello di ventiquattro piccole luci che si spengono una dopo l'altra, finché ne resta una; in primo piano un arco di legno e una freccia piantata nel terreno, con braci che salgono. Titolo grande e condensato (Anton). NON usare la locandina ufficiale (la ragazza con l'arco, la spilla con l'uccello in fiamme), persone o il logo del film.",
-    "voce": "Hunger Games, di Gary Ross: ventiquattro ragazzi, un solo vincitore. O no?"
+    "voce": "Hunger Games: ventiquattro ragazzi, un solo vincitore. O no?"
   },
   "capitoli": [
     {
@@ -22,7 +34,7 @@
       "durata": 10,
       "scena": "Notte su un distretto minerario povero: baracche di legno, mucchi di carbone, la torre di una miniera, una recinzione elettrica; sul fondo, oltre le montagne, le torri di vetro di Capitol City che brillano; nella piazza un grande schermo con il numero 74.",
       "sottotitoli": [
-        "A Panem, Capitol City comanda dodici distretti poveri",
+        "Capitol City comanda dodici distretti poveri",
         "e, per punire un'antica rivolta, ogni anno estrae due ragazzi per distretto",
         "che lottano fino alla morte in TV: gli Hunger Games."
       ]
@@ -108,7 +120,7 @@
       "scena": "L'interno di una grotta sulla riva di un fiume, di notte: un letto di muschio, un piccolo fuoco, una pagnotta e una borraccia; fuori la pioggia sul fiume e le rocce bagnate; all'ingresso compare un piccolo zaino con il numero 12 che contiene la medicina.",
       "sottotitoli": [
         "Così cerca Peeta, ferito, e lo nasconde in una grotta,",
-        "poi alla Cornucopia i registi offrono una medicina, ma una Favorita l'aggredisce,",
+        "poi alla Cornucopia c'è una medicina, ma una Favorita l'aggredisce,",
         "e Thresh, del distretto di Rue, la uccide e, grato, risparmia Katniss."
       ]
     },
