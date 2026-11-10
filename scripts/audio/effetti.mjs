@@ -101,6 +101,8 @@ export const CATALOGO = {
   termite: ['SSE_Library_FIRE', 'SIZZLE/FIRESizz_Fire bomb; lights and hisses; fuse_CS_USC.wav', -11.2],
   sibilo: ['SSE_Library_WATER', 'STEAM/WATRStm_Steam or air hissing_CS_USC.wav', -23],
   esplosione_detriti: ['SSE_Library_EXPLOSIONS', 'REAL/EXPLReal_Explosion with falling debris_CS_USC.wav', -12.8],
+  // Hunger Games
+  api: ['SSE_Library_ANIMALS', 'INSECT/ANMLInsc_Bees swarming_CS_USC.wav', -11],
 };
 
 const percorso = (id) => `${CACHE}/${CATALOGO[id][0]}/${CATALOGO[id][1].replace(/[/;?]/g, '_')}`;

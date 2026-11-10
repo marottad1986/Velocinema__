@@ -75,6 +75,9 @@ import { Copertina as TenetCover, Finale as TenetEnd } from './scenes/tenet/Loca
 import xFactor2026Live3 from '../films/x-factor-2026-live-3.json';
 import { X_FACTOR_2026_LIVE_3_SCENES } from './scenes/x-factor-2026-live-3';
 import { Copertina as XF26L3Cover, Finale as XF26L3End } from './scenes/x-factor-2026-live-3/Locandina';
+import hungerGames from '../films/hunger-games.json';
+import { HUNGER_GAMES_SCENES } from './scenes/hunger-games';
+import { Copertina as HGCover, Finale as HGEnd } from './scenes/hunger-games/Locandina';
 
 // Registro dei film e dei quadri: un JSON in films/ (o quadri/, vedi QUADRI.md) + le scene in src/scenes/<slug>/.
 // Le scene non ancora ricostruite compaiono come segnaposto.
@@ -104,6 +107,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'breaking-bad-stagione-1', data: breakingBad1 as FilmData, scenes: BREAKING_BAD_1_SCENES, cover: BB1Cover, ending: BB1End, posterFont: STENCIL },
   { slug: 'il-sesto-senso', data: ilSestoSenso as FilmData, scenes: IL_SESTO_SENSO_SCENES, cover: SestoCover, ending: SestoEnd, posterFont: CRIMSON },
   { slug: 'x-factor-2026-live-3', data: xFactor2026Live3 as FilmData, scenes: X_FACTOR_2026_LIVE_3_SCENES, cover: XF26L3Cover, ending: XF26L3End, posterFont: ANTON },
+  { slug: 'hunger-games', data: hungerGames as FilmData, scenes: HUNGER_GAMES_SCENES, cover: HGCover, ending: HGEnd, posterFont: ANTON },
 ];
 
 export const getFilm = (slug: string): FilmDef => {
