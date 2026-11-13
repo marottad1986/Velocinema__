@@ -65,7 +65,7 @@ const SHOTS2: Shot[] = [
   { at: 0, x: 560, y: 870, z: 0.8 },
   { at: a2('futuro', 0), x: 520, y: 1020, z: 1.4 },
   { at: a2('padre', 0), x: 420, y: 920, z: 1.1 },
-  { at: a2('setta', 0), x: 620, y: 650, z: 1.25 },
+  { at: a2('setta', 0), x: 620, y: 705, z: 1.28 },
   { at: a2('adam', 0), x: 480, y: 865, z: 0.92 },
   { at: a2('charlotte', 0), x: 780, y: 920, z: 0.95 },
   { at: a2('piano', 0), x: 560, y: 870, z: 0.8 },
