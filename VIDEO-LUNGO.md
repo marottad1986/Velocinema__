@@ -21,13 +21,18 @@ revisori prima della pull request); qui solo ciò che cambia. Primo video: `lung
   e sul telefono): titolo enorme (almeno 200 px di altezza delle lettere), al massimo 6–7 parole in tutto, contrasto forte,
   un solo soggetto. La frase della voce entra da ~0,4 s. Niente logo, locandine ufficiali, volti.
   Il fotogramma 0 si esporta anche come PNG 1280×720 da caricare come miniatura (`node scripts/lunghi/render.mjs <slug> --miniatura`).
-- Etichetta della copertina: il nome della serie del formato (es. «SPIEGATO SEMPLICE · TUTTA LA SERIE»), mai «IN N MINUTI».
+- **Mai la durata totale** (né nel titolo YouTube, né in copertina, né nel video): il marchio è «In 2 minuti», quindi il
+  lungo si presenta come «tutta la serie, 2 minuti a stagione, più il finale spiegato» (es. titolo «DARK spiegato facile:
+  tutta la serie, 2 minuti a stagione 🌀 Più il finale spiegato»). Ogni episodio resta riconoscibile: il suo cartello dice
+  «STAGIONE N · IN 2 MINUTI»; aggancio, raccordi e parti nuove restano brevi, così il racconto mantiene la promessa.
+- Etichetta della copertina: il nome del formato (es. «SPIEGATO SEMPLICE»), senza durate.
 
 ## Elementi fissi (16:9)
 - Zona sicura: testi tra x 96 e 1824 e tra y 54 e 1026 (5% per lato, televisori e anteprime). YouTube copre il fondo
   con la barra del lettore quando si mette in pausa: sottotitoli con la base a y ≤ 1000.
-- Etichetta in alto a sinistra (x 96, y 56): «STAGIONE N · CAPITOLO M DI K» (o «IL FINALE SPIEGATO · M DI K»), con il tempo
-  del video lungo «m:ss / m:ss». Niente barra a capitoli (YouTube mostra i capitoli nella sua barra).
+- Etichetta in alto a sinistra (x 96, y 56): «STAGIONE N · CAPITOLO M DI K» con il tempo della stagione «m:ss / 2:00»,
+  come nel verticale (mai il tempo o la durata del video lungo); nelle parti nuove «IL FINALE SPIEGATO · M DI K» senza tempo.
+  Niente barra a capitoli (YouTube mostra i capitoli nella sua barra).
 - Titolo del capitolo sotto l'etichetta (y 112, 60 px), a sinistra; sfondo calmo dietro.
 - Sottotitoli in basso al centro, una frase alla volta, larghezza massima 1400 px, 46 px, base a y 1000.
 - Schema dei capitoli tra y 190 e 880: gli schemi verticali si riadattano con una **camera propria per il 16:9** (più

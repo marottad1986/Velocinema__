@@ -156,7 +156,9 @@ for (const slug of listaLunghi) {
   const dir = `src/lunghi/${slug}`;
   const sorgenti = existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith('.tsx')).map((f) => readFileSync(`${dir}/${f}`, 'utf8')).join('\n') : '';
   if (!/Commenta con (la serie|il film|la spiegazione)[^.<]*\./.test(sorgenti)) E.push(`${dir}: la chiusura non ha «Commenta con …»`);
-  if (/IN \d+ MINUTI/i.test(sorgenti)) E.push(`${dir}: «IN N MINUTI» non va nella miniatura (usare il nome del formato)`);
+  // mai la durata totale del lungo (il marchio è «In 2 minuti»: solo «2 minuti a stagione» / «STAGIONE N IN 2 MINUTI»)
+  for (const t of [L.titolo_youtube, ...tr.flatMap((x) => [x.capitolo?.titolo, ...(x.voce?.dir === `audio/${slug}` ? x.testo : [])]), sorgenti].filter(Boolean))
+    for (const m of t.matchAll(/\bin (\d+|due|tre|quattro|cinque|sei|sette|otto|nove|dieci) minuti\b/gi)) if (!/^in (2|due) minuti$/i.test(m[0])) E.push(`«${m[0]}»: il lungo non dichiara la durata totale (VIDEO-LUNGO.md)`);
   const chiusura = tr.find((x) => x.tipo === 'chiusura');
   if (!chiusura || !/commenta con/i.test(chiusura.testo.join(' '))) E.push('la voce della chiusura non invita a commentare');
   if (!tr.length || tr[0].tipo !== 'aggancio') E.push('il video deve aprirsi con l\'aggancio (copertina = miniatura)');

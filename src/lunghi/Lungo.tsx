@@ -9,6 +9,13 @@ export const FPS = 30;
 /** La voce e i sottotitoli dell'aggancio partono da qui: il fotogramma 0 è la miniatura, senza testo (CLAUDE.md). */
 export const INIZIO_AGGANCIO = 0.4;
 
+/** Tempo nella stagione, come nel video verticale («m:ss / 2:00»): il lungo non dichiara mai la sua durata totale. */
+const tempoEpisodio = (tr: Tratto[], x: Tratto, t: number): [number, number] => {
+  const ep = tr.filter((y) => 'parte' in y && y.parte === x.parte);
+  const inizio = ep[0].start;
+  return [x.start - inizio + t, ep.reduce((a, y) => a + y.dur, 0)];
+};
+
 /** Un tratto del video lungo (aggancio, cartello, capitolo, riassunto, chiusura), con i suoi elementi fissi. */
 export const TrattoView: React.FC<{ slug: string; indice: number; offset?: number }> = ({ slug, indice, offset = 0 }) => {
   const L = getLungo(slug);
@@ -17,20 +24,18 @@ export const TrattoView: React.FC<{ slug: string; indice: number; offset?: numbe
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps + offset;
-  const T = x.start + t;
-  const total = durataTotale(tr);
   const P = L.data.palette;
   return (
     <AbsoluteFill style={{ background: P.scuro, overflow: 'hidden' }}>
       <Scena L={L} x={x} t={t} />
       {x.tipo === 'capitolo-episodio' && (
-        <Overlay16 P={P} t={t} dur={x.dur} T={T} total={total} etichetta={`${x.parte.nome} · CAPITOLO ${x.n} DI ${x.di}`} titolo={x.capitolo.titolo} righe={x.capitolo.sottotitoli} />
+        <Overlay16 P={P} t={t} dur={x.dur} tempo={tempoEpisodio(tr, x, t)} etichetta={`${x.parte.nome} · CAPITOLO ${x.n} DI ${x.di}`} titolo={x.capitolo.titolo} righe={x.capitolo.sottotitoli} />
       )}
       {x.tipo === 'capitolo' && (
-        <Overlay16 P={P} t={t} dur={x.dur} T={T} total={total} etichetta={`${x.parte.nome} · ${x.n} DI ${x.di}`} titolo={x.capitolo.titolo} righe={x.capitolo.sottotitoli} />
+        <Overlay16 P={P} t={t} dur={x.dur} etichetta={`${x.parte.nome} · ${x.n} DI ${x.di}`} titolo={x.capitolo.titolo} righe={x.capitolo.sottotitoli} />
       )}
-      {x.tipo === 'aggancio' && <Overlay16 P={P} t={t} dur={x.dur} T={T} total={total} righe={x.parte.sottotitoli} inizio={INIZIO_AGGANCIO} />}
-      {x.tipo === 'chiusura' && <Overlay16 P={P} t={t} dur={x.dur} T={T} total={total} righe={x.parte.sottotitoli} />}
+      {x.tipo === 'aggancio' && <Overlay16 P={P} t={t} dur={x.dur} righe={x.parte.sottotitoli} inizio={INIZIO_AGGANCIO} />}
+      {x.tipo === 'chiusura' && <Overlay16 P={P} t={t} dur={x.dur} righe={x.parte.sottotitoli} />}
     </AbsoluteFill>
   );
 };

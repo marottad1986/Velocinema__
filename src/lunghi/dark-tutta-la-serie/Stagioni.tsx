@@ -207,7 +207,8 @@ const Cartello: React.FC<{ T: number; k: number; nome: string; sottotitolo: stri
     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', opacity: k }}>
       <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 30, letterSpacing: '0.32em', color: '#A8B4AC', opacity: a, marginBottom: 10 }}>DARK · SPIEGATO SEMPLICE</div>
       <div style={{ fontFamily: STENCIL, fontWeight: 800, fontSize: 230, lineHeight: 0.95, letterSpacing: '0.06em', color: '#E4E7E1', opacity: a, transform: `scale(${0.94 + 0.06 * a})`, textShadow: '0 8px 0 #050706' }}>{nome}</div>
-      <div style={{ marginTop: 26, fontFamily: HAND, fontWeight: 700, fontSize: 64, color: YELLOW, opacity: b, transform: `translateY(${(1 - b) * 14}px)` }}>{sottotitolo}</div>
+      <div style={{ marginTop: 18, fontFamily: SANS, fontWeight: 800, fontSize: 44, letterSpacing: '0.34em', color: '#E4E7E1', opacity: a }}>IN 2 MINUTI</div>
+      <div style={{ marginTop: 22, fontFamily: HAND, fontWeight: 700, fontSize: 64, color: YELLOW, opacity: b, transform: `translateY(${(1 - b) * 14}px)` }}>{sottotitolo}</div>
       <div style={{ marginTop: 22, width: 420 * b, height: 6, borderRadius: 3, background: YELLOW, opacity: 0.85 }} />
     </div>
   );

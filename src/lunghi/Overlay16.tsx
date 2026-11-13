@@ -10,10 +10,11 @@ import type { Palette } from '../types';
 const alpha = (hex: string, a: number) => hex + Math.round(a * 255).toString(16).padStart(2, '0');
 
 export const Overlay16: React.FC<{
-  P: Palette; t: number; dur: number; T: number; total: number;
+  P: Palette; t: number; dur: number;
+  /** tempo da mostrare nell'etichetta: [trascorso, totale] della parte (es. la stagione, «m:ss / 2:00»); mai la durata del video lungo */ tempo?: [number, number];
   etichetta?: string; titolo?: string; righe?: string[];
   /** secondo da cui partono i sottotitoli (copertina: niente testo nella miniatura) */ inizio?: number;
-}> = ({ P, t, dur, T, total, etichetta, titolo, righe, inizio = 0 }) => {
+}> = ({ P, t, dur, tempo, etichetta, titolo, righe, inizio = 0 }) => {
   const pt = eo(seg(t, 0.1, 0.55));
   const times = righe ? subtitleTimes(righe, dur - inizio).map(([a, b]) => [a + inizio, b + inizio] as const) : [];
   return (
@@ -25,8 +26,8 @@ export const Overlay16: React.FC<{
           fontSize: 24, fontWeight: 800, letterSpacing: '0.12em',
         }}>
           <span>{etichetta}</span>
-          <span style={{ width: 8, height: 8, borderRadius: 4, background: P.accento }} />
-          <span style={{ fontVariantNumeric: 'tabular-nums' }}>{fmtTime(T)} / {fmtTime(total)}</span>
+          {tempo && <span style={{ width: 8, height: 8, borderRadius: 4, background: P.accento }} />}
+          {tempo && <span style={{ fontVariantNumeric: 'tabular-nums' }}>{fmtTime(tempo[0])} / {fmtTime(tempo[1])}</span>}
         </div>
       )}
       {titolo && (
