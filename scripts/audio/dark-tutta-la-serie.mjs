@@ -95,7 +95,7 @@ export default (mix, T) => {
   const A0 = T.aggancio;
   const S1 = T.aggancio + 20; // qui entra la musica della stagione 1 (la sua copertina)
   // la pioggia e l'orologio della miniatura, dal fotogramma 0
-  clip(mix, 'pioggia_dura', { t: A0, da: 5.4, durata: 9.5, gain: 0.5, fadeIn: 0.02, fadeOut: 2.5, largo: 3, rev: 0.12 });
+  clip(mix, 'pioggia_dura', { t: A0, da: 1.5, durata: 19.4, gain: 0.42, fadeIn: 0.02, fadeOut: 1.2, largo: 2, rev: 0.12 });
   // prima frase (la domanda): bordone e motivo del cerchio, l'orologio che scatta a ogni battito
   sec(A0, A0 + 2 * GRID, { drone: 42, mel: 34, ticks: 30 });
   // le lancette che corrono all'indietro: campanelle che scendono veloci, e la stanza che si apre
@@ -118,12 +118,12 @@ export default (mix, T) => {
 
   // ================================================================ il finale spiegato (6 × 13 s) e la chiusura
   const F0 = T.vetro; // inizia su un battito (VIDEO-LUNGO.md): le battute partono da qui
-  const bar = (t) => F0 + Math.round((t - F0) / GRID) * GRID;
+  const bar = (t) => F0 + Math.round((t - F0) / BEAT) * BEAT; // capitoli da 15 s = 16,5 battiti: i cambi di sezione cadono sul battito più vicino
   // 1. chi ha creato il nodo: il mondo d'origine, l'incidente, la macchina che spacca il mondo
   sec(F0, bar(T.cerchi), { drone: 42, mel: 38, ticks: 28, oct: -12, tace: [at('vetro', 3, 0.1) - 0.05, at('vetro', 3, 0.1) + 2 * BEAT] });
   bell(mix, 69, { t: at('vetro', 0, 0.6), vel: 34 }); // Tannhaus
-  colpo(mix, 'grancassa', 'bdrum_p', { t: at('vetro', 1, 1.1), vel: 110, gain: 0.7, rev: 0.5 }); // l'incidente
-  [0, 1, 2, 3, 4, 5].forEach((k) => clip(mix, 'scatti', { t: at('vetro', 2) + k * BEAT_ / 2, da: 6.49, durata: 0.1, gain: 0.14, rev: 0.2 })); // l'ingranaggio
+  colpo(mix, 'grancassa', 'bdrum_p', { t: at('vetro', 1, 1.1), vel: 110, gain: 1.0, rev: 0.5 }); // l'incidente
+  [0, 1, 2, 3, 4, 5].forEach((k) => clip(mix, 'scatti', { t: at('vetro', 2) + k * BEAT_ / 2, da: 6.49, durata: 0.1, gain: 0.22, rev: 0.2 })); // l'ingranaggio
   colpo(mix, 'grancassa', 'bdrum_p', { t: at('vetro', 3, 0.1), vel: 127, gain: 1.5, rev: 0.7 }); // il vetro che si rompe
   clip(mix, 'rombo', { t: at('vetro', 3, 0.1), da: 31, durata: 3, gain: 0.38, fadeIn: 0.05, fadeOut: 1.5, largo: 3 });
   // 2. i cerchi del tempo: l'orologio, il motivo in tutti e due i mondi
@@ -140,8 +140,9 @@ export default (mix, T) => {
   clip(mix, 'passaggio', { t: at('antenato', 2, 0.1) - 0.3, da: 12.27, durata: 1.6, gain: 0.24, fadeOut: 0.6, rev: 0.4 }); // nel passato
   bell(mix, 60, { t: at('antenato', 2, 1.2), vel: 42, pan: 0.3 }); // bisnonno di Martha
   bell(mix, 63, { t: at('antenato', 3, 0.1), vel: 42, pan: -0.3 }); // trisnonno di Jonas
+  bell(mix, 72, { t: at('antenato', 3, 1.2), vel: 44 }); // il cartellino «antenato di sé stesso»
   // 4. Adam ed Eva: la tenaglia a passo doppio, il nodo che si stringe
-  sec(bar(T.nemici), bar(T.ponte), { passo: 'doppio', drone: 46, str: 44, mel: 40, oct: -12, pulse: 40 });
+  sec(bar(T.nemici), bar(T.ponte), { passo: 'doppio', drone: 46, str: 44, mel: 40, oct: -12, pulse: 30 });
   bell(mix, 63, { t: at('nemici', 0, 0.1), vel: 38, pan: -0.3 }); // Adam
   bell(mix, 69, { t: at('nemici', 0, 0.4), vel: 38, pan: 0.3 }); // Eva
   colpo(mix, 'grancassa', 'bdrum_p', { t: at('nemici', 1, 0.2), vel: 110, gain: 0.6, rev: 0.4 });
@@ -153,7 +154,7 @@ export default (mix, T) => {
   bell(mix, 72, { t: at('ponte', 1, 0.1), vel: 40 }); // 1971
   clip(mix, 'passaggio', { t: at('ponte', 2, -0.6) - 0.3, da: 12.27, durata: 1.6, gain: 0.24, fadeOut: 0.6, rev: 0.4 });
   [67, 72, 75].forEach((m, k) => bell(mix, m, { t: at('ponte', 2, 0.6) + k * BEAT_, vel: 36 })); // il cartello: l'auto si ferma
-  colpo(mix, 'grancassa', 'bdrum_pp', { t: at('ponte', 3, 0.2), vel: 110, gain: 0.5, rev: 0.6 });
+  colpo(mix, 'grancassa', 'bdrum_p', { t: at('ponte', 3, 0.2), vel: 110, gain: 0.8, rev: 0.6 });
   // un battito di silenzio, poi il primo accordo maggiore (Do) negli archi
   const magg = croma(at('ponte', 3, 0.2) + 2 * BEAT);
   [36, 48, 55, 60, 64, 67].forEach((m, j) => strings(mix, m, { t: magg, dur: bar(T.resta) - magg + 0.6, vel: 42, gain: 0.6, pan: (j - 2.5) * 0.2, att: 0.8, seed: 80 + j }));
@@ -168,5 +169,4 @@ export default (mix, T) => {
   sec(C0, C0 + 4 * GRID, { drone: 34, pad: 30, mel: 34, magg: true, keep: 1 });
   [48, 55, 60, 64].forEach((m, j) => strings(mix, m, { t: C0 + 4 * GRID, dur: T.END - (C0 + 4 * GRID), vel: 34, gain: 0.5, pan: (j - 1.5) * 0.25, att: 1.2, seed: 90 + j }));
   MOTIF_MAGG.slice(0, 3).forEach(([b, m]) => motif(mix, m, { t: C0 + 4 * GRID + b * BEAT, dur: 2 * BEAT, vel: 30 }));
-  clip(mix, 'pioggia_dura', { t: C0, da: 4, durata: T.END - C0, gain: 0.22, fadeIn: 1.5, fadeOut: 3, largo: 3, rev: 0.12 });
 };

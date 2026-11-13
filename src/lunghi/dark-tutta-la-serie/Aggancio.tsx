@@ -42,6 +42,8 @@ const FAMIGLIA = [
   { nome: 'bambino', x: 505, y: 30, ax: 90, ay: 10 },
   { nome: 'ragazza', x: 470, y: 260, ax: 70, ay: 130 },
 ];
+const CROMA = 60 / 66 / 2;
+const g = (s: number) => Math.round(s / CROMA) * CROMA;
 const pop = (t: number, t0: number) => eob(seg(t, t0, t0 + 0.45), 1.7);
 
 /** Cerchio-personaggio piccolo (stesso vocabolario degli schemi). */
@@ -63,10 +65,12 @@ const Nodo: React.FC<{ t: number; t0: number; x: number; y: number; r?: number; 
 export const Aggancio: React.FC<ParteProps> = ({ t, dur, cues }) => {
   // ---- tempi: la miniatura resta intera fino alla 2ª frase, poi la camera entra nel quadrante
   const esce = eio(seg(t, cues[1] - 0.3, cues[1] + 0.9)); // la scritta esce, la camera si avvicina
-  const grotta = cues[2] + 0.2;
-  const famiglia = cues[3] + 0.1;
-  const mondi = eio(seg(t, cues[4] + 0.1, cues[4] + 1.1));
-  const filo = eo(seg(t, cues[5] + 0.4, cues[5] + 2.2));
+  // eventi sulla croma (66 bpm), come gli at() dello spartito: suono e immagine cadono insieme
+  const grotta = g(cues[2] + 0.2);
+  const famiglia = g(cues[3] + 0.1);
+  const mondi = eio(seg(t, g(cues[4] + 0.1), g(cues[4] + 0.1) + 1.0));
+  const filo = eo(seg(t, g(cues[5] + 0.4), g(cues[5] + 0.4) + 1.8));
+  const cartello = g(cues[5] + 1.6);
   const buio = seg(t, dur - 0.9, dur); // dissolvenza verso il cartello della stagione 1
 
   // camera: da tutta la miniatura (z 1) al quadrante (z 1.18, centrato sotto il titolo vuoto)
@@ -78,7 +82,7 @@ export const Aggancio: React.FC<ParteProps> = ({ t, dur, cues }) => {
   const L = (f: number) => `translate(${((cx - W / 2) * (1 - f)).toFixed(1)} ${((cy - H / 2) * (1 - f) * 0.4).toFixed(1)})`;
 
   // lancette che girano all'indietro (il tempo che torna), più veloci quando la voce dice «tutto torna»
-  const back = -(t * 40 + 260 * eio(seg(t, cues[1] + 0.3, cues[1] + 2.2)));
+  const back = -(t * 40 + 260 * eio(seg(t, g(cues[1] + 0.3), g(cues[1] + 0.3) + 1.9)));
   // anello rosso attorno all'impermeabile: già chiuso nella miniatura, una scintilla lo percorre
   const sc = mod(t * 0.45, 1);
 
@@ -199,7 +203,7 @@ export const Aggancio: React.FC<ParteProps> = ({ t, dur, cues }) => {
           {/* la famiglia che si annoda, fuori dal bordo a destra: padre, bambino, ragazza; fili rossi fino all'impermeabile */}
           <g transform={`${L(0.72)} translate(${O[0]} ${O[1]})`} opacity={1 - 0.45 * mondi}>
             {FAMIGLIA.map((f, i) => {
-              const t0 = famiglia + i * 0.3;
+              const t0 = famiglia + i * CROMA;
               return t >= t0 ? (
                 <path key={f.nome} d={`M${f.x - 50} ${f.y} C${f.x - 160} ${f.y} ${f.ax + 120} ${f.ay} ${f.ax} ${f.ay}`} fill="none" stroke="#D9483A" strokeWidth="6"
                   pathLength={1} strokeDasharray={`${eo(seg(t, t0 + 0.3, t0 + 0.9))} 1`} />
@@ -209,8 +213,8 @@ export const Aggancio: React.FC<ParteProps> = ({ t, dur, cues }) => {
               <path d="M490 -150 C580 -100 600 -20 545 20 C600 90 580 200 490 220" fill="none" stroke="#D9483A" strokeWidth="5" strokeDasharray="10 9" opacity={seg(t, famiglia + 1.2, famiglia + 1.6)} />
             )}
             <Nodo t={t} t0={famiglia} x={470} y={-200} r={52} nome="il padre"><Letter scale={0.24} /></Nodo>
-            <Nodo t={t} t0={famiglia + 0.3} x={505} y={30} r={52} nome="il bambino"><Cards fan={0.4} scale={0.38} /></Nodo>
-            <Nodo t={t} t0={famiglia + 0.6} x={470} y={260} r={52} nome="la ragazza"><Yarn r={28} /></Nodo>
+            <Nodo t={t} t0={famiglia + CROMA} x={505} y={30} r={52} nome="il bambino"><Cards fan={0.4} scale={0.38} /></Nodo>
+            <Nodo t={t} t0={famiglia + 2 * CROMA} x={470} y={260} r={52} nome="la ragazza"><Yarn r={28} /></Nodo>
           </g>
 
           {/* «Winden, 2019»: il filo giallo esce dal quadrante in basso a sinistra, dove comincia la storia */}
@@ -218,7 +222,7 @@ export const Aggancio: React.FC<ParteProps> = ({ t, dur, cues }) => {
             <g transform={`${L(0.72)} translate(${O[0]} ${O[1]})`}>
               <path d="M-40 175 C-70 280 -120 340 -170 352" fill="none" stroke={YELLOW} strokeWidth="9"
                 strokeDasharray="20 14" strokeDashoffset={-t * 40} strokeLinecap="round" opacity={filo} />
-              <g transform={`translate(-300 352) rotate(-3) scale(${pop(t, cues[5] + 1.6)})`} opacity={seg(t, cues[5] + 1.6, cues[5] + 1.8)}>
+              <g transform={`translate(-300 352) rotate(-3) scale(${pop(t, cartello)})`} opacity={seg(t, cartello, cartello + 0.2)}>
                 <rect x="-140" y="-38" width="280" height="64" rx="12" fill={CHALK} />
                 <text y="10" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="36" fill="#0B0F0E">Winden, 2019</text>
               </g>
