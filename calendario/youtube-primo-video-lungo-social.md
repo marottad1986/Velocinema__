@@ -17,7 +17,7 @@ I tempi dei capitoli sono provvisori: si correggono con quelli del video finale 
 ```
 *YOUTUBE – TITOLO*
 
-DARK spiegato facile: tutta la serie e il finale in 8 minuti 🌀
+DARK spiegato facile: tutta la serie, 2 minuti a stagione 🌀 Più il finale spiegato
 
 ———————
 
@@ -25,7 +25,7 @@ DARK spiegato facile: tutta la serie e il finale in 8 minuti 🌀
 
 💡 Spiegato facile: DARK – tutta la serie 🌀
 Tre stagioni, due mondi e una famiglia che si annoda nel tempo… alla fine tutto torna. ⏳
-Tutta la serie tedesca di Netflix, dalla prima stagione al finale, spiegata in modo semplice: un pezzo alla volta, senza perdersi.
+Tutta la serie tedesca di Netflix spiegata in modo semplice: ogni stagione in 2 minuti, poi il finale chiarito una volta per tutte.
 
 ⏱️ Capitoli
 0:00 Come può un ragazzo essere il nonno di sé stesso?

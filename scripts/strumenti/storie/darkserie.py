@@ -43,5 +43,5 @@ p=dict(bg=BG, ink=INK, accent=TEAL, bgcss=f'background:radial-gradient(ellipse a
  sub='TUTTA LA SERIE',
  teaser='Tre stagioni, due mondi, un solo nodo.<br>Dall\'inizio al finale, finalmente chiaro.',
  date='DOMENICA 22 NOVEMBRE · ORE 18:00', date_col='#FFC400',
- cred='Il primo video lungo: tutta la serie spiegata facile · Prima visione', social='Solo su YouTube')
+ cred='Ogni stagione in 2 minuti, più il finale spiegato · Prima visione', social='Solo su YouTube')
 open('/tmp/claude-0/storie/darkserie.html','w').write(page(p))
