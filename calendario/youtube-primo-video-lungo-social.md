@@ -12,7 +12,7 @@ Uscita: **domenica 22 novembre 2026, ore 18:00**, su YouTube (video lungo, orizz
 
 ## DOMENICA 22 NOVEMBRE · ORE 18:00 · DARK – tutta la serie (YouTube)
 
-I tempi dei capitoli sono provvisori: si correggono con quelli del video finale della produzione.
+Tempi dei capitoli dalla produzione (13 novembre); da ricontrollare sul video finale approvato.
 
 ```
 *YOUTUBE – TITOLO*
@@ -30,10 +30,10 @@ Tutta la serie tedesca di Netflix spiegata in modo semplice: ogni stagione in 2 
 ⏱️ Capitoli
 0:00 Come può un ragazzo essere il nonno di sé stesso?
 0:20 Stagione 1: l'albero di famiglia
-2:30 Stagione 2: il nodo
-4:40 Stagione 3: i due mondi
-6:50 Il finale spiegato
-8:10 Tutta la serie in una frase
+2:20 Stagione 2: il nodo
+4:20 Stagione 3: i due mondi
+6:20 Il finale spiegato
+7:50 Dark in una frase
 
 💬 Avevi capito il finale di Dark al primo colpo? Scrivilo nei commenti!
 👉 Commenta con la serie che vorresti spiegata, e iscriviti per non perderla!
