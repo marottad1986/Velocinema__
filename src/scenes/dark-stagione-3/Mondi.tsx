@@ -38,8 +38,8 @@ const KNOT = 'M540 790 C540 690 240 700 240 790 C240 880 540 890 540 790 C540 69
 const BEAT = 60 / (film.bpm ?? 66) / 2; // croma
 const C0 = film.copertina.durata; // la griglia dello spartito parte dalla fine della copertina
 const snap = (T: number) => C0 + Math.round((T - C0) / BEAT) * BEAT;
-const STARTS: Record<string, number> = {};
-const CUES: Record<string, number[]> = {};
+export const STARTS: Record<string, number> = {};
+export const CUES: Record<string, number[]> = {};
 {
   let acc = film.copertina.durata;
   for (const c of film.capitoli) {
@@ -50,7 +50,7 @@ const CUES: Record<string, number[]> = {};
 }
 /** Istante assoluto della frase `cue` del capitolo `ch`, più `d` secondi, arrotondato alla croma. */
 export const at = (ch: string, cue: number, d = 0) => snap(STARTS[ch] + CUES[ch][cue] + d);
-const end = (ch: string) => STARTS[ch] + film.capitoli.find((c) => c.id === ch)!.durata;
+export const end = (ch: string) => STARTS[ch] + film.capitoli.find((c) => c.id === ch)!.durata;
 const pop = (T: number, t0: number) => eob(seg(T, t0, t0 + 0.45), 1.7);
 
 // ---------------------------------------------------------------- camera
@@ -81,7 +81,7 @@ const camAt = (T: number) => {
 
 // ---------------------------------------------------------------- vocabolario (lo stesso delle stagioni 1 e 2)
 
-const Node: React.FC<{ T: number; t0: number; p: P; name: string; sub?: string; ring?: number; side?: 'below' | 'right' | 'left' | 'above'; r?: number; fade?: number; stroke?: string; ringColor?: string; children?: React.ReactNode }> = ({
+export const Node: React.FC<{ T: number; t0: number; p: P; name: string; sub?: string; ring?: number; side?: 'below' | 'right' | 'left' | 'above'; r?: number; fade?: number; stroke?: string; ringColor?: string; children?: React.ReactNode }> = ({
   T, t0, p, name, sub, ring = 0, side = 'below', r = 52, fade = 1, stroke, ringColor = YELLOW, children,
 }) => {
   if (T < t0 || fade <= 0.001) return null;
@@ -106,7 +106,7 @@ const Node: React.FC<{ T: number; t0: number; p: P; name: string; sub?: string; 
   );
 };
 
-const Link: React.FC<{ T: number; t0: number; a: P; b: P; c?: P; color?: string; dashed?: boolean; label?: string; arrow?: boolean; w?: number; lx?: number; ly?: number; size?: number; fade?: number; flow?: boolean }> = ({
+export const Link: React.FC<{ T: number; t0: number; a: P; b: P; c?: P; color?: string; dashed?: boolean; label?: string; arrow?: boolean; w?: number; lx?: number; ly?: number; size?: number; fade?: number; flow?: boolean }> = ({
   T, t0, a, b, c, color = CHALK, dashed = false, label, arrow = false, w = 5, lx = 0, ly = 0, size = 30, fade = 1, flow = false,
 }) => {
   if (T < t0 || fade <= 0.001) return null;
@@ -134,7 +134,7 @@ const Link: React.FC<{ T: number; t0: number; a: P; b: P; c?: P; color?: string;
   );
 };
 
-const Tag: React.FC<{ T: number; t0: number; x: number; y: number; text: string; bg?: string; fg?: string; size?: number; rot?: number; until?: number; fade?: number }> = ({ T, t0, x, y, text, bg = YELLOW, fg = '#0B0F0E', size = 30, rot = 0, until = 1e9, fade = 1 }) => {
+export const Tag: React.FC<{ T: number; t0: number; x: number; y: number; text: string; bg?: string; fg?: string; size?: number; rot?: number; until?: number; fade?: number }> = ({ T, t0, x, y, text, bg = YELLOW, fg = '#0B0F0E', size = 30, rot = 0, until = 1e9, fade = 1 }) => {
   if (T < t0 || T > until + 0.5 || fade <= 0.001) return null;
   const w = text.length * size * 0.56 + 36;
   return (
@@ -147,7 +147,7 @@ const Tag: React.FC<{ T: number; t0: number; x: number; y: number; text: string;
 };
 
 /** Polvere luminosa che si alza da un punto mentre qualcosa svanisce. */
-const Dust: React.FC<{ T: number; t0: number; x: number; y: number; color?: string; n?: number; spread?: number; seed?: number }> = ({ T, t0, x, y, color = CHALK, n = 16, spread = 60, seed = 1 }) => {
+export const Dust: React.FC<{ T: number; t0: number; x: number; y: number; color?: string; n?: number; spread?: number; seed?: number }> = ({ T, t0, x, y, color = CHALK, n = 16, spread = 60, seed = 1 }) => {
   const k = seg(T, t0, t0 + 1.8);
   if (k <= 0 || k >= 1) return null;
   const R = rng(seed + x * 7 + y);
@@ -164,7 +164,7 @@ const Dust: React.FC<{ T: number; t0: number; x: number; y: number; color?: stri
 // ---------------------------------------------------------------- oggetti dei personaggi (dentro i cerchi)
 
 /** Gomitolo di filo blu: Martha dell'altro mondo (lo stesso della fine della stagione 2). */
-const BlueYarn: React.FC<{ r?: number }> = ({ r = 28 }) => (
+export const BlueYarn: React.FC<{ r?: number }> = ({ r = 28 }) => (
   <g>
     <circle r={r} fill={BLUE} stroke={K} strokeWidth="6" />
     {[-0.6, -0.2, 0.2, 0.6].map((k, i) => <path key={i} d={`M${-r * 0.9} ${k * r} Q0 ${k * r - r * 0.5} ${r * 0.9} ${k * r + r * 0.15}`} fill="none" stroke="#2A5A9A" strokeWidth="3" />)}
@@ -173,7 +173,7 @@ const BlueYarn: React.FC<{ r?: number }> = ({ r = 28 }) => (
   </g>
 );
 /** Lanterna accesa: Eva (la sua setta si chiama «sarà la luce»). */
-const Lantern: React.FC<{ T: number }> = ({ T }) => {
+export const Lantern: React.FC<{ T: number }> = ({ T }) => {
   const fl = 0.85 + 0.15 * Math.sin(T * 9) * Math.sin(T * 3.7);
   return (
     <g>
@@ -188,7 +188,7 @@ const Lantern: React.FC<{ T: number }> = ({ T }) => {
   );
 };
 /** Clessidra d'ottone: Adam (come nella stagione 2). */
-const Hourglass: React.FC<{ T: number; scale?: number }> = ({ T, scale = 1 }) => {
+export const Hourglass: React.FC<{ T: number; scale?: number }> = ({ T, scale = 1 }) => {
   const sand = mod(T * 0.15, 1);
   return (
     <g transform={`scale(${scale})`}>
@@ -202,7 +202,7 @@ const Hourglass: React.FC<{ T: number; scale?: number }> = ({ T, scale = 1 }) =>
   );
 };
 /** Scarpina da neonato: il bambino di Jonas e Martha. */
-const Bootie: React.FC = () => (
+export const Bootie: React.FC = () => (
   <g transform="translate(-2 6)">
     <path d="M-22 -22 Q-24 8 -20 14 Q-18 22 0 22 L22 22 Q32 20 30 10 Q28 2 14 0 L10 -22 Z" fill="#F2EEE4" stroke={K} strokeWidth="4" strokeLinejoin="round" />
     <path d="M-22 -22 Q-6 -30 10 -22" fill="none" stroke={K} strokeWidth="4" />
@@ -223,7 +223,7 @@ const Notebook: React.FC = () => (
   </g>
 );
 /** Culla di legno: Hannah nel mondo d'origine. */
-const Cradle: React.FC<{ T: number }> = ({ T }) => (
+export const Cradle: React.FC<{ T: number }> = ({ T }) => (
   <g transform={`rotate(${Math.sin(T * 1.6) * 6} 0 26)`}>
     <path d="M-30 -4 Q-30 22 0 22 Q30 22 30 -4 Z" fill="#B07A44" stroke={K} strokeWidth="4" />
     <path d="M-30 -4 H30" stroke={K} strokeWidth="4" />
@@ -234,7 +234,7 @@ const Cradle: React.FC<{ T: number }> = ({ T }) => (
   </g>
 );
 /** Ingranaggio d'ottone: la macchina del tempo di Tannhaus. */
-const Gear: React.FC<{ T: number; on: number; r?: number }> = ({ T, on, r = 34 }) => (
+export const Gear: React.FC<{ T: number; on: number; r?: number }> = ({ T, on, r = 34 }) => (
   <g transform={`rotate(${T * (10 + 140 * on)})`}>
     {Array.from({ length: 10 }, (_, i) => <rect key={i} x={-7} y={-r - 12} width="14" height="18" rx="3" fill={BRASS} stroke={K} strokeWidth="3" transform={`rotate(${i * 36})`} />)}
     <circle r={r} fill={BRASS} stroke={K} strokeWidth="5" />
@@ -243,7 +243,7 @@ const Gear: React.FC<{ T: number; on: number; r?: number }> = ({ T, on, r = 34 }
   </g>
 );
 /** Auto della famiglia di Tannhaus, vista di lato (0,0 = in basso al centro). */
-const Car: React.FC<{ T: number; dir?: number; lights?: number }> = ({ T, dir = 1, lights = 1 }) => (
+export const Car: React.FC<{ T: number; dir?: number; lights?: number }> = ({ T, dir = 1, lights = 1 }) => (
   <g transform={`scale(${dir} 1)`}>
     {lights > 0 && <path d="M52 -18 L150 -40 L150 6 Z" fill="#FFF1C0" opacity={0.28 * lights} />}
     <path d="M-56 -10 Q-58 -30 -40 -32 L-24 -52 Q-18 -58 -6 -58 L22 -58 Q34 -58 40 -46 L48 -32 Q58 -30 58 -14 L58 -6 H-56 Z" fill="#4A6A7A" stroke={K} strokeWidth="5" strokeLinejoin="round" />
@@ -258,7 +258,7 @@ const Car: React.FC<{ T: number; dir?: number; lights?: number }> = ({ T, dir = 
   </g>
 );
 /** Ponte ad arco con il parapetto (0,0 = inizio del ponte, sul piano della strada). */
-const Bridge: React.FC = () => (
+export const Bridge: React.FC = () => (
   <g>
     <path d="M0 0 H210" stroke={CHALK} strokeWidth="6" />
     <path d="M0 0 Q105 -10 210 0 M0 40 Q105 -30 210 40" fill="none" stroke={CHALK} strokeWidth="5" />
@@ -268,7 +268,7 @@ const Bridge: React.FC = () => (
   </g>
 );
 /** Casa di campagna con le finestre accese (0,0 = centro della facciata). */
-const House: React.FC<{ T: number; lit: number }> = ({ T, lit }) => (
+export const House: React.FC<{ T: number; lit: number }> = ({ T, lit }) => (
   <g>
     {lit > 0 && <Glow id="m3-house" x={0} y={10} r={200} t={T} color={WARM} amp={0.06} rate={1.6} opacity={0.5 * lit} />}
     <path d="M-110 -10 L0 -96 L110 -10 Z" fill="#5A3A2A" stroke={K} strokeWidth="7" strokeLinejoin="round" />
@@ -297,10 +297,10 @@ const Sphere: React.FC<{ T: number; k: number }> = ({ T, k }) => (
 // ---------------------------------------------------------------- lo schema al tempo T
 
 const r = rng(1971);
-const MOTES = Array.from({ length: 22 }, () => ({ x: r() * 1080, y: r() * 1920, s: 1.5 + r() * 2.5, v: 5 + r() * 12, ph: r() * 6 }));
+export const MOTES = Array.from({ length: 22 }, () => ({ x: r() * 1080, y: r() * 1920, s: 1.5 + r() * 2.5, v: 5 + r() * 12, ph: r() * 6 }));
 const RAIN = Array.from({ length: 26 }, () => ({ x: 340 + r() * 400, y: r() * 260, v: 260 + r() * 160 }));
 
-const Schema: React.FC<{ T: number }> = ({ T }) => {
+export const Schema: React.FC<{ T: number }> = ({ T }) => {
   const focus = (t0: number, t1: number) => seg(T, t0, t0 + 0.3) * (1 - seg(T, t1, t1 + 0.4));
   const off = (ch: string) => 1 - seg(T, end(ch) - 0.4, end(ch) + 0.3);
   // i due mondi svaniscono: prima i rami (dal basso), poi Jonas e Martha, poi tutti gli altri, Adam ed Eva per ultimi
