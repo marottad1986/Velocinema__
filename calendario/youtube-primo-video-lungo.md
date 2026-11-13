@@ -48,7 +48,7 @@ Punteggio (`SOCIAL.md`): mistero 3 · fama 3 · discussione 3 · momento 2 · pu
 
 ### Titolo e descrizione (bozza)
 - **Titolo:** «DARK spiegato semplice: tutta la serie e il finale in 8 minuti»
-- **Descrizione:** «Tre stagioni, tre epoche, due mondi e una famiglia che si annoda nel tempo: Dark spiegato come a un
+- **Descrizione:** «Tre stagioni, due mondi e una famiglia che si annoda nel tempo: Dark spiegato come a un
   bambino, dall'inizio al finale. [capitoli] · Commenta con la serie che vorresti spiegata.»
 
 ### Uscita

@@ -66,7 +66,7 @@ def page(p):
  {f'<div class="sub">{p["sub"]}</div>' if p.get('sub') else ''}
  <div class="teaser">{p['teaser']}</div>
  <div class="date">{p['date']}</div>
- <div class="cred">{p['cred']}<br>Su TikTok · Instagram · Facebook · YouTube</div>
+ <div class="cred">{p['cred']}<br>{p.get('social','Su TikTok · Instagram · Facebook · YouTube')}</div>
 </div></div>
 <script>
 document.fonts.ready.then(()=>{{for(const el of document.querySelectorAll('.title,.title2,.date')){{let s=parseFloat(getComputedStyle(el).fontSize);while(el.scrollWidth>840&&s>20){{s-=2;el.style.fontSize=s+'px'}}}}
