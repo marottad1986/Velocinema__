@@ -16,8 +16,11 @@ Brief per la sessione `/produzione`, preparato dal manager il 13 novembre 2026 p
 ## Collaborazione visibile (copertina e inizio video)
 - **Fotogramma 0 (miniatura)**: sopra il titolo l'etichetta «LA STORIA IN 2 MINUTI» e, accanto, un bollino doppio
   come quello degli speciali (`src/components/Speciale.tsx`), con i due nomi alla pari: **«IN 2 MINUTI × MR.GOAL»**.
-  Nuovo campo `copertina.collab: "Mr.goal"` (così togliendolo il video torna normale); se Mr.goal manda il suo logo
-  (PNG trasparente), il bollino diventa: cronometro «2'» di In 2 minuti × logo di Mr.goal. Tutto tra x 120 e 960.
+  Nuovo campo `copertina.collab: "Mr.goal"` (così togliendolo il video torna normale). Logo di Mr.goal fornito dall'utente
+  (13 novembre), già ritagliato in `public/collab/`: `mrgoal-scritta.png` (solo la scritta con la corona, fondo trasparente,
+  da usare nel bollino e nel finale) e `mrgoal.png` (il cerchio bianco intero, per un'eventuale pastiglia tonda). Il logo
+  non si ridisegna né si ricolora: si usa così com'è, alla pari col nostro cronometro «2'» («In 2 minuti × [logo]»),
+  con un filo di contorno o un'ombra se il fondo della copertina è scuro. Tutto tra x 120 e 960, leggibile anche in miniatura.
 - Sotto il titolo «EDOARDO BOVE»: «dal documentario In un battito · di Giovanni Troilo · 2026».
 - Primi secondi: il bollino resta per tutta la copertina; la voce parte con l'aggancio (non si nomina la collaborazione
   a voce, così l'aggancio resta forte).
@@ -77,6 +80,6 @@ Brief per la sessione `/produzione`, preparato dal manager il 13 novembre 2026 p
   2024, «in poco più di dieci minuti a Careggi», «il giorno dopo sveglio e vigile», task force di giugno 2026.
 
 ## Da chiedere all'utente / a Mr.goal
-- Nome esatto della pagina e account (TikTok e Instagram) di Mr.goal; logo in PNG se lo vogliono nel bollino.
+- Nome esatto della pagina e account (TikTok e Instagram) di Mr.goal (il logo c'è).
 - Ora di uscita concordata (proposta: domenica 15 alle 17:30).
 - Se c'è un accordo pagato con il distributore, la didascalia porta l'indicazione di contenuto sponsorizzato.
