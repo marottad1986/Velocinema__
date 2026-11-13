@@ -24,6 +24,13 @@ import { durataLungo, episodiDi, inizioParti, loadLungo, lunghi, mmss, trattiLun
 /** La voce e i sottotitoli dell'aggancio partono qui (fotogramma 0 = miniatura senza testo): come INIZIO_AGGANCIO in src/lunghi/Lungo.tsx. */
 export const INIZIO_AGGANCIO = 0.4;
 const FPS = 30;
+/** Loudness comune della musica: ogni episodio era normalizzato da solo (picco −3 dB) e i livelli medi differiscono di
+ *  diversi dB; nel lungo ogni pezzo si porta allo stesso livello integrato, così tra una stagione e l'altra non salta. */
+const MUSICA_LUFS = -20;
+const lufs = (file) => {
+  const r = spawnSync('ffmpeg', ['-hide_banner', '-i', file, '-af', 'ebur128', '-f', 'null', '-'], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  return Number(r.stderr.slice(r.stderr.lastIndexOf('Summary:')).match(/I:\s+(-?[\d.]+) LUFS/)?.[1]);
+};
 
 const args = process.argv.slice(2);
 const opt = (n) => { const i = args.indexOf(`--${n}`); return i >= 0 ? args[i + 1] : undefined; };
@@ -93,8 +100,12 @@ const generaMusicaLunga = async () => {
   }
   const out = `out/${slug}-musica.wav`;
   const FMT = 'aformat=sample_rates=44100:channel_layouts=stereo';
-  const parts = [`[0:a]${FMT}[n]`, ...ep.map((e, i) => `[${i + 1}:a]${FMT},adelay=${Math.round(e.t0 * 1000)}:all=1[e${i}]`)];
-  parts.push(`[n]${ep.map((_, i) => `[e${i}]`).join('')}amix=inputs=${ep.length + 1}:duration=first:normalize=0,apad=whole_dur=${END}[a]`);
+  const g = (f) => (MUSICA_LUFS - lufs(f)).toFixed(2);
+  const gn = g(nuove);
+  ep.forEach((e) => { e.g = g(e.wav); });
+  console.log(`  livelli portati a ${MUSICA_LUFS} LUFS: parti nuove ${gn} dB, ${ep.map((e) => `${e.wav.slice(4, -11)} ${e.g} dB`).join(', ')}`);
+  const parts = [`[0:a]${FMT},volume=${gn}dB[n]`, ...ep.map((e, i) => `[${i + 1}:a]${FMT},volume=${e.g}dB,adelay=${Math.round(e.t0 * 1000)}:all=1[e${i}]`)];
+  parts.push(`[n]${ep.map((_, i) => `[e${i}]`).join('')}amix=inputs=${ep.length + 1}:duration=first:normalize=0,alimiter=limit=0.89,apad=whole_dur=${END}[a]`);
   run('ffmpeg', ['-y', '-v', 'error', '-i', nuove, ...ep.flatMap((e) => ['-i', e.wav]), '-filter_complex', parts.join(';'), '-map', '[a]', '-t', String(END), '-c:a', 'pcm_s16le', out]);
   console.log(`Musica: ${out}`);
   return out;
