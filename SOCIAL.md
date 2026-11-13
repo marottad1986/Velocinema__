@@ -7,6 +7,9 @@ proporre la settimana.
 - **Ogni giorno alle 17:30** un'uscita principale, a rotazione tra **film**, **serie TV** e **Spiegato semplice**:
   ogni settimana 3 film, 2 serie e 2 Spiegato semplice (si può scambiare un film con una serie se i dati lo chiedono).
 - **Sabato e domenica alle 10:00** un'uscita in più: quadri, canzoni, storie vere o storie.
+- **X Factor (talent spiegati): sempre il mercoledì alle 17:30**, il riepilogo dell'ultimo Live il giorno prima della
+  puntata successiva (il giovedì è troppo tardi). Fino alla finale del 3 dicembre: mercoledì 18 (Live 4), 25 (Live 5),
+  2 dicembre (Live 6); la finale si riassume il 4 o 5 dicembre.
 - 9 uscite a settimana. Due titoli dello stesso genere (es. due horror) non stanno in giorni vicini.
 - Mai ripubblicare un video già uscito sullo stesso canale (elenco in `calendario/pubblicati.md`).
 
@@ -113,6 +116,22 @@ Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere
 - 5 novembre 2026: i più visti hanno mistero o una trama da capire (Dark stagione 1 in Spiegato semplice 52.838,
   Interstellar 48.317, Truman Show 36.277, Shutter Island 30.437); rendono poco i film d'atmosfera o d'avventura
   senza mistero (La La Land 2.473, Jurassic Park 1.235). Un commento: «finale inaspettato».
+
+## Richieste dai commenti (da usare nella programmazione della domenica)
+13 novembre 2026, per la settimana 16–22 novembre. Punteggio di questa pagina (mistero, fama, discussione, momento,
+puntate, disegnabile; massimo 18):
+| Titolo | Formato consigliato | Punti | Note |
+|---|---|---|---|
+| Donnie Darko | Spiegato semplice | 12 | Trama da capire, il formato che rende di più: il più forte della lista. |
+| Conjuring – L'evocazione | Film | 12 | Horror famoso con una saga dietro (seguiti); non accanto a Shining o Doctor Sleep. |
+| Doctor Sleep | Film | 11 | Seguito di Shining (uscito venerdì 13): se Shining va bene, esce entro 3–4 giorni. |
+| Il miglio verde | Film | 11 | Mistero sul dono di John Coffey e finale che si ricorda; la sedia elettrica si racconta con il corridoio verde, senza mostrarla in uso. |
+| Oppenheimer | Film | 10 | Nolan (Interstellar è andato forte); Los Alamos e il test nel deserto molto disegnabili. |
+| Le pagine della nostra vita | Film | 9 | Colpo di scena su chi racconta; i film romantici finora rendono poco (La La Land). |
+| Dunkirk | Spiegato semplice | 9 | Si spiegherebbe la regola dei tre tempi (una settimana, un giorno, un'ora); poco mistero. |
+Evento della settimana da non perdere: **Edoardo Bove – «In un battito»** (documentario in sala 16–18 novembre),
+speciale in collaborazione con Mr.goal, brief in `calendario/bove-in-un-battito.md` (proposta: uscita domenica 15 alle 17:30,
+prodotto sabato 14; Hunger Games slitta a lunedì 16 o martedì 17).
 
 ## Riserva di titoli (da riordinare con i dati)
 - **Film con colpo di scena:** Il sesto senso, Fight Club, The Prestige, Seven, I soliti sospetti, Memento, Matrix,

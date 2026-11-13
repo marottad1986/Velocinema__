@@ -106,5 +106,6 @@ Componenti in `src/scenes/talent/` (studio, oggetti e tabellone), dati della gar
   novità della serata (un tema, un ospite si racconta con un oggetto), la voce e lo spartito (stessa base, eventi ai
   nuovi istanti). Le scene riusate si controllano comunque sui fotogrammi: nomi lunghi, quante aste per pedana.
 - Tempi: si parte la mattina dopo il Live (venerdì), testo e fonti il venerdì, scene e voce entro il lunedì, revisori e
-  pull request entro il martedì dell'uscita.
+  pull request entro il martedì; **uscita il mercoledì alle 17:30**, il giorno prima del Live successivo (il giovedì,
+  giorno della puntata, è troppo tardi: chi vuole rimettersi in pari lo cerca prima).
 - I dati di una puntata si scrivono solo dopo la puntata, dalle fonti: mai in anticipo.
