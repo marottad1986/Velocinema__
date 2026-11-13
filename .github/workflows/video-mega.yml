@@ -12,6 +12,7 @@ on:
     paths:
       - films/**
       - quadri/**
+      - lunghi/**
       - src/**
       - scripts/**
       - audio/**
@@ -51,7 +52,7 @@ jobs:
               # uno o più film separati da spazi o virgole, es. "cast-away, jurassic-park"
               film=""
               for f in ${SCELTO//,/ }; do
-                if [[ "$f" =~ ^[a-z0-9-]+$ ]] && { [ -f "films/$f.json" ] || [ -f "quadri/$f.json" ]; }; then
+                if [[ "$f" =~ ^[a-z0-9-]+$ ]] && { [ -f "films/$f.json" ] || [ -f "quadri/$f.json" ] || [ -f "lunghi/$f.json" ]; }; then
                   film="$film${film:+,}\"$f\""
                 else
                   echo "::error::Film sconosciuto: $f"; exit 1
@@ -133,9 +134,17 @@ jobs:
       # regole vincolanti di CLAUDE.md (durata, ritmo della voce, finale, musica campionata…): se falliscono il video non si fa
       - name: Controlli
         run: node scripts/controlli.mjs "$FILM"
+      # video lunghi orizzontali (VIDEO-LUNGO.md): musica, video, voce (clip in audio/), miniatura e capitoli YouTube
+      - name: Video lungo (musica, voce, miniatura, capitoli)
+        if: hashFiles(format('lunghi/{0}.json', env.FILM)) != ''
+        run: |
+          node scripts/lunghi/render.mjs "$FILM"
+          node scripts/lunghi/render.mjs "$FILM" --capitoli --miniatura
       - name: Video con musica
+        if: hashFiles(format('lunghi/{0}.json', env.FILM)) == ''
         run: npm run render -- "$FILM"
       - name: Voce (se ci sono le clip)
+        if: hashFiles(format('lunghi/{0}.json', env.FILM)) == ''
         continue-on-error: true
         run: |
           if mega-ls "/Velocinema/$FILM/voce" > /dev/null 2>&1; then
@@ -148,7 +157,7 @@ jobs:
           fi
       - name: Caricamento su MEGA
         run: |
-          for f in "out/$FILM.mp4" "out/$FILM-voce.mp4"; do
+          for f in "out/$FILM.mp4" "out/$FILM-voce.mp4" "out/$FILM-miniatura.png" "out/$FILM-capitoli.txt"; do
             [ -f "$f" ] || continue
             dest="/Velocinema/$FILM/$(basename "$f")"
             mega-rm -f "$dest" > /dev/null 2>&1 || true

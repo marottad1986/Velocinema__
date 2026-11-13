@@ -12,6 +12,13 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 
+// Video lunghi orizzontali (VIDEO-LUNGO.md): lunghi/<slug>.json, src/lunghi/<slug>/, scripts/audio/<slug>.mjs, audio/<slug>/;
+// codice comune dei lunghi (src/lunghi/*.ts*, scripts/lunghi/): tutti i lunghi. Un lungo si rigenera anche quando cambia
+// un episodio che contiene (il suo JSON elenca gli episodi in «parti»). Il codice comune dei verticali (src/, scripts/…)
+// rigenera anche i lunghi.
+const lunghi = existsSync('lunghi') ? readdirSync('lunghi').filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5)).sort() : [];
+const episodi = (l) => JSON.parse(readFileSync(`lunghi/${l}.json`, 'utf8')).parti.filter((p) => p.tipo === 'episodio').map((p) => p.film);
+
 const tutti = ['films', 'quadri']
   .flatMap((d) => (existsSync(d) ? readdirSync(d) : []))
   .filter((f) => f.endsWith('.json'))
@@ -62,7 +69,16 @@ const soloFilmAggiunti = () => {
   return tutti.filter((f) => slugs.has(f));
 };
 
+const sceltiLunghi = (file) => {
+  let m = file.match(/^lunghi\/([^/]+)\.json$/) ?? file.match(/^src\/lunghi\/([^/]+)\//) ?? file.match(/^scripts\/audio\/([^/]+)\.mjs$/) ?? file.match(/^audio\/([^/]+)\//);
+  if (m && lunghi.includes(m[1])) return [m[1]];
+  if (/^src\/lunghi\/[^/]+$/.test(file) || /^scripts\/lunghi\//.test(file)) return lunghi;
+  return null;
+};
+
 const scelti = (file) => {
+  const l = sceltiLunghi(file);
+  if (l) return l;
   if (file === EFFETTI) return soloVociNuove() ?? tutti;
   if (file === REGISTRO) return soloFilmAggiunti() ?? tutti;
   if (AUDIO_COMUNE.test(file)) return tutti; // motore audio: campioni, effetti, riverbero
@@ -75,9 +91,13 @@ const scelti = (file) => {
   return COMUNI.some((re) => re.test(file)) ? tutti : [];
 };
 
-let film = tutti;
+let film = [...tutti, ...lunghi];
 if (!process.argv.includes('--tutti')) {
   const files = readFileSync(0, 'utf8').split('\n').map((s) => s.trim()).filter(Boolean);
-  film = [...new Set(files.flatMap(scelti))].sort();
+  const base = new Set(files.flatMap(scelti));
+  // codice comune dei verticali: anche i lunghi; un episodio cambiato: anche i lunghi che lo contengono
+  if (tutti.every((f) => base.has(f))) lunghi.forEach((l) => base.add(l));
+  for (const l of lunghi) if (episodi(l).some((e) => base.has(e))) base.add(l);
+  film = [...base].sort();
 }
 console.log(JSON.stringify(film));

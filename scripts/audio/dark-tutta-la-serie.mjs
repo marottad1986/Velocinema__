@@ -168,5 +168,5 @@ export default (mix, T) => {
   sec(C0, C0 + 4 * GRID, { drone: 34, pad: 30, mel: 34, magg: true, keep: 1 });
   [48, 55, 60, 64].forEach((m, j) => strings(mix, m, { t: C0 + 4 * GRID, dur: T.END - (C0 + 4 * GRID), vel: 34, gain: 0.5, pan: (j - 1.5) * 0.25, att: 1.2, seed: 90 + j }));
   MOTIF_MAGG.slice(0, 3).forEach(([b, m]) => motif(mix, m, { t: C0 + 4 * GRID + b * BEAT, dur: 2 * BEAT, vel: 30 }));
-  clip(mix, 'pioggia_dura', { t: C0, da: 12, durata: T.END - C0, gain: 0.22, fadeIn: 1.5, fadeOut: 3, largo: 3, rev: 0.12 });
+  clip(mix, 'pioggia_dura', { t: C0, da: 4, durata: T.END - C0, gain: 0.22, fadeIn: 1.5, fadeOut: 3, largo: 3, rev: 0.12 });
 };
