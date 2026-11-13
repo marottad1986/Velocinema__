@@ -7,6 +7,9 @@ proporre la settimana.
 - **Ogni giorno alle 17:30** un'uscita principale, a rotazione tra **film**, **serie TV** e **Spiegato semplice**:
   ogni settimana 3 film, 2 serie e 2 Spiegato semplice (si può scambiare un film con una serie se i dati lo chiedono).
 - **Sabato e domenica alle 10:00** un'uscita in più: quadri, canzoni, storie vere o storie.
+- **X Factor (talent spiegati): sempre il mercoledì alle 17:30**, il riepilogo dell'ultimo Live il giorno prima della
+  puntata successiva (il giovedì è troppo tardi). Fino alla finale del 3 dicembre: mercoledì 18 (Live 4), 25 (Live 5),
+  2 dicembre (Live 6); la finale si riassume il 4 o 5 dicembre.
 - 9 uscite a settimana. Due titoli dello stesso genere (es. due horror) non stanno in giorni vicini.
 - Mai ripubblicare un video già uscito sullo stesso canale (elenco in `calendario/pubblicati.md`).
 
