@@ -80,9 +80,10 @@ Brief per la sessione `/produzione`, preparato dal manager il 13 novembre 2026 p
   2024, «in poco più di dieci minuti a Careggi», «il giorno dopo sveglio e vigile», task force di giugno 2026.
 
 ## Mr.goal
-- Pagina TikTok «MR.GoaL», account **@mr.goal00** (26.597 follower, 1,2 milioni di like al 13 novembre 2026): nel
+- Pagina «MR.GoaL», account **@mr.goal00** su TikTok e su Instagram (26.597 follower, 1,2 milioni di like al 13 novembre 2026): nel
   finale e nelle didascalie si scrive «@mr.goal00»; nel bollino si usa il loro logo.
 
-## Da chiedere all'utente / a Mr.goal
-- Account Instagram di Mr.goal (per il post Collab): da chiedere all'utente in produzione.
-- Se c'è un accordo pagato con il distributore, la didascalia porta l'indicazione di contenuto sponsorizzato.
+## Accordo
+- Nessun accordo economico (né con Mr.goal né con il distributore): è uno scambio di visibilità tra le due pagine, quindi
+  niente indicazione di contenuto sponsorizzato; nella didascalia la collaborazione si dichiara con la menzione «In
+  collaborazione con @mr.goal00» (e il post Collab su Instagram).
