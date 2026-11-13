@@ -130,8 +130,8 @@ puntate, disegnabile; massimo 18):
 | Le pagine della nostra vita | Film | 9 | Colpo di scena su chi racconta; i film romantici finora rendono poco (La La Land). |
 | Dunkirk | Spiegato semplice | 9 | Si spiegherebbe la regola dei tre tempi (una settimana, un giorno, un'ora); poco mistero. |
 Evento della settimana da non perdere: **Edoardo Bove – «In un battito»** (documentario in sala 16–18 novembre),
-speciale in collaborazione con Mr.goal, brief in `calendario/bove-in-un-battito.md` (proposta: uscita domenica 15 alle 17:30,
-prodotto sabato 14; Hunger Games slitta a lunedì 16 o martedì 17).
+speciale in collaborazione con Mr.goal, brief in `calendario/bove-in-un-battito.md` (uscita confermata domenica 15 alle 10:00,
+prodotto sabato 14; La Gioconda slitta a un altro weekend, Hunger Games resta domenica alle 17:30).
 
 ## Riserva di titoli (da riordinare con i dati)
 - **Film con colpo di scena:** Il sesto senso, Fight Club, The Prestige, Seven, I soliti sospetti, Memento, Matrix,
