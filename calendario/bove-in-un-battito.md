@@ -7,11 +7,11 @@ Brief per la sessione `/produzione`, preparato dal manager il 13 novembre 2026 p
 - Documentario «In un battito» di Giovanni Troilo, 01 Distribution, evento al cinema **16, 17 e 18 novembre 2026**
   (presentato alla Festa del Cinema di Roma il 18 ottobre). Una fonte (Metropolitan Magazine) dice 17–19: riconfermare
   sul sito di 01 Distribution prima del render.
-- **Confermata dall'utente (13 novembre): domenica 15 novembre, 17:30**, in contemporanea su «In 2 minuti» e su Mr.goal (il giorno prima della prima
-  sera in sala: tre giorni di tempo per decidere di andarci). Hunger Games, che era in calendario domenica, slitta a
-  lunedì 16 o martedì 17 (è già pronto, e il film nuovo esce il 19). Alternativa: lunedì 16 alle 17:30.
+- **Confermata dall'utente (13 novembre): domenica 15 novembre, 10:00**, in contemporanea su «In 2 minuti» e su Mr.goal
+  (il giorno prima della prima sera in sala: tre giorni di tempo per decidere di andarci). Prende lo slot del weekend delle
+  10:00 (La Gioconda slitta a un altro weekend); Hunger Games resta domenica alle 17:30.
 - Produzione: sabato 14 dalla mattina (la produzione precedente è finita venerdì 13 alle 22:32), video su MEGA entro
-  sabato sera, così domenica mattina c'è tempo per mandarlo a Mr.goal.
+  sabato sera (non oltre le 22), così c'è tempo per mandarlo a Mr.goal prima delle 10 di domenica.
 
 ## Collaborazione visibile (copertina e inizio video)
 - **Fotogramma 0 (miniatura)**: sopra il titolo l'etichetta «LA STORIA IN 2 MINUTI» e, accanto, un bollino doppio
