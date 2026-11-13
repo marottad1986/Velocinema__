@@ -154,7 +154,7 @@ export default (mix, T) => {
   bell(mix, 72, { t: at('ponte', 1, 0.1), vel: 40 }); // 1971
   clip(mix, 'passaggio', { t: at('ponte', 2, -0.6) - 0.3, da: 12.27, durata: 1.6, gain: 0.24, fadeOut: 0.6, rev: 0.4 });
   [67, 72, 75].forEach((m, k) => bell(mix, m, { t: at('ponte', 2, 0.6) + k * BEAT_, vel: 36 })); // il cartello: l'auto si ferma
-  colpo(mix, 'grancassa', 'bdrum_p', { t: at('ponte', 3, 0.2), vel: 110, gain: 0.8, rev: 0.6 });
+  colpo(mix, 'grancassa', 'bdrum_p', { t: at('ponte', 3, 0.2), vel: 127, gain: 1.8, rev: 0.6 });
   // un battito di silenzio, poi il primo accordo maggiore (Do) negli archi
   const magg = croma(at('ponte', 3, 0.2) + 2 * BEAT);
   [36, 48, 55, 60, 64, 67].forEach((m, j) => strings(mix, m, { t: magg, dur: bar(T.resta) - magg + 0.6, vel: 42, gain: 0.6, pan: (j - 2.5) * 0.2, att: 0.8, seed: 80 + j }));
