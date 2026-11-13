@@ -69,18 +69,18 @@ export const DURATA_TUTTO = FINE_CAPITOLI + chiusura.durata;
 
 type Shot = { at: number; x: number; y: number; z: number };
 const SHOTS: Shot[] = [
-  { at: 0, x: 430, y: 560, z: 1.3 },
+  { at: 0, x: 400, y: 560, z: 1.42 },
   { at: at('vetro', 2), x: 560, y: 540, z: 1.15 },
   { at: at('vetro', 3), x: 900, y: 540, z: 0.84 },
   { at: at('cerchi', 1), x: 1040, y: 540, z: 0.98 },
-  { at: at('cerchi', 3), x: 1120, y: 360, z: 1.2 },
+  { at: at('cerchi', 3), x: 1120, y: 430, z: 1.05 },
   { at: at('antenato', 0), x: 1400, y: 540, z: 1.0 },
   { at: at('antenato', 2), x: 1340, y: 540, z: 0.92 },
   { at: at('nemici', 0), x: 1440, y: 535, z: 0.9 },
-  { at: at('ponte', 0), x: 520, y: 580, z: 1.12 },
+  { at: at('ponte', 0), x: 560, y: 580, z: 1.05 },
   { at: at('ponte', 3), x: 760, y: 560, z: 0.88 },
   { at: at('resta', 0), x: 960, y: 540, z: 0.8 },
-  { at: at('resta', 2), x: 1260, y: 560, z: 1.0 },
+  { at: at('resta', 2), x: 1180, y: 560, z: 0.92 },
   { at: at('resta', 3, 1.2), x: 1000, y: 560, z: 0.84 },
   // chiusura: lo schema rimasto si sposta nella metà sinistra (la destra resta libera per la schermata finale di YouTube)
   { at: FINE_CAPITOLI + 0.4, x: 1690, y: 920, z: 0.54 },
