@@ -216,8 +216,8 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       <Link T={T} t0={at('antenato', 2, 0.1)} a={[N.bambino[0] - 50, N.bambino[1]]} b={[N.cerchioJ[0] + 100, N.cerchioJ[1] + 40]} c={[1260, Y0 - 10]} color={YELLOW} dashed flow w={7} arrow
         label="nel passato" lx={10} ly={60} size={32} fade={via * off(endCh('antenato'))} />
       <Link T={T} t0={at('antenato', 2, 0.3)} a={[N.bambino[0] - 50, N.bambino[1] + 10]} b={[N.cerchioM[0] + 100, N.cerchioM[1] - 40]} c={[1260, Y0 + 30]} color={YELLOW} dashed flow w={7} arrow fade={via * off(endCh('antenato'))} />
-      <Link T={T} t0={at('antenato', 3, 0.1)} a={[N.cerchioJ[0] + 60, N.cerchioJ[1] - 80]} b={[N.jonas[0] - 40, N.jonas[1] - 48]} c={[1240, 140]} color={RED} w={9} arrow label="antenato" ly={-16} size={34} fade={via * off(endCh('antenato'))} />
-      <Link T={T} t0={at('antenato', 3, 0.4)} a={[N.cerchioM[0] + 60, N.cerchioM[1] + 80]} b={[N.martha[0] - 40, N.martha[1] + 48]} c={[1240, 940]} color={RED} w={9} arrow fade={via * off(endCh('antenato'))} />
+      <Link T={T} t0={at('antenato', 3, 0.1)} a={[N.cerchioJ[0] + 60, N.cerchioJ[1] - 80]} b={[N.jonas[0] - 40, N.jonas[1] - 48]} c={[1240, 140]} color={RED} w={9} arrow label="trisnonno" ly={-16} size={34} fade={via * off(endCh('antenato'))} />
+      <Link T={T} t0={at('antenato', 2, 1.2)} a={[N.cerchioM[0] + 60, N.cerchioM[1] + 80]} b={[N.martha[0] - 40, N.martha[1] + 48]} c={[1240, 940]} color={RED} w={9} arrow label="bisnonno" ly={30} size={34} fade={via * off(endCh('antenato'))} />
       <Tag T={T} t0={at('antenato', 3, 1.2)} x={N.bambino[0] + 30} y={Y0 + 110} text="antenato di sé stesso" bg={RED} fg="#FFFFFF" size={28} rot={-3} until={endCh('antenato') - 0.3} />
 
       {/* Adam ed Eva: da vecchi, tirano il nodo dai due capi */}

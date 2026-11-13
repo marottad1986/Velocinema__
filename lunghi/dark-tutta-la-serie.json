@@ -19,11 +19,11 @@
       "id": "aggancio",
       "durata": 20,
       "capitolo_youtube": "Come può un ragazzo essere l'antenato di sé stesso?",
-      "immagine": "Copertina 16:9 (miniatura YouTube): a sinistra «DARK» enorme in carattere stretto e spaziato, sotto «TUTTA LA SERIE SPIEGATA SEMPLICE»; a destra un grande quadrante d'orologio scuro su cui un filo rosso fa un nodo attorno all'impermeabile giallo appeso. Poi la camera entra nel quadrante: tre cerchi con l'impermeabile (Jonas), un neonato in fasce reso da una copertina azzurra arrotolata (il figlio) e una freccia che torna indietro: la domanda dell'antenato. Niente logo, triquetra o volti.",
+      "immagine": "Copertina 16:9 (miniatura YouTube): a sinistra «SPIEGATO SEMPLICE», «DARK» enorme in carattere stretto e spaziato, sotto «TUTTA LA SERIE / E IL FINALE»; a destra un grande quadrante d'orologio scuro su cui un filo rosso fa un nodo attorno all'impermeabile giallo appeso. Poi la camera entra nel quadrante: tre cerchi con l'impermeabile (Jonas), un neonato in fasce reso da una copertina azzurra arrotolata (il figlio) e una freccia che torna indietro: la domanda dell'antenato. Niente logo, triquetra o volti.",
       "sottotitoli": [
         "Come può un ragazzo essere l'antenato di sé stesso?",
         "In Dark succede davvero, e alla fine tutto torna.",
-        "C'è una grotta che porta indietro di 33 anni,",
+        "Perché c'è una grotta che porta indietro di 33 anni,",
         "una famiglia che si annoda nel tempo,",
         "e due mondi che sembrano uguali.",
         "Per capirlo, seguiamo il filo dall'inizio: Winden, 2019."
@@ -59,19 +59,19 @@
         {
           "id": "vetro",
           "titolo": "Chi ha creato il nodo?",
-          "durata": 13,
+          "durata": 15,
           "scena": "Lo schema completo delle tre stagioni in un'unica immagine, sul quadrante dell'orologio: in basso il tronco del mondo d'origine con l'orologio da taschino di Tannhaus e l'auto sul ponte; il tronco sale fino alla macchina del tempo, che si accende e si incrina come un vetro: il tronco si divide in due rami.",
           "sottotitoli": [
             "All'inizio di tutto c'è un solo mondo, quello d'origine.",
-            "Lì Tannhaus, l'orologiaio, perde la famiglia del figlio in un incidente d'auto.",
+            "Lì Tannhaus, l'orologiaio, perde la famiglia del figlio in auto, su un ponte.",
             "Per riaverli costruisce una macchina del tempo,",
             "ma accenderla spacca il mondo in due, come un vetro rotto."
           ]
         },
         {
           "id": "cerchi",
-          "titolo": "Perché il tempo gira in tondo?",
-          "durata": 13,
+          "titolo": "Perché il passato non si cambia?",
+          "durata": 15,
           "scena": "I due rami salgono: a sinistra il mondo di Jonas (gesso e giallo), a destra quello di Martha (blu). In ognuno un cerchio tratteggiato con le fasce degli anni (1953, 1986, 2019, 2052) e la grotta; una lancetta gira lungo ogni cerchio; nel ramo di sinistra la busta di Michael e il gomitolo di Martha con una crocetta rossa.",
           "sottotitoli": [
             "Nascono così due mondi: quello di Jonas e quello di Martha.",
@@ -82,50 +82,50 @@
         },
         {
           "id": "antenato",
-          "titolo": "Come fa Jonas a essere il suo antenato?",
-          "durata": 13,
+          "titolo": "Come fa Jonas a essere antenato di sé stesso?",
+          "durata": 15,
           "scena": "Tra i due cerchi, dove si toccano, Jonas (impermeabile) e Martha (gomitolo) si legano con un filo; al centro compare il bambino (copertina azzurra arrotolata); da lui un filo giallo tratteggiato scende nel passato e risale lungo le due famiglie fino a Jonas e a Martha: l'anello rosso «antenato di sé stesso» si chiude.",
           "sottotitoli": [
-            "A legarli sono proprio Jonas e Martha.",
-            "Lui viene dal primo mondo, lei dal secondo, e avranno un figlio.",
-            "Da grande, il figlio va nel passato e diventa il loro antenato:",
-            "così Jonas è antenato di sé stesso, e il nodo si tiene da solo."
+            "A legare i due mondi sono Jonas e Martha.",
+            "Lui viene dal primo, lei dal secondo, e avranno un figlio.",
+            "Da grande, il figlio va nel passato e diventa bisnonno di Martha,",
+            "e trisnonno di Jonas: così Jonas è antenato di sé stesso."
           ]
         },
         {
           "id": "nemici",
           "titolo": "Perché Adam ed Eva si combattono?",
-          "durata": 13,
+          "durata": 15,
           "scena": "In cima ai due rami compaiono Adam (impermeabile ingrigito, sinistra) ed Eva (gomitolo sbiadito, destra), legati a Jonas e Martha da un filo «da vecchi»; due frecce rosse tirano il nodo dai due lati e l'otto tratteggiato si stringe.",
           "sottotitoli": [
             "Da vecchi, Jonas e Martha diventano Adam ed Eva, nemici.",
             "Adam vuole distruggere il nodo, Eva vuole tenerlo per salvare il figlio.",
             "Ma così tutti e due lo stringono ancora di più,",
-            "come due persone che tirano lo stesso nodo dai due capi."
+            "come due persone che tirano un nodo dai due capi."
           ]
         },
         {
           "id": "ponte",
           "titolo": "Come si scioglie il nodo?",
-          "durata": 13,
+          "durata": 15,
           "scena": "La camera scende al tronco: il cartellino «1971»; un filo giallo tratteggiato porta l'impermeabile e il gomitolo giù fino al ponte; l'auto si ferma prima del ponte con il triangolo di pericolo; la macchina del tempo si spegne e la crepa di vetro si richiude.",
           "sottotitoli": [
-            "Claudia, una viaggiatrice, capisce che la soluzione è fuori dal nodo:",
+            "Poi Claudia, viaggiatrice del tempo, capisce che la soluzione è fuori dal nodo:",
             "nel mondo d'origine, nel 1971.",
-            "Jonas e Martha ci arrivano e fermano l'auto prima del ponte.",
+            "Adam ci manda Jonas e Martha, che fermano l'auto prima del ponte.",
             "Senza incidente, niente macchina del tempo, e niente due mondi."
           ]
         },
         {
           "id": "resta",
           "titolo": "Cosa resta alla fine?",
-          "durata": 13,
+          "durata": 15,
           "scena": "I due rami con i cerchi, Adam, Eva, Jonas, Martha e il bambino si sciolgono in polvere luminosa che sale; resta solo il tronco, che cresce fino a una casa con le finestre accese (la cena del mondo d'origine), con il cerchio di Hannah (fiore) e la scritta a mano «Jonas?».",
           "sottotitoli": [
-            "Così svanisce chi è nato dal nodo, Jonas e Martha compresi.",
+            "Così svaniscono tutti quelli del nodo: Jonas, Martha, Adam ed Eva.",
             "Resta solo il mondo d'origine, dove la vita va avanti.",
-            "Lì Hannah aspetta un bambino, e le piace il nome Jonas:",
-            "per molti è un nuovo inizio, stavolta senza nodi."
+            "Lì Hannah, madre di Jonas negli altri mondi, è incinta e ama il nome Jonas:",
+            "per molti, un nuovo inizio senza nodi."
           ]
         }
       ]
@@ -145,9 +145,11 @@
   ],
   "musica": "Riusa le colonne sonore delle tre stagioni (66 bpm, posate sulla stessa griglia). Parti nuove a 66 bpm con gli stessi strumenti: il motivo del cerchio in Do minore nell'aggancio; nel finale spiegato archi che si allargano capitolo dopo capitolo, la tenaglia a passo doppio quando Adam ed Eva tirano il nodo, silenzio e un solo accordo maggiore quando il nodo si scioglie; nella chiusura il motivo del cerchio in maggiore, che non si chiude.",
   "fonti": [
-    "Tannhaus perde figlio, nuora e nipotina e prova a tornare indietro nel tempo; la sua macchina distrugge il mondo d'origine e crea i mondi di Adam e di Eva; Adam è Jonas anziano, Eva è Martha anziana, Eva protegge il nodo tra i due mondi; lo Sconosciuto è figlio di Jonas e di Martha del mondo di Eva; Tronte è figlio dello Sconosciuto e padre di Ulrich; Ulrich è padre di Martha e di Mikkel; Mikkel va nel 1986, è adottato da Ines Kahnwald, diventa Michael e padre di Jonas: https://en.wikipedia.org/wiki/List_of_Dark_characters",
+    "Tannhaus perde figlio, nuora e nipotina e prova a tornare indietro nel tempo; la sua macchina divide il mondo d'origine nei mondi di Adam e di Eva; Adam è Jonas anziano, Eva è Martha anziana, Eva protegge il nodo tra i due mondi; lo Sconosciuto è figlio di Jonas e di Martha del mondo di Eva; Tronte è figlio dello Sconosciuto e padre di Ulrich; Ulrich è padre di Martha e di Mikkel; Mikkel va nel 1986, è adottato da Ines Kahnwald, diventa Michael e padre di Jonas: https://en.wikipedia.org/wiki/List_of_Dark_characters",
     "Il passaggio funziona a salti di 33 anni (1953, 1986, 2019, 2052); Mikkel è anche Michael Kahnwald: https://it.wikipedia.org/wiki/Dark_(serie_televisiva)",
     "Nel 1971 l'incidente della famiglia di Marek Tannhaus; Jonas e Martha raggiungono il mondo d'origine, salvano la famiglia e cancellano entrambi i mondi, poi svaniscono; Eva si riappacifica con Adam; cena nel 2019 del mondo d'origine con Regina, Hannah e gli altri, Hannah incinta e il nome Jonas: https://it.wikipedia.org/wiki/Episodi_di_Dark_(terza_stagione)",
+    "Claudia indirizza Adam a impedire l'origine nel terzo mondo; Adam porta il giovane Jonas a prendere Martha; Jonas e Martha salvano la famiglia di Tannhaus e cancellano i due mondi; restano solo quelli non nati dai viaggi nel tempo; Hannah incinta ama il nome Jonas; la trama si basa sul paradosso del bootstrap (causa ed effetto in cerchio); Claudia dice ad Adam che lui ed Eva sono presi nello stesso nodo: https://en.wikipedia.org/wiki/Dark_(TV_series)",
+    "Jonas e Martha convincono Marek Tannhaus a non passare sul ponte (incidente del 1971); Claudia indaga sull'esistenza di un terzo mondo; Jonas prova a salvare Martha: https://it.wikipedia.org/wiki/Episodi_di_Dark_(terza_stagione)",
     "Adam vuole distruggere il nodo e i due mondi; il finale cancella entrambi i mondi: https://en.wikipedia.org/wiki/Dark_(TV_series)",
     "Il resto della trama delle stagioni 1–3 è quello già verificato e approvato nei tre episodi (films/dark-stagione-1.json, films/dark-stagione-2.json, films/dark-stagione-3.json): https://it.wikipedia.org/wiki/Episodi_di_Dark_(terza_stagione)"
   ]
