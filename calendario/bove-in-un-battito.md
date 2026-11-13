@@ -7,7 +7,7 @@ Brief per la sessione `/produzione`, preparato dal manager il 13 novembre 2026 p
 - Documentario «In un battito» di Giovanni Troilo, 01 Distribution, evento al cinema **16, 17 e 18 novembre 2026**
   (presentato alla Festa del Cinema di Roma il 18 ottobre). Una fonte (Metropolitan Magazine) dice 17–19: riconfermare
   sul sito di 01 Distribution prima del render.
-- **Proposta: domenica 15 novembre, 17:30**, in contemporanea su «In 2 minuti» e su Mr.goal (il giorno prima della prima
+- **Confermata dall'utente (13 novembre): domenica 15 novembre, 17:30**, in contemporanea su «In 2 minuti» e su Mr.goal (il giorno prima della prima
   sera in sala: tre giorni di tempo per decidere di andarci). Hunger Games, che era in calendario domenica, slitta a
   lunedì 16 o martedì 17 (è già pronto, e il film nuovo esce il 19). Alternativa: lunedì 16 alle 17:30.
 - Produzione: sabato 14 dalla mattina (la produzione precedente è finita venerdì 13 alle 22:32), video su MEGA entro
@@ -79,7 +79,10 @@ Brief per la sessione `/produzione`, preparato dal manager il 13 novembre 2026 p
   9 maggio 2021, Conference League 2021/22, prestito alla Fiorentina ad agosto 2024, gol nel 5-1 alla Roma del 27 ottobre
   2024, «in poco più di dieci minuti a Careggi», «il giorno dopo sveglio e vigile», task force di giugno 2026.
 
+## Mr.goal
+- Pagina TikTok «MR.GoaL», account **@mr.goal00** (26.597 follower, 1,2 milioni di like al 13 novembre 2026): nel
+  finale e nelle didascalie si scrive «@mr.goal00»; nel bollino si usa il loro logo.
+
 ## Da chiedere all'utente / a Mr.goal
-- Nome esatto della pagina e account (TikTok e Instagram) di Mr.goal (il logo c'è).
-- Ora di uscita concordata (proposta: domenica 15 alle 17:30).
+- Account Instagram di Mr.goal (per il post Collab): da chiedere all'utente in produzione.
 - Se c'è un accordo pagato con il distributore, la didascalia porta l'indicazione di contenuto sponsorizzato.
