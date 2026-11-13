@@ -12,6 +12,10 @@ Serie **talent spiegati**: programmi TV in corso con persone reali (X Factor 202
 con `"tipo": "talent"`. Regole proprie (nessuna persona disegnata, niente canzoni cantate né imitazioni, niente logo,
 fatti della gara verificati su fonti, vocabolario visivo fisso): vedi `TALENT.md`.
 
+Video **lunghi orizzontali** per YouTube (1920×1080, più episodi montati in un solo racconto, es. Dark tutta la serie):
+JSON in `lunghi/`, composizione separata in `src/lunghi/`, regole proprie (struttura, miniatura, zone sicure 16:9,
+griglia musicale tra un episodio e l'altro, capitoli YouTube): vedi `VIDEO-LUNGO.md`.
+
 Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni domenica alle 15:00
 la settimana che inizia il giorno dopo, con i dati di Metricool, e avvio della produzione; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.
 Comandi per aprire una sessione: `/manager` (team social media manager) e `/produzione` (un video per sessione).

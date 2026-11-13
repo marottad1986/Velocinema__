@@ -29,8 +29,8 @@ type P = readonly [number, number];
 
 // ---------------------------------------------------------------- tempi dal JSON
 
-const STARTS: Record<string, number> = {};
-const CUES: Record<string, number[]> = {};
+export const STARTS: Record<string, number> = {};
+export const CUES: Record<string, number[]> = {};
 {
   let acc = film.copertina.durata;
   for (const c of film.capitoli) {
@@ -40,8 +40,8 @@ const CUES: Record<string, number[]> = {};
   }
 }
 /** Istante assoluto della frase `cue` del capitolo `ch`, più `d` secondi. */
-const at = (ch: string, cue: number, d = 0) => STARTS[ch] + CUES[ch][cue] + d;
-const end = (ch: string) => STARTS[ch] + film.capitoli.find((c) => c.id === ch)!.durata;
+export const at = (ch: string, cue: number, d = 0) => STARTS[ch] + CUES[ch][cue] + d;
+export const end = (ch: string) => STARTS[ch] + film.capitoli.find((c) => c.id === ch)!.durata;
 const pop = (T: number, t0: number) => eob(seg(T, t0, t0 + 0.45), 1.7);
 
 // ---------------------------------------------------------------- camera
@@ -180,9 +180,9 @@ const Cross: React.FC<{ T: number; t0: number; x: number; y: number }> = ({ T, t
 // ---------------------------------------------------------------- lo schema al tempo T
 
 const r = rng(2053);
-const MOTES = Array.from({ length: 22 }, () => ({ x: r() * 1080, y: r() * 1920, s: 1.5 + r() * 2.5, v: 5 + r() * 12, ph: r() * 6 }));
+export const MOTES = Array.from({ length: 22 }, () => ({ x: r() * 1080, y: r() * 1920, s: 1.5 + r() * 2.5, v: 5 + r() * 12, ph: r() * 6 }));
 
-const Schema: React.FC<{ T: number }> = ({ T }) => {
+export const Schema: React.FC<{ T: number }> = ({ T }) => {
   const yearAt: Record<string, number> = { 2053: at('futuro', 0), 2020: at('futuro', 0, 0.3), 1921: at('setta', 0) };
   const passage = eo(seg(T, at('setta', 1, 0.2), at('setta', 1, 1.2)));
   const focus = (t0: number, t1: number) => seg(T, t0, t0 + 0.3) * (1 - seg(T, t1, t1 + 0.4));

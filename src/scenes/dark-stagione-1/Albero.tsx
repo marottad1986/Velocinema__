@@ -28,8 +28,8 @@ type P = readonly [number, number];
 
 // ---------------------------------------------------------------- tempi dal JSON
 
-const STARTS: Record<string, number> = {};
-const CUES: Record<string, number[]> = {};
+export const STARTS: Record<string, number> = {};
+export const CUES: Record<string, number[]> = {};
 {
   let acc = film.copertina.durata;
   for (const c of film.capitoli) {
@@ -39,9 +39,9 @@ const CUES: Record<string, number[]> = {};
   }
 }
 /** Istante assoluto della frase `cue` del capitolo `ch`, più `d` secondi. */
-const at = (ch: string, cue: number, d = 0) => STARTS[ch] + CUES[ch][cue] + d;
+export const at = (ch: string, cue: number, d = 0) => STARTS[ch] + CUES[ch][cue] + d;
 /** Fine del capitolo (s assoluti): le scritte che servono a un solo capitolo si spengono qui. */
-const end = (ch: string) => STARTS[ch] + film.capitoli.find((c) => c.id === ch)!.durata;
+export const end = (ch: string) => STARTS[ch] + film.capitoli.find((c) => c.id === ch)!.durata;
 const pop = (T: number, t0: number) => eob(seg(T, t0, t0 + 0.45), 1.7);
 
 // ---------------------------------------------------------------- camera
@@ -194,9 +194,9 @@ const ChairIcon: React.FC<{ T: number; on: number }> = ({ T, on }) => (
 // ---------------------------------------------------------------- l'albero al tempo T
 
 const r = rng(1986);
-const MOTES = Array.from({ length: 22 }, () => ({ x: r() * 1080, y: r() * 1920, s: 1.5 + r() * 2.5, v: 5 + r() * 12, ph: r() * 6 }));
+export const MOTES = Array.from({ length: 22 }, () => ({ x: r() * 1080, y: r() * 1920, s: 1.5 + r() * 2.5, v: 5 + r() * 12, ph: r() * 6 }));
 
-const Tree: React.FC<{ T: number }> = ({ T }) => {
+export const Tree: React.FC<{ T: number }> = ({ T }) => {
   const passage = eo(seg(T, at('trentatre', 0, 0.2), at('trentatre', 1, 0.6)));
   const loop = eio(seg(T, at('michael', 4, 0.4), at('michael', 4, 2.0)));
   const ring = eio(seg(T, at('inizio', 2), at('inizio', 2, 1.4)));
