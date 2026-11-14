@@ -133,6 +133,8 @@ puntate, disegnabile; massimo 18):
 | Oppenheimer | Film | 10 | Nolan (Interstellar è andato forte); Los Alamos e il test nel deserto molto disegnabili. |
 | Le pagine della nostra vita | Film | 9 | Colpo di scena su chi racconta; i film romantici finora rendono poco (La La Land). |
 | Dunkirk | Spiegato semplice | 9 | Si spiegherebbe la regola dei tre tempi (una settimana, un giorno, un'ora); poco mistero. |
+**Quadro confermato per la settimana 23–29 novembre: L'urlo di Munch** (chiesto nei commenti di Notte stellata; deciso
+dall'utente il 14 novembre, insieme a L'Ultima Cena per sabato 21). Va nel weekend alle 10:00.
 Evento della settimana da non perdere: **Edoardo Bove – «In un battito»** (documentario in sala 16–18 novembre),
 speciale in collaborazione con Mr.goal, brief in `calendario/bove-in-un-battito.md` (uscita confermata domenica 15 alle 17:30,
 prodotto sabato 14; domenica Hunger Games passa alle 10:00, La Gioconda slitta a un altro weekend).
