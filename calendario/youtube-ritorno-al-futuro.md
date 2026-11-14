@@ -54,8 +54,8 @@ Punteggio (`SOCIAL.md`): mistero 2 · fama 3 · discussione 3 · momento 2 · pu
   3. `films/ritorno-al-futuro-parte-3.json`;
   4. `lunghi/ritorno-al-futuro-trilogia.json` (aggancio, raccordi, «I paradossi spiegati», chiusura).
   Breaking Bad 2 slitta alla settimana 23–29 per fare spazio.
-- **Uscita del lungo: appena pronto, prevista venerdì 20 novembre alle 18:00** (14 novembre: produzione anticipata, ma dopo
-  tutti gli Short della settimana; ordine in `calendario/2026-11-16.md`).
+- **Uscita del lungo: mercoledì 18 novembre, 18:00** (decisa dall'utente il 14 novembre; produzione anticipata a sabato 14,
+  ordine in `calendario/2026-11-16.md`).
 - **Gli Short dopo il lungo:** i tre episodi verticali escono nella settimana 23–29 novembre (li programma il manager),
   ognuno con il rimando al video lungo su YouTube; mai prima del lungo.
 - Fatti verificati in produzione: voci Wikipedia italiane dei tre film (sezione «Trama»), poi quelle inglesi; campo `fonti` nei JSON.
