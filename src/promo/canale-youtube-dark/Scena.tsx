@@ -104,15 +104,15 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T, tempi, cue }) => {
   const h = (n: number) => cue('chiusura', n);
   const esce = eio(seg(t, c(0) - 0.15, c(0) + 0.9)); // la scritta della miniatura esce
   const eTag = g(c(1) + 0.2);
-  const eS1 = g(c(2) + 0.1);
-  const eS2 = eS1 + 3 * CROMA;
-  const eS3 = eS2 + 3 * CROMA;
-  const eFin = g(c(3) + 0.3);
+  const eS1 = g(c(2) + 0.35); // «grotta»
+  const eS2 = g(c(2) + 3.1); // «famiglia annodata»
+  const eS3 = g(c(2) + 4.55); // «due mondi»
+  const eFin = g(c(3) + 1.1); // «capitolo nuovo sul finale»
   const eScr = g(tempi.inizio.chiusura + 0.1);
   const eLike = g(h(0) + 1.0);
   const eIscr = g(h(0) + 2.4); // «iscriviti al canale»: il pulsante si preme
-  const eBell = g(h(1) + 0.2);
-  const eComm = g(h(2) + 0.1);
+  const eBell = g(h(1) + 0.6); // «non perdi»
+  const eComm = g(h(2) + 0.2);
 
   // ---- camera: punto del mondo (cy) portato all'altezza F dello schermo, con zoom z
   type Key = [number, number, number, number]; // [t, cy, F, z]
@@ -128,15 +128,16 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T, tempi, cue }) => {
     [eFin - 0.4, 2380, 760, 1],
     [eFin + 1.0, 2560, 760, 1],
     [eScr - 0.4, 2600, 760, 1],
-    [eScr + 1.6, 3330, 780, 1],
-    [fine, 3345, 780, 1.01],
+    [eScr + 1.6, 3330, 860, 1],
+    [fine, 3345, 860, 1],
   ];
   let ki = 0;
   while (ki < keys.length - 2 && t > keys[ki + 1][0]) ki++;
   const [ta, ya, fa, za] = keys[ki], [tb, yb, fb, zb] = keys[ki + 1];
   const p = eio(seg(t, ta, tb));
   const cy = lerp(ya, yb, p), F = lerp(fa, fb, p), z = lerp(za, zb, p);
-  const sway = Math.sin(t * 0.35) * 5;
+  // oscillazione lenta; si ferma nella chiusura, così pulsanti e scritte restano dentro x 120–960
+  const sway = Math.sin(t * 0.35) * 5 * (1 - seg(t, eScr, eScr + 1.6));
   const cam = (f: number) => `translate(${540 + sway * f} ${F}) scale(${1 + (z - 1) * f}) translate(-540 ${-(960 + (cy - 960) * f)})`;
   const giu = seg(cy, 1250, 1700); // quanto la camera è scesa sotto il bosco
 
@@ -163,7 +164,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T, tempi, cue }) => {
   const bell = t >= eBell ? Math.sin((t - eBell) * 18) * 22 * Math.exp(-(t - eBell) * 2.2) : 0;
   const onde = t >= eBell ? seg(t, eBell, eBell + 1.2) : 0;
   const comm = eo(seg(t, eComm, eComm + 0.4));
-  const cerca = seg(t, h(0) + 0.2, h(0) + 1.4); // «In 2 Minuti» che si scrive nella barra di ricerca
+  const cerca = seg(t, eScr + 1.6, eScr + 2.6); // «In 2 Minuti» si scrive nella barra quando la camera è ferma
   const testoCerca = 'In 2 Minuti'.slice(0, Math.round(cerca * 11));
 
   return (
@@ -340,7 +341,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T, tempi, cue }) => {
                   <g transform={`translate(${SCR.x + 680} ${SCR.y + 196})`}>
                     <circle r="120" fill="url(#pc-brass)" stroke={K} strokeWidth="6" />
                     <circle r="106" fill="url(#pc-face)" stroke={K} strokeWidth="4" />
-                    <path d="M0 0 V-80" stroke={CHALK} strokeWidth="4" strokeLinecap="round" transform={`rotate(${back})`} />
+                    {Array.from({ length: 12 }, (_, i) => <path key={i} d="M0 -98 V-86" stroke={CHALK} strokeWidth={i % 3 ? 3 : 6} opacity=".7" transform={`rotate(${i * 30})`} />)}
                     <g transform="translate(0 -70)"><Raincoat id="pc-mini" t={t} scale={0.3} wind={0.5} wet={false} /></g>
                     <ellipse rx="96" ry="30" fill="none" stroke={RED} strokeWidth="6" transform="rotate(-14)" />
                   </g>
@@ -373,7 +374,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T, tempi, cue }) => {
           {like > 0 && (
             <g transform={`translate(260 ${BTN + 48}) scale(${like})`}>
               <rect x="-140" y="-48" width="280" height="96" rx="48" fill="#1E2824" stroke={CHALK} strokeWidth="5" />
-              <path transform="translate(-102 -20) scale(1.0)" d="M6 18 H13 V36 H6 Z M15 18 L22 4 Q27 4 26 11 L25 16 H34 Q37 17 36 21 L33 33 Q32 36 28 36 H15 Z" fill={CHALK} />
+              <path transform="translate(-84 2)" d="M0 14 C-22 -2 -24 -22 -12 -26 C-4 -29 0 -22 0 -18 C0 -22 4 -29 12 -26 C24 -22 22 -2 0 14 Z" fill={RED} stroke={K} strokeWidth="3" />
               <text x="-46" y="13" fontFamily={SANS} fontWeight={800} fontSize="36" fill={CHALK}>Metti like</text>
             </g>
           )}
@@ -386,12 +387,12 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T, tempi, cue }) => {
               {onde > 0 && [0, 1].map((k) => (
                 <path key={k} d={`M${-206 - k * 12} -20 Q${-214 - k * 12} -2 ${-206 - k * 12} 16 M${-152 + k * 10} -20 Q${-144 + k * 10} -2 ${-152 + k * 10} 16`} fill="none" stroke={CHALK} strokeWidth="4" strokeLinecap="round" opacity={(1 - onde) * 0.9} />
               ))}
-              <text x="-112" y="13" fontFamily={SANS} fontWeight={900} fontSize="38" fill={CHALK}>{premuto ? 'Iscritto ✓' : 'Iscriviti al canale'}</text>
+              <text x="-96" y="13" fontFamily={SANS} fontWeight={900} fontSize="36" fill={CHALK}>{premuto ? 'Iscritto ✓' : 'Iscriviti al canale'}</text>
             </g>
           )}
           {/* barra di ricerca: «In 2 Minuti» si scrive mentre la voce lo dice */}
-          {t >= h(0) && (
-            <g transform={`translate(120 ${BTN + 130})`} opacity={seg(t, h(0), h(0) + 0.3)}>
+          {t >= eScr + 1.2 && (
+            <g transform={`translate(120 ${BTN + 130})`} opacity={seg(t, eScr + 1.2, eScr + 1.5)}>
               <rect width="780" height="84" rx="42" fill={CHALK} />
               <circle cx="46" cy="40" r="16" fill="none" stroke="#0B0F0E" strokeWidth="6" />
               <path d="M58 52 L72 66" stroke="#0B0F0E" strokeWidth="7" strokeLinecap="round" />
@@ -400,17 +401,23 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T, tempi, cue }) => {
             </g>
           )}
           {comm > 0 && (
-            <text x="120" y={BTN + 290} fontFamily={SANS} fontWeight={800} fontSize="44" fill={YELLOW} opacity={comm} transform={`translate(0 ${(1 - comm) * 14})`}>
+            <text x="140" y={BTN + 290} fontFamily={SANS} fontWeight={800} fontSize="44" fill={YELLOW} opacity={comm} transform={`translate(0 ${(1 - comm) * 14})`}>
               Commenta con la serie che vorresti.
             </text>
           )}
         </g>
 
-        {/* primo piano: abeti scuri agli angoli e nebbia bassa, escono quando la camera scende */}
-        <g transform={`translate(0 ${giu * 500})`} opacity={1 - giu}>
+        {/* primo piano: abeti scuri agli angoli e nebbia bassa; quando la camera scende si abbassano ma restano come bordo
+            del fotogramma (una fila bassa di abeti e la nebbia sotto i sottotitoli), così la metà bassa non resta vuota */}
+        <g transform={`translate(0 ${giu * 150})`}>
           <Fog id="pc-f2" t={t} y={1700} x={540} rx={900} ry={140} color="#4E645A" opacity={0.35} speed={0.2} ph={1} />
           <Pines t={t} y={1960} n={3} h={520} seed={57} color="#070B09" sway={3} x0={-200} x1={230} />
           <Pines t={t} y={1980} n={3} h={540} seed={61} color="#070B09" sway={3} x0={880} x1={1300} />
+        </g>
+        <g opacity={giu} transform={`translate(0 ${(1 - giu) * 200})`}>
+          <Fog id="pc-f3" t={t} y={1640} x={540} rx={1000} ry={160} color="#4E645A" opacity={0.28} speed={0.18} ph={2} />
+          <Pines t={t} y={1990} n={11} h={300} seed={83} color="#080C0A" sway={2} x0={-120} x1={1200} />
+          <Glow id="pc-fg" x={540} y={1880} r={420} t={t} color="#FFD27A" amp={0.1} rate={2.4} opacity={0.12} />
         </g>
         <Rain t={t} level="far" seed={7} x={-200} w={W + 400} h={2400} opacity={0.24 - 0.12 * giu} />
         <Rain t={t} level="near" seed={9} x={-200} w={W + 400} h={2400} opacity={0.32 - 0.18 * giu} />

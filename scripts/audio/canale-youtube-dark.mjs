@@ -4,7 +4,7 @@
 // Re, Sol). 66 bpm su una griglia continua da 0: gli eventi cadono sulla croma, come i g() della scena
 // (src/promo/canale-youtube-dark/Scena.tsx), che usa le stesse formule.
 // Copertina: pioggia, orologio e motivo del cerchio, campanelle che scendono con le lancette all'indietro.
-// Canale: il filo che scende (archi), una campanella per tappa, il vetro dei due mondi, il colpo del finale con un
+// Canale: il filo che scende (archi), una campanella per tappa, i due mondi (grancassa piano e motivo allo specchio), il colpo del finale con un
 // battito di silenzio. Chiusura: il motivo in maggiore; il clic del pulsante e la campanella che suona.
 // T: inizio di ogni parte (s) e T.frase(id, n) = inizio della frase n della parte.
 import { put, rng, FX } from './synth.mjs';
@@ -80,15 +80,15 @@ export default (mix, T) => {
   const c = (n) => T.frase('canale', n);
   const h = (n) => T.frase('chiusura', n);
   const eTag = croma(c(1) + 0.2);
-  const eS1 = croma(c(2) + 0.1);
-  const eS2 = eS1 + 3 * BEAT_;
-  const eS3 = eS2 + 3 * BEAT_;
-  const eFin = croma(c(3) + 0.3);
+  const eS1 = croma(c(2) + 0.35); // «grotta»
+  const eS2 = croma(c(2) + 3.1); // «famiglia annodata»
+  const eS3 = croma(c(2) + 4.55); // «due mondi»
+  const eFin = croma(c(3) + 1.1); // «capitolo nuovo sul finale»
   const eScr = croma(T.chiusura + 0.1);
   const eLike = croma(h(0) + 1.0);
   const eIscr = croma(h(0) + 2.4);
-  const eBell = croma(h(1) + 0.2);
-  const eComm = croma(h(2) + 0.1);
+  const eBell = croma(h(1) + 0.6); // «non perdi»
+  const eComm = croma(h(2) + 0.2);
 
   // ================================================================ copertina (0–4 s): la domanda, sotto la pioggia
   clip(mix, 'pioggia_dura', { t: 0, da: 1.5, durata: 13, gain: 0.4, fadeIn: 0.02, fadeOut: 3, largo: 2, rev: 0.12 });
@@ -97,12 +97,12 @@ export default (mix, T) => {
   // lancette che corrono all'indietro: campanelle che scendono veloci
   [84, 82, 79, 77, 75, 72, 70, 67].forEach((m, k) => bell(mix, m, { t: croma(0.6) + k * BEAT_ / 2, vel: 30 - k * 1.5, pan: 0.4 - k * 0.1 }));
 
-  // ================================================================ canale (4–23 s): il filo che scende, le tappe
-  const A2 = battito(eFin);
+  // ================================================================ canale (4–21,5 s): il filo che scende, le tappe
+  const A2 = Math.floor(eFin / BEAT) * BEAT; // la sezione finisce prima del colpo: il colpo esce dal silenzio
   sec(A1, A2, { drone: 40, str: 32, mel: 36, ticks: 24 });
   // il cartellino del canale: una frusciata e tre campanelle che salgono
   clip(mix, 'passaggio', { t: eTag - 0.3, da: 12.27, durata: 1.6, gain: 0.22, fadeOut: 0.6, rev: 0.4 });
-  [67, 72, 79].forEach((m, k) => bell(mix, m, { t: eTag + k * BEAT_, vel: 36, pan: -0.2 + k * 0.2 }));
+  [67, 72, 79].forEach((m, k) => bell(mix, m, { t: eTag + k * BEAT_, vel: 30, pan: -0.2 + k * 0.2 }));
   // una campanella per tappa; la grotta con il suo passaggio, i due mondi con il vetro e il motivo allo specchio
   clip(mix, 'passaggio', { t: eS1 - 0.3, da: 12.27, durata: 1.4, gain: 0.16, fadeOut: 0.6, rev: 0.4 });
   bell(mix, 67, { t: eS1, vel: 40, pan: -0.35 });
@@ -111,22 +111,25 @@ export default (mix, T) => {
   colpo(mix, 'grancassa', 'bdrum_pp', { t: eS3, vel: 100, gain: 0.6, rev: 0.5 });
   MOTIF_SPECCHIO.forEach(([, m], k) => bell(mix, m + 12, { t: eS3 + 2 * BEAT_ + k * BEAT_ / 2, vel: 26, pan: 0.3 }));
   // il finale spiegato: colpo forte e un battito di silenzio, poi il motivo in maggiore
-  colpo(mix, 'grancassa', 'bdrum_p', { t: eFin, vel: 127, gain: 1.5, rev: 0.6 });
+  colpo(mix, 'grancassa', 'bdrum_f', { t: eFin, vel: 127, gain: 1.2, rev: 0.6 });
   clip(mix, 'rombo', { t: eFin, da: 31, durata: 2.4, gain: 0.26, fadeIn: 0.05, fadeOut: 1.2, largo: 3 });
   const A3 = battito(eFin + 2 * BEAT);
   [36, 48, 55, 60, 64, 67].forEach((m, j) => strings(mix, m, { t: A3, dur: battito(T.chiusura) - A3 + 0.4, vel: 38, gain: 0.55, pan: (j - 2.5) * 0.2, att: 0.6, seed: 80 + j }));
-  MOTIF_MAGG.slice(0, 3).forEach(([b, m]) => motif(mix, m, { t: A3 + b * BEAT, dur: 2 * BEAT, vel: 34 }));
 
-  // ================================================================ chiusura (23–32 s): lettore, pulsanti, campanella
+  // ================================================================ chiusura (21,5–30 s): lettore, pulsanti, campanella
+  // il motivo in maggiore entra con lo schermo che si accende; la sezione si ferma dove entra l'accordo finale di Do
   const A4 = battito(T.chiusura);
-  sec(A4, T.END - 1.2, { drone: 34, str: 28, mel: 32, magg: true });
+  const AF = Math.floor(eComm / BEAT) * BEAT;
+  sec(A4, AF, { drone: 34, str: 28, mel: 32, magg: true });
+  // la barra di ricerca che scrive «In 2 Minuti» (scena: da eScr + 1,6 a eScr + 2,6): tasti leggerissimi
+  [0, 1, 2, 3].forEach((k) => clip(mix, 'scatti', { t: eScr + 1.6 + k * BEAT_ / 2, da: 6.49, durata: 0.08, gain: 0.05, rev: 0.1 }));
   [60, 67, 72].forEach((m, k) => bell(mix, m + 12, { t: eScr + k * BEAT_, vel: 30, pan: 0.2 })); // lo schermo si accende
   bell(mix, 76, { t: eLike, vel: 32, pan: -0.3 }); // metti like
-  clip(mix, 'scatti', { t: eIscr, da: 6.49, durata: 0.1, gain: 0.5, rev: 0.15 }); // il clic su «iscriviti»
+  clip(mix, 'scatti', { t: eIscr, da: 6.49, durata: 0.1, gain: 0.2, rev: 0.15 }); // il clic su «iscriviti»
   bell(mix, 84, { t: eIscr + BEAT_ / 2, vel: 36, pan: 0.3 });
   // la campanella che suona: un trillo breve
-  [84, 88, 84, 88, 84].forEach((m, k) => bell(mix, m, { t: eBell + k * 0.09, vel: 34 - k * 3, pan: 0.25 }));
+  [84, 88, 84, 88, 84].forEach((m, k) => bell(mix, m, { t: eBell + k * BEAT_ / 5, vel: 34 - k * 3, pan: 0.25 }));
   bell(mix, 79, { t: eComm, vel: 30, pan: -0.2 }); // commenta
   // ultimo accordo tenuto fino alla fine, il motivo che non si chiude
-  [48, 55, 60, 64].forEach((m, j) => strings(mix, m, { t: battito(eComm), dur: T.END - battito(eComm), vel: 32, gain: 0.5, pan: (j - 1.5) * 0.25, att: 1.0, seed: 90 + j }));
+  [48, 55, 60, 64].forEach((m, j) => strings(mix, m, { t: AF, dur: T.END - AF, vel: 32, gain: 0.5, pan: (j - 1.5) * 0.25, att: 1.0, seed: 90 + j }));
 };

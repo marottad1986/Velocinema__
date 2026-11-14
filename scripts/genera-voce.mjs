@@ -74,6 +74,7 @@ const lungo = lunghi().includes(slug);
 // Short promozionali (promo/<slug>.json): una clip per parte, 00_copertina, 01_<id>…
 const corto = promo().includes(slug);
 const film = lungo ? loadLungo(slug) : corto ? loadPromo(slug) : loadFilm(slug);
+// "voce_impostazioni" nel JSON (facoltativo, es. { "speed": 0.95 }): sostituisce le impostazioni di voce.json solo per quel contenuto
 // "pronuncia" nel JSON del film (facoltativo): parole da leggere in un altro modo, es. { "883": "otto otto tre" };
 // cambia solo il testo mandato a ElevenLabs, i sottotitoli restano come sono
 const leggi = (testo) => Object.entries(film.pronuncia ?? {}).reduce((a, [da, a2]) => a.split(da).join(a2), testo);
@@ -117,7 +118,7 @@ if (!conf.voice_id) {
 for (const p of daFare) {
   const dest = `${dir}/${p.base}.mp3`;
   api('POST', `/v1/text-to-speech/${conf.voice_id}?output_format=${conf.formato}`, {
-    body: { text: p.testo, model_id: conf.modello, voice_settings: conf.impostazioni },
+    body: { text: p.testo, model_id: conf.modello, voice_settings: { ...conf.impostazioni, ...(film.voce_impostazioni ?? {}) } },
     out: `${TMP}/${p.base}.mp3`,
   });
   const vecchia = esistente(p.base);
