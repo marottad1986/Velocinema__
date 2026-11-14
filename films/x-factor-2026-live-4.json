@@ -1,0 +1,184 @@
+{
+  "titolo": "X Factor 2026",
+  "tipo": "talent",
+  "schema": true,
+  "programma": "X Factor",
+  "edizione": 2026,
+  "puntata": "Live 4 · Hell Factor (12 novembre 2026)",
+  "aggiornato": "dopo il Live 4 del 12 novembre 2026",
+  "regista": "Sky Uno",
+  "anno": 2026,
+  "bpm": 120,
+  "palette": {
+    "chiaro": "#F3EEE6",
+    "principale": "#4B2E83",
+    "scuro": "#0B0912",
+    "accento": "#FFC53D"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Tre fuori in una sola sera, prima del Live 5 del 19 novembre.",
+    "immagine": "Lo schema della serata su lavagna scura: al centro una giostra disegnata a linee chiare che gira, con i dischi in vinile dei concorrenti al posto dei cavalli, nell'etichetta il colore della squadra; davanti tre dischi grigi incrinati (i tre eliminati), braci rosse che salgono (l'Hell Factor). Titolo grande «X FACTOR 2026» nel nostro carattere (mai il logo del programma), sopra «TALENT SPIEGATI», sotto «Com'è andato il Live 4» e il bollino «PRIMA DEL LIVE 5». Niente persone, niente logo, niente microfoni.",
+    "voce": "Tre eliminati in una sera: chi è uscito al quarto Live?"
+  },
+  "capitoli": [
+    {
+      "id": "serata",
+      "titolo": "Che serata era?",
+      "durata": 12,
+      "scena": "In alto lo schema si apre sulla scritta «HELL FACTOR» con le braci e il cartellino «3 FUORI IN UNA SERA»; f2 il cartellino «OSPITE: CHARLOTTE CARDIN» con la stella; f3 al centro la giostra si accende e comincia a girare con i dieci dischi; f4 la scritta «TURNO 1 · LA GIOSTRA» e «un brano già cantato».",
+      "sottotitoli": [
+        "Il quarto Live, il 12 novembre, è l'Hell Factor:",
+        "tre concorrenti escono in una sera.",
+        "L'ospite è la canadese Charlotte Cardin,",
+        "e il primo turno è la Giostra:",
+        "tutti ricantano, di fila, un brano già portato."
+      ]
+    },
+    {
+      "id": "giostra-1",
+      "titolo": "Chi apre la Giostra?",
+      "durata": 15,
+      "scena": "La colonna LA GIOSTRA: a ogni frase entra un disco col colore della squadra, il nome e la canzone già cantata scritta a mano, con l'artista originale.",
+      "sottotitoli": [
+        "Apre Camilla, di Paola Iezzi, con Where Is My Husband;",
+        "poi gli Scraffs, di Gabbani, con Celebrity Skin;",
+        "Manu, di Paola, con Incoscienti giovani;",
+        "Patrizia Napolano, di Irama, con Bang Bang;",
+        "e Alìa, di Jake La Furia, con Maybe."
+      ]
+    },
+    {
+      "id": "giostra-2",
+      "titolo": "Chi chiude la Giostra?",
+      "durata": 15,
+      "scena": "Continua la colonna LA GIOSTRA: Le Distanze, Giacomo Calò, Alex Fontana, Teo Bok, Mad-Dog, un disco per frase.",
+      "sottotitoli": [
+        "Poi Le Distanze, di Irama, con Space Monkey;",
+        "Giacomo, di Gabbani, con Almeno tu nell'universo;",
+        "Alex, di Jake, con Last Nite;",
+        "Teo Bok, di Gabbani, con La mia storia tra le dita;",
+        "e i Mad-Dog, di Paola, con Club Foot."
+      ]
+    },
+    {
+      "id": "turno-2",
+      "titolo": "Chi canta nel turno 2?",
+      "durata": 14,
+      "scena": "La colonna TURNO 2 · CANZONI NUOVE: f1 la scritta «scelte dai giudici»; poi Teo Bok, Alìa, Mad-Dog (due titoli), Patrizia Napolano, un disco per frase.",
+      "sottotitoli": [
+        "Nel secondo turno i brani li scelgono i giudici.",
+        "Teo apre con Can't Stop the Feeling di Timberlake;",
+        "Alìa canta La rondine di Mango;",
+        "i Mad-Dog uniscono Elenore e Scende la pioggia;",
+        "e Patrizia canta And I'm Telling You I'm Not Going."
+      ]
+    },
+    {
+      "id": "turno-2b",
+      "titolo": "Chi chiude il turno 2?",
+      "durata": 15,
+      "scena": "Continua la colonna TURNO 2: Manu, Le Distanze, Camilla, Scraffs e Giacomo (nella stessa frase), Alex Fontana.",
+      "sottotitoli": [
+        "Poi Manu porta Va bene, va bene così di Vasco;",
+        "Le Distanze fanno Welcome to the Black Parade dei My Chemical Romance;",
+        "Camilla, Io che non vivo senza te di Donaggio;",
+        "gli Scraffs American Idiot, Giacomo All of Me,",
+        "e chiude Alex con Maggie M'Gill dei Doors."
+      ]
+    },
+    {
+      "id": "fuori-subito",
+      "titolo": "Chi esce subito?",
+      "durata": 10,
+      "scena": "La camera si allarga sulle due colonne: f1 un «+» tra le colonne e la scritta «SOMMA DEI VOTI»; sotto il riquadro I 4 MENO VOTATI: f2 i dischi di Manu e degli Scraffs scendono nel riquadro, si incrinano e diventano grigi, «FUORI SUBITO»; f3 i dischi di Alìa e Le Distanze nell'anello rosso, «BALLOTTAGGIO».",
+      "sottotitoli": [
+        "Poi si sommano i voti del pubblico dei due turni.",
+        "I due ultimi, Manu e gli Scraffs, escono subito.",
+        "Gli altri due meno votati, Alìa e Le Distanze, vanno al ballottaggio."
+      ]
+    },
+    {
+      "id": "ballottaggio",
+      "titolo": "Come votano i giudici?",
+      "durata": 12,
+      "scena": "Il riquadro BALLOTTAGGIO con l'anello rosso: f1 e f2 i due dischi grandi con la canzone della sfida; f3 i gettoni di Gabbani e Jake con le frecce verso Le Distanze; f4 quelli di Paola Iezzi e Irama verso Alìa, e al centro il cartellino «2 A 2».",
+      "sottotitoli": [
+        "Al ballottaggio Alìa canta That's So True di Gracie Abrams,",
+        "e Le Distanze Ritornerai di Bruno Lauzi.",
+        "Gabbani e Jake votano per far uscire Le Distanze;",
+        "Paola Iezzi e Irama, invece, contro Alìa: due a due."
+      ]
+    },
+    {
+      "id": "tilt",
+      "titolo": "Cos'è il Tilt?",
+      "durata": 8,
+      "scena": "Sotto il ballottaggio il cartellino «TILT · TELEVOTO LAMPO»: f1 un telefono a linee chiare con le onde del voto; f2 una freccia d'oro dal telefono al disco di Le Distanze, «SALVI»; f3 il disco di Alìa si incrina e diventa grigio, «FUORI».",
+      "sottotitoli": [
+        "Con il pareggio si va al Tilt, un televoto lampo:",
+        "il pubblico salva Le Distanze,",
+        "e così Alìa è la terza eliminata della serata."
+      ]
+    },
+    {
+      "id": "live-5",
+      "titolo": "Chi resta per il Live 5?",
+      "durata": 11,
+      "scena": "In basso il riquadro LIVE 5 · 19 NOVEMBRE: f1 i sette dischi rimasti raggruppati sotto il gettone del loro giudice, accanto i tre dischi grigi del Live 4; f2 il gettone di Jake con un solo disco si accende d'oro; f3 il bollino d'oro «FINALE · 3 DICEMBRE»; f4 la camera si allarga su tutto lo schema.",
+      "sottotitoli": [
+        "Restano in sette: due a testa per Gabbani, Paola e Irama,",
+        "e solo Alex Fontana per Jake.",
+        "Giovedì 19 novembre si riparte, a due settimane dalla finale:",
+        "Jake riuscirà a tenere il suo ultimo concorrente?"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "Sette in gara: il 19 novembre si riparte.",
+    "immagine": "La giostra della serata più piccola con i sette dischi rimasti; riquadro «Ti è servito?» con «Metti like» e «Segui la pagina» e sotto «Commenta con chi vorresti in finale.»; scritta «7 ANCORA IN GARA»."
+  },
+  "musica": "Originale e strumentale a 120 bpm, come tutta la stagione: groove da varietà del giovedì sera con batteria, basso, pianoforte, ottoni e archi campionati; la Giostra a passo svelto con un carillon che gira, un piccolo colpo a ogni disco che entra, due colpi gravi per le due uscite dirette, rullo e Si minore sul ballottaggio, sospeso sul Tilt e sciolto in maggiore quando il pubblico salva Le Distanze. Nessuna delle canzoni della serata, né citazioni delle loro melodie.",
+  "fonti": [
+    "Quarto Live del 12 novembre 2026, «Hell Factor (tripla eliminazione)»: primo turno «Giostra» con un brano già cantato nelle puntate precedenti (Camilla «Where Is My Husband!», Scraffs «Celebrity Skin», Manu «Incoscienti giovani», Patrizia «Bang Bang», Alìa «Maybe.», Le Distanze «Space Monkey», Giacomo «Almeno tu nell'universo», Alex «Last Nite», Teo «La mia storia tra le dita», Mad-Dog «Club Foot»); secondo turno con brani assegnati (Teo «Can't Stop the Feeling!», Alìa «La rondine», Mad-Dog «Elenore / Scende la pioggia», Patrizia «And I'm Telling You I'm Not Going», Manu «Va bene, va bene così», Le Distanze «Welcome to the Black Parade», Camilla «Io che non vivo (senza te)», Scraffs «American Idiot», Giacomo «All of Me», Alex «Maggie M'Gill»); voti dei due turni sommati, i due meno votati fuori subito (Manu e Scraffs), gli altri due al ballottaggio; ballottaggio Alìa «That's So True» – Le Distanze «Ritornerai»; Gabbani e Jake per l'uscita delle Distanze, Paola e Irama per l'uscita di Alìa; pareggio e Tilt che elimina Alìa; ospite Charlotte Cardin; in gara dopo il Live 4: Alex, Camilla, Giacomo, Le Distanze, Mad-Dog, Patrizia, Teo; quinta puntata il 19 novembre: https://it.wikipedia.org/wiki/X_Factor_(Italia)_(ventesima_edizione)",
+    "Voti del ballottaggio (Irama e Paola Iezzi contro Alìa, Jake La Furia e Gabbani contro Le Distanze), due a due e Tilt col televoto del pubblico che salva Le Distanze: https://www.torresette.news/rubriche/social-network/2026/11/13/x-factor-2026-le-distanze-salvati-al-tilt-fuori-alia-scraffs-e-manu",
+    "Giudici in parità al ballottaggio e Tilt; Scraffs, Manu e Alìa eliminati: https://www.ilmessaggero.it/schede/x_factor_eliminati_quarta_puntata_scraffs_manu_alia-9886403.html",
+    "Scraffs e Manu fuori subito come meno votati, Alìa contro Le Distanze al ballottaggio con «That's So True» e «Ritornerai», Alìa eliminata al primo Tilt della stagione: https://www.allmusicitalia.it/x-factor/x-factor-2026-in-diretta-quarto-live-show-ordine-di-uscita.html",
+    "Tre eliminati Manu, Alìa e Scraffs: https://www.fanpage.it/spettacolo/programmi-tv/x-factor-2026-i-tre-eliminati-sono-manu-alia-e-gli-scraffs-la-tripla-uscita-a-un-passo-dagli-inediti/",
+    "Charlotte Cardin ospite internazionale del 12 novembre: https://www.teamworld.it/spettacolo-tv/charlotte-cardin-ospite-x-factor-2026-12-novembre/",
+    "Live 5 il 19 novembre, finale il 3 dicembre: https://www.napolike.it/televisione/2026/09/x-factor-2026-quando-iniziano-i-live-344880"
+  ],
+  "pronuncia": {
+    "X Factor": "Ics Fàctor",
+    "Jake": "Gèik",
+    "Live": "Làiv",
+    "Scraffs": "Scràfs",
+    "Mad-Dog": "Med Dog",
+    "Teo Bok": "Tèo Bok",
+    "Hell Factor": "Hel Fàctor",
+    "Charlotte Cardin": "Sciarlòt Cardèn",
+    "Where Is My Husband": "Uèr is mai Àsband",
+    "Celebrity Skin": "Selèbriti Skin",
+    "Space Monkey": "Spéis Mànki",
+    "Last Nite": "Last Nàit",
+    "Club Foot": "Clab Fut",
+    "Can't Stop the Feeling": "Kent Stop de Fìling",
+    "Justin Timberlake": "Giàstin Tìmberleik",
+    "And I'm Telling You I'm Not Going": "End aim Tèlling iu aim not Gòing",
+    "Welcome to the Black Parade": "Uèlcam tu de Blek Parèid",
+    "My Chemical Romance": "Mai Kèmical Romèns",
+    "American Idiot": "Amèrican Ìdiot",
+    "Green Day": "Grin Déi",
+    "All of Me": "Ol of Mi",
+    "John Legend": "Gion Lègend",
+    "Maggie M'Gill": "Mèghi Maghìl",
+    "That's So True": "Dets so Tru",
+    "Gracie Abrams": "Grèisi Èibrams",
+    "Turtles": "Tèrtols",
+    "Doors": "Dors",
+    "Maybe": "Mèibi",
+    "Elenore": "Èlenor",
+    "escono subito": "escono sùbito"
+  }
+}

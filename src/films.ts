@@ -75,6 +75,9 @@ import { Copertina as TenetCover, Finale as TenetEnd } from './scenes/tenet/Loca
 import xFactor2026Live3 from '../films/x-factor-2026-live-3.json';
 import { X_FACTOR_2026_LIVE_3_SCENES } from './scenes/x-factor-2026-live-3';
 import { Copertina as XF26L3Cover, Finale as XF26L3End } from './scenes/x-factor-2026-live-3/Locandina';
+import xFactor2026Live4 from '../films/x-factor-2026-live-4.json';
+import { X_FACTOR_2026_LIVE_4_SCENES } from './scenes/x-factor-2026-live-4';
+import { Copertina as XF26L4Cover, Finale as XF26L4End } from './scenes/x-factor-2026-live-4/Locandina';
 import hungerGames from '../films/hunger-games.json';
 import { HUNGER_GAMES_SCENES } from './scenes/hunger-games';
 import { Copertina as HGCover, Finale as HGEnd } from './scenes/hunger-games/Locandina';
@@ -110,6 +113,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'breaking-bad-stagione-1', data: breakingBad1 as FilmData, scenes: BREAKING_BAD_1_SCENES, cover: BB1Cover, ending: BB1End, posterFont: STENCIL },
   { slug: 'il-sesto-senso', data: ilSestoSenso as FilmData, scenes: IL_SESTO_SENSO_SCENES, cover: SestoCover, ending: SestoEnd, posterFont: CRIMSON },
   { slug: 'x-factor-2026-live-3', data: xFactor2026Live3 as FilmData, scenes: X_FACTOR_2026_LIVE_3_SCENES, cover: XF26L3Cover, ending: XF26L3End, posterFont: ANTON },
+  { slug: 'x-factor-2026-live-4', data: xFactor2026Live4 as FilmData, scenes: X_FACTOR_2026_LIVE_4_SCENES, cover: XF26L4Cover, ending: XF26L4End, posterFont: ANTON },
   { slug: 'hunger-games', data: hungerGames as FilmData, scenes: HUNGER_GAMES_SCENES, cover: HGCover, ending: HGEnd, posterFont: ANTON },
   { slug: 'bove-in-un-battito', data: boveInUnBattito as FilmData, scenes: BOVE_SCENES, cover: BoveCover, ending: BoveEnd, posterFont: ANTON },
 ];
