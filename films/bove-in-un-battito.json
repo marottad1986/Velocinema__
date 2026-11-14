@@ -1,0 +1,151 @@
+{
+  "titolo": "Edoardo Bove",
+  "tipo": "storia",
+  "regista": "Giovanni Troilo",
+  "anno": 2026,
+  "bpm": 72,
+  "pronuncia": {
+    "Bove": "Bòve",
+    "Watford": "Uòtford",
+    "Wrexham": "Rèksam",
+    "Eriksen": "Èriksen",
+    "Careggi": "Carèggi",
+    "Troilo": "Tròilo"
+  },
+  "palette": {
+    "chiaro": "#F2EEE6",
+    "principale": "#4A3478",
+    "scuro": "#0A0B12",
+    "accento": "#F5C518"
+  },
+  "copertina": {
+    "durata": 4,
+    "collab": "Mr.goal",
+    "documentario": "In un battito",
+    "frase_lancio": "Un malore in campo a 22 anni: come ha fatto a tornare a giocare?",
+    "immagine": "Notte in uno stadio inventato da noi, vuoto e silenzioso: il prato illuminato dai riflettori, un pallone fermo sul dischetto del centrocampo; nel cielo sopra le torri dei fari una linea gialla di battito cardiaco che attraversa tutta l'inquadratura e pulsa; sul tabellone luminoso a sinistra l'orologio fermo su 17'. Etichetta «LA STORIA IN 2 MINUTI» con il bollino «In 2 minuti × Mr.goal» (logo fornito), titolo grande «EDOARDO BOVE», sotto «dal documentario In un battito · di Giovanni Troilo · 2026». Niente persone né sagome, niente stemmi, niente locandina ufficiale.",
+    "voce": "Un malore in campo a ventidue anni. Come ha fatto a tornare a giocare?"
+  },
+  "capitoli": [
+    {
+      "id": "roma",
+      "titolo": "Un ragazzo della Roma",
+      "durata": 8,
+      "scena": "Tramonto su un campo d'allenamento giovanile alla periferia di Roma: pini marittimi a ombrello, una cupola lontana nel cielo arancione; in primo piano una panchina con un paio di scarpini piccoli e una borsa giallorossa senza stemmi, coni e una porta piccola; f2 sullo sfondo si accendono i riflettori di un grande stadio e il tabellone scrive «SERIE A · 2021».",
+      "sottotitoli": [
+        "Edoardo Bove è romano, e a dieci anni entra nelle giovanili della Roma.",
+        "Nel 2021, a diciotto anni, esordisce in Serie A."
+      ]
+    },
+    {
+      "id": "firenze",
+      "titolo": "In prestito a Firenze",
+      "durata": 12,
+      "scena": "Sera su Firenze vista dalla tribuna di uno stadio: la cupola del Duomo e la torre di Palazzo Vecchio contro il cielo viola; in primo piano la balaustra con una sciarpa viola che sventola; f2 il tabellone si accende «5 – 1» e un pallone gonfia la rete in basso a destra, con coriandoli viola.",
+      "sottotitoli": [
+        "Ma nell'agosto 2024 la Roma lo manda in prestito alla Fiorentina,",
+        "e il 27 ottobre, proprio contro la Roma, segna il suo primo gol in viola, in un cinque a uno."
+      ]
+    },
+    {
+      "id": "minuto-17",
+      "titolo": "Il minuto 17",
+      "durata": 11,
+      "scena": "Notte nello stadio di Firenze (inventato, curva e torre dei fari): il prato vuoto illuminato, il pallone fermo a centrocampo; sul tabellone l'orologio corre fino a 17' e lì si ferma; f2 i riflettori calano di un tono, l'orologio fermo lampeggia piano. Nessuna persona, nessun soccorso disegnato, la musica tace.",
+      "sottotitoli": [
+        "Poi arriva il primo dicembre 2024: a Firenze si gioca Fiorentina-Inter.",
+        "Bove ha un malore in campo, e al diciassettesimo minuto la partita viene sospesa."
+      ]
+    },
+    {
+      "id": "careggi",
+      "titolo": "La notte in ospedale",
+      "durata": 10,
+      "scena": "Notte in città vista dall'alto e da lontano: una strada bagnata con un'ambulanza piccola che corre con le luci blu verso un grande ospedale inventato con le finestre accese (Careggi); f2 il cielo schiarisce verso l'alba e una finestra si accende di una luce calda.",
+      "sottotitoli": [
+        "Lo portano d'urgenza all'ospedale di Careggi, in terapia intensiva,",
+        "e la mattina dopo arriva la notizia che tutti aspettano: è sveglio e lucido."
+      ]
+    },
+    {
+      "id": "defibrillatore",
+      "titolo": "Un apparecchio per il cuore",
+      "durata": 10,
+      "scena": "Camera d'ospedale di giorno: finestra con i tetti di Firenze, monitor con la linea del battito regolare, sul comodino una scatolina aperta con un piccolo defibrillatore sottocutaneo (una placchetta metallica con il filo); f2 sul letto rifatto una borsa pronta e la porta che si apre su un corridoio luminoso.",
+      "sottotitoli": [
+        "Il 10 dicembre i medici gli mettono sotto la pelle un piccolo defibrillatore,",
+        "che fa ripartire il cuore se serve, e tre giorni dopo torna a casa."
+      ]
+    },
+    {
+      "id": "regola",
+      "titolo": "Perché non può giocare in Italia",
+      "durata": 14,
+      "scena": "Una scrivania di notte sotto una lampada: il modulo del certificato di idoneità agonistica con la casella vuota e un timbro rosso «NON IDONEO» che cala; f2 su una bacheca di sughero una mappa d'Europa con l'Italia e una freccia gialla tratteggiata che esce verso nord, con un ritaglio di giornale bianco e rosso (Danimarca) appuntato accanto.",
+      "sottotitoli": [
+        "In Italia, però, con il suo problema al cuore, i medici sportivi non possono dargli il via libera per le partite.",
+        "Così, come il danese Christian Eriksen, che nel 2021 ha avuto un malore in campo, può giocare solo all'estero."
+      ]
+    },
+    {
+      "id": "watford",
+      "titolo": "Di nuovo in campo, in Inghilterra",
+      "durata": 13,
+      "scena": "Uno stadio inglese al tramonto, sotto una pioggerella: tribune con file di seggiolini ribaltabili, sciarpe gialle, nere e rosse sulle balaustre, nessuno stemma; f1 su una lavagnetta del tabellone «WATFORD»; f2 l'orologio segna 86', tutti i seggiolini si ribaltano insieme come quando ci si alza in piedi e si accendono i flash.",
+      "sottotitoli": [
+        "Così, a gennaio 2026, lascia la Roma e firma con il Watford, una squadra inglese di seconda serie.",
+        "Il 14 febbraio entra in campo all'ottantaseiesimo, e il pubblico si alza in piedi ad applaudirlo."
+      ]
+    },
+    {
+      "id": "gol",
+      "titolo": "Il gol dopo 506 giorni",
+      "durata": 10,
+      "scena": "La porta di notte vista da dietro la rete: il pallone che gonfia la rete, il tabellone con «90+» e il contatore dei giorni che sale fino a «506»; coriandoli gialli e neri e lampi dei flash.",
+      "sottotitoli": [
+        "Poi, il 17 marzo, contro i gallesi del Wrexham, segna nei minuti di recupero:",
+        "è il suo primo gol dopo 506 giorni, e l'ultimo era stato proprio contro la Roma."
+      ]
+    },
+    {
+      "id": "documentario",
+      "titolo": "Il film della sua rinascita",
+      "durata": 15,
+      "scena": "Una sala cinematografica inventata: poltrone rosse vuote, il fascio del proiettore con il pulviscolo, sullo schermo una linea gialla di battito che corre e diventa la linea di un campo da calcio; f2 sulla parete laterale una scritta luminosa «IN UN BATTITO · 16 17 18 NOVEMBRE».",
+      "sottotitoli": [
+        "Il regista Giovanni Troilo ha seguito questo lungo ritorno in un documentario, In un battito,",
+        "e racconta anche quello che succede lontano dal campo.",
+        "Presentato alla Festa del Cinema di Roma, arriva nelle sale il 16, 17 e 18 novembre."
+      ]
+    },
+    {
+      "id": "battito",
+      "titolo": "Dal buio al campo",
+      "durata": 9,
+      "scena": "Alba su un campo da calcio vuoto: il pallone sul dischetto, il sole che sorge dietro la porta, la linea bianca di metà campo che si trasforma in una linea di battito gialla e pulsa una volta; rugiada che brilla sull'erba.",
+      "sottotitoli": [
+        "Dentro c'è più di un anno della sua vita:",
+        "dal buio di quella sera fino al ritorno in campo."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "E tu, lo vedrai al cinema?",
+    "immagine": "Lo stadio all'alba con la linea del battito sul campo; riquadro «Ti è piaciuto?» con «Metti like» e «Segui le due pagine» (@in.2.minuti × @mr.goal00 con il logo) e sotto «Commenta: lo vedrai al cinema?»."
+  },
+  "musica": "Originale e strumentale a 72 bpm, sobria: pianoforte, archi e corno campionati, un battito di timpano leggero come un cuore; al minuto 17 la musica tace; dal capitolo del Watford la musica si apre in maggiore fino all'alba del finale.",
+  "fonti": [
+    "Nato a Roma il 16 maggio 2002; nel vivaio della Roma dal 2012; esordio in Serie A il 9 maggio 2021 contro il Crotone; prestito alla Fiorentina il 30 agosto 2024; primo gol in viola il 27 ottobre 2024 nel 5-1 alla Roma; il 1 dicembre 2024 malore contro l'Inter, partita sospesa e rinviata, trasporto d'urgenza a Careggi in terapia intensiva; defibrillatore sottocutaneo; non idoneo a giocare in Italia; risoluzione con la Roma il 17 gennaio 2026 e firma col Watford il 21 gennaio 2026; rientro il 14 febbraio 2026 all'86' contro il Preston; primo gol il 17 marzo 2026 contro il Wrexham nei minuti di recupero, 506 giorni dopo l'ultimo: https://it.wikipedia.org/wiki/Edoardo_Bove",
+    "La mattina dopo il malore estubato e lucido; Watford in Championship: https://en.wikipedia.org/wiki/Edoardo_Bove",
+    "Partita sospesa al 17' per il malore di Bove: https://it.soccerway.com/news/calcio-serie-a-malore-per-bove-fiorentina-inter-viene-rinviata-dopo-17-minuti-il-giocatore-finisce-in-ospedale/G02mhPOF",
+    "Defibrillatore sottocutaneo impiantato il 10 dicembre 2024 a Careggi: https://www.corrieredellosport.it/news/notizia-ultima-ora/2024/12/10-136329799/bove_impiantato_defibrillatore_attesa_per_esito_esami",
+    "Dimesso il 13 dicembre 2024, dodici giorni dopo il malore: https://www.agi.it/sport/news/2024-12-13/bove-dimesso-ospedale-29153153/amp/",
+    "Regola italiana: a escludere dalle gare è la malattia che rende necessario il defibrillatore, non il dispositivo in sé: https://www.fiorentinanews.com/news/203033579014/in-italia-il-primo-via-libera-a-un-atleta-con-defibrillatore-sottocutaneo-professor-corrado-dopo-il-caso-bove-ci-si-e-fatti-un-idea-sbagliata-della-normativa",
+    "Christian Eriksen, danese, malore in campo agli Europei 2021, poi defibrillatore e ritorno a giocare all'estero (non in Italia): https://it.wikipedia.org/wiki/Christian_Eriksen",
+    "Watford: firma il 21 gennaio 2026: https://www.lapresse.it/calcio/2026/01/21/watford-ufficiale-lingaggio-di-edoardo-bove/",
+    "Rientro il 14 febbraio 2026 all'86' di Preston-Watford con il pubblico in piedi; gol al Wrexham il 17 marzo 2026, 506 giorni dopo l'ultimo: https://www.ilfattoquotidiano.it/2026/03/18/bove-gol-watford-malore-fiorentina-inter/8328042/",
+    "Documentario «In un battito» di Giovanni Troilo, 01 Distribution, presentato alla Festa del Cinema di Roma il 18 ottobre 2026, in sala il 16, 17 e 18 novembre 2026; racconta anche il percorso personale oltre il campo: https://www.dimensionesuonoroma.it/news/eventi-lifestyle/in-un-battito-la-rinascita-di-edoardo-bove-arriva-al-cinema-il-documentario-in-sala-il-16-17-e-18-novembre/",
+    "Date in sala 16-18 novembre e progetto 01cinemascuola: https://www.newsistruzione.it/2026/11/06/docufilm-edoardo-bove-in-un-battito-01cinemascuola"
+  ]
+}
