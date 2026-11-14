@@ -108,6 +108,10 @@ Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere
 - Uscite e calendari: MyMovies, FilmTV, ComingSoon, Sorrisi; trame e date su Wikipedia.
 
 ## Cosa dicono i dati (aggiornare ogni domenica)
+- 14 novembre 2026 (Metricool): **Instagram ora porta più di TikTok sugli Spiegato** (Inception 221.124 e 1.334 condivisioni,
+  Tenet 71.802, Dark 3 66.594, contro 8–17 mila su TikTok). Breaking Bad stagione 1 sorprende su Instagram (48.414): le serie
+  a puntate reggono. Film con colpo di scena nella media (Il sesto senso 8.905 + 6.593). **X Factor debole** (1.043 + 1.504):
+  si tiene il mercoledì ma si ricontrolla dopo il Live 4. Follower TikTok 2.992 (+903 in sei giorni).
 - 8 novembre 2026 (Metricool, TikTok + Instagram): **Spiegato semplice è il formato più forte** (Dark stagione 1:
   59.360 TikTok + 70.658 Instagram, 922 condivisioni su Instagram; Inception: 56.289 su Instagram in un giorno e mezzo;
   Dark stagione 2: 12.403 + 49.029). Seguono i film con colpo di scena (Interstellar, Truman, Shutter Island, The Others).
