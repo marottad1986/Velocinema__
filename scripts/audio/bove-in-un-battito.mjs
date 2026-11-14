@@ -105,7 +105,7 @@ export default (mix, T) => {
   clip(mix, 'scatti', { t: onRoma + 0.25, da: 0.47, durata: 0.12, fadeOut: 0.03, gain: 0.08, rev: 0.3, pan: 0.3 });
 
   // ---- firenze: archi e arpa a passo pieno; f2 il gol del 5-1 (Firenze.tsx: tGol): colpo, applauso, poi un battito di pausa
-  const gol1 = E('firenze', 1, 2.4);
+  const gol1 = E('firenze', 1, 1.4);
   strings(B(T.firenze), gol1 - 0.1, { vel: 48, gain: 0.4, k0: 1 });
   harp(B(T.firenze), gol1 - 0.1, { vel: 46, gain: 0.24, k0: 1 });
   crescendo(mix, gol1, 2 * BEAT, { gain: 0.15 });

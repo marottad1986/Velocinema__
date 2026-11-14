@@ -16,7 +16,7 @@ const VIOLA_CH = '#8A62C8';
 export const Firenze: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const cam = camera(t, dur, 540, 1050);
   const L = cam.layer;
-  const tGol = griglia(cues[1] + 2.4);
+  const tGol = griglia(cues[1] + 1.4);
   const shot = seg(t, tGol - 0.8, tGol);
   const hit = seg(t, tGol, tGol + 0.4);
   const bulge = eob(hit, 2) * (1 - 0.7 * seg(t, tGol + 0.5, tGol + 1.8));
