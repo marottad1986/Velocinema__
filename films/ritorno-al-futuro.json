@@ -76,8 +76,8 @@
       "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
       "sottotitoli": [
         "George sta per essere investito, e Marty lo spinge via.",
-        "Ma l'auto prende lui, e lo cura Lorraine, la sua futura mamma.",
-        "Doveva toccare a George: così i genitori si innamoravano.",
+        "Ma l'auto investe Marty, e lo cura Lorraine, la sua futura mamma.",
+        "Doveva succedere a George: così i genitori si innamoravano.",
         "Ora invece Lorraine si innamora di Marty."
       ]
     },
@@ -102,19 +102,19 @@
       "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
       "sottotitoli": [
         "Per ripartire serve l'energia di un fulmine.",
-        "E Marty sa, da un volantino del futuro,",
+        "E Marty sa, da un volantino portato dal 1985,",
         "che sabato sera un fulmine colpirà la torre dell'orologio.",
         "Così Doc tende un cavo dalla torre alla strada, dove passerà l'auto."
       ]
     },
     {
       "id": "ballo",
-      "titolo": "Come si rimettono insieme i genitori?",
+      "titolo": "Come si innamorano i genitori?",
       "durata": 13,
       "personaggi": [],
       "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
       "sottotitoli": [
-        "Intanto Marty convince George a invitare Lorraine al ballo della scuola.",
+        "Intanto Marty convince George a invitare Lorraine al ballo di sabato sera.",
         "Lì Biff, il bullo, fa il prepotente con lei.",
         "E George trova il coraggio: lo stende con un pugno.",
         "Lorraine si innamora di lui, e i fratelli tornano nella foto."
@@ -127,10 +127,10 @@
       "personaggi": [],
       "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
       "sottotitoli": [
-        "Marty vuole avvisare Doc del pericolo, ma lui non vuole sapere il futuro.",
-        "Marty gli lascia una lettera, ma Doc la strappa.",
-        "Poi il fulmine cade sulla torre, e Marty torna nel 1985,",
-        "ma arriva tardi: i terroristi sparano a Doc."
+        "Marty vuole dire a Doc che gli spareranno, ma lui non vuole saperlo.",
+        "Così gli lascia una lettera, ma Doc la strappa.",
+        "Il fulmine cade, e Marty torna nel 1985 in anticipo,",
+        "per salvarlo, ma arriva tardi: Doc viene colpito."
       ]
     },
     {
@@ -140,10 +140,10 @@
       "personaggi": [],
       "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
       "sottotitoli": [
-        "Ma Doc si rialza: ha letto la lettera e messo un giubbotto antiproiettile.",
-        "A casa George è sicuro di sé e scrive libri; Biff gli lava l'auto.",
-        "Poi Doc arriva dal 2015:",
-        "i figli di Marty e Jennifer, la sua ragazza, sono nei guai!"
+        "Ma Doc si rialza: ha riattaccato la lettera e messo un giubbotto antiproiettile.",
+        "Ora George è sicuro di sé e scrive libri; Biff gli lava l'auto.",
+        "Poi Doc torna dal 2015:",
+        "i futuri figli di Marty e della sua ragazza Jennifer sono nei guai!"
       ]
     }
   ],
