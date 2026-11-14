@@ -25,24 +25,24 @@
     "documentario": "In un battito",
     "frase_lancio": "Un malore in campo a 22 anni: come ha fatto a tornare a giocare?",
     "immagine": "Notte in uno stadio inventato da noi, vuoto e silenzioso: il prato illuminato dai riflettori, un pallone fermo sul dischetto del centrocampo; nel cielo sopra le torri dei fari una linea gialla di battito cardiaco che attraversa tutta l'inquadratura e pulsa; sul tabellone luminoso a sinistra l'orologio fermo su 17'. Etichetta «LA STORIA IN 2 MINUTI» con il bollino «In 2 minuti × Mr.goal» (logo fornito), titolo grande «EDOARDO BOVE», sotto «dal documentario In un battito · di Giovanni Troilo · 2026». Niente persone né sagome, niente stemmi, niente locandina ufficiale.",
-    "voce": "Un malore in campo. Come è tornato a giocare?"
+    "voce": "Edoardo Bove: un malore in campo. Come è tornato a giocare?"
   },
   "capitoli": [
     {
       "id": "roma",
       "titolo": "Un ragazzo della Roma",
-      "durata": 8,
+      "durata": 9,
       "scena": "Tramonto su un campo d'allenamento giovanile alla periferia di Roma: pini marittimi a ombrello, una cupola lontana nel cielo arancione; in primo piano una panchina con un paio di scarpini piccoli e una borsa giallorossa senza stemmi, coni e una porta piccola; f2 sullo sfondo si accendono i riflettori di un grande stadio e il tabellone scrive «SERIE A · 2021».",
       "sottotitoli": [
-        "Edoardo Bove è romano, e a dieci anni entra nelle giovanili della Roma.",
+        "Edoardo Bove è un calciatore romano: a dieci anni entra nelle giovanili della Roma.",
         "Nel 2021, a diciotto anni, esordisce in Serie A."
       ]
     },
     {
       "id": "firenze",
       "titolo": "In prestito a Firenze",
-      "durata": 12,
-      "scena": "Sera su Firenze vista dalla tribuna di uno stadio: la cupola del Duomo e la torre di Palazzo Vecchio contro il cielo viola; in primo piano la balaustra con una sciarpa viola che sventola; f2 il tabellone si accende «5 – 1» e un pallone gonfia la rete in basso a destra, con coriandoli viola.",
+      "durata": 11,
+      "scena": "Sera su Firenze vista dalla tribuna di uno stadio: la cupola del Duomo e la torre di Palazzo Vecchio contro il cielo viola; in primo piano la balaustra con una sciarpa viola che sventola; f2 il tabellone si accende «4 – 1» e un pallone gonfia la rete in basso a destra, con coriandoli viola.",
       "sottotitoli": [
         "Ma nell'agosto 2024 la Roma lo manda in prestito alla Fiorentina,",
         "e il 27 ottobre, proprio contro la Roma, segna il suo primo gol in viola, in un cinque a uno."
@@ -85,7 +85,7 @@
       "scena": "Una scrivania di notte sotto una lampada: il modulo del certificato di idoneità agonistica con la casella vuota e un timbro rosso «NON IDONEO» che cala; f2 su una bacheca di sughero una mappa d'Europa con l'Italia e una freccia gialla tratteggiata che esce verso nord, con un ritaglio di giornale bianco e rosso (Danimarca) appuntato accanto.",
       "sottotitoli": [
         "In Italia, però, con il suo problema al cuore, i medici sportivi non possono dargli il via libera per le partite.",
-        "Così, come il danese Christian Eriksen, che nel 2021 ha avuto un malore in campo, può giocare solo all'estero."
+        "Così, come il danese Christian Eriksen, che nel 2021, dopo un malore, ha dovuto lasciare l'Inter, può giocare solo all'estero."
       ]
     },
     {
@@ -143,10 +143,15 @@
     "Defibrillatore sottocutaneo impiantato il 10 dicembre 2024 a Careggi: https://www.corrieredellosport.it/news/notizia-ultima-ora/2024/12/10-136329799/bove_impiantato_defibrillatore_attesa_per_esito_esami",
     "Dimesso il 13 dicembre 2024, dodici giorni dopo il malore: https://www.agi.it/sport/news/2024-12-13/bove-dimesso-ospedale-29153153/amp/",
     "Regola italiana: a escludere dalle gare è la malattia che rende necessario il defibrillatore, non il dispositivo in sé: https://www.fiorentinanews.com/news/203033579014/in-italia-il-primo-via-libera-a-un-atleta-con-defibrillatore-sottocutaneo-professor-corrado-dopo-il-caso-bove-ci-si-e-fatti-un-idea-sbagliata-della-normativa",
-    "Christian Eriksen, danese, malore in campo agli Europei 2021, poi defibrillatore e ritorno a giocare all'estero (non in Italia): https://it.wikipedia.org/wiki/Christian_Eriksen",
     "Watford: firma il 21 gennaio 2026: https://www.lapresse.it/calcio/2026/01/21/watford-ufficiale-lingaggio-di-edoardo-bove/",
     "Rientro il 14 febbraio 2026 all'86' di Preston-Watford con il pubblico in piedi; gol al Wrexham il 17 marzo 2026, 506 giorni dopo l'ultimo: https://www.ilfattoquotidiano.it/2026/03/18/bove-gol-watford-malore-fiorentina-inter/8328042/",
     "Documentario «In un battito» di Giovanni Troilo, 01 Distribution, presentato alla Festa del Cinema di Roma il 18 ottobre 2026, in sala il 16, 17 e 18 novembre 2026; racconta anche il percorso personale oltre il campo: https://www.dimensionesuonoroma.it/news/eventi-lifestyle/in-un-battito-la-rinascita-di-edoardo-bove-arriva-al-cinema-il-documentario-in-sala-il-16-17-e-18-novembre/",
-    "Date in sala 16-18 novembre e progetto 01cinemascuola: https://www.newsistruzione.it/2026/11/06/docufilm-edoardo-bove-in-un-battito-01cinemascuola"
+    "Date in sala 16-18 novembre e progetto 01cinemascuola: https://www.newsistruzione.it/2026/11/06/docufilm-edoardo-bove-in-un-battito-01cinemascuola",
+    "Eriksen: malore il 12 giugno 2021, non idoneo in Italia, risoluzione con l'Inter il 17 dicembre 2021, poi Brentford: https://it.wikipedia.org/wiki/Christian_Eriksen",
+    "La mattina del 2 dicembre 2024 risvegliato ed estubato, sveglio e lucido: https://www.sportface.it/calcio/edoardo-bove-e-stato-estubato-il-giovane-centrocampista-e-sveglio-e-lucido-dopo-una-notte-tranquilla/2750907",
+    "Dimesso dopo 12 giorni (13 dicembre 2024): https://it.soccerway.com/news/calcio-serie-a-edoardo-bove-e-stato-dimesso-il-calciatore-fuori-dall-ospedale-dopo-12-giorni/tlZaMrAb",
+    "Rientro all'86' di Preston-Watford il 14 febbraio 2026: https://www.lapresse.it/calcio/2026/02/14/bove-torna-in-campo-esordio-in-preston-watford-dopo-14-mesi/",
+    "Documentario presentato alla Festa del Cinema di Roma il 18 ottobre 2026: https://www.agi.it/spettacolo/news/2026-10-18/bove-festa-cinema-roma-39595793/",
+    "Fiorentina-Roma 5-1 del 27 ottobre 2024: gol di Bove al 52' (il 4-1), il 5-1 è un autogol di Hummels al 71': https://www.footballwebpages.co.uk/match/2024-2025/italian-serie-a/fiorentina/roma/494649"
   ]
 }

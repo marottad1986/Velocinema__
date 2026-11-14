@@ -7,10 +7,10 @@ import { Ball, Crowd, GIALLOROSSO, K, Scoreboard } from './Comuni';
 
 // Un ragazzo della Roma: la vista dal tunnel degli spogliatoi verso il campo, la sera dell'esordio. Pareti e soffitto del
 // tunnel incorniciano l'inquadratura; in fondo l'uscita piena di luce, oltre lo stadio pieno di tifosi giallorossi, i fari,
-// il maxischermo. Sugli scalini un ragazzo in maglia giallorossa (senza stemma né numero), di spalle e in controluce,
-// sale verso il campo: il volto non si vede mai. f2 «Nel 2021… esordisce in Serie A»: il maxischermo scrive
+// il maxischermo. Sull'ultimo scalino, nella luce dell'uscita, un pallone con l'ombra lunga verso di noi
+// (la figura del ragazzo è stata provata e scartata dall'utente). f2 «Nel 2021… esordisce in Serie A»: il maxischermo scrive
 // «SERIE A · ESORDIO 2021», la luce dell'uscita si fa piena, la curva alza le sciarpe e partono i flash.
-// Piani: stadio oltre l'uscita (0,3) · tunnel (0,6) · ragazzo (0,75) · bordi del tunnel (1,15) · polvere nella luce (1,5)
+// Piani: stadio oltre l'uscita (0,3) · tunnel (0,6) · pallone (0,75) · bordi del tunnel (1,15) · polvere nella luce (1,5)
 
 const r0 = rng(916);
 const VX = 540, VY = 960; // punto di fuga

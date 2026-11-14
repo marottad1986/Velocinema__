@@ -8,7 +8,7 @@ import { Ball, Crowd, K, Pitch, Scoreboard, VIOLA } from './Comuni';
 // In prestito a Firenze: dentro uno stadio inventato, di sera, dalla curva viola alle spalle della porta. Di fronte la
 // tribuna piena e il tabellone; davanti a noi la porta vista da dietro, con la rete; sotto, le teste dei tifosi della
 // curva con le sciarpe viola. f2 «il 27 ottobre… primo gol… cinque a uno»: il pallone arriva dal campo e gonfia la rete
-// verso di noi, la curva salta e alza le sciarpe, il tabellone scrive «5 – 1», coriandoli viola. Nessun volto, nessuno stemma.
+// verso di noi, la curva salta e alza le sciarpe, il tabellone passa da 3–1 a 4–1 (il gol di Bove al 52'; il 5-1 finale arriva dopo), coriandoli viola. Nessun volto, nessuno stemma.
 // Piani: tetto e fari (0,2) · tribuna di fronte (0,4) · campo (0,6) · porta e rete (0,85) · curva in primo piano (1,2) · coriandoli (1,6)
 
 const VIOLA_CH = '#8A62C8';
@@ -92,7 +92,7 @@ export const Firenze: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <g opacity={0.5 + 0.5 * sb} transform={`translate(800 646) scale(${lerp(0.94, 1, eob(sb, 1.8))}) translate(-800 -646)`}>
             <Glow id="fi-sbg" x={800} y={646} r={220} t={t} color="#D8C0FF" amp={0.05} rate={3} opacity={0.5 * sb} />
             <Scoreboard id="fi-sb" x={670} y={598} w={260} h={98} t={t} on={0.35 + 0.65 * sb}
-              lines={sb > 0.05 ? [{ text: '5 – 1', size: 44 }, { text: 'FIORENTINA · ROMA', size: 20, color: '#E8D8FF' }] : [{ text: '4 – 1', size: 44 }, { text: 'FIORENTINA · ROMA', size: 20, color: '#E8D8FF' }]} />
+              lines={sb > 0.05 ? [{ text: '4 – 1', size: 44 }, { text: 'FIORENTINA · ROMA', size: 20, color: '#E8D8FF' }] : [{ text: '3 – 1', size: 44 }, { text: 'FIORENTINA · ROMA', size: 20, color: '#E8D8FF' }]} />
           </g>
           {/* cartelloni a bordo campo: fasce di colore, nessun marchio */}
           <rect x="-200" y="1030" width="1480" height="30" fill="#1E1A2A" />
