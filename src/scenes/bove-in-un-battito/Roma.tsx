@@ -114,11 +114,6 @@ export const Roma: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             const y = lerp(OY1 + 120, 1900, r0()), x = VX + (r0() - 0.5) * lerp(200, 600, (y - OY1) / 800);
             return <ellipse key={i} cx={x} cy={y} rx={lerp(3, 7, (y - OY1) / 800)} ry={lerp(2, 4, (y - OY1) / 800)} fill="#000" opacity=".35" />;
           })}
-          {/* targa sulla parete sinistra: «CAMPO» con la freccia */}
-          <g transform="translate(170 900) skewY(30)">
-            <rect x="-60" y="-34" width="120" height="68" rx="6" fill="#1E1C26" stroke={K} strokeWidth="5" />
-            <text x="0" y="10" textAnchor="middle" fontFamily="sans-serif" fontWeight="800" fontSize="30" fill={GIALLOROSSO.giallo}>CAMPO</text>
-          </g>
         </g>
         {/* PIANO 2 — il pallone sullo scalino più alto, nella luce dell'uscita, con l'ombra lunga verso di noi (0,75) */}
         <g transform={L(0.75)}>
