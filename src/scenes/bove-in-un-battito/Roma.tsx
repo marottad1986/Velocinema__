@@ -3,7 +3,7 @@ import { camera, eo, eob, lerp, rng, seg } from '../../lib/anim';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Dust, Glow, NearMotes } from '../../lib/elements';
 import type { SceneProps } from '../../types';
-import { Crowd, GIALLOROSSO, K, Scoreboard } from './Comuni';
+import { Ball, Crowd, GIALLOROSSO, K, Scoreboard } from './Comuni';
 
 // Un ragazzo della Roma: la vista dal tunnel degli spogliatoi verso il campo, la sera dell'esordio. Pareti e soffitto del
 // tunnel incorniciano l'inquadratura; in fondo l'uscita piena di luce, oltre lo stadio pieno di tifosi giallorossi, i fari,
@@ -17,61 +17,6 @@ const VX = 540, VY = 960; // punto di fuga
 // uscita del tunnel
 const OX0 = 300, OX1 = 780, OY0 = 640, OY1 = 1220;
 
-/** Il ragazzo di spalle che sale verso il campo, in controluce (piedi a y 1214). `bob` = leggero su e giù del passo. */
-const Ragazzo: React.FC<{ light: number; bob: number }> = ({ light, bob }) => {
-  const rim = '#FFF2C8', ro = 0.6 + 0.4 * light;
-  const shirt = '#6A1824', shirtDark = '#4A0E18', trim = GIALLOROSSO.giallo;
-  const skin = '#7A5240', skinDark = '#5A3A2C';
-  const shorts = '#CFCBC4', shortsDark = '#9A968E';
-  const sock = '#5A1420';
-  return (
-    <g transform={`translate(0 ${-bob})`}>
-      {/* gambe: la sinistra appoggiata, la destra indietro col tallone alzato */}
-      <path d="M470 1000 Q464 1046 478 1084 Q466 1124 484 1172 L506 1172 Q530 1124 520 1086 Q532 1040 532 1000 Z" fill={skin} stroke={K} strokeWidth="7" strokeLinejoin="round" />
-      <path d="M552 1000 Q552 1046 566 1088 Q558 1122 584 1160 L606 1158 Q614 1118 604 1090 Q618 1044 612 1000 Z" fill={skinDark} stroke={K} strokeWidth="7" strokeLinejoin="round" />
-      <path d="M477 1094 Q466 1126 484 1172 L506 1172 Q530 1126 521 1094 Z" fill={sock} stroke={K} strokeWidth="6" strokeLinejoin="round" />
-      <path d="M565 1096 Q558 1124 584 1160 L606 1158 Q614 1122 605 1096 Z" fill={sock} stroke={K} strokeWidth="6" strokeLinejoin="round" />
-      <path d="M476 1104 Q499 1110 522 1104 M564 1106 Q585 1112 606 1106" stroke={trim} strokeWidth="7" fill="none" />
-      <path d="M468 1004 Q462 1046 476 1084 Q464 1124 482 1170" stroke={rim} strokeWidth="4" fill="none" opacity={ro} />
-      <path d="M614 1004 Q620 1044 606 1090 Q616 1118 606 1156" stroke={rim} strokeWidth="4" fill="none" opacity={ro} />
-      {/* scarpini */}
-      <path d="M480 1166 Q474 1206 495 1214 Q516 1206 510 1166 Z" fill="#14141C" stroke={K} strokeWidth="6" />
-      <path d="M484 1204 Q495 1212 506 1204" stroke={trim} strokeWidth="5" fill="none" />
-      <path d="M582 1152 L610 1150 L620 1188 L590 1196 Z" fill="#14141C" stroke={K} strokeWidth="6" strokeLinejoin="round" />
-      {[[590, 1194], [604, 1192], [616, 1188]].map(([x, y], i) => <circle key={i} cx={x} cy={y + 4} r="4.5" fill="#8A8E9A" stroke={K} strokeWidth="2" />)}
-      {/* pantaloncini */}
-      <path d="M458 904 Q540 894 622 904 Q632 958 640 1004 Q598 1014 556 1006 L541 984 L526 1006 Q484 1014 442 1004 Q450 958 458 904 Z" fill={shorts} stroke={K} strokeWidth="8" strokeLinejoin="round" />
-      <path d="M541 930 L541 984 M580 920 Q600 960 610 1004" stroke={shortsDark} strokeWidth="6" fill="none" opacity=".7" />
-      <path d="M454 910 Q446 960 442 1004 M626 910 Q634 960 640 1004" stroke={trim} strokeWidth="7" fill="none" />
-      {/* braccia lungo i fianchi */}
-      <path d="M412 866 Q400 912 410 952 L430 954 Q432 914 448 882 Z" fill={skin} stroke={K} strokeWidth="7" strokeLinejoin="round" />
-      <ellipse cx="419" cy="968" rx="13" ry="17" fill={skin} stroke={K} strokeWidth="6" />
-      <path d="M668 866 Q680 912 670 952 L650 954 Q648 914 632 882 Z" fill={skinDark} stroke={K} strokeWidth="7" strokeLinejoin="round" />
-      <ellipse cx="661" cy="968" rx="13" ry="17" fill={skinDark} stroke={K} strokeWidth="6" />
-      <path d="M410 872 Q399 912 408 950 M670 872 Q681 912 672 950" stroke={rim} strokeWidth="4" fill="none" opacity={ro} />
-      {/* maglia: busto affusolato, maniche corte con il bordo giallo; nessun numero, nome o stemma */}
-      <path d="M472 776 Q540 760 608 776 Q636 782 648 806 L634 860 Q628 890 626 910 Q540 922 454 910 Q452 890 446 860 L432 806 Q444 782 472 776 Z" fill={shirt} stroke={K} strokeWidth="8" strokeLinejoin="round" />
-      <path d="M432 806 Q418 836 406 870 L448 884 L456 832 Z" fill={shirtDark} stroke={K} strokeWidth="7" strokeLinejoin="round" />
-      <path d="M648 806 Q662 836 674 870 L632 884 L624 832 Z" fill={shirtDark} stroke={K} strokeWidth="7" strokeLinejoin="round" />
-      <path d="M406 870 L448 884 M674 870 L632 884" stroke={trim} strokeWidth="7" />
-      <path d="M490 800 Q540 870 590 800" stroke="#000" strokeWidth="16" fill="none" opacity=".16" />
-      <path d="M470 840 Q480 880 476 906 M610 840 Q600 880 604 906" stroke="#000" strokeWidth="10" fill="none" opacity=".18" />
-      <path d="M458 906 Q540 918 622 906" stroke={trim} strokeWidth="5" fill="none" opacity=".8" />
-      <path d="M472 776 Q540 760 608 776 Q636 782 648 806 Q662 836 674 870" stroke={rim} strokeWidth="5" fill="none" opacity={ro} />
-      <path d="M432 806 Q418 836 406 870" stroke={rim} strokeWidth="5" fill="none" opacity={ro} />
-      {/* collo e testa di spalle: capelli corti e nuca, nessun volto */}
-      <path d="M523 744 Q540 750 557 744 L561 776 Q540 782 519 776 Z" fill={skinDark} stroke={K} strokeWidth="6" />
-      <path d="M514 770 Q540 782 566 770" stroke={trim} strokeWidth="7" fill="none" />
-      <ellipse cx="540" cy="714" rx="38" ry="44" fill={skin} stroke={K} strokeWidth="7" />
-      <path d="M503 714 Q500 668 540 666 Q580 668 577 714 Q577 734 564 744 Q540 738 516 744 Q503 734 503 714 Z" fill="#16110E" />
-      <path d="M512 690 Q540 670 568 690" stroke="#4A3A30" strokeWidth="4" fill="none" />
-      <ellipse cx="502" cy="718" rx="6" ry="11" fill={skin} stroke={K} strokeWidth="4" />
-      <ellipse cx="578" cy="718" rx="6" ry="11" fill={skin} stroke={K} strokeWidth="4" />
-      <path d="M505 694 Q520 668 548 666 M576 694 Q568 672 552 667" stroke={rim} strokeWidth="5" fill="none" opacity={ro} />
-    </g>
-  );
-};
-
 export const Roma: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const cam = camera(t, dur, 540, 980);
   const L = cam.layer;
@@ -79,7 +24,7 @@ export const Roma: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const on = eo(seg(t, tOn, tOn + 0.6));
   const pop = eob(seg(t, tOn, tOn + 0.5), 1.8);
   const light = 0.55 + 0.45 * on;
-  const bob = Math.abs(Math.sin((t / 1.25) * Math.PI)) * 5; // un passo lento
+  const bob = 0;
   const shirts = [GIALLOROSSO.rosso, GIALLOROSSO.rosso, '#6A1622', GIALLOROSSO.giallo, '#2A2A34', '#F2EEE6'];
   const scarves = [[GIALLOROSSO.rosso, GIALLOROSSO.giallo], [GIALLOROSSO.giallo, GIALLOROSSO.rosso]];
 
@@ -175,14 +120,12 @@ export const Roma: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             <text x="0" y="10" textAnchor="middle" fontFamily="sans-serif" fontWeight="800" fontSize="30" fill={GIALLOROSSO.giallo}>CAMPO</text>
           </g>
         </g>
-        {/* PIANO 2 — il ragazzo sugli scalini, in controluce, con l'ombra lunga verso di noi (0,75) */}
+        {/* PIANO 2 — il pallone sullo scalino più alto, nella luce dell'uscita, con l'ombra lunga verso di noi (0,75) */}
         <g transform={L(0.75)}>
-          <path d="M480 1244 L600 1244 L700 1640 L380 1640 Z" fill="#000" opacity=".35" />
-          <ellipse cx="540" cy="1250" rx="90" ry="12" fill="#000" opacity=".55" />
-          <Glow id="ro-halo" x={540} y={900} r={300} t={t} color="#FFF2C8" amp={0.04} rate={2} opacity={0.25 + 0.2 * on} />
-          <g transform="translate(540 1240) scale(0.8 0.98) translate(-540 -1214)">
-            <Ragazzo light={light} bob={bob} />
-          </g>
+          <path d="M500 1232 L580 1232 L700 1700 L380 1700 Z" fill="#000" opacity=".4" />
+          <Glow id="ro-halo" x={540} y={1170} r={240} t={t} color="#FFF2C8" amp={0.05} rate={2} opacity={0.35 + 0.25 * on} />
+          <Ball x={540} y={1190 - bob} r={46} rot={t * 6} />
+          <path d="M498 1170 Q520 1140 552 1146" stroke="#FFF6D8" strokeWidth="5" fill="none" opacity={0.6 + 0.3 * on} />
         </g>
         {/* PIANO 3 — bordi del tunnel che escono dall'inquadratura (1,15) */}
         <g transform={L(1.15)}>
