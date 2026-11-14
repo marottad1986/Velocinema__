@@ -275,7 +275,8 @@ const HAIR = ['#1A1410', '#3A2618', '#6A4A2A', '#C8A060', '#2A2A2A', '#8A8A8A'];
 export const Crowd: React.FC<{
   t: number; y0: number; y1: number; rows?: number; x0?: number; x1?: number; shirts: string[]; scarves?: string[][]; seed?: number;
   stand?: number; bounce?: number; dim?: number; flashes?: number; scarfUp?: number; size0?: number; size1?: number; backdrop?: string;
-}> = ({ t, y0, y1, rows = 10, x0 = -200, x1 = 1280, shirts, scarves = [], seed = 11, stand = 1, bounce = 0, dim = 0, flashes = 0, scarfUp = 0, size0 = 14, size1 = 40, backdrop = '#14121C' }) => {
+  /** tifosi visti di spalle (curva in primo piano): nuca e capelli, con un filo di luce dello stadio sul bordo */ back?: boolean; rim?: string;
+}> = ({ t, y0, y1, rows = 10, x0 = -200, x1 = 1280, shirts, scarves = [], seed = 11, stand = 1, bounce = 0, dim = 0, flashes = 0, scarfUp = 0, size0 = 14, size1 = 40, backdrop = '#14121C', back = false, rim = '#E8E0FF' }) => {
   const r = rng(seed);
   const out: React.ReactNode[] = [];
   for (let i = 0; i < rows; i++) {
@@ -296,11 +297,20 @@ export const Crowd: React.FC<{
       const hair = HAIR[Math.floor(r() * HAIR.length)];
       const cap = r() < 0.12;
       out.push(
+        back ? (
+          <g key={`${i}-${k}`} opacity={shade}>
+            <path d={`M${x - s * 1.15} ${yy + s * 2.8} Q${x - s * 1.2} ${yy + s * 0.9} ${x} ${yy + s * 0.8} Q${x + s * 1.2} ${yy + s * 0.9} ${x + s * 1.15} ${yy + s * 2.8} Z`} fill={shirt} stroke={K} strokeWidth={Math.max(1.5, s * 0.1)} />
+            <path d={`M${x - s * 1.12} ${yy + s * 1.6} Q${x - s * 1.1} ${yy + s * 0.92} ${x} ${yy + s * 0.84}`} stroke={rim} strokeWidth={s * 0.1} fill="none" opacity=".55" />
+            <rect x={x - s * 0.28} y={yy + s * 0.3} width={s * 0.56} height={s * 0.6} fill={skin} opacity=".8" />
+            <circle cx={x} cy={yy} r={s * 0.64} fill={cap ? shirt : hair} stroke={K} strokeWidth={Math.max(1.5, s * 0.1)} />
+            <path d={`M${x - s * 0.58} ${yy - s * 0.2} Q${x - s * 0.3} ${yy - s * 0.62} ${x + s * 0.1} ${yy - s * 0.62}`} stroke={rim} strokeWidth={s * 0.09} fill="none" opacity=".5" />
+          </g>
+        ) : (
         <g key={`${i}-${k}`} opacity={shade}>
           <path d={`M${x - s * 1.05} ${yy + s * 2.6} Q${x - s * 1.1} ${yy + s * 0.9} ${x} ${yy + s * 0.85} Q${x + s * 1.1} ${yy + s * 0.9} ${x + s * 1.05} ${yy + s * 2.6} Z`} fill={shirt} stroke={K} strokeWidth={Math.max(1.5, s * 0.12)} />
           <circle cx={x} cy={yy} r={s * 0.62} fill={skin} stroke={K} strokeWidth={Math.max(1.5, s * 0.12)} />
           <path d={`M${x - s * 0.62} ${yy - s * 0.05} Q${x - s * 0.6} ${yy - s * 0.72} ${x} ${yy - s * 0.66} Q${x + s * 0.6} ${yy - s * 0.72} ${x + s * 0.62} ${yy - s * 0.05} Q${x} ${yy - s * 0.38} ${x - s * 0.62} ${yy - s * 0.05} Z`} fill={cap ? shirt : hair} />
-        </g>,
+        </g>),
       );
     }
     // sciarpe tese sopra le teste, a tratti lungo la fila
@@ -310,10 +320,14 @@ export const Crowd: React.FC<{
         const w = step * (1.8 + r() * 0.8);
         const sc = scarves[Math.floor(r() * scarves.length)];
         const yy = y - s * (0.9 + 1.2 * scarfUp) + Math.sin(t * 2 + k) * s * 0.15;
+        const wv = (u: number) => Math.sin(t * 3 + k + u * 4) * s * 0.18;
+        const top = Array.from({ length: 7 }, (_, q) => `${q ? 'L' : 'M'}${(x + (w * q) / 6).toFixed(1)} ${(yy + wv(q / 6)).toFixed(1)}`).join(' ');
+        const bot = Array.from({ length: 7 }, (_, q) => `L${(x + w - (w * q) / 6).toFixed(1)} ${(yy + s * 0.75 + wv(1 - q / 6)).toFixed(1)}`).join(' ');
         out.push(
           <g key={`s${i}-${k}`} opacity={shade * scarfUp}>
-            <rect x={x} y={yy} width={w} height={s * 0.7} fill={sc[0]} stroke={K} strokeWidth={Math.max(1.5, s * 0.1)} />
-            {sc.slice(1).map((c, j) => <rect key={j} x={x + w * (0.2 + j * 0.3)} y={yy} width={w * 0.14} height={s * 0.7} fill={c} />)}
+            <path d={`${top} ${bot} Z`} fill={sc[0]} stroke={K} strokeWidth={Math.max(1.5, s * 0.1)} strokeLinejoin="round" />
+            {sc.slice(1).map((c, j) => [0.18, 0.5, 0.82].map((u) => <rect key={`${j}${u}`} x={x + w * u - w * 0.05} y={yy + wv(u) + s * 0.04} width={w * 0.1} height={s * 0.67} fill={c} />))}
+            <path d={`M${x} ${yy + wv(0)} l${-s * 0.3} ${s * 0.1} M${x} ${yy + s * 0.75 + wv(0)} l${-s * 0.3} ${-s * 0.1} M${x + w} ${yy + wv(1)} l${s * 0.3} ${s * 0.1} M${x + w} ${yy + s * 0.75 + wv(1)} l${s * 0.3} ${-s * 0.1}`} stroke={sc[1] ?? sc[0]} strokeWidth={s * 0.08} />
           </g>,
         );
       }
