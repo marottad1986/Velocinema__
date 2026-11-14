@@ -5,7 +5,7 @@ serie) è uscito il 14 novembre. Richiesta dell'utente: il secondo deve essere c
 
 ## La proposta: «Ritorno al futuro spiegato facile: la trilogia, 2 minuti a film + i paradossi spiegati»
 
-Video orizzontale 16:9 (`VIDEO-LUNGO.md`) di circa 8 minuti: i tre film in Spiegato semplice uno dopo l'altro, collegati,
+Video orizzontale 16:9 (`VIDEO-LUNGO.md`) di almeno 8 minuti (regola di `VIDEO-LUNGO.md`): i tre film in Spiegato semplice uno dopo l'altro, collegati,
 con un capitolo nuovo sui paradossi del viaggio nel tempo.
 
 ### Perché Ritorno al futuro
@@ -20,14 +20,14 @@ con un capitolo nuovo sui paradossi del viaggio nel tempo.
 
 Punteggio (`SOCIAL.md`): mistero 2 · fama 3 · discussione 3 · momento 2 · puntate 3 · disegnabile 3 = **16 su 18**.
 
-### Struttura (circa 8:00)
+### Struttura (circa 8:10, mai sotto le 8:00)
 | Parte | Durata | Contenuto |
 |---|---|---|
 | Aggancio | ~0:20 | Copertina 16:9 e la domanda: «Se torni indietro e cambi una cosa, cosa succede al tuo presente?» |
 | Primo film | 2:00 | Spiegato semplice: il viaggio dal 1985 al 1955 e il rischio di non essere mai nato. |
 | Secondo film | 2:00 | Spiegato semplice: il 2015, il 1985 alternativo e il ritorno al 1955 per rimettere le cose a posto. |
 | Terzo film | 2:00 | Spiegato semplice: il 1885 e il viaggio di ritorno. |
-| **I paradossi spiegati** (nuovo) | ~1:15 | Lo schema completo delle linee del tempo: perché la foto sbiadisce, come nasce il 1985 alternativo, perché il passato si può cambiare. Si distingue sempre ciò che i film mostrano da ciò che è un'ipotesi dei fan. |
+| **I paradossi spiegati** (nuovo) | ~1:30 | Lo schema completo delle linee del tempo: perché la foto sbiadisce, come nasce il 1985 alternativo, perché il passato si può cambiare. Si distingue sempre ciò che i film mostrano da ciò che è un'ipotesi dei fan. |
 | Chiusura | ~0:20 | Riassunto in una frase, «Iscriviti al canale», «Commenta con il film che vorresti spiegato». |
 
 ### Schema (Spiegato semplice)
