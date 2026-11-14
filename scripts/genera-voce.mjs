@@ -11,6 +11,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync
 import { spawnSync } from 'node:child_process';
 import { duration, loadFilm, timeline } from './audio/film.mjs';
 import { lunghi, loadLungo, trattiLungo } from './lunghi/tempi.mjs';
+import { loadPromo, partiPromo, promo } from './promo/tempi.mjs';
 
 const API = 'https://api.elevenlabs.io';
 const CONFIG = 'scripts/audio/voce.json';
@@ -70,11 +71,15 @@ const dir = `audio/${slug}`;
 const solo = opt('capitolo');
 // video lunghi (VIDEO-LUNGO.md): solo le parti nuove (aggancio, capitoli nuovi, chiusura); le clip degli episodi si riusano
 const lungo = lunghi().includes(slug);
-const film = lungo ? loadLungo(slug) : loadFilm(slug);
+// Short promozionali (promo/<slug>.json): una clip per parte, 00_copertina, 01_<id>…
+const corto = promo().includes(slug);
+const film = lungo ? loadLungo(slug) : corto ? loadPromo(slug) : loadFilm(slug);
 // "pronuncia" nel JSON del film (facoltativo): parole da leggere in un altro modo, es. { "883": "otto otto tre" };
 // cambia solo il testo mandato a ElevenLabs, i sottotitoli restano come sono
 const leggi = (testo) => Object.entries(film.pronuncia ?? {}).reduce((a, [da, a2]) => a.split(da).join(a2), testo);
-const segmenti = lungo
+const segmenti = corto
+  ? partiPromo(film).map((x) => ({ id: x.id, dur: x.start + x.dur - x.voceDa, testo: x.testo, base: x.base }))
+  : lungo
   ? trattiLungo(slug, film).filter((x) => x.voce?.dir === dir).map((x) => ({ id: x.id, dur: x.dur, testo: x.testo, base: x.voce.base }))
   : timeline(film).segments.map((s) => ({ ...s, base: `${String(s.n).padStart(2, '0')}_${s.id}` }));
 const parts = segmenti

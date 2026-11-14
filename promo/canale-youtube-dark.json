@@ -1,0 +1,49 @@
+{
+  "formato": "promo",
+  "tipo": "serie",
+  "titolo": "Dark",
+  "regista": "Baran bo Odar e Jantje Friese",
+  "anno": 2017,
+  "bpm": 66,
+  "lungo": "dark-tutta-la-serie",
+  "nota": "Short verticale che porta al primo video lungo del canale YouTube (lunghi/dark-tutta-la-serie.json) e invita a iscriversi. Richiesta dell'utente del 14 novembre 2026: si parla direttamente del canale (deroga alla regola sulle frasi che parlano del video). Mai la durata totale del video lungo.",
+  "palette": {
+    "chiaro": "#E4E7E1",
+    "principale": "#3D5A4C",
+    "scuro": "#0A0E0D",
+    "accento": "#F2C230"
+  },
+  "parti": [
+    {
+      "id": "copertina",
+      "durata": 4,
+      "immagine": "Fotogramma 0 = miniatura: in alto il bollino rosso «NUOVO SU YOUTUBE» e «SPIEGATO SEMPLICE · TUTTA LA SERIE», «DARK» enorme, «TUTTA LA SERIE / E IL FINALE», la riga degli ideatori; sotto un grande quadrante d'orologio d'ottone sopra il bosco e le torri della centrale, con l'impermeabile giallo appeso al centro e un filo rosso annodato attorno. Pioggia, lancette che girano all'indietro.",
+      "sottotitoli": ["Come può un ragazzo essere l'antenato di sé stesso?"]
+    },
+    {
+      "id": "canale",
+      "durata": 17.5,
+      "immagine": "Un'unica immagine verticale: la camera scende lungo il filo rosso che parte dall'impermeabile e incontra le tappe del video lungo, ognuna in un cerchio con il suo oggetto: la grotta (stagione 1), la famiglia annodata con lettera, carte e gomitolo (stagione 2), il cerchio diviso nei due mondi (stagione 3), poi il cartellino pieno «IL FINALE SPIEGATO» con l'orologio da taschino.",
+      "sottotitoli": [
+        "È la domanda di Dark, una serie tedesca di Netflix piena di viaggi nel tempo.",
+        "Ora sul nostro canale YouTube c'è un video lungo con tutta la serie spiegata semplice:",
+        "le tre stagioni una dopo l'altra, con la famiglia che si annoda nel tempo,",
+        "e in più un capitolo nuovo che spiega il finale."
+      ]
+    },
+    {
+      "id": "chiusura",
+      "durata": 8.5,
+      "immagine": "Il filo finisce in uno schermo orizzontale (lettore video generico, senza logo) con la miniatura del video lungo e la barra di avanzamento divisa nelle quattro tappe; sotto, «Metti like» e il pulsante rosso «Iscriviti al canale» con la campanella che si preme e suona, «Cerca In 2 Minuti su YouTube» e «Commenta con la serie che vorresti.»",
+      "sottotitoli": [
+        "Quindi cerca In 2 Minuti su YouTube e iscriviti al canale:",
+        "così non perdi i prossimi video lunghi.",
+        "E commenta con la serie che vorresti."
+      ]
+    }
+  ],
+  "fonti": [
+    "Dark è una serie tedesca di Netflix ideata da Baran bo Odar e Jantje Friese, in tre stagioni (2017–2020), sui viaggi nel tempo: https://it.wikipedia.org/wiki/Dark_(serie_televisiva)",
+    "La trama (la grotta, la famiglia annodata nel tempo, i due mondi, il finale) è quella già verificata e approvata nel video lungo: lunghi/dark-tutta-la-serie.json e https://en.wikipedia.org/wiki/Dark_(TV_series)"
+  ]
+}
