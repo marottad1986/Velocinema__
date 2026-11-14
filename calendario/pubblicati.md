@@ -24,11 +24,11 @@ Visualizzazioni al 14 novembre 2026 (Metricool, ore 6). I dati di TikTok arrivan
 | 11 nov | Dark – stagione 3 | Spiegato semplice | 16.733 | 66.594 | 459 |
 | 12 nov | X Factor 2026 – chi è ancora in gara | Talent | 1.043 | 1.504 | 1 |
 | 13 nov | Shining | Film | – | – | – |
-| 9–15 nov | La grande onda di Kanagawa | Quadro | – | – | – |
+| 15 nov (13:00) | La grande onda di Kanagawa | Quadro | – | – | – |
 
 Follower TikTok: 2.992 al 12 novembre (2.089 il 6 novembre: +903 in sei giorni; picchi di nuovi follower: 669 il 31 ottobre con Dark, 529 il 30 con Shutter Island, 442 il 7 novembre con Inception).
 
 **YouTube, video lunghi (16:9):** 14 nov – Dark, tutta la serie (`lunghi/dark-tutta-la-serie.json`), dati da YouTube Studio quando l'utente li manda. Prossimo: Ritorno al futuro, la trilogia (`calendario/youtube-ritorno-al-futuro.md`), 13 dicembre.
 
-**In uscita nel weekend 14–15:** Bohemian Rhapsody e Stranger Things 1 (sab 14), Hunger Games e Bove «In un battito» (dom 15).
+**In uscita nel weekend 14–15:** Bohemian Rhapsody e Stranger Things 1 (sab 14), Hunger Games (10:00), La grande onda di Kanagawa (13:00, pronta, aggiunta dall'utente il 14 novembre) e Bove «In un battito» (17:30) (dom 15).
 **Pronti e non ancora usciti:** Titanic, Frankenstein Junior, Gli anni.
