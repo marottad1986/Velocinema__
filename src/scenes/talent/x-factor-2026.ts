@@ -32,13 +32,13 @@ export const giudice = (id: GiudiceId) => GIUDICI.find((g) => g.id === id)!;
 export const CONCORRENTI: Concorrente[] = [
   { id: 'giacomo', nome: 'Giacomo Calò', squadra: 'gabbani' },
   { id: 'alice', nome: 'Alice Fregoso', squadra: 'gabbani', fuori: 1 },
-  { id: 'scraffs', nome: 'Scraffs', squadra: 'gabbani', band: true },
+  { id: 'scraffs', nome: 'Scraffs', squadra: 'gabbani', band: true, fuori: 4 },
   { id: 'teo', nome: 'Teo Bok', squadra: 'gabbani', entra: 2 },
-  { id: 'alia', nome: 'Alìa', squadra: 'jake' },
+  { id: 'alia', nome: 'Alìa', squadra: 'jake', fuori: 4 },
   { id: 'alex', nome: 'Alex Fontana', squadra: 'jake' },
   { id: 'veronica', nome: 'Veronica Bruganelli', squadra: 'jake', fuori: 2 },
   { id: 'camilla', nome: 'Camilla Guerini', squadra: 'paola' },
-  { id: 'manu', nome: 'Manu', squadra: 'paola' },
+  { id: 'manu', nome: 'Manu', squadra: 'paola', fuori: 4 },
   { id: 'maddog', nome: 'Mad-Dog', squadra: 'paola', band: true },
   { id: 'patrizia', nome: 'Patrizia Napolano', squadra: 'irama' },
   { id: 'lenanie', nome: 'Lenanie', squadra: 'irama', fuori: 3 },
@@ -56,8 +56,9 @@ export const stato = (c: Concorrente, n: number): 'gara' | 'fuori' | 'assente' =
 };
 
 /** Le serate: ballottaggio [a, b], eliminato e chi ha votato per eliminare chi. */
-export const LIVE: Record<number, { data: string; ballottaggio: [string, string]; fuori: string; voti: Record<GiudiceId, string>; tema?: string }> = {
+export const LIVE: Record<number, { data: string; ballottaggio: [string, string]; fuori: string; voti: Record<GiudiceId, string>; tema?: string; /** pareggio dei giudici: decide il Tilt (televoto lampo) */ tilt?: boolean; /** usciti subito, senza ballottaggio */ subito?: string[] }> = {
   1: { data: '22 OTTOBRE', ballottaggio: ['veronica', 'alice'], fuori: 'alice', voti: { gabbani: 'veronica', jake: 'alice', paola: 'alice', irama: 'alice' } },
   2: { data: '29 OTTOBRE', ballottaggio: ['veronica', 'lenanie'], fuori: 'veronica', voti: { gabbani: 'veronica', jake: 'lenanie', paola: 'veronica', irama: 'veronica' } },
   3: { data: '5 NOVEMBRE', ballottaggio: ['lenanie', 'manu'], fuori: 'lenanie', voti: { gabbani: 'lenanie', jake: 'lenanie', paola: 'lenanie', irama: 'manu' }, tema: 'anni Sessanta e Settanta' },
+  4: { data: '12 NOVEMBRE', ballottaggio: ['alia', 'distanze'], fuori: 'alia', voti: { gabbani: 'distanze', jake: 'distanze', paola: 'alia', irama: 'alia' }, tilt: true, subito: ['manu', 'scraffs'], tema: 'Hell Factor, tripla eliminazione' },
 };

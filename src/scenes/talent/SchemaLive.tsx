@@ -79,7 +79,7 @@ export const Disco: React.FC<{ T: number; x: number; y: number; r: number; label
 };
 
 /** Cartellino pieno (fatto importante). */
-const Tag: React.FC<{ T: number; t0: number; x: number; y: number; testo: string; bg?: string; fg?: string; size?: number; rot?: number; anchor?: 'middle' | 'start' }> = ({ T, t0, x, y, testo, bg = ORO, fg = DARK, size = 30, rot = 0, anchor = 'middle' }) => {
+export const Tag: React.FC<{ T: number; t0: number; x: number; y: number; testo: string; bg?: string; fg?: string; size?: number; rot?: number; anchor?: 'middle' | 'start' }> = ({ T, t0, x, y, testo, bg = ORO, fg = DARK, size = 30, rot = 0, anchor = 'middle' }) => {
   if (T < t0) return null;
   const w = testo.length * size * 0.6 + size * 1.1;
   const x0 = anchor === 'middle' ? -w / 2 : 0;
@@ -113,7 +113,7 @@ export const Stella: React.FC<{ T: number; t0: number; x: number; y: number; s?:
 };
 
 /** Gettone del giudice. */
-const Gettone: React.FC<{ x: number; y: number; id: GiudiceId; s?: number; o?: number }> = ({ x, y, id, s = 1, o = 1 }) => {
+export const Gettone: React.FC<{ x: number; y: number; id: GiudiceId; s?: number; o?: number }> = ({ x, y, id, s = 1, o = 1 }) => {
   const g = giudice(id);
   const etichetta = id === 'paola' ? 'Paola Iezzi' : g.corto;
   const size = Math.min(30, 170 / (etichetta.length * 0.58));
@@ -126,7 +126,7 @@ const Gettone: React.FC<{ x: number; y: number; id: GiudiceId; s?: number; o?: n
 };
 
 /** Freccia scritta a mano che si disegna. */
-const Freccia: React.FC<{ T: number; t0: number; a: [number, number]; b: [number, number]; c?: [number, number]; color?: string; dashed?: boolean; w?: number; label?: string; lx?: number; ly?: number }> = ({
+export const Freccia: React.FC<{ T: number; t0: number; a: [number, number]; b: [number, number]; c?: [number, number]; color?: string; dashed?: boolean; w?: number; label?: string; lx?: number; ly?: number }> = ({
   T, t0, a, b, c, color = INK, dashed, w = 6, label, lx = 0, ly = 0,
 }) => {
   if (T < t0) return null;
