@@ -40,7 +40,7 @@ const Stadio: React.FC<{ id: string; t: number; dur: number }> = ({ id, t, dur }
   const cam = camera(t, dur, 540, 1100);
   const L = cam.layer;
   // un battito ogni 0,83 s (72 bpm): il picco della linea si alza e l'alone pulsa
-  const ph = (t % (60 / 72)) / (60 / 72);
+  const BT = 60 / 72; const ph = ((((t - 4 + 0.15 * BT) % BT) + BT) % BT) / BT; // in fase con i colpi dello spartito (T.roma - k battiti)
   const beat = Math.exp(-((ph - 0.15) ** 2) * 60);
   const run = (t * 0.45) % 1; // la luce che corre lungo la linea
   const shirts = [VIOLA, GIALLOROSSO.rosso, WATFORD.giallo, '#F2EEE6', '#2A2A34', VIOLA, WATFORD.giallo];
