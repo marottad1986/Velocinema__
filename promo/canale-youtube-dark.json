@@ -30,7 +30,7 @@
         "È la domanda di Dark, una serie tedesca di Netflix piena di viaggi nel tempo.",
         "Sul nostro canale YouTube c'è un video lungo con tutta la serie, spiegata semplice:",
         "una grotta che riporta indietro di 33 anni, una famiglia annodata e due mondi gemelli,",
-        "e in più un capitolo nuovo sul finale."
+        "e un capitolo nuovo sul finale."
       ]
     },
     {
@@ -51,7 +51,8 @@
     "Il resto della trama (la famiglia annodata nel tempo, il finale) è quello già verificato nel video lungo (lunghi/dark-tutta-la-serie.json): https://it.wikipedia.org/wiki/Episodi_di_Dark_(terza_stagione)"
   ],
   "pronuncia": {
-    "In 2 Minuti": "In due Minuti"
+    "In 2 Minuti": "In due Minuti",
+    "33": "trentatré"
   },
   "voce_impostazioni": {
     "speed": 0.95

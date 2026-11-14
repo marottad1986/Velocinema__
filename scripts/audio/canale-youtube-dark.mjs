@@ -81,9 +81,9 @@ export default (mix, T) => {
   const h = (n) => T.frase('chiusura', n);
   const eTag = croma(c(1) + 0.2);
   const eS1 = croma(c(2) + 0.35); // «grotta»
-  const eS2 = croma(c(2) + 3.1); // «famiglia annodata»
-  const eS3 = croma(c(2) + 4.55); // «due mondi»
-  const eFin = croma(c(3) + 1.1); // «capitolo nuovo sul finale»
+  const eS2 = croma(c(2) + 2.8); // «famiglia annodata»
+  const eS3 = croma(c(2) + 4.25); // «due mondi»
+  const eFin = croma(c(3) + 0.4); // «capitolo nuovo sul finale»
   const eScr = croma(T.chiusura + 0.1);
   const eLike = croma(h(0) + 1.0);
   const eIscr = croma(h(0) + 2.4);
@@ -111,7 +111,7 @@ export default (mix, T) => {
   colpo(mix, 'grancassa', 'bdrum_pp', { t: eS3, vel: 100, gain: 0.6, rev: 0.5 });
   MOTIF_SPECCHIO.forEach(([, m], k) => bell(mix, m + 12, { t: eS3 + 2 * BEAT_ + k * BEAT_ / 2, vel: 26, pan: 0.3 }));
   // il finale spiegato: colpo forte e un battito di silenzio, poi il motivo in maggiore
-  colpo(mix, 'grancassa', 'bdrum_f', { t: eFin, vel: 127, gain: 1.2, rev: 0.6 });
+  colpo(mix, 'grancassa', 'bdrum_f', { t: eFin, vel: 127, gain: 0.45, rev: 0.6 });
   clip(mix, 'rombo', { t: eFin, da: 31, durata: 2.4, gain: 0.26, fadeIn: 0.05, fadeOut: 1.2, largo: 3 });
   const A3 = battito(eFin + 2 * BEAT);
   [36, 48, 55, 60, 64, 67].forEach((m, j) => strings(mix, m, { t: A3, dur: battito(T.chiusura) - A3 + 0.4, vel: 38, gain: 0.55, pan: (j - 2.5) * 0.2, att: 0.6, seed: 80 + j }));
@@ -122,7 +122,7 @@ export default (mix, T) => {
   const AF = Math.floor(eComm / BEAT) * BEAT;
   sec(A4, AF, { drone: 34, str: 28, mel: 32, magg: true });
   // la barra di ricerca che scrive «In 2 Minuti» (scena: da eScr + 1,6 a eScr + 2,6): tasti leggerissimi
-  [0, 1, 2, 3].forEach((k) => clip(mix, 'scatti', { t: eScr + 1.6 + k * BEAT_ / 2, da: 6.49, durata: 0.08, gain: 0.05, rev: 0.1 }));
+  [0, 1, 2].forEach((k) => clip(mix, 'scatti', { t: eScr + 1.6 + k * BEAT_ / 2, da: 6.49, durata: 0.08, gain: 0.05, rev: 0.1 }));
   [60, 67, 72].forEach((m, k) => bell(mix, m + 12, { t: eScr + k * BEAT_, vel: 30, pan: 0.2 })); // lo schermo si accende
   bell(mix, 76, { t: eLike, vel: 32, pan: -0.3 }); // metti like
   clip(mix, 'scatti', { t: eIscr, da: 6.49, durata: 0.1, gain: 0.2, rev: 0.15 }); // il clic su «iscriviti»

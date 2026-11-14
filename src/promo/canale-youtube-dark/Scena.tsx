@@ -105,9 +105,9 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T, tempi, cue }) => {
   const esce = eio(seg(t, c(0) - 0.15, c(0) + 0.9)); // la scritta della miniatura esce
   const eTag = g(c(1) + 0.2);
   const eS1 = g(c(2) + 0.35); // «grotta»
-  const eS2 = g(c(2) + 3.1); // «famiglia annodata»
-  const eS3 = g(c(2) + 4.55); // «due mondi»
-  const eFin = g(c(3) + 1.1); // «capitolo nuovo sul finale»
+  const eS2 = g(c(2) + 2.8); // «famiglia annodata»
+  const eS3 = g(c(2) + 4.25); // «due mondi»
+  const eFin = g(c(3) + 0.4); // «capitolo nuovo sul finale»
   const eScr = g(tempi.inizio.chiusura + 0.1);
   const eLike = g(h(0) + 1.0);
   const eIscr = g(h(0) + 2.4); // «iscriviti al canale»: il pulsante si preme
