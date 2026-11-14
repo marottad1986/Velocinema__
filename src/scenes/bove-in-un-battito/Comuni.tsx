@@ -56,8 +56,8 @@ export const HeartLine: React.FC<{ d: string; draw?: number; len?: number; color
 // ─────────────────────────── stadio ───────────────────────────
 
 /** Prato in prospettiva: strisce di taglio alternate, dall'orizzonte `y0` fino al fondo. */
-export const Pitch: React.FC<{ id: string; y0?: number; light?: string; dark?: string; x0?: number; x1?: number; lines?: string; lineOpacity?: number }> = ({
-  id, y0 = 1120, light = '#3E8A3A', dark = '#2F7230', x0 = 140, x1 = 940, lines = '#EEF2E6', lineOpacity = 0.85,
+export const Pitch: React.FC<{ id: string; y0?: number; light?: string; dark?: string; x0?: number; x1?: number; lines?: string; lineOpacity?: number; circle?: boolean }> = ({
+  id, y0 = 1120, light = '#3E8A3A', dark = '#2F7230', x0 = 140, x1 = 940, lines = '#EEF2E6', lineOpacity = 0.85, circle = true,
 }) => {
   const N = 9;
   const yB = 2100;
@@ -86,7 +86,7 @@ export const Pitch: React.FC<{ id: string; y0?: number; light?: string; dark?: s
         <path d={`M${x0} ${y0 + 6} L${lerp(x0, -900, 1)} ${yB}`} strokeWidth="6" />
         <path d={`M${x1} ${y0 + 6} L${lerp(x1, 1980, 1)} ${yB}`} strokeWidth="6" />
         <path d={`M${xl(yc)} ${yc} H${xr(yc)}`} strokeWidth="7" />
-        <ellipse cx="540" cy={yc} rx="300" ry="62" strokeWidth="7" />
+        {circle && <ellipse cx="540" cy={yc} rx="300" ry="62" strokeWidth="7" />}
       </g>
       <circle cx="540" cy={yc} r="7" fill={lines} opacity={lineOpacity} />
       <rect x="-400" y={y0} width="1880" height={yB - y0} fill={`url(#${id}-pd)`} />
@@ -371,5 +371,21 @@ export const Leg: React.FC<{ x: number; y: number; s?: number; sock: string; ban
     <path d="M-36 -6 L120 -4" stroke="#F6F4EE" strokeWidth="7" />
     {[-20, 10, 70, 100].map((sx) => <rect key={sx} x={sx - 6} y={-2} width="12" height="14" rx="3" fill="#C8CCD6" stroke={K} strokeWidth="3" />)}
     <path d="M0 -60 Q50 -66 100 -46" stroke="#F6F4EE" strokeWidth="6" fill="none" opacity=".8" />
+  </g>
+);
+
+/** Primo piano d'erba alta che tocca il bordo basso (ciuffi che ondeggiano, gocce che brillano). */
+export const GrassFront: React.FC<{ t: number; y?: number; fill?: string; blade?: string; dew?: number }> = ({ t, y = 1760, fill = '#16301A', blade = '#2E5A28', dew = 0.6 }) => (
+  <g>
+    <path d={`M-200 ${y - 40} Q540 ${y - 70} 1280 ${y - 40} V2200 H-200 Z`} fill={fill} />
+    {Array.from({ length: 34 }, (_, i) => {
+      const x = -160 + i * 42, h = 80 + ((i * 53) % 90), sw = Math.sin(t * 1.2 + i) * 6;
+      return (
+        <g key={i}>
+          <path d={`M${x} ${y} q${8 + sw} ${-h * 0.6} ${14 + sw * 1.5} ${-h}`} stroke={blade} strokeWidth="11" fill="none" strokeLinecap="round" />
+          {i % 3 === 0 && <circle cx={x + 14 + sw * 1.5} cy={y - h} r={5} fill="#FFFFFF" opacity={dew * (0.3 + 0.7 * Math.abs(Math.sin(t * 2 + i)))} />}
+        </g>
+      );
+    })}
   </g>
 );

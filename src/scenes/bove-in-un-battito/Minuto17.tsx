@@ -21,7 +21,7 @@ export const Minuto17: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const stopped = t >= tStop;
   const tSusp = griglia(cues[1] + 1.2);
   const dim = eo(seg(t, tSusp, tSusp + 1.2));
-  const blink = stopped ? 0.55 + 0.45 * Math.cos((t - tStop) * 2.4) : 1;
+  const blink = stopped ? 0.75 + 0.25 * Math.cos((t - tStop) * 2.4) : 1; // solo cifre e scritta: la cornice resta
   const amb = eo(seg(t, tSusp + 0.3, dur - 0.5)); // l'ambulanza avanza piano lungo il bordo campo
   const siren = 0.5 + 0.5 * Math.sin(t * 9);
   const shirts = [VIOLA, '#4A3270', '#2A2A34', '#F2EEE6', '#1E2A5A', VIOLA];
@@ -53,9 +53,9 @@ export const Minuto17: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <rect x="-200" y="706" width="1480" height="300" fill="#14121C" />
           <Crowd t={t} y1={740} y0={975} rows={11} shirts={shirts} scarves={scarves} seed={51} size0={7} size1={12} scarfUp={0.5 * (1 - dim)} backdrop="#14121C" dim={0.35 * dim} />
           {/* tabellone grande al centro: l'orologio */}
-          <g opacity={blink}>
+          <g>
             <Glow id="mi-sbg" x={540} y={800} r={240} t={t} color="#FFE6A0" amp={0.03} rate={2} opacity={0.55} />
-            <Scoreboard id="mi-sb" x={390} y={730} w={300} h={150} t={t} on={1}
+            <Scoreboard id="mi-sb" x={390} y={730} w={300} h={150} t={t} on={blink}
               lines={[{ text: `${mm}:${String(ss).padStart(2, '0')}`, size: 64 }, { text: t >= tSusp ? 'PARTITA SOSPESA' : '1° TEMPO', size: 22, color: stopped && dim > 0.3 ? '#FFFFFF' : '#E8D8FF' }]} />
           </g>
           <rect x="-200" y="1000" width="1480" height="28" fill="#1E1A2A" />
@@ -69,8 +69,8 @@ export const Minuto17: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <Ball x={540} y={1232} r={22} rot={10} />
           <Glow id="mi-bg" x={540} y={1232} r={110} t={t} color="#FFF6DC" amp={0.03} rate={1.5} opacity={0.35} />
           {/* l'ambulanza lontana sulla pista a bordo campo, a sinistra: piccola, luci blu */}
-          <g transform={`translate(${lerp(-80, 210, amb)} 1052)`} opacity={seg(t, tSusp + 0.2, tSusp + 0.8)}>
-            <Glow id="mi-sir" x={22} y={-30} r={90} t={t} color="#5AA8FF" amp={0.2} rate={9} opacity={0.6 * siren} />
+          <g transform={`translate(${lerp(-40, 330, amb)} 1056) scale(1.6)`} opacity={seg(t, tSusp + 0.2, tSusp + 0.8)}>
+            <Glow id="mi-sir" x={8} y={-40} r={110} t={t} color="#5AA8FF" amp={0.2} rate={9} opacity={0.9 * siren} />
             <rect x="-30" y="-36" width="78" height="34" rx="5" fill="#F2F2F6" stroke={K} strokeWidth="4" />
             <rect x="34" y="-28" width="22" height="26" rx="3" fill="#F2F2F6" stroke={K} strokeWidth="4" />
             <rect x="-30" y="-20" width="78" height="6" fill="#E04848" />

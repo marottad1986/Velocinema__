@@ -99,7 +99,7 @@ export const Defibrillatore: React.FC<SceneProps> = ({ t, dur, cues, griglia }) 
           <rect x="160" y="1200" width="580" height="40" fill="#8A929A" stroke={K} strokeWidth="7" />
           {[200, 700].map((x) => <g key={x}><rect x={x - 8} y="1240" width="16" height="60" fill="#5A6068" /><circle cx={x} cy="1306" r="12" fill="#2A2E36" /></g>)}
           {/* la borsa pronta con la sciarpa viola, quando torna a casa */}
-          <g transform={`translate(560 1104) scale(${lerp(0.6, 1, bag)}) translate(-560 -1104)`} opacity={home}>
+          <g transform={`translate(260 1104) scale(${lerp(0.6, 1, bag)}) translate(-560 -1104)`} opacity={home}>
             <path d="M440 1110 Q430 1030 480 1020 H640 Q690 1030 680 1110 Z" fill="#2A2C38" stroke={K} strokeWidth="8" />
             <path d="M500 1020 Q560 970 620 1020" stroke="#14141C" strokeWidth="10" fill="none" />
             <path d="M450 1060 H672" stroke="#4A4E5E" strokeWidth="6" />
@@ -114,7 +114,6 @@ export const Defibrillatore: React.FC<SceneProps> = ({ t, dur, cues, griglia }) 
           <circle cx="740" cy="1295" r="8" fill="#6A5A4A" />
           <rect x="548" y="1166" width="384" height="24" fill="#D8C8AA" stroke={K} strokeWidth="7" />
           {/* scatolina blu aperta con il panno bianco */}
-          <Glow id="de-dv" x={740} y={1110} r={200} t={t} color="#FFF0A8" amp={0.05} rate={2} opacity={0.2 + 0.55 * dev} />
           <path d="M630 1166 L650 1080 H830 L850 1166 Z" fill="#2A4A7A" stroke={K} strokeWidth="7" />
           <path d="M650 1080 L640 1000 H820 L830 1080 Z" fill="#3A5A8A" stroke={K} strokeWidth="7" />
           <path d="M660 1150 L672 1094 H808 L820 1150 Z" fill="#F2F2F6" stroke={K} strokeWidth="4" />
@@ -125,13 +124,18 @@ export const Defibrillatore: React.FC<SceneProps> = ({ t, dur, cues, griglia }) 
             <rect x="34" y="-14" width="14" height="14" rx="3" fill="#D8DCE4" stroke={K} strokeWidth="3" />
           </g>
           <path d={`M760 1112 q40 -10 50 10 q8 22 -26 24 q-30 2 -20 -16 q10 -18 40 -8`} stroke="#4A5260" strokeWidth="5" fill="none" />
+          {/* l'evento: alone sopra la scatolina e la spia gialla a cuore che si accende sul dispositivo */}
+          <Glow id="de-dv" x={712} y={1118} r={170} t={t} color="#FFF0A8" amp={0.06} rate={2} opacity={0.9 * dev} />
+          <g transform="translate(704 1118)" opacity={0.25 + 0.75 * dev}>
+            <path d="M0 6 C-14 -4 -12 -16 -4 -16 C0 -16 0 -12 0 -10 C0 -12 0 -16 4 -16 C12 -16 14 -4 0 6 Z" transform={`scale(${1 + 0.25 * dev * (0.5 + 0.5 * Math.sin(t * 7.5))})`} fill={GIALLO} stroke={K} strokeWidth="2.5" />
+          </g>
           {/* bicchiere d'acqua accanto */}
           <path d="M870 1166 L862 1090 H902 L894 1166 Z" fill="#CFE8F0" stroke={K} strokeWidth="5" opacity=".9" />
           <path d="M868 1110 H896" stroke="#9AC8D8" strokeWidth="4" />
         </g>
         {/* PIANO 4 — la tenda divisoria in primo piano a sinistra (1,2) */}
         <g transform={L(1.2)}>
-          <path d={`M-200 -300 H${140 + Math.sin(t * 0.8) * 6} Q${120 + Math.sin(t * 0.8) * 10} 1200 ${150 + Math.sin(t * 0.8) * 8} 2100 H-200 Z`} fill="#8AB8B0" stroke={K} strokeWidth="9" />
+          <path d={`M-200 -300 H${70 + Math.sin(t * 0.8) * 6} Q${60 + Math.sin(t * 0.8) * 10} 1200 ${110 + Math.sin(t * 0.8) * 8} 2100 H-200 Z`} fill="#8AB8B0" stroke={K} strokeWidth="9" />
           {[0, 40, 80].map((x) => <path key={x} d={`M${x} -300 Q${x - 14} 1200 ${x + 6} 2100`} stroke="#6A9890" strokeWidth="8" fill="none" />)}
           <path d="M-200 1700 H1280 V2200 H-200 Z" fill="#5A625C" opacity=".6" />
         </g>

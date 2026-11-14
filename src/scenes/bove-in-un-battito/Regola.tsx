@@ -120,7 +120,7 @@ export const Regola: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               {/* impronta del timbro */}
               <g transform="translate(70 200) rotate(-10)" opacity={ink}>
                 <rect x="-150" y="-50" width="300" height="100" rx="10" fill="none" stroke="#C8262E" strokeWidth="9" />
-                <text x="0" y="18" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="50" fill="#C8262E" letterSpacing="0.06em">NON IDONEO</text>
+                <text x="0" y="18" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="40" fill="#C8262E" letterSpacing="0.02em">NON IDONEO</text>
               </g>
             </g>
           </g>

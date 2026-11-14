@@ -5,7 +5,7 @@ import { ANTON, DISPLAY, SANS } from '../../lib/fonts';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Beam, Glow, NearMotes } from '../../lib/elements';
 import type { PosterProps } from '../../types';
-import { Ball, Crowd, FloodTower, GIALLO, GIALLOROSSO, HeartLine, K, Pitch, VIOLA, WATFORD, heartPath } from './Comuni';
+import { Ball, Crowd, FloodTower, GrassFront, GIALLO, GIALLOROSSO, HeartLine, K, Pitch, VIOLA, WATFORD, heartPath } from './Comuni';
 import { Battito } from './Battito';
 
 // Copertina e finale della storia di Edoardo Bove (speciale con Mr.goal). Locandina originale: niente locandina del
@@ -96,6 +96,7 @@ const Stadio: React.FC<{ id: string; t: number; dur: number }> = ({ id, t, dur }
             return <Glow id={`${id}-run`} x={x} y={HY} r={90} t={t} color="#FFF6C8" amp={0} opacity={0.7 * Math.sin(run * Math.PI)} />;
           })()}
         </g>
+        <g transform={L(1.2)}><GrassFront t={t} y={1840} dew={0.4} /></g>
         <g transform={L(1.6)}>
           <NearMotes id={`${id}-near`} t={t} color="#FFF0C8" n={6} r0={50} r1={140} y0={1100} y1={1900} opacity={0.1} />
         </g>

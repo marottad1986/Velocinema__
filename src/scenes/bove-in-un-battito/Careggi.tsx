@@ -89,9 +89,9 @@ export const Careggi: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <rect x="270" y="1180" width="200" height="50" fill="#F2F6FF" opacity=".85" stroke={K} strokeWidth="5" />
           <Glow id="ca-door" x={370} y={1210} r={170} t={t} color="#EAF2FF" amp={0.04} rate={2} opacity={0.5} />
           {/* croce sul tetto */}
-          <g transform="translate(980 840) scale(0.8)">
-            <rect x="-14" y="-40" width="28" height="80" fill="#E8F0FF" stroke={K} strokeWidth="5" />
-            <rect x="-40" y="-14" width="80" height="28" fill="#E8F0FF" stroke={K} strokeWidth="5" />
+          <g transform="translate(820 676) scale(0.8)">
+            <rect x="-6" y="40" width="12" height="40" fill="#2A3044" />
+            <path d="M-14 -40 H14 V-14 H40 V14 H14 V40 H-14 V14 H-40 V-14 H-14 Z" fill="#E8F0FF" stroke={K} strokeWidth="5" strokeLinejoin="round" />
             <Glow id="ca-cr" x={0} y={0} r={90} t={t} color="#CFE0FF" amp={0.05} rate={1.6} opacity={0.5 * (1 - 0.6 * dawn)} />
           </g>
         </g>
@@ -106,7 +106,7 @@ export const Careggi: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
               <rect x={x - 8} y={y - 40} width="16" height="40" fill="#1A1410" />
             </g>
           ))}
-          {[[620, 1236], [-20, 1236]].map(([x, y], i) => (
+          {[[-20, 1236]].map(([x, y], i) => (
             <g key={`l${i}`}>
               <rect x={x - 6} y={y - 220} width="12" height="220" fill="#2A2E3A" stroke={K} strokeWidth="4" />
               <path d={`M${x} ${y - 220} q30 -10 46 6`} stroke="#2A2E3A" strokeWidth="10" fill="none" />
@@ -117,7 +117,7 @@ export const Careggi: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <Reflection t={t} x={370} y={1250} color="#FF8A8A" n={8} w={90} opacity={0.35 * (1 - 0.5 * dawn)} />
           <Reflection t={t} x={WIN[KEY].x + 28} y={1260} color="#FFE08A" n={7} w={50} opacity={0.4 * win} />
           {/* ambulanza ferma, vista di tre quarti */}
-          <g transform="translate(700 1290)">
+          <g transform="translate(720 1236) scale(0.85)">
             <Glow id="ca-sir" x={30} y={-150} r={240} t={t} color="#4A9AFF" amp={0.2} rate={8} opacity={0.7 * siren * (1 - 0.6 * dawn)} />
             <ellipse cx="40" cy="10" rx="230" ry="20" fill="#000" opacity=".5" />
             <path d="M-170 -150 H120 V0 H-170 Z" fill="#F2F2F6" stroke={K} strokeWidth="8" />

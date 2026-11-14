@@ -3,7 +3,7 @@ import { camera, eo, eob, lerp, seg } from '../../lib/anim';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Confetti, Glow, NearMotes, flashAt } from '../../lib/elements';
 import type { SceneProps } from '../../types';
-import { Ball, Crowd, K, Scoreboard, WATFORD } from './Comuni';
+import { Ball, Crowd, GrassFront, K, Scoreboard, WATFORD } from './Comuni';
 
 // Il gol dopo 506 giorni: di notte, dal limite dell'area, guardiamo dentro la porta. Oltre la rete la tribuna dietro la
 // porta, piena di tifosi gialli, neri e rossi; sopra, il tabellone. f1 «…segna nei minuti di recupero»: il pallone parte
@@ -117,6 +117,7 @@ export const Gol: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           {t < tGol && shot > 0 && <Ball x={bx} y={by} r={br} rot={shot * 600} shadow={false} />}
           {t < tGol && shot > 0 && <path d={`M${bx - 70} ${by + 90} L${bx - 10} ${by + 12}`} stroke="#FFFFFF" strokeWidth="8" opacity=".35" strokeLinecap="round" />}
         </g>
+        <g transform={L(1.25)}><GrassFront t={t} y={1800} /></g>
         {/* PIANO 4 — coriandoli gialli e neri dopo il gol, particelle vicine (1,5) */}
         <g transform={L(1.5)} opacity={joy}>
           <Confetti t={Math.max(0, t - tGol)} seed={52} n={46} colors={[WATFORD.giallo, WATFORD.nero, WATFORD.rosso, '#FFF4C8']} y0={500} y1={1900} speed={0.24} />

@@ -60,7 +60,7 @@ export const Roma: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             <Crowd t={t} y1={796} y0={1010} rows={9} x0={OX0 - 100} x1={OX1 + 100} shirts={shirts} scarves={scarves} seed={21} size0={7} size1={12} scarfUp={on} flashes={on} bounce={0.5 * on} backdrop="#1A1420" />
             {/* maxischermo nella tribuna */}
             <g transform={`translate(680 695) scale(${lerp(0.94, 1, pop)}) translate(-680 -695)`}>
-              <Scoreboard id="ro-sb" x={584} y={652} w={190} h={88} t={t} on={0.3 + 0.7 * on}
+              <Scoreboard id="ro-sb" x={566} y={652} w={190} h={88} t={t} on={0.55 + 0.45 * on}
                 lines={on > 0.05 ? [{ text: 'SERIE A', size: 28 }, { text: 'ESORDIO 2021', size: 18, color: '#F2EEE6' }] : [{ text: 'ROMA', size: 30 }]} />
             </g>
             {/* cartelloni a bordo campo (fasce di colore, nessun marchio) e prato */}

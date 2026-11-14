@@ -94,7 +94,7 @@ export const Watford: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         </g>
         {/* PIANO 3 — il prato bagnato, i fasci dei fari con la pioggerella (0,8) */}
         <g transform={L(0.8)}>
-          <Pitch id="wa-p" y0={1270} light="#3A7A3A" dark="#2E6A30" x0={-500} x1={1580} lineOpacity={0.6} />
+          <Pitch id="wa-p" y0={1270} light="#3A7A3A" dark="#2E6A30" x0={-500} x1={1580} lineOpacity={0.6} circle={false} />
           <path d="M-200 1300 H1280" stroke="#F4F6EC" strokeWidth="9" opacity=".75" />
           <rect x="-200" y="1272" width="1480" height="200" fill="#B8C8E0" opacity=".08" />
           <Beam id="wa-b1" x={100} y={660} t={t} length={900} spread={420} color="#E8F0FF" angle={70} opacity={0.12} />

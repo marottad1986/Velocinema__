@@ -72,7 +72,7 @@ export const Documentario: React.FC<SceneProps> = ({ t, dur, cues, griglia }) =>
         </g>
         {/* PIANO 2 — insegna luminosa sulla parete: le date in sala (0,45) */}
         <g transform={L(0.45)}>
-          <g transform={`translate(540 1130) scale(${lerp(0.92, 1, eob(sign, 1.6))})`} opacity={flick}>
+          <g transform={`translate(540 1088) scale(${lerp(0.92, 1, eob(sign, 1.6))})`} opacity={flick}>
             <Glow id="do-sign" x={0} y={0} r={360} t={t} color="#FFD84A" amp={0.04} rate={3} opacity={0.5 * sign} />
             <rect x="-330" y="-46" width="660" height="92" rx="46" fill="#14100C" stroke={GIALLO} strokeWidth="6" />
             <text x="0" y="18" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="44" letterSpacing="0.1em" fill={GIALLO}>16 · 17 · 18 NOVEMBRE</text>
