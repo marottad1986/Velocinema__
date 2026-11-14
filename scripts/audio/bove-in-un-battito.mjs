@@ -113,6 +113,10 @@ export default (mix, T) => {
   timp(gol1, 33, 100, 0.6);
   chord(gol1, 1.2, [['contrabbasso', 33], ['celli', 57], ['viole', 64], ['violini', 69], ['violini', 76]], 0.42, 60);
   crowd(gol1, T['minuto-17'] - gol1 - 0.2, 0.2);
+  // il tabellone passa al 5-1 finale sulla parola «cinque» (Firenze.tsx: t5 = griglia(dur - 1))
+  const fin5 = G(T['minuto-17'] - 1.0);
+  glock(fin5, 81, 0.16);
+  glock(fin5 + BEAT / 2, 88, 0.12);
   strings(gol1 + 2 * BEAT, B(T['minuto-17']), { vel: 46, gain: 0.34, high: true, k0: 0 });
 
   // ---- minuto-17: archi sottili mentre l'orologio corre; quando si ferma (Minuto17.tsx: tStop) la musica tace

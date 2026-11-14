@@ -22,6 +22,9 @@ export const Firenze: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const bulge = eob(hit, 2) * (1 - 0.7 * seg(t, tGol + 0.5, tGol + 1.8));
   const joy = seg(t, tGol, tGol + 0.3) * (1 - 0.4 * seg(t, tGol + 3, dur));
   const sb = eo(seg(t, tGol + 0.15, tGol + 0.55));
+  // «la partita finirà cinque a uno»: il tabellone passa al risultato finale sulla parola «cinque» (≈ 10 s nella clip)
+  const t5 = griglia(dur - 1.0);
+  const fin = eob(seg(t, t5, t5 + 0.4), 2);
   const flash = flashAt(t, [tGol + 0.05]);
   const shirts = [VIOLA, VIOLA, '#4A3270', VIOLA_CH, '#F2EEE6', '#2A2A34'];
   const scarves = [[VIOLA, '#F2EEF8'], ['#F2EEF8', VIOLA]];
@@ -89,10 +92,10 @@ export const Firenze: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         <g transform={`${L(0.4)} translate(0 60)`}>
           <rect x="-200" y="636" width="1480" height="400" fill="#16121E" />
           <Crowd t={t} y1={680} y0={1000} rows={12} shirts={shirts} scarves={scarves} seed={33} size0={8} size1={14} scarfUp={0.3 + 0.7 * joy} flashes={0.4 + 0.6 * joy} bounce={0.6 * joy} backdrop="#16121E" />
-          <g opacity={0.5 + 0.5 * sb} transform={`translate(800 646) scale(${lerp(0.94, 1, eob(sb, 1.8))}) translate(-800 -646)`}>
+          <g opacity={0.5 + 0.5 * sb} transform={`translate(800 646) scale(${lerp(0.94, 1, eob(sb, 1.8)) + 0.06 * Math.sin(fin * Math.PI)}) translate(-800 -646)`}>
             <Glow id="fi-sbg" x={800} y={646} r={220} t={t} color="#D8C0FF" amp={0.05} rate={3} opacity={0.5 * sb} />
             <Scoreboard id="fi-sb" x={670} y={598} w={260} h={98} t={t} on={0.6 + 0.4 * sb}
-              lines={sb > 0.05 ? [{ text: '4 – 1', size: 44 }, { text: 'FIORENTINA · ROMA', size: 20, color: '#E8D8FF' }] : [{ text: '3 – 1', size: 44 }, { text: 'FIORENTINA · ROMA', size: 20, color: '#E8D8FF' }]} />
+              lines={t >= t5 ? [{ text: '5 – 1', size: 44 }, { text: 'FINALE', size: 20, color: '#E8D8FF' }] : sb > 0.05 ? [{ text: '4 – 1', size: 44 }, { text: 'FIORENTINA · ROMA', size: 20, color: '#E8D8FF' }] : [{ text: '3 – 1', size: 44 }, { text: 'FIORENTINA · ROMA', size: 20, color: '#E8D8FF' }]} />
           </g>
           {/* cartelloni a bordo campo: fasce di colore, nessun marchio */}
           <rect x="-200" y="1030" width="1480" height="30" fill="#1E1A2A" />
