@@ -117,7 +117,7 @@ export default (mix, T) => {
   const kick = (t, gain = 0.6) => colpo(mix, 'grancassa', 'bdrum_f', { t, vel: 100, gain, rev: 0.4, seed: Math.round(t * 10) });
   const roll = (t, d = 1.6, gain = 0.18) => colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: t - d, vel: 52, rev: 0.45, gain, dur: d, release: 0.4 });
   const trem = (t, dur, notes, { vel = 44, gain = 0.3 } = {}) => notes.forEach((m, j) =>
-    suona(mix, m < 60 ? 'celli_trem' : 'violini_trem', m, { t, dur, vel, pan: (j - (notes.length - 1) / 2) * 0.35, gain, attack: 0.4, release: 0.9, rev: 0.55, seed: j + 3 }));
+    suona(mix, m < 60 ? 'celli_trem' : 'violini_trem', m, { t, dur, vel: Math.max(vel, 70), pan: (j - (notes.length - 1) / 2) * 0.35, gain, attack: 0.4, release: 0.9, rev: 0.55, seed: j + 3 }));
 
   // ---------------------------------------------------------------- copertina: il fulmine sulla torre (0 s e 2,5 s)
   clip(mix, 'tuono_secco', { t: 0, da: 0.7, durata: 1.6, gain: 0.32, fadeOut: 0.6, rev: 0.3 });
@@ -153,7 +153,7 @@ export default (mix, T) => {
   clip(mix, 'scariche', { t: at('macchina', 3, 0.8), da: 1.2, durata: 0.8, gain: 0.2, fadeOut: 0.3, rev: 0.2 });
   crash(gone, 0.3);
   kick(gone, 0.5);
-  trem(gone + BEAT, B(T.passato) - gone - BEAT + 0.3, [63, 70, 75], { vel: 40, gain: 0.25 });
+  trem(gone + BEAT, B(T.passato) - gone - BEAT + 0.3, [63, 70, 75], { vel: 40, gain: 0.15 });
 
   // 3 · 1955: lo swing leggero; niente plutonio (nota sospesa), George (pianoforte), Biff (trombone)
   swing(B(T.passato), B(T.incidente), { vel: 40 });
@@ -173,7 +173,7 @@ export default (mix, T) => {
   bell(at('incidente', 1, 0.6), 84); // Lorraine
   suona(mix, 'trombone', 40, { t: at('incidente', 2, 0.6), dur: 0.5, vel: 60, gain: 0.3, attack: 0.02, release: 0.3, rev: 0.4 }); // la X
   [75, 79, 82, 87].forEach((m, k) => bell(at('incidente', 3, 0.1) + k * CROMA / 2, m, 42)); // il cuore
-  trem(at('incidente', 3, 0.7), end('incidente') - at('incidente', 3, 0.7), [60, 66, 72], { vel: 42, gain: 0.26 }); // c'è qualcosa che non va
+  trem(at('incidente', 3, 0.7), end('incidente') - at('incidente', 3, 0.7), [60, 66, 72], { vel: 42, gain: 0.13 }); // c'è qualcosa che non va
 
   // 5 · la foto: metà passo, minore; il Doc giovane, «non nascerà», i fratelli che spariscono (note che si spengono)
   strings(B(T.foto), B(T.fulmine), { vel: 40, gain: 0.34, chords: MIN, half: true });
@@ -182,7 +182,7 @@ export default (mix, T) => {
   timp(at('foto', 1, 0.9), 36, 86, 0.5);
   bell(at('foto', 2, 0.1), 82, 38); // la foto
   [79, 75, 72].forEach((m, k) => bell(at('foto', 3, k * 0.8), m, 40 - k * 6)); // spariscono uno alla volta
-  trem(at('foto', 3), end('foto') - at('foto', 3), [48, 55, 63], { vel: 40, gain: 0.26 });
+  trem(at('foto', 3), end('foto') - at('foto', 3), [48, 55, 63], { vel: 40, gain: 0.13 });
 
   // 6 · il fulmine: il tuono lontano, il volantino, la campana della torre, il cavo; il motore riparte
   strings(B(T.fulmine), B(T.ballo), { vel: 42, gain: 0.34 });
@@ -213,7 +213,7 @@ export default (mix, T) => {
   const tear = at('lettera', 1, 1.0), bolt = at('lettera', 2, 0.2), shots2 = at('lettera', 3, 0.6);
   strings(B(T.lettera), bolt, { vel: 42, gain: 0.34, chords: MIN });
   spic(B(T.lettera), at('lettera', 2, -1.0), { vel: 30, chords: MIN });
-  trem(shots2 + 1.5 * BEAT, at('cambiato', 0, 0.2) - shots2 - 1.5 * BEAT, [36, 43], { vel: 40, gain: 0.15 });
+  trem(shots2 + 1.5 * BEAT, at('cambiato', 0, 0.2) - shots2 - 1.5 * BEAT, [36, 43], { vel: 40, gain: 0.25 });
   bell(at('lettera', 0, 1.6), 72, 40);
   clip(mix, 'telo', { t: tear, da: 0.2, durata: 0.5, gain: 0.32, fadeOut: 0.15, rev: 0.25 }); // la lettera strappata
   spic(at('lettera', 2, -1.0), bolt, { vel: 44, doppio: true, chords: MIN });
@@ -223,14 +223,14 @@ export default (mix, T) => {
   crash(bolt, 0.35);
   timp(bolt, 39, 115, 0.7);
   clip(mix, 'passaggio', { t: at('lettera', 2, 0.6) - 0.1, da: 0.56, durata: 1.4, gain: 0.32, fadeOut: 0.4, rev: 0.35 }); // di nuovo nel 1985
-  trem(at('lettera', 2, 1.0), shots2 - at('lettera', 2, 1.0), [63, 66, 72], { vel: 40, gain: 0.26 });
+  trem(at('lettera', 2, 1.0), shots2 - at('lettera', 2, 1.0), [63, 66, 72], { vel: 40, gain: 0.13 });
   strings(at('lettera', 2, 1.0), shots2, { vel: 36, gain: 0.26, chords: MIN });
   [0, CROMA / 2, CROMA].forEach((d) => snare(shots2 + d, 0.6)); // gli spari, di nuovo
   timp(shots2 + BEAT * 1.5, 36, 80, 0.45);
 
   // 9 · il 1985 cambiato: Mi bemolle maggiore pieno, il tema ai corni; il libro; Doc dal 2015 (salto); «nei guai!»
   const rise = at('cambiato', 0, 0.2), back = at('cambiato', 2, 0.2), trouble = at('cambiato', 3, 0.5);
-  const F = G0 + Math.round((T.finale - G0) / BEAT) * BEAT;
+  const F = G0 + Math.round((T.finale - G0) / CROMA) * CROMA;
   [39, 51, 58, 63].forEach((m, j) => archi(mix, m, { t: rise, dur: Math.max(0.6, B(rise) > rise ? B(rise) - rise : BAR), vel: 44, pan: (j - 1.5) * 0.3, rev: 0.55, gain: 0.8, attack: 0.15, release: 1.0, seed: 80 + j }));
   strings(B(rise) < rise ? B(rise) + BAR : B(rise), F, { vel: 46, gain: 0.38, high: true });
   spic(B(at('cambiato', 1)), back, { vel: 30 });
