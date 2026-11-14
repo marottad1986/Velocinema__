@@ -54,6 +54,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - X Factor 2026 (talent spiegati): viola notte da studio televisivo (#2A1E4A, opacità 12%); colori delle squadre sulle luci, oro solo sull'oggetto chiave.
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
   - Hunger Games: grigio-blu di carbone nel Distretto 12 (#2A3038, opacità 12%), oro caldo a Capitol City (#C89A3A, 8%), verde bosco nell'arena (#1E3A2A, 10%; quasi nero di notte #0F1A12); unico colore deciso l'arancione-brace (#F08A2A) sulla freccia, le fiamme e gli oggetti chiave.
+  - Ritorno al futuro (Spiegato semplice): carta da progetto blu notte (#142848, opacità 10%); unico colore deciso il giallo (#F5C23A) delle scie del viaggio nel tempo, rosso per l'anello del nodo e i pericoli.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
 
 ## 7. Prestazioni (anteprima fluida)
@@ -99,3 +100,4 @@ leggono solo questo file e quello del film. Un film nuovo aggiunge il suo file q
 - X Factor 2026 (talent spiegati, studio e ballottaggi riusabili): `qualita/x-factor-2026.md`
 - Hunger Games: `qualita/hunger-games.md`
 - Edoardo Bove – «In un battito» (storia vera, stadi a tutto schermo): `qualita/bove-in-un-battito.md`
+- Ritorno al futuro (Spiegato semplice, schema delle linee del tempo): `qualita/ritorno-al-futuro.md`

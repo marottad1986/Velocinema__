@@ -164,7 +164,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   e cartellini dei personaggi in `src/components/ChapterOverlay.tsx`, attivi quando il JSON ha `linea_tempo` e `personaggi`.
   Episodi: Dark (`films/dark-stagione-1.json`, schema `src/scenes/dark-stagione-1/Albero.tsx`; stagione 2 in
   `films/dark-stagione-2.json`, schema `src/scenes/dark-stagione-2/Nodo.tsx`), Inception
-  (`films/inception.json`, schema `src/scenes/inception/Piani.tsx`); musica in `scripts/audio/<slug>.mjs`.
+  (`films/inception.json`, schema `src/scenes/inception/Piani.tsx`), Ritorno al futuro parte I
+  (`films/ritorno-al-futuro.json`, schema delle linee del tempo `src/scenes/ritorno-al-futuro/Linee.tsx`, da riusare nel lungo della trilogia); musica in `scripts/audio/<slug>.mjs`.
 - Priorità: serie intricate (Dark, Lost, Westworld, Severance, Twin Peaks, 1899; una stagione per video se lunghe),
   film (Inception, Tenet, Mulholland Drive, Donnie Darko, Primer). Libri solo dopo ~10 episodi.
 
@@ -214,7 +215,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   si sente la musica accelerare e rallentare). Lo stesso bpm va nel JSON (`"bpm": 72`): le scene ricevono `griglia(s, div)`,
   che arrotonda un istante del capitolo al battito (div 2 = crome), e gli eventi si scrivono già a tempo, es.
   `seg(t, griglia(cues[2] + 0.4), …)`; `controlli.mjs` verifica che il bpm del JSON sia quello dello spartito. Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
-  Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute), Joker 96, The Others 72, Il sesto senso 72 (10 s = 3 battute), Breaking Bad stagione 1 96 (10 s = 4 battute); storia vera Edoardo Bove 72 (il timpano fa da cuore); Spiegato semplice: Inception 68 (sogni profondi a metà passo), Tenet 80 (12 s = 4 battute; la tenaglia a passo doppio), Dark 66 (2052 e 2053 a metà passo, anche la stagione 2);
+  Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute), Joker 96, The Others 72, Il sesto senso 72 (10 s = 3 battute), Breaking Bad stagione 1 96 (10 s = 4 battute); storia vera Edoardo Bove 72 (il timpano fa da cuore); Spiegato semplice: Inception 68 (sogni profondi a metà passo), Tenet 80 (12 s = 4 battute; la tenaglia a passo doppio), Dark 66 (2052 e 2053 a metà passo, anche la stagione 2); Ritorno al futuro 72 (10 s = 12 battiti, come il video lungo della trilogia; la corsa al fulmine a passo doppio);
   quadri: Grande onda 88, Notte stellata 92;
   Bohemian Rhapsody 70 (opera e rock a passo doppio, 140), Gli anni 600/7 ≈ 85,7 (14 s = 5 battute).
 - Effetti sonori registrati: `scripts/audio/effetti.mjs` (archivio CC0 di Craig Smith, USC / Sunset Editorial, "SSE Library"
