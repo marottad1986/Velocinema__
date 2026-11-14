@@ -259,3 +259,103 @@ export const Drizzle: React.FC<{ t: number; seed?: number; n?: number; color?: s
   }
   return <path d={d} stroke={color} strokeWidth="2.5" opacity={opacity} strokeLinecap="round" />;
 };
+
+// ─────────────────────────── tifosi e calciatori (via libera dell'utente, 14 novembre) ───────────────────────────
+// Folla generica nel nostro stile (teste e spalle, nessun volto) e dettagli dei calciatori (gambe, calzettoni,
+// scarpini). Bove non è mai riconoscibile e il malore non si disegna.
+
+const SKIN = ['#F0C8A0', '#D8A47A', '#B07A52', '#8A5A3A', '#E8B890', '#6A4028'];
+const HAIR = ['#1A1410', '#3A2618', '#6A4A2A', '#C8A060', '#2A2A2A', '#8A8A8A'];
+
+/**
+ * Tribuna piena di tifosi: `rows` file dalla quota `y1` (in alto, lontano) a `y0` (in basso, vicino); in ogni fila teste e
+ * spalle con maglie nei colori `shirts`, alcune sciarpe tese sopra la testa (`scarves`). `stand` 0..1 = quanto sono in
+ * piedi (si alzano), `bounce` = saltelli; `flashes` = istanti dei flash dei telefoni.
+ */
+export const Crowd: React.FC<{
+  t: number; y0: number; y1: number; rows?: number; x0?: number; x1?: number; shirts: string[]; scarves?: string[][]; seed?: number;
+  stand?: number; bounce?: number; dim?: number; flashes?: number; scarfUp?: number; size0?: number; size1?: number; backdrop?: string;
+}> = ({ t, y0, y1, rows = 10, x0 = -200, x1 = 1280, shirts, scarves = [], seed = 11, stand = 1, bounce = 0, dim = 0, flashes = 0, scarfUp = 0, size0 = 14, size1 = 40, backdrop = '#14121C' }) => {
+  const r = rng(seed);
+  const out: React.ReactNode[] = [];
+  for (let i = 0; i < rows; i++) {
+    const u = i / Math.max(1, rows - 1);
+    const s = lerp(size0, size1, u ** 1.3); // raggio della testa
+    const y = lerp(y1, y0, u ** 1.15);
+    const step = s * 2.25;
+    const n = Math.ceil((x1 - x0) / step) + 1;
+    const shade = 0.55 + 0.45 * u; // file lontane più scure
+    out.push(<rect key={`b${i}`} x={x0} y={y + s * 0.6} width={x1 - x0} height={s * 4} fill={backdrop} />);
+    for (let k = 0; k < n; k++) {
+      const x = x0 + k * step + (i % 2) * step * 0.5 + (r() - 0.5) * s * 0.6;
+      const ph = r() * 6.28;
+      const lift = (1 - stand) * s * 1.1 + bounce * Math.max(0, Math.sin(t * 7 + ph)) * s * 0.5;
+      const yy = y - r() * s * 0.2 + lift;
+      const shirt = shirts[Math.floor(r() * shirts.length)];
+      const skin = SKIN[Math.floor(r() * SKIN.length)];
+      const hair = HAIR[Math.floor(r() * HAIR.length)];
+      const cap = r() < 0.12;
+      out.push(
+        <g key={`${i}-${k}`} opacity={shade}>
+          <path d={`M${x - s * 1.05} ${yy + s * 2.6} Q${x - s * 1.1} ${yy + s * 0.9} ${x} ${yy + s * 0.85} Q${x + s * 1.1} ${yy + s * 0.9} ${x + s * 1.05} ${yy + s * 2.6} Z`} fill={shirt} stroke={K} strokeWidth={Math.max(1.5, s * 0.12)} />
+          <circle cx={x} cy={yy} r={s * 0.62} fill={skin} stroke={K} strokeWidth={Math.max(1.5, s * 0.12)} />
+          <path d={`M${x - s * 0.62} ${yy - s * 0.05} Q${x - s * 0.6} ${yy - s * 0.72} ${x} ${yy - s * 0.66} Q${x + s * 0.6} ${yy - s * 0.72} ${x + s * 0.62} ${yy - s * 0.05} Q${x} ${yy - s * 0.38} ${x - s * 0.62} ${yy - s * 0.05} Z`} fill={cap ? shirt : hair} />
+        </g>,
+      );
+    }
+    // sciarpe tese sopra le teste, a tratti lungo la fila
+    if (scarves.length && scarfUp > 0) {
+      for (let k = 0; k < n; k += 5 + Math.floor(r() * 4)) {
+        const x = x0 + k * step + (r() - 0.5) * step;
+        const w = step * (1.8 + r() * 0.8);
+        const sc = scarves[Math.floor(r() * scarves.length)];
+        const yy = y - s * (0.9 + 1.2 * scarfUp) + Math.sin(t * 2 + k) * s * 0.15;
+        out.push(
+          <g key={`s${i}-${k}`} opacity={shade * scarfUp}>
+            <rect x={x} y={yy} width={w} height={s * 0.7} fill={sc[0]} stroke={K} strokeWidth={Math.max(1.5, s * 0.1)} />
+            {sc.slice(1).map((c, j) => <rect key={j} x={x + w * (0.2 + j * 0.3)} y={yy} width={w * 0.14} height={s * 0.7} fill={c} />)}
+          </g>,
+        );
+      }
+    }
+  }
+  // flash dei telefoni: puntini bianchi sparsi che si accendono
+  if (flashes > 0) {
+    const rf = rng(seed + 5);
+    for (let k = 0; k < 40; k++) {
+      const x = x0 + rf() * (x1 - x0), y = lerp(y1, y0, rf());
+      const on = Math.max(0, Math.sin(t * (5 + rf() * 6) + rf() * 6.28));
+      out.push(<circle key={`f${k}`} cx={x} cy={y} r={3 + on * 6} fill="#FFFFFF" opacity={flashes * on} />);
+    }
+  }
+  return <g>{out}{dim > 0 && <rect x={x0} y={y1 - size0 * 3} width={x1 - x0} height={y0 - y1 + size1 * 4} fill="#05060C" opacity={dim} />}</g>;
+};
+
+/** Gamba di calciatore dal ginocchio in giù (calzettone a fasce, scarpino), vista di lato; `foot` = punta verso destra. */
+export const Leg: React.FC<{ x: number; y: number; s?: number; sock: string; band?: string; boot?: string; skin?: string; flip?: boolean; rot?: number; shorts?: string; shortsBand?: string }> = ({
+  x, y, s = 1, sock, band, boot = '#1A1C24', skin = '#D8A47A', flip, rot = 0, shorts, shortsBand,
+}) => (
+  <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${flip ? -s : s} ${s})`}>
+    {/* coscia e pantaloncino (se richiesto): salgono oltre il bordo alto dell'inquadratura */}
+    {shorts && (
+      <>
+        <path d="M-36 -416 Q-58 -560 -66 -760 L62 -760 Q56 -560 38 -416 Z" fill={skin} stroke={K} strokeWidth="8" />
+        <path d="M-20 -470 Q-36 -580 -40 -700" stroke="#FFFFFF" strokeWidth="6" opacity=".18" fill="none" />
+        <path d="M-80 -740 L76 -760 L90 -1300 L-90 -1300 Z" fill={shorts} stroke={K} strokeWidth="8" strokeLinejoin="round" />
+        {shortsBand && <path d="M58 -756 L70 -1300" stroke={shortsBand} strokeWidth="16" />}
+        <path d="M-60 -790 Q-70 -1000 -66 -1280" stroke="#000" strokeWidth="18" opacity=".18" fill="none" />
+      </>
+    )}
+    {/* ginocchio e polpaccio */}
+    <path d="M-34 -420 Q-44 -380 -40 -330 L40 -330 Q46 -380 36 -420 Z" fill={skin} stroke={K} strokeWidth="8" />
+    {/* calzettone fino alla caviglia */}
+    <path d="M-40 -330 Q-50 -230 -34 -90 L30 -90 Q50 -230 40 -330 Z" fill={sock} stroke={K} strokeWidth="8" />
+    {band && <path d="M-44 -300 L44 -300 L44 -272 L-44 -272 Z" fill={band} />}
+    <path d="M-28 -310 Q-34 -220 -22 -110" stroke="#FFFFFF" strokeWidth="6" opacity=".25" fill="none" />
+    {/* scarpino */}
+    <path d="M-38 -96 Q-46 -30 -36 -6 L120 -4 Q150 -10 140 -34 Q120 -60 60 -66 Q20 -70 30 -96 Z" fill={boot} stroke={K} strokeWidth="8" strokeLinejoin="round" />
+    <path d="M-36 -6 L120 -4" stroke="#F6F4EE" strokeWidth="7" />
+    {[-20, 10, 70, 100].map((sx) => <rect key={sx} x={sx - 6} y={-2} width="12" height="14" rx="3" fill="#C8CCD6" stroke={K} strokeWidth="3" />)}
+    <path d="M0 -60 Q50 -66 100 -46" stroke="#F6F4EE" strokeWidth="6" fill="none" opacity=".8" />
+  </g>
+);
