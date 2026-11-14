@@ -40,5 +40,5 @@ p=dict(bg=BG, ink=INK, accent=GOLD, bgcss=f'background:radial-gradient(ellipse a
  ctx='Parigi, Museo del Louvre', ctx_font="Cinzel",
  title=['LA GIOCONDA'], title_css=f"font-family:'Cinzel Decorative';font-weight:900;font-size:94px;letter-spacing:2px;color:{INK};text-shadow:0 5px 0 #000,0 0 22px {GOLD}55;",
  teaser='È il quadro più famoso del mondo.<br>Eppure un giorno del 1911 sparì dal Louvre.',
- date='DOMENICA 15 NOVEMBRE · ORE 10:00', date_col='#FFC400', cred='Un capolavoro spiegato in 2 minuti · Prima visione')
+ date='SABATO 21 NOVEMBRE · ORE 10:00', date_col='#FFC400', cred='Un capolavoro spiegato in 2 minuti · Prima visione')
 open('/tmp/claude-0/storie/gioconda.html','w').write(page(p))
