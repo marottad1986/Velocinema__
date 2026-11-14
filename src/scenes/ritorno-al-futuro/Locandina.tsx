@@ -23,12 +23,12 @@ const SPARKS = Array.from({ length: 26 }, () => ({ x: r() * 1080, y: 700 + r() *
 
 const Bolt: React.FC<{ k: number }> = ({ k }) => {
   if (k <= 0.01) return null;
-  const d = 'M930 590 L850 650 L885 662 L760 712 L795 724 L650 752 L684 762 L546 800';
+  const d = 'M1010 690 L930 712 L960 724 L830 730 L860 742 L700 744 L726 756 L548 756';
   return (
     <g opacity={k}>
       <path d={d} fill="none" stroke="#BFE6FF" strokeWidth="44" opacity=".35" strokeLinejoin="round" />
       <path d={d} fill="none" stroke="#FFFFFF" strokeWidth="14" strokeLinejoin="round" />
-      <path d="M760 712 L700 690 L670 712" fill="none" stroke="#FFFFFF" strokeWidth="6" strokeLinejoin="round" />
+      <path d="M830 730 L780 706 L750 722" fill="none" stroke="#FFFFFF" strokeWidth="6" strokeLinejoin="round" />
     </g>
   );
 };
@@ -113,7 +113,7 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
       {Array.from({ length: 6 }, (_, i) => <path key={i} d={`M${mod(i * 220 - t * 300 * (1 - calm), 1320) - 120} 1500 h110`} stroke={DIM} strokeWidth="8" />)}
       <g transform={L(0.8)}>
         {[0, 1].map((k) => {
-          const d = k ? 'M300 1446 C120 1446 40 1300 120 1150 C200 1000 150 860 280 780' : 'M300 1420 C80 1400 -40 1200 60 1000 C130 900 130 800 200 720';
+          const d = k ? 'M320 1330 C140 1330 60 1200 130 1070 C200 960 160 860 280 790' : 'M320 1306 C100 1296 -20 1120 70 960 C130 880 130 800 200 730';
           return (
             <g key={k} opacity={calm ? 0.55 : 1}>
               <path d={d} fill="none" stroke={YEL} strokeWidth="40" opacity=".14" strokeLinecap="round" />
@@ -121,7 +121,7 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
             </g>
           );
         })}
-        <g transform={`translate(${560 + drive} 1408)`}><TimeCar T={t} glow={0.6 + 0.4 * surge} s={2.1} flip pole /></g>
+        <g transform={`translate(${590 + drive} 1305)`}><TimeCar T={t} glow={0.6 + 0.4 * surge} s={2.1} flip pole /></g>
       </g>
       {/* scintille che salgono dall'auto */}
       {SPARKS.map((p, i) => {
@@ -129,7 +129,7 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
         return <circle key={i} cx={p.x + Math.sin(t * 2 + i) * 14} cy={y} r={p.s} fill={i % 3 ? YEL : INK} opacity={0.15 + 0.35 * (0.5 + 0.5 * Math.sin(t * 3 + i))} />;
       })}
       {/* la foto di famiglia, in primo piano: il cerchio di Marty sbiadisce */}
-      <g transform={`translate(220 1640) rotate(-9) scale(1.25)`}>
+      <g transform={`translate(228 1175) rotate(-9) scale(0.6)`}>
         <rect x="-128" y="-108" width="256" height="226" fill="#000" opacity=".4" transform="translate(8 10)" />
         <rect x="-128" y="-108" width="256" height="226" fill="#F4EEDC" stroke={INK} strokeWidth="5" />
         <rect x="-112" y="-92" width="224" height="150" fill="#5D88B4" />
@@ -170,7 +170,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, film }) => {
     <div style={{ position: 'absolute', inset: 0 }}>
       <Art t={t} id="rc" />
       <TitleBlock film={film} />
-      <p style={{ position: 'absolute', left: 120, right: 180, top: 1470, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
+      <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}E0`, color: P.chiaro, fontFamily: SANS, fontSize: 44, fontWeight: 800, textAlign: 'center',
         opacity: k, transform: `translateY(${(1 - k) * 16}px)` }}>
         {film.copertina.frase_lancio}
@@ -197,7 +197,7 @@ export const Finale: React.FC<PosterProps> = ({ t, film }) => {
         </div>
         <p style={{ margin: '24px 0 0', fontSize: 34, fontWeight: 400, opacity: seg(t, 1.0, 1.4) }}>Commenta con la spiegazione che vorresti.</p>
       </div>
-      <p style={{ position: 'absolute', left: 120, right: 180, top: 1450, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
+      <p style={{ position: 'absolute', left: 120, right: 180, top: 1384, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 44, fontWeight: 800, textAlign: 'center', lineHeight: 1.25,
         opacity: line, transform: `translateY(${(1 - line) * 14}px)` }}>
         {film.finale.voce}

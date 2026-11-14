@@ -47,9 +47,9 @@ const cy = (k: BandKey) => BAND[k].y0 + 400;
 const Y = (k: BandKey, y: number) => BAND[k].y0 + y;
 export const N = {
   marty85: [210, Y('parcheggio', ROW)], doc85: [540, Y('parcheggio', ROW)], terr: [870, Y('parcheggio', ROW)],
-  marty55: [540, Y('strada', ROW)], george: [870, Y('strada', ROW)], biff: [210, Y('strada', ROW)], lorraine: [210, Y('strada', ROW)],
+  marty55: [540, Y('strada', ROW)], george: [830, Y('strada', ROW)], biff: [210, Y('strada', ROW)], lorraine: [210, Y('strada', ROW)],
   doc55: [620, Y('piazza', ROW)], martyP: [210, Y('piazza', ROW)],
-  marty2: [170, Y('ballo', ROW)], george2: [390, Y('ballo', ROW)], lorraine2: [620, Y('ballo', ROW)], biff2: [860, Y('ballo', ROW)],
+  marty2: [200, Y('ballo', ROW)], george2: [410, Y('ballo', ROW)], lorraine2: [630, Y('ballo', ROW)], biff2: [850, Y('ballo', ROW)],
   photo: [810, Y('ballo', 330)],
   george3: [200, Y('casa', ROW)], marty4: [430, Y('casa', ROW)], jen: [660, Y('casa', ROW)], docC: [885, Y('casa', ROW)], biff3: [790, Y('casa', 420)],
   kids: [540, Y('futuro', ROW)],
@@ -79,46 +79,47 @@ const pop = (T: number, t0: number) => eob(seg(T, t0, t0 + 0.45), 1.7);
 
 type Shot = { at: number; x: number; y: number; z: number };
 const band = (k: BandKey, z = 1.04, dx = 0, dy = 0) => ({ x: 540 + dx, y: cy(k) + dy, z });
-export const WIDE = { x: 540, y: 2880, z: 0.16 };
+export const WIDE = { x: 540, y: Y('parcheggio', 0), z: 0.24 };
 export const SHOTS: Shot[] = [
   { at: 0, ...band('parcheggio', 1.0) },
   { at: at('marty', 1), ...band('parcheggio', 1.25, -170, 120) },
   { at: at('marty', 2), ...band('parcheggio', 1.25, 0, 120) },
   { at: at('marty', 3), ...band('parcheggio', 1.15, 0, -10) },
-  { at: at('macchina', 0), ...band('parcheggio', 1.3, -150, -80) },
-  { at: at('macchina', 1), ...band('parcheggio', 1.3, 150, -80) },
-  { at: at('macchina', 2), ...band('parcheggio', 1.15, 120, 100) },
+  { at: at('macchina', 0), ...band('parcheggio', 1.15, -80, -60) },
+  { at: at('macchina', 1), ...band('parcheggio', 1.15, 80, -60) },
+  { at: at('macchina', 2), ...band('parcheggio', 1.0, 60, 100) },
   { at: at('macchina', 3), ...band('parcheggio', 1.0, 60, 0) },
   // la camera sale lungo la scia gialla, trent'anni indietro
-  { at: at('macchina', 3, 1.6), x: 700, y: 2200, z: 0.34 },
+  { at: at('macchina', 3, 1.1), x: 760, y: Y('piazza', 400), z: 0.5 },
+  { at: at('macchina', 3, 1.9), x: 760, y: Y('ballo', 300), z: 0.5 },
   { at: at('passato', 0), ...band('strada', 1.0) },
   { at: at('passato', 1), ...band('strada', 1.2, 60, 130) },
   { at: at('passato', 2), ...band('strada', 1.2, 200, 130) },
   { at: at('passato', 3), ...band('strada', 1.0, 0, 20) },
-  { at: at('incidente', 0), ...band('strada', 1.1, 120, 20) },
-  { at: at('incidente', 1), ...band('strada', 1.15, -100, 80) },
+  { at: at('incidente', 0), ...band('strada', 1.05, 60, 20) },
+  { at: at('incidente', 1), ...band('strada', 1.0, 0, 60) },
   { at: at('incidente', 2), ...band('strada', 1.0, 0, 0) },
-  { at: at('incidente', 3), ...band('strada', 1.15, -100, 100) },
+  { at: at('incidente', 3), ...band('strada', 1.0, 0, 70) },
   // dalla strada alla piazza, dove abita il Doc del 1955, poi la foto
   { at: at('foto', 0), x: 600, y: Y('ballo', 400), z: 0.45 },
   { at: at('foto', 0, 1.3), ...band('piazza', 1.05, 0, 100) },
   { at: at('foto', 1), ...band('piazza', 1.15, 0, 60) },
   { at: at('foto', 2), x: N.photo[0] - 40, y: N.photo[1] + 10, z: 1.45 },
   { at: at('fulmine', 0), ...band('piazza', 1.0) },
-  { at: at('fulmine', 1), x: 800, y: Y('piazza', 180), z: 1.35 },
-  { at: at('fulmine', 2), x: 440, y: Y('piazza', 200), z: 1.25 },
+  { at: at('fulmine', 1), x: 640, y: Y('piazza', 360), z: 1.0 },
+  { at: at('fulmine', 2), x: 600, y: Y('piazza', 360), z: 1.0 },
   { at: at('fulmine', 3), ...band('piazza', 0.98, 40, -40) },
   { at: at('ballo', 0), ...band('ballo', 1.05, -60, 60) },
-  { at: at('ballo', 1), ...band('ballo', 1.15, 180, 120) },
-  { at: at('ballo', 2), ...band('ballo', 1.1, 80, 100) },
-  { at: at('ballo', 3), ...band('ballo', 1.05, 120, -20) },
+  { at: at('ballo', 1), ...band('ballo', 1.0, 20, 100) },
+  { at: at('ballo', 2), ...band('ballo', 1.05, 80, 100) },
+  { at: at('ballo', 3), ...band('ballo', 1.0, 80, 0) },
   { at: at('lettera', 0), ...band('piazza', 1.12, -60, 120) },
   { at: at('lettera', 1), ...band('piazza', 1.2, 150, 100) },
-  { at: at('lettera', 2), ...band('piazza', 0.95, 40, -40) },
+  { at: at('lettera', 2, -0.4), x: 560, y: Y('piazza', 200), z: 0.8 },
   // giù lungo la scia gialla, verso il 1985
-  { at: at('lettera', 2, 1.4), x: 700, y: (Y('piazza', 400) + Y('parcheggio', 400)) / 2, z: 0.55 },
+  { at: at('lettera', 2, 1.2), x: 700, y: Y('parcheggio', 200), z: 0.6 },
   { at: at('lettera', 3), ...band('parcheggio', 1.05, 120, 60) },
-  { at: at('cambiato', 0), ...band('parcheggio', 1.2, -60, 60) },
+  { at: at('cambiato', 0), x: 480, y: Y('parcheggio', 560), z: 1.15 },
   { at: at('cambiato', 1), ...band('casa', 1.0) },
   { at: at('cambiato', 2), x: 700, y: Y('casa', 700), z: 0.55 },
   { at: at('cambiato', 3), x: 540, y: Y('futuro', 210), z: 0.76 },
@@ -325,7 +326,7 @@ const Link: React.FC<{ T: number; t0: number; a: P; b: P; c?: P; color?: string;
 };
 
 /** Viaggio nel tempo: un tratteggio giallo spesso che si disegna lungo un percorso, con la scia che scorre. */
-const Travel: React.FC<{ T: number; t0: number; d: string; dur?: number; id: string; label?: string; lx?: number; ly?: number; fade?: number }> = ({ T, t0, d, dur = 1.4, id, label, lx = 0, ly = 0, fade = 1 }) => {
+const Travel: React.FC<{ T: number; t0: number; d: string; dur?: number; id: string; label?: string; lx?: number; ly?: number; fade?: number; labelUntil?: number }> = ({ T, t0, d, dur = 1.4, id, label, lx = 0, ly = 0, fade = 1, labelUntil = 1e9 }) => {
   if (T < t0 || fade <= 0) return null;
   const p = eio(seg(T, t0, t0 + dur));
   return (
@@ -335,7 +336,7 @@ const Travel: React.FC<{ T: number; t0: number; d: string; dur?: number; id: str
         <path d={d} fill="none" stroke={YEL} strokeWidth="34" opacity=".16" strokeLinecap="round" />
         <path d={d} fill="none" stroke={YEL} strokeWidth="14" strokeDasharray="40 26" strokeDashoffset={-T * 120} strokeLinecap="round" />
       </g>
-      {label && !WIDEV && <text x={lx} y={ly} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={fit(54)} fill={YEL} stroke={DARK} strokeWidth="8" paintOrder="stroke" opacity={seg(T, t0 + 0.6, t0 + 1.0)}>{label}</text>}
+      {label && !WIDEV && <text x={lx} y={ly} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={fit(54)} fill={YEL} stroke={DARK} strokeWidth="8" paintOrder="stroke" opacity={seg(T, t0 + 0.6, t0 + 1.0) * (1 - seg(T, labelUntil, labelUntil + 0.4))}>{label}</text>}
     </g>
   );
 };
@@ -346,7 +347,7 @@ const Tag: React.FC<{ T: number; t0: number; x: number; y: number; text: string;
 }) => {
   const size = fit(size0);
   if (T < t0 || T > until + 0.5) return null;
-  const w = text.length * size * 0.56 + size;
+  const w = text.length * size * (text === text.toUpperCase() ? 0.7 : 0.56) + size * 1.2;
   return (
     <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${pop(T, t0)})`} opacity={1 - seg(T, until, until + 0.5)}>
       <rect x={-w / 2 + size * 0.12} y={-size * 0.95 + size * 0.12} width={w} height={size * 1.6} rx={size * 0.3} fill="#000" opacity=".35" />
@@ -482,8 +483,8 @@ const ArtPiazza: React.FC<{ T: number; storm: number; minutes: number }> = ({ T,
     <Stars t={T} seed={56} n={16} x={560} y={60} w={400} h={120} color={INK} size={0.8} />
     {/* nuvole di temporale */}
     {[[620, 90], [800, 70], [930, 110]].map(([x, y], i) => (
-      <g key={i} transform={`translate(${x + Math.sin(T * 0.3 + i) * 14} ${y})`} opacity={0.35 + 0.5 * storm}>
-        <path d="M-80 20 Q-90 -10 -50 -12 Q-40 -40 0 -34 Q30 -50 56 -20 Q90 -20 84 20 Z" fill="#2B4E78" stroke={INK} strokeWidth="3" />
+      <g key={i} transform={`translate(${x + Math.sin(T * 0.5 + i) * 24 + storm * 20 * Math.sin(T * 0.9 + i)} ${y}) scale(${1 + 0.4 * storm})`} opacity={0.35 + 0.5 * storm}>
+        <path d="M-80 20 Q-90 -10 -50 -12 Q-40 -40 0 -34 Q30 -50 56 -20 Q90 -20 84 20 Z" fill={storm > 0.5 ? '#16294A' : '#2B4E78'} stroke={INK} strokeWidth="3" />
       </g>
     ))}
     {/* il tribunale */}
@@ -638,7 +639,7 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
   const fadeSis = seg(T, at('foto', 3, 0.8), at('foto', 3, 2.0)) * (1 - seg(T, at('ballo', 3, 0.5), at('ballo', 3, 1.3)));
   const fadeMe = 0.45 * seg(T, at('foto', 3, 1.6), at('foto', 3, 2.6)) * (1 - seg(T, at('ballo', 3, 0.3), at('ballo', 3, 1.0)));
   const cable = eo(seg(T, at('fulmine', 3, 0.3), at('fulmine', 3, 1.6)));
-  const storm = seg(T, at('fulmine', 2, 0), at('fulmine', 2, 1)) * (1 - seg(T, at('lettera', 3), at('lettera', 3, 0.6)));
+  const storm = seg(T, at('fulmine', 0, 0), at('fulmine', 0, 1)) * (1 - seg(T, at('lettera', 3), at('lettera', 3, 0.6)));
   const boltT = at('lettera', 2, 0.2);
   const flash = flashAt(T, [boltT]);
   const surge = seg(T, boltT, boltT + 0.2) * (1 - seg(T, boltT + 0.9, boltT + 1.4));
@@ -650,7 +651,7 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
   const rise = seg(T, at('cambiato', 0, 0.2), at('cambiato', 0, 0.8));
   const bookOn = seg(T, at('cambiato', 1, 0.6), at('cambiato', 1, 0.8));
   const lit2015 = seg(T, at('cambiato', 2, 0.1), at('cambiato', 2, 0.9));
-  const fireAt = (t0: number) => (T >= t0 && T < t0 + 1.0 ? [0, 0.25, 0.5].map((k) => seg(T, t0 + k, t0 + k + 0.05) * (1 - seg(T, t0 + k + 0.1, t0 + k + 0.25))) : [0, 0, 0]);
+  const fireAt = (t0: number) => (T >= t0 && T < t0 + 1.0 ? [0, CROMA / 2, CROMA].map((k) => seg(T, t0 + k, t0 + k + 0.05) * (1 - seg(T, t0 + k + 0.1, t0 + k + 0.25))) : [0, 0, 0]);
   const muzzle = Math.max(...fireAt(shots1), ...fireAt(shots2));
   const shooting = (T >= shots1 && T < shots1 + 0.9) || (T >= shots2 && T < shots2 + 0.9);
 
@@ -710,13 +711,13 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
       <Node T={T} t0={at('marty', 1, 0.1)} p={N.marty85} name="Marty" sub="17 anni" fade={T > at('macchina', 3, 1.0) && T < at('lettera', 3, 0) ? 0 : 1}><Skate T={T} /></Node>
       <Node T={T} t0={at('marty', 2, 0.1)} p={N.doc85} name="Doc" sub="lo scienziato" dead={docDead} hit={seg(T, shots1, shots1 + 0.8) + seg(T, shots2, shots2 + 0.8)}><Goggles /></Node>
       <Link T={T} t0={at('marty', 2, 0.6)} a={[N.marty85[0] + 66, N.marty85[1]]} b={[N.doc85[0] - 66, N.doc85[1]]} c={[375, N.marty85[1] - 90]} label="amici" ly={-12} fade={off('macchina')} />
-      <Tag T={T} t0={at('marty', 3, 0.3)} x={540} y={Y('parcheggio', 330)} text="MACCHINA DEL TEMPO" size={40} until={end('marty') - 0.2} />
+      <Tag T={T} t0={at('marty', 3, 0.3)} x={480} y={Y('parcheggio', 300)} text="MACCHINA DEL TEMPO" size={36} until={end('marty') - 0.2} />
 
       {/* ---- capitolo 2: 88 miglia orarie, il plutonio, i terroristi, la fuga */}
       {T >= at('macchina', 0, 0.1) && T < at('macchina', 3, 0.6) && (() => {
         const v = Math.round(88 * speed);
         return (
-          <g transform={`translate(260 ${Y('parcheggio', 290)}) scale(${pop(T, at('macchina', 0, 0.1))})`} opacity={off('macchina')}>
+          <g transform={`translate(330 ${Y('parcheggio', 290)}) scale(${pop(T, at('macchina', 0, 0.1))})`} opacity={off('macchina')}>
             <circle r="74" fill="#0F2A4C" stroke={INK} strokeWidth="6" />
             <path d="M-52 30 A60 60 0 1 1 52 30" fill="none" stroke={DIM} strokeWidth="6" />
             <path d={`M0 0 L0 -54`} stroke={v >= 88 ? YEL : INK} strokeWidth="6" strokeLinecap="round" transform={`rotate(${-130 + 260 * speed})`} />
@@ -725,23 +726,23 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })()}
-      <Tag T={T} t0={at('macchina', 0, 1.4)} x={260} y={Y('parcheggio', 470)} text="≈ 140 km/h" size={32} until={at('macchina', 1)} />
+      <Tag T={T} t0={at('macchina', 0, 1.4)} x={330} y={Y('parcheggio', 480)} text="≈ 140 km/h" size={32} until={at('macchina', 1)} />
       {T >= at('macchina', 1, 0.1) && T < at('macchina', 3, 0.6) && (
-        <g transform={`translate(840 ${Y('parcheggio', 290)}) scale(${1.3 * pop(T, at('macchina', 1, 0.1))})`} opacity={off('macchina')}>
+        <g transform={`translate(790 ${Y('parcheggio', 290)}) scale(${1.3 * pop(T, at('macchina', 1, 0.1))})`} opacity={off('macchina')}>
           <Glow id="rf-pu" x={0} y={0} r={90} t={T} color={ATOM} amp={0.15} rate={5} opacity={0.6} />
           <Canister T={T} full={fuel} />
           <text y="-52" textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={fit(34)} fill={ATOM} stroke={DARK} strokeWidth="6" paintOrder="stroke">plutonio</text>
         </g>
       )}
       <Node T={T} t0={at('macchina', 2, 0.1)} p={N.terr} name="i terroristi" color={RED} r={54} size={32} fade={T < at('cambiato', 0, 1.2) ? 1 : 1 - seg(T, at('cambiato', 0, 1.2), at('cambiato', 0, 1.6))}><Van /></Node>
-      <Link T={T} t0={at('macchina', 2, 0.5)} a={[812, Y('parcheggio', 340)]} b={[N.terr[0] - 30, N.terr[1] - 62]} c={[820, Y('parcheggio', 450)]} color={RED} dashed label="rubato a loro" lx={-60} ly={0} size={38} fade={off('macchina')} />
+      <Link T={T} t0={at('macchina', 2, 0.5)} a={[790, Y('parcheggio', 345)]} b={[N.terr[0] - 30, N.terr[1] - 62]} c={[820, Y('parcheggio', 450)]} color={RED} dashed label="rubato a loro" lx={-60} ly={0} size={38} fade={off('macchina')} />
       {shooting && muzzle > 0 && (
         <g opacity={muzzle}>
           {[-24, 0, 24].map((dy, i) => <path key={i} d={`M${N.terr[0] - 62} ${N.terr[1] + dy * 0.3} L${N.doc85[0] + 50} ${N.doc85[1] + dy}`} stroke={RED} strokeWidth="5" strokeDasharray="16 12" />)}
           <circle cx={N.terr[0] - 64} cy={N.terr[1]} r="22" fill={WARM} />
         </g>
       )}
-      <Travel T={T} t0={at('macchina', 3, 1.0)} d={go} id="rf-go" dur={1.6} label="30 anni indietro" lx={RX - 150} ly={Y('ballo', 300)} fade={1 - 0.75 * seg(T, at('passato', 2), at('passato', 2, 0.6))} />
+      <Travel T={T} t0={at('macchina', 3, 1.0)} d={go} id="rf-go" dur={1.6} label="30 anni indietro" lx={RX - 150} ly={Y('piazza', 300)} labelUntil={at('passato', 0, 0.6)} fade={1 - 0.75 * seg(T, at('passato', 2), at('passato', 2, 0.6))} />
 
       {/* ---- capitolo 3: 1955, niente plutonio, George e Biff */}
       <Node T={T} t0={at('macchina', 3, 2.6) > at('passato', 0) ? at('passato', 0) : at('macchina', 3, 2.6)} p={N.marty55} name="Marty" r={56} size={34} hit={hit} ring={seg(T, at('incidente', 3, 0.2), at('incidente', 3, 0.6)) * off('foto')} color={hit > 0 ? INK : INK}><Skate T={T} /></Node>
@@ -766,15 +767,15 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
       {T >= at('incidente', 3, 0.1) && (() => {
         const k = eob(seg(T, at('incidente', 3, 0.1), at('incidente', 3, 0.6)), 1.6);
         const fade = 1 - seg(T, end('fulmine') - 0.3, end('fulmine') + 0.3);
-        const mx = (N.lorraine[0] + N.marty55[0]) / 2, my = N.lorraine[1] - 10;
+        const mx = (N.lorraine[0] + N.marty55[0]) / 2, my = N.lorraine[1] + 25;
         return (
           <g opacity={fade}>
-            <ellipse cx={mx} cy={my} rx={255 * k} ry={105 * k} fill="none" stroke={RED} strokeWidth="8" />
-            <g transform={`translate(${mx} ${my - 50}) scale(${k * (1 + 0.08 * Math.sin(T * 7))})`}><path d="M0 22 C-38 0 -24 -28 0 -10 C24 -28 38 0 0 22 Z" fill={RED} stroke={INK} strokeWidth="4" /></g>
+            <ellipse cx={mx} cy={my} rx={265 * k} ry={150 * k} fill="none" stroke={RED} strokeWidth="8" />
+            <g transform={`translate(${mx} ${my - 150}) scale(${k * (1 + 0.08 * Math.sin(T * 7))})`}><path d="M0 22 C-38 0 -24 -28 0 -10 C24 -28 38 0 0 22 Z" fill={RED} stroke={INK} strokeWidth="4" /></g>
           </g>
         );
       })()}
-      <Tag T={T} t0={at('incidente', 3, 0.7)} x={480} y={Y('strada', 80)} text="si innamora di Marty!" bg={RED} fg="#FFFFFF" size={40} rot={-3} until={end('incidente') - 0.2} />
+      <Tag T={T} t0={at('incidente', 3, 0.7)} x={600} y={Y('strada', 190)} text="si innamora di Marty!" bg={RED} fg="#FFFFFF" size={40} rot={-3} until={end('incidente') - 0.2} />
 
       {/* ---- capitolo 5: il Doc del 1955, la foto che sbiadisce */}
       <Node T={T} t0={at('foto', 0, 1.0)} p={N.doc55} name="Doc" sub="giovane, nel 1955" r={58} size={34}><Goggles /></Node>
@@ -791,7 +792,7 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
       {/* ---- capitolo 6: il fulmine, il volantino, il cavo */}
       <Tag T={T} t0={at('fulmine', 0, 0.5)} x={430} y={Y('piazza', 380)} text="serve un fulmine" size={40} until={at('fulmine', 1, 0.2)} />
       {T >= at('fulmine', 1, 0.1) && (
-        <g transform={`translate(860 ${Y('piazza', 150)}) rotate(6) scale(${pop(T, at('fulmine', 1, 0.1))})`} opacity={1 - seg(T, end('fulmine') - 0.4, end('fulmine'))}>
+        <g transform={`translate(760 ${Y('piazza', 235)}) rotate(6) scale(${pop(T, at('fulmine', 1, 0.1))})`} opacity={1 - seg(T, end('fulmine') - 0.4, end('fulmine'))}>
           <rect x="-96" y="-118" width="192" height="236" fill="#000" opacity=".35" transform="translate(6 8)" />
           <rect x="-96" y="-118" width="192" height="236" fill="#F4EEDC" stroke={INK} strokeWidth="4" />
           <text y="-82" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="22" fill="#2A3A4A">SALVIAMO</text>
@@ -803,12 +804,12 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
           <text y="104" textAnchor="middle" fontFamily={SANS} fontWeight={400} fontSize="14" fill="#2A3A4A">volantino del 1985</text>
         </g>
       )}
-      <Link T={T} t0={at('fulmine', 2, 0.5)} a={[760, Y('piazza', 210)]} b={[420, Y('piazza', 120)]} c={[620, Y('piazza', 90)]} color={YEL} arrow label="sabato sera" lx={30} ly={-24} size={40} fade={1 - seg(T, at('lettera', 2, 1.0), at('lettera', 2, 1.6))} />
+      <Link T={T} t0={at('fulmine', 2, 0.5)} a={[660, Y('piazza', 200)]} b={[440, Y('piazza', 150)]} c={[560, Y('piazza', 110)]} color={INK} arrow label="sabato sera" lx={30} ly={-24} size={40} fade={1 - seg(T, at('lettera', 2, 1.0), at('lettera', 2, 1.6))} />
       {cable > 0 && (
         <g>
           <mask id="rf-cab" maskUnits="userSpaceOnUse" x="0" y="1000" width="1200" height="1400"><rect x="300" y="1000" width={700 * cable} height="1400" fill="#fff" /></mask>
           <path d={`M430 ${Y('piazza', 150)} Q600 ${Y('piazza', 230)} 760 ${Y('piazza', 292)} Q855 ${Y('piazza', 340)} 950 ${Y('piazza', 292)}`} fill="none" stroke={surge > 0 ? '#FFFFFF' : INK} strokeWidth={surge > 0 ? 9 : 5} mask="url(#rf-cab)" />
-          {surge > 0 && <path d={`M430 ${Y('piazza', 150)} Q600 ${Y('piazza', 230)} 760 ${Y('piazza', 292)} Q855 ${Y('piazza', 340)} 950 ${Y('piazza', 292)}`} fill="none" stroke="#BFE6FF" strokeWidth="26" opacity={0.4 * surge} />}
+          {surge > 0 && <path d={`M430 ${Y('piazza', 150)} Q600 ${Y('piazza', 230)} 760 ${Y('piazza', 292)} Q855 ${Y('piazza', 340)} 950 ${Y('piazza', 292)}`} fill="none" stroke="#BFE6FF" strokeWidth="40" opacity={0.6 * surge} />}
           <text x="610" y={Y('piazza', 254)} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={fit(40)} fill={INK} stroke={DARK} strokeWidth="7" paintOrder="stroke" opacity={seg(T, at('fulmine', 3, 1.0), at('fulmine', 3, 1.4)) * (1 - seg(T, end('fulmine') - 0.4, end('fulmine')))}>il cavo di Doc</text>
         </g>
       )}
@@ -819,10 +820,10 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
       )}
 
       {/* ---- capitolo 7: il ballo, Biff, il pugno, i fratelli tornano */}
-      <Node T={T} t0={at('ballo', 0, 0.1)} p={N.marty2} name="Marty" side="below" r={46} size={28} fade={off('ballo')}><Skate T={T} /></Node>
+      <Node T={T} t0={at('ballo', 0, 0.1)} p={N.marty2} name="Marty" side="below" r={46} size={28} fade={1 - seg(T, at('ballo', 1, 0.3), at('ballo', 1, 0.8))}><Skate T={T} /></Node>
       <Node T={T} t0={at('ballo', 0, 0.3)} p={N.george2} name="George" r={56} size={32} ring={seg(T, at('ballo', 2, 0.6), at('ballo', 2, 1.0))}><Notebook /></Node>
       <Node T={T} t0={at('ballo', 0, 0.6)} p={N.lorraine2} name="Lorraine" r={54} size={32} color={PINK}><Bow /></Node>
-      <Link T={T} t0={at('ballo', 0, 0.5)} a={[N.marty2[0] + 48, N.marty2[1] - 20]} b={[N.george2[0] - 60, N.george2[1] - 20]} c={[280, N.marty2[1] - 90]} arrow label="lo convince" ly={-12} size={34} fade={off('ballo')} />
+      <Link T={T} t0={at('ballo', 0, 0.5)} a={[N.marty2[0] + 48, N.marty2[1] - 20]} b={[N.george2[0] - 60, N.george2[1] - 20]} c={[280, N.marty2[1] - 90]} arrow label="lo convince" ly={-12} size={34} fade={1 - seg(T, at('ballo', 1, 0.3), at('ballo', 1, 0.8))} />
       <Link T={T} t0={at('ballo', 0, 1.1)} a={[N.george2[0] + 58, N.george2[1] - 20]} b={[N.lorraine2[0] - 60, N.lorraine2[1] - 20]} c={[505, N.george2[1] - 110]} color={WARM} dashed arrow label="la invita al ballo" ly={-16} size={36} fade={1 - seg(T, at('ballo', 3, 0.0), at('ballo', 3, 0.4))} />
       <Node T={T} t0={at('ballo', 1, 0.1)} p={N.biff2} name="Biff" side="below" r={54} size={32} color={RED} dead={seg(T, at('ballo', 2, 0.6), at('ballo', 2, 0.9))} hit={punch} fade={off('ballo')}><Jacket /></Node>
       <Link T={T} t0={at('ballo', 1, 0.4)} a={[N.biff2[0] - 58, N.biff2[1] - 10]} b={[N.lorraine2[0] + 60, N.lorraine2[1] - 10]} c={[740, N.biff2[1] - 90]} color={RED} arrow w={8} label="prepotente" ly={-14} size={38} fade={1 - seg(T, at('ballo', 2, 0.5), at('ballo', 2, 0.9))} />
@@ -838,7 +839,7 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })()}
-      <Tag T={T} t0={at('ballo', 2, 0.9)} x={N.george2[0]} y={N.george2[1] - 130} text="che coraggio!" size={36} rot={-3} until={at('ballo', 3, 0.2)} />
+      <Tag T={T} t0={at('ballo', 2, 0.9)} x={500} y={Y('ballo', 330)} text="che coraggio!" size={36} rot={-3} until={at('ballo', 3, 0.2)} />
       {T >= at('ballo', 3, 0.2) && (() => {
         const k = eob(seg(T, at('ballo', 3, 0.2), at('ballo', 3, 0.7)), 1.6);
         const mx = (N.george2[0] + N.lorraine2[0]) / 2, my = N.george2[1] - 20;
@@ -874,21 +875,27 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })()}
-      <Tag T={T} t0={at('lettera', 1, 1.4)} x={N.doc55[0] + 180} y={N.doc55[1] - 130} text="strappata!" bg={RED} fg="#FFFFFF" size={34} rot={-3} until={at('lettera', 2, 0.1)} />
+      <Tag T={T} t0={at('lettera', 1, 1.4)} x={N.doc55[0] + 180} y={N.doc55[1] - 250} text="strappata!" bg={RED} fg="#FFFFFF" size={34} rot={-3} until={at('lettera', 2, 0.1)} />
       {/* il fulmine sulla torre (l'unico lampo della scena) */}
-      {T >= boltT && T < boltT + 0.9 && (
-        <g>
-          <path d={`M520 ${Y('piazza', -220)} L470 ${Y('piazza', -120)} L500 ${Y('piazza', -110)} L430 ${Y('piazza', -10)} L462 ${Y('piazza', -6)} L392 ${Y('piazza', -20)}`} fill="none" stroke="#BFE6FF" strokeWidth="30" opacity={0.4 * (1 - seg(T, boltT + 0.3, boltT + 0.9))} strokeLinejoin="round" />
-          <path d={`M520 ${Y('piazza', -220)} L470 ${Y('piazza', -120)} L500 ${Y('piazza', -110)} L430 ${Y('piazza', -10)} L462 ${Y('piazza', -6)} L392 ${Y('piazza', -20)}`} fill="none" stroke="#FFFFFF" strokeWidth="10" opacity={1 - seg(T, boltT + 0.3, boltT + 0.9)} strokeLinejoin="round" />
-        </g>
-      )}
-      <Travel T={T} t0={at('lettera', 2, 0.6)} d={back} id="rf-back" dur={1.4} label="di nuovo nel 1985" lx={RX - 170} ly={Y('piazza', 870)} fade={1 - 0.65 * seg(T, end('lettera'), end('lettera') + 0.6)} />
+      {T >= boltT && T < boltT + 1.1 && (() => {
+        const k = 1 - seg(T, boltT + 0.4, boltT + 1.1);
+        const flick = 0.75 + 0.25 * Math.sin(T * 60);
+        const d = `M640 ${Y('piazza', -260)} L540 ${Y('piazza', -175)} L585 ${Y('piazza', -162)} L455 ${Y('piazza', -85)} L500 ${Y('piazza', -74)} L392 ${Y('piazza', -20)}`;
+        return (
+          <g opacity={k * flick}>
+            <Glow id="rf-bolt" x={392} y={Y('piazza', -10)} r={260} t={T} color="#DDF0FF" amp={0.2} rate={30} opacity={0.9} />
+            <path d={d} fill="none" stroke="#BFE6FF" strokeWidth="80" opacity=".4" strokeLinejoin="round" strokeLinecap="round" />
+            <path d={d} fill="none" stroke="#FFFFFF" strokeWidth="26" strokeLinejoin="round" strokeLinecap="round" />
+          </g>
+        );
+      })()}
+      <Travel T={T} t0={at('lettera', 2, 0.6)} d={back} id="rf-back" dur={1.4} label="di nuovo nel 1985" lx={RX - 170} ly={Y('piazza', 870)} labelUntil={at('lettera', 3, 0.4)} fade={1 - 0.65 * seg(T, end('lettera'), end('lettera') + 0.6)} />
       <Tag T={T} t0={at('lettera', 3, 0.1)} x={540} y={Y('parcheggio', 120)} text="troppo tardi!" bg={RED} fg="#FFFFFF" size={40} rot={-3} until={end('lettera') - 0.2} />
 
       {/* ---- capitolo 9: Doc si rialza, la famiglia cambiata, Doc dal 2015 */}
       {rise > 0 && (
         <g opacity={1 - seg(T, at('cambiato', 1, 0), at('cambiato', 1, 0.4))}>
-          <Tag T={T} t0={at('cambiato', 0, 0.6)} x={N.doc85[0]} y={Y('parcheggio', 80)} text="giubbotto antiproiettile" bg={YEL} size={30} rot={2} />
+          <Tag T={T} t0={at('cambiato', 0, 0.6)} x={N.doc85[0]} y={Y('parcheggio', 300)} text="giubbotto antiproiettile" bg={YEL} size={30} rot={2} />
           <g transform={`translate(${N.doc85[0] - 175} ${N.doc85[1] - 95}) scale(${1.5 * pop(T, at('cambiato', 0, 0.9))}) rotate(-8)`}>
             <rect x="-50" y="-32" width="100" height="64" fill="#F4EEDC" stroke={INK} strokeWidth="4" />
             <path d="M0 -36 L-6 -16 L4 0 L-4 18 L2 36" fill="none" stroke="#C9A36A" strokeWidth="8" opacity=".9" />
