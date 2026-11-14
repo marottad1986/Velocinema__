@@ -53,10 +53,9 @@ Punteggio (`SOCIAL.md`): mistero 2 · fama 3 · discussione 3 · momento 2 · pu
   2. `films/ritorno-al-futuro-parte-2.json`;
   3. `films/ritorno-al-futuro-parte-3.json`;
   4. `lunghi/ritorno-al-futuro-trilogia.json` (aggancio, raccordi, «I paradossi spiegati», chiusura).
-  Si inseriscono nell'ordine di produzione delle settimane 23–29 novembre e 30 novembre–6 dicembre, senza togliere
-  posto alle uscite quotidiane.
-- **Uscita del lungo: domenica 13 dicembre, 18:00** (un mese dopo Dark, così ci sono tre settimane di dati di YouTube
-  Studio sul primo lungo). Si annuncia con una storia il giorno prima.
-- **Gli Short dopo il lungo:** i tre episodi verticali escono nei giorni successivi (proposta: martedì 15, giovedì 17 e
-  sabato 19 dicembre alle 17:30), ognuno con il rimando al video lungo su YouTube.
+  Breaking Bad 2 slitta alla settimana 23–29 per fare spazio.
+- **Uscita del lungo: mercoledì 18 novembre, 18:00** (anticipata dall'utente il 14 novembre: produzione subito,
+  dom 15 Parte I e II, lun 16 Parte III, mar 17 il lungo; ordine in `calendario/2026-11-16.md`).
+- **Gli Short dopo il lungo:** i tre episodi verticali escono nella settimana 23–29 novembre (li programma il manager),
+  ognuno con il rimando al video lungo su YouTube; mai prima del lungo.
 - Fatti verificati in produzione: voci Wikipedia italiane dei tre film (sezione «Trama»), poi quelle inglesi; campo `fonti` nei JSON.
