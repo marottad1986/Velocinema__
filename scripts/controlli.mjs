@@ -3,6 +3,7 @@
 // gli AVVISI vanno letti ma non bloccano. Usato anche da .github/workflows/video-mega.yml prima del render.
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { lunghi, loadLungo, trattiLungo } from './lunghi/tempi.mjs';
+import { durataPromo, loadPromo, partiPromo, promo } from './promo/tempi.mjs';
 
 // Ritmo della voce (CLAUDE.md, «Voce»): circa 2,8 parole/s per la voce ElevenLabs; avviso oltre circa 3,1 (3,12: 28 parole in 9 s passano); errore oltre 3,5
 // (la clip andrebbe accelerata più del 25% e il montaggio voce si fermerebbe). Nel formato "spiegato" 3,4 è un massimo (errore).
@@ -18,7 +19,8 @@ const tutti = ['films', 'quadri']
 const scelti = process.argv.slice(2);
 const lista = scelti.length ? tutti.filter(([s]) => scelti.includes(s)) : tutti;
 const listaLunghi = scelti.length ? lunghi().filter((s) => scelti.includes(s)) : lunghi();
-for (const s of scelti) if (!tutti.some(([x]) => x === s) && !lunghi().includes(s)) { console.error(`Film sconosciuto: ${s}`); process.exit(1); }
+const listaPromo = scelti.length ? promo().filter((s) => scelti.includes(s)) : promo();
+for (const s of scelti) if (!tutti.some(([x]) => x === s) && !lunghi().includes(s) && !promo().includes(s)) { console.error(`Film sconosciuto: ${s}`); process.exit(1); }
 
 /** Parole lette dalla voce; nel formato "spiegato" un anno a quattro cifre conta come 4 parole. */
 const parole = (testo, spiegato) =>
@@ -201,6 +203,60 @@ for (const slug of listaLunghi) {
   }
   errori += E.length;
   console.log(`${slug.padEnd(32)} ${E.length ? 'ERRORE' : A.length ? 'avvisi' : 'ok'}  (video lungo)`);
+  E.forEach((x) => console.log(`   ✗ ${x}`));
+  A.forEach((x) => console.log(`   ! ${x}`));
+}
+
+// ---------------------------------------------------------------- Short promozionali del canale (promo/<slug>.json)
+for (const slug of listaPromo) {
+  const E = [], A = [];
+  const P = loadPromo(slug);
+  const parti = partiPromo(P);
+  const totale = durataPromo(P);
+  if (totale > 60) E.push(`dura ${totale} s: uno Short promozionale resta entro 60 s`);
+  // ritmo della voce, righe, frasi vietate
+  for (const x of parti) {
+    if (!x.testo.length || x.testo.some((r) => !r.trim())) E.push(`${x.id}: sottotitoli vuoti`);
+    const w = x.testo.reduce((n, r) => n + parole(r, false), 0);
+    const dur = x.start + x.dur - x.voceDa;
+    const wps = w / dur;
+    const msg = `${x.id}: ${w} parole in ${dur.toFixed(1)} s = ${wps.toFixed(2)} parole/s`;
+    if (wps > MAX_WPS + 1e-9) E.push(`${msg}: togliere ${Math.ceil(w - RIF_WPS * dur)} parole`);
+    else if (wps > AVVISO_WPS + 1e-9) A.push(msg);
+    for (const [re, perche] of VIETATE) for (const t of x.testo) if (re.test(t)) E.push(`«${t}»: ${perche}`);
+  }
+  if (!/commenta con (il film|la serie|la spiegazione|la canzone|il quadro)/i.test(parti.at(-1)?.testo.join(' ') ?? '')) E.push('la voce della chiusura non invita a commentare');
+  // fonti, registro, scena
+  const fonti = Array.isArray(P.fonti) ? P.fonti : [];
+  if (!fonti.length) E.push('manca il campo «fonti»');
+  if (!fonti.some((f) => /https?:\/\/\S+/.test(f))) E.push('nessuna fonte con link');
+  if (!new RegExp(`slug: '${slug}'`).test(readFileSync('src/promo/registro.ts', 'utf8'))) E.push('non registrato in src/promo/registro.ts');
+  const dir = `src/promo/${slug}`;
+  const sorgenti = existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith('.tsx')).map((f) => readFileSync(`${dir}/${f}`, 'utf8')).join('\n') : '';
+  if (!sorgenti) E.push(`${dir}: scena non trovata`);
+  else if (!/Commenta con (la serie|il film|la spiegazione|la canzone|il quadro) che vorresti\./.test(sorgenti)) E.push(`${dir}: l'immagine finale non ha «Commenta con … che vorresti.»`);
+  // il video lungo collegato non dichiara mai la sua durata totale (VIDEO-LUNGO.md)
+  for (const t of [...parti.flatMap((x) => x.testo), sorgenti])
+    for (const m of t.matchAll(/\bin (\d+|due|tre|quattro|cinque|sei|sette|otto|nove|dieci) minuti\b/gi)) if (!/^in (2|due) minuti$/i.test(m[0])) E.push(`«${m[0]}»: niente durata totale del video lungo`);
+  // spartito: strumenti campionati, un solo bpm, strumenti ed effetti dichiarati
+  const sp = `scripts/audio/${slug}.mjs`;
+  if (!existsSync(sp)) E.push(`manca lo spartito ${sp}`);
+  else {
+    const src = readFileSync(sp, 'utf8');
+    const lista = (nome) => (src.match(new RegExp(`export const ${nome} = \\[([^\\]]*)\\]`)) ?? [, ''])[1].match(/'[^']+'/g)?.map((x) => x.slice(1, -1)) ?? [];
+    const strumenti = lista('strumenti'), effetti = lista('effetti');
+    if (!strumenti.length) E.push('lo spartito non usa strumenti campionati');
+    const b = Number((src.match(/^const BPM = ([\d.]+)/m) ?? [])[1]);
+    if (b !== P.bpm) E.push(`bpm ${P.bpm} nel JSON ma ${b} nello spartito`);
+    if (/\bnote\b/.test((src.match(/import \{([^}]*)\} from '\.\/synth\.mjs'/) ?? [, ''])[1])) E.push('lo spartito importa note() da synth.mjs');
+    for (const m of src.matchAll(/\b(?:suona|colpo)\(mix, '([a-z_]+)'/g)) if (!strumenti.includes(m[1])) E.push(`strumento «${m[1]}» non dichiarato`);
+    for (const m of src.matchAll(/\bclip\(mix, '([a-z_]+)'/g)) if (!effetti.includes(m[1])) E.push(`effetto «${m[1]}» non dichiarato`);
+    const ids = new Set(parti.map((x) => x.id));
+    for (const m of src.matchAll(/\bT\.frase\(\s*'([a-z0-9-]+)'/g)) if (!ids.has(m[1])) E.push(`T.frase('${m[1]}', …): parte inesistente`);
+    for (const m of src.matchAll(/\bT\.([a-zA-Z_]\w*)/g)) if (!ids.has(m[1]) && !['END', 'frase'].includes(m[1])) E.push(`T.${m[1]}: parte inesistente`);
+  }
+  errori += E.length;
+  console.log(`${slug.padEnd(32)} ${E.length ? 'ERRORE' : A.length ? 'avvisi' : 'ok'}  (Short promozionale)`);
   E.forEach((x) => console.log(`   ✗ ${x}`));
   A.forEach((x) => console.log(`   ! ${x}`));
 }
