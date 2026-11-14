@@ -128,7 +128,6 @@ export default (mix, T) => {
   kick(0.02, 70);
   applausi(0.3, 3.0, 0.04);
   [0, 1, 2].forEach((k) => timp(BEAT * 2 + k * BEAT / 2, 35, 80 + k * 6, 0.32));
-  carillon(BEAT * 4, T0 - 1.5, 0.05);
   rullo(T0 - 1.5, 1.5, 0.26);
   basso(T0 - BAR, T0, { vel: 54, gain: 0.34 });
 
@@ -164,9 +163,9 @@ export default (mix, T) => {
   archi(B(T[fs]), tSub - BEAT / 2, { ch: MIN, vel: 40, gain: 0.24 });
   clip(mix, 'passaggio', { t: tSom - 0.05, da: 0.5, durata: 0.9, gain: 0.1, fadeOut: 0.3, rev: 0.2 }); [81, 86].forEach((m, j) => glock(tSom + j * BEAT / 2, m, 0.12)); // «+» SOMMA DEI VOTI
   rullo(tSub - 1.0, 1.0, 0.2);
-  timp(tSub + 0.4, 33, 104, 0.46); timp(tSub + 0.65, 31, 104, 0.46); // i dischi di Manu e degli Scraffs si incrinano
+  timp(tSub + 0.4, 33, 104, 0.34); timp(tSub + 0.65, 31, 104, 0.34); // i dischi di Manu e degli Scraffs si incrinano
   colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: tSub - 0.6, da: 2.4, vel: 90, gain: 0.12, rev: 0.4, dur: 1.0, release: 0.1 });
-  tensione(tSub + 0.65 + 2 * BEAT, B(T.ballottaggio));
+  tensione(G(tSub + 1.5), B(T.ballottaggio));
   rullo(tBal, 1.0, 0.2); trem(tBal + 0.2, 1.6, [47, 59, 71], { gain: 0.18 }); // l'anello rosso del ballottaggio
 
   // ---- ballottaggio: Si minore, i due dischi, i voti (Gabbani e Jake, poi Paola e Irama), il due a due
@@ -187,18 +186,18 @@ export default (mix, T) => {
   trem(B(T[tl]), tSalvi - B(T[tl]), [42, 54, 61, 66], { gain: 0.22 });
   { stacc(tTilt, 78, 0.22); stacc(tTilt + 0.25, 78, 0.18); rullo(tTilt + 0.5, tSalvi - tTilt - 0.5, 0.18); } // TILT, il telefono
   for (let t = tTilt + 0.5; t < tSalvi - 0.2; t += BEAT / 2) scatto(t, 0.4, 0.08); // le onde del televoto
-  { ottoni(tSalvi, [50, 57, 62, 66, 69], { dur: BEAT * 2, gain: 0.3, vel: 80 }); crash(tSalvi, 0.2); kick(tSalvi, 66); applausi(tSalvi, 2.2, 0.07, true); [86, 90, 93].forEach((m, j) => glock(tSalvi + 0.3 + j * BEAT / 2, m, 0.1)); } // SALVI
+  { ottoni(tSalvi, [50, 57, 62, 66, 69], { dur: BEAT * 2, gain: 0.3, vel: 80 }); crash(tSalvi, 0.2); kick(tSalvi, 66); applausi(tSalvi, 1.6, 0.07, true); [86, 90, 93].forEach((m, j) => glock(tSalvi + 0.3 + j * BEAT / 2, m, 0.1)); } // SALVI
   timp(tFuori, 35, 104, 0.42); // il disco di Alìa si incrina: poi due battiti senza musica
-  archi(tFuori + 2 * BEAT, B(T['live-5']) + 0.3, { vel: 38, gain: 0.22, ch: MIN });
+  archi(tFuori + 2 * BEAT, B(T['live-5']) + 0.3, { vel: 38, gain: 0.3, ch: MIN });
 
   // ---- live 5: i sette dischi sotto i giudici, Jake con uno solo, il bollino della finale, la camera si allarga
   const l5 = 'live-5';
-  const t0 = E(l5, 0, 0.3), tSolo = E(l5, 1, 0.3), tBo = E(l5, 2, 1.5), tLargo = E(l5, 3, 0.6);
-  sezione(B(T[l5]), B(tLargo), { vel: 44 });
-  [2, 1, 2, 2].forEach((n, gi) => { tom(t0 + gi * 0.25, 46, 0); for (let j = 0; j < n; j++) glock(t0 + gi * 0.25 + 0.2 + j * 0.15, [74, 78, 81, 86][gi] + j * 4, 0.07); }); // i sette dischi
+  const t0 = E(l5, 0, 0.3), tSolo = E(l5, 1, 0.3), tBo = E(l5, 2, 2.5), tLargo = E(l5, 3, 0.6);
+  sezione(B(T[l5]), tBo - BEAT / 2, { vel: 44 });
+  [2, 1, 2, 2].forEach((n, gi) => { tom(t0 + gi * 0.25, 46, 0); for (let j = 0; j < n; j++) glock(t0 + gi * 0.25 + 0.25 + j * 0.125, [74, 78, 81, 86][gi] + j * 4, 0.07); }); // i sette dischi
   [81, 86].forEach((m, j) => glock(tSolo + j * BEAT / 2, m, 0.12)); // il riquadro d'oro intorno a Jake
   { rullo(tBo - 1.0, 1.0, 0.2); ottoni(tBo, [50, 57, 62, 66, 69], { dur: BEAT * 2, gain: 0.3, vel: 80 }); crash(tBo, 0.22); kick(tBo, 66); } // FINALE · 3 DICEMBRE
-  archi(B(tLargo), T.finale + 0.3, { vel: 44, gain: 0.3, ch: [MAG[3], MAG[3], MAG[3], MAG[3]] }); // il La resta sospeso sulla domanda
+  archi(tBo + BEAT, T.finale + 0.3, { vel: 44, gain: 0.3, ch: [MAG[3], MAG[3], MAG[3], MAG[3]] }); // dopo il bollino un battito di silenzio, poi il La resta sospeso sulla domanda
   [69, 73, 76, 81].forEach((m, j) => glock(tLargo + j * BEAT / 2, m, 0.1)); // la camera si allarga su tutto lo schema
 
   // ---- finale: accordo pieno di Re, applausi

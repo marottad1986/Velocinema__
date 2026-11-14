@@ -385,7 +385,7 @@ export const makeSchemaLive4 = (D: DatiLive4) => {
                     {solo > 0.01 && <rect x={cx - 210} y={cy - 70} width="420" height="290" rx="30" fill="none" stroke={ORO} strokeWidth={5 * solo} />}
                     <g transform={`translate(${cx} ${cy - 20}) scale(${pop(T, tg)}) translate(${-cx} ${-cy + 20})`}><Gettone x={cx} y={cy - 20} id={gid} s={0.85} /></g>
                     {ids.map((id, j) => {
-                      const x = cx + (ids.length === 1 ? 0 : j === 0 ? -95 : 95), y = cy + 95, tj = tg + 0.2 + j * 0.15;
+                      const x = cx + (ids.length === 1 ? 0 : j === 0 ? -95 : 95), y = cy + 95, tj = tg + 0.25 + j * 0.125;
                       if (T < tj) return null;
                       const corto = nome(id).nome.length > 12 ? nome(id).nome.split(' ')[0] : nome(id).nome;
                       return (

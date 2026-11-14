@@ -69,7 +69,7 @@ export const DATI: DatiLive4 = {
     solo: 'jake',
     quandoSolo: ['live-5', 1, 0.3],
     bollino: 'FINALE · 3 DICEMBRE',
-    quandoBollino: ['live-5', 2, 1.5],
+    quandoBollino: ['live-5', 2, 2.5],
   },
   camera: [
     [['serata', 0, 0], 540, 620, 0.95],
