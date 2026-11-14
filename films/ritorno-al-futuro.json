@@ -52,7 +52,7 @@
         "Per partire deve correre a 88 miglia orarie, circa 140 all'ora,",
         "e funziona col plutonio, un carburante atomico,",
         "che Doc ha rubato a dei terroristi.",
-        "Loro sparano a Doc, e Marty, fuggendo con l'auto, sparisce nel tempo."
+        "Loro sparano a Doc, e Marty scappa con l'auto nel tempo."
       ]
     },
     {
@@ -102,9 +102,9 @@
       "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
       "sottotitoli": [
         "Per ripartire serve l'energia di un fulmine.",
-        "E Marty sa, da un volantino portato dal 1985,",
+        "E Marty sa, da un volantino del 1985,",
         "che sabato sera un fulmine colpirà la torre dell'orologio.",
-        "Così Doc tende un cavo dalla torre alla strada, dove passerà l'auto."
+        "Così Doc tende un cavo dalla torre fino alla strada."
       ]
     },
     {
@@ -127,7 +127,7 @@
       "personaggi": [],
       "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
       "sottotitoli": [
-        "Marty vuole dire a Doc che gli spareranno, ma lui non vuole saperlo.",
+        "Marty vuole dirgli che gli spareranno, ma Doc non vuole saperlo.",
         "Così gli lascia una lettera, ma Doc la strappa.",
         "Il fulmine cade, e Marty torna nel 1985 in anticipo,",
         "per salvarlo, ma arriva tardi: Doc viene colpito."
