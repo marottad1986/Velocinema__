@@ -10,7 +10,8 @@
     "Wrexham": "Rèksam",
     "Eriksen": "Èriksen",
     "Careggi": "Carèggi",
-    "Troilo": "Tròilo"
+    "Troilo": "Tròilo",
+    "506 giorni": "cinquecentosei giorni"
   },
   "palette": {
     "chiaro": "#F2EEE6",
@@ -24,7 +25,7 @@
     "documentario": "In un battito",
     "frase_lancio": "Un malore in campo a 22 anni: come ha fatto a tornare a giocare?",
     "immagine": "Notte in uno stadio inventato da noi, vuoto e silenzioso: il prato illuminato dai riflettori, un pallone fermo sul dischetto del centrocampo; nel cielo sopra le torri dei fari una linea gialla di battito cardiaco che attraversa tutta l'inquadratura e pulsa; sul tabellone luminoso a sinistra l'orologio fermo su 17'. Etichetta «LA STORIA IN 2 MINUTI» con il bollino «In 2 minuti × Mr.goal» (logo fornito), titolo grande «EDOARDO BOVE», sotto «dal documentario In un battito · di Giovanni Troilo · 2026». Niente persone né sagome, niente stemmi, niente locandina ufficiale.",
-    "voce": "Un malore in campo a ventidue anni. Come ha fatto a tornare a giocare?"
+    "voce": "Un malore in campo. Come è tornato a giocare?"
   },
   "capitoli": [
     {
@@ -93,14 +94,14 @@
       "durata": 13,
       "scena": "Uno stadio inglese al tramonto, sotto una pioggerella: tribune con file di seggiolini ribaltabili, sciarpe gialle, nere e rosse sulle balaustre, nessuno stemma; f1 su una lavagnetta del tabellone «WATFORD»; f2 l'orologio segna 86', tutti i seggiolini si ribaltano insieme come quando ci si alza in piedi e si accendono i flash.",
       "sottotitoli": [
-        "Così, a gennaio 2026, lascia la Roma e firma con il Watford, una squadra inglese di seconda serie.",
+        "Quindi, a gennaio 2026, lascia la Roma e firma con il Watford, una squadra inglese di seconda serie.",
         "Il 14 febbraio entra in campo all'ottantaseiesimo, e il pubblico si alza in piedi ad applaudirlo."
       ]
     },
     {
       "id": "gol",
       "titolo": "Il gol dopo 506 giorni",
-      "durata": 10,
+      "durata": 12,
       "scena": "La porta di notte vista da dietro la rete: il pallone che gonfia la rete, il tabellone con «90+» e il contatore dei giorni che sale fino a «506»; coriandoli gialli e neri e lampi dei flash.",
       "sottotitoli": [
         "Poi, il 17 marzo, contro i gallesi del Wrexham, segna nei minuti di recupero:",
@@ -121,7 +122,7 @@
     {
       "id": "battito",
       "titolo": "Dal buio al campo",
-      "durata": 9,
+      "durata": 7,
       "scena": "Alba su un campo da calcio vuoto: il pallone sul dischetto, il sole che sorge dietro la porta, la linea bianca di metà campo che si trasforma in una linea di battito gialla e pulsa una volta; rugiada che brilla sull'erba.",
       "sottotitoli": [
         "Dentro c'è più di un anno della sua vita:",

@@ -87,3 +87,13 @@ Brief per la sessione `/produzione`, preparato dal manager il 13 novembre 2026 p
 - Nessun accordo economico (né con Mr.goal né con il distributore): è uno scambio di visibilità tra le due pagine, quindi
   niente indicazione di contenuto sponsorizzato; nella didascalia la collaborazione si dichiara con la menzione «In
   collaborazione con @mr.goal00» (e il post Collab su Instagram).
+
+## Decisioni in produzione (14 novembre, dall'utente)
+- Scene di campo: «full immersion» negli stadi, niente paesaggi; tribune piene di tifosi (deroga alla regola «nessuna
+  persona» di `TALENT.md`, valida per questo speciale: folla generica, nessun volto riconoscibile).
+- Dettagli dei calciatori ammessi, ma la figura intera disegnata è stata scartata: gli eventi si raccontano con oggetti.
+- Bollino: il nostro cronometro «2'» con il nome «In 2 minuti» scritto per intero, × logo di Mr.goal.
+- Il capitolo 8 del canovaccio (regola italiana) è diventato il capitolo 6, prima del Watford, perché spiega la partenza.
+- Task force di giugno 2026: trovata solo una citazione indiretta (Corriere dello Sport, 17 giugno 2026): la frase non c'è.
+- Minuto: la voce dice «al diciassettesimo minuto la partita viene sospesa» (la Wikipedia italiana dà il malore al 14';
+  le cronache danno la sospensione al 17').
