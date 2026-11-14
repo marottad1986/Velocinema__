@@ -40,5 +40,5 @@ p=dict(bg=BG, ink=INK, accent=EMB, bgcss=f'background:radial-gradient(ellipse at
  ctx='Panem, in un futuro lontano', ctx_font="Cinzel",
  title=['HUNGER GAMES'], title_css=f"font-family:Cinzel;font-weight:900;font-size:120px;letter-spacing:4px;color:{INK};text-shadow:0 5px 0 #000,0 0 26px {EMB}88;",
  teaser='Ogni anno ragazzi e ragazze entrano in un\'arena<br>da cui può uscire vivo uno solo.',
- date='DOMENICA 15 NOVEMBRE · ORE 17:30', date_col='#FFC400', cred='Un film intero in soli 2 minuti · Prima visione')
+ date='DOMENICA 15 NOVEMBRE · ORE 10:00', date_col='#FFC400', cred='Un film intero in soli 2 minuti · Prima visione')
 open('/tmp/claude-0/storie/hunger.html','w').write(page(p))
