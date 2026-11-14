@@ -17,7 +17,7 @@
   },
   "copertina": {
     "durata": 4,
-    "frase_lancio": "Tre fuori in una sola sera, prima del Live 5 del 19 novembre.",
+    "frase_lancio": "Tre fuori in una sola sera: chi resta per il Live 5?",
     "immagine": "Lo schema della serata su lavagna scura: al centro una giostra disegnata a linee chiare che gira, con i dischi in vinile dei concorrenti al posto dei cavalli, nell'etichetta il colore della squadra; davanti tre dischi grigi incrinati (i tre eliminati), braci rosse che salgono (l'Hell Factor). Titolo grande «X FACTOR 2026» nel nostro carattere (mai il logo del programma), sopra «TALENT SPIEGATI», sotto «Com'è andato il Live 4» e il bollino «PRIMA DEL LIVE 5». Niente persone, niente logo, niente microfoni.",
     "voce": "Tre eliminati in una sera: chi è uscito al quarto Live?"
   },
@@ -32,7 +32,7 @@
         "tre concorrenti escono in una sera.",
         "L'ospite è la canadese Charlotte Cardin,",
         "e il primo turno è la Giostra:",
-        "tutti ricantano, di fila, un brano già portato."
+        "tutti rifanno, di fila, un brano già cantato."
       ]
     },
     {
@@ -81,7 +81,7 @@
       "scena": "Continua la colonna TURNO 2: Manu, Le Distanze, Camilla, Scraffs e Giacomo (nella stessa frase), Alex Fontana.",
       "sottotitoli": [
         "Poi Manu porta Va bene, va bene così di Vasco;",
-        "Le Distanze fanno Welcome to the Black Parade dei My Chemical Romance;",
+        "Le Distanze fanno Welcome to the Black Parade;",
         "Camilla, Io che non vivo senza te di Donaggio;",
         "gli Scraffs American Idiot, Giacomo All of Me,",
         "e chiude Alex con Maggie M'Gill dei Doors."
@@ -150,7 +150,6 @@
     "Live 5 il 19 novembre, finale il 3 dicembre: https://www.napolike.it/televisione/2026/09/x-factor-2026-quando-iniziano-i-live-344880"
   ],
   "pronuncia": {
-    "X Factor": "Ics Fàctor",
     "Jake": "Gèik",
     "Live": "Làiv",
     "Scraffs": "Scràfs",
@@ -164,18 +163,13 @@
     "Last Nite": "Last Nàit",
     "Club Foot": "Clab Fut",
     "Can't Stop the Feeling": "Kent Stop de Fìling",
-    "Justin Timberlake": "Giàstin Tìmberleik",
     "And I'm Telling You I'm Not Going": "End aim Tèlling iu aim not Gòing",
     "Welcome to the Black Parade": "Uèlcam tu de Blek Parèid",
-    "My Chemical Romance": "Mai Kèmical Romèns",
     "American Idiot": "Amèrican Ìdiot",
-    "Green Day": "Grin Déi",
     "All of Me": "Ol of Mi",
-    "John Legend": "Gion Lègend",
     "Maggie M'Gill": "Mèghi Maghìl",
     "That's So True": "Dets so Tru",
     "Gracie Abrams": "Grèisi Èibrams",
-    "Turtles": "Tèrtols",
     "Doors": "Dors",
     "Maybe": "Mèibi",
     "Elenore": "Èlenor",
