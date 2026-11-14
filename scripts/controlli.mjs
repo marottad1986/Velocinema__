@@ -131,6 +131,9 @@ for (const slug of listaLunghi) {
   const L = loadLungo(slug);
   const tr = trattiLungo(slug, L);
   const nuovi = tr.filter((x) => x.voce?.dir === `audio/${slug}`);
+  // durata minima del lungo: 8 minuti (VIDEO-LUNGO.md)
+  const totale = tr.reduce((a, x) => a + x.dur, 0);
+  if (totale < 480 - 1e-6) E.push(`dura ${Math.floor(totale / 60)}:${String(Math.round(totale % 60)).padStart(2, '0')}: un video lungo dura almeno 8:00 (mancano ${Math.ceil(480 - totale)} s)`);
   // episodi: esistono, stesso bpm, e ognuno entra su un battito (così la sua musica resta sulla griglia)
   for (const x of tr.filter((y) => y.tipo === 'carta')) {
     const f = JSON.parse(readFileSync(`films/${x.film}.json`, 'utf8'));

@@ -6,7 +6,7 @@ montati in un solo racconto orizzontale, con un aggancio, i raccordi e un capito
 revisori prima della pull request); qui solo ciò che cambia. Primo video: `lunghi/dark-tutta-la-serie.json`.
 
 ## Formato (vincolante)
-- **1920×1080, 30 fps**, durata libera (di solito 7–10 minuti). Lingua: italiano.
+- **1920×1080, 30 fps**, **durata di almeno 8 minuti** (480 s; di solito 8–10 minuti): se le parti riusate non bastano, si allungano le parti nuove (il capitolo nuovo, mai riempitivi). `controlli.mjs` dà errore sotto gli 8:00. Lingua: italiano.
 - I video verticali restano come sono: il lungo è una composizione separata (`src/lunghi/`, entry `src/lunghi/index.ts`),
   con un suo JSON in `lunghi/<slug>.json`. Le scene degli episodi si riusano importandole, mai copiandole; se serve
   modificarle per il 16:9, il video verticale deve restare identico fotogramma per fotogramma.
