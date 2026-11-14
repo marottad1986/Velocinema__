@@ -158,7 +158,7 @@ export default (mix, T) => {
 
   // ---- chi esce subito: la somma (passaggio e glockenspiel), le due uscite dirette (due timpani gravi e silenzio), il ballottaggio
   const fs = 'fuori-subito';
-  const tSom = E(fs, 0, 1.0), tSub = E(fs, 1, 0.9), tBal = E(fs, 2, 1.0);
+  const tSom = E(fs, 0, 1.0), tSub = E(fs, 1, 0.5), tBal = E(fs, 2, 1.0);
   groove(B(T[fs]), tSub - BEAT / 2, { vel: 40, half: true });
   basso(B(T[fs]), tSub - BEAT / 2, { vel: 54, gain: 0.36, ch: MIN, half: true });
   archi(B(T[fs]), tSub - BEAT / 2, { ch: MIN, vel: 40, gain: 0.24 });

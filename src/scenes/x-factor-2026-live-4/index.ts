@@ -47,7 +47,7 @@ export const DATI: DatiLive4 = {
     subito: ['manu', 'scraffs'],
     ballottaggio: ['alia', 'distanze'],
     quandoSomma: ['fuori-subito', 0, 1.0],
-    quandoSubito: ['fuori-subito', 1, 0.9],
+    quandoSubito: ['fuori-subito', 1, 0.5],
     quandoBal: ['fuori-subito', 2, 1.0],
   },
   ballottaggio: {
@@ -75,7 +75,7 @@ export const DATI: DatiLive4 = {
     [['serata', 0, 0], 540, 620, 0.95],
     [['serata', 2, 0], 540, 730, 0.8],
     [['giostra-1', 0, -0.2], 300, 1670, 1.1],
-    [['giostra-2', 0, -0.2], 300, r(7), 1.1],
+    [['giostra-2', 0, -0.2], 300, r(7) + 60, 1.1],
     [['turno-2', 0, -0.2], 780, 1670, 1.1],
     [['turno-2b', 0, -0.3], 780, 2254, 1.08],
     [['fuori-subito', 0, -0.2], 540, 1930, 0.56],
@@ -84,7 +84,7 @@ export const DATI: DatiLive4 = {
     [['tilt', 0, 0.0], 540, BAL_Y + 560, 0.72],
     [['live-5', 0, -0.1], 540, NEXT_Y + 430, 0.8],
     [['live-5', 2, 0.2], 540, NEXT_Y + 600, 0.8],
-    [['live-5', 3, 0.6], 540, (150 + NEXT_Y + 1080) / 2, 0.205],
+    [['live-5', 3, 0.6], 540, (ROW0 - 150 + NEXT_Y + 1060) / 2, 0.165],
   ],
 };
 

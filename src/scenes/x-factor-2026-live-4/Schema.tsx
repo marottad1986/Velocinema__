@@ -214,9 +214,9 @@ export const makeSchemaLive4 = (D: DatiLive4) => {
         {/* ospite e regola del primo turno */}
         {T > at(S.ospite.quando) && (
           <g>
-            <Tag T={T} t0={at(S.ospite.quando)} x={830} y={1080} testo="OSPITE" size={28} rot={3} bg={INK} />
-            <text x="830" y="1148" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="40" fill={INK} opacity={seg(T, at(S.ospite.quando) + 0.3, at(S.ospite.quando) + 0.6)}>{S.ospite.testo}</text>
-            <g transform={`translate(1000 1040) scale(${pop(T, at(S.ospite.quando) + 0.3)})`}><Stella T={T} t0={0} x={0} y={0} s={0.6} /></g>
+            <Tag T={T} t0={at(S.ospite.quando)} x={800} y={1080} testo="OSPITE" size={28} rot={3} bg={INK} />
+            <text x="800" y="1148" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="40" fill={INK} opacity={seg(T, at(S.ospite.quando) + 0.3, at(S.ospite.quando) + 0.6)}>{S.ospite.testo}</text>
+            <g transform={`translate(970 1040) scale(${pop(T, at(S.ospite.quando) + 0.3)})`}><Stella T={T} t0={0} x={0} y={0} s={0.6} /></g>
           </g>
         )}
         {T > tTu && (
@@ -262,8 +262,8 @@ export const makeSchemaLive4 = (D: DatiLive4) => {
           return (
             <g>
               <g opacity={box}>
-                <rect x="70" y={MENO_Y} width="940" height="500" rx="40" fill="#160E20" opacity=".8" />
-                <rect x="70" y={MENO_Y} width="940" height="500" rx="40" fill="none" stroke={INK} strokeWidth="5" strokeDasharray="18 12" />
+                <rect x="70" y={MENO_Y} width="940" height="540" rx="40" fill="#160E20" opacity=".8" />
+                <rect x="70" y={MENO_Y} width="940" height="540" rx="40" fill="none" stroke={INK} strokeWidth="5" strokeDasharray="18 12" />
                 <text x="540" y={MENO_Y + 82} textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="50" fill={INK}>I 4 MENO VOTATI</text>
               </g>
               {/* i quattro restano segnati anche nelle colonne: grigi i due fuori, rossi i due al ballottaggio */}
@@ -278,11 +278,11 @@ export const makeSchemaLive4 = (D: DatiLive4) => {
                   </g>
                 );
               })}
-              {T > tSub + 0.6 && <Tag T={T} t0={tSub + 0.6} x={310} y={MENO_Y + 440} testo="FUORI SUBITO" size={32} bg={INK} fg={RED} rot={-4} />}
+              {T > tSub + 0.6 && <Tag T={T} t0={tSub + 0.6} x={310} y={MENO_Y + 474} testo="FUORI SUBITO" size={32} bg={INK} fg={RED} rot={-4} />}
               {/* gli altri due al ballottaggio */}
-              {T > tBal && <circle cx="770" cy={MENO_Y + 260} r="170" fill="none" stroke={RED} strokeWidth="7" pathLength={1} strokeDasharray={`${eo(seg(T, tBal, tBal + 0.6))} 1`} />}
+              {T > tBal && <circle cx="770" cy={MENO_Y + 270} r="175" fill="none" stroke={RED} strokeWidth="7" pathLength={1} strokeDasharray={`${eo(seg(T, tBal, tBal + 0.6))} 1`} />}
               {M.ballottaggio.map((id, j) => {
-                const x = [690, 850][j], y = MENO_Y + 250, t0 = tBal + 0.2 + j * 0.25;
+                const x = [705, 835][j], y = MENO_Y + 250, t0 = tBal + 0.2 + j * 0.25;
                 if (T < t0) return null;
                 return (
                   <g key={id}>
@@ -291,7 +291,7 @@ export const makeSchemaLive4 = (D: DatiLive4) => {
                   </g>
                 );
               })}
-              {T > tBal + 0.8 && <Tag T={T} t0={tBal + 0.8} x={770} y={MENO_Y + 460} testo="BALLOTTAGGIO" size={30} bg={RED} fg={INK} rot={3} />}
+              {T > tBal + 0.8 && <Tag T={T} t0={tBal + 0.8} x={770} y={MENO_Y + 482} testo="BALLOTTAGGIO" size={30} bg={RED} fg={INK} rot={3} />}
             </g>
           );
         })()}
