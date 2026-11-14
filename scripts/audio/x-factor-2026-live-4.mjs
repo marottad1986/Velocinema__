@@ -193,7 +193,7 @@ export default (mix, T) => {
 
   // ---- live 5: i sette dischi sotto i giudici, Jake con uno solo, il bollino della finale, la camera si allarga
   const l5 = 'live-5';
-  const t0 = E(l5, 0, 0.3), tSolo = E(l5, 1, 0.3), tBo = E(l5, 2, 2.0), tLargo = E(l5, 3, 0.6);
+  const t0 = E(l5, 0, 0.3), tSolo = E(l5, 1, 0.3), tBo = E(l5, 2, 1.5), tLargo = E(l5, 3, 0.6);
   sezione(B(T[l5]), B(tLargo), { vel: 44 });
   [2, 1, 2, 2].forEach((n, gi) => { tom(t0 + gi * 0.25, 46, 0); for (let j = 0; j < n; j++) glock(t0 + gi * 0.25 + 0.2 + j * 0.15, [74, 78, 81, 86][gi] + j * 4, 0.07); }); // i sette dischi
   [81, 86].forEach((m, j) => glock(tSolo + j * BEAT / 2, m, 0.12)); // il riquadro d'oro intorno a Jake
