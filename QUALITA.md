@@ -50,6 +50,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
     e delle lucine (#F5B83D), luce fredda azzurra del Sottosopra (#7FB8D8).
   - Breaking Bad (stagione 1): ocra caldo del deserto di giorno (#D8A040, opacità 10%), blu notte di periferia (#142235), bruno negli interni chiusi (#4A3A1E), rosso nei tramonti di pericolo (#8A3A2A); unico colore deciso il giallo-oro (#F0B53A) sui cristalli e sugli oggetti chiave.
   - Il sesto senso: fredda azzurro-grigia di Filadelfia (#22303E di notte, #3A4450 di giorno, opacità 12–14%); unico colore deciso il rosso (#D0342C) sugli oggetti toccati dall'aldilà.
+  - Edoardo Bove – «In un battito» (storia vera): notte viola-blu negli stadi (#1A1830–#2C2456, 10–14%), calda all'alba (#E8913A, 8%); unico colore deciso il giallo (#F5C518) sulla linea del battito.
   - X Factor 2026 (talent spiegati): viola notte da studio televisivo (#2A1E4A, opacità 12%); colori delle squadre sulle luci, oro solo sull'oggetto chiave.
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
   - Hunger Games: grigio-blu di carbone nel Distretto 12 (#2A3038, opacità 12%), oro caldo a Capitol City (#C89A3A, 8%), verde bosco nell'arena (#1E3A2A, 10%; quasi nero di notte #0F1A12); unico colore deciso l'arancione-brace (#F08A2A) sulla freccia, le fiamme e gli oggetti chiave.
@@ -97,3 +98,4 @@ leggono solo questo file e quello del film. Un film nuovo aggiunge il suo file q
 - Gli anni (883): `qualita/gli-anni.md`
 - X Factor 2026 (talent spiegati, studio e ballottaggi riusabili): `qualita/x-factor-2026.md`
 - Hunger Games: `qualita/hunger-games.md`
+- Edoardo Bove – «In un battito» (storia vera, stadi a tutto schermo): `qualita/bove-in-un-battito.md`

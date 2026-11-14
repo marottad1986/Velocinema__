@@ -78,7 +78,12 @@ for (const [slug, path] of lista) {
     for (const c of j.capitoli) if (!new RegExp(`['"]?${c.id}['"]?\\s*:`).test(idx)) A.push(`capitolo ${c.id}: nessuna scena in ${dirScene}/index.ts (compare il segnaposto)`);
   }
   const locandine = [dirScene && `${dirScene}/Locandina.tsx`, dirScene && `${dirScene}/Finale.tsx`, path.startsWith('quadri/') && 'src/scenes/quadri/Locandina.tsx'].filter((p) => p && existsSync(p));
-  if (!locandine.some((p) => /Commenta con (il film|la serie|la spiegazione|la canzone|il quadro|il programma) che vorresti\.|Commenta con chi vorresti in finale\./.test(readFileSync(p, 'utf8')))) E.push('finale senza «Commenta con … che vorresti.»');
+  // eccezione: le collaborazioni con un'altra pagina (`copertina.collab`, es. lo speciale Bove con Mr.goal) chiudono con
+  // «Commenta: lo vedrai al cinema?» e «Segui le due pagine»; senza `collab` vale la formula solita
+  const invito = /Commenta con (il film|la serie|la spiegazione|la canzone|il quadro|il programma) che vorresti\.|Commenta con chi vorresti in finale\./;
+  const invitoCollab = /Commenta: lo vedrai al cinema\?/;
+  if (!locandine.some((p) => invito.test(readFileSync(p, 'utf8')) || (j.copertina?.collab && invitoCollab.test(readFileSync(p, 'utf8'))))) E.push(j.copertina?.collab ? 'finale senza «Commenta: lo vedrai al cinema?» (collaborazione)' : 'finale senza «Commenta con … che vorresti.»');
+  if (j.copertina?.collab && !locandine.some((p) => /Segui le due pagine/.test(readFileSync(p, 'utf8')))) E.push('collaborazione: il finale deve dire «Segui le due pagine»');
   // etichetta «… IN 2 MINUTI» sopra il titolo: ammessa solo nei riassunti di film (canzoni, quadri, Spiegato semplice usano il nome della serie)
   const soloFilm = !path.startsWith('quadri/') && !spiegato && !canzone;
   if (!soloFilm) for (const p of locandine) if (/IN 2 MINUTI/i.test(readFileSync(p, 'utf8'))) E.push(`${p}: «… IN 2 MINUTI» ammesso solo nelle copertine dei film (usare il nome della serie)`);

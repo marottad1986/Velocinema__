@@ -27,7 +27,7 @@ export type FilmData = {
   schema?: boolean;
   /** Formato "spiegato": false toglie la sigla di 1,5 s (la copertina parte subito e porta «SPIEGATO SEMPLICE» in alto). */
   sigla?: boolean;
-  tipo?: 'film' | 'serie' | 'canzone' | 'talent';
+  tipo?: 'film' | 'serie' | 'canzone' | 'talent' | 'storia';
   /** Talent spiegati (TALENT.md): fin dove arriva il racconto, es. «dopo il Live 3 del 5 novembre 2026». */
   aggiornato?: string;
   stagione?: number;
@@ -36,7 +36,9 @@ export type FilmData = {
   anno: number;
   opera?: OperaInfo;
   palette: Palette;
-  copertina: { durata: number; frase_lancio?: string; immagine: string; voce?: string; /** Bollino accanto all'etichetta, es. "Halloween" → «SPECIALE HALLOWEEN»; si toglie per ripubblicare. */ speciale?: string };
+  copertina: { durata: number; frase_lancio?: string; immagine: string; voce?: string; /** Bollino accanto all'etichetta, es. "Halloween" → «SPECIALE HALLOWEEN»; si toglie per ripubblicare. */ speciale?: string;
+    /** Collaborazione con un'altra pagina (es. "Mr.goal"): bollino «In 2 minuti × logo» e finale «Segui le due pagine»; si toglie per tornare normale. */ collab?: string;
+    /** Storie vere: titolo del documentario o del film da cui nasce la storia. */ documentario?: string };
   linea_tempo?: number[];
   personaggi?: Personaggio[];
   capitoli: Capitolo[];
