@@ -2,7 +2,7 @@ import React from 'react';
 import { eo, eob, mod, rng, seg } from '../../lib/anim';
 import { DISPLAY, HAND, RIGHTEOUS, SANS } from '../../lib/fonts';
 import { Finish, FxDefs } from '../../lib/fx';
-import { Glow, Stars } from '../../lib/elements';
+import { Glow, Reflection, Stars } from '../../lib/elements';
 import type { PosterProps } from '../../types';
 import { INK, Skate, TimeCar, YEL } from './Linee';
 
@@ -110,10 +110,26 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
       {/* la strada, le scie gialle del viaggio e l'auto */}
       <path d="M0 1340 H1080 V1920 H0 Z" fill={`url(#${id}-road)`} />
       <path d="M0 1340 H1080" stroke={INK} strokeWidth="6" />
-      {Array.from({ length: 6 }, (_, i) => <path key={i} d={`M${mod(i * 220 - t * 300 * (1 - calm), 1320) - 120} 1500 h110`} stroke={DIM} strokeWidth="8" />)}
+      {/* asfalto bagnato in prospettiva fino al bordo basso: corsie, riflessi del lampione e dell'auto, tombino, marciapiede */}
+      {[-3, -1.6, 1.6, 3].map((k) => <path key={k} d={`M${540 + k * 60} 1342 L${540 + k * 330} 1920`} stroke={DIM} strokeWidth="5" opacity=".7" />)}
+      {Array.from({ length: 5 }, (_, i) => {
+        const u = mod(i / 5 + t * 0.35 * (1 - calm), 1);
+        const y = 1350 + u * u * 600, h = 10 + u * 90, w = 4 + u * 14;
+        return <rect key={i} x={540 - w / 2} y={y} width={w} height={h} fill={YEL} opacity={0.55 * (0.4 + u)} />;
+      })}
+      <Reflection t={t} x={930} y={1400} color={WARM} n={9} w={60} gap={28} opacity={0.45} />
+      <Reflection t={t} x={600} y={1420} color="#BFD6EE" n={8} w={260} gap={26} opacity={0.3} />
+      <g transform="translate(790 1760)">
+        <ellipse rx="120" ry="34" fill="#0A1626" stroke={INK} strokeWidth="5" />
+        {[-60, -20, 20, 60].map((x) => <path key={x} d={`M${x} -26 V26`} stroke={DIM} strokeWidth="4" />)}
+        <ellipse rx="120" ry="34" fill="none" stroke="#FFFFFF" strokeWidth="2" opacity=".3" transform="translate(0 -4)" />
+      </g>
+      <path d="M0 1700 L260 1920" stroke={INK} strokeWidth="8" />
+      <path d="M0 1730 L225 1920 H0 Z" fill="#1E3E66" />
+      {[0, 1, 2].map((i) => <path key={i} d={`M${i * 70} ${1760 + i * 59} l40 34`} stroke={DIM} strokeWidth="4" />)}
       <g transform={L(0.8)}>
         {[0, 1].map((k) => {
-          const d = k ? 'M320 1330 C140 1330 60 1200 130 1070 C200 960 160 860 280 790' : 'M320 1306 C100 1296 -20 1120 70 960 C130 880 130 800 200 730';
+          const d = k ? 'M320 1330 C140 1330 60 1200 130 1070 C200 960 160 860 280 790' : 'M640 1920 C600 1700 420 1500 330 1316';
           return (
             <g key={k} opacity={calm ? 0.55 : 1}>
               <path d={d} fill="none" stroke={YEL} strokeWidth="40" opacity=".14" strokeLinecap="round" />

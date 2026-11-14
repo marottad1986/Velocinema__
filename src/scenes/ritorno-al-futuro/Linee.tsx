@@ -47,7 +47,7 @@ const cy = (k: BandKey) => BAND[k].y0 + 400;
 const Y = (k: BandKey, y: number) => BAND[k].y0 + y;
 export const N = {
   marty85: [210, Y('parcheggio', ROW)], doc85: [540, Y('parcheggio', ROW)], terr: [870, Y('parcheggio', ROW)],
-  marty55: [540, Y('strada', ROW)], george: [830, Y('strada', ROW)], biff: [210, Y('strada', ROW)], lorraine: [210, Y('strada', ROW)],
+  marty55: [540, Y('strada', ROW)], george: [830, Y('strada', ROW)], biff: [250, Y('strada', ROW)], lorraine: [250, Y('strada', ROW)],
   doc55: [620, Y('piazza', ROW)], martyP: [210, Y('piazza', ROW)],
   marty2: [200, Y('ballo', ROW)], george2: [410, Y('ballo', ROW)], lorraine2: [630, Y('ballo', ROW)], biff2: [850, Y('ballo', ROW)],
   photo: [810, Y('ballo', 330)],
@@ -85,8 +85,8 @@ export const SHOTS: Shot[] = [
   { at: at('marty', 1), ...band('parcheggio', 1.25, -170, 120) },
   { at: at('marty', 2), ...band('parcheggio', 1.25, 0, 120) },
   { at: at('marty', 3), ...band('parcheggio', 1.15, 0, -10) },
-  { at: at('macchina', 0), ...band('parcheggio', 1.15, -80, -60) },
-  { at: at('macchina', 1), ...band('parcheggio', 1.15, 80, -60) },
+  { at: at('macchina', 0), ...band('parcheggio', 1.0, -40, 0) },
+  { at: at('macchina', 1), ...band('parcheggio', 1.0, 40, 0) },
   { at: at('macchina', 2), ...band('parcheggio', 1.0, 60, 100) },
   { at: at('macchina', 3), ...band('parcheggio', 1.0, 60, 0) },
   // la camera sale lungo la scia gialla, trent'anni indietro
@@ -117,7 +117,7 @@ export const SHOTS: Shot[] = [
   { at: at('lettera', 1), ...band('piazza', 1.2, 150, 100) },
   { at: at('lettera', 2, -0.4), x: 560, y: Y('piazza', 200), z: 0.8 },
   // giù lungo la scia gialla, verso il 1985
-  { at: at('lettera', 2, 1.2), x: 700, y: Y('parcheggio', 200), z: 0.6 },
+  { at: at('lettera', 2, 0.9), x: 700, y: Y('parcheggio', 200), z: 0.6 },
   { at: at('lettera', 3), ...band('parcheggio', 1.05, 120, 60) },
   { at: at('cambiato', 0), x: 480, y: Y('parcheggio', 560), z: 1.15 },
   { at: at('cambiato', 1), ...band('casa', 1.0) },
@@ -726,7 +726,7 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })()}
-      <Tag T={T} t0={at('macchina', 0, 1.4)} x={330} y={Y('parcheggio', 480)} text="≈ 140 km/h" size={32} until={at('macchina', 1)} />
+      <Tag T={T} t0={at('macchina', 0, 1.4)} x={330} y={Y('parcheggio', 175)} text="≈ 140 km/h" size={32} until={at('macchina', 1)} />
       {T >= at('macchina', 1, 0.1) && T < at('macchina', 3, 0.6) && (
         <g transform={`translate(790 ${Y('parcheggio', 290)}) scale(${1.3 * pop(T, at('macchina', 1, 0.1))})`} opacity={off('macchina')}>
           <Glow id="rf-pu" x={0} y={0} r={90} t={T} color={ATOM} amp={0.15} rate={5} opacity={0.6} />
@@ -804,11 +804,11 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
           <text y="104" textAnchor="middle" fontFamily={SANS} fontWeight={400} fontSize="14" fill="#2A3A4A">volantino del 1985</text>
         </g>
       )}
-      <Link T={T} t0={at('fulmine', 2, 0.5)} a={[660, Y('piazza', 200)]} b={[440, Y('piazza', 150)]} c={[560, Y('piazza', 110)]} color={INK} arrow label="sabato sera" lx={30} ly={-24} size={40} fade={1 - seg(T, at('lettera', 2, 1.0), at('lettera', 2, 1.6))} />
+      <Link T={T} t0={at('fulmine', 2, 0.5)} a={[660, Y('piazza', 200)]} b={[440, Y('piazza', 150)]} c={[560, Y('piazza', 110)]} color={INK} arrow label="sabato sera" lx={30} ly={-24} size={40} fade={1 - seg(T, at('fulmine', 3), at('fulmine', 3, 0.4))} />
       {cable > 0 && (
         <g>
           <mask id="rf-cab" maskUnits="userSpaceOnUse" x="0" y="1000" width="1200" height="1400"><rect x="300" y="1000" width={700 * cable} height="1400" fill="#fff" /></mask>
-          <path d={`M430 ${Y('piazza', 150)} Q600 ${Y('piazza', 230)} 760 ${Y('piazza', 292)} Q855 ${Y('piazza', 340)} 950 ${Y('piazza', 292)}`} fill="none" stroke={surge > 0 ? '#FFFFFF' : INK} strokeWidth={surge > 0 ? 9 : 5} mask="url(#rf-cab)" />
+          <path d={`M430 ${Y('piazza', 150)} Q600 ${Y('piazza', 230)} 760 ${Y('piazza', 292)} Q855 ${Y('piazza', 340)} 950 ${Y('piazza', 292)}`} fill="none" stroke={surge > 0 ? '#FFFFFF' : WARM} strokeWidth={surge > 0 ? 10 : 7} mask="url(#rf-cab)" />
           {surge > 0 && <path d={`M430 ${Y('piazza', 150)} Q600 ${Y('piazza', 230)} 760 ${Y('piazza', 292)} Q855 ${Y('piazza', 340)} 950 ${Y('piazza', 292)}`} fill="none" stroke="#BFE6FF" strokeWidth="40" opacity={0.6 * surge} />}
           <text x="610" y={Y('piazza', 254)} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={fit(40)} fill={INK} stroke={DARK} strokeWidth="7" paintOrder="stroke" opacity={seg(T, at('fulmine', 3, 1.0), at('fulmine', 3, 1.4)) * (1 - seg(T, end('fulmine') - 0.4, end('fulmine')))}>il cavo di Doc</text>
         </g>
@@ -875,12 +875,12 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })()}
-      <Tag T={T} t0={at('lettera', 1, 1.4)} x={N.doc55[0] + 180} y={N.doc55[1] - 250} text="strappata!" bg={RED} fg="#FFFFFF" size={34} rot={-3} until={at('lettera', 2, 0.1)} />
+      <Tag T={T} t0={at('lettera', 1, 1.4)} x={N.doc55[0] + 180} y={N.doc55[1] - 125} text="strappata!" bg={RED} fg="#FFFFFF" size={34} rot={-3} until={at('lettera', 2, 0.1)} />
       {/* il fulmine sulla torre (l'unico lampo della scena) */}
       {T >= boltT && T < boltT + 1.1 && (() => {
         const k = 1 - seg(T, boltT + 0.4, boltT + 1.1);
         const flick = 0.75 + 0.25 * Math.sin(T * 60);
-        const d = `M640 ${Y('piazza', -260)} L540 ${Y('piazza', -175)} L585 ${Y('piazza', -162)} L455 ${Y('piazza', -85)} L500 ${Y('piazza', -74)} L392 ${Y('piazza', -20)}`;
+        const d = `M760 ${Y('piazza', 95)} L660 ${Y('piazza', 60)} L690 ${Y('piazza', 46)} L560 ${Y('piazza', 20)} L590 ${Y('piazza', 6)} L470 ${Y('piazza', -6)} L494 ${Y('piazza', -16)} L392 ${Y('piazza', -20)}`;
         return (
           <g opacity={k * flick}>
             <Glow id="rf-bolt" x={392} y={Y('piazza', -10)} r={260} t={T} color="#DDF0FF" amp={0.2} rate={30} opacity={0.9} />
