@@ -171,8 +171,8 @@ const FMT = 'aformat=sample_rates=48000:channel_layouts=stereo';
 const voceWav = `${TMP}/${slug}-voce.wav`;
 const parts = clips.map((c, i) => `[${i}:a]${FMT}${c.speed > 1 ? `,atempo=${c.speed.toFixed(5)}` : ''},adelay=${Math.round(c.t * 1000)}:all=1[v${i}]`);
 parts.push(`${clips.map((_, i) => `[v${i}]`).join('')}amix=inputs=${clips.length}:duration=longest:normalize=0,apad=whole_dur=${END}[voce]`);
-writeFileSync(`${TMP}/filtro.txt`, parts.join(';\n'));
-run('ffmpeg', ['-y', '-v', 'error', ...clips.flatMap((c) => ['-i', c.file]), '-filter_complex_script', `${TMP}/filtro.txt`, '-map', '[voce]', '-t', String(END), voceWav]);
+// il filtro passa come argomento: -filter_complex_script non esiste più nelle versioni recenti di ffmpeg (quella di GitHub Actions)
+run('ffmpeg', ['-y', '-v', 'error', ...clips.flatMap((c) => ['-i', c.file]), '-filter_complex', parts.join(';'), '-map', '[voce]', '-t', String(END), voceWav]);
 const out = `out/${slug}-voce.mp4`;
 run('ffmpeg', ['-y', '-v', 'error', '-i', video, '-i', voceWav, '-filter_complex',
   `[1:a]${FMT},asplit=2[vc][sc];[0:a]${FMT}[mus];[mus][sc]sidechaincompress=threshold=0.015:ratio=8:attack=20:release=450[duck];[duck][vc]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.95[a]`,
