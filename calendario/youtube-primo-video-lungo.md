@@ -1,4 +1,4 @@
-# Primo video lungo su YouTube (proposta, da approvare)
+# Primo video lungo su YouTube (pubblicato il 14 novembre 2026)
 
 Proposta del team social, 13 novembre 2026. Sul canale YouTube finora sono usciti solo gli Short da 2 minuti: questo è il
 primo video lungo, quindi deve far trovare il canale a chi cerca su YouTube e farlo iscrivere.
