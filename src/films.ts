@@ -1,5 +1,5 @@
 import type { FilmData, FilmDef } from './types';
-import { DISPLAY, ANTON, BEBAS, CINZEL, CREEPSTER, PACIFICO, PLAYFAIR, SERIF, STENCIL, SYNCOPATE, TYPEWRITER, CRIMSON } from './lib/fonts';
+import { DISPLAY, ANTON, BEBAS, CINZEL, CREEPSTER, PACIFICO, PLAYFAIR, RIGHTEOUS, SERIF, STENCIL, SYNCOPATE, TYPEWRITER, CRIMSON } from './lib/fonts';
 import shutterIsland from '../films/shutter-island.json';
 import laLaLand from '../films/la-la-land.json';
 import trumanShow from '../films/the-truman-show.json';
@@ -15,6 +15,9 @@ import inception from '../films/inception.json';
 import bohemianRhapsody from '../films/bohemian-rhapsody.json';
 import gliAnni from '../films/gli-anni.json';
 import tenet from '../films/tenet.json';
+import ritornoAlFuturo from '../films/ritorno-al-futuro.json';
+import { RITORNO_AL_FUTURO_SCENES } from './scenes/ritorno-al-futuro';
+import { Copertina as RAFCover, Finale as RAFEnd } from './scenes/ritorno-al-futuro/Locandina';
 import gtaVi from '../films/gta-vi.json';
 import { GTA_VI_SCENES } from './scenes/gta-vi';
 import { Copertina as GtaCover, Finale as GtaEnd } from './scenes/gta-vi/Locandina';
@@ -120,6 +123,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'hunger-games', data: hungerGames as FilmData, scenes: HUNGER_GAMES_SCENES, cover: HGCover, ending: HGEnd, posterFont: ANTON },
   { slug: 'gta-vi', data: gtaVi as FilmData, scenes: GTA_VI_SCENES, cover: GtaCover, ending: GtaEnd, posterFont: DISPLAY },
   { slug: 'bove-in-un-battito', data: boveInUnBattito as FilmData, scenes: BOVE_SCENES, cover: BoveCover, ending: BoveEnd, posterFont: ANTON },
+  { slug: 'ritorno-al-futuro', data: ritornoAlFuturo as FilmData, scenes: RITORNO_AL_FUTURO_SCENES, cover: RAFCover, ending: RAFEnd, posterFont: RIGHTEOUS },
 ];
 
 export const getFilm = (slug: string): FilmDef => {

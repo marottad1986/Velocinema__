@@ -39,3 +39,6 @@ export const TYPEWRITER = loadSpecialElite('normal', { weights: ['400'], subsets
 import { loadFont as loadCrimsonPro } from '@remotion/google-fonts/CrimsonPro';
 /** Serif pesante da romanzo gotico (Il sesto senso). */
 export const CRIMSON = loadCrimsonPro('normal', { weights: ['800'], subsets: ['latin', 'latin-ext'] }).fontFamily;
+import { loadFont as loadRighteous } from '@remotion/google-fonts/Righteous';
+/** Titolo retrò arrotondato, tra anni '50 e '80 (Ritorno al futuro). */
+export const RIGHTEOUS = loadRighteous('normal', { weights: ['400'], subsets: ['latin', 'latin-ext'] }).fontFamily;

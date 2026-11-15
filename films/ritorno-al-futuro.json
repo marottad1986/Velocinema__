@@ -1,0 +1,160 @@
+{
+  "formato": "spiegato",
+  "tipo": "film",
+  "schema": true,
+  "sigla": false,
+  "titolo": "Ritorno al futuro",
+  "regista": "Robert Zemeckis",
+  "anno": 1985,
+  "bpm": 72,
+  "palette": {
+    "chiaro": "#F4EEE2",
+    "principale": "#2E1E5C",
+    "scuro": "#0E0A22",
+    "accento": "#F5C23A"
+  },
+  "personaggi": [
+    { "nome": "Marty", "ruolo": "un ragazzo di 17 anni", "oggetto": "skateboard" },
+    { "nome": "Doc", "ruolo": "uno scienziato amico di Marty", "oggetto": "occhialoni da laboratorio" },
+    { "nome": "i terroristi", "ruolo": "a cui Doc ha rubato il plutonio", "oggetto": "furgone" },
+    { "nome": "George", "ruolo": "il padre di Marty", "oggetto": "quaderno di racconti" },
+    { "nome": "Biff", "ruolo": "il bullo", "oggetto": "giubbotto di pelle" },
+    { "nome": "Lorraine", "ruolo": "la madre di Marty", "oggetto": "fiocco per capelli" },
+    { "nome": "Jennifer", "ruolo": "la ragazza di Marty", "oggetto": "biglietto con un cuore" }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Un viaggio nel passato che può cancellarti.",
+    "immagine": "Locandina senza sigla, con «SPIEGATO SEMPLICE · FILM» in alto e il titolo già completo dal primo fotogramma: di notte, su carta da progetto blu, la torre dell'orologio di una piazza anni '50 colpita da un fulmine; dal fulmine scende un cavo fino alla strada, dove due scie gialle tratteggiate (il viaggio nel tempo) partono da un'auto generica nel nostro stile e salgono in un grande quadrante. In primo piano una foto di famiglia che sbiadisce. NON usare persone, la DeLorean riconoscibile, scie di fuoco né locandine ufficiali.",
+    "voce": "Ritorno al futuro: e se un viaggio nel passato potesse cancellarti?"
+  },
+  "capitoli": [
+    {
+      "id": "marty",
+      "titolo": "Chi sono Marty e Doc?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo su carta da progetto: vedi Linee.tsx.",
+      "sottotitoli": [
+        "È il 1985, nella cittadina di Hill Valley.",
+        "Marty, un ragazzo di 17 anni, ha un amico speciale:",
+        "Doc, uno scienziato un po' strambo,",
+        "che ha trasformato un'auto in una macchina del tempo."
+      ]
+    },
+    {
+      "id": "macchina",
+      "titolo": "Come funziona la macchina del tempo?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Per partire deve correre a 88 miglia orarie, circa 140 all'ora,",
+        "e funziona col plutonio, un carburante atomico,",
+        "che Doc ha rubato a dei terroristi.",
+        "Loro sparano a Doc, e Marty scappa con l'auto nel tempo."
+      ]
+    },
+    {
+      "id": "passato",
+      "titolo": "Dove finisce Marty?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Si ritrova nella sua città, ma trent'anni prima: nel 1955.",
+        "E senza plutonio non può più ripartire.",
+        "Lì incontra suo padre George, da ragazzo:",
+        "timido, e preso in giro da Biff, il bullo."
+      ]
+    },
+    {
+      "id": "incidente",
+      "titolo": "Cosa cambia Marty senza volerlo?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "George sta per essere investito, e Marty lo spinge via.",
+        "Ma l'auto investe Marty, e lo cura Lorraine, la sua futura mamma.",
+        "Doveva succedere a George: così i genitori si innamoravano.",
+        "Ora invece Lorraine si innamora di Marty."
+      ]
+    },
+    {
+      "id": "foto",
+      "titolo": "Perché la foto sbiadisce?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Marty corre dal Doc di allora, giovane, e gli racconta tutto.",
+        "Doc capisce: se i genitori non si mettono insieme, Marty non nascerà.",
+        "Infatti, nella foto che Marty porta con sé,",
+        "i suoi fratelli cominciano a sparire."
+      ]
+    },
+    {
+      "id": "fulmine",
+      "titolo": "Come si torna nel 1985?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Per ripartire serve l'energia di un fulmine.",
+        "E Marty sa, da un volantino del 1985,",
+        "che sabato sera un fulmine colpirà la torre dell'orologio.",
+        "Così Doc tende un cavo dalla torre fino alla strada."
+      ]
+    },
+    {
+      "id": "ballo",
+      "titolo": "Come si innamorano i genitori?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Intanto Marty convince George a invitare Lorraine al ballo di sabato sera.",
+        "Lì Biff, il bullo, fa il prepotente con lei.",
+        "E George trova il coraggio: lo stende con un pugno.",
+        "Lorraine si innamora di lui, e i fratelli tornano nella foto."
+      ]
+    },
+    {
+      "id": "lettera",
+      "titolo": "Si può salvare Doc?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Marty vuole dirgli che gli spareranno, ma Doc non vuole saperlo.",
+        "Così gli lascia una lettera, ma Doc la strappa.",
+        "Il fulmine cade, e Marty torna nel 1985 in anticipo,",
+        "per salvarlo, ma arriva tardi: Doc viene colpito."
+      ]
+    },
+    {
+      "id": "cambiato",
+      "titolo": "Cosa è cambiato nel 1985?",
+      "durata": 14,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Ma Doc si rialza: ha riattaccato la lettera e messo un giubbotto antiproiettile.",
+        "Ora George è sicuro di sé e scrive libri; Biff gli lava l'auto.",
+        "Poi Doc torna dal 2015:",
+        "i futuri figli di Marty e della sua ragazza Jennifer sono nei guai!"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "In una frase: per tornare a casa, Marty deve aggiustare il passato.",
+    "immagine": "La stessa scena della copertina (la torre dell'orologio, il cavo e le scie gialle del viaggio), più calma, con la foto di famiglia di nuovo completa; riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la spiegazione che vorresti.'"
+  },
+  "musica": "Originale e strumentale: orchestra campionata avventurosa, ottoni e archi su un motore ritmico di crome, campanelle d'orologio; nel 1955 un pianoforte e un contrabbasso un po' swing, a passo doppio nella corsa finale verso il fulmine. Niente brani o temi del film (né la colonna sonora originale né le canzoni del ballo).",
+  "fonti": [
+    "Hill Valley nel 1985; Marty McFly liceale di diciassette anni fidanzato con Jennifer Parker; il padre George succube di Biff Tannen e la madre Lorraine; il Doc (Emmett Brown) e la DeLorean modificata come macchina del tempo, alimentata da plutonio sottratto a terroristi libici, che viaggia a 88 miglia orarie; il commando uccide il Doc nel parcheggio del Twin Pines Mall e Marty fugge con l'auto e arriva per errore al 5 novembre 1955, senza plutonio per tornare; George, spiando Lorraine, cade davanti all'auto guidata dal padre di lei, Marty lo salva e viene investito, Lorraine lo accudisce e si innamora di lui; il giovane Doc, il fulmine come unica fonte dell'energia necessaria (1,21 gigawatt), il volantino che annuncia il fulmine sulla torre dell'orologio il 12 novembre 1955 alle 22:04, il cavo teso dalla torre alla strada; il ballo della scuola, Marty che convince George a invitare Lorraine, Biff che la importuna e George che lo mette al tappeto con un pugno, il bacio tra George e Lorraine; la lettera che annuncia la morte del Doc, strappata dal Doc; il ritorno di Marty nel 1985 poco prima della sparatoria, il Doc che sopravvive con un giubbotto antiproiettile dopo aver ricomposto e letto la lettera; la famiglia cambiata, George che sta per pubblicare il primo romanzo, Biff gestore di un autolavaggio: https://it.wikipedia.org/wiki/Ritorno_al_futuro",
+    "Marty arriva nel 1955 e i fratelli cominciano a sparire da una foto quando Lorraine si innamora di lui invece che di George; Marty deve far mettere insieme i genitori per non essere cancellato; il Doc non vuole conoscere il futuro e strappa la lettera; Marty torna dieci minuti prima ma arriva quando il Doc viene colpito; il Doc aveva ricomposto la lettera e indossato un giubbotto antiproiettile; George scrittore sicuro di sé e Biff al suo servizio; il Doc parte per il 2015 e poi ritorna per chiedere a Marty e Jennifer di aiutare i loro figli: https://en.wikipedia.org/wiki/Back_to_the_Future"
+  ]
+}
