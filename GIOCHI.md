@@ -38,6 +38,10 @@ martedì 17 novembre 2026, due giorni prima dell'uscita del gioco (19 novembre).
 - Niente prezzi, voti delle recensioni o confronti di vendite se non servono alla storia (cambiano e invecchiano).
 
 ## Testo
+- **Gioco non ancora uscito, molto atteso** (es. GTA VI; richiesta dell'utente del 15 novembre 2026): il video è per chi il
+  gioco lo conosce già e lo aspetta. Niente spiegazioni di base (cos'è la serie, cos'è un open world): si parte subito con i
+  dettagli ufficiali (mappa, personaggi, novità del gioco, data, preload, edizioni). Restano fatti verificati, connettivi e
+  domanda finale. Esempio: `films/gta-vi.json`.
 Le regole di `CLAUDE.md` per chi non conosce l'opera: chi guarda può non aver mai giocato. Si spiega in una frase cos'è il
 gioco (genere, dove e quando è ambientato) la prima volta; ogni personaggio con il suo ruolo; niente gergo da giocatori
 («open world», «DLC», «boss») senza spiegarlo subito.

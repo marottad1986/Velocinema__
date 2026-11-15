@@ -44,6 +44,12 @@ for (const [slug, path] of lista) {
     for (const r of [j.copertina.voce, j.finale.voce, ...j.capitoli.flatMap((c) => c.sottotitoli)].filter(Boolean))
       if (/\b(stasera|domani|ieri)\b/i.test(r)) E.push(`talent: «${r}»: usare la data della puntata (il video resta online)`);
   }
+  // ---- videogiochi (GIOCHI.md): «aggiornato» per i giochi non ancora usciti; mai «stasera»/«domani», si dice la data
+  if (j.tipo === 'videogioco') {
+    for (const r of [j.copertina.voce, j.finale.voce, ...j.capitoli.flatMap((c) => c.sottotitoli)].filter(Boolean))
+      if (/\b(stasera|domani|ieri)\b/i.test(r)) E.push(`videogioco: «${r}»: usare la data (il video resta online)`);
+    if (/prima dell'uscita/.test(j.aggiornato ?? '') && !/\d{4}/.test(j.aggiornato)) E.push('videogioco: «aggiornato» deve dire la data d\'uscita (es. «prima dell\'uscita del 19 novembre 2026»)');
+  }
 
   // ---- testo: ritmo della voce, righe vuote, frasi vietate, titoli
   for (const c of j.capitoli) {
