@@ -1,0 +1,192 @@
+{
+  "formato": "spiegato",
+  "tipo": "film",
+  "schema": true,
+  "sigla": false,
+  "titolo": "Donnie Darko",
+  "regista": "Richard Kelly",
+  "anno": 2001,
+  "bpm": 60,
+  "palette": {
+    "chiaro": "#EEF0F7",
+    "principale": "#2A2F5A",
+    "scuro": "#0A0C1A",
+    "accento": "#F2A03A"
+  },
+  "personaggi": [
+    {
+      "nome": "Donnie",
+      "ruolo": "un ragazzo sonnambulo",
+      "oggetto": "pantofole"
+    },
+    {
+      "nome": "Frank",
+      "ruolo": "un uomo vestito da coniglio",
+      "oggetto": "orecchie da coniglio"
+    },
+    {
+      "nome": "Nonna Morte",
+      "ruolo": "un'anziana ex insegnante",
+      "oggetto": "libro sui viaggi nel tempo"
+    },
+    {
+      "nome": "Jim Cunningham",
+      "ruolo": "uno che vende corsi di felicità",
+      "oggetto": "videocassetta"
+    },
+    {
+      "nome": "Gretchen",
+      "ruolo": "la ragazza nuova",
+      "oggetto": "bicicletta"
+    }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Un motore d'aereo cade dal cielo. Nessun aereo l'ha perso.",
+    "immagine": "Locandina senza sigla, con «SPIEGATO SEMPLICE · FILM» in alto e il titolo già completo dal primo fotogramma: una casetta di periferia americana di notte, a ottobre, con un grande motore d'aereo conficcato nel tetto e il fumo che sale; sopra la casa un vortice di nuvole che gira, e un orologio a cifre che conta alla rovescia 28:06:42:12; in primo piano foglie secche, una zucca di Halloween generica e una cassetta delle lettere. NON usare persone, il costume del coniglio del film né le locandine ufficiali.",
+    "voce": "Donnie Darko: da dove arriva quel motore d'aereo?"
+  },
+  "capitoli": [
+    {
+      "id": "coniglio",
+      "titolo": "Chi è Frank?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema della copia del mondo (universo tangente): vedi Copia.tsx.",
+      "sottotitoli": [
+        "Nel 1988 Donnie, ragazzo sonnambulo, esce di casa.",
+        "Fuori c'è Frank, un uomo vestito da coniglio che vede solo lui.",
+        "Gli dice: il mondo finirà fra 28 giorni.",
+        "Al mattino si sveglia su un campo da golf."
+      ]
+    },
+    {
+      "id": "motore",
+      "titolo": "Da dove arriva il motore?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema della copia del mondo (universo tangente): vedi Copia.tsx.",
+      "sottotitoli": [
+        "Intanto un motore d'aereo cade sulla camera di Donnie.",
+        "Se lui fosse stato a letto, sarebbe morto.",
+        "Ma nessun aereo ha perso un motore:",
+        "nessuno sa da dove arrivi."
+      ]
+    },
+    {
+      "id": "libro",
+      "titolo": "Chi ha la spiegazione?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema della copia del mondo (universo tangente): vedi Copia.tsx.",
+      "sottotitoli": [
+        "Frank gli parla di viaggi nel tempo.",
+        "Così il prof di scienze gli dà un vecchio libro,",
+        "scritto da un'anziana ex insegnante, che tutti chiamano Nonna Morte.",
+        "Nel libro c'è la spiegazione di tutto."
+      ]
+    },
+    {
+      "id": "tangente",
+      "titolo": "Cos'è l'universo tangente?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema della copia del mondo (universo tangente): vedi Copia.tsx.",
+      "sottotitoli": [
+        "Secondo il libro, il tempo a volte si sdoppia:",
+        "nasce una copia, l'universo tangente, come una deviazione della strada.",
+        "Ma dura solo 28 giorni, come ha detto Frank,",
+        "poi crolla, e distrugge anche il mondo vero."
+      ]
+    },
+    {
+      "id": "ricevitore",
+      "titolo": "Perché proprio Donnie?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema della copia del mondo (universo tangente): vedi Copia.tsx.",
+      "sottotitoli": [
+        "La copia è nata con un oggetto in più:",
+        "il motore. Va rimandato nel mondo vero,",
+        "e può farlo solo Donnie, il «ricevitore», cioè il prescelto:",
+        "per questo ha visioni e una forza strana."
+      ]
+    },
+    {
+      "id": "danni",
+      "titolo": "Cosa gli fa fare Frank?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema della copia del mondo (universo tangente): vedi Copia.tsx.",
+      "sottotitoli": [
+        "E Frank lo spinge a fare cose terribili:",
+        "Donnie allaga la scuola e incendia una casa.",
+        "È di Jim Cunningham, che vende corsi di felicità,",
+        "ma dentro ci sono prove di crimini: lo arrestano."
+      ]
+    },
+    {
+      "id": "gretchen",
+      "titolo": "Cosa succede a Gretchen?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema della copia del mondo (universo tangente): vedi Copia.tsx.",
+      "sottotitoli": [
+        "Donnie si innamora di Gretchen, la ragazza nuova.",
+        "L'ultima notte, da Nonna Morte, litigano con due bulli.",
+        "Arriva un'auto e investe Gretchen, che muore.",
+        "Guida Frank, un ragazzo vero in costume."
+      ]
+    },
+    {
+      "id": "guida",
+      "titolo": "Chi era il coniglio?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema della copia del mondo (universo tangente): vedi Copia.tsx.",
+      "sottotitoli": [
+        "Donnie, disperato, spara a Frank e lo uccide.",
+        "Secondo il libro, chi muore nella copia torna come guida:",
+        "il coniglio delle visioni era il fantasma di Frank,",
+        "tornato indietro nel tempo per guidarlo fin qui."
+      ]
+    },
+    {
+      "id": "vortice",
+      "titolo": "Dove finisce il motore?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema della copia del mondo (universo tangente): vedi Copia.tsx.",
+      "sottotitoli": [
+        "All'alba, sopra la città, si apre un vortice di nuvole.",
+        "Ci passa l'aereo della mamma, di ritorno da un viaggio,",
+        "e il vortice gli strappa un motore:",
+        "il motore torna indietro nel tempo, alla prima notte."
+      ]
+    },
+    {
+      "id": "letto",
+      "titolo": "Come finisce?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema della copia del mondo (universo tangente): vedi Copia.tsx.",
+      "sottotitoli": [
+        "Così tutto si riavvolge: Donnie è di nuovo nel suo letto.",
+        "Stavolta resta lì apposta, e ride, mentre il motore lo colpisce.",
+        "Muore solo lui: il mondo è salvo, e Gretchen è viva,",
+        "ma non l'ha mai conosciuto."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "In una frase: Donnie muore per salvare tutti.",
+    "immagine": "La stessa scena della copertina più calma: il vortice che si chiude, il contatore a zero, la casa con il motore nel tetto; riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la spiegazione che vorresti.'"
+  },
+  "musica": "Originale e strumentale, 60 bpm come il ticchettio di un orologio che conta alla rovescia: pianoforte sospeso e archi gravi, celesta e campane lontane per le visioni, timpani nei colpi (il motore, lo sparo); il vortice a passo doppio sugli archi, il finale che si scioglie in maggiore quando il mondo è salvo; niente brani o temi del film (né la colonna sonora originale né le canzoni anni '80 usate nel film).",
+  "fonti": [
+    "Notte del 2 ottobre 1988, Donnie sonnambulo segue una voce ed esce di casa; Frank, un uomo in costume da coniglio, gli dice che il mondo finirà tra 28 giorni, 6 ore, 42 minuti e 12 secondi; Donnie si risveglia su un campo da golf; un motore di aereo è caduto nella sua camera; nessun aereo risulta averlo perso; il professor Monnitoff gli dà il libro «La filosofia del viaggio nel tempo» di Roberta Sparrow, ex insegnante della scuola detta «Nonna Morte»; Frank spinge Donnie ad allagare la scuola e a incendiare la casa di Jim Cunningham, motivatore, dove si scopre una stanza con materiale pedopornografico; Cunningham viene arrestato; Gretchen, ragazza nuova; l'ultima notte vanno alla casa di Roberta Sparrow convinti che lì ci sia la chiave, trovano i bulli Seth e Ricky, nella rissa un'auto guidata da Frank in costume, il ragazzo della sorella Elizabeth investe e uccide Gretchen; Donnie spara a Frank all'occhio; al mattino un vortice di nuvole sopra la città; l'aereo con la madre di ritorno da Los Angeles perde un motore che torna indietro nel tempo; Donnie si risveglia il 2 ottobre e muore nel suo letto; Gretchen non lo conosceva: https://it.wikipedia.org/wiki/Donnie_Darko",
+    "«Frank tells Donnie that the world will end in 28 days, 6 hours, 42 minutes, and 12 seconds»; il motore cade nella camera e nessun aereo l'ha perso; Donnie incendia la casa di Cunningham; Gretchen investita da Frank, Donnie gli spara; il motore si stacca dall'aereo della madre e torna indietro; «Donnie wakes up in his bedroom, recognizes the date is October 2, and laughs as the jet engine falls into his bedroom, killing him»; secondo il libro «La filosofia del viaggio nel tempo» (incluso nel director's cut) gran parte del film avviene in un universo tangente instabile, copia del primario con un oggetto metallico in più, l'«artefatto» (il motore), che il «ricevitore vivente» (Donnie, dotato di poteri ma con visioni) deve rimandare nell'universo primario entro 28 giorni, altrimenti il primario viene distrutto dal crollo del tangente; i «morti manipolati» (chi muore nell'universo tangente, come Frank e Gretchen) lo guidano: https://en.wikipedia.org/wiki/Donnie_Darko",
+    "Universo tangente che dura pochi giorni e poi collassa; ricevitore vivente con poteri e visioni; manipolato morto, persona deceduta nell'Universo Tangente; il libro è un testo fittizio ideato per il film; nessuna interpretazione è stata accettata ufficialmente da Richard Kelly: https://it.wikipedia.org/wiki/Donnie_Darko"
+  ]
+}
