@@ -39,7 +39,8 @@ Attività programmata: «In 2 minuti – programmazione della settimana» (`trig
    dell'approvazione):
    - uscita: «🎬 Film · Titolo», «📺 Serie · …», «💡 Spiegato · …», «🎨 Quadro · …», «🎵 Canzone · …», «📖 Storia · …»;
      descrizione con aggancio, stato (pronto / da produrre) e alternativa;
-   - scadenze di produzione: «⏳ Titolo: pronto entro oggi», due giorni prima dell'uscita.
+   - solo i contenuti previsti quel giorno: niente eventi di scadenza della produzione (regola dell'utente, dalla
+     settimana 23–29 novembre 2026; le scadenze restano nel file del calendario e nelle sessioni `/produzione`).
 5. **Sempre dopo l'approvazione**, si passa il lavoro alla produzione: una sessione `/produzione` per ogni contenuto
    da produrre o da verificare (strumento `create_session`, repository `marottad1986/Velocinema__`), con titolo, giorno
    e ora di uscita, scadenza (video su MEGA entro la sera prima) e l'ordine di avvisare subito l'utente se la data non è
