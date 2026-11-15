@@ -20,7 +20,7 @@
     "Leonida": "Leònida",
     "Caminos": "Camìnos",
     "Gellhorn": "Ghèlhorn",
-    "Dre'Quan": "Dricuàn",
+    "Dre'Quan": "Driquàn",
     "Boobie": "Bùbi",
     "Only Raw": "Ònli Ròo",
     "Vercetti": "Vercètti",
@@ -28,7 +28,8 @@
     "preload": "prilòud",
     "PC.": "pi-ci.",
     "Ike": "Àik",
-    "Preload": "Prilòud"
+    "Preload": "Prilòud",
+    "Raul": "Raùl"
   },
   "personaggi": [
     {
@@ -81,10 +82,10 @@
       "personaggi": [],
       "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
       "sottotitoli": [
-        "Leonida ha sei zone: la principale è Vice City, la Miami del gioco,",
+        "In Leonida c'è prima di tutto Vice City, la Miami del gioco,",
         "poi le Keys, la palude di Grassrivers,",
         "Port Gellhorn, Ambrosia e il monte Kalaga.",
-        "Ed è tre volte Red Dead Redemption 2."
+        "E secondo Rockstar è tre volte Red Dead Redemption 2."
       ]
     },
     {
@@ -111,7 +112,7 @@
       "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
       "sottotitoli": [
         "Jason Duval, ex soldato, lavora per i trafficanti delle Keys",
-        "e vive gratis da uno di loro, Brian Heder.",
+        "e vive gratis in una casa di Brian Heder, uno di loro.",
         "Lucia Caminos, da Liberty City, esce dal carcere,",
         "dove era finita per difendere la famiglia."
       ]
@@ -136,21 +137,21 @@
       "personaggi": [],
       "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
       "sottotitoli": [
-        "Passi da Jason a Lucia quando vuoi:",
-        "in giro possono separarsi o stare insieme.",
+        "Giochi ora con Jason, ora con Lucia:",
+        "e in giro possono separarsi o stare insieme.",
         "Il loro rapporto cambia con le tue scelte,",
         "ma le attività di coppia sono facoltative."
       ]
     },
     {
       "id": "profilo",
-      "titolo": "Cosa c'è di nuovo?",
+      "titolo": "Cosa cambia mentre giochi?",
       "durata": 12,
       "personaggi": [],
       "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
       "sottotitoli": [
         "Arriva il Criminal Profile: registra come commetti i crimini,",
-        "violenza inutile compresa: mondo e storia reagiscono.",
+        "violenza inutile compresa, e mondo e storia reagiscono.",
         "Il fisico cambia con cibo, palestra e sonno,",
         "e puoi cambiare vestiti e capelli."
       ]
@@ -183,7 +184,7 @@
         "Come ogni GTA, prende in giro l'America di oggi:",
         "social, influencer, Florida Man,",
         "la polizia con la telecamera addosso,",
-        "e poi paracadute, basket e immersioni."
+        "Nel tempo libero: paracadute, basket, immersioni."
       ]
     },
     {
@@ -193,34 +194,35 @@
       "personaggi": [],
       "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
       "sottotitoli": [
-        "Esce il 19 novembre su PlayStation 5 e Xbox Series, non su PC.",
+        "Esce il 19 novembre su PlayStation 5 e Xbox Series; PC per ora no.",
         "Preload aperto dal 10 novembre: oltre 200 giga.",
-        "La copia in scatola ha un codice, non il disco."
+        "E la scatola ha un codice, non il disco."
       ]
     },
     {
       "id": "edizioni",
-      "titolo": "Cosa c'è in più?",
+      "titolo": "Quali bonus ci sono?",
       "durata": 11,
       "personaggi": [],
       "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
       "sottotitoli": [
-        "In digitale, entro il 20 novembre, c'è il Vintage Vice City Pack,",
+        "Comprando in digitale prima del 20 novembre hai il Vintage Vice City Pack,",
         "ispirato a Tommy Vercetti.",
         "E al lancio niente microtransazioni.",
-        "Jason e Lucia resteranno insieme?"
+        "Ma Jason e Lucia ne usciranno insieme?"
       ]
     }
   ],
   "finale": {
     "durata": 4,
-    "voce": "In una frase: due fuggitivi contro tutta Leonida.",
+    "voce": "In una frase: due complici contro tutta Leonida.",
     "immagine": "La stessa scena della copertina al tramonto più tardo, più calma (l'insegna accesa fissa, i lampeggianti lontani spenti); riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il gioco che vorresti.'"
   },
   "musica": "Originale e strumentale, genere synth anni '80 richiamato con strumenti campionati: pianoforte e archi in pizzicato a crome come un arpeggiatore, basso pulsante (contrabbasso e violoncelli in pizzicato), cassa, rullante e charleston di VCSL a passo da autostrada notturna, ottoni morbidi negli accordi lunghi; un solo tempo (100 bpm). Niente temi, brani delle radio del gioco o melodie dei trailer.",
   "fonti": [
     "Ambientato nello stato immaginario di Leonida, basato sulla Florida; Vice City ispirata a Miami; protagonisti Jason Duval e Lucia Caminos; Lucia incarcerata nel Leonida Penitentiary per aver combattuto in difesa della propria famiglia; un colpo apparentemente facile va storto e i due finiscono in una cospirazione criminale estesa a tutta Leonida e devono affidarsi l'uno all'altra; dinamica ispirata a Bonnie e Clyde; Cal Hampton amico paranoico di Jason; Boobie Ike a capo di un impero commerciale a Vice City; Dre'Quan Priest con Boobie per l'etichetta Only Raw Records; il rapinatore Raul Bautista; Brian Heder, trafficante delle Keys che ospita gratuitamente Jason; il giocatore controlla alternativamente Jason e Lucia, che possono separarsi o svolgere insieme attività; paracadutismo, pallacanestro, esercizio fisico e immersioni; secondo Rockstar la mappa è tre volte l'area giocabile di Red Dead Redemption II; Criminal Profile che registra come si commettono i crimini, compresa la violenza non necessaria, e influisce sulle reazioni del mondo e sulla narrazione; rapporto tra Jason e Lucia influenzato dalle decisioni, attività di coppia non obbligatorie; peso e aspetto cambiano con alimentazione, esercizio e abitudini, abiti e acconciature; sviluppatori che hanno studiato Miami; uscita il 19 novembre 2026 su PS5 e Xbox Series X/S (Xbox One via cloud), nessuna versione PC annunciata, circa 212 GB; Vintage Vice City Pack ispirato a Tommy Vercetti incluso negli acquisti digitali prima del 20 novembre 2026; niente microtransazioni al lancio; copie confezionate senza disco con codice di download; predownload anticipato alla mezzanotte del 10 novembre 2026: https://it.wikipedia.org/wiki/Grand_Theft_Auto_VI",
     "Mappa con Vice City, Grassrivers e Leonida Keys (ispirate a Miami, Everglades e Florida Keys), più Ambrosia, Mount Kalaga National Park e Port Gellhorn; gioco ambientato soprattutto a Vice City; satira della cultura americana degli anni 2020: social, influencer, telecamere sulle divise della polizia, meme del Florida Man; Jason ex soldato che lavora per trafficanti nelle Leonida Keys; Lucia da Liberty City; Brian Heder padrone di casa di Jason; nessuna versione Windows; Vice City già in Grand Theft Auto: Vice City Stories (2006): https://en.wikipedia.org/wiki/Grand_Theft_Auto_VI",
+    "Rapporto tra Jason e Lucia legato alle azioni del giocatore, attività di coppia facoltative; restare svegli per giorni si vede sul volto; Jason e Lucia possono separarsi per attività indipendenti; gioco ambientato soprattutto a Vice City; nessuna versione PC annunciata: https://en.wikipedia.org/wiki/Grand_Theft_Auto_VI",
     "Data di uscita ufficiale (19 novembre 2026) e console sullo store di Rockstar: https://store.rockstargames.com/it/game/buy-gta-vi",
     "Grand Theft Auto: Vice City Stories, uscito nel 2006 e ambientato a Vice City: https://it.wikipedia.org/wiki/Grand_Theft_Auto:_Vice_City_Stories"
   ]

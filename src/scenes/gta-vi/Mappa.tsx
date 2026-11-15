@@ -815,7 +815,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         </g>
       )}
       <PlaceName T={T} t0={at('mappa', 0, 0.4)} x={420} y={950} text="LEONIDA" size={64} color={YEL} fade={1 - seg(T, at('mappa', 2), at('mappa', 2, 0.4))} />
-      <Tag T={T} t0={at('mappa', 0, 0.8)} x={420} y={1040} text="6 zone" size={44} until={at('mappa', 1)} />
+      <Tag T={T} t0={at('mappa', 0, 0.8)} x={420} y={1040} text="la Florida del gioco" size={40} until={at('mappa', 1)} />
 
       {/* Vice City (la principale) */}
       {filled > 0 && <g opacity={filled}><ViceCity T={T} neon={neon} old={old} /></g>}
@@ -1037,7 +1037,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })()}
-      <Tag T={T} t0={at('insieme', 0, 0.5)} x={460} y={1500} text="quando vuoi" size={38} until={at('insieme', 1)} />
+      <Tag T={T} t0={at('insieme', 0, 0.5)} x={460} y={1500} text="ora l'uno, ora l'altra" size={36} until={at('insieme', 1)} />
       {T >= at('insieme', 1, 0.1) && (() => {
         // le due strade: Jason verso nord, Lucia verso le Keys; poi tornano insieme a Vice City
         const u = eio(seg(T, at('insieme', 1, 0.1), at('insieme', 1, 2.2)));
