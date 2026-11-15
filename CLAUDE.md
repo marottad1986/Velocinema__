@@ -171,7 +171,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   Episodi: Dark (`films/dark-stagione-1.json`, schema `src/scenes/dark-stagione-1/Albero.tsx`; stagione 2 in
   `films/dark-stagione-2.json`, schema `src/scenes/dark-stagione-2/Nodo.tsx`), Inception
   (`films/inception.json`, schema `src/scenes/inception/Piani.tsx`), Ritorno al futuro parte I
-  (`films/ritorno-al-futuro.json`, schema delle linee del tempo `src/scenes/ritorno-al-futuro/Linee.tsx`, da riusare nel lungo della trilogia); musica in `scripts/audio/<slug>.mjs`.
+  (`films/ritorno-al-futuro.json`, schema delle linee del tempo `src/scenes/ritorno-al-futuro/Linee.tsx`, da riusare nel lungo della trilogia), parte II (`films/ritorno-al-futuro-parte-2.json`, `src/scenes/ritorno-al-futuro-parte-2/Linee2.tsx`, che importa i pezzi della parte I); musica in `scripts/audio/<slug>.mjs`.
 - Priorità: serie intricate (Dark, Lost, Westworld, Severance, Twin Peaks, 1899; una stagione per video se lunghe),
   film (Inception, Tenet, Mulholland Drive, Donnie Darko, Primer). Libri solo dopo ~10 episodi.
 

@@ -24,16 +24,16 @@ import film from '../../../films/ritorno-al-futuro.json';
 export const INK = '#F4EEE2';
 export const YEL = '#F5C23A';
 export const RED = '#E8553F';
-const DIM = '#A898D8';
-const DARK = '#0E0A22';
-const FILL = '#1E1646';
-const FILL2 = '#2A1F5E';
-const WARM = '#FFD98A';
-const ATOM = '#9BE06A';
-const PINK = '#F29AC0';
-const H = 760; // il disegno occupa i primi 540 px della stazione, sotto c'è la fila dei personaggi
-const ROW = 615;
-type P = readonly [number, number];
+export const DIM = '#A898D8';
+export const DARK = '#0E0A22';
+export const FILL = '#1E1646';
+export const FILL2 = '#2A1F5E';
+export const WARM = '#FFD98A';
+export const ATOM = '#9BE06A';
+export const PINK = '#F29AC0';
+export const H = 760; // il disegno occupa i primi 540 px della stazione, sotto c'è la fila dei personaggi
+export const ROW = 615;
+export type P = readonly [number, number];
 const BANDS = [
   { key: 'strada', y0: 420, year: '1955', name: 'LA STRADA' },
   { key: 'ballo', y0: 1240, year: '1955', name: 'IL BALLO DELLA SCUOLA' },
@@ -55,7 +55,7 @@ export const N = {
   george3: [200, Y('casa', ROW)], marty4: [430, Y('casa', ROW)], jen: [660, Y('casa', ROW)], docC: [885, Y('casa', ROW)], biff3: [790, Y('casa', 420)],
   kids: [540, Y('futuro', ROW)],
 } as const;
-const RAIL = 56, RX = 1036; // la linea degli anni a sinistra; i viaggi nel tempo corrono sul bordo destro
+export const RAIL = 56, RX = 1036; // la linea degli anni a sinistra; i viaggi nel tempo corrono sul bordo destro
 
 // ---------------------------------------------------------------- tempi dal JSON, sulla griglia della musica
 
@@ -74,7 +74,7 @@ const G0 = film.copertina.durata;
 /** Istante (assoluto) della frase `cue` del capitolo più `d`, arrotondato alla croma della musica. */
 export const at = (ch: string, cue: number, d = 0) => G0 + Math.round((STARTS[ch] + CUES[ch][cue] + d - G0) / CROMA) * CROMA;
 export const end = (ch: string) => STARTS[ch] + film.capitoli.find((c) => c.id === ch)!.durata;
-const pop = (T: number, t0: number) => eob(seg(T, t0, t0 + 0.45), 1.7);
+export const pop = (T: number, t0: number) => eob(seg(T, t0, t0 + 0.45), 1.7);
 
 // ---------------------------------------------------------------- camera
 
@@ -126,6 +126,7 @@ export const SHOTS: Shot[] = [
   { at: at('cambiato', 3), x: 540, y: Y('futuro', 210), z: 0.76 },
   { at: at('cambiato', 3, 1.7), ...WIDE },
 ];
+export const isWide = () => WIDEV;
 /** Zoom attuale della camera: le scritte dello schema crescono quando la camera si allontana, così restano leggibili. */
 let UI_K = 1;
 let WIDEV = false;
@@ -133,7 +134,7 @@ export const setUi = (z: number) => {
   UI_K = Math.max(1, 0.85 / z);
   WIDEV = z < 0.3;
 };
-const fit = (size: number) => Math.max(size, Math.min(size * UI_K, WIDEV ? 90 : 120));
+export const fit = (size: number) => Math.max(size, Math.min(size * UI_K, WIDEV ? 90 : 120));
 export const camAt = (T: number) => {
   let o = { x: SHOTS[0].x, y: SHOTS[0].y, z: SHOTS[0].z };
   for (const s of SHOTS.slice(1)) {
@@ -220,7 +221,7 @@ export const Note: React.FC<{ s?: number }> = ({ s = 1 }) => (
   </g>
 );
 /** Il plutonio: un contenitore con il simbolo atomico che brilla. */
-const Canister: React.FC<{ T: number; full?: number }> = ({ T, full = 1 }) => (
+export const Canister: React.FC<{ T: number; full?: number }> = ({ T, full = 1 }) => (
   <g {...S}>
     <rect x="-22" y="-30" width="44" height="60" rx="8" fill="#2A3E2E" stroke={INK} strokeWidth="4" />
     <rect x="-16" y={-24 + 48 * (1 - full)} width="32" height={48 * full} rx="4" fill={ATOM} opacity={0.55 + 0.25 * Math.sin(T * 4)} />
@@ -255,7 +256,7 @@ export const TimeCar: React.FC<{ T: number; glow?: number; s?: number; flip?: bo
   </g>
 );
 /** L'auto del 1955: tonda, con le pinne e le cromature. */
-const Car55: React.FC<{ T: number; s?: number; roll?: number; ink?: string }> = ({ T, s = 1, roll = 0, ink = INK }) => (
+export const Car55: React.FC<{ T: number; s?: number; roll?: number; ink?: string }> = ({ T, s = 1, roll = 0, ink = INK }) => (
   <g transform={`scale(${s})`} {...S}>
     <path d="M-130 8 Q-134 -24 -100 -26 L-60 -30 Q-40 -64 10 -64 Q50 -64 72 -30 L118 -26 Q140 -22 136 8 Z" fill="#B9D7E8" stroke={ink} strokeWidth="6" />
     <path d="M-48 -32 Q-30 -56 6 -56 Q40 -56 58 -32 Z" fill="#163A62" stroke={ink} strokeWidth="4" />
@@ -276,15 +277,15 @@ const Car55: React.FC<{ T: number; s?: number; roll?: number; ink?: string }> = 
 
 // ---------------------------------------------------------------- elementi dello schema
 
-const Node: React.FC<{ T: number; t0: number; p: P; name: string; sub?: string; subFill?: string; ring?: number; r?: number; fade?: number; color?: string; side?: 'below' | 'above'; children?: React.ReactNode; size?: number; dead?: number; hit?: number }> = ({
-  T, t0, p, name, sub, subFill = '#B5CBE2', ring = 0, r = 58, fade = 1, color = INK, side = 'below', children, size: size0 = 36, dead = 0, hit = 0,
+export const Node: React.FC<{ card?: boolean; T: number; t0: number; p: P; name: string; sub?: string; subFill?: string; ring?: number; r?: number; fade?: number; color?: string; side?: 'below' | 'above'; children?: React.ReactNode; size?: number; dead?: number; hit?: number }> = ({
+  card: card0, T, t0, p, name, sub, subFill = '#B5CBE2', ring = 0, r = 58, fade = 1, color = INK, side = 'below', children, size: size0 = 36, dead = 0, hit = 0,
 }) => {
   if (T < t0 || fade <= 0) return null;
   const size = fit(size0);
   const s = pop(T, t0);
   const ly = side === 'below' ? r + size + 6 : -r - (sub ? size * 0.95 + 18 : 18);
   const hi = color === INK ? YEL : color;
-  const card = p[1] < BAND.parcheggio.y0 - 100; // stazioni del 1955: carta crema
+  const card = card0 ?? p[1] < BAND.parcheggio.y0 - 100; // stazioni del 1955: carta crema (gli altri episodi lo passano)
   const tFill = card ? P55.ink : INK, tStroke = card ? P55.paper : DARK;
   const shake = hit > 0 && hit < 1 ? Math.sin(T * 70) * 8 * (1 - hit) : 0;
   return (
@@ -304,8 +305,8 @@ const Node: React.FC<{ T: number; t0: number; p: P; name: string; sub?: string; 
 };
 
 /** Linea dello schema che si disegna (maschera). `flow` fa scorrere il tratteggio. `cross` > 0 la barra con una X. */
-const Link: React.FC<{ T: number; t0: number; a: P; b: P; c?: P; color?: string; dashed?: boolean; label?: string; arrow?: boolean; w?: number; lx?: number; ly?: number; size?: number; fade?: number; flow?: boolean; cross?: number }> = ({
-  T, t0, a, b, c, color = INK, dashed = false, label, arrow = false, w = 6, lx = 0, ly = 0, size: size0 = 42, fade = 1, flow = false, cross = 0,
+export const Link: React.FC<{ card?: boolean; T: number; t0: number; a: P; b: P; c?: P; color?: string; dashed?: boolean; label?: string; arrow?: boolean; w?: number; lx?: number; ly?: number; size?: number; fade?: number; flow?: boolean; cross?: number }> = ({
+  card: card0, T, t0, a, b, c, color = INK, dashed = false, label, arrow = false, w = 6, lx = 0, ly = 0, size: size0 = 42, fade = 1, flow = false, cross = 0,
 }) => {
   const size = fit(size0);
   if (T < t0 || fade <= 0) return null;
@@ -323,14 +324,14 @@ const Link: React.FC<{ T: number; t0: number; a: P; b: P; c?: P; color?: string;
       {arrow && p > 0.95 && <path d={`M${-w * 3.4} ${-w * 2.3} L0 0 L${-w * 3.4} ${w * 2.3}`} fill="none" stroke={color} strokeWidth={w} strokeLinecap="round" strokeLinejoin="round" transform={`translate(${b[0]} ${b[1]}) rotate(${ang})`} />}
       {cross > 0 && <path d="M-30 -30 L30 30 M30 -30 L-30 30" stroke={RED} strokeWidth="11" strokeLinecap="round" transform={`translate(${tx} ${ty}) scale(${eob(cross, 1.6)})`} />}
       {label && !WIDEV && (
-        <text x={tx + lx} y={ty + ly} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={size} fill={ty < BAND.parcheggio.y0 - 100 && (color === INK || color === DIM) ? P55.ink : color} stroke={ty < BAND.parcheggio.y0 - 100 ? P55.paper : DARK} strokeWidth="7" paintOrder="stroke" opacity={seg(T, t0 + 0.4, t0 + 0.8)}>{label}</text>
+        <text x={tx + lx} y={ty + ly} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={size} fill={(card0 ?? ty < BAND.parcheggio.y0 - 100) && (color === INK || color === DIM) ? P55.ink : color} stroke={(card0 ?? ty < BAND.parcheggio.y0 - 100) ? P55.paper : DARK} strokeWidth="7" paintOrder="stroke" opacity={seg(T, t0 + 0.4, t0 + 0.8)}>{label}</text>
       )}
     </g>
   );
 };
 
 /** Viaggio nel tempo: un tratteggio giallo spesso che si disegna lungo un percorso, con la scia che scorre. */
-const Travel: React.FC<{ T: number; t0: number; d: string; dur?: number; id: string; label?: string; lx?: number; ly?: number; fade?: number; labelUntil?: number }> = ({ T, t0, d, dur = 1.4, id, label, lx = 0, ly = 0, fade = 1, labelUntil = 1e9 }) => {
+export const Travel: React.FC<{ T: number; t0: number; d: string; dur?: number; id: string; label?: string; lx?: number; ly?: number; fade?: number; labelUntil?: number }> = ({ T, t0, d, dur = 1.4, id, label, lx = 0, ly = 0, fade = 1, labelUntil = 1e9 }) => {
   if (T < t0 || fade <= 0) return null;
   const p = eio(seg(T, t0, t0 + dur));
   return (
@@ -347,7 +348,7 @@ const Travel: React.FC<{ T: number; t0: number; d: string; dur?: number; id: str
 };
 
 /** Cartellino pieno = colpo di scena o parola chiave. */
-const Tag: React.FC<{ T: number; t0: number; x: number; y: number; text: string; bg?: string; fg?: string; size?: number; rot?: number; until?: number }> = ({
+export const Tag: React.FC<{ T: number; t0: number; x: number; y: number; text: string; bg?: string; fg?: string; size?: number; rot?: number; until?: number }> = ({
   T, t0, x, y, text, bg = YEL, fg = DARK, size: size0 = 36, rot = 0, until = 1e9,
 }) => {
   const size = fit(size0);
@@ -366,13 +367,13 @@ const Tag: React.FC<{ T: number; t0: number; x: number; y: number; text: string;
 
 /** Le due epoche hanno due «carte»: il 1955 è una cartolina stampata (carta crema, inchiostro seppia, pastelli anni '50),
  *  il 1985 è una notte al neon (fondo viola scuro, linee ciano, luci magenta); il 2015 è solo un abbozzo grigio. */
-type Pal = { ink: string; fill: string; fill2: string; dim: string; warm: string; dark: string; tree: string; win1: string; win2: string; rug: string; cloud: string; paper: string };
+export type Pal = { ink: string; fill: string; fill2: string; dim: string; warm: string; dark: string; tree: string; win1: string; win2: string; rug: string; cloud: string; paper: string };
 export const P55: Pal = { ink: '#3B2A1F', fill: '#EAD9B5', fill2: '#E0C796', dim: '#A68B66', warm: '#F2B544', dark: '#6B5240', tree: '#8CC2A6', win1: '#9CC8D8', win2: '#BCD9E0', rug: '#D2B07E', cloud: '#7D6B5A', paper: '#F3E6C8' };
 export const P85: Pal = { ink: '#5CF0FF', fill: '#22184C', fill2: '#2E2062', dim: '#8C6BE0', warm: '#FF4FB0', dark: '#120C2A', tree: '#1E6A72', win1: '#3A2A7A', win2: '#4A3590', rug: '#3A2668', cloud: '#2B2050', paper: '#160E33' };
 export const P15: Pal = { ink: '#B9C2D0', fill: '#262E40', fill2: '#2E3850', dim: '#6E7890', warm: '#E8EEF8', dark: '#161B26', tree: '#3A4A5A', win1: '#3A4660', win2: '#46546E', rug: '#2E3850', cloud: '#3A4458', paper: '#141A26' };
 const PAL: Record<BandKey, Pal> = { strada: P55, ballo: P55, piazza: P55, parcheggio: P85, casa: P85, futuro: P15 };
 const L = { fill: 'none', stroke: INK, strokeLinejoin: 'round', strokeLinecap: 'round' } as const;
-const Lc = (c: Pal) => ({ fill: 'none', stroke: c.ink, strokeLinejoin: 'round', strokeLinecap: 'round' }) as const;
+export const Lc = (c: Pal) => ({ fill: 'none', stroke: c.ink, strokeLinejoin: 'round', strokeLinecap: 'round' }) as const;
 const rr = rng(1985);
 const BUBBLES = Array.from({ length: 26 }, () => ({ x: 130 + rr() * 840, v: 18 + rr() * 26, s: 4 + rr() * 8, ph: rr() }));
 const PICKETS = Array.from({ length: 12 }, (_, i) => 128 + i * 34);
@@ -381,7 +382,7 @@ const BOOKS = Array.from({ length: 11 }, (_, i) => ({ w: 16 + ((i * 7) % 10), h:
 const SKY = Array.from({ length: 7 }, (_, i) => ({ x: 150 + i * 120 + ((i * 37) % 30), w: 80 + ((i * 53) % 40), h: 180 + ((i * 71) % 220) }));
 
 /** Lampione con l'alone che pulsa. */
-const Lamp: React.FC<{ c: Pal; T: number; x: number; y: number; h: number; id: string; lit?: number }> = ({ c, T, x, y, h, id, lit = 1 }) => (
+export const Lamp: React.FC<{ c: Pal; T: number; x: number; y: number; h: number; id: string; lit?: number }> = ({ c, T, x, y, h, id, lit = 1 }) => (
   <g>
     <Glow id={id} x={x} y={y - h} r={120} t={T} color={c.warm} amp={0.06} rate={1.7} opacity={0.45 * lit} />
     <path d={`M${x} ${y} V${y - h + 8}`} {...Lc(c)} strokeWidth="6" />
@@ -391,24 +392,23 @@ const Lamp: React.FC<{ c: Pal; T: number; x: number; y: number; h: number; id: s
 );
 
 /** Cornice della stazione con il nome e l'anno; `on` = disegnata (prima: solo tratteggiata e tenue). */
-const Frame: React.FC<{ k: BandKey; on: number; focus: number }> = ({ k, on, focus }) => {
-  const b = BAND[k];
-  const c = PAL[k];
+export const FrameBox: React.FC<{ b: { y0: number; year: string; name: string }; c: Pal; on: number; focus: number; right?: boolean }> = ({ b, c, on, focus, right = false }) => {
   return (
     <g>
       <rect x="100" y={b.y0} width="880" height={H} rx="10" fill={c.paper} fillOpacity={0.15 + 0.85 * on} stroke={c.ink} strokeWidth={on > 0 ? 3 : 2.5} strokeDasharray={on > 0 ? undefined : '18 14'} opacity={0.35 + 0.55 * Math.max(on, 0.0)} />
       {[[100, b.y0], [980, b.y0], [100, b.y0 + H], [980, b.y0 + H]].map(([x, y], i) => (
         <path key={i} d={`M${x + (x < 500 ? 26 : -26)} ${y} H${x} V${y + (y === b.y0 ? 26 : -26)}`} {...Lc(c)} strokeWidth="6" opacity={0.4 + 0.6 * on} />
       ))}
-      <text x={k === 'piazza' ? 956 : 124} y={b.y0 + 40} textAnchor={k === 'piazza' ? 'end' : 'start'} fontFamily={SANS} fontWeight={900} fontSize={fit(26)} letterSpacing="3" fill={focus > 0.5 ? YEL : '#F4EEE2'} stroke={DARK} strokeWidth="6" paintOrder="stroke" opacity={0.45 + 0.55 * on}>
+      <text x={right ? 956 : 124} y={b.y0 + 40} textAnchor={right ? 'end' : 'start'} fontFamily={SANS} fontWeight={900} fontSize={fit(26)} letterSpacing="3" fill={focus > 0.5 ? YEL : '#F4EEE2'} stroke={DARK} strokeWidth="6" paintOrder="stroke" opacity={0.45 + 0.55 * on}>
         {b.year} · {b.name}
       </text>
     </g>
   );
 };
+const Frame: React.FC<{ k: BandKey; on: number; focus: number }> = ({ k, on, focus }) => <FrameBox b={BAND[k]} c={PAL[k]} on={on} focus={focus} right={k === 'piazza'} />;
 
 /** 1955, la strada: la casa di Lorraine col portico, lo steccato, l'albero, il lampione e la strada. */
-const ArtStrada: React.FC<{ c: Pal; T: number; carX: number; carRoll: number }> = ({ c, T, carX, carRoll }) => (
+export const ArtStrada: React.FC<{ c: Pal; T: number; carX: number; carRoll: number }> = ({ c, T, carX, carRoll }) => (
   <g>
     <Stars t={T} seed={55} n={22} x={120} y={60} w={840} h={150} color={c.ink} size={0.9} />
     <Glow id="rf-moon" x={640} y={110} r={90} t={T} color="#CFE6FF" amp={0.04} rate={1} opacity={0.35} />
@@ -444,7 +444,7 @@ const ArtStrada: React.FC<{ c: Pal; T: number; carX: number; carRoll: number }> 
 );
 
 /** 1955, il ballo: palestra decorata a fondo marino, palco con batteria e contrabbasso, sfera a specchi, bolle. */
-const ArtBallo: React.FC<{ c: Pal; T: number; lights: number }> = ({ c, T, lights }) => (
+export const ArtBallo: React.FC<{ c: Pal; T: number; lights: number }> = ({ c, T, lights }) => (
   <g>
     {/* festoni ondulati */}
     {[70, 104].map((y, k) => (
@@ -492,7 +492,7 @@ const ArtBallo: React.FC<{ c: Pal; T: number; lights: number }> = ({ c, T, light
 );
 
 /** 1955, la piazza: il tribunale con la torre dell'orologio, due lampioni, la strada; `hand` = minuti segnati. */
-const ArtPiazza: React.FC<{ c: Pal; T: number; storm: number; minutes: number }> = ({ c, T, storm, minutes }) => (
+export const ArtPiazza: React.FC<{ c: Pal; T: number; storm: number; minutes: number }> = ({ c, T, storm, minutes }) => (
   <g>
     <Stars t={T} seed={56} n={16} x={560} y={60} w={400} h={120} color={c.ink} size={0.8} />
     {/* nuvole di temporale */}
@@ -533,7 +533,7 @@ const ArtPiazza: React.FC<{ c: Pal; T: number; storm: number; minutes: number }>
 );
 
 /** 1985, il parcheggio: il centro commerciale coi due pini, i lampioni, le strisce dei posti auto. */
-const ArtParcheggio: React.FC<{ c: Pal; T: number }> = ({ c, T }) => (
+export const ArtParcheggio: React.FC<{ c: Pal; T: number }> = ({ c, T }) => (
   <g>
     <Stars t={T} seed={85} n={18} x={120} y={56} w={840} h={70} color={c.ink} size={0.8} />
     <path d="M170 330 V140 H910 V330" {...Lc(c)} fill={c.fill2} strokeWidth="7" />
@@ -557,7 +557,7 @@ const ArtParcheggio: React.FC<{ c: Pal; T: number }> = ({ c, T }) => (
 );
 
 /** 1985, casa McFly: soggiorno con la libreria, il divano, la lampada; dalla finestra il vialetto con l'auto. */
-const ArtCasa: React.FC<{ c: Pal; T: number; bubbles: number; book: number }> = ({ c, T, bubbles, book }) => (
+export const ArtCasa: React.FC<{ c: Pal; T: number; bubbles: number; book: number }> = ({ c, T, bubbles, book }) => (
   <g>
     {/* la finestra sul vialetto */}
     <rect x="620" y="90" width="330" height="250" rx="6" {...Lc(c)} fill={c.win1} strokeWidth="7" />
@@ -595,7 +595,7 @@ const ArtCasa: React.FC<{ c: Pal; T: number; bubbles: number; book: number }> = 
 );
 
 /** 2015: solo una città tratteggiata e un grande punto di domanda (è il seguito), finché Doc non ne arriva. */
-const ArtFuturo: React.FC<{ c: Pal; T: number; lit: number }> = ({ c, T, lit }) => (
+export const ArtFuturo: React.FC<{ c: Pal; T: number; lit: number }> = ({ c, T, lit }) => (
   <g opacity={0.45 + 0.55 * lit}>
     {SKY.map((b, i) => (
       <g key={i}>
@@ -609,7 +609,7 @@ const ArtFuturo: React.FC<{ c: Pal; T: number; lit: number }> = ({ c, T, lit }) 
 );
 
 /** La foto di famiglia: tre cerchi (fratello, sorella, Marty) che sbiadiscono uno alla volta e poi tornano. */
-const Photo: React.FC<{ T: number; fadeBro: number; fadeSis: number; fadeMe: number; s?: number }> = ({ T, fadeBro, fadeSis, fadeMe, s = 1 }) => {
+export const Photo: React.FC<{ T: number; fadeBro: number; fadeSis: number; fadeMe: number; s?: number }> = ({ T, fadeBro, fadeSis, fadeMe, s = 1 }) => {
   const f = [fadeBro, fadeSis, fadeMe];
   const names = ['fratello', 'sorella', 'Marty'];
   return (

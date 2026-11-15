@@ -1,0 +1,160 @@
+{
+  "formato": "spiegato",
+  "tipo": "film",
+  "schema": true,
+  "sigla": false,
+  "titolo": "Ritorno al futuro – Parte II",
+  "regista": "Robert Zemeckis",
+  "anno": 1989,
+  "bpm": 72,
+  "palette": {
+    "chiaro": "#F4EEE2",
+    "principale": "#2E1E5C",
+    "scuro": "#0E0A22",
+    "accento": "#F5C23A"
+  },
+  "personaggi": [
+    { "nome": "Marty", "ruolo": "un ragazzo di 17 anni", "oggetto": "skateboard" },
+    { "nome": "Doc", "ruolo": "uno scienziato amico di Marty", "oggetto": "occhialoni da laboratorio" },
+    { "nome": "Jennifer", "ruolo": "la ragazza di Marty", "oggetto": "biglietto con un cuore" },
+    { "nome": "Griff", "ruolo": "un teppista del 2015", "oggetto": "occhiali a specchio" },
+    { "nome": "Biff", "ruolo": "il bullo che tormentava il padre di Marty", "oggetto": "giubbotto di pelle (da vecchio: bastone)" },
+    { "nome": "George", "ruolo": "il padre di Marty", "oggetto": "quaderno di racconti" },
+    { "nome": "Lorraine", "ruolo": "la madre di Marty", "oggetto": "fiocco per capelli" }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Un libro del futuro che cambia il passato.",
+    "immagine": "Locandina nello stile della Parte 1 (cartolina anni '50 dentro una notte al neon anni '80), con «SPIEGATO SEMPLICE · FILM», il titolo e il cartellino «PARTE 2»: un grande almanacco sportivo aperto che brilla, le pagine piene di risultati, sopra una Hill Valley divisa in due (a sinistra la piazza con la torre dell'orologio, a destra un casinò al neon rosso al posto della torre); due scie gialle tratteggiate escono dal libro. NON usare persone, l'auto del film, il logo o le locandine ufficiali.",
+    "voce": "Ritorno al futuro, parte due: e se un libro cambiasse il passato?"
+  },
+  "capitoli": [
+    {
+      "id": "futuro",
+      "titolo": "Perché si va nel 2015?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo della trilogia: vedi Linee2.tsx.",
+      "sottotitoli": [
+        "Marty, 17 anni, ha un amico scienziato, Doc,",
+        "che ha trasformato un'auto in una macchina del tempo.",
+        "Doc porta nel 2015 Marty e la fidanzata, Jennifer,",
+        "perché il loro futuro figlio finirà nei guai."
+      ]
+    },
+    {
+      "id": "griff",
+      "titolo": "Come si salva il figlio di Marty?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee2.tsx.",
+      "sottotitoli": [
+        "Lì un teppista, Griff, prepara una rapina",
+        "e vuole coinvolgere il figlio di Marty.",
+        "Così Marty si finge suo figlio e dice di no:",
+        "Griff lo insegue, ma viene arrestato, e il figlio è salvo."
+      ]
+    },
+    {
+      "id": "almanacco",
+      "titolo": "Cos'è l'almanacco?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee2.tsx.",
+      "sottotitoli": [
+        "Poi Marty compra un almanacco: un libro con cinquant'anni di risultati sportivi.",
+        "Con quello si vincerebbe ogni scommessa.",
+        "Ma Doc glielo fa buttare via.",
+        "Lo raccoglie il vecchio Biff, che da ragazzo tormentava il padre di Marty."
+      ]
+    },
+    {
+      "id": "furto",
+      "titolo": "Chi ruba la macchina del tempo?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee2.tsx.",
+      "sottotitoli": [
+        "Intanto Doc e Marty vanno a riprendere Jennifer,",
+        "e Biff ne approfitta: ruba la macchina del tempo,",
+        "va nel 1955 e dà l'almanacco a sé stesso da ragazzo.",
+        "Poi riporta l'auto, e nessuno se ne accorge."
+      ]
+    },
+    {
+      "id": "casino",
+      "titolo": "Cosa trovano tornando nel 1985?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee2.tsx.",
+      "sottotitoli": [
+        "Tornati nel 1985, trovano la città irriconoscibile:",
+        "Biff è diventato ricchissimo scommettendo, e comanda tutto.",
+        "Al posto della torre dell'orologio c'è il suo casinò.",
+        "E ha ucciso George, il padre di Marty, e sposato la madre."
+      ]
+    },
+    {
+      "id": "binario",
+      "titolo": "Perché il 1985 è cambiato?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee2.tsx.",
+      "sottotitoli": [
+        "Doc spiega: nel 1955 il tempo ha preso un'altra strada,",
+        "come un treno deviato su un altro binario.",
+        "Per rimetterlo sulla strada giusta,",
+        "bisogna tornare in quell'anno e riprendere l'almanacco."
+      ]
+    },
+    {
+      "id": "data",
+      "titolo": "Quando è arrivato l'almanacco?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee2.tsx.",
+      "sottotitoli": [
+        "Ma in che giorno Biff ha ricevuto l'almanacco?",
+        "Marty lo scopre da lui: il 12 novembre 1955,",
+        "la notte del temporale, quando Marty c'era già stato.",
+        "Così tornano lì, dove c'è ancora il Marty del primo viaggio."
+      ]
+    },
+    {
+      "id": "fuoco",
+      "titolo": "Come si riprende l'almanacco?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee2.tsx.",
+      "sottotitoli": [
+        "Marty non deve farsi vedere da sé stesso, per non cambiare altro.",
+        "Insegue il giovane Biff e gli strappa l'almanacco,",
+        "e lo brucia: così il 1985 torna normale,",
+        "con George vivo e Biff senza potere."
+      ]
+    },
+    {
+      "id": "lettera",
+      "titolo": "Dov'è finito Doc?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee2.tsx.",
+      "sottotitoli": [
+        "Ma un fulmine colpisce l'auto con Doc a bordo:",
+        "sparisce, e Marty resta bloccato nel 1955.",
+        "Poi arriva una lettera di Doc, scritta settant'anni prima:",
+        "è nel 1885 e sta bene."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "In una frase: futuro salvo, ma Marty resta bloccato nel passato.",
+    "immagine": "La copertina più calma, con l'almanacco ridotto in cenere e la torre dell'orologio di nuovo al suo posto; riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la spiegazione che vorresti.'"
+  },
+  "musica": "Originale e strumentale, la stessa orchestra e lo stesso tic-tac della Parte 1 (72 bpm): archi in spiccato e corni per l'avventura, un 2015 più metallico (campanelle e pizzicati), il 1985 alternativo in minore con ottoni gravi, il 1955 con lo swing leggero; niente brani o temi del film.",
+  "fonti": [
+    "Doc porta Marty e Jennifer nel futuro, arrivo mercoledì 21 ottobre 2015; il figlio Marty McFly Jr. rischia i guai per una rapina organizzata da Griff Tannen, nipote di Biff; Marty prende il suo posto, rifiuta, inseguimento e arresto di Griff e della banda; il «Grande almanacco sportivo» con i risultati dal 1950 al 2000 comprato da Marty per scommettere, Doc glielo fa gettare, il vecchio Biff lo recupera, ruba la DeLorean, va nel 1955 e lo dà a sé stesso giovane; Jennifer addormentata e recuperata da Doc e Marty; nel 1985 alternativo Biff è diventato ricchissimo con le scommesse, ha fatto demolire il tribunale e costruire un hotel-casinò e di fatto amministra la città; Biff ha ucciso George McFly nel 1973 e ha sposato Lorraine; Doc e Marty tornano nel 1955 per rubare e distruggere l'almanacco evitando i loro doppioni, la festa «Incanto sotto il mare»; Marty recupera l'almanacco dopo un inseguimento e lo brucia, il 1985 originale torna; un fulmine colpisce la DeLorean con Doc, trasportato nel 1885; la lettera di Doc scritta nel 1885 e lasciata settanta anni prima, Doc sta bene e non vuole tornare; Marty corre dal Doc del 1955: https://it.wikipedia.org/wiki/Ritorno_al_futuro_-_Parte_II",
+    "Arrivo nel 2015; Griff, nipote di Biff, e il figlio di Marty; l'almanacco sportivo 1950–2000; il vecchio Biff ruba la macchina del tempo e lo dà al sé stesso giovane nel 1955; il 1985 alternativo con Biff ricco e potente, George ucciso nel 1973; Marty apprende che Biff ha ricevuto l'almanacco il 12 novembre 1955; il ritorno nel 1955, l'almanacco bruciato, il fulmine che manda Doc nel 1885 e lascia Marty bloccato nel 1955, e la lettera: https://en.wikipedia.org/wiki/Back_to_the_Future_Part_II"
+  ]
+}
