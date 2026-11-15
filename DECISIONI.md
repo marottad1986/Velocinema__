@@ -3,6 +3,8 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 15 nov 2026 · Per la pubblicazione automatica si prova **PostFast** al posto di Metricool a pagamento (più economico,
+  caricamento diretto del video senza link pubblico). Collegamento e prova il 16 novembre; la prova gratuita scade intorno al 21. · manager, contabilità
 - 15 nov 2026 · **Video pronto = visto dall'editore.** A fine produzione (controlli verdi, revisori APPROVATO) la sessione
   manda il video all'editore in chat (e l'avviso Telegram). Solo quando l'editore lo conferma il video è «pronto»: da quel
   momento la sessione unisce su main da sola, senza chiedere altro. · produzione
