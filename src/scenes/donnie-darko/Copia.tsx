@@ -671,10 +671,10 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
   // il motore: cade nel capitolo 2; sparisce col riavvolgimento; ricade nel capitolo finale
   const fall1 = at('motore', 0, 0.2);
   const fall2 = at('letto', 1, 0.3);
-  const e1 = seg(T, fall1, fall1 + 0.6);
-  const e2 = seg(T, fall2, fall2 + 0.6);
+  const e1 = seg(T, fall1, fall1 + 0.5);
+  const e2 = seg(T, fall2, fall2 + 0.5);
   const engineVis = T < at('letto', 0, 0.6) ? e1 : T < fall2 ? 0 : e2;
-  const crash = T >= fall2 ? seg(T, fall2 + 0.6, fall2 + 1.8) : seg(T, fall1 + 0.6, fall1 + 1.8);
+  const crash = T >= fall2 ? seg(T, fall2 + 0.5, fall2 + 1.7) : seg(T, fall1 + 0.5, fall1 + 1.7);
   const engineOut = seg(T, at('letto', 0, 0.2), at('letto', 0, 0.6)); // il motore risucchiato via nel riavvolgimento
   const flood = eo(seg(T, at('danni', 1, 0.1), at('danni', 1, 1.4)));
   const fire = eo(seg(T, at('danni', 1, 1.6), at('danni', 1, 2.6)));

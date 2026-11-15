@@ -108,6 +108,8 @@ export const CATALOGO = {
   sparo: ['SSE_Library_BULLETS', 'IMPACT/BLLTImpt_Shooting gallery; hitting metal targets_CS_USC.wav', -12.8],
   fischio_diesel: ['Red_Library_Bells_Horns_Whistles', 'R20-39-Diesel Train Whistles.wav', -20.5],
   passaggio_livello: ['Red_Library_Bells_Horns_Whistles', 'R04-63-Train Crossing.wav', -20.5],
+  // Donnie Darko: lo sparo a Frank
+  pistola: ['SSE_Library_GUNS', 'PISTOL/GUNPis_Big optical gun shot_CS_USC.wav', -16],
 };
 
 const percorso = (id) => `${CACHE}/${CATALOGO[id][0]}/${CATALOGO[id][1].replace(/[/;?]/g, '_')}`;

@@ -1,7 +1,7 @@
 // Colonna sonora originale di Donnie Darko (formato "Spiegato semplice"): pianoforte a coda sospeso, arpa, archi gravi e
 // campanelle per le visioni (campionati, VSCO-2 CE e VCSL, CC0). 60 bpm: un battito al secondo, come il contatore dei
 // 28 giorni in alto a destra (Copia.tsx), che ticchetta piano sotto la musica. Mi minore, accordi Mi minore · Do maggiore
-// settima · La minore · Si settima; il motivo è inventato qui (Si, Mi, Re, Si · Do, Si, Sol, Fa#) e non richiama brani
+// settima · La minore · Si settima; il motivo è inventato qui (Si, Re, Mi, Si · Do, Si, Sol, Fa#) e non richiama brani
 // o temi del film (né la colonna sonora originale né le canzoni anni '80 usate nel film).
 // Il vortice va a passo doppio (spiccato degli archi a semicrome); il finale si scioglie in Mi maggiore quando il mondo è salvo.
 // Effetti agganciati agli eventi dello schema in src/scenes/donnie-darko/Copia.tsx e della copertina in Locandina.tsx.
@@ -11,7 +11,7 @@ import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
 export const strumenti = ['pianoforte_coda', 'arpa', 'glockenspiel', 'violini', 'viole', 'celli', 'contrabbasso', 'violini_trem', 'celli_spicc', 'viole_spicc', 'timpani', 'grancassa', 'piatto_sospeso'];
-export const effetti = ['scatti', 'metallo_schianto', 'rombo', 'pagine', 'onde', 'fuoco', 'fiammata', 'auto_epoca', 'colpi_cavi', 'pugno', 'vento_raffiche', 'aereo', 'metallo_colpi', 'passaggio'];
+export const effetti = ['scatti', 'metallo_schianto', 'rombo', 'pagine', 'onde', 'fuoco', 'fiammata', 'auto_epoca', 'colpi_cavi', 'pistola', 'vento_raffiche', 'aereo', 'metallo_colpi', 'passaggio'];
 /** Sala grande e scura, notte di periferia. */
 export const sala = { rt60: 2.8, brillo: 4800, predelay: 0.03, wet: 0.52 };
 
@@ -32,11 +32,11 @@ const strings = (mix, m, { t, dur, vel = 40, pan = 0, gain = 1, att = 1, seed = 
 const spic = (mix, m, { t, vel = 40, pan = 0, gain = 1 }) =>
   suona(mix, m < 55 ? 'celli_spicc' : 'viole_spicc', m, { t, dur: CROMA * 0.8, vel: vel * 1.7, pan, rev: 0.35, gain: gain * 2.6, release: 0.12 });
 const piano = (mix, m, { t, dur, vel, pan = 0.1 }) =>
-  suona(mix, 'pianoforte_coda', m, { t, dur: Math.min(dur, 4), vel: vel * 1.2, pan, rev: 0.6, gain: 3.6, release: 0.8 });
+  suona(mix, 'pianoforte_coda', m, { t, dur: Math.min(dur, 4), vel: vel * 1.2, pan, rev: 0.6, gain: 1.4, release: 0.8 });
 const harp = (mix, m, { t, vel = 40, pan = -0.2 }) =>
-  suona(mix, 'arpa', m, { t, dur: 2.5, vel: vel * 1.3, pan, rev: 0.6, gain: 1.6, release: 1.2 });
+  suona(mix, 'arpa', m, { t, dur: 2.5, vel: vel * 1.3, pan, rev: 0.6, gain: 0.9, release: 1.2 });
 const bell = (mix, m, { t, vel = 44, pan = 0.25, gain = 1 }) =>
-  suona(mix, 'glockenspiel', m < 79 ? m + 12 * Math.ceil((79 - m) / 12) : m, { t, dur: 2.5, vel: vel * 1.3, pan, rev: 0.75, gain: gain * 0.42, release: 1.5 });
+  suona(mix, 'glockenspiel', m < 79 ? m + 12 * Math.ceil((79 - m) / 12) : m, { t, dur: 2.5, vel: vel * 1.3, pan, rev: 0.75, gain: gain * 0.28, release: 1.5 });
 const timp = (mix, t, { vel = 100, gain = 0.8, pan = 0 } = {}) => colpo(mix, 'timpani', 'Timpani1_Hit_v2_rr1_Sum', { t, vel, gain, pan, rev: 0.45 });
 /** Il piatto sospeso strisciato: un'onda che cresce (il crollo, il riavvolgimento). */
 const swell = (mix, t, dur, { gain = 0.5 } = {}) => colpo(mix, 'piatto_sospeso', 'susp_FX_scrape_continuous', { t, dur, vel: 90, gain, release: 0.4, rev: 0.5, da: 2 });
@@ -45,8 +45,8 @@ const swell = (mix, t, dur, { gain = 0.5 } = {}) => colpo(mix, 'piatto_sospeso',
 
 // accordi per battuta: Mi minore · Do maggiore (con la settima) · La minore · Si settima
 const CHORDS = [[40, [0, 7, 12, 15, 19]], [36, [0, 7, 11, 16, 19]], [45, [0, 7, 12, 15, 19]], [47, [0, 4, 10, 15, 18]]];
-// il motivo (a semiminime, su due battute): Si Mi Re Si · Do Si Sol Fa#
-const MOTIF = [[0, 71], [1, 76], [2, 74], [3, 71], [4, 72], [5, 71], [6, 67], [7, 66]];
+// il motivo (a semiminime, su due battute): Si Re Mi Si · Do Si Sol Fa#
+const MOTIF = [[0, 71], [1, 74], [2, 76], [3, 71], [4, 72], [5, 71], [6, 67], [7, 66]];
 
 export default (mix, T) => {
   const film = loadFilm('donnie-darko');
@@ -115,8 +115,8 @@ export default (mix, T) => {
   };
 
   // ---- eventi delle scene (gli stessi istanti di Copia.tsx)
-  const fall1 = at('motore', 0, 0.2), hit1 = fall1 + 0.6;
-  const fall2 = at('letto', 1, 0.3), hit2 = fall2 + 0.6;
+  const fall1 = at('motore', 0, 0.2), hit1 = fall1 + CROMA;
+  const fall2 = at('letto', 1, 0.3), hit2 = fall2 + CROMA;
   const shot = at('guida', 0, 1.0);
   const crash = at('gretchen', 2, 1.0);
   const tear = at('vortice', 2, 0.5);
@@ -131,14 +131,14 @@ export default (mix, T) => {
   sec(T.danni, T.gretchen, { drone: 42, spic: 34, str: 34, arp: 26 });
   sec(T.gretchen, T.guida, { drone: 40, arp: 32, str: 34, mel: 40, pausa: [crash - 0.05, crash + 2 * BEAT] });
   sec(T.guida, T.vortice, { drone: 38, str: 36, harp: 36, bells: 36, mel: 34, pausa: [shot - 0.05, shot + 2 * BEAT] });
-  sec(T.vortice, T.letto, { drone: 48, spic: 52, doppio: true, str: 52, arp: 30, pausa: [tear + 0.1, tear + BEAT] });
+  sec(T.vortice, T.letto, { drone: 48, spic: 52, doppio: true, str: 52, arp: 30, pausa: [tear - 0.05, tear + BEAT] });
   sec(T.letto, at('letto', 2, 0.2), { drone: 36, harp: 32, mel: 36, keep: 0.9, pausa: [hit2 - 0.05, hit2 + BEAT] });
 
   // il mondo è salvo: Mi maggiore aperto sull'istante di «IL MONDO È SALVO» (Copia.tsx), fino al finale
   const S = at('letto', 2, 0.2);
   const F = snap(T.finale);
   [28, 40, 47, 52, 56, 59, 64].forEach((m, j) => strings(mix, m, { t: S, dur: T.END - S - 0.3, vel: 42, gain: 0.55, pan: (j - 3) * 0.18, att: 0.8, seed: 40 + j }));
-  for (let t = S, i = 0; t < T.END - 1.5; t += BEAT, i++) harp(mix, [52, 56, 59, 64, 68, 64, 59, 56][i % 8] + 12, { t, vel: 34 });
+  for (let t = Math.ceil(S), i = 0; t < T.END - 1.5; t += BEAT, i++) harp(mix, [52, 56, 59, 64, 68, 64, 59, 56][i % 8] + 12, { t, vel: 34 });
   [71, 76, 75, 71, 73, 71, 68, 64].forEach((m, k) => piano(mix, m, { t: F + k * CROMA, dur: BEAT, vel: 38 }));
   [76, 80, 83, 88].forEach((m, k) => bell(mix, m, { t: F + 2 + k * CROMA, vel: 36 }));
 
@@ -146,49 +146,49 @@ export default (mix, T) => {
   // il contatore: un ticchettio sommesso per battito, da quando compare (capitolo 1) a quando arriva a zero (vortice)
   for (let t = snap(at('coniglio', 2)); t < tear - 0.1; t += BEAT) {
     if ((t > hit1 - 0.1 && t < hit1 + 2) || (t > crash - 0.1 && t < crash + 2) || (t > shot - 0.1 && t < shot + 2)) continue;
-    clip(mix, 'scatti', { t, da: 6.49, durata: 0.06, gain: 0.16, rev: 0.15, pan: 0.4 });
+    clip(mix, 'scatti', { t, da: 6.49, durata: 0.06, gain: 0.3, rev: 0.15, pan: 0.4 });
   }
   // copertina: il contatore ticchetta anche lì, sul fumo del motore
-  for (let t = 0; t < 4; t += BEAT) clip(mix, 'scatti', { t, da: 6.49, durata: 0.06, gain: 0.18, rev: 0.15, pan: 0.4 });
-  clip(mix, 'vento_raffiche', { t: 0, da: 3, durata: 4, gain: 0.05, fadeIn: 0.3, fadeOut: 1.2, largo: 1.5 });
+  for (let t = 0; t < 4; t += BEAT) clip(mix, 'scatti', { t, da: 6.49, durata: 0.06, gain: 0.3, rev: 0.15, pan: 0.4 });
+  clip(mix, 'vento_raffiche', { t: 0, da: 9.2, durata: 4, gain: 0.04, fadeIn: 0.3, fadeOut: 1.2, largo: 1.5 });
   // capitolo 1: Frank lo chiama (campanelle), i 28 giorni (timpano sordo)
   [83, 79, 76].forEach((m, k) => bell(mix, m, { t: at('coniglio', 1, 0.1) + k * CROMA, vel: 38 }));
   timp(mix, at('coniglio', 2, 0.2), { vel: 90, gain: 0.55 });
   // capitolo 2: il motore cade (sibilo), sfonda il tetto (schianto + timpano), poi silenzio; il punto di domanda
   clip(mix, 'passaggio', { t: fall1, da: 0.56, durata: 0.7, gain: 0.3, fadeOut: 0.1, rev: 0.3 });
   clip(mix, 'metallo_schianto', { t: hit1, da: 0, durata: 1.4, gain: 0.5, fadeOut: 0.5, rev: 0.4 });
-  timp(mix, hit1, { vel: 120, gain: 0.9 });
-  clip(mix, 'rombo', { t: hit1 + 0.2, da: 1, durata: 2.5, gain: 0.12, fadeOut: 1.2, largo: 1.5 });
+  timp(mix, hit1, { vel: 120, gain: 1.2 });
+  clip(mix, 'rombo', { t: hit1 + 0.2, da: 3.6, durata: 2.5, gain: 0.12, fadeOut: 1.2, largo: 1.5 });
   bell(mix, 77, { t: at('motore', 3, 0.1), vel: 40 });
   // capitolo 3: il libro passa di mano e si apre
   clip(mix, 'pagine', { t: at('libro', 3, 0), da: 1, durata: 1.2, gain: 0.3, fadeOut: 0.3, rev: 0.25 });
   // capitolo 4: la copia si stacca (arpa che sale), «poi crolla» (rombo e timpano)
   [52, 55, 59, 64, 67, 71].forEach((m, k) => harp(mix, m + 12, { t: at('tangente', 1, 0.1) + k * CROMA / 2, vel: 36 }));
   swell(mix, at('tangente', 3, 0.3) - 1.5, 1.5, { gain: 0.35 });
-  timp(mix, at('tangente', 3, 0.3), { vel: 115, gain: 0.8 });
-  clip(mix, 'rombo', { t: at('tangente', 3, 0.3), da: 1, durata: 3, gain: 0.14, fadeOut: 1.4, largo: 1.5 });
+  timp(mix, at('tangente', 3, 0.3), { vel: 120, gain: 2.0 });
+  clip(mix, 'rombo', { t: at('tangente', 3, 0.3), da: 3.6, durata: 3, gain: 0.14, fadeOut: 1.4, largo: 1.5 });
   // capitolo 5: «va rimandato» (scala che sale verso il mondo vero), le visioni (campanelle)
   [64, 66, 67, 71, 76].forEach((m, k) => bell(mix, m, { t: at('ricevitore', 1, 0.3) + k * CROMA / 2, vel: 34 }));
   // capitolo 6: la scuola allagata, la casa che brucia
   clip(mix, 'onde', { t: at('danni', 1, 0.1), da: 4, durata: 2, gain: 0.14, fadeIn: 0.3, fadeOut: 0.8, largo: 1.4 });
-  clip(mix, 'fiammata', { t: at('danni', 1, 1.6), da: 0, durata: 1.2, gain: 0.3, fadeOut: 0.4, rev: 0.3 });
-  clip(mix, 'fuoco', { t: at('danni', 1, 1.8), da: 2, durata: at('danni', 3) - at('danni', 1, 1.8) + 2, gain: 0.06, fadeIn: 0.5, fadeOut: 1.5, largo: 1.4 });
+  clip(mix, 'fiammata', { t: at('danni', 1, 1.6), da: 0.22, durata: 1.2, gain: 0.3, fadeOut: 0.4, rev: 0.3 });
+  clip(mix, 'fuoco', { t: at('danni', 1, 1.8), da: 2, durata: at('danni', 3) - at('danni', 1, 1.8) + 2, gain: 0.1, fadeIn: 0.5, fadeOut: 1.5, largo: 1.4 });
   timp(mix, at('danni', 3, 0.2), { vel: 95, gain: 0.55 });
   // capitolo 7: l'auto che arriva, l'urto (poi silenzio)
-  clip(mix, 'auto_epoca', { t: at('gretchen', 2, 0.1) - 0.6, da: 2, durata: 1.7, gain: 0.25, fadeIn: 0.4, fadeOut: 0.3, rev: 0.25 });
-  clip(mix, 'colpi_cavi', { t: crash, da: 0.2, durata: 0.6, gain: 0.4, fadeOut: 0.2, rev: 0.3 });
-  timp(mix, crash, { vel: 110, gain: 0.7 });
+  clip(mix, 'auto_epoca', { t: at('gretchen', 2, 0.1) - 0.6, da: 17.5, durata: 1.7, gain: 0.15, fadeIn: 0.4, fadeOut: 0.3, rev: 0.25 });
+  clip(mix, 'colpi_cavi', { t: crash, da: 0.5, durata: 0.5, gain: 0.7, fadeOut: 0.2, rev: 0.3 });
+  timp(mix, crash, { vel: 115, gain: 1.6 });
   bell(mix, 71, { t: at('gretchen', 3, 0.1), vel: 34 });
   // capitolo 8: lo sparo (un solo lampo), poi silenzio; «torna come guida», «era lui» (scala gialla che risale)
-  clip(mix, 'pugno', { t: shot, da: 0, durata: 0.4, gain: 0.5, rev: 0.45 });
-  timp(mix, shot, { vel: 125, gain: 0.9 });
+  clip(mix, 'pistola', { t: shot, da: 0.05, durata: 1.4, gain: 0.6, fadeOut: 0.6, rev: 0.4 });
+  timp(mix, shot, { vel: 125, gain: 1.4 });
   [64, 67, 71, 74, 76, 79].forEach((m, k) => bell(mix, m, { t: at('guida', 2, 0.1) + k * CROMA / 2, vel: 36 }));
   // capitolo 9: il vortice (vento e rombo), l'aereo, il motore strappato via, il motore che torna indietro
-  clip(mix, 'vento_raffiche', { t: T.vortice, da: 6, durata: tear - T.vortice + 1.5, gain: 0.09, fadeIn: 1.2, fadeOut: 1.2, largo: 1.6 });
-  clip(mix, 'rombo', { t: at('vortice', 0, 0.3), da: 1, durata: 4, gain: 0.1, fadeIn: 1, fadeOut: 1.5, largo: 1.6 });
-  clip(mix, 'aereo', { t: at('vortice', 1, -0.6), da: 3, durata: 3.4, gain: 0.18, fadeIn: 0.6, fadeOut: 0.8, largo: 1.4 });
-  clip(mix, 'metallo_colpi', { t: tear, da: 0.54, durata: 0.4, gain: 0.35, rev: 0.4 });
-  timp(mix, tear, { vel: 115, gain: 0.8 });
+  clip(mix, 'vento_raffiche', { t: T.vortice, da: 9.2, durata: T.letto + 1 - T.vortice, gain: 0.09, fadeIn: 1.2, fadeOut: 1.2, largo: 1.6 });
+  clip(mix, 'rombo', { t: at('vortice', 0, 0.3), da: 3.6, durata: 4, gain: 0.1, fadeIn: 1, fadeOut: 1.5, largo: 1.6 });
+  clip(mix, 'aereo', { t: at('vortice', 1, -0.6), da: 3, durata: 4.4, gain: 0.18, fadeIn: 0.6, fadeOut: 0.8, largo: 1.4 });
+  clip(mix, 'metallo_colpi', { t: tear, da: 0.54, durata: 0.4, gain: 0.9, rev: 0.4 });
+  timp(mix, tear, { vel: 127, gain: 2.4 });
   clip(mix, 'passaggio', { t: at('vortice', 3, 0.1), da: 0.56, durata: 1.6, gain: 0.25, fadeOut: 0.5, rev: 0.4 });
   [79, 76, 71, 67, 64].forEach((m, k) => bell(mix, m, { t: at('vortice', 3, 1.4) + k * CROMA / 2, vel: 36 }));
   // capitolo 10: tutto si riavvolge (piatto al contrario e sibilo), il motore ricade (schianto, poi silenzio)
@@ -196,7 +196,7 @@ export default (mix, T) => {
   clip(mix, 'passaggio', { t: at('letto', 0, 0.4), da: 12.27, durata: 1.4, gain: 0.2, fadeOut: 0.4, rev: 0.35 });
   clip(mix, 'passaggio', { t: fall2, da: 0.56, durata: 0.7, gain: 0.3, fadeOut: 0.1, rev: 0.3 });
   clip(mix, 'metallo_schianto', { t: hit2, da: 0, durata: 1.4, gain: 0.5, fadeOut: 0.5, rev: 0.4 });
-  timp(mix, hit2, { vel: 120, gain: 0.9 });
+  timp(mix, hit2, { vel: 120, gain: 1.2 });
   bell(mix, 68, { t: at('letto', 3, 0.8), vel: 30 });
   void end;
 };
