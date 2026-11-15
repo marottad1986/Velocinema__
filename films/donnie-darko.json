@@ -57,7 +57,7 @@
         "Nel 1988 Donnie, ragazzo sonnambulo, esce di casa.",
         "Fuori c'è Frank, un uomo vestito da coniglio che vede solo lui.",
         "Gli dice: il mondo finirà fra 28 giorni.",
-        "Al mattino si sveglia su un campo da golf."
+        "Si risveglia su un campo da golf."
       ]
     },
     {
@@ -94,8 +94,8 @@
       "scena": "Schema della copia del mondo (universo tangente): vedi Copia.tsx.",
       "sottotitoli": [
         "Secondo il libro, il tempo a volte si sdoppia:",
-        "nasce una copia, l'universo tangente, come una deviazione della strada.",
-        "Ma dura solo 28 giorni, come ha detto Frank,",
+        "nasce una copia, l'universo tangente, come una strada che devia.",
+        "Ma dura solo i 28 giorni di Frank,",
         "poi crolla, e distrugge anche il mondo vero."
       ]
     },
