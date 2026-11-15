@@ -58,6 +58,10 @@ Memoria comune della squadra (si legge all'inizio di ogni sessione del proprio r
 ## Cosa manca per l'automazione completa (in ordine di importanza)
 
 ### 1. Pubblicazione automatica — il pezzo più grosso
+**Stato (15 nov 2026): rimandata finché l'editore non attiva il piano a pagamento di Metricool.** Il piano gratuito
+pubblica al massimo 20 post al mese (quelli oltre restano in coda e non escono); a noi ne servono circa 43 al mese solo
+contando ogni uscita una volta, di più se ogni social conta a parte, più le storie. Intanto si prepara tutto il resto
+(link pubblico ai video, testi già nel formato di Metricool), così all'attivazione basta accendere.
 Il connettore **Metricool** sa già programmare i post con pubblicazione automatica (`createScheduledPost`, `autoPublish: true`)
 su tutti e quattro i profili collegati al brand «In 2 minuti»: Instagram `in.2.minuti`, TikTok `in.2.minuti`, Facebook e YouTube.
 Accetta anche le storie Instagram (PNG) e la copertina del video. **Manca solo un link pubblico al file mp4**: MEGA non dà un
