@@ -12,6 +12,10 @@ Serie **talent spiegati**: programmi TV in corso con persone reali (X Factor 202
 con `"tipo": "talent"`. Regole proprie (nessuna persona disegnata, niente canzoni cantate né imitazioni, niente logo,
 fatti della gara verificati su fonti, vocabolario visivo fisso): vedi `TALENT.md`.
 
+Serie **videogiochi spiegati**: la storia di un videogioco (come un film, o Spiegato semplice per le storie intricate),
+JSON in `films/` con `"tipo": "videogioco"`, uscita fissa il martedì alle 12:30. Regole proprie (niente immagini, loghi o
+interfacce del gioco, giochi non ancora usciti solo con fatti annunciati ufficialmente): vedi `GIOCHI.md`.
+
 Video **lunghi orizzontali** per YouTube (1920×1080, almeno 8 minuti, più episodi montati in un solo racconto, es. Dark tutta la serie):
 JSON in `lunghi/`, composizione separata in `src/lunghi/`, regole proprie (struttura, miniatura, zone sicure 16:9,
 griglia musicale tra un episodio e l'altro, capitoli YouTube): vedi `VIDEO-LUNGO.md`.
@@ -79,7 +83,7 @@ Comandi per aprire una sessione: `/manager` (team social media manager) e `/prod
   né frasi telegrafiche; mai frasi che parlano dello schema o del video stesso (es. «Tutto in due minuti», «Ecco lo schema
   completo»; l'etichetta «IL FILM IN 2 MINUTI» sopra il titolo resta, ma solo nelle copertine dei riassunti di film;
   i riassunti di serie usano «STAGIONE N IN 2 MINUTI»; canzoni, quadri e talent
-  usano il nome della serie, «CANZONI SPIEGATE», «QUADRI SPIEGATI» e «TALENT SPIEGATI»). Le righe dei sottotitoli sono pezzi dello stesso discorso. L'ultima frase della storia chiude o lascia una
+  usano il nome della serie, «CANZONI SPIEGATE», «QUADRI SPIEGATI», «TALENT SPIEGATI» e «VIDEOGIOCHI SPIEGATI»). Le righe dei sottotitoli sono pezzi dello stesso discorso. L'ultima frase della storia chiude o lascia una
   domanda chiara (per le serie: da dove riparte la stagione dopo).
 - Spiegato facile: parole di tutti i giorni, nessun termine tecnico senza spiegarlo subito, una cosa alla volta.
 - Queste regole sul testo valgono per tutti i progetti della serie (film, quadri, canzoni, serie TV spiegate…).
@@ -91,7 +95,7 @@ Comandi per aprire una sessione: `/manager` (team social media manager) e `/prod
   riassunti di film → «Commenta con il film che vorresti.»; riassunti di serie (es. Breaking Bad, una stagione per video:
   etichetta «STAGIONE N IN 2 MINUTI», finale «Fine della stagione N») → «Commenta con la serie che vorresti.»; Spiegato semplice → «Commenta con la spiegazione che vorresti.»;
   canzoni → «Commenta con la canzone che vorresti.»; quadri → «Commenta con il quadro che vorresti.»;
-  talent spiegati (`TALENT.md`) → «Commenta con chi vorresti in finale.»
+  talent spiegati (`TALENT.md`) → «Commenta con chi vorresti in finale.»; videogiochi (`GIOCHI.md`) → «Commenta con il gioco che vorresti.»
 - Mai frasi come «La prossima volta che lo vedi…» (né nel finale né altrove).
 
 ## Canzoni spiegate (stesso schema dei film)

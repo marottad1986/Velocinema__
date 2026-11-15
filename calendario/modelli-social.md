@@ -23,7 +23,7 @@ carattere del titolo, cornice e illustrazione propri, ispirati all'atmosfera del
 
 **Elementi fissi, in quest'ordine dall'alto**
 1. Logo: cronometro con «2'» + scritta «IN 2 MINUTI» (giallo #FFC400, o marrone scuro su sfondo chiaro), sotto «PRESENTA».
-2. Badge del format, sempre presente: 🎬 FILM IN 2 MINUTI · 💡 SPIEGATO FACILE · 🎵 CANZONI IN 2 MINUTI · 🎨 ARTE IN 2 MINUTI.
+2. Badge del format, sempre presente: 🎬 FILM IN 2 MINUTI · 💡 SPIEGATO FACILE · 🎵 CANZONI IN 2 MINUTI · 🎨 ARTE IN 2 MINUTI · 🎮 VIDEOGIOCHI SPIEGATI.
 3. Illustrazione centrale originale, in un riquadro.
 4. Riga di contesto breve (luogo/epoca o anni), es. «— Jersey, 1945 —».
 5. Titolo grande, nello stile del contenuto; se è lungo va su due righe e non esce mai dai margini.
@@ -67,6 +67,7 @@ ricorrenza speciale (Halloween, Natale…).
 - Serie TV / film complicati → «💡 Spiegato facile: Titolo – Stagione N 🌀»
 - Canzoni → «🎵 Canzoni in 2 minuti: Titolo 🎶»
 - Arte → «🎨 Arte in 2 minuti: Titolo 🖼️»
+- Videogiochi → «🎮 Videogiochi spiegati: Titolo 🌴» (hashtag e titolo YouTube in `GIOCHI.md`)
 - Ricorrenze → davanti «🎃 Speciale Halloween – » (o l'emoji della ricorrenza).
 
 **Seconda riga, l'aggancio:** 1–2 righe che creano curiosità o suspense, chiuse da un'emoji. Fa venire voglia di guardare,

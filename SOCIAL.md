@@ -7,10 +7,13 @@ proporre la settimana.
 - **Ogni giorno alle 17:30** un'uscita principale, a rotazione tra **film**, **serie TV** e **Spiegato semplice**:
   ogni settimana 3 film, 2 serie e 2 Spiegato semplice (si può scambiare un film con una serie se i dati lo chiedono).
 - **Sabato e domenica alle 10:00** un'uscita in più: quadri, canzoni, storie vere o storie.
+- **Martedì alle 12:30** un'uscita in più: **videogiochi spiegati** (`GIOCHI.md`), dal 17 novembre 2026 (primo episodio
+  GTA VI). Orario dai dati Metricool del 15 novembre: TikTok ha picchi alle 10, 12 e 18, Instagram è alto tutto il giorno
+  (massimo alle 20); le 12:30 vanno bene su tutti e due e stanno a 5 ore dalle 17:30, senza togliere pubblico all'uscita principale.
 - **X Factor (talent spiegati): sempre il mercoledì alle 17:30**, il riepilogo dell'ultimo Live il giorno prima della
   puntata successiva (il giovedì è troppo tardi). Fino alla finale del 3 dicembre: mercoledì 18 (Live 4), 25 (Live 5),
   2 dicembre (Live 6); la finale si riassume il 4 o 5 dicembre.
-- 9 uscite a settimana. Due titoli dello stesso genere (es. due horror) non stanno in giorni vicini.
+- 10 uscite a settimana (9 + il videogioco del martedì). Due titoli dello stesso genere (es. due horror) non stanno in giorni vicini.
 - Mai ripubblicare un video già uscito sullo stesso canale (elenco in `calendario/pubblicati.md`).
 
 ## La domenica alle 15:00
@@ -39,7 +42,8 @@ Attività programmata: «In 2 minuti – programmazione della settimana» (`trig
    dell'approvazione):
    - uscita: «🎬 Film · Titolo», «📺 Serie · …», «💡 Spiegato · …», «🎨 Quadro · …», «🎵 Canzone · …», «📖 Storia · …»;
      descrizione con aggancio, stato (pronto / da produrre) e alternativa;
-   - scadenze di produzione: «⏳ Titolo: pronto entro oggi», due giorni prima dell'uscita.
+   - solo i contenuti previsti quel giorno: niente eventi di scadenza della produzione (regola dell'utente, dalla
+     settimana 23–29 novembre 2026; le scadenze restano nel file del calendario e nelle sessioni `/produzione`).
 5. **Sempre dopo l'approvazione**, si passa il lavoro alla produzione: una sessione `/produzione` per ogni contenuto
    da produrre o da verificare (strumento `create_session`, repository `marottad1986/Velocinema__`), con titolo, giorno
    e ora di uscita, scadenza (video su MEGA entro la sera prima) e l'ordine di avvisare subito l'utente se la data non è
