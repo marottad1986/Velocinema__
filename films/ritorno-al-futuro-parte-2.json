@@ -1,0 +1,193 @@
+{
+  "formato": "spiegato",
+  "tipo": "film",
+  "schema": true,
+  "sigla": false,
+  "titolo": "Ritorno al futuro – Parte II",
+  "regista": "Robert Zemeckis",
+  "anno": 1989,
+  "bpm": 72,
+  "palette": {
+    "chiaro": "#F4EEE2",
+    "principale": "#2E1E5C",
+    "scuro": "#0E0A22",
+    "accento": "#F5C23A"
+  },
+  "personaggi": [
+    {
+      "nome": "Marty",
+      "ruolo": "il ragazzo che viaggia nel tempo",
+      "oggetto": "skateboard"
+    },
+    {
+      "nome": "Doc",
+      "ruolo": "lo scienziato della macchina del tempo",
+      "oggetto": "occhialoni da laboratorio"
+    },
+    {
+      "nome": "Jennifer",
+      "ruolo": "la ragazza di Marty",
+      "oggetto": "biglietto con un cuore"
+    },
+    {
+      "nome": "il figlio",
+      "ruolo": "il figlio di Marty nel 2015",
+      "oggetto": "berretto"
+    },
+    {
+      "nome": "Griff",
+      "ruolo": "il nipote del bullo Biff",
+      "oggetto": "mazza da baseball"
+    },
+    {
+      "nome": "Biff",
+      "ruolo": "il bullo (da vecchio nel 2015)",
+      "oggetto": "giubbotto di pelle e bastone da passeggio"
+    },
+    {
+      "nome": "George",
+      "ruolo": "il padre di Marty",
+      "oggetto": "quaderno di racconti"
+    },
+    {
+      "nome": "Lorraine",
+      "ruolo": "la madre di Marty",
+      "oggetto": "fiocco per capelli"
+    }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Un libro dal futuro può rubarti il presente.",
+    "immagine": "Locandina senza sigla, con «SPIEGATO SEMPLICE · FILM», il titolo e «PARTE 2» già completi dal primo fotogramma: di notte una strada al neon anni '80 che si divide in due a forma di Y; a sinistra il 1985 normale (casette con le finestre accese, ciano), a destra il 1985 sbagliato (una torre-casinò rossa con l'insegna «BIFF» e il simbolo del dollaro). In primo piano, in basso al centro, l'almanacco sportivo che brilla con «1950–2000» in copertina, da cui escono le due scie gialle del viaggio nel tempo; in cielo l'auto del tempo che vola. NON usare persone, la DeLorean riconoscibile, l'almanacco del film né locandine ufficiali.",
+    "voce": "Ritorno al futuro, parte due: un libro può cambiare il passato?"
+  },
+  "capitoli": [
+    {
+      "id": "futuro",
+      "titolo": "Cosa succede nel 2015?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Doc porta Marty e Jennifer, la sua ragazza, nel 2015.",
+        "Lì Griff, nipote del bullo Biff, vuole fare una rapina,",
+        "e il figlio di Marty sta per accettare:",
+        "se accetta, finirà in prigione."
+      ]
+    },
+    {
+      "id": "figlio",
+      "titolo": "Come salva suo figlio?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Marty è identico a suo figlio, e prende il suo posto.",
+        "Così è lui a dire no a Griff.",
+        "Griff lo insegue, ma Marty fugge su uno skate volante,",
+        "e Griff viene arrestato: il figlio è salvo."
+      ]
+    },
+    {
+      "id": "almanacco",
+      "titolo": "Cos'è l'almanacco?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Intanto Marty compra un almanacco sportivo:",
+        "un libro con i risultati dal 1950 al 2000.",
+        "Nel passato, con quel libro, vinci ogni scommessa.",
+        "Doc lo butta via, ma Biff, ormai vecchio, lo raccoglie."
+      ]
+    },
+    {
+      "id": "furto",
+      "titolo": "Cosa fa il vecchio Biff?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Biff, di nascosto, prende la macchina del tempo,",
+        "va nel 1955 e dà il libro a sé stesso da ragazzo.",
+        "Poi riporta la macchina al suo posto,",
+        "e nessuno se ne accorge."
+      ]
+    },
+    {
+      "id": "sbagliato",
+      "titolo": "Perché il 1985 è diverso?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Tornati nel 1985, trovano una città buia e pericolosa.",
+        "Grazie al libro, Biff ha vinto ogni scommessa ed è ricchissimo.",
+        "Ha ucciso George, il padre di Marty,",
+        "e ha sposato Lorraine, la sua mamma."
+      ]
+    },
+    {
+      "id": "bivio",
+      "titolo": "Come si ripara il tempo?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Biff si vanta del giorno in cui ha avuto il libro:",
+        "il 12 novembre 1955.",
+        "Doc capisce: lì il tempo si è diviso, come una strada.",
+        "Per aggiustarlo, devono tornare quel giorno e riprendere il libro."
+      ]
+    },
+    {
+      "id": "doppio",
+      "titolo": "Due Marty nello stesso giorno?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Quel giorno, però, c'è già un altro Marty: quello del primo viaggio,",
+        "che sta facendo innamorare i suoi genitori.",
+        "Marty non deve farsi vedere, o rovinerebbe tutto,",
+        "e intanto segue Biff, che ha il libro con sé."
+      ]
+    },
+    {
+      "id": "inseguimento",
+      "titolo": "Come riprende il libro?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "La sera del ballo, Biff scappa in auto col libro,",
+        "ma Marty lo insegue sullo skate volante e glielo strappa.",
+        "Biff finisce contro un camion di letame.",
+        "Poi Marty brucia il libro, e il 1985 torna normale."
+      ]
+    },
+    {
+      "id": "lettera",
+      "titolo": "Dove finisce Doc?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee.tsx.",
+      "sottotitoli": [
+        "Ma un fulmine colpisce la macchina del tempo, e Doc sparisce.",
+        "Poco dopo, Marty riceve una lettera di Doc,",
+        "scritta nel 1885, settant'anni prima!",
+        "Marty corre dal Doc del 1955: come riportarlo a casa?"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "In una frase: Marty ripara il tempo, ma Doc resta nel passato.",
+    "immagine": "La stessa scena della copertina, più calma: il ramo rosso del 1985 sbagliato spento e grigio, l'almanacco ridotto in cenere, la strada di nuovo una sola; riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la spiegazione che vorresti.'"
+  },
+  "musica": "Originale e strumentale, stesso mondo della Parte I (72 bpm, Mi bemolle maggiore, il motivo del tic-tac): archi in spiccato e ottoni per il 2015 e l'inseguimento, minore cupo e ottoni gravi per il 1985 sbagliato, lo swing del 1955 per il ritorno al ballo, il fuoco dell'almanacco che riporta il maggiore. Niente brani o temi del film.",
+  "fonti": [
+    "Doc porta Marty e Jennifer nel 2015 (21 ottobre) e fa addormentare Jennifer; Marty Jr., identico a Marty, sarebbe coinvolto da Griff Tannen, nipote di Biff, in una rapina e finirebbe in prigione; Marty prende il suo posto, rifiuta l'offerta di Griff, scappa con un volopattino (skate volante) e Griff con la sua banda viene arrestato; Marty compra un almanacco sportivo con i risultati dal 1950 al 2000, Doc lo getta nella spazzatura e il vecchio Biff, che ha sentito tutto, lo recupera; Biff prende di nascosto la macchina del tempo, va nel 1955 e consegna l'almanacco al sé giovane; tornati nel 1985 trovano un 1985 alternativo in cui Biff, grazie alle scommesse vinte, è ricchissimo e domina una Hill Valley violenta e degradata, ha ucciso George McFly e sposato Lorraine; per rimediare Marty e Doc tornano nel 1955, dove Marty deve restare nascosto dal sé stesso del primo viaggio (al ballo «Incanto sotto il mare»), segue Biff, recupera l'almanacco inseguendo l'auto di Biff col volopattino e lo brucia, ristabilendo il 1985 precedente; durante la tempesta un fulmine colpisce la macchina del tempo e Doc finisce nel 1885; un fattorino consegna a Marty una lettera scritta da Doc nel 1885, settant'anni prima; Marty corre dal Doc del 1955, che sviene: https://it.wikipedia.org/wiki/Ritorno_al_futuro_-_Parte_II",
+    "Il vecchio Biff ruba la DeLorean e la restituisce senza che Doc e Marty se ne accorgano; nel 1985 alternativo Biff ha usato l'almanacco per fare fortuna, gestisce un hotel-casinò, ha ucciso George nel 1973 e costretto Lorraine a sposarlo, e dice a Marty di aver ricevuto l'almanacco il 12 novembre 1955; nel 1955 Marty deve recuperare l'almanacco senza interferire con gli eventi del primo film, lo recupera con l'hoverboard dall'auto di Biff, che finisce contro un camion del letame, e lo brucia annullando i cambiamenti; il fulmine colpisce la DeLorean e Doc viene mandato nel 1885; la lettera di Doc arriva con la Western Union e Marty corre dal Doc del 1955, che sviene: https://en.wikipedia.org/wiki/Back_to_the_Future_Part_II"
+  ]
+}
