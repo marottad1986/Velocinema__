@@ -393,8 +393,8 @@ export const ArtCasa: React.FC<{ T: number; engine: number; crash: number; ghost
   const g = y0 + 430; // il prato
   const shake = crash > 0 && crash < 1 ? Math.sin(T * 70) * 6 * (1 - crash) : 0;
   // il motore cade dall'alto e si pianta nel tetto (engine 0..1 = la caduta)
-  const ey = lerp(y0 - 260, ENG_HIT[1], eio(engine));
-  const ex = lerp(ENG_HIT[0] - 120, ENG_HIT[0], eio(engine));
+  const ey = lerp(y0 - 260, ENG_HIT[1], engine * engine); // accelera fino all'urto
+  const ex = lerp(ENG_HIT[0] - 120, ENG_HIT[0], engine * engine);
   return (
     <g>
       {sky && <Sky T={T} y0={y0} seed={7} moon />}

@@ -91,6 +91,8 @@ export default (mix, T) => {
           const tt = t + i * CROMA;
           if (tacet(tt)) continue;
           const m = root + 12 + iv[[0, 1, 2, 3, 4, 3, 2, 1][i]];
+          // niente nota doppia: se il motivo suona la stessa nota nello stesso istante, l'arpeggio la lascia a lui
+          if (o.mel && i % 2 === 0 && MOTIF[(k % 2) * 4 + i / 2][1] + (o.oct ?? 0) === m) continue;
           piano(mix, m, { t: tt, dur: CROMA * 1.6, vel: o.arp * (i % 4 === 0 ? 1 : 0.78), pan: -0.15 });
         }
       }
@@ -176,7 +178,7 @@ export default (mix, T) => {
   timp(mix, at('danni', 3, 0.2), { vel: 95, gain: 0.55 });
   // capitolo 7: l'auto che arriva, l'urto (poi silenzio)
   clip(mix, 'auto_epoca', { t: at('gretchen', 2, 0.1) - 0.6, da: 17.5, durata: 1.7, gain: 0.15, fadeIn: 0.4, fadeOut: 0.3, rev: 0.25 });
-  clip(mix, 'colpi_cavi', { t: crash, da: 0.5, durata: 0.5, gain: 0.7, fadeOut: 0.2, rev: 0.3 });
+  clip(mix, 'colpi_cavi', { t: crash, da: 0.5, durata: 0.5, gain: 0.9, fadeOut: 0.2, rev: 0.3 });
   timp(mix, crash, { vel: 115, gain: 1.6 });
   bell(mix, 71, { t: at('gretchen', 3, 0.1), vel: 34 });
   // capitolo 8: lo sparo (un solo lampo), poi silenzio; «torna come guida», «era lui» (scala gialla che risale)
