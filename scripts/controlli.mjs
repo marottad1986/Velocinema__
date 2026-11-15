@@ -65,7 +65,7 @@ for (const [slug, path] of lista) {
   // ---- fonti: ogni fatto citato confermato da un link («<fatti>: <url>»); obbligatorie per le canzoni, avviso per film e serie
   if (!path.startsWith('quadri/')) {
     const fonti = Array.isArray(j.fonti) ? j.fonti : [];
-    if (!fonti.length) (canzone || j.tipo === 'talent' ? E : A).push('manca il campo «fonti» con i link che confermano i fatti citati');
+    if (!fonti.length) (canzone || j.tipo === 'talent' || j.tipo === 'videogioco' ? E : A).push('manca il campo «fonti» con i link che confermano i fatti citati');
     for (const f of fonti) if (!/https?:\/\/\S+/.test(f)) E.push(`fonte senza link: «${f.slice(0, 60)}…»`);
   }
 
@@ -80,7 +80,7 @@ for (const [slug, path] of lista) {
   const locandine = [dirScene && `${dirScene}/Locandina.tsx`, dirScene && `${dirScene}/Finale.tsx`, path.startsWith('quadri/') && 'src/scenes/quadri/Locandina.tsx'].filter((p) => p && existsSync(p));
   // eccezione: le collaborazioni con un'altra pagina (`copertina.collab`, es. lo speciale Bove con Mr.goal) chiudono con
   // «Commenta: lo vedrai al cinema?» e «Segui le due pagine»; senza `collab` vale la formula solita
-  const invito = /Commenta con (il film|la serie|la spiegazione|la canzone|il quadro|il programma) che vorresti\.|Commenta con chi vorresti in finale\./;
+  const invito = /Commenta con (il film|la serie|la spiegazione|la canzone|il quadro|il programma|il gioco) che vorresti\.|Commenta con chi vorresti in finale\./;
   const invitoCollab = /Commenta: lo vedrai al cinema\?/;
   if (!locandine.some((p) => invito.test(readFileSync(p, 'utf8')) || (j.copertina?.collab && invitoCollab.test(readFileSync(p, 'utf8'))))) E.push(j.copertina?.collab ? 'finale senza «Commenta: lo vedrai al cinema?» (collaborazione)' : 'finale senza «Commenta con … che vorresti.»');
   if (j.copertina?.collab && !locandine.some((p) => /Segui le due pagine/.test(readFileSync(p, 'utf8')))) E.push('collaborazione: il finale deve dire «Segui le due pagine»');
@@ -163,7 +163,7 @@ for (const slug of listaLunghi) {
   if (!new RegExp(`slug: '${slug}'`).test(readFileSync('src/lunghi/registro.ts', 'utf8'))) E.push('non registrato in src/lunghi/registro.ts');
   const dir = `src/lunghi/${slug}`;
   const sorgenti = existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith('.tsx')).map((f) => readFileSync(`${dir}/${f}`, 'utf8')).join('\n') : '';
-  if (!/Commenta con (la serie|il film|la spiegazione)[^.<]*\./.test(sorgenti)) E.push(`${dir}: la chiusura non ha «Commenta con …»`);
+  if (!/Commenta con (la serie|il film|la spiegazione|il gioco)[^.<]*\./.test(sorgenti)) E.push(`${dir}: la chiusura non ha «Commenta con …»`);
   // mai la durata totale del lungo (il marchio è «In 2 minuti»: solo «2 minuti a stagione» / «STAGIONE N IN 2 MINUTI»)
   for (const t of [L.titolo_youtube, ...tr.flatMap((x) => [x.capitolo?.titolo, ...(x.voce?.dir === `audio/${slug}` ? x.testo : [])]), sorgenti].filter(Boolean))
     for (const m of t.matchAll(/\bin (\d+|due|tre|quattro|cinque|sei|sette|otto|nove|dieci) minuti\b/gi)) if (!/^in (2|due) minuti$/i.test(m[0])) E.push(`«${m[0]}»: il lungo non dichiara la durata totale (VIDEO-LUNGO.md)`);
