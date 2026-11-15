@@ -152,7 +152,7 @@ export default (mix, T) => {
 
   // 3 · Doc vivo (campanelle), Buford (tromboni gravi), la sfida, Marty accetta
   frontiera(B(T.buford), B(T.locomotiva), { vel: 42 });
-  strings(B(T.buford), B(T.locomotiva), { vel: 38, gain: 0.3, chords: MIN });
+  strings(B(T.buford), B(T.locomotiva), { vel: 38, gain: 0.3 });
   [75, 79, 82, 87].forEach((m, k) => bell(at('buford', 0, 0.3) + k * CROMA / 2, m, 40));
   suona(mix, 'trombone', 34, { t: at('buford', 1, 0.1), dur: 1.6, vel: 72, gain: 0.34, attack: 0.08, release: 0.7, rev: 0.45 }); // Buford
   timp(at('buford', 2, 0.2), 36, 92, 0.55);
@@ -213,7 +213,6 @@ export default (mix, T) => {
   clip(mix, 'fischio_diesel', { t: at('futuro', 0, 0.2), da: 1.9, durata: 1.2, gain: 0.16, fadeOut: 0.4, rev: 0.3 }); // il treno merci
   clip(mix, 'metallo_schianto', { t: hit - 0.01, da: 0.05, durata: 1.4, gain: 0.3, fadeOut: 0.4, rev: 0.3 }); // l'auto distrutta
   kick(hit, 0.6);
-  strings(hit + BEAT, Bn(hit + BEAT), { vel: 44, gain: 0.36, high: true });
   strings(Bn(hit + BEAT), F, { vel: 44, gain: 0.36, high: true });
   spic(B(at('futuro', 1)), at('futuro', 2), { vel: 30 });
   clip(mix, 'passaggio', { t: at('futuro', 2, 0.1) - 0.1, da: 0.56, durata: 1.5, gain: 0.3, fadeOut: 0.4, rev: 0.35 });
