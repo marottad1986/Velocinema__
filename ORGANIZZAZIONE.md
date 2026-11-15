@@ -58,7 +58,9 @@ Memoria comune della squadra (si legge all'inizio di ogni sessione del proprio r
 ## Cosa manca per l'automazione completa (in ordine di importanza)
 
 ### 1. Pubblicazione automatica — il pezzo più grosso
-**Stato (15 nov 2026): rimandata finché l'editore non attiva il piano a pagamento di Metricool.** Il piano gratuito
+**Stato (15 nov 2026): si prova PostFast** (da circa 10–12 €/mese, API e server MCP su tutti i piani, caricamento
+del video con URL firmato: niente link pubblico, il workflow può caricare l'mp4 dopo il render). Collegamento il 16 novembre.
+In alternativa resta Metricool a pagamento. Il piano gratuito
 pubblica al massimo 20 post al mese (quelli oltre restano in coda e non escono); a noi ne servono circa 43 al mese solo
 contando ogni uscita una volta, di più se ogni social conta a parte, più le storie. Intanto si prepara tutto il resto
 (link pubblico ai video, testi già nel formato di Metricool), così all'attivazione basta accendere.
