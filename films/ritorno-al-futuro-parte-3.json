@@ -29,12 +29,12 @@
     {
       "id": "tomba",
       "titolo": "Cosa scopre Marty nel 1955?",
-      "durata": 13,
+      "durata": 14,
       "personaggi": [],
       "scena": "Schema delle linee del tempo della trilogia: vedi Linee3.tsx.",
       "sottotitoli": [
-        "Marty, 17 anni, viaggia nel tempo: ora è bloccato nel 1955.",
-        "Il suo amico Doc, scienziato, è finito nel 1885.",
+        "Marty viaggia nel tempo, ma ora è bloccato nel 1955.",
+        "Il suo amico Doc, uno scienziato, è finito settant'anni prima.",
         "Ma in un cimitero trova la tomba di Doc:",
         "verrà ucciso nel passato, per 80 dollari."
       ]
@@ -133,7 +133,7 @@
     {
       "id": "futuro",
       "titolo": "Cosa trova Marty nel 1985?",
-      "durata": 14,
+      "durata": 13,
       "personaggi": [],
       "scena": "Schema delle linee del tempo: vedi Linee3.tsx.",
       "sottotitoli": [
