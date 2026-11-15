@@ -81,7 +81,8 @@ SendUserFile), così l'utente lo trova lì quando apre la conversazione.
 - **Produzione — video pronto**: quando il video finale con la voce è pronto da controllare (controlli verdi e revisori
   APPROVATO), un messaggio con titolo, data di uscita, link alla pull request e cartella MEGA. Nella chat della sessione si
   manda anche il video (`out/<film>-voce.mp4`, o `out/<film>.mp4` se la voce manca) con SendUserFile, così l'utente lo
-  guarda subito e dice se va bene prima di unire su main.
+  guarda subito e dice se va bene. Il video è «pronto» solo dopo la conferma dell'editore; appena conferma, la sessione
+  unisce su main da sola senza chiedere altro (`DECISIONI.md`, 15 novembre 2026).
 - **Produzione — problema**: se la data di uscita non è raggiungibile con la qualità richiesta, o la sessione è bloccata
   (chiave, connettore, errore), un messaggio subito con il motivo e l'alternativa prevista dal calendario.
 Se il connettore IFTTT non è disponibile, si avvisa solo nella chat della sessione (SendUserMessage, e notifica push se c'è).

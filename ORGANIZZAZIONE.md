@@ -77,7 +77,7 @@ link diretto al file, Metricool accetta URL pubblici, Google Drive (se collegato
   pronto, programma ogni post (testo da `<settimana>-social.md`, copertina = fotogramma 0) e la storia del giorno prima;
   l'avviso Telegram «📤 programmato» col link a Metricool. Il primo mese con `autoPublish: false` (ti arriva la notifica
   sull'app Metricool e tocchi «pubblica»), poi automatico.
-- **Da decidere:** dichiarazione di contenuto IA (`isAigc` TikTok, `isAiGeneratedContent` YouTube, `isAiGenerated` Instagram).
+- **Deciso (15 nov): sì, sempre.** Dichiarazione di contenuto IA (`isAigc` TikTok, `isAiGeneratedContent` YouTube, `isAiGenerated` Instagram).
   Voce sintetica e disegni generati: la direzione consiglia di dichiararlo sempre (le piattaforme lo chiedono per la voce IA
   e senza dichiarazione si rischia la monetizzazione).
 
@@ -101,10 +101,9 @@ legge il file, controlla le sessioni (`get_session`), rispetta max 2 al giorno e
 successiva. Niente più catene di promemoria.
 - **Tu:** niente, solo un sì.
 
-### 4. Unione su main senza aspettarti
-Oggi il video finale aspetta il tuo «va bene» prima di unire. Per supervisionare e basta: **unione automatica** se controlli
-verdi + quattro revisori APPROVATO, e tu hai fino all'uscita per fermarlo (rispondi «ferma» su Telegram/chat e esce
-l'alternativa). **Da decidere tu.**
+### 4. Unione su main (deciso il 15 nov)
+Il video finale ti arriva in chat; **è «pronto» solo quando lo confermi**. Dopo la tua conferma la sessione unisce su main
+da sola, senza chiederti altro.
 
 ### 5. Diffusione (persone che possono rilanciare)
 Per ogni uscita il manager scrive nel `-social.md` una sezione «Diffusione»: chi può essere interessato (protagonista,
@@ -124,5 +123,5 @@ nei post le mette in automatico la pubblicazione; i messaggi privati li mandi tu
 2. Instagram e TikTok in modalità account professionale (se non lo sono già).
 3. App Meta per i commenti (token), chiave YouTube Data.
 4. Costi attuali alla contabilità.
-5. Tre decisioni: unione automatica sì/no · dichiarazione IA sì/no · soglia di spesa oltre cui ti chiediamo.
+5. Soglia di spesa oltre cui ti chiediamo (decise il 15 nov: unione dopo la tua conferma del video, dichiarazione IA sempre).
 Dopo questo, il tuo lavoro settimanale è: **un «sì» la domenica** e leggere Telegram.

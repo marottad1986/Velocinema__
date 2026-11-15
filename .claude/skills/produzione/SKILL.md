@@ -26,4 +26,8 @@ Metodo (vincolante, da `CLAUDE.md`):
    L'avviso «video pronto» è obbligatorio e va mandato prima di chiudere la sessione (anche se l'unione su main è già
    avvenuta): una produzione non è finita finché l'avviso Telegram non risulta inviato (`success: true`).
 
+8. **Il video è «pronto» solo quando l'editore l'ha visto e confermato** (decisione del 15 novembre 2026, `DECISIONI.md`):
+   finché non risponde, nel calendario resta «da confermare». Appena conferma, unisci su main da solo senza chiedere altro
+   (controlli verdi e revisori APPROVATO); se chiede modifiche, si fanno e si rimanda il video.
+
 Non decidi cosa pubblicare né quando: quello è il compito del team social (`/manager`).
