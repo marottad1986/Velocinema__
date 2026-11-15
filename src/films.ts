@@ -1,5 +1,5 @@
 import type { FilmData, FilmDef } from './types';
-import { ANTON, BEBAS, CINZEL, CREEPSTER, PACIFICO, PLAYFAIR, RIGHTEOUS, SERIF, STENCIL, SYNCOPATE, TYPEWRITER, CRIMSON } from './lib/fonts';
+import { DISPLAY, ANTON, BEBAS, CINZEL, CREEPSTER, PACIFICO, PLAYFAIR, RIGHTEOUS, SERIF, STENCIL, SYNCOPATE, TYPEWRITER, CRIMSON } from './lib/fonts';
 import shutterIsland from '../films/shutter-island.json';
 import laLaLand from '../films/la-la-land.json';
 import trumanShow from '../films/the-truman-show.json';
@@ -18,6 +18,9 @@ import tenet from '../films/tenet.json';
 import ritornoAlFuturo from '../films/ritorno-al-futuro.json';
 import { RITORNO_AL_FUTURO_SCENES } from './scenes/ritorno-al-futuro';
 import { Copertina as RAFCover, Finale as RAFEnd } from './scenes/ritorno-al-futuro/Locandina';
+import gtaVi from '../films/gta-vi.json';
+import { GTA_VI_SCENES } from './scenes/gta-vi';
+import { Copertina as GtaCover, Finale as GtaEnd } from './scenes/gta-vi/Locandina';
 import { SHUTTER_ISLAND_SCENES } from './scenes/shutter-island';
 import { Copertina as ShutterCover } from './scenes/shutter-island/Copertina';
 import { Finale as ShutterEnd } from './scenes/shutter-island/Finale';
@@ -118,6 +121,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'x-factor-2026-live-3', data: xFactor2026Live3 as FilmData, scenes: X_FACTOR_2026_LIVE_3_SCENES, cover: XF26L3Cover, ending: XF26L3End, posterFont: ANTON },
   { slug: 'x-factor-2026-live-4', data: xFactor2026Live4 as FilmData, scenes: X_FACTOR_2026_LIVE_4_SCENES, cover: XF26L4Cover, ending: XF26L4End, posterFont: ANTON },
   { slug: 'hunger-games', data: hungerGames as FilmData, scenes: HUNGER_GAMES_SCENES, cover: HGCover, ending: HGEnd, posterFont: ANTON },
+  { slug: 'gta-vi', data: gtaVi as FilmData, scenes: GTA_VI_SCENES, cover: GtaCover, ending: GtaEnd, posterFont: DISPLAY },
   { slug: 'bove-in-un-battito', data: boveInUnBattito as FilmData, scenes: BOVE_SCENES, cover: BoveCover, ending: BoveEnd, posterFont: ANTON },
   { slug: 'ritorno-al-futuro', data: ritornoAlFuturo as FilmData, scenes: RITORNO_AL_FUTURO_SCENES, cover: RAFCover, ending: RAFEnd, posterFont: RIGHTEOUS },
 ];

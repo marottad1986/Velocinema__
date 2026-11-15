@@ -1,0 +1,230 @@
+{
+  "formato": "spiegato",
+  "tipo": "videogioco",
+  "schema": true,
+  "sigla": false,
+  "titolo": "GTA VI",
+  "regista": "Rockstar Games",
+  "anno": 2026,
+  "aggiornato": "prima dell'uscita del 19 novembre 2026",
+  "bpm": 100,
+  "palette": {
+    "chiaro": "#FFF1F7",
+    "principale": "#FF4FA3",
+    "scuro": "#170B22",
+    "accento": "#FFC93C"
+  },
+  "pronuncia": {
+    "GTA VI": "gi-ti-a sei",
+    "GTA": "gi-ti-a",
+    "Leonida": "Leònida",
+    "Caminos": "Camìnos",
+    "Gellhorn": "Ghèlhorn",
+    "Cal Hampton": "Kal Hampton",
+    "Dre'Quan": "Dri-Kwàn",
+    "Boobie": "Bùbi",
+    "Only Raw": "Ònli Ròo",
+    "Vercetti": "Vercètti",
+    "Bautista": "Bautìsta",
+    "preload": "prilòud",
+    "PC.": "pi-ci.",
+    "Ike": "Àik",
+    "Preload": "Prilòud",
+    "Raul": "Raùl"
+  },
+  "personaggi": [
+    {
+      "nome": "Jason Duval",
+      "ruolo": "ex soldato, lavora per i trafficanti delle Keys",
+      "oggetto": "piastrina militare appesa alla catenella"
+    },
+    {
+      "nome": "Lucia Caminos",
+      "ruolo": "da Liberty City, appena uscita dal carcere",
+      "oggetto": "chiave della cella con la targhetta del carcere"
+    },
+    {
+      "nome": "Brian Heder",
+      "ruolo": "trafficante delle Keys, ospita Jason",
+      "oggetto": "casa con la luce accesa"
+    },
+    {
+      "nome": "Cal Hampton",
+      "ruolo": "l'amico paranoico di Jason",
+      "oggetto": "binocolo"
+    },
+    {
+      "nome": "Boobie Ike",
+      "ruolo": "ha un impero di affari a Vice City",
+      "oggetto": "insegna al neon con il dollaro"
+    },
+    {
+      "nome": "Dre'Quan Priest",
+      "ruolo": "guida con Boobie l'etichetta Only Raw Records",
+      "oggetto": "disco in vinile"
+    },
+    {
+      "nome": "Raul Bautista",
+      "ruolo": "rapinatore di banche esperto",
+      "oggetto": "manopola di una cassaforte"
+    }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Mappa, coppia, novità: i dettagli ufficiali.",
+    "immagine": "Locandina senza sigla, con «VIDEOGIOCHI SPIEGATI» in alto e il titolo GTA VI nel nostro carattere già completo dal primo fotogramma: tramonto rosa e viola con il sole a righe sul mare, palme scure ai lati, un hotel anni '30 bianco e rosa con l'insegna verticale al neon HOTEL che sfarfalla, un fenicottero nell'acqua bassa, un'auto decappottabile azzurra ferma sul lungomare bagnato, lampeggianti rossi e blu che arrivano da lontano. NON usare persone, armi, logo, caratteri, immagini o mappe del gioco.",
+    "voce": "GTA VI: i dettagli ufficiali prima dell'uscita."
+  },
+  "capitoli": [
+    {
+      "id": "mappa",
+      "titolo": "Cosa c'è a Leonida?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
+      "sottotitoli": [
+        "In Leonida c'è prima di tutto Vice City, la Miami del gioco,",
+        "poi le Keys, la palude di Grassrivers,",
+        "Port Gellhorn, Ambrosia e il monte Kalaga.",
+        "E secondo Rockstar è tre volte Red Dead Redemption 2."
+      ]
+    },
+    {
+      "id": "vicecity",
+      "titolo": "Com'è la nuova Vice City?",
+      "durata": 10,
+      "personaggi": [],
+      "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
+      "sottotitoli": [
+        "Vice City torna dopo vent'anni, dai tempi di Vice City Stories.",
+        "Rockstar l'ha ricostruita studiando Miami dal vero,",
+        "ed è lì che si svolge la maggior parte del gioco."
+      ]
+    },
+    {
+      "id": "coppia",
+      "titolo": "Chi sono Jason e Lucia?",
+      "durata": 12,
+      "personaggi": [
+        "Jason Duval",
+        "Brian Heder",
+        "Lucia Caminos"
+      ],
+      "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
+      "sottotitoli": [
+        "Jason Duval, ex soldato, lavora per i trafficanti delle Keys",
+        "e vive gratis in una casa di Brian Heder, uno di loro.",
+        "Lucia Caminos, da Liberty City, esce dal carcere,",
+        "dove era finita per difendere la famiglia."
+      ]
+    },
+    {
+      "id": "colpo",
+      "titolo": "Come parte la storia?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
+      "sottotitoli": [
+        "Un colpo in banca che sembrava facile va storto,",
+        "e i due finiscono in un complotto grande quanto Leonida.",
+        "Rockstar si è ispirata a Bonnie e Clyde:",
+        "per uscirne devono proteggersi a vicenda."
+      ]
+    },
+    {
+      "id": "insieme",
+      "titolo": "Come si gioca in due?",
+      "durata": 10,
+      "personaggi": [],
+      "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
+      "sottotitoli": [
+        "Giochi ora con Jason, ora con Lucia,",
+        "e in giro possono separarsi o stare insieme.",
+        "Il loro rapporto cambia con le tue scelte,",
+        "ma le attività di coppia sono facoltative."
+      ]
+    },
+    {
+      "id": "profilo",
+      "titolo": "Cosa cambia mentre giochi?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
+      "sottotitoli": [
+        "Arriva il Criminal Profile: registra come commetti i crimini,",
+        "violenza inutile compresa, e mondo e storia reagiscono.",
+        "Il fisico cambia con cibo, palestra e sonno,",
+        "e puoi cambiare vestiti e capelli."
+      ]
+    },
+    {
+      "id": "personaggi",
+      "titolo": "Chi altro incontri?",
+      "durata": 12,
+      "personaggi": [
+        "Cal Hampton",
+        "Boobie Ike",
+        "Dre'Quan Priest",
+        "Raul Bautista"
+      ],
+      "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
+      "sottotitoli": [
+        "C'è Cal Hampton, l'amico paranoico di Jason,",
+        "Boobie Ike, con il suo impero d'affari a Vice City,",
+        "che guida con Dre'Quan Priest la Only Raw Records,",
+        "e Raul Bautista, rapinatore di banche."
+      ]
+    },
+    {
+      "id": "satira",
+      "titolo": "Cosa prende in giro?",
+      "durata": 10,
+      "personaggi": [],
+      "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
+      "sottotitoli": [
+        "Come sempre, prende in giro l'America di oggi:",
+        "social, influencer, Florida Man,",
+        "la polizia con la telecamera addosso.",
+        "Nel tempo libero: paracadute, basket, immersioni."
+      ]
+    },
+    {
+      "id": "uscita",
+      "titolo": "Cosa sapere per l'uscita?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
+      "sottotitoli": [
+        "Esce il 19 novembre su PlayStation 5 e Xbox Series; PC per ora no.",
+        "Preload aperto dal 10 novembre: oltre 200 giga.",
+        "E la scatola ha un codice, non il disco."
+      ]
+    },
+    {
+      "id": "edizioni",
+      "titolo": "Quali bonus ci sono?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
+      "sottotitoli": [
+        "Comprando in digitale prima del 20 novembre hai il Vintage Vice City Pack,",
+        "ispirato a Tommy Vercetti.",
+        "E al lancio niente microtransazioni.",
+        "Ma Jason e Lucia ne usciranno insieme?"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "In una frase: due complici contro tutta Leonida.",
+    "immagine": "La stessa scena della copertina al tramonto più tardo, più calma (l'insegna accesa fissa, i lampeggianti lontani spenti); riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il gioco che vorresti.'"
+  },
+  "musica": "Originale e strumentale, genere synth anni '80 richiamato con strumenti campionati: pianoforte e archi in pizzicato a crome come un arpeggiatore, basso pulsante (contrabbasso e violoncelli in pizzicato), cassa, rullante e charleston di VCSL a passo da autostrada notturna, ottoni morbidi negli accordi lunghi; un solo tempo (100 bpm). Niente temi, brani delle radio del gioco o melodie dei trailer.",
+  "fonti": [
+    "Ambientato nello stato immaginario di Leonida, basato sulla Florida; Vice City ispirata a Miami; protagonisti Jason Duval e Lucia Caminos; Lucia incarcerata nel Leonida Penitentiary per aver combattuto in difesa della propria famiglia; un colpo apparentemente facile va storto e i due finiscono in una cospirazione criminale estesa a tutta Leonida e devono affidarsi l'uno all'altra; dinamica ispirata a Bonnie e Clyde; Cal Hampton amico paranoico di Jason; Boobie Ike a capo di un impero commerciale a Vice City; Dre'Quan Priest con Boobie per l'etichetta Only Raw Records; il rapinatore Raul Bautista; Brian Heder, trafficante delle Keys che ospita gratuitamente Jason; il giocatore controlla alternativamente Jason e Lucia, che possono separarsi o svolgere insieme attività; paracadutismo, pallacanestro, esercizio fisico e immersioni; secondo Rockstar la mappa è tre volte l'area giocabile di Red Dead Redemption II; Criminal Profile che registra come si commettono i crimini, compresa la violenza non necessaria, e influisce sulle reazioni del mondo e sulla narrazione; rapporto tra Jason e Lucia influenzato dalle decisioni, attività di coppia non obbligatorie; peso e aspetto cambiano con alimentazione, esercizio e abitudini, abiti e acconciature; sviluppatori che hanno studiato Miami; uscita il 19 novembre 2026 su PS5 e Xbox Series X/S (Xbox One via cloud), nessuna versione PC annunciata, circa 212 GB; Vintage Vice City Pack ispirato a Tommy Vercetti incluso negli acquisti digitali prima del 20 novembre 2026; niente microtransazioni al lancio; copie confezionate senza disco con codice di download; predownload anticipato alla mezzanotte del 10 novembre 2026: https://it.wikipedia.org/wiki/Grand_Theft_Auto_VI",
+    "Mappa con Vice City, Grassrivers e Leonida Keys (ispirate a Miami, Everglades e Florida Keys), più Ambrosia, Mount Kalaga National Park e Port Gellhorn; gioco ambientato soprattutto a Vice City; satira della cultura americana degli anni 2020: social, influencer, telecamere sulle divise della polizia, meme del Florida Man; Jason ex soldato che lavora per trafficanti nelle Leonida Keys; Lucia da Liberty City; Brian Heder padrone di casa di Jason; nessuna versione Windows; Vice City già in Grand Theft Auto: Vice City Stories (2006): https://en.wikipedia.org/wiki/Grand_Theft_Auto_VI",
+    "Rapporto tra Jason e Lucia legato alle azioni del giocatore, attività di coppia facoltative; restare svegli per giorni si vede sul volto; Jason e Lucia possono separarsi per attività indipendenti; gioco ambientato soprattutto a Vice City; nessuna versione PC annunciata: https://en.wikipedia.org/wiki/Grand_Theft_Auto_VI",
+    "Data di uscita ufficiale (19 novembre 2026) e console sullo store di Rockstar: https://store.rockstargames.com/it/game/buy-gta-vi",
+    "Grand Theft Auto: Vice City Stories, uscito nel 2006 e ambientato a Vice City: https://it.wikipedia.org/wiki/Grand_Theft_Auto:_Vice_City_Stories"
+  ]
+}

@@ -12,13 +12,19 @@ Serie **talent spiegati**: programmi TV in corso con persone reali (X Factor 202
 con `"tipo": "talent"`. Regole proprie (nessuna persona disegnata, niente canzoni cantate né imitazioni, niente logo,
 fatti della gara verificati su fonti, vocabolario visivo fisso): vedi `TALENT.md`.
 
+Serie **videogiochi spiegati**: la storia di un videogioco (come un film, o Spiegato semplice per le storie intricate),
+JSON in `films/` con `"tipo": "videogioco"`, uscita fissa il martedì alle 12:30. Regole proprie (niente immagini, loghi o
+interfacce del gioco, giochi non ancora usciti solo con fatti annunciati ufficialmente): vedi `GIOCHI.md`.
+
 Video **lunghi orizzontali** per YouTube (1920×1080, almeno 8 minuti, più episodi montati in un solo racconto, es. Dark tutta la serie):
 JSON in `lunghi/`, composizione separata in `src/lunghi/`, regole proprie (struttura, miniatura, zone sicure 16:9,
 griglia musicale tra un episodio e l'altro, capitoli YouTube): vedi `VIDEO-LUNGO.md`.
 
 Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni domenica alle 15:00
 la settimana che inizia il giorno dopo, con i dati di Metricool, e avvio della produzione; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.
-Comandi per aprire una sessione: `/manager` (team social media manager) e `/produzione` (un video per sessione).
+Comandi per aprire una sessione: `/manager` (team social media manager), `/produzione` (un video per sessione), `/direzione`
+(consigliere dell'editore, diffonde le decisioni) e `/contabilita` (conti). Organigramma e tabella di marcia verso
+l'automazione: `ORGANIZZAZIONE.md`; decisioni valide per tutti: `DECISIONI.md`; errori da non ripetere: `ERRORI.md`.
 
 ## Formato (vincolante)
 - 1080×1920, 30 o 60 fps, durata esatta 2:00 (120 s).
@@ -79,7 +85,7 @@ Comandi per aprire una sessione: `/manager` (team social media manager) e `/prod
   né frasi telegrafiche; mai frasi che parlano dello schema o del video stesso (es. «Tutto in due minuti», «Ecco lo schema
   completo»; l'etichetta «IL FILM IN 2 MINUTI» sopra il titolo resta, ma solo nelle copertine dei riassunti di film;
   i riassunti di serie usano «STAGIONE N IN 2 MINUTI»; canzoni, quadri e talent
-  usano il nome della serie, «CANZONI SPIEGATE», «QUADRI SPIEGATI» e «TALENT SPIEGATI»). Le righe dei sottotitoli sono pezzi dello stesso discorso. L'ultima frase della storia chiude o lascia una
+  usano il nome della serie, «CANZONI SPIEGATE», «QUADRI SPIEGATI», «TALENT SPIEGATI» e «VIDEOGIOCHI SPIEGATI»). Le righe dei sottotitoli sono pezzi dello stesso discorso. L'ultima frase della storia chiude o lascia una
   domanda chiara (per le serie: da dove riparte la stagione dopo).
 - Spiegato facile: parole di tutti i giorni, nessun termine tecnico senza spiegarlo subito, una cosa alla volta.
 - Queste regole sul testo valgono per tutti i progetti della serie (film, quadri, canzoni, serie TV spiegate…).
@@ -91,7 +97,7 @@ Comandi per aprire una sessione: `/manager` (team social media manager) e `/prod
   riassunti di film → «Commenta con il film che vorresti.»; riassunti di serie (es. Breaking Bad, una stagione per video:
   etichetta «STAGIONE N IN 2 MINUTI», finale «Fine della stagione N») → «Commenta con la serie che vorresti.»; Spiegato semplice → «Commenta con la spiegazione che vorresti.»;
   canzoni → «Commenta con la canzone che vorresti.»; quadri → «Commenta con il quadro che vorresti.»;
-  talent spiegati (`TALENT.md`) → «Commenta con chi vorresti in finale.»
+  talent spiegati (`TALENT.md`) → «Commenta con chi vorresti in finale.»; videogiochi (`GIOCHI.md`) → «Commenta con il gioco che vorresti.»
 - Mai frasi come «La prossima volta che lo vedi…» (né nel finale né altrove).
 
 ## Canzoni spiegate (stesso schema dei film)
@@ -216,6 +222,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   che arrotonda un istante del capitolo al battito (div 2 = crome), e gli eventi si scrivono già a tempo, es.
   `seg(t, griglia(cues[2] + 0.4), …)`; `controlli.mjs` verifica che il bpm del JSON sia quello dello spartito. Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
   Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute), Joker 96, The Others 72, Il sesto senso 72 (10 s = 3 battute), Breaking Bad stagione 1 96 (10 s = 4 battute); storia vera Edoardo Bove 72 (il timpano fa da cuore); Spiegato semplice: Inception 68 (sogni profondi a metà passo), Tenet 80 (12 s = 4 battute; la tenaglia a passo doppio), Dark 66 (2052 e 2053 a metà passo, anche la stagione 2); Ritorno al futuro 72 (10 s = 12 battiti, come il video lungo della trilogia; la corsa al fulmine a passo doppio);
+  videogiochi: GTA VI 100 (Spiegato semplice con la mappa di Leonida; il Criminal Profile a passo doppio);
   quadri: Grande onda 88, Notte stellata 92;
   Bohemian Rhapsody 70 (opera e rock a passo doppio, 140), Gli anni 600/7 ≈ 85,7 (14 s = 5 battute).
 - Effetti sonori registrati: `scripts/audio/effetti.mjs` (archivio CC0 di Craig Smith, USC / Sunset Editorial, "SSE Library"
