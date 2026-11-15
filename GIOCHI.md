@@ -48,7 +48,7 @@ gioco (genere, dove e quando è ambientato) la prima volta; ogni personaggio con
 
 ## Voce
 - Le sigle dei titoli si leggono tutte attaccate, come una parola, mai lettera per lettera (richiesta dell'utente del
-  15 novembre 2026): «GTA» → `"pronuncia": { "GTA VI": "Gitiàsèi", "GTA": "Gitià" }` nel JSON.
+  15 novembre 2026): «GTA» con la g dolce (gi, non ghi) → `"pronuncia": { "GTA VI": "Gìtiasèi", "GTA": "Gìtia" }` nel JSON (scelta dell'utente).
 
 ## Materiale social
 - Prima riga della didascalia: «🎮 Videogiochi spiegati: Titolo» + emoji; badge della storia: 🎮 VIDEOGIOCHI SPIEGATI.
