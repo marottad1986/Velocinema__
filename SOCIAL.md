@@ -81,10 +81,46 @@ SendUserFile), così l'utente lo trova lì quando apre la conversazione.
 - **Produzione — video pronto**: quando il video finale con la voce è pronto da controllare (controlli verdi e revisori
   APPROVATO), un messaggio con titolo, data di uscita, link alla pull request e cartella MEGA. Nella chat della sessione si
   manda anche il video (`out/<film>-voce.mp4`, o `out/<film>.mp4` se la voce manca) con SendUserFile, così l'utente lo
-  guarda subito e dice se va bene prima di unire su main.
+  guarda subito e dice se va bene. Il video è «pronto» solo dopo la conferma dell'editore; appena conferma, la sessione
+  unisce su main da sola senza chiedere altro (`DECISIONI.md`, 15 novembre 2026).
 - **Produzione — problema**: se la data di uscita non è raggiungibile con la qualità richiesta, o la sessione è bloccata
   (chiave, connettore, errore), un messaggio subito con il motivo e l'alternativa prevista dal calendario.
 Se il connettore IFTTT non è disponibile, si avvisa solo nella chat della sessione (SendUserMessage, e notifica push se c'è).
+
+## Idee nuove (compito del manager, ogni domenica)
+I format nuovi devono nascere dal manager, non dall'editore (decisione del 15 novembre 2026). Nella proposta della
+domenica c'è sempre una riga «Esperimento della settimana»: un format o un titolo fuori dalla rotazione, agganciato a un
+evento verificato (un programma TV in corso, un lancio, un anniversario, una tendenza di Google Trends o TikTok Creative
+Center), con il punteggio della tabella qui sotto e il motivo. Si prova una volta, si legge il risultato la domenica dopo e
+si decide se tenerlo (come X Factor e i videogiochi). Gli esperimenti non devono rendere i contenuti tutti uguali: si cerca
+un tipo di pubblico nuovo, non una copia di ciò che è già andato bene.
+
+## Monetizzazione (il manager controlla ogni domenica, la direzione il 1° del mese)
+Requisiti noti a fine 2025, **da riconfermare con una ricerca sulle pagine ufficiali il 1° di ogni mese** (cambiano spesso);
+se sono cambiati, si aggiorna questa tabella.
+| Piattaforma | Programma | Requisiti | Noi (data) |
+|---|---|---|---|
+| TikTok | Creator Rewards | 18+, 10.000 follower, 100.000 visualizzazioni negli ultimi 30 giorni, video di almeno 1 minuto, contenuti originali | 2.992 follower (12 nov); video da 2:00 ✓ |
+| YouTube | Partner Program (base) | 500 iscritti + 3 caricamenti in 90 giorni + 3.000 ore di visione in 12 mesi o 3 milioni di visualizzazioni di Shorts in 90 giorni | dati da YouTube Studio |
+| YouTube | Partner Program (pubblicità) | 1.000 iscritti + 4.000 ore in 12 mesi o 10 milioni di visualizzazioni di Shorts in 90 giorni | i video lunghi contano per le ore |
+| Instagram | bonus, abbonamenti, regali | su invito o soglie per paese (abbonamenti: 10.000 follower) | – |
+| Facebook | monetizzazione dei contenuti | su invito / idoneità nella Meta Business Suite | – |
+Cosa conviene (valutato dal manager, deciso dall'editore): i video lunghi di YouTube sono la strada più veloce per le ore di
+visione; su TikTok conta superare 1 minuto (già fatto) e la soglia dei 10.000; le collaborazioni (come Mr.goal) portano follower
+più dei bonus. Rischi da evitare: musica non nostra nel video (blocca la monetizzazione), immagini o clip dei film,
+mancata dichiarazione di contenuto IA dove la piattaforma la chiede. Quando una soglia è vicina (oltre l'80%), avviso su Telegram.
+
+## Diffusione (persone che possono rilanciare il video)
+Per ogni uscita, nel `calendario/<settimana>-social.md`, una sezione «Diffusione» quando è fattibile:
+- **Chi**: il protagonista se è una persona reale con profilo pubblico (storie vere, sport, talent), regista e autori,
+  distributore o piattaforma dove si vede l'opera, museo per i quadri, pagine di fan e community del genere, pagine partner
+  (Mr.goal). Solo profili ufficiali verificati.
+- **Come**: menzione nella didascalia e tag nel post (li mette la pubblicazione), storia con menzione, collaborazione Instagram
+  se c'è un accordo, e un **messaggio privato pronto** da incollare (breve, in prima persona plurale, cosa abbiamo fatto, link,
+  nessuna richiesta insistente; offrire di condividerlo, mai chiedere soldi o favori).
+- **Chi invia**: i messaggi privati li manda l'editore (sono contatti con persone reali a nome della pagina); la squadra li
+  prepara e ricorda il momento giusto (subito dopo l'uscita) con l'avviso Telegram del giorno.
+- Si annota la risposta in `calendario/pubblicati.md` (colonna Note), così si sa chi rilancia e chi no.
 
 ## Come si sceglie un titolo (la parte più importante)
 Gli eventi della settimana (anniversari, uscite al cinema e in streaming, festività, eventi TV) danno 2–3 titoli.

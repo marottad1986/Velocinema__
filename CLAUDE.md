@@ -22,7 +22,9 @@ griglia musicale tra un episodio e l'altro, capitoli YouTube): vedi `VIDEO-LUNGO
 
 Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni domenica alle 15:00
 la settimana che inizia il giorno dopo, con i dati di Metricool, e avvio della produzione; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.
-Comandi per aprire una sessione: `/manager` (team social media manager) e `/produzione` (un video per sessione).
+Comandi per aprire una sessione: `/manager` (team social media manager), `/produzione` (un video per sessione), `/direzione`
+(consigliere dell'editore, diffonde le decisioni) e `/contabilita` (conti). Organigramma e tabella di marcia verso
+l'automazione: `ORGANIZZAZIONE.md`; decisioni valide per tutti: `DECISIONI.md`; errori da non ripetere: `ERRORI.md`.
 
 ## Formato (vincolante)
 - 1080×1920, 30 o 60 fps, durata esatta 2:00 (120 s).

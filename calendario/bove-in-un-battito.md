@@ -97,3 +97,24 @@ Brief per la sessione `/produzione`, preparato dal manager il 13 novembre 2026 p
 - Task force di giugno 2026: trovata solo una citazione indiretta (Corriere dello Sport, 17 giugno 2026): la frase non c'è.
 - Minuto: la voce dice «al diciassettesimo minuto la partita viene sospesa» (la Wikipedia italiana dà il malore al 14';
   le cronache danno la sospensione al 17').
+
+## Diffusione (15 novembre, all'uscita delle 17:00)
+Primo caso della regola «Diffusione» di `SOCIAL.md`. I profili vanno presi solo se ufficiali (spunta blu o link dal sito
+di 01 Distribution); i messaggi li manda l'editore subito dopo l'uscita, dal profilo «In 2 minuti».
+| Chi | Perché | Come |
+|---|---|---|
+| Edoardo Bove (profilo ufficiale) | Protagonista | Menzione nella didascalia e nella storia; messaggio privato qui sotto |
+| Mr.goal | Partner della collaborazione | Post Collab su Instagram (già previsto), condivisione nelle storie |
+| 01 Distribution | Distribuisce il documentario in sala 16–18 novembre | Menzione nella storia; messaggio breve |
+| Giovanni Troilo (se ha un profilo pubblico) | Regista del documentario | Menzione nella storia |
+| Pagine di tifosi di Roma e Fiorentina | Pubblico che lo conosce | Solo se rilanciano da sole: niente messaggi a pagine non ufficiali |
+
+**Messaggio privato a Edoardo Bove** (da incollare):
+> Ciao Edoardo! Siamo «In 2 minuti», insieme a Mr.goal abbiamo raccontato la tua storia in un video animato di due minuti,
+> in vista di «In un battito» al cinema dal 16 novembre. Nessuna immagine tua né di altre persone: solo stadi, colori e
+> oggetti disegnati da noi. Ci farebbe piacere se lo guardassi: se ti piace, sentiti libero di condividerlo. Qui il link: [link].
+> Un abbraccio e in bocca al lupo per l'uscita!
+
+**Messaggio a 01 Distribution** (da incollare):
+> Buongiorno! Siamo la pagina «In 2 minuti»: con Mr.goal abbiamo fatto un video animato originale che racconta la storia di
+> Edoardo Bove e invita a vedere «In un battito» al cinema il 16, 17 e 18 novembre. Se vi è utile, potete condividerlo: [link].

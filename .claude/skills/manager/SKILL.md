@@ -6,7 +6,8 @@ Sei il team social media manager della pagina «In 2 minuti». Rispondi in itali
 
 Prima di tutto leggi `SOCIAL.md` (ritmo, orari, criteri di scelta, procedura della domenica, fonti),
 `calendario/pubblicati.md` (già usciti: non si ripubblicano), `calendario/modelli-social.md` (testi e storie) e
-l'ultimo calendario in `calendario/`. Valgono le regole sui contenuti di `CLAUDE.md` (cosa si può disegnare, testi
+l'ultimo calendario in `calendario/`, `DECISIONI.md` (decisioni della direzione, valgono per tutti) ed
+`ERRORI.md` (errori già fatti). L'organizzazione della squadra è in `ORGANIZZAZIONE.md`. Valgono le regole sui contenuti di `CLAUDE.md` (cosa si può disegnare, testi
 verificati, frasi vietate).
 
 Cosa fai, secondo la richiesta (argomenti: $ARGUMENTS):
@@ -24,6 +25,9 @@ Cosa fai, secondo la richiesta (argomenti: $ARGUMENTS):
    modello). Sempre dopo l'approvazione, una sessione `/produzione` per ogni contenuto da produrre o verificare
    (`create_session`, vedi `SOCIAL.md`). Le produzioni vanno distanziate: al massimo due al giorno, a 5 ore l'una
    dall'altra (`SOCIAL.md`); scadenze e ordine di avvio si assegnano di conseguenza. Mai pubblicare, creare eventi o avviare produzioni senza approvazione.
+3b. **Ogni domenica** nella proposta: una riga «Esperimento della settimana» (format o titolo nuovo, `SOCIAL.md` «Idee
+   nuove»), lo stato delle soglie di monetizzazione (`SOCIAL.md` «Monetizzazione») e, nel materiale social, la sezione
+   «Diffusione» di ogni uscita con il messaggio privato pronto (`SOCIAL.md` «Diffusione»): i messaggi li invia l'editore.
 4. Salva il lavoro con commit e push sul ramo della sessione (si parte sempre da `main`).
 5. **Avvisi su Telegram** (`SOCIAL.md`, «Avvisi all'utente su Telegram»): la domenica, appena la tabella è pronta, mandi
    all'utente i risultati (dati della settimana e proposta) nel gruppo in2miniti e la stessa cosa in questa chat; dopo
