@@ -271,6 +271,10 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   altri fotogrammi o misure solo se ha un dubbio. Prima ancora, il controllo da sé di BRIEF-SCENA §5 e di «Musica».
   La pull request riporta i verdetti; si unisce solo con controlli verdi e revisori APPROVATO (o con i punti aperti
   spiegati nella pull request).
+- **Immagini viste prima dall'utente (vincolante):** prima di chiamare `revisore-immagini`, il video con la voce
+  (`out/<film>-voce.mp4`) si manda all'utente nella chat della sessione (SendUserFile) e si aspetta la sua risposta. Se lo
+  approva, il revisore delle immagini non si chiama e la pull request riporta «Immagini: approvate dall'utente»; se chiede
+  modifiche, si applicano e si rimanda il video. Il revisore delle immagini si chiama solo se l'utente lo chiede.
 - Secondo passaggio dei revisori: solo se dopo il primo si è modificato qualcosa, e solo sulle parti modificate (le scene
   ridisegnate o ritoccate, le righe di testo cambiate, i tratti di musica ed effetti toccati), non su tutto il film: ciò
   che non è cambiato resta approvato dal primo passaggio. Nel messaggio al revisore elencare con precisione cosa è cambiato

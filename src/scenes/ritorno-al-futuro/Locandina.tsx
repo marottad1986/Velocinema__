@@ -27,13 +27,13 @@ const SPARKS = Array.from({ length: 26 }, () => ({ x: r() * 1080, y: 700 + r() *
 
 const Bolt: React.FC<{ k: number }> = ({ k }) => {
   if (k <= 0.01) return null;
-  const d = 'M1010 690 L930 712 L960 724 L830 730 L860 742 L700 744 L726 756 L548 756';
+  const d = 'M1010 770 L930 792 L960 804 L830 810 L860 822 L700 826 L726 838 L612 842';
   return (
     <g opacity={k}>
       <path d={d} fill="none" stroke="#FFF6B0" strokeWidth="50" opacity=".3" strokeLinejoin="round" />
       <path d={d} fill="none" stroke={SEP} strokeWidth="22" strokeLinejoin="round" />
       <path d={d} fill="none" stroke="#FFF6B0" strokeWidth="12" strokeLinejoin="round" />
-      <path d="M830 730 L780 706 L750 722" fill="none" stroke="#FFF6B0" strokeWidth="6" strokeLinejoin="round" />
+      <path d="M830 810 L780 786 L750 802" fill="none" stroke="#FFF6B0" strokeWidth="6" strokeLinejoin="round" />
     </g>
   );
 };
@@ -180,6 +180,9 @@ const TitleBlock: React.FC<{ film: PosterProps['film'] }> = ({ film }) => {
       <h1 style={{ margin: '10px 0 0', fontFamily: RIGHTEOUS, fontWeight: 400, fontSize: 150, lineHeight: 0.98, color: P.chiaro, textShadow: `0 8px 0 ${P.scuro}, 0 0 34px rgba(255,79,176,.7), 0 0 70px rgba(92,240,255,.35)` }}>
         RITORNO<br />AL FUTURO
       </h1>
+      {/* la trilogia è divisa in tre episodi: la copertina dice quale */}
+      <div style={{ display: 'inline-block', marginTop: 14, padding: '6px 26px 8px', borderRadius: 14, border: `4px solid #5CF0FF`, background: `${P.scuro}CC`,
+        fontFamily: RIGHTEOUS, fontSize: 52, lineHeight: 1, letterSpacing: '0.12em', color: P.accento, boxShadow: '0 0 24px rgba(92,240,255,.55)' }}>PARTE 1</div>
       <p style={{ margin: '14px 0 0', fontSize: 30, fontWeight: 800, color: '#B5CBE2', textShadow: `0 3px 0 ${P.scuro}` }}>un film di {film.regista} · {film.anno}</p>
     </div>
   );

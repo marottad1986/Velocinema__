@@ -18,7 +18,9 @@ Metodo (vincolante, da `CLAUDE.md`):
 5. Musica originale con strumenti campionati, un solo bpm; voce con `node scripts/genera-voce.mjs` e controllo con
    `node scripts/strumenti/ascolta-voce.mjs`.
 6. `node scripts/controlli.mjs <film>` verde, poi `node scripts/pacchetto.mjs <film>` e i revisori della parte toccata
-   (`revisore-testi`, `revisore-immagini`, `revisore-musica`, `revisore-voce`); secondo passaggio solo sulle parti cambiate.
+   (`revisore-testi`, `revisore-musica`, `revisore-voce`); secondo passaggio solo sulle parti cambiate.
+   Immagini: prima del `revisore-immagini` il video con la voce si manda all'utente in chat (SendUserFile) e si aspetta la
+   risposta; se lo approva, il revisore delle immagini non si chiama (nella pull request: «Immagini: approvate dall'utente»).
 7. Pull request con i verdetti dei revisori. Appena il video finale è pronto da controllare, avvisa l'utente su
    Telegram e mandagli il video in questa chat (SendUserFile), come in `SOCIAL.md`, «Avvisi all'utente su Telegram»;
    anche un problema che fa saltare la data va segnalato lì subito. A contenuto unito su main, il video arriva su MEGA.
