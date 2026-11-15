@@ -18,6 +18,9 @@ import tenet from '../films/tenet.json';
 import ritornoAlFuturo from '../films/ritorno-al-futuro.json';
 import { RITORNO_AL_FUTURO_SCENES } from './scenes/ritorno-al-futuro';
 import { Copertina as RAFCover, Finale as RAFEnd } from './scenes/ritorno-al-futuro/Locandina';
+import ritornoAlFuturo2 from '../films/ritorno-al-futuro-parte-2.json';
+import { RITORNO_AL_FUTURO_2_SCENES } from './scenes/ritorno-al-futuro-parte-2';
+import { Copertina as RAF2Cover, Finale as RAF2End } from './scenes/ritorno-al-futuro-parte-2/Locandina';
 import gtaVi from '../films/gta-vi.json';
 import { GTA_VI_SCENES } from './scenes/gta-vi';
 import { Copertina as GtaCover, Finale as GtaEnd } from './scenes/gta-vi/Locandina';
@@ -124,6 +127,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'gta-vi', data: gtaVi as FilmData, scenes: GTA_VI_SCENES, cover: GtaCover, ending: GtaEnd, posterFont: DISPLAY },
   { slug: 'bove-in-un-battito', data: boveInUnBattito as FilmData, scenes: BOVE_SCENES, cover: BoveCover, ending: BoveEnd, posterFont: ANTON },
   { slug: 'ritorno-al-futuro', data: ritornoAlFuturo as FilmData, scenes: RITORNO_AL_FUTURO_SCENES, cover: RAFCover, ending: RAFEnd, posterFont: RIGHTEOUS },
+  { slug: 'ritorno-al-futuro-parte-2', data: ritornoAlFuturo2 as FilmData, scenes: RITORNO_AL_FUTURO_2_SCENES, cover: RAF2Cover, ending: RAF2End, posterFont: RIGHTEOUS },
 ];
 
 export const getFilm = (slug: string): FilmDef => {
