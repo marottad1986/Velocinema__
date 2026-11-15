@@ -27,6 +27,18 @@ revisori prima della pull request); qui solo ciò che cambia. Primo video: `lung
   «STAGIONE N · IN 2 MINUTI»; aggancio, raccordi e parti nuove restano brevi, così il racconto mantiene la promessa.
 - Etichetta della copertina: il nome del formato (es. «SPIEGATO SEMPLICE»), senza durate.
 
+## Micro video sponsor (insieme al lungo)
+Ogni volta che si produce un video lungo, nella stessa produzione (stesso ramo e stessa pull request) si fa anche il
+**micro video sponsor**: un verticale breve per TikTok, Instagram e Shorts che porta al lungo su YouTube. Regole leggere,
+pochi token: si monta con quello che c'è già, non si disegna né si compone niente da zero.
+- 1080×1920, 15–30 s, zone sicure del verticale (`CLAUDE.md`); slug `<slug>-sponsor`.
+- Materiale solo riusato: copertina (o miniatura) del lungo adattata al verticale, 2–4 momenti forti presi dalle scene già
+  approvate, musica del lungo o dell'episodio, voce dalle clip già approvate più al massimo una clip nuova breve.
+- Testo: una domanda o una promessa nei primi 2 s, poi l'invito «Tutta la serie spiegata sul canale YouTube» (mai la
+  durata del lungo). Al posto del «Commenta con…» del finale basta l'invito al canale.
+- Controllo: niente revisori; basta `controlli.mjs` (se lo copre) e un'occhiata da sé a fotogramma 0 e a un fotogramma
+  per momento. Valgono comunque le regole sui contenuti (niente persone, locandine, loghi, musica dei film).
+
 ## Elementi fissi (16:9)
 - Zona sicura: testi tra x 96 e 1824 e tra y 54 e 1026 (5% per lato, televisori e anteprime). YouTube copre il fondo
   con la barra del lettore quando si mette in pausa: sottotitoli con la base a y ≤ 1000.

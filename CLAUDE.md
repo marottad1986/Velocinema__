@@ -14,7 +14,8 @@ fatti della gara verificati su fonti, vocabolario visivo fisso): vedi `TALENT.md
 
 Video **lunghi orizzontali** per YouTube (1920×1080, almeno 8 minuti, più episodi montati in un solo racconto, es. Dark tutta la serie):
 JSON in `lunghi/`, composizione separata in `src/lunghi/`, regole proprie (struttura, miniatura, zone sicure 16:9,
-griglia musicale tra un episodio e l'altro, capitoli YouTube): vedi `VIDEO-LUNGO.md`.
+griglia musicale tra un episodio e l'altro, capitoli YouTube): vedi `VIDEO-LUNGO.md`. Con ogni lungo si produce anche il
+**micro video sponsor** (verticale di 15–30 s che porta al lungo, solo materiale riusato, regole leggere, niente revisori).
 
 Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni domenica alle 15:00
 la settimana che inizia il giorno dopo, con i dati di Metricool, e avvio della produzione; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.
