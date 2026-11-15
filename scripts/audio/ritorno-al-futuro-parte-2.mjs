@@ -184,10 +184,10 @@ export default (mix, T) => {
   clip(mix, 'monete', { t: at('casino', 1, 0.3) - 0.1, da: 1.3, durata: 0.7, gain: 0.25, fadeOut: 0.2, rev: 0.25 });
   suona(mix, 'trombone', 39, { t: at('casino', 2, 0.3), dur: 1.4, vel: 72, gain: 0.32, attack: 0.05, release: 0.6, rev: 0.45 }); // la torre
   timp(dead, 36, 110, 0.65);
-  trem(dead + BEAT, end('casino') - dead - BEAT + 0.3, [48, 55, 60], { vel: 40, gain: 0.15 });
+  trem(dead + BEAT, B(T.binario) - dead - BEAT + 0.4, [48, 55, 60], { vel: 40, gain: 0.15 });
 
   // 6 · il binario deviato (scambio: scatto), tornare al 1955 (il motivo ai corni)
-  strings(Math.min(B(T.binario), T.binario), B(T.data), { vel: 40, gain: 0.32, chords: MIN, half: true });
+  strings(B(T.binario), B(T.data), { vel: 40, gain: 0.32, chords: MIN, half: true });
   motif(B(T.binario), B(T.data), { half: true, vel: 34, gain: 0.4, oct: -12 });
   clip(mix, 'scatti', { t: at('binario', 1, 0.1), da: 6.49, durata: 0.15, gain: 0.35, rev: 0.25 }); // lo scambio
   timp(at('binario', 1, 0.1), 39, 90, 0.5);
@@ -220,7 +220,7 @@ export default (mix, T) => {
   clip(mix, 'scariche', { t: bolt, da: 0.4, durata: 0.9, gain: 0.25, fadeOut: 0.3, rev: 0.2 });
   crash(bolt, 0.35); timp(bolt, 39, 115, 0.7);
   clip(mix, 'passaggio', { t: at('lettera', 1, 0.4) - 0.1, da: 0.56, durata: 1.3, gain: 0.28, fadeOut: 0.4, rev: 0.35 });
-  trem(bolt + BEAT, at('lettera', 2) - bolt - BEAT, [48, 55, 63], { vel: 40, gain: 0.12 });
+  trem(bolt + BEAT, B(at('lettera', 2)) - bolt - BEAT + 0.4, [48, 55, 63], { vel: 40, gain: 0.14 });
   clip(mix, 'giornale', { t: at('lettera', 2, 0.1), da: 0.93, durata: 0.8, gain: 0.12, fadeOut: 0.2, rev: 0.2 }); // la lettera
   strings(B(at('lettera', 2)), F, { vel: 42, gain: 0.32 });
   motif(west, F, { id: 'corno', vel: 40, gain: 0.3, oct: -12 });
