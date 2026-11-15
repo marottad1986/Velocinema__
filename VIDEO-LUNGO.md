@@ -34,6 +34,14 @@ pochi token: si monta con quello che c'è già, non si disegna né si compone ni
 - 1080×1920, 15–30 s, zone sicure del verticale (`CLAUDE.md`); slug `<slug>-sponsor`.
 - Materiale solo riusato: copertina (o miniatura) del lungo adattata al verticale, 2–4 momenti forti presi dalle scene già
   approvate, musica del lungo o dell'episodio, voce dalle clip già approvate più al massimo una clip nuova breve.
+- **Stile trailer** (vincolante): si monta come un trailer cinematografico, non come un riassunto.
+  - Voce e musica si alternano: quando parla la voce la musica scende quasi a zero (o tace del tutto), nelle pause
+    risale forte con un colpo (timpano, ottoni, impatto) sul taglio d'immagine.
+  - Frasi brevissime e staccate, una per momento, con silenzi tra l'una e l'altra; ritmo che sale verso la fine
+    (tagli sempre più ravvicinati, musica che cresce), poi uno stacco al nero o un silenzio secco prima del cartello finale.
+  - Cartelli di testo grandi a tutto schermo tra un momento e l'altro (es. «UNA CITTÀ.» / «QUATTRO FAMIGLIE.» /
+    «UN SOLO NODO.»), poi il titolo con un colpo finale.
+  - Tagli d'immagine e colpi sulla griglia del bpm del lungo.
 - Testo: una domanda o una promessa nei primi 2 s, poi l'invito «Tutta la serie spiegata sul canale YouTube» (mai la
   durata del lungo). Al posto del «Commenta con…» del finale basta l'invito al canale.
 - Controllo: niente revisori; basta `controlli.mjs` (se lo copre) e un'occhiata da sé a fotogramma 0 e a un fotogramma
