@@ -3,6 +3,9 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 15 nov 2026 · **Video lungo di Ritorno al futuro (la trilogia) rimandato:** non esce più mercoledì 18. Si produce dopo
+  tutti i video della settimana 16–22 (dopo Conjuring) e si pubblica quando decide l'editore. I tre episodi verticali
+  (Parti 1, 2 e 3, già pronti) restano fermi fino al lungo. Intanto le produzioni seguono le regole solite. · produzione, manager
 - 15 nov 2026 · Per la pubblicazione automatica si prova **PostFast** al posto di Metricool a pagamento (più economico,
   caricamento diretto del video senza link pubblico). Collegamento e prova il 16 novembre; la prova gratuita scade intorno al 21. · manager, contabilità
 - 15 nov 2026 · **Video pronto = visto dall'editore.** A fine produzione (controlli verdi, revisori APPROVATO) la sessione

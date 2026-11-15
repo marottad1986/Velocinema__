@@ -1,0 +1,157 @@
+{
+  "formato": "spiegato",
+  "tipo": "film",
+  "schema": true,
+  "sigla": false,
+  "titolo": "Ritorno al futuro – Parte III",
+  "regista": "Robert Zemeckis",
+  "anno": 1990,
+  "bpm": 72,
+  "palette": {
+    "chiaro": "#F4EEE2",
+    "principale": "#2E1E5C",
+    "scuro": "#0E0A22",
+    "accento": "#F5C23A"
+  },
+  "personaggi": [
+    { "nome": "Marty", "ruolo": "un ragazzo di 17 anni", "oggetto": "skateboard" },
+    { "nome": "Doc", "ruolo": "uno scienziato amico di Marty", "oggetto": "occhialoni da laboratorio" },
+    { "nome": "Buford Tannen", "ruolo": "un bandito violento", "oggetto": "cappello da cowboy nero" },
+    { "nome": "Clara", "ruolo": "la nuova maestra", "oggetto": "campanella della scuola" }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Una tomba nel passato, con sopra il nome di Doc.",
+    "immagine": "Locandina nello stile delle Parti 1 e 2 (notte al neon anni '80, il 1885 come fotografia seppia), con «SPIEGATO SEMPLICE · FILM», il titolo e il cartellino «PARTE 3»: una locomotiva a vapore che spinge una piccola auto argentata generica su un ponte di legno interrotto sopra un burrone, il fumo che sale, le scie gialle del viaggio nel tempo davanti all'auto; in primo piano una lapide di pietra. NON usare persone, l'auto del film, il logo o le locandine ufficiali.",
+    "voce": "Ritorno al futuro, parte tre: si può salvare un amico già morto?"
+  },
+  "capitoli": [
+    {
+      "id": "tomba",
+      "titolo": "Cosa scopre Marty nel 1955?",
+      "durata": 14,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo della trilogia: vedi Linee3.tsx.",
+      "sottotitoli": [
+        "Marty viaggia nel tempo, ma ora è bloccato nel 1955.",
+        "Il suo amico Doc, uno scienziato, è finito settant'anni prima.",
+        "Ma in un cimitero trova la tomba di Doc:",
+        "verrà ucciso nel passato, per 80 dollari."
+      ]
+    },
+    {
+      "id": "viaggio",
+      "titolo": "Come arriva Marty nel 1885?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee3.tsx.",
+      "sottotitoli": [
+        "Doc aveva nascosto l'auto del tempo in una miniera,",
+        "così Marty la ripara e parte per salvarlo.",
+        "Ma arrivando nel 1885 l'auto si guasta:",
+        "il serbatoio si buca, e senza benzina non riparte."
+      ]
+    },
+    {
+      "id": "buford",
+      "titolo": "Chi vuole uccidere Doc?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee3.tsx.",
+      "sottotitoli": [
+        "Marty ritrova Doc vivo, nel paese di settant'anni prima.",
+        "Ma lì c'è Buford Tannen, un bandito violento:",
+        "è lui che ucciderà Doc, e ora sfida anche Marty a duello.",
+        "Marty accetta, per non passare da fifone."
+      ]
+    },
+    {
+      "id": "locomotiva",
+      "titolo": "Come si spinge un'auto a 88 miglia?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee3.tsx.",
+      "sottotitoli": [
+        "Per viaggiare nel tempo, l'auto deve correre a 88 miglia orarie.",
+        "Allora Doc pensa di farla spingere da una locomotiva a vapore,",
+        "come una carrozzina spinta di corsa.",
+        "Il treno passa lunedì, il giorno scritto sulla tomba."
+      ]
+    },
+    {
+      "id": "clara",
+      "titolo": "Chi è Clara?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee3.tsx.",
+      "sottotitoli": [
+        "Intanto Doc salva Clara, la nuova maestra, da una caduta nel burrone.",
+        "I due si innamorano,",
+        "e lei, che doveva morire lì, ora è viva.",
+        "Ma partire vorrebbe dire lasciarla per sempre."
+      ]
+    },
+    {
+      "id": "verita",
+      "titolo": "Perché Doc e Clara si lasciano?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee3.tsx.",
+      "sottotitoli": [
+        "Doc decide di dirle la verità: viene dal futuro.",
+        "Clara non gli crede, e lo lascia.",
+        "Doc, disperato, beve e crolla,",
+        "e Buford lo cattura: ora Marty non può più evitare il duello."
+      ]
+    },
+    {
+      "id": "duello",
+      "titolo": "Come vince Marty il duello?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee3.tsx.",
+      "sottotitoli": [
+        "Lunedì mattina Marty affronta Buford in strada.",
+        "Buford spara, ma Marty ha nascosto una piastra di ferro sotto il poncho:",
+        "il colpo si ferma sul ferro, e Marty lo stende con un pugno.",
+        "Buford finisce arrestato, e Doc è salvo."
+      ]
+    },
+    {
+      "id": "ponte",
+      "titolo": "Come si torna nel 1985?",
+      "durata": 14,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee3.tsx.",
+      "sottotitoli": [
+        "La locomotiva spinge l'auto verso un ponte non ancora finito.",
+        "Ma Clara ora crede a Doc: sale sul treno e rischia di cadere,",
+        "così Doc la salva e resta con lei.",
+        "Marty arriva a 88 miglia e sparisce, mentre il treno precipita."
+      ]
+    },
+    {
+      "id": "futuro",
+      "titolo": "Cosa trova Marty nel 1985?",
+      "durata": 13,
+      "personaggi": [],
+      "scena": "Schema delle linee del tempo: vedi Linee3.tsx.",
+      "sottotitoli": [
+        "Nel 1985 l'auto viene distrutta da un treno,",
+        "ma Marty ora rifiuta le sfide, ed evita un incidente in auto.",
+        "Poi Doc torna, con Clara e i figli, su un treno del tempo:",
+        "il futuro, dice, non è ancora scritto."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "In una frase: il futuro non è scritto, e ognuno può cambiarlo.",
+    "immagine": "La copertina più calma: il ponte, il fumo che si dirada, la lapide di nuovo liscia senza nome; riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la spiegazione che vorresti.'"
+  },
+  "musica": "Originale e strumentale, la stessa orchestra e lo stesso tic-tac delle Parti 1 e 2 (72 bpm): nel 1885 un passo da frontiera con contrabbasso pizzicato, pianoforte da saloon e tromba lontana, la locomotiva a passo doppio sullo spiccato degli archi, il duello sospeso sui timpani; niente brani o temi del film.",
+  "fonti": [
+    "Marty bloccato nel 1955 con il Doc del 1955; Doc finito nel 1885, la lettera con il nascondiglio della DeLorean in una vecchia miniera accanto a un cimitero abbandonato; la lapide di Doc, ucciso da Buford «Cane Pazzo» Tannen per un debito di 80 dollari; Marty ripara l'auto e parte per il 1885; il serbatoio danneggiato e la mancanza di benzina; la locomotiva a vapore per spingere l'auto a 88 miglia orarie, il treno che passa il lunedì successivo; Doc salva Clara Clayton da un burrone che doveva prendere il suo nome per la sua morte e che nel 1985 si chiama Eastwood, i due si innamorano; Buford sfida Marty a duello per il lunedì; la data sulla lapide, 7 settembre 1885, e il treno del lunedì successivo; Doc le spiega la verità ma lei non gli crede e la relazione finisce, Doc beve e sviene, Buford lo cattura costringendo Marty al duello; Marty vince con un coperchio di stufa nascosto sotto il poncho e manda Buford al tappeto con un pugno, Buford e la banda arrestati; Clara raggiunge il treno, Doc la salva e rinuncia a tornare, la DeLorean raggiunge le 88 miglia e sparisce mentre la locomotiva precipita dal ponte non ancora completato; Marty torna il 27 ottobre 1985 e la DeLorean viene distrutta da un treno merci; Marty rifiuta la gara d'auto con Needles ed evita l'incidente: https://it.wikipedia.org/wiki/Ritorno_al_futuro_-_Parte_III",
+    "La lapide eretta dalla maestra Clara Clayton, Doc ucciso per 80 dollari; Buford «Mad Dog» Tannen che sfida Marty chiamandolo vigliacco, Marty che rinuncia al duello e ci va solo per la cattura di Doc; Clara che si convince che Doc diceva il vero e rischia di cadere dalla locomotiva; lo sportello di stufa sotto il poncho; la locomotiva che spinge la DeLorean sul ponte non finito; Doc resta nel 1885 con Clara; Marty torna nel 1985, la DeLorean distrutta dal treno; Marty evita l'incidente con Needles; il finale con Doc, Clara e i figli su una locomotiva del tempo e la frase sul futuro non ancora scritto: https://en.wikipedia.org/wiki/Back_to_the_Future_Part_III"
+  ]
+}
