@@ -12,7 +12,7 @@ import { Almanac, PALT } from './Linee2';
 // Al centro l'almanacco sportivo, dorato, che fluttua e brilla; dietro, Hill Valley divisa in due da una crepa: a sinistra la
 // piazza con la torre dell'orologio stampata come una cartolina, a destra il casinò di Biff al neon rosso nello stesso
 // punto (il 1985 alternativo). Due scie gialle tratteggiate escono dal libro. Niente persone, l'auto del film o loghi.
-// Il fotogramma 0 è già completo; le pagine si sfogliano e a 2,5 s il casinò lampeggia.
+// Il fotogramma 0 è già completo; l'almanacco fluttua e a 2,5 s il casinò lampeggia.
 // Finale: la crepa si richiude, l'almanacco è cenere su un piccolo fuoco, resta solo la torre.
 
 const DARK = '#0E0A22';

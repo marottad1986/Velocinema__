@@ -401,7 +401,7 @@ export const Schema: React.FC<{ T: number; cam?: { y: number; z: number } }> = (
         </g>
       )}
       <Tag T={T} t0={at('griff', 3, 0.8)} x={N.griff[0]} y={N.griff[1] - 150} text="in prigione" size={32} until={end('griff') - 0.2} />
-      <Tag T={T} t0={at('griff', 3, 1.2)} x={N.junior[0]} y={N.junior[1] - 140} text="salvo!" size={34} rot={3} until={end('griff') - 0.2} />
+      <Tag T={T} t0={at('griff', 3, 1.4)} x={N.junior[0]} y={N.junior[1] - 140} text="salvo!" size={34} rot={3} until={end('griff') - 0.2} />
 
       {/* ---- capitolo 3: l'almanacco, le scommesse, il cestino, il vecchio Biff */}
       {T >= at('almanacco', 0, 0.2) && T < at('fuoco', 2, 1.8) && (

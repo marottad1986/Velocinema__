@@ -9,7 +9,7 @@
 // Niente brani o temi del film (né la colonna sonora originale né le canzoni suonate al ballo).
 // 72 bpm su una griglia continua (10 s = 12 battiti, come il video lungo della trilogia): la foto che sbiadisce a metà
 // passo, la corsa verso il fulmine a passo doppio. Effetti registrati (archivio CC0 di Craig Smith,
-// scripts/audio/effetti.mjs) agganciati agli eventi dello schema in src/scenes/ritorno-al-futuro/Linee.tsx (stessi istanti
+// scripts/audio/effetti.mjs) agganciati agli eventi dello schema in src/scenes/ritorno-al-futuro-parte-2/Linee2.tsx (stessi istanti
 // `at()`) e della copertina in Locandina.tsx.
 import { suona, archi, colpo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
@@ -17,7 +17,7 @@ import { loadFilm, timeline } from './film.mjs';
 
 export const strumenti = ['pianoforte_coda', 'violini', 'viole', 'celli', 'contrabbasso', 'celli_spicc', 'viole_spicc', 'violini_trem', 'celli_trem',
   'contrabbasso_pizz', 'glockenspiel', 'corno', 'tromba', 'trombone', 'timpani', 'grancassa', 'rullante', 'charleston', 'piatto_crash', 'piatto_sospeso'];
-export const effetti = ['tuono_forte', 'tuono_secco', 'rombo', 'scariche', 'passaggio', 'scatti', 'pagine', 'fiammata', 'fuoco', 'monete', 'metallo_cade', 'sirene', 'giornale'];
+export const effetti = ['tuono_forte', 'rombo', 'scariche', 'passaggio', 'scatti', 'pagine', 'fiammata', 'fuoco', 'monete', 'metallo_cade', 'sirene', 'giornale'];
 /** Sala media, luminosa. */
 export const sala = { rt60: 2.0, brillo: 6000, predelay: 0.02, wet: 0.42 };
 
@@ -49,11 +49,11 @@ export default (mix, T) => {
     for (let k = 0; k < n; k++) cur += (w[k] / tot) * (s.dur - 0.35);
     return s.start + cur;
   };
-  /** Istante (assoluto) della frase n più d, sulla croma: gli stessi istanti degli eventi di Linee.tsx. */
+  /** Istante (assoluto) della frase n più d, sulla croma: gli stessi istanti degli eventi di Linee2.tsx. */
   const at = (id, n, d = 0) => G0 + Math.round((C(id, n) + d - G0) / CROMA) * CROMA;
   /** Battuta della griglia più vicina: le battute partono due battiti dopo la copertina (la griglia delle crome resta
    *  quella di Linee.tsx), così i cambi di sezione cadono più vicini all'inizio dei capitoli (capitoli da 12–14 s). */
-  const GB = G0 + 2 * BEAT;
+  const GB = G0;
   const B = (t) => GB + Math.round((t - GB) / BAR) * BAR;
   /** Accordo della battuta assoluta in cui cade t (tutti gli strati cambiano accordo insieme). */
   const kk = (t) => (((Math.floor((t - GB) / BAR + 1e-6)) % 4) + 4) % 4;
@@ -126,7 +126,6 @@ export default (mix, T) => {
   [51, 58, 63].forEach((m, j) => archi(mix, m, { t: 0.05, dur: 3.9, vel: 46, pan: (j - 1) * 0.3, rev: 0.55, gain: 0.4, attack: 0.3, release: 1.0, seed: j }));
   suona(mix, 'contrabbasso', 39, { t: 0.05, dur: 3.9, vel: 50, gain: 0.5, attack: 0.1, release: 1.0, rev: 0.5 });
   for (let i = 0; i < 6; i++) bell(BEAT * 0.5 * i + 0.4, i % 2 ? 77 : 82, 34, 0.2); // il tic-tac
-  clip(mix, 'pagine', { t: 0.4, da: 0.95, durata: 0.8, gain: 0.2, fadeOut: 0.2, rev: 0.2 });
   suona(mix, 'trombone', 39, { t: 2.5, dur: 1.2, vel: 70, gain: 0.3, attack: 0.05, release: 0.6, rev: 0.45 }); // il casinò
   timp(2.5, 36, 86, 0.45);
 
@@ -135,7 +134,7 @@ export default (mix, T) => {
   const goF = at('futuro', 2, 0.5);
   strings(G0, B(T.griff), { vel: 40, gain: 0.32 });
   spic(B(at('futuro', 1)), goF, { vel: 26 });
-  motif(GB + BAR, goF, { vel: 40, gain: 0.45 });
+  motif(GB + BAR, goF, { vel: 40, gain: 0.32 });
   bell(at('futuro', 0, 0.1), 82); bell(at('futuro', 0, 1.6), 87); bell(at('futuro', 2, 0.1), 84);
   roll(goF + 0.6, 1.0, 0.2);
   clip(mix, 'passaggio', { t: goF, da: 0.56, durata: 1.6, gain: 0.32, fadeOut: 0.4, rev: 0.35 });
@@ -145,31 +144,34 @@ export default (mix, T) => {
   timp(at('futuro', 3, 0.3), 36, 92, 0.55); // nei guai
 
   // 2 · Griff, la rapina, Marty al posto del figlio, l'arresto
-  strings(B(T.griff), B(T.almanacco), { vel: 42, gain: 0.34, chords: MIN });
+  strings(B(T.griff), at('griff', 3, 0.6), { vel: 42, gain: 0.34, chords: MIN });
+  strings(at('griff', 3, 0.6) + BEAT, B(T.almanacco), { vel: 42, gain: 0.34, chords: MIN });
   suona(mix, 'trombone', 41, { t: at('griff', 0, 0.1), dur: 0.8, vel: 72, gain: 0.32, attack: 0.03, release: 0.3, rev: 0.4 }); // Griff
   suona(mix, 'trombone', 40, { t: at('griff', 0, 0.1) + 2 * BEAT, dur: 0.6, vel: 70, gain: 0.3, attack: 0.03, release: 0.3, rev: 0.4 });
   fanfare(at('griff', 2, 0.5), [70, 70, 63], { vel: 52, gain: 0.24 }); // «no!»
   const jail = at('griff', 3, 0.6);
   clip(mix, 'sirene', { t: at('griff', 3, -0.4), da: 2, durata: 2.2, gain: 0.08, fadeIn: 0.4, fadeOut: 0.8, rev: 0.3 });
-  clip(mix, 'metallo_cade', { t: jail, da: 0.1, durata: 0.6, gain: 0.3, fadeOut: 0.2, rev: 0.3 }); // le sbarre
+  clip(mix, 'metallo_cade', { t: jail - 0.1, da: 0.64, durata: 0.34, gain: 0.3, fadeOut: 0.1, rev: 0.3 }); // le sbarre
   kick(jail, 0.5);
-  [75, 79, 82].forEach((m, k) => bell(at('griff', 3, 1.2) + k * CROMA / 2, m, 40)); // salvo
+  [75, 79, 82].forEach((m, k) => bell(at('griff', 3, 1.4) + k * CROMA / 2, m, 40)); // salvo
 
   // 3 · l'almanacco (campanelle dorate), le scommesse (monete), il cestino, il vecchio Biff (trombone grave)
   strings(B(T.almanacco), B(T.furto), { vel: 42, gain: 0.34, high: true });
   motif(B(T.almanacco), at('almanacco', 2), { id: 'corno', vel: 36, gain: 0.26, oct: -12 });
   [70, 75, 79, 82, 87, 91].forEach((m, k) => bell(at('almanacco', 0, 0.2) + k * CROMA / 2, m, 42));
-  clip(mix, 'monete', { t: at('almanacco', 1, 0.1), da: 0.2, durata: 1.2, gain: 0.18, fadeOut: 0.4, rev: 0.25 });
-  clip(mix, 'metallo_cade', { t: at('almanacco', 2, 0.8), da: 0.1, durata: 0.5, gain: 0.25, fadeOut: 0.2, rev: 0.25 }); // nel cestino
+  clip(mix, 'monete', { t: at('almanacco', 1, 0.1) - 0.1, da: 1.3, durata: 0.7, gain: 0.3, fadeOut: 0.2, rev: 0.25 });
+  clip(mix, 'metallo_cade', { t: at('almanacco', 2, 0.8) - 0.1, da: 0.64, durata: 0.34, gain: 0.25, fadeOut: 0.1, rev: 0.25 }); // nel cestino
   suona(mix, 'trombone', 34, { t: at('almanacco', 3, 0.1), dur: 2.0, vel: 70, gain: 0.34, attack: 0.1, release: 0.8, rev: 0.45 });
   timp(at('almanacco', 3, 0.9), 34, 90, 0.5);
 
   // 4 · il furto: lo spiccato teso, il salto al 1955 (lo swing per un attimo), il ritorno
   const up = at('furto', 1, 0.5), down = at('furto', 3, 0.1);
-  strings(B(T.furto), B(T.casino), { vel: 40, gain: 0.32, chords: MIN });
+  strings(B(T.furto), B(up + 1.2), { vel: 40, gain: 0.32, chords: MIN });
+  strings(B(up + 1.2), down, { vel: 38, gain: 0.3, chords: SW });
+  strings(down, B(T.casino), { vel: 40, gain: 0.32, chords: MIN });
   spic(B(T.furto), up, { vel: 32, chords: MIN });
   clip(mix, 'passaggio', { t: up - 0.1, da: 0.56, durata: 1.4, gain: 0.3, fadeOut: 0.4, rev: 0.35 });
-  swing(B(up + 1.2), down - 0.1, { vel: 38, comp: false });
+  swing(B(up + 1.2), down - 0.1, { vel: 32, comp: false });
   [70, 75, 79].forEach((m, k) => bell(at('furto', 2, 0.5) + k * CROMA / 2, m + 12, 40)); // «glielo dà»
   clip(mix, 'passaggio', { t: down - 0.1, da: 0.56, durata: 1.3, gain: 0.28, fadeOut: 0.4, rev: 0.35 });
 
@@ -179,13 +181,13 @@ export default (mix, T) => {
   strings(B(T.casino), dead, { vel: 44, gain: 0.36, chords: MIN });
   spic(B(at('casino', 1)), dead, { vel: 30, chords: MIN });
   brass(at('casino', 1, 0.1), 2 * BAR, [36, 43, 48], { vel: 54, gain: 0.3 });
-  clip(mix, 'monete', { t: at('casino', 1, 0.3), da: 0.2, durata: 1.0, gain: 0.15, fadeOut: 0.3, rev: 0.25 });
+  clip(mix, 'monete', { t: at('casino', 1, 0.3) - 0.1, da: 1.3, durata: 0.7, gain: 0.25, fadeOut: 0.2, rev: 0.25 });
   suona(mix, 'trombone', 39, { t: at('casino', 2, 0.3), dur: 1.4, vel: 72, gain: 0.32, attack: 0.05, release: 0.6, rev: 0.45 }); // la torre
   timp(dead, 36, 110, 0.65);
   trem(dead + BEAT, end('casino') - dead - BEAT + 0.3, [48, 55, 60], { vel: 40, gain: 0.15 });
 
   // 6 · il binario deviato (scambio: scatto), tornare al 1955 (il motivo ai corni)
-  strings(B(T.binario), B(T.data), { vel: 40, gain: 0.32, chords: MIN, half: true });
+  strings(Math.min(B(T.binario), T.binario), B(T.data), { vel: 40, gain: 0.32, chords: MIN, half: true });
   motif(B(T.binario), B(T.data), { half: true, vel: 34, gain: 0.4, oct: -12 });
   clip(mix, 'scatti', { t: at('binario', 1, 0.1), da: 6.49, durata: 0.15, gain: 0.35, rev: 0.25 }); // lo scambio
   timp(at('binario', 1, 0.1), 39, 90, 0.5);
@@ -193,16 +195,16 @@ export default (mix, T) => {
 
   // 7 · la data (campanella), la notte del temporale (tuono lontano), il Marty del primo viaggio; il salto al 1955
   strings(B(T.data), B(T.fuoco), { vel: 40, gain: 0.32, chords: SW });
-  swing(B(at('data', 1)), B(T.fuoco), { vel: 36, comp: true });
+  swing(B(at('data', 1)), B(T.fuoco), { vel: 30, comp: true });
   [82, 87, 91].forEach((m, k) => bell(at('data', 1, 0.2) + k * CROMA / 2, m, 42)); // 12 novembre
   clip(mix, 'rombo', { t: at('data', 2, 0.3), da: 0.5, durata: 3.0, gain: 0.12, fadeIn: 0.8, fadeOut: 1.2, rev: 0.3 });
-  clip(mix, 'passaggio', { t: at('data', 3, 0.0), da: 0.56, durata: 1.3, gain: 0.28, fadeOut: 0.4, rev: 0.35 });
+  clip(mix, 'passaggio', { t: at('data', 3, 0.1) - 0.1, da: 0.56, durata: 1.3, gain: 0.28, fadeOut: 0.4, rev: 0.35 });
 
   // 8 · non farsi vedere (pizzicati in punta di piedi), lo strappo, il fuoco, il 1985 che torna (maggiore)
   const burnT = at('fuoco', 2, 0.1), heal = at('fuoco', 2, 0.9);
   strings(B(T.fuoco), burnT, { vel: 40, gain: 0.32, chords: MIN });
   spic(B(T.fuoco), burnT, { vel: 30, chords: MIN, doppio: true });
-  clip(mix, 'scatti', { t: at('fuoco', 1, 0.6), da: 6.49, durata: 0.12, gain: 0.3, rev: 0.2 }); // glielo strappa
+  clip(mix, 'pagine', { t: at('fuoco', 1, 0.6), da: 1.25, durata: 0.35, gain: 0.25, fadeOut: 0.1, rev: 0.2 }); // glielo strappa
   clip(mix, 'fiammata', { t: burnT, da: 0.1, durata: 1.2, gain: 0.3, fadeOut: 0.4, rev: 0.3 });
   clip(mix, 'fuoco', { t: burnT + 0.6, da: 2, durata: 2.6, gain: 0.08, fadeIn: 0.3, fadeOut: 1.0, rev: 0.2 });
   kick(burnT, 0.5);
@@ -218,7 +220,7 @@ export default (mix, T) => {
   clip(mix, 'scariche', { t: bolt, da: 0.4, durata: 0.9, gain: 0.25, fadeOut: 0.3, rev: 0.2 });
   crash(bolt, 0.35); timp(bolt, 39, 115, 0.7);
   clip(mix, 'passaggio', { t: at('lettera', 1, 0.4) - 0.1, da: 0.56, durata: 1.3, gain: 0.28, fadeOut: 0.4, rev: 0.35 });
-  trem(at('lettera', 1, 0.8), at('lettera', 2) - at('lettera', 1, 0.8), [48, 55, 63], { vel: 40, gain: 0.15 });
+  trem(bolt + BEAT, at('lettera', 2) - bolt - BEAT, [48, 55, 63], { vel: 40, gain: 0.12 });
   clip(mix, 'giornale', { t: at('lettera', 2, 0.1), da: 0.93, durata: 0.8, gain: 0.12, fadeOut: 0.2, rev: 0.2 }); // la lettera
   strings(B(at('lettera', 2)), F, { vel: 42, gain: 0.32 });
   motif(west, F, { id: 'corno', vel: 40, gain: 0.3, oct: -12 });
