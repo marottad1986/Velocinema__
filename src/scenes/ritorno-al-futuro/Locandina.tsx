@@ -4,7 +4,7 @@ import { DISPLAY, HAND, RIGHTEOUS, SANS } from '../../lib/fonts';
 import { Finish, FxDefs } from '../../lib/fx';
 import { Glow, Reflection, Stars } from '../../lib/elements';
 import type { PosterProps } from '../../types';
-import { INK, Skate, TimeCar, YEL } from './Linee';
+import { INK, P55, P85, Skate, TimeCar, YEL } from './Linee';
 
 // Copertina e finale di Ritorno al futuro (formato "spiegato", senza sigla: la copertina dura 4 s ed è anche la miniatura).
 // Locandina originale, niente persone, niente auto del film né logo ufficiale. Di notte, sopra la piazza di una città anni
@@ -13,11 +13,15 @@ import { INK, Skate, TimeCar, YEL } from './Linee';
 // lasciando due scie gialle tratteggiate (il viaggio nel tempo) che salgono e si avvolgono attorno al quadrante.
 // In basso a sinistra una foto di famiglia in cui il cerchio di Marty sbiadisce. Il fotogramma 0 è già completo
 // (titolo, torre, fulmine acceso, scie): nessuna dissolvenza dal nero. Il fulmine scocca di nuovo a 2,5 s.
+// Stile delle due epoche, come nello schema: cielo e strada da notte anni '80 al neon (viola, magenta, ciano), tribunale
+// e torre stampati come una cartolina anni '50 (carta crema, inchiostro seppia).
 // Piani: cielo e quadrante (0,2) · tribunale e torre (0,5) · strada e auto (0,8) · foto e particelle (1,2–1,6)
 
-const DARK = '#081628';
-const WARM = '#FFD98A';
-const DIM = '#86A3C4';
+const DARK = '#0E0A22';
+const WARM = P85.warm;
+const DIM = '#FF4FB0';
+const NEON = P85.ink;
+const SEP = P55.ink;
 const r = rng(1955);
 const SPARKS = Array.from({ length: 26 }, () => ({ x: r() * 1080, y: 700 + r() * 900, v: 20 + r() * 40, s: 2 + r() * 3, ph: r() }));
 
@@ -26,9 +30,10 @@ const Bolt: React.FC<{ k: number }> = ({ k }) => {
   const d = 'M1010 690 L930 712 L960 724 L830 730 L860 742 L700 744 L726 756 L548 756';
   return (
     <g opacity={k}>
-      <path d={d} fill="none" stroke="#BFE6FF" strokeWidth="44" opacity=".35" strokeLinejoin="round" />
-      <path d={d} fill="none" stroke="#FFFFFF" strokeWidth="14" strokeLinejoin="round" />
-      <path d="M830 730 L780 706 L750 722" fill="none" stroke="#FFFFFF" strokeWidth="6" strokeLinejoin="round" />
+      <path d={d} fill="none" stroke="#FFF6B0" strokeWidth="50" opacity=".3" strokeLinejoin="round" />
+      <path d={d} fill="none" stroke={SEP} strokeWidth="22" strokeLinejoin="round" />
+      <path d={d} fill="none" stroke="#FFF6B0" strokeWidth="12" strokeLinejoin="round" />
+      <path d="M830 730 L780 706 L750 722" fill="none" stroke="#FFF6B0" strokeWidth="6" strokeLinejoin="round" />
     </g>
   );
 };
@@ -45,20 +50,20 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
       <defs>
         <FxDefs id={id} />
         <linearGradient id={`${id}-sky`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#061226" />
-          <stop offset=".35" stopColor="#0F2C55" />
-          <stop offset=".6" stopColor="#1E4A80" />
-          <stop offset="1" stopColor="#13335C" />
+          <stop offset="0" stopColor="#0B0620" />
+          <stop offset=".35" stopColor="#24124A" />
+          <stop offset=".62" stopColor="#52205E" />
+          <stop offset="1" stopColor="#8A2E66" />
         </linearGradient>
         <linearGradient id={`${id}-court`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#2E5E92" />
-          <stop offset="1" stopColor="#1A3E6A" />
+          <stop offset="0" stopColor="#F3E6C8" />
+          <stop offset="1" stopColor="#D9BE8C" />
         </linearGradient>
         <linearGradient id={`${id}-road`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#14304F" />
-          <stop offset="1" stopColor="#0A1A30" />
+          <stop offset="0" stopColor="#24124A" />
+          <stop offset="1" stopColor="#0C0820" />
         </linearGradient>
-        <pattern id={`${id}-grid`} width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0 H0 V40" fill="none" stroke="#3468A2" strokeWidth="1" /></pattern>
+        <pattern id={`${id}-grid`} width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0 H0 V40" fill="none" stroke="#5A2E78" strokeWidth="1" /></pattern>
       </defs>
       <rect width="1080" height="1920" fill={`url(#${id}-sky)`} />
       <rect width="1080" height="1920" fill={`url(#${id}-grid)`} opacity=".22" />
@@ -66,20 +71,20 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
       <g transform={L(0.2)}>
         <Stars t={t} seed={9} n={40} x={0} y={640} w={1080} h={500} color={INK} />
         <g transform="translate(540 930)" opacity=".85">
-          <Glow id={`${id}-dg`} x={0} y={0} r={460} t={t} color="#6FB0FF" amp={0.05} rate={1.5} opacity={0.35} />
-          <circle r="380" fill="none" stroke={INK} strokeWidth="5" opacity=".4" />
-          <circle r="350" fill="none" stroke={INK} strokeWidth="2" opacity=".3" />
-          {Array.from({ length: 60 }, (_, i) => <path key={i} d={`M0 -350 V${i % 5 ? -338 : -316}`} stroke={INK} strokeWidth={i % 5 ? 2 : 6} opacity=".45" transform={`rotate(${i * 6})`} />)}
-          {['XII', 'III', 'VI', 'IX'].map((n, i) => <text key={n} x={Math.sin((i * Math.PI) / 2) * 280} y={-Math.cos((i * Math.PI) / 2) * 280 + 18} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="48" fill={INK} opacity=".35">{n}</text>)}
-          <path d="M0 20 V-300" stroke={INK} strokeWidth="10" strokeLinecap="round" opacity=".55" transform={`rotate(${40 - t * 90})`} />
-          <path d="M0 20 V-210" stroke={INK} strokeWidth="16" strokeLinecap="round" opacity=".55" transform={`rotate(${-70 - t * 15})`} />
+          <Glow id={`${id}-dg`} x={0} y={0} r={460} t={t} color="#FF4FB0" amp={0.05} rate={1.5} opacity={0.35} />
+          <circle r="380" fill="none" stroke={NEON} strokeWidth="5" opacity=".4" />
+          <circle r="350" fill="none" stroke={NEON} strokeWidth="2" opacity=".3" />
+          {Array.from({ length: 60 }, (_, i) => <path key={i} d={`M0 -350 V${i % 5 ? -338 : -316}`} stroke={NEON} strokeWidth={i % 5 ? 2 : 6} opacity=".45" transform={`rotate(${i * 6})`} />)}
+          {['XII', 'III', 'VI', 'IX'].map((n, i) => <text key={n} x={Math.sin((i * Math.PI) / 2) * 280} y={-Math.cos((i * Math.PI) / 2) * 280 + 18} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="48" fill={NEON} opacity=".35">{n}</text>)}
+          <path d="M0 20 V-300" stroke={NEON} strokeWidth="10" strokeLinecap="round" opacity=".55" transform={`rotate(${40 - t * 90})`} />
+          <path d="M0 20 V-210" stroke={NEON} strokeWidth="16" strokeLinecap="round" opacity=".55" transform={`rotate(${-70 - t * 15})`} />
           {/* frecce che girano all'indietro lungo il bordo */}
           <path d="M-262 -262 A370 370 0 0 1 262 -262" fill="none" stroke={YEL} strokeWidth="6" strokeDasharray="20 16" strokeDashoffset={t * 60} opacity=".8" />
           <path d="M-290 -232 L-262 -262 L-232 -238" fill="none" stroke={YEL} strokeWidth="6" strokeLinejoin="round" strokeLinecap="round" />
         </g>
         {[[150, 760], [900, 690], [780, 820]].map(([x, y], i) => (
           <g key={i} transform={`translate(${x + Math.sin(t * 0.3 + i) * 12} ${y})`} opacity=".8">
-            <path d="M-130 30 Q-150 -16 -84 -20 Q-66 -66 0 -56 Q50 -84 92 -34 Q150 -34 140 30 Z" fill="#244A78" stroke="#4B78AA" strokeWidth="3" />
+            <path d="M-130 30 Q-150 -16 -84 -20 Q-66 -66 0 -56 Q50 -84 92 -34 Q150 -34 140 30 Z" fill="#3A1E5A" stroke="#7A4A9A" strokeWidth="3" />
           </g>
         ))}
       </g>
@@ -88,28 +93,29 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
       <g transform={L(0.5)} strokeLinejoin="round" strokeLinecap="round">
         <Glow id={`${id}-tw`} x={540} y={910} r={240} t={t} color={bolt > 0.2 ? '#DDF0FF' : WARM} amp={0.06} rate={2} opacity={0.35 + 0.4 * bolt} />
         <g transform="translate(0 50)">
-        <path d="M470 1080 V800 H610 V1080" fill={`url(#${id}-court)`} stroke={INK} strokeWidth="8" />
-        <path d="M456 800 L540 732 L624 800 Z" fill="#1A3E6A" stroke={INK} strokeWidth="8" />
-        <path d="M540 732 V704" stroke={INK} strokeWidth="6" />
-        <circle cx="540" cy="880" r="56" fill="#F3EBD2" stroke={INK} strokeWidth="7" />
-        {Array.from({ length: 12 }, (_, i) => <path key={i} d="M0 -48 V-40" stroke={DARK} strokeWidth="4" transform={`translate(540 880) rotate(${i * 30})`} />)}
-        <path d="M0 4 V-28" stroke={DARK} strokeWidth="7" strokeLinecap="round" transform="translate(540 880) rotate(302)" />
-        <path d="M0 4 V-42" stroke={DARK} strokeWidth="5" strokeLinecap="round" transform="translate(540 880) rotate(24)" />
+        <path d="M470 1080 V800 H610 V1080" fill={`url(#${id}-court)`} stroke={SEP} strokeWidth="8" />
+        <path d="M456 800 L540 732 L624 800 Z" fill="#E0C796" stroke={SEP} strokeWidth="8" />
+        <path d="M540 732 V704" stroke={SEP} strokeWidth="6" />
+        <circle cx="540" cy="880" r="56" fill="#F3EBD2" stroke={SEP} strokeWidth="7" />
+        {Array.from({ length: 12 }, (_, i) => <path key={i} d="M0 -48 V-40" stroke={SEP} strokeWidth="4" transform={`translate(540 880) rotate(${i * 30})`} />)}
+        <path d="M0 4 V-28" stroke={SEP} strokeWidth="7" strokeLinecap="round" transform="translate(540 880) rotate(302)" />
+        <path d="M0 4 V-42" stroke={SEP} strokeWidth="5" strokeLinecap="round" transform="translate(540 880) rotate(24)" />
         </g>
-        <path d="M150 1300 V1100 H930 V1300 Z" fill={`url(#${id}-court)`} stroke={INK} strokeWidth="8" />
-        <path d="M130 1100 L540 1030 L950 1100 Z" fill="#1A3E6A" stroke={INK} strokeWidth="8" />
-        {[210, 300, 390, 690, 780, 870].map((x) => <path key={x} d={`M${x} 1116 V1288`} stroke={INK} strokeWidth="10" />)}
-        <path d="M430 1290 V1210 Q540 1150 650 1210 V1290" fill="#0C2140" stroke={INK} strokeWidth="7" />
-        {[1300, 1318, 1336].map((y, i) => <path key={y} d={`M${120 - i * 20} ${y} H${960 + i * 20}`} stroke={INK} strokeWidth="5" />)}
+        <path d="M150 1300 V1100 H930 V1300 Z" fill={`url(#${id}-court)`} stroke={SEP} strokeWidth="8" />
+        <path d="M130 1100 L540 1030 L950 1100 Z" fill="#E0C796" stroke={SEP} strokeWidth="8" />
+        {[210, 300, 390, 690, 780, 870].map((x) => <path key={x} d={`M${x} 1116 V1288`} stroke={SEP} strokeWidth="10" />)}
+        <path d="M430 1290 V1210 Q540 1150 650 1210 V1290" fill="#6B5240" stroke={SEP} strokeWidth="7" />
+        {[1300, 1318, 1336].map((y, i) => <path key={y} d={`M${120 - i * 20} ${y} H${960 + i * 20}`} stroke={SEP} strokeWidth="5" />)}
       </g>
       {/* il cavo dalla torre alla strada, con la scarica */}
-      <path d="M590 930 Q760 1040 930 1150" fill="none" stroke={surge > 0.5 ? '#FFFFFF' : INK} strokeWidth={surge > 0.5 ? 9 : 5} />
-      <path d="M590 930 Q760 1040 930 1150" fill="none" stroke="#BFE6FF" strokeWidth="26" opacity={0.35 * surge} />
-      <path d="M930 1150 V1380 M908 1380 H952" stroke={INK} strokeWidth="8" strokeLinecap="round" />
-      <path d="M906 1150 H954 L944 1122 H916 Z" fill={WARM} stroke={INK} strokeWidth="4" />
+      <path d="M590 930 Q760 1040 930 1150" fill="none" stroke="#FFF6B0" strokeWidth="26" opacity={0.35 * surge} />
+      <path d="M590 930 Q760 1040 930 1150" fill="none" stroke={surge > 0.5 ? '#FFF6B0' : SEP} strokeWidth={surge > 0.5 ? 9 : 6} />
+      <path d="M930 1150 V1380 M908 1380 H952" stroke={NEON} strokeWidth="8" strokeLinecap="round" />
+      <path d="M906 1150 H954 L944 1122 H916 Z" fill={WARM} stroke={NEON} strokeWidth="4" />
       {/* la strada, le scie gialle del viaggio e l'auto */}
       <path d="M0 1340 H1080 V1920 H0 Z" fill={`url(#${id}-road)`} />
-      <path d="M0 1340 H1080" stroke={INK} strokeWidth="6" />
+      <path d="M0 1340 H1080" stroke={NEON} strokeWidth="6" />
+      {[1380, 1440, 1530, 1660, 1840].map((y) => <path key={y} d={`M0 ${y} H1080`} stroke={DIM} strokeWidth="3" opacity=".45" />)}
       {/* asfalto bagnato in prospettiva fino al bordo basso: corsie, riflessi del lampione e dell'auto, tombino, marciapiede */}
       {[-3, -1.6, 1.6, 3].map((k) => <path key={k} d={`M${540 + k * 60} 1342 L${540 + k * 330} 1920`} stroke={DIM} strokeWidth="5" opacity=".7" />)}
       {Array.from({ length: 5 }, (_, i) => {
@@ -118,14 +124,14 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
         return <rect key={i} x={540 - w / 2} y={y} width={w} height={h} fill={YEL} opacity={0.55 * (0.4 + u)} />;
       })}
       <Reflection t={t} x={930} y={1400} color={WARM} n={9} w={60} gap={28} opacity={0.45} />
-      <Reflection t={t} x={600} y={1420} color="#BFD6EE" n={8} w={260} gap={26} opacity={0.3} />
+      <Reflection t={t} x={600} y={1420} color={NEON} n={8} w={260} gap={26} opacity={0.3} />
       <g transform="translate(790 1760)">
-        <ellipse rx="120" ry="34" fill="#0A1626" stroke={INK} strokeWidth="5" />
+        <ellipse rx="120" ry="34" fill="#0C0820" stroke={NEON} strokeWidth="5" />
         {[-60, -20, 20, 60].map((x) => <path key={x} d={`M${x} -26 V26`} stroke={DIM} strokeWidth="4" />)}
         <ellipse rx="120" ry="34" fill="none" stroke="#FFFFFF" strokeWidth="2" opacity=".3" transform="translate(0 -4)" />
       </g>
-      <path d="M0 1700 L260 1920" stroke={INK} strokeWidth="8" />
-      <path d="M0 1730 L225 1920 H0 Z" fill="#1E3E66" />
+      <path d="M0 1700 L260 1920" stroke={NEON} strokeWidth="8" />
+      <path d="M0 1730 L225 1920 H0 Z" fill="#2A1A50" />
       {[0, 1, 2].map((i) => <path key={i} d={`M${i * 70} ${1760 + i * 59} l40 34`} stroke={DIM} strokeWidth="4" />)}
       <g transform={L(0.8)}>
         {[0, 1].map((k) => {
@@ -147,12 +153,12 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
       {/* la foto di famiglia, in primo piano: il cerchio di Marty sbiadisce */}
       <g transform={`translate(228 1175) rotate(-9) scale(0.6)`}>
         <rect x="-128" y="-108" width="256" height="226" fill="#000" opacity=".4" transform="translate(8 10)" />
-        <rect x="-128" y="-108" width="256" height="226" fill="#F4EEDC" stroke={INK} strokeWidth="5" />
+        <rect x="-128" y="-108" width="256" height="226" fill="#F4EEDC" stroke={SEP} strokeWidth="5" />
         <rect x="-112" y="-92" width="224" height="150" fill="#5D88B4" />
         <path d="M-112 30 Q-40 0 40 24 Q80 34 112 20 V58 H-112 Z" fill="#4C7A4E" />
         {[-70, 0, 70].map((x, i) => (
           <g key={i} transform={`translate(${x} -20)`} opacity={calm ? 1 : i === 2 ? 0.35 + 0.25 * Math.sin(t * 2) : i === 1 ? 0.8 : 1}>
-            <circle r="30" fill="#143A66" stroke={INK} strokeWidth="3.5" />
+            <circle r="30" fill="#22184C" stroke={INK} strokeWidth="3.5" />
             {i === 0 && <path d="M-18 6 Q-18 -16 0 -16 Q18 -16 18 6 Z M10 6 H28" fill="#D9483A" stroke={INK} strokeWidth="3" />}
             {i === 1 && <path d="M-16 -8 L0 0 L-16 8 Z M16 -8 L0 0 L16 8 Z" fill="#F2C94C" stroke={INK} strokeWidth="3" />}
             {i === 2 && <Skate T={t} s={0.5} />}
@@ -160,8 +166,8 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
         ))}
         <text y="94" textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize="30" fill="#2A3A4A">noi tre</text>
       </g>
-      {flash > 0 && <rect width="1080" height="1920" fill="#DDEFFF" opacity={0.3 * flash} />}
-      <Finish id={id} tint="#142848" tintOpacity={0.1} />
+      {flash > 0 && <rect width="1080" height="1920" fill="#FFF6D8" opacity={0.3 * flash} />}
+      <Finish id={id} tint="#1A1238" tintOpacity={0.1} />
     </svg>
   );
 };
@@ -171,7 +177,7 @@ const TitleBlock: React.FC<{ film: PosterProps['film'] }> = ({ film }) => {
   return (
     <div style={{ position: 'absolute', left: 120, top: 268, width: 840, fontFamily: SANS, textAlign: 'center' }}>
       <p style={{ margin: 0, fontSize: 30, fontWeight: 800, letterSpacing: '0.3em', color: P.accento, textShadow: `0 3px 0 ${P.scuro}` }}>SPIEGATO SEMPLICE · FILM</p>
-      <h1 style={{ margin: '10px 0 0', fontFamily: RIGHTEOUS, fontWeight: 400, fontSize: 150, lineHeight: 0.98, color: P.chiaro, textShadow: `0 8px 0 ${P.scuro}, 0 0 40px rgba(111,176,255,.45)` }}>
+      <h1 style={{ margin: '10px 0 0', fontFamily: RIGHTEOUS, fontWeight: 400, fontSize: 150, lineHeight: 0.98, color: P.chiaro, textShadow: `0 8px 0 ${P.scuro}, 0 0 34px rgba(255,79,176,.7), 0 0 70px rgba(92,240,255,.35)` }}>
         RITORNO<br />AL FUTURO
       </h1>
       <p style={{ margin: '14px 0 0', fontSize: 30, fontWeight: 800, color: '#B5CBE2', textShadow: `0 3px 0 ${P.scuro}` }}>un film di {film.regista} · {film.anno}</p>

@@ -7,8 +7,9 @@ import { subtitleTimes } from '../../components/ChapterOverlay';
 import type { SceneProps } from '../../types';
 import film from '../../../films/ritorno-al-futuro.json';
 
-// Ritorno al futuro come schema (formato "spiegato"): le linee del tempo disegnate su carta da progetto blu, come i
-// progetti di un inventore. Il tempo scende dall'alto in basso: in alto tre stazioni del 1955 (la strada con la casa di
+// Ritorno al futuro come schema (formato "spiegato"): le linee del tempo nello stile delle due epoche del film, su una
+// notte anni '80 viola: le stazioni del 1955 sono cartoline stampate (carta crema, inchiostro seppia), quelle del 1985
+// notti al neon (linee ciano, luci magenta), il 2015 un abbozzo grigio. Il tempo scende dall'alto in basso: in alto tre stazioni del 1955 (la strada con la casa di
 // Lorraine, il ballo della scuola, la piazza con la torre dell'orologio), poi il salto di trent'anni, poi due stazioni del
 // 1985 (il parcheggio del centro commerciale, casa McFly) e in fondo il 2015, solo tratteggiato finché Doc non ne arriva.
 // Vocabolario fisso: cerchio con oggetto = personaggio (mai figure), linea = legame con scritta a mano, tratteggio giallo
@@ -20,13 +21,13 @@ import film from '../../../films/ritorno-al-futuro.json';
 // Gli eventi cadono sulla griglia della musica (72 bpm, crome), gli stessi istanti di scripts/audio/ritorno-al-futuro.mjs.
 // Lo schema (`Schema`) si riusa nel video lungo della trilogia con una camera 16:9 propria.
 
-export const INK = '#EAF2FA';
+export const INK = '#F4EEE2';
 export const YEL = '#F5C23A';
 export const RED = '#E8553F';
-const DIM = '#86A3C4';
-const DARK = '#081628';
-const FILL = '#143A66';
-const FILL2 = '#1B4A80';
+const DIM = '#A898D8';
+const DARK = '#0E0A22';
+const FILL = '#1E1646';
+const FILL2 = '#2A1F5E';
 const WARM = '#FFD98A';
 const ATOM = '#9BE06A';
 const PINK = '#F29AC0';
@@ -230,42 +231,42 @@ const Canister: React.FC<{ T: number; full?: number }> = ({ T, full = 1 }) => (
 );
 
 /** L'auto del tempo: una coupé bassa e squadrata (generica), con il motore del tempo che si illumina sul retro. */
-export const TimeCar: React.FC<{ T: number; glow?: number; s?: number; flip?: boolean; pole?: boolean }> = ({ T, glow = 0.3, s = 1, flip = false, pole = false }) => (
+export const TimeCar: React.FC<{ T: number; glow?: number; s?: number; flip?: boolean; pole?: boolean; ink?: string }> = ({ T, glow = 0.3, s = 1, flip = false, pole = false, ink = INK }) => (
   <g transform={`scale(${flip ? -s : s} ${s})`} {...S}>
     <Glow id={`rf-car${s}${flip ? 'f' : ''}`} x={-70} y={-30} r={110} t={T} color={YEL} amp={0.15} rate={9} opacity={0.6 * glow} />
-    <path d="M-120 10 L-118 -22 L-70 -30 L-30 -58 L40 -58 L78 -30 L120 -22 L124 10 Z" fill="#9EB6CF" stroke={INK} strokeWidth="6" />
-    <path d="M-26 -52 L36 -52 L66 -30 H-58 Z" fill="#163A62" stroke={INK} strokeWidth="4" />
-    <path d="M20 -52 V-30" stroke={INK} strokeWidth="4" />
+    <path d="M-120 10 L-118 -22 L-70 -30 L-30 -58 L40 -58 L78 -30 L120 -22 L124 10 Z" fill="#9EB6CF" stroke={ink} strokeWidth="6" />
+    <path d="M-26 -52 L36 -52 L66 -30 H-58 Z" fill="#163A62" stroke={ink} strokeWidth="4" />
+    <path d="M20 -52 V-30" stroke={ink} strokeWidth="4" />
     <path d="M-110 -16 H112" stroke="#FFFFFF" strokeWidth="3" opacity=".55" />
     <path d="M-40 -28 V8 M44 -28 V8" stroke="#5E7898" strokeWidth="3" />
     {/* il motore del tempo sul retro: tre bobine che brillano */}
-    <rect x="-112" y="-46" width="44" height="20" rx="5" fill="#3A5878" stroke={INK} strokeWidth="4" />
+    <rect x="-112" y="-46" width="44" height="20" rx="5" fill="#3A5878" stroke={ink} strokeWidth="4" />
     {[-104, -90, -76].map((x, i) => <circle key={x} cx={x} cy="-36" r="5" fill={YEL} opacity={0.4 + 0.6 * glow * (0.5 + 0.5 * Math.sin(T * 12 + i * 2))} />)}
-    {pole && <path d="M-96 -46 L-118 -120" stroke={INK} strokeWidth="4" />}
-    {pole && <path d="M-124 -126 Q-118 -134 -110 -126" fill="none" stroke={INK} strokeWidth="4" />}
+    {pole && <path d="M-96 -46 L-118 -120" stroke={ink} strokeWidth="4" />}
+    {pole && <path d="M-124 -126 Q-118 -134 -110 -126" fill="none" stroke={ink} strokeWidth="4" />}
     <path d="M114 -14 H124" stroke={WARM} strokeWidth="7" />
     <path d="M-124 -8 H-116" stroke={RED} strokeWidth="7" />
     {[-74, 76].map((x) => (
       <g key={x} transform={`translate(${x} 12)`}>
-        <circle r="24" fill="#122236" stroke={INK} strokeWidth="6" />
+        <circle r="24" fill="#122236" stroke={ink} strokeWidth="6" />
         <g transform={`rotate(${T * 300})`}><path d="M-12 0 H12 M0 -12 V12" stroke="#9EB6CF" strokeWidth="4" /></g>
       </g>
     ))}
   </g>
 );
 /** L'auto del 1955: tonda, con le pinne e le cromature. */
-const Car55: React.FC<{ T: number; s?: number; roll?: number }> = ({ T, s = 1, roll = 0 }) => (
+const Car55: React.FC<{ T: number; s?: number; roll?: number; ink?: string }> = ({ T, s = 1, roll = 0, ink = INK }) => (
   <g transform={`scale(${s})`} {...S}>
-    <path d="M-130 8 Q-134 -24 -100 -26 L-60 -30 Q-40 -64 10 -64 Q50 -64 72 -30 L118 -26 Q140 -22 136 8 Z" fill="#B9D7E8" stroke={INK} strokeWidth="6" />
-    <path d="M-48 -32 Q-30 -56 6 -56 Q40 -56 58 -32 Z" fill="#163A62" stroke={INK} strokeWidth="4" />
-    <path d="M4 -56 V-32" stroke={INK} strokeWidth="4" />
+    <path d="M-130 8 Q-134 -24 -100 -26 L-60 -30 Q-40 -64 10 -64 Q50 -64 72 -30 L118 -26 Q140 -22 136 8 Z" fill="#B9D7E8" stroke={ink} strokeWidth="6" />
+    <path d="M-48 -32 Q-30 -56 6 -56 Q40 -56 58 -32 Z" fill="#163A62" stroke={ink} strokeWidth="4" />
+    <path d="M4 -56 V-32" stroke={ink} strokeWidth="4" />
     <path d="M-124 -6 H130" stroke="#FFFFFF" strokeWidth="4" opacity=".7" />
-    <path d="M110 -28 L132 -46 L128 -24" fill="#B9D7E8" stroke={INK} strokeWidth="4" />
+    <path d="M110 -28 L132 -46 L128 -24" fill="#B9D7E8" stroke={ink} strokeWidth="4" />
     <circle cx="-126" cy="-10" r="7" fill={WARM} />
     <path d="M-140 4 H-118 M118 4 H142" stroke="#DDE6EE" strokeWidth="7" />
     {[-78, 80].map((x) => (
       <g key={x} transform={`translate(${x} 12)`}>
-        <circle r="23" fill="#122236" stroke={INK} strokeWidth="6" />
+        <circle r="23" fill="#122236" stroke={ink} strokeWidth="6" />
         <circle r="10" fill="#DDE6EE" />
         <g transform={`rotate(${roll * 600 + T * 0})`}><path d="M-10 0 H10" stroke="#122236" strokeWidth="3" /></g>
       </g>
@@ -283,6 +284,8 @@ const Node: React.FC<{ T: number; t0: number; p: P; name: string; sub?: string; 
   const s = pop(T, t0);
   const ly = side === 'below' ? r + size + 6 : -r - (sub ? size * 0.95 + 18 : 18);
   const hi = color === INK ? YEL : color;
+  const card = p[1] < BAND.parcheggio.y0 - 100; // stazioni del 1955: carta crema
+  const tFill = card ? P55.ink : INK, tStroke = card ? P55.paper : DARK;
   const shake = hit > 0 && hit < 1 ? Math.sin(T * 70) * 8 * (1 - hit) : 0;
   return (
     <g transform={`translate(${p[0] + shake} ${p[1]})`} opacity={seg(T, t0, t0 + 0.15) * fade}>
@@ -294,8 +297,8 @@ const Node: React.FC<{ T: number; t0: number; p: P; name: string; sub?: string; 
         <g transform={`scale(${r / 46})`} opacity={1 - 0.6 * dead}>{children}</g>
         {dead > 0 && <path d={`M${-r * 0.55} ${-r * 0.55} L${r * 0.55} ${r * 0.55} M${r * 0.55} ${-r * 0.55} L${-r * 0.55} ${r * 0.55}`} stroke={RED} strokeWidth="8" strokeLinecap="round" opacity={dead} />}
       </g>
-      {name && <text y={ly} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize={size} fill={INK} stroke={DARK} strokeWidth="6" paintOrder="stroke" opacity={seg(T, t0 + 0.2, t0 + 0.5)}>{name}</text>}
-      {sub && !WIDEV && <text y={ly + size * 0.85} textAnchor="middle" fontFamily={SANS} fontWeight={subFill === '#B5CBE2' ? 400 : 800} fontSize={size * 0.72} fill={subFill} stroke={DARK} strokeWidth="5" paintOrder="stroke" opacity={seg(T, t0 + 0.3, t0 + 0.6)}>{sub}</text>}
+      {name && <text y={ly} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize={size} fill={tFill} stroke={tStroke} strokeWidth="6" paintOrder="stroke" opacity={seg(T, t0 + 0.2, t0 + 0.5)}>{name}</text>}
+      {sub && !WIDEV && <text y={ly + size * 0.85} textAnchor="middle" fontFamily={SANS} fontWeight={subFill === '#B5CBE2' ? 400 : 800} fontSize={size * 0.72} fill={card ? (subFill === '#B5CBE2' ? P55.dark : '#9A6A00') : subFill} stroke={tStroke} strokeWidth="5" paintOrder="stroke" opacity={seg(T, t0 + 0.3, t0 + 0.6)}>{sub}</text>}
     </g>
   );
 };
@@ -315,11 +318,12 @@ const Link: React.FC<{ T: number; t0: number; a: P; b: P; c?: P; color?: string;
   return (
     <g opacity={fade}>
       <mask id={id} maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="6000" height="9000"><path d={d} fill="none" stroke="#fff" strokeWidth={w + 10} pathLength={1} strokeDasharray={`${p} 1`} /></mask>
+      <path d={d} fill="none" stroke={DARK} strokeWidth={w + 6} opacity=".55" strokeLinecap="round" mask={`url(#${id})`} />
       <path d={d} fill="none" stroke={color} strokeWidth={w} strokeDasharray={dashed ? `${w * 3} ${w * 2.2}` : undefined} strokeDashoffset={flow ? -T * 60 : 0} strokeLinecap="round" mask={`url(#${id})`} />
       {arrow && p > 0.95 && <path d={`M${-w * 3.4} ${-w * 2.3} L0 0 L${-w * 3.4} ${w * 2.3}`} fill="none" stroke={color} strokeWidth={w} strokeLinecap="round" strokeLinejoin="round" transform={`translate(${b[0]} ${b[1]}) rotate(${ang})`} />}
       {cross > 0 && <path d="M-30 -30 L30 30 M30 -30 L-30 30" stroke={RED} strokeWidth="11" strokeLinecap="round" transform={`translate(${tx} ${ty}) scale(${eob(cross, 1.6)})`} />}
       {label && !WIDEV && (
-        <text x={tx + lx} y={ty + ly} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={size} fill={color} stroke={DARK} strokeWidth="7" paintOrder="stroke" opacity={seg(T, t0 + 0.4, t0 + 0.8)}>{label}</text>
+        <text x={tx + lx} y={ty + ly} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={size} fill={ty < BAND.parcheggio.y0 - 100 && (color === INK || color === DIM) ? P55.ink : color} stroke={ty < BAND.parcheggio.y0 - 100 ? P55.paper : DARK} strokeWidth="7" paintOrder="stroke" opacity={seg(T, t0 + 0.4, t0 + 0.8)}>{label}</text>
       )}
     </g>
   );
@@ -334,6 +338,7 @@ const Travel: React.FC<{ T: number; t0: number; d: string; dur?: number; id: str
       <mask id={id} maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="6000" height="9000"><path d={d} fill="none" stroke="#fff" strokeWidth="60" pathLength={1} strokeDasharray={`${p} 1`} /></mask>
       <g mask={`url(#${id})`}>
         <path d={d} fill="none" stroke={YEL} strokeWidth="34" opacity=".16" strokeLinecap="round" />
+        <path d={d} fill="none" stroke={DARK} strokeWidth="20" opacity=".55" strokeLinecap="round" />
         <path d={d} fill="none" stroke={YEL} strokeWidth="14" strokeDasharray="40 26" strokeDashoffset={-T * 120} strokeLinecap="round" />
       </g>
       {label && !WIDEV && <text x={lx} y={ly} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={fit(54)} fill={YEL} stroke={DARK} strokeWidth="8" paintOrder="stroke" opacity={seg(T, t0 + 0.6, t0 + 1.0) * (1 - seg(T, labelUntil, labelUntil + 0.4))}>{label}</text>}
@@ -359,7 +364,15 @@ const Tag: React.FC<{ T: number; t0: number; x: number; y: number; text: string;
 
 // ---------------------------------------------------------------- disegni delle stazioni (linee chiare su carta da progetto)
 
+/** Le due epoche hanno due «carte»: il 1955 è una cartolina stampata (carta crema, inchiostro seppia, pastelli anni '50),
+ *  il 1985 è una notte al neon (fondo viola scuro, linee ciano, luci magenta); il 2015 è solo un abbozzo grigio. */
+type Pal = { ink: string; fill: string; fill2: string; dim: string; warm: string; dark: string; tree: string; win1: string; win2: string; rug: string; cloud: string; paper: string };
+export const P55: Pal = { ink: '#3B2A1F', fill: '#EAD9B5', fill2: '#E0C796', dim: '#A68B66', warm: '#F2B544', dark: '#6B5240', tree: '#8CC2A6', win1: '#9CC8D8', win2: '#BCD9E0', rug: '#D2B07E', cloud: '#7D6B5A', paper: '#F3E6C8' };
+export const P85: Pal = { ink: '#5CF0FF', fill: '#22184C', fill2: '#2E2062', dim: '#8C6BE0', warm: '#FF4FB0', dark: '#120C2A', tree: '#1E6A72', win1: '#3A2A7A', win2: '#4A3590', rug: '#3A2668', cloud: '#2B2050', paper: '#160E33' };
+export const P15: Pal = { ink: '#B9C2D0', fill: '#262E40', fill2: '#2E3850', dim: '#6E7890', warm: '#E8EEF8', dark: '#161B26', tree: '#3A4A5A', win1: '#3A4660', win2: '#46546E', rug: '#2E3850', cloud: '#3A4458', paper: '#141A26' };
+const PAL: Record<BandKey, Pal> = { strada: P55, ballo: P55, piazza: P55, parcheggio: P85, casa: P85, futuro: P15 };
 const L = { fill: 'none', stroke: INK, strokeLinejoin: 'round', strokeLinecap: 'round' } as const;
+const Lc = (c: Pal) => ({ fill: 'none', stroke: c.ink, strokeLinejoin: 'round', strokeLinecap: 'round' }) as const;
 const rr = rng(1985);
 const BUBBLES = Array.from({ length: 26 }, () => ({ x: 130 + rr() * 840, v: 18 + rr() * 26, s: 4 + rr() * 8, ph: rr() }));
 const PICKETS = Array.from({ length: 12 }, (_, i) => 128 + i * 34);
@@ -368,25 +381,26 @@ const BOOKS = Array.from({ length: 11 }, (_, i) => ({ w: 16 + ((i * 7) % 10), h:
 const SKY = Array.from({ length: 7 }, (_, i) => ({ x: 150 + i * 120 + ((i * 37) % 30), w: 80 + ((i * 53) % 40), h: 180 + ((i * 71) % 220) }));
 
 /** Lampione con l'alone che pulsa. */
-const Lamp: React.FC<{ T: number; x: number; y: number; h: number; id: string; lit?: number }> = ({ T, x, y, h, id, lit = 1 }) => (
+const Lamp: React.FC<{ c: Pal; T: number; x: number; y: number; h: number; id: string; lit?: number }> = ({ c, T, x, y, h, id, lit = 1 }) => (
   <g>
-    <Glow id={id} x={x} y={y - h} r={120} t={T} color={WARM} amp={0.06} rate={1.7} opacity={0.45 * lit} />
-    <path d={`M${x} ${y} V${y - h + 8}`} {...L} strokeWidth="6" />
-    <path d={`M${x - 22} ${y - h + 10} H${x + 22} L${x + 12} ${y - h - 16} H${x - 12} Z`} {...L} fill={WARM} fillOpacity={0.35 + 0.4 * lit} strokeWidth="4" />
-    <path d={`M${x - 14} ${y} H${x + 14}`} {...L} strokeWidth="6" />
+    <Glow id={id} x={x} y={y - h} r={120} t={T} color={c.warm} amp={0.06} rate={1.7} opacity={0.45 * lit} />
+    <path d={`M${x} ${y} V${y - h + 8}`} {...Lc(c)} strokeWidth="6" />
+    <path d={`M${x - 22} ${y - h + 10} H${x + 22} L${x + 12} ${y - h - 16} H${x - 12} Z`} {...Lc(c)} fill={c.warm} fillOpacity={0.35 + 0.4 * lit} strokeWidth="4" />
+    <path d={`M${x - 14} ${y} H${x + 14}`} {...Lc(c)} strokeWidth="6" />
   </g>
 );
 
 /** Cornice della stazione con il nome e l'anno; `on` = disegnata (prima: solo tratteggiata e tenue). */
 const Frame: React.FC<{ k: BandKey; on: number; focus: number }> = ({ k, on, focus }) => {
   const b = BAND[k];
+  const c = PAL[k];
   return (
     <g>
-      <rect x="100" y={b.y0} width="880" height={H} rx="10" fill={FILL} fillOpacity={0.35 * on} stroke={INK} strokeWidth={on > 0 ? 3 : 2.5} strokeDasharray={on > 0 ? undefined : '18 14'} opacity={0.35 + 0.55 * Math.max(on, 0.0)} />
+      <rect x="100" y={b.y0} width="880" height={H} rx="10" fill={c.paper} fillOpacity={0.15 + 0.85 * on} stroke={c.ink} strokeWidth={on > 0 ? 3 : 2.5} strokeDasharray={on > 0 ? undefined : '18 14'} opacity={0.35 + 0.55 * Math.max(on, 0.0)} />
       {[[100, b.y0], [980, b.y0], [100, b.y0 + H], [980, b.y0 + H]].map(([x, y], i) => (
-        <path key={i} d={`M${x + (x < 500 ? 26 : -26)} ${y} H${x} V${y + (y === b.y0 ? 26 : -26)}`} {...L} strokeWidth="6" opacity={0.4 + 0.6 * on} />
+        <path key={i} d={`M${x + (x < 500 ? 26 : -26)} ${y} H${x} V${y + (y === b.y0 ? 26 : -26)}`} {...Lc(c)} strokeWidth="6" opacity={0.4 + 0.6 * on} />
       ))}
-      <text x={k === 'piazza' ? 956 : 124} y={b.y0 + 40} textAnchor={k === 'piazza' ? 'end' : 'start'} fontFamily={SANS} fontWeight={900} fontSize={fit(26)} letterSpacing="3" fill={focus > 0.5 ? YEL : INK} stroke={DARK} strokeWidth="6" paintOrder="stroke" opacity={0.45 + 0.55 * on}>
+      <text x={k === 'piazza' ? 956 : 124} y={b.y0 + 40} textAnchor={k === 'piazza' ? 'end' : 'start'} fontFamily={SANS} fontWeight={900} fontSize={fit(26)} letterSpacing="3" fill={focus > 0.5 ? YEL : '#F4EEE2'} stroke={DARK} strokeWidth="6" paintOrder="stroke" opacity={0.45 + 0.55 * on}>
         {b.year} · {b.name}
       </text>
     </g>
@@ -394,81 +408,81 @@ const Frame: React.FC<{ k: BandKey; on: number; focus: number }> = ({ k, on, foc
 };
 
 /** 1955, la strada: la casa di Lorraine col portico, lo steccato, l'albero, il lampione e la strada. */
-const ArtStrada: React.FC<{ T: number; carX: number; carRoll: number }> = ({ T, carX, carRoll }) => (
+const ArtStrada: React.FC<{ c: Pal; T: number; carX: number; carRoll: number }> = ({ c, T, carX, carRoll }) => (
   <g>
-    <Stars t={T} seed={55} n={22} x={120} y={60} w={840} h={150} color={INK} size={0.9} />
+    <Stars t={T} seed={55} n={22} x={120} y={60} w={840} h={150} color={c.ink} size={0.9} />
     <Glow id="rf-moon" x={640} y={110} r={90} t={T} color="#CFE6FF" amp={0.04} rate={1} opacity={0.35} />
-    <circle cx="640" cy="110" r="30" fill="#DDEBFA" stroke={INK} strokeWidth="3" />
+    <circle cx="640" cy="110" r="30" fill="#DDEBFA" stroke={c.ink} strokeWidth="3" />
     {/* la casa */}
-    <path d="M150 470 V260 L310 150 L470 260 V470 Z" {...L} fill={FILL2} strokeWidth="7" />
-    <path d="M136 268 L310 140 L484 268" {...L} strokeWidth="8" />
-    <path d="M300 262 L310 254 L320 262" {...L} strokeWidth="3" />
+    <path d="M150 470 V260 L310 150 L470 260 V470 Z" {...Lc(c)} fill={c.fill2} strokeWidth="7" />
+    <path d="M136 268 L310 140 L484 268" {...Lc(c)} strokeWidth="8" />
+    <path d="M300 262 L310 254 L320 262" {...Lc(c)} strokeWidth="3" />
     {[[190, 300], [360, 300]].map(([x, y]) => (
       <g key={x}>
-        <rect x={x} y={y} width="70" height="60" {...L} fill={WARM} fillOpacity={0.55 + 0.1 * Math.sin(T * 1.3 + x)} strokeWidth="4" />
-        <path d={`M${x + 35} ${y} V${y + 60} M${x} ${y + 30} H${x + 70}`} {...L} strokeWidth="3" />
+        <rect x={x} y={y} width="70" height="60" {...Lc(c)} fill={c.warm} fillOpacity={0.55 + 0.1 * Math.sin(T * 1.3 + x)} strokeWidth="4" />
+        <path d={`M${x + 35} ${y} V${y + 60} M${x} ${y + 30} H${x + 70}`} {...Lc(c)} strokeWidth="3" />
       </g>
     ))}
-    <rect x="276" y="380" width="64" height="90" {...L} fill="#0F2A4C" strokeWidth="5" />
-    <circle cx="328" cy="428" r="4" fill={INK} />
+    <rect x="276" y="380" width="64" height="90" {...Lc(c)} fill={c.dark} strokeWidth="5" />
+    <circle cx="328" cy="428" r="4" fill={c.ink} />
     {/* il portico con le colonne */}
-    <path d="M160 380 H460 M176 380 V470 M444 380 V470" {...L} strokeWidth="5" />
-    <path d="M150 470 H470" {...L} strokeWidth="6" />
+    <path d="M160 380 H460 M176 380 V470 M444 380 V470" {...Lc(c)} strokeWidth="5" />
+    <path d="M150 470 H470" {...Lc(c)} strokeWidth="6" />
     {/* lo steccato */}
-    {PICKETS.map((x) => <path key={x} d={`M${x} 498 V462 L${x + 8} 452 L${x + 16} 462 V498`} {...L} fill={FILL} strokeWidth="3" />)}
-    <path d="M118 476 H540" {...L} strokeWidth="3" />
+    {PICKETS.map((x) => <path key={x} d={`M${x} 498 V462 L${x + 8} 452 L${x + 16} 462 V498`} {...Lc(c)} fill={c.fill} strokeWidth="3" />)}
+    <path d="M118 476 H540" {...Lc(c)} strokeWidth="3" />
     {/* l'albero di George */}
-    <path d="M770 500 V230 M770 300 L700 240 M770 270 L840 220" {...L} strokeWidth="12" />
-    {LEAVES.map((l, i) => <circle key={i} cx={l.x + Math.sin(T * 0.8 + i) * 3} cy={l.y} r={l.r} fill="#1E5A6E" fillOpacity=".75" stroke={INK} strokeWidth="3" />)}
-    <Lamp T={T} x={600} y={500} h={240} id="rf-ls" />
+    <path d="M770 500 V230 M770 300 L700 240 M770 270 L840 220" {...Lc(c)} strokeWidth="12" />
+    {LEAVES.map((l, i) => <circle key={i} cx={l.x + Math.sin(T * 0.8 + i) * 3} cy={l.y} r={l.r} fill={c.tree} fillOpacity=".75" stroke={c.ink} strokeWidth="3" />)}
+    <Lamp c={c} T={T} x={600} y={500} h={240} id="rf-ls" />
     {/* la strada */}
-    <path d="M100 500 H980" {...L} strokeWidth="6" />
-    {Array.from({ length: 9 }, (_, i) => <path key={i} d={`M${130 + i * 100} 524 h50`} stroke={DIM} strokeWidth="4" />)}
+    <path d="M100 500 H980" {...Lc(c)} strokeWidth="6" />
+    {Array.from({ length: 9 }, (_, i) => <path key={i} d={`M${130 + i * 100} 524 h50`} stroke={c.dim} strokeWidth="4" />)}
     {/* l'auto del padre di Lorraine */}
-    <g transform={`translate(${carX} 472)`}><Car55 T={T} s={0.9} roll={carRoll} /></g>
+    <g transform={`translate(${carX} 472)`}><Car55 ink={c.ink} T={T} s={0.9} roll={carRoll} /></g>
   </g>
 );
 
 /** 1955, il ballo: palestra decorata a fondo marino, palco con batteria e contrabbasso, sfera a specchi, bolle. */
-const ArtBallo: React.FC<{ T: number; lights: number }> = ({ T, lights }) => (
+const ArtBallo: React.FC<{ c: Pal; T: number; lights: number }> = ({ c, T, lights }) => (
   <g>
     {/* festoni ondulati */}
     {[70, 104].map((y, k) => (
-      <path key={y} d={Array.from({ length: 12 }, (_, i) => `${i ? 'Q' : 'M'}${i ? `${110 + i * 80 - 40} ${y + 26 + k * 6} ` : ''}${110 + i * 80} ${y}`).join(' ')} {...L} stroke={k ? '#7FC7E8' : PINK} strokeWidth="5" />
+      <path key={y} d={Array.from({ length: 12 }, (_, i) => `${i ? 'Q' : 'M'}${i ? `${110 + i * 80 - 40} ${y + 26 + k * 6} ` : ''}${110 + i * 80} ${y}`).join(' ')} {...Lc(c)} stroke={k ? '#7FC7E8' : PINK} strokeWidth="5" />
     ))}
     {/* la sfera a specchi */}
-    <path d="M540 56 V82" {...L} strokeWidth="3" />
+    <path d="M540 56 V82" {...Lc(c)} strokeWidth="3" />
     <Glow id="rf-ball" x={540} y={110} r={130} t={T} color="#CFE6FF" amp={0.12} rate={3} opacity={0.35 + 0.25 * lights} />
-    <circle cx="540" cy="110" r="28" fill="#9CB8D4" stroke={INK} strokeWidth="4" />
+    <circle cx="540" cy="110" r="28" fill="#9CB8D4" stroke={c.ink} strokeWidth="4" />
     {[-14, 0, 14].map((d) => <path key={d} d={`M${526} ${110 + d} H554 M${540 + d} 84 V136`} stroke={DARK} strokeWidth="1.5" opacity=".5" />)}
     {Array.from({ length: 6 }, (_, i) => {
       const a = T * 0.8 + i;
       return <circle key={i} cx={540 + Math.cos(a) * (160 + i * 40)} cy={260 + Math.sin(a * 1.3) * 110} r="5" fill="#FFFFFF" opacity={0.3 + 0.3 * Math.sin(T * 5 + i)} />;
     })}
     {/* lo striscione del ballo */}
-    <rect x="460" y="140" width="390" height="60" rx="8" {...L} fill="#1F6A86" strokeWidth="4" />
-    <text x="655" y="181" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="27" letterSpacing="2" fill={INK}>INCANTO SOTTO IL MARE</text>
+    <rect x="460" y="140" width="390" height="60" rx="8" {...Lc(c)} fill="#1F6A86" strokeWidth="4" />
+    <text x="655" y="181" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="27" letterSpacing="2" fill={c.ink}>INCANTO SOTTO IL MARE</text>
     {/* pesci di cartone appesi */}
     {[[620, 250], [700, 238], [930, 252]].map(([x, y], i) => (
       <g key={i} transform={`translate(${x} ${y}) rotate(${Math.sin(T * 1.2 + i) * 8})`}>
-        <path d={`M0 -${y - 216} V-12`} {...L} strokeWidth="2" />
-        <path d="M-26 0 Q0 -20 22 0 Q0 20 -26 0 Z M22 0 L36 -12 V12 Z" {...L} fill="#F0A24A" strokeWidth="3" />
+        <path d={`M0 -${y - 216} V-12`} {...Lc(c)} strokeWidth="2" />
+        <path d="M-26 0 Q0 -20 22 0 Q0 20 -26 0 Z M22 0 L36 -12 V12 Z" {...Lc(c)} fill="#F0A24A" strokeWidth="3" />
       </g>
     ))}
     {/* il palco con le tende */}
     <path d="M110 160 Q150 260 120 470 M440 160 Q400 260 430 470" stroke="#B0414C" strokeWidth="18" fill="none" opacity=".85" />
-    <path d="M110 380 H450 V470 H110" {...L} fill={FILL2} strokeWidth="6" />
+    <path d="M110 380 H450 V470 H110" {...Lc(c)} fill={c.fill2} strokeWidth="6" />
     {/* batteria e contrabbasso */}
-    <circle cx="200" cy="340" r="40" {...L} fill="#E9E4D0" fillOpacity=".25" strokeWidth="5" />
-    <path d="M180 300 H220 M150 300 L130 280 M250 290 L280 270" {...L} strokeWidth="4" />
-    <ellipse cx="240" cy="300" rx="22" ry="6" {...L} fill={FILL} strokeWidth="3" />
-    <path d="M340 380 Q312 330 330 300 Q312 270 340 240 Q366 270 352 300 Q370 330 346 380 Z" {...L} fill="#9A5B32" strokeWidth="4" />
-    <path d="M343 240 V190" {...L} strokeWidth="4" />
-    <path d="M410 380 V250 M398 250 H422" {...L} strokeWidth="4" />
-    <circle cx="410" cy="242" r="9" {...L} fill={DIM} strokeWidth="3" />
+    <circle cx="200" cy="340" r="40" {...Lc(c)} fill="#E9E4D0" fillOpacity=".25" strokeWidth="5" />
+    <path d="M180 300 H220 M150 300 L130 280 M250 290 L280 270" {...Lc(c)} strokeWidth="4" />
+    <ellipse cx="240" cy="300" rx="22" ry="6" {...Lc(c)} fill={c.fill} strokeWidth="3" />
+    <path d="M340 380 Q312 330 330 300 Q312 270 340 240 Q366 270 352 300 Q370 330 346 380 Z" {...Lc(c)} fill="#9A5B32" strokeWidth="4" />
+    <path d="M343 240 V190" {...Lc(c)} strokeWidth="4" />
+    <path d="M410 380 V250 M398 250 H422" {...Lc(c)} strokeWidth="4" />
+    <circle cx="410" cy="242" r="9" {...Lc(c)} fill={c.dim} strokeWidth="3" />
     {/* la pista a scacchi in prospettiva */}
-    {Array.from({ length: 9 }, (_, i) => <path key={i} d={`M${540 + (i - 4) * 70} 470 L${540 + (i - 4) * 130} 540`} stroke={DIM} strokeWidth="2.5" />)}
-    <path d="M100 470 H980 M100 502 H980" stroke={DIM} strokeWidth="2.5" />
+    {Array.from({ length: 9 }, (_, i) => <path key={i} d={`M${540 + (i - 4) * 70} 470 L${540 + (i - 4) * 130} 540`} stroke={c.dim} strokeWidth="2.5" />)}
+    <path d="M100 470 H980 M100 502 H980" stroke={c.dim} strokeWidth="2.5" />
     {/* le bolle che salgono */}
     {BUBBLES.map((b, i) => {
       const y = 520 - mod(T * b.v + b.ph * 500, 420);
@@ -478,28 +492,28 @@ const ArtBallo: React.FC<{ T: number; lights: number }> = ({ T, lights }) => (
 );
 
 /** 1955, la piazza: il tribunale con la torre dell'orologio, due lampioni, la strada; `hand` = minuti segnati. */
-const ArtPiazza: React.FC<{ T: number; storm: number; minutes: number }> = ({ T, storm, minutes }) => (
+const ArtPiazza: React.FC<{ c: Pal; T: number; storm: number; minutes: number }> = ({ c, T, storm, minutes }) => (
   <g>
-    <Stars t={T} seed={56} n={16} x={560} y={60} w={400} h={120} color={INK} size={0.8} />
+    <Stars t={T} seed={56} n={16} x={560} y={60} w={400} h={120} color={c.ink} size={0.8} />
     {/* nuvole di temporale */}
     {[[620, 90], [800, 70], [930, 110]].map(([x, y], i) => (
       <g key={i} transform={`translate(${x + Math.sin(T * 0.5 + i) * 24 + storm * 20 * Math.sin(T * 0.9 + i)} ${y}) scale(${1 + 0.4 * storm})`} opacity={0.35 + 0.5 * storm}>
-        <path d="M-80 20 Q-90 -10 -50 -12 Q-40 -40 0 -34 Q30 -50 56 -20 Q90 -20 84 20 Z" fill={storm > 0.5 ? '#16294A' : '#2B4E78'} stroke={INK} strokeWidth="3" />
+        <path d="M-80 20 Q-90 -10 -50 -12 Q-40 -40 0 -34 Q30 -50 56 -20 Q90 -20 84 20 Z" fill={storm > 0.5 ? c.dark : c.cloud} stroke={c.ink} strokeWidth="3" />
       </g>
     ))}
     {/* il tribunale */}
-    <path d="M150 470 V300 H630 V470 Z" {...L} fill={FILL2} strokeWidth="7" />
-    <path d="M136 300 L390 236 L644 300 Z" {...L} fill={FILL} strokeWidth="7" />
-    {[190, 260, 330, 450, 520, 590].map((x) => <path key={x} d={`M${x} 316 V456`} {...L} strokeWidth="7" />)}
-    {[190, 260, 330, 450, 520, 590].map((x) => <path key={`h${x}`} d={`M${x - 12} 316 H${x + 12} M${x - 12} 456 H${x + 12}`} {...L} strokeWidth="4" />)}
-    <rect x="362" y="370" width="56" height="100" rx="26" {...L} fill="#0F2A4C" strokeWidth="5" />
-    {[480, 494, 508].map((y, i) => <path key={y} d={`M${120 - i * 14} ${y - 10} H${660 + i * 14}`} {...L} strokeWidth="4" />)}
+    <path d="M150 470 V300 H630 V470 Z" {...Lc(c)} fill={c.fill2} strokeWidth="7" />
+    <path d="M136 300 L390 236 L644 300 Z" {...Lc(c)} fill={c.fill} strokeWidth="7" />
+    {[190, 260, 330, 450, 520, 590].map((x) => <path key={x} d={`M${x} 316 V456`} {...Lc(c)} strokeWidth="7" />)}
+    {[190, 260, 330, 450, 520, 590].map((x) => <path key={`h${x}`} d={`M${x - 12} 316 H${x + 12} M${x - 12} 456 H${x + 12}`} {...Lc(c)} strokeWidth="4" />)}
+    <rect x="362" y="370" width="56" height="100" rx="26" {...Lc(c)} fill={c.dark} strokeWidth="5" />
+    {[480, 494, 508].map((y, i) => <path key={y} d={`M${120 - i * 14} ${y - 10} H${660 + i * 14}`} {...Lc(c)} strokeWidth="4" />)}
     {/* la torre dell'orologio */}
-    <path d="M330 250 V70 H450 V250" {...L} fill={FILL2} strokeWidth="7" />
-    <path d="M318 70 L390 10 L462 70 Z" {...L} fill={FILL} strokeWidth="6" />
-    <path d="M390 10 V-20" {...L} strokeWidth="4" />
-    <Glow id="rf-clk" x={390} y={150} r={90} t={T} color={WARM} amp={0.05} rate={1.5} opacity={0.3} />
-    <circle cx="390" cy="150" r="46" fill="#F3EBD2" stroke={INK} strokeWidth="6" />
+    <path d="M330 250 V70 H450 V250" {...Lc(c)} fill={c.fill2} strokeWidth="7" />
+    <path d="M318 70 L390 10 L462 70 Z" {...Lc(c)} fill={c.fill} strokeWidth="6" />
+    <path d="M390 10 V-20" {...Lc(c)} strokeWidth="4" />
+    <Glow id="rf-clk" x={390} y={150} r={90} t={T} color={c.warm} amp={0.05} rate={1.5} opacity={0.3} />
+    <circle cx="390" cy="150" r="46" fill="#F3EBD2" stroke={c.ink} strokeWidth="6" />
     {Array.from({ length: 12 }, (_, i) => <path key={i} d="M0 -40 V-33" stroke={DARK} strokeWidth="3.5" transform={`translate(390 150) rotate(${i * 30})`} />)}
     <path d="M0 4 V-24" stroke={DARK} strokeWidth="6" strokeLinecap="round" transform={`translate(390 150) rotate(${(minutes / 60) * 30})`} />
     <path d="M0 4 V-36" stroke={DARK} strokeWidth="4" strokeLinecap="round" transform={`translate(390 150) rotate(${minutes * 6})`} />
@@ -507,57 +521,57 @@ const ArtPiazza: React.FC<{ T: number; storm: number; minutes: number }> = ({ T,
     {/* alberi ai lati */}
     {[[110, 400], [680, 410]].map(([x, y], i) => (
       <g key={i}>
-        <path d={`M${x + 24} 470 V${y}`} {...L} strokeWidth="9" />
-        <circle cx={x + 24 + Math.sin(T + i) * 2} cy={y - 30} r="46" fill="#1E5A6E" fillOpacity=".75" stroke={INK} strokeWidth="3" />
+        <path d={`M${x + 24} 470 V${y}`} {...Lc(c)} strokeWidth="9" />
+        <circle cx={x + 24 + Math.sin(T + i) * 2} cy={y - 30} r="46" fill={c.tree} fillOpacity=".75" stroke={c.ink} strokeWidth="3" />
       </g>
     ))}
-    <Lamp T={T} x={760} y={500} h={210} id="rf-lp1" />
-    <Lamp T={T} x={950} y={500} h={210} id="rf-lp2" />
-    <path d="M100 500 H980" {...L} strokeWidth="6" />
-    {Array.from({ length: 9 }, (_, i) => <path key={i} d={`M${130 + i * 100} 524 h50`} stroke={DIM} strokeWidth="4" />)}
+    <Lamp c={c} T={T} x={760} y={500} h={210} id="rf-lp1" />
+    <Lamp c={c} T={T} x={950} y={500} h={210} id="rf-lp2" />
+    <path d="M100 500 H980" {...Lc(c)} strokeWidth="6" />
+    {Array.from({ length: 9 }, (_, i) => <path key={i} d={`M${130 + i * 100} 524 h50`} stroke={c.dim} strokeWidth="4" />)}
   </g>
 );
 
 /** 1985, il parcheggio: il centro commerciale coi due pini, i lampioni, le strisce dei posti auto. */
-const ArtParcheggio: React.FC<{ T: number }> = ({ T }) => (
+const ArtParcheggio: React.FC<{ c: Pal; T: number }> = ({ c, T }) => (
   <g>
-    <Stars t={T} seed={85} n={18} x={120} y={56} w={840} h={70} color={INK} size={0.8} />
-    <path d="M170 330 V140 H910 V330" {...L} fill={FILL2} strokeWidth="7" />
-    <path d="M150 140 H930" {...L} strokeWidth="8" />
-    <rect x="330" y="160" width="420" height="52" rx="8" {...L} fill="#0F2A4C" strokeWidth="4" />
-    <text x="540" y="196" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="28" letterSpacing="3" fill={WARM}>CENTRO COMMERCIALE</text>
-    {[200, 300, 780, 880].map((x) => <rect key={x} x={x} y="232" width="64" height="98" {...L} fill={WARM} fillOpacity={0.16 + 0.06 * Math.sin(T + x)} strokeWidth="3" />)}
-    <path d="M430 330 V246 H650 V330 M540 246 V330" {...L} strokeWidth="4" />
+    <Stars t={T} seed={85} n={18} x={120} y={56} w={840} h={70} color={c.ink} size={0.8} />
+    <path d="M170 330 V140 H910 V330" {...Lc(c)} fill={c.fill2} strokeWidth="7" />
+    <path d="M150 140 H930" {...Lc(c)} strokeWidth="8" />
+    <rect x="330" y="160" width="420" height="52" rx="8" {...Lc(c)} fill={c.dark} strokeWidth="4" />
+    <text x="540" y="196" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="28" letterSpacing="3" fill={c.warm}>CENTRO COMMERCIALE</text>
+    {[200, 300, 780, 880].map((x) => <rect key={x} x={x} y="232" width="64" height="98" {...Lc(c)} fill={c.warm} fillOpacity={0.16 + 0.06 * Math.sin(T + x)} strokeWidth="3" />)}
+    <path d="M430 330 V246 H650 V330 M540 246 V330" {...Lc(c)} strokeWidth="4" />
     {/* i due pini */}
     {[128, 952].map((x, i) => (
       <g key={x} transform={`translate(${x} 0)`}>
-        <path d="M0 360 V300" {...L} strokeWidth="8" />
-        <path d="M0 110 L-44 200 H-20 L-58 270 H-26 L-70 320 H70 L26 270 H58 L20 200 H44 Z" fill="#1E5A6E" stroke={INK} strokeWidth="4" strokeLinejoin="round" transform={`rotate(${Math.sin(T * 0.7 + i) * 1.2} 0 320)`} />
+        <path d="M0 360 V300" {...Lc(c)} strokeWidth="8" />
+        <path d="M0 110 L-44 200 H-20 L-58 270 H-26 L-70 320 H70 L26 270 H58 L20 200 H44 Z" fill={c.tree} stroke={c.ink} strokeWidth="4" strokeLinejoin="round" transform={`rotate(${Math.sin(T * 0.7 + i) * 1.2} 0 320)`} />
       </g>
     ))}
-    <path d="M100 360 H980" {...L} strokeWidth="5" />
-    {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${180 + i * 100} 380 L${150 + i * 110} 540`} stroke={DIM} strokeWidth="4" />)}
-    <Lamp T={T} x={330} y={400} h={150} id="rf-pk1" />
-    <Lamp T={T} x={750} y={400} h={150} id="rf-pk2" />
+    <path d="M100 360 H980" {...Lc(c)} strokeWidth="5" />
+    {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${180 + i * 100} 380 L${150 + i * 110} 540`} stroke={c.dim} strokeWidth="4" />)}
+    <Lamp c={c} T={T} x={330} y={400} h={150} id="rf-pk1" />
+    <Lamp c={c} T={T} x={750} y={400} h={150} id="rf-pk2" />
   </g>
 );
 
 /** 1985, casa McFly: soggiorno con la libreria, il divano, la lampada; dalla finestra il vialetto con l'auto. */
-const ArtCasa: React.FC<{ T: number; bubbles: number; book: number }> = ({ T, bubbles, book }) => (
+const ArtCasa: React.FC<{ c: Pal; T: number; bubbles: number; book: number }> = ({ c, T, bubbles, book }) => (
   <g>
     {/* la finestra sul vialetto */}
-    <rect x="620" y="90" width="330" height="250" rx="6" {...L} fill="#2D6AA0" strokeWidth="7" />
-    <rect x="620" y="250" width="330" height="90" fill="#3E7DB4" />
-    <path d="M785 90 V340 M620 215 H950" {...L} strokeWidth="5" />
-    <Glow id="rf-sun" x={900} y={130} r={110} t={T} color={WARM} amp={0.05} rate={1.2} opacity={0.5} />
-    <g transform="translate(790 300)"><Car55 T={T} s={0.62} /></g>
+    <rect x="620" y="90" width="330" height="250" rx="6" {...Lc(c)} fill={c.win1} strokeWidth="7" />
+    <rect x="620" y="250" width="330" height="90" fill={c.win2} />
+    <path d="M785 90 V340 M620 215 H950" {...Lc(c)} strokeWidth="5" />
+    <Glow id="rf-sun" x={900} y={130} r={110} t={T} color={c.warm} amp={0.05} rate={1.2} opacity={0.5} />
+    <g transform="translate(790 300)"><Car55 ink={c.ink} T={T} s={0.62} /></g>
     {Array.from({ length: 9 }, (_, i) => {
       const y = 300 - mod(T * (16 + i * 3) + i * 40, 160);
       return <circle key={i} cx={760 + ((i * 47) % 140) + Math.sin(T * 2 + i) * 8} cy={y} r={5 + (i % 3) * 3} fill="#FFFFFF" fillOpacity=".25" stroke="#FFFFFF" strokeWidth="2" opacity={bubbles * 0.8} />;
     })}
     {/* la libreria con il libro di George */}
-    <rect x="130" y="90" width="300" height="250" {...L} fill={FILL} strokeWidth="6" />
-    {[170, 250].map((y) => <path key={y} d={`M130 ${y} H430`} {...L} strokeWidth="5" />)}
+    <rect x="130" y="90" width="300" height="250" {...Lc(c)} fill={c.fill} strokeWidth="6" />
+    {[170, 250].map((y) => <path key={y} d={`M130 ${y} H430`} {...Lc(c)} strokeWidth="5" />)}
     {[90, 170, 250].map((y0, row) => {
       let x = 142;
       return BOOKS.map((b, i) => {
@@ -565,32 +579,32 @@ const ArtCasa: React.FC<{ T: number; bubbles: number; book: number }> = ({ T, bu
         if (bx + b.w > 420) return null;
         const hh = Math.min(b.h, 74);
         const hi = row === 1 && i === 4;
-        return <rect key={`${row}${i}`} x={bx} y={y0 + 80 - hh} width={b.w} height={hh} fill={hi ? (book > 0.5 ? '#C9563C' : '#5E7898') : ['#5E7898', '#3E6A90', '#7A8FA8'][(i + row) % 3]} stroke={hi && book > 0.5 ? YEL : INK} strokeWidth={hi && book > 0.5 ? 4 : 2} />;
+        return <rect key={`${row}${i}`} x={bx} y={y0 + 80 - hh} width={b.w} height={hh} fill={hi ? (book > 0.5 ? '#C9563C' : '#5E7898') : ['#5E7898', '#3E6A90', '#7A8FA8'][(i + row) % 3]} stroke={hi && book > 0.5 ? YEL : c.ink} strokeWidth={hi && book > 0.5 ? 4 : 2} />;
       });
     })}
     {/* la lampada e il divano */}
-    <Glow id="rf-lamp" x={520} y={250} r={110} t={T} color={WARM} amp={0.06} rate={1.6} opacity={0.4} />
-    <path d="M520 470 V280 M492 470 H548" {...L} strokeWidth="5" />
-    <path d="M486 280 H554 L538 236 H502 Z" {...L} fill={WARM} fillOpacity=".55" strokeWidth="4" />
-    <path d="M150 470 V400 Q150 380 172 380 H420 Q442 380 442 400 V470 Z" {...L} fill="#6C4A6E" strokeWidth="6" />
-    <path d="M140 420 H452 V470 H140 Z" {...L} fill="#7E5A80" strokeWidth="5" />
-    <path d="M296 380 V420" {...L} strokeWidth="3" />
-    <path d="M100 470 H980" {...L} strokeWidth="6" />
-    <path d="M200 500 H880 L940 540 H140 Z" fill="#2A4E78" fillOpacity=".6" stroke={DIM} strokeWidth="3" />
+    <Glow id="rf-lamp" x={520} y={250} r={110} t={T} color={c.warm} amp={0.06} rate={1.6} opacity={0.4} />
+    <path d="M520 470 V280 M492 470 H548" {...Lc(c)} strokeWidth="5" />
+    <path d="M486 280 H554 L538 236 H502 Z" {...Lc(c)} fill={c.warm} fillOpacity=".55" strokeWidth="4" />
+    <path d="M150 470 V400 Q150 380 172 380 H420 Q442 380 442 400 V470 Z" {...Lc(c)} fill="#6C4A6E" strokeWidth="6" />
+    <path d="M140 420 H452 V470 H140 Z" {...Lc(c)} fill="#7E5A80" strokeWidth="5" />
+    <path d="M296 380 V420" {...Lc(c)} strokeWidth="3" />
+    <path d="M100 470 H980" {...Lc(c)} strokeWidth="6" />
+    <path d="M200 500 H880 L940 540 H140 Z" fill={c.rug} fillOpacity=".6" stroke={c.dim} strokeWidth="3" />
   </g>
 );
 
 /** 2015: solo una città tratteggiata e un grande punto di domanda (è il seguito), finché Doc non ne arriva. */
-const ArtFuturo: React.FC<{ T: number; lit: number }> = ({ T, lit }) => (
+const ArtFuturo: React.FC<{ c: Pal; T: number; lit: number }> = ({ c, T, lit }) => (
   <g opacity={0.45 + 0.55 * lit}>
     {SKY.map((b, i) => (
       <g key={i}>
-        <rect x={b.x} y={470 - b.h} width={b.w} height={b.h} fill={FILL2} fillOpacity={0.5 * lit} stroke={INK} strokeWidth="3" strokeDasharray={lit > 0.5 ? undefined : '12 10'} />
-        {lit > 0.3 && Array.from({ length: Math.floor(b.h / 50) }, (_, k) => <rect key={k} x={b.x + 14} y={480 - b.h + k * 50} width={b.w - 28} height="14" fill={WARM} opacity={0.2 + 0.25 * Math.sin(T * 2 + i + k)} />)}
+        <rect x={b.x} y={470 - b.h} width={b.w} height={b.h} fill={c.fill2} fillOpacity={0.5 * lit} stroke={c.ink} strokeWidth="3" strokeDasharray={lit > 0.5 ? undefined : '12 10'} />
+        {lit > 0.3 && Array.from({ length: Math.floor(b.h / 50) }, (_, k) => <rect key={k} x={b.x + 14} y={480 - b.h + k * 50} width={b.w - 28} height="14" fill={c.warm} opacity={0.2 + 0.25 * Math.sin(T * 2 + i + k)} />)}
       </g>
     ))}
-    <text x="540" y="300" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="230" fill={INK} opacity={0.12 * (1 - lit) + 0.04}>?</text>
-    <path d="M100 470 H980" {...L} strokeWidth="5" strokeDasharray={lit > 0.5 ? undefined : '16 12'} />
+    <text x="540" y="300" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="230" fill={c.ink} opacity={0.12 * (1 - lit) + 0.04}>?</text>
+    <path d="M100 470 H980" {...Lc(c)} strokeWidth="5" strokeDasharray={lit > 0.5 ? undefined : '16 12'} />
   </g>
 );
 
@@ -619,7 +633,8 @@ const Photo: React.FC<{ T: number; fadeBro: number; fadeSis: number; fadeMe: num
 
 // ---------------------------------------------------------------- lo schema
 
-export const Schema: React.FC<{ T: number }> = ({ T }) => {
+/** `cam`: dove guarda la camera (y del mondo e zoom), per attenuare le stazioni lontane; il video lungo passa la sua. */
+export const Schema: React.FC<{ T: number; cam?: { y: number; z: number } }> = ({ T, cam = camAt(T) }) => {
   const bandAt: Record<BandKey, number> = {
     parcheggio: 0, strada: at('macchina', 3, 1.2), piazza: at('foto', 0, 0.6), ballo: at('foto', 2), casa: at('cambiato', 1), futuro: at('cambiato', 2),
   };
@@ -684,17 +699,19 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
       {/* le stazioni */}
       {BANDS.map((b) => {
         const on = seg(T, bandAt[b.key], bandAt[b.key] + 0.6);
-        const focusOn = Math.abs(camAt(T).y - cy(b.key)) < 300 ? 1 : 0;
+        const focusOn = Math.abs(cam.y - cy(b.key)) < 300 ? 1 : 0;
+        // le stazioni lontane dall'inquadratura restano più scure (nel campo lungo tutte accese)
+        const near = cam.z < 0.6 ? 1 : 1 - 0.55 * seg(Math.abs(cam.y - cy(b.key)), 430, 760);
         return (
-          <g key={b.key}>
+          <g key={b.key} opacity={near}>
             <Frame k={b.key} on={b.key === 'futuro' ? 0 : on} focus={focusOn} />
             <g transform={`translate(0 ${b.y0})`} opacity={b.key === 'futuro' ? 1 : 0.1 + 0.9 * on}>
-              {b.key === 'strada' && <ArtStrada T={T} carX={car55X} carRoll={car55} />}
-              {b.key === 'ballo' && <ArtBallo T={T} lights={seg(T, at('ballo', 0), at('ballo', 0, 1))} />}
-              {b.key === 'piazza' && <ArtPiazza T={T} storm={storm} minutes={minutes} />}
-              {b.key === 'parcheggio' && <ArtParcheggio T={T} />}
-              {b.key === 'casa' && <ArtCasa T={T} bubbles={seg(T, at('cambiato', 1, 0.8), at('cambiato', 1, 1.3))} book={bookOn} />}
-              {b.key === 'futuro' && <ArtFuturo T={T} lit={lit2015} />}
+              {b.key === 'strada' && <ArtStrada c={P55} T={T} carX={car55X} carRoll={car55} />}
+              {b.key === 'ballo' && <ArtBallo c={P55} T={T} lights={seg(T, at('ballo', 0), at('ballo', 0, 1))} />}
+              {b.key === 'piazza' && <ArtPiazza c={P55} T={T} storm={storm} minutes={minutes} />}
+              {b.key === 'parcheggio' && <ArtParcheggio c={P85} T={T} />}
+              {b.key === 'casa' && <ArtCasa c={P85} T={T} bubbles={seg(T, at('cambiato', 1, 0.8), at('cambiato', 1, 1.3))} book={bookOn} />}
+              {b.key === 'futuro' && <ArtFuturo c={P15} T={T} lit={lit2015} />}
             </g>
           </g>
         );
@@ -808,14 +825,14 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
       {cable > 0 && (
         <g>
           <mask id="rf-cab" maskUnits="userSpaceOnUse" x="0" y="1000" width="1200" height="1400"><rect x="300" y="1000" width={700 * cable} height="1400" fill="#fff" /></mask>
-          <path d={`M430 ${Y('piazza', 150)} Q600 ${Y('piazza', 230)} 760 ${Y('piazza', 292)} Q855 ${Y('piazza', 340)} 950 ${Y('piazza', 292)}`} fill="none" stroke={surge > 0 ? '#FFFFFF' : WARM} strokeWidth={surge > 0 ? 10 : 7} mask="url(#rf-cab)" />
+          <path d={`M430 ${Y('piazza', 150)} Q600 ${Y('piazza', 230)} 760 ${Y('piazza', 292)} Q855 ${Y('piazza', 340)} 950 ${Y('piazza', 292)}`} fill="none" stroke={surge > 0 ? '#FFFFFF' : P55.ink} strokeWidth={surge > 0 ? 10 : 7} mask="url(#rf-cab)" />
           {surge > 0 && <path d={`M430 ${Y('piazza', 150)} Q600 ${Y('piazza', 230)} 760 ${Y('piazza', 292)} Q855 ${Y('piazza', 340)} 950 ${Y('piazza', 292)}`} fill="none" stroke="#BFE6FF" strokeWidth="40" opacity={0.6 * surge} />}
           <text x="610" y={Y('piazza', 254)} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={fit(40)} fill={INK} stroke={DARK} strokeWidth="7" paintOrder="stroke" opacity={seg(T, at('fulmine', 3, 1.0), at('fulmine', 3, 1.4)) * (1 - seg(T, end('fulmine') - 0.4, end('fulmine')))}>il cavo di Doc</text>
         </g>
       )}
       {T >= at('fulmine', 3, 1.2) && T < at('lettera', 2, 0.9) && (
         <g transform={`translate(${lerp(230, 860, pCar)} ${Y('piazza', 470)}) scale(.62)`} opacity={seg(T, at('fulmine', 3, 1.2), at('fulmine', 3, 1.6))}>
-          <TimeCar T={T} glow={0.3 + 0.7 * Math.max(pCar, surge)} s={1} pole />
+          <TimeCar T={T} glow={0.3 + 0.7 * Math.max(pCar, surge)} s={1} pole ink={P55.ink} />
         </g>
       )}
 
@@ -885,7 +902,8 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
           <g opacity={k * flick}>
             <Glow id="rf-bolt" x={392} y={Y('piazza', -10)} r={260} t={T} color="#DDF0FF" amp={0.2} rate={30} opacity={0.9} />
             <path d={d} fill="none" stroke="#BFE6FF" strokeWidth="80" opacity=".4" strokeLinejoin="round" strokeLinecap="round" />
-            <path d={d} fill="none" stroke="#FFFFFF" strokeWidth="26" strokeLinejoin="round" strokeLinecap="round" />
+            <path d={d} fill="none" stroke={P55.ink} strokeWidth="34" strokeLinejoin="round" strokeLinecap="round" />
+            <path d={d} fill="none" stroke="#FFF6B0" strokeWidth="22" strokeLinejoin="round" strokeLinecap="round" />
           </g>
         );
       })()}
@@ -946,20 +964,20 @@ export const makeLinee = (chapterId: string): React.FC<SceneProps> => {
         <defs>
           <FxDefs id="rf" />
           <radialGradient id="rf-bg" cx=".5" cy=".46" r=".8">
-            <stop offset="0" stopColor="#1C4C82" />
-            <stop offset=".6" stopColor="#123764" />
-            <stop offset="1" stopColor="#081A33" />
+            <stop offset="0" stopColor="#2E1E5C" />
+            <stop offset=".6" stopColor="#1C1240" />
+            <stop offset="1" stopColor="#0C0820" />
           </radialGradient>
           <linearGradient id="rf-scrim" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#081A33" stopOpacity=".96" />
-            <stop offset=".82" stopColor="#081A33" stopOpacity=".88" />
-            <stop offset="1" stopColor="#081A33" stopOpacity="0" />
+            <stop offset="0" stopColor="#0C0820" stopOpacity=".96" />
+            <stop offset=".82" stopColor="#0C0820" stopOpacity=".88" />
+            <stop offset="1" stopColor="#0C0820" stopOpacity="0" />
           </linearGradient>
           <pattern id="rf-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M40 0 H0 V40" fill="none" stroke="#2A5A92" strokeWidth="1" />
+            <path d="M40 0 H0 V40" fill="none" stroke="#33255E" strokeWidth="1" />
           </pattern>
           <pattern id="rf-grid2" width="200" height="200" patternUnits="userSpaceOnUse">
-            <path d="M200 0 H0 V200" fill="none" stroke="#3468A2" strokeWidth="2" />
+            <path d="M200 0 H0 V200" fill="none" stroke="#5A2E78" strokeWidth="2" />
           </pattern>
         </defs>
         <rect width="1080" height="1920" fill="url(#rf-bg)" />
@@ -972,7 +990,7 @@ export const makeLinee = (chapterId: string): React.FC<SceneProps> => {
         {MOTES.map((m, i) => (
           <circle key={i} cx={mod(m.x + Math.sin(T * 0.5 + m.ph) * 30, 1080)} cy={mod(m.y - T * m.v, 1920)} r={m.s} fill={INK} opacity={0.1 + 0.07 * Math.sin(T * 2 + m.ph)} />
         ))}
-        <Finish id="rf" tint="#142848" tintOpacity={0.1} />
+        <Finish id="rf" tint="#1A1238" tintOpacity={0.1} />
       </svg>
     );
   };

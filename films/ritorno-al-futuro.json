@@ -8,9 +8,9 @@
   "anno": 1985,
   "bpm": 72,
   "palette": {
-    "chiaro": "#EAF2FA",
-    "principale": "#1F4E86",
-    "scuro": "#081628",
+    "chiaro": "#F4EEE2",
+    "principale": "#2E1E5C",
+    "scuro": "#0E0A22",
     "accento": "#F5C23A"
   },
   "personaggi": [
