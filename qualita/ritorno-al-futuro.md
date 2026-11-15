@@ -25,3 +25,15 @@ la fila dei personaggi (cerchi con l'oggetto, nome e ruolo sotto il cerchio; sul
 - Gli eventi usano `at()` arrotondato alla croma della musica (72 bpm), gli stessi istanti dello spartito.
 - Lo schema (`Schema`, con `at`, `SHOTS`, `camAt`) si riusa nel video lungo della trilogia con una camera 16:9 propria;
   le parti II e III aggiungono stazioni (1885, 2015) senza cambiare il vocabolario.
+
+## Parte 2 (`src/scenes/ritorno-al-futuro-parte-2/Linee2.tsx`)
+Stesso schema e stessi pezzi della Parte 1 (importati da `Linee.tsx`, mai copiati). Stazioni dall'alto: 1885 (paese di
+legno, fotografia seppia, tratteggiato finché Doc non ci finisce), 1955 piazza (la cartolina della Parte 1), 1985 casa McFly
+(neon ciano), 1985 alternativo (neon rosso su bordeaux, il casinò di Biff al posto della torre, un bidone che brucia),
+2015 (dépliant color menta, auto che volano sulle corsie del cielo, il negozio di oggetti d'epoca).
+- Il 1985 alternativo è un ramo: dalla linea degli anni, sotto il 1955, si stacca un binario rosso tratteggiato che porta
+  alla sua stazione; quando l'almanacco brucia, binario e stazione si spengono.
+- L'almanacco (copertina blu e oro, «1950 · 2000») è l'oggetto chiave: dalla vetrina al cestino, al vecchio Biff, al Biff
+  del 1955, a Marty, al fuoco.
+- Copertina: l'almanacco che fluttua davanti a Hill Valley divisa da una crepa gialla (a sinistra la torre in cartolina,
+  a destra il casinò al neon rosso), cartellino «PARTE 2».
