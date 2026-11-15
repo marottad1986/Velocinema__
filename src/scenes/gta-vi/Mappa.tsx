@@ -46,7 +46,7 @@ const smooth = (pts: P[]) => {
   const l = pts[pts.length - 1];
   return d + ` L${l[0]} ${l[1]}`;
 };
-const LAND_D = `${smooth(WEST)} ${smooth([...EAST].reverse()).replace(/^M/, 'L')} L1280 -200 L-200 -200 Z`;
+const LAND_D = `${smooth(WEST)} ${smooth([...EAST].reverse()).replace(/^M/, 'L')} L4000 560 L4000 -3000 L-3000 -3000 L-3000 560 Z`;
 const COAST_D = `${smooth(WEST)} ${smooth([...EAST].reverse()).replace(/^M/, 'L')}`;
 // le isole delle Keys, da est a ovest
 const KEYS = [[668, 1968, 34, 16], [604, 2018, 44, 18], [520, 2062, 52, 20], [426, 2090, 48, 18], [334, 2104, 42, 17], [246, 2100, 36, 15], [168, 2082, 28, 13]] as const;
@@ -55,7 +55,7 @@ const BEACH_D = 'M930 1290 Q960 1300 962 1400 Q962 1520 922 1600 Q912 1610 906 1
 const LAKE_D = 'M560 980 Q640 950 690 1000 Q720 1060 670 1110 Q600 1150 548 1100 Q512 1040 560 980 Z';
 
 export const PLACE = {
-  vice: [800, 1420], keys: [430, 2060], grass: [565, 1725], port: [196, 836], ambrosia: [790, 470], kalaga: [470, 380], lake: [620, 1050],
+  vice: [800, 1420], keys: [430, 2060], grass: [565, 1725], port: [196, 836], ambrosia: [840, 500], kalaga: [470, 380], lake: [620, 1050],
 } as const;
 export const N = {
   jason: [250, 1840], brian: [120, 2230],
@@ -104,8 +104,8 @@ const SHOTS: Shot[] = [
   // Jason e Brian nelle Keys, poi Lucia e il carcere
   { at: at('coppia', 0), x: 300, y: 1960, z: 0.9 },
   { at: at('coppia', 1), x: 260, y: 2040, z: 0.88 },
-  { at: at('coppia', 2), x: 250, y: 1320, z: 0.9 },
-  { at: at('coppia', 3), x: 260, y: 1500, z: 0.86 },
+  { at: at('coppia', 2), x: 230, y: 1400, z: 0.82 },
+  { at: at('coppia', 3), x: 250, y: 1500, z: 0.82 },
   // il colpo in banca, il complotto, Bonnie e Clyde, la difesa a vicenda
   { at: at('colpo', 0), x: 560, y: 1480, z: 0.6 },
   { at: at('colpo', 1), ...WIDE },
@@ -133,7 +133,7 @@ const SHOTS: Shot[] = [
   { at: at('uscita', 2), ...BOARD(300) },
   { at: at('edizioni', 0), ...BOARD(-40) },
   { at: at('edizioni', 2), ...BOARD(200) },
-  { at: at('edizioni', 3), x: 290, y: 1640, z: 0.8 },
+  { at: at('edizioni', 3), x: 360, y: 1600, z: 0.74 },
 ];
 let UI_K = 1;
 let WIDEV = false;
@@ -176,8 +176,8 @@ export const CellKey: React.FC<{ T: number; s?: number; color?: string }> = ({ T
     <path d="M22 0 V14 M30 0 V11 M14 0 V9" stroke={color} strokeWidth="6" />
     <path d="M-4 -3 H32" stroke="#FFF3C8" strokeWidth="2" opacity=".6" />
     {/* la targhetta appesa all'anello */}
-    <path d="M-34 10 L-40 22" stroke={INK} strokeWidth="2" />
-    <g transform="translate(-44 34) rotate(26)">
+    <path d="M-32 -10 L-38 -22" stroke={INK} strokeWidth="2" />
+    <g transform="translate(-40 -34) rotate(-20)">
       <rect x="-15" y="-9" width="30" height="20" rx="4" fill="#E9E1D3" stroke={INK} strokeWidth="2.5" />
       <path d="M-9 -1 H9 M-9 5 H4" stroke="#7A6E5E" strokeWidth="2.4" />
     </g>
@@ -502,7 +502,6 @@ const ViceCity: React.FC<{ T: number; neon: number; old: number }> = ({ T, neon,
         </g>
       ))}
       {/* la cartolina del 2002 copre la città in seppia finché la voce non dice «rifatta da capo» */}
-      {old > 0 && <rect x="560" y={base - 260} width="420" height="300" fill="#C8A878" opacity={0.55 * old} />}
     </g>
   );
 };
@@ -639,15 +638,15 @@ const Gift: React.FC<{ T: number; open: number }> = ({ T, open }) => (
     <rect x="-110" y="-40" width="220" height="140" rx="8" fill="#F6E4EE" stroke={INK} strokeWidth="5" />
     {Array.from({ length: 6 }, (_, i) => <path key={i} d={`M${-110 + i * 44} -40 L${-80 + i * 44} 100`} stroke={CYAN} strokeWidth="12" opacity=".35" />)}
     <rect x="-16" y="-40" width="32" height="140" fill={PINK} stroke={INK} strokeWidth="3" />
-    <g transform={`translate(0 ${-40 - 60 * open}) rotate(${-14 * open})`}>
+    <g transform={`translate(${70 * open} ${-40 - 22 * open}) rotate(${18 * open})`}>
       <rect x="-122" y="-34" width="244" height="40" rx="8" fill="#F6E4EE" stroke={INK} strokeWidth="5" />
       <rect x="-16" y="-34" width="32" height="40" fill={PINK} stroke={INK} strokeWidth="3" />
       <path d="M0 -34 Q-40 -76 -54 -50 Q-56 -34 0 -34 Q40 -76 54 -50 Q56 -34 0 -34 Z" fill={PINK} stroke={INK} strokeWidth="3" />
     </g>
     <g transform="translate(0 40)">
       <rect x="-96" y="-30" width="192" height="60" rx="10" fill="#1A0D24" stroke={PINK} strokeWidth="3" />
-      <text y="-4" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="20" letterSpacing="3" fill={PINK}>VINTAGE</text>
-      <text y="20" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="20" letterSpacing="3" fill={CYAN}>VICE CITY PACK</text>
+      <text y="-4" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="17" letterSpacing="2" fill={PINK}>VINTAGE</text>
+      <text y="20" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="17" letterSpacing="1" fill={CYAN}>VICE CITY PACK</text>
     </g>
   </g>
 );
@@ -658,8 +657,10 @@ const Board: React.FC<{ T: number }> = ({ T }) => {
   const prof = focus(T, at('profilo', 0), end('profilo') - 0.3);
   const usc = focus(T, at('uscita', 0), end('uscita') - 0.3);
   const ediz = focus(T, at('edizioni', 0), at('edizioni', 3, 0.2));
+  const vis = Math.min(1, focus(T, at('profilo', 0, -0.6), end('profilo')) + focus(T, at('uscita', 0, -0.6), at('edizioni', 3, 0.6)));
+  if (vis <= 0) return null;
   return (
-    <g>
+    <g opacity={vis}>
       {/* il tramonto a righe sull'orizzonte del mare, dietro la bacheca */}
       <Glow id="gv-sun" x={540} y={y + 520} r={560} t={T} color={PINK} amp={0.05} rate={1.4} opacity={0.45} />
       <clipPath id="gv-sunc"><rect x="0" y={y + 200} width="1080" height="380" /></clipPath>
@@ -694,10 +695,12 @@ const Board: React.FC<{ T: number }> = ({ T }) => {
             })}
           </g>
           {/* il mondo e la storia reagiscono: due frecce che escono dal profilo */}
-          <Link T={T} t0={at('profilo', 1, 0.4)} a={[300, y + 30]} b={[160, y + 200]} c={[180, y + 60]} color={YEL} arrow w={7} label="il mondo reagisce" lx={-10} ly={110} size={38} />
-          <Link T={T} t0={at('profilo', 1, 0.7)} a={[780, y + 30]} b={[920, y + 200]} c={[900, y + 60]} color={YEL} arrow w={7} label="e la storia" lx={20} ly={110} size={38} />
-          {T >= at('profilo', 1, 0.6) && <g transform={`translate(160 ${y + 250}) scale(${1.6 * pop(T, at('profilo', 1, 0.6))})`}><Siren T={T} id="gv-ps" /></g>}
-          {T >= at('profilo', 1, 0.9) && <g transform={`translate(920 ${y + 250}) scale(${pop(T, at('profilo', 1, 0.9))})`}><rect x="-44" y="-30" width="88" height="60" rx="6" fill="#F2ECDE" stroke={INK} strokeWidth="3" /><path d="M-32 -14 H32 M-32 0 H32 M-32 14 H14" stroke="#8A8070" strokeWidth="4" /></g>}
+          <Link T={T} t0={at('profilo', 1, 0.4)} a={[330, y + 30]} b={[270, y + 170]} c={[260, y + 70]} color={YEL} arrow w={8} />
+          <Link T={T} t0={at('profilo', 1, 0.7)} a={[750, y + 30]} b={[810, y + 170]} c={[820, y + 70]} color={YEL} arrow w={8} />
+          {T >= at('profilo', 1, 0.8) && <text x="270" y={y + 320} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" fill={INK} stroke={DARK} strokeWidth="6" paintOrder="stroke" opacity={seg(T, at('profilo', 1, 0.8), at('profilo', 1, 1.1))}>il mondo reagisce</text>}
+          {T >= at('profilo', 1, 1.0) && <text x="810" y={y + 320} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" fill={INK} stroke={DARK} strokeWidth="6" paintOrder="stroke" opacity={seg(T, at('profilo', 1, 1.0), at('profilo', 1, 1.3))}>e la storia</text>}
+          {T >= at('profilo', 1, 0.6) && <g transform={`translate(270 ${y + 240}) scale(${1.6 * pop(T, at('profilo', 1, 0.6))})`}><Siren T={T} id="gv-ps" /></g>}
+          {T >= at('profilo', 1, 0.9) && <g transform={`translate(810 ${y + 240}) scale(${pop(T, at('profilo', 1, 0.9))})`}><rect x="-44" y="-30" width="88" height="60" rx="6" fill="#F2ECDE" stroke={INK} strokeWidth="3" /><path d="M-32 -14 H32 M-32 0 H32 M-32 14 H14" stroke="#8A8070" strokeWidth="4" /></g>}
           </g>
           {/* il fisico: cibo, palestra, sonno; poi vestiti e capelli */}
           <Icon T={T} t0={at('profilo', 2, 0.2)} x={240} y={y + 400} label="cibo"><Plate /></Icon>
@@ -711,17 +714,17 @@ const Board: React.FC<{ T: number }> = ({ T }) => {
       {/* ---- capitolo 9: la data, il preload, la scatola senza disco */}
       {usc > 0 && (
         <g opacity={usc}>
-          <g opacity={1 - seg(T, at('uscita', 2), at('uscita', 2, 0.5))}>
+          <g opacity={1 - seg(T, at('uscita', 1, -0.2), at('uscita', 1, 0.3))}>
           <g transform={`translate(330 ${y - 130}) scale(${1.4 * pop(T, at('uscita', 0, 0.1))})`}>
             <Glow id="gv-cal" x={0} y={0} r={170} t={T} color={YEL} amp={0.1} rate={2.4} opacity={0.6} />
-            <Sheet top="GIOVEDÌ · NOVEMBRE" big="19" w={190} color={PINK} />
+            <Sheet top="GIOVEDÌ 19 NOV" big="19" w={210} color={PINK} />
           </g>
           <Tag T={T} t0={at('uscita', 0, 0.6)} x={740} y={y - 210} text="PlayStation 5" bg={CYAN} size={40} />
           <Tag T={T} t0={at('uscita', 0, 0.9)} x={740} y={y - 120} text="Xbox Series" bg={CYAN} size={40} />
           {T >= at('uscita', 0, 1.4) && (
             <g transform={`translate(740 ${y - 30}) scale(${pop(T, at('uscita', 0, 1.4))})`}>
-              <rect x="-80" y="-30" width="160" height="60" rx="12" fill="#2A2438" stroke={DIM} strokeWidth="3" />
-              <text y="12" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="34" fill={DIM}>PC</text>
+              <rect x="-100" y="-38" width="200" height="76" rx="14" fill="#3A3458" stroke={INK} strokeWidth="4" />
+              <text y="12" textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize="44" fill={INK}>PC</text>
               <path d="M-70 -24 L70 24" stroke={RED} strokeWidth="8" strokeLinecap="round" />
             </g>
           )}
@@ -745,8 +748,8 @@ const Board: React.FC<{ T: number }> = ({ T }) => {
       {/* ---- capitolo 10: il Vintage Vice City Pack, niente microtransazioni */}
       {ediz > 0 && (
         <g opacity={ediz}>
-          {T >= at('edizioni', 0, 0.1) && <g transform={`translate(540 ${y - 110}) scale(${1.35 * pop(T, at('edizioni', 0, 0.1))})`}><Gift T={T} open={eo(seg(T, at('edizioni', 0, 0.8), at('edizioni', 0, 1.6)))} /></g>}
-          <Tag T={T} t0={at('edizioni', 0, 1.2)} x={540} y={y + 140} text="digitale, entro il 20 novembre" size={40} />
+          {T >= at('edizioni', 0, 0.1) && <g opacity={1 - seg(T, at('edizioni', 2), at('edizioni', 2, 0.4))} transform={`translate(540 ${y - 110}) scale(${1.35 * pop(T, at('edizioni', 0, 0.1))})`}><Gift T={T} open={eo(seg(T, at('edizioni', 0, 0.8), at('edizioni', 0, 1.6)))} /></g>}
+          <Tag T={T} t0={at('edizioni', 0, 1.2)} x={540} y={y + 140} text="digitale, prima del 20 novembre" size={40} until={at('edizioni', 2, 0.6)} />
           <text x="540" y={y + 230} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize="50" fill={PINK} stroke={DARK} strokeWidth="8" paintOrder="stroke" opacity={seg(T, at('edizioni', 1, 0.2), at('edizioni', 1, 0.6))}>ispirato a Tommy Vercetti</text>
           {T >= at('edizioni', 2, 0.1) && (
             <g transform={`translate(540 ${y + 400}) scale(${pop(T, at('edizioni', 2, 0.1))})`}>
@@ -774,6 +777,11 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
   const plot = seg(T, at('colpo', 1, 0.1), at('colpo', 1, 0.8));
   const alarm = focus(T, at('colpo', 0, 0.9), end('colpo'));
   const gone = (ch: string) => 1 - seg(T, end(ch) - 0.1, end(ch) + 0.4);
+  // nomi dei luoghi solo quando servono: tutti nella mappa del capitolo 1, Vice City anche quando la voce ne parla
+  const nameMap = 1 - seg(T, end('mappa') - 0.2, end('mappa') + 0.4);
+  const nameVC = Math.min(1, nameMap + focus(T, at('vicecity', 0), end('vicecity')) + focus(T, at('colpo', 0), at('colpo', 2)) + focus(T, at('personaggi', 1), end('personaggi')));
+  // la coppia resta sulla mappa solo nei suoi capitoli (3-5) e nella domanda finale
+  const couple = Math.min(1, focus(T, at('coppia', 0), end('insieme') - 0.2) + focus(T, at('edizioni', 3), end('edizioni') + 2));
   // i due protagonisti si accendono quando la voce parla di loro
   const ringJ = focus(T, at('coppia', 0), at('coppia', 2)) + focus(T, at('colpo', 2), end('insieme')) + focus(T, at('edizioni', 3), end('edizioni') + 2);
   const ringL = focus(T, at('coppia', 2), end('coppia')) + focus(T, at('colpo', 2), end('insieme')) + focus(T, at('edizioni', 3), end('edizioni') + 2);
@@ -796,7 +804,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
             {TREES.map((t, i) => <g key={i} transform={`translate(${t.x} ${t.y}) scale(${t.s})`}><path d="M0 -26 L14 4 H-14 Z" fill="#2E5A4E" stroke={DARK} strokeWidth="2.5" /><path d="M0 4 V12" stroke={DARK} strokeWidth="3" /></g>)}
             <path d="M330 470 L430 300 L500 380 L560 290 L660 470 Z" fill="#4A3270" stroke={DARK} strokeWidth="4" strokeLinejoin="round" />
             <path d="M430 300 L452 336 L470 324 M560 290 L580 322 L600 312" fill="none" stroke={INK} strokeWidth="3" opacity=".7" />
-            <path d="M-200 200 H1300" stroke={DIM} strokeWidth="4" strokeDasharray="22 14" opacity=".7" />
+            <path d="M-3000 200 H4000" stroke={DIM} strokeWidth="4" strokeDasharray="22 14" opacity=".7" />
             <path d={LAKE_D} fill="#2A5AA8" stroke={CYAN} strokeWidth="3" opacity=".9" />
             {[0, 1, 2].map((k) => <path key={k} d={`M${580 + k * 30} ${1040 + k * 18} q10 -4 20 0`} stroke={INK} strokeWidth="2" fill="none" opacity=".5" />)}
             {[ROAD_EAST, ROAD_KEYS, ROAD_WEST].map((d, i) => (
@@ -814,14 +822,13 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           <path d={BEACH_D} fill={SAND} stroke={DARK} strokeWidth="3" opacity={filled} />
         </g>
       )}
-      <PlaceName T={T} t0={at('mappa', 0, 0.4)} x={420} y={950} text="LEONIDA" size={64} color={YEL} fade={1 - seg(T, at('mappa', 2), at('mappa', 2, 0.4))} />
+      <PlaceName T={T} t0={at('mappa', 0, 0.4)} x={420} y={950} text="LEONIDA" size={64} color={YEL} fade={1 - seg(T, at('mappa', 1, -0.2), at('mappa', 1, 0.3))} />
       <Tag T={T} t0={at('mappa', 0, 0.8)} x={420} y={1040} text="la Florida del gioco" size={40} until={at('mappa', 1)} />
 
       {/* Vice City (la principale) */}
       {filled > 0 && <g opacity={filled}><ViceCity T={T} neon={neon} old={old} /></g>}
       <Pin T={T} t0={at('mappa', 0, 1.6)} x={PLACE.vice[0]} y={PLACE.vice[1] - 230} color={PINK} />
-      <PlaceName T={T} t0={at('mappa', 0, 1.6)} x={800} y={1630} text="VICE CITY" size={44} color={PINK} />
-      <Tag T={T} t0={at('mappa', 0, 2.0)} x={780} y={1720} text="la Miami del gioco" bg={PINK} fg="#FFFFFF" size={36} until={at('mappa', 1, 0.2)} />
+      <PlaceName T={T} t0={at('mappa', 0, 1.6)} x={790} y={1630} text="VICE CITY" size={44} color={PINK} fade={nameVC} />
 
       {/* le Keys: le isole si colorano e il ponte le unisce */}
       {filled > 0 && KEYS.map(([x, y, rx, ry], i) => {
@@ -841,7 +848,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           <path d="M616 2114 V2070 L640 2108 Z" fill={INK} stroke={DARK} strokeWidth="2" transform={`rotate(${Math.sin(T) * 2} 616 2114)`} />
         </g>
       )}
-      <PlaceName T={T} t0={at('mappa', 1, 0.3)} x={440} y={2190} text="LEONIDA KEYS" size={40} color={CYAN} />
+      <PlaceName T={T} t0={at('mappa', 1, 0.3)} x={440} y={2190} text="LEONIDA KEYS" size={40} color={CYAN} fade={nameMap} />
 
       {/* Grassrivers: la palude, con canne, nebbia, lucciole, un alligatore e l'idroscivolante */}
       <g transform="translate(565 1725) scale(.55) translate(-610 -1480)">
@@ -875,15 +882,16 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         </g>
       )}
       </g>
-      <PlaceName T={T} t0={at('mappa', 1, 0.7)} x={600} y={1900} text="GRASSRIVERS" size={40} color="#7ADBB0" />
+      <Tag T={T} t0={at('mappa', 0, 2.0)} x={760} y={1700} text="la Miami del gioco" bg={PINK} fg="#FFFFFF" size={36} until={at('mappa', 1, 0.2)} />
+      <PlaceName T={T} t0={at('mappa', 1, 0.7)} x={600} y={1900} text="GRASSRIVERS" size={40} color="#7ADBB0" fade={nameMap} />
 
       {/* i tre posti di cui si sa solo il nome */}
       {([[PLACE.port, 'PORT GELLHORN', 0], [PLACE.ambrosia, 'AMBROSIA', 1], [PLACE.kalaga, 'MONTE KALAGA', 2]] as const).map(([p, name, k]) => {
         const t0 = at('mappa', 2, 0.2 + k * 0.5);
         return (
           <g key={name}>
-            <Pin T={T} t0={t0} x={p[0]} y={p[1]} unknown />
-            <PlaceName T={T} t0={t0 + 0.2} x={p[0] + (k === 0 ? 60 : 0)} y={p[1] + 60} text={name} size={34} />
+            {nameMap > 0 && <g opacity={nameMap}><Pin T={T} t0={t0} x={p[0]} y={p[1]} unknown /></g>}
+            <PlaceName T={T} t0={t0 + 0.2} x={p[0] + (k === 0 ? 70 : 0)} y={p[1] + 60} text={name} size={30} fade={nameMap} />
           </g>
         );
       })}
@@ -895,13 +903,13 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         return (
           <g opacity={fade}>
             <rect x={420} y={1000} width={280 * p} height={300 * p} fill={DIM} opacity=".3" stroke={INK} strokeWidth="6" strokeDasharray="20 12" />
-            <text x="560" y="1140" textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={fit(54)} fill={INK} stroke={DARK} strokeWidth="9" paintOrder="stroke" opacity={seg(T, at('mappa', 3, 0.5), at('mappa', 3, 0.9))}>Red Dead</text>
-            <text x="560" y="1210" textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={fit(54)} fill={INK} stroke={DARK} strokeWidth="9" paintOrder="stroke" opacity={seg(T, at('mappa', 3, 0.5), at('mappa', 3, 0.9))}>Redemption 2</text>
-            {grow > 0 && <rect x={lerp(420, 318, grow)} y={lerp(1000, 860, grow)} width={lerp(280, 485, grow)} height={lerp(300, 520, grow)} fill="none" stroke={YEL} strokeWidth="10" strokeDasharray="30 16" strokeDashoffset={-T * 40} />}
+            <text x="520" y="1140" textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={fit(54)} fill={INK} stroke={DARK} strokeWidth="9" paintOrder="stroke" opacity={seg(T, at('mappa', 3, 0.5), at('mappa', 3, 0.9))}>Red Dead</text>
+            <text x="520" y="1210" textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={fit(54)} fill={INK} stroke={DARK} strokeWidth="9" paintOrder="stroke" opacity={seg(T, at('mappa', 3, 0.5), at('mappa', 3, 0.9))}>Redemption 2</text>
+            {grow > 0 && <rect x={lerp(420, 400, grow)} y={lerp(1000, 880, grow)} width={lerp(280, 485, grow)} height={lerp(300, 520, grow)} fill="none" stroke={YEL} strokeWidth="10" strokeDasharray="30 16" strokeDashoffset={-T * 40} />}
           </g>
         );
       })()}
-      <Tag T={T} t0={at('mappa', 3, 1.6)} x={200} y={1300} text="× 3" size={90} until={end('mappa') - 0.2} />
+      <Tag T={T} t0={at('mappa', 3, 1.6)} x={210} y={1420} text="× 3" size={90} until={end('mappa') - 0.2} />
 
       {/* ---- capitolo 2: Vice City, la cartolina del 2006, le foto di Miami */}
       {T >= at('vicecity', 0, 0.3) && (() => {
@@ -945,9 +953,9 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       )}
 
       {/* ---- capitolo 3: Jason e Brian nelle Keys, Lucia e il carcere */}
-      <Node T={T} t0={at('coppia', 0, 0.1)} p={N.jason} name="Jason Duval" sub="ex soldato" subFill={YEL} ring={ringJ}><DogTag T={T} /></Node>
+      <Node T={T} t0={at('coppia', 0, 0.1)} p={N.jason} name="Jason Duval" sub="ex soldato" subFill={YEL} ring={ringJ} fade={couple}><DogTag T={T} /></Node>
       <Link T={T} t0={at('coppia', 0, 0.6)} a={[N.jason[0] + 50, N.jason[1] + 60]} b={[470, 2030]} c={[400, 1990]} color={CYAN} arrow w={6} label="lavora per i trafficanti" lx={120} ly={50} size={40} fade={gone('coppia')} />
-      <Node T={T} t0={at('coppia', 1, 0.1)} p={N.brian} name="Brian Heder" sub="trafficante" r={60} size={36} fade={gone('coppia')}><House /></Node>
+      <Node T={T} t0={at('coppia', 1, 0.1)} p={N.brian} name="Brian Heder" sub="trafficante" r={60} size={36} fade={1 - seg(T, at('coppia', 2), at('coppia', 2, 0.4))}><House /></Node>
       <Link T={T} t0={at('coppia', 1, 0.4)} a={[N.jason[0] - 40, N.jason[1] + 70]} b={[N.brian[0] + 10, N.brian[1] - 60]} c={[130, 2000]} color={YEL} arrow w={6} label="vive gratis da lui" lx={-60} ly={40} size={40} fade={gone('coppia')} />
       {T >= at('coppia', 2, 0.1) && (() => {
         // il carcere di Leonida: le sbarre si alzano, Lucia esce
@@ -965,10 +973,10 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })()}
-      <Node T={T} t0={at('coppia', 2, 0.4)} p={N.lucia} name="Lucia Caminos" sub="appena uscita" subFill={YEL} ring={ringL}><CellKey T={T} /></Node>
+      <Node T={T} t0={at('coppia', 2, 0.4)} p={N.lucia} name="Lucia Caminos" sub="appena uscita" subFill={YEL} ring={ringL} fade={couple}><CellKey T={T} /></Node>
       <Tag T={T} t0={at('coppia', 2, 0.9)} x={390} y={1350} text="da Liberty City" bg={CYAN} size={34} until={at('coppia', 3, 0.2)} />
       <Node T={T} t0={at('coppia', 3, 0.2)} p={N.family} name="la sua famiglia" r={54} size={34} fade={gone('coppia')}><Frame /></Node>
-      <Link T={T} t0={at('coppia', 3, 0.4)} a={[N.lucia[0] + 20, N.lucia[1] + 140]} b={[N.family[0], N.family[1] - 50]} color={PINK} w={6} label="l'ha difesa" lx={20} ly={-40} size={38} fade={gone('coppia')} />
+      <Link T={T} t0={at('coppia', 3, 0.4)} a={[N.lucia[0] + 72, N.lucia[1] + 10]} b={[N.family[0], N.family[1] - 50]} color={PINK} w={6} label="l'ha difesa" lx={20} ly={-40} size={38} fade={gone('coppia')} />
 
       {/* ---- capitolo 4: il colpo in banca, il complotto, Bonnie e Clyde, si proteggono */}
       {T >= at('colpo', 0, 0.1) && (
@@ -999,25 +1007,25 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         // la coppia: la linea rosa con il cuore, l'auto di Bonnie e Clyde, poi gli scudi
         const p = eo(seg(T, at('colpo', 2, 0.1), at('colpo', 2, 0.8)));
         const [ax, ay] = [N.lucia[0] + 30, N.lucia[1] + 66], [bx, by] = [N.jason[0] - 10, N.jason[1] - 70];
-        const mx = 330, my = 1640;
+        const mx = 400, my = 1640;
         const hx = 0.25 * ax + 0.5 * mx + 0.25 * bx, hy = 0.25 * ay + 0.5 * my + 0.25 * by;
         const shield = pop(T, at('colpo', 3, 0.2));
         return (
-          <g>
+          <g opacity={couple}>
             <path d={`M${ax} ${ay} Q${mx} ${my} ${bx} ${by}`} fill="none" stroke={PINK} strokeWidth="9" strokeLinecap="round" pathLength={1} strokeDasharray={`${p} 1`} />
             <g transform={`translate(${hx} ${hy}) scale(${1.4 * pop(T, at('colpo', 2, 0.6)) * (1 + 0.06 * Math.sin(T * 6))})`}>
               <path d="M0 14 Q-24 0 -18 -10 Q-12 -20 0 -10 Q12 -20 18 -10 Q24 0 0 14 Z" fill={PINK} stroke={INK} strokeWidth="3" />
             </g>
             <g opacity={gone('colpo')}>
-              <g transform={`translate(620 1570) scale(${1.6 * pop(T, at('colpo', 2, 0.4))})`}><OldCar /></g>
-              <Tag T={T} t0={at('colpo', 2, 0.7)} x={630} y={1460} text="come Bonnie e Clyde" size={38} until={at('colpo', 3, 0.1)} />
+              <g transform={`translate(560 1450) scale(${1.6 * pop(T, at('colpo', 2, 0.4))})`}><OldCar /></g>
+              <Tag T={T} t0={at('colpo', 2, 0.7)} x={330} y={1300} text="come Bonnie e Clyde" size={38} until={at('colpo', 3, 0.1)} />
               {T >= at('colpo', 3, 0.2) && [N.jason, N.lucia].map(([x, y], k) => (
                 <g key={k} transform={`translate(${x + 95} ${y - 40}) scale(${shield})`}>
                   <path d="M0 -30 L26 -20 V4 Q26 24 0 34 Q-26 24 -26 4 V-20 Z" fill={CYAN} stroke={INK} strokeWidth="4" />
                   <path d="M-10 2 L-2 10 L12 -8" fill="none" stroke={DARK} strokeWidth="5" strokeLinecap="round" />
                 </g>
               ))}
-              <Tag T={T} t0={at('colpo', 3, 0.5)} x={640} y={1460} text="si proteggono a vicenda" bg={CYAN} size={38} />
+              <Tag T={T} t0={at('colpo', 3, 0.5)} x={360} y={1300} text="si proteggono a vicenda" bg={CYAN} size={38} />
             </g>
           </g>
         );
@@ -1037,7 +1045,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })()}
-      <Tag T={T} t0={at('insieme', 0, 0.5)} x={460} y={1500} text="ora l'uno, ora l'altra" size={36} until={at('insieme', 1)} />
+      <Tag T={T} t0={at('insieme', 0, 0.5)} x={640} y={1640} text="ora l'uno, ora l'altra" size={36} until={at('insieme', 1)} />
       {T >= at('insieme', 1, 0.1) && (() => {
         // le due strade: Jason verso nord, Lucia verso le Keys; poi tornano insieme a Vice City
         const u = eio(seg(T, at('insieme', 1, 0.1), at('insieme', 1, 2.2)));
@@ -1049,31 +1057,30 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         const [jx, jy] = pos(B), [lx, ly] = pos(C);
         return (
           <g opacity={fade}>
-            <path d={`M${A[0]} ${A[1]} Q700 1000 ${B[0]} ${B[1]}`} fill="none" stroke={YEL} strokeWidth="7" strokeDasharray="20 14" strokeDashoffset={-T * 50} />
-            <path d={`M${A[0]} ${A[1]} Q760 1800 ${C[0]} ${C[1]}`} fill="none" stroke={PINK} strokeWidth="7" strokeDasharray="20 14" strokeDashoffset={-T * 50} />
+            <path d={`M${A[0]} ${A[1]} Q700 1000 ${B[0]} ${B[1]}`} fill="none" stroke={YEL} strokeWidth="13" strokeDasharray="26 16" strokeDashoffset={-T * 50} />
+            <path d={`M${A[0]} ${A[1]} Q760 1800 ${C[0]} ${C[1]}`} fill="none" stroke={PINK} strokeWidth="13" strokeDasharray="26 16" strokeDashoffset={-T * 50} />
             <g transform={`translate(${jx} ${jy}) scale(1.4)`}><circle r="36" fill="#22123A" stroke={YEL} strokeWidth="5" /><DogTag T={T} s={0.8} /></g>
             <g transform={`translate(${lx} ${ly}) scale(1.4)`}><circle r="36" fill="#22123A" stroke={PINK} strokeWidth="5" /><CellKey T={T} s={0.8} /></g>
-            <Tag T={T} t0={at('insieme', 1, 0.6)} x={560} y={1180} text="separati o insieme" size={52} />
+            <Tag T={T} t0={at('insieme', 1, 0.6)} x={330} y={1120} text="separati o insieme" size={46} />
           </g>
         );
       })()}
       {T >= at('insieme', 2, 0.1) && (() => {
         const v = 0.35 + 0.5 * eo(seg(T, at('insieme', 2, 0.4), at('insieme', 2, 1.4))) - 0.2 * eo(seg(T, at('insieme', 2, 1.6), at('insieme', 2, 2.2)));
         return (
-          <g transform={`translate(520 1230) scale(${1.2 * pop(T, at('insieme', 2, 0.1))})`} opacity={gone('insieme')}>
+          <g transform={`translate(480 1250) scale(${1.25 * pop(T, at('insieme', 2, 0.1))})`} opacity={1 - seg(T, at('insieme', 3, 0.1), at('insieme', 3, 0.4))}>
             <rect x="-150" y="-60" width="300" height="120" rx="16" fill="#1A1028" stroke={INK} strokeWidth="4" />
-            <text y="-18" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="28" fill={INK}>il vostro rapporto</text>
+            <text y="-18" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" fill={INK}>il vostro rapporto</text>
             <rect x="-120" y="6" width="240" height="26" rx="13" fill="#2A2438" />
             <rect x="-120" y="6" width={240 * v} height="26" rx="13" fill={PINK} />
             <path transform="translate(-136 19) scale(.9)" d="M0 10 Q-14 0 -10 -6 Q-6 -12 0 -6 Q6 -12 10 -6 Q14 0 0 10 Z" fill={PINK} stroke={INK} strokeWidth="2" />
           </g>
         );
       })()}
-      <Tag T={T} t0={at('insieme', 3, 0.3)} x={600} y={1790} text="attività di coppia: facoltative" bg={CYAN} size={36} until={end('insieme') - 0.2} />
+      <Tag T={T} t0={at('insieme', 3, 0.3)} x={440} y={1250} text="in coppia: facoltative" bg={CYAN} size={38} until={end('insieme') - 0.2} />
 
       {/* ---- capitolo 7: gli altri personaggi */}
-      <Node T={T} t0={at('personaggi', 0, 0.2)} p={N.cal} name="Cal Hampton" sub="l'amico paranoico" r={64} size={38} fade={gone('personaggi')}><Binoculars /></Node>
-      <Link T={T} t0={at('personaggi', 0, 0.6)} a={[N.cal[0] - 60, N.cal[1] + 40]} b={[N.jason[0] + 60, N.jason[1] - 30]} color={INK} w={5} label="amico di Jason" ly={-26} size={34} fade={gone('personaggi')} />
+      <Node T={T} t0={at('personaggi', 0, 0.2)} p={N.cal} name="Cal Hampton" sub="l'amico paranoico di Jason" r={64} size={38} fade={1 - seg(T, at('personaggi', 1), at('personaggi', 1, 0.4))}><Binoculars /></Node>
       <Node T={T} t0={at('personaggi', 1, 0.2)} p={N.boobie} name="Boobie Ike" sub="un impero di affari" r={64} size={38} fade={gone('personaggi')}><DollarSign T={T} /></Node>
       <Node T={T} t0={at('personaggi', 2, 0.2)} p={N.dre} name="Dre'Quan Priest" r={64} size={38} fade={gone('personaggi')}><Vinyl T={T} /></Node>
       <Link T={T} t0={at('personaggi', 2, 0.5)} a={[N.boobie[0] - 10, N.boobie[1] - 72]} b={[N.dre[0] + 10, N.dre[1] + 110]} color={PINK} w={6} fade={gone('personaggi')} />
@@ -1093,7 +1100,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
         );
       })}
       {T >= at('satira', 1, 0.6) && <g transform={`translate(560 1330) rotate(-5) scale(${1.4 * pop(T, at('satira', 1, 0.6))})`} opacity={1 - seg(T, at('satira', 3, 0.1), at('satira', 3, 0.5))}><Newspaper /></g>}
-      <Tag T={T} t0={at('satira', 0, 0.6)} x={560} y={720} text="l'America di oggi" bg={PINK} fg="#FFFFFF" size={44} until={at('satira', 3)} />
+      <Tag T={T} t0={at('satira', 0, 0.6)} x={560} y={720} text="l'America di oggi" bg={PINK} fg="#FFFFFF" size={44} until={at('satira', 2, -0.3)} />
       {T >= at('satira', 2, 0.1) && (
         <g transform={`translate(800 1360) scale(${1.9 * pop(T, at('satira', 2, 0.1))})`} opacity={1 - seg(T, at('satira', 3, 0.1), at('satira', 3, 0.5))}>
           <BodyCam T={T} />
@@ -1116,7 +1123,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       {T >= at('edizioni', 3, 0.4) && (
         <g>
           <ellipse cx={(N.jason[0] + N.lucia[0]) / 2} cy={(N.jason[1] + N.lucia[1]) / 2} rx="220" ry="330" fill="none" stroke={RED} strokeWidth="12" strokeDasharray="30 18" strokeDashoffset={-T * 40} opacity={seg(T, at('edizioni', 3, 0.4), at('edizioni', 3, 0.9))} />
-          <Tag T={T} t0={at('edizioni', 3, 0.8)} x={(N.jason[0] + N.lucia[0]) / 2 + 80} y={(N.jason[1] + N.lucia[1]) / 2} text="insieme?" bg={RED} fg="#FFFFFF" size={90} rot={-4} />
+          <Tag T={T} t0={at('edizioni', 3, 0.8)} x={320} y={1260} text="insieme?" bg={RED} fg="#FFFFFF" size={90} rot={-4} />
         </g>
       )}
     </g>
@@ -1148,8 +1155,8 @@ export const makeMappa = (chapterId: string): React.FC<SceneProps> => {
             <stop offset="1" stopColor="#2A1848" />
           </linearGradient>
           <linearGradient id="gv-scrim" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#0B0418" stopOpacity=".95" />
-            <stop offset=".82" stopColor="#0B0418" stopOpacity=".85" />
+            <stop offset="0" stopColor="#0B0418" stopOpacity=".92" />
+            <stop offset=".55" stopColor="#0B0418" stopOpacity=".72" />
             <stop offset="1" stopColor="#0B0418" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="gv-bar" x1="0" y1="0" x2="1" y2="0">
@@ -1170,11 +1177,11 @@ export const makeMappa = (chapterId: string): React.FC<SceneProps> => {
           </pattern>
         </defs>
         <rect width="1080" height="1920" fill="url(#gv-bg)" />
-        <g transform={`translate(540 900) scale(${c.z}) translate(${-c.x} ${-c.y})`}>
+        <g transform={`translate(540 850) scale(${c.z}) translate(${-c.x} ${-c.y})`}>
           <rect x="-4000" y="-4000" width="9080" height="13000" fill="url(#gv-grid)" opacity=".55" />
           <Schema T={T} />
         </g>
-        <rect width="1080" height="500" fill="url(#gv-scrim)" />
+        <rect width="1080" height="600" fill="url(#gv-scrim)" />
         {MOTES.map((m, i) => (
           <circle key={i} cx={mod(m.x + Math.sin(T * 0.5 + m.ph) * 30, 1080)} cy={mod(m.y - T * m.v, 1920)} r={m.s} fill={m.c < 0.5 ? PINK : CYAN} opacity={0.12 + 0.08 * Math.sin(T * 2 + m.ph)} />
         ))}

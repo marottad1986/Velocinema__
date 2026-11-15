@@ -144,7 +144,7 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
       <Reflection t={t} x={540} y={ROAD + 160} color={PINK} n={6} w={70} gap={22} opacity={0.5} />
       <Reflection t={t} x={1000} y={ROAD + 110} color={siren > 0.5 && ph ? RED : BLUE} n={6} w={60} gap={20} opacity={0.4 * siren} />
       {/* la decappottabile azzurra, ferma, con i fari accesi */}
-      <g transform={`translate(380 ${ROAD + 160})`}>
+      <g transform={`translate(380 ${ROAD + 120})`}>
         <ellipse cx="0" cy="54" rx="270" ry="22" fill="#000" opacity=".45" />
         <path d="M200 -10 L560 -60 L560 60 L200 20 Z" fill="#FFF3C8" opacity={0.1 + 0.03 * Math.sin(t * 3)} />
         <path d="M-250 20 L-236 -26 Q-160 -40 -90 -40 L-40 -96 L-20 -96 L-50 -40 Q90 -40 200 -22 L238 10 Q244 40 214 46 H-226 Q-256 46 -250 20 Z" fill={CYAN} stroke={DARK} strokeWidth="9" strokeLinejoin="round" />
@@ -202,7 +202,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, film }) => {
       <p style={{ position: 'absolute', left: 120, width: 840, top: 590, margin: 0, textAlign: 'center', fontFamily: SANS, fontSize: 30, fontWeight: 800, color: CYAN, textShadow: `0 3px 0 ${P.scuro}` }}>
         un gioco di {film.regista} · esce il 19 novembre 2026
       </p>
-      <p style={{ position: 'absolute', left: 120, right: 180, top: 1460, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
+      <p style={{ position: 'absolute', left: 120, right: 180, top: 1420, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}E0`, color: P.chiaro, fontFamily: SANS, fontSize: 44, fontWeight: 800, textAlign: 'center',
         opacity: line, transform: `translateY(${(1 - line) * 16}px)` }}>
         {film.copertina.frase_lancio}
@@ -229,7 +229,7 @@ export const Finale: React.FC<PosterProps> = ({ t, film }) => {
         </div>
         <p style={{ margin: '24px 0 0', fontSize: 34, fontWeight: 400, opacity: seg(t, 1.0, 1.4) }}>Commenta con il gioco che vorresti.</p>
       </div>
-      <p style={{ position: 'absolute', left: 120, right: 180, top: 1470, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
+      <p style={{ position: 'absolute', left: 120, right: 180, top: 1420, margin: '0 auto', width: 'fit-content', maxWidth: 780, boxSizing: 'border-box', padding: '12px 26px 14px',
         borderRadius: 16, background: `${P.scuro}D9`, color: P.chiaro, fontFamily: SANS, fontSize: 44, fontWeight: 800, textAlign: 'center', lineHeight: 1.25,
         opacity: line, transform: `translateY(${(1 - line) * 14}px)` }}>
         {film.finale.voce}
