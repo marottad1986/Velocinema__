@@ -16,6 +16,7 @@
   },
   "pronuncia": {
     "GTA VI": "gi-ti-a sei",
+    "GTA": "gi-ti-a",
     "Leonida": "Leònida",
     "Caminos": "Camìnos",
     "Gellhorn": "Ghèlhorn",
@@ -24,7 +25,10 @@
     "Only Raw": "Ònli Ròo",
     "Vercetti": "Vercètti",
     "Bautista": "Bautìsta",
-    "preload": "prilòud"
+    "preload": "prilòud",
+    "PC.": "pi-ci.",
+    "Ike": "Àik",
+    "Preload": "Prilòud"
   },
   "personaggi": [
     {
@@ -67,7 +71,7 @@
     "durata": 4,
     "frase_lancio": "Mappa, coppia, novità: i dettagli ufficiali.",
     "immagine": "Locandina senza sigla, con «VIDEOGIOCHI SPIEGATI» in alto e il titolo GTA VI nel nostro carattere già completo dal primo fotogramma: tramonto rosa e viola con il sole a righe sul mare, palme scure ai lati, un hotel anni '30 bianco e rosa con l'insegna verticale al neon HOTEL che sfarfalla, un fenicottero nell'acqua bassa, un'auto decappottabile azzurra ferma sul lungomare bagnato, lampeggianti rossi e blu che arrivano da lontano. NON usare persone, armi, logo, caratteri, immagini o mappe del gioco.",
-    "voce": "GTA VI: tutti i dettagli ufficiali prima dell'uscita."
+    "voce": "GTA VI: i dettagli ufficiali prima dell'uscita."
   },
   "capitoli": [
     {
@@ -77,10 +81,10 @@
       "personaggi": [],
       "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
       "sottotitoli": [
-        "Leonida ha sei zone. La principale è Vice City, la Miami del gioco,",
-        "poi le Keys e la palude di Grassrivers,",
-        "Port Gellhorn, Ambrosia e il parco del monte Kalaga.",
-        "Secondo Rockstar, è tre volte Red Dead Redemption 2."
+        "Leonida ha sei zone: la principale è Vice City, la Miami del gioco,",
+        "poi le Keys, la palude di Grassrivers,",
+        "Port Gellhorn, Ambrosia e il monte Kalaga.",
+        "Ed è tre volte Red Dead Redemption 2."
       ]
     },
     {
@@ -108,8 +112,8 @@
       "sottotitoli": [
         "Jason Duval, ex soldato, lavora per i trafficanti delle Keys",
         "e vive gratis da uno di loro, Brian Heder.",
-        "Lucia Caminos, da Liberty City, esce dal carcere di Leonida,",
-        "dove era finita per difendere la sua famiglia."
+        "Lucia Caminos, da Liberty City, esce dal carcere,",
+        "dove era finita per difendere la famiglia."
       ]
     },
     {
@@ -146,8 +150,8 @@
       "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
       "sottotitoli": [
         "Arriva il Criminal Profile: registra come commetti i crimini,",
-        "anche la violenza inutile, e il mondo e la storia reagiscono.",
-        "Il fisico dei due cambia con cibo, palestra e sonno,",
+        "violenza inutile compresa: mondo e storia reagiscono.",
+        "Il fisico cambia con cibo, palestra e sonno,",
         "e puoi cambiare vestiti e capelli."
       ]
     },
@@ -164,9 +168,9 @@
       "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
       "sottotitoli": [
         "C'è Cal Hampton, l'amico paranoico di Jason,",
-        "e Boobie Ike, che a Vice City ha un impero di affari",
-        "e guida con Dre'Quan Priest l'etichetta Only Raw Records.",
-        "Poi Raul Bautista, rapinatore di banche esperto."
+        "Boobie Ike, con il suo impero d'affari a Vice City,",
+        "che guida con Dre'Quan Priest la Only Raw Records,",
+        "e Raul Bautista, rapinatore di banche."
       ]
     },
     {
@@ -177,9 +181,9 @@
       "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
       "sottotitoli": [
         "Come ogni GTA, prende in giro l'America di oggi:",
-        "social, influencer, meme come il Florida Man,",
-        "e la polizia con la telecamera sulla divisa.",
-        "E poi paracadutismo, basket e immersioni."
+        "social, influencer, Florida Man,",
+        "la polizia con la telecamera addosso,",
+        "e poi paracadute, basket e immersioni."
       ]
     },
     {
@@ -190,8 +194,8 @@
       "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
       "sottotitoli": [
         "Esce il 19 novembre su PlayStation 5 e Xbox Series, non su PC.",
-        "Il preload è aperto dal 10 novembre: oltre 200 giga.",
-        "La copia in scatola non ha il disco, ma un codice."
+        "Preload aperto dal 10 novembre: oltre 200 giga.",
+        "La copia in scatola ha un codice, non il disco."
       ]
     },
     {
@@ -201,16 +205,16 @@
       "personaggi": [],
       "scena": "Schema della mappa di Leonida: vedi Mappa.tsx.",
       "sottotitoli": [
-        "Comprandolo in digitale entro il 20 novembre, hai il Vintage Vice City Pack,",
-        "ispirato a Tommy Vercetti di Vice City.",
+        "In digitale, entro il 20 novembre, c'è il Vintage Vice City Pack,",
+        "ispirato a Tommy Vercetti.",
         "E al lancio niente microtransazioni.",
-        "Jason e Lucia ce la faranno a restare insieme?"
+        "Jason e Lucia resteranno insieme?"
       ]
     }
   ],
   "finale": {
     "durata": 4,
-    "voce": "In una frase: Leonida, due fuggitivi e un complotto, dal 19 novembre.",
+    "voce": "In una frase: due fuggitivi contro tutta Leonida.",
     "immagine": "La stessa scena della copertina al tramonto più tardo, più calma (l'insegna accesa fissa, i lampeggianti lontani spenti); riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il gioco che vorresti.'"
   },
   "musica": "Originale e strumentale, genere synth anni '80 richiamato con strumenti campionati: pianoforte e archi in pizzicato a crome come un arpeggiatore, basso pulsante (contrabbasso e violoncelli in pizzicato), cassa, rullante e charleston di VCSL a passo da autostrada notturna, ottoni morbidi negli accordi lunghi; un solo tempo (100 bpm). Niente temi, brani delle radio del gioco o melodie dei trailer.",
