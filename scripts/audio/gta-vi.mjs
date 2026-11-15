@@ -161,9 +161,9 @@ export default (mix, T) => {
   timp(mix, at('mappa', 3, 1.6), { vel: 100, gain: 0.55 });
   // capitolo 2: l'insegna che si accende, la cartolina, le foto con il flash, il cerchio
   clip(mix, 'ronzio_neon', { t: at('vicecity', 0, 0.1), da: 2.5, durata: 2.5, gain: 0.15, fadeOut: 0.8, pan: 0.3 });
-  clip(mix, 'telo', { t: at('vicecity', 0, 0.3), da: 4.45, durata: 0.8, gain: 0.6, fadeOut: 0.2, rev: 0.3 });
-  clip(mix, 'telo', { t: at('vicecity', 1, 0.1), da: 4.45, durata: 0.8, gain: 0.6, fadeOut: 0.2, rev: 0.3 });
-  [0.3, 0.7, 1.1].forEach((d) => clip(mix, 'scatti', { t: at('vicecity', 1, d), da: 6.49, durata: 0.12, gain: 0.6, rev: 0.2 }));
+  clip(mix, 'telo', { t: at('vicecity', 0, 0.3), da: 4.45, durata: 0.8, gain: 0.45, fadeOut: 0.2, rev: 0.3 });
+  clip(mix, 'telo', { t: at('vicecity', 1, 0.1), da: 4.45, durata: 0.8, gain: 0.45, fadeOut: 0.2, rev: 0.3 });
+  [0.3, 0.7, 1.1].forEach((d) => clip(mix, 'scatti', { t: at('vicecity', 1, d), da: 6.49, durata: 0.12, gain: 0.4, rev: 0.2 }));
   [76, 81, 84].forEach((m, k) => bell(mix, m, { t: at('vicecity', 2, 0.1) + k * CROMA / 2, vel: 38 }));
   // capitolo 3: Jason, Brian, il carcere che si apre, Lucia
   bell(mix, 79, { t: at('coppia', 0, 0.1) });
@@ -172,7 +172,7 @@ export default (mix, T) => {
   bell(mix, 84, { t: at('coppia', 2, 0.4) });
   bell(mix, 77, { t: at('coppia', 3, 0.2), vel: 36 });
   // capitolo 4: la borsa dei soldi, «va storto!» (timpano e sirene, poi un battito di silenzio), il complotto, gli scudi
-  clip(mix, 'monete', { t: at('colpo', 0, 0.6), da: 1.3, durata: 0.7, gain: 0.7, rev: 0.25 });
+  clip(mix, 'monete', { t: at('colpo', 0, 0.6), da: 1.3, durata: 0.7, gain: 0.3, rev: 0.25 });
   timp(mix, at('colpo', 0, 1.0), { vel: 115, gain: 0.8 });
   clip(mix, 'sirene', { t: at('colpo', 0, 1.0), da: 4, durata: 3.6, gain: 0.12, fadeIn: 0.3, fadeOut: 1.2, pan: 0.4 });
   clip(mix, 'sirene', { t: at('colpo', 0, 1.0) + 3.3, da: 8, durata: 6.2, gain: 0.1, fadeIn: 0.5, fadeOut: 1.5, pan: 0.4 }); // l'allarme resta acceso fino a fine capitolo
@@ -184,27 +184,27 @@ export default (mix, T) => {
   clip(mix, 'passaggio', { t: at('insieme', 0, 0.6), da: 0.56, durata: 0.8, gain: 0.6, fadeOut: 0.2, rev: 0.3 });
   [72, 74, 76, 79].forEach((m, k) => bell(mix, m, { t: at('insieme', 2, 0.4) + k * CROMA, vel: 34 }));
   // capitolo 6: il fascicolo, le barre, il mondo che reagisce, le icone del fisico
-  clip(mix, 'giornale', { t: at('profilo', 0, 0.1), da: 0.85, durata: 0.7, gain: 0.6, rev: 0.2 });
-  clip(mix, 'sirene', { t: at('profilo', 1, 0.6), da: 6, durata: 2.4, gain: 0.16, fadeIn: 0.3, fadeOut: 0.8, pan: -0.4 });
+  clip(mix, 'giornale', { t: at('profilo', 0, 0.1), da: 0.85, durata: 0.7, gain: 0.3, rev: 0.2 });
+  clip(mix, 'sirene', { t: at('profilo', 1, 0.6), da: 6, durata: 2.4, gain: 0.35, fadeIn: 0.3, fadeOut: 0.8, pan: -0.4 });
   [0.2, 0.5, 0.8].forEach((d, k) => bell(mix, [76, 79, 84][k], { t: at('profilo', 2, d), vel: 34 }));
   [0.2, 0.5].forEach((d, k) => bell(mix, [81, 88][k], { t: at('profilo', 3, d), vel: 34 }));
   // capitolo 7: i quattro personaggi
   [['personaggi', 0], ['personaggi', 1], ['personaggi', 2], ['personaggi', 3]].forEach(([id, n], k) => bell(mix, [76, 79, 81, 72][k], { t: at(id, n, 0.2), vel: 36 }));
   // capitolo 8: i telefoni (scatto), il giornale, la telecamera, il paracadute, il tuffo
-  clip(mix, 'scatti', { t: at('satira', 0, 0.2), da: 6.49, durata: 0.1, gain: 0.6, rev: 0.2 });
-  clip(mix, 'scatti', { t: at('satira', 1, 0.2), da: 6.49, durata: 0.1, gain: 0.6, rev: 0.2 });
-  clip(mix, 'giornale', { t: at('satira', 1, 0.6), da: 0.85, durata: 0.7, gain: 0.6, rev: 0.2 });
-  clip(mix, 'scatti', { t: at('satira', 2, 0.1), da: 12.68, durata: 0.15, gain: 0.6, rev: 0.25 });
-  clip(mix, 'telo', { t: at('satira', 3, 0.1), da: 4.45, durata: 0.8, gain: 0.6, fadeOut: 0.3, rev: 0.3 });
-  clip(mix, 'onde', { t: at('satira', 3, 0.9), da: 2, durata: 1.8, gain: 0.12, fadeOut: 0.6, largo: 1.2 });
+  clip(mix, 'scatti', { t: at('satira', 0, 0.2), da: 6.49, durata: 0.1, gain: 0.4, rev: 0.2 });
+  clip(mix, 'scatti', { t: at('satira', 1, 0.2), da: 6.49, durata: 0.1, gain: 0.4, rev: 0.2 });
+  clip(mix, 'giornale', { t: at('satira', 1, 0.6), da: 0.85, durata: 0.7, gain: 0.3, rev: 0.2 });
+  clip(mix, 'scatti', { t: at('satira', 2, 0.1), da: 12.68, durata: 0.15, gain: 0.4, rev: 0.25 });
+  clip(mix, 'telo', { t: at('satira', 3, 0.1), da: 4.45, durata: 0.8, gain: 0.45, fadeOut: 0.3, rev: 0.3 });
+  clip(mix, 'onde', { t: at('satira', 3, 0.9), da: 2, durata: 1.8, gain: 0.3, fadeOut: 0.6, largo: 1.2 });
   // capitolo 9: la data, il PC barrato, il download, la scatola che si apre
   bell(mix, 84, { t: at('uscita', 0, 0.1), vel: 44 });
-  clip(mix, 'scatti', { t: at('uscita', 0, 1.4), da: 6.49, durata: 0.1, gain: 0.6, rev: 0.2 });
+  clip(mix, 'scatti', { t: at('uscita', 0, 1.4), da: 6.49, durata: 0.1, gain: 0.4, rev: 0.2 });
   clip(mix, 'passaggio', { t: at('uscita', 1, 0.3), da: 12.27, durata: 2.0, gain: 0.35, fadeIn: 0.3, fadeOut: 0.5, rev: 0.3 });
-  clip(mix, 'scatti', { t: at('uscita', 2, 0.4), da: 12.68, durata: 0.15, gain: 0.6, rev: 0.25 });
+  clip(mix, 'scatti', { t: at('uscita', 2, 0.4), da: 12.68, durata: 0.15, gain: 0.4, rev: 0.25 });
   // capitolo 10: il pacco regalo che si apre, la moneta barrata, la domanda finale
-  clip(mix, 'telo', { t: at('edizioni', 0, 0.8), da: 4.45, durata: 0.8, gain: 0.6, fadeOut: 0.2, rev: 0.3 });
+  clip(mix, 'telo', { t: at('edizioni', 0, 0.8), da: 4.45, durata: 0.8, gain: 0.45, fadeOut: 0.2, rev: 0.3 });
   [76, 81, 84, 88].forEach((m, k) => bell(mix, m, { t: at('edizioni', 0, 0.8) + k * CROMA / 2, vel: 40 }));
-  clip(mix, 'monete', { t: at('edizioni', 2, 0.1), da: 1.3, durata: 0.7, gain: 0.7, rev: 0.25 });
+  clip(mix, 'monete', { t: at('edizioni', 2, 0.1), da: 1.3, durata: 0.7, gain: 0.3, rev: 0.25 });
   timp(mix, at('edizioni', 3, 0.4), { vel: 90, gain: 0.5 });
 };

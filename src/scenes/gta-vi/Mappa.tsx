@@ -35,8 +35,8 @@ type P = readonly [number, number];
 
 // ---------------------------------------------------------------- geografia (inventata)
 
-const WEST: P[] = [[-200, 560], [40, 600], [150, 650], [214, 760], [166, 820], [214, 880], [238, 1000], [272, 1140], [334, 1340], [424, 1590], [536, 1790], [660, 1906]];
-const EAST: P[] = [[1280, 560], [1020, 600], [905, 650], [862, 800], [878, 1000], [862, 1200], [890, 1330], [882, 1520], [834, 1680], [764, 1850], [700, 1912]];
+const WEST: P[] = [[-3000, 500], [-900, 540], [-560, 640], [-380, 560], [-180, 590], [40, 600], [150, 650], [214, 760], [166, 820], [214, 880], [238, 1000], [272, 1140], [334, 1340], [424, 1590], [536, 1790], [660, 1906]];
+const EAST: P[] = [[4000, 500], [1900, 530], [1560, 640], [1400, 560], [1200, 590], [1020, 600], [905, 650], [862, 800], [878, 1000], [862, 1200], [890, 1330], [882, 1520], [834, 1680], [764, 1850], [700, 1912]];
 const smooth = (pts: P[]) => {
   let d = `M${pts[0][0]} ${pts[0][1]}`;
   for (let i = 1; i < pts.length; i++) {
@@ -46,7 +46,7 @@ const smooth = (pts: P[]) => {
   const l = pts[pts.length - 1];
   return d + ` L${l[0]} ${l[1]}`;
 };
-const LAND_D = `${smooth(WEST)} ${smooth([...EAST].reverse()).replace(/^M/, 'L')} L4000 560 L4000 -3000 L-3000 -3000 L-3000 560 Z`;
+const LAND_D = `${smooth(WEST)} ${smooth([...EAST].reverse()).replace(/^M/, 'L')} L4000 500 L4000 -3000 L-3000 -3000 L-3000 500 Z`;
 const COAST_D = `${smooth(WEST)} ${smooth([...EAST].reverse()).replace(/^M/, 'L')}`;
 // le isole delle Keys, da est a ovest
 const KEYS = [[668, 1968, 34, 16], [604, 2018, 44, 18], [520, 2062, 52, 20], [426, 2090, 48, 18], [334, 2104, 42, 17], [246, 2100, 36, 15], [168, 2082, 28, 13]] as const;
@@ -104,7 +104,7 @@ const SHOTS: Shot[] = [
   // Jason e Brian nelle Keys, poi Lucia e il carcere
   { at: at('coppia', 0), x: 300, y: 1960, z: 0.9 },
   { at: at('coppia', 1), x: 260, y: 2040, z: 0.88 },
-  { at: at('coppia', 2), x: 230, y: 1400, z: 0.82 },
+  { at: at('coppia', 2), x: 230, y: 1470, z: 0.82 },
   { at: at('coppia', 3), x: 250, y: 1500, z: 0.82 },
   // il colpo in banca, il complotto, Bonnie e Clyde, la difesa a vicenda
   { at: at('colpo', 0), x: 560, y: 1480, z: 0.6 },
@@ -695,11 +695,11 @@ const Board: React.FC<{ T: number }> = ({ T }) => {
             })}
           </g>
           {/* il mondo e la storia reagiscono: due frecce che escono dal profilo */}
-          <Link T={T} t0={at('profilo', 1, 0.4)} a={[330, y + 30]} b={[270, y + 170]} c={[260, y + 70]} color={YEL} arrow w={8} />
+          <Link T={T} t0={at('profilo', 1, 0.4)} a={[380, y + 30]} b={[340, y + 170]} c={[330, y + 70]} color={YEL} arrow w={8} />
           <Link T={T} t0={at('profilo', 1, 0.7)} a={[750, y + 30]} b={[810, y + 170]} c={[820, y + 70]} color={YEL} arrow w={8} />
-          {T >= at('profilo', 1, 0.8) && <text x="270" y={y + 320} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" fill={INK} stroke={DARK} strokeWidth="6" paintOrder="stroke" opacity={seg(T, at('profilo', 1, 0.8), at('profilo', 1, 1.1))}>il mondo reagisce</text>}
+          {T >= at('profilo', 1, 0.8) && <text x="340" y={y + 320} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" fill={INK} stroke={DARK} strokeWidth="6" paintOrder="stroke" opacity={seg(T, at('profilo', 1, 0.8), at('profilo', 1, 1.1))}>il mondo reagisce</text>}
           {T >= at('profilo', 1, 1.0) && <text x="810" y={y + 320} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="34" fill={INK} stroke={DARK} strokeWidth="6" paintOrder="stroke" opacity={seg(T, at('profilo', 1, 1.0), at('profilo', 1, 1.3))}>e la storia</text>}
-          {T >= at('profilo', 1, 0.6) && <g transform={`translate(270 ${y + 240}) scale(${1.6 * pop(T, at('profilo', 1, 0.6))})`}><Siren T={T} id="gv-ps" /></g>}
+          {T >= at('profilo', 1, 0.6) && <g transform={`translate(340 ${y + 240}) scale(${1.6 * pop(T, at('profilo', 1, 0.6))})`}><Siren T={T} id="gv-ps" /></g>}
           {T >= at('profilo', 1, 0.9) && <g transform={`translate(810 ${y + 240}) scale(${pop(T, at('profilo', 1, 0.9))})`}><rect x="-44" y="-30" width="88" height="60" rx="6" fill="#F2ECDE" stroke={INK} strokeWidth="3" /><path d="M-32 -14 H32 M-32 0 H32 M-32 14 H14" stroke="#8A8070" strokeWidth="4" /></g>}
           </g>
           {/* il fisico: cibo, palestra, sonno; poi vestiti e capelli */}
@@ -1006,7 +1006,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
       {T >= at('colpo', 2, 0.1) && (() => {
         // la coppia: la linea rosa con il cuore, l'auto di Bonnie e Clyde, poi gli scudi
         const p = eo(seg(T, at('colpo', 2, 0.1), at('colpo', 2, 0.8)));
-        const [ax, ay] = [N.lucia[0] + 30, N.lucia[1] + 66], [bx, by] = [N.jason[0] - 10, N.jason[1] - 70];
+        const [ax, ay] = [N.lucia[0] + 74, N.lucia[1] + 20], [bx, by] = [N.jason[0] - 10, N.jason[1] - 70];
         const mx = 400, my = 1640;
         const hx = 0.25 * ax + 0.5 * mx + 0.25 * bx, hy = 0.25 * ay + 0.5 * my + 0.25 * by;
         const shield = pop(T, at('colpo', 3, 0.2));
@@ -1045,7 +1045,7 @@ const Schema: React.FC<{ T: number }> = ({ T }) => {
           </g>
         );
       })()}
-      <Tag T={T} t0={at('insieme', 0, 0.5)} x={640} y={1640} text="ora l'uno, ora l'altra" size={36} until={at('insieme', 1)} />
+      <Tag T={T} t0={at('insieme', 0, 0.5)} x={480} y={1705} text="ora l'uno, ora l'altra" size={36} until={at('insieme', 1)} />
       {T >= at('insieme', 1, 0.1) && (() => {
         // le due strade: Jason verso nord, Lucia verso le Keys; poi tornano insieme a Vice City
         const u = eio(seg(T, at('insieme', 1, 0.1), at('insieme', 1, 2.2)));
