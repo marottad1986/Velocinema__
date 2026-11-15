@@ -3,12 +3,11 @@
 // il 1885 con un passo da frontiera (contrabbasso pizzicato a mezzo passo, pianoforte da saloon, tromba lontana), la
 // locomotiva a passo doppio sullo spiccato, il duello sospeso sui timpani, il 1985 finale in Mi bemolle maggiore.
 // Orchestra campionata (VSCO-2 CE e VCSL, CC0: scripts/audio/campioni.mjs): archi in spiccato come un motore che gira,
-// corni e tromba per l'avventura, timpani; nelle scene del 1955 uno swing leggero (contrabbasso pizzicato che cammina,
-// pianoforte, charleston) e al ballo la piccola orchestra al completo. Il motivo è inventato qui, in Mi bemolle maggiore:
+// corni e tromba per l'avventura, timpani; per l'amore di Doc e Clara gli accordi caldi dello swing della Parte 1. Il motivo è inventato qui, in Mi bemolle maggiore:
 // un tic-tac d'orologio (Si bemolle e Fa che si alternano) che poi sale di grado, come una lancetta che riparte.
 // Niente brani o temi del film (né la colonna sonora originale né le canzoni suonate al ballo).
-// 72 bpm su una griglia continua (10 s = 12 battiti, come il video lungo della trilogia): la foto che sbiadisce a metà
-// passo, la corsa verso il fulmine a passo doppio. Effetti registrati (archivio CC0 di Craig Smith,
+// 72 bpm su una griglia continua (10 s = 12 battiti, come il video lungo della trilogia): la verità a metà passo,
+// la locomotiva e la corsa sul ponte a passo doppio. Effetti registrati (archivio CC0 di Craig Smith,
 // scripts/audio/effetti.mjs) agganciati agli eventi dello schema in src/scenes/ritorno-al-futuro-parte-3/Linee3.tsx (stessi istanti
 // `at()`) e della copertina in Locandina.tsx.
 import { suona, archi, colpo } from './campioni.mjs';
@@ -16,8 +15,8 @@ import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
 export const strumenti = ['pianoforte_coda', 'violini', 'viole', 'celli', 'contrabbasso', 'celli_spicc', 'viole_spicc', 'violini_trem', 'celli_trem',
-  'contrabbasso_pizz', 'glockenspiel', 'corno', 'tromba', 'trombone', 'timpani', 'grancassa', 'rullante', 'charleston', 'piatto_crash', 'piatto_sospeso'];
-export const effetti = ['passaggio', 'scatti', 'treno_vapore', 'fischio_vapore', 'metallo_colpi', 'metallo_cade', 'campana_grave', 'nitriti', 'vento_leggero', 'esplosione_detriti', 'tuono_forte'];
+  'contrabbasso_pizz', 'glockenspiel', 'corno', 'tromba', 'trombone', 'timpani', 'grancassa', 'piatto_crash', 'piatto_sospeso'];
+export const effetti = ['passaggio', 'scatti', 'treno_vapore', 'fischio_vapore', 'metallo_colpi', 'metallo_cade', 'campana_grave', 'vento_leggero', 'esplosione_detriti', 'metallo_schianto', 'pugno', 'sparo', 'fischio_diesel', 'passaggio_livello'];
 /** Sala media, luminosa. */
 export const sala = { rt60: 2.0, brillo: 6000, predelay: 0.02, wet: 0.42 };
 
@@ -53,14 +52,16 @@ export default (mix, T) => {
   const at = (id, n, d = 0) => G0 + Math.round((C(id, n) + d - G0) / CROMA) * CROMA;
   /** Battuta della griglia più vicina: le battute partono due battiti dopo la copertina (la griglia delle crome resta
    *  quella di Linee.tsx), così i cambi di sezione cadono più vicini all'inizio dei capitoli (capitoli da 12–14 s). */
-  const GB = G0;
+  const GB = G0 + 2 * BEAT;
   const B = (t) => GB + Math.round((t - GB) / BAR) * BAR;
+  /** Prima battuta della griglia da t in poi (gli archi cambiano accordo solo sulle battute). */
+  const Bn = (t) => GB + Math.ceil((t - GB) / BAR - 1e-6) * BAR;
   /** Accordo della battuta assoluta in cui cade t (tutti gli strati cambiano accordo insieme). */
   const kk = (t) => (((Math.floor((t - GB) / BAR + 1e-6)) % 4) + 4) % 4;
   const end = (id) => S[id].start + S[id].dur;
   const STARTS_D = S.duello.start;
   // prese degli effetti nuovi (misurate sull'inviluppo dei file)
-  const TRENO = 5.4, FISCHIO = 0.0, METALLO = 0.48, ESPLO = 0.0;
+  const TRENO = 5.4, FISCHIO = 0.0, METALLO = 0.565, ESPLO = 0.0;
   const F = G0 + Math.round((T.finale - G0) / CROMA) * CROMA;
 
   // ---------------------------------------------------------------- strumenti
@@ -99,25 +100,12 @@ export default (mix, T) => {
       }
     }
   };
-  /** Lo swing del 1955: contrabbasso pizzicato che cammina, pianoforte sui contrattempi, charleston. */
-  const swing = (from, to, { vel = 44, hat = true, comp = true } = {}) => {
-    for (let t = from, b = 0; t < to - 0.1; t += BEAT, b++) {
-      const [root, iv] = SW[kk(t)];
-      const walk = [root, root + iv[1], root + iv[2], root + iv[3]][Math.round((t - GB) / BEAT) % 4];
-      suona(mix, 'contrabbasso_pizz', walk < 31 ? walk + 12 : walk, { t, dur: BEAT, vel: vel * 1.5, pan: -0.15, rev: 0.25, gain: 1.6, release: 0.2 });
-      if (hat && t + BEAT * 2 / 3 < to) {
-        colpo(mix, 'charleston', b % 2 ? 'v3' : 'v2', { t, vel: 100, gain: 0.16, pan: 0.3, rev: 0.15, seed: b });
-        colpo(mix, 'charleston', 'v2', { t: t + BEAT * 2 / 3, vel: 100, gain: 0.1, pan: 0.3, rev: 0.15, seed: b + 50 });
-      }
-      if (comp && b % 2 === 1) iv.forEach((v, j) => suona(mix, 'pianoforte_coda', root + 36 + v - (v > 7 ? 12 : 0), { t: t + BEAT * 2 / 3, dur: BEAT * 0.4, vel: vel * 0.9, pan: 0.2, rev: 0.35, gain: 1.0, release: 0.2, seed: j }));
-    }
-  };
   /** Il passo da frontiera del 1885: contrabbasso pizzicato a mezzo passo, pianoforte da saloon sui contrattempi, tromba lontana. */
   const frontiera = (from, to, { vel = 40 } = {}) => {
     for (let t = from, b = 0; t < to - 0.1; t += BEAT, b++) {
       const [root, iv] = CH[kk(t)];
       if (b % 2 === 0) suona(mix, 'contrabbasso_pizz', [root, root + iv[2]][(b / 2) % 2] + (root < 31 ? 12 : 0), { t, dur: BEAT, vel: vel * 1.5, pan: -0.15, rev: 0.3, gain: 1.6, release: 0.2 });
-      if (b % 2 === 1) iv.forEach((v, j) => suona(mix, 'pianoforte_coda', root + 36 + v, { t, dur: BEAT * 0.4, vel: vel * 0.8, pan: 0.2, rev: 0.35, gain: 0.9, release: 0.2, seed: j }));
+      if (b % 2 === 1) iv.forEach((v, j) => suona(mix, 'pianoforte_coda', root + 36 + v, { t, dur: BEAT * 0.4, vel: vel * 0.65, pan: 0.2, rev: 0.35, gain: 0.45, release: 0.2, seed: j }));
     }
   };
   const timp = (t, m = 39, vel = 90, gain = 0.6) => suona(mix, 'timpani', m, { t, dur: 2, vel, gain, rev: 0.5, release: 0.8, seed: Math.round(t * 10) });
@@ -126,7 +114,6 @@ export default (mix, T) => {
     suona(mix, m < 52 ? 'trombone' : 'corno', m, { t, dur, vel: vel * 1.5, pan: -0.3 + j * 0.25, gain, attack: 0.08, release: 0.8, rev: 0.5, seed: j + 11 }));
   const fanfare = (t, notes, { vel = 56, gain = 0.3, step = CROMA } = {}) => notes.forEach((m, j) =>
     suona(mix, 'tromba', m, { t: t + j * step, dur: j === notes.length - 1 ? BEAT * 1.5 : step * 0.9, vel: vel * 1.6, pan: 0.2, gain, attack: 0.02, release: 0.5, rev: 0.45 }));
-  const snare = (t, gain = 0.5) => colpo(mix, 'rullante', 'v5', { t, vel: 100, gain, pan: 0.1, rev: 0.3, seed: Math.round(t * 100) });
   const crash = (t, gain = 0.35) => colpo(mix, 'piatto_crash', 'mf', { t, vel: 100, gain, rev: 0.4, seed: Math.round(t * 10) });
   const kick = (t, gain = 0.6) => colpo(mix, 'grancassa', 'bdrum_f', { t, vel: 100, gain, rev: 0.4, seed: Math.round(t * 10) });
   const roll = (t, d = 1.6, gain = 0.18) => colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: t - d, vel: 52, rev: 0.45, gain, dur: d, release: 0.4 });
@@ -156,8 +143,10 @@ export default (mix, T) => {
   strings(B(T.viaggio), west, { vel: 40, gain: 0.32, chords: MIN });
   spic(B(at('viaggio', 0)), west, { vel: 30, chords: MIN });
   clip(mix, 'passaggio', { t: west - 0.1, da: 0.56, durata: 1.5, gain: 0.3, fadeOut: 0.4, rev: 0.35 });
-  crash(west + 1.3, 0.25);
-  frontiera(west + 1.3 + BEAT, B(T.buford), { vel: 40 });
+  crash(west + 1.25, 0.25);
+  frontiera(west + 1.25 + BEAT, B(T.buford), { vel: 40 });
+  strings(west + 1.25, Bn(west + 1.25), { vel: 34, gain: 0.22 }); // il tappeto sotto il 1885 appena arrivato
+  strings(Bn(west + 1.25), B(T.buford), { vel: 34, gain: 0.22 });
   clip(mix, 'scatti', { t: at('viaggio', 3, 0.2), da: 6.49, durata: 0.15, gain: 0.3, rev: 0.25 }); // il guasto
   suona(mix, 'trombone', 39, { t: at('viaggio', 3, 0.2), dur: 1.0, vel: 66, gain: 0.28, attack: 0.05, release: 0.5, rev: 0.45 });
 
@@ -185,7 +174,7 @@ export default (mix, T) => {
 
   // 6 · la verità, il cuore spezzato (minore), Doc crolla, la cattura
   strings(B(T.verita), B(T.duello), { vel: 38, gain: 0.3, chords: MIN, half: true });
-  [82, 79, 75].forEach((m, k) => bell(at('verita', 1, 0.2) + k * 0.6, m, 38 - k * 6)); // il cuore si spezza
+  [80, 77, 72].forEach((m, k) => bell(at('verita', 1, 0.2) + k * CROMA, m, 38 - k * 6)); // il cuore si spezza
   suona(mix, 'trombone', 34, { t: at('verita', 3, 0.3), dur: 1.4, vel: 72, gain: 0.32, attack: 0.05, release: 0.6, rev: 0.45 });
   timp(at('verita', 3, 1.0), 36, 96, 0.55);
 
@@ -194,32 +183,38 @@ export default (mix, T) => {
   clip(mix, 'vento_leggero', { t: STARTS_D, da: 4, durata: shot - STARTS_D, gain: 0.05, fadeIn: 0.6, fadeOut: 0.3, largo: 1.5 });
   trem(B(T.duello), shot - B(T.duello), [36, 43], { vel: 40, gain: 0.2 });
   for (let t = B(T.duello) + BEAT; t < shot - 0.2; t += 2 * BEAT) timp(t, 36, 70, 0.3);
-  clip(mix, 'metallo_colpi', { t: shot - 0.02, da: METALLO, durata: 0.5, gain: 0.35, fadeOut: 0.2, rev: 0.3 }); // CLANG
+  clip(mix, 'sparo', { t: shot - 0.06, da: 2.78, durata: 0.9, gain: 0.22, fadeOut: 0.3, rev: 0.35 }); // lo sparo
+  clip(mix, 'metallo_colpi', { t: shot - 0.01, da: METALLO, durata: 0.5, gain: 0.35, fadeOut: 0.2, rev: 0.3 }); // CLANG
   crash(shot, 0.3);
+  clip(mix, 'pugno', { t: pow - 0.01, da: 0.02, durata: 0.45, gain: 0.3, fadeOut: 0.15, rev: 0.2 }); // il pugno
   kick(pow, 0.7); timp(pow, 39, 110, 0.6);
   fanfare(pow + 2 * BEAT, [63, 67, 70, 75], { vel: 54, gain: 0.26 });
-  strings(pow + 2 * BEAT, B(T.ponte), { vel: 44, gain: 0.34 });
+  strings(pow + 2 * BEAT, Bn(pow + 2 * BEAT), { vel: 44, gain: 0.34 });
+  strings(Bn(pow + 2 * BEAT), B(T.ponte), { vel: 44, gain: 0.34 });
   clip(mix, 'metallo_cade', { t: at('duello', 3, 0.2) - 0.1, da: 0.64, durata: 0.34, gain: 0.25, fadeOut: 0.1, rev: 0.3 }); // le sbarre
+  [75, 79, 82, 87].forEach((m, k) => bell(at('duello', 3, 0.5) + k * CROMA / 2, m, 38)); // il nome sparisce dalla lapide
 
   // 8 · il ponte: la corsa a passo doppio, il fischio, Clara salvata (maggiore), 88!, il treno che precipita
   const jump = at('ponte', 3, 0.9);
   strings(B(T.ponte), jump, { vel: 44, gain: 0.36, high: true });
   spic(B(T.ponte), jump, { vel: 42, doppio: true });
   clip(mix, 'treno_vapore', { t: B(T.ponte), da: TRENO, durata: jump - B(T.ponte), gain: 0.14, fadeIn: 0.5, fadeOut: 0.6, rev: 0.2 });
-  clip(mix, 'fischio_vapore', { t: at('ponte', 1, 0.3) - 0.05, da: FISCHIO, durata: 1.0, gain: 0.16, fadeOut: 0.4, rev: 0.35 });
-  [70, 75, 79, 82].forEach((m, k) => bell(at('ponte', 2, 0.3) + k * CROMA / 2, m, 40)); // Doc resta con lei
+  clip(mix, 'fischio_vapore', { t: at('ponte', 0, 0.2) - 0.05, da: FISCHIO, durata: 1.0, gain: 0.16, fadeOut: 0.4, rev: 0.35 });
+  [70, 74, 77, 82].forEach((m, k) => bell(at('ponte', 2, 0.3) + k * CROMA / 2, m, 40)); // Doc resta con lei
   roll(jump, 1.0, 0.22);
   clip(mix, 'passaggio', { t: jump - 0.1, da: 0.56, durata: 1.5, gain: 0.32, fadeOut: 0.4, rev: 0.35 });
-  crash(jump + 0.1, 0.35); timp(jump + 0.1, 39, 110, 0.6);
-  clip(mix, 'esplosione_detriti', { t: at('ponte', 3, 1.6), da: ESPLO, durata: 1.6, gain: 0.18, fadeOut: 0.6, rev: 0.3 }); // il treno nel burrone
+  crash(jump + 0.1, 0.5); timp(jump + 0.1, 39, 110, 0.8);
+  clip(mix, 'esplosione_detriti', { t: at('ponte', 3, 1.6) - 0.15, da: ESPLO, durata: 1.6, gain: 0.18, fadeOut: 0.6, rev: 0.3 }); // il treno nel burrone
   trem(jump + 0.1 + BEAT, B(T.futuro) - jump - 0.1 - BEAT + 0.4, [48, 55, 63], { vel: 40, gain: 0.14 });
 
   // 9 · il 1985: il treno che distrugge l'auto, Marty che rifiuta le sfide, Doc col treno del tempo, il futuro aperto
   const hit = at('futuro', 0, 1.1);
-  clip(mix, 'fischio_vapore', { t: at('futuro', 0, 0.2), da: FISCHIO, durata: 0.9, gain: 0.14, fadeOut: 0.3, rev: 0.3 });
-  clip(mix, 'metallo_colpi', { t: hit - 0.02, da: METALLO, durata: 0.5, gain: 0.35, fadeOut: 0.2, rev: 0.3 });
+  clip(mix, 'passaggio_livello', { t: at('futuro', 0), da: 4.5, durata: hit - at('futuro', 0) + 0.3, gain: 0.06, fadeIn: 0.2, fadeOut: 0.3, rev: 0.25 }); // il passaggio a livello
+  clip(mix, 'fischio_diesel', { t: at('futuro', 0, 0.2), da: 1.9, durata: 1.2, gain: 0.16, fadeOut: 0.4, rev: 0.3 }); // il treno merci
+  clip(mix, 'metallo_schianto', { t: hit - 0.01, da: 0.05, durata: 1.4, gain: 0.3, fadeOut: 0.4, rev: 0.3 }); // l'auto distrutta
   kick(hit, 0.6);
-  strings(hit + BEAT, F, { vel: 44, gain: 0.36, high: true });
+  strings(hit + BEAT, Bn(hit + BEAT), { vel: 44, gain: 0.36, high: true });
+  strings(Bn(hit + BEAT), F, { vel: 44, gain: 0.36, high: true });
   spic(B(at('futuro', 1)), at('futuro', 2), { vel: 30 });
   clip(mix, 'passaggio', { t: at('futuro', 2, 0.1) - 0.1, da: 0.56, durata: 1.5, gain: 0.3, fadeOut: 0.4, rev: 0.35 });
   motif(B(at('futuro', 2, 1.4)), F, { id: 'corno', vel: 42, gain: 0.3, oct: -12 });

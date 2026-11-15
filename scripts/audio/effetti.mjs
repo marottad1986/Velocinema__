@@ -103,6 +103,11 @@ export const CATALOGO = {
   esplosione_detriti: ['SSE_Library_EXPLOSIONS', 'REAL/EXPLReal_Explosion with falling debris_CS_USC.wav', -12.8],
   // Hunger Games
   api: ['SSE_Library_ANIMALS', 'INSECT/ANMLInsc_Bees swarming_CS_USC.wav', -11],
+  // Ritorno al futuro – Parte III: il pugno del duello, lo sparo sul ferro, il treno merci e il passaggio a livello del 1985
+  pugno: ['SSE_Library_FIGHT', 'IMPACT/FGHTImpt_Fist crack; face punch_CS_USC.wav', -16.0],
+  sparo: ['SSE_Library_BULLETS', 'IMPACT/BLLTImpt_Shooting gallery; hitting metal targets_CS_USC.wav', -12.8],
+  fischio_diesel: ['Red_Library_Bells_Horns_Whistles', 'R20-39-Diesel Train Whistles.wav', -20.5],
+  passaggio_livello: ['Red_Library_Bells_Horns_Whistles', 'R04-63-Train Crossing.wav', -20.5],
 };
 
 const percorso = (id) => `${CACHE}/${CATALOGO[id][0]}/${CATALOGO[id][1].replace(/[/;?]/g, '_')}`;
