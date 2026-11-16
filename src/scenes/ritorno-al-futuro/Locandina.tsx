@@ -38,7 +38,7 @@ const Bolt: React.FC<{ k: number }> = ({ k }) => {
   );
 };
 
-const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm = 0 }) => {
+export const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm = 0 }) => {
   // fulmine acceso al fotogramma 0, si spegne in 0,6 s; secondo colpo a 2,5 s (mai più di due lampi)
   const bolt = calm ? 0 : Math.max(1 - seg(t, 0.25, 0.75), seg(t, 2.5, 2.55) * (1 - seg(t, 2.7, 3.2)));
   const flash = calm ? 0 : seg(t, 2.5, 2.55) * (1 - seg(t, 2.6, 3.0));

@@ -67,7 +67,7 @@ const clips = [];
 const problemi = [];
 for (const x of parti) {
   const src = `${dir}/${trova(x.base)}`;
-  const room = x.start + x.dur - x.voceDa - MARGIN;
+  const room = x.start + x.voce - x.voceDa - MARGIN; // la voce resta nella sua finestra ("voce" nel JSON)
   let file = `${TMP}/${slug}_${x.base}.wav`;
   run('ffmpeg', ['-y', '-v', 'error', '-i', src, '-af', TRIM, '-ar', '48000', file]);
   if (duration(file) > room) {

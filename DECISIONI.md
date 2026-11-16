@@ -7,6 +7,9 @@ decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. F
   qualità sale. Ogni produzione parte dal livello già raggiunto (mai sotto), porta almeno un passo avanti visibile o
   udibile deciso prima di disegnare, si confronta con l'ultimo video prima di andare all'editore e scrive cosa ha imparato
   nel registro di `ASTICELLA.md`. · produzione, revisori, direzione
+- 16 nov 2026 · **Regole dei trailer.** I trailer verticali dei video lunghi si fanno come trailer di cinema (cold open,
+  cartelli sul nero, montaggio che accelera, suspense nel buio, titolo alla fine) con immagini disegnate apposta, non come
+  riassunti sulle locandine. Regole e trailer di riferimento (Ritorno al futuro) in `TRAILER.md`. · produzione
 - 16 nov 2026 · **Avvisi anche nell'app «In 2 minuti».** Ogni avviso Telegram della squadra si manda, in contemporanea,
   anche all'app (POST a `https://in-2-minuti-gestione.pages.dev/api/avvisi`, JSON con reparto, tipo, titolo, testo, link;
   la chiave la mette il proxy, mai nei file). Telegram per ora resta com'è. Se l'app non risponde lo si dice nell'avviso

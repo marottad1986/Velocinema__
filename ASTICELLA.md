@@ -32,6 +32,9 @@ pagina deve sentire che, andando avanti, la qualità sale: non si resta fermi su
 Una riga per produzione, le più recenti in alto: data · contenuto · cosa c'è di nuovo · dove sta il codice da riusare.
 La aggiunge chi produce, nello stesso ramo del video, prima dell'unione su main.
 
+- 16 nov 2026 · trailer di Ritorno al futuro (trilogia) · primo trailer di cinema: cartelli sul nero con braam e
+  entrata dal nero, montaggio a un'inquadratura per battito, suspense con spia nel buio e immagine che emerge, titolo su
+  scie di fuoco · `src/promo/trailer-ritorno-al-futuro/`, regole in `TRAILER.md`.
 - 16 nov 2026 · punto di partenza · il livello attuale è quello di `QUALITA.md` (criteri di accettazione), della scena di
   riferimento `reference/prova-qualita-uragano/scene-dopo.js` e delle ultime uscite (Il miglio verde: corridoio comune con
   lampade che scoppiano e sciame che si fa oro; L'Ultima Cena: opera vera animata con annotazioni editoriali in
