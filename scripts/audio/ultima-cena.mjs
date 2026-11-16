@@ -143,7 +143,7 @@ export default (mix, T) => {
   timp(mix, annuncio, 43, { vel: 90, gain: 0.5 });
   // capitolo 3: il priore protesta (nota grave d'arpa)
   harp(mix, 43, { t: at('lentezza', 1), vel: 30 });
-  // capitolo 5: l'anello su Gesù, fermo da solo (nota chiara, le figure si fermano un battito)
+  // capitolo 5: l'anello su Gesù, fermo da solo (nota chiara)
   piano(mix, 79, { t: at('gruppi', 2, 1.0), dur: 2.5, vel: 30 });
   // capitolo 6: Giuda nell'ombra (nota grave), il sacchetto (pizzicato sordo)
   piano(mix, 31, { t: at('giuda', 1), dur: 3, vel: 40 });
