@@ -32,7 +32,7 @@ export default (mix, T) => {
   const E = {
     c2: g(T.secondo), c3: g(T.terzo), c4: g(T.chiusura),
     y1: g(T.frase('primo', 0) + 2.1), y2: g(T.frase('secondo', 0) + 1.2), y2b: g(T.frase('secondo', 1) + 1.9), y3: g(T.frase('terzo', 0) + 2.4),
-    like: g(T.frase('chiusura', 0) + 2.4), iscr: g(T.frase('chiusura', 0) + 3.7), comm: g(T.frase('chiusura', 1) + 0.1),
+    like: g(T.frase('chiusura', 0) + 1.6), iscr: g(T.frase('chiusura', 0) + 2.2), press: g(T.frase('chiusura', 0) + 5.0), comm: g(T.frase('chiusura', 1) + 0.1),
   };
   const kk = (t) => ((Math.floor(t / BAR + 1e-6) % 4) + 4) % 4;
 
@@ -142,8 +142,9 @@ export default (mix, T) => {
   [75, 79, 82].forEach((m, k) => bell(E.c4 + 0.4 + k * CROMA, m + 12, 28, 0.2)); // lo schermo si accende
   [0, 1, 2].forEach((k) => clip(mix, 'scatti', { t: E.c4 + 1.4 + k * CROMA / 2, da: 6.49, durata: 0.08, gain: 0.05, rev: 0.1 })); // «In 2 Minuti» scritto
   bell(E.like, 82, 32, -0.3);
-  clip(mix, 'scatti', { t: E.iscr + 0.3, da: 6.49, durata: 0.1, gain: 0.2, rev: 0.15 }); // il clic su «iscriviti»
-  [87, 91, 87, 91, 87].forEach((m, k) => bell(E.iscr + 0.35 + k * CROMA / 5, m, 32 - k * 3, 0.25)); // la campanella
+  bell(E.iscr, 84, 30, 0.3); // compare «Iscriviti al canale»
+  clip(mix, 'scatti', { t: E.press - 0.05, da: 6.49, durata: 0.1, gain: 0.2, rev: 0.15 }); // il clic su «iscriviti»
+  [87, 91, 87, 91, 87].forEach((m, k) => bell(E.press + k * CROMA / 5, m, 32 - k * 3, 0.25)); // la campanella
   bell(E.comm, 79, 30, -0.2);
   [39, 51, 58, 63, 67].forEach((m, j) => archi(mix, m, { t: AF, dur: T.END - AF, vel: 40, pan: (j - 2) * 0.25, rev: 0.55, gain: 0.5, attack: 0.6, release: 1.4, seed: 90 + j }));
   brass(AF, T.END - AF, [51, 58, 63], { vel: 40, gain: 0.2 });

@@ -36,8 +36,9 @@ export const eventi = (inizio: Record<string, number>, cue: (id: string, n: numb
   y2: g(cue('secondo', 0) + 1.2), // «… nel 2015»
   y2b: g(cue('secondo', 1) + 1.9), // «il loro 1985 diventa un incubo»
   y3: g(cue('terzo', 0) + 2.4), // «… del 1885»
-  like: g(cue('chiusura', 0) + 2.4),
-  iscr: g(cue('chiusura', 0) + 3.7),
+  like: g(cue('chiusura', 0) + 1.6),
+  iscr: g(cue('chiusura', 0) + 2.2), // «Iscriviti al canale» compare…
+  press: g(cue('chiusura', 0) + 5.0), // …e resta quasi 3 s prima di essere premuto
   comm: g(cue('chiusura', 1) + 0.1),
 });
 
@@ -99,7 +100,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
   const barra = eio(seg(u, 0.6, 3.2));
   const like = pop(t, E.like);
   const iscr = pop(t, E.iscr);
-  const premuto = t >= E.iscr + 0.35;
+  const premuto = t >= E.press;
   const cerca = seg(u, 1.4, 2.2);
   const comm = eo(seg(t, E.comm, E.comm + 0.4));
 
@@ -107,7 +108,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
     <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', background: DARK }}>
       {t < E.c2 && <Quadro t0={-10} t={t} dur={E.c2 + 10}><Art1 t={t} id="tr1" /></Quadro>}
       {t >= E.c2 && t < E.c3 && <Quadro t0={E.c2} t={t} dur={E.c3 - E.c2}><Art2 t={t - E.c2 + 0.6} id="tr2" /></Quadro>}
-      {t >= E.c3 && t < E.c4 && <Quadro t0={E.c3} t={t} dur={E.c4 - E.c3}><Art3 t={t - E.c3 + 0.6} id="tr3" /></Quadro>}
+      {t >= E.c3 && t < E.c4 && <Quadro t0={E.c3} t={t} dur={E.c4 - E.c3}><Art3 t={t - E.c3 + 0.6} id="tr3" avanza={40 * seg(t, E.c3, E.c4)} /></Quadro>}
       {t >= E.c4 && (
         <>
           <Art1 t={t} id="tr4" calm={1} />
@@ -175,8 +176,8 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
           <div style={{ position: 'absolute', left: 120, top: 925, width: 780, display: 'flex', gap: 22, justifyContent: 'center' }}>
             <span style={{ padding: '16px 30px', borderRadius: 999, background: YEL, color: DARK, fontSize: 38, fontWeight: 800, transform: `scale(${like})` }}>♥ Metti like</span>
             <span style={{ padding: '16px 30px', borderRadius: 999, background: premuto ? '#5A5470' : '#D9302A', color: '#FFF', fontSize: 38, fontWeight: 800,
-              transform: `scale(${iscr * (premuto ? 1 : 1 - 0.08 * seg(t, E.iscr + 0.2, E.iscr + 0.35))})` }}>
-              <span style={{ display: 'inline-block', transform: `rotate(${premuto ? Math.sin((t - E.iscr) * 30) * 18 * (1 - seg(t, E.iscr + 0.35, E.iscr + 1.2)) : 0}deg)` }}>🔔</span>{' '}
+              transform: `scale(${iscr * (premuto ? 1 : 1 - 0.08 * seg(t, E.press - 0.15, E.press))})` }}>
+              <span style={{ display: 'inline-block', transform: `rotate(${premuto ? Math.sin((t - E.press) * 30) * 18 * (1 - seg(t, E.press, E.press + 0.85)) : 0}deg)` }}>🔔</span>{' '}
               {premuto ? 'Iscritto ✓' : 'Iscriviti al canale'}
             </span>
           </div>
