@@ -57,6 +57,8 @@ import { Copertina as Dark3Cover, Finale as Dark3End } from './scenes/dark-stagi
 import notteStellata from '../quadri/notte-stellata.json';
 import { NOTTE_STELLATA_SCENES, Copertina as NotteCover, Finale as NotteEnd } from './scenes/notte-stellata';
 import grandeOnda from '../quadri/grande-onda.json';
+import ultimaCena from '../quadri/ultima-cena.json';
+import { ULTIMA_CENA_SCENES, Copertina as CenaCover, Finale as CenaEnd } from './scenes/ultima-cena';
 import { GRANDE_ONDA_SCENES, Copertina as OndaCover, Finale as OndaEnd } from './scenes/grande-onda';
 import { BOHEMIAN_RHAPSODY_SCENES } from './scenes/bohemian-rhapsody';
 import { GLI_ANNI_SCENES } from './scenes/gli-anni';
@@ -120,6 +122,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'inception', data: inception as FilmData, scenes: INCEPTION_SCENES, cover: IncCover, ending: IncEnd, posterFont: BEBAS },
   { slug: 'notte-stellata', data: notteStellata as FilmData, scenes: NOTTE_STELLATA_SCENES, cover: NotteCover, ending: NotteEnd },
   { slug: 'grande-onda', data: grandeOnda as FilmData, scenes: GRANDE_ONDA_SCENES, cover: OndaCover, ending: OndaEnd },
+  { slug: 'ultima-cena', data: ultimaCena as FilmData, scenes: ULTIMA_CENA_SCENES, cover: CenaCover, ending: CenaEnd },
   { slug: 'gli-anni', data: gliAnni as FilmData, scenes: GLI_ANNI_SCENES, cover: GliAnniCover, ending: GliAnniEnd, posterFont: PACIFICO },
   { slug: 'bohemian-rhapsody', data: bohemianRhapsody as FilmData, scenes: BOHEMIAN_RHAPSODY_SCENES, cover: BohemianCover, ending: BohemianEnd, posterFont: PLAYFAIR },
   { slug: 'shining', data: shining as FilmData, scenes: SHINING_SCENES, cover: ShiningCover, ending: ShiningEnd, posterFont: TYPEWRITER },
