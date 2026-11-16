@@ -1,0 +1,70 @@
+{
+  "formato": "promo",
+  "tipo": "film",
+  "titolo": "Ritorno al futuro",
+  "regista": "Robert Zemeckis",
+  "anno": 1985,
+  "bpm": 72,
+  "lungo": "ritorno-al-futuro-trilogia",
+  "nota": "Trailer verticale del video lungo della trilogia (VIDEO-LUNGO.md, DECISIONI 16 nov 2026: esce in contemporanea al lungo). Prova chiesta dall'utente il 16 novembre 2026. Riusa i disegni delle tre locandine (src/scenes/ritorno-al-futuro*/Locandina.tsx), una per film, con stacchi a lampo. Si parla del canale (come canale-youtube-dark). Mai la durata totale del video lungo.",
+  "palette": {
+    "chiaro": "#F4EEE2",
+    "principale": "#2E1E5C",
+    "scuro": "#0E0A22",
+    "accento": "#F5C23A"
+  },
+  "parti": [
+    {
+      "id": "copertina",
+      "durata": 4,
+      "immagine": "Fotogramma 0 = miniatura: la locandina della Parte I (torre colpita dal fulmine, quadrante, scie gialle) con in alto il bollino rosso «NUOVO SU YOUTUBE», «SPIEGATO SEMPLICE · TRILOGIA», «RITORNO AL FUTURO» enorme, «I TRE FILM IN UN SOLO RACCONTO» e la riga del regista.",
+      "sottotitoli": [
+        "E se cambiassi il passato per sbaglio?"
+      ]
+    },
+    {
+      "id": "primo",
+      "durata": 8.5,
+      "immagine": "Stessa immagine della copertina, la camera si avvicina; il titolo sale via e al suo posto il cartellino «PARTE I» e l'anno «1955» che scorre al neon da 1985.",
+      "sottotitoli": [
+        "Nel primo film il giovane Marty finisce nel 1955 con la macchina del tempo del suo amico Doc,",
+        "e per sbaglio separa i suoi genitori."
+      ]
+    },
+    {
+      "id": "secondo",
+      "durata": 10,
+      "immagine": "Lampo e scie gialle: la locandina della Parte II (l'almanacco dorato sopra Hill Valley spaccata tra la piazza e il casinò). «PARTE II», l'anno che scorre a 2015 e poi, sul casinò, a 1985 in rosso.",
+      "sottotitoli": [
+        "Nel secondo vanno nel 2015, ma Biff, un bullo, ruba un almanacco sportivo",
+        "e lo porta nel passato: il loro 1985 diventa un incubo."
+      ]
+    },
+    {
+      "id": "terzo",
+      "durata": 8.5,
+      "immagine": "Lampo e scie gialle: la locandina della Parte III (la locomotiva che spinge l'auto sul ponte interrotto, la lapide). «PARTE III», l'anno che scorre a 1885.",
+      "sottotitoli": [
+        "Nel terzo Marty corre nel Far West del 1885 per salvare Doc da un bandito,",
+        "e per tornare serve un treno a vapore."
+      ]
+    },
+    {
+      "id": "chiusura",
+      "durata": 8.5,
+      "immagine": "La torre della Parte I di notte, calma; al centro uno schermo orizzontale (lettore generico, senza logo) con la miniatura del lungo e la barra divisa nei tre film (1955 · 2015 · 1885); sotto «Metti like», il pulsante rosso «Iscriviti al canale» con la campanella, «Cerca In 2 Minuti su YouTube» e «Commenta con il film che vorresti.»",
+      "sottotitoli": [
+        "Ora la trilogia è tutta in un solo racconto, spiegata semplice, sul canale YouTube In 2 Minuti.",
+        "Commenta con il film che vorresti."
+      ]
+    }
+  ],
+  "fonti": [
+    "Parte I: Marty finisce nel 1955 con la DeLorean del Doc, si mette in mezzo all'incontro dei genitori e Lorraine si innamora di lui invece che di George: https://it.wikipedia.org/wiki/Ritorno_al_futuro",
+    "Parte II: viaggio nel 2015; il vecchio Biff ruba l'almanacco sportivo e lo consegna a sé stesso nel 1955, il 1985 diventa un presente alternativo dominato da Biff: https://it.wikipedia.org/wiki/Ritorno_al_futuro_-_Parte_II",
+    "Parte III: Marty va nel 1885 per salvare il Doc, destinato a essere ucciso dal bandito Buford Tannen; per tornare la locomotiva spinge la DeLorean a 88 miglia orarie: https://it.wikipedia.org/wiki/Ritorno_al_futuro_-_Parte_III"
+  ],
+  "pronuncia": {
+    "In 2 Minuti": "In due Minuti"
+  }
+}

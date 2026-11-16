@@ -20,7 +20,7 @@ const SEP = P55.ink;
 const r = rng(1989);
 const SPARKS = Array.from({ length: 24 }, () => ({ x: r() * 1080, y: 700 + r() * 900, v: 20 + r() * 40, s: 2 + r() * 3, ph: r() }));
 
-const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm = 0 }) => {
+export const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm = 0 }) => {
   const L = (f: number) => `translate(${Math.sin(t * 0.3) * 10 * f} 0)`;
   const blink = calm ? 0.3 : 0.6 + 0.4 * (Math.sin(t * 5) > -0.2 ? 1 : 0) * (t > 2.5 && t < 2.9 ? 0.3 : 1);
   const crack = calm ? 0 : 1;

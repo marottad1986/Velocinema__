@@ -3,6 +3,8 @@ import type { Palette } from '../types';
 import { subtitleTimes } from '../components/ChapterOverlay';
 import canaleDark from '../../promo/canale-youtube-dark.json';
 import { Scena as CanaleDark } from './canale-youtube-dark/Scena';
+import trailerRaf from '../../promo/trailer-ritorno-al-futuro.json';
+import { Scena as TrailerRaf } from './trailer-ritorno-al-futuro/Scena';
 
 // Short promozionali verticali (1080×1920) che portano al canale YouTube: JSON in promo/<slug>.json, scena in src/promo/<slug>/.
 // Una sola immagine per tutto lo Short, con la camera che segue la voce; sottotitoli come nei video verticali.
@@ -33,7 +35,9 @@ export const tempiPromo = (d: PromoData): TempiPromo => {
 export type ScenaPromoProps = { T: number; tempi: TempiPromo; cue: (id: string, n: number) => number };
 export type PromoDef = { slug: string; data: PromoData; Scena: React.FC<ScenaPromoProps> };
 
-export const PROMO: PromoDef[] = [{ slug: 'canale-youtube-dark', data: canaleDark as PromoData, Scena: CanaleDark }];
+export const PROMO: PromoDef[] = [{ slug: 'canale-youtube-dark', data: canaleDark as PromoData, Scena: CanaleDark },
+  { slug: 'trailer-ritorno-al-futuro', data: trailerRaf as PromoData, Scena: TrailerRaf },
+];
 
 export const getPromo = (slug: string) => {
   const p = PROMO.find((x) => x.slug === slug);
