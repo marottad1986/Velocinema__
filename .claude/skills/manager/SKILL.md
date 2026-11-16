@@ -19,7 +19,7 @@ Cosa fai, secondo la richiesta (argomenti: $ARGUMENTS):
    eventi verificati sul web (con fonti), alternativa pronta per ogni contenuto da produrre e ordine di produzione.
    Scrivi `calendario/<aaaa-mm-gg>.md` (data del lunedì della settimana programmata) e mostra la tabella all'utente.
 3. **Solo dopo l'approvazione esplicita**: eventi nel calendario principale di Google Calendar via IFTTT
-   (`google_calendar` → `add_detailed_event`, calendario `marottahs@gmail.com`, ore italiane), poi subito il materiale
+   (`google_calendar` → `add_detailed_event`, calendario `marottahs@gmail.com`, ore italiane; solo le uscite, niente scadenze «pronto entro» né promemoria), poi subito il materiale
    social in `calendario/<aaaa-mm-gg>-social.md`: per ogni video il blocco WhatsApp (didascalia TikTok, valida anche per
    Instagram e Facebook, titolo e descrizione YouTube) e la storia del giorno prima (locandina PNG 1080×1920 secondo il
    modello). Sempre dopo l'approvazione, una sessione `/produzione` per ogni contenuto da produrre o verificare
