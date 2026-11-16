@@ -28,6 +28,9 @@ Cosa fai, secondo la richiesta (argomenti: $ARGUMENTS):
 3b. **Ogni domenica** nella proposta: una riga «Esperimento della settimana» (format o titolo nuovo, `SOCIAL.md` «Idee
    nuove»), lo stato delle soglie di monetizzazione (`SOCIAL.md` «Monetizzazione») e, nel materiale social, la sezione
    «Diffusione» di ogni uscita con il messaggio privato pronto (`SOCIAL.md` «Diffusione»): i messaggi li invia l'editore.
+3c. **Pubblicazione**: per i contenuti già pronti e confermati della settimana approvata, programma i post e le storie con
+   PostFast (`SOCIAL.md`, «Pubblicazione automatica»). Per i dati puoi usare anche `get_post_analytics` e `get_follower_history`
+   di PostFast (TikTok arriva senza il ritardo di Metricool).
 4. Salva il lavoro con commit e push sul ramo della sessione (si parte sempre da `main`).
 5. **Avvisi su Telegram** (`SOCIAL.md`, «Avvisi all'utente su Telegram»): la domenica, appena la tabella è pronta, mandi
    all'utente i risultati (dati della settimana e proposta) nel gruppo in2miniti e la stessa cosa in questa chat; dopo

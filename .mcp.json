@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "postfast": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "postfast-mcp@0.15.3"],
+      "env": {
+        "POSTFAST_API_KEY": "${POSTFAST_API_KEY:-proxy-injected}",
+        "NODE_USE_ENV_PROXY": "1"
+      }
+    }
+  }
+}

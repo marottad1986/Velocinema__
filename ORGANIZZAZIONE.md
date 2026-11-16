@@ -50,15 +50,16 @@ Memoria comune della squadra (si legge all'inizio di ogni sessione del proprio r
 | Dom, dopo il «sì» | Manager | Calendario Google, materiale social, coda delle produzioni | ✅ |
 | Tutta la settimana | Produzione | Un video alla volta, max 2 al giorno a 5 ore | ⚠️ funziona ma a catena di promemoria: si rompe facilmente (vedi punto 3 sotto) |
 | A video unito su main | GitHub Actions | Render e caricamento su MEGA | ✅ |
-| Il giorno prima dell'uscita | Pubblicazione | Storia + post programmati su Metricool | ❌ manca (vedi punto 1) |
-| Ogni sera 22:00 | Community | Commenti → riassunto e risposte proposte su Telegram | ⚠️ attività esiste ma è spenta e non legge il testo dei commenti (punto 2) |
+| Dopo la conferma del video | Pubblicazione | Post e storie programmati su PostFast | ✅ dal 16 nov (TikTok, YouTube, Facebook; Instagram da collegare) |
+| Ogni sera 21:52 | Community | Commenti (casella di PostFast) → riassunto e risposte proposte su Telegram | ✅ dal 16 nov |
 | Ogni uscita | Diffusione | Messaggio pronto per protagonista / regista / pagine | ❌ nuovo (punto 5) |
 | 1° del mese | Contabilità + direzione | Rendiconto, soglie di monetizzazione, priorità del mese | ❌ nuovo (punto 6) |
 
 ## Cosa manca per l'automazione completa (in ordine di importanza)
 
 ### 1. Pubblicazione automatica — il pezzo più grosso
-**Stato (15 nov 2026): si prova PostFast** (da circa 10–12 €/mese, API e server MCP su tutti i piani, caricamento
+**Stato (16 nov 2026): attiva con PostFast** — server MCP in `.mcp.json`, chiave salvata nell'ambiente, procedura in
+`SOCIAL.md` «Pubblicazione automatica». Manca solo Instagram (da collegare). Prima: (da circa 10–12 €/mese, API e server MCP su tutti i piani, caricamento
 del video con URL firmato: niente link pubblico, il workflow può caricare l'mp4 dopo il render). Collegamento il 16 novembre.
 In alternativa resta Metricool a pagamento. Il piano gratuito
 pubblica al massimo 20 post al mese (quelli oltre restano in coda e non escono); a noi ne servono circa 43 al mese solo
@@ -84,6 +85,8 @@ link diretto al file, Metricool accetta URL pubblici, Google Drive (se collegato
   e senza dichiarazione si rischia la monetizzazione).
 
 ### 2. Commenti → risposte su Telegram
+**Risolto il 16 nov con PostFast**: la sua casella legge i commenti di TikTok, Facebook e Instagram (non YouTube). Il testo qui
+sotto resta come alternativa.
 Metricool dà solo il **numero** dei commenti, non il testo. Per leggere il testo:
 - **Instagram e Facebook:** API Graph di Meta (gratuita) con un token di lunga durata della pagina. **Tu:** crei un'app su
   developers.facebook.com (5 minuti, ti guidiamo) e salvi il token come segreto per `graph.facebook.com` quando la sessione
