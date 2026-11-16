@@ -76,7 +76,7 @@ export const Melinda: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
         </g>
         {/* il camioncino del carcere che arriva e si ferma */}
         <g transform={L(0.8)}>
-          <g transform={`translate(${tx} 1200)`}>
+          <g transform={`translate(${tx} 1200) scale(-1 1)`}>
             <path d="M-20 -6 L-380 -60 V60 L-20 20 Z" fill="url(#ml-head)" opacity={drive > 0.95 ? 0.15 : 0.45} transform="scale(-1 1)" />
             <path d="M-220 0 V-130 Q-220 -150 -200 -150 H40 V0 Z" fill="url(#ml-truck)" stroke={K} strokeWidth="8" />
             <path d="M40 -100 H120 Q160 -96 170 -60 L190 -40 V0 H40 Z" fill="#3A4A3E" stroke={K} strokeWidth="8" />
