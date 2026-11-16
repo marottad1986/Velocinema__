@@ -16,6 +16,7 @@ import bohemianRhapsody from '../films/bohemian-rhapsody.json';
 import gliAnni from '../films/gli-anni.json';
 import tenet from '../films/tenet.json';
 import donnieDarko from '../films/donnie-darko.json';
+import ilMiglioVerde from '../films/il-miglio-verde.json';
 import ritornoAlFuturo from '../films/ritorno-al-futuro.json';
 import { RITORNO_AL_FUTURO_SCENES } from './scenes/ritorno-al-futuro';
 import { Copertina as RAFCover, Finale as RAFEnd } from './scenes/ritorno-al-futuro/Locandina';
@@ -84,6 +85,7 @@ import { IL_SESTO_SENSO_SCENES } from './scenes/il-sesto-senso';
 import { Copertina as SestoCover, Finale as SestoEnd } from './scenes/il-sesto-senso/Locandina';
 import { TENET_SCENES } from './scenes/tenet';
 import { DONNIE_DARKO_SCENES } from './scenes/donnie-darko';
+import { IL_MIGLIO_VERDE_SCENES } from './scenes/il-miglio-verde';
 import { Copertina as DDCover, Finale as DDEnd } from './scenes/donnie-darko/Locandina';
 import { Copertina as TenetCover, Finale as TenetEnd } from './scenes/tenet/Locandina';
 
@@ -134,6 +136,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'bove-in-un-battito', data: boveInUnBattito as FilmData, scenes: BOVE_SCENES, cover: BoveCover, ending: BoveEnd, posterFont: ANTON },
   { slug: 'ritorno-al-futuro', data: ritornoAlFuturo as FilmData, scenes: RITORNO_AL_FUTURO_SCENES, cover: RAFCover, ending: RAFEnd, posterFont: RIGHTEOUS },
   { slug: 'ritorno-al-futuro-parte-2', data: ritornoAlFuturo2 as FilmData, scenes: RITORNO_AL_FUTURO_2_SCENES, cover: RAF2Cover, ending: RAF2End, posterFont: RIGHTEOUS },
+  { slug: 'il-miglio-verde', data: ilMiglioVerde as FilmData, scenes: IL_MIGLIO_VERDE_SCENES, posterFont: CRIMSON },
   { slug: 'donnie-darko', data: donnieDarko as FilmData, scenes: DONNIE_DARKO_SCENES, cover: DDCover, ending: DDEnd, posterFont: BEBAS },
   { slug: 'ritorno-al-futuro-parte-3', data: ritornoAlFuturo3 as FilmData, scenes: RITORNO_AL_FUTURO_3_SCENES, cover: RAF3Cover, ending: RAF3End, posterFont: RIGHTEOUS },
 ];

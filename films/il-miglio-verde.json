@@ -1,0 +1,150 @@
+{
+  "titolo": "Il miglio verde",
+  "regista": "Frank Darabont",
+  "anno": 1999,
+  "bpm": 72,
+  "palette": {
+    "chiaro": "#F2EEDC",
+    "principale": "#2F4A3A",
+    "scuro": "#0B130E",
+    "accento": "#F2C14E"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "E se il condannato fosse innocente?",
+    "immagine": "Un lungo corridoio di prigione anni '30 con il pavimento verde in prospettiva, sbarre delle celle ai lati e lampade che pendono; in fondo una porta socchiusa con una luce calda; in primo piano, sul pavimento, un topolino accanto a un rocchetto di legno colorato, e nell'aria un pulviscolo dorato che sale come lucciole. Titolo in un carattere serif d'epoca. NON usare la locandina ufficiale, persone, sagome o la sedia elettrica in primo piano.",
+    "voce": "Il miglio verde: e se il condannato fosse innocente?"
+  },
+  "capitoli": [
+    {
+      "id": "cornice",
+      "titolo": "Un vecchio che piange",
+      "durata": 10,
+      "scena": "Una stanza di casa di riposo di notte: un vecchio televisore acceso che mostra un cappello a cilindro e un bastone da ballo in bianco e nero, una poltrona vuota con una coperta, sul tavolino occhiali, fazzoletti e una tazza; pioggia sulla finestra.",
+      "sottotitoli": [
+        "Nel 1999 Paul, un uomo molto anziano, piange davanti a un vecchio film.",
+        "A un'amica spiega perché: gli ricorda John Coffey,",
+        "un detenuto che conobbe nel 1935."
+      ]
+    },
+    {
+      "id": "miglio",
+      "titolo": "Il corridoio verde",
+      "durata": 10,
+      "scena": "Il corridoio del braccio della morte di Cold Mountain: pavimento verde lucido in prospettiva, celle con le sbarre ai lati, lampade che pendono, in fondo la porta della stanza delle esecuzioni; le guardie si raccontano con un berretto e un mazzo di chiavi appesi.",
+      "sottotitoli": [
+        "Quell'anno Paul comanda le guardie del reparto dei condannati a morte,",
+        "detto «miglio verde» per il colore del pavimento.",
+        "Un giorno arriva un nuovo condannato: John Coffey."
+      ]
+    },
+    {
+      "id": "coffey",
+      "titolo": "Il gigante gentile",
+      "durata": 10,
+      "scena": "La cella di John: una branda troppo corta, un paio di scarpe enormi, una piccola lampada sempre accesa nel buio, le sbarre e una finestrella con la luna; ombra delle sbarre sul pavimento verde.",
+      "sottotitoli": [
+        "John è un gigante, condannato per aver ucciso due bambine,",
+        "eppure è mite e ingenuo, e ha paura del buio.",
+        "Le guardie non capiscono come possa essere un assassino."
+      ]
+    },
+    {
+      "id": "percy",
+      "titolo": "La guardia cattiva e il topolino",
+      "durata": 10,
+      "scena": "La scrivania delle guardie in fondo al corridoio: un manganello lucido, un pettine e un berretto storto, una tazza di caffè fumante; sul pavimento verde un topolino che spinge un rocchetto di legno colorato verso una cella.",
+      "sottotitoli": [
+        "Tra le guardie c'è Percy, crudele con i detenuti,",
+        "ma nessuno può licenziarlo: è parente della moglie del governatore.",
+        "Intanto Del, un altro condannato, addestra un topolino, Mister Jingles."
+      ]
+    },
+    {
+      "id": "guarigione",
+      "titolo": "Il primo miracolo",
+      "durata": 11,
+      "scena": "Davanti alle sbarre di una cella, al buio: una nuvola di moscerini neri che sale e si dissolve in una luce dorata; sul pavimento verde un berretto da guardia caduto e una borsa dell'acqua calda.",
+      "sottotitoli": [
+        "Paul ha una brutta infezione, ma John lo tocca e lo guarisce:",
+        "risucchia il male e lo sputa fuori: una nuvola di moscerini neri.",
+        "Così Paul capisce che John ha il dono di guarire."
+      ]
+    },
+    {
+      "id": "spugna",
+      "titolo": "Un'esecuzione crudele",
+      "durata": 10,
+      "scena": "La stanza delle esecuzioni: la sedia elettrica di legno vista di lato, nella penombra, il casco con i cavi appeso sopra, su un vassoio una spugna secca e accanto un secchio d'acqua intatto; una lampadina che sfarfalla, fumo e scintille. Il rocchetto del topolino rotolato in un angolo.",
+      "sottotitoli": [
+        "Percy schiaccia il topolino di Del, ma John lo guarisce.",
+        "Poi Percy non bagna apposta la spugna che rende rapida l'esecuzione:",
+        "così Del, giustiziato, muore bruciato tra dolori atroci."
+      ]
+    },
+    {
+      "id": "melinda",
+      "titolo": "Una notte fuori dal carcere",
+      "durata": 11,
+      "scena": "Notte di pioggia: un vecchio camioncino del carcere fermo davanti alla casa del direttore, fari accesi; una finestra al primo piano che si illumina d'oro.",
+      "sottotitoli": [
+        "Intanto Melinda, la moglie del direttore del carcere, sta morendo di un tumore:",
+        "così le guardie portano di nascosto John da lei,",
+        "e John la guarisce, ma stavolta tiene il male dentro."
+      ]
+    },
+    {
+      "id": "wharton",
+      "titolo": "Il male passa a Percy",
+      "durata": 10,
+      "scena": "Il corridoio verde di notte: una cella aperta, una pistola d'ordinanza caduta sul pavimento con il fumo che sale, i bossoli, una nuvola di moscerini che esce e svanisce, le lampadine del soffitto scoppiate che pendono.",
+      "sottotitoli": [
+        "Tornato in prigione, John soffia quel male dentro Percy,",
+        "che come impazzito spara a Wild Bill, un altro condannato violento,",
+        "e poi resta assente per sempre, chiuso in un manicomio."
+      ]
+    },
+    {
+      "id": "verita",
+      "titolo": "Il vero assassino",
+      "durata": 10,
+      "scena": "Un ricordo color seppia: una fattoria nella campagna al tramonto, il portico, due altalene vuote che dondolano, un fienile e un campo di grano; un cane che abbaia lontano; un vecchio cappello da bracciante abbandonato sul recinto.",
+      "sottotitoli": [
+        "Perché proprio Wild Bill? John mostra la verità a Paul:",
+        "le bambine le aveva uccise Wild Bill, e John cercava di salvarle.",
+        "Ma ormai nessuno può fermare l'esecuzione di John."
+      ]
+    },
+    {
+      "id": "film",
+      "titolo": "L'ultimo desiderio",
+      "durata": 10,
+      "scena": "Il corridoio verde trasformato in sala: un proiettore che ronza con il fascio di luce pieno di pulviscolo, un lenzuolo appeso come schermo con un cappello a cilindro e un bastone che danzano, sedie vuote, un sacchetto di popcorn.",
+      "sottotitoli": [
+        "Paul propone a John di fuggire, ma lui rifiuta:",
+        "è stanco di sentire tutto il male del mondo.",
+        "Chiede di vedere il suo primo film: quello che oggi fa piangere Paul."
+      ]
+    },
+    {
+      "id": "jingles",
+      "titolo": "Il prezzo del miracolo",
+      "durata": 10,
+      "scena": "Il nascondiglio del topolino all'alba: su una mensola di legno, una scatola di sigari foderata con un panno dove dorme un topolino vecchio e bianco di pelo, il rocchetto colorato accanto; luce verde del bosco dalla finestra, polvere e foglie.",
+      "sottotitoli": [
+        "John viene giustiziato, e oggi Paul ha 108 anni:",
+        "e il topolino è vivo da più di sessant'anni.",
+        "Per Paul, vivere tanto è la pena per aver lasciato morire un miracolo."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Il corridoio verde vuoto, con la luce calda in fondo e il pulviscolo dorato; il topolino e il rocchetto sul pavimento; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
+  },
+  "musica": "Originale e strumentale, 72 bpm: pianoforte e archi caldi in Fa maggiore con un tema semplice da ninna nanna, chitarra pizzicata (arpa) e contrabbasso per il Sud degli anni '30; campanelle e celesta per i miracoli, armonica no; timpani e archi gravi per la sedia elettrica; niente brani o temi del film (né la colonna sonora originale né la canzone di Cappello a cilindro).",
+  "fonti": [
+    "Paul Edgecombe anziano in una casa di riposo che piange guardando «Cappello a cilindro» e racconta a un'amica di John Coffey; 1935, braccio della morte di Cold Mountain detto «miglio verde» per il colore del pavimento; John Coffey, gigante condannato per lo stupro e l'omicidio di due bambine, mite, ha paura del buio; Percy Wetmore, guardia sadica non licenziabile perché nipote della moglie del governatore; Eduard Delacroix e il topolino Mister Jingles; Coffey guarisce l'infezione alle vie urinarie di Paul e rigurgita moscerini; Percy schiaccia il topo e Coffey lo guarisce; Percy non bagna la spugna e Del muore bruciato; Melinda, moglie del direttore Hal Moores, con un tumore incurabile al cervello; le guardie portano Coffey di nascosto a guarirla e lui non riesce a sputare il male; Coffey lo trasferisce a Percy che spara a Wild Bill Wharton e resta catatonico; Coffey mostra a Paul che le bambine le aveva uccise Wharton; Paul gli propone la fuga, Coffey rifiuta; ultimo desiderio: vedere un film per la prima volta; Paul ha 108 anni, Mister Jingles ancora vivo dopo oltre 60 anni, la vita lunga come punizione per aver lasciato morire un miracolo: https://it.wikipedia.org/wiki/Il_miglio_verde_(film)",
+    "«In 1999, Paul, now 108 years old, watches Top Hat»; John «simple-minded», condannato per l'omicidio di due bambine; Percy con «connections to the state governor»; Coffey guarisce la «crippling bladder infection» di Paul; Percy schiaccia Mr. Jingles e John lo resuscita; esecuzione di Del con la spugna asciutta e «an agonizing death»; la moglie del direttore malata terminale guarita di nascosto; «In a possessed state, Percy shoots Wharton dead», poi ricoverato al Briar Ridge come paziente; John tentava di riportare in vita le bambine; John rifiuta la fuga e chiede di vedere un film (Top Hat); il topo ancora vivo: https://en.wikipedia.org/wiki/The_Green_Mile_(film)"
+  ]
+}
