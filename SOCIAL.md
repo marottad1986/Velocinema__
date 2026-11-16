@@ -87,6 +87,49 @@ SendUserFile), così l'utente lo trova lì quando apre la conversazione.
   (chiave, connettore, errore), un messaggio subito con il motivo e l'alternativa prevista dal calendario.
 Se il connettore IFTTT non è disponibile, si avvisa solo nella chat della sessione (SendUserMessage, e notifica push se c'è).
 
+## Pubblicazione automatica (PostFast)
+Dal 16 novembre 2026 i post si programmano con **PostFast** (prova gratuita fino al ~21 novembre, poi piano a pagamento:
+lo decide l'editore). Server MCP `postfast` in `.mcp.json` (pacchetto `postfast-mcp@0.15.3`): la chiave è un segreto di
+rete dell'ambiente cloud per `api.postfa.st` (intestazione `pf-api-key`, la mette il proxy; nel file c'è solo il segnaposto
+`proxy-injected`); in locale si usa la variabile `POSTFAST_API_KEY`. `NODE_USE_ENV_PROXY=1` serve perché Node passi dal proxy:
+senza, ogni chiamata risponde «fetch failed». Senza MCP la stessa API si usa con curl su `https://api.postfa.st`
+(`/social-media/my-social-accounts`, `/file/get-signed-upload-urls`, `/social-posts`, `/social-inbox/...`).
+
+Profili collegati (`list_accounts`, 16 novembre): TikTok `in.2.minuti` `74dccd93-3694-4f73-8d7e-378ba69c1275`, YouTube
+«In 2 minuti» `e19c8b52-a3ad-4858-857d-4157ba3ac8b0`, Facebook `2d7b62df-5e6f-462f-8061-4b0ed59c4ec6`. **Instagram da
+collegare** (lo fa l'editore): finché manca, su Instagram pubblica a mano. Prima di programmare, `list_accounts`: mai
+programmare su un profilo `DISABLED`.
+
+Quando si programma (vincolante):
+- **Solo contenuti approvati e confermati**: la settimana approvata dall'editore e il video «pronto», cioè visto e
+  confermato dall'editore (`DECISIONI.md`). Lo fa la sessione di produzione subito dopo la conferma e l'unione su main,
+  oppure il manager per i contenuti già pronti. Mai prima.
+- Video: `upload_media` con `out/<film>-voce.mp4` (MP4 fino a 250 MB), poi `create_posts` (fino a 15 per chiamata) con
+  `scheduledAt` all'ora del calendario in ora italiana (ISO con `+01:00` in inverno), testo dal `calendario/<settimana>-social.md`.
+- Controlli fissi per ogni video (dichiarazione IA sempre, decisione del 15 novembre):
+  - TikTok: `tiktokIsAigc: true`; menzioni e hashtag nella didascalia.
+  - YouTube: `youtubeIsShort: true`, `youtubeTitle` (titolo YouTube del `-social.md`, max 100 caratteri),
+    `youtubeContainsSyntheticMedia: true`, `youtubeMadeForKids: false`, `youtubeLanguage: "it"`; il testo è la descrizione.
+  - Facebook: `facebookContentType: "REEL"`.
+  - Instagram (quando collegato): `instagramPublishType: "REEL"`, `instagramIsAiGenerated: true`, `instagramCollaborators`
+    per le collaborazioni (es. Mr.goal).
+  - Le etichette IA si mettono solo alla creazione: dopo non si possono più aggiungere.
+- Storie del giorno prima: la locandina PNG come `instagramPublishType: "STORY"` e `facebookContentType: "STORY"`, alle 18:30
+  del giorno prima (orario da rivedere con i dati).
+- Dopo `create_posts`, `list_posts` con `statuses: SCHEDULED` per controllare; il giorno dopo l'uscita, `statuses: FAILED`:
+  un post fallito (`lastError`) si segnala subito su Telegram.
+- Avviso Telegram «📤 Programmato»: titolo, data e ora, piattaforme. Va nello stesso messaggio del «video pronto» se
+  arriva insieme, per risparmiare crediti IFTTT.
+
+## Commenti della sera (PostFast)
+PostFast legge i commenti di TikTok, Facebook e (quando collegato) Instagram, dal collegamento in poi: `get_inbox_unread_count`,
+`list_inbox_conversations` (solo non letti), `list_inbox_items`. Ogni sera alle 21:52 un'attività programmata apre una sessione,
+prepara un riassunto e le risposte proposte (tono in prima persona plurale, simpatico e costruttivo, niente spoiler senza avviso,
+fatti solo verificati, richieste di titoli annotate in «Richieste dai commenti») e le manda in un solo messaggio Telegram.
+**Non risponde sui social**: le risposte le pubblica l'editore (o, se lui scrive «ok» nella sessione dei commenti, la
+sessione le pubblica con `reply_to_inbox_item`). Mai `set_inbox_item_state` con DELETE senza l'editore. YouTube non ha la
+casella dei commenti in PostFast.
+
 ## Idee nuove (compito del manager, ogni domenica)
 I format nuovi devono nascere dal manager, non dall'editore (decisione del 15 novembre 2026). Nella proposta della
 domenica c'è sempre una riga «Esperimento della settimana»: un format o un titolo fuori dalla rotazione, agganciato a un

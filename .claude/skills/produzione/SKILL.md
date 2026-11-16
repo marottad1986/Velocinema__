@@ -29,5 +29,7 @@ Metodo (vincolante, da `CLAUDE.md`):
 8. **Il video è «pronto» solo quando l'editore l'ha visto e confermato** (decisione del 15 novembre 2026, `DECISIONI.md`):
    finché non risponde, nel calendario resta «da confermare». Appena conferma, unisci su main da solo senza chiedere altro
    (controlli verdi e revisori APPROVATO); se chiede modifiche, si fanno e si rimanda il video.
+   Subito dopo l'unione programma il post con PostFast (`SOCIAL.md`, «Pubblicazione automatica»): data e ora dal calendario,
+   testi dal `-social.md`, etichette IA sempre; poi l'avviso Telegram «📤 Programmato».
 
 Non decidi cosa pubblicare né quando: quello è il compito del team social (`/manager`).
