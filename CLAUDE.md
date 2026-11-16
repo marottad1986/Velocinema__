@@ -25,6 +25,9 @@ la settimana che inizia il giorno dopo, con i dati di Metricool, e avvio della p
 Comandi per aprire una sessione: `/manager` (team social media manager), `/produzione` (un video per sessione), `/direzione`
 (consigliere dell'editore, diffonde le decisioni) e `/contabilita` (conti). Organigramma e tabella di marcia verso
 l'automazione: `ORGANIZZAZIONE.md`; decisioni valide per tutti: `DECISIONI.md`; errori da non ripetere: `ERRORI.md`.
+**Obiettivo del progetto: guadagnare** (collaborazioni e sponsorizzazioni sulle uscite attuali, vedi `DECISIONI.md`).
+Ogni sessione e ogni agente, revisori compresi, può proporre miglioramenti, risparmi o nuovi colleghi e segnalare lavoro
+inutile: una riga in `PROPOSTE.md` (la direzione la porta all'editore).
 
 ## Formato (vincolante)
 - 1080×1920, 30 o 60 fps, durata esatta 2:00 (120 s).
@@ -254,7 +257,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Speciali (Halloween, Natale…): `"speciale": "Halloween"` nella `copertina` del JSON mette il bollino «SPECIALE HALLOWEEN»
   accanto all'etichetta (`src/components/Speciale.tsx`); niente nella voce né nel disegno, così togliendo il campo il video torna normale.
 - Archivio su MEGA (`.github/workflows/video-mega.yml`): a ogni push su main GitHub Actions rigenera i film toccati
-  (`scripts/cambiati.mjs`; codice comune = tutti, ma registrare un film nuovo in `src/films.ts` o aggiungere un effetto al catalogo rigenera solo quel film) e carica `<film>.mp4` e `<film>-voce.mp4` in `/Velocinema/<film>/`.
+  (`scripts/cambiati.mjs`; codice comune = tutti, ma registrare un film nuovo in `src/films.ts` o aggiungere un effetto al catalogo rigenera solo quel film) e carica `<film>-voce.mp4` in `/Velocinema/<film>/` (`<film>.mp4` senza voce solo se le clip voce non ci sono).
   Clip voce lette da `/Velocinema/<film>/voce/` su MEGA (o da `audio/<film>/`). Segreti `MEGA_EMAIL`, `MEGA_PASSWORD`.
   A mano: Actions → "Video su MEGA" → Run workflow.
 

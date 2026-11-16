@@ -24,6 +24,16 @@ const tutti = ['films', 'quadri']
   .filter((f) => f.endsWith('.json'))
   .map((f) => f.slice(0, -5))
   .sort();
+// Short promozionali e trailer (promo/<slug>.json, src/promo/<slug>/, scripts/audio/<slug>.mjs, audio/<slug>/): entry Remotion
+// separata; codice comune dei promo (src/promo/*.ts*, scripts/promo/): tutti i promo. Il codice comune dei verticali li rigenera.
+const promo = existsSync('promo') ? readdirSync('promo').filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5)).sort() : [];
+const sceltiPromo = (file) => {
+  const m = file.match(/^promo\/([^/]+)\.json$/) ?? file.match(/^src\/promo\/([^/]+)\//) ?? file.match(/^scripts\/audio\/([^/]+)\.mjs$/) ?? file.match(/^audio\/([^/]+)\//);
+  if (m && promo.includes(m[1])) return [m[1]];
+  if (/^src\/promo\/[^/]+$/.test(file) || /^scripts\/promo\//.test(file)) return promo;
+  if (/^promo\//.test(file) || /^src\/promo\//.test(file)) return [];
+  return null;
+};
 const quadri = existsSync('quadri') ? readdirSync('quadri').filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5)).sort() : [];
 const AUDIO_COMUNE = /^scripts\/audio\/(synth|film|campioni|effetti|sala|wav|vsco-indice)\.mjs$|^scripts\/audio\/vsco\.json$/;
 const COMUNI = [/^src\//, /^scripts\/[^/]+\.mjs$/, AUDIO_COMUNE, /^package(-lock)?\.json$/, /^remotion\.config\.ts$/];
@@ -82,7 +92,8 @@ const scelti = (file) => {
   if (file === EFFETTI) return soloVociNuove() ?? tutti;
   if (file === REGISTRO) return soloFilmAggiunti() ?? tutti;
   if (AUDIO_COMUNE.test(file)) return tutti; // motore audio: campioni, effetti, riverbero
-  if (file.startsWith('src/promo/') || file.startsWith('scripts/promo/') || file.startsWith('promo/')) return []; // Short promozionali: entry Remotion separata, non cambiano i film
+  const p = sceltiPromo(file);
+  if (p) return p;
   if (file.startsWith('src/scenes/quadri/')) return quadri; // scene comuni a tutti i quadri
   for (const re of PROPRI) {
     const m = file.match(re);
@@ -92,12 +103,12 @@ const scelti = (file) => {
   return COMUNI.some((re) => re.test(file)) ? tutti : [];
 };
 
-let film = [...tutti, ...lunghi];
+let film = [...tutti, ...lunghi, ...promo];
 if (!process.argv.includes('--tutti')) {
   const files = readFileSync(0, 'utf8').split('\n').map((s) => s.trim()).filter(Boolean);
   const base = new Set(files.flatMap(scelti));
   // codice comune dei verticali: anche i lunghi; un episodio cambiato: anche i lunghi che lo contengono
-  if (tutti.every((f) => base.has(f))) lunghi.forEach((l) => base.add(l));
+  if (tutti.every((f) => base.has(f))) [...lunghi, ...promo].forEach((l) => base.add(l));
   for (const l of lunghi) if (episodi(l).some((e) => base.has(e))) base.add(l);
   film = [...base].sort();
 }

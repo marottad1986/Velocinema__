@@ -96,16 +96,21 @@ senza, ogni chiamata risponde «fetch failed». Senza MCP la stessa API si usa c
 (`/social-media/my-social-accounts`, `/file/get-signed-upload-urls`, `/social-posts`, `/social-inbox/...`).
 
 Profili collegati (`list_accounts`, 16 novembre): TikTok `in.2.minuti` `74dccd93-3694-4f73-8d7e-378ba69c1275`, YouTube
-«In 2 minuti» `e19c8b52-a3ad-4858-857d-4157ba3ac8b0`, Facebook `2d7b62df-5e6f-462f-8061-4b0ed59c4ec6`. **Instagram da
-collegare** (lo fa l'editore): finché manca, su Instagram pubblica a mano. Prima di programmare, `list_accounts`: mai
+«In 2 minuti» `e19c8b52-a3ad-4858-857d-4157ba3ac8b0`, Facebook `2d7b62df-5e6f-462f-8061-4b0ed59c4ec6`, Instagram `in.2.minuti`
+`9074b244-c662-4083-8cda-c289051bf757` (collegato il 16 novembre). Controllare sempre che `platformUsername` sia
+`in.2.minuti`: il 16 novembre era stato collegato per errore un profilo personale. Prima di programmare, `list_accounts`: mai
 programmare su un profilo `DISABLED`.
 
 Quando si programma (vincolante):
+- **Mai programmare un contenuto già uscito** (`calendario/pubblicati.md`), anche se ha una chiave in `postfast-media`: le
+  chiavi registrate dal workflow (anche per prova) non sono un via libera alla pubblicazione.
 - **Solo contenuti approvati e confermati**: la settimana approvata dall'editore e il video «pronto», cioè visto e
   confermato dall'editore (`DECISIONI.md`). Lo fa la sessione di produzione subito dopo la conferma e l'unione su main,
   oppure il manager per i contenuti già pronti. Mai prima.
 - Video: `upload_media` con `out/<film>-voce.mp4` (MP4 fino a 250 MB), poi `create_posts` (fino a 15 per chiamata) con
   `scheduledAt` all'ora del calendario in ora italiana (ISO con `+01:00` in inverno), testo dal `calendario/<settimana>-social.md`.
+- `controls` vale per tutti i post della stessa chiamata: i video in una chiamata, le storie in un'altra. Instagram accetta al
+  massimo 5 hashtag: se la didascalia di TikTok ne ha di più, togliere l'ultimo (di solito `#perte`).
 - Controlli fissi per ogni video (dichiarazione IA sempre, decisione del 15 novembre):
   - TikTok: `tiktokIsAigc: true`; menzioni e hashtag nella didascalia.
   - YouTube: `youtubeIsShort: true`, `youtubeTitle` (titolo YouTube del `-social.md`, max 100 caratteri),
@@ -123,6 +128,8 @@ Quando si programma (vincolante):
   Shorts); la storia esce 24 ore prima, come per ogni altro video. Si programmano insieme con PostFast (il lungo con
   `youtubeIsShort: false`, `youtubeContainsSyntheticMedia: true`, titolo, descrizione e capitoli da `out/<film>-capitoli.txt`;
   il trailer con i controlli dei video verticali e il link al lungo nella didascalia o nel primo commento).
+- **Trailer e Short promozionali** (`promo/<slug>.json`) passano dallo stesso workflow: unito su main, «Video su MEGA» li
+  rigenera (`node scripts/promo/render.mjs`), li carica su MEGA e su PostFast e registra la chiave come per i film.
 - **Il video non si rifà mai per pubblicarlo.** Il workflow «Video su MEGA», dopo il caricamento su MEGA, carica anche
   `<film>-voce.mp4` su PostFast (`scripts/postfast-carica.mjs`) e scrive la chiave in `postfast/<film>.json` sul ramo
   `postfast-media`: la sessione la legge con `git fetch origin postfast-media && git show origin/postfast-media:postfast/<film>.json`
@@ -191,6 +198,7 @@ Punteggio da 0 a 3 per ogni voce:
 | **Discussione** | Se ne parla ancora: finale discusso, teorie, «non l'ho capito», scene citate in rete? |
 | **Momento** | È disponibile adesso su una piattaforma, è in classifica, sta per uscire un seguito o una nuova stagione? |
 | **Puntate** | Porta a un seguito (stagione successiva, saga)? Chi lo vede torna per il prossimo. |
+| **Sponsorizzabile** | C'è qualcuno che oggi spende per farlo vedere (film al cinema o appena uscito in streaming, nuova stagione, remake o seguito annunciato, gioco in uscita, evento TV)? È questo che porta collaborazioni e soldi (decisione del 16 nov): 3 uscite a settimana con 2 o 3, ognuna con contatti e messaggi pronti in `collaborazioni/`. |
 | **Disegnabile** | Luoghi e oggetti forti, senza bisogno di personaggi (regola vincolante: con 0 il titolo è scartato). |
 
 Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere sulla settimana.

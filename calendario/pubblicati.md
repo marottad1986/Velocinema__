@@ -24,10 +24,12 @@ Visualizzazioni al 14 novembre 2026 (Metricool, ore 6). I dati di TikTok arrivan
 | 11 nov | Dark – stagione 3 | Spiegato semplice | 16.733 | 66.594 | 459 |
 | 12 nov | X Factor 2026 – chi è ancora in gara | Talent | 1.043 | 1.504 | 1 |
 | 13 nov | Shining | Film | – | – | – |
+| 16 nov | Titanic | Film | programmato su PostFast (17:30, tutti i social) | | |
 
 Follower TikTok: 2.992 al 12 novembre (2.089 il 6 novembre: +903 in sei giorni; picchi di nuovi follower: 669 il 31 ottobre con Dark, 529 il 30 con Shutter Island, 442 il 7 novembre con Inception).
 
-**YouTube, video lunghi (16:9):** 14 nov – Dark, tutta la serie (`lunghi/dark-tutta-la-serie.json`), dati da YouTube Studio quando l'utente li manda. Prossimo: Ritorno al futuro, la trilogia (`calendario/youtube-ritorno-al-futuro.md`), data decisa dall'editore (prodotto dopo i video della settimana 16–22).
+**YouTube, video lunghi (16:9):** 14 nov – Dark, tutta la serie (`lunghi/dark-tutta-la-serie.json`); il suo Short promozionale
+(`promo/canale-youtube-dark.json`) non si programma: nel workflow del 16 novembre è servito solo come prova del caricamento su PostFast, dati da YouTube Studio quando l'utente li manda. Prossimo: Ritorno al futuro, la trilogia (`calendario/youtube-ritorno-al-futuro.md`), data decisa dall'editore (prodotto dopo i video della settimana 16–22).
 
 **In uscita nel weekend 14–15:** Bohemian Rhapsody e Stranger Things 1 (sab 14), Hunger Games (10:00) e Bove «In un battito» (17:00) (dom 15). La grande onda di Kanagawa è rimandata: manca la voce.
 **Pronti e non ancora usciti:** Titanic, Frankenstein Junior, Gli anni.
