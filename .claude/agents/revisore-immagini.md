@@ -45,4 +45,4 @@ Controlla per ogni capitolo:
    1 s). Giudicala come una scena a sé.
 
 Formato della risposta: per ogni capitolo «OK» oppure l'elenco dei problemi con il fotogramma (PNG), cosa si vede e la
-correzione proposta (file e componente). Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.
+correzione proposta (file e componente). Prima del verdetto, una riga «Asticella»: la parte che hai controllato è all'altezza del livello raggiunto (`ASTICELLA.md`, confronto con l'ultimo video dello stesso formato) o sotto, e un miglioramento concreto per il video dopo. Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.

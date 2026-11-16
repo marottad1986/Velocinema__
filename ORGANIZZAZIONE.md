@@ -38,7 +38,7 @@ monetizzazione   │                          persone da coinvolgere
 | **Revisori** | `.claude/agents/` | Controllo indipendente di testi, immagini, musica, voce | Verdetti | – |
 
 Memoria comune della squadra (si legge all'inizio di ogni sessione del proprio reparto, così non si ragiona da capo):
-`CLAUDE.md` (regole), `ERRORI.md` (errori già fatti e controlli che li evitano), `DECISIONI.md` (decisioni della direzione),
+`CLAUDE.md` (regole), `ERRORI.md` (errori già fatti e controlli che li evitano), `ASTICELLA.md` (livello raggiunto e passi avanti), `DECISIONI.md` (decisioni della direzione),
 `SOCIAL.md` (programmazione), `contabilita/conti.md` (conti).
 
 ## Il ciclo della settimana (obiettivo)

@@ -12,9 +12,11 @@ Metodo (vincolante, da `CLAUDE.md`):
    all'utente su Telegram») e controlla che risulti inviato (`success: true`). Ogni avviso Telegram va anche all'app
    «In 2 minuti» (POST a `/api/avvisi`, corpo JSON da file o heredoc, risposta `{"ok":true}`; procedura in `SOCIAL.md`):
    se l'app non risponde lo si scrive nell'avviso Telegram, ma il lavoro non si ferma.
-2. Leggi `ERRORI.md` (controlli che evitano gli errori già fatti), `DECISIONI.md`, `CLAUDE.md`, `BRIEF-SCENA.md`, `QUALITA.md` (più `qualita/<film>.md` se c'è) e, per i quadri, `QUADRI.md`.
+2. Leggi `ERRORI.md` (controlli che evitano gli errori già fatti), `ASTICELLA.md` (il livello raggiunto e i passi avanti), `DECISIONI.md`, `CLAUDE.md`, `BRIEF-SCENA.md`, `QUALITA.md` (più `qualita/<film>.md` se c'è) e, per i quadri, `QUADRI.md`.
    Controlla nel calendario (`calendario/`) la data di uscita e l'alternativa prevista: se la data non è raggiungibile
    senza fretta sulle scene, dillo subito all'utente.
+2b. **Evolviti** (`ASTICELLA.md`): decidi prima di disegnare qual è il passo avanti di questo video rispetto ai
+   precedenti (almeno uno, visibile o udibile) e non scendere mai sotto il livello del registro.
 3. Testo: fatti verificati su fonti (campo `fonti`), scritto per chi non conosce l'opera, ritmo della voce.
 4. Scene: una alla volta, controllata sui fotogrammi prima di passare alla successiva.
 5. Musica originale con strumenti campionati, un solo bpm; voce con `node scripts/genera-voce.mjs` e controllo con
@@ -23,6 +25,9 @@ Metodo (vincolante, da `CLAUDE.md`):
    (`revisore-testi`, `revisore-musica`, `revisore-voce`); secondo passaggio solo sulle parti cambiate.
    Immagini: prima del `revisore-immagini` il video con la voce si manda all'utente in chat (SendUserFile) e si aspetta la
    risposta; se lo approva, il revisore delle immagini non si chiama (nella pull request: «Immagini: approvate dall'utente»).
+6a. Prima di mandare il video all'editore: copertina e scena più forte affiancate a quelle dell'ultimo video dello
+   stesso formato; se non è più bello, rinforza la scena più debole. Nel messaggio all'editore e nella pull request, una
+   riga con il passo avanti; nello stesso ramo, la riga nel registro di `ASTICELLA.md` e la tecnica resa riutilizzabile.
 6b. Se un revisore segnala un tipo di problema già visto in un altro film, aggiungi una riga a `ERRORI.md`.
 7. Pull request con i verdetti dei revisori. Appena il video finale è pronto da controllare, avvisa l'utente su
    Telegram e mandagli il video in questa chat (SendUserFile), come in `SOCIAL.md`, «Avvisi all'utente su Telegram»;

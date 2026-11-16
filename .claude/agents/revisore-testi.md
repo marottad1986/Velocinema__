@@ -41,4 +41,4 @@ Controlla:
    film (non segnalarla); in tutti gli altri formati va segnalata (canzoni: «CANZONI SPIEGATE», quadri: «QUADRI SPIEGATI»).
 
 Formato della risposta: per ogni capitolo «OK» oppure i problemi con la frase esatta e la riscrittura proposta (con il
-conteggio delle parole). Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.
+conteggio delle parole). Prima del verdetto, una riga «Asticella»: la parte che hai controllato è all'altezza del livello raggiunto (`ASTICELLA.md`, confronto con l'ultimo video dello stesso formato) o sotto, e un miglioramento concreto per il video dopo. Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.
