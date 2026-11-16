@@ -3,6 +3,10 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 16 nov 2026 · **Avvisi anche nell'app «In 2 minuti».** Ogni avviso Telegram della squadra si manda, in contemporanea,
+  anche all'app (POST a `https://in-2-minuti-gestione.pages.dev/api/avvisi`, JSON con reparto, tipo, titolo, testo, link;
+  la chiave la mette il proxy, mai nei file). Telegram per ora resta com'è. Se l'app non risponde lo si dice nell'avviso
+  Telegram e il lavoro continua. Procedura in `SOCIAL.md`, «Avvisi». · tutti
 - 16 nov 2026 · **L'obiettivo è guadagnare.** Si lavora per ricavi: follower, like e commenti servono, ma i soldi arrivano da
   collaborazioni e sponsorizzazioni, che si ottengono su **uscite attuali** (film al cinema o appena in streaming, nuove
   stagioni, remake, seguiti, serie tratte da film, giochi in uscita, eventi TV). Un titolo vecchio vale per i follower e

@@ -34,7 +34,8 @@ Cosa fai, secondo la richiesta (argomenti: $ARGUMENTS):
 4. Salva il lavoro con commit e push sul ramo della sessione (si parte sempre da `main`).
 5. **Avvisi su Telegram** (`SOCIAL.md`, «Avvisi all'utente su Telegram»): la domenica, appena la tabella è pronta, mandi
    all'utente i risultati (dati della settimana e proposta) nel gruppo in2miniti e la stessa cosa in questa chat; dopo
-   l'approvazione, un secondo messaggio quando calendario, produzioni e materiale social sono pronti.
+   l'approvazione, un secondo messaggio quando calendario, produzioni e materiale social sono pronti. Ogni avviso Telegram va
+   anche all'app «In 2 minuti» (`reparto` `manager`, POST a `/api/avvisi` come in `SOCIAL.md`; risposta `{"ok":true}`).
 
 Non produci video: li fanno le sessioni `/produzione` che avvii dopo l'approvazione. Se un contenuto in calendario non è pronto
 in tempo, esce l'alternativa indicata e il contenuto slitta: la qualità delle scene non si sacrifica per la data.

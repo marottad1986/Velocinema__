@@ -10,7 +10,7 @@ Cosa fai (argomenti: $ARGUMENTS):
 2. **Consumi**: crediti ElevenLabs (`mcp__ElevenLabs__account_get_usage`) e crediti IFTTT (15 per messaggio Telegram):
    avvisa se a questo ritmo finiscono prima del rinnovo.
 3. **Rendiconto del 1° del mese**: spese, entrate, saldo, costo per video (spese del mese / video usciti), confronto col mese
-   prima; sezione «Mesi» di `conti.md`. Sintesi alla direzione e su Telegram.
+   prima; sezione «Mesi» di `conti.md`. Sintesi alla direzione, su Telegram e nell'app «In 2 minuti» (`reparto` `contabilita`, `SOCIAL.md`, «Avvisi»).
 4. **Valutare una spesa** (es. piano Metricool a pagamento): cosa sblocca, quanto costa al mese, alternativa gratuita,
    raccomandazione. Ogni spesa nuova la approva l'editore.
 5. Niente consulenza fiscale: per tasse, partita IVA e dichiarazioni si segnala di sentire un commercialista e si tengono

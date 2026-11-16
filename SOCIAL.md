@@ -85,7 +85,31 @@ SendUserFile), così l'utente lo trova lì quando apre la conversazione.
   unisce su main da sola senza chiedere altro (`DECISIONI.md`, 15 novembre 2026).
 - **Produzione — problema**: se la data di uscita non è raggiungibile con la qualità richiesta, o la sessione è bloccata
   (chiave, connettore, errore), un messaggio subito con il motivo e l'alternativa prevista dal calendario.
-Se il connettore IFTTT non è disponibile, si avvisa solo nella chat della sessione (SendUserMessage, e notifica push se c'è).
+Se il connettore IFTTT non è disponibile, si avvisa solo nella chat della sessione (SendUserMessage, e notifica push se c'è)
+e nell'app (sotto).
+
+**Stesso avviso anche nell'app «In 2 minuti»** (decisione del 16 novembre 2026, per ora in contemporanea a Telegram, che
+resta com'è): ogni volta che si manda un avviso Telegram (compresi commenti della sera, contabilità e direzione), si manda lo
+stesso avviso all'app con una POST a `https://in-2-minuti-gestione.pages.dev/api/avvisi`, intestazione
+`content-type: application/json`, corpo JSON:
+```json
+{"reparto": "produzione|manager|pubblicazione|commenti|direzione|contabilita|sistema",
+ "tipo": "avvio|pronto|programmato|problema|info",
+ "titolo": "una riga", "testo": "il testo completo dell'avviso", "link": "link facoltativo (PR, video, calendario)"}
+```
+- La chiave (intestazione `x-avvisi-key`) la aggiunge da solo il proxy dell'ambiente: **non va scritta in nessun file né comando**.
+- Il JSON si passa da un file o da un heredoc (i testi italiani hanno apostrofi che rompono le virgolette della shell):
+  ```bash
+  cat > "$SCRATCH/avviso.json" <<'EOF'
+  {"reparto": "produzione", "tipo": "pronto", "titolo": "Titanic pronto", "testo": "…", "link": "https://github.com/…"}
+  EOF
+  curl -sS -X POST https://in-2-minuti-gestione.pages.dev/api/avvisi \
+    -H 'content-type: application/json' --data-binary @"$SCRATCH/avviso.json"
+  ```
+  (`$SCRATCH` = la cartella temporanea della sessione.) Nel campo `testo` niente tag HTML di Telegram: testo semplice, a capo con `\n`.
+- Risposta attesa: `{"ok":true,...}`. Se non arriva, lo si scrive nell'avviso Telegram (una riga: «App: avviso non arrivato,
+  <errore>») ma il lavoro non si ferma. Corrispondenze: «Produzione — avvio» → `avvio`, «video pronto» → `pronto`,
+  «📤 Programmato» → `programmato`, «problema» e post falliti → `problema`, il resto (manager, commenti, conti) → `info`.
 
 ## Pubblicazione automatica (PostFast)
 Dal 16 novembre 2026 i post si programmano con **PostFast** (prova gratuita fino al ~21 novembre, poi piano a pagamento:

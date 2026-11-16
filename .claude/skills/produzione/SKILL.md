@@ -9,7 +9,9 @@ Metodo (vincolante, da `CLAUDE.md`):
 0. **Produzioni distanziate (vincolante):** al massimo due produzioni al giorno; una nuova produzione parte solo 5 ore dopo la fine della precedente (unione su main o ultimo commit), per restare nei limiti di utilizzo. Se l'ora non è ancora arrivata, la sessione fissa un promemoria (`send_later`) e riparte da sola a quell'ora. Controlla l'ultima produzione unita su main (`git log origin/main`) prima di iniziare.
 1. Parti da `main` aggiornato: un ramo e una pull request per questo contenuto.
    Appena il contenuto è deciso e il ramo creato, manda l'avviso Telegram «Produzione — avvio» (`SOCIAL.md`, «Avvisi
-   all'utente su Telegram») e controlla che risulti inviato (`success: true`).
+   all'utente su Telegram») e controlla che risulti inviato (`success: true`). Ogni avviso Telegram va anche all'app
+   «In 2 minuti» (POST a `/api/avvisi`, corpo JSON da file o heredoc, risposta `{"ok":true}`; procedura in `SOCIAL.md`):
+   se l'app non risponde lo si scrive nell'avviso Telegram, ma il lavoro non si ferma.
 2. Leggi `ERRORI.md` (controlli che evitano gli errori già fatti), `DECISIONI.md`, `CLAUDE.md`, `BRIEF-SCENA.md`, `QUALITA.md` (più `qualita/<film>.md` se c'è) e, per i quadri, `QUADRI.md`.
    Controlla nel calendario (`calendario/`) la data di uscita e l'alternativa prevista: se la data non è raggiungibile
    senza fretta sulle scene, dillo subito all'utente.
