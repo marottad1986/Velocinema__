@@ -82,6 +82,9 @@ jobs:
       FILM: ${{ matrix.film }}
       MEGA_EMAIL: ${{ secrets.MEGA_EMAIL }}
       MEGA_PASSWORD: ${{ secrets.MEGA_PASSWORD }}
+      POSTFAST_API_KEY: ${{ secrets.POSTFAST_API_KEY }}
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -164,6 +167,27 @@ jobs:
             mega-put "$f" "$dest" > /dev/null
             echo "Caricato $dest"
           done
+      # Pubblicazione (SOCIAL.md, «Pubblicazione automatica»): il video con la voce va anche su PostFast e la sua chiave
+      # finisce nel ramo «postfast-media» (postfast/<film>.json), così le sessioni programmano il post senza rifare il video.
+      - name: Caricamento su PostFast
+        if: env.POSTFAST_API_KEY != '' && hashFiles(format('out/{0}-voce.mp4', env.FILM)) != ''
+        continue-on-error: true
+        run: |
+          node scripts/postfast-carica.mjs "out/$FILM-voce.mp4" --film "$FILM"
+          cp "postfast/$FILM.json" /tmp/registro.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            rm -rf /tmp/pm && mkdir /tmp/pm && cd /tmp/pm
+            if git clone -q --depth 1 --branch postfast-media "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" . 2>/dev/null; then :; else
+              git init -q && git checkout -q -b postfast-media && git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+            fi
+            mkdir -p postfast && cp /tmp/registro.json "postfast/$FILM.json"
+            git add postfast && git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "PostFast: $FILM" || exit 0
+            if git push -q origin postfast-media; then echo "Chiave registrata"; exit 0; fi
+            sleep $((i * 5)); cd "$GITHUB_WORKSPACE"
+          done
+          exit 1
       - name: Uscita da MEGA
         if: always()
         run: mega-logout > /dev/null 2>&1 || true
