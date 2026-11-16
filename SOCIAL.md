@@ -101,6 +101,8 @@ collegare** (lo fa l'editore): finché manca, su Instagram pubblica a mano. Prim
 programmare su un profilo `DISABLED`.
 
 Quando si programma (vincolante):
+- **Mai programmare un contenuto già uscito** (`calendario/pubblicati.md`), anche se ha una chiave in `postfast-media`: le
+  chiavi registrate dal workflow (anche per prova) non sono un via libera alla pubblicazione.
 - **Solo contenuti approvati e confermati**: la settimana approvata dall'editore e il video «pronto», cioè visto e
   confermato dall'editore (`DECISIONI.md`). Lo fa la sessione di produzione subito dopo la conferma e l'unione su main,
   oppure il manager per i contenuti già pronti. Mai prima.
