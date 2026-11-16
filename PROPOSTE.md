@@ -9,11 +9,11 @@ La direzione le legge all'inizio di ogni sessione, le porta all'editore e, una v
 - 16 nov 2026 · direzione · **Media kit** di «In 2 minuti» (una pagina: chi siamo, numeri per piattaforma, pubblico, formati,
   esempi, cosa offriamo a un distributore o a una piattaforma: video dedicato all'uscita, Spiegato semplice prima della nuova
   stagione, storia con link). Senza un media kit non si chiede una collaborazione in modo serio. · prerequisito per vendere ·
-  aperta (la direzione lo prepara quando l'editore dice sì; i numeri li aggiorna il manager ogni mese)
+  approvata il 16 nov, da preparare con i numeri di fine mese (il manager li aggiorna ogni mese)
 - 16 nov 2026 · direzione · **Listino e contatti dei distributori**: elenco degli uffici stampa e marketing di distributori
   italiani e piattaforme (cinema, streaming, videogiochi) con il prossimo titolo di ciascuno nel nostro calendario; per ogni
   uscita «sponsorizzabile» un messaggio pronto *prima* dell'uscita (dopo è tardi per pagarla). L'invio resta all'editore. ·
-  trasforma le uscite attuali in trattative · aperta
+  trasforma le uscite attuali in trattative · **decisa il 16 nov** (con cautela: 3 titoli a settimana, primi contatti in `collaborazioni/2026-11-16.md`)
 - 16 nov 2026 · direzione · **Dati per vendere**: il manager aggiunge alla domenica le metriche che chiedono gli sponsor
   (visualizzazioni medie per video negli ultimi 30 giorni, tasso di condivisione, pubblico per età e città dai pannelli
   delle app). · rende il media kit credibile · aperta

@@ -6,9 +6,10 @@ decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. F
 - 16 nov 2026 · **L'obiettivo è guadagnare.** Si lavora per ricavi: follower, like e commenti servono, ma i soldi arrivano da
   collaborazioni e sponsorizzazioni, che si ottengono su **uscite attuali** (film al cinema o appena in streaming, nuove
   stagioni, remake, seguiti, serie tratte da film, giochi in uscita, eventi TV). Un titolo vecchio vale per i follower e
-  rende anche in soldi solo se ha un aggancio a una novità (seguito, remake, serie, arrivo su una piattaforma). Nella
-  settimana almeno 4 uscite su 9 sono «sponsorizzabili» (criterio nuovo in `SOCIAL.md`); per ognuna il manager annota chi
-  potrebbe pagare o rilanciare (distributore, piattaforma, editore del gioco). · manager, direzione, produzione
+  rende anche in soldi solo se ha un aggancio a una novità (seguito, remake, serie, arrivo su una piattaforma). Si parte con
+  cautela (l'editore, 16 nov: prima bisogna crescere): **3 uscite a settimana «sponsorizzabili»** (criterio nuovo in `SOCIAL.md`); per ognuna si individuano i diretti
+  interessati e si preparano messaggi e mail in `collaborazioni/` (le invia l'editore); si guarda come vanno prima di
+  aumentare. · manager, direzione, produzione
 - 16 nov 2026 · **Tutti hanno voce in capitolo.** Ogni reparto e ogni agente (revisori compresi) può proporre idee,
   miglioramenti, nuovi colleghi o procedure, risparmi di token a parità di qualità, e segnalare lavoro inutile: si scrive in
   `PROPOSTE.md`. La direzione le porta all'editore, che decide. · tutti
