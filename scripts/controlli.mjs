@@ -224,7 +224,7 @@ for (const slug of listaPromo) {
   for (const x of parti) {
     if (!x.testo.length || x.testo.some((r) => !r.trim())) E.push(`${x.id}: sottotitoli vuoti`);
     const w = x.testo.reduce((n, r) => n + parole(r, false), 0);
-    const dur = x.start + x.dur - x.voceDa;
+    const dur = x.start + x.voce - x.voceDa; // finestra della voce ("voce" nel JSON, altrimenti tutta la parte)
     const wps = w / dur;
     const msg = `${x.id}: ${w} parole in ${dur.toFixed(1)} s = ${wps.toFixed(2)} parole/s`;
     if (wps > MAX_WPS + 1e-9) E.push(`${msg}: togliere ${Math.ceil(w - RIF_WPS * dur)} parole`);

@@ -9,7 +9,8 @@ import { Scena as TrailerRaf } from './trailer-ritorno-al-futuro/Scena';
 // Short promozionali verticali (1080×1920) che portano al canale YouTube: JSON in promo/<slug>.json, scena in src/promo/<slug>/.
 // Una sola immagine per tutto lo Short, con la camera che segue la voce; sottotitoli come nei video verticali.
 
-export type PartePromo = { id: string; durata: number; immagine: string; sottotitoli: string[] };
+/** voce (facoltativo): secondi della parte in cui stanno voce e sottotitoli (il resto è silenzio, es. lo stacco al nero dei trailer). */
+export type PartePromo = { id: string; durata: number; voce?: number; immagine: string; sottotitoli: string[] };
 export type PromoData = { formato: 'promo'; titolo: string; regista?: string; anno: number; bpm: number; lungo?: string; palette: Palette; parti: PartePromo[]; fonti?: string[] };
 
 /** La frase di lancio entra da qui: il fotogramma 0 è la miniatura senza testo (CLAUDE.md). */
@@ -25,7 +26,7 @@ export const tempiPromo = (d: PromoData): TempiPromo => {
   d.parti.forEach((p, i) => {
     inizio[p.id] = t;
     const o = i === 0 ? INIZIO_LANCIO : 0;
-    frasi[p.id] = subtitleTimes(p.sottotitoli, p.durata - o).map(([a, b]) => [t + o + a, t + o + b]);
+    frasi[p.id] = subtitleTimes(p.sottotitoli, (p.voce ?? p.durata) - o).map(([a, b]) => [t + o + a, t + o + b]);
     t += p.durata;
   });
   return { inizio, frasi, fine: t };

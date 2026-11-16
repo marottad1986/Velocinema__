@@ -6,7 +6,7 @@
   "anno": 1985,
   "bpm": 72,
   "lungo": "ritorno-al-futuro-trilogia",
-  "nota": "Trailer verticale del video lungo della trilogia (VIDEO-LUNGO.md, DECISIONI 16 nov 2026: esce in contemporanea al lungo). Prova chiesta dall'utente il 16 novembre 2026. Riusa i disegni delle tre locandine (src/scenes/ritorno-al-futuro*/Locandina.tsx), una per film, con stacchi a lampo. Si parla del canale (come canale-youtube-dark). Mai la durata totale del video lungo.",
+  "nota": "Trailer verticale del video lungo della trilogia (VIDEO-LUNGO.md, DECISIONI 16 nov 2026: esce in contemporanea al lungo). Seconda prova chiesta dall'utente il 16 novembre 2026: montato come un trailer di cinema (cold open, tre salti nel tempo annunciati da cartelli con colpi di ottoni, montaggio sempre più rapido, stacco al nero con una battuta nel silenzio, titolo rivelato alla fine). Inquadrature strette sulle tre locandine già disegnate (src/scenes/ritorno-al-futuro*/Locandina.tsx). «voce» = secondi della parte in cui parla la voce, il resto è musica o silenzio. Mai la durata totale del video lungo.",
   "palette": {
     "chiaro": "#F4EEE2",
     "principale": "#2E1E5C",
@@ -16,55 +16,83 @@
   "parti": [
     {
       "id": "copertina",
-      "durata": 4,
-      "immagine": "Fotogramma 0 = miniatura: la locandina della Parte I (torre colpita dal fulmine, quadrante, scie gialle) con in alto il bollino rosso «NUOVO SU YOUTUBE», «SPIEGATO SEMPLICE · TRILOGIA», «RITORNO AL FUTURO» enorme, «I TRE FILM IN UN SOLO RACCONTO» e la riga del regista.",
+      "durata": 3.75,
+      "immagine": "Fotogramma 0 = miniatura: la locandina della Parte I (torre colpita dal fulmine, quadrante, scie gialle) con «NUOVO SU YOUTUBE», «SPIEGATO SEMPLICE · TRILOGIA», «RITORNO AL FUTURO», «I TRE FILM IN UN SOLO RACCONTO» e la riga del regista. A 3,3 s un lampo e il taglio al nero.",
       "sottotitoli": [
         "E se cambiassi il passato per sbaglio?"
       ]
     },
     {
-      "id": "primo",
-      "durata": 8.5,
-      "immagine": "Stessa immagine della copertina, la camera si avvicina; il titolo sale via e al suo posto il cartellino «PARTE I» e l'anno «1955» che scorre al neon da 1985.",
+      "id": "inizio",
+      "durata": 7.5,
+      "voce": 6.7,
+      "immagine": "Cold open, bande nere da cinema: sul nero il cartello «HILL VALLEY · 1985»; poi il quadrante della torre da vicino, la camera che si avvicina piano; poi l'auto della macchina del tempo, le luci che si accendono.",
       "sottotitoli": [
-        "Nel primo film il giovane Marty finisce nel 1955 con la macchina del tempo del suo amico Doc,",
-        "e per sbaglio separa i suoi genitori."
+        "Doc, uno scienziato un po' matto, ha trasformato un'auto in una macchina del tempo."
       ]
     },
     {
-      "id": "secondo",
-      "durata": 10,
-      "immagine": "Lampo e scie gialle: la locandina della Parte II (l'almanacco dorato sopra Hill Valley spaccata tra la piazza e il casinò). «PARTE II», l'anno che scorre a 2015 e poi, sul casinò, a 1985 in rosso.",
+      "id": "passato",
+      "durata": 7.5,
+      "immagine": "Colpo di ottoni sul cartello «1955 · UN SALTO NEL PASSATO»; poi da vicino la foto di famiglia in cui uno dei tre cerchi sbiadisce.",
       "sottotitoli": [
-        "Nel secondo vanno nel 2015, ma Biff, un bullo, ruba un almanacco sportivo",
-        "e lo porta nel passato: il loro 1985 diventa un incubo."
+        "Marty, il suo giovane amico, finisce nel 1955:",
+        "se i suoi genitori non si innamorano, sparisce."
       ]
     },
     {
-      "id": "terzo",
-      "durata": 8.5,
-      "immagine": "Lampo e scie gialle: la locandina della Parte III (la locomotiva che spinge l'auto sul ponte interrotto, la lapide). «PARTE III», l'anno che scorre a 1885.",
+      "id": "futuro",
+      "durata": 7.5,
+      "immagine": "Colpo di ottoni sul cartello «2015 · UN SALTO NEL FUTURO»; poi l'almanacco dorato da vicino; poi il casinò al neon rosso del 1985 cambiato.",
       "sottotitoli": [
-        "Nel terzo Marty corre nel Far West del 1885 per salvare Doc da un bandito,",
-        "e per tornare serve un treno a vapore."
+        "Nel futuro, un almanacco rubato riscrive la storia,",
+        "e il loro presente diventa un incubo."
+      ]
+    },
+    {
+      "id": "west",
+      "durata": 7.5,
+      "voce": 6.5,
+      "immagine": "Colpo di ottoni sul cartello «1885 · UN SALTO NEL FAR WEST»; poi la lapide «QUI GIACE DOC» da vicino; poi la locomotiva che spinge l'auto sul ponte.",
+      "sottotitoli": [
+        "Nel Far West, una lapide dice che Doc sta per morire."
+      ]
+    },
+    {
+      "id": "corsa",
+      "durata": 5,
+      "voce": 2.6,
+      "immagine": "Montaggio a un'inquadratura per battito: il fulmine sulla torre, l'almanacco, la locomotiva, l'auto con le scie gialle; poi taglio al nero e silenzio.",
+      "sottotitoli": [
+        "Per salvarlo c'è una sola via:"
+      ]
+    },
+    {
+      "id": "titolo",
+      "durata": 5,
+      "voce": 2.5,
+      "immagine": "Sul nero, nel silenzio, la battuta; poi il colpo forte, il fulmine e il titolo «RITORNO AL FUTURO · LA TRILOGIA» sulla locandina della Parte I.",
+      "sottotitoli": [
+        "spingere l'auto a 88 miglia all'ora."
       ]
     },
     {
       "id": "chiusura",
-      "durata": 8.5,
-      "immagine": "La torre della Parte I di notte, calma; al centro uno schermo orizzontale (lettore generico, senza logo) con la miniatura del lungo e la barra divisa nei tre film (1955 · 2015 · 1885); sotto «Metti like», il pulsante rosso «Iscriviti al canale» con la campanella, «Cerca In 2 Minuti su YouTube» e «Commenta con il film che vorresti.»",
+      "durata": 7.5,
+      "immagine": "La torre di notte, calma e scura; «ORA SU YOUTUBE», lettore video generico (senza logo) con la miniatura del lungo e la barra divisa nei tre film; «Metti like», «Iscriviti al canale» che resta qualche secondo e poi si preme, «Cerca In 2 Minuti su YouTube», «Commenta con il film che vorresti.»",
       "sottotitoli": [
-        "Ora la trilogia è tutta in un solo racconto, spiegata semplice, sul canale YouTube In 2 Minuti.",
+        "Tutta la trilogia, spiegata semplice, ora sul canale YouTube In 2 Minuti.",
         "Commenta con il film che vorresti."
       ]
     }
   ],
   "fonti": [
-    "Parte I: Marty finisce nel 1955 con la DeLorean del Doc, si mette in mezzo all'incontro dei genitori e Lorraine si innamora di lui invece che di George: https://it.wikipedia.org/wiki/Ritorno_al_futuro",
+    "Parte I: il Doc trasforma una DeLorean in macchina del tempo che parte a 88 miglia orarie; Marty, suo giovane amico, finisce nel 1955, si mette in mezzo all'incontro dei genitori e rischia di sparire (la foto che sbiadisce): https://it.wikipedia.org/wiki/Ritorno_al_futuro",
     "Parte II: viaggio nel 2015; il vecchio Biff ruba l'almanacco sportivo e lo consegna a sé stesso nel 1955, il 1985 diventa un presente alternativo dominato da Biff: https://it.wikipedia.org/wiki/Ritorno_al_futuro_-_Parte_II",
-    "Parte III: Marty va nel 1885 per salvare il Doc, destinato a essere ucciso dal bandito Buford Tannen; per tornare la locomotiva spinge la DeLorean a 88 miglia orarie: https://it.wikipedia.org/wiki/Ritorno_al_futuro_-_Parte_III"
+    "Parte III: nel 1885 una lapide annuncia la morte del Doc per mano del bandito Buford Tannen e Marty va a salvarlo; per tornare la locomotiva spinge la DeLorean a 88 miglia orarie: https://it.wikipedia.org/wiki/Ritorno_al_futuro_-_Parte_III"
   ],
   "pronuncia": {
-    "In 2 Minuti": "In due Minuti"
+    "In 2 Minuti": "In due Minuti",
+    "88": "ottantotto"
   }
 }

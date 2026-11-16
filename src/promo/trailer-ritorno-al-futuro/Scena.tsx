@@ -6,15 +6,15 @@ import { Art as Art2 } from '../../scenes/ritorno-al-futuro-parte-2/Locandina';
 import { Art as Art3 } from '../../scenes/ritorno-al-futuro-parte-3/Locandina';
 import type { ScenaPromoProps } from '../registro';
 
-// Trailer verticale del video lungo di Ritorno al futuro (promo/trailer-ritorno-al-futuro.json).
-// Un'immagine per film, le tre locandine già disegnate (src/scenes/ritorno-al-futuro*/Locandina.tsx): torre e fulmine
-// (Parte I), l'almanacco su Hill Valley spaccata (Parte II), la locomotiva sul ponte (Parte III). Tra un film e l'altro uno
-// stacco da trailer: due scie gialle tratteggiate (il viaggio nel tempo, come negli schemi) attraversano lo schermo,
-// lampo bianco e la nuova immagine entra con un piccolo colpo di zoom.
-// In alto un contatore d'anni al neon (generico, non il cruscotto del film) che scorre fino all'anno di cui parla la voce.
-// Fotogramma 0 = miniatura: bollino «NUOVO SU YOUTUBE», «SPIEGATO SEMPLICE · TRILOGIA», «RITORNO AL FUTURO», la riga
-// del regista; nessun sottotitolo. Chiusura: lettore video generico (senza logo) con la miniatura del lungo e la barra
-// divisa nei tre film, «Metti like», «Iscriviti al canale» che si preme, «Commenta con il film che vorresti.»
+// Trailer verticale del video lungo di Ritorno al futuro (promo/trailer-ritorno-al-futuro.json), montato come un trailer
+// di cinema: fotogramma 0 = miniatura (locandina della Parte I con il titolo), poi un lampo e il nero.
+//  · cold open con bande nere da cinema: cartello «HILL VALLEY · 1985», il quadrante della torre, l'auto;
+//  · tre salti nel tempo, ognuno annunciato da un cartello sul nero (anno al neon + «UN SALTO NEL …») con un colpo di
+//    ottoni, poi inquadrature strette sulle locandine già disegnate: la foto che sbiadisce, l'almanacco, il casinò, la
+//    lapide, la locomotiva;
+//  · montaggio a un'inquadratura per battito, poi taglio al nero e silenzio: la battuta finale sul nero;
+//  · il colpo forte, il fulmine e il titolo rivelato solo alla fine; poi la chiusura con il lettore e i pulsanti.
+// Inquadrature = ritagli delle tre locandine (src/scenes/ritorno-al-futuro*/Locandina.tsx), con la camera che spinge piano.
 // Niente persone, niente auto del film né logo ufficiale (le locandine rispettano già queste regole).
 
 const INK = '#F4EEE2';
@@ -22,80 +22,101 @@ const YEL = '#F5C23A';
 const DARK = '#0E0A22';
 const PINK = '#FF4FB0';
 const CYAN = '#5CF0FF';
-const RED = '#E8553F';
 const CROMA = 60 / 72 / 2;
+const BEAT = 2 * CROMA;
 const g = (s: number) => Math.round(s / CROMA) * CROMA;
 const pop = (t: number, t0: number) => (t < t0 ? 0 : eob(seg(t, t0, t0 + 0.45), 1.7));
 
-/** Istanti degli eventi, uguali nello spartito (scripts/audio/trailer-ritorno-al-futuro.mjs). */
-export const eventi = (inizio: Record<string, number>, cue: (id: string, n: number) => number) => ({
-  c2: g(inizio.secondo),
-  c3: g(inizio.terzo),
-  c4: g(inizio.chiusura),
-  y1: g(cue('primo', 0) + 2.1), // «… nel 1955»
-  y2: g(cue('secondo', 0) + 1.2), // «… nel 2015»
-  y2b: g(cue('secondo', 1) + 1.9), // «il loro 1985 diventa un incubo»
-  y3: g(cue('terzo', 0) + 2.4), // «… del 1885»
+/** Istanti degli eventi (s dall'inizio), uguali nello spartito (scripts/audio/trailer-ritorno-al-futuro.mjs). */
+export const eventi = (S: Record<string, number>, cue: (id: string, n: number) => number) => ({
+  nero: g(S.inizio - 0.4), // lampo e taglio al nero dopo la miniatura
+  torre: g(S.inizio + 1.67),
+  auto: g(S.inizio + 4.17),
+  b1: S.passato, foto: g(S.passato + 1.25),
+  b2: S.futuro, alm: g(S.futuro + 1.25), casino: g(cue('futuro', 1)),
+  b3: S.west, lapide: g(S.west + 1.67), treno: g(S.west + 5),
+  corsa: S.corsa, buio: g(S.corsa + 4 * BEAT),
+  hit: g(S.titolo + 2.5),
+  fine: S.chiusura,
   like: g(cue('chiusura', 0) + 1.6),
   iscr: g(cue('chiusura', 0) + 2.2), // «Iscriviti al canale» compare…
   press: g(cue('chiusura', 0) + 5.0), // …e resta quasi 3 s prima di essere premuto
   comm: g(cue('chiusura', 1) + 0.1),
 });
 
-/** Contatore d'anni: le cifre scorrono da `da` ad `a` tra t0 e t0 + 0,8 s. */
-const anno = (t: number, t0: number, da: number, a: number) => Math.round(lerp(da, a, eio(seg(t, t0, t0 + 0.8))));
+type Poster = 1 | 2 | 3;
+/** Un'inquadratura: ritaglio della locandina `art` centrato su (cx, cy), zoom z → z2 lungo l'inquadratura. */
+type Shot = { a: number; b: number; art: Poster; cx: number; cy: number; z: number; z2: number; tArt?: number; drift?: number };
+/** Un cartello sul nero: anno grande al neon e riga sopra. */
+type Card = { a: number; b: number; top: string; big: string; color?: string };
 
-const Contatore: React.FC<{ parte: string; y: number; k: number; colore?: string; nota?: string; tremo?: number }> = ({ parte, y, k, colore = YEL, nota, tremo = 0 }) => (
-  <div style={{ position: 'absolute', left: 120, top: 290, width: 840, textAlign: 'center', fontFamily: SANS, opacity: k, transform: `translateY(${(1 - k) * -30}px)` }}>
-    <span style={{ display: 'inline-block', padding: '10px 26px', borderRadius: 999, background: YEL, color: DARK, fontSize: 32, fontWeight: 800, letterSpacing: '0.18em' }}>{parte}</span>
-    <div style={{ margin: '18px auto 0', width: 'fit-content', padding: '6px 40px 14px', borderRadius: 26, background: `${DARK}D0`, border: `4px solid ${colore}`,
-      boxShadow: `0 0 40px ${colore}88, inset 0 0 30px ${colore}33`, transform: `translateX(${tremo}px)` }}>
-      <span style={{ fontFamily: RIGHTEOUS, fontSize: 190, lineHeight: 1, color: colore, letterSpacing: '0.06em', textShadow: `0 0 24px ${colore}, 0 6px 0 ${DARK}` }}>{y}</span>
-    </div>
-    {nota && <p style={{ margin: '14px 0 0', fontSize: 34, fontWeight: 800, color: colore, letterSpacing: '0.2em', textShadow: `0 3px 0 ${DARK}` }}>{nota}</p>}
-  </div>
-);
-
-/** Le due scie gialle tratteggiate che attraversano lo schermo prima dello stacco (da t0 - 0,5 a t0 + 0,15). */
-const Scie: React.FC<{ t: number; t0: number }> = ({ t, t0 }) => {
-  const p = seg(t, t0 - 0.5, t0 + 0.15);
-  if (p <= 0 || p >= 1) return null;
-  const x = lerp(-1400, 1500, eio(p));
+const Inquadratura: React.FC<{ s: Shot; t: number; k: number }> = ({ s, t, k }) => {
+  const p = seg(t, s.a, s.b);
+  const z = lerp(s.z, s.z2, eio(p));
+  const cx = s.cx + (s.drift ?? 0) * p;
+  const ta = (s.tArt ?? 0.9) + (t - s.a);
   return (
-    <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
-      {[860, 1010].map((y, i) => (
-        <g key={y} transform={`translate(${x + i * 120} ${y})`}>
-          <path d="M-1200 0 H0" stroke={YEL} strokeWidth="60" opacity=".18" strokeLinecap="round" />
-          <path d="M-1200 0 H0" stroke={YEL} strokeWidth="18" strokeDasharray="70 34" strokeDashoffset={-t * 900} strokeLinecap="round" />
-          <circle r="34" fill="#FFF6B0" opacity=".9" />
-        </g>
-      ))}
-    </svg>
+    <div style={{ position: 'absolute', left: 0, top: 0, width: 1080, height: 1920, transformOrigin: '0 0',
+      transform: `translate(${540 - cx * z}px, ${900 - s.cy * z}px) scale(${z})` }}>
+      {s.art === 1 && <Art1 t={ta} id={`ts${k}`} />}
+      {s.art === 2 && <Art2 t={ta} id={`ts${k}`} />}
+      {s.art === 3 && <Art3 t={ta} id={`ts${k}`} avanza={30 * p} />}
+    </div>
   );
 };
 
-/** Una delle tre locandine, con il colpo di zoom all'ingresso e la lenta spinta della camera. */
-const Quadro: React.FC<{ t0: number; t: number; dur: number; children: React.ReactNode }> = ({ t0, t, dur, children }) => {
-  const u = t - t0;
-  const s = 1 + 0.07 * (1 - eo(seg(u, 0, 0.5))) + 0.05 * seg(u, 0, dur);
-  return <div style={{ position: 'absolute', inset: 0, transform: `scale(${s})`, transformOrigin: '540px 1000px' }}>{children}</div>;
+const Cartello: React.FC<{ c: Card; t: number }> = ({ c, t }) => {
+  const u = t - c.a;
+  const k = eo(seg(u, 0, 0.18));
+  const col = c.color ?? YEL;
+  const flick = u < 0.25 ? (Math.sin(u * 90) > -0.3 ? 1 : 0.4) : 1;
+  return (
+    <div style={{ position: 'absolute', inset: 0, background: '#05030E', fontFamily: SANS, textAlign: 'center' }}>
+      <div style={{ position: 'absolute', left: 120, width: 840, top: 640, transform: `scale(${lerp(1.18, 1, eo(seg(u, 0, 1.2)))})`, opacity: k * flick }}>
+        <p style={{ margin: 0, fontSize: 40, fontWeight: 800, letterSpacing: '0.32em', color: INK }}>{c.top}</p>
+        <p style={{ margin: '18px 0 0', fontFamily: RIGHTEOUS, fontSize: 270, lineHeight: 1, color: col, textShadow: `0 0 30px ${col}, 0 0 90px ${col}88` }}>{c.big}</p>
+      </div>
+    </div>
+  );
 };
 
 export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
-  const E = eventi(tempi.inizio, cue);
-  const fine = tempi.fine;
-  const lampo = Math.max(...[E.c2, E.c3, E.c4].map((c) => (t >= c ? 1 - seg(t, c, c + 0.4) : 0)));
+  const S = tempi.inizio;
+  const E = eventi(S, cue);
 
-  // ---- copertina: titolo; esce quando parte la Parte I
-  const tit = 1 - eo(seg(t, tempi.inizio.primo, tempi.inizio.primo + 0.5));
-  const k1 = eo(seg(t, tempi.inizio.primo + 0.3, tempi.inizio.primo + 0.8)) * (t < E.c2 ? 1 : 0);
-  const k2 = eo(seg(t, E.c2 + 0.1, E.c2 + 0.5)) * (t < E.c3 ? 1 : 0);
-  const k3 = eo(seg(t, E.c3 + 0.1, E.c3 + 0.5)) * (t < E.c4 ? 1 : 0);
-  const incubo = t >= E.y2b;
-  const tremo = incubo ? Math.sin(t * 60) * 6 * (1 - seg(t, E.y2b, E.y2b + 0.6)) : 0;
+  // ---- l'elenco delle inquadrature e dei cartelli, in ordine
+  const shots: Shot[] = [
+    { a: E.torre, b: E.auto, art: 1, cx: 540, cy: 930, z: 2.2, z2: 2.7, tArt: 3.4 }, // il quadrante della torre
+    { a: E.auto, b: E.b1, art: 1, cx: 600, cy: 1290, z: 1.5, z2: 1.75, tArt: 3.4, drift: -40 }, // l'auto
+    { a: E.foto, b: E.b2, art: 1, cx: 228, cy: 1175, z: 2.5, z2: 3.0, tArt: 3.4 }, // la foto che sbiadisce
+    { a: E.alm, b: E.casino, art: 2, cx: 540, cy: 1200, z: 1.9, z2: 2.3, tArt: 0.9 }, // l'almanacco
+    { a: E.casino, b: E.b3, art: 2, cx: 790, cy: 1000, z: 1.6, z2: 1.85, tArt: 2.4 }, // il casinò rosso (lampeggia a 2,5 s)
+    { a: E.lapide, b: E.treno, art: 3, cx: 250, cy: 1320, z: 2.2, z2: 2.6, tArt: 0.9 }, // la lapide
+    { a: E.treno, b: E.corsa, art: 3, cx: 470, cy: 1060, z: 1.45, z2: 1.7, tArt: 3 }, // la locomotiva che spinge
+    // montaggio a un battito
+    { a: E.corsa, b: E.corsa + BEAT, art: 1, cx: 820, cy: 820, z: 1.9, z2: 2.2, tArt: 0.05 }, // il fulmine sulla torre
+    { a: E.corsa + BEAT, b: E.corsa + 2 * BEAT, art: 2, cx: 540, cy: 1200, z: 2.6, z2: 3.0, tArt: 2 }, // l'almanacco
+    { a: E.corsa + 2 * BEAT, b: E.corsa + 3 * BEAT, art: 3, cx: 330, cy: 1050, z: 2.2, z2: 2.6, tArt: 5 }, // la locomotiva
+    { a: E.corsa + 3 * BEAT, b: E.buio, art: 1, cx: 600, cy: 1290, z: 2.0, z2: 2.5, tArt: 0.1 }, // l'auto, scie accese
+  ];
+  const cards: Card[] = [
+    { a: E.nero + 0.25, b: E.torre, top: 'HILL VALLEY', big: '1985', color: INK },
+    { a: E.b1, b: E.foto, top: 'UN SALTO NEL PASSATO', big: '1955' },
+    { a: E.b2, b: E.alm, top: 'UN SALTO NEL FUTURO', big: '2015', color: CYAN },
+    { a: E.b3, b: E.lapide, top: 'UN SALTO NEL FAR WEST', big: '1885', color: '#F2A65A' },
+  ];
+  const shot = shots.findIndex((s) => t >= s.a && t < s.b);
+  const card = cards.find((c) => t >= c.a && t < c.b);
+  const lampo = Math.max(...[E.nero, E.b1, E.b2, E.b3, E.hit].map((c) => (t >= c ? 1 - seg(t, c, c + 0.35) : 0)));
+  const bande = t >= E.nero && t < E.fine;
+
+  // ---- miniatura (0 → nero) e titolo rivelato alla fine
+  const thumb = t < E.nero;
+  const tit = t >= E.hit && t < E.fine + 0.6;
+  const kt = eo(seg(t, E.hit, E.hit + 0.5)) * (1 - seg(t, E.fine, E.fine + 0.5));
 
   // ---- chiusura
-  const u = t - E.c4;
+  const u = t - E.fine;
   const scr = eo(seg(u, 0.15, 0.7));
   const barra = eio(seg(u, 0.6, 3.2));
   const like = pop(t, E.like);
@@ -105,20 +126,33 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
   const comm = eo(seg(t, E.comm, E.comm + 0.4));
 
   return (
-    <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', background: DARK }}>
-      {t < E.c2 && <Quadro t0={-10} t={t} dur={E.c2 + 10}><Art1 t={t} id="tr1" /></Quadro>}
-      {t >= E.c2 && t < E.c3 && <Quadro t0={E.c2} t={t} dur={E.c3 - E.c2}><Art2 t={t - E.c2 + 0.6} id="tr2" /></Quadro>}
-      {t >= E.c3 && t < E.c4 && <Quadro t0={E.c3} t={t} dur={E.c4 - E.c3}><Art3 t={t - E.c3 + 0.6} id="tr3" avanza={40 * seg(t, E.c3, E.c4)} /></Quadro>}
-      {t >= E.c4 && (
+    <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', background: '#05030E' }}>
+      {thumb && <Art1 t={t} id="tr0" />}
+      {shot >= 0 && <Inquadratura s={shots[shot]} t={t} k={shot} />}
+      {card && <Cartello c={card} t={t} />}
+      {tit && t < E.fine && (
+        <div style={{ position: 'absolute', inset: 0, transform: `scale(${lerp(1.12, 1, eo(seg(t, E.hit, E.hit + 2.5)))})`, transformOrigin: '540px 1000px' }}>
+          <Art1 t={t - E.hit} id="tr9" />
+        </div>
+      )}
+      {t >= E.fine && (
         <>
           <Art1 t={t} id="tr4" calm={1} />
           <div style={{ position: 'absolute', inset: 0, background: DARK, opacity: 0.72 * scr }} />
         </>
       )}
 
-      {/* copertina: bollino, etichetta, titolo, regista (fotogramma 0 completo) */}
-      {tit > 0 && (
-        <div style={{ position: 'absolute', left: 120, top: 268, width: 840, textAlign: 'center', fontFamily: SANS, opacity: tit, transform: `translateY(${(1 - tit) * -60}px)` }}>
+      {/* bande nere da cinema (coprono solo le zone già occupate dalle app) */}
+      {bande && (
+        <>
+          <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 230, background: '#000' }} />
+          <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 360, background: '#000' }} />
+        </>
+      )}
+
+      {/* miniatura: bollino, etichetta, titolo, regista (fotogramma 0 completo) */}
+      {thumb && (
+        <div style={{ position: 'absolute', left: 120, top: 268, width: 840, textAlign: 'center', fontFamily: SANS }}>
           <span style={{ display: 'inline-block', padding: '8px 22px', borderRadius: 10, background: '#D9302A', color: '#FFF', fontSize: 28, fontWeight: 800, letterSpacing: '0.16em' }}>NUOVO SU YOUTUBE</span>
           <p style={{ margin: '18px 0 0', fontSize: 30, fontWeight: 800, letterSpacing: '0.24em', color: YEL, textShadow: `0 3px 0 ${DARK}` }}>SPIEGATO SEMPLICE · TRILOGIA</p>
           <h1 style={{ margin: '8px 0 0', fontFamily: RIGHTEOUS, fontWeight: 400, fontSize: 138, lineHeight: 0.98, color: INK,
@@ -128,14 +162,19 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
         </div>
       )}
 
-      {/* i tre film: cartellino e contatore d'anni */}
-      {k1 > 0 && <Contatore parte="PARTE I" y={anno(t, E.y1, 1985, 1955)} k={k1} />}
-      {k2 > 0 && <Contatore parte="PARTE II" y={incubo ? 1985 : anno(t, E.y2, 1985, 2015)} k={k2} colore={incubo ? RED : YEL}
-        nota={incubo ? 'IL 1985 DI BIFF' : undefined} tremo={tremo} />}
-      {k3 > 0 && <Contatore parte="PARTE III" y={anno(t, E.y3, 1985, 1885)} k={k3} />}
+      {/* il titolo rivelato alla fine */}
+      {tit && (
+        <div style={{ position: 'absolute', left: 120, top: 330, width: 840, textAlign: 'center', fontFamily: SANS, opacity: kt }}>
+          <h1 style={{ margin: 0, fontFamily: RIGHTEOUS, fontWeight: 400, fontSize: 150, lineHeight: 0.96, color: INK,
+            transform: `scale(${lerp(1.3, 1, eo(seg(t, E.hit, E.hit + 0.6)))})`,
+            textShadow: `0 8px 0 ${DARK}, 0 0 40px ${PINK}C0, 0 0 90px ${CYAN}66` }}>RITORNO<br />AL FUTURO</h1>
+          <p style={{ margin: '22px 0 0', fontSize: 44, fontWeight: 800, letterSpacing: '0.42em', color: YEL, opacity: seg(t, E.hit + 0.8, E.hit + 1.3),
+            textShadow: `0 3px 0 ${DARK}, 0 0 24px ${YEL}` }}>LA TRILOGIA</p>
+        </div>
+      )}
 
       {/* chiusura: lettore video generico con la miniatura del lungo, poi i pulsanti */}
-      {t >= E.c4 && (
+      {t >= E.fine && (
         <div style={{ position: 'absolute', inset: 0, fontFamily: SANS, color: INK }}>
           <p style={{ position: 'absolute', left: 120, width: 840, top: 280, margin: 0, textAlign: 'center', fontSize: 40, fontWeight: 800, letterSpacing: '0.16em', color: YEL,
             opacity: scr, textShadow: `0 3px 0 ${DARK}` }}>ORA SU YOUTUBE</p>
@@ -172,7 +211,6 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
           </div>
           {/* pulsanti e scritte su un riquadro scuro, così si leggono sopra la torre */}
           <div style={{ position: 'absolute', left: 120, top: 905, width: 780, height: 270, borderRadius: 28, background: `${DARK}E0`, border: `3px solid ${INK}33`, opacity: scr }} />
-          {/* pulsanti */}
           <div style={{ position: 'absolute', left: 120, top: 925, width: 780, display: 'flex', gap: 22, justifyContent: 'center' }}>
             <span style={{ padding: '16px 30px', borderRadius: 999, background: YEL, color: DARK, fontSize: 38, fontWeight: 800, transform: `scale(${like})` }}>♥ Metti like</span>
             <span style={{ padding: '16px 30px', borderRadius: 999, background: premuto ? '#5A5470' : '#D9302A', color: '#FFF', fontSize: 38, fontWeight: 800,
@@ -191,12 +229,8 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
         </div>
       )}
 
-      <Scie t={t} t0={E.c2} />
-      <Scie t={t} t0={E.c3} />
-      <Scie t={t} t0={E.c4} />
-      {lampo > 0 && <div style={{ position: 'absolute', inset: 0, background: '#FFF6D8', opacity: 0.85 * lampo }} />}
-      {/* l'ultima mezza battuta sfuma verso lo scuro */}
-      <div style={{ position: 'absolute', inset: 0, background: DARK, opacity: 0.4 * seg(t, fine - 0.6, fine) }} />
+      {lampo > 0 && <div style={{ position: 'absolute', inset: 0, background: '#FFF6D8', opacity: 0.9 * lampo }} />}
+      <div style={{ position: 'absolute', inset: 0, background: DARK, opacity: 0.4 * seg(t, tempi.fine - 0.6, tempi.fine) }} />
     </div>
   );
 };

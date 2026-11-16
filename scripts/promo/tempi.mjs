@@ -20,8 +20,8 @@ export const partiPromo = (P) => {
   let t = 0;
   return P.parti.map((p, i) => {
     const o = i === 0 ? INIZIO_LANCIO : 0;
-    const x = { id: p.id, start: t, dur: p.durata, voceDa: t + o, testo: p.sottotitoli, base: `${String(i).padStart(2, '0')}_${p.id}`,
-      frasi: subtitleTimes(p.sottotitoli, p.durata - o).map(([a]) => t + o + a) };
+    const x = { id: p.id, start: t, dur: p.durata, voce: p.voce ?? p.durata, voceDa: t + o, testo: p.sottotitoli, base: `${String(i).padStart(2, '0')}_${p.id}`,
+      frasi: subtitleTimes(p.sottotitoli, (p.voce ?? p.durata) - o).map(([a]) => t + o + a) };
     t += p.durata;
     return x;
   });
