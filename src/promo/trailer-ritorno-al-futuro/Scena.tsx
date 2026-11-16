@@ -2,9 +2,15 @@ import React from 'react';
 import { eio, eo, eob, lerp, seg } from '../../lib/anim';
 import { RIGHTEOUS, SANS } from '../../lib/fonts';
 import { Art as Art1 } from '../../scenes/ritorno-al-futuro/Locandina';
-import { Art as Art2 } from '../../scenes/ritorno-al-futuro-parte-2/Locandina';
-import { Art as Art3 } from '../../scenes/ritorno-al-futuro-parte-3/Locandina';
 import type { ScenaPromoProps } from '../registro';
+import type { ShotProps } from './comune';
+import { Orologi } from './Orologi';
+import { Garage } from './Garage';
+import { Foto } from './Foto';
+import { Almanacco } from './Almanacco';
+import { Lapide } from './Lapide';
+import { Locomotiva } from './Locomotiva';
+import { Tachimetro } from './Tachimetro';
 
 // Trailer verticale del video lungo di Ritorno al futuro (promo/trailer-ritorno-al-futuro.json), montato come un trailer
 // di cinema: fotogramma 0 = miniatura (locandina della Parte I con il titolo), poi un lampo e il nero.
@@ -44,23 +50,23 @@ export const eventi = (S: Record<string, number>, cue: (id: string, n: number) =
   comm: g(cue('chiusura', 1) + 0.1),
 });
 
-type Poster = 1 | 2 | 3;
+type Poster = 1;
 /** Un'inquadratura: ritaglio della locandina `art` centrato su (cx, cy), zoom z → z2 lungo l'inquadratura. */
-type Shot = { a: number; b: number; art: Poster; cx: number; cy: number; z: number; z2: number; tArt?: number; drift?: number };
+type Shot = { a: number; b: number; art?: Poster; C?: React.FC<ShotProps>; ev?: number; cx?: number; cy?: number; z?: number; z2?: number; tArt?: number; drift?: number };
 /** Un cartello sul nero: anno grande al neon e riga sopra. */
 type Card = { a: number; b: number; top: string; big: string; color?: string };
 
 const Inquadratura: React.FC<{ s: Shot; t: number; k: number }> = ({ s, t, k }) => {
   const p = seg(t, s.a, s.b);
-  const z = lerp(s.z, s.z2, eio(p));
-  const cx = s.cx + (s.drift ?? 0) * p;
+  const z = lerp(s.z ?? 1, s.z2 ?? s.z ?? 1, eio(p));
+  const cx = (s.cx ?? 540) + (s.drift ?? 0) * p;
+  const cy = s.cy ?? 900;
   const ta = (s.tArt ?? 0.9) + (t - s.a);
   return (
     <div style={{ position: 'absolute', left: 0, top: 0, width: 1080, height: 1920, transformOrigin: '0 0',
-      transform: `translate(${540 - cx * z}px, ${900 - s.cy * z}px) scale(${z})` }}>
+      transform: `translate(${540 - cx * z}px, ${900 - cy * z}px) scale(${z})` }}>
+      {s.C && <s.C t={(s.tArt ?? 0) + (t - s.a)} dur={s.b - s.a + (s.tArt ?? 0)} id={`ts${k}`} {...(s.ev !== undefined ? { ev: s.ev - s.a + (s.tArt ?? 0) } : {})} />}
       {s.art === 1 && <Art1 t={ta} id={`ts${k}`} />}
-      {s.art === 2 && <Art2 t={ta} id={`ts${k}`} />}
-      {s.art === 3 && <Art3 t={ta} id={`ts${k}`} avanza={30 * p} />}
     </div>
   );
 };
@@ -86,18 +92,19 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
 
   // ---- l'elenco delle inquadrature e dei cartelli, in ordine
   const shots: Shot[] = [
-    { a: E.torre, b: E.auto, art: 1, cx: 540, cy: 930, z: 2.2, z2: 2.7, tArt: 3.4 }, // il quadrante della torre
-    { a: E.auto, b: E.b1, art: 1, cx: 600, cy: 1290, z: 1.5, z2: 1.75, tArt: 3.4, drift: -40 }, // l'auto
-    { a: E.foto, b: E.b2, art: 1, cx: 228, cy: 1175, z: 2.5, z2: 3.0, tArt: 3.4 }, // la foto che sbiadisce
-    { a: E.alm, b: E.casino, art: 2, cx: 540, cy: 1200, z: 1.9, z2: 2.3, tArt: 0.9 }, // l'almanacco
-    { a: E.casino, b: E.b3, art: 2, cx: 790, cy: 1000, z: 1.6, z2: 1.85, tArt: 2.4 }, // il casinò rosso (lampeggia a 2,5 s)
-    { a: E.lapide, b: E.treno, art: 3, cx: 250, cy: 1320, z: 2.2, z2: 2.6, tArt: 0.9 }, // la lapide
-    { a: E.treno, b: E.corsa, art: 3, cx: 470, cy: 1060, z: 1.45, z2: 1.7, tArt: 3 }, // la locomotiva che spinge
+    { a: E.torre, b: E.auto, C: Orologi }, // il muro di orologi di Doc
+    { a: E.auto, b: E.b1, C: Garage }, // l'auto nel garage, le bobine si accendono
+    { a: E.foto, b: E.b2, C: Foto, ev: g(cue('passato', 1) + 1.6) }, // la foto che sbiadisce («sparisce»)
+    { a: E.alm, b: E.b3, C: Almanacco, ev: E.casino }, // l'almanacco sotto la pioggia; la torre diventa il casinò
+    { a: E.lapide, b: E.treno, C: Lapide, ev: g(S.west + 2.9) }, // la lapide: il vento scopre «DOC» («sta per morire»)
+    { a: E.treno, b: E.corsa, C: Locomotiva }, // la locomotiva che spinge l'auto sul ponte
     // montaggio a un battito
-    { a: E.corsa, b: E.corsa + BEAT, art: 1, cx: 820, cy: 820, z: 1.9, z2: 2.2, tArt: 0.05 }, // il fulmine sulla torre
-    { a: E.corsa + BEAT, b: E.corsa + 2 * BEAT, art: 2, cx: 540, cy: 1200, z: 2.6, z2: 3.0, tArt: 2 }, // l'almanacco
-    { a: E.corsa + 2 * BEAT, b: E.corsa + 3 * BEAT, art: 3, cx: 330, cy: 1050, z: 2.2, z2: 2.6, tArt: 5 }, // la locomotiva
-    { a: E.corsa + 3 * BEAT, b: E.buio, art: 1, cx: 600, cy: 1290, z: 2.0, z2: 2.5, tArt: 0.1 }, // l'auto, scie accese
+    { a: E.corsa, b: E.corsa + BEAT, C: Garage, ev: E.corsa - 2, tArt: 2, cx: 300, cy: 980, z: 1.9, z2: 2.2 }, // le bobine accese
+    { a: E.corsa + BEAT, b: E.corsa + 2 * BEAT, C: Almanacco, ev: E.corsa - 2, tArt: 3, cx: 560, cy: 1020, z: 1.7, z2: 2.0 }, // l'almanacco nel 1985 di Biff
+    { a: E.corsa + 2 * BEAT, b: E.corsa + 3 * BEAT, C: Lapide, ev: E.corsa - 2, tArt: 3, cx: 520, cy: 990, z: 1.6, z2: 1.9 }, // «DOC» nell'anello rosso
+    { a: E.corsa + 3 * BEAT, b: E.buio, C: Locomotiva, tArt: 1, cx: 300, cy: 1000, z: 1.6, z2: 2.0 }, // le ruote della locomotiva
+    // nel silenzio, sotto la battuta: il tachimetro che sale fino a 88 sul colpo del titolo
+    { a: S.titolo, b: E.hit, C: Tachimetro },
   ];
   const cards: Card[] = [
     { a: E.nero + 0.25, b: E.torre, top: 'HILL VALLEY', big: '1985', color: INK },

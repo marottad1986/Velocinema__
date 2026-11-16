@@ -36,6 +36,8 @@ export default (mix, T) => {
     b2: S.futuro, alm: g(S.futuro + 1.25), casino: g(T.frase('futuro', 1)),
     b3: S.west, lapide: g(S.west + 1.67), treno: g(S.west + 5),
     corsa: S.corsa, buio: g(S.corsa + 4 * BEAT), hit: g(S.titolo + 2.5), fine: S.chiusura,
+    // eventi dentro le inquadrature disegnate (src/promo/trailer-ritorno-al-futuro/*.tsx, stessi istanti di Scena.tsx)
+    accende: g(S.inizio + 4.17) + 0.8, sparisce: g(T.frase('passato', 1) + 1.6), doc: g(S.west + 2.9),
     like: g(T.frase('chiusura', 0) + 1.6), iscr: g(T.frase('chiusura', 0) + 2.2), press: g(T.frase('chiusura', 0) + 5.0), comm: g(T.frase('chiusura', 1) + 0.1),
   };
   const kk = (t, from) => ((Math.floor((t - from) / BAR + 1e-6) % 4) + 4) % 4;
@@ -101,7 +103,10 @@ export default (mix, T) => {
   suona(mix, 'contrabbasso', 39, { t: E.nero + BEAT, dur: E.b1 - E.nero - BEAT, vel: 50, gain: 0.55, attack: 1.5, release: 0.5, rev: 0.6 });
   suona(mix, 'celli', 46, { t: E.torre, dur: E.b1 - E.torre, vel: 44, gain: 0.45, attack: 1.5, release: 0.5, rev: 0.6 });
   for (let t = E.nero + BEAT, i = 0; t < E.b1 - CROMA; t += CROMA, i++) bell(t, i % 2 ? 77 : 82, 22 + i * 0.6, i % 2 ? 0.25 : -0.25);
-  clip(mix, 'scariche', { t: E.auto + 0.3, da: 0.4, durata: 0.7, gain: 0.12, fadeOut: 0.3, rev: 0.3 }); // l'auto si accende
+  // l'auto si accende: scarica, ronzio basso delle bobine
+  clip(mix, 'scariche', { t: E.accende, da: 0.4, durata: 0.9, gain: 0.22, fadeOut: 0.3, rev: 0.3 });
+  clip(mix, 'rombo', { t: E.accende, da: 31, durata: E.b1 - E.accende, gain: 0.1, fadeIn: 0.1, fadeOut: 0.3, largo: 2 });
+  timp(E.accende, 39, 80, 0.4);
   roll(E.b1, 1.6, 0.18);
 
   // ---------------------------------------------------------------- 1955: primo braam, il motore si avvia
@@ -109,6 +114,8 @@ export default (mix, T) => {
   strings(E.foto, E.b2, { vel: 38, gain: 0.28 });
   spic(E.foto, E.b2, { vel: 24 });
   motif(E.foto, E.b2 - BEAT, { vel: 36, gain: 0.36 });
+  // la foto sbiadisce: campanelle che scendono e si spengono
+  [82, 79, 77, 74, 70].forEach((m, k) => bell(E.sparisce + k * CROMA / 2, m, 34 - k * 4, 0.3 - k * 0.12));
   roll(E.b2, 1.6, 0.2);
 
   // ---------------------------------------------------------------- 2015: secondo braam, più pieno; il casinò in minore
@@ -129,6 +136,9 @@ export default (mix, T) => {
   strings(E.lapide, E.corsa, { vel: 44, gain: 0.34, high: true });
   spic(E.lapide, E.treno, { vel: 30 });
   spic(E.treno, E.corsa, { vel: 32, doppio: true });
+  // la nuvola scopre «DOC»: colpo basso e ottoni in minore
+  timp(E.doc, 34, 105, 0.6);
+  brass(E.doc, 1.6, [34, 41, 46], { vel: 56, gain: 0.3 });
   clip(mix, 'treno_vapore', { t: E.treno - 0.3, da: 5.4, durata: E.buio - E.treno + 0.3, gain: 0.1, fadeIn: 0.3, fadeOut: 0.2, rev: 0.2 });
   clip(mix, 'fischio_vapore', { t: E.treno, da: 0, durata: 1.1, gain: 0.16, fadeOut: 0.4, rev: 0.35 });
   for (let t = E.treno; t < E.corsa - 0.1; t += BEAT) snare(t + BEAT / 2, 0.2);
@@ -141,8 +151,12 @@ export default (mix, T) => {
   for (let k = 0; k < 4; k++) { kick(E.corsa + k * BEAT, 0.5); timp(E.corsa + k * BEAT, [39, 41, 43, 44][k], 100, 0.5); }
   for (let t = E.corsa; t < E.buio - 0.05; t += CROMA / 2) snare(t, 0.12 + 0.2 * ((t - E.corsa) / (E.buio - E.corsa)));
   clip(mix, 'scariche', { t: E.corsa, da: 0.4, durata: 0.6, gain: 0.14, fadeOut: 0.2, rev: 0.2 });
-  // E.buio → E.hit: silenzio (la battuta sul nero); solo un respiro di rombo lontano
-  clip(mix, 'rombo', { t: E.buio + 0.2, da: 31, durata: E.hit - E.buio - 0.3, gain: 0.05, fadeIn: 0.6, fadeOut: 0.3, largo: 3 });
+  // E.buio → S.titolo: silenzio sul nero. Poi il tachimetro: il motore che sale e un crescendo di archi in tremolo
+  // fino al colpo del titolo, con le spie che ticchettano sempre più fitte.
+  clip(mix, 'rombo', { t: S.titolo, da: 31, durata: E.hit - S.titolo, gain: 0.16, fadeIn: 1.8, fadeOut: 0.02, largo: 3 });
+  [39, 46, 51, 58, 63].forEach((m, j) => suona(mix, m < 60 ? 'celli_trem' : 'violini_trem', m, { t: S.titolo, dur: E.hit - S.titolo, vel: 80, pan: (j - 2) * 0.3, gain: 0.32, attack: E.hit - S.titolo - 0.1, release: 0.05, rev: 0.5, seed: 40 + j }));
+  for (let t = S.titolo, k = 0; t < E.hit - 0.05; k++) { bell(t, k % 2 ? 87 : 82, 18 + k * 1.2, k % 2 ? 0.3 : -0.3); t += Math.max(CROMA / 4, CROMA * (1 - (t - S.titolo) / (E.hit - S.titolo))); }
+  roll(E.hit, 1.6, 0.24);
 
   // ---------------------------------------------------------------- il titolo: colpo forte e fulmine
   clip(mix, 'tuono_forte', { t: E.hit, da: 0.55, durata: 2.2, gain: 0.42, fadeOut: 0.8, rev: 0.3 });

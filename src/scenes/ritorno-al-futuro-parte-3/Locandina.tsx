@@ -20,10 +20,9 @@ const SEP = P1885.ink;
 const r = rng(1990);
 const SPARKS = Array.from({ length: 24 }, () => ({ x: r() * 1080, y: 700 + r() * 900, v: 20 + r() * 40, s: 2 + r() * 3, ph: r() }));
 
-/** avanza (facoltativo): spinta in px decisa da fuori, senza il ciclo che riparte (trailer); senza, come prima. */
-export const Art: React.FC<{ t: number; id: string; calm?: number; avanza?: number }> = ({ t, id, calm = 0, avanza }) => {
+const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm = 0 }) => {
   const L = (f: number) => `translate(${Math.sin(t * 0.3) * 10 * f} 0)`;
-  const push = calm ? 0 : avanza ?? mod(t * 14, 30);
+  const push = calm ? 0 : mod(t * 14, 30);
   return (
     <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0 }}>
       <defs>
