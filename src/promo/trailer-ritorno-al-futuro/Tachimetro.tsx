@@ -1,11 +1,12 @@
 import React from 'react';
-import { eio, lerp, mod, rng, seg } from '../../lib/anim';
+import { eo, lerp, mod, rng, seg } from '../../lib/anim';
 import { RIGHTEOUS, SANS } from '../../lib/fonts';
 import { Finish, FxDefs, Lin } from '../../lib/fx';
 import { Glow, NearMotes } from '../../lib/elements';
 import { CYAN, K, MAG, RED, TINT, YEL, cam, type ShotProps } from './comune';
 
-// Il tachimetro dell'auto del tempo (strumento generico, in miglia orarie), di notte: la lancetta sale da 40 a 88 lungo
+// Il tachimetro dell'auto del tempo (strumento generico, in miglia orarie), di notte: emerge dal buio dopo un battito di
+// nero (suspense), le spie si accendono una alla volta; la lancetta sale da 40 a 88, prima lenta poi sempre più veloce, lungo
 // tutta l'inquadratura e tocca 88 nell'ultimo istante, quando parte il colpo del titolo. Più sale, più tutto vibra, le spie
 // lampeggiano e la tacca dell'88 si accende di giallo; dal parabrezza in alto la strada a griglia corre verso la camera.
 // Piani: strada e cielo dal parabrezza (0,3) · cruscotto (0,8) · tachimetro (1) · riflesso sul vetro dello strumento e
@@ -18,7 +19,8 @@ const ang = (v: number) => lerp(A0, A1, v / 100);
 
 export const Tachimetro: React.FC<ShotProps> = ({ t, dur, id }) => {
   const C = cam(t, dur, { z: 0.14, pan: 0, cy: 860 });
-  const p = eio(seg(t, 0, dur));
+  const p = seg(t, 0, dur) ** 2.2; // parte lenta e accelera: tocca 88 sul colpo
+  const luce = eo(seg(t, 0.1, 1.4)); // il cruscotto emerge dal buio
   const v = lerp(40, 88, p) + Math.sin(t * 40) * 0.6 * p;
   const shake = p * p * 6;
   const sx = Math.sin(t * 67) * shake, sy = Math.cos(t * 59) * shake;
@@ -66,7 +68,7 @@ export const Tachimetro: React.FC<ShotProps> = ({ t, dur, id }) => {
           </g>
         ))}
         {[0, 1, 2, 3].map((i) => {
-          const on = Math.sin(t * (6 + i * 3 + 10 * p) + i) > 0.2 - p;
+          const on = t > 0.3 + i * 0.25 && Math.sin(t * (6 + i * 3 + 10 * p) + i) > 0.2 - p; // le spie si accendono una alla volta
           return <circle key={i} cx={390 + i * 100} cy={1250} r="20" fill={on ? [RED, YEL, CYAN, RED][i] : '#2A2236'} stroke={K} strokeWidth="5" />;
         })}
         {/* il tachimetro */}
@@ -108,7 +110,8 @@ export const Tachimetro: React.FC<ShotProps> = ({ t, dur, id }) => {
         <g transform={C.L(1.5)}><NearMotes id={`${id}-near`} t={t} color="#CFC8E0" opacity={0.06 + 0.1 * p} vx={-80} /></g>
       </g>
       </g>
-      {/* il bagliore che cresce verso il colpo del titolo */}
+      {/* il buio da cui emerge, e il bagliore che cresce verso il colpo del titolo */}
+      <rect width="1080" height="1920" fill="#05030E" opacity={0.92 * (1 - luce)} />
       <rect width="1080" height="1920" fill="#FFF6D8" opacity={0.35 * seg(t, dur - 0.5, dur)} />
       <Finish id={id} tint={TINT} tintOpacity={0.1} />
     </svg>

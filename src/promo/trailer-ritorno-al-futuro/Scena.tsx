@@ -11,6 +11,7 @@ import { Almanacco } from './Almanacco';
 import { Lapide } from './Lapide';
 import { Locomotiva } from './Locomotiva';
 import { Tachimetro } from './Tachimetro';
+import { Scie } from './Scie';
 
 // Trailer verticale del video lungo di Ritorno al futuro (promo/trailer-ritorno-al-futuro.json), montato come un trailer
 // di cinema: fotogramma 0 = miniatura (locandina della Parte I con il titolo), poi un lampo e il nero.
@@ -31,17 +32,19 @@ const CYAN = '#5CF0FF';
 const CROMA = 60 / 72 / 2;
 const BEAT = 2 * CROMA;
 const g = (s: number) => Math.round(s / CROMA) * CROMA;
+/** I cartelli degli anni restano 5 crome (circa 2 s), poi sfumano nel nero e la scena entra dal nero. */
+const CARTELLO = 5 * CROMA;
 const pop = (t: number, t0: number) => (t < t0 ? 0 : eob(seg(t, t0, t0 + 0.45), 1.7));
 
 /** Istanti degli eventi (s dall'inizio), uguali nello spartito (scripts/audio/trailer-ritorno-al-futuro.mjs). */
 export const eventi = (S: Record<string, number>, cue: (id: string, n: number) => number) => ({
   nero: g(S.inizio - 0.4), // lampo e taglio al nero dopo la miniatura
-  torre: g(S.inizio + 1.67),
+  torre: S.inizio + CARTELLO,
   auto: g(S.inizio + 4.17),
-  b1: S.passato, foto: g(S.passato + 1.25),
-  b2: S.futuro, alm: g(S.futuro + 1.25), casino: g(cue('futuro', 1)),
-  b3: S.west, lapide: g(S.west + 1.67), treno: g(S.west + 5),
-  corsa: S.corsa, buio: g(S.corsa + 4 * BEAT),
+  b1: S.passato, foto: S.passato + CARTELLO,
+  b2: S.futuro, alm: S.futuro + CARTELLO, casino: g(cue('futuro', 1)),
+  b3: S.west, lapide: S.west + CARTELLO, treno: g(S.west + 5),
+  corsa: S.corsa, buio: g(S.corsa + 4 * BEAT), cruscotto: g(S.corsa + 5 * BEAT), // un battito di nero, poi il cruscotto emerge dal buio
   hit: g(S.titolo + 2.5),
   fine: S.chiusura,
   like: g(cue('chiusura', 0) + 1.6),
@@ -75,10 +78,10 @@ const Cartello: React.FC<{ c: Card; t: number }> = ({ c, t }) => {
   const u = t - c.a;
   const k = eo(seg(u, 0, 0.18));
   const col = c.color ?? YEL;
-  const flick = u < 0.25 ? (Math.sin(u * 90) > -0.3 ? 1 : 0.4) : 1;
+  const flick = (u < 0.25 ? (Math.sin(u * 90) > -0.3 ? 1 : 0.4) : 1) * (1 - seg(t, c.b - 0.3, c.b));
   return (
     <div style={{ position: 'absolute', inset: 0, background: '#05030E', fontFamily: SANS, textAlign: 'center' }}>
-      <div style={{ position: 'absolute', left: 120, width: 840, top: 640, transform: `scale(${lerp(1.18, 1, eo(seg(u, 0, 1.2)))})`, opacity: k * flick }}>
+      <div style={{ position: 'absolute', left: 120, width: 840, top: 640, transform: `scale(${lerp(1.18, 1, eo(seg(u, 0, 1.2))) - 0.04 * seg(u, 1.2, c.b - c.a)})`, opacity: k * flick }}>
         <p style={{ margin: 0, fontSize: 40, fontWeight: 800, letterSpacing: '0.32em', color: INK }}>{c.top}</p>
         <p style={{ margin: '18px 0 0', fontFamily: RIGHTEOUS, fontSize: 270, lineHeight: 1, color: col, textShadow: `0 0 30px ${col}, 0 0 90px ${col}88` }}>{c.big}</p>
       </div>
@@ -104,7 +107,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
     { a: E.corsa + 2 * BEAT, b: E.corsa + 3 * BEAT, C: Lapide, ev: E.corsa - 2, tArt: 3, cx: 520, cy: 990, z: 1.6, z2: 1.9 }, // «DOC» nell'anello rosso
     { a: E.corsa + 3 * BEAT, b: E.buio, C: Locomotiva, tArt: 1, cx: 300, cy: 1000, z: 1.6, z2: 2.0 }, // le ruote della locomotiva
     // nel silenzio, sotto la battuta: il tachimetro che sale fino a 88 sul colpo del titolo
-    { a: S.titolo, b: E.hit, C: Tachimetro },
+    { a: E.cruscotto, b: E.hit, C: Tachimetro },
   ];
   const cards: Card[] = [
     { a: E.nero + 0.25, b: E.torre, top: 'HILL VALLEY', big: '1985', color: INK },
@@ -139,7 +142,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
       {card && <Cartello c={card} t={t} />}
       {tit && t < E.fine && (
         <div style={{ position: 'absolute', inset: 0, transform: `scale(${lerp(1.12, 1, eo(seg(t, E.hit, E.hit + 2.5)))})`, transformOrigin: '540px 1000px' }}>
-          <Art1 t={t - E.hit} id="tr9" />
+          <Scie t={t - E.hit} dur={E.fine - E.hit} id="tr9" />
         </div>
       )}
       {t >= E.fine && (
@@ -236,6 +239,16 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
         </div>
       )}
 
+      {/* dopo ogni cartello la scena entra dal nero */}
+      {cards.map((c) => (t >= c.b && t < c.b + 0.35 ? <div key={c.a} style={{ position: 'absolute', inset: 0, background: '#05030E', opacity: 1 - seg(t, c.b, c.b + 0.35) }} /> : null))}
+      {/* il battito di nero prima del cruscotto: una spia gialla che lampeggia a tempo con il ticchettio */}
+      {t >= E.buio && t < E.cruscotto + 0.6 && (
+        <svg viewBox="0 0 1080 1920" width="1080" height="1920" style={{ position: 'absolute', inset: 0, opacity: 1 - seg(t, E.cruscotto, E.cruscotto + 0.6) }}>
+          <defs><radialGradient id="tr-spia"><stop offset="0" stopColor="#FFF0B0" /><stop offset=".3" stopColor={YEL} stopOpacity=".6" /><stop offset="1" stopColor={YEL} stopOpacity="0" /></radialGradient></defs>
+          <circle cx="540" cy="860" r={150} fill="url(#tr-spia)" opacity={Math.max(0, 1 - ((t - E.buio - CROMA) % BEAT) / 0.35) * (t > E.buio + CROMA ? 1 : 0)} />
+          <circle cx="540" cy="860" r="16" fill={YEL} opacity={0.3 + 0.7 * Math.max(0, 1 - ((t - E.buio - CROMA) % BEAT) / 0.35) * (t > E.buio + CROMA ? 1 : 0)} />
+        </svg>
+      )}
       {lampo > 0 && <div style={{ position: 'absolute', inset: 0, background: '#FFF6D8', opacity: 0.9 * lampo }} />}
       <div style={{ position: 'absolute', inset: 0, background: DARK, opacity: 0.4 * seg(t, tempi.fine - 0.6, tempi.fine) }} />
     </div>

@@ -12,7 +12,7 @@ import { clip } from './effetti.mjs';
 
 export const strumenti = ['pianoforte_coda', 'violini', 'viole', 'celli', 'contrabbasso', 'celli_spicc', 'viole_spicc', 'violini_trem', 'celli_trem',
   'glockenspiel', 'corno', 'tromba', 'trombone', 'timpani', 'grancassa', 'rullante', 'piatto_crash', 'piatto_sospeso'];
-export const effetti = ['tuono_forte', 'tuono_secco', 'scariche', 'passaggio', 'scatti', 'treno_vapore', 'fischio_vapore', 'monete', 'rombo'];
+export const effetti = ['tuono_forte', 'tuono_secco', 'scariche', 'passaggio', 'scatti', 'treno_vapore', 'fischio_vapore', 'monete', 'rombo', 'fiammata', 'fuoco'];
 /** Sala media, luminosa, come negli episodi. */
 export const sala = { rt60: 2.0, brillo: 6000, predelay: 0.02, wet: 0.42 };
 
@@ -21,6 +21,7 @@ const BEAT = 60 / BPM;
 const BAR = 4 * BEAT;
 const CROMA = BEAT / 2;
 const g = (t) => Math.round(t / CROMA) * CROMA;
+const CARTELLO = 5 * CROMA; // i cartelli degli anni, come in Scena.tsx
 
 // Mi bemolle · Do minore · La bemolle · Si bemolle; minore per il casinò
 const CH = [[39, [0, 4, 7]], [36, [0, 3, 7]], [44, [0, 4, 7]], [46, [0, 4, 7]]];
@@ -31,11 +32,11 @@ export default (mix, T) => {
   const S = { inizio: T.inizio, passato: T.passato, futuro: T.futuro, west: T.west, corsa: T.corsa, titolo: T.titolo, chiusura: T.chiusura };
   /** Gli stessi istanti di eventi() nella scena. */
   const E = {
-    nero: g(S.inizio - 0.4), torre: g(S.inizio + 1.67), auto: g(S.inizio + 4.17),
-    b1: S.passato, foto: g(S.passato + 1.25),
-    b2: S.futuro, alm: g(S.futuro + 1.25), casino: g(T.frase('futuro', 1)),
-    b3: S.west, lapide: g(S.west + 1.67), treno: g(S.west + 5),
-    corsa: S.corsa, buio: g(S.corsa + 4 * BEAT), hit: g(S.titolo + 2.5), fine: S.chiusura,
+    nero: g(S.inizio - 0.4), torre: S.inizio + CARTELLO, auto: g(S.inizio + 4.17),
+    b1: S.passato, foto: S.passato + CARTELLO,
+    b2: S.futuro, alm: S.futuro + CARTELLO, casino: g(T.frase('futuro', 1)),
+    b3: S.west, lapide: S.west + CARTELLO, treno: g(S.west + 5),
+    corsa: S.corsa, buio: g(S.corsa + 4 * BEAT), cruscotto: g(S.corsa + 5 * BEAT), hit: g(S.titolo + 2.5), fine: S.chiusura,
     // eventi dentro le inquadrature disegnate (src/promo/trailer-ritorno-al-futuro/*.tsx, stessi istanti di Scena.tsx)
     accende: g(S.inizio + 4.17) + 0.8, sparisce: g(T.frase('passato', 1) + 1.6), doc: g(S.west + 2.9),
     like: g(T.frase('chiusura', 0) + 1.6), iscr: g(T.frase('chiusura', 0) + 2.2), press: g(T.frase('chiusura', 0) + 5.0), comm: g(T.frase('chiusura', 1) + 0.1),
@@ -109,6 +110,8 @@ export default (mix, T) => {
   timp(E.accende, 39, 80, 0.4);
   roll(E.b1, 1.6, 0.18);
 
+  // dopo ogni cartello la scena entra dal nero: una frusciata breve
+  for (const c of [E.torre, E.foto, E.alm, E.lapide]) clip(mix, 'passaggio', { t: c - 0.35, da: 0.56, durata: 0.8, gain: 0.14, fadeOut: 0.3, rev: 0.35 });
   // ---------------------------------------------------------------- 1955: primo braam, il motore si avvia
   braam(E.b1, 39, 1);
   strings(E.foto, E.b2, { vel: 38, gain: 0.28 });
@@ -151,15 +154,25 @@ export default (mix, T) => {
   for (let k = 0; k < 4; k++) { kick(E.corsa + k * BEAT, 0.5); timp(E.corsa + k * BEAT, [39, 41, 43, 44][k], 100, 0.5); }
   for (let t = E.corsa; t < E.buio - 0.05; t += CROMA / 2) snare(t, 0.12 + 0.2 * ((t - E.corsa) / (E.buio - E.corsa)));
   clip(mix, 'scariche', { t: E.corsa, da: 0.4, durata: 0.6, gain: 0.14, fadeOut: 0.2, rev: 0.2 });
-  // E.buio → S.titolo: silenzio sul nero. Poi il tachimetro: il motore che sale e un crescendo di archi in tremolo
-  // fino al colpo del titolo, con le spie che ticchettano sempre più fitte.
-  clip(mix, 'rombo', { t: S.titolo, da: 31, durata: E.hit - S.titolo, gain: 0.16, fadeIn: 1.8, fadeOut: 0.02, largo: 3 });
-  [39, 46, 51, 58, 63].forEach((m, j) => suona(mix, m < 60 ? 'celli_trem' : 'violini_trem', m, { t: S.titolo, dur: E.hit - S.titolo, vel: 80, pan: (j - 2) * 0.3, gain: 0.32, attack: E.hit - S.titolo - 0.1, release: 0.05, rev: 0.5, seed: 40 + j }));
-  for (let t = S.titolo, k = 0; t < E.hit - 0.05; k++) { bell(t, k % 2 ? 87 : 82, 18 + k * 1.2, k % 2 ? 0.3 : -0.3); t += Math.max(CROMA / 4, CROMA * (1 - (t - S.titolo) / (E.hit - S.titolo))); }
+  // E.buio: la musica si spegne di colpo. Nel nero restano solo il ticchettio secco (a tempo con la spia gialla della
+  // scena) e un battito basso di timpano: suspense. Dal cruscotto (E.cruscotto) il motore sale con un crescendo di archi
+  // in tremolo, il ticchettio si fa sempre più fitto fino al colpo del titolo.
+  const tic = (t, k) => { clip(mix, 'scatti', { t, da: 6.49, durata: 0.08, gain: 0.22, rev: 0.25 }); bell(t, k % 2 ? 87 : 82, 26 + k, k % 2 ? 0.3 : -0.3); };
+  for (let t = E.buio + CROMA, k = 0; t < E.hit - 0.05; k++) {
+    tic(t, k);
+    if (t < E.cruscotto + 1) timp(t, 27 + 12, 70, 0.35); // il battito nel buio
+    const p = Math.max(0, (t - E.cruscotto) / (E.hit - E.cruscotto));
+    t += t < E.cruscotto ? BEAT : Math.max(CROMA / 4, BEAT * (1 - p) ** 1.5);
+  }
+  clip(mix, 'rombo', { t: E.cruscotto, da: 31, durata: E.hit - E.cruscotto, gain: 0.18, fadeIn: 2.4, fadeOut: 0.02, largo: 3 });
+  [39, 46, 51, 58, 63].forEach((m, j) => suona(mix, m < 60 ? 'celli_trem' : 'violini_trem', m, { t: E.cruscotto, dur: E.hit - E.cruscotto, vel: 80, pan: (j - 2) * 0.3, gain: 0.34, attack: E.hit - E.cruscotto - 0.1, release: 0.05, rev: 0.5, seed: 40 + j }));
   roll(E.hit, 1.6, 0.24);
 
   // ---------------------------------------------------------------- il titolo: colpo forte e fulmine
   clip(mix, 'tuono_forte', { t: E.hit, da: 0.55, durata: 2.2, gain: 0.42, fadeOut: 0.8, rev: 0.3 });
+  // le scie di fuoco: la fiammata che si accende e il fuoco che resta sotto il titolo
+  clip(mix, 'fiammata', { t: E.hit + 0.05, da: 0.1, durata: 1.2, gain: 0.34, fadeOut: 0.4, rev: 0.3 });
+  clip(mix, 'fuoco', { t: E.hit + 0.3, da: 2, durata: E.fine - E.hit + 0.2, gain: 0.12, fadeIn: 0.3, fadeOut: 0.6, rev: 0.2, largo: 2 });
   clip(mix, 'scariche', { t: E.hit, da: 0.4, durata: 0.8, gain: 0.2, fadeOut: 0.3, rev: 0.2 });
   crash(E.hit, 0.5);
   kick(E.hit, 0.75);

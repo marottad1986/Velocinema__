@@ -17,6 +17,8 @@ la fila dei personaggi (cerchi con l'oggetto, nome e ruolo sotto il cerchio; sul
 - Oggetti: skateboard (Marty), occhialoni (Doc), furgone (i terroristi), quaderno che diventa libro (George), giubbotto
   di pelle (Biff), fiocco (Lorraine), biglietto col cuore (Jennifer).
 - L'auto del tempo è una coupé squadrata generica con tre bobine gialle sul retro: mai l'auto del film, né scie di fuoco.
+  Eccezione decisa dall'editore il 16 novembre 2026: le scie di fuoco sulla strada sono ammesse nel trailer della trilogia
+  (`src/promo/trailer-ritorno-al-futuro/Scie.tsx`), disegnate nel nostro stile (lingue di fuoco a tre colori con contorno scuro).
 - La foto di famiglia ha tre cerchi (fratello, sorella, Marty): sbiadiscono uno alla volta (capitolo 5) e tornano (capitolo 7).
 - Un solo lampo nello schema (il fulmine sulla torre, capitolo 8); nella copertina due colpi (0 s e 2,5 s).
 - Copertina: le due epoche insieme: tribunale e torre stampati come una cartolina anni '50, colpiti dal fulmine, dentro
