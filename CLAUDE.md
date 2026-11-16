@@ -19,6 +19,8 @@ interfacce del gioco, giochi non ancora usciti solo con fatti annunciati ufficia
 Video **lunghi orizzontali** per YouTube (1920×1080, almeno 8 minuti, più episodi montati in un solo racconto, es. Dark tutta la serie):
 JSON in `lunghi/`, composizione separata in `src/lunghi/`, regole proprie (struttura, miniatura, zone sicure 16:9,
 griglia musicale tra un episodio e l'altro, capitoli YouTube): vedi `VIDEO-LUNGO.md`.
+**Trailer verticali** dei video lunghi (trailer di cinema, non riassunti; immagini disegnate apposta, cartelli, suspense,
+titolo alla fine): JSON in `promo/`, regole in `TRAILER.md`.
 
 Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni domenica alle 15:00
 la settimana che inizia il giorno dopo, con i dati di Metricool, e avvio della produzione; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.

@@ -71,3 +71,4 @@ revisori prima della pull request); qui solo ciò che cambia. Primo video: `lung
   `youtubeIsShort: false`, `youtubeContainsSyntheticMedia: true`, titolo, descrizione e capitoli da `out/<film>-capitoli.txt`;
   il trailer con i controlli dei video verticali e il link al lungo nella didascalia o nel primo commento).
   Procedura completa in `SOCIAL.md`, «Pubblicazione automatica».
+- Come si fa il trailer (struttura, ritmo, immagini disegnate apposta): `TRAILER.md`.
