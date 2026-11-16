@@ -82,6 +82,7 @@ const scelti = (file) => {
   if (file === EFFETTI) return soloVociNuove() ?? tutti;
   if (file === REGISTRO) return soloFilmAggiunti() ?? tutti;
   if (AUDIO_COMUNE.test(file)) return tutti; // motore audio: campioni, effetti, riverbero
+  if (file.startsWith('src/promo/') || file.startsWith('scripts/promo/') || file.startsWith('promo/')) return []; // Short promozionali: entry Remotion separata, non cambiano i film
   if (file.startsWith('src/scenes/quadri/')) return quadri; // scene comuni a tutti i quadri
   for (const re of PROPRI) {
     const m = file.match(re);

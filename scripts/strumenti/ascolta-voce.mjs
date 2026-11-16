@@ -13,6 +13,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { spawnSync } from 'node:child_process';
 import { duration, loadFilm, run, timeline } from '../audio/film.mjs';
 import { lunghi, loadLungo, trattiLungo } from '../lunghi/tempi.mjs';
+import { loadPromo, partiPromo, promo } from '../promo/tempi.mjs';
 
 const API = 'https://api.elevenlabs.io';
 const TMP = 'out/voce-tmp';
@@ -37,7 +38,9 @@ const dir = opt('cartella', `audio/${slug}`);
 const soloCap = opt('capitoli')?.split(',');
 // video lunghi (VIDEO-LUNGO.md): solo le clip nuove in audio/<slug>/ (le altre sono quelle degli episodi, già misurate)
 const lungo = lunghi().includes(slug);
-const film = lungo ? loadLungo(slug) : loadFilm(slug);
+// Short promozionali (promo/<slug>.json): una clip per parte
+const corto = promo().includes(slug);
+const film = lungo ? loadLungo(slug) : corto ? loadPromo(slug) : loadFilm(slug);
 const spiegato = lungo || film.formato === 'spiegato';
 const leggi = (testo) => Object.entries(film.pronuncia ?? {}).reduce((a, [da, a2]) => a.split(da).join(a2), testo);
 mkdirSync(CACHE, { recursive: true });
@@ -144,7 +147,9 @@ const log = (s = '') => {
   righe.push(s);
 };
 const clips = [];
-const segmenti = lungo
+const segmenti = corto
+  ? partiPromo(film).map((x) => ({ id: x.id, dur: x.start + x.dur - x.voceDa, testo: x.testo, base: x.base }))
+  : lungo
   ? trattiLungo(slug, film).filter((x) => x.voce?.dir === `audio/${slug}`).map((x) => ({ id: x.id, dur: x.dur - (x.tipo === 'aggancio' ? 0.4 : 0), testo: x.testo, base: x.voce.base }))
   : timeline(film).segments.map((s) => ({ ...s, base: `${String(s.n).padStart(2, '0')}_${s.id}` }));
 for (const s of segmenti) {
