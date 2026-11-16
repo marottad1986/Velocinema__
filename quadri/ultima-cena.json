@@ -1,0 +1,175 @@
+{
+  "titolo": "L'Ultima Cena",
+  "autore": "Leonardo da Vinci",
+  "anno": 1498,
+  "bpm": 72,
+  "opera": {
+    "tecnica": "Tempera e olio su intonaco (pittura a secco)",
+    "misure": "460 × 880 cm",
+    "museo": "Refettorio di Santa Maria delle Grazie (Cenacolo Vinciano), Milano",
+    "fonte": {
+      "url": "https://commons.wikimedia.org/wiki/File:The_Last_Supper_-_Leonardo_Da_Vinci_-_High_Resolution_32x16.jpg",
+      "licenza": "Pubblico dominio (PD-Art)"
+    }
+  },
+  "palette": {
+    "chiaro": "#F3E9D2",
+    "principale": "#7A5236",
+    "scuro": "#1C1511",
+    "accento": "#E3A949"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Uno di loro è un traditore. Lo trovi?",
+    "immagine": "Dettaglio del centro del dipinto a tutto schermo (Gesù tra i due gruppi e la finestra luminosa dietro), lento avvicinamento; titolo grande in serif in alto a sinistra, autore e anno sotto; frase di lancio in corsivo in basso, dopo il fotogramma 0.",
+    "voce": "L'Ultima Cena, di Leonardo da Vinci."
+  },
+  "capitoli": [
+    {
+      "id": "colpo-d-occhio",
+      "titolo": "Una cena che si agita",
+      "durata": 8,
+      "scena": "Panoramica lenta su tutta la tavola da sinistra a destra, poi la camera si ferma sul centro; la luce delle tre finestre dietro Gesù pulsa piano.",
+      "sottotitoli": [
+        "Tredici uomini a tavola, e all'improvviso tutti si agitano.",
+        "È l'Ultima Cena di Leonardo da Vinci, a Milano,",
+        "e racconta un tradimento."
+      ]
+    },
+    {
+      "id": "milano",
+      "titolo": "Un muro per il duca",
+      "durata": 10,
+      "scena": "Il dipinto intero, piccolo, sulla parete: riquadro con lo schema della sala lunga del refettorio e le misure del muro; poi la pianta del convento.",
+      "sottotitoli": [
+        "Intorno al 1495 Leonardo, pittore toscano, lavora a Milano per il duca",
+        "Ludovico il Moro, che rinnova un convento.",
+        "Così gli affida un muro della sala dove mangiano i frati."
+      ]
+    },
+    {
+      "id": "lentezza",
+      "titolo": "Il pittore più lento",
+      "durata": 10,
+      "scena": "Avvicinamento lentissimo su un tratto di tavola con piatti e pane; riquadro con la clessidra, poi un volto bianco vuoto con il punto di domanda.",
+      "sottotitoli": [
+        "Leonardo però è lentissimo: resta anche ore a guardare,",
+        "così il priore, il capo dei frati, protesta.",
+        "E lui risponde che, se serve, userà la sua faccia per il traditore."
+      ]
+    },
+    {
+      "id": "annuncio",
+      "titolo": "L'attimo dopo",
+      "durata": 9,
+      "scena": "Zoom su Gesù al centro, con le braccia aperte sulla tavola; alone leggero della finestra dietro la testa.",
+      "sottotitoli": [
+        "Ma che succede? È l'ultima cena di Gesù con i dodici apostoli,",
+        "e lui ha appena detto: uno di voi mi tradirà.",
+        "Leonardo dipinge proprio l'attimo dopo."
+      ]
+    },
+    {
+      "id": "gruppi",
+      "titolo": "Quattro gruppi di tre",
+      "durata": 9,
+      "scena": "La camera si allarga sulla tavola; quattro parentesi tratteggiate raccolgono gli apostoli a gruppi di tre; Gesù resta solo al centro, con un anello.",
+      "sottotitoli": [
+        "Così gli apostoli reagiscono a gruppi di tre:",
+        "c'è chi alza le braccia, chi un dito, chi chiede spiegazioni,",
+        "e al centro Gesù resta fermo, da solo."
+      ]
+    },
+    {
+      "id": "giuda",
+      "titolo": "Dov'è il traditore?",
+      "durata": 10,
+      "scena": "Avvicinamento al gruppo a sinistra di Gesù; il resto si scurisce; richiamo sul volto in ombra di Giuda e sulla mano con il sacchetto. Riquadro: lo schema tradizionale con Giuda da solo davanti al tavolo.",
+      "sottotitoli": [
+        "Il traditore è Giuda: di solito stava da solo, davanti al tavolo.",
+        "Leonardo invece lo mette tra gli altri, nell'ombra,",
+        "con un sacchetto in mano: forse i soldi del tradimento."
+      ]
+    },
+    {
+      "id": "pane",
+      "titolo": "Il pane e le due mani",
+      "durata": 9,
+      "scena": "Inquadratura bassa sulla tavola tra Gesù e Giuda: le due mani che si avvicinano allo stesso pane, unite da una traccia tratteggiata.",
+      "sottotitoli": [
+        "Intanto Gesù allunga la mano verso un pezzo di pane,",
+        "e anche Giuda ci allunga la sua, senza accorgersene:",
+        "nel Vangelo, è proprio il segno del traditore."
+      ]
+    },
+    {
+      "id": "giovanni",
+      "titolo": "Una donna a tavola?",
+      "durata": 10,
+      "scena": "Zoom sul volto chino alla destra di Gesù (a sinistra per chi guarda); anello tratteggiato; riquadro con un libro chiuso e il punto di domanda, poi l'etichetta «Giovanni».",
+      "sottotitoli": [
+        "Vicino a Gesù c'è un volto dolce: per molti è una donna,",
+        "Maria Maddalena, come nel romanzo Il codice da Vinci.",
+        "Ma per gli storici è Giovanni, l'apostolo più giovane."
+      ]
+    },
+    {
+      "id": "prospettiva",
+      "titolo": "Tutte le linee portano a lui",
+      "durata": 9,
+      "scena": "La camera si allarga sulla sala dipinta; le linee del soffitto a cassettoni e degli arazzi alle pareti si tracciano una alla volta e convergono sul volto di Gesù.",
+      "sottotitoli": [
+        "E c'è un trucco: le linee del soffitto e delle pareti",
+        "corrono tutte verso un punto solo, il volto di Gesù,",
+        "così l'occhio torna sempre al centro."
+      ]
+    },
+    {
+      "id": "tecnica",
+      "titolo": "Un esperimento fragile",
+      "durata": 10,
+      "scena": "Inquadratura molto ravvicinata su una zona rovinata della tovaglia e dei piatti; luce radente che fa vedere le scaglie; riquadro con la sezione del muro: intonaco, colore, umidità.",
+      "sottotitoli": [
+        "Il guaio è la tecnica: Leonardo non dipinge sull'intonaco fresco,",
+        "ma sul muro asciutto, per correggere quando vuole,",
+        "così il colore non tiene, e neanche vent'anni dopo si stacca."
+      ]
+    },
+    {
+      "id": "ferite",
+      "titolo": "Le ferite del muro",
+      "durata": 9,
+      "scena": "Inquadratura sulla parte bassa al centro: la traccia ad arco della porta sotto Gesù, evidenziata; poi riquadro con la sala colpita e i sacchi di sabbia davanti al muro.",
+      "sottotitoli": [
+        "Poi, nel 1652, una porta taglia via i piedi di Gesù,",
+        "e nel 1943 cade una bomba, ma i sacchi di sabbia salvano il dipinto."
+      ]
+    },
+    {
+      "id": "oggi",
+      "titolo": "Oggi, un quarto d'ora",
+      "durata": 9,
+      "scena": "La camera si allontana fino al dipinto intero, che si schiarisce piano; riquadro con la clessidra da 15 minuti.",
+      "sottotitoli": [
+        "Alla fine, nel 1999, un restauro di ventun anni lo salva.",
+        "Oggi si visita su prenotazione, per pochi minuti.",
+        "E tu, avresti trovato subito Giuda?"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "Il dipinto intero, fermo; riquadro in alto: titolo, autore e anno + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il quadro che vorresti.'"
+  },
+  "musica": "Originale e strumentale: solenne e luminosa, in Sol minore che si apre in Si bemolle maggiore; organo a canne leggero, archi, arpa e pianoforte; una pulsazione discreta di contrabbasso pizzicato. Un colpo sordo di timpano sull'annuncio del tradimento e silenzio subito dopo; più raccolta, senza pulsazione, nei capitoli del muro che si rovina; si apre nel restauro e nel finale.",
+  "fonti": [
+    "Commissionata da Ludovico Sforza, duca di Milano, nei lavori di rinnovo della chiesa e del convento; lavoro dal 1495 circa al 1498, non continuo; il priore si lamenta del ritardo e Leonardo risponde che, se non trova un volto per Giuda, userà quello del priore; il momento dopo l'annuncio del tradimento; gruppi di tre; Giacomo con le braccia alzate, Tommaso con il dito, Filippo che chiede spiegazioni; Giuda nell'ombra con il sacchetto (forse l'argento del tradimento); di solito Giuda era messo da solo dall'altro lato del tavolo; Gesù e Giuda allungano la mano verso lo stesso pane (Matteo 26,23); punto di fuga di tutte le linee sul volto di Gesù; tempera su gesso, a secco, per poter correggere; il colore non aderisce al muro umido, si sfalda già nel 1517; porta aperta nel 1652 dove erano i piedi di Gesù; bombardamento del 15 agosto 1943 e sacchi di sabbia; restauro dal 1978 al 1999 (21 anni) guidato da Pinin Brambilla Barcilon, riapertura il 28 maggio 1999 con prenotazione e 15 minuti di visita; Il codice da Vinci (2003) e la Maddalena, per gli storici dell'arte è l'apostolo Giovanni, il più giovane: https://en.wikipedia.org/wiki/The_Last_Supper_(Leonardo)",
+    "Su commissione di Ludovico il Moro, nel refettorio del convento di Santa Maria delle Grazie a Milano; 460 × 880 cm; tecnica a secco su intonaco; Matteo Bandello (novella LVIII) racconta che Leonardo a volte dipingeva dall'alba alla sera e altre volte restava a contemplare per un'ora o due dando una o due pennellate: https://it.wikipedia.org/wiki/Ultima_Cena_(Leonardo)"
+  ],
+  "pronuncia": {
+    "1495": "millequattrocento novantacinque",
+    "1652": "milleseicento cinquantadue",
+    "1943": "millenovecento quarantatré",
+    "1999": "millenovecento novantanove"
+  }
+}

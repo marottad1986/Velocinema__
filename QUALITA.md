@@ -107,3 +107,4 @@ leggono solo questo file e quello del film. Un film nuovo aggiunge il suo file q
 - GTA VI (Videogiochi spiegati, schema: mappa di Leonida): `qualita/gta-vi.md`
 - Donnie Darko (Spiegato semplice, schema: la copia del mondo): `qualita/donnie-darko.md`
 - Il miglio verde: `qualita/il-miglio-verde.md`
+- L'Ultima Cena (quadro): `qualita/ultima-cena.md`
