@@ -14,7 +14,9 @@ import { Corridor, GOLD, K, pj } from './Comuni';
 export const Miglio: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
   const cam = camera(t, dur);
   const L = cam.layer;
-  const lampsOn = eo(seg(t, griglia(cues[0] + 0.2), griglia(cues[0] + 0.2) + 1.6));
+  // le lampade si accendono una alla volta, una per croma (72 bpm), con lo scatto dell'interruttore nello spartito
+  const l0 = griglia(cues[0] + 0.2);
+  const lampOn = [0, 1, 2, 3].map((i) => 0.15 + 0.85 * seg(t, l0 + (i * 60) / 72 / 2, l0 + (i * 60) / 72 / 2 + 0.12));
   const sweep = seg(t, griglia(cues[1] + 0.2), griglia(cues[1] + 0.2) + 1.8); // la luce corre sul pavimento verde
   const arrive = eo(seg(t, griglia(cues[2] + 0.3), griglia(cues[2] + 0.3) + 1.2)); // la porta si spalanca
   const cell = eo(seg(t, griglia(cues[2] + 1.2), griglia(cues[2] + 1.2) + 1.0)); // la cella si apre
@@ -34,7 +36,7 @@ export const Miglio: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
       </defs>
       <g transform={cam.transform}>
         <g transform={L(0.35)}>
-          <Corridor t={t} id="mg" door={0.35 + 0.65 * arrive} lamps={0.25 + 0.75 * lampsOn} />
+          <Corridor t={t} id="mg" door={0.35 + 0.65 * arrive} lampOn={lampOn} />
           {sweep > 0 && sweep < 1 && <ellipse cx={sx} cy={sy} rx={700 / d} ry={120 / d} fill="url(#mg-sweep)" opacity={Math.sin(sweep * Math.PI)} />}
           {/* la luce della porta spalancata che entra nel corridoio */}
           {arrive > 0 && (

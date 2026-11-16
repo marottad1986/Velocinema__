@@ -22,8 +22,8 @@ const DMAX = 8;
 
 /** Il corridoio verde. `door` 0..1 = quanta luce calda dalla porta in fondo; `burst` = lampade scoppiate (da 0 a 1);
  *  `lamps` = luminosità delle lampade; `dark` = penombra notturna (0..1). */
-export const Corridor: React.FC<{ t: number; id: string; door?: number; burst?: number; lamps?: number; dark?: number; flicker?: number }> = ({
-  t, id, door = 0.7, burst = 0, lamps = 1, dark = 0, flicker = 0,
+export const Corridor: React.FC<{ t: number; id: string; door?: number; burst?: number; lamps?: number; dark?: number; flicker?: number; lampOn?: number[] }> = ({
+  t, id, door = 0.7, burst = 0, lamps = 1, dark = 0, flicker = 0, lampOn,
 }) => {
   const P = (X: number, Y: number, d: number) => pj(X, Y, d).join(' ');
   const cells = [1.25, 1.7, 2.3, 3.1, 4.2, 5.6, 7.2];
@@ -67,7 +67,7 @@ export const Corridor: React.FC<{ t: number; id: string; door?: number; burst?: 
       {[-0.66, -0.33, 0, 0.33, 0.66].map((k) => <path key={k} d={`M${P(W * k, FLOOR, 1)} L${P(W * k, FLOOR, DMAX)}`} stroke="#1A3A24" strokeWidth="3" opacity=".6" />)}
       {/* il riflesso lucido della porta e delle lampade sul pavimento */}
       <path d={`M${P(-90, FLOOR, DMAX)} L${P(90, FLOOR, DMAX)} L${P(260, FLOOR, 1.2)} L${P(-260, FLOOR, 1.2)} Z`} fill="#FFE2A0" opacity={0.08 + 0.12 * door} />
-      {lampD.map((d, i) => <ellipse key={`r${i}`} cx={pj(0, FLOOR, d)[0]} cy={pj(0, FLOOR, d)[1]} rx={260 / d} ry={60 / d} fill="#FFE6A8" opacity={0.18 * lamps * fl * (1 - (burst > i / 4 ? 1 : 0))} />)}
+      {lampD.map((d, i) => <ellipse key={`r${i}`} cx={pj(0, FLOOR, d)[0]} cy={pj(0, FLOOR, d)[1]} rx={260 / d} ry={60 / d} fill="#FFE6A8" opacity={0.18 * lamps * fl * (1 - (burst > i / 4 ? 1 : 0)) * (lampOn ? lampOn[i] ?? 1 : 1)} />)}
       {/* le celle ai lati: cornici e sbarre */}
       {[-1, 1].map((side) => cells.slice(0, -1).map((d0, j) => {
         const d1 = cells[j + 1];
@@ -100,7 +100,7 @@ export const Corridor: React.FC<{ t: number; id: string; door?: number; burst?: 
       {lampD.map((d, i) => {
         const [x, y] = pj(0, CEIL + 280, d);
         const broken = burst > i / 4 + 0.05;
-        const on = lamps * fl * (broken ? 0 : 1);
+        const on = lamps * fl * (broken ? 0 : 1) * (lampOn ? lampOn[i] ?? 1 : 1);
         const sw = Math.sin(t * 1.2 + i) * 3;
         return (
           <g key={`l${i}`}>
