@@ -55,6 +55,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - Frankenstein Junior: bianco e nero argentato, omaggio al film (#5E6B75, opacità 12%); unico colore deciso il verde-acqua elettrico (#8EF0C8) su fulmini, scariche e oggetti chiave.
   - GTA VI (Videogiochi spiegati): viola da tramonto anni '80 (#2A1450, opacità 8–10%); rosa neon (#FF4FA3) e azzurro (#3FE3F2) per luci e costa, giallo (#FFC93C) solo sugli oggetti chiave, rosso (#FF3B55) per il colpo e il complotto.
   - Hunger Games: grigio-blu di carbone nel Distretto 12 (#2A3038, opacità 12%), oro caldo a Capitol City (#C89A3A, 8%), verde bosco nell'arena (#1E3A2A, 10%; quasi nero di notte #0F1A12); unico colore deciso l'arancione-brace (#F08A2A) sulla freccia, le fiamme e gli oggetti chiave.
+  - Il miglio verde: verde e buio caldo della prigione anni '30 (#1E3A28, opacità 12%), seppia nel ricordo (#5A3A1E), blu notte nella pioggia (#142030); unico colore deciso l'oro (#F2C14E) sul dono di John e sugli oggetti chiave.
   - Donnie Darko (Spiegato semplice): blu notte d'ottobre (#161A3A, opacità 12%); unico colore acceso l'arancione del motore (#F2A03A), giallo (#F5D04A) solo per il viaggio nel tempo, azzurro (#7FA6FF) per la copia del mondo.
   - Ritorno al futuro (Spiegato semplice): notte viola anni '80 (#1A1238, opacità 10%) con stazioni del 1955 come cartoline crema a inchiostro seppia e del 1985 al neon (ciano e magenta); giallo (#F5C23A) solo per le scie del viaggio nel tempo, rosso per l'anello del nodo e i pericoli.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
@@ -105,3 +106,4 @@ leggono solo questo file e quello del film. Un film nuovo aggiunge il suo file q
 - Ritorno al futuro (Spiegato semplice, schema delle linee del tempo): `qualita/ritorno-al-futuro.md`
 - GTA VI (Videogiochi spiegati, schema: mappa di Leonida): `qualita/gta-vi.md`
 - Donnie Darko (Spiegato semplice, schema: la copia del mondo): `qualita/donnie-darko.md`
+- Il miglio verde: `qualita/il-miglio-verde.md`
