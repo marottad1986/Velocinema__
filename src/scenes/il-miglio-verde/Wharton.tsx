@@ -7,7 +7,7 @@ import { Corridor, GOLD, K, Swarm } from './Comuni';
 
 // Il male passa a Percy: il corridoio verde di notte. Su «John soffia quel male dentro Percy» uno sciame nero esce dalla
 // cella di John e attraversa il corridoio verso il berretto di Percy; su «spara a Wild Bill» due spari (due lampi), le
-// lampade scoppiano una dopo l'altra, la pistola cade sul pavimento e fuma, i bossoli rotolano; su «resta muto e immobile per
+// lampade scoppiano una dopo l'altra, la pistola cade sul pavimento e fuma, i bossoli rotolano; su «resta muto per
 // sempre» lo sciame esce di nuovo e si dissolve, il berretto resta immobile per terra. Nessuna persona.
 // Piani: corridoio (0,35) · cella aperta di Wild Bill a sinistra (0,8) · pavimento con pistola, bossoli e berretto (1,05) ·
 // fumo e pulviscolo (1,6)
