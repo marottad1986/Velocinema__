@@ -114,8 +114,17 @@ Quando si programma (vincolante):
   - Instagram (quando collegato): `instagramPublishType: "REEL"`, `instagramIsAiGenerated: true`, `instagramCollaborators`
     per le collaborazioni (es. Mr.goal).
   - Le etichette IA si mettono solo alla creazione: dopo non si possono più aggiungere.
-- Storie del giorno prima: la locandina PNG come `instagramPublishType: "STORY"` e `facebookContentType: "STORY"`, alle 18:30
-  del giorno prima (orario da rivedere con i dati).
+- Storie: **sempre esattamente 24 ore prima dell'uscita del video** (regola dell'editore, 16 novembre 2026: video alle 17:30
+  → storia alle 17:30 del giorno prima; video alle 12:30 → storia alle 12:30). Locandina PNG da `calendario/storie/<settimana>/`
+  caricata con `node scripts/postfast-carica.mjs <png>`, poi `instagramPublishType: "STORY"` e `facebookContentType: "STORY"`.
+  Si programmano insieme al materiale social, subito dopo l'approvazione della settimana.
+- **Il video non si rifà mai per pubblicarlo.** Il workflow «Video su MEGA», dopo il caricamento su MEGA, carica anche
+  `<film>-voce.mp4` su PostFast (`scripts/postfast-carica.mjs`) e scrive la chiave in `postfast/<film>.json` sul ramo
+  `postfast-media`: la sessione la legge con `git fetch origin postfast-media && git show origin/postfast-media:postfast/<film>.json`
+  e la usa in `mediaItems` (`{key, type: "VIDEO", sortOrder: 0}`). Serve il segreto GitHub `POSTFAST_API_KEY`. Se la chiave
+  manca (video fatto prima del segreto), si rilancia il workflow per quel film (Actions → «Video su MEGA» → Run workflow).
+- Nel cloud gli script Remotion usano il browser locale: `REMOTION_BROWSER=/opt/pw-browsers/chromium` (senza, il download di
+  Chrome da remotion.media è bloccato).
 - Dopo `create_posts`, `list_posts` con `statuses: SCHEDULED` per controllare; il giorno dopo l'uscita, `statuses: FAILED`:
   un post fallito (`lastError`) si segnala subito su Telegram.
 - Avviso Telegram «📤 Programmato»: titolo, data e ora, piattaforme. Va nello stesso messaggio del «video pronto» se
