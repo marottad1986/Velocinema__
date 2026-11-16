@@ -96,8 +96,9 @@ senza, ogni chiamata risponde «fetch failed». Senza MCP la stessa API si usa c
 (`/social-media/my-social-accounts`, `/file/get-signed-upload-urls`, `/social-posts`, `/social-inbox/...`).
 
 Profili collegati (`list_accounts`, 16 novembre): TikTok `in.2.minuti` `74dccd93-3694-4f73-8d7e-378ba69c1275`, YouTube
-«In 2 minuti» `e19c8b52-a3ad-4858-857d-4157ba3ac8b0`, Facebook `2d7b62df-5e6f-462f-8061-4b0ed59c4ec6`. **Instagram da
-collegare** (lo fa l'editore): finché manca, su Instagram pubblica a mano. Prima di programmare, `list_accounts`: mai
+«In 2 minuti» `e19c8b52-a3ad-4858-857d-4157ba3ac8b0`, Facebook `2d7b62df-5e6f-462f-8061-4b0ed59c4ec6`, Instagram `in.2.minuti`
+`9074b244-c662-4083-8cda-c289051bf757` (collegato il 16 novembre). Controllare sempre che `platformUsername` sia
+`in.2.minuti`: il 16 novembre era stato collegato per errore un profilo personale. Prima di programmare, `list_accounts`: mai
 programmare su un profilo `DISABLED`.
 
 Quando si programma (vincolante):
@@ -108,6 +109,8 @@ Quando si programma (vincolante):
   oppure il manager per i contenuti già pronti. Mai prima.
 - Video: `upload_media` con `out/<film>-voce.mp4` (MP4 fino a 250 MB), poi `create_posts` (fino a 15 per chiamata) con
   `scheduledAt` all'ora del calendario in ora italiana (ISO con `+01:00` in inverno), testo dal `calendario/<settimana>-social.md`.
+- `controls` vale per tutti i post della stessa chiamata: i video in una chiamata, le storie in un'altra. Instagram accetta al
+  massimo 5 hashtag: se la didascalia di TikTok ne ha di più, togliere l'ultimo (di solito `#perte`).
 - Controlli fissi per ogni video (dichiarazione IA sempre, decisione del 15 novembre):
   - TikTok: `tiktokIsAigc: true`; menzioni e hashtag nella didascalia.
   - YouTube: `youtubeIsShort: true`, `youtubeTitle` (titolo YouTube del `-social.md`, max 100 caratteri),
