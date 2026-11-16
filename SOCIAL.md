@@ -123,6 +123,8 @@ Quando si programma (vincolante):
   Shorts); la storia esce 24 ore prima, come per ogni altro video. Si programmano insieme con PostFast (il lungo con
   `youtubeIsShort: false`, `youtubeContainsSyntheticMedia: true`, titolo, descrizione e capitoli da `out/<film>-capitoli.txt`;
   il trailer con i controlli dei video verticali e il link al lungo nella didascalia o nel primo commento).
+- **Trailer e Short promozionali** (`promo/<slug>.json`) passano dallo stesso workflow: unito su main, «Video su MEGA» li
+  rigenera (`node scripts/promo/render.mjs`), li carica su MEGA e su PostFast e registra la chiave come per i film.
 - **Il video non si rifà mai per pubblicarlo.** Il workflow «Video su MEGA», dopo il caricamento su MEGA, carica anche
   `<film>-voce.mp4` su PostFast (`scripts/postfast-carica.mjs`) e scrive la chiave in `postfast/<film>.json` sul ramo
   `postfast-media`: la sessione la legge con `git fetch origin postfast-media && git show origin/postfast-media:postfast/<film>.json`
