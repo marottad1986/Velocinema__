@@ -130,6 +130,11 @@ Quando si programma (vincolante):
   il trailer con i controlli dei video verticali e il link al lungo nella didascalia o nel primo commento).
 - **Trailer e Short promozionali** (`promo/<slug>.json`) passano dallo stesso workflow: unito su main, «Video su MEGA» li
   rigenera (`node scripts/promo/render.mjs`), li carica su MEGA e su PostFast e registra la chiave come per i film.
+- **Storie su TikTok: a mano.** L'API di TikTok (e quindi PostFast) non pubblica storie: la locandina la carica l'editore
+  dall'app, all'ora della storia; la squadra gliela ricorda e gliela manda pronta. Non si pubblica la locandina come post
+  normale nel profilo TikTok (riempirebbe la griglia di immagini ferme).
+- Dopo l'ora di una storia su Facebook, `list_posts`: se è PUBLISHED ma `platformPostId` è vuoto, Facebook non l'ha
+  presa davvero (16 novembre, GTA VI): si riprogramma qualche minuto dopo.
 - **Il video non si rifà mai per pubblicarlo.** Il workflow «Video su MEGA», dopo il caricamento su MEGA, carica anche
   `<film>-voce.mp4` su PostFast (`scripts/postfast-carica.mjs`) e scrive la chiave in `postfast/<film>.json` sul ramo
   `postfast-media`: la sessione la legge con `git fetch origin postfast-media && git show origin/postfast-media:postfast/<film>.json`
