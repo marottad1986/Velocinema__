@@ -256,6 +256,15 @@ Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere
   senza mistero (La La Land 2.473, Jurassic Park 1.235). Un commento: «finale inaspettato».
 
 ## Richieste dai commenti (da usare nella programmazione della domenica)
+16 novembre 2026 (commenti PostFast del 15–16 novembre), per la settimana 23–29 novembre. Stesso punteggio (massimo 18):
+| Titolo | Formato consigliato | Punti | Note |
+|---|---|---|---|
+| Hereditary – Le radici del male | Film | 12 | Chiesto sotto Hunger Games. Horror con mistero e finale che fa discutere; non accanto a Conjuring (dom 22): almeno una settimana dopo. |
+| Lo squalo | Film | 11 | Chiesto sotto Titanic. Classico famosissimo, lo squalo si può disegnare (animale generico nel nostro stile), mare e boa molto disegnabili; poco mistero. |
+| The Imitation Game | Film | 10 | Chiesto sotto Titanic (due volte, stesso utente). Il codice Enigma da decifrare come mistero; storia vera (Alan Turing): fatti verificati, la macchina e i messaggi in codice al posto delle persone. |
+| Salvate il soldato Ryan | Film | 8 | Chiesto sotto Titanic (commento poi cancellato dall'autore). Guerra senza colpo di scena; lo sbarco si racconta con spiaggia e ostacoli, senza mostrare violenza. |
+| Noi, i ragazzi dello zoo di Berlino | Film | 7 | Chiesto sotto Hunger Games. Storia vera di droga e ragazzi minorenni: tema delicato, serve tono attento e niente dettagli sull'uso; da valutare con l'editore. |
+
 13 novembre 2026, per la settimana 16–22 novembre. Punteggio di questa pagina (mistero, fama, discussione, momento,
 puntate, disegnabile; massimo 18):
 | Titolo | Formato consigliato | Punti | Note |
