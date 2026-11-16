@@ -43,7 +43,7 @@ inutile: una riga in `PROPOSTE.md` (la direzione la porta all'editore).
   Vale per le copertine nuove e per quelle in produzione non ancora disegnate; le copertine già fatte restano come sono.
 - Lingua: italiano.
 
-## Le due regole più importanti (vincolanti, tutti i contenuti: film, Spiegato semplice, canzoni, quadri, serie)
+## Le regole più importanti (vincolanti, tutti i contenuti: film, Spiegato semplice, canzoni, quadri, serie)
 - **La qualità del video dipende soprattutto da quanto sono curate le scene.** Grafica e dettagli delle immagini
   sono fondamentali: ogni scena va disegnata con la cura dei primi film (Shutter Island, Interstellar, Truman,
   La La Land, Frankenstein Junior), mai di fretta né a gruppi. Prima di ogni film rileggere `BRIEF-SCENA.md`,
@@ -51,6 +51,10 @@ inutile: una riga in `PROPOSTE.md` (la direzione la porta all'editore).
   successiva; una sola immagine per capitolo, non più immagini in dissolvenza; oggetti ricchi di dettaglio, non
   schematici. Se un revisore trova problemi di fondo (inquadratura vuota, oggetto illeggibile), si ripensa la scena,
   non si rattoppa. Meglio un film in più giorni che un film meno curato.
+- **Evolversi: ogni video più bello del precedente** (regola dell'editore, 16 nov 2026). Mai sotto il livello già
+  raggiunto, almeno un passo avanti nuovo per produzione (scene, copertina, testo, musica o voce), confronto con l'ultimo
+  video prima di mandarlo all'editore, e ciò che si impara va nel registro di `ASTICELLA.md` (letto all'inizio di ogni
+  produzione) e, se riusabile, nella libreria comune.
 - **I testi si scrivono sempre immaginando che lo spettatore non conosca la trama**: chi guarda non ha visto il film
   (o non conosce la canzone, il quadro, la serie) e deve capire tutto solo da quello che sente (regole sotto).
 

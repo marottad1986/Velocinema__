@@ -36,4 +36,4 @@ Controlla, uno per uno:
    su un tratto con suono (usa l'inviluppo del file, non indovinare).
 
 Formato della risposta: per ogni punto «OK» oppure «DA CORREGGERE» con file:riga, cosa non va e la correzione proposta
-(valori numerici quando servono). Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.
+(valori numerici quando servono). Prima del verdetto, una riga «Asticella»: la parte che hai controllato è all'altezza del livello raggiunto (`ASTICELLA.md`, confronto con l'ultimo video dello stesso formato) o sotto, e un miglioramento concreto per il video dopo. Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.

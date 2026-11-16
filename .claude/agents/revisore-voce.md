@@ -43,4 +43,4 @@ Correzioni da proporre, in quest'ordine di preferenza:
 
 Formato della risposta: per ogni punto «OK» oppure «DA CORREGGERE» con clip, istante (s), frase, cosa non va e la
 correzione proposta (testo esatto per `pronuncia`). Elenca a parte i punti «da ascoltare» che una persona deve
-verificare a orecchio. Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.
+verificare a orecchio. Prima del verdetto, una riga «Asticella»: la parte che hai controllato è all'altezza del livello raggiunto (`ASTICELLA.md`, confronto con l'ultimo video dello stesso formato) o sotto, e un miglioramento concreto per il video dopo. Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.
