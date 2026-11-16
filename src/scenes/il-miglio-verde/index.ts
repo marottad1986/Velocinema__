@@ -8,6 +8,8 @@ import { Spugna } from './Spugna';
 import { Melinda } from './Melinda';
 import { Wharton } from './Wharton';
 import { Verita } from './Verita';
+import { Film } from './Film';
+import { Jingles } from './Jingles';
 
 // Scene del Miglio verde, per id del capitolo (films/il-miglio-verde.json).
 export const IL_MIGLIO_VERDE_SCENES: Record<string, SceneDef> = {
@@ -20,4 +22,6 @@ export const IL_MIGLIO_VERDE_SCENES: Record<string, SceneDef> = {
   melinda: { Component: Melinda, title: { top: 392, size: 96, width: 900 } },
   wharton: { Component: Wharton, title: { top: 392, size: 100, width: 900 } },
   verita: { Component: Verita, title: { top: 392, size: 100, width: 900 } },
+  film: { Component: Film, title: { top: 392, size: 100, width: 900 } },
+  jingles: { Component: Jingles, title: { top: 392, size: 100, width: 900 } },
 };
