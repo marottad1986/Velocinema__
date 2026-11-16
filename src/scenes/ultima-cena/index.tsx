@@ -206,7 +206,7 @@ const Milano: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
     <Quadro opera={OPERA} t={t} chiavi={chiavi}
       sopra={
         <Annotazioni>
-          <Riquadro t={t} da={griglia(cues[0] + 0.6)} a={sala - 0.4} at={{ x: 540, y: 1090 }} titolo="Milano · 1495" nota="Santa Maria delle Grazie" accento={ACC}>
+          <Riquadro t={t} da={griglia(cues[0] + 0.6)} a={sala - 0.4} at={{ x: 540, y: 1090 }} titolo="Milano · 1495 circa" nota="Santa Maria delle Grazie" accento={ACC}>
             <g transform="translate(0 6)">
               <path d="M90 180 V100 H250 V180 M70 180 H270" {...LINEA} />
               <path d="M120 100 V70 H220 V100 M140 70 Q170 10 200 70" {...LINEA} />
@@ -238,7 +238,7 @@ const Lentezza: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <Riquadro t={t} da={priore} a={volto - 0.4} at={{ x: 540, y: 1060 }} titolo="Il priore protesta" nota="il capo dei frati vuole il dipinto" accento={ACC}>
             <Clessidra t={t} fill={1} />
           </Riquadro>
-          <Riquadro t={t} da={volto} at={{ x: 540, y: 1060 }} titolo="Il volto del traditore" nota="«userò la sua faccia»" accento={ACC}>
+          <Riquadro t={t} da={volto} at={{ x: 540, y: 1060 }} titolo="Il volto del traditore" nota="quello del priore?" accento={ACC}>
             <Volto />
           </Riquadro>
         </Annotazioni>
@@ -518,7 +518,7 @@ export const Copertina: React.FC<PosterProps> = ({ t, dur, film }) => {
         L'Ultima<br />Cena
       </h1>
       <p style={{ position: 'absolute', top: 340 + 196 * 0.88 * 2 + 30, left: 120, margin: 0, fontFamily: SANS, fontWeight: 800, fontSize: 40, color: CREMA, textShadow: '0 3px 16px rgba(0,0,0,.6)' }}>
-        {film.autore} · 1494–1498
+        {film.autore} · 1495–1498
       </p>
       {film.copertina.frase_lancio && (
         <p style={{ position: 'absolute', top: 1340, left: 120, width: 780, margin: 0, fontFamily: SERIF, fontStyle: 'italic', fontSize: 64, lineHeight: 1.12, color: CREMA,

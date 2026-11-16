@@ -44,7 +44,7 @@
       "sottotitoli": [
         "Intorno al 1495 Leonardo, pittore toscano, lavora a Milano per il duca",
         "Ludovico il Moro, che rinnova un convento.",
-        "Così gli affida un muro della sala dove mangiano i frati."
+        "Così gli affida un muro della mensa dei frati."
       ]
     },
     {
@@ -53,9 +53,9 @@
       "durata": 10,
       "scena": "Avvicinamento lentissimo su un tratto di tavola con piatti e pane; riquadro con la clessidra, poi un volto bianco vuoto con il punto di domanda.",
       "sottotitoli": [
-        "Leonardo però è lentissimo: resta anche ore a guardare,",
+        "Leonardo però è lentissimo: resta ore a guardare,",
         "così il priore, il capo dei frati, protesta.",
-        "E lui risponde che, se serve, userà la sua faccia per il traditore."
+        "E lui risponde che, se serve, darà al traditore la faccia del priore."
       ]
     },
     {
@@ -86,7 +86,7 @@
       "durata": 10,
       "scena": "Avvicinamento al gruppo a sinistra di Gesù; il resto si scurisce; richiamo sul volto in ombra di Giuda e sulla mano con il sacchetto. Riquadro: lo schema tradizionale con Giuda da solo davanti al tavolo.",
       "sottotitoli": [
-        "Il traditore è Giuda: di solito stava da solo, davanti al tavolo.",
+        "Il traditore è Giuda: nei dipinti di prima stava solo, davanti al tavolo.",
         "Leonardo invece lo mette tra gli altri, nell'ombra,",
         "con un sacchetto in mano: forse i soldi del tradimento."
       ]
@@ -94,22 +94,22 @@
     {
       "id": "pane",
       "titolo": "Il pane e le due mani",
-      "durata": 9,
+      "durata": 8.5,
       "scena": "Inquadratura bassa sulla tavola tra Gesù e Giuda: le due mani che si avvicinano allo stesso pane, unite da una traccia tratteggiata.",
       "sottotitoli": [
-        "Intanto Gesù allunga la mano verso un pezzo di pane,",
-        "e anche Giuda ci allunga la sua, senza accorgersene:",
+        "Intanto Gesù allunga la mano verso il pane,",
+        "e anche Giuda allunga la sua, senza accorgersi di lui:",
         "nel Vangelo, è proprio il segno del traditore."
       ]
     },
     {
       "id": "giovanni",
       "titolo": "Una donna a tavola?",
-      "durata": 10,
+      "durata": 10.5,
       "scena": "Zoom sul volto chino alla destra di Gesù (a sinistra per chi guarda); anello tratteggiato; riquadro con un libro chiuso e il punto di domanda, poi l'etichetta «Giovanni».",
       "sottotitoli": [
-        "Vicino a Gesù c'è un volto dolce: per molti è una donna,",
-        "Maria Maddalena, come nel romanzo Il codice da Vinci.",
+        "Accanto a Gesù, un volto dolce: per alcuni è una donna,",
+        "Maria Maddalena, discepola di Gesù, come nel romanzo Il codice da Vinci.",
         "Ma per gli storici è Giovanni, l'apostolo più giovane."
       ]
     },
@@ -132,7 +132,7 @@
       "sottotitoli": [
         "Il guaio è la tecnica: Leonardo non dipinge sull'intonaco fresco,",
         "ma sul muro asciutto, per correggere quando vuole,",
-        "così il colore non tiene, e neanche vent'anni dopo si stacca."
+        "così il colore non tiene, e già vent'anni dopo si stacca."
       ]
     },
     {
@@ -152,7 +152,7 @@
       "scena": "La camera si allontana fino al dipinto intero, che si schiarisce piano; riquadro con la clessidra da 15 minuti.",
       "sottotitoli": [
         "Alla fine, nel 1999, un restauro di ventun anni lo salva.",
-        "Oggi si visita su prenotazione, per pochi minuti.",
+        "Oggi si visita prenotando, per pochi minuti.",
         "E tu, avresti trovato subito Giuda?"
       ]
     }
