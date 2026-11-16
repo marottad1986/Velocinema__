@@ -63,3 +63,11 @@ revisori prima della pull request); qui solo ciò che cambia. Primo video: `lung
 - `node scripts/controlli.mjs <slug>` controlla anche i lunghi (griglia degli episodi, ritmo della voce, fonti, chiusura).
 - Archivio su MEGA: il workflow rigenera il lungo quando cambia il suo JSON, `src/lunghi/`, il suo spartito o le sue clip,
   o un episodio che contiene; carica `<slug>.mp4` e `<slug>-voce.mp4` in `/Velocinema/<slug>/`.
+
+## Pubblicazione
+- Regola dell'editore (16 novembre 2026): il trailer verticale del video lungo esce **in contemporanea**
+  alla pubblicazione del lungo su YouTube, alla stessa ora, su tutti i social (TikTok, Instagram Reel, Facebook Reel, YouTube
+  Shorts); la storia esce 24 ore prima, come per ogni altro video. Si programmano insieme con PostFast (il lungo con
+  `youtubeIsShort: false`, `youtubeContainsSyntheticMedia: true`, titolo, descrizione e capitoli da `out/<film>-capitoli.txt`;
+  il trailer con i controlli dei video verticali e il link al lungo nella didascalia o nel primo commento).
+  Procedura completa in `SOCIAL.md`, «Pubblicazione automatica».

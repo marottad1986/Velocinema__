@@ -3,6 +3,8 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 16 nov 2026 · Video lungo: il trailer verticale esce in contemporanea al lungo su tutti i social; la storia 24 ore prima.
+  Storie di tutti i video: esattamente 24 ore prima dell'uscita. · manager, pubblicazione
 - 16 nov 2026 · PostFast collegato (TikTok, YouTube, Facebook; Instagram in arrivo): si programmano i post dopo la conferma
   del video; i commenti della sera arrivano dalla casella di PostFast. Procedura in `SOCIAL.md`. · produzione, manager
 - 15 nov 2026 · **Video lungo di Ritorno al futuro (la trilogia) rimandato:** non esce più mercoledì 18. Si produce dopo

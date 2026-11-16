@@ -118,6 +118,11 @@ Quando si programma (vincolante):
   → storia alle 17:30 del giorno prima; video alle 12:30 → storia alle 12:30). Locandina PNG da `calendario/storie/<settimana>/`
   caricata con `node scripts/postfast-carica.mjs <png>`, poi `instagramPublishType: "STORY"` e `facebookContentType: "STORY"`.
   Si programmano insieme al materiale social, subito dopo l'approvazione della settimana.
+- **Video lungo di YouTube (regola dell'editore, 16 novembre 2026):** il trailer verticale del video lungo esce **in contemporanea**
+  alla pubblicazione del lungo su YouTube, alla stessa ora, su tutti i social (TikTok, Instagram Reel, Facebook Reel, YouTube
+  Shorts); la storia esce 24 ore prima, come per ogni altro video. Si programmano insieme con PostFast (il lungo con
+  `youtubeIsShort: false`, `youtubeContainsSyntheticMedia: true`, titolo, descrizione e capitoli da `out/<film>-capitoli.txt`;
+  il trailer con i controlli dei video verticali e il link al lungo nella didascalia o nel primo commento).
 - **Il video non si rifà mai per pubblicarlo.** Il workflow «Video su MEGA», dopo il caricamento su MEGA, carica anche
   `<film>-voce.mp4` su PostFast (`scripts/postfast-carica.mjs`) e scrive la chiave in `postfast/<film>.json` sul ramo
   `postfast-media`: la sessione la legge con `git fetch origin postfast-media && git show origin/postfast-media:postfast/<film>.json`
