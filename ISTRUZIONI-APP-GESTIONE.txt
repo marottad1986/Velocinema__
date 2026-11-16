@@ -1,0 +1,68 @@
+ISTRUZIONI PER LA SESSIONE CLAUDE CODE: APP DI GESTIONE DI «IN 2 MINUTI»
+=======================================================================
+
+Incolla questo testo come primo messaggio nella sessione aperta sul repository
+marottad1986/Velocinema__.
+
+
+CHI SIAMO
+---------
+Il repository contiene il progetto «In 2 minuti»: video verticali di 2 minuti (Reel, TikTok,
+Shorts) che raccontano film, serie TV, quadri, canzoni, talent e videogiochi, più alcuni video
+lunghi per YouTube. I video si generano col codice (Remotion + Node) e il lavoro è diviso in
+«reparti» (produzione, social manager, direzione, contabilità), ognuno con il suo comando.
+
+Il tuo compito: progettare (e poi costruire) un'APP DI GESTIONE del progetto, per vedere a colpo
+d'occhio produzioni, uscite programmate, decisioni, proposte e conti.
+
+
+REGOLE PER TE (vincolanti)
+--------------------------
+1. Solo lettura sul progetto dei video: non modificare, cancellare o spostare file esistenti,
+   non fare commit su main e non aprire pull request verso main.
+2. L'app va creata in un REPOSITORY SEPARATO (oppure, se non è possibile, in un ramo tuo
+   dentro una cartella nuova `app-gestione/`, senza toccare il resto).
+3. Risparmia token: leggi SOLO i file elencati sotto. Non aprire le cartelle escluse.
+4. Prima di scrivere codice proponimi la struttura dell'app e aspetta il mio via libera.
+
+
+FILE DA LEGGERE (in quest'ordine)
+---------------------------------
+- CLAUDE.md               → mappa generale del progetto (formati, regole, comandi)
+- ORGANIZZAZIONE.md       → organigramma, reparti, tabella di marcia verso l'automazione
+- DECISIONI.md            → decisioni valide per tutti (obiettivo: guadagnare)
+- SOCIAL.md               → programmazione delle uscite (17:30 ogni giorno, più 10:00 sab/dom)
+- PROPOSTE.md             → proposte di miglioramento in attesa dell'editore
+- ERRORI.md               → errori da non ripetere
+- contabilita/conti.md    → spese ed entrate
+- calendario/             → settimane programmate, video pubblicati (pubblicati.md), modelli social
+- .claude/skills/*/SKILL.md → cosa fa ogni reparto (manager, produzione, direzione, contabilita)
+
+Per i contenuti:
+- `ls films/ quadri/ lunghi/` per l'elenco dei video.
+- Dei JSON leggi SOLO i campi principali (titolo, tipo, formato, stagione, regista, bpm, durate
+  dei capitoli), per esempio con:
+    node -e "for (const f of require('fs').readdirSync('films')) { const j=require('./films/'+f); console.log(f, '|', j.titolo, '|', j.tipo||'film', '|', j.formato||'') }"
+  Non leggere i testi dei capitoli e dei sottotitoli: non servono all'app.
+
+Solo se servono per un dettaglio specifico: QUADRI.md, TALENT.md, GIOCHI.md, VIDEO-LUNGO.md.
+
+
+DA NON APRIRE (grandi e inutili per l'app)
+------------------------------------------
+src/   scripts/   reference/   audio/   out/   campioni/   node_modules/   public/
+BRIEF-SCENA.md   QUALITA.md   qualita/
+
+
+COSA DEVE FARE L'APP (prima idea, da migliorare)
+------------------------------------------------
+- Elenco dei video con il loro stato (idea → testi → scene → musica → voce → revisione →
+  pubblicato), letto dai file del repository.
+- Calendario delle uscite (dalla cartella calendario/ e da pubblicati.md).
+- Promemoria delle regole di produzione (massimo 2 produzioni al giorno, 5 ore tra l'una e l'altra).
+- Decisioni e proposte aperte (DECISIONI.md, PROPOSTE.md).
+- Riepilogo dei conti (contabilita/conti.md).
+- Più avanti, se utile: dati delle visualizzazioni (Metricool) e collaborazioni/sponsor.
+
+Rispondi in italiano, con parole semplici. Come primo passo: leggi i file indicati e proponimi
+la struttura dell'app (pagine, dati letti da ogni file, tecnologia), in modo sintetico.
