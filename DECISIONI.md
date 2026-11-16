@@ -3,6 +3,18 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 16 nov 2026 · **L'obiettivo è guadagnare.** Si lavora per ricavi: follower, like e commenti servono, ma i soldi arrivano da
+  collaborazioni e sponsorizzazioni, che si ottengono su **uscite attuali** (film al cinema o appena in streaming, nuove
+  stagioni, remake, seguiti, serie tratte da film, giochi in uscita, eventi TV). Un titolo vecchio vale per i follower e
+  rende anche in soldi solo se ha un aggancio a una novità (seguito, remake, serie, arrivo su una piattaforma). Nella
+  settimana almeno 4 uscite su 9 sono «sponsorizzabili» (criterio nuovo in `SOCIAL.md`); per ognuna il manager annota chi
+  potrebbe pagare o rilanciare (distributore, piattaforma, editore del gioco). · manager, direzione, produzione
+- 16 nov 2026 · **Tutti hanno voce in capitolo.** Ogni reparto e ogni agente (revisori compresi) può proporre idee,
+  miglioramenti, nuovi colleghi o procedure, risparmi di token a parità di qualità, e segnalare lavoro inutile: si scrive in
+  `PROPOSTE.md`. La direzione le porta all'editore, che decide. · tutti
+- 16 nov 2026 · **Su MEGA solo il video con la voce.** La versione senza voce (`<film>.mp4`) non si archivia più quando c'è
+  `<film>-voce.mp4` (e la vecchia copia senza voce viene tolta da MEGA al passaggio successivo del workflow). Senza voce si
+  carica la versione muta come prima, perché è l'unica. Segnalato dall'editore. · workflow, produzione
 - 16 nov 2026 · Video lungo: il trailer verticale esce in contemporanea al lungo su tutti i social; la storia 24 ore prima.
   Storie di tutti i video: esattamente 24 ore prima dell'uscita. · manager, pubblicazione
 - 16 nov 2026 · PostFast collegato (TikTok, YouTube, Facebook; Instagram in arrivo): si programmano i post dopo la conferma

@@ -193,6 +193,7 @@ Punteggio da 0 a 3 per ogni voce:
 | **Discussione** | Se ne parla ancora: finale discusso, teorie, «non l'ho capito», scene citate in rete? |
 | **Momento** | È disponibile adesso su una piattaforma, è in classifica, sta per uscire un seguito o una nuova stagione? |
 | **Puntate** | Porta a un seguito (stagione successiva, saga)? Chi lo vede torna per il prossimo. |
+| **Sponsorizzabile** | C'è qualcuno che oggi spende per farlo vedere (film al cinema o appena uscito in streaming, nuova stagione, remake o seguito annunciato, gioco in uscita, evento TV)? È questo che porta collaborazioni e soldi (decisione del 16 nov): almeno 4 uscite su 9 a settimana con 2 o 3. |
 | **Disegnabile** | Luoghi e oggetti forti, senza bisogno di personaggi (regola vincolante: con 0 il titolo è scartato). |
 
 Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere sulla settimana.

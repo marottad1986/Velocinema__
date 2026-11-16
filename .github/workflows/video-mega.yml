@@ -164,7 +164,15 @@ jobs:
           fi
       - name: Caricamento su MEGA
         run: |
-          for f in "out/$FILM.mp4" "out/$FILM-voce.mp4" "out/$FILM-miniatura.png" "out/$FILM-capitoli.txt"; do
+          # Solo il video con la voce (decisione del 16 nov): quello senza voce si carica solo se la voce manca,
+          # e la sua vecchia copia su MEGA si toglie per liberare spazio.
+          if [ -f "out/$FILM-voce.mp4" ]; then
+            mega-rm -f "/Velocinema/$FILM/$FILM.mp4" > /dev/null 2>&1 && echo "Tolto /Velocinema/$FILM/$FILM.mp4 (senza voce)" || true
+            muto=""
+          else
+            muto="out/$FILM.mp4"
+          fi
+          for f in $muto "out/$FILM-voce.mp4" "out/$FILM-miniatura.png" "out/$FILM-capitoli.txt"; do
             [ -f "$f" ] || continue
             dest="/Velocinema/$FILM/$(basename "$f")"
             mega-rm -f "$dest" > /dev/null 2>&1 || true
