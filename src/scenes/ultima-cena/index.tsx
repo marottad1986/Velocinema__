@@ -309,7 +309,7 @@ const Gruppi: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
             );
           })}
           <Richiamo t={t} da={gesti + 0.6} a={solo - 0.3} to={at(P.braccia)} lab={{ x: 300, y: 1150 }} kicker="Braccia e dita" sub="stupore e domande" accento={ACC} />
-          <Anello t={t} da={solo + 1.0} c={at(P.gesu)} r={px(0.06)} />
+          <Anello t={t} da={griglia(cues[2] + 1.0)} c={at(P.gesu)} r={px(0.06)} />
           <Richiamo t={t} da={solo + 1.2} to={add(at(P.gesu), px(0.045), px(0.045))} lab={{ x: 760, y: 1150 }} kicker="Gesù" sub="fermo, da solo" accento={ACC} punto={false} />
         </Annotazioni>
       }
@@ -351,7 +351,7 @@ const Pane: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
           <Richiamo t={t} da={griglia(0.6)} to={mg} lab={{ x: 920, y: 820 }} kicker="La mano di Gesù" sub="verso il pane" accento={ACC} />
           <Richiamo t={t} da={giuda} to={mj} lab={{ x: 160, y: 720 }} kicker="Giuda" sub="allunga la sua" accento={ACC} />
           <Traccia t={t} da={segno} punti={[add(mj, 0, 40), add(pa, 0, 70), add(mg, 0, 40)]} dur={0.9} />
-          <Anello t={t} da={segno + 0.3} c={pa} r={px(0.035)} />
+          <Anello t={t} da={segno + 30 / 72} c={pa} r={px(0.035)} />
         </Annotazioni>
       }
     />
