@@ -39,3 +39,9 @@ in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo
 - 16 nov 2026 · direzione · **Dati per vendere**: il manager aggiunge alla domenica le metriche che chiedono gli sponsor
   (visualizzazioni medie per video negli ultimi 30 giorni, tasso di condivisione, pubblico per età e città dai pannelli
   delle app). · rende il media kit credibile · aperta
+- 17 nov 2026 · revisore-voce (The Conjuring) · **Trascrizioni e clip sempre allineate**: `ascolta-voce.mjs` tiene in cache
+  le trascrizioni anche quando una clip viene rigenerata (in The Conjuring il revisore ha letto trascrizioni vecchie e ha
+  segnalato tre clip «sbagliate» che erano giuste). `genera-voce.mjs` salva accanto a ogni clip un'impronta del testo
+  usato; `ascolta-voce.mjs` rifà la trascrizione se la clip è più nuova della cache e segnala le clip vecchie rispetto al
+  JSON, così si evitano falsi allarmi e crediti sprecati. Per i nomi stranieri si decide la `pronuncia` prima della prima
+  generazione. · meno passaggi a vuoto dei revisori · aperta
