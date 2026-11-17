@@ -315,6 +315,10 @@ puntate, disegnabile; massimo 18):
 | Oppenheimer | Film | 10 | Nolan (Interstellar è andato forte); Los Alamos e il test nel deserto molto disegnabili. |
 | Le pagine della nostra vita | Film | 9 | Colpo di scena su chi racconta; i film romantici finora rendono poco (La La Land). |
 | Dunkirk | Spiegato semplice | 9 | Si spiegherebbe la regola dei tre tempi (una settimana, un giorno, un'ora); poco mistero. |
+**Nuove richieste dai commenti 15–17 novembre** (da valutare con il punteggio la domenica): **Hereditary** e **Noi, i ragazzi
+dello zoo di Berlino** (TikTok, commenti di Hunger Games, 15 nov); **The Imitation Game** (TikTok, commenti di Titanic, 16 nov;
+chiesto anche Salvate il soldato Ryan, poi cancellato dall'autore); **Lo squalo** (TikTok, commenti di Titanic, 16 nov);
+**Doctor Sleep** citato di nuovo nei commenti di Shining (17 nov), già in lista.
 **Quadro confermato per la settimana 23–29 novembre: L'urlo di Munch** (chiesto nei commenti di Notte stellata; deciso
 dall'utente il 14 novembre, insieme a L'Ultima Cena per sabato 21). Va nel weekend alle 10:00.
 Evento della settimana da non perdere: **Edoardo Bove – «In un battito»** (documentario in sala 16–18 novembre),
