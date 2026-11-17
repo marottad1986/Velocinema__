@@ -13,7 +13,7 @@ revisori prima della pull request); qui solo ciò che cambia. Primo video: `lung
 - **Struttura** (parti in ordine nel JSON, `parti`):
   1. `aggancio` (15–25 s): copertina 16:9 al fotogramma 0 e una domanda forte nella voce;
   2. per ogni episodio riusato, `episodio`: cartello del titolo (4 s, con la voce e la musica della copertina dell'episodio),
-     i capitoli dell'episodio (112 s) e il riassunto «in una frase» (4 s, voce e musica del finale dell'episodio);
+     i capitoli dell'episodio (112 s) e il riassunto finale (4 s, voce e musica del finale dell'episodio; dal 17 nov 2026 senza «In una frase:» davanti);
   3. `capitoli`: le parti nuove (es. «Il finale spiegato»), stesse regole di scrittura del formato dell'episodio;
   4. `chiusura` (15–20 s): riassunto in una frase, «Iscriviti al canale», invito a commentare.
 - **Copertina = miniatura YouTube** (regola della copertina di `CLAUDE.md`, vincolante): il fotogramma 0 è già la

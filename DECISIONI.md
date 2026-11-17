@@ -3,6 +3,10 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 17 nov 2026 · **Niente «In una frase:» nel finale.** La voce del finale dice il riassunto direttamente, senza annunciarlo
+  con «In una frase:» (non piace all'editore). Vale per tutti i video nuovi, Spiegato semplice e lunghi compresi; i video
+  già pronti o usciti restano come sono. · produzione
+
 - 17 nov 2026 · **Telegram dismesso: gli avvisi arrivano solo nell'app «In 2 minuti»** (con le notifiche sul telefono)
   e nella chat della sessione. Niente più messaggi Telegram né IFTTT per gli avvisi; IFTTT resta solo per gli eventi di
   Google Calendar. Procedura in `SOCIAL.md`, «Avvisi all'utente nell'app». Sostituisce la decisione del 16 novembre. · tutti

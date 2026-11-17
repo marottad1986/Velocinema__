@@ -174,7 +174,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Capitoli come domande («Come funziona il passaggio?»): ogni capitolo risponde e aggiunge un pezzo allo schema.
 - Elemento fisso che si costruisce capitolo dopo capitolo (es. `linea_tempo` con gli anni, l'`anno` del capitolo
   evidenziato), sotto l'etichetta del capitolo e fuori dalle zone coperte dalle app.
-- Finale: la voce dice il riassunto «in una frase» (`finale.voce`); per le serie si annuncia la stagione successiva.
+- Finale: la voce dice il riassunto in una sola frase (`finale.voce`), senza annunciarlo: mai «In una frase:» davanti
+  (decisione dell'editore, 17 nov 2026; i video già usciti restano come sono); per le serie si annuncia la stagione successiva.
 - Codice: sigla in `src/components/Sigla.tsx` (la copertina del film riceve `t` già spostato di 1,5 s); linea del tempo
   e cartellini dei personaggi in `src/components/ChapterOverlay.tsx`, attivi quando il JSON ha `linea_tempo` e `personaggi`.
   Episodi: Dark (`films/dark-stagione-1.json`, schema `src/scenes/dark-stagione-1/Albero.tsx`; stagione 2 in
