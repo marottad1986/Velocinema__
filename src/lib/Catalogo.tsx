@@ -5,7 +5,7 @@ import { DISPLAY, SANS } from './fonts';
 import { Finish, FxDefs, Lin } from './fx';
 import {
   Beam, Clouds, Confetti, Drips, Dust, Embers, Fire, Fireflies, flashAt, Flyers, Fog, GlassDrops, Glow, Gulls, Lightning,
-  Moon, NearMotes, Neon, Notes, Rain, Reflection, ShootingStar, Smoke, Stars, StringLights, SunRays, WaveBand, WaveLines, Wisps,
+  Moon, NearMotes, Neon, Notes, Rain, Reflection, ShootingStar, Smoke, Snow, Stars, StringLights, SunRays, WaveBand, WaveLines, Wisps,
 } from './elements';
 
 // Catalogo della libreria di elementi (src/lib/elements.tsx): due pagine di prova, non fanno parte dei film.
@@ -53,11 +53,13 @@ const Esterni: React.FC<{ t: number }> = ({ t }) => {
         <g transform={L(0.5)}><Rain t={t} level="far" /></g>
         <g transform={L(1.4)}><Rain t={t} level="near" /></g>
         <g transform={L(1.7)}><NearMotes id="ce-near" t={t} /></g>
+        <g transform={L(0.5)}><Snow t={t} x={0} y={300} w={420} h={520} /></g>
+        <g transform={L(1.4)}><Snow t={t} level="near" x={0} y={300} w={420} h={520} n={6} /></g>
       </g>
       <Finish id="ce" tint="#0E3A40" />
       <Tag x={40} y={60}>Stars · Moon · ShootingStar · Lightning+flashAt · Clouds</Tag>
       <Tag x={40} y={100}>Beam(spin) · Glow · Fog · Reflection · WaveLines · Smoke</Tag>
-      <Tag x={40} y={140}>Gulls · WaveBand · Rain far/near · NearMotes</Tag>
+      <Tag x={40} y={140}>Gulls · WaveBand · Rain far/near · NearMotes · Snow far/near (in alto a sinistra)</Tag>
     </svg>
   );
 };

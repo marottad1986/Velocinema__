@@ -445,6 +445,32 @@ export const Flyers: React.FC<{ t: number; seed?: number; n?: number; color?: st
   );
 };
 
+/**
+ * Neve dentro un riquadro (x, y, w, h): fiocchi tondi che scendono ondeggiando, ognuno con il suo passo.
+ * far = piccoli, fitti e lenti (sfondo); near = grandi, radi, veloci e semitrasparenti (davanti alla camera).
+ * Il riquadro serve negli schemi, dove la neve deve restare in una sola fascia (prima usata in Scissione).
+ */
+export const Snow: React.FC<{ t: number; level?: 'far' | 'near'; seed?: number; n?: number; x?: number; y?: number; w?: number; h?: number; color?: string; wind?: number; opacity?: number }> = ({
+  t, level = 'far', seed = 71, n, x = 0, y = 0, w = 1080, h = 1920, color = '#F2F6F8', wind = 18, opacity,
+}) => {
+  const r = rng(seed);
+  const near = level === 'near';
+  const count = n ?? (near ? 18 : 70);
+  const op = opacity ?? (near ? 0.55 : 0.85);
+  return (
+    <g>
+      {Array.from({ length: count }, (_, i) => {
+        const bx = r() * w, ph = r(), sp = (near ? 150 : 55) * (0.7 + r() * 0.6), rad = near ? 5 + r() * 6 : 1.6 + r() * 2.4;
+        const sw = (near ? 26 : 12) * (0.5 + r()), fr = 0.6 + r() * 0.8;
+        const yy = mod(ph * h + t * sp, h);
+        const xx = mod(bx + t * wind * (near ? 1.6 : 1) + Math.sin(t * fr + i) * sw, w);
+        const edge = Math.min(1, yy / 40, (h - yy) / 40);
+        return <circle key={i} cx={x + xx} cy={y + yy} r={rad} fill={color} opacity={op * edge * (near ? 0.7 + 0.3 * Math.sin(t * 2 + i) : 1)} />;
+      })}
+    </g>
+  );
+};
+
 /** Lucciole: puntini caldi che vagano e si accendono a intermittenza. */
 export const Fireflies: React.FC<{ id: string; t: number; seed?: number; n?: number; x?: number; y?: number; w?: number; h?: number; color?: string }> = ({ id, t, seed = 61, n = 14, x = 0, y = 900, w = 1080, h = 500, color = '#FFF08A' }) => {
   const r = rng(seed);

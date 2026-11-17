@@ -2,7 +2,7 @@ import React from 'react';
 import { eio, eo, eob, lerp, mod, rng, seg } from '../../lib/anim';
 import { HAND, SANS } from '../../lib/fonts';
 import { Finish, FxDefs } from '../../lib/fx';
-import { Glow, Stars } from '../../lib/elements';
+import { Glow, Snow, Stars } from '../../lib/elements';
 import { subtitleTimes } from '../../components/ChapterOverlay';
 import type { SceneProps } from '../../types';
 import film from '../../../films/scissione-stagione-1.json';
@@ -364,28 +364,6 @@ const Ring: React.FC<{ T: number; x: number; y: number; r: number; on: number }>
     <g opacity={Math.min(1, on)}>
       <circle cx={x} cy={y} r={r * k} fill="none" stroke={RED} strokeWidth="8" strokeDasharray={`${r * 0.5} ${r * 0.18}`} strokeDashoffset={-T * 40} />
       <circle cx={x} cy={y} r={r * k + 12} fill="none" stroke={RED} strokeWidth="2" opacity=".5" />
-    </g>
-  );
-};
-
-/** Neve dentro un riquadro: fiocchi tondi che scendono ondeggiando (far = piccoli e fitti, near = grandi e radi). */
-export const Snow: React.FC<{ t: number; level?: 'far' | 'near'; seed?: number; n?: number; x?: number; y?: number; w?: number; h?: number; color?: string; wind?: number; opacity?: number }> = ({
-  t, level = 'far', seed = 71, n, x = 0, y = 0, w = 1080, h = 1920, color = '#F2F6F8', wind = 18, opacity,
-}) => {
-  const r = rng(seed);
-  const near = level === 'near';
-  const count = n ?? (near ? 18 : 70);
-  const op = opacity ?? (near ? 0.55 : 0.85);
-  return (
-    <g>
-      {Array.from({ length: count }, (_, i) => {
-        const bx = r() * w, ph = r(), sp = (near ? 150 : 55) * (0.7 + r() * 0.6), rad = near ? 5 + r() * 6 : 1.6 + r() * 2.4;
-        const sw = (near ? 26 : 12) * (0.5 + r()), fr = 0.6 + r() * 0.8;
-        const yy = mod(ph * h + t * sp, h);
-        const xx = mod(bx + t * wind * (near ? 1.6 : 1) + Math.sin(t * fr + i) * sw, w);
-        const edge = Math.min(1, yy / 40, (h - yy) / 40);
-        return <circle key={i} cx={x + xx} cy={y + yy} r={rad} fill={color} opacity={op * edge * (near ? 0.7 + 0.3 * Math.sin(t * 2 + i) : 1)} />;
-      })}
     </g>
   );
 };

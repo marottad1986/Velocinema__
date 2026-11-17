@@ -2,9 +2,9 @@ import React from 'react';
 import { eo, eob, mod, rng, seg } from '../../lib/anim';
 import { DISPLAY, SANS, SYNCOPATE } from '../../lib/fonts';
 import { Finish, FxDefs } from '../../lib/fx';
-import { Glow, Stars } from '../../lib/elements';
+import { Glow, Snow, Stars } from '../../lib/elements';
 import type { PosterProps } from '../../types';
-import { INK, MINT, RED, Snow, WARM } from './Piani';
+import { INK, MINT, RED, WARM } from './Piani';
 
 // Copertina e finale di Scissione – stagione 1 (formato "spiegato", senza sigla: la copertina dura tutti i 4 s ed è
 // anche la miniatura). Locandina originale: niente persone, niente logo né edificio della serie, niente locandine ufficiali.
