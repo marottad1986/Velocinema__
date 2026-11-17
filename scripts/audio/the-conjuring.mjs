@@ -117,12 +117,12 @@ export default (mix, T) => {
   const dawn = at('esorcismo', 2, 1.6);
 
   // ---- sezioni
-  sec(0, T.casa, { str: 20, low: true, tk: 22 });
+  sec(0, T.casa, { str: 42, low: true, tr: 36, tk: 32 });
   sec(T.casa, T.cantina, { str: 26, harp: 26, mel: 30, pausa: [dog + 0.3, dog + 0.3 + BEAT] });
   sec(T.cantina, T.orologi, { str: 22, low: true, tr: 26, mel: 26, keep: 0.4, pausa: [cellar - 0.05, cellar + BEAT - 0.05] });
   sec(T.orologi, T.presenze, { str: 24, low: true, tk: 34, tkFino: clocks, mel: 26, keep: 0.35, pausa: [clocks, clocks + BEAT * 2] });
   sec(T.presenze, T.carillon, { str: 26, low: true, tr: 32, mel: 24, keep: 0.35, pausa: [slam, slam + BEAT * 2] });
-  sec(T.carillon, T.warren, { str: 20, harp: 22, keep: 0.3 });
+  sec(T.carillon, T.warren, { str: 26, low: true, harp: 26, keep: 0.3 });
   sec(T.warren, T.strega, { str: 26, low: true, mel: 26, keep: 0.4, pausa: [evil - 0.05, evil + BEAT - 0.05] });
   sec(T.strega, T.madri, { str: 30, low: true, tr: 30, tk: 26, tkFino: watch, pausa: [watch, watch + BEAT * 2] });
   sec(T.madri, T.prove, { str: 26, low: true, mel: 28, keep: 0.45, pausa: [pin, pin + BEAT * 2] });
@@ -200,8 +200,8 @@ export default (mix, T) => {
   // capitolo 8: i ritagli appuntati uno per battito, il ritaglio di Rory (motivo), lo spillo sulla fattoria (timpano forte)
   [0, 1, 2].forEach((i) => { clip(mix, 'scatti', { t: at('madri', 0, 0.8) + i * BEAT, da: 6.49, durata: 0.06, gain: 0.2, rev: 0.3, pan: (i - 1) * 0.3 }); tick(mix, 57 + i * 3, { t: at('madri', 0, 0.8) + i * BEAT, vel: 30 }); });
   motivo(mix, at('madri', 1, 1.2), { vel: 32, gain: 0.28, fino: pin - 0.3 });
-  timp(mix, pin, { vel: 125, gain: 1.0 });
-  piano(mix, 26, { t: pin, dur: 3, vel: 46 });
+  timp(mix, pin, { vel: 110, gain: 0.7 });
+  piano(mix, 26, { t: pin, dur: 3, vel: 38 });
   piano(mix, 38, { t: pin, dur: 3, vel: 40 });
 
   // capitolo 9: la lettera della Chiesa (organo), i campanelli che suonano da soli, i flash, la foto che si macchia
@@ -233,7 +233,7 @@ export default (mix, T) => {
   organ(mix, [38, 50, 57, 62, 65], { t: mem + BAR * 0.5, dur: dawn - mem - BAR * 0.5 - BEAT, vel: 46, gain: 0.36 });
   swell(mix, dawn - 3.2, 3.2, { gain: 0.5 });
   roll(mix, dawn - 2.8, 2.8, { gain: 0.5 });
-  timp(mix, dawn, { vel: 127, gain: 1.25 });
+  timp(mix, dawn, { vel: 127, gain: 1.4 });
   colpo(mix, 'piatto_crash', 'cymbal_crash1_ff2', { t: dawn, vel: 110, gain: 0.5, rev: 0.6 });
   colpo(mix, 'gong', 'gong_hit_f', { t: dawn, vel: 110, gain: 0.45, rev: 0.6 });
   // Re maggiore dall'alba alla fine (finale compreso)
