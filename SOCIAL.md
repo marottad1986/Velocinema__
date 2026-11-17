@@ -22,7 +22,10 @@ programma la settimana che inizia il giorno dopo e si avvia subito la produzione
 possibili (fino al sabato; con PostFast anche TikTok arriva senza ritardo) e la produzione lavora la domenica
 per la settimana che viene.
 Attività programmata: «In 2 minuti – programmazione della settimana» (`trig_01ErsayWy5XJvQ6RMrpNndyF`), ogni domenica alle
-15:05 ora italiana (dopo le 15:00, quando riparte la settimana dei token), apre una sessione nuova con notifica sul telefono.
+15:05 ora italiana (dopo le 15:00, quando riparte la settimana dei token), sveglia la sua sessione fissa con il repository
+allegato (le sessioni «nuove a ogni avvio» non possono scrivere su GitHub: `ERRORI.md`), con notifica sul telefono.
+Le produzioni avviate dal manager seguono la stessa regola: prima `create_session` con il repository, poi l'attività
+`create_trigger` con `persistent_session_id` all'ora di avvio.
 1. Dati del profilo dal connettore **Metricool** (piano gratuito, brand «In 2 minuti», id `7728942`, fuso Europe/Rome),
    strumento `getAnalyticsDataByMetrics`. Metriche usate:
    - TikTok, per video (`TKPO`): 02 data e ora, 05 descrizione, 07 visualizzazioni, 08 like, 09 commenti, 10 condivisioni;
