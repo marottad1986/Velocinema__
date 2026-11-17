@@ -26,7 +26,7 @@ Metodo (vincolante, da `CLAUDE.md`):
    risposta; se lo approva, il revisore delle immagini non si chiama (nella pull request: «Immagini: approvate dall'utente»).
 6a. Prima di mandare il video all'editore: copertina e scena più forte affiancate a quelle dell'ultimo video dello
    stesso formato; se non è più bello, rinforza la scena più debole. Nel messaggio all'editore e nella pull request, una
-   riga con il passo avanti; nello stesso ramo, la riga nel registro di `ASTICELLA.md` e la tecnica resa riutilizzabile.
+   riga con il passo avanti; nello stesso ramo, la riga nel registro di `ASTICELLA.md` e la tecnica resa riutilizzabile nella libreria comune (`src/lib/`), in autonomia e senza chiedere conferma: i video già prodotti non si rigenerano mai.
 6b. Se un revisore segnala un tipo di problema già visto in un altro film, aggiungi una riga a `ERRORI.md`.
 7. Pull request con i verdetti dei revisori. Appena il video finale è pronto da controllare, avvisa l'utente
    nell'app e mandagli il video in questa chat (SendUserFile), come in `SOCIAL.md`, «Avvisi all'utente nell'app»;

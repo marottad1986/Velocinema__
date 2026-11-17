@@ -3,9 +3,12 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
-- 17 nov 2026 · **La libreria comune cresce senza rifare i video.** Aggiungere un elemento nuovo a `src/lib/` (senza
-  modificare quelli esistenti) non rigenera i video già fatti: lo riconosce `scripts/cambiati.mjs`. Quindi ogni tecnica
-  riuscita va subito nella libreria, nello stesso ramo del video. · produzione
+- 17 nov 2026 · **I video già prodotti non si toccano mai.** Modificare il codice comune (libreria `src/lib/`, componenti,
+  motore audio, catalogo degli effetti, script), anche una funzione già usata, non rigenera nessun video già fatto: si
+  rigenera solo il film i cui file cambiano (`scripts/cambiati.mjs`; tutto solo con `--tutti`, su richiesta dell'editore).
+  Le tecniche riuscite vanno nella libreria comune **in autonomia**, senza chiedere conferma, nello stesso ramo del video.
+  Attenzione: un film vecchio corretto più avanti si rigenera con la libreria di quel momento; se si cambia il
+  comportamento di un elemento usato, si controlla quel film prima di unirlo. · produzione, tutti
 
 - 17 nov 2026 · **Niente «In una frase:» nel finale.** La voce del finale dice il riassunto direttamente, senza annunciarlo
   con «In una frase:» (non piace all'editore). Vale per tutti i video nuovi, Spiegato semplice e lunghi compresi; i video
