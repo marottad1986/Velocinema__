@@ -43,5 +43,5 @@ si può verificare in automatico, una regola in `scripts/controlli.mjs`). Righe 
 - Idee di format nuovi arrivate dall'editore (X Factor, videogiochi) → il manager propone ogni domenica almeno un esperimento (`SOCIAL.md` «Idee nuove»).
 - Video rifatto in una sessione solo per pubblicarlo (16 nov, Titanic): MEGA non è raggiungibile dalle sessioni → il workflow carica il video su PostFast e registra la chiave nel ramo `postfast-media`.
 - Render nel cloud fallito per il download di Chrome (remotion.media bloccato) → `REMOTION_BROWSER=/opt/pw-browsers/chromium`.
-- Uno script nuovo in `scripts/` fa rigenerare TUTTI i film su GitHub Actions (16 nov, fermato a mano) → se non cambia i video, aggiungerlo all'elenco «non cambiano i video» di `scripts/cambiati.mjs` nello stesso commit, e provare con `git diff --name-only A B | node scripts/cambiati.mjs A B` prima di unire.
+- Uno script nuovo in `scripts/` faceva rigenerare TUTTI i film su GitHub Actions (16 nov, fermato a mano) → risolto il 17 nov: il codice comune non rigenera più nessun video già prodotto (`scripts/cambiati.mjs`); provare comunque con `git diff --name-only A B | node scripts/cambiati.mjs A B` prima di unire.
 - Profilo Instagram personale collegato a PostFast al posto della pagina (16 nov) → prima di programmare, `list_accounts` e controllo di `platformUsername`.

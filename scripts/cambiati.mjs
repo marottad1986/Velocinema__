@@ -3,23 +3,18 @@
 // node scripts/cambiati.mjs --tutti                      → JSON di tutti i film
 // File di un solo film: films/<f>.json (o quadri/<f>.json), src/scenes/<f>/, scripts/audio/<f>.mjs, audio/<f>/.
 // src/scenes/quadri/ (copertina e finale comuni ai quadri): tutti i quadri.
-// Codice comune (resto di src/, scripts/, motore audio in scripts/audio/, package.json, remotion.config.ts): tutti i film.
-// Eccezione: se in scripts/audio/effetti.mjs sono state solo AGGIUNTE voci al CATALOGO (serve A B per leggere il diff),
-// si rigenerano solo i film il cui spartito usa le voci nuove: un effetto nuovo vale per il film che lo introduce.
-// Eccezione: libreria comune (src/lib/*.ts, *.tsx): se un file ha solo elementi AGGIUNTI (nuove funzioni o componenti
-// esportati a livello del file, più nomi in più negli import), nessun film esistente cambia: non si rigenera niente
-// (il film che usa l'elemento nuovo si rigenera già perché cambiano i suoi file). src/lib/Catalogo.tsx è solo il catalogo
-// visivo della libreria (composizioni libreria--*), non un video: non rigenera niente.
-// Eccezione: se in src/films.ts sono state solo AGGIUNTE righe di un film (import del suo JSON, delle sue scene, della
-// sua locandina e la riga del registro; al massimo cambia l'elenco dei font importati), si rigenerano solo quei film:
-// registrare un film nuovo non cambia gli altri video.
+// REGOLA DELL'EDITORE (17 nov 2026): i video già prodotti non si toccano mai. Il codice comune (libreria src/lib/, componenti,
+// scene comuni dei quadri, codice comune dei lunghi e dei promo, motore audio in scripts/audio/, catalogo degli effetti,
+// script, package.json, remotion.config.ts) si può aggiungere o modificare liberamente: non rigenera nessun video.
+// Si rigenera solo il film i cui file propri cambiano (è lui che si sta producendo o correggendo), e il video lungo che
+// contiene un episodio cambiato. In src/films.ts conta solo la riga del film toccato.
+// Per rifare tutto (solo su richiesta esplicita dell'editore): node scripts/cambiati.mjs --tutti.
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 
 // Video lunghi orizzontali (VIDEO-LUNGO.md): lunghi/<slug>.json, src/lunghi/<slug>/, scripts/audio/<slug>.mjs, audio/<slug>/;
-// codice comune dei lunghi (src/lunghi/*.ts*, scripts/lunghi/): tutti i lunghi. Un lungo si rigenera anche quando cambia
-// un episodio che contiene (il suo JSON elenca gli episodi in «parti»). Il codice comune dei verticali (src/, scripts/…)
-// rigenera anche i lunghi.
+// il codice comune dei lunghi (src/lunghi/*.ts*, scripts/lunghi/) non rigenera niente. Un lungo si rigenera quando cambia
+// un episodio che contiene (il suo JSON elenca gli episodi in «parti»).
 const lunghi = existsSync('lunghi') ? readdirSync('lunghi').filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5)).sort() : [];
 const episodi = (l) => JSON.parse(readFileSync(`lunghi/${l}.json`, 'utf8')).parti.filter((p) => p.tipo === 'episodio').map((p) => p.film);
 
@@ -29,133 +24,58 @@ const tutti = ['films', 'quadri']
   .map((f) => f.slice(0, -5))
   .sort();
 // Short promozionali e trailer (promo/<slug>.json, src/promo/<slug>/, scripts/audio/<slug>.mjs, audio/<slug>/): entry Remotion
-// separata; codice comune dei promo (src/promo/*.ts*, scripts/promo/): tutti i promo. Il codice comune dei verticali li rigenera.
+// separata; il codice comune dei promo (src/promo/*.ts*, scripts/promo/) non rigenera niente.
 const promo = existsSync('promo') ? readdirSync('promo').filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5)).sort() : [];
 const sceltiPromo = (file) => {
   const m = file.match(/^promo\/([^/]+)\.json$/) ?? file.match(/^src\/promo\/([^/]+)\//) ?? file.match(/^scripts\/audio\/([^/]+)\.mjs$/) ?? file.match(/^audio\/([^/]+)\//);
   if (m && promo.includes(m[1])) return [m[1]];
-  if (/^src\/promo\/[^/]+$/.test(file) || /^scripts\/promo\//.test(file)) return promo;
   if (/^promo\//.test(file) || /^src\/promo\//.test(file)) return [];
   return null;
 };
-const quadri = existsSync('quadri') ? readdirSync('quadri').filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5)).sort() : [];
 const AUDIO_COMUNE = /^scripts\/audio\/(synth|film|campioni|effetti|sala|wav|vsco-indice)\.mjs$|^scripts\/audio\/vsco\.json$/;
-const COMUNI = [/^src\//, /^scripts\/[^/]+\.mjs$/, AUDIO_COMUNE, /^package(-lock)?\.json$/, /^remotion\.config\.ts$/];
 const PROPRI = [/^(?:films|quadri)\/([^/]+)\.json$/, /^src\/scenes\/([^/]+)\//, /^scripts\/audio\/([^/]+)\.mjs$/, /^audio\/([^/]+)\//];
 
-const EFFETTI = 'scripts/audio/effetti.mjs';
 const [A, B] = process.argv.slice(2).filter((x) => !x.startsWith('--'));
 
-/** Film che usano le voci aggiunte al catalogo, o null se il diff di effetti.mjs non è fatto solo di voci aggiunte. */
-const soloVociNuove = () => {
-  if (!A || !B) return null;
-  const diff = execFileSync('git', ['diff', '-U0', A, B, '--', EFFETTI], { encoding: 'utf8' });
-  const righe = diff.split('\n').filter((l) => /^[+-]/.test(l) && !/^(\+\+\+|---) /.test(l));
-  const ids = [];
-  for (const l of righe) {
-    const m = l.match(/^\+  ([a-z0-9_]+): \[.*\],\s*$/);
-    if (!m) return null; // righe tolte o modificate, o codice: cambia il motore
-    ids.push(m[1]);
-  }
-  return tutti.filter((f) => {
-    const p = `scripts/audio/${f}.mjs`;
-    return existsSync(p) && ids.some((id) => readFileSync(p, 'utf8').includes(`'${id}'`));
-  });
-};
-
 const REGISTRO = 'src/films.ts';
-/** Film aggiunti al registro, o null se il diff di src/films.ts tocca altro (film esistenti, codice). */
-const soloFilmAggiunti = () => {
-  if (!A || !B) return null;
+/** Film le cui righe del registro sono cambiate (import delle sue scene o del suo JSON, la sua riga): solo quelli. */
+const filmDelRegistro = () => {
+  if (!A || !B) return [];
   const diff = execFileSync('git', ['diff', '-U0', A, B, '--', REGISTRO], { encoding: 'utf8' });
-  const righe = diff.split('\n').filter((l) => /^[+-]/.test(l) && !/^(\+\+\+|---) /.test(l));
-  const FONT = /^[+-]import \{[A-Z_, ]+\} from '\.\/lib\/fonts';$/;
   const slugs = new Set();
-  for (const l of righe) {
-    if (FONT.test(l)) continue; // un font in più nell'elenco importato non cambia gli altri film
-    if (!l.startsWith('+')) return null; // righe tolte o modificate: cambia il registro dei film esistenti
-    const m = l.match(/^\+import \w+ from '\.\.\/(?:films|quadri)\/([a-z0-9-]+)\.json';$/)
-      ?? l.match(/^\+import \{[^}]+\} from '\.\/scenes\/([a-z0-9-]+)(?:\/\w+)?';$/)
-      ?? l.match(/^\+  \{ slug: '([a-z0-9-]+)',.*\},$/);
-    if (!m) return null;
-    slugs.add(m[1]);
+  for (const l of diff.split('\n').filter((x) => /^[+-]/.test(x) && !/^(\+\+\+|---) /.test(x))) {
+    const m = l.match(/from '\.\.\/(?:films|quadri)\/([a-z0-9-]+)\.json'/) ?? l.match(/from '\.\/scenes\/([a-z0-9-]+)(?:\/\w+)?'/) ?? l.match(/slug: '([a-z0-9-]+)'/);
+    if (m) slugs.add(m[1]);
   }
   return tutti.filter((f) => slugs.has(f));
-};
-
-/** True se il diff di un file della libreria comune contiene solo elementi aggiunti (vedi l'eccezione in testa). */
-const LIBRERIA = /^src\/lib\/[^/]+\.tsx?$/;
-const soloElementiAggiunti = (file) => {
-  if (!A || !B) return false;
-  let diff, nuovo;
-  try {
-    diff = execFileSync('git', ['diff', '-U0', A, B, '--', file], { encoding: 'utf8' });
-    nuovo = execFileSync('git', ['show', `${B}:${file}`], { encoding: 'utf8' }).split('\n');
-  } catch {
-    return false; // file nuovo o tolto: per prudenza vale come codice comune
-  }
-  const nomi = (righe) => new Set(righe.join(' ').replace(/^.*?\{|\}.*$/g, '').split(',').map((x) => x.trim()).filter(Boolean));
-  const vuota = (l) => /^\s*$/.test(l) || /^\s*(\/\/|\/\*|\*)/.test(l);
-  const pezzi = diff.split('\n@@').slice(1);
-  if (!pezzi.length) return false;
-  for (const pezzo of pezzi) {
-    const [testa, ...corpo] = pezzo.split('\n');
-    const m = testa.match(/ -\d+(?:,(\d+))? \+(\d+)(?:,(\d+))? @@/);
-    if (!m) return false;
-    const tolte = corpo.filter((l) => l.startsWith('-')).map((l) => l.slice(1));
-    const aggiunte = corpo.filter((l) => l.startsWith('+')).map((l) => l.slice(1));
-    if (tolte.length) {
-      // solo import che si allungano: ogni nome importato prima c'è ancora
-      if (![...tolte, ...aggiunte].every((l) => /^import |^\s+[\w, ]+$|^\} from /.test(l))) return false;
-      const prima = nomi(tolte), dopo = nomi(aggiunte);
-      if (![...prima].every((n) => dopo.has(n))) return false;
-      continue;
-    }
-    // un blocco aggiunto a livello del file: il primo codice è un export, il blocco chiude a colonna 0 e sta tra righe di livello 0
-    const codice = aggiunte.filter((l) => !vuota(l));
-    if (!codice.length) continue;
-    if (!/^export (const|function|type|interface) /.test(codice[0])) return false;
-    if (!/^[}\)\]][;)]*\s*$|^export .*;\s*$/.test(codice[codice.length - 1])) return false;
-    const c = Number(m[2]), d = m[3] === undefined ? 1 : Number(m[3]);
-    const primaRiga = nuovo[c - 2] ?? '', dopoRiga = nuovo[c - 1 + d] ?? '';
-    if (/^\s+\S/.test(primaRiga) && !vuota(primaRiga)) return false;
-    if (/^\s+\S/.test(dopoRiga) && !vuota(dopoRiga)) return false;
-  }
-  return true;
 };
 
 const sceltiLunghi = (file) => {
   let m = file.match(/^lunghi\/([^/]+)\.json$/) ?? file.match(/^src\/lunghi\/([^/]+)\//) ?? file.match(/^scripts\/audio\/([^/]+)\.mjs$/) ?? file.match(/^audio\/([^/]+)\//);
   if (m && lunghi.includes(m[1])) return [m[1]];
-  if (/^src\/lunghi\/[^/]+$/.test(file) || /^scripts\/lunghi\//.test(file)) return lunghi;
+  if (/^src\/lunghi\/[^/]+$/.test(file) || /^scripts\/lunghi\//.test(file)) return []; // codice comune: i video già fatti non si toccano
   return null;
 };
 
 const scelti = (file) => {
   const l = sceltiLunghi(file);
   if (l) return l;
-  if (file === EFFETTI) return soloVociNuove() ?? tutti;
-  if (file === REGISTRO) return soloFilmAggiunti() ?? tutti;
-  if (file === 'src/lib/Catalogo.tsx') return []; // catalogo visivo della libreria, non un video
-  if (LIBRERIA.test(file) && soloElementiAggiunti(file)) return []; // elementi nuovi: nessun video esistente cambia
-  if (AUDIO_COMUNE.test(file)) return tutti; // motore audio: campioni, effetti, riverbero
+  if (file === REGISTRO) return filmDelRegistro();
   const p = sceltiPromo(file);
   if (p) return p;
-  if (file.startsWith('src/scenes/quadri/')) return quadri; // scene comuni a tutti i quadri
+  if (AUDIO_COMUNE.test(file) || file.startsWith('src/scenes/quadri/')) return []; // codice comune: i video già fatti non si toccano
   for (const re of PROPRI) {
     const m = file.match(re);
     if (m) return tutti.includes(m[1]) ? [m[1]] : [];
   }
-  if (['scripts/cambiati.mjs', 'scripts/controlli.mjs', 'scripts/genera-voce.mjs', 'scripts/pacchetto.mjs', 'scripts/livelli.mjs', 'scripts/postfast-carica.mjs'].includes(file)) return []; // non cambiano i video
-  return COMUNI.some((re) => re.test(file)) ? tutti : [];
+  return []; // codice comune (src/, scripts/, package.json…): nessun video già fatto si rigenera
 };
 
 let film = [...tutti, ...lunghi, ...promo];
 if (!process.argv.includes('--tutti')) {
   const files = readFileSync(0, 'utf8').split('\n').map((s) => s.trim()).filter(Boolean);
   const base = new Set(files.flatMap(scelti));
-  // codice comune dei verticali: anche i lunghi; un episodio cambiato: anche i lunghi che lo contengono
-  if (tutti.every((f) => base.has(f))) [...lunghi, ...promo].forEach((l) => base.add(l));
+  // un episodio cambiato: anche i lunghi che lo contengono
   for (const l of lunghi) if (episodi(l).some((e) => base.has(e))) base.add(l);
   film = [...base].sort();
 }
