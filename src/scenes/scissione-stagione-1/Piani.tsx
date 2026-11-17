@@ -946,7 +946,7 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
         return <Node T={T} t0={t0} p={q} name="Dylan" sub={dUp > 0.8 && dDown < 0.2 ? 'sveglio a casa' : undefined} kind="interno" ring={1} fade={1 - seg(T, at('risveglio', 2, 1.2), at('risveglio', 2, 1.5))}><Coppa /></Node>;
       })()}
       <Node T={T} t0={at('risveglio', 1, 1.6)} p={N.figlio} name="suo figlio" kind="esterno" r={42} size={30} ring={focus(at('risveglio', 1, 1.6), at('risveglio', 2))} fade={1 - seg(T, at('risveglio', 2, 0.4), at('risveglio', 2, 0.9))}><Macchinina /></Node>
-      <Tag T={T} t0={at('risveglio', 2, 0.2)} x={560} y={CUT - 4} text="UN PIANO" bg={INK} size={56} rot={-2} until={end('risveglio') - 0.1} />
+      <Tag T={T} t0={at('risveglio', 2, 0.2)} x={560} y={CUT - 4} text="UN'IDEA" bg={INK} size={56} rot={-2} until={end('risveglio') - 0.1} />
 
       {/* ---- il piano: Dylan alle manopole, tre interni che salgono fuori */}
       <Node T={T} t0={at('fuori', 0, 0.1)} p={N.dylanCtl} name="Dylan" sub={T < end('fuori') ? 'tiene accese le manopole' : undefined} kind="interno" ring={focus(at('fuori', 0, 0.1), at('fuori', 1)) + focus(at('casey', 3, 0), at('casey', 3, 0.8))} lock={0} dead={seg(T, tOff, tOff + 0.3)}><Coppa /></Node>
