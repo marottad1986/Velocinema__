@@ -3,6 +3,10 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 17 nov 2026 · **La libreria comune cresce senza rifare i video.** Aggiungere un elemento nuovo a `src/lib/` (senza
+  modificare quelli esistenti) non rigenera i video già fatti: lo riconosce `scripts/cambiati.mjs`. Quindi ogni tecnica
+  riuscita va subito nella libreria, nello stesso ramo del video. · produzione
+
 - 17 nov 2026 · **Niente «In una frase:» nel finale.** La voce del finale dice il riassunto direttamente, senza annunciarlo
   con «In una frase:» (non piace all'editore). Vale per tutti i video nuovi, Spiegato semplice e lunghi compresi; i video
   già pronti o usciti restano come sono. · produzione

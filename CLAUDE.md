@@ -264,7 +264,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Speciali (Halloween, Natale…): `"speciale": "Halloween"` nella `copertina` del JSON mette il bollino «SPECIALE HALLOWEEN»
   accanto all'etichetta (`src/components/Speciale.tsx`); niente nella voce né nel disegno, così togliendo il campo il video torna normale.
 - Archivio su MEGA (`.github/workflows/video-mega.yml`): a ogni push su main GitHub Actions rigenera i film toccati
-  (`scripts/cambiati.mjs`; codice comune = tutti, ma registrare un film nuovo in `src/films.ts` o aggiungere un effetto al catalogo rigenera solo quel film) e carica `<film>-voce.mp4` in `/Velocinema/<film>/` (`<film>.mp4` senza voce solo se le clip voce non ci sono).
+  (`scripts/cambiati.mjs`; codice comune = tutti, ma registrare un film nuovo in `src/films.ts`, aggiungere un effetto al catalogo o aggiungere un elemento nuovo alla libreria `src/lib/` (senza toccare quelli esistenti) rigenera solo il film che lo usa) e carica `<film>-voce.mp4` in `/Velocinema/<film>/` (`<film>.mp4` senza voce solo se le clip voce non ci sono).
   Clip voce lette da `/Velocinema/<film>/voce/` su MEGA (o da `audio/<film>/`). Segreti `MEGA_EMAIL`, `MEGA_PASSWORD`.
   A mano: Actions → "Video su MEGA" → Run workflow.
 
@@ -299,7 +299,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 
 ## Struttura del codice (Remotion, 30 fps)
 - **Per disegnare scene (anche di un film nuovo) seguire `BRIEF-SCENA.md`**: metodo, scheletro, errori da evitare, verifica.
-- `src/lib/elements.tsx`: libreria di elementi animati riutilizzabili (pioggia, nebbia, fumo, fuoco, aloni, fasci, mare, stelle, note, neon…); catalogo visivo nelle composizioni `libreria--esterni` e `libreria--interni` (`src/lib/Catalogo.tsx`).
+- `src/lib/elements.tsx`: libreria di elementi animati riutilizzabili (un elemento nuovo si aggiunge qui senza far rigenerare i video già fatti: basta non modificare quelli esistenti) (pioggia, nebbia, fumo, fuoco, aloni, fasci, mare, stelle, note, neon…); catalogo visivo nelle composizioni `libreria--esterni` e `libreria--interni` (`src/lib/Catalogo.tsx`).
 - Le scene ricevono `cues` (secondo d'inizio di ogni frase dei sottotitoli) per sincronizzare gli eventi con la voce.
 - `src/films.ts`: registro dei film (JSON + scene disegnate). Le scene mancanti compaiono come segnaposto.
 - `src/scenes/<film>/<Scena>.tsx`: una scena per capitolo; `index.ts` mappa id capitolo → componente + posizione titolo.
