@@ -76,8 +76,9 @@ Attività programmata: «In 2 minuti – programmazione della settimana» (`trig
 
 ## Avvisi all'utente nell'app «In 2 minuti» (vincolante, tutti i reparti)
 Gli avvisi arrivano nell'app «In 2 minuti», che manda le notifiche sul telefono. **Telegram è dismesso** (decisione del
-17 novembre 2026): niente più messaggi Telegram né IFTTT per gli avvisi. L'app serve solo ad avvisare: l'utente risponde
-(approvazioni, modifiche) nella chat della sessione, quindi ogni avviso dice in quale sessione rispondere. Lo stesso
+17 novembre 2026): niente più messaggi Telegram né IFTTT per gli avvisi. **Conferme dei video e risposte ai commenti
+passano dalle «richieste» dell'app** (sezione «Conferme nell'app» qui sotto, decisione del 17 novembre 2026); per tutto il
+resto l'utente risponde (approvazioni, modifiche) nella chat della sessione, quindi ogni avviso dice in quale sessione rispondere. Lo stesso
 contenuto va mandato **anche nella chat della sessione** (SendUserMessage / SendUserFile), così l'utente lo trova lì quando
 apre la conversazione. Solo gli avvisi qui sotto, niente messaggi di stato intermedi.
 - **Manager, domenica — proposta pronta**: appena la tabella della settimana è pronta (prima dell'approvazione), un avviso
@@ -89,13 +90,14 @@ apre la conversazione. Solo gli avvisi qui sotto, niente messaggi di stato inter
   formato, data e ora di uscita dal calendario, scadenza prevista e «Rispondi nella sessione di produzione di <titolo>»
   (le domande sul contenuto si fanno lì).
 - **Produzione — video pronto**: quando il video finale con la voce è pronto da controllare (controlli verdi e revisori
-  APPROVATO), un avviso con titolo, data di uscita, link alla pull request e cartella MEGA. Nella chat della sessione si
-  manda anche il video (`out/<film>-voce.mp4`, o `out/<film>.mp4` se la voce manca) con SendUserFile, così l'utente lo
-  guarda subito e dice se va bene. Il video è «pronto» solo dopo la conferma dell'editore; appena conferma, la sessione
-  unisce su main da sola senza chiedere altro (`DECISIONI.md`, 15 novembre 2026).
+  APPROVATO), non un avviso ma una **richiesta video** nell'app con l'anteprima (sezione «Conferme nell'app»): l'editore
+  riceve la notifica, guarda il video e risponde «Approvata» o «Da rifare» con una nota. Nella chat della sessione si
+  manda anche il video (`out/<film>-voce.mp4`, o `out/<film>.mp4` se la voce manca) con SendUserFile, con il link alla pull
+  request. Il video è «pronto» solo dopo la conferma dell'editore (nell'app o scritta in chat: vale la prima che arriva);
+  appena conferma, la sessione unisce su main da sola senza chiedere altro (`DECISIONI.md`, 15 novembre 2026).
 - **Produzione — problema**: se la data di uscita non è raggiungibile con la qualità richiesta, o la sessione è bloccata
   (chiave, connettore, errore), un avviso subito con il motivo e l'alternativa prevista dal calendario.
-- Anche commenti della sera, contabilità e direzione mandano i loro avvisi all'app.
+- Anche commenti della sera (riassunto; le risposte proposte vanno in una richiesta «commenti»), contabilità e direzione mandano i loro avvisi all'app.
 
 **Come si manda**: una POST a `https://in-2-minuti-gestione.pages.dev/api/avvisi`, intestazione
 `content-type: application/json`, corpo JSON:
@@ -118,6 +120,39 @@ apre la conversazione. Solo gli avvisi qui sotto, niente messaggi di stato inter
   della sessione (una riga: «App: avviso non arrivato, <errore>») ma il lavoro non si ferma. Corrispondenze: «Produzione —
   avvio» → `avvio`, «video pronto» → `pronto`, «📤 Programmato» → `programmato`, «problema» e post falliti → `problema`,
   il resto (manager, commenti, conti) → `info`.
+
+## Conferme nell'app «In 2 minuti» (vincolante, dal 17 novembre 2026)
+Le conferme dei video e le risposte ai commenti passano dall'app: la sessione crea una **richiesta**, l'editore risponde
+nell'app («Approvata» o «Da rifare» con una nota). API su `https://in-2-minuti-gestione.pages.dev`, stessa chiave degli
+avvisi (`x-avvisi-key`, la mette il proxy: **mai scriverla** in file o comandi). JSON sempre da file o heredoc, inviato con
+`curl --data-binary @file`.
+
+**Video pronto da confermare** (produzione, quando il video con la voce è pronto: controlli verdi, revisori APPROVATO):
+1. Anteprima leggera, sotto 24 MB:
+   ```bash
+   ffmpeg -i out/<film>-voce.mp4 -vf scale=540:-2 -c:v libx264 -preset veryfast -b:v 600k -c:a aac -b:a 96k \
+     -movflags +faststart "$SCRATCH/<film>-anteprima.mp4"
+   ```
+   (se supera 24 MB, abbassare `-b:v`).
+2. `POST /api/richieste` con `{"tipo":"video","titolo":"<titolo>","testo":"<una riga: cosa contiene, esito dei revisori>","uscita":"AAAA-MM-GGTHH:MM"}`
+   (ora italiana dal calendario) → risposta `{"ok":true,"id":"rq-…"}`.
+3. `PUT /api/media/<id>` con il file come corpo: `curl -sS -X PUT https://in-2-minuti-gestione.pages.dev/api/media/<id> -H 'content-type: video/mp4' --data-binary @"$SCRATCH/<film>-anteprima.mp4"`
+   → `{"ok":true,"mb":…}`; da qui l'editore riceve la notifica.
+4. Attesa in background, mai a mano: `bash scripts/strumenti/attendi-conferma.sh <id>` (Bash con `run_in_background`;
+   controlla `GET /api/richieste/<id>` ogni 2 minuti ed esce quando `stato` non è più `aperta`, stampando la richiesta).
+   - `approvata` → si prosegue: unione su main, programmazione con PostFast, avviso «📤 Programmato».
+   - `da rifare` → si legge `risposta.nota`, si corregge, si rifà il video e si riparte dal punto 1 (nuova richiesta).
+   - Vale anche la conferma scritta dall'editore nella chat della sessione: vale la prima che arriva (se arriva prima in
+     chat, si ferma il ciclo in background).
+   Se la sessione si chiude prima della risposta, chi la riprende rilancia lo script con lo stesso id.
+
+**Commenti della sera** (attività delle 21:52): per i commenti a cui proporre una risposta si crea **una sola** richiesta:
+`POST /api/richieste` con `{"tipo":"commenti","titolo":"Commenti della sera del <data>","voci":[{"itemId":"<da list_inbox_items di PostFast>","piattaforma":"TIKTOK|INSTAGRAM|FACEBOOK","video":"<titolo>","autore":"@…","commento":"…","risposta":"…"}]}`.
+Le risposte **non si pubblicano più dalla sessione**: le pubblica l'app quando l'editore le approva. Il riassunto della
+sera resta un avviso nell'app come prima.
+
+Se l'API non risponde: si riprova una volta, poi lo si scrive in chat (una riga) e si manda il video in chat come prima;
+la conferma scritta in chat resta valida.
 
 ## Pubblicazione automatica (PostFast)
 Dal 16 novembre 2026 i post si programmano con **PostFast** (prova gratuita fino al ~21 novembre, poi piano a pagamento:
@@ -183,9 +218,10 @@ Quando si programma (vincolante):
 PostFast legge i commenti di TikTok, Facebook e (quando collegato) Instagram, dal collegamento in poi: `get_inbox_unread_count`,
 `list_inbox_conversations` (solo non letti), `list_inbox_items`. Ogni sera alle 21:52 un'attività programmata apre una sessione,
 prepara un riassunto e le risposte proposte (tono in prima persona plurale, simpatico e costruttivo, niente spoiler senza avviso,
-fatti solo verificati, richieste di titoli annotate in «Richieste dai commenti») e le manda in un solo avviso nell'app.
-**Non risponde sui social**: le risposte le pubblica l'editore (o, se lui scrive «ok» nella sessione dei commenti, la
-sessione le pubblica con `reply_to_inbox_item`). Mai `set_inbox_item_state` con DELETE senza l'editore. YouTube non ha la
+fatti solo verificati, richieste di titoli annotate in «Richieste dai commenti»): il riassunto va in un avviso nell'app,
+le risposte proposte in **una richiesta «commenti»** (sezione «Conferme nell'app», con l'`itemId` di ogni commento).
+**Non risponde sui social**: le risposte le pubblica l'app quando l'editore le approva; la sessione non usa più
+`reply_to_inbox_item` (decisione del 17 novembre 2026). Mai `set_inbox_item_state` con DELETE senza l'editore. YouTube non ha la
 casella dei commenti in PostFast.
 
 ## Idee nuove (compito del manager, ogni domenica)

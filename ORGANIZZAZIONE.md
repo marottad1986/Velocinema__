@@ -51,7 +51,7 @@ Memoria comune della squadra (si legge all'inizio di ogni sessione del proprio r
 | Tutta la settimana | Produzione | Un video alla volta, max 2 al giorno a 5 ore | ⚠️ funziona ma a catena di promemoria: si rompe facilmente (vedi punto 3 sotto) |
 | A video unito su main | GitHub Actions | Render e caricamento su MEGA | ✅ |
 | Dopo la conferma del video | Pubblicazione | Post e storie programmati su PostFast | ✅ dal 16 nov (TikTok, YouTube, Facebook; Instagram da collegare) |
-| Ogni sera 21:52 | Community | Commenti (casella di PostFast) → riassunto e risposte proposte nell'app | ✅ dal 16 nov |
+| Ogni sera 21:52 | Community | Commenti (casella di PostFast) → riassunto nell'app e risposte in una richiesta «commenti»: le pubblica l'app quando l'editore approva | ✅ dal 16 nov (richieste dal 17 nov) |
 | Ogni uscita | Diffusione | Messaggio pronto per protagonista / regista / pagine | ❌ nuovo (punto 5) |
 | 1° del mese | Contabilità + direzione | Rendiconto, soglie di monetizzazione, priorità del mese | ❌ nuovo (punto 6) |
 

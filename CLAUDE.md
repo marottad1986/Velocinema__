@@ -292,6 +292,13 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   (`out/<film>-voce.mp4`) si manda all'utente nella chat della sessione (SendUserFile) e si aspetta la sua risposta. Se lo
   approva, il revisore delle immagini non si chiama e la pull request riporta «Immagini: approvate dall'utente»; se chiede
   modifiche, si applicano e si rimanda il video. Il revisore delle immagini si chiama solo se l'utente lo chiede.
+- **Video pronto da confermare nell'app (vincolante, dal 17 nov 2026):** quando il video con la voce è pronto (controlli
+  verdi, revisori APPROVATO), la conferma dell'editore passa dall'app «In 2 minuti»: anteprima leggera a 540 px (sotto 24 MB),
+  richiesta `POST /api/richieste` di tipo `video`, `PUT /api/media/<id>` con l'anteprima, poi attesa in background con
+  `bash scripts/strumenti/attendi-conferma.sh <id>` (controlla ogni 2 minuti). `approvata` → unione su main e programmazione;
+  `da rifare` → si legge `risposta.nota`, si corregge e si rifà la richiesta. Vale anche la conferma scritta in chat (la
+  prima che arriva). La chiave la mette il proxy, mai scriverla. Procedura completa in `SOCIAL.md`, «Conferme nell'app».
+  Anche le risposte ai commenti della sera passano da una richiesta `commenti` e le pubblica l'app, non la sessione.
 - Secondo passaggio dei revisori: solo se dopo il primo si è modificato qualcosa, e solo sulle parti modificate (le scene
   ridisegnate o ritoccate, le righe di testo cambiate, i tratti di musica ed effetti toccati), non su tutto il film: ciò
   che non è cambiato resta approvato dal primo passaggio. Nel messaggio al revisore elencare con precisione cosa è cambiato
