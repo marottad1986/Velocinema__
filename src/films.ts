@@ -101,6 +101,9 @@ import { Copertina as XF26L4Cover, Finale as XF26L4End } from './scenes/x-factor
 import hungerGames from '../films/hunger-games.json';
 import { HUNGER_GAMES_SCENES } from './scenes/hunger-games';
 import { Copertina as HGCover, Finale as HGEnd } from './scenes/hunger-games/Locandina';
+import scissione1 from '../films/scissione-stagione-1.json';
+import { SCISSIONE_1_SCENES } from './scenes/scissione-stagione-1';
+import { Copertina as Sci1Cover, Finale as Sci1End } from './scenes/scissione-stagione-1/Locandina';
 import boveInUnBattito from '../films/bove-in-un-battito.json';
 import { BOVE_SCENES } from './scenes/bove-in-un-battito';
 import { Copertina as BoveCover, Finale as BoveEnd } from './scenes/bove-in-un-battito/Locandina';
@@ -142,6 +145,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'ritorno-al-futuro-parte-2', data: ritornoAlFuturo2 as FilmData, scenes: RITORNO_AL_FUTURO_2_SCENES, cover: RAF2Cover, ending: RAF2End, posterFont: RIGHTEOUS },
   { slug: 'il-miglio-verde', data: ilMiglioVerde as FilmData, scenes: IL_MIGLIO_VERDE_SCENES, cover: MVCover, ending: MVEnd, posterFont: CRIMSON },
   { slug: 'donnie-darko', data: donnieDarko as FilmData, scenes: DONNIE_DARKO_SCENES, cover: DDCover, ending: DDEnd, posterFont: BEBAS },
+  { slug: 'scissione-stagione-1', data: scissione1 as FilmData, scenes: SCISSIONE_1_SCENES, cover: Sci1Cover, ending: Sci1End, posterFont: SYNCOPATE },
   { slug: 'ritorno-al-futuro-parte-3', data: ritornoAlFuturo3 as FilmData, scenes: RITORNO_AL_FUTURO_3_SCENES, cover: RAF3Cover, ending: RAF3End, posterFont: RIGHTEOUS },
 ];
 
