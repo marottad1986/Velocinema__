@@ -9,8 +9,8 @@ import { Carillon, ConjDefs, GOLD, K, TINT_NOTTE } from './Comuni';
 // La maledizione delle madri: la bacheca di sughero nello studio dei Warren, sotto la lampada. Al centro la vecchia mappa
 // della terra di Bathsheba con l'albero e le case costruite negli anni. Su «omicidi e suicidi» si appuntano uno dopo
 // l'altro i ritagli di giornale ingialliti, e i fili rossi li legano alle case della mappa; su «anche Rory fu ucciso da
-// sua madre» il ritaglio con il disegno del carillon si accende d'oro; su «ora Bathsheba vuole che Carolyn faccia lo
-// stesso» l'ultimo spillo rosso si pianta sulla fattoria dei Perron e tutti i fili si tendono verso di lei. Nessuna
+// sua madre» il ritaglio con il disegno del carillon si accende d'oro; su «ora Bathsheba vuole che Carolyn uccida le
+// sue figlie» l'ultimo spillo rosso si pianta sulla fattoria dei Perron e tutti i fili si tendono verso di lei. Nessuna
 // persona: i ritagli hanno solo titoli e disegni di case e oggetti.
 // Piani: parete (0,25) · bacheca e mappa (0,55) · ritagli e fili (0,62) · spilli (0,7) · lampada e tazza in primo piano (1,2) · polvere (1,6)
 

@@ -6,7 +6,7 @@ import type { SceneProps } from '../../types';
 import { ConjDefs, GOLD, K, Ombra, TINT_NOTTE } from './Comuni';
 
 // L'esorcismo: la cantina della fattoria, a lume di candela. Al centro una sedia di legno vuota con le corde allentate;
-// a terra il crocifisso, la boccetta dell'acqua santa e il libro aperto sulla cassa. Su «Ed esorcizza Carolyn da solo» un
+// a terra il crocifisso, la boccetta dell'acqua santa e il libro aperto sulla cassa. Su «così Ed Warren esorcizza Carolyn da solo» un
 // fumo nero si avvita sopra la sedia, sempre più forte, e le candele si piegano; su «la richiama con un bel ricordo di
 // famiglia» la cornice con la fotografia di una spiaggia al sole si accende di luce calda; su «Carolyn torna in sé e la
 // strega viene scacciata» la luce dell'alba entra dalla grata in alto, il fumo viene risucchiato verso l'alto e si

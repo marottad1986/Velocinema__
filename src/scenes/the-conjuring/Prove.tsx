@@ -9,7 +9,7 @@ import { ConjDefs, GOLD, K, Ombra, TINT_NOTTE } from './Comuni';
 // permesso della Chiesa, che vuole prove» sul tavolino si accende la lettera con il sigillo di ceralacca e il rosario; su
 // «macchine fotografiche e campanelli» i campanelli appesi al filo davanti alla porta suonano da soli uno dopo l'altro, le
 // bobine del registratore girano e due flash scattano (il buio si apre per un istante su tutta la stanza); su «la strega
-// attacca la loro figlia» dalla macchina istantanea esce una foto che si sviluppa: la finestra della cameretta di casa
+// attacca la figlia dei Warren» dalla macchina istantanea esce una foto che si sviluppa: la finestra della cameretta di casa
 // Warren, con una macchia nera che si allarga. Nessuna persona.
 // Piani: parete e porta (0,3) · filo dei campanelli (0,5) · treppiedi e macchine (0,7) · tavolino, registratore, cavi (1,1) · polvere (1,6)
 

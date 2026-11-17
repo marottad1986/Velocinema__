@@ -8,7 +8,7 @@ import { Albero, ConjDefs, Corvo, Fattoria, K, Quadrante, TINT_NOTTE } from './C
 // La strega dell'albero: il grande albero davanti alla fattoria, di notte nella nebbia, con la luna dietro i rami. Su
 // «lì viveva Bathsheba, una strega» una nuvola copre la luna e i corvi si girano; su «si impiccò alle tre e sette» il pezzo
 // di corda sfilacciata sul ramo basso dondola e l'orologio da taschino appeso al chiodo del tronco si ferma alle 3:07,
-// acceso d'oro; su «maledisse chi prendeva la sua terra» crepe nere corrono nella terra dalle radici fino alla fattoria
+// acceso d'oro; su «maledisse chiunque prendesse la sua terra» crepe nere corrono nella terra dalle radici fino alla fattoria
 // lontana, e le sue finestre si spengono. Mai la strega, né figure o sagome: solo l'albero, la corda, l'orologio, la lapide.
 // Piani: cielo e luna (0,15) · campi e fattoria lontana (0,35) · albero (0,6) · lapide e radici (0,9) · erba e nebbia (1,25) · corvi in volo (1,5)
 
