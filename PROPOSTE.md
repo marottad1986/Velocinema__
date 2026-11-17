@@ -6,6 +6,10 @@ data · chi propone · proposta · cosa si guadagna o risparmia · stato (aperta
 La direzione le legge all'inizio di ogni sessione, le porta all'editore e, una volta decise, le sposta in `DECISIONI.md`.
 
 ## Aperte
+- 17 nov 2026 · revisore-musica (Scissione) · **Colpi che si sentono anche sotto la voce**: il ducking di `scripts/voce.mjs`
+  (sidechaincompress, comune a tutti) schiaccia i timpani chiave che cadono mentre la voce parla; proposta: ducking più
+  leggero sotto i 150 Hz, oppure i colpi chiave nelle pause della voce; e misurare l'emergere dei colpi sul video con la
+  voce, non solo sul wav della musica. Cambia il codice comune: serve il via libera. · colpi di scena più forti · aperta
 - 17 nov 2026 · revisore-voce (Scissione) · **Ritmo delle frasi dopo il montaggio**: `ascolta-voce.mjs` calcoli le
   parole al secondo di ogni frase come suonerà nel video (pause a 0,25 s e accelerazione applicata), non solo sulla clip
   grezza: una frase a 3,5 grezza diventa 3,8 nel video senza avviso. · meno clip rifatte · aperta
