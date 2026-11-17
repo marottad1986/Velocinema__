@@ -3,6 +3,11 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 17 nov 2026 · **Colpi che si sentono anche sotto la voce** (proposta approvata nell'app). Il montaggio della voce
+  (`scripts/voce.mjs`) abbassa la musica in due bande divise a 150 Hz: sopra, dove sta la voce, come prima (circa 12–15 dB);
+  sotto, dove stanno timpani, cassa e colpi gravi, solo di circa 3–4 dB. Senza voce la musica resta identica. Vale per i
+  video montati da oggi; quelli già prodotti non si rigenerano. Chi scrive lo spartito può lasciare i colpi gravi anche
+  sotto una frase; i colpi acuti chiave restano meglio nelle pause della voce. · produzione, revisore-musica
 - 17 nov 2026 · **Proposte decise nell'app e procedure dell'app in un solo posto.** L'editore approva, rimanda o scarta le
   proposte di `PROPOSTE.md` dall'app «In 2 minuti»; una proposta approvata parte da sola (attività «In 2 minuti – sviluppo
   proposte») o alla prima sessione `/direzione`, che controlla `GET /api/proposte`. Le procedure con l'app (avvisi, video da

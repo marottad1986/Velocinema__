@@ -110,10 +110,21 @@ const parts = clips.map((c, i) => {
 const voci = clips.map((_, i) => `[v${i}]`).join('');
 parts.push(`${voci}amix=inputs=${clips.length}:duration=longest:normalize=0,apad=whole_dur=${T.END}[voce]`);
 if (hasAudio(video)) {
-  // ducking: la voce comanda un compressore sulla musica, che scende di circa 12–15 dB mentre si parla
-  parts.push(`[voce]asplit=2[vc][sc]`);
-  parts.push(`[0:a]${FMT}[mus]`);
-  parts.push(`[mus][sc]sidechaincompress=threshold=0.015:ratio=8:attack=20:release=450[duck]`);
+  // ducking a due bande (proposta approvata dall'editore il 17 nov 2026, «Colpi che si sentono anche sotto la voce»):
+  // la musica si divide a 150 Hz (crossover Linkwitz-Riley del 4° ordine: le due bande risommate tornano piatte).
+  // Sopra i 150 Hz, dove sta la voce, la voce comanda il compressore di sempre (circa 12–15 dB in meno mentre si parla);
+  // sotto, dove stanno timpani, cassa e colpi gravi, il compressore è leggero (circa 3–4 dB), così i colpi chiave
+  // restano forti anche quando cadono sotto una frase senza coprire la voce, che lì ha poca energia.
+  const XO = 150;
+  const LP = `lowpass=f=${XO}:p=2,lowpass=f=${XO}:p=2`;
+  const HP = `highpass=f=${XO}:p=2,highpass=f=${XO}:p=2`;
+  parts.push(`[voce]asplit=3[vc][sc1][sc2]`);
+  parts.push(`[0:a]${FMT},asplit=2[mus1][mus2]`);
+  parts.push(`[mus1]${HP}[alti]`);
+  parts.push(`[mus2]${LP}[bassi]`);
+  parts.push(`[alti][sc1]sidechaincompress=threshold=0.015:ratio=8:attack=20:release=450[alti_d]`);
+  parts.push(`[bassi][sc2]sidechaincompress=threshold=0.015:ratio=1.6:attack=20:release=450[bassi_d]`);
+  parts.push(`[alti_d][bassi_d]amix=inputs=2:duration=first:normalize=0[duck]`);
   parts.push(`[duck][vc]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.95[a]`);
 } else {
   console.warn(`  ${video} non ha audio: solo voce, senza musica (rigenera il video con npm run render -- ${slug}).`);

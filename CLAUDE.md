@@ -212,7 +212,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   Toglie il silenzio iniziale e finale di ogni clip (copie ripulite in `out/voce-tmp/`); se la clip sfora, porta le pause
   tra le frasi a 0,25 s e poi accelera con atempo. Lascia 0,1 s prima del capitolo successivo; oltre il +25% non monta
   nulla, esce con errore e indica quante parole togliere e la frase più lunga del capitolo.
-  Ducking: `sidechaincompress` della voce sulla musica.
+  Ducking: `sidechaincompress` della voce sulla musica, in due bande divise a 150 Hz (sopra come sempre, sotto i 150 Hz
+  leggero, così timpani e colpi gravi si sentono anche sotto la voce).
   Opzioni per le prove: `--cartella <dir>` (clip), `--video <file>`, `--uscita <file>`.
 
 ## Musica
