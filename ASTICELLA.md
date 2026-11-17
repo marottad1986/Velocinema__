@@ -19,7 +19,7 @@ pagina deve sentire che, andando avanti, la qualità sale: non si resta fermi su
    «è più bello?». Se no, si rinforza la scena più debole prima di mandarlo. Nel messaggio all'editore una riga dice
    qual è il passo avanti.
 4. **Ciò che funziona diventa di tutti.** Una tecnica riuscita si rende riutilizzabile (in `src/lib/elements.tsx`,
-   `src/lib/fx.tsx`, negli helper audio) e si aggiunge al registro qui sotto, così il video dopo parte già da lì. Se è una
+   `src/lib/fx.tsx`, negli helper audio) (aggiungere un elemento nuovo alla libreria non fa rigenerare i video già fatti: `scripts/cambiati.mjs`) e si aggiunge al registro qui sotto, così il video dopo parte già da lì. Se è una
    regola generale, anche in `QUALITA.md` o `BRIEF-SCENA.md`.
 5. **Imparare dai dati e dall'editore.** Le osservazioni dell'editore sui video e i dati del team social (`/manager`:
    visualizzazioni, permanenza, commenti) su cosa piace di più diventano righe del registro («la copertina con X ha
@@ -36,8 +36,10 @@ La aggiunge chi produce, nello stesso ramo del video, prima dell'unione su main.
   camera che scende e risale con l'ascensore; il cerchio del personaggio che si **sdoppia** attraversando la linea della
   scissione e si **riunisce** (Petey); la pianta che si disegna da sola come un progetto; la «lente» sugli schermi (numeri
   che tremano e volano nel cestino); copertina con il corridoio in prospettiva che avanza; neve a due livelli chiusa in un
-  riquadro (`Snow`) · `src/scenes/scissione-stagione-1/Piani.tsx` (`Node` con `split`, `Snow`, `Lente`), proposta di
-  spostare `Snow` in `src/lib/elements.tsx` in `PROPOSTE.md`.
+  riquadro (`Snow`) · `src/scenes/scissione-stagione-1/Piani.tsx` (`Node` con `split`, `Lente`), `Snow` in
+  `src/lib/elements.tsx`. Lezioni su musica e voce: timpano forte (`Timpani1_Hit_v4`) sui colpi chiave e il picco del film
+  sul colpo di scena; `pausa` che ferma anche gli archi tenuti; frasi degli Spiegato entro 8–9 parole già nella scrittura,
+  così la voce non va accelerata oltre il 10%.
 - 16 nov 2026 · trailer di Ritorno al futuro (trilogia) · primo trailer di cinema: cartelli sul nero con braam e
   entrata dal nero, montaggio a un'inquadratura per battito, suspense con spia nel buio e immagine che emerge, titolo su
   scie di fuoco · `src/promo/trailer-ritorno-al-futuro/`, regole in `TRAILER.md`.

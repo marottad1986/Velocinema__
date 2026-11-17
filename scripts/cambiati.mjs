@@ -6,6 +6,10 @@
 // Codice comune (resto di src/, scripts/, motore audio in scripts/audio/, package.json, remotion.config.ts): tutti i film.
 // Eccezione: se in scripts/audio/effetti.mjs sono state solo AGGIUNTE voci al CATALOGO (serve A B per leggere il diff),
 // si rigenerano solo i film il cui spartito usa le voci nuove: un effetto nuovo vale per il film che lo introduce.
+// Eccezione: libreria comune (src/lib/*.ts, *.tsx): se un file ha solo elementi AGGIUNTI (nuove funzioni o componenti
+// esportati a livello del file, più nomi in più negli import), nessun film esistente cambia: non si rigenera niente
+// (il film che usa l'elemento nuovo si rigenera già perché cambiano i suoi file). src/lib/Catalogo.tsx è solo il catalogo
+// visivo della libreria (composizioni libreria--*), non un video: non rigenera niente.
 // Eccezione: se in src/films.ts sono state solo AGGIUNTE righe di un film (import del suo JSON, delle sue scene, della
 // sua locandina e la riga del registro; al massimo cambia l'elenco dei font importati), si rigenerano solo quei film:
 // registrare un film nuovo non cambia gli altri video.
@@ -79,6 +83,47 @@ const soloFilmAggiunti = () => {
   return tutti.filter((f) => slugs.has(f));
 };
 
+/** True se il diff di un file della libreria comune contiene solo elementi aggiunti (vedi l'eccezione in testa). */
+const LIBRERIA = /^src\/lib\/[^/]+\.tsx?$/;
+const soloElementiAggiunti = (file) => {
+  if (!A || !B) return false;
+  let diff, nuovo;
+  try {
+    diff = execFileSync('git', ['diff', '-U0', A, B, '--', file], { encoding: 'utf8' });
+    nuovo = execFileSync('git', ['show', `${B}:${file}`], { encoding: 'utf8' }).split('\n');
+  } catch {
+    return false; // file nuovo o tolto: per prudenza vale come codice comune
+  }
+  const nomi = (righe) => new Set(righe.join(' ').replace(/^.*?\{|\}.*$/g, '').split(',').map((x) => x.trim()).filter(Boolean));
+  const vuota = (l) => /^\s*$/.test(l) || /^\s*(\/\/|\/\*|\*)/.test(l);
+  const pezzi = diff.split('\n@@').slice(1);
+  if (!pezzi.length) return false;
+  for (const pezzo of pezzi) {
+    const [testa, ...corpo] = pezzo.split('\n');
+    const m = testa.match(/ -\d+(?:,(\d+))? \+(\d+)(?:,(\d+))? @@/);
+    if (!m) return false;
+    const tolte = corpo.filter((l) => l.startsWith('-')).map((l) => l.slice(1));
+    const aggiunte = corpo.filter((l) => l.startsWith('+')).map((l) => l.slice(1));
+    if (tolte.length) {
+      // solo import che si allungano: ogni nome importato prima c'è ancora
+      if (![...tolte, ...aggiunte].every((l) => /^import |^\s+[\w, ]+$|^\} from /.test(l))) return false;
+      const prima = nomi(tolte), dopo = nomi(aggiunte);
+      if (![...prima].every((n) => dopo.has(n))) return false;
+      continue;
+    }
+    // un blocco aggiunto a livello del file: il primo codice è un export, il blocco chiude a colonna 0 e sta tra righe di livello 0
+    const codice = aggiunte.filter((l) => !vuota(l));
+    if (!codice.length) continue;
+    if (!/^export (const|function|type|interface) /.test(codice[0])) return false;
+    if (!/^[}\)\]][;)]*\s*$|^export .*;\s*$/.test(codice[codice.length - 1])) return false;
+    const c = Number(m[2]), d = m[3] === undefined ? 1 : Number(m[3]);
+    const primaRiga = nuovo[c - 2] ?? '', dopoRiga = nuovo[c - 1 + d] ?? '';
+    if (/^\s+\S/.test(primaRiga) && !vuota(primaRiga)) return false;
+    if (/^\s+\S/.test(dopoRiga) && !vuota(dopoRiga)) return false;
+  }
+  return true;
+};
+
 const sceltiLunghi = (file) => {
   let m = file.match(/^lunghi\/([^/]+)\.json$/) ?? file.match(/^src\/lunghi\/([^/]+)\//) ?? file.match(/^scripts\/audio\/([^/]+)\.mjs$/) ?? file.match(/^audio\/([^/]+)\//);
   if (m && lunghi.includes(m[1])) return [m[1]];
@@ -91,6 +136,8 @@ const scelti = (file) => {
   if (l) return l;
   if (file === EFFETTI) return soloVociNuove() ?? tutti;
   if (file === REGISTRO) return soloFilmAggiunti() ?? tutti;
+  if (file === 'src/lib/Catalogo.tsx') return []; // catalogo visivo della libreria, non un video
+  if (LIBRERIA.test(file) && soloElementiAggiunti(file)) return []; // elementi nuovi: nessun video esistente cambia
   if (AUDIO_COMUNE.test(file)) return tutti; // motore audio: campioni, effetti, riverbero
   const p = sceltiPromo(file);
   if (p) return p;
