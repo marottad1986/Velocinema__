@@ -23,8 +23,8 @@ Cosa fai, secondo la richiesta (argomenti: $ARGUMENTS):
    social in `calendario/<aaaa-mm-gg>-social.md`: per ogni video il blocco WhatsApp (didascalia TikTok, valida anche per
    Instagram e Facebook, titolo e descrizione YouTube) e la storia del giorno prima (locandina PNG 1080×1920 secondo il
    modello). Sempre dopo l'approvazione, una sessione `/produzione` per ogni contenuto da produrre o verificare
-   (`create_session`, vedi `SOCIAL.md`). Le produzioni vanno distanziate: al massimo due al giorno, a 5 ore l'una
-   dall'altra (`SOCIAL.md`); scadenze e ordine di avvio si assegnano di conseguenza. Mai pubblicare, creare eventi o avviare produzioni senza approvazione.
+   (`create_session`, vedi `SOCIAL.md`). Le produzioni intere vanno distanziate: al massimo due al giorno, a 5 ore
+   dall'avvio della precedente (`SOCIAL.md`; solo voce o correzioni non contano); scadenze e ordine di avvio si assegnano di conseguenza. Mai pubblicare, creare eventi o avviare produzioni senza approvazione.
 3b. **Ogni domenica** nella proposta: una riga «Esperimento della settimana» (format o titolo nuovo, `SOCIAL.md` «Idee
    nuove»), lo stato delle soglie di monetizzazione (`SOCIAL.md` «Monetizzazione») e, nel materiale social, la sezione
    «Diffusione» di ogni uscita con il messaggio privato pronto (`SOCIAL.md` «Diffusione»): i messaggi li invia l'editore.
