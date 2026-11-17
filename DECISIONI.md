@@ -3,7 +3,8 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
-- 17 nov 2026 · **I video già prodotti non si toccano mai.** Modificare il codice comune (libreria `src/lib/`, componenti,
+- 17 nov 2026 · **I video già prodotti non si toccano mai** (vale per sempre: anche ogni video futuro, una volta prodotto,
+  non si rigenera più per modifiche comuni). Modificare il codice comune (libreria `src/lib/`, componenti,
   motore audio, catalogo degli effetti, script), anche una funzione già usata, non rigenera nessun video già fatto: si
   rigenera solo il film i cui file cambiano (`scripts/cambiati.mjs`; tutto solo con `--tutti`, su richiesta dell'editore).
   Le tecniche riuscite vanno nella libreria comune **in autonomia**, senza chiedere conferma, nello stesso ramo del video.
