@@ -12,7 +12,7 @@ import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
 export const strumenti = ['pianoforte_coda', 'arpa', 'violini', 'viole', 'celli', 'contrabbasso', 'violini_trem', 'celli_trem', 'violini_pizz', 'glockenspiel', 'organo', 'timpani', 'grancassa_rullo', 'gong', 'gong_graffio', 'piatto_sospeso', 'piatto_crash'];
-export const effetti = ['auto_epoca', 'scatti', 'ringhio', 'sedia', 'colpi_legno', 'legno_cade', 'porta_cigolio', 'vento_invernale', 'campanello', 'stoffa', 'legno_cigolio', 'porta_sbatte', 'vento_leggero', 'ali', 'rombo', 'pioggia_vento', 'ronzio_neon', 'tuono_forte', 'tuono_classico'];
+export const effetti = ['auto_epoca', 'scatti', 'ringhio', 'latrato', 'sedia', 'colpi_legno', 'legno_cade', 'porta_cigolio', 'vento_invernale', 'campanello', 'stoffa', 'legno_cigolio', 'porta_sbatte', 'vento_leggero', 'ali', 'rombo', 'pioggia_vento', 'ronzio_neon', 'tuono_forte', 'tuono_classico'];
 /** Sala grande e scura, di legno e pietra. */
 export const sala = { rt60: 2.6, brillo: 5200, predelay: 0.03, wet: 0.5 };
 
@@ -46,7 +46,7 @@ const organ = (mix, ms, { t, dur, vel = 40, gain = 0.35 }) =>
 const timp = (mix, t, { vel = 110, gain = 0.8 } = {}) => colpo(mix, 'timpani', 'Timpani1_Hit_v4', { t, vel, gain, rev: 0.5 });
 const timpSoft = (mix, t, { vel = 90, gain = 0.5 } = {}) => colpo(mix, 'timpani', 'Timpani1_Hit_v3', { t, vel, gain, rev: 0.5 });
 const roll = (mix, t, dur, { gain = 0.5 } = {}) => colpo(mix, 'grancassa_rullo', 'bdrum_roll_long1', { t, dur, vel: 100, gain, release: 0.5, rev: 0.4 });
-const scrape = (mix, t, { gain = 0.35 } = {}) => colpo(mix, 'gong_graffio', 'gong_scrape_2', { t, vel: 100, gain, rev: 0.6 });
+const scrape = (mix, t, { gain = 0.4 } = {}) => colpo(mix, 'gong_graffio', 'gong_scrape_3', { t, vel: 100, gain, dur: 4, release: 1, rev: 0.6 });
 const swell = (mix, t, dur, { gain = 0.4 } = {}) => colpo(mix, 'piatto_sospeso', 'susp_FX_scrape_continuous', { t, dur, vel: 90, gain, release: 0.4, rev: 0.5, da: 2 });
 const motivo = (mix, t0, { vel = 38, gain = 0.3, mag = false, fino = Infinity, oct = 0 } = {}) =>
   (mag ? MOTIVO_MAG : MOTIVO).forEach(([b, m]) => { const t = t0 + b * CROMA; if (t < fino - 0.2) glock(mix, m + oct, { t, vel, gain }); });
@@ -74,7 +74,7 @@ export default (mix, T) => {
    * harp: arpa a semiminime · mel: note sparse del pianoforte acuto · pausa: [da, a] silenzio di tutte le figure
    */
   const sec = (from, to, o) => {
-    from = from <= 0 ? 0 : snap(from); to = snap(to);
+    from = from <= 0 ? G0 - 9 * CROMA : snap(from); to = snap(to);
     const R = rng(3070 + sid++ * 131);
     const tacet = (x) => o.pausa && x >= o.pausa[0] && x < o.pausa[1];
     const stopAt = o.pausa ? o.pausa[0] : Infinity;
@@ -122,11 +122,11 @@ export default (mix, T) => {
   sec(T.cantina, T.orologi, { str: 22, low: true, tr: 26, mel: 26, keep: 0.4, pausa: [cellar - 0.05, cellar + BEAT - 0.05] });
   sec(T.orologi, T.presenze, { str: 24, low: true, tk: 34, tkFino: clocks, mel: 26, keep: 0.35, pausa: [clocks, clocks + BEAT * 2] });
   sec(T.presenze, T.carillon, { str: 26, low: true, tr: 32, mel: 24, keep: 0.35, pausa: [slam, slam + BEAT * 2] });
-  sec(T.carillon, T.warren, { str: 26, low: true, harp: 26, keep: 0.3 });
-  sec(T.warren, T.strega, { str: 26, low: true, mel: 26, keep: 0.4, pausa: [evil - 0.05, evil + BEAT - 0.05] });
-  sec(T.strega, T.madri, { str: 30, low: true, tr: 30, tk: 26, tkFino: watch, pausa: [watch, watch + BEAT * 2] });
+  sec(T.carillon, T.warren, { str: 34, low: true, harp: 34, keep: 0.3 });
+  sec(T.warren, T.strega, { str: 34, low: true, mel: 32, keep: 0.4, pausa: [evil - 0.05, evil + BEAT - 0.05] });
+  sec(T.strega, T.madri, { str: 34, low: true, tr: 34, tk: 30, tkFino: watch, pausa: [watch, watch + BEAT * 2] });
   sec(T.madri, T.prove, { str: 26, low: true, mel: 28, keep: 0.45, pausa: [pin, pin + BEAT * 2] });
-  sec(T.prove, T.possessione, { str: 28, low: true, tr: 26, mel: 24, keep: 0.4 });
+  sec(T.prove, T.possessione, { str: 34, low: true, tr: 32, mel: 30, keep: 0.4 });
   sec(T.possessione, T.esorcismo, { str: 34, low: true, tr: 36, pausa: [strike, strike + BEAT] });
   // l'esorcismo: tremolo e organo che crescono fino all'alba, poi Re maggiore pieno
   sec(T.esorcismo, dawn, { str: 36, low: true, tr: 44, pausa: [dawn - BEAT, dawn] });
@@ -137,7 +137,8 @@ export default (mix, T) => {
   // capitolo 1: l'auto che arriva, la lampada del portico, il cane che punta le zampe (ringhio), l'abbaino che si accende
   clip(mix, 'auto_epoca', { t: at('casa', 0, 0.2) - 0.3, da: 17.5, durata: 3.2, gain: 0.16, fadeIn: 0.4, fadeOut: 0.8, rev: 0.25 });
   clip(mix, 'scatti', { t: at('casa', 1, 0.6), da: 6.49, durata: 0.08, gain: 0.28, rev: 0.35 });
-  clip(mix, 'ringhio', { t: dog - 0.3, da: 10, durata: 2.2, gain: 0.2, rate: 0.9, fadeIn: 0.1, fadeOut: 0.5, rev: 0.35, pan: 0.2 });
+  [1.04, 1.67, 2.36].forEach((da, i) => clip(mix, 'latrato', { t: dog + i * CROMA, da, durata: 0.35, gain: 0.25, fadeOut: 0.1, rev: 0.35, pan: 0.2 }));
+  clip(mix, 'ringhio', { t: dog + 3 * CROMA, da: 10, durata: 2.2, gain: 0.2, rate: 0.9, fadeIn: 0.1, fadeOut: 0.5, rev: 0.35, pan: 0.2 });
   timpSoft(mix, dog, { vel: 80, gain: 0.4 });
   trem(mix, 93, { t: dog + 0.9, dur: 1.6, vel: 26, gain: 0.35, att: 0.4 });
   glock(mix, 93, { t: dog + 0.9 + CROMA, vel: 30, gain: 0.25 });
@@ -165,7 +166,7 @@ export default (mix, T) => {
   // capitolo 4: la coperta tirata (stoffa e timpano), la porta della cantina che si socchiude, il colpo della porta
   clip(mix, 'stoffa', { t: pull - 0.05, da: 1, durata: 0.6, gain: 0.3, fadeOut: 0.2, rev: 0.25, pan: -0.2 });
   clip(mix, 'legno_cigolio', { t: pull + 0.1, da: 0.25, durata: 0.8, gain: 0.3, fadeOut: 0.3, rev: 0.4 });
-  timp(mix, pull, { vel: 100, gain: 0.6 });
+  timpSoft(mix, pull, { vel: 95, gain: 0.5 });
   clip(mix, 'porta_cigolio', { t: at('presenze', 1, 0.4), da: 1, durata: 1.6, gain: 0.18, fadeOut: 0.5, rev: 0.6, pan: 0.3, lp: 3500 });
   clip(mix, 'porta_sbatte', { t: slam - 0.4, da: 2.6, durata: 1.2, gain: 0.4, fadeOut: 0.3, rev: 0.45, pan: 0.3 }); // colpo a +0,4
   timp(mix, slam, { vel: 120, gain: 0.95 });
@@ -188,20 +189,19 @@ export default (mix, T) => {
 
   // capitolo 7: i corvi che si alzano, l'orologio da taschino che si ferma (corda che cigola, timpano forte), la maledizione
   clip(mix, 'ali', { t: at('strega', 0, 0.6), da: 0, durata: 1.6, gain: 0.2, fadeOut: 0.5, rev: 0.3, pan: 0.3 });
-  clip(mix, 'vento_leggero', { t: T.strega, da: 4, durata: 10, gain: 0.05, fadeIn: 1, fadeOut: 2, largo: 1.6 });
+  clip(mix, 'vento_leggero', { t: T.strega, da: 4, durata: 10, gain: 0.035, fadeIn: 1, fadeOut: 2, largo: 1.6 });
   clip(mix, 'legno_cigolio', { t: watch - 1.2, da: 0.25, durata: 0.9, gain: 0.22, fadeOut: 0.3, rev: 0.5 });
   clip(mix, 'scatti', { t: watch, da: 6.49, durata: 0.1, gain: 0.3, rev: 0.4 });
   timp(mix, watch, { vel: 120, gain: 0.95 });
   glock(mix, 86, { t: watch, vel: 34, gain: 0.25 });
   roll(mix, curse, 2.2, { gain: 0.4 });
-  clip(mix, 'rombo', { t: curse, da: 1, durata: 3, gain: 0.25, fadeIn: 0.5, fadeOut: 1, rev: 0.3 });
+  clip(mix, 'rombo', { t: curse, da: 4, durata: 3, gain: 0.25, fadeIn: 0.5, fadeOut: 1, rev: 0.3 });
   trem(mix, 37, { t: curse, dur: T.madri - curse, vel: 40, gain: 0.55 });
 
   // capitolo 8: i ritagli appuntati uno per battito, il ritaglio di Rory (motivo), lo spillo sulla fattoria (timpano forte)
   [0, 1, 2].forEach((i) => { clip(mix, 'scatti', { t: at('madri', 0, 0.8) + i * BEAT, da: 6.49, durata: 0.06, gain: 0.2, rev: 0.3, pan: (i - 1) * 0.3 }); tick(mix, 57 + i * 3, { t: at('madri', 0, 0.8) + i * BEAT, vel: 30 }); });
   motivo(mix, at('madri', 1, 1.2), { vel: 32, gain: 0.28, fino: pin - 0.3 });
-  timp(mix, pin, { vel: 110, gain: 0.7 });
-  piano(mix, 26, { t: pin, dur: 3, vel: 38 });
+  timp(mix, pin, { vel: 110, gain: 0.5 });
   piano(mix, 38, { t: pin, dur: 3, vel: 40 });
 
   // capitolo 9: la lettera della Chiesa (organo), i campanelli che suonano da soli, i flash, la foto che si macchia
@@ -218,8 +218,8 @@ export default (mix, T) => {
   clip(mix, 'ronzio_neon', { t: neon, da: 0, durata: 0.55, gain: 0.12, fadeOut: 0.05, rev: 0.2, pan: -0.5 });
   clip(mix, 'ronzio_neon', { t: neon + 0.55, da: 2.6, durata: 2.5, gain: 0.08, fadeIn: 0.05, fadeOut: 1.2, rev: 0.2, pan: -0.5 });
   clip(mix, 'auto_epoca', { t: at('possessione', 1, -1.0), da: 17.5, durata: 3.4, gain: 0.16, fadeIn: 0.4, fadeOut: 0.6, rev: 0.25 });
-  clip(mix, 'porta_cigolio', { t: at('possessione', 1, 0.6) + 1.2, da: 1, durata: 1.4, gain: 0.22, fadeOut: 0.4, rev: 0.5 });
-  clip(mix, 'tuono_forte', { t: strike + 0.05, da: 0.55, durata: 3.5, gain: 0.5, fadeIn: 0.03, fadeOut: 1.2, rev: 0.35 });
+  clip(mix, 'porta_cigolio', { t: at('possessione', 1, 0.6) + 1.2, da: 1, durata: 1.4, gain: 0.14, fadeOut: 0.4, rev: 0.5, lp: 3500 });
+  clip(mix, 'tuono_forte', { t: strike + 0.15, da: 0.3, durata: 3.5, gain: 0.5, fadeIn: 0.03, fadeOut: 1.2, rev: 0.35 });
   timp(mix, strike, { vel: 120, gain: 0.9 });
   clip(mix, 'tuono_classico', { t: strike + 2 * BEAT + 0.05, da: 0.45, durata: 2.5, gain: 0.2, fadeIn: 0.03, fadeOut: 1, rev: 0.35 });
   [74, 72, 69, 65, 62].forEach((m, i) => piano(mix, m, { t: strike + 0.4 + i * CROMA + 0.2, vel: 30 }));
