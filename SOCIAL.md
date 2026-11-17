@@ -212,6 +212,10 @@ Quando si programma (vincolante):
 - Dopo `create_posts`, `list_posts` con `statuses: SCHEDULED` per controllare; il giorno dopo l'uscita, `statuses: FAILED`:
   un post fallito (`lastError`) si segnala subito nell'app. Il controllo lo fa ogni sera l'attività dei commenti delle
   21:52 (post delle ultime 48 ore) e la domenica il manager per tutta la settimana.
+- **Uscite non programmate** (dal 17 novembre, dopo GTA VI mai uscito): ogni sera alle 21:52 l'attività dei commenti
+  confronta le uscite del calendario delle 48 ore successive con `list_posts` (video su tutte e quattro le reti e storie
+  24 ore prima). Se ne manca una, avviso «problema» nell'app con «⚠️ NON PROGRAMMATO»; non programma da sola: decide
+  l'editore. Un contenuto «confermato» non è anche «programmato»: nel calendario va scritto «programmato su PostFast».
 - Avviso «📤 Programmato» nell'app: titolo, data e ora, piattaforme.
 
 ## Commenti della sera (PostFast)
