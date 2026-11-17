@@ -139,12 +139,12 @@ export default (mix, T) => {
   sec(0, T.scissione, { drone: 30, harp: 32, mel: 40 });
   sec(T.scissione, T.ascensore, { drone: 34, pizz: 26, mel: 34, bells: 18, keep: 0.9, pausa: [cut1 - 2 * CROMA, cut1 + BEAT] });
   sec(T.ascensore, T.mark, { drone: 36, pizz: 30, str: 26, pausa: [split - 0.05, split + BEAT] });
-  sec(T.mark, T.ufficio, { drone: 34, str: 28, harp: 28, mel: 34 });
-  sec(T.ufficio, T.helly, { drone: 34, pizz: 30, mar: 30, bells: 26 });
+  sec(T.mark, T.ufficio, { drone: 30, str: 22, harp: 20, mel: 26 });
+  sec(T.ufficio, T.helly, { drone: 34, pizz: 28, mar: 26, bells: 22 });
   sec(T.helly, T.petey, { drone: 40, pizz: 30, str: 32, pausa: [no - 0.05, no + 2 * BEAT] });
   sec(T.petey, T.cobel, { drone: 36, harp: 28, str: 28, mel: 34, pausa: [peteyDies - 0.05, peteyDies + 2 * BEAT] });
   sec(T.cobel, T.risveglio, { drone: 40, pizz: 28, str: 34, keep: 0.8 });
-  sec(T.risveglio, T.fuori, { drone: 38, mar: 28, harp: 26, mel: 30, bells: 32 });
+  sec(T.risveglio, T.fuori, { drone: 32, mar: 18, harp: 18, mel: 24, bells: 20 });
   sec(T.fuori, T.casey, { drone: 42, spic: 30, doppio: true, str: 32, pizz: 24 });
   sec(T.casey, tOff, { drone: 46, str: 48, mel: 46, spic: 36, oct: 0, pausa: [viva - 0.05, viva + BEAT] });
 
