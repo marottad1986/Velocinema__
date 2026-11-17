@@ -58,6 +58,19 @@ in quel caso id, testo e nota dell'editore sono nel blocco `<routine-fire-payloa
    Se non si può completare: `{"id":"<id>","stato":"bloccata","nota":"il motivo e cosa serve dall'editore"}`.
 Mai contattare persone esterne né attivare spese per sviluppare una proposta: se servono, `bloccata` con il motivo.
 
+**Controllo due volte al giorno (decisione dell'editore, 17 nov 2026).** Le proposte approvate si sviluppano senza
+aspettare che qualcuno apra `/direzione`: un'attività programmata le controlla **alle 7:00 e alle 14:00** (ora italiana).
+- Nome: «In 2 minuti – proposte approvate». Repository: Velocinema__ (e in-2-minuti-gestione se la proposta riguarda l'app).
+  Ambiente: quello della squadra (con i segreti di rete per PostFast e per l'app).
+- Istruzioni dell'attività: «Sei la direzione di In 2 minuti. Leggi la skill `app`, punto 4. Controlla
+  `GET https://in-2-minuti-gestione.pages.dev/api/proposte`: se non ci sono proposte con esito `approvata` e stato
+  `da avviare` o `avviata`, chiudi subito senza fare altro. Altrimenti sviluppane una alla volta, dalla più vecchia,
+  seguendo il punto 4 (stato «in sviluppo», sviluppo, stato «fatta» o «bloccata»).»
+- **Chi la crea:** la prima sessione che legge questa skill controlla con `list_triggers` se l'attività esiste; se manca,
+  la crea (due orari, o un'espressione cron equivalente: `0 7,14 * * *` in ora italiana) e manda un avviso all'app
+  (`reparto` `direzione`, titolo «Attivato il controllo delle proposte, alle 7 e alle 14»). Una sola attività: se esiste
+  già, non se ne crea un'altra.
+
 ## 5. Cose che l'app fa da sola (non servono passaggi della squadra)
 - Uscite e fallimenti delle pubblicazioni: arrivano da PostFast all'app (webhook) e diventano avvisi.
 - Storie da pubblicare a mano su TikTok: l'app mostra le immagini di `calendario/storie/<settimana>/` del giorno, con
