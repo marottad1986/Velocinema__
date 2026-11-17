@@ -1,0 +1,143 @@
+{
+  "formato": "spiegato",
+  "tipo": "serie",
+  "schema": true,
+  "sigla": false,
+  "titolo": "Scissione",
+  "stagione": 1,
+  "regista": "Dan Erickson e Ben Stiller",
+  "anno": 2022,
+  "bpm": 72,
+  "palette": {
+    "chiaro": "#EEF3F1",
+    "principale": "#1E4A52",
+    "scuro": "#081417",
+    "accento": "#5FE3C2"
+  },
+  "personaggi": [
+    { "nome": "Mark", "ruolo": "un ex professore di storia", "oggetto": "fede nuziale" },
+    { "nome": "Irving", "ruolo": "un collega che segue ogni regola", "oggetto": "libretto delle regole" },
+    { "nome": "Dylan", "ruolo": "un collega che vuole i premi", "oggetto": "coppa" },
+    { "nome": "Casey", "ruolo": "la consulente del benessere", "oggetto": "fiore bianco" },
+    { "nome": "Helly", "ruolo": "la nuova collega", "oggetto": "lettera di dimissioni" },
+    { "nome": "Petey", "ruolo": "l'ex capo della squadra", "oggetto": "mappa" },
+    { "nome": "Cobel", "ruolo": "la capa del piano segreto", "oggetto": "binocolo" }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Al lavoro sei un'altra persona. E non lo sai.",
+    "immagine": "Locandina senza sigla, con «SPIEGATO SEMPLICE · SERIE» in alto e il titolo già completo dal primo fotogramma: uno spaccato verticale. Sopra, una notte d'inverno con la neve, una casetta con la finestra accesa e un edificio aziendale basso e bianco, generico; al centro una linea luminosa verde-acqua che taglia tutto il fotogramma (la scissione) attraversata dal pozzo dell'ascensore; sotto, un corridoio bianco in prospettiva con la moquette verde che si perde verso una porta illuminata. NON usare persone, il logo o l'edificio della serie, né le locandine ufficiali.",
+    "voce": "Scissione: e se al lavoro fossi un'altra persona?"
+  },
+  "capitoli": [
+    {
+      "id": "scissione", "titolo": "Cos'è la scissione?", "durata": 12, "personaggi": [],
+      "scena": "Schema del piano diviso: vedi Piani.tsx.",
+      "sottotitoli": [
+        "Lumon è un'azienda con un piano segreto, sottoterra.",
+        "Chi lavora lì si fa mettere un chip nel cervello.",
+        "Così lavoro e vita privata si dividono,",
+        "come due stanze senza porta: è la scissione."
+      ]
+    },
+    {
+      "id": "ascensore", "titolo": "Cosa succede in ascensore?", "durata": 11, "personaggi": [],
+      "scena": "Schema del piano diviso: vedi Piani.tsx.",
+      "sottotitoli": [
+        "Quando scende in ascensore, il dipendente si spegne.",
+        "Si accende l'interno, che conosce solo l'ufficio.",
+        "Quando risale torna l'esterno, la persona di sempre,",
+        "che del lavoro non ricorda niente."
+      ]
+    },
+    {
+      "id": "mark", "titolo": "Perché Mark l'ha fatto?", "durata": 11, "personaggi": [],
+      "scena": "Schema del piano diviso: vedi Piani.tsx.",
+      "sottotitoli": [
+        "Mark, ex professore di storia, ha perso la moglie Gemma in un incidente d'auto.",
+        "Per non soffrire almeno al lavoro, ha scelto la scissione.",
+        "Così il suo interno, sotto, non sa niente di lei."
+      ]
+    },
+    {
+      "id": "ufficio", "titolo": "Cosa si fa là sotto?", "durata": 11, "personaggi": [],
+      "scena": "Schema del piano diviso: vedi Piani.tsx.",
+      "sottotitoli": [
+        "Sotto, Mark lavora con Irving, che segue ogni regola, e Dylan, che vuole i premi.",
+        "Cancellano dagli schermi i numeri che mettono ansia.",
+        "E la signora Casey li tiene calmi con sedute di benessere."
+      ]
+    },
+    {
+      "id": "helly", "titolo": "Perché Helly non può andarsene?", "durata": 11, "personaggi": [],
+      "scena": "Schema del piano diviso: vedi Piani.tsx.",
+      "sottotitoli": [
+        "Poi arriva Helly, una nuova collega, che vuole subito andarsene.",
+        "Ma a decidere è la sua esterna:",
+        "con un video le risponde di no.",
+        "Così l'interna resta chiusa lì sotto, senza via d'uscita."
+      ]
+    },
+    {
+      "id": "petey", "titolo": "Chi era Petey?", "durata": 11, "personaggi": [],
+      "scena": "Schema del piano diviso: vedi Piani.tsx.",
+      "sottotitoli": [
+        "Fuori, Mark ritrova Petey, l'ex capo della squadra.",
+        "Petey ha fatto riunire di nascosto le sue due metà,",
+        "e gli lascia una mappa del piano segreto.",
+        "Ma l'operazione lo fa stare male, e muore."
+      ]
+    },
+    {
+      "id": "cobel", "titolo": "Chi controlla Mark?", "durata": 11, "personaggi": [],
+      "scena": "Schema del piano diviso: vedi Piani.tsx.",
+      "sottotitoli": [
+        "A capo del piano c'è la signora Cobel.",
+        "Ma lei il chip non ce l'ha:",
+        "fuori si fa chiamare Selvig e vive accanto a Mark,",
+        "fingendosi una vicina gentile, per spiarlo."
+      ]
+    },
+    {
+      "id": "risveglio", "titolo": "Si può svegliare un interno fuori?", "durata": 11, "personaggi": [],
+      "scena": "Schema del piano diviso: vedi Piani.tsx.",
+      "sottotitoli": [
+        "Sì, con il risveglio: dalla sala di controllo si accende l'interno anche fuori.",
+        "Lumon lo usa su Dylan, che a casa scopre di avere un figlio.",
+        "Così nasce un piano."
+      ]
+    },
+    {
+      "id": "fuori", "titolo": "Cosa scoprono fuori?", "durata": 11, "personaggi": [],
+      "scena": "Schema del piano diviso: vedi Piani.tsx.",
+      "sottotitoli": [
+        "Dylan resta in ufficio e tiene accese due manopole:",
+        "così Mark, Helly e Irving si svegliano fuori.",
+        "Helly è la figlia del capo di Lumon,",
+        "e su un palco racconta come trattano gli interni."
+      ]
+    },
+    {
+      "id": "casey", "titolo": "Chi è la signora Casey?", "durata": 12, "personaggi": [],
+      "scena": "Schema del piano diviso: vedi Piani.tsx.",
+      "sottotitoli": [
+        "Intanto Mark vede una foto di sua moglie Gemma:",
+        "è Casey, la consulente del benessere.",
+        "Gemma è viva! Mark fa in tempo a gridarlo,",
+        "poi fermano Dylan, e tutto si spegne.",
+        "Perché Lumon tiene Gemma là sotto?"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "In una frase: il lavoro di Mark gli nascondeva sua moglie.",
+    "immagine": "Lo spaccato della copertina più calmo: la linea della scissione che si spegne, la finestra della casa accesa, il corridoio in fondo con un cerchio rosso; riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina' + scritta 'Commenta con la spiegazione che vorresti.'"
+  },
+  "musica": "Originale e strumentale, 72 bpm: un ostinato di pianoforte a crome, freddo e preciso come un orologio d'ufficio, in Si minore; pizzicati degli archi e celesta per gli schermi dei numeri, violoncelli caldi per il mondo di fuori; il piano dei tre colleghi a passo doppio negli archi in spiccato; nessun brano né tema della serie.",
+  "fonti": [
+    "Scissione (titolo italiano di Severance), serie Apple TV+ creata da Dan Erickson e diretta da Ben Stiller e Aoife McArdle; i dipendenti di Lumon Industries si sottopongono alla scissione per separare i ricordi della vita personale da quelli lavorativi; Mark si è sottoposto alla scissione dopo la morte della moglie Gemma; Harmony Cobel non è sottoposta a scissione e, con il nome di Selvig, è la vicina di casa dell'esterno di Mark; Casey è la consulente per il benessere e il suo esterno Gemma è la moglie di Mark; Petey è il migliore amico di Mark; Irving prova dei sentimenti per Burt: https://it.wikipedia.org/wiki/Scissione_(serie_televisiva)",
+    "Prima stagione di 9 episodi (18 febbraio – 8 aprile 2022); gli impiegati vengono chiamati interni, le persone fuori dall'orario di lavoro esterni; impianto nel cervello di un microchip; Mark era un insegnante di storia e sostituisce Petey; al reparto si scansionano i numeri sui monitor e si eliminano quelli che suscitano stati d'animo negativi; Helly vuole dimettersi, la sua esterna risponde con un video che vuole continuare a lavorare; Petey si è sottoposto alla reintegrazione, lascia a Mark una mappa e muore poco dopo (episodio 3); il risveglio sveglia l'interno di Dylan a casa, dove vede suo figlio; nel finale Dylan tiene attive le due manopole, Helly è Helena Eagan, figlia dell'amministratore delegato di Lumon, e sul palco racconta che gli interni sono trattati in modo disumano; Irving scopre che Burt ha già un marito; Mark vede una foto di Gemma e scopre che è Casey, urla «Lei è viva»; Milchick aggredisce Dylan e le manopole si spengono: https://it.wikipedia.org/wiki/Episodi_di_Scissione_(prima_stagione)",
+    "Mark former history professor promoted to department head after Petey's sudden departure; the work is sorting cryptic numbers; Irving is a stickler for company policy; Dylan greatly enjoys the company perks; Helly wakes up in a conference room; Kier is a Lumon-subsidized town; Milchick tackles Dylan in the finale: https://en.wikipedia.org/wiki/Severance_(TV_series)"
+  ]
+}
