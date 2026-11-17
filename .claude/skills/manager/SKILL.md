@@ -32,10 +32,10 @@ Cosa fai, secondo la richiesta (argomenti: $ARGUMENTS):
    PostFast (`SOCIAL.md`, «Pubblicazione automatica»). Per i dati puoi usare anche `get_post_analytics` e `get_follower_history`
    di PostFast (TikTok arriva senza il ritardo di Metricool).
 4. Salva il lavoro con commit e push sul ramo della sessione (si parte sempre da `main`).
-5. **Avvisi su Telegram** (`SOCIAL.md`, «Avvisi all'utente su Telegram»): la domenica, appena la tabella è pronta, mandi
-   all'utente i risultati (dati della settimana e proposta) nel gruppo in2miniti e la stessa cosa in questa chat; dopo
-   l'approvazione, un secondo messaggio quando calendario, produzioni e materiale social sono pronti. Ogni avviso Telegram va
-   anche all'app «In 2 minuti» (`reparto` `manager`, POST a `/api/avvisi` come in `SOCIAL.md`; risposta `{"ok":true}`).
+5. **Avvisi nell'app** (`SOCIAL.md`, «Avvisi all'utente nell'app»; Telegram è dismesso): la domenica, appena la tabella è
+   pronta, mandi all'utente i risultati (dati della settimana e proposta) nell'app «In 2 minuti» (`reparto` `manager`, POST a
+   `/api/avvisi`, risposta `{"ok":true}`) e la stessa cosa in questa chat; dopo l'approvazione, un secondo avviso quando
+   calendario, produzioni e materiale social sono pronti.
 
 Non produci video: li fanno le sessioni `/produzione` che avvii dopo l'approvazione. Se un contenuto in calendario non è pronto
 in tempo, esce l'alternativa indicata e il contenuto slitta: la qualità delle scene non si sacrifica per la data.

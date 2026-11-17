@@ -7,7 +7,7 @@ Tenuto dalla contabilità (`/contabilita`). Importi in euro salvo diversa indica
 |---|---|---|---|---|---|
 | Claude | squadra (sessioni cloud) | a pagamento | 22 € | ? | |
 | ElevenLabs | voce (Brando, eleven_v4), uso commerciale | a pagamento | 6 € | ? | il gratuito non vale per i video pubblicati |
-| IFTTT | Telegram e Google Calendar | gratuito | 0 | – | 15 crediti per messaggio: tenere d'occhio i crediti |
+| IFTTT | Google Calendar (Telegram dismesso il 17 nov) | gratuito | 0 | – | tenere d'occhio i crediti |
 | Metricool | dati e (presto) pubblicazione | gratuito → a pagamento | 0 (oggi) | – | **da attivare (deciso dall'editore il 15 nov):** piano Starter (post illimitati, circa 20–25 $/mese secondo fonti non ufficiali: prezzo da leggere su metricool.com/pricing all'attivazione). Il gratuito pubblica solo 20 post al mese |
 | MEGA | archivio video | gratuito | 0 | – | |
 
