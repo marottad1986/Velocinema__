@@ -4,6 +4,9 @@ Ogni reparto e ogni agente (revisori compresi) scrive qui idee, miglioramenti, n
 token a parità di qualità e lavoro che ci sembra inutile. Una riga per proposta, le più recenti in alto:
 data · chi propone · proposta · cosa si guadagna o risparmia · stato (aperta / portata all'editore / decisa → `DECISIONI.md` / scartata).
 La direzione le legge all'inizio di ogni sessione, le porta all'editore e, una volta decise, le sposta in `DECISIONI.md`.
+**L'editore le decide nell'app** «In 2 minuti» (Altro → Proposte: Approva, Più avanti, Scarta): se approva, lo sviluppo
+parte da solo; procedura nella skill `app` (punto 4). L'app riconosce ogni proposta da data, autore e inizio del testo:
+in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo lo stato in fondo alla riga.
 
 ## Aperte
 - 17 nov 2026 · revisore-musica (Scissione) · **Colpi che si sentono anche sotto la voce**: il ducking di `scripts/voce.mjs`

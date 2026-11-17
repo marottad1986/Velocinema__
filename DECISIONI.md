@@ -3,6 +3,11 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 17 nov 2026 · **Proposte decise nell'app e procedure dell'app in un solo posto.** L'editore approva, rimanda o scarta le
+  proposte di `PROPOSTE.md` dall'app «In 2 minuti»; una proposta approvata parte da sola (attività «In 2 minuti – sviluppo
+  proposte») o alla prima sessione `/direzione`, che controlla `GET /api/proposte`. Le procedure con l'app (avvisi, video da
+  confermare, commenti, proposte) sono raccolte nella skill `app`, che aggiorna la sessione dell'app sul PC dell'editore
+  (autorizzata dall'editore a modificare solo le istruzioni che riguardano l'app). · direzione, tutti
 - 17 nov 2026 · **Conferme dei video e risposte ai commenti passano dall'app «In 2 minuti».** Video pronto: anteprima a
   540 px, richiesta `video` con `POST /api/richieste` e `PUT /api/media/<id>`, attesa in background con
   `scripts/strumenti/attendi-conferma.sh` (ogni 2 minuti); «approvata» → unione e programmazione, «da rifare» → si legge

@@ -25,7 +25,8 @@ titolo alla fine): JSON in `promo/`, regole in `TRAILER.md`.
 Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni domenica alle 15:00
 la settimana che inizia il giorno dopo, con i dati di Metricool e PostFast, e avvio della produzione; post e storie programmati con PostFast; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.
 Comandi per aprire una sessione: `/manager` (team social media manager), `/produzione` (un video per sessione), `/direzione`
-(consigliere dell'editore, diffonde le decisioni) e `/contabilita` (conti). Organigramma e tabella di marcia verso
+(consigliere dell'editore, diffonde le decisioni) e `/contabilita` (conti); come la squadra usa l'app di gestione dell'editore (avvisi, conferme, commenti, proposte): skill
+`app` (`/app`). Organigramma e tabella di marcia verso
 l'automazione: `ORGANIZZAZIONE.md`; decisioni valide per tutti: `DECISIONI.md`; errori da non ripetere: `ERRORI.md`.
 **Obiettivo del progetto: guadagnare** (collaborazioni e sponsorizzazioni sulle uscite attuali, vedi `DECISIONI.md`).
 Ogni sessione e ogni agente, revisori compresi, può proporre miglioramenti, risparmi o nuovi colleghi e segnalare lavoro

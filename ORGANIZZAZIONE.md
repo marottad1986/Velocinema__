@@ -35,6 +35,7 @@ monetizzazione   │                          persone da coinvolgere
 | **Pubblicazione** | manager, `SOCIAL.md` «Pubblicazione automatica» | Programma i post su Metricool (TikTok, Instagram, Facebook, YouTube) e le storie | Orari già approvati | Niente (segue la settimana approvata) |
 | **Community e diffusione** | manager, `SOCIAL.md` «Commenti» e «Diffusione» | Commenti → risposte proposte nell'app; per ogni video chi può rilanciarlo (protagonista, regista, distributore, pagine di fan) e messaggio pronto | Bozze di risposte e messaggi | **Ogni messaggio a persone esterne** lo invia l'editore (o lo approva) |
 | **Contabilità** | `/contabilita`, `contabilita/` | Registro costi ed entrate, abbonamenti, crediti (ElevenLabs, IFTTT), rendiconto mensile, avvisi di spesa | Registrazioni, avvisi | Nuove spese, cambi di piano |
+| **App di gestione** | app «In 2 minuti» (telefono dell'editore), sessione sul PC dell'editore, skill `app` | Mostra uscite, produzioni, numeri e avvisi; raccoglie le decisioni dell'editore (video, commenti, proposte); aggiorna le procedure dell'app per la squadra | Come mostrare i dati, le procedure tecniche con l'app | Funzioni nuove dell'app |
 | **Revisori** | `.claude/agents/` | Controllo indipendente di testi, immagini, musica, voce | Verdetti | – |
 
 Memoria comune della squadra (si legge all'inizio di ogni sessione del proprio reparto, così non si ragiona da capo):

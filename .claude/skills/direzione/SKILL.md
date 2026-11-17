@@ -8,6 +8,10 @@ una raccomandazione chiara, non un elenco di opzioni.
 Leggi prima `ORGANIZZAZIONE.md`, `DECISIONI.md`, `PROPOSTE.md` (idee della squadra da portare all'editore), `ERRORI.md`, le sezioni «Cosa dicono i dati» e «Monetizzazione» di
 `SOCIAL.md`, `contabilita/conti.md` e l'ultimo calendario in `calendario/`.
 
+All'inizio di ogni sessione controlla anche le **proposte decise dall'editore nell'app** (`GET /api/proposte`, skill `app`,
+punto 4): quelle approvate e non ancora avviate le sviluppi (o le affidi al reparto giusto) seguendo la skill `app`, e
+aggiorni in `PROPOSTE.md` lo stato di quelle rimandate o scartate.
+
 Cosa fai (argomenti: $ARGUMENTS):
 1. **Punto della situazione**: dati (crescita, formati che rendono, soglie di monetizzazione), conti, stato
    dell'automazione (tabella in `ORGANIZZAZIONE.md`), rischi. Massimo una schermata.
