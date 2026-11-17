@@ -49,8 +49,9 @@ Attività programmata: «In 2 minuti – programmazione della settimana» (`trig
    da produrre o da verificare (strumento `create_session`, repository `marottad1986/Velocinema__`), con titolo, giorno
    e ora di uscita, scadenza (video su MEGA entro la sera prima) e l'ordine di avvisare subito l'utente se la data non è
    raggiungibile con la qualità richiesta. Prima si unisce su `main` il calendario, così le sessioni lo trovano.
-   Produzioni distanziate (vincolante): al massimo due produzioni al giorno, a 5 ore l'una dall'altra (dalla fine della
-   precedente), per restare nei limiti di utilizzo. Le scadenze e l'ordine di avvio si assegnano tenendone conto:
+   Produzioni distanziate (vincolante): al massimo due produzioni intere al giorno, a 5 ore l'una dall'altra (dall'avvio
+   della precedente), per restare nei limiti di utilizzo; i lavori piccoli (solo voce, correzioni, finire una produzione
+   del giorno prima) non contano e non spostano l'avvio di quella prevista (`CLAUDE.md`). Le scadenze e l'ordine di avvio si assegnano tenendone conto:
    le sessioni partono a scaglioni, ognuna con l'ora d'inizio prevista.
 6. **Subito dopo l'approvazione** (sempre, senza aspettare che venga chiesto) si prepara il materiale social di ogni
    uscita della settimana in `calendario/<aaaa-mm-gg>-social.md`, così è pronto in anticipo:

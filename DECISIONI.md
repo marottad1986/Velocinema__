@@ -3,6 +3,11 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 17 nov 2026 · **Le 5 ore valgono solo tra produzioni intere, dall'avvio.** Solo voce, correzioni o la coda di una
+  produzione del giorno prima non contano e non fanno slittare la produzione prevista, che parte alla sua ora anche se
+  un'altra sessione sta ancora finendo. Al massimo due produzioni intere al giorno, la seconda 5 ore dopo l'avvio della
+  prima. (Il 17 mattina Scissione non era partita perché c'era da finire solo la voce di Gli anni.) · produzione, manager
+
 - 16 nov 2026 · **Evolversi: ogni video più bello del precedente.** Non si resta statici: chi guarda deve sentire che la
   qualità sale. Ogni produzione parte dal livello già raggiunto (mai sotto), porta almeno un passo avanti visibile o
   udibile deciso prima di disegnare, si confronta con l'ultimo video prima di andare all'editore e scrive cosa ha imparato
