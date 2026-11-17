@@ -2,7 +2,7 @@
 
 Chi fa cosa, come passa il lavoro da un reparto all'altro e cosa manca per l'automazione completa.
 Obiettivo dell'editore (l'utente): **solo supervisionare**. Approva la settimana una volta, guarda i video quando vuole,
-legge Telegram. Tutto il resto lo fa la squadra da sola.
+legge gli avvisi nell'app «In 2 minuti». Tutto il resto lo fa la squadra da sola.
 
 ## Organigramma
 
@@ -21,7 +21,7 @@ MANAGER        (/produzione) (dentro il     DIFFUSIONE         (/contabilita)
 (/manager)     una sessione  manager)       (dentro il         conti, costi,
 dati, idee di  per video     post su        manager)           entrate, soglie
 format, titoli,  │           Metricool,     commenti, risposte di spesa
-settimana,       │           storie, orari  su Telegram,
+settimana,       │           storie, orari  nell'app,    
 monetizzazione   │                          persone da coinvolgere
                  │
      REVISORI (subagenti): testi · immagini · musica · voce
@@ -33,7 +33,7 @@ monetizzazione   │                          persone da coinvolgere
 | **Social media manager** | `/manager`, `SOCIAL.md` | Dati Metricool, scelta titoli, settimana, **proposte di format nuovi** (es. X Factor, GTA sono idee che deve trovare lui), monetizzazione e requisiti dei profili | Bozza della settimana, alternative, testi dei post | **Approvazione della settimana** (l'unico «sì» obbligatorio) |
 | **Produzione** | `/produzione`, `CLAUDE.md`, `BRIEF-SCENA.md` | Un video per sessione, dalla scena alla voce, revisori, PR | Tutto il contenuto, nelle regole | Solo se la data salta o manca una chiave |
 | **Pubblicazione** | manager, `SOCIAL.md` «Pubblicazione automatica» | Programma i post su Metricool (TikTok, Instagram, Facebook, YouTube) e le storie | Orari già approvati | Niente (segue la settimana approvata) |
-| **Community e diffusione** | manager, `SOCIAL.md` «Commenti» e «Diffusione» | Commenti → risposte proposte su Telegram; per ogni video chi può rilanciarlo (protagonista, regista, distributore, pagine di fan) e messaggio pronto | Bozze di risposte e messaggi | **Ogni messaggio a persone esterne** lo invia l'editore (o lo approva) |
+| **Community e diffusione** | manager, `SOCIAL.md` «Commenti» e «Diffusione» | Commenti → risposte proposte nell'app; per ogni video chi può rilanciarlo (protagonista, regista, distributore, pagine di fan) e messaggio pronto | Bozze di risposte e messaggi | **Ogni messaggio a persone esterne** lo invia l'editore (o lo approva) |
 | **Contabilità** | `/contabilita`, `contabilita/` | Registro costi ed entrate, abbonamenti, crediti (ElevenLabs, IFTTT), rendiconto mensile, avvisi di spesa | Registrazioni, avvisi | Nuove spese, cambi di piano |
 | **Revisori** | `.claude/agents/` | Controllo indipendente di testi, immagini, musica, voce | Verdetti | – |
 
@@ -45,13 +45,13 @@ Memoria comune della squadra (si legge all'inizio di ogni sessione del proprio r
 
 | Quando | Chi | Cosa | Stato oggi |
 |---|---|---|---|
-| Dom 15:05 | Manager (attività programmata) | Dati Metricool → proposta della settimana → Telegram | ✅ esiste (`trig_01ErsayWy5XJvQ6RMrpNndyF`, spenta per il 15, si riaccende da sola il 16) |
+| Dom 15:05 | Manager (attività programmata) | Dati Metricool → proposta della settimana → app | ✅ esiste (`trig_01ErsayWy5XJvQ6RMrpNndyF`, spenta per il 15, si riaccende da sola il 16) |
 | Dom, dopo il «sì» | Editore | **Approva in chat** (unico intervento obbligatorio) | ✅ |
 | Dom, dopo il «sì» | Manager | Calendario Google, materiale social, coda delle produzioni | ✅ |
 | Tutta la settimana | Produzione | Un video alla volta, max 2 al giorno a 5 ore | ⚠️ funziona ma a catena di promemoria: si rompe facilmente (vedi punto 3 sotto) |
 | A video unito su main | GitHub Actions | Render e caricamento su MEGA | ✅ |
 | Dopo la conferma del video | Pubblicazione | Post e storie programmati su PostFast | ✅ dal 16 nov (TikTok, YouTube, Facebook; Instagram da collegare) |
-| Ogni sera 21:52 | Community | Commenti (casella di PostFast) → riassunto e risposte proposte su Telegram | ✅ dal 16 nov |
+| Ogni sera 21:52 | Community | Commenti (casella di PostFast) → riassunto e risposte proposte nell'app | ✅ dal 16 nov |
 | Ogni uscita | Diffusione | Messaggio pronto per protagonista / regista / pagine | ❌ nuovo (punto 5) |
 | 1° del mese | Contabilità + direzione | Rendiconto, soglie di monetizzazione, priorità del mese | ❌ nuovo (punto 6) |
 
@@ -78,19 +78,19 @@ link diretto al file, Metricool accetta URL pubblici, Google Drive (se collegato
   (e) Instagram e TikTok devono essere **account professionali/business** perché la pubblicazione automatica funzioni.
 - **Cosa facciamo noi dopo:** il workflow carica anche nella cartella pubblica; il manager, dopo l'approvazione e a video
   pronto, programma ogni post (testo da `<settimana>-social.md`, copertina = fotogramma 0) e la storia del giorno prima;
-  l'avviso Telegram «📤 programmato» col link a Metricool. Il primo mese con `autoPublish: false` (ti arriva la notifica
+  l'avviso «📤 programmato» nell'app. Il primo mese con `autoPublish: false` (ti arriva la notifica
   sull'app Metricool e tocchi «pubblica»), poi automatico.
 - **Deciso (15 nov): sì, sempre.** Dichiarazione di contenuto IA (`isAigc` TikTok, `isAiGeneratedContent` YouTube, `isAiGenerated` Instagram).
   Voce sintetica e disegni generati: la direzione consiglia di dichiararlo sempre (le piattaforme lo chiedono per la voce IA
   e senza dichiarazione si rischia la monetizzazione).
 
-### 2. Commenti → risposte su Telegram
+### 2. Commenti → risposte proposte nell'app
 **Risolto il 16 nov con PostFast**: la sua casella legge i commenti di TikTok, Facebook e Instagram (non YouTube). Il testo qui
 sotto resta come alternativa.
 Metricool dà solo il **numero** dei commenti, non il testo. Per leggere il testo:
 - **Instagram e Facebook:** API Graph di Meta (gratuita) con un token di lunga durata della pagina. **Tu:** crei un'app su
   developers.facebook.com (5 minuti, ti guidiamo) e salvi il token come segreto per `graph.facebook.com` quando la sessione
-  te lo chiede. Poi l'attività delle 22:00 legge i commenti nuovi, prepara le risposte e le manda su Telegram.
+  te lo chiede. Poi l'attività delle 22:00 legge i commenti nuovi, prepara le risposte e le manda nell'app.
 - **TikTok:** l'API dei commenti non è aperta agli account normali. Restano gli screenshot (o la casella messaggi di
   Metricool, che però è nei piani a pagamento e non nel connettore).
 - **YouTube:** API YouTube Data con chiave Google (gratuita), stesso metodo.
@@ -129,4 +129,4 @@ nei post le mette in automatico la pubblicazione; i messaggi privati li mandi tu
 3. App Meta per i commenti (token), chiave YouTube Data.
 4. Costi attuali alla contabilità.
 5. Soglia di spesa oltre cui ti chiediamo (decise il 15 nov: unione dopo la tua conferma del video, dichiarazione IA sempre).
-Dopo questo, il tuo lavoro settimanale è: **un «sì» la domenica** e leggere Telegram.
+Dopo questo, il tuo lavoro settimanale è: **un «sì» la domenica** e leggere gli avvisi nell'app.

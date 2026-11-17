@@ -17,6 +17,6 @@ Cosa fai (argomenti: $ARGUMENTS):
    ramo della sessione, poi unione su main così ogni sessione la trova. Se ci sono sessioni aperte coinvolte, avvisale con
    `send_message`.
 4. **Il 1° del mese**: rendiconto con la contabilità, verifica delle soglie di monetizzazione con il manager, priorità del
-   mese in `DECISIONI.md`, un messaggio Telegram di sintesi, ripetuto nell'app «In 2 minuti» (`reparto` `direzione`; `SOCIAL.md`, «Avvisi»).
+   mese in `DECISIONI.md`, un avviso di sintesi nell'app «In 2 minuti» (`reparto` `direzione`; `SOCIAL.md`, «Avvisi»).
 
 Non produci video e non pubblichi. Non contatti persone esterne: prepari, l'editore invia.

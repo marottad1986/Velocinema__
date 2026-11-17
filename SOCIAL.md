@@ -63,36 +63,30 @@ Attività programmata: «In 2 minuti – programmazione della settimana» (`trig
    Valgono le regole sui testi di CLAUDE.md: fatti verificati, niente frasi come «La prossima volta che lo vedi…».
    Didascalia e titolo vanno anche nella descrizione dell'evento su Google Calendar, per averli sul telefono.
 
-## Avvisi all'utente su Telegram (vincolante, manager e produzione)
-Gli avvisi arrivano nel gruppo Telegram **in2miniti** via IFTTT: servizio `telegram`, azione `send_message`,
-`account_id` `461715660`, campi `chat_id` `"-5515136307"` (il nome del campo è `chat_id`, non `chat`: con un nome
-sbagliato l'azione fallisce), `text` e `include_web_page_preview` `"0"`. Dopo l'invio controllare che la risposta sia
-`success: true` (in caso di dubbio: `get_activity_feed` con `service_slug` `telegram`). Il testo accetta solo i tag HTML
-`b`, `i`, `a`, `br`, `pre`, `code`. Ogni messaggio costa 15 crediti IFTTT: solo gli avvisi qui sotto, niente messaggi di stato intermedi.
-Telegram serve solo ad avvisare: l'utente risponde (approvazioni, modifiche) nella chat della sessione, quindi ogni avviso
-dice in quale sessione rispondere. Lo stesso contenuto va mandato **anche nella chat della sessione** (SendUserMessage /
-SendUserFile), così l'utente lo trova lì quando apre la conversazione.
-- **Manager, domenica — proposta pronta**: appena la tabella della settimana è pronta (prima dell'approvazione), un messaggio
+## Avvisi all'utente nell'app «In 2 minuti» (vincolante, tutti i reparti)
+Gli avvisi arrivano nell'app «In 2 minuti», che manda le notifiche sul telefono. **Telegram è dismesso** (decisione del
+17 novembre 2026): niente più messaggi Telegram né IFTTT per gli avvisi. L'app serve solo ad avvisare: l'utente risponde
+(approvazioni, modifiche) nella chat della sessione, quindi ogni avviso dice in quale sessione rispondere. Lo stesso
+contenuto va mandato **anche nella chat della sessione** (SendUserMessage / SendUserFile), così l'utente lo trova lì quando
+apre la conversazione. Solo gli avvisi qui sotto, niente messaggi di stato intermedi.
+- **Manager, domenica — proposta pronta**: appena la tabella della settimana è pronta (prima dell'approvazione), un avviso
   con i dati della settimana in 3–4 righe (follower, video migliore, cosa funziona), le 9 uscite (giorno, ora, titolo, stato)
   e «Rispondi nella sessione del manager per approvare».
-- **Manager, domenica — dopo l'approvazione**: un messaggio quando eventi in calendario, sessioni di produzione e materiale
+- **Manager, domenica — dopo l'approvazione**: un avviso quando eventi in calendario, sessioni di produzione e materiale
   social sono pronti (elenco delle produzioni avviate, con la scadenza di ciascuna).
-- **Produzione — avvio**: appena la sessione di produzione parte (contenuto scelto, ramo creato), un messaggio con titolo,
+- **Produzione — avvio**: appena la sessione di produzione parte (contenuto scelto, ramo creato), un avviso con titolo,
   formato, data e ora di uscita dal calendario, scadenza prevista e «Rispondi nella sessione di produzione di <titolo>»
   (le domande sul contenuto si fanno lì).
 - **Produzione — video pronto**: quando il video finale con la voce è pronto da controllare (controlli verdi e revisori
-  APPROVATO), un messaggio con titolo, data di uscita, link alla pull request e cartella MEGA. Nella chat della sessione si
+  APPROVATO), un avviso con titolo, data di uscita, link alla pull request e cartella MEGA. Nella chat della sessione si
   manda anche il video (`out/<film>-voce.mp4`, o `out/<film>.mp4` se la voce manca) con SendUserFile, così l'utente lo
   guarda subito e dice se va bene. Il video è «pronto» solo dopo la conferma dell'editore; appena conferma, la sessione
   unisce su main da sola senza chiedere altro (`DECISIONI.md`, 15 novembre 2026).
 - **Produzione — problema**: se la data di uscita non è raggiungibile con la qualità richiesta, o la sessione è bloccata
-  (chiave, connettore, errore), un messaggio subito con il motivo e l'alternativa prevista dal calendario.
-Se il connettore IFTTT non è disponibile, si avvisa solo nella chat della sessione (SendUserMessage, e notifica push se c'è)
-e nell'app (sotto).
+  (chiave, connettore, errore), un avviso subito con il motivo e l'alternativa prevista dal calendario.
+- Anche commenti della sera, contabilità e direzione mandano i loro avvisi all'app.
 
-**Stesso avviso anche nell'app «In 2 minuti»** (decisione del 16 novembre 2026, per ora in contemporanea a Telegram, che
-resta com'è): ogni volta che si manda un avviso Telegram (compresi commenti della sera, contabilità e direzione), si manda lo
-stesso avviso all'app con una POST a `https://in-2-minuti-gestione.pages.dev/api/avvisi`, intestazione
+**Come si manda**: una POST a `https://in-2-minuti-gestione.pages.dev/api/avvisi`, intestazione
 `content-type: application/json`, corpo JSON:
 ```json
 {"reparto": "produzione|manager|pubblicazione|commenti|direzione|contabilita|sistema",
@@ -108,10 +102,11 @@ stesso avviso all'app con una POST a `https://in-2-minuti-gestione.pages.dev/api
   curl -sS -X POST https://in-2-minuti-gestione.pages.dev/api/avvisi \
     -H 'content-type: application/json' --data-binary @"$SCRATCH/avviso.json"
   ```
-  (`$SCRATCH` = la cartella temporanea della sessione.) Nel campo `testo` niente tag HTML di Telegram: testo semplice, a capo con `\n`.
-- Risposta attesa: `{"ok":true,...}`. Se non arriva, lo si scrive nell'avviso Telegram (una riga: «App: avviso non arrivato,
-  <errore>») ma il lavoro non si ferma. Corrispondenze: «Produzione — avvio» → `avvio`, «video pronto» → `pronto`,
-  «📤 Programmato» → `programmato`, «problema» e post falliti → `problema`, il resto (manager, commenti, conti) → `info`.
+  (`$SCRATCH` = la cartella temporanea della sessione.) Nel campo `testo` solo testo semplice, a capo con `\n`.
+- Risposta attesa: `{"ok":true,...}`. Se non arriva, si riprova una volta; se fallisce ancora, lo si scrive nella chat
+  della sessione (una riga: «App: avviso non arrivato, <errore>») ma il lavoro non si ferma. Corrispondenze: «Produzione —
+  avvio» → `avvio`, «video pronto» → `pronto`, «📤 Programmato» → `programmato`, «problema» e post falliti → `problema`,
+  il resto (manager, commenti, conti) → `info`.
 
 ## Pubblicazione automatica (PostFast)
 Dal 16 novembre 2026 i post si programmano con **PostFast** (prova gratuita fino al ~21 novembre, poi piano a pagamento:
@@ -169,15 +164,14 @@ Quando si programma (vincolante):
 - Nel cloud gli script Remotion usano il browser locale: `REMOTION_BROWSER=/opt/pw-browsers/chromium` (senza, il download di
   Chrome da remotion.media è bloccato).
 - Dopo `create_posts`, `list_posts` con `statuses: SCHEDULED` per controllare; il giorno dopo l'uscita, `statuses: FAILED`:
-  un post fallito (`lastError`) si segnala subito su Telegram.
-- Avviso Telegram «📤 Programmato»: titolo, data e ora, piattaforme. Va nello stesso messaggio del «video pronto» se
-  arriva insieme, per risparmiare crediti IFTTT.
+  un post fallito (`lastError`) si segnala subito nell'app.
+- Avviso «📤 Programmato» nell'app: titolo, data e ora, piattaforme.
 
 ## Commenti della sera (PostFast)
 PostFast legge i commenti di TikTok, Facebook e (quando collegato) Instagram, dal collegamento in poi: `get_inbox_unread_count`,
 `list_inbox_conversations` (solo non letti), `list_inbox_items`. Ogni sera alle 21:52 un'attività programmata apre una sessione,
 prepara un riassunto e le risposte proposte (tono in prima persona plurale, simpatico e costruttivo, niente spoiler senza avviso,
-fatti solo verificati, richieste di titoli annotate in «Richieste dai commenti») e le manda in un solo messaggio Telegram.
+fatti solo verificati, richieste di titoli annotate in «Richieste dai commenti») e le manda in un solo avviso nell'app.
 **Non risponde sui social**: le risposte le pubblica l'editore (o, se lui scrive «ok» nella sessione dei commenti, la
 sessione le pubblica con `reply_to_inbox_item`). Mai `set_inbox_item_state` con DELETE senza l'editore. YouTube non ha la
 casella dei commenti in PostFast.
@@ -203,7 +197,7 @@ se sono cambiati, si aggiorna questa tabella.
 Cosa conviene (valutato dal manager, deciso dall'editore): i video lunghi di YouTube sono la strada più veloce per le ore di
 visione; su TikTok conta superare 1 minuto (già fatto) e la soglia dei 10.000; le collaborazioni (come Mr.goal) portano follower
 più dei bonus. Rischi da evitare: musica non nostra nel video (blocca la monetizzazione), immagini o clip dei film,
-mancata dichiarazione di contenuto IA dove la piattaforma la chiede. Quando una soglia è vicina (oltre l'80%), avviso su Telegram.
+mancata dichiarazione di contenuto IA dove la piattaforma la chiede. Quando una soglia è vicina (oltre l'80%), avviso nell'app.
 
 ## Diffusione (persone che possono rilanciare il video)
 Per ogni uscita, nel `calendario/<settimana>-social.md`, una sezione «Diffusione» quando è fattibile:
@@ -214,7 +208,7 @@ Per ogni uscita, nel `calendario/<settimana>-social.md`, una sezione «Diffusion
   se c'è un accordo, e un **messaggio privato pronto** da incollare (breve, in prima persona plurale, cosa abbiamo fatto, link,
   nessuna richiesta insistente; offrire di condividerlo, mai chiedere soldi o favori).
 - **Chi invia**: i messaggi privati li manda l'editore (sono contatti con persone reali a nome della pagina); la squadra li
-  prepara e ricorda il momento giusto (subito dopo l'uscita) con l'avviso Telegram del giorno.
+  prepara e ricorda il momento giusto (subito dopo l'uscita) con l'avviso del giorno nell'app.
 - Si annota la risposta in `calendario/pubblicati.md` (colonna Note), così si sa chi rilancia e chi no.
 
 ## Come si sceglie un titolo (la parte più importante)

@@ -38,7 +38,7 @@ si può verificare in automatico, una regola in `scripts/controlli.mjs`). Righe 
 - Catena delle produzioni rotta da una sessione ferma (9, 11, 15 nov) → «Regista della coda» (vedi `ORGANIZZAZIONE.md`).
 - Contenuto in calendario senza voce il giorno prima (La grande onda, 14 nov) → la voce è parte del «pronto»: senza `-voce.mp4` su MEGA il contenuto non è pronto.
 - Produzione successiva avviata nella stessa sessione con `send_later` (Il miglio verde dopo Donnie Darko, 16 nov) → ogni produzione in una sessione nuova: per la catena si usa un'attività programmata che apre una sessione nuova (`create_trigger` con `create_new_session_on_fire`), mai un promemoria nella sessione che ha appena finito.
-- Avviso Telegram fallito per il campo `chat` invece di `chat_id` → usare sempre i campi di `SOCIAL.md` e controllare `success: true`.
+- Avviso fallito per un campo sbagliato → usare sempre i campi di `SOCIAL.md` e controllare la risposta (`{"ok":true}` per l'app; Telegram dismesso il 17 nov).
 - Idee di format nuovi arrivate dall'editore (X Factor, videogiochi) → il manager propone ogni domenica almeno un esperimento (`SOCIAL.md` «Idee nuove»).
 - Video rifatto in una sessione solo per pubblicarlo (16 nov, Titanic): MEGA non è raggiungibile dalle sessioni → il workflow carica il video su PostFast e registra la chiave nel ramo `postfast-media`.
 - Render nel cloud fallito per il download di Chrome (remotion.media bloccato) → `REMOTION_BROWSER=/opt/pw-browsers/chromium`.
