@@ -22,6 +22,7 @@ si può verificare in automatico, una regola in `scripts/controlli.mjs`). Righe 
 - Cambio di carattere (maggiore, crescendo) sulla battuta prima dell'evento → sull'evento visivo.
 - Buchi tra le sezioni → nessun tratto muto non voluto nei passaggi di capitolo.
 - Motivi che ricordano temi noti → motivo nuovo, controllato a orecchio contro i temi famosi del genere.
+- Campioni deboli dentro un gruppo (Conjuring: `gong_scrape_2` ~11 dB sotto `gong_scrape_3`, come `Timpani1_Hit_v2`) → `colpo()` normalizza sul più forte del gruppo: per gli eventi chiave usare il campione forte e misurare il picco nel WAV. Teste dei file di tuono Red Library con blocchi o silenzi di montaggio → guardare l'inviluppo dei primi secondi prima di scegliere `da`.
 - Colpi chiave deboli (Donnie Darko, Scissione): `Timpani1_Hit_v2` è il colpo pianissimo di VCSL, alzare il gain non basta → per i colpi forti `Timpani1_Hit_v4` (gain 0,5–0,9) e controllare che il culmine sia il picco del film; `pausa` deve fermare anche gli archi tenuti.
 
 ## Testi (revisore-testi)
