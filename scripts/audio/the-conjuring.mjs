@@ -74,7 +74,7 @@ export default (mix, T) => {
    * harp: arpa a semiminime · mel: note sparse del pianoforte acuto · pausa: [da, a] silenzio di tutte le figure
    */
   const sec = (from, to, o) => {
-    from = from <= 0 ? G0 - 9 * CROMA : snap(from); to = snap(to);
+    from = from <= 0 ? G0 - BAR : snap(from); to = snap(to);
     const R = rng(3070 + sid++ * 131);
     const tacet = (x) => o.pausa && x >= o.pausa[0] && x < o.pausa[1];
     const stopAt = o.pausa ? o.pausa[0] : Infinity;
@@ -132,6 +132,10 @@ export default (mix, T) => {
   sec(T.esorcismo, dawn, { str: 36, low: true, tr: 44, pausa: [dawn - BEAT, dawn] });
 
   // copertina: il carillon che si socchiude (motivo), il ticchettio del davanzale
+  // un bordone grave tenuto dal primo fotogramma, finché entra la prima battuta (il video non parte muto)
+  trem(mix, 38, { t: 0, dur: G0 - BAR + 0.8, vel: 60, gain: 1.2, att: 0.02 });
+  strings(mix, 26, { t: 0, dur: G0 - BAR + 0.8, vel: 60, gain: 1.2, att: 0.02, seed: 7 });
+  timpSoft(mix, G0 - 9 * CROMA, { vel: 70, gain: 0.35 }); // sulla griglia delle crome (0,25 s)
   motivo(mix, G0 - 7 * CROMA, { vel: 34, gain: 0.26, fino: T.casa + 1 });
 
   // capitolo 1: l'auto che arriva, la lampada del portico, il cane che punta le zampe (ringhio), l'abbaino che si accende
@@ -195,14 +199,13 @@ export default (mix, T) => {
   timp(mix, watch, { vel: 120, gain: 0.95 });
   glock(mix, 86, { t: watch, vel: 34, gain: 0.25 });
   roll(mix, curse, 2.2, { gain: 0.4 });
-  clip(mix, 'rombo', { t: curse, da: 4, durata: 3, gain: 0.25, fadeIn: 0.5, fadeOut: 1, rev: 0.3 });
+  clip(mix, 'rombo', { t: curse, da: 4, durata: 2.4, gain: 0.25, fadeIn: 0.5, fadeOut: 0.8, rev: 0.3 });
   trem(mix, 37, { t: curse, dur: T.madri - curse, vel: 40, gain: 0.55 });
 
   // capitolo 8: i ritagli appuntati uno per battito, il ritaglio di Rory (motivo), lo spillo sulla fattoria (timpano forte)
   [0, 1, 2].forEach((i) => { clip(mix, 'scatti', { t: at('madri', 0, 0.8) + i * BEAT, da: 6.49, durata: 0.06, gain: 0.2, rev: 0.3, pan: (i - 1) * 0.3 }); tick(mix, 57 + i * 3, { t: at('madri', 0, 0.8) + i * BEAT, vel: 30 }); });
   motivo(mix, at('madri', 1, 1.2), { vel: 32, gain: 0.28, fino: pin - 0.3 });
   timp(mix, pin, { vel: 110, gain: 0.5 });
-  piano(mix, 38, { t: pin, dur: 3, vel: 40 });
 
   // capitolo 9: la lettera della Chiesa (organo), i campanelli che suonano da soli, i flash, la foto che si macchia
   organ(mix, [50, 57, 62], { t: at('prove', 0, 1.0), dur: BEAT * 3, vel: 34, gain: 0.25 });
@@ -219,7 +222,7 @@ export default (mix, T) => {
   clip(mix, 'ronzio_neon', { t: neon + 0.55, da: 2.6, durata: 2.5, gain: 0.08, fadeIn: 0.05, fadeOut: 1.2, rev: 0.2, pan: -0.5 });
   clip(mix, 'auto_epoca', { t: at('possessione', 1, -1.0), da: 17.5, durata: 3.4, gain: 0.16, fadeIn: 0.4, fadeOut: 0.6, rev: 0.25 });
   clip(mix, 'porta_cigolio', { t: at('possessione', 1, 0.6) + 1.2, da: 1, durata: 1.4, gain: 0.14, fadeOut: 0.4, rev: 0.5, lp: 3500 });
-  clip(mix, 'tuono_forte', { t: strike + 0.15, da: 0.3, durata: 3.5, gain: 0.5, fadeIn: 0.03, fadeOut: 1.2, rev: 0.35 });
+  clip(mix, 'tuono_forte', { t: strike + 0.15, da: 0.86, durata: 3.5, gain: 0.5, fadeIn: 0.03, fadeOut: 1.2, rev: 0.35 });
   timp(mix, strike, { vel: 120, gain: 0.9 });
   clip(mix, 'tuono_classico', { t: strike + 2 * BEAT + 0.05, da: 0.45, durata: 2.5, gain: 0.2, fadeIn: 0.03, fadeOut: 1, rev: 0.35 });
   [74, 72, 69, 65, 62].forEach((m, i) => piano(mix, m, { t: strike + 0.4 + i * CROMA + 0.2, vel: 30 }));
