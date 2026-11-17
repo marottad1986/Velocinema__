@@ -6,6 +6,11 @@ data · chi propone · proposta · cosa si guadagna o risparmia · stato (aperta
 La direzione le legge all'inizio di ogni sessione, le porta all'editore e, una volta decise, le sposta in `DECISIONI.md`.
 
 ## Aperte
+- 17 nov 2026 · produzione (Scissione) · **`Snow` nella libreria comune**: la neve a due livelli chiusa in un riquadro
+  (`src/scenes/scissione-stagione-1/Piani.tsx`) serve anche a Shining, Frozen, Natale; non l'ho messa in
+  `src/lib/elements.tsx` perché toccare il codice comune rigenera tutti i film su MEGA. Proposta: spostarla insieme al
+  prossimo cambio di codice comune già previsto (stesso giro di render), o aggiungere a `scripts/cambiati.mjs` l'eccezione
+  «solo elementi AGGIUNTI a elements.tsx = nessun film da rigenerare». · risparmia render e rende la tecnica di tutti · aperta
 - 16 nov 2026 · direzione · **Media kit** di «In 2 minuti» (una pagina: chi siamo, numeri per piattaforma, pubblico, formati,
   esempi, cosa offriamo a un distributore o a una piattaforma: video dedicato all'uscita, Spiegato semplice prima della nuova
   stagione, storia con link). Senza un media kit non si chiede una collaborazione in modo serio. · prerequisito per vendere ·

@@ -32,6 +32,12 @@ pagina deve sentire che, andando avanti, la qualità sale: non si resta fermi su
 Una riga per produzione, le più recenti in alto: data · contenuto · cosa c'è di nuovo · dove sta il codice da riusare.
 La aggiunge chi produce, nello stesso ramo del video, prima dell'unione su main.
 
+- 17 nov 2026 · Scissione – stagione 1 (Spiegato semplice) · schema a spaccato verticale con due mondi (fuori/sotto) e la
+  camera che scende e risale con l'ascensore; il cerchio del personaggio che si **sdoppia** attraversando la linea della
+  scissione e si **riunisce** (Petey); la pianta che si disegna da sola come un progetto; la «lente» sugli schermi (numeri
+  che tremano e volano nel cestino); copertina con il corridoio in prospettiva che avanza; neve a due livelli chiusa in un
+  riquadro (`Snow`) · `src/scenes/scissione-stagione-1/Piani.tsx` (`Node` con `split`, `Snow`, `Lente`), proposta di
+  spostare `Snow` in `src/lib/elements.tsx` in `PROPOSTE.md`.
 - 16 nov 2026 · trailer di Ritorno al futuro (trilogia) · primo trailer di cinema: cartelli sul nero con braam e
   entrata dal nero, montaggio a un'inquadratura per battito, suspense con spia nel buio e immagine che emerge, titolo su
   scie di fuoco · `src/promo/trailer-ritorno-al-futuro/`, regole in `TRAILER.md`.
