@@ -584,3 +584,83 @@ export const Neon: React.FC<{ id: string; t: number; x: number; y: number; text:
     </g>
   );
 };
+
+// ─────────────────────────────── BUIO CON LUCI ───────────────────────────────
+
+/** Una luce che buca il `Buio`: alone tondo (lume, fiammifero, finestra) o, con `angle`, il cono di una torcia. */
+export type LuceNelBuio = {
+  x: number; y: number;
+  /** raggio dell'alone intorno alla sorgente */ r: number;
+  /** 0..1: quanto buca il buio (1 = si vede tutto il colore della scena) */ power?: number;
+  /** cono della torcia: direzione in gradi (0 = destra, 90 = giù), lunghezza e apertura in gradi */
+  angle?: number; length?: number; spread?: number;
+};
+
+/**
+ * Buio che copre la scena tranne dove arrivano le luci (torcia che esplora, lume che trema, fiammifero): la scena si
+ * disegna tutta illuminata, poi sopra si mette `<Buio>` con le sorgenti; dove c'è luce si vede il disegno, altrove resta
+ * il nero (`darkness` 0..1, di solito 0,8–0,92, così le sagome si intuiscono). Il cono sfuma verso la punta e sui
+ * lati; `flicker` fa tremare le luci come una fiamma. Nessun filtro: una maschera con gradienti radiali (QUALITA §7).
+ * Va messo nello stesso gruppo della camera dei piani che deve coprire (le coordinate delle luci sono quelle della scena).
+ * Prima volta in The Conjuring (2013), 17 nov 2026.
+ */
+export const Buio: React.FC<{
+  id: string; t: number; lights: LuceNelBuio[]; darkness?: number; color?: string; flicker?: number;
+  /** colore della luce (es. torcia calda): velatura leggera dentro i coni e gli aloni */ tint?: string; tintOpacity?: number;
+  x?: number; y?: number; w?: number; h?: number;
+}> = ({ id, t, lights, darkness = 0.88, color = '#020304', flicker = 0, tint, tintOpacity = 0.14, x = -400, y = -400, w = 1880, h = 2720 }) => {
+  const fl = (i: number) => 1 - flicker * (0.5 + 0.5 * Math.sin(t * 23 + i * 1.7) * Math.sin(t * 9.3 + i));
+  // forma di una luce: alone + cono a tre strati (largo e tenue → stretto e pieno), così i bordi sfumano
+  const shapes = (fill: (k: string) => string) =>
+    lights.map((l, i) => {
+      const p = (l.power ?? 1) * fl(i);
+      const L = l.length ?? 0;
+      const cone = l.angle !== undefined && L > 0;
+      return (
+        <g key={i} opacity={p}>
+          <circle cx={l.x} cy={l.y} r={l.r} fill={fill('hole')} />
+          {cone && (
+            <g transform={`translate(${l.x} ${l.y}) rotate(${l.angle})`}>
+              {[1, 0.72, 0.45].map((k, j) => {
+                const half = ((l.spread ?? 30) / 2) * k * (Math.PI / 180);
+                return (
+                  <path key={j} opacity={0.5} d={`M0 0 L${L * Math.cos(half)} ${-L * Math.sin(half)} Q${L * 1.08} 0 ${L * Math.cos(half)} ${L * Math.sin(half)} Z`} fill={fill(`c${i}`)} />
+                );
+              })}
+              <ellipse cx={L * 0.84} cy={0} rx={L * 0.2} ry={L * Math.sin(((l.spread ?? 30) / 2) * (Math.PI / 180)) * 0.85} fill={fill('hole')} />
+            </g>
+          )}
+        </g>
+      );
+    });
+  const grad = (pre: string, c: string) => (
+    <>
+      <radialGradient id={`${id}-${pre}hole`}>
+        <stop offset="0" stopColor={c} />
+        <stop offset=".45" stopColor={c} stopOpacity=".85" />
+        <stop offset="1" stopColor={c} stopOpacity="0" />
+      </radialGradient>
+      {lights.map((l, i) => (
+        <radialGradient key={i} id={`${id}-${pre}c${i}`} gradientUnits="userSpaceOnUse" cx="0" cy="0" r={l.length ?? 1}>
+          <stop offset="0" stopColor={c} />
+          <stop offset=".6" stopColor={c} stopOpacity=".8" />
+          <stop offset="1" stopColor={c} stopOpacity="0" />
+        </radialGradient>
+      ))}
+    </>
+  );
+  return (
+    <g>
+      <defs>
+        {grad('', '#000')}
+        {tint && grad('t', tint)}
+        <mask id={`${id}-m`} maskUnits="userSpaceOnUse" x={x} y={y} width={w} height={h}>
+          <rect x={x} y={y} width={w} height={h} fill="#fff" />
+          {shapes((k) => `url(#${id}-${k})`)}
+        </mask>
+      </defs>
+      <rect x={x} y={y} width={w} height={h} fill={color} opacity={darkness} mask={`url(#${id}-m)`} />
+      {tint && <g opacity={tintOpacity}>{shapes((k) => `url(#${id}-t${k})`)}</g>}
+    </g>
+  );
+};

@@ -5,7 +5,7 @@ import { DISPLAY, SANS } from './fonts';
 import { Finish, FxDefs, Lin } from './fx';
 import {
   Beam, Clouds, Confetti, Drips, Dust, Embers, Fire, Fireflies, flashAt, Flyers, Fog, GlassDrops, Glow, Gulls, Lightning,
-  Moon, NearMotes, Neon, Notes, Rain, Reflection, ShootingStar, Smoke, Snow, Stars, StringLights, SunRays, WaveBand, WaveLines, Wisps,
+  Moon, NearMotes, Neon, Buio, Notes, Rain, Reflection, ShootingStar, Smoke, Snow, Stars, StringLights, SunRays, WaveBand, WaveLines, Wisps,
 } from './elements';
 
 // Catalogo della libreria di elementi (src/lib/elements.tsx): due pagine di prova, non fanno parte dei film.
@@ -99,11 +99,18 @@ const Interni: React.FC<{ t: number }> = ({ t }) => {
         </g>
         <g transform={L(1.2)}><Flyers t={t} y0={400} y1={1500} /></g>
         <g transform={L(1.5)}><Confetti t={t} n={30} /></g>
+        {/* Buio: in basso, la torcia che esplora e un lume che trema (The Conjuring) */}
+        <g transform={L(0.65)}>
+          <rect x="-200" y="1560" width="1480" height="400" fill="#5A4A3A" />
+          {Array.from({ length: 12 }, (_, i) => <rect key={i} x={-100 + i * 110} y={1600 + (i % 2) * 60} width="70" height="90" fill="#C8A060" stroke="#0B0818" strokeWidth="6" />)}
+          <Buio id="ci-buio" t={t} x={-200} y={1560} w={1480} h={400} darkness={0.9} flicker={0.15} tint="#FFD890"
+            lights={[{ x: 540, y: 2100, r: 120, angle: -90 + 30 * Math.sin(t * 1.2), length: 520, spread: 30 }, { x: 900, y: 1700, r: 160 }]} />
+        </g>
       </g>
       <Finish id="ci" tint="#2C2456" />
       <Tag x={40} y={60}>SunRays · Neon(onAt) · StringLights · GlassDrops · Fireflies</Tag>
       <Tag x={40} y={100}>Beam(sweep) · Dust · Drips · Fire · Embers · Glow · Wisps · Notes</Tag>
-      <Tag x={40} y={140}>Flyers · Confetti</Tag>
+      <Tag x={40} y={140}>Flyers · Confetti · Buio (in basso: torcia e lume)</Tag>
     </svg>
   );
 };

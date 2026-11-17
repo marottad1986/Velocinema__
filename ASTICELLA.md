@@ -32,6 +32,13 @@ pagina deve sentire che, andando avanti, la qualità sale: non si resta fermi su
 Una riga per produzione, le più recenti in alto: data · contenuto · cosa c'è di nuovo · dove sta il codice da riusare.
 La aggiunge chi produce, nello stesso ramo del video, prima dell'unione su main.
 
+- 17 nov 2026 · The Conjuring – L'evocazione · il **buio che si esplora**: la scena si disegna tutta illuminata e sopra
+  `Buio` la copre di nero tranne dove arriva la luce (il cono di una torcia che cerca e trova, il lume che trema, le
+  candele, i flash che aprono la stanza per un istante, l'alba che scioglie il buio); quattro orologi che si fermano
+  nello stesso fotogramma accendendosi d'oro, con i pizzicati che tacciono insieme; un motivo da carillon che torna a ogni
+  apparizione e si apre in maggiore nel finale; copertina con un carattere nuovo da stampa antica (IM Fell English) ·
+  `Buio` in `src/lib/elements.tsx` (nel catalogo `libreria--interni`), `FELL` in `src/lib/fonts.ts`, `Quadrante` e
+  `Carillon` in `src/scenes/the-conjuring/Comuni.tsx`.
 - 17 nov 2026 · Scissione – stagione 1 (Spiegato semplice) · schema a spaccato verticale con due mondi (fuori/sotto) e la
   camera che scende e risale con l'ascensore; il cerchio del personaggio che si **sdoppia** attraversando la linea della
   scissione e si **riunisce** (Petey); la pianta che si disegna da sola come un progetto; la «lente» sugli schermi (numeri

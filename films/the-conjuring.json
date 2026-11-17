@@ -1,0 +1,150 @@
+{
+  "titolo": "L'evocazione – The Conjuring",
+  "regista": "James Wan",
+  "anno": 2013,
+  "bpm": 72,
+  "palette": {
+    "chiaro": "#ECE4D2",
+    "principale": "#3C4A52",
+    "scuro": "#0A0D10",
+    "accento": "#F2B84B"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Chi ferma gli orologi alle tre e sette?",
+    "immagine": "Notte di nebbia nel Rhode Island, 1971: una vecchia fattoria di legno con una sola finestra accesa, davanti un grande albero nodoso e spoglio con i rami come dita; in primo piano, sul davanzale, un orologio da muro con il vetro incrinato fermo alle 3:07 e accanto un carillon socchiuso. Titolo in un carattere serif da romanzo gotico. NON usare la locandina ufficiale, persone, sagome, la strega o la bambola.",
+    "voce": "The Conjuring: chi ferma gli orologi alle tre e sette?"
+  },
+  "capitoli": [
+    {
+      "id": "casa",
+      "titolo": "La fattoria nuova",
+      "durata": 10,
+      "scena": "Una fattoria di legno nella campagna d'autunno, al tramonto: il portico, le finestre ancora buie, un grande albero nodoso davanti; la station wagon carica di valigie e scatoloni nel vialetto; al cancello un cane generico seduto che punta le zampe e abbaia verso la casa; foglie che volano.",
+      "sottotitoli": [
+        "Nel 1971 i Perron, una coppia con cinque figlie,",
+        "si trasferiscono in una vecchia fattoria.",
+        "Ma Sadie, il loro cane, si rifiuta di entrare."
+      ]
+    },
+    {
+      "id": "cantina",
+      "titolo": "La cantina sbarrata",
+      "durata": 10,
+      "scena": "Il sottoscala buio della fattoria, esplorato da una torcia: dietro un vecchio armadio spostato, una porta sbarrata da assi di legno inchiodate; le assi saltano, la porta si apre su una scala che scende nel nero; ragnatele, polvere nel fascio, un respiro di freddo che sale.",
+      "sottotitoli": [
+        "Giocando a nascondino, due figlie scoprono una cantina nascosta,",
+        "con l'ingresso sbarrato da assi di legno.",
+        "Proprio da quella notte cominciano le cose strane."
+      ]
+    },
+    {
+      "id": "orologi",
+      "titolo": "Le tre e sette",
+      "durata": 10,
+      "scena": "Il soggiorno di notte con la luna dalla finestra: una pendola, una sveglia sul comò, un orologio da muro e uno da tavolo; le lancette corrono e si fermano tutte insieme alle 3:07, il pendolo si blocca storto; dalla finestra, in cortile, una cuccia vuota con il collare a terra.",
+      "sottotitoli": [
+        "La prima notte tutti gli orologi si fermano alle tre e sette.",
+        "Carolyn, la madre, si sveglia con strani lividi,",
+        "e al mattino il cane Sadie è morto in cortile."
+      ]
+    },
+    {
+      "id": "presenze",
+      "titolo": "Qualcosa nel buio",
+      "durata": 11,
+      "scena": "Una cameretta di notte: un letto con la coperta che scivola giù tirata da nulla, le scarpine sotto il letto, un armadio socchiuso; dalla porta aperta il corridoio fino alla porta della cantina, che sbatte e si chiude; la luce di un lume che trema.",
+      "sottotitoli": [
+        "Le notti peggiorano: una delle figlie viene tirata per i piedi nel letto,",
+        "e Carolyn, attirata da qualcosa che non vede,",
+        "resta chiusa al buio in cantina."
+      ]
+    },
+    {
+      "id": "carillon",
+      "titolo": "Il carillon",
+      "durata": 10,
+      "scena": "Le radici del grande albero al crepuscolo: un vecchio carillon di legno mezzo sepolto nella terra, che si apre e suona, con un piccolo specchio e un disco che gira; note che salgono, e sulla rugiada dell'erba piccole impronte di piedi nudi che compaiono da sole.",
+      "sottotitoli": [
+        "Intanto April, una delle bambine, trova sotto un albero un vecchio carillon,",
+        "e diventa amica di Rory,",
+        "lo spirito di un bambino che gli altri non vedono."
+      ]
+    },
+    {
+      "id": "warren",
+      "titolo": "I cacciatori di demoni",
+      "durata": 10,
+      "scena": "Lo studio dei Warren: scaffali di oggetti maledetti presi dai casi passati, libri, un crocifisso, un registratore a bobine, una macchina fotografica; sulla scrivania un telefono che squilla e la fotografia della fattoria; la candela si piega e la fotografia si macchia di nero.",
+      "sottotitoli": [
+        "Carolyn chiama i Warren, esperti di case infestate:",
+        "Ed studia i demoni, Lorraine è una sensitiva,",
+        "e sente subito uno spirito maligno attaccato alla famiglia."
+      ]
+    },
+    {
+      "id": "strega",
+      "titolo": "La strega dell'albero",
+      "durata": 10,
+      "scena": "Il grande albero davanti alla fattoria di notte, nella nebbia, con la luna dietro i rami; un ramo basso con un pezzo di corda sfilacciata che dondola; corvi, una vecchia lapide del 1863 tra le radici e un orologio da taschino appeso che si ferma alle 3:07.",
+      "sottotitoli": [
+        "I Warren scoprono che lì viveva Bathsheba, una strega,",
+        "che sacrificò il figlio al diavolo, si impiccò alle tre e sette",
+        "e maledisse chi prendeva la sua terra."
+      ]
+    },
+    {
+      "id": "madri",
+      "titolo": "La maledizione delle madri",
+      "durata": 10,
+      "scena": "Una bacheca di sughero nello studio dei Warren, sotto una lampada: la vecchia mappa della terra di Bathsheba con le case costruite negli anni, ritagli di giornale ingialliti, spilli e fili rossi che le collegano; l'ultimo spillo si pianta sulla fattoria dei Perron.",
+      "sottotitoli": [
+        "Da allora quella terra ha visto omicidi e suicidi:",
+        "anche Rory fu ucciso da sua madre, posseduta da Bathsheba.",
+        "Ora Bathsheba vuole che Carolyn faccia lo stesso."
+      ]
+    },
+    {
+      "id": "prove",
+      "titolo": "Le prove per la Chiesa",
+      "durata": 10,
+      "scena": "Il soggiorno della fattoria di notte, pieno di strumenti: macchine fotografiche su treppiedi, campanelli appesi a un filo davanti alle porte, un registratore a bobine, cavi sul pavimento; i campanelli suonano da soli e scattano i flash; a casa dei Warren, una teca di vetro socchiusa con una piccola sedia a dondolo vuota.",
+      "sottotitoli": [
+        "Per l'esorcismo la Chiesa vuole delle prove:",
+        "i Warren le raccolgono con macchine fotografiche e campanelli.",
+        "Per avvertirli, la strega attacca la loro figlia."
+      ]
+    },
+    {
+      "id": "possessione",
+      "titolo": "La madre posseduta",
+      "durata": 10,
+      "scena": "Notte di pioggia: l'insegna al neon di un motel che sfarfalla in lontananza; la station wagon ferma storta davanti alla fattoria con le portiere aperte e i fari accesi nella pioggia; la porta di casa spalancata sul buio, le finestre che si spengono una dopo l'altra.",
+      "sottotitoli": [
+        "I Perron si rifugiano in un motel, ma Bathsheba possiede Carolyn,",
+        "che riporta due delle figlie nella vecchia casa",
+        "per ucciderle, come le altre madri."
+      ]
+    },
+    {
+      "id": "esorcismo",
+      "titolo": "L'esorcismo",
+      "durata": 11,
+      "scena": "La cantina della fattoria: una sedia di legno vuota con le corde allentate, un crocifisso, una boccetta d'acqua santa, un libro aperto e candele; un fumo nero che si avvita; poi una cornice con la fotografia di una spiaggia al sole si illumina, e la luce dell'alba entra dalla grata e scaccia il fumo.",
+      "sottotitoli": [
+        "Non c'è tempo per il permesso: Ed esorcizza Carolyn da solo.",
+        "Lorraine la richiama con un bel ricordo di famiglia,",
+        "così Carolyn torna in sé e la strega viene scacciata."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "La fattoria all'alba, con la nebbia che si alza e il grande albero; sul davanzale l'orologio che riparte e il carillon chiuso; 'Fine' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il film che vorresti.'"
+  },
+  "musica": "Originale e strumentale, 72 bpm, Re minore: archi gravi tenuti e cluster sospesi, pianoforte nel registro acuto, un motivo da carillon (celesta e glockenspiel) che torna a ogni apparizione, timpani e cassa per i colpi; gli orologi a crome di pizzicato che si fermano tutti insieme; nel finale l'esorcismo cresce fino al colpo e si apre in Re maggiore con l'alba. Niente brani o temi del film. Rumori: orologi, porte, assi, campanelli, pioggia, vento, corvi.",
+  "fonti": [
+    "Film del 2013 diretto da James Wan; 1971, Carolyn e Roger Perron si trasferiscono in un vecchio casolare con le cinque figlie; il cane Sadie si rifiuta di entrare; Nancy e Christine, giocando a «battimani», trovano l'ingresso della cantina sprangato; eventi paranormali sin dalla prima notte: gli orologi si fermano alle 3:07; Carolyn si sveglia con uno strano livido e la mattina seguente April trova Sadie morta in cortile; Christine viene tirata per i piedi durante la notte; Carolyn rimane rinchiusa in cantina attirata da una misteriosa entità; April trova un carillon sotto un albero e fa amicizia con lo spirito di un bambino, Rory, che non si fa vedere dagli altri; Carolyn chiede aiuto ai demonologi Ed e Lorraine Warren; per l'esorcismo serve l'autorizzazione della Chiesa, che vuole prove; il casale apparteneva alla presunta strega Bathsheba Sherman, che si impiccò all'albero davanti alla casa dopo aver sacrificato il figlio a Satana e maledetto chi avrebbe posseduto la sua proprietà; omicidi e suicidi nelle case costruite sulla sua terra, compreso l'omicidio di Rory per mano della madre posseduta da Bathsheba; la figlia dei Warren, Judy, attaccata dalle forze di Bathsheba; i Perron si rifugiano in un motel, Carolyn posseduta riporta Christine e April nel casolare; Ed la esorcizza da solo e Lorraine la ferma: https://it.wikipedia.org/wiki/L%27evocazione_-_The_Conjuring",
+    "Lorraine Warren è una chiaroveggente («clairvoyant») e vede che un'entità oscura si è attaccata alla famiglia; Ed e Lorraine demonologi; telecamere e campanelli in casa per raccogliere prove; Bathsheba Sherman si uccise nel 1863 alle 3:07 dopo aver sacrificato il figlio al diavolo e maledetto chi avrebbe preso la sua terra; Lorraine capisce che Bathsheba costringerà Carolyn a uccidere i figli come aveva fatto con un'altra madre; Judy attaccata «as a warning to the Warrens»; Carolyn posseduta riporta le figlie a casa «to kill them»; «Running out of time», Ed tenta l'esorcismo da solo; Lorraine la richiama ricordandole un ricordo di famiglia e l'esorcismo riesce: https://en.wikipedia.org/wiki/The_Conjuring"
+  ]
+}
