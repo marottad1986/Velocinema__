@@ -88,7 +88,9 @@ export default (mix, T) => {
     for (let k = 0, t = from; t < to - 0.3; k++, t += BAR) {
       const [root, iv] = CHORDS[k % 4];
       const d = Math.min(BAR * 1.02, fino - t);
-      if (o.str) [iv[1], iv[2], iv[3]].forEach((v, j) => strings(mix, root + 12 + v, { t: t + j * 0.04, dur: d, vel: o.str, gain: 0.9, pan: (j - 1) * 0.35, seed: j + k }));
+      // gli archi tenuti rispettano la pausa: niente accordo dentro il silenzio, e quello prima si tronca all'inizio
+      const dd = o.pausa && t < o.pausa[0] && t + d > o.pausa[0] ? o.pausa[0] - t + 0.3 : d;
+      if (o.str && !tacet(t)) [iv[1], iv[2], iv[3]].forEach((v, j) => strings(mix, root + 12 + v, { t: t + j * 0.04, dur: dd, vel: o.str, gain: 0.9, pan: (j - 1) * 0.35, seed: j + k }));
       if (o.pizz) {
         // l'orologio: tonica, quinta, ottava, quinta a crome, con l'accento sul battere
         const notes = [root, root + 7, root + 12, root + 7];
@@ -125,8 +127,8 @@ export default (mix, T) => {
   };
 
   // ---- eventi delle scene (gli stessi istanti di Piani.tsx)
-  const cut0 = at('scissione', 2, 0), cut1 = cut0 + 1.6;
-  const split = at('ascensore', 0, 0.3) + 1.0;
+  const cut0 = at('scissione', 2, 0), cut1 = at('scissione', 2, 1.6);
+  const split = at('ascensore', 0, 1.3);
   const no = at('helly', 2, 0.3);
   const peteyDies = at('petey', 3, 0.6);
   const tOff = at('casey', 3, 0.3);
@@ -136,14 +138,14 @@ export default (mix, T) => {
   sec(0, T.scissione, { drone: 30, harp: 32, mel: 40 });
   sec(T.scissione, T.ascensore, { drone: 34, pizz: 26, mel: 38, bells: 28, keep: 0.9 });
   sec(T.ascensore, T.mark, { drone: 36, pizz: 30, str: 26, pausa: [split - 0.05, split + BEAT] });
-  sec(T.mark, T.ufficio, { drone: 34, str: 34, harp: 34, mel: 40 });
+  sec(T.mark, T.ufficio, { drone: 34, str: 28, harp: 28, mel: 34 });
   sec(T.ufficio, T.helly, { drone: 34, pizz: 30, mar: 30, bells: 26 });
   sec(T.helly, T.petey, { drone: 40, pizz: 30, str: 32, pausa: [no - 0.05, no + 2 * BEAT] });
   sec(T.petey, T.cobel, { drone: 36, harp: 34, str: 30, mel: 38, pausa: [peteyDies - 0.05, peteyDies + 2 * BEAT] });
   sec(T.cobel, T.risveglio, { drone: 40, pizz: 28, str: 34, keep: 0.8 });
-  sec(T.risveglio, T.fuori, { drone: 38, mar: 28, harp: 32, mel: 36, bells: 32 });
-  sec(T.fuori, T.casey, { drone: 46, spic: 50, doppio: true, str: 46, pizz: 26 });
-  sec(T.casey, tOff, { drone: 44, str: 46, mel: 44, spic: 34, oct: 0 });
+  sec(T.risveglio, T.fuori, { drone: 38, mar: 28, harp: 26, mel: 30, bells: 32 });
+  sec(T.fuori, T.casey, { drone: 44, spic: 40, doppio: true, str: 38, pizz: 26 });
+  sec(T.casey, tOff, { drone: 46, str: 48, mel: 46, spic: 36, oct: 0, pausa: [viva - 0.05, viva + BEAT] });
 
   // dopo il buio: due battiti di silenzio, poi la domanda su un pianoforte solo e un Re maggiore che resta aperto
   const Q = snap(tOff + 2 * BEAT);
@@ -151,62 +153,66 @@ export default (mix, T) => {
   [78, 74, 76, 78, 79, 81].forEach((m, k) => piano(mix, m, { t: Q + k * BEAT, dur: BEAT * 1.5, vel: 34 }));
   const F = snap(T.finale);
   [62, 66, 69, 74].forEach((m, k) => harp(mix, m + 12, { t: F + k * CROMA, vel: 32 }));
-  [81, 86].forEach((m, k) => bell(mix, m, { t: F + 1.6 + k * BEAT, vel: 32 }));
+  [81, 86].forEach((m, k) => bell(mix, m, { t: F + BEAT + k * CROMA, vel: 32 }));
 
   // ---------------------------------------------------------------- effetti
   // copertina: il vento d'inverno e il corridoio che ronza; le forbici sulla linea
   clip(mix, 'vento_invernale', { t: 0, da: 2, durata: 4.2, gain: 0.06, fadeIn: 0.05, fadeOut: 1.2, largo: 1.5 });
-  clip(mix, 'ronzio_neon', { t: 0, da: 1, durata: 4, gain: 0.05, fadeIn: 0.05, fadeOut: 1, lp: 4000 });
+  clip(mix, 'ronzio_neon', { t: 0, da: 3, durata: 4, gain: 0.05, fadeIn: 0.05, fadeOut: 1, lp: 4000 });
   // capitolo 1: Lumon (vento fuori), il piano segreto (ronzio), il chip (campanelle), la linea tagliata dalle forbici
   clip(mix, 'vento_invernale', { t: T.scissione, da: 6, durata: 3.2, gain: 0.05, fadeIn: 0.3, fadeOut: 1.2, largo: 1.5 });
-  clip(mix, 'ronzio_neon', { t: at('scissione', 0, 1.6), da: 1, durata: 3, gain: 0.05, fadeIn: 0.6, fadeOut: 1.2, lp: 4000 });
+  clip(mix, 'ronzio_neon', { t: at('scissione', 0, 1.6), da: 3, durata: 3, gain: 0.05, fadeIn: 0.6, fadeOut: 1.2, lp: 4000 });
   [83, 88, 91].forEach((m, k) => bell(mix, m, { t: at('scissione', 1, 0.2) + k * CROMA / 2, vel: 40 }));
   for (let k = 0; k < 4; k++) clip(mix, 'scatti', { t: cut0 + k * CROMA, da: 6.49, durata: 0.06, gain: 0.35, rev: 0.15, pan: -0.6 + k * 0.4 });
   swell(mix, cut0, cut1 - cut0, { gain: 0.3 });
-  timp(mix, snap(cut1), { vel: 100, gain: 0.8 });
+  timp(mix, cut1, { vel: 100, gain: 0.8 });
   // capitolo 2: la cabina scende (motore), si sdoppia sulla linea (scatti e campanelle), arriva (campanello), risale
   clip(mix, 'portone_motore', { t: at('ascensore', 0, 0.3), da: 2, durata: at('ascensore', 1, -0.1) - at('ascensore', 0, 0.3), gain: 0.1, fadeIn: 0.2, fadeOut: 0.3, lp: 2500 });
-  clip(mix, 'scatti', { t: split, da: 6.49, durata: 0.06, gain: 0.45, rev: 0.2 });
+  clip(mix, 'scatti', { t: split, da: 6.49, durata: 0.06, gain: 0.6, rev: 0.2 });
   [79, 74].forEach((m, k) => bell(mix, m, { t: split + k * CROMA, vel: 40 }));
-  clip(mix, 'campanello', { t: at('ascensore', 1, -0.1), da: 0, durata: 1.2, gain: 0.25, fadeOut: 0.5, rev: 0.3 });
+  clip(mix, 'campanello', { t: at('ascensore', 1, -0.1) - 0.1, da: 0.1, durata: 1.2, gain: 0.25, fadeOut: 0.5, rev: 0.3 });
   clip(mix, 'portone_motore', { t: at('ascensore', 2, 0), da: 2, durata: 1.4, gain: 0.1, fadeIn: 0.2, fadeOut: 0.3, lp: 2500 });
-  clip(mix, 'campanello', { t: at('ascensore', 2, 1.4), da: 0, durata: 1.2, gain: 0.2, fadeOut: 0.5, rev: 0.3 });
+  clip(mix, 'campanello', { t: at('ascensore', 2, 1.4) - 0.1, da: 0.1, durata: 1.2, gain: 0.2, fadeOut: 0.5, rev: 0.3 });
   timp(mix, at('ascensore', 3, 0.3), { vel: 80, gain: 0.5 });
   // capitolo 3: Mark, la foto di Gemma (un Si grave al pianoforte), «non sa niente di lei» (campanelle)
   piano(mix, 35, { t: at('mark', 0, 1.6), dur: 3, vel: 40 });
   [74, 71, 66].forEach((m, k) => bell(mix, m, { t: at('mark', 2, 0.3) + k * CROMA, vel: 34 }));
   // capitolo 4: i numeri che tremano (archi in tremolo) e finiscono nel cestino; il benessere (arpa)
   const lente = at('ufficio', 1, 0.1);
-  archi(mix, 71, { t: lente + 0.8, dur: 1.4, vel: 40, gain: 0.6, attack: 0.3, release: 0.4, rev: 0.4 });
-  suona(mix, 'violini_trem', 72, { t: lente + 0.8, dur: 1.4, vel: 50, gain: 0.7, attack: 0.3, release: 0.4, rev: 0.4 });
-  clip(mix, 'metallo_cade', { t: lente + 3.0, da: 0, durata: 0.6, gain: 0.25, fadeOut: 0.2, rev: 0.25 });
+  archi(mix, 71, { t: lente + 2 * CROMA, dur: 1.4, vel: 40, gain: 0.6, attack: 0.3, release: 0.4, rev: 0.4 });
+  suona(mix, 'violini_trem', 72, { t: lente + 2 * CROMA, dur: 1.4, vel: 50, gain: 0.7, attack: 0.3, release: 0.4, rev: 0.4 });
+  clip(mix, 'metallo_cade', { t: lente + 7 * CROMA, da: 4.98, durata: 0.7, gain: 0.45, fadeOut: 0.2, rev: 0.25 });
   [71, 74, 78, 83].forEach((m, k) => harp(mix, m, { t: at('ufficio', 2, 0.3) + k * CROMA / 2, vel: 34 }));
   // capitolo 5: Helly arriva in ascensore; il video dell'esterna (disturbo) e il NO (timpano, poi silenzio); la serratura
   clip(mix, 'portone_motore', { t: at('helly', 0, 0), da: 2, durata: 1.2, gain: 0.1, fadeIn: 0.2, fadeOut: 0.3, lp: 2500 });
-  clip(mix, 'campanello', { t: at('helly', 0, 1.2), da: 0, durata: 1.2, gain: 0.22, fadeOut: 0.5, rev: 0.3 });
-  clip(mix, 'disturbo', { t: at('helly', 2, 0), da: 1, durata: 0.9, gain: 0.12, fadeIn: 0.05, fadeOut: 0.2 });
-  timp(mix, no, { vel: 115, gain: 1.3 });
-  clip(mix, 'serratura', { t: at('helly', 3, 0.3), da: 0, durata: 0.8, gain: 0.35, fadeOut: 0.2, rev: 0.25 });
+  clip(mix, 'campanello', { t: at('helly', 0, 1.2) - 0.1, da: 0.1, durata: 1.2, gain: 0.22, fadeOut: 0.5, rev: 0.3 });
+  clip(mix, 'portone_motore', { t: at('helly', 0, 1.6), da: 2, durata: 1.0, gain: 0.1, fadeIn: 0.2, fadeOut: 0.3, lp: 2500 });
+  clip(mix, 'disturbo', { t: at('helly', 2, 0), da: 1, durata: 0.9, gain: 0.4, fadeIn: 0.05, fadeOut: 0.2 });
+  timp(mix, no, { vel: 115, gain: 2.0 });
+  clip(mix, 'serratura', { t: at('helly', 3, 0.3) - 0.2, da: 0.2, durata: 0.7, gain: 0.35, fadeOut: 0.2, rev: 0.25 });
   // capitolo 6: le due metà di Petey si riuniscono (campanelle che salgono), la mappa (carta), muore (timpano, silenzio)
   [66, 71, 74, 78, 83].forEach((m, k) => bell(mix, m, { t: at('petey', 1, 0.2) + k * CROMA / 2, vel: 36 }));
   clip(mix, 'pagine', { t: at('petey', 2, 0.1), da: 1, durata: 1.0, gain: 0.28, fadeOut: 0.3, rev: 0.2 });
-  timp(mix, peteyDies, { vel: 110, gain: 1.1 });
+  timp(mix, peteyDies, { vel: 110, gain: 1.8 });
   // capitolo 7: la linea senza chip attraversa la scissione (scintille); «lo spia» (celli gravi)
   clip(mix, 'scintille', { t: at('cobel', 1, 0.8), da: 1, durata: 0.8, gain: 0.18, fadeIn: 0.02, fadeOut: 0.3 });
   drone(mix, 30, { t: at('cobel', 3, 0.3), dur: 3, vel: 46, gain: 0.6, seed: 91 });
   // capitolo 8: le manopole (scatti), il risveglio che sale (arpa), il figlio (campanelle calde)
-  clip(mix, 'scatti', { t: at('risveglio', 0, 0.2), da: 6.49, durata: 0.06, gain: 0.45, rev: 0.2 });
-  clip(mix, 'scatti', { t: at('risveglio', 0, 0.2) + CROMA, da: 6.49, durata: 0.06, gain: 0.4, rev: 0.2 });
-  [59, 62, 66, 71, 74, 78].forEach((m, k) => harp(mix, m, { t: at('risveglio', 1, -0.6) + k * CROMA / 2, vel: 36 }));
+  clip(mix, 'scatti', { t: at('risveglio', 0, 0.2), da: 6.49, durata: 0.06, gain: 0.7, rev: 0.2 });
+  clip(mix, 'scatti', { t: at('risveglio', 0, 0.2) + CROMA, da: 6.49, durata: 0.06, gain: 0.65, rev: 0.2 });
+  [59, 62, 66, 71, 74, 78].forEach((m, k) => harp(mix, m, { t: at('risveglio', 1, -0.6) + k * CROMA / 2, vel: 26 }));
   [79, 83].forEach((m, k) => bell(mix, m, { t: at('risveglio', 1, 1.6) + k * CROMA, vel: 34 }));
   timp(mix, at('risveglio', 2, 0.2), { vel: 90, gain: 0.6 });
   // capitolo 9: le manopole accese, tre interni fuori (campanelle), il palco (applauso breve e lontano)
-  clip(mix, 'scatti', { t: at('fuori', 0, 0.2), da: 6.49, durata: 0.06, gain: 0.45, rev: 0.2 });
+  clip(mix, 'scatti', { t: at('fuori', 0, 0.2), da: 6.49, durata: 0.06, gain: 0.7, rev: 0.2 });
   [71, 74, 78].forEach((m, k) => bell(mix, m, { t: at('fuori', 1, 0.1) + k * CROMA, vel: 36 }));
-  clip(mix, 'applauso_breve', { t: at('fuori', 3, 0.2), da: 0.5, durata: 2.2, gain: 0.08, fadeIn: 0.3, fadeOut: 1.0, largo: 1.4 });
+  clip(mix, 'applauso_breve', { t: at('fuori', 3, 0.2), da: 0.5, durata: 2.2, gain: 0.16, fadeIn: 0.3, fadeOut: 1.0, largo: 1.4 });
   // capitolo 10: la linea rossa fino a Casey, «Gemma è viva» (piatto e timpano), il buio (scarica, poi silenzio)
-  swell(mix, viva - 1.4, 1.4, { gain: 0.35 });
-  timp(mix, viva, { vel: 120, gain: 1.5 });
+  // la rivelazione: Casey è Gemma
+  [83, 78].forEach((m, k) => bell(mix, m, { t: at('casey', 1, 0.1) + k * CROMA, vel: 36 }));
+  drone(mix, 35, { t: at('casey', 1, 0.1), dur: 2.5, vel: 46, gain: 0.6, seed: 93 });
+  swell(mix, viva - 1.4, 1.4, { gain: 0.5 });
+  timp(mix, viva, { vel: 120, gain: 2.4 });
   clip(mix, 'scariche', { t: tOff, da: 1, durata: 0.6, gain: 0.25, fadeOut: 0.3 });
-  timp(mix, tOff, { vel: 125, gain: 1.6 });
+  timp(mix, tOff, { vel: 125, gain: 2.4 });
 };

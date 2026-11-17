@@ -668,8 +668,8 @@ const Lente: React.FC<{ T: number; t0: number; until: number }> = ({ T, t0, unti
   const k = pop(T, t0) * (1 - seg(T, until, until + 0.5));
   const cx = 760, cy = 1790, w = 330, h = 220;
   const bad = (i: number) => [3, 4, 10, 11, 17].includes(i);
-  const shake = seg(T, t0 + 0.8, t0 + 1.2);
-  const fly = eio(seg(T, t0 + 2.2, t0 + 3.0));
+  const shake = seg(T, t0 + 2 * CROMA, t0 + 2 * CROMA + 0.4);
+  const fly = eio(seg(T, t0 + 7 * CROMA - 0.8, t0 + 7 * CROMA));
   const bin: P = [cx + 110, cy + 175];
   return (
     <g opacity={Math.min(1, k)} {...S}>
@@ -735,7 +735,7 @@ export const Schema: React.FC<{ T: number }> = ({ T }) => {
 
   // ---- il dipendente qualunque del capitolo 2: scende con la cabina, si sdoppia sulla linea
   const g0 = at('ascensore', 0, 0.1);
-  const gSplit = eo(seg(T, at('ascensore', 0, 0.3) + 1.0, at('ascensore', 0, 0.3) + 1.6));
+  const gSplit = eo(seg(T, at('ascensore', 0, 1.3), at('ascensore', 0, 1.3) + 0.6));
   const gFade = 1 - seg(T, end('ascensore') - 0.3, end('ascensore') + 0.3);
 
   // ---- Petey: le due metà si riuniscono (capitolo 6)
