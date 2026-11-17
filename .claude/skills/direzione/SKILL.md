@@ -13,7 +13,9 @@ Cosa fai (argomenti: $ARGUMENTS):
    dell'automazione (tabella in `ORGANIZZAZIONE.md`), rischi. Massimo una schermata.
 2. **Consiglio**: cosa fare adesso e perché, con il costo in tempo e token. Se un'idea dell'editore ha un problema, dillo.
 3. **Diffondere una decisione**: quando l'editore decide, scrivila in `DECISIONI.md` (data · decisione · reparto) e,
-   se cambia una regola, aggiorna il file della regola (`SOCIAL.md`, `CLAUDE.md`, skill del reparto). Commit e push sul
+   se cambia una regola, aggiorna il file della regola (`SOCIAL.md`, `CLAUDE.md`, skill del reparto) **e le istruzioni di
+   ogni attività programmata che ne dipende** (`list_triggers`, poi `update_trigger` sul prompt: le attività create prima
+   non leggono da sole le novità). Commit e push sul
    ramo della sessione, poi unione su main così ogni sessione la trova. Se ci sono sessioni aperte coinvolte, avvisale con
    `send_message`.
 4. **Il 1° del mese**: rendiconto con la contabilità, verifica delle soglie di monetizzazione con il manager, priorità del

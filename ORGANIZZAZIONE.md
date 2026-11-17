@@ -45,9 +45,9 @@ Memoria comune della squadra (si legge all'inizio di ogni sessione del proprio r
 
 | Quando | Chi | Cosa | Stato oggi |
 |---|---|---|---|
-| Dom 15:05 | Manager (attività programmata) | Dati Metricool → proposta della settimana → app | ✅ attiva (`trig_01ErsayWy5XJvQ6RMrpNndyF`, riaccesa il 17 nov; prossima dom 22) |
+| Dom 15:05 | Manager (attività programmata) | Dati Metricool e PostFast → proposta della settimana → app | ✅ attiva (`trig_01ErsayWy5XJvQ6RMrpNndyF`, riaccesa il 17 nov; prossima dom 22) |
 | Dom, dopo il «sì» | Editore | **Approva in chat** (unico intervento obbligatorio) | ✅ |
-| Dom, dopo il «sì» | Manager | Calendario Google, materiale social, coda delle produzioni | ✅ |
+| Dom, dopo il «sì» | Manager | Calendario Google, materiale social, post e storie dei contenuti pronti su PostFast, coda delle produzioni | ✅ |
 | Tutta la settimana | Produzione | Un video alla volta, max 2 al giorno a 5 ore | ⚠️ funziona ma a catena di promemoria: si rompe facilmente (vedi punto 3 sotto) |
 | A video unito su main | GitHub Actions | Render e caricamento su MEGA | ✅ |
 | Dopo la conferma del video | Pubblicazione | Post e storie programmati su PostFast | ✅ dal 16 nov (TikTok, YouTube, Facebook; Instagram da collegare) |
@@ -96,7 +96,8 @@ Metricool dà solo il **numero** dei commenti, non il testo. Per leggere il test
 - **YouTube:** API YouTube Data con chiave Google (gratuita), stesso metodo.
 - Le risposte **le pubblichi tu** (regola attuale): rispondere a nome della pagina resta un'azione da editore.
   Più avanti, se vuoi, per le risposte semplici («grazie!», «lo segniamo») si può automatizzare su Instagram.
-- Riattivare `In 2 minuti – commenti della sera` (`trig_01BoDkG95aQQMp58DqMiAmKu`) quando c'è il token.
+- La vecchia attività `In 2 minuti – commenti della sera` (`trig_01BoDkG95aQQMp58DqMiAmKu`, Metricool + Telegram) resta spenta:
+  la sostituisce dal 16 nov `In 2 minuti – commenti della sera (PostFast)` (`trig_01Vw6J7ybyzKhievG4hvbsgX`, ogni sera 21:52).
 
 ### 3. Coda delle produzioni stabile
 Oggi ogni produzione programma la successiva con un promemoria: se una sessione si ferma (limite, errore) la catena si
