@@ -65,7 +65,7 @@ Tutti funzione di `t`, con seme e `id` per i gradienti. Catalogo visivo: composi
 
 | Gruppo | Elementi |
 |---|---|
-| Luce | `Glow` (alone che pulsa), `Beam` (fascio: fisso, `sweep` oscillante, `spin` da faro), `SunRays`, `flashAt` + `Lightning` |
+| Luce | `Glow` (alone che pulsa), `Beam` (fascio: fisso, `sweep` oscillante, `spin` da faro), `SunRays`, `flashAt` + `Lightning`, `Buio` (la scena si vede solo nel cono della torcia, intorno a lumi e candele, nei flash) |
 | Cielo | `Stars` (anche `appear` una alla volta), `Moon`, `Clouds`, `ShootingStar`, `Gulls` |
 | Acqua | `wave()`, `WaveBand` (fascia piena con schiuma), `WaveLines`, `Reflection` (riflessi sotto una luce), `Rain` far/near, `Drips` (goccia + increspatura), `GlassDrops` (gocce sul vetro) |
 | Aria | `Fog`, `Smoke` (sbuffi), `Wisps` (volute di pipa/tazza), `Dust` (pulviscolo in un fascio), `NearMotes` (particelle vicine alla camera) |

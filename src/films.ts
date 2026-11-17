@@ -1,5 +1,5 @@
 import type { FilmData, FilmDef } from './types';
-import { DISPLAY, ANTON, BEBAS, CINZEL, CREEPSTER, PACIFICO, PLAYFAIR, RIGHTEOUS, SERIF, STENCIL, SYNCOPATE, TYPEWRITER, CRIMSON } from './lib/fonts';
+import { DISPLAY, ANTON, BEBAS, CINZEL, CREEPSTER, PACIFICO, PLAYFAIR, RIGHTEOUS, SERIF, STENCIL, SYNCOPATE, TYPEWRITER, CRIMSON, FELL } from './lib/fonts';
 import shutterIsland from '../films/shutter-island.json';
 import laLaLand from '../films/la-la-land.json';
 import trumanShow from '../films/the-truman-show.json';
@@ -17,6 +17,9 @@ import gliAnni from '../films/gli-anni.json';
 import tenet from '../films/tenet.json';
 import donnieDarko from '../films/donnie-darko.json';
 import ilMiglioVerde from '../films/il-miglio-verde.json';
+import theConjuring from '../films/the-conjuring.json';
+import { THE_CONJURING_SCENES } from './scenes/the-conjuring';
+import { Copertina as TCCover, Finale as TCEnd } from './scenes/the-conjuring/Locandina';
 import ritornoAlFuturo from '../films/ritorno-al-futuro.json';
 import { RITORNO_AL_FUTURO_SCENES } from './scenes/ritorno-al-futuro';
 import { Copertina as RAFCover, Finale as RAFEnd } from './scenes/ritorno-al-futuro/Locandina';
@@ -147,6 +150,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'donnie-darko', data: donnieDarko as FilmData, scenes: DONNIE_DARKO_SCENES, cover: DDCover, ending: DDEnd, posterFont: BEBAS },
   { slug: 'scissione-stagione-1', data: scissione1 as FilmData, scenes: SCISSIONE_1_SCENES, cover: Sci1Cover, ending: Sci1End, posterFont: SYNCOPATE },
   { slug: 'ritorno-al-futuro-parte-3', data: ritornoAlFuturo3 as FilmData, scenes: RITORNO_AL_FUTURO_3_SCENES, cover: RAF3Cover, ending: RAF3End, posterFont: RIGHTEOUS },
+  { slug: 'the-conjuring', data: theConjuring as FilmData, scenes: THE_CONJURING_SCENES, cover: TCCover, ending: TCEnd, posterFont: FELL },
 ];
 
 export const getFilm = (slug: string): FilmDef => {

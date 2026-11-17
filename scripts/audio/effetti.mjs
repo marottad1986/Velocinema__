@@ -90,6 +90,7 @@ export const CATALOGO = {
   gufo: ['Red_Library_Animals_Birds', 'R01-27-Great Horned Owl Hoot.wav', -19],
   ali: ['Red_Library_Animals_Birds', 'R21-40b-Bird Wings Flapping.wav', -14],
   ringhio: ['Red_Library_Animals_Dogs', 'R11-45-Growling Dog.wav', -18],
+  latrato: ['Red_Library_Animals_Dogs', 'R01-62-Single Dog Barks.wav', -18],
   sirena_nebbia: ['SSE_Library_HORNS', 'AIR POWERED/HORNAir_Fog horn with echo_CS_USC.wav', -18],
   macchina_scrivere: ['Red_Library_Communications', 'R20-10-Fast Typing on Manual Typewriter.wav', -18.6],
   giornale: ['Red_Library_Foley_Props_1', 'R15-04-Newspaper Being Opened.wav', -18],

@@ -42,3 +42,6 @@ export const CRIMSON = loadCrimsonPro('normal', { weights: ['800'], subsets: ['l
 import { loadFont as loadRighteous } from '@remotion/google-fonts/Righteous';
 /** Titolo retrò arrotondato, tra anni '50 e '80 (Ritorno al futuro). */
 export const RIGHTEOUS = loadRighteous('normal', { weights: ['400'], subsets: ['latin', 'latin-ext'] }).fontFamily;
+import { loadFont as loadFellEnglish } from '@remotion/google-fonts/IMFellEnglish';
+/** Serif da stampa antica, con l'inchiostro irregolare dei manifesti horror anni '70 (The Conjuring). */
+export const FELL = loadFellEnglish('normal', { weights: ['400'], subsets: ['latin'] }).fontFamily;

@@ -58,6 +58,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - Il miglio verde: verde e buio caldo della prigione anni '30 (#1E3A28, opacità 12%), seppia nel ricordo (#5A3A1E), blu notte nella pioggia (#142030); unico colore deciso l'oro (#F2C14E) sul dono di John e sugli oggetti chiave.
   - Donnie Darko (Spiegato semplice): blu notte d'ottobre (#161A3A, opacità 12%); unico colore acceso l'arancione del motore (#F2A03A), giallo (#F5D04A) solo per il viaggio nel tempo, azzurro (#7FA6FF) per la copia del mondo.
   - Scissione (Spiegato semplice, stagione 1): verde petrolio da piano interrato (#0E2A30, opacità 12%); notte d'inverno sopra con le finestre calde (#F2C48A), unico colore acceso il verde-acqua del chip e degli interni (#5FE3C2), rosso (#E8553F) solo per il nodo.
+  - The Conjuring (L'evocazione): notte blu-grigia del New England (#1A2230, opacità 10–14%), caldo autunnale al tramonto e all'alba (#C8925A, 8–9%); unico colore deciso l'oro (#F2B84B) su orologi fermi alle 3:07, carillon e lumi. Il buio copre la scena tranne dove arriva la luce (`Buio`).
   - Ritorno al futuro (Spiegato semplice): notte viola anni '80 (#1A1238, opacità 10%) con stazioni del 1955 come cartoline crema a inchiostro seppia e del 1985 al neon (ciano e magenta); giallo (#F5C23A) solo per le scie del viaggio nel tempo, rosso per l'anello del nodo e i pericoli.
 - Gli accenti (arancione o giallo) solo sugli elementi narrativi chiave, per guidare l'occhio.
 
@@ -110,3 +111,4 @@ leggono solo questo file e quello del film. Un film nuovo aggiunge il suo file q
 - Il miglio verde: `qualita/il-miglio-verde.md`
 - L'Ultima Cena (quadro): `qualita/ultima-cena.md`
 - Scissione, stagione 1 (Spiegato semplice, schema: il piano diviso): `qualita/scissione-stagione-1.md`
+- The Conjuring (L'evocazione): `qualita/the-conjuring.md`
