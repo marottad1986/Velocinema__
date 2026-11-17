@@ -6,6 +6,10 @@ data · chi propone · proposta · cosa si guadagna o risparmia · stato (aperta
 La direzione le legge all'inizio di ogni sessione, le porta all'editore e, una volta decise, le sposta in `DECISIONI.md`.
 
 ## Aperte
+- 17 nov 2026 · revisore-voce (Scissione) · **Velocità della voce per capitolo**: permettere nel JSON una `speed` per
+  capitolo (oggi `voce_impostazioni` vale per tutto il contenuto, `scripts/genera-voce.mjs`), così un capitolo denso si
+  genera già a 1,08–1,10 invece di essere accelerato dopo con atempo, che si sente di più; e un obiettivo di 2,9 parole/s
+  nei testi degli Spiegato semplice. · voce più naturale nei capitoli densi · aperta
 - 17 nov 2026 · produzione (Scissione) · **`Snow` nella libreria comune**: la neve a due livelli chiusa in un riquadro
   (`src/scenes/scissione-stagione-1/Piani.tsx`) serve anche a Shining, Frozen, Natale; non l'ho messa in
   `src/lib/elements.tsx` perché toccare il codice comune rigenera tutti i film su MEGA. Proposta: spostarla insieme al
