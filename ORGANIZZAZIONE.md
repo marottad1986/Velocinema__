@@ -98,7 +98,10 @@ Metricool dà solo il **numero** dei commenti, non il testo. Per leggere il test
 - Le risposte **le pubblichi tu** (regola attuale): rispondere a nome della pagina resta un'azione da editore.
   Più avanti, se vuoi, per le risposte semplici («grazie!», «lo segniamo») si può automatizzare su Instagram.
 - La vecchia attività `In 2 minuti – commenti della sera` (`trig_01BoDkG95aQQMp58DqMiAmKu`, Metricool + Telegram) resta spenta:
-  la sostituisce dal 16 nov `In 2 minuti – commenti della sera (PostFast)` (`trig_01Vw6J7ybyzKhievG4hvbsgX`, ogni sera 21:52).
+  la sostituisce dal 16 nov `In 2 minuti – commenti della sera (PostFast)` (`trig_01Vw6J7ybyzKhievG4hvbsgX`, ogni sera 21:52),
+  dal 17 nov a sua volta sostituita da `trig_01KMbrCvxArZU4gEWftriwHh` (stessa ora), che sveglia la sessione fissa
+  «Attività · commenti della sera» con il repository allegato. Lo stesso per le proposte approvate (7:00 e 14:00):
+  `trig_018z238Yrj1pT2zjho8Yag7x` con la sessione «Attività · proposte approvate» (la vecchia `trig_013WwjoxJZLc6zQTF7tvmUrk` è spenta).
 
 ### 3. Coda delle produzioni stabile
 Oggi ogni produzione programma la successiva con un promemoria: se una sessione si ferma (limite, errore) la catena si
