@@ -72,7 +72,11 @@ aspettare che qualcuno apra `/direzione`: un'attività programmata le controlla 
   già, non se ne crea un'altra.
 
 ## 5. Cose che l'app fa da sola (non servono passaggi della squadra)
-- Uscite e fallimenti delle pubblicazioni: arrivano da PostFast all'app (webhook) e diventano avvisi.
+- Uscite e fallimenti delle pubblicazioni: arrivano da PostFast all'app (webhook) e diventano avvisi; lo stato «Uscito»
+  nell'app è in tempo reale.
+- **Commenti nuovi**: l'app li controlla su PostFast ogni minuto e manda subito la notifica all'editore (autore, social,
+  video, testo). Non li segna come letti: la sessione della sera li trova lo stesso e prepara le risposte (punto 3).
+  Quindi la sessione della sera **non** deve più mandare un avviso per ogni commento: basta il riassunto e la richiesta.
 - Storie da pubblicare a mano su TikTok: l'app mostra le immagini di `calendario/storie/<settimana>/` del giorno, con
   l'ora presa dalla tabella «Storie del giorno prima» del `-social.md`. Basta che i nomi dei file coincidano con la colonna
   «Locandina».
