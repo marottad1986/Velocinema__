@@ -10,6 +10,9 @@ l'ultimo calendario in `calendario/`, `DECISIONI.md` (decisioni della direzione,
 `ERRORI.md` (errori già fatti). L'organizzazione della squadra è in `ORGANIZZAZIONE.md`. Valgono le regole sui contenuti di `CLAUDE.md` (cosa si può disegnare, testi
 verificati, frasi vietate).
 
+Prima di proporre la settimana leggi anche i **suggerimenti per le uscite** che l'editore ha scritto nell'app
+(`GET /api/messaggi?stato=inviato`, tipo `uscite`, skill `app` punto 6), tienili in conto e rispondi a ognuno.
+
 Cosa fai, secondo la richiesta (argomenti: $ARGUMENTS):
 1. **Dati del profilo** (screenshot o numeri TikTok): aggiorna `calendario/pubblicati.md` e la sezione «Cosa dicono i
    dati» di `SOCIAL.md`.

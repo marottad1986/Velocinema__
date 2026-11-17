@@ -71,6 +71,28 @@ aspettare che qualcuno apra `/direzione`: un'attività programmata le controlla 
   (`reparto` `direzione`, titolo «Attivato il controllo delle proposte, alle 7 e alle 14»). Una sola attività: se esiste
   già, non se ne crea un'altra.
 
+## 6. Messaggi dell'editore alla squadra
+Dall'app l'editore scrive alla squadra: **idee o proposte** (`tipo` `idea`), **suggerimenti per le uscite** (`uscite`) e
+**richieste** (`richiesta`), con un destinatario (`per`: `direzione`, `manager`, `produzione`, `contabilita`, `tutti`) e a
+volte `urgente`.
+- **Leggere i nuovi**: `curl -sS "https://in-2-minuti-gestione.pages.dev/api/messaggi?stato=inviato"` →
+  `{"messaggi":[{"id","tipo","per","testo","urgente","quando",…}]}` (il testo completo con `GET /api/messaggi/<id>`).
+- **Chi li legge**: l'attività delle 7 e delle 14 (punto 4) li controlla insieme alle proposte; `/direzione` all'inizio di
+  ogni sessione; il manager, la domenica, legge quelli di tipo `uscite` prima di proporre la settimana (e li tiene in conto
+  nella scelta dei titoli). Gli urgenti si gestiscono per primi.
+- **Rispondere** (sempre, anche solo per dire che è preso in carico): `POST /api/messaggi/<id>` con
+  `{"stato":"preso in carico","risposta":"cosa farete e quando, in parole semplici"}`; a lavoro finito
+  `{"stato":"fatto","risposta":"cosa è cambiato","link":"<PR, calendario o commit>"}`; se non si può fare
+  `{"stato":"non fattibile","risposta":"il motivo e un'alternativa"}`. L'editore riceve ogni risposta come notifica.
+- Un messaggio che cambia una regola o una scelta stabile va anche in `DECISIONI.md`; un suggerimento sulle uscite che
+  si accoglie va nel calendario o nella riserva di titoli di `SOCIAL.md`; un'idea da valutare può diventare una riga in
+  `PROPOSTE.md` (con «chiesta dall'editore»).
+- **Attività da aggiornare una volta**: se le istruzioni dell'attività «In 2 minuti – proposte approvate» non parlano ancora
+  dei messaggi, la prima sessione che legge questa skill le aggiorna con `update_trigger` aggiungendo: «Poi controlla anche
+  `GET /api/messaggi?stato=inviato` e gestisci i messaggi dell'editore seguendo la skill `app`, punto 6; chiudi subito solo se
+  non ci sono né proposte né messaggi.» e manda un avviso (`reparto` `direzione`, «Attività aggiornata: ora legge anche i
+  tuoi messaggi»).
+
 ## 5. Cose che l'app fa da sola (non servono passaggi della squadra)
 - Uscite e fallimenti delle pubblicazioni: arrivano da PostFast all'app (webhook) e diventano avvisi; lo stato «Uscito»
   nell'app è in tempo reale.
