@@ -45,7 +45,7 @@ Memoria comune della squadra (si legge all'inizio di ogni sessione del proprio r
 
 | Quando | Chi | Cosa | Stato oggi |
 |---|---|---|---|
-| Dom 15:05 | Manager (attività programmata) | Dati Metricool → proposta della settimana → app | ✅ esiste (`trig_01ErsayWy5XJvQ6RMrpNndyF`, spenta per il 15, si riaccende da sola il 16) |
+| Dom 15:05 | Manager (attività programmata) | Dati Metricool → proposta della settimana → app | ✅ attiva (`trig_01ErsayWy5XJvQ6RMrpNndyF`, riaccesa il 17 nov; prossima dom 22) |
 | Dom, dopo il «sì» | Editore | **Approva in chat** (unico intervento obbligatorio) | ✅ |
 | Dom, dopo il «sì» | Manager | Calendario Google, materiale social, coda delle produzioni | ✅ |
 | Tutta la settimana | Produzione | Un video alla volta, max 2 al giorno a 5 ore | ⚠️ funziona ma a catena di promemoria: si rompe facilmente (vedi punto 3 sotto) |
