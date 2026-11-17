@@ -6,6 +6,9 @@ data · chi propone · proposta · cosa si guadagna o risparmia · stato (aperta
 La direzione le legge all'inizio di ogni sessione, le porta all'editore e, una volta decise, le sposta in `DECISIONI.md`.
 
 ## Aperte
+- 17 nov 2026 · revisore-voce (Scissione) · **Ritmo delle frasi dopo il montaggio**: `ascolta-voce.mjs` calcoli le
+  parole al secondo di ogni frase come suonerà nel video (pause a 0,25 s e accelerazione applicata), non solo sulla clip
+  grezza: una frase a 3,5 grezza diventa 3,8 nel video senza avviso. · meno clip rifatte · aperta
 - 17 nov 2026 · revisore-musica (Scissione) · **Colpi coperti visibili subito**: `pausa` degli spartiti che silenzi
   anche archi tenuti e bordone (così «tace un battito» è automatico), e in `scripts/livelli.mjs` una riga per ogni `clip` e
   `timp` con il picco del suono contro la musica nello stesso istante. · meno secondi passaggi del revisore · aperta
