@@ -3,6 +3,14 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 17 nov 2026 · **Conferme dei video e risposte ai commenti passano dall'app «In 2 minuti».** Video pronto: anteprima a
+  540 px, richiesta `video` con `POST /api/richieste` e `PUT /api/media/<id>`, attesa in background con
+  `scripts/strumenti/attendi-conferma.sh` (ogni 2 minuti); «approvata» → unione e programmazione, «da rifare» → si legge
+  la nota, si corregge e si rifà la richiesta; vale anche la conferma in chat, la prima che arriva. Commenti della sera:
+  una richiesta `commenti` con l'`itemId` di PostFast per ogni risposta; le risposte le pubblica l'app all'approvazione,
+  non più la sessione. Chiave messa dal proxy, mai scritta. Procedura in `SOCIAL.md`, «Conferme nell'app». · produzione,
+  commenti della sera
+
 - 17 nov 2026 · **Ogni decisione nuova o cambiata si porta ovunque.** Quando si prende una decisione, se ne cambia una o
   arriva uno strumento nuovo (es. PostFast), chi la registra controlla e aggiorna nello stesso momento tutto ciò che ne
   dipende: i file delle regole (`CLAUDE.md`, `SOCIAL.md`, `ORGANIZZAZIONE.md`, skill dei reparti) **e le istruzioni delle

@@ -28,15 +28,19 @@ Metodo (vincolante, da `CLAUDE.md`):
    stesso formato; se non è più bello, rinforza la scena più debole. Nel messaggio all'editore e nella pull request, una
    riga con il passo avanti; nello stesso ramo, la riga nel registro di `ASTICELLA.md` e la tecnica resa riutilizzabile nella libreria comune (`src/lib/`), in autonomia e senza chiedere conferma: i video già prodotti non si rigenerano mai.
 6b. Se un revisore segnala un tipo di problema già visto in un altro film, aggiungi una riga a `ERRORI.md`.
-7. Pull request con i verdetti dei revisori. Appena il video finale è pronto da controllare, avvisa l'utente
-   nell'app e mandagli il video in questa chat (SendUserFile), come in `SOCIAL.md`, «Avvisi all'utente nell'app»;
+7. Pull request con i verdetti dei revisori. Appena il video finale è pronto da controllare (controlli verdi, revisori
+   APPROVATO), **richiesta di conferma nell'app** (`SOCIAL.md`, «Conferme nell'app»): anteprima a 540 px con ffmpeg (sotto
+   24 MB), `POST /api/richieste` tipo `video` (titolo, una riga con contenuto ed esito dei revisori, uscita
+   `AAAA-MM-GGTHH:MM`), `PUT /api/media/<id>` con l'anteprima, poi `bash scripts/strumenti/attendi-conferma.sh <id>` in
+   background (Bash con `run_in_background`, controlla ogni 2 minuti). Manda il video anche in questa chat (SendUserFile);
    anche un problema che fa saltare la data va segnalato lì subito. A contenuto unito su main, il video arriva su MEGA.
-   L'avviso «video pronto» è obbligatorio e va mandato prima di chiudere la sessione (anche se l'unione su main è già
-   avvenuta): una produzione non è finita finché l'avviso nell'app non risulta arrivato (`{"ok":true}`).
+   La richiesta «video pronto» è obbligatoria e va creata prima di chiudere la sessione: una produzione non è finita
+   finché l'anteprima non risulta caricata (`PUT` → `{"ok":true}`).
 
 8. **Il video è «pronto» solo quando l'editore l'ha visto e confermato** (decisione del 15 novembre 2026, `DECISIONI.md`):
-   finché non risponde, nel calendario resta «da confermare». Appena conferma, unisci su main da solo senza chiedere altro
-   (controlli verdi e revisori APPROVATO); se chiede modifiche, si fanno e si rimanda il video.
+   finché non risponde, nel calendario resta «da confermare». Vale la prima risposta che arriva: `stato` `approvata`
+   nell'app o conferma scritta in chat. Appena conferma, unisci su main da solo senza chiedere altro (controlli verdi e
+   revisori APPROVATO); se risponde «da rifare», leggi `risposta.nota`, correggi e ripeti dalla richiesta (nuova anteprima).
    Subito dopo l'unione programma il post con PostFast (`SOCIAL.md`, «Pubblicazione automatica»): data e ora dal calendario,
    testi dal `-social.md`, etichette IA sempre; poi l'avviso «📤 Programmato» nell'app.
 
