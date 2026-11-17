@@ -3,6 +3,13 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 17 nov 2026 · **Ogni decisione nuova o cambiata si porta ovunque.** Quando si prende una decisione, se ne cambia una o
+  arriva uno strumento nuovo (es. PostFast), chi la registra controlla e aggiorna nello stesso momento tutto ciò che ne
+  dipende: i file delle regole (`CLAUDE.md`, `SOCIAL.md`, `ORGANIZZAZIONE.md`, skill dei reparti) **e le istruzioni delle
+  attività programmate** (programmazione della domenica, commenti della sera, dati per l'app, produzioni programmate),
+  che non leggono da sole le novità scritte dopo la loro creazione. (Il 17 nov la programmazione della domenica non
+  usava ancora PostFast perché creata prima.) · tutti, direzione
+
 - 17 nov 2026 · **I video già prodotti non si toccano mai** (vale per sempre: anche ogni video futuro, una volta prodotto,
   non si rigenera più per modifiche comuni). Modificare il codice comune (libreria `src/lib/`, componenti,
   motore audio, catalogo degli effetti, script), anche una funzione già usata, non rigenera nessun video già fatto: si

@@ -19,7 +19,7 @@ proporre la settimana.
 ## La domenica alle 15:00
 Ogni domenica alle 15:00 (attività programmata che apre da sola una sessione `/manager`) si studia l'andamento, si
 programma la settimana che inizia il giorno dopo e si avvia subito la produzione: così i dati sono i più freschi
-possibili (fino al sabato; quelli di TikTok arrivano con circa un giorno di ritardo) e la produzione lavora la domenica
+possibili (fino al sabato; con PostFast anche TikTok arriva senza ritardo) e la produzione lavora la domenica
 per la settimana che viene.
 Attività programmata: «In 2 minuti – programmazione della settimana» (`trig_01ErsayWy5XJvQ6RMrpNndyF`), ogni domenica alle
 15:05 ora italiana (dopo le 15:00, quando riparte la settimana dei token), apre una sessione nuova con notifica sul telefono.
@@ -32,6 +32,13 @@ Attività programmata: «In 2 minuti – programmazione della settimana» (`trig
    - YouTube (`YTVP`): con il piano gratuito arrivano solo titoli e date, non i numeri (8 novembre 2026): per YouTube
      l'utente manda i dati di YouTube Studio quando servono.
    - I dati di TikTok arrivano con circa un giorno di ritardo. Se il connettore non risponde, l'utente manda gli screenshot.
+   - **Anche PostFast** (dal 16 novembre 2026, sezione «Pubblicazione automatica»): `get_post_analytics` per i post
+     programmati con PostFast (TikTok senza il ritardo di Metricool, Facebook, YouTube, Instagram) e `get_follower_history`
+     per i follower. Copre solo i post usciti da PostFast (dal 16–17 novembre in poi): per quelli precedenti e per le
+     metriche che PostFast non dà resta Metricool. Se le due fonti danno numeri diversi per lo stesso post, vale il più
+     recente e si scrive la fonte.
+   - Controllo dei post falliti della settimana: `list_posts` con `statuses: FAILED`; quelli falliti vanno nell'avviso
+     della domenica con il motivo (`lastError`).
 2. Si aggiorna `calendario/pubblicati.md` e si legge cosa sta funzionando (generi, formati, giorni).
 3. Si propone la **settimana che inizia il giorno dopo** (lunedì–domenica) in `calendario/<aaaa-mm-gg>.md`, con
    un'alternativa pronta per ogni contenuto da produrre e l'ordine in cui produrre. Lunedì e martedì sono i giorni più
@@ -62,6 +69,10 @@ Attività programmata: «In 2 minuti – programmazione della settimana» (`trig
    Titoli, descrizioni e storie seguono i modelli di `calendario/modelli-social.md`.
    Valgono le regole sui testi di CLAUDE.md: fatti verificati, niente frasi come «La prossima volta che lo vedi…».
    Didascalia e titolo vanno anche nella descrizione dell'evento su Google Calendar, per averli sul telefono.
+7. **Subito dopo il materiale social**, per i contenuti già pronti e confermati dall'editore, si programmano su
+   **PostFast** i post (all'ora del calendario) e le storie (24 ore prima), secondo «Pubblicazione automatica»; i
+   contenuti ancora da produrre li programma la sessione di produzione dopo la conferma. Le storie di TikTok restano a
+   mano: la locandina si manda all'editore pronta, con l'ora. Poi l'avviso «📤 Programmato» nell'app.
 
 ## Avvisi all'utente nell'app «In 2 minuti» (vincolante, tutti i reparti)
 Gli avvisi arrivano nell'app «In 2 minuti», che manda le notifiche sul telefono. **Telegram è dismesso** (decisione del
@@ -164,7 +175,8 @@ Quando si programma (vincolante):
 - Nel cloud gli script Remotion usano il browser locale: `REMOTION_BROWSER=/opt/pw-browsers/chromium` (senza, il download di
   Chrome da remotion.media è bloccato).
 - Dopo `create_posts`, `list_posts` con `statuses: SCHEDULED` per controllare; il giorno dopo l'uscita, `statuses: FAILED`:
-  un post fallito (`lastError`) si segnala subito nell'app.
+  un post fallito (`lastError`) si segnala subito nell'app. Il controllo lo fa ogni sera l'attività dei commenti delle
+  21:52 (post delle ultime 48 ore) e la domenica il manager per tutta la settimana.
 - Avviso «📤 Programmato» nell'app: titolo, data e ora, piattaforme.
 
 ## Commenti della sera (PostFast)
