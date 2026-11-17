@@ -39,14 +39,33 @@ const Art: React.FC<{ t: number; id: string; dawn?: number }> = ({ t, id, dawn =
         {/* il davanzale in primo piano con l'orologio fermo e il carillon */}
         <path d="M-100 1250 H1180 V1290 H-100 Z" fill={`url(#${id}-sill)`} stroke={K} strokeWidth="8" />
         <path d="M-100 1252 H1180" stroke="#C89A5A" strokeWidth="4" opacity=".5" />
-        <path d="M-100 1290 H1180 V2000 H-100 Z" fill="#0A0806" />
-        <path d="M-100 1290 H1180 V1340 H-100 Z" fill="#000" opacity=".5" />
-        <g transform="translate(250 1120)">
+        {/* la parete di legno a pannelli sotto il davanzale, scaldata dal lume */}
+        <path d="M-100 1290 H1180 V2000 H-100 Z" fill={dawn ? '#3A2A1C' : '#1E140C'} />
+        {[0, 1, 2, 3].map((i) => (
+          <g key={i}>
+            <rect x={-60 + i * 300} y={1340} width={250} height={520} rx={8} fill={dawn ? '#4A3424' : '#2A1C10'} stroke={K} strokeWidth="8" />
+            <rect x={-36 + i * 300} y={1364} width={202} height={472} rx={6} fill="none" stroke="#C89A5A" strokeWidth="4" opacity=".25" />
+          </g>
+        ))}
+        <path d="M-100 1290 H1180 V1330 H-100 Z" fill="#000" opacity=".55" />
+        {/* il lume sul davanzale, che scalda la parete dal basso */}
+        <g transform="translate(560 1252)">
+          <path d="M-26 0 Q-34 -26 -18 -42 H18 Q34 -26 26 0 Z" fill={`url(#${id}-brass)`} stroke={K} strokeWidth="5" />
+          <path d="M-12 -42 Q-26 -70 -10 -96 V-112 H10 V-96 Q26 -70 12 -42 Z" fill="#FFFFFF" opacity=".25" stroke={K} strokeWidth="4" />
+          {!dawn && <path d={`M-7 -52 Q-7 -70 ${Math.sin(t * 7) * 2} ${-84 - 4 * Math.sin(t * 11)} Q7 -70 7 -52 Z`} fill={`url(#${id}-flame)`} />}
+        </g>
+        {!dawn && <Glow id={`${id}-lume`} x={560} y={1200} r={520} t={t} color={GOLD} amp={0.06} rate={8} opacity={0.45} />}
+        {/* le tende pesanti ai lati, dall'alto in basso */}
+        <path d="M-100 -100 H90 Q60 600 110 1300 Q70 1700 100 2000 H-100 Z" fill="#3A1E22" stroke={K} strokeWidth="10" />
+        <path d="M40 0 Q10 600 60 1300 Q30 1700 50 2000" stroke="#5A2E32" strokeWidth="14" fill="none" />
+        <path d="M1180 -100 H990 Q1020 600 970 1300 Q1010 1700 980 2000 H1180 Z" fill="#3A1E22" stroke={K} strokeWidth="10" />
+        <path d="M1040 0 Q1070 600 1020 1300 Q1050 1700 1030 2000" stroke="#5A2E32" strokeWidth="14" fill="none" />
+        <g transform="translate(290 1120)">
           <path d="M0 -150 V-178" stroke={K} strokeWidth="6" />
           <circle cx="0" cy="-182" r="7" fill="#8A8A86" />
           <Quadrante id={id} x={0} y={0} r={118} h={h} stopped={dawn ? 0 : 1} roman crack />
         </g>
-        <Carillon id={id} x={820} y={1252} s={0.95} t={t} open={lid} glow={dawn ? 0 : lid} />
+        <Carillon id={id} x={800} y={1252} s={0.9} t={t} open={lid} glow={dawn ? 0 : lid} />
       </g>
       <NearMotes id={`${id}-near`} t={t} color={dawn ? '#FFE8C0' : '#C8D8E8'} n={6} y0={1000} opacity={0.08} />
       <Finish id={id} tint={dawn ? TINT_GIORNO : TINT_NOTTE} tintOpacity={dawn ? 0.08 : 0.14} />
