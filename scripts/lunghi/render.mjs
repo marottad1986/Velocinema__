@@ -23,6 +23,9 @@ import { durataLungo, episodiDi, inizioParti, loadLungo, lunghi, mmss, trattiLun
 
 /** La voce e i sottotitoli dell'aggancio partono qui (fotogramma 0 = miniatura senza testo): come INIZIO_AGGANCIO in src/lunghi/Lungo.tsx. */
 export const INIZIO_AGGANCIO = 0.4;
+/** Ritardo della voce (e dei sottotitoli) dei tratti brevi dopo un cambio di sezione, così il passaggio ha una pausa:
+ *  come INIZIO in src/lunghi/Lungo.tsx. */
+export const INIZIO = { aggancio: INIZIO_AGGANCIO, chiusura: 0.5, riassunto: 0.3 };
 const FPS = 30;
 /** Loudness comune della musica: ogni episodio era normalizzato da solo (picco −3 dB) e i livelli medi differiscono di
  *  diversi dB; nel lungo ogni pezzo si porta allo stesso livello integrato, così tra una stagione e l'altra non salta. */
@@ -47,7 +50,7 @@ mkdirSync('out', { recursive: true });
 
 /** Inizio di ogni frase di un tratto (s nel video lungo), come Overlay16 / subtitleTimes. */
 const frasi = (x) => {
-  const inizio = x.tipo === 'aggancio' ? INIZIO_AGGANCIO : 0;
+  const inizio = INIZIO[x.tipo] ?? 0;
   const w = x.testo.map((l) => l.length + 6);
   const tot = w.reduce((a, b) => a + b, 0);
   const span = x.dur - inizio - 0.35;
@@ -147,7 +150,7 @@ const problemi = [];
 for (const x of conVoce) {
   const src = `${x.voce.dir}/${trova(x.voce)}`;
   const base = `${x.voce.dir.split('/').pop()}_${x.voce.base}`;
-  const inizio = x.tipo === 'aggancio' ? INIZIO_AGGANCIO : 0;
+  const inizio = INIZIO[x.tipo] ?? 0;
   const room = x.dur - inizio - MARGIN;
   let file = `${TMP}/${base}.wav`;
   run('ffmpeg', ['-y', '-v', 'error', '-i', src, '-af', TRIM, '-ar', '48000', file]);
