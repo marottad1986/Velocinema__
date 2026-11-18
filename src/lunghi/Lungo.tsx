@@ -8,6 +8,8 @@ import { cuesDi, durataTotale, tratti, type Tratto } from './tempi';
 export const FPS = 30;
 /** La voce e i sottotitoli dell'aggancio partono da qui: il fotogramma 0 è la miniatura, senza testo (CLAUDE.md). */
 export const INIZIO_AGGANCIO = 0.4;
+/** La voce della chiusura parte dopo una pausa dal capitolo prima (come INIZIO in scripts/lunghi/render.mjs). */
+export const INIZIO_CHIUSURA = 0.5;
 
 /** Tempo nella stagione, come nel video verticale («m:ss / 2:00»): il lungo non dichiara mai la sua durata totale. */
 const tempoEpisodio = (tr: Tratto[], x: Tratto, t: number): [number, number] => {
@@ -35,7 +37,7 @@ export const TrattoView: React.FC<{ slug: string; indice: number; offset?: numbe
         <Overlay16 P={P} t={t} dur={x.dur} etichetta={`${x.parte.nome} · ${x.n} DI ${x.di}`} titolo={x.capitolo.titolo} righe={x.capitolo.sottotitoli} />
       )}
       {x.tipo === 'aggancio' && <Overlay16 P={P} t={t} dur={x.dur} righe={x.parte.sottotitoli} inizio={INIZIO_AGGANCIO} />}
-      {x.tipo === 'chiusura' && <Overlay16 P={P} t={t} dur={x.dur} righe={x.parte.sottotitoli} />}
+      {x.tipo === 'chiusura' && <Overlay16 P={P} t={t} dur={x.dur} righe={x.parte.sottotitoli} inizio={INIZIO_CHIUSURA} />}
     </AbsoluteFill>
   );
 };
@@ -47,14 +49,14 @@ const Scena: React.FC<{ L: ReturnType<typeof getLungo>; x: Tratto; t: number }> 
     const tr = tratti(L.data, L.episodi);
     const inizio = tr.find((y) => y.tipo === 'carta' && y.parte === x.parte)!.start;
     const Ep = S.episodio;
-    return <Ep film={x.parte.film} T={x.start - inizio + t} parte={x.parte} riassunto={x.film.finale.voce ?? ''} />;
+    return <Ep film={x.parte.film} T={x.start - inizio + t} parte={x.parte} riassunto={x.parte.riassunto ?? x.film.finale.voce ?? ''} />;
   }
   if (x.tipo === 'capitolo') {
     const C = S.capitoli[x.capitolo.id];
     if (C) return <C t={t} dur={x.dur} cues={cuesDi(x.capitolo.sottotitoli, x.dur)} />;
   }
   if (x.tipo === 'aggancio' && S.aggancio) return <S.aggancio t={t} dur={x.dur} cues={cuesDi(x.parte.sottotitoli, x.dur - INIZIO_AGGANCIO).map((c) => c + INIZIO_AGGANCIO)} />;
-  if (x.tipo === 'chiusura' && S.chiusura) return <S.chiusura t={t} dur={x.dur} cues={cuesDi(x.parte.sottotitoli, x.dur)} />;
+  if (x.tipo === 'chiusura' && S.chiusura) return <S.chiusura t={t} dur={x.dur} cues={cuesDi(x.parte.sottotitoli, x.dur - INIZIO_CHIUSURA).map((c) => c + INIZIO_CHIUSURA)} />;
   return (
     <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center' }}>
       <p style={{ fontFamily: SANS, fontSize: 40, color: '#E4E7E1', opacity: 0.6 }}>[scena da disegnare: {x.id}]</p>

@@ -32,6 +32,13 @@ pagina deve sentire che, andando avanti, la qualità sale: non si resta fermi su
 Una riga per produzione, le più recenti in alto: data · contenuto · cosa c'è di nuovo · dove sta il codice da riusare.
 La aggiunge chi produce, nello stesso ramo del video, prima dell'unione su main.
 
+- 18 nov 2026 · Ritorno al futuro, la trilogia (video lungo YouTube) · la linea del tempo diventa una **ferrovia vera**:
+  traversine e due rotaie parallele anche in curva (maschera larga meno maschera stretta), che si posano da sole, uno
+  **scambio con leva e lanterna** che devia il tempo su un binario rosso e lo rimette dritto, e un'onda di luce che corre
+  sulle rotaie dal passato al presente; i tre schemi verticali portati nel 16:9 con la loro camera (zoom ridotto, centrati
+  sulla stazione) e i lati vivi (anno enorme in contorno, quadrante al neon con le lancette all'indietro); miniatura con
+  il quadrante-orologio che contiene la piazza colpita dal fulmine · `Binario`, `Scambio`, `OndaBinario` in
+  `src/lib/binari.tsx`, `src/lunghi/ritorno-al-futuro-trilogia/` (Parti.tsx per riusare uno schema verticale nel 16:9).
 - 17 nov 2026 · The Conjuring – L'evocazione · il **buio che si esplora**: la scena si disegna tutta illuminata e sopra
   `Buio` la copre di nero tranne dove arriva la luce (il cono di una torcia che cerca e trova, il lume che trema, le
   candele, i flash che aprono la stanza per un istante, l'alba che scioglie il buio); quattro orologi che si fermano

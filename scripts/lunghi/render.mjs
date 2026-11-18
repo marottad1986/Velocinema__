@@ -23,6 +23,9 @@ import { durataLungo, episodiDi, inizioParti, loadLungo, lunghi, mmss, trattiLun
 
 /** La voce e i sottotitoli dell'aggancio partono qui (fotogramma 0 = miniatura senza testo): come INIZIO_AGGANCIO in src/lunghi/Lungo.tsx. */
 export const INIZIO_AGGANCIO = 0.4;
+/** Ritardo della voce (e dei sottotitoli) dei tratti brevi dopo un cambio di sezione, così il passaggio ha una pausa:
+ *  come INIZIO in src/lunghi/Lungo.tsx. */
+export const INIZIO = { aggancio: INIZIO_AGGANCIO, chiusura: 0.5, riassunto: 0.3 };
 const FPS = 30;
 /** Loudness comune della musica: ogni episodio era normalizzato da solo (picco −3 dB) e i livelli medi differiscono di
  *  diversi dB; nel lungo ogni pezzo si porta allo stesso livello integrato, così tra una stagione e l'altra non salta. */
@@ -47,7 +50,7 @@ mkdirSync('out', { recursive: true });
 
 /** Inizio di ogni frase di un tratto (s nel video lungo), come Overlay16 / subtitleTimes. */
 const frasi = (x) => {
-  const inizio = x.tipo === 'aggancio' ? INIZIO_AGGANCIO : 0;
+  const inizio = INIZIO[x.tipo] ?? 0;
   const w = x.testo.map((l) => l.length + 6);
   const tot = w.reduce((a, b) => a + b, 0);
   const span = x.dur - inizio - 0.35;
@@ -147,7 +150,7 @@ const problemi = [];
 for (const x of conVoce) {
   const src = `${x.voce.dir}/${trova(x.voce)}`;
   const base = `${x.voce.dir.split('/').pop()}_${x.voce.base}`;
-  const inizio = x.tipo === 'aggancio' ? INIZIO_AGGANCIO : 0;
+  const inizio = INIZIO[x.tipo] ?? 0;
   const room = x.dur - inizio - MARGIN;
   let file = `${TMP}/${base}.wav`;
   run('ffmpeg', ['-y', '-v', 'error', '-i', src, '-af', TRIM, '-ar', '48000', file]);
@@ -174,7 +177,17 @@ parts.push(`${clips.map((_, i) => `[v${i}]`).join('')}amix=inputs=${clips.length
 // il filtro passa come argomento: -filter_complex_script non esiste più nelle versioni recenti di ffmpeg (quella di GitHub Actions)
 run('ffmpeg', ['-y', '-v', 'error', ...clips.flatMap((c) => ['-i', c.file]), '-filter_complex', parts.join(';'), '-map', '[voce]', '-t', String(END), voceWav]);
 const out = `out/${slug}-voce.mp4`;
-run('ffmpeg', ['-y', '-v', 'error', '-i', video, '-i', voceWav, '-filter_complex',
-  `[1:a]${FMT},asplit=2[vc][sc];[0:a]${FMT}[mus];[mus][sc]sidechaincompress=threshold=0.015:ratio=8:attack=20:release=450[duck];[duck][vc]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.95[a]`,
+// ducking a due bande, come scripts/voce.mjs (DECISIONI.md, 17 nov 2026): sopra i 150 Hz la musica scende sotto la voce
+// come sempre, sotto i 150 Hz (timpani, colpi gravi) solo di 3–4 dB, così i colpi si sentono anche sotto le frasi
+const XO = 150;
+const duck = [
+  `[1:a]${FMT},asplit=3[vc][sc1][sc2]`, `[0:a]${FMT},asplit=2[mus1][mus2]`,
+  `[mus1]highpass=f=${XO}:p=2,highpass=f=${XO}:p=2[alti]`, `[mus2]lowpass=f=${XO}:p=2,lowpass=f=${XO}:p=2[bassi]`,
+  '[alti][sc1]sidechaincompress=threshold=0.015:ratio=8:attack=20:release=450[alti_d]',
+  '[bassi][sc2]sidechaincompress=threshold=0.015:ratio=1.6:attack=20:release=450[bassi_d]',
+  '[alti_d][bassi_d]amix=inputs=2:duration=first:normalize=0[duck]',
+  '[duck][vc]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.95[a]',
+].join(';');
+run('ffmpeg', ['-y', '-v', 'error', '-i', video, '-i', voceWav, '-filter_complex', duck,
   '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-t', String(END), out]);
 console.log(`\nVideo con voce: ${out}  (${Math.round(END * FPS)} fotogrammi, ${mmss(END)})`);

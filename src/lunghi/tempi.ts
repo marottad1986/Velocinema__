@@ -4,7 +4,7 @@ import { subtitleTimes } from '../components/ChapterOverlay';
 // Video lunghi orizzontali (VIDEO-LUNGO.md): tempi delle parti, uguali a scripts/lunghi/tempi.mjs.
 
 export type ParteAggancio = { tipo: 'aggancio' | 'chiusura'; id: string; durata: number; capitolo_youtube: string; sottotitoli: string[]; immagine?: string };
-export type ParteEpisodio = { tipo: 'episodio'; film: string; nome: string; sottotitolo: string; capitolo_youtube: string };
+export type ParteEpisodio = { tipo: 'episodio'; film: string; nome: string; sottotitolo: string; capitolo_youtube: string; /** riassunto nuovo (senza «In una frase:»), al posto della voce del finale dell'episodio */ riassunto?: string };
 export type ParteCapitoli = { tipo: 'capitoli'; id: string; nome: string; capitolo_youtube: string; capitoli: Capitolo[] };
 export type Parte = ParteAggancio | ParteEpisodio | ParteCapitoli;
 

@@ -6,6 +6,11 @@ import darkS1 from '../../films/dark-stagione-1.json';
 import darkS2 from '../../films/dark-stagione-2.json';
 import darkS3 from '../../films/dark-stagione-3.json';
 import { DARK_TUTTA } from './dark-tutta-la-serie';
+import rafTrilogia from '../../lunghi/ritorno-al-futuro-trilogia.json';
+import raf1 from '../../films/ritorno-al-futuro.json';
+import raf2 from '../../films/ritorno-al-futuro-parte-2.json';
+import raf3 from '../../films/ritorno-al-futuro-parte-3.json';
+import { RAF_TRILOGIA } from './ritorno-al-futuro-trilogia';
 
 // Registro dei video lunghi orizzontali (VIDEO-LUNGO.md): JSON in lunghi/<slug>.json, episodi riusati, scene in src/lunghi/<slug>/.
 
@@ -26,6 +31,12 @@ export const LUNGHI: LungoDef[] = [
     data: darkTutta as LungoData,
     episodi: { 'dark-stagione-1': darkS1 as FilmData, 'dark-stagione-2': darkS2 as FilmData, 'dark-stagione-3': darkS3 as FilmData },
     scene: DARK_TUTTA,
+  },
+  {
+    slug: 'ritorno-al-futuro-trilogia',
+    data: rafTrilogia as LungoData,
+    episodi: { 'ritorno-al-futuro': raf1 as FilmData, 'ritorno-al-futuro-parte-2': raf2 as FilmData, 'ritorno-al-futuro-parte-3': raf3 as FilmData },
+    scene: RAF_TRILOGIA,
   },
 ];
 

@@ -59,3 +59,6 @@ Punteggio (`SOCIAL.md`): mistero 2 · fama 3 · discussione 3 · momento 2 · pu
 - **Gli Short dopo il lungo:** i tre episodi verticali escono dopo il lungo (li programma il manager),
   ognuno con il rimando al video lungo su YouTube; mai prima del lungo.
 - Fatti verificati in produzione: voci Wikipedia italiane dei tre film (sezione «Trama»), poi quelle inglesi; campo `fonti` nei JSON.
+
+## Prodotto (18 novembre 2026)
+Prodotto mercoledì 18 (`lunghi/ritorno-al-futuro-trilogia.json`, 8:12) e confermato dall'editore nell'app lo stesso giorno. Uscita: **venerdì 20 novembre alle 21:00** su YouTube, con il trailer verticale (`promo/trailer-ritorno-al-futuro.json`) alla stessa ora su TikTok, Instagram, Facebook e YouTube Shorts; storia giovedì 19 alle 21:00. Titolo finale: «RITORNO AL FUTURO spiegato facile: la trilogia, 2 minuti a film ⏳ Più i paradossi spiegati».
