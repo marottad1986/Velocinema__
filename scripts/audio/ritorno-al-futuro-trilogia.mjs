@@ -45,14 +45,19 @@ export default (mix, T) => {
   // ---------------------------------------------------------------- strumenti (come negli spartiti delle tre Parti)
   const strings = (from, to, { vel = 42, gain: g0 = 0.4, chords = CH, high = false } = {}) => {
     const gain = g0 * 2.6;
-    for (let t = from; t < to - 0.4; t += BAR) {
-      const k = kk(t);
+    // gli accordi seguono le battute assolute (come spic, pizz e swing), anche quando il tratto parte a metà battuta;
+    // uno spezzone iniziale più corto di un quarto di battuta prende già l'accordo della battuta dopo
+    for (let t = from; t < to - 0.4; ) {
+      let next = Math.min(to, (Math.floor(t / BAR + 1e-6) + 1) * BAR);
+      if (next - t < BAR / 4 && next < to - 0.4) next = Math.min(to, next + BAR);
+      const k = kk(next - 0.01);
       const [root, iv] = chords[k];
-      const d = Math.min(BAR * 1.02, to - t);
+      const d = Math.min(next - t + BAR * 0.02, to - t);
       archi(mix, root + 12, { t, dur: d, vel: vel + 6, pan: -0.3, rev: 0.55, gain: gain * 1.2, attack: 0.6, release: 1.2, seed: k });
       iv.slice(1, 3).forEach((v, j) => archi(mix, root + 24 + v, { t: t + 0.03 * j, dur: d, vel: vel + 4, pan: 0.1 + j * 0.25, rev: 0.55, gain, attack: 0.6, release: 1.2, seed: k + j + 1 }));
       suona(mix, 'contrabbasso', root, { t, dur: d, vel: vel + 8, gain: gain * 1.2, attack: 0.5, release: 1.2, rev: 0.5 });
       if (high) suona(mix, 'violini', root + 36 + iv[2], { t, dur: d, vel, pan: -0.2, gain: gain * 0.6, attack: 0.7, release: 1.4, rev: 0.6 });
+      t = next;
     }
   };
   const spic = (from, to, { vel = 30, doppio = false, chords = CH } = {}) => {
@@ -111,7 +116,7 @@ export default (mix, T) => {
     // i tre fulmini (Aggancio.tsx: 0, croma(1,6), croma(frase 1 + 0,4))
     clip(mix, 'tuono_secco', { t: A, da: 0.7, durata: 1.6, gain: 0.3, fadeOut: 0.6, rev: 0.3 });
     clip(mix, 'scariche', { t: A + 0.02, da: 0.4, durata: 0.8, gain: 0.16, fadeOut: 0.3, rev: 0.2 });
-    clip(mix, 'tuono_forte', { t: croma(A + 1.6), da: 0.55, durata: 1.4, gain: 0.24, fadeOut: 0.5, rev: 0.3 });
+    clip(mix, 'tuono_forte', { t: croma(A + 1.6) + 0.1, da: 0.9, durata: 1.3, gain: 0.24, fadeOut: 0.5, rev: 0.3 });
     clip(mix, 'tuono_secco', { t: c(1, 0.4), da: 0.7, durata: 1.3, gain: 0.22, fadeOut: 0.5, rev: 0.3 });
     // l'auto del tempo che parte dalla miniatura e sparisce a destra (Aggancio.tsx: 0,8–3,2 s)
     clip(mix, 'passaggio', { t: croma(A + 0.8), da: 0.56, durata: 1.8, gain: 0.22, fadeOut: 0.5, rev: 0.35 });
@@ -141,9 +146,10 @@ export default (mix, T) => {
 
   // ---------------------------------------------------------------- i paradossi
   // 1 · regola: il motore, l'onda negli archi, la foto che sbiadisce (minore)
+  roll(T.regola, 2 * BEAT, 0.12); // il piatto che cresce sotto la dissolvenza della Parte 3
   strings(T.regola, bar(at('regola', 3)), { vel: 38, gain: 0.3 });
   spic(T.regola, at('regola', 3), { vel: 24 });
-  motif(T.regola, at('regola', 1), { vel: 38, gain: 0.38 });
+  motif(T.regola, at('regola', 1), { vel: 38, gain: 0.26 });
   trem(at('regola', 1, 0.1), 2.0, [63, 67, 70, 75], { vel: 64, gain: 0.24, att: 1.6 }); // l'onda che corre sul binario
   bell(at('regola', 1, 2.1), 87, 44);
   bell(at('regola', 2, 0), 82); bell(at('regola', 2, 0.9), 79, 40); // Marty salva George, Lorraine
@@ -151,16 +157,16 @@ export default (mix, T) => {
   [at('regola', 3, 0.1), at('regola', 3, 0.7)].forEach((t, i) => bell(t, 75 - i * 3, 36)); // i fratelli che spariscono
 
   // 2 · binario: il vecchio Biff, l'almanacco che vola nel 1955, lo scambio (colpo e silenzio), il binario rosso in minore
-  strings(T.binario, at('binario', 2), { vel: 36, gain: 0.28 });
-  pizz(T.binario, at('binario', 2), { vel: 34 });
-  clip(mix, 'passaggio', { t: at('binario', 1, 0.3) - 0.1, da: 0.56, durata: 1.6, gain: 0.28, fadeOut: 0.4, rev: 0.35 });
-  [87, 84, 82, 79, 75].forEach((m, k) => bell(at('binario', 1, 0.3) + k * CROMA * 0.75, m, 40)); // giù di settant'anni
   const sw = at('binario', 2, 0.1);
-  clip(mix, 'metallo_colpi', { t: sw, da: 0, durata: 0.6, gain: 0.3, fadeOut: 0.2, rev: 0.25 }); // lo scambio scatta
+  strings(T.binario, sw - 0.5, { vel: 36, gain: 0.28 });
+  pizz(T.binario, sw - 0.1, { vel: 34 });
+  clip(mix, 'passaggio', { t: at('binario', 1, 0.3) - 0.1, da: 0.56, durata: 1.6, gain: 0.28, fadeOut: 0.4, rev: 0.35 });
+  [87, 84, 82, 79, 75].forEach((m, k) => bell(at('binario', 1, 0.3) + k * CROMA, m, 40)); // giù di settant'anni
+  clip(mix, 'metallo_colpi', { t: sw - 0.02, da: 0.54, durata: 0.6, gain: 0.3, fadeOut: 0.2, rev: 0.25 }); // lo scambio scatta
   timp(sw, 36, 100, 0.6);
   // un battito di silenzio, poi il binario rosso
   strings(sw + BEAT, fine('binario'), { vel: 40, gain: 0.32, chords: MIN });
-  spic(at('binario', 2, 0.4), fine('binario'), { vel: 28, chords: MIN });
+  spic(sw + BEAT, fine('binario'), { vel: 28, chords: MIN });
   brass(at('binario', 3), 2 * BAR > fine('binario') - at('binario', 3) ? fine('binario') - at('binario', 3) : 2 * BAR, [36, 43, 48], { vel: 52, gain: 0.28 }); // il casinò
   colpo(mix, 'charleston', 'v3', { t: at('binario', 3, 0.3), vel: 100, gain: 0.12, pan: 0.3, rev: 0.2, seed: 9 });
 
@@ -172,22 +178,22 @@ export default (mix, T) => {
   bell(at('riparare', 2, 0.3), 82, 46); bell(at('riparare', 2, 0.3) + CROMA, 77, 42); // 12 novembre 1955
   trem(at('riparare', 2), at('riparare', 3, 0.1) - at('riparare', 2), [55, 60, 63], { vel: 62, gain: 0.24 });
   const burn = at('riparare', 3, 0.1);
-  clip(mix, 'fiammata', { t: burn + 0.2, da: 0, durata: 1.2, gain: 0.3, fadeOut: 0.4, rev: 0.3 });
-  clip(mix, 'fuoco', { t: burn + 0.3, da: 0, durata: 1.8, gain: 0.14, fadeIn: 0.2, fadeOut: 0.6, rev: 0.25 });
+  clip(mix, 'fiammata', { t: burn + 0.28, da: 0.22, durata: 1.2, gain: 0.3, fadeOut: 0.4, rev: 0.3 });
+  clip(mix, 'fuoco', { t: burn + 0.3, da: 0.1, durata: 1.8, gain: 0.14, fadeIn: 0.2, fadeOut: 0.6, rev: 0.25 });
   colpo(mix, 'timpani', 'Timpani1_Hit_v4', { t: burn + 0.3, vel: 100, gain: 0.7, rev: 0.5, seed: 3 });
-  const dritto = croma(burn + 1.0);
-  clip(mix, 'metallo_colpi', { t: dritto, da: 0, durata: 0.5, gain: 0.24, fadeOut: 0.2, rev: 0.25 }); // la leva torna dritta
-  crash(dritto + BEAT, 0.28);
-  brass(dritto + BEAT, fine('riparare') - dritto - BEAT, [51, 58, 63, 67], { vel: 54, gain: 0.3 });
-  strings(dritto + BEAT, fine('riparare'), { vel: 42, gain: 0.34, high: true });
+  const dritto = burn + 3 * CROMA; // la leva che si blocca dritta (Paradossi.tsx: burnT + 1,0–1,25)
+  clip(mix, 'metallo_colpi', { t: dritto - 0.02, da: 0.54, durata: 0.5, gain: 0.24, fadeOut: 0.2, rev: 0.25 }); // la leva torna dritta
+  crash(dritto, 0.28);
+  brass(dritto, fine('riparare') - dritto, [51, 58, 63, 67], { vel: 54, gain: 0.3 });
+  strings(dritto, fine('riparare'), { vel: 42, gain: 0.34, high: true });
 
   // 4 · doppioni: lo swing del 1955 per i due Marty, il 2015 a pizzicati che si fermano quando Jennifer sviene
-  swing(T.doppioni, at('doppioni', 3), { vel: 38 });
+  swing(T.doppioni, at('doppioni', 3), { vel: 32 });
   bell(at('doppioni', 0, 0.3), 82); bell(at('doppioni', 1, 0), 82, 40, 0.3); // i due Marty
   clip(mix, 'pagine', { t: at('doppioni', 1, 1.2), da: 1.25, durata: 0.3, gain: 0.18, fadeOut: 0.1, rev: 0.2 }); // la crocetta
-  pizz(at('doppioni', 3), at('doppioni', 3, 1.6), { vel: 36 });
+  pizz(at('doppioni', 3), at('doppioni', 3, 1.6), { vel: 30 });
   strings(at('doppioni', 3), at('doppioni', 3, 1.6), { vel: 34, gain: 0.26 });
-  [84, 80, 77, 72].forEach((m, k) => bell(at('doppioni', 3, 1.6) + k * CROMA / 2, m, 38)); // sviene
+  [84, 80, 77, 72].forEach((m, k) => bell(at('doppioni', 3, 1.6) + k * CROMA / 2, m, 28)); // sviene
   clip(mix, 'telo', { t: at('doppioni', 3, 2.3), da: 0, durata: 0.6, gain: 0.16, fadeOut: 0.2, rev: 0.3 });
   suona(mix, 'contrabbasso_pizz', 34, { t: at('doppioni', 3, 2.3), dur: BEAT, vel: 70, gain: 1.4, rev: 0.3, release: 0.3 });
 
@@ -199,6 +205,7 @@ export default (mix, T) => {
   trem(at('lettera', 2, 0.1), at('lettera', 3) - at('lettera', 2), [62, 65, 70], { vel: 60, gain: 0.2 });
   clip(mix, 'passaggio', { t: at('lettera', 3, -0.3), da: 0.56, durata: 1.2, gain: 0.22, fadeOut: 0.4, rev: 0.35 });
   bell(at('lettera', 3, 0.7), 87, 42); // il nastro la rimette insieme
+  clip(mix, 'telo', { t: at('lettera', 3, 1.8), da: 0, durata: 0.4, gain: 0.1, fadeOut: 0.15, rev: 0.25 }); // il giubbotto
   spic(at('lettera', 3, 0.7), at('lettera', 3, 2.6), { vel: 30 });
   const shot = at('lettera', 3, 2.6);
   clip(mix, 'sparo', { t: shot - 0.06, da: 2.78, durata: 0.9, gain: 0.24, fadeOut: 0.3, rev: 0.35 });
@@ -208,14 +215,14 @@ export default (mix, T) => {
   // 6 · scritto: Marty dice no, il foglio che si cancella, il ventaglio dei futuri e la fanfara in maggiore
   strings(T.scritto, at('scritto', 3), { vel: 36, gain: 0.3 });
   spic(T.scritto, at('scritto', 2), { vel: 24 });
-  clip(mix, 'metallo_colpi', { t: at('scritto', 0, 0.9), da: 0, durata: 0.4, gain: 0.16, fadeOut: 0.15, rev: 0.25 }); // la gara rifiutata
-  [82, 79, 77, 75, 74].forEach((m, k) => bell(at('scritto', 2, 0.6) + k * CROMA * 0.8, m, 36)); // il licenziamento si cancella
-  motif(at('scritto', 2), at('scritto', 3), { vel: 34, gain: 0.32 });
+  clip(mix, 'metallo_colpi', { t: at('scritto', 0, 0.9) - 0.02, da: 0.54, durata: 0.4, gain: 0.16, fadeOut: 0.15, rev: 0.25 }); // la gara rifiutata
+  [82, 79, 77, 75, 74].forEach((m, k) => bell(at('scritto', 2, 0.6) + k * CROMA, m, 28)); // il licenziamento si cancella
+  motif(at('scritto', 2), at('scritto', 3), { vel: 34, gain: 0.24 });
   const ventaglio = at('scritto', 3, 0.1);
   roll(ventaglio, 1.2, 0.16);
-  crash(ventaglio, 0.3);
-  fanfare(ventaglio, [70, 75, 79, 82], { vel: 56, gain: 0.28 });
-  strings(ventaglio, T.chiusura + 4, { vel: 44, gain: 0.36, high: true });
+  crash(ventaglio, 0.42);
+  fanfare(ventaglio, [70, 75, 79, 82], { vel: 64, gain: 0.5 });
+  strings(ventaglio, T.chiusura + 4, { vel: 50, gain: 0.42, high: true });
   motif(croma(ventaglio + 2 * BEAT), T.chiusura, { id: 'corno', vel: 42, gain: 0.26, oct: -12 });
 
   // ---------------------------------------------------------------- chiusura: il motivo in maggiore al pianoforte, che resta aperto

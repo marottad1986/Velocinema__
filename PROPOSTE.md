@@ -45,3 +45,4 @@ in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo
   usato; `ascolta-voce.mjs` rifà la trascrizione se la clip è più nuova della cache e segnala le clip vecchie rispetto al
   JSON, così si evitano falsi allarmi e crediti sprecati. Per i nomi stranieri si decide la `pronuncia` prima della prima
   generazione. · meno passaggi a vuoto dei revisori · aperta
+- 18 nov 2026 · produzione (dai revisori di Ritorno al futuro, trilogia): `clip()` avvisi quando una presa parte su più di 0,1 s di silenzio, come già fa per le prese oltre la fine; `ascolta-voce.mjs` rifaccia la trascrizione quando la clip è più recente della cache (dopo una rigenerazione il report mostrava la clip vecchia).
