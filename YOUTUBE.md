@@ -17,6 +17,10 @@ Traguardo al 31 dicembre: 1.000 iscritti oppure un lungo oltre 10.000 visualizza
 ## 1. Prima la confezione: argomento, titolo, miniatura
 - Il titolo e la miniatura si scrivono **prima** di produrre, nella proposta della domenica: se non convincono, il video
   non si fa.
+- **Ogni domenica, prima di proporre i lunghi, analisi delle ricerche** (come `calendario/analisi-youtube-2026-11-19.md`:
+  suggerimenti di ricerca di YouTube in Italia con `suggestqueries.google.com`, `client=firefox&ds=yt&hl=it&gl=IT`, poche
+  richieste lente; più la scheda Ricerca di YouTube Studio se l'editore la manda). Si scelgono i titoli più in alto che
+  si possono disegnare senza persone.
 - **Argomenti con domanda di ricerca**: «… spiegazione finale», «… spiegato», «riassunto prima di vedere …», teorie e
   misteri di film e serie famosi. Precedenza a: (a) uscite al cinema o nuove stagioni, con il lungo pubblicato 5–10 giorni
   prima (es. Dune Parte Tre al cinema il 16 dicembre 2026); (b) richieste dei commenti; (c) titoli già forti nei nostri
