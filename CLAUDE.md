@@ -1,5 +1,10 @@
 # Riassunti animati di film in 2 minuti (+ "Spiegato semplice")
 
+> 🎯 **MISSIONE DELLA SQUADRA: far crescere il canale YouTube** (editore, 19 nov 2026). È l'unica fonte di guadagno che può
+> rendere sostenibile il progetto: ogni sessione, ogni reparto e ogni decisione serve prima di tutto ai video lunghi
+> (`YOUTUBE.md`). Traguardo al 31 dicembre 2026: 1.000 iscritti o un lungo oltre 10.000 visualizzazioni. Ogni mattina alle
+> 9 l'attività «In 2 minuti – missione YouTube» ricorda a tutti la missione, i numeri e la priorità del giorno.
+
 Progetto per produrre video verticali (Reel, TikTok, Shorts) che raccontano un film intero in 2 minuti.
 Ogni film è descritto da un file in `films/` (titolo, regista, palette, copertina, capitoli, sottotitoli, finale).
 Il codice in `reference/` è la versione attuale delle scene, scritta per un altro player: va usato come

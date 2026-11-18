@@ -3,6 +3,15 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 19 nov 2026 · **Missione: far crescere il canale YouTube** (editore). In cima a `CLAUDE.md`; ogni mattina alle 9 l'attività
+  «In 2 minuti – missione YouTube» (`trig_01SHBRf9LxqHXtBDrDhyFJ3z`, sessione nuova a ogni avvio) manda all'app e alle
+  sessioni di produzione attive la missione, gli iscritti con il ritmo necessario, lo stato dei due prossimi lunghi
+  (avviso «problema» se uno è in ritardo) e la priorità del giorno. **Scaletta dei lunghi** (proposta della direzione,
+  via dell'editore): mer 25 nov Donnie Darko spiegazione (produzione avviata il 19 nov alle 8:00, sessione
+  `session_016Z3bHmsN6wA4BHDaMvoeND`); sab 28 nov Interstellar spiegato (finale e tesseratto); mer 2 e sab 5 dic Lost spiegato,
+  parte 1 e 2; mer 9 dic Dune, i primi due film prima di Parte Tre (al cinema il 16 dic). L'urlo di Munch in riserva
+  (le uscite delle 10:00 del weekend sono tolte). · direzione, manager, produzione
+
 - 19 nov 2026 · **Si punta tutto su YouTube** (decisione dell'editore del 18 nov sera): in Italia è l'unica piattaforma
   che paga le visualizzazioni; sponsorizzazioni e collaborazioni vengono dopo. I lunghi sono il prodotto principale e
   hanno la precedenza su tutto, con un impegno grafico molto più alto. Regole in `YOUTUBE.md`: confezione decisa prima di
