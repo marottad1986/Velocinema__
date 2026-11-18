@@ -3,6 +3,22 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 18 nov 2026 · **YouTube deve crescere entro il 31 dicembre, altrimenti l'editore chiude il progetto.** Traguardo accettato
+  dall'editore: al 31 dicembre 2026 **almeno 1.000 iscritti** al canale YouTube (oggi 118) **oppure un video lungo oltre le
+  10.000 visualizzazioni**. Controlli intermedi nella programmazione della domenica (iscritti e visualizzazioni dei lunghi
+  da PostFast) e avviso nell'app a ogni domenica; domenica 13 dicembre se gli iscritti sono sotto 400 la direzione lo dice
+  subito all'editore. Leve decise:
+  1. **Un video lungo YouTube a settimana** (richiesta dell'editore), dalla settimana del 23 novembre: Spiegato semplice o
+     racconto di più episodi (`VIDEO-LUNGO.md`), con il suo trailer verticale nello stesso giorno. È una produzione intera e
+     va nel calendario della domenica come prima scelta della settimana; se non c'è un lungo pronto, la settimana non
+     parte senza averne avviato uno.
+  2. Titoli e descrizioni dei lunghi scritti per la ricerca su YouTube (le parole che la gente cerca: «spiegazione»,
+     «finale spiegato», «paradossi spiegati»), non solo per il feed.
+  3. Ogni Short dello stesso titolo porta al lungo: l'editore imposta in YouTube Studio il «video correlato» (PostFast non
+     lo fa); il manager gli manda l'elenco Short → lungo a ogni uscita.
+  4. Instagram (il profilo più grande) spinge YouTube: una storia con il link per ogni lungo.
+  Gli Short sono già tutti su YouTube: nessun recupero dell'archivio. · direzione, manager, produzione
+
 - 17 nov 2026 · **Colpi che si sentono anche sotto la voce** (proposta approvata nell'app). Il montaggio della voce
   (`scripts/voce.mjs`) abbassa la musica in due bande divise a 150 Hz: sopra, dove sta la voce, come prima (circa 12–15 dB);
   sotto, dove stanno timpani, cassa e colpi gravi, solo di circa 3–4 dB. Senza voce la musica resta identica. Vale per i

@@ -65,6 +65,8 @@ revisori prima della pull request); qui solo ciò che cambia. Primo video: `lung
   o un episodio che contiene; carica `<slug>.mp4` e `<slug>-voce.mp4` in `/Velocinema/<slug>/`.
 
 ## Pubblicazione
+- **Un video lungo a settimana** (decisione dell'editore del 18 nov 2026, obiettivo YouTube al 31 dicembre: `SOCIAL.md`,
+  «Obiettivo YouTube»), con titolo e descrizione scritti per la ricerca su YouTube.
 - Regola dell'editore (16 novembre 2026): il trailer verticale del video lungo esce **in contemporanea**
   alla pubblicazione del lungo su YouTube, alla stessa ora, su tutti i social (TikTok, Instagram Reel, Facebook Reel, YouTube
   Shorts); la storia esce 24 ore prima, come per ogni altro video. Si programmano insieme con PostFast (il lungo con

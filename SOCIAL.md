@@ -16,6 +16,21 @@ proporre la settimana.
 - 10 uscite a settimana (9 + il videogioco del martedì). Due titoli dello stesso genere (es. due horror) non stanno in giorni vicini.
 - Mai ripubblicare un video già uscito sullo stesso canale (elenco in `calendario/pubblicati.md`).
 
+## Obiettivo YouTube fino al 31 dicembre 2026 (vincolante, decisione dell'editore del 18 nov)
+Se il canale YouTube non cresce sul serio entro fine anno l'editore chiude il progetto. Traguardo: al 31 dicembre
+**almeno 1.000 iscritti** (118 il 18 nov) **oppure un video lungo oltre le 10.000 visualizzazioni**.
+- **Un video lungo a settimana** (16:9, `VIDEO-LUNGO.md`) con il suo trailer verticale lo stesso giorno: ogni domenica il
+  calendario della settimana lo mette per primo e avvia la sua produzione (produzione intera, conta nel limite di due al giorno).
+  Scelta del titolo: Spiegato semplice o trame da capire (viaggio nel tempo, mistero, serie a puntate), che sono quelle che
+  rendono; meglio contenuti non ancora usciti come Short.
+- Titolo, descrizione e capitoli dei lunghi pensati per la ricerca su YouTube («… spiegazione», «finale spiegato»,
+  «paradossi spiegati»), con la miniatura curata come una copertina.
+- A ogni uscita il manager manda all'editore (avviso nell'app) l'elenco degli Short da collegare al lungo con il «video
+  correlato» in YouTube Studio (PostFast non lo fa).
+- Instagram spinge YouTube: storia con il link al lungo il giorno dell'uscita.
+- Ogni domenica: iscritti YouTube (`get_follower_history`) e visualizzazioni dei lunghi nell'avviso della settimana, con la
+  distanza dal traguardo; domenica 13 dicembre, se gli iscritti sono sotto 400, avviso di tipo «problema» anche alla direzione.
+
 ## La domenica alle 15:00
 Ogni domenica alle 15:00 (attività programmata che apre da sola una sessione `/manager`) si studia l'andamento, si
 programma la settimana che inizia il giorno dopo e si avvia subito la produzione: così i dati sono i più freschi
