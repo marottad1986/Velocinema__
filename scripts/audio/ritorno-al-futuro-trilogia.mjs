@@ -113,6 +113,8 @@ export default (mix, T) => {
     clip(mix, 'scariche', { t: A + 0.02, da: 0.4, durata: 0.8, gain: 0.16, fadeOut: 0.3, rev: 0.2 });
     clip(mix, 'tuono_forte', { t: croma(A + 1.6), da: 0.55, durata: 1.4, gain: 0.24, fadeOut: 0.5, rev: 0.3 });
     clip(mix, 'tuono_secco', { t: c(1, 0.4), da: 0.7, durata: 1.3, gain: 0.22, fadeOut: 0.5, rev: 0.3 });
+    // l'auto del tempo che parte dalla miniatura e sparisce a destra (Aggancio.tsx: 0,8–3,2 s)
+    clip(mix, 'passaggio', { t: croma(A + 0.8), da: 0.56, durata: 1.8, gain: 0.22, fadeOut: 0.5, rev: 0.35 });
     // la domanda: bordone sospeso e il tic-tac dell'orologio
     [51, 58, 63].forEach((m, j) => archi(mix, m, { t: A + 0.05, dur: c(1) - A, vel: 44, pan: (j - 1) * 0.3, rev: 0.55, gain: 0.4, attack: 0.3, release: 1.0, seed: j }));
     suona(mix, 'contrabbasso', 39, { t: A + 0.05, dur: c(1) - A, vel: 50, gain: 0.5, attack: 0.1, release: 1.0, rev: 0.5 });

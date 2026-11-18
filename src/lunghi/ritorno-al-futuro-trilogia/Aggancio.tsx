@@ -30,6 +30,8 @@ const g = (s: number) => Math.round(s / CROMA) * CROMA;
 const pop = (t: number, t0: number) => eob(seg(t, t0, t0 + 0.45), 1.7);
 const ANNI = [['1885', 300], ['1955', 760], ['1985', 1220], ['2015', 1680]] as const;
 const MAIN = `M-100 ${TY} H${W + 100}`;
+/** Lo skyline di Hill Valley di notte, dietro il binario: palazzi bassi con le finestre accese e due insegne al neon. */
+const PALAZZI = Array.from({ length: 22 }, (_, i) => ({ x: -40 + i * 92 + ((i * 37) % 30), w: 70 + ((i * 53) % 40), h: 60 + ((i * 71) % 130) }));
 const RAMO = `M1000 ${TY} C1160 ${TY} 1180 ${TY + 150} 1340 ${TY + 150} H${W + 100}`;
 
 export const Aggancio: React.FC<ParteProps> = ({ t, dur, cues }) => {
@@ -102,6 +104,18 @@ export const Aggancio: React.FC<ParteProps> = ({ t, dur, cues }) => {
           ))}
         </g>
 
+        {/* ---- lo skyline di Hill Valley */}
+        <g opacity={0.9}>
+          {PALAZZI.map((b, i) => (
+            <g key={i}>
+              <rect x={b.x} y={TY - 20 - b.h} width={b.w} height={b.h + 20} fill="#160E33" stroke="#3A2A7A" strokeWidth="3" />
+              {Array.from({ length: Math.floor(b.h / 34) }, (_, k) => (
+                <rect key={k} x={b.x + 12 + ((k + i) % 2) * (b.w / 2 - 12)} y={TY - b.h + k * 34} width="16" height="12" fill={k % 3 === 0 ? PINK : '#FFD98A'} opacity={(0.25 + 0.3 * Math.sin(t * 1.3 + i * 2 + k)) * 0.9} />
+              ))}
+            </g>
+          ))}
+          <rect x="0" y={TY - 30} width={W} height="40" fill="#0C0820" opacity=".7" />
+        </g>
         {/* ---- il binario del tempo, con il ramo rosso */}
         <Binario id="ag-ramo" d={RAMO} t={t} rail="#FF6A5A" sleeper="#5A2030" opacity={0.9} lit={0.5} glow="#FF3030" />
         <Binario id="ag-main" d={MAIN} t={t} rail={INK} sleeper="#7A5E8E" lit={corsa > 0 ? 0.6 : 0} glow={YEL} />
@@ -137,6 +151,16 @@ export const Aggancio: React.FC<ParteProps> = ({ t, dur, cues }) => {
           ) : null
         ))}
 
+        {/* ---- nella miniatura l'auto del tempo è già sul binario, con la scia: nei primi secondi parte e sparisce a destra */}
+        {t < 3.2 && (() => {
+          const p = eio(seg(t, 0.8, 3.2));
+          return (
+            <g transform={`translate(${lerp(820, W + 260, p)} ${TY - 40})`}>
+              <path d={`M-140 18 H${-140 - 380 - 300 * p}`} stroke={YEL} strokeWidth="12" strokeDasharray="34 20" strokeDashoffset={-t * 220} strokeLinecap="round" opacity=".85" />
+              <TimeCar T={t} glow={0.6 + 0.4 * p} s={0.95} />
+            </g>
+          );
+        })()}
         {/* ---- l'auto del tempo corre verso il 1985 */}
         {corsa > 0 && (
           <g transform={`translate(${lerp(-200, 1220, corsa)} ${TY - 40})`}>
