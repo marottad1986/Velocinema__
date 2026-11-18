@@ -63,4 +63,4 @@ Punteggio (`SOCIAL.md`): mistero 2 · fama 3 · discussione 3 · momento 2 · pu
 ## Prodotto (18 novembre 2026)
 Prodotto mercoledì 18 (`lunghi/ritorno-al-futuro-trilogia.json`, 8:12) e confermato dall'editore nell'app lo stesso giorno. Uscita: **venerdì 20 novembre alle 21:00** su YouTube, con il trailer verticale (`promo/trailer-ritorno-al-futuro.json`) alla stessa ora su TikTok, Instagram, Facebook e YouTube Shorts; storia giovedì 19 alle 21:00. Titolo finale: «RITORNO AL FUTURO spiegato facile: la trilogia, 2 minuti a film ⏳ Più i paradossi spiegati».
 
-**Anticipato:** su richiesta dell'utente il lungo è uscito mercoledì 18 novembre alle 20:28, con la storia alle 20:30; il trailer resta venerdì 20 alle 21:00.
+**Anticipato:** su richiesta dell'utente il lungo è uscito mercoledì 18 novembre alle 20:28, con la storia e il trailer alle 20:30.
