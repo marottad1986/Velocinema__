@@ -24,6 +24,7 @@ si può verificare in automatico, una regola in `scripts/controlli.mjs`). Righe 
 - Motivi che ricordano temi noti → motivo nuovo, controllato a orecchio contro i temi famosi del genere.
 - Campioni deboli dentro un gruppo (Conjuring: `gong_scrape_2` ~11 dB sotto `gong_scrape_3`, come `Timpani1_Hit_v2`) → `colpo()` normalizza sul più forte del gruppo: per gli eventi chiave usare il campione forte e misurare il picco nel WAV. Teste dei file di tuono Red Library con blocchi o silenzi di montaggio → guardare l'inviluppo dei primi secondi prima di scegliere `da`.
 - Prese degli effetti che partono su un silenzio (`metallo_colpi` muto fino a 0,55 s, `fiammata` a 0,25 s: Donnie Darko, Ritorno al futuro trilogia) → prima di usare un effetto nuovo guardare l'inviluppo dei primi 0,6 s e partire dall'attacco (`da`).
+- Effetti tarati sul picco del `CATALOGO` quando il picco del file non è il suono usato (`tuono_forte`: picco nei primi 0,6 s, il tuono vero ~12 dB sotto) → misurare l'RMS della presa scelta prima di decidere il gain.
 - Tratti che iniziano a metà battuta (capitoli da 15 o 17,5 s a 72 bpm): archi tenuti che cambiano accordo da `from` mentre spiccato e pizzicati seguono le battute assolute → seconde minori; gli accordi seguono sempre la battuta assoluta.
 - Colpi chiave deboli (Donnie Darko, Scissione): `Timpani1_Hit_v2` è il colpo pianissimo di VCSL, alzare il gain non basta → per i colpi forti `Timpani1_Hit_v4` (gain 0,5–0,9) e controllare che il culmine sia il picco del film; `pausa` deve fermare anche gli archi tenuti.
 

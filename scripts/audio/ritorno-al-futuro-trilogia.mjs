@@ -116,7 +116,7 @@ export default (mix, T) => {
     // i tre fulmini (Aggancio.tsx: 0, croma(1,6), croma(frase 1 + 0,4))
     clip(mix, 'tuono_secco', { t: A, da: 0.7, durata: 1.6, gain: 0.3, fadeOut: 0.6, rev: 0.3 });
     clip(mix, 'scariche', { t: A + 0.02, da: 0.4, durata: 0.8, gain: 0.16, fadeOut: 0.3, rev: 0.2 });
-    clip(mix, 'tuono_forte', { t: croma(A + 1.6) + 0.1, da: 0.9, durata: 1.3, gain: 0.42, fadeOut: 0.5, rev: 0.3 });
+    clip(mix, 'tuono_forte', { t: croma(A + 1.6) + 0.1, da: 0.9, durata: 1.3, gain: 0.9, fadeOut: 0.5, rev: 0.3 });
     clip(mix, 'tuono_secco', { t: c(1, 0.4), da: 0.7, durata: 1.3, gain: 0.22, fadeOut: 0.5, rev: 0.3 });
     // l'auto del tempo che parte dalla miniatura e sparisce a destra (Aggancio.tsx: 0,8–3,2 s)
     clip(mix, 'passaggio', { t: croma(A + 0.8), da: 0.56, durata: 1.8, gain: 0.22, fadeOut: 0.5, rev: 0.35 });
