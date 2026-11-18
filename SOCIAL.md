@@ -329,6 +329,8 @@ prodotto sabato 14; domenica Hunger Games passa alle 10:00, La Gioconda slitta a
 - **Film con colpo di scena:** Il sesto senso, Fight Club, The Prestige, Seven, I soliti sospetti, Memento, Matrix,
   Parasite, Scappa – Get Out, Il silenzio degli innocenti, Psyco.
 - **Spiegato semplice:** Dark stagione 3, Tenet, Donnie Darko, Mulholland Drive, Arrival, Primer, Lost, Severance, Westworld, 1899.
-- **Serie (una stagione per video):** Breaking Bad 2–5, Stranger Things, Squid Game, La casa di carta, Lupin.
+- **Serie (una stagione per video):** Breaking Bad 2–5, Stranger Things, Squid Game, La casa di carta, Lupin, FROM (chiesta
+  dall'editore il 17 nov 2026: città-trappola piena di misteri, adatta anche a Spiegato semplice; le creature solo con tracce,
+  mai figure umane né volti).
 - **Weekend:** quadri (pubblico dominio, vedi `QUADRI.md`), canzoni famosissime, storie vere (formato da definire:
   servono regole proprie su persone reali, fonti e tono prima della prima uscita).
