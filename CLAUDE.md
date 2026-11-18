@@ -38,8 +38,12 @@ qualsiasi reparto e anche le attività programmate, appena parte** controlla
 `curl -sS "https://in-2-minuti-gestione.pages.dev/api/messaggi?stato=inviato"` (la chiave la mette il proxy).
 Per ogni messaggio rivolto al proprio reparto, a `tutti`, oppure a nessuno che se ne stia occupando (in dubbio: lo prende
 la sessione corrente) risponde **subito** `POST /api/messaggi/<id>` con `{"stato":"preso in carico","risposta":"chi se ne
-occupa, cosa farà e quando"}`, poi lo gestisce o lo passa al reparto giusto, e a lavoro finito `{"stato":"fatto",…}` o
-`{"stato":"non fattibile",…}`. Procedura completa: skill `app`, punto 6. Un messaggio non deve mai restare senza risposta.
+occupa, cosa farà e quando"}`, poi **lo lavora subito** (o lo passa subito al reparto giusto) e a lavoro finito
+`{"stato":"fatto",…}` o `{"stato":"non fattibile",…}`. **Si rimanda solo se l'editore lo scrive nel testo** (es. «la
+prossima settimana», «quando c'è tempo»), e in quel caso la risposta dice quando. Quando l'editore invia un messaggio, l'app
+fa partire da sola una sessione (attività «In 2 minuti – proposte approvate», trigger API) con il messaggio nel blocco
+`<routine-fire-payload>`: quella sessione lo lavora subito. Procedura completa: skill `app`, punto 6. Un messaggio non deve
+mai restare senza risposta.
 
 ## Formato (vincolante)
 - 1080×1920, 30 o 60 fps, durata esatta 2:00 (120 s).

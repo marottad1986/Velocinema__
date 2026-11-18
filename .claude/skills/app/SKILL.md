@@ -77,9 +77,13 @@ Dall'app l'editore scrive alla squadra: **idee o proposte** (`tipo` `idea`), **s
 volte `urgente`.
 - **Leggere i nuovi**: `curl -sS "https://in-2-minuti-gestione.pages.dev/api/messaggi?stato=inviato"` →
   `{"messaggi":[{"id","tipo","per","testo","urgente","quando",…}]}` (il testo completo con `GET /api/messaggi/<id>`).
-- **Chi li legge**: l'attività delle 7 e delle 14 (punto 4) li controlla insieme alle proposte; `/direzione` all'inizio di
-  ogni sessione; il manager, la domenica, legge quelli di tipo `uscite` prima di proporre la settimana (e li tiene in conto
-  nella scelta dei titoli). Gli urgenti si gestiscono per primi.
+- **Subito, sempre** (decisione dell'editore, 18 nov 2026): un messaggio si lavora appena arriva. Si rimanda **solo se
+  l'editore lo scrive nel testo** (es. «la prossima settimana», «dopo la finale di X Factor»); in quel caso la risposta
+  «preso in carico» dice quando.
+- **Chi li legge**: appena l'editore invia, l'app fa partire una sessione dell'attività «In 2 minuti – proposte approvate»
+  con il messaggio nel blocco `<routine-fire-payload>` (id, tipo, destinatario, testo e i passi da seguire): quella sessione
+  lo lavora in quel momento. In più ogni sessione all'avvio controlla quelli ancora «inviato» (regola in `CLAUDE.md`), e il
+  manager, la domenica, rilegge quelli di tipo `uscite` prima di proporre la settimana. Gli urgenti prima di tutto.
 - **Rispondere** (sempre, anche solo per dire che è preso in carico): `POST /api/messaggi/<id>` con
   `{"stato":"preso in carico","risposta":"cosa farete e quando, in parole semplici"}`; a lavoro finito
   `{"stato":"fatto","risposta":"cosa è cambiato","link":"<PR, calendario o commit>"}`; se non si può fare
