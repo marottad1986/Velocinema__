@@ -46,3 +46,4 @@ in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo
   JSON, così si evitano falsi allarmi e crediti sprecati. Per i nomi stranieri si decide la `pronuncia` prima della prima
   generazione. · meno passaggi a vuoto dei revisori · aperta
 - 18 nov 2026 · produzione (dai revisori di Ritorno al futuro, trilogia): `clip()` avvisi quando una presa parte su più di 0,1 s di silenzio, come già fa per le prese oltre la fine; `ascolta-voce.mjs` rifaccia la trascrizione quando la clip è più recente della cache (dopo una rigenerazione il report mostrava la clip vecchia).
+- 18 nov 2026 · produzione (dal revisore musica): `scripts/livelli.mjs` anche per i video lunghi e `livelli.txt` nel pacchetto dei lunghi, così vuoti tra le sezioni e picchi si vedono senza misure a mano.

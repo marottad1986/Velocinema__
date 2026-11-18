@@ -13,7 +13,7 @@
 // futuri con la fanfara in maggiore sull'ultima frase. Chiusura: il motivo in maggiore che resta aperto.
 // T: inizio di ogni tratto (s nel video lungo) e T.frase(id, n) = inizio della frase n del tratto (come Overlay16); gli
 // eventi cadono sulla croma, gli stessi istanti delle scene in src/lunghi/ritorno-al-futuro-trilogia/.
-import { suona, archi, colpo } from './campioni.mjs';
+import { suona, archi, colpo, crescendo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 
 export const strumenti = ['pianoforte_coda', 'violini', 'viole', 'celli', 'contrabbasso', 'celli_spicc', 'viole_spicc', 'violini_trem', 'celli_trem',
@@ -116,7 +116,7 @@ export default (mix, T) => {
     // i tre fulmini (Aggancio.tsx: 0, croma(1,6), croma(frase 1 + 0,4))
     clip(mix, 'tuono_secco', { t: A, da: 0.7, durata: 1.6, gain: 0.3, fadeOut: 0.6, rev: 0.3 });
     clip(mix, 'scariche', { t: A + 0.02, da: 0.4, durata: 0.8, gain: 0.16, fadeOut: 0.3, rev: 0.2 });
-    clip(mix, 'tuono_forte', { t: croma(A + 1.6) + 0.1, da: 0.9, durata: 1.3, gain: 0.24, fadeOut: 0.5, rev: 0.3 });
+    clip(mix, 'tuono_forte', { t: croma(A + 1.6) + 0.1, da: 0.9, durata: 1.3, gain: 0.42, fadeOut: 0.5, rev: 0.3 });
     clip(mix, 'tuono_secco', { t: c(1, 0.4), da: 0.7, durata: 1.3, gain: 0.22, fadeOut: 0.5, rev: 0.3 });
     // l'auto del tempo che parte dalla miniatura e sparisce a destra (Aggancio.tsx: 0,8–3,2 s)
     clip(mix, 'passaggio', { t: croma(A + 0.8), da: 0.56, durata: 1.8, gain: 0.22, fadeOut: 0.5, rev: 0.35 });
@@ -146,7 +146,7 @@ export default (mix, T) => {
 
   // ---------------------------------------------------------------- i paradossi
   // 1 · regola: il motore, l'onda negli archi, la foto che sbiadisce (minore)
-  roll(T.regola, 2 * BEAT, 0.12); // il piatto che cresce sotto la dissolvenza della Parte 3
+  crescendo(mix, T.regola, 2 * BEAT, { gain: 0.25 }); // il piatto che cresce sotto la dissolvenza della Parte 3
   strings(T.regola, bar(at('regola', 3)), { vel: 38, gain: 0.3 });
   spic(T.regola, at('regola', 3), { vel: 24 });
   motif(T.regola, at('regola', 1), { vel: 38, gain: 0.26 });
@@ -195,7 +195,7 @@ export default (mix, T) => {
   strings(at('doppioni', 3), at('doppioni', 3, 1.6), { vel: 34, gain: 0.26 });
   [84, 80, 77, 72].forEach((m, k) => bell(at('doppioni', 3, 1.6) + k * CROMA / 2, m, 28)); // sviene
   clip(mix, 'telo', { t: at('doppioni', 3, 2.3), da: 0, durata: 0.6, gain: 0.16, fadeOut: 0.2, rev: 0.3 });
-  suona(mix, 'contrabbasso_pizz', 34, { t: at('doppioni', 3, 2.3), dur: BEAT, vel: 70, gain: 1.4, rev: 0.3, release: 0.3 });
+  suona(mix, 'contrabbasso_pizz', 34, { t: at('doppioni', 3, 2.3), dur: BEAT, vel: 70, gain: 0.8, rev: 0.3, release: 0.3 });
 
   // 5 · lettera: il motore piano, la busta (carta), lo strappo, il volo al 1985, lo sparo fermato dal giubbotto, poi pausa
   strings(T.lettera, at('lettera', 3, 2.6), { vel: 36, gain: 0.3 });
@@ -205,7 +205,7 @@ export default (mix, T) => {
   trem(at('lettera', 2, 0.1), at('lettera', 3) - at('lettera', 2), [62, 65, 70], { vel: 60, gain: 0.2 });
   clip(mix, 'passaggio', { t: at('lettera', 3, -0.3), da: 0.56, durata: 1.2, gain: 0.22, fadeOut: 0.4, rev: 0.35 });
   bell(at('lettera', 3, 0.7), 87, 42); // il nastro la rimette insieme
-  clip(mix, 'telo', { t: at('lettera', 3, 1.8), da: 0, durata: 0.4, gain: 0.1, fadeOut: 0.15, rev: 0.25 }); // il giubbotto
+  clip(mix, 'telo', { t: at('lettera', 3, 1.8), da: 0.2, durata: 0.35, gain: 0.2, fadeOut: 0.12, rev: 0.25 }); // il giubbotto
   spic(at('lettera', 3, 0.7), at('lettera', 3, 2.6), { vel: 30 });
   const shot = at('lettera', 3, 2.6);
   clip(mix, 'sparo', { t: shot - 0.06, da: 2.78, durata: 0.9, gain: 0.24, fadeOut: 0.3, rev: 0.35 });
@@ -222,7 +222,9 @@ export default (mix, T) => {
   roll(ventaglio, 1.2, 0.16);
   crash(ventaglio, 0.42);
   fanfare(ventaglio, [70, 75, 79, 82], { vel: 64, gain: 0.5 });
-  strings(ventaglio, T.chiusura + 4, { vel: 50, gain: 0.42, high: true });
+  const v2 = (Math.floor(ventaglio / BAR) + 2) * BAR; // il maggiore resta sul ventaglio fino alla battuta dopo
+  strings(ventaglio, v2, { vel: 50, gain: 0.42, high: true, chords: [CH[0], CH[0], CH[0], CH[0]] });
+  strings(v2, T.chiusura + 4, { vel: 50, gain: 0.42, high: true });
   motif(croma(ventaglio + 2 * BEAT), T.chiusura, { id: 'corno', vel: 42, gain: 0.26, oct: -12 });
 
   // ---------------------------------------------------------------- chiusura: il motivo in maggiore al pianoforte, che resta aperto
