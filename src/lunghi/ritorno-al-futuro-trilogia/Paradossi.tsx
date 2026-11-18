@@ -317,7 +317,7 @@ export const Schema: React.FC<{ T: number; chiusura?: boolean }> = ({ T, chiusur
           <Travel T={T} t0={at('binario', 1, 0.3)} d={viaggioA} dur={1.6} id="pp-tr1" label="a sé stesso ragazzo" lx={(X.y1955 + X.y2015) / 2} ly={ROW - 760} />
           {T > at('binario', 1, 0) && <g transform={`translate(${almP[0]} ${almP[1]}) scale(${0.7 * pop2(T, at('binario', 1, 0))})`}><Almanac T={T} /></g>}
           <Tag T={T} t0={at('binario', 2, 0.6)} x={SW + 60} y={TY - 150} text="lo scambio: il tempo devia" size={30} />
-          <Tag T={T} t0={at('binario', 3, 0.3)} x={ALT.x} y={ALT.y + 110} text="Biff ricchissimo comanda tutto" bg={RED} fg="#FFFFFF" size={32} />
+          <Tag T={T} t0={at('binario', 3, 0.3)} x={ALT.x + 330} y={ALT.y - 410} text="Biff ricchissimo comanda tutto" bg={RED} fg="#FFFFFF" size={32} rot={-3} />
         </g>
       )}
       {/* l'almanacco resta in mano al giovane Biff fino al fuoco */}
