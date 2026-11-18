@@ -16,6 +16,8 @@ Prima di proporre la settimana leggi anche i **suggerimenti per le uscite** che 
 Cosa fai, secondo la richiesta (argomenti: $ARGUMENTS):
 1. **Dati del profilo** (screenshot o numeri TikTok): aggiorna `calendario/pubblicati.md` e la sezione «Cosa dicono i
    dati» di `SOCIAL.md`.
+1b. **YouTube prima di tutto** (`YOUTUBE.md`): i due lunghi della settimana si scelgono per primi, con titolo e tre
+   miniature già decisi nella proposta; aggiorna il registro dei lunghi con i dati a 48 ore e a 7 giorni.
 2. **Programmazione della settimana che inizia il giorno dopo** (lunedì–domenica; lunedì e martedì con contenuti già
    pronti o finibili la domenica): 7 uscite alle 17:30 (mercoledì e sabato un video lungo YouTube
    con trailer, gli altri giorni i formati che rendono) più il videogioco del sabato alle 12:30 (`SOCIAL.md`, «Ritmo e orari»), equilibrio film / serie / Spiegato semplice, titoli scelti con il punteggio di `SOCIAL.md`, agganci a

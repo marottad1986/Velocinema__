@@ -16,6 +16,8 @@ Serie **videogiochi spiegati**: la storia di un videogioco (come un film, o Spie
 JSON in `films/` con `"tipo": "videogioco"`, uscita fissa il sabato alle 12:30 (fino al 17 nov il martedì). Regole proprie (niente immagini, loghi o
 interfacce del gioco, giochi non ancora usciti solo con fatti annunciati ufficialmente): vedi `GIOCHI.md`.
 
+**YouTube è la piattaforma su cui si punta tutto** (unica che paga le visualizzazioni in Italia): strategia, confezione,
+ritmo e grafica dei lunghi in `YOUTUBE.md` (vincolante, prima di `VIDEO-LUNGO.md`).
 Video **lunghi orizzontali** per YouTube (1920×1080, almeno 8 minuti, più episodi montati in un solo racconto, es. Dark tutta la serie):
 JSON in `lunghi/`, composizione separata in `src/lunghi/`, regole proprie (struttura, miniatura, zone sicure 16:9,
 griglia musicale tra un episodio e l'altro, capitoli YouTube): vedi `VIDEO-LUNGO.md`.

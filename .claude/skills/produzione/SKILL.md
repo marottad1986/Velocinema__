@@ -14,6 +14,9 @@ Metodo (vincolante, da `CLAUDE.md`):
 2. Leggi `ERRORI.md` (controlli che evitano gli errori già fatti), `ASTICELLA.md` (il livello raggiunto e i passi avanti), `DECISIONI.md`, `CLAUDE.md`, `BRIEF-SCENA.md`, `QUALITA.md` (più `qualita/<film>.md` se c'è) e, per i quadri, `QUADRI.md`.
    Controlla nel calendario (`calendario/`) la data di uscita e l'alternativa prevista: se la data non è raggiungibile
    senza fretta sulle scene, dillo subito all'utente.
+2a. **Video lungo YouTube**: se il contenuto è un lungo, `YOUTUBE.md` è vincolante e ha la precedenza su tutto (confezione,
+   primi 30 secondi, lungo nativo disegnato per il 16:9, grafica, almeno tre momenti clou); a fine lavoro aggiungi la riga
+   nel suo registro.
 2b. **Evolviti** (`ASTICELLA.md`): decidi prima di disegnare qual è il passo avanti di questo video rispetto ai
    precedenti (almeno uno, visibile o udibile) e non scendere mai sotto il livello del registro.
 3. Testo: fatti verificati su fonti (campo `fonti`), scritto per chi non conosce l'opera, ritmo della voce.

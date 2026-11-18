@@ -1,5 +1,10 @@
 # Video lunghi orizzontali (YouTube)
 
+> **Dal 19 novembre 2026 vale prima `YOUTUBE.md`** (decisione dell'editore: si punta tutto su YouTube). I lunghi nuovi
+> sono racconti continui disegnati per il 16:9, non episodi incollati: niente etichetta «m:ss / 2:00», niente cartelli
+> e riassunti tra un episodio e l'altro, titolo costruito sulle ricerche. Le regole qui sotto restano per le parti tecniche
+> (formato, zone sicure, audio, capitoli, comandi) e per i due lunghi già usciti.
+
 Formato per i video lunghi del canale YouTube: più episodi già fatti (di solito le stagioni di uno Spiegato semplice)
 montati in un solo racconto orizzontale, con un aggancio, i raccordi e un capitolo nuovo. Valgono tutte le regole di
 `CLAUDE.md` (contenuti, testo per chi non conosce l'opera, fatti verificati, stile, musica originale campionata, voce,

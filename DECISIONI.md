@@ -3,6 +3,14 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 19 nov 2026 · **Si punta tutto su YouTube** (decisione dell'editore del 18 nov sera): in Italia è l'unica piattaforma
+  che paga le visualizzazioni; sponsorizzazioni e collaborazioni vengono dopo. I lunghi sono il prodotto principale e
+  hanno la precedenza su tutto, con un impegno grafico molto più alto. Regole in `YOUTUBE.md`: confezione decisa prima di
+  produrre (argomento cercato, titolo, tre miniature per la prova A/B), primi 30 secondi, **lungo nativo** (un racconto
+  continuo disegnato per il 16:9, non Short incollati), grafica (mondo unico, inquadrature in profondità, qualcosa che
+  cambia ogni 3–5 s, scena nuova ogni 20–30 s, passaggi senza nero, almeno tre momenti clou), spinta dopo l'uscita e
+  registro dei dati di ogni lungo. Gli Short delle 17:30 si ricavano il più possibile dai lunghi. · tutti
+
 - 18 nov 2026 (sera) · **Due video lunghi a settimana e meno uscite deboli** (dalla settimana del 23 novembre).
   Mercoledì e sabato alle 17:30 un video lungo YouTube con il suo trailer verticale alla stessa ora; gli altri cinque giorni
   alle 17:30 solo i formati che rendono (Spiegato semplice, serie a puntate, film con mistero). **Tolti X Factor** (talent
