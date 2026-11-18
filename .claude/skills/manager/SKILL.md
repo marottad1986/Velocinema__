@@ -18,7 +18,7 @@ Cosa fai, secondo la richiesta (argomenti: $ARGUMENTS):
    dati» di `SOCIAL.md`.
 2. **Programmazione della settimana che inizia il giorno dopo** (lunedì–domenica; lunedì e martedì con contenuti già
    pronti o finibili la domenica): 7 uscite alle 17:30 (mercoledì e sabato un video lungo YouTube
-   con trailer, gli altri giorni i formati che rendono) più il videogioco del martedì alle 12:30 (`SOCIAL.md`, «Ritmo e orari»), equilibrio film / serie / Spiegato semplice, titoli scelti con il punteggio di `SOCIAL.md`, agganci a
+   con trailer, gli altri giorni i formati che rendono) più il videogioco del sabato alle 12:30 (`SOCIAL.md`, «Ritmo e orari»), equilibrio film / serie / Spiegato semplice, titoli scelti con il punteggio di `SOCIAL.md`, agganci a
    eventi verificati sul web (con fonti), alternativa pronta per ogni contenuto da produrre e ordine di produzione.
    Scrivi `calendario/<aaaa-mm-gg>.md` (data del lunedì della settimana programmata) e mostra la tabella all'utente.
 3. **Solo dopo l'approvazione esplicita**: eventi nel calendario principale di Google Calendar via IFTTT

@@ -12,9 +12,11 @@ proporre la settimana.
   gran parte della settimana senza produzioni in più.
 - **Tolti**: X Factor (talent spiegati, dati deboli; l'ultimo è il Live 4 del 18 nov) e le uscite doppie delle **10:00 di
   sabato e domenica** (quadri, canzoni, storie vere). Le uscite già prodotte e programmate fino a domenica 22 restano.
-- **Martedì alle 12:30** resta per ora l'uscita in più dei **videogiochi spiegati** (`GIOCHI.md`), ma è sotto esame: domenica
-  29 novembre il manager confronta i numeri di GTA VI con le uscite delle 17:30 e, se è sotto la media, propone di toglierla.
-- Totale: 7 uscite a settimana (2 lunghi con trailer + 5 video da 2 minuti) più il videogioco del martedì. Nessun giorno
+- **Sabato alle 12:30** l'uscita in più dei **videogiochi spiegati** (`GIOCHI.md`; spostata dal martedì il 18 nov, dalla
+  settimana del 23 novembre), o del formato che la sostituirà; il sabato alle 17:30 resta il video lungo. Il videogioco è
+  sotto esame: domenica 29 novembre il manager confronta i numeri di GTA VI con le uscite delle 17:30 e, se è sotto la media,
+  propone all'editore un formato sostitutivo per lo stesso posto (sabato 12:30).
+- Totale: 7 uscite a settimana (2 lunghi con trailer + 5 video da 2 minuti) più il videogioco del sabato alle 12:30. Nessun giorno
   di pausa per ora: la regolarità quotidiana delle 17:30 è ciò che fa crescere TikTok e Instagram. Se la produzione non
   regge, il primo giorno da togliere è quello con la media più bassa nelle ultime due settimane (lo indica il manager
   con i dati della domenica), mai il mercoledì o il sabato.

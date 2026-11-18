@@ -7,7 +7,7 @@ decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. F
   Mercoledì e sabato alle 17:30 un video lungo YouTube con il suo trailer verticale alla stessa ora; gli altri cinque giorni
   alle 17:30 solo i formati che rendono (Spiegato semplice, serie a puntate, film con mistero). **Tolti X Factor** (talent
   sospeso, ultimo il Live 4) **e le uscite delle 10:00 di sabato e domenica** (quadri, canzoni, storie vere); restano le uscite
-  già programmate fino a domenica 22. Videogiochi del martedì 12:30 sotto esame il 29 novembre. Gli episodi verticali di
+  già programmate fino a domenica 22. Videogiochi spostati al **sabato alle 12:30** (o il formato che li sostituirà; il sabato 17:30 resta il lungo), sotto esame il 29 novembre. Gli episodi verticali di
   un lungo escono come Short dopo il lungo. Nessun giorno di pausa per ora; se la produzione non regge si toglie il giorno
   con la media più bassa (mai mercoledì o sabato). Regole in `SOCIAL.md`, «Ritmo e orari». · manager, produzione, direzione
 

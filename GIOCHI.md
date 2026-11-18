@@ -3,7 +3,7 @@
 Stessi video verticali dei film (formato 2:00, copertina 4 s + capitoli 112 s + finale 4 s, sovrimpressioni, musica e voce:
 vedi `CLAUDE.md`), dedicati alla storia di un videogioco. Un JSON in `films/` con `"tipo": "videogioco"`; `regista` = studio
 o autore principale (es. «Rockstar Games»). Valgono tutte le regole di `CLAUDE.md`; qui ci sono quelle in più.
-Uscita fissa: **martedì alle 12:30** (in più rispetto alle 17:30; dati Metricool in `SOCIAL.md`). Primo episodio: GTA VI,
+Uscita fissa: **sabato alle 12:30** (dal 28 novembre 2026; prima il martedì) (in più rispetto alle 17:30; dati Metricool in `SOCIAL.md`). Primo episodio: GTA VI,
 martedì 17 novembre 2026, due giorni prima dell'uscita del gioco (19 novembre).
 
 ## Due forme

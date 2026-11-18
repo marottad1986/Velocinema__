@@ -13,7 +13,7 @@ con `"tipo": "talent"`. Regole proprie (nessuna persona disegnata, niente canzon
 fatti della gara verificati su fonti, vocabolario visivo fisso): vedi `TALENT.md`.
 
 Serie **videogiochi spiegati**: la storia di un videogioco (come un film, o Spiegato semplice per le storie intricate),
-JSON in `films/` con `"tipo": "videogioco"`, uscita fissa il martedì alle 12:30. Regole proprie (niente immagini, loghi o
+JSON in `films/` con `"tipo": "videogioco"`, uscita fissa il sabato alle 12:30 (fino al 17 nov il martedì). Regole proprie (niente immagini, loghi o
 interfacce del gioco, giochi non ancora usciti solo con fatti annunciati ufficialmente): vedi `GIOCHI.md`.
 
 Video **lunghi orizzontali** per YouTube (1920×1080, almeno 8 minuti, più episodi montati in un solo racconto, es. Dark tutta la serie):
@@ -22,7 +22,7 @@ griglia musicale tra un episodio e l'altro, capitoli YouTube): vedi `VIDEO-LUNGO
 **Trailer verticali** dei video lunghi (trailer di cinema, non riassunti; immagini disegnate apposta, cartelli, suspense,
 titolo alla fine): JSON in `promo/`, regole in `TRAILER.md`.
 
-Programmazione delle uscite (team social: 17:30 ogni giorno, mercoledì e sabato un video lungo YouTube con il suo trailer, martedì 12:30 videogiochi; scelta dei titoli; ogni domenica alle 15:00
+Programmazione delle uscite (team social: 17:30 ogni giorno, mercoledì e sabato un video lungo YouTube con il suo trailer, sabato 12:30 videogiochi; scelta dei titoli; ogni domenica alle 15:00
 la settimana che inizia il giorno dopo, con i dati di Metricool e PostFast, e avvio della produzione; post e storie programmati con PostFast; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.
 Comandi per aprire una sessione: `/manager` (team social media manager), `/produzione` (un video per sessione), `/direzione`
 (consigliere dell'editore, diffonde le decisioni) e `/contabilita` (conti); come la squadra usa l'app di gestione dell'editore (avvisi, conferme, commenti, proposte): skill
