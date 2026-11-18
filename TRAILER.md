@@ -54,6 +54,14 @@ persone, musica originale, voce), di `QUALITA.md` e di `ASTICELLA.md`; pubblicaz
   nero, spia nel buio, lampi, titolo, chiusura) e `comune.tsx` (camera e colori); nello spartito le funzioni `braam`, `stacco`
   e il ticchettio che accelera.
 
+## Bollino del canale (in prova dal prossimo trailer, richiesta dell'utente del 18 nov 2026)
+- Il **prossimo trailer** (il primo dopo Ritorno al futuro, che resta com'è) porta `"bollino_canale": true` nel JSON: un bollino
+  tondo bianco con bordo rosso, il logo di YouTube e «In 2 Minuti», fisso nell'angolo in alto a destra dal fotogramma 0
+  (miniatura compresa) all'ultimo, sopra cartelli, bande nere e lampi (`src/promo/BollinoCanale.tsx`, montato da `Promo.tsx`).
+- Occupa x 710–960, y 262–520: in copertina, chiusura e titolo finale niente testo in quella zona (il bollino rosso
+  «NUOVO SU YOUTUBE» va a sinistra o sotto, non centrato in alto).
+- È una prova: dopo quel trailer l'utente decide se tenerlo per tutti (allora si aggiunge il controllo in `controlli.mjs`).
+
 ## Revisione
 - Le immagini le approva l'editore guardando il video (come per tutti i video). Per il primo trailer l'editore ha deciso
   di unire senza i revisori di testi, musica e voce; per i prossimi si decide caso per caso.
