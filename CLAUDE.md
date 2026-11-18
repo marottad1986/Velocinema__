@@ -8,7 +8,7 @@ riferimento per i disegni e le animazioni, non eseguito così com'è.
 Serie parallela con la stessa grafica: **quadri famosi** spiegati in 2 minuti, JSON in `quadri/`.
 Regole proprie (solo opere di pubblico dominio, immagine originale animata): vedi `QUADRI.md`.
 
-Serie **talent spiegati**: programmi TV in corso con persone reali (X Factor 2026, un episodio a settimana), JSON in `films/`
+Serie **talent spiegati** (sospesa dal 18 nov 2026): programmi TV in corso con persone reali (X Factor 2026, un episodio a settimana), JSON in `films/`
 con `"tipo": "talent"`. Regole proprie (nessuna persona disegnata, niente canzoni cantate né imitazioni, niente logo,
 fatti della gara verificati su fonti, vocabolario visivo fisso): vedi `TALENT.md`.
 
@@ -22,7 +22,7 @@ griglia musicale tra un episodio e l'altro, capitoli YouTube): vedi `VIDEO-LUNGO
 **Trailer verticali** dei video lunghi (trailer di cinema, non riassunti; immagini disegnate apposta, cartelli, suspense,
 titolo alla fine): JSON in `promo/`, regole in `TRAILER.md`.
 
-Programmazione delle uscite (team social: 17:30 ogni giorno, più 10:00 sabato e domenica; scelta dei titoli; ogni domenica alle 15:00
+Programmazione delle uscite (team social: 17:30 ogni giorno, mercoledì e sabato un video lungo YouTube con il suo trailer, martedì 12:30 videogiochi; scelta dei titoli; ogni domenica alle 15:00
 la settimana che inizia il giorno dopo, con i dati di Metricool e PostFast, e avvio della produzione; post e storie programmati con PostFast; eventi nel calendario principale di Google Calendar): vedi `SOCIAL.md` e `calendario/`.
 Comandi per aprire una sessione: `/manager` (team social media manager), `/produzione` (un video per sessione), `/direzione`
 (consigliere dell'editore, diffonde le decisioni) e `/contabilita` (conti); come la squadra usa l'app di gestione dell'editore (avvisi, conferme, commenti, proposte): skill

@@ -3,6 +3,14 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 18 nov 2026 (sera) · **Due video lunghi a settimana e meno uscite deboli** (dalla settimana del 23 novembre).
+  Mercoledì e sabato alle 17:30 un video lungo YouTube con il suo trailer verticale alla stessa ora; gli altri cinque giorni
+  alle 17:30 solo i formati che rendono (Spiegato semplice, serie a puntate, film con mistero). **Tolti X Factor** (talent
+  sospeso, ultimo il Live 4) **e le uscite delle 10:00 di sabato e domenica** (quadri, canzoni, storie vere); restano le uscite
+  già programmate fino a domenica 22. Videogiochi del martedì 12:30 sotto esame il 29 novembre. Gli episodi verticali di
+  un lungo escono come Short dopo il lungo. Nessun giorno di pausa per ora; se la produzione non regge si toglie il giorno
+  con la media più bassa (mai mercoledì o sabato). Regole in `SOCIAL.md`, «Ritmo e orari». · manager, produzione, direzione
+
 - 18 nov 2026 · **YouTube deve crescere entro il 31 dicembre, altrimenti l'editore chiude il progetto.** Traguardo accettato
   dall'editore: al 31 dicembre 2026 **almeno 1.000 iscritti** al canale YouTube (oggi 118) **oppure un video lungo oltre le
   10.000 visualizzazioni**. Controlli intermedi nella programmazione della domenica (iscritti e visualizzazioni dei lunghi

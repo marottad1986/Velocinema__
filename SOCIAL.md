@@ -4,23 +4,30 @@ Come si sceglie e si programma cosa pubblicare sulla pagina «In 2 Minuti». Si 
 proporre la settimana.
 
 ## Ritmo e orari (vincolante)
-- **Ogni giorno alle 17:30** un'uscita principale, a rotazione tra **film**, **serie TV** e **Spiegato semplice**:
-  ogni settimana 3 film, 2 serie e 2 Spiegato semplice (si può scambiare un film con una serie se i dati lo chiedono).
-- **Sabato e domenica alle 10:00** un'uscita in più: quadri, canzoni, storie vere o storie.
-- **Martedì alle 12:30** un'uscita in più: **videogiochi spiegati** (`GIOCHI.md`), dal 17 novembre 2026 (primo episodio
-  GTA VI). Orario dai dati Metricool del 15 novembre: TikTok ha picchi alle 10, 12 e 18, Instagram è alto tutto il giorno
-  (massimo alle 20); le 12:30 vanno bene su tutti e due e stanno a 5 ore dalle 17:30, senza togliere pubblico all'uscita principale.
-- **X Factor (talent spiegati): sempre il mercoledì alle 17:30**, il riepilogo dell'ultimo Live il giorno prima della
-  puntata successiva (il giovedì è troppo tardi). Fino alla finale del 3 dicembre: mercoledì 18 (Live 4), 25 (Live 5),
-  2 dicembre (Live 6); la finale si riassume il 4 o 5 dicembre.
-- 10 uscite a settimana (9 + il videogioco del martedì). Due titoli dello stesso genere (es. due horror) non stanno in giorni vicini.
+- Settimana tipo (decisione dell'editore del 18 nov 2026, dalla settimana del 23 novembre; obiettivo YouTube sotto):
+  **ogni giorno alle 17:30** un'uscita; **mercoledì e sabato** l'uscita delle 17:30 è un **video lungo YouTube** (16:9,
+  `VIDEO-LUNGO.md`) con il suo **trailer verticale** alla stessa ora su tutti i social; gli altri cinque giorni un video da
+  2 minuti dei formati che rendono: **Spiegato semplice**, **serie a puntate**, **film con mistero o colpo di scena**.
+  Gli episodi verticali di un lungo escono come Short nei giorni dopo il lungo (mai prima): così due lunghi alimentano
+  gran parte della settimana senza produzioni in più.
+- **Tolti**: X Factor (talent spiegati, dati deboli; l'ultimo è il Live 4 del 18 nov) e le uscite doppie delle **10:00 di
+  sabato e domenica** (quadri, canzoni, storie vere). Le uscite già prodotte e programmate fino a domenica 22 restano.
+- **Martedì alle 12:30** resta per ora l'uscita in più dei **videogiochi spiegati** (`GIOCHI.md`), ma è sotto esame: domenica
+  29 novembre il manager confronta i numeri di GTA VI con le uscite delle 17:30 e, se è sotto la media, propone di toglierla.
+- Totale: 7 uscite a settimana (2 lunghi con trailer + 5 video da 2 minuti) più il videogioco del martedì. Nessun giorno
+  di pausa per ora: la regolarità quotidiana delle 17:30 è ciò che fa crescere TikTok e Instagram. Se la produzione non
+  regge, il primo giorno da togliere è quello con la media più bassa nelle ultime due settimane (lo indica il manager
+  con i dati della domenica), mai il mercoledì o il sabato.
+  Due titoli dello stesso genere (es. due horror) non stanno in giorni vicini.
 - Mai ripubblicare un video già uscito sullo stesso canale (elenco in `calendario/pubblicati.md`).
 
 ## Obiettivo YouTube fino al 31 dicembre 2026 (vincolante, decisione dell'editore del 18 nov)
 Se il canale YouTube non cresce sul serio entro fine anno l'editore chiude il progetto. Traguardo: al 31 dicembre
 **almeno 1.000 iscritti** (118 il 18 nov) **oppure un video lungo oltre le 10.000 visualizzazioni**.
-- **Un video lungo a settimana** (16:9, `VIDEO-LUNGO.md`) con il suo trailer verticale lo stesso giorno: ogni domenica il
-  calendario della settimana lo mette per primo e avvia la sua produzione (produzione intera, conta nel limite di due al giorno).
+- **Due video lunghi a settimana, mercoledì e sabato alle 17:30** (16:9, `VIDEO-LUNGO.md`; il secondo deciso dall'editore il
+  18 nov sera), ognuno con il suo trailer verticale alla stessa ora: ogni domenica il calendario li mette per primi e avvia
+  le loro produzioni (produzioni intere, contano nel limite di due al giorno). Per reggere il ritmo si alterna un lungo
+  tutto nuovo con uno montato da episodi già fatti (es. Inception + Tenet).
   Scelta del titolo: Spiegato semplice o trame da capire (viaggio nel tempo, mistero, serie a puntate), che sono quelle che
   rendono; meglio contenuti non ancora usciti come Short.
 - Titolo, descrizione e capitoli dei lunghi pensati per la ricerca su YouTube («… spiegazione», «finale spiegato»,
@@ -101,7 +108,7 @@ resto l'utente risponde (approvazioni, modifiche) nella chat della sessione, qui
 contenuto va mandato **anche nella chat della sessione** (SendUserMessage / SendUserFile), così l'utente lo trova lì quando
 apre la conversazione. Solo gli avvisi qui sotto, niente messaggi di stato intermedi.
 - **Manager, domenica — proposta pronta**: appena la tabella della settimana è pronta (prima dell'approvazione), un avviso
-  con i dati della settimana in 3–4 righe (follower, video migliore, cosa funziona), le 9 uscite (giorno, ora, titolo, stato)
+  con i dati della settimana in 3–4 righe (follower, video migliore, cosa funziona), le uscite della settimana (giorno, ora, titolo, stato)
   e «Rispondi nella sessione del manager per approvare».
 - **Manager, domenica — dopo l'approvazione**: un avviso quando eventi in calendario, sessioni di produzione e materiale
   social sono pronti (elenco delle produzioni avviate, con la scadenza di ciascuna).

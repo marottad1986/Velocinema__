@@ -1,5 +1,8 @@
 # Talent spiegati (programmi TV con persone reali)
 
+> **Serie sospesa dal 18 novembre 2026** (decisione dell'editore: dati deboli). L'ultimo episodio è X Factor 2026 – Live 4.
+> Le regole restano qui se un giorno si riprende.
+
 Stessi video verticali dei film (formato 2:00, copertina 4 s + capitoli 112 s + finale 4 s, sovrimpressioni, musica e voce:
 vedi `CLAUDE.md`), dedicati a un programma TV in corso con concorrenti e giudici veri (primo caso: X Factor 2026).
 Un JSON in `films/` con `"tipo": "talent"`. Valgono tutte le regole di `CLAUDE.md`; qui ci sono quelle in più, che
