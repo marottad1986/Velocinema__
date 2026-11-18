@@ -343,6 +343,9 @@ puntate, disegnabile; massimo 18):
 dello zoo di Berlino** (TikTok, commenti di Hunger Games, 15 nov); **The Imitation Game** (TikTok, commenti di Titanic, 16 nov;
 chiesto anche Salvate il soldato Ryan, poi cancellato dall'autore); **Lo squalo** (TikTok, commenti di Titanic, 16 nov);
 **Doctor Sleep** citato di nuovo nei commenti di Shining (17 nov), già in lista.
+**18 novembre:** **Lost, stagione per stagione** (Instagram, commenti del post di Dark sul canale YouTube, 17 nov sera): già
+nelle priorità dello Spiegato semplice (CLAUDE.md); nei commenti di Shining due persone chiedono della foto finale (teoria della
+reincarnazione di Jack): spunto per uno Spiegato o per **Doctor Sleep**, già in lista.
 **Quadro confermato per la settimana 23–29 novembre: L'urlo di Munch** (chiesto nei commenti di Notte stellata; deciso
 dall'utente il 14 novembre, insieme a L'Ultima Cena per sabato 21). Va nel weekend alle 10:00.
 Evento della settimana da non perdere: **Edoardo Bove – «In un battito»** (documentario in sala 16–18 novembre),
