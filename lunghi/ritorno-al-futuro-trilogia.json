@@ -1,0 +1,161 @@
+{
+  "formato": "lungo",
+  "tipo": "film",
+  "titolo": "Ritorno al futuro",
+  "titolo_youtube": "RITORNO AL FUTURO spiegato facile: la trilogia, 2 minuti a film ⏳ Più i paradossi spiegati",
+  "etichetta": "SPIEGATO SEMPLICE · LA TRILOGIA",
+  "regista": "Robert Zemeckis",
+  "anno": 1985,
+  "bpm": 72,
+  "palette": {
+    "chiaro": "#F4EEE2",
+    "principale": "#2E1E5C",
+    "scuro": "#0E0A22",
+    "accento": "#F5C23A"
+  },
+  "parti": [
+    {
+      "tipo": "aggancio",
+      "id": "aggancio",
+      "durata": 20,
+      "capitolo_youtube": "Se cambi il passato, cosa succede al presente?",
+      "immagine": "Copertina 16:9 (miniatura YouTube): a sinistra «SPIEGATO SEMPLICE · LA TRILOGIA», «RITORNO AL FUTURO» enorme su due righe, sotto «I 3 FILM E I PARADOSSI»; a destra, su carta da progetto blu notte, un grande quadrante d'orologio da cui partono tre binari del tempo verso tre cartoline (1885 seppia, 1955 crema, 1985 al neon), il binario del 1985 che si biforca in un ramo rosso; scie gialle tratteggiate, un fulmine sulla torre. Poi la camera scende sui tre binari: la foto che sbiadisce (1955), l'almanacco (il 1985 diverso), la lapide (1885). Niente persone, l'auto del film, logo o locandine.",
+      "sottotitoli": [
+        "Se torni nel passato e cambi una sola cosa, cosa succede al tuo presente?",
+        "È la domanda di Ritorno al futuro: tre film e quattro epoche.",
+        "Un ragazzo che rischia di non nascere,",
+        "un libro che trasforma la sua città,",
+        "e un amico con il nome su una tomba.",
+        "Seguiamo le linee del tempo dall'inizio: Hill Valley, 1985."
+      ]
+    },
+    {
+      "tipo": "episodio",
+      "film": "ritorno-al-futuro",
+      "nome": "PARTE 1",
+      "sottotitolo": "Il viaggio nel 1955",
+      "capitolo_youtube": "Parte 1: il viaggio nel 1955",
+      "riassunto": "Per tornare a casa, Marty deve aggiustare il passato."
+    },
+    {
+      "tipo": "episodio",
+      "film": "ritorno-al-futuro-parte-2",
+      "nome": "PARTE 2",
+      "sottotitolo": "L'almanacco e il 1985 sbagliato",
+      "capitolo_youtube": "Parte 2: l'almanacco e il 1985 sbagliato",
+      "riassunto": "Futuro salvo, ma Marty resta bloccato nel passato."
+    },
+    {
+      "tipo": "episodio",
+      "film": "ritorno-al-futuro-parte-3",
+      "nome": "PARTE 3",
+      "sottotitolo": "Il West e la tomba di Doc",
+      "capitolo_youtube": "Parte 3: il West e la tomba di Doc",
+      "riassunto": "Doc è salvo, e Marty torna nel suo tempo."
+    },
+    {
+      "tipo": "capitoli",
+      "id": "paradossi",
+      "nome": "I PARADOSSI SPIEGATI",
+      "capitolo_youtube": "I paradossi spiegati",
+      "capitoli": [
+        {
+          "id": "regola",
+          "titolo": "Si può cambiare il passato?",
+          "durata": 15,
+          "scena": "Lo schema di tutta la trilogia, orizzontale: il binario del tempo corre da sinistra (1885) a destra (2015) con le stazioni-cartolina (1885 seppia, 1955 crema, 1985 neon, 2015 grigio). Un'onda gialla parte dal 1955 (la spinta a George: quaderno) e corre lungo il binario fino al 1985; la foto di famiglia nel 1985 si sbiadisce cerchio dopo cerchio.",
+          "sottotitoli": [
+            "La prima regola è semplice: qui il passato si può cambiare.",
+            "E ogni cambiamento arriva fino al presente, come un'onda.",
+            "Infatti Marty salva suo padre da un'auto, e la mamma s'innamora di Marty:",
+            "nella foto di famiglia, i suoi fratelli cominciano a sparire."
+          ]
+        },
+        {
+          "id": "binario",
+          "titolo": "Perché nasce un 1985 diverso?",
+          "durata": 17.5,
+          "scena": "La camera va al 1955 della Parte 2: l'almanacco passa dal giubbotto (vecchio Biff, con bastone) al giubbotto (giovane Biff) lungo un tratteggio giallo; uno scambio ferroviario scatta e dal 1955 si stacca un binario rosso che corre parallelo e arriva a un 1985 rosso con il casinò al neon al posto della torre.",
+          "sottotitoli": [
+            "Nella Parte 2, invece, a cambiare il passato è Biff, il bullo.",
+            "Da vecchio, dà a sé stesso ragazzo l'almanacco sportivo.",
+            "Da lì il tempo prende un'altra strada, come un treno deviato.",
+            "Così nasce un 1985 dove Biff, ricchissimo, comanda tutto."
+          ]
+        },
+        {
+          "id": "riparare",
+          "titolo": "Come si rimette tutto a posto?",
+          "durata": 15,
+          "scena": "Dal 1985 rosso un tratteggio giallo torna indietro fino allo scambio nel 1955 (anello rosso sul punto in cui il binario si divide: «12 novembre 1955»); l'almanacco prende fuoco e si consuma; il binario rosso si spegne e si stacca, lo scambio torna dritto, il 1985 torna quello della torre dell'orologio.",
+          "sottotitoli": [
+            "Per rimettere le cose a posto, c'è un solo modo:",
+            "tornare al punto esatto in cui il binario si è diviso,",
+            "cioè il giorno in cui Biff riceve l'almanacco, nel 1955.",
+            "Lì Marty lo brucia, e il 1985 torna quello di prima."
+          ]
+        },
+        {
+          "id": "doppioni",
+          "titolo": "Cosa succede se incontri te stesso?",
+          "durata": 15,
+          "scena": "Nella stazione del 1955 due skateboard nello stesso punto: quello del primo viaggio (pieno) e quello del secondo (tratteggiato, che si nasconde dietro un muro); una linea tra i due con una crocetta rossa «non vedersi!». Poi la camera corre al 2015: due biglietti col cuore (Jennifer giovane e Jennifer adulta) si avvicinano e il più giovane si inclina e cade, con il cartellino «sviene».",
+          "sottotitoli": [
+            "Ma quel giorno c'è già un altro Marty, quello del primo viaggio.",
+            "Due Marty nello stesso tempo: il secondo non deve farsi vedere,",
+            "per non rovinare quello che il primo Marty sta facendo.",
+            "Jennifer invece, nel 2015, incontra sé stessa da grande, e sviene."
+          ]
+        },
+        {
+          "id": "lettera",
+          "titolo": "Sapere il futuro lo cambia?",
+          "durata": 15,
+          "scena": "Nel 1955 della Parte 1: la lettera di Marty (busta) va agli occhialoni (Doc) e si strappa in quattro pezzi; i pezzi viaggiano lungo il binario fino al 1985, dove si ricompongono con il nastro adesivo; davanti agli occhialoni compare un giubbotto antiproiettile che ferma un colpo (lampo e scintilla).",
+          "sottotitoli": [
+            "Sì, e lo mostra una lettera.",
+            "Nel 1955 Marty scrive a Doc che gli spareranno.",
+            "Doc la strappa, preoccupato: conoscere il futuro è pericoloso.",
+            "Ma poi la rimette insieme, indossa un giubbotto antiproiettile e si salva."
+          ]
+        },
+        {
+          "id": "scritto",
+          "titolo": "Il futuro è già scritto?",
+          "durata": 15,
+          "scena": "Tutto lo schema della trilogia in una sola immagine: in fondo al binario, dopo il 1985, la strada si apre in tante strade possibili a ventaglio; sul foglio portato dal futuro la scritta «licenziato» si cancella; l'ultima strada si accende d'oro e sopra compare, scritta a mano, la frase «il futuro non è ancora scritto».",
+          "sottotitoli": [
+            "Alla fine Marty impara a dire no: rifiuta una gara in auto,",
+            "ed evita l'incidente che gli avrebbe rovinato la carriera di musicista.",
+            "Così, sul foglio che Jennifer ha portato dal futuro, si cancella il licenziamento.",
+            "E Doc lo dice chiaro: il futuro non è ancora scritto."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "chiusura",
+      "id": "chiusura",
+      "durata": 20,
+      "capitolo_youtube": "Ritorno al futuro in una frase",
+      "immagine": "Lo schema completo della trilogia, piccolo e ordinato nella metà sinistra (il binario con le quattro stazioni e il ventaglio di strade accese d'oro in fondo); sotto, il riquadro «Ti è servito?» con «Metti like» e «Iscriviti al canale» e «Commenta con il film che vorresti spiegato.»; metà destra libera per la schermata finale di YouTube.",
+      "sottotitoli": [
+        "Il passato si può cambiare, ma il futuro lo scrivi tu.",
+        "Se ti è servito, iscriviti al canale,",
+        "e commenta con il film che vorresti spiegato."
+      ]
+    }
+  ],
+  "musica": "Riusa le colonne sonore delle tre Parti (72 bpm, posate sulla stessa griglia: ogni Parte entra a un multiplo di 10 s = 12 battiti). Parti nuove a 72 bpm con gli stessi strumenti campionati delle tre Parti: nell'aggancio il motivo della trilogia che sale con un tic-tac a crome; nei paradossi archi a crome per l'onda del tempo, lo scambio ferroviario come un colpo secco seguito da una pausa, il fuoco dell'almanacco con il timpano, i pizzicati che si fermano quando Jennifer sviene, il colpo fermato dal giubbotto, e il maggiore che si apre sull'ultima frase; nella chiusura il motivo in maggiore che resta aperto.",
+  "fonti": [
+    "Marty salva George da un'auto ed è investito al suo posto, Lorraine si innamora di Marty e i fratelli cominciano a sparire dalla foto; le azioni di Marty alterano il futuro e mettono in pericolo la sua esistenza: https://en.wikipedia.org/wiki/Back_to_the_Future",
+    "Doc trova la lettera di Marty che lo avverte del suo futuro e la strappa, preoccupato per le conseguenze; poi rivela di averla ricomposta e di indossare un giubbotto antiproiettile: https://en.wikipedia.org/wiki/Back_to_the_Future",
+    "Il vecchio Biff consegna l'almanacco al sé stesso più giovane; nel 1985 alternativo Biff ha un hotel-casinò, ha ucciso George McFly nel 1973 e ha sposato Lorraine; l'unica speranza di rimettere le cose a posto è tornare di nuovo nel 1955; Doc e Marty evitano i loro doppioni: https://it.wikipedia.org/wiki/Ritorno_al_futuro_-_Parte_II",
+    "Marty apprende dal Biff del 1985 alternativo che ha ricevuto l'almanacco il 12 novembre 1955; Doc e Marty devono tornare nel 1955 per rimettere le cose a posto; Marty brucia l'almanacco annullando i cambiamenti alla linea del tempo; Jennifer sviene dopo aver incontrato sé stessa da adulta: https://en.wikipedia.org/wiki/Back_to_the_Future_Part_II",
+    "Marty rifiuta la gara con Needles ed evita l'incidente che avrebbe distrutto la sua carriera di musicista; il futuro non è ancora stato scritto: https://it.wikipedia.org/wiki/Ritorno_al_futuro_-_Parte_III",
+    "Marty rifiuta la gara di strada con Needles ed evita l'incidente; Jennifer vede sparire dal fax la scritta sul licenziamento di Marty; Doc dice che il loro futuro non è ancora stato scritto e di renderlo bello: https://en.wikipedia.org/wiki/Back_to_the_Future_Part_III",
+    "Marty nel 1955 evita di interferire con gli eventi del suo primo viaggio; Jennifer sviene dopo aver incontrato sé stessa del futuro: https://en.wikipedia.org/wiki/Back_to_the_Future_Part_II",
+    "Marty rifiuta la gara ricordando il fratello di Seamus, intollerante alle provocazioni; sul foglietto portato dal futuro si cancella il licenziamento: https://it.wikipedia.org/wiki/Ritorno_al_futuro_-_Parte_III",
+    "Il resto della trama delle tre Parti è quello già verificato e approvato nei tre episodi (films/ritorno-al-futuro.json, films/ritorno-al-futuro-parte-2.json, films/ritorno-al-futuro-parte-3.json): https://it.wikipedia.org/wiki/Ritorno_al_futuro"
+  ]
+}

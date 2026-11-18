@@ -33,7 +33,9 @@ export const trattiLungo = (slug, L = loadLungo(slug)) => {
         t += c.durata;
       });
       const nf = String(f.capitoli.length + 1).padStart(2, '0');
-      out.push({ tipo: 'riassunto', id: `${p.film}--riassunto`, start: t, dur: f.finale.durata, testo: f.finale.voce ? [f.finale.voce] : [], voce: f.finale.voce ? { dir, base: `${nf}_finale` } : null, film: p.film, parte: p });
+      // riassunto: la voce del finale dell'episodio, oppure (p.riassunto, dal 17 nov 2026 senza «In una frase:») una clip nuova
+      if (p.riassunto) out.push({ tipo: 'riassunto', id: `${p.film}--riassunto`, start: t, dur: f.finale.durata, testo: [p.riassunto], voce: nuova(`riassunto-${p.film}`), film: p.film, parte: p });
+      else out.push({ tipo: 'riassunto', id: `${p.film}--riassunto`, start: t, dur: f.finale.durata, testo: f.finale.voce ? [f.finale.voce] : [], voce: f.finale.voce ? { dir, base: `${nf}_finale` } : null, film: p.film, parte: p });
       t += f.finale.durata;
     } else {
       for (const c of p.capitoli) {

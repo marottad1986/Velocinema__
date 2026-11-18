@@ -47,7 +47,7 @@ const Scena: React.FC<{ L: ReturnType<typeof getLungo>; x: Tratto; t: number }> 
     const tr = tratti(L.data, L.episodi);
     const inizio = tr.find((y) => y.tipo === 'carta' && y.parte === x.parte)!.start;
     const Ep = S.episodio;
-    return <Ep film={x.parte.film} T={x.start - inizio + t} parte={x.parte} riassunto={x.film.finale.voce ?? ''} />;
+    return <Ep film={x.parte.film} T={x.start - inizio + t} parte={x.parte} riassunto={x.parte.riassunto ?? x.film.finale.voce ?? ''} />;
   }
   if (x.tipo === 'capitolo') {
     const C = S.capitoli[x.capitolo.id];
