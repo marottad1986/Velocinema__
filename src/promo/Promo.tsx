@@ -3,6 +3,7 @@ import { AbsoluteFill, useCurrentFrame, useVideoConfig } from 'remotion';
 import { seg } from '../lib/anim';
 import { SANS } from '../lib/fonts';
 import { getPromo, tempiPromo } from './registro';
+import { BollinoCanale } from './BollinoCanale';
 
 const alpha = (hex: string, a: number) => hex + Math.round(a * 255).toString(16).padStart(2, '0');
 
@@ -40,6 +41,8 @@ export const Promo: React.FC<{ slug: string }> = ({ slug }) => {
           );
         })}
       </div>
+      {/* trailer: logo di YouTube e nome del canale fissi in alto a destra, dal fotogramma 0 (TRAILER.md) */}
+      {P.data.bollino_canale && <BollinoCanale />}
     </AbsoluteFill>
   );
 };

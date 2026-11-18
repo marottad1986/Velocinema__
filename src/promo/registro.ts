@@ -11,7 +11,7 @@ import { Scena as TrailerRaf } from './trailer-ritorno-al-futuro/Scena';
 
 /** voce (facoltativo): secondi della parte in cui stanno voce e sottotitoli (il resto è silenzio, es. lo stacco al nero dei trailer). */
 export type PartePromo = { id: string; durata: number; voce?: number; immagine: string; sottotitoli: string[] };
-export type PromoData = { formato: 'promo'; titolo: string; regista?: string; anno: number; bpm: number; lungo?: string; palette: Palette; parti: PartePromo[]; fonti?: string[] };
+export type PromoData = { formato: 'promo'; titolo: string; regista?: string; anno: number; bpm: number; lungo?: string; bollino_canale?: boolean; palette: Palette; parti: PartePromo[]; fonti?: string[] };
 
 /** La frase di lancio entra da qui: il fotogramma 0 è la miniatura senza testo (CLAUDE.md). */
 export const INIZIO_LANCIO = 0.4;
