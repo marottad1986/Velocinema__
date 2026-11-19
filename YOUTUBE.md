@@ -17,7 +17,9 @@ Traguardo al 31 dicembre: 1.000 iscritti oppure un lungo oltre 10.000 visualizza
 ## 1. Prima la confezione: argomento, titolo, miniatura
 - Il titolo e la miniatura si scrivono **prima** di produrre, nella proposta della domenica: se non convincono, il video
   non si fa.
-- **Ogni domenica, prima di proporre i lunghi, analisi delle ricerche** (come `calendario/analisi-youtube-2026-11-19.md`:
+- **Ogni domenica, prima di proporre i lunghi, analisi delle ricerche** con `node scripts/strumenti/ricerche-youtube.mjs`
+  (classifica dei titoli più cercati dai suggerimenti di YouTube e, con la chiave della YouTube Data API, viste e
+  concorrenza dei video «spiegazione» già esistenti; report in `out/ricerche/<data>.md`) (come `calendario/analisi-youtube-2026-11-19.md`:
   suggerimenti di ricerca di YouTube in Italia con `suggestqueries.google.com`, `client=firefox&ds=yt&hl=it&gl=IT`, poche
   richieste lente; più la scheda Ricerca di YouTube Studio se l'editore la manda). Si scelgono i titoli più in alto che
   si possono disegnare senza persone.
