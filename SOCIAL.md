@@ -266,7 +266,7 @@ se sono cambiati, si aggiorna questa tabella.
 | Piattaforma | Programma | Requisiti | Noi (data) |
 |---|---|---|---|
 | TikTok | Creator Rewards | 18+, 10.000 follower, 100.000 visualizzazioni negli ultimi 30 giorni, video di almeno 1 minuto, contenuti originali | 2.992 follower (12 nov); video da 2:00 ✓ |
-| YouTube | Partner Program (base) | 500 iscritti + 3 caricamenti in 90 giorni + 3.000 ore di visione in 12 mesi o 3 milioni di visualizzazioni di Shorts in 90 giorni | dati da YouTube Studio |
+| YouTube | Partner Program (base) | 500 iscritti + 3 caricamenti in 90 giorni + 3.000 ore di visione in 12 mesi o 3 milioni di visualizzazioni di Shorts in 90 giorni | 127 iscritti, 0 ore idonee, 4,4 mila viste di Short idonee in 90 giorni (YouTube Studio, dati al 13 nov 2026: i due lunghi del 14 e 18 nov non sono ancora contati) |
 | YouTube | Partner Program (pubblicità) | 1.000 iscritti + 4.000 ore in 12 mesi o 10 milioni di visualizzazioni di Shorts in 90 giorni | i video lunghi contano per le ore |
 | Instagram | bonus, abbonamenti, regali | su invito o soglie per paese (abbonamenti: 10.000 follower) | – |
 | Facebook | monetizzazione dei contenuti | su invito / idoneità nella Meta Business Suite | – |
