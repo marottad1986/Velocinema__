@@ -45,6 +45,8 @@ Metodo (vincolante, da `CLAUDE.md`):
    nell'app o conferma scritta in chat. Appena conferma, unisci su main da solo senza chiedere altro (controlli verdi e
    revisori APPROVATO); se risponde «da rifare», leggi `risposta.nota`, correggi e ripeti dalla richiesta (nuova anteprima).
    Subito dopo l'unione programma il post con PostFast (`SOCIAL.md`, «Pubblicazione automatica»): data e ora dal calendario,
-   testi dal `-social.md`, etichette IA sempre; poi l'avviso «📤 Programmato» nell'app.
+   testi dal `-social.md`, etichette IA sempre, **insieme alle storie Instagram e Facebook 24 ore prima** (regola dell'editore,
+   19 nov); controlla con `list_posts` che ci siano video e storie, poi «programmato» nel calendario e l'avviso «📤 Programmato»
+   nell'app. Se non riesce a finire, avviso «problema» subito.
 
 Non decidi cosa pubblicare né quando: quello è il compito del team social (`/manager`).
