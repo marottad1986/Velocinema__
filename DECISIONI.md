@@ -3,6 +3,11 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 19 nov 2026 · **Programmare appena il video è pronto** (editore, dopo le storie di L'Ultima Cena, Scissione e Conjuring e
+  il video di Conjuring trovati non programmati dai commenti della sera). Appena l'editore conferma un video, la stessa
+  sessione programma subito su PostFast il video sulle quattro piattaforme e le storie Instagram e Facebook 24 ore prima,
+  controlla con `list_posts` e solo dopo scrive «programmato» nel calendario. Procedura in `SOCIAL.md`, «Pubblicazione
+  automatica». · produzione, manager
 - 19 nov 2026 · **Missione: far crescere il canale YouTube** (editore). In cima a `CLAUDE.md`; ogni mattina alle 9 l'attività
   «In 2 minuti – missione YouTube» (`trig_01SHBRf9LxqHXtBDrDhyFJ3z`, sessione nuova a ogni avvio) manda all'app e alle
   sessioni di produzione attive la missione, gli iscritti con il ritmo necessario, lo stato dei due prossimi lunghi

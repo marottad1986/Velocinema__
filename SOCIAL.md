@@ -202,6 +202,12 @@ Quando si programma (vincolante):
 - **Solo contenuti approvati e confermati**: la settimana approvata dall'editore e il video «pronto», cioè visto e
   confermato dall'editore (`DECISIONI.md`). Lo fa la sessione di produzione subito dopo la conferma e l'unione su main,
   oppure il manager per i contenuti già pronti. Mai prima.
+- **Si programma appena il video è pronto, tutto insieme (regola dell'editore, 19 nov 2026):** nella stessa sessione, subito
+  dopo la conferma, si programmano il video su TikTok, Instagram, Facebook e YouTube **e** le storie Instagram e Facebook
+  24 ore prima (locandina in `calendario/storie/<settimana>/`; se manca, si fa subito). Poi `list_posts` per controllare
+  che ci siano tutti e sei i post all'ora giusta, e solo allora il calendario scrive «programmato su PostFast (video e
+  storie)». Se la sessione non riesce a finire (push rifiutato, errore, limiti), lo scrive subito in un avviso «problema»
+  nell'app: un video confermato non resta mai senza programmazione.
 - Video: `upload_media` con `out/<film>-voce.mp4` (MP4 fino a 250 MB), poi `create_posts` (fino a 15 per chiamata) con
   `scheduledAt` all'ora del calendario in ora italiana (ISO con `+01:00` in inverno), testo dal `calendario/<settimana>-social.md`.
 - `controls` vale per tutti i post della stessa chiamata: i video in una chiamata, le storie in un'altra. Instagram accetta al
