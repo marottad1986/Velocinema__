@@ -47,3 +47,11 @@ in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo
   generazione. · meno passaggi a vuoto dei revisori · aperta
 - 18 nov 2026 · produzione (dai revisori di Ritorno al futuro, trilogia): `clip()` avvisi quando una presa parte su più di 0,1 s di silenzio, come già fa per le prese oltre la fine; `ascolta-voce.mjs` rifaccia la trascrizione quando la clip è più recente della cache (dopo una rigenerazione il report mostrava la clip vecchia).
 - 18 nov 2026 · produzione (dal revisore musica): `scripts/livelli.mjs` anche per i video lunghi e `livelli.txt` nel pacchetto dei lunghi, così vuoti tra le sezioni e picchi si vedono senza misure a mano.
+- 19 nov 2026 · direzione (idea dell'editore): **«In 2 minuti Kids»**, video lunghi per bambini su un **canale YouTube
+  separato** (mai sul canale principale: i video «per bambini» perdono annunci personalizzati, commenti, schermate finali e
+  notifiche, e mescolati ai thriller e agli horror confondono l'algoritmo). Due formati con ricerca già misurata il 19 nov:
+  fiabe di pubblico dominio («la storia di Babbo Natale», «di Pinocchio», «di Cappuccetto Rosso» sono i primi tre
+  suggerimenti di «la storia di») e «spiegato ai bambini» (universo, vulcani, terremoti, animali). Partenza consigliata a
+  gennaio 2027, dopo il traguardo YouTube del 31 dicembre, con un episodio pilota; regole proprie da scrivere prima (fiabe
+  con animali e oggetti, voce più calda, nessuna raccolta di dati dei bambini). · un secondo canale che cresce con le
+  visualizzazioni ripetute dei bambini · aperta
