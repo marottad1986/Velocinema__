@@ -359,7 +359,8 @@ speciale in collaborazione con Mr.goal, brief in `calendario/bove-in-un-battito.
 prodotto sabato 14; domenica Hunger Games passa alle 10:00, La Gioconda slitta a un altro weekend).
 
 ## Riserva di titoli (da riordinare con i dati)
-- **Film con colpo di scena:** Il sesto senso, Fight Club, The Prestige, Seven, I soliti sospetti, Memento, Matrix,
+- **Film con colpo di scena:** **The Prestige** (chiesto dall'editore il 19 nov: da mettere nella settimana dal 23 novembre),
+  Il sesto senso, Fight Club, Seven, I soliti sospetti, Memento, Matrix,
   Parasite, Scappa – Get Out, Il silenzio degli innocenti, Psyco.
 - **Spiegato semplice:** Dark stagione 3, Tenet, Donnie Darko, Mulholland Drive, Arrival, Primer, Lost, Severance, Westworld, 1899.
 - **Serie (una stagione per video):** Breaking Bad 2–5, Stranger Things, Squid Game, La casa di carta, Lupin.

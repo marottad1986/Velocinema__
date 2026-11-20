@@ -42,3 +42,9 @@ l'editore può aprire dal telefono o dal computer.
 3. Inception o Interstellar (sab 5 dic), **Dune prima di Parte Tre** (mer 9 dic).
 Fonti su Backrooms: Sky TG24 (uscita 27 maggio 2026, trama), Movieplayer e Cinefilos (spiegazioni del finale),
 JustWatch (ottobre 2026, primo film in streaming).
+
+## Dato dell'editore (19 nov sera)
+Su YouTube lo Short di **Bohemian Rhapsody** (Queen) da solo ha portato **quasi 30 iscritti**: è il video che ne ha
+portati di più. Da tenere presente domenica 22: le canzoni famosissime funzionano su YouTube e portano iscritti, quindi
+vale la pena tenerne una in settimana e valutare un lungo su una canzone o un gruppo molto cercato (senza la canzone vera
+né persone disegnate, regole in `CLAUDE.md`, «Canzoni spiegate»).
