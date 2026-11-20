@@ -2,11 +2,13 @@ import React from 'react';
 import { DISPLAY, SANS } from '../../lib/fonts';
 import { Finish, FxDefs, GlowGradient, Lin } from '../../lib/fx';
 import { rng } from '../../lib/anim';
+import { SunRays } from '../../lib/elements';
 
 // Copertina verticale (1080×1920) che pubblicizza il canale YouTube «In 2 Minuti».
 // Una sala di cinema vuota: sipario rosso ai lati, il fascio del proiettore che illumina uno schermo 16:9 con il
 // conto alla rovescia di una vecchia pellicola fermo sul «2» (immagine generica), cornice di lampadine da insegna, file di poltrone vuote in basso (una con il secchiello di popcorn).
-// Sopra: logo (cronometro «2'» + IN 2 MINUTI) e cartellino «IL CANALE YOUTUBE»; sotto lo schermo «Le versioni complete»
+// Sopra, grande: «IL CANALE / YOUTUBE» (senza logo di YouTube); sullo schermo un lettore video generico con il logo
+// del canale (cronometro «2'» + IN 2 MINUTI su giallo, come il banner); sotto lo schermo «Le versioni complete»
 // (i lunghi sono più approfonditi), i giorni delle uscite, «Iscriviti» con la campanella e la ricerca «@in.2.minuti». Niente logo di YouTube, nessuna persona.
 // Zone sicure: nessun testo nei primi 250 px e negli ultimi 420; sotto y 800 i testi stanno tra x 120 e 900.
 
@@ -95,34 +97,40 @@ const Stopwatch: React.FC<{ x: number; y: number; r: number }> = ({ x, y, r }) =
   </g>
 );
 
-/** Sullo schermo: il conto alla rovescia di una vecchia pellicola, fermo sul «2» (immagine generica, nessun film). */
+/** Sullo schermo: un lettore video generico (senza logo di YouTube) con il logo del canale, come il banner di In 2 minuti. */
 const Thumb: React.FC = () => {
-  const cx = SCR.x + SCR.w / 2, cy = SCR.y + SCR.h / 2 - 10, r = 178;
-  const d = rng(33);
-  const specks = Array.from({ length: 26 }, () => [SCR.x + d() * SCR.w, SCR.y + d() * SCR.h, 1.5 + d() * 4, d() > 0.5] as const);
-  const sweep = (300 / 360) * Math.PI * 2;
+  const cy = SCR.y + SCR.h / 2 - 22;
+  const barY = SCR.y + SCR.h - 60;
+  const prog = 0.38;
   return (
     <g>
       <clipPath id={`${ID}-scr`}><rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} /></clipPath>
       <g clipPath={`url(#${ID}-scr)`}>
-        <rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} fill={`url(#${ID}-leader)`} />
-        {/* settore già trascorso, più scuro */}
-        <path d={`M${cx} ${cy} L${cx} ${cy - 700} A700 700 0 1 1 ${cx + Math.sin(sweep) * 700} ${cy - Math.cos(sweep) * 700} Z`} fill="#3B342B" opacity=".22" />
-        <line x1={cx} y1={cy} x2={cx + Math.sin(sweep) * 700} y2={cy - Math.cos(sweep) * 700} stroke="#2A241D" strokeWidth="5" opacity=".6" />
-        {/* mirino */}
-        <line x1={SCR.x} y1={cy} x2={SCR.x + SCR.w} y2={cy} stroke="#2A241D" strokeWidth="4" opacity=".75" />
-        <line x1={cx} y1={SCR.y} x2={cx} y2={SCR.y + SCR.h} stroke="#2A241D" strokeWidth="4" opacity=".75" />
-        <circle cx={cx} cy={cy} r={r + 34} fill="none" stroke="#2A241D" strokeWidth="9" />
-        <circle cx={cx} cy={cy} r={r} fill="none" stroke="#F4EEDF" strokeWidth="6" opacity=".9" />
-        <circle cx={cx} cy={cy} r={r - 12} fill="none" stroke="#2A241D" strokeWidth="4" />
-        <text x={cx} y={cy + 96} textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="270" fill="#1E1913">2</text>
-        {/* polvere, peli e graffi della pellicola */}
-        {specks.map(([x, y, rr, light], i) => <circle key={i} cx={x} cy={y} r={rr} fill={light ? '#FFF8E8' : '#1E1913'} opacity=".55" />)}
-        <path d={`M${SCR.x + 190} ${SCR.y} L${SCR.x + 186} ${SCR.y + SCR.h}`} stroke="#FFF8E8" strokeWidth="2" opacity=".45" />
-        <path d={`M${SCR.x + 668} ${SCR.y + 40} Q${SCR.x + 690} ${SCR.y + 70} ${SCR.x + 672} ${SCR.y + 104}`} fill="none" stroke="#1E1913" strokeWidth="2.5" opacity=".7" />
-        {/* luce del proiettore più forte al centro, bordi bruciati */}
+        <rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} fill={`url(#${ID}-banner)`} />
+        {/* raggi chiari dietro il cronometro */}
+        <SunRays id={`${ID}-rays`} x={SCR.x + 180} y={cy} t={0} color="#FFFFFF" n={14} length={620} width={60} opacity={0.16} />
+        <Stopwatch x={SCR.x + 180} y={cy + 16} r={112} />
+        <text x={SCR.x + 330} y={cy - 12} fontFamily={DISPLAY} fontWeight={800} fontSize="150" fill={K} letterSpacing="-4">IN 2</text>
+        <text x={SCR.x + 330} y={cy + 114} fontFamily={DISPLAY} fontWeight={800} fontSize="122" fill={K} letterSpacing="-4">MINUTI</text>
+        {/* comandi del lettore */}
+        <rect x={SCR.x} y={barY - 40} width={SCR.w} height="100" fill={`url(#${ID}-playerFade)`} />
+        <rect x={SCR.x + 30} y={barY} width={SCR.w - 60} height="8" rx="4" fill="#FFFFFF" opacity=".45" />
+        <rect x={SCR.x + 30} y={barY} width={(SCR.w - 60) * 0.55} height="8" rx="4" fill="#FFFFFF" opacity=".55" />
+        <rect x={SCR.x + 30} y={barY} width={(SCR.w - 60) * prog} height="8" rx="4" fill={RED} />
+        {[0.2, 0.46, 0.71].map((q) => <rect key={q} x={SCR.x + 30 + (SCR.w - 60) * q} y={barY - 1} width="4" height="10" fill="#000" opacity=".7" />)}
+        <circle cx={SCR.x + 30 + (SCR.w - 60) * prog} cy={barY + 4} r="13" fill={RED} stroke="#FFFFFF" strokeWidth="3" />
+        <g transform={`translate(${SCR.x + 48} ${barY + 34})`}>
+          <rect x="0" y="-11" width="7" height="22" fill="#FFFFFF" />
+          <rect x="13" y="-11" width="7" height="22" fill="#FFFFFF" />
+        </g>
+        <path d={`M${SCR.x + 88} ${barY + 23} L${SCR.x + 106} ${barY + 34} L${SCR.x + 88} ${barY + 45} Z M${SCR.x + 108} ${barY + 23} L${SCR.x + 112} ${barY + 23} L${SCR.x + 112} ${barY + 45} L${SCR.x + 108} ${barY + 45} Z`} fill="#FFFFFF" />
+        <rect x={SCR.x + SCR.w - 74} y={barY + 22} width="34" height="24" rx="3" fill="none" stroke="#FFFFFF" strokeWidth="4" />
+        <rect x={SCR.x + SCR.w - 128} y={barY + 22} width="34" height="24" rx="3" fill="none" stroke="#FFFFFF" strokeWidth="4" />
+        <path d={`M${SCR.x + SCR.w - 120} ${barY + 30} H${SCR.x + SCR.w - 102} M${SCR.x + SCR.w - 120} ${barY + 38} H${SCR.x + SCR.w - 108}`} stroke="#FFFFFF" strokeWidth="3" />
+        {/* riflesso e grana proiettata */}
+        <path d={`M${SCR.x} ${SCR.y} L${SCR.x + 300} ${SCR.y} L${SCR.x + 120} ${SCR.y + SCR.h} L${SCR.x} ${SCR.y + SCR.h} Z`} fill="#FFFFFF" opacity=".07" />
         <rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} fill={`url(#${ID}-scrVig)`} />
-        <rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} fill={`url(#${ID}-grain)`} opacity=".6" />
+        <rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} fill={`url(#${ID}-grain)`} opacity=".45" />
       </g>
       <rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} fill="none" stroke={K} strokeWidth="8" />
     </g>
@@ -168,6 +176,11 @@ export const CopertinaCanale: React.FC = () => {
         <defs>
           <FxDefs id={ID} />
           <Lin id={`${ID}-bg`} stops={[[0, '#1B0E16'], [0.45, '#140B12'], [1, '#07050A']]} />
+          <radialGradient id={`${ID}-banner`} cx=".3" cy=".45" r=".9">
+            <stop offset="0" stopColor="#FFD54A" />
+            <stop offset="1" stopColor="#F5B40F" />
+          </radialGradient>
+          <Lin id={`${ID}-playerFade`} stops={[[0, '#000', 0], [1, '#000', 0.6]]} />
           <radialGradient id={`${ID}-leader`} cx=".5" cy=".48" r=".75">
             <stop offset="0" stopColor="#F2E9D4" />
             <stop offset=".6" stopColor="#C9BC9F" />
@@ -216,14 +229,13 @@ export const CopertinaCanale: React.FC = () => {
         <Curtain side="r" />
         <Valance />
 
-        {/* logo */}
-        <Stopwatch x={222} y={378} r={78} />
-        <text x="330" y="416" fontFamily={DISPLAY} fontWeight={800} fontSize="104" fill={YEL} stroke={K} strokeWidth="12" paintOrder="stroke" letterSpacing="-2">IN 2 MINUTI</text>
-
-        {/* cartellino del canale (senza logo) */}
-        <g transform="translate(540 512)">
-          <rect x="-250" y="-34" width="500" height="68" rx="34" fill={RED} stroke={K} strokeWidth="6" />
-          <text y="14" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="38" letterSpacing="5" fill="#FFFFFF">IL CANALE YOUTUBE</text>
+        {/* il canale YouTube, grande (senza logo di YouTube) */}
+        <text x="540" y="304" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="52" letterSpacing="14" fill={YEL} stroke={K} strokeWidth="8" paintOrder="stroke">IL CANALE</text>
+        <ellipse cx="540" cy="430" rx="480" ry="130" fill={`url(#${ID}-glowRed)`} />
+        <g transform="translate(540 430)">
+          <rect x="-420" y="-88" width="840" height="176" rx="44" fill={RED} stroke={K} strokeWidth="8" />
+          <rect x="-400" y="-76" width="800" height="60" rx="30" fill="#FFFFFF" opacity=".13" />
+          <text y="52" textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="146" letterSpacing="0" fill="#FFFFFF" stroke={K} strokeWidth="10" paintOrder="stroke">YOUTUBE</text>
         </g>
 
         {/* poltrone vuote in basso (piani: fila lontana, fila vicina) */}
