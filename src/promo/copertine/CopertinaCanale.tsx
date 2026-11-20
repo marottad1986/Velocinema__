@@ -4,11 +4,10 @@ import { Finish, FxDefs, GlowGradient, Lin } from '../../lib/fx';
 import { rng } from '../../lib/anim';
 
 // Copertina verticale (1080×1920) che pubblicizza il canale YouTube «In 2 Minuti».
-// Una sala di cinema vuota: sipario rosso ai lati, il fascio del proiettore che illumina uno schermo 16:9 con la
-// miniatura tipo di un video lungo («IL FINALE SPIEGATO», quadrante d'ottone con l'anello rosso), cornice di lampadine
-// da insegna, file di poltrone vuote in basso (una con il secchiello di popcorn).
-// Sopra: logo (cronometro «2'» + IN 2 MINUTI) e cartellino «IL CANALE YOUTUBE»; sotto lo schermo la promessa,
-// il pulsante «Iscriviti» con la campanella e la barra di ricerca «In 2 Minuti». Niente logo di YouTube, nessuna persona.
+// Una sala di cinema vuota: sipario rosso ai lati, il fascio del proiettore che illumina uno schermo 16:9 con il
+// conto alla rovescia di una vecchia pellicola fermo sul «2» (immagine generica), cornice di lampadine da insegna, file di poltrone vuote in basso (una con il secchiello di popcorn).
+// Sopra: logo (cronometro «2'» + IN 2 MINUTI) e cartellino «IL CANALE YOUTUBE»; sotto lo schermo «Le versioni complete»
+// (i lunghi sono più approfonditi), i giorni delle uscite, «Iscriviti» con la campanella e la ricerca «@in.2.minuti». Niente logo di YouTube, nessuna persona.
 // Zone sicure: nessun testo nei primi 250 px e negli ultimi 420; sotto y 800 i testi stanno tra x 120 e 900.
 
 const K = '#0A0809';
@@ -84,72 +83,47 @@ const Stopwatch: React.FC<{ x: number; y: number; r: number }> = ({ x, y, r }) =
     <rect x={-16} y={-r - 34} width="32" height="26" rx="5" fill={YEL} stroke={K} strokeWidth="6" />
     <rect x={-28} y={-r - 46} width="56" height="16" rx="6" fill={YEL} stroke={K} strokeWidth="6" />
     <g transform="rotate(42)"><rect x={-9} y={-r - 22} width="18" height="20" rx="4" fill={YEL} stroke={K} strokeWidth="5" /></g>
-    <circle r={r} fill={YEL} stroke={K} strokeWidth="8" />
-    <circle r={r - 14} fill="#1A1410" stroke={K} strokeWidth="4" />
+    <circle r={r} fill="#FFFFFF" stroke={K} strokeWidth="10" />
     {Array.from({ length: 12 }, (_, i) => {
       const a = (i / 12) * Math.PI * 2;
       const r0 = r - 22, r1 = i % 3 === 0 ? r - 36 : r - 30;
-      return <line key={i} x1={Math.sin(a) * r0} y1={-Math.cos(a) * r0} x2={Math.sin(a) * r1} y2={-Math.cos(a) * r1} stroke={YEL} strokeWidth={i % 3 === 0 ? 5 : 3} strokeLinecap="round" />;
+      return <line key={i} x1={Math.sin(a) * r0} y1={-Math.cos(a) * r0} x2={Math.sin(a) * r1} y2={-Math.cos(a) * r1} stroke={K} strokeWidth={i % 3 === 0 ? 5 : 3} strokeLinecap="round" />;
     })}
     {/* settore dei 2 minuti */}
-    <path d={`M0 0 L0 ${-(r - 40)} A${r - 40} ${r - 40} 0 0 1 ${Math.sin(Math.PI / 3) * (r - 40)} ${-Math.cos(Math.PI / 3) * (r - 40)} Z`} fill={YEL} opacity=".22" />
-    <text x="6" y={r * 0.3} textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize={r * 0.92} fill={YEL}>2'</text>
+    <path d={`M0 0 L0 ${-(r - 40)} A${r - 40} ${r - 40} 0 0 1 ${Math.sin(Math.PI / 3) * (r - 40)} ${-Math.cos(Math.PI / 3) * (r - 40)} Z`} fill={YEL} />
+    <text x="6" y={r * 0.3} textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize={r * 0.92} fill={K}>2'</text>
   </g>
 );
 
-/** Miniatura tipo di un video lungo dentro lo schermo. */
+/** Sullo schermo: il conto alla rovescia di una vecchia pellicola, fermo sul «2» (immagine generica, nessun film). */
 const Thumb: React.FC = () => {
-  const cx = SCR.x + 640, cy = SCR.y + 250, r = 190;
+  const cx = SCR.x + SCR.w / 2, cy = SCR.y + SCR.h / 2 - 10, r = 178;
+  const d = rng(33);
+  const specks = Array.from({ length: 26 }, () => [SCR.x + d() * SCR.w, SCR.y + d() * SCR.h, 1.5 + d() * 4, d() > 0.5] as const);
+  const sweep = (300 / 360) * Math.PI * 2;
   return (
     <g>
-      <rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} fill={`url(#${ID}-thumbBg)`} />
-      {/* luce che entra da destra */}
-      <circle cx={cx} cy={cy} r="330" fill={`url(#${ID}-glowTeal)`} />
-      {/* quadrante d'ottone */}
-      <g transform={`translate(${cx} ${cy})`}>
-        <circle r={r + 16} fill="#6E4C1C" stroke={K} strokeWidth="7" />
-        <circle r={r} fill={`url(#${ID}-dial)`} stroke={K} strokeWidth="5" />
-        <circle r={r - 22} fill="none" stroke="#7A5A28" strokeWidth="3" />
-        {Array.from({ length: 60 }, (_, i) => {
-          const a = (i / 60) * Math.PI * 2;
-          const big = i % 5 === 0;
-          const r0 = r - 8, r1 = big ? r - 30 : r - 18;
-          return <line key={i} x1={Math.sin(a) * r0} y1={-Math.cos(a) * r0} x2={Math.sin(a) * r1} y2={-Math.cos(a) * r1} stroke="#3A2610" strokeWidth={big ? 6 : 2.5} />;
-        })}
-        {['XII', 'III', 'VI', 'IX'].map((n, i) => {
-          const a = (i / 4) * Math.PI * 2;
-          return <text key={n} x={Math.sin(a) * (r - 62)} y={-Math.cos(a) * (r - 62) + 14} textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="38" fill="#3A2610">{n}</text>;
-        })}
-        {/* crepa */}
-        <path d="M-40 -150 L-22 -96 L-52 -60 L-14 -18 L-30 30 L6 74" fill="none" stroke="#2A1A0A" strokeWidth="4" strokeLinejoin="round" />
-        <path d="M-22 -96 L14 -110 M-14 -18 L30 -30" fill="none" stroke="#2A1A0A" strokeWidth="3" />
-        {/* lancette all'indietro */}
-        <g transform="rotate(-62)"><path d="M-8 18 L0 -150 L8 18 Z" fill="#1C120A" stroke={K} strokeWidth="3" /></g>
-        <g transform="rotate(-150)"><path d="M-10 16 L0 -104 L10 16 Z" fill="#1C120A" stroke={K} strokeWidth="3" /></g>
-        <circle r="14" fill={BRASS} stroke={K} strokeWidth="4" />
+      <clipPath id={`${ID}-scr`}><rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} /></clipPath>
+      <g clipPath={`url(#${ID}-scr)`}>
+        <rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} fill={`url(#${ID}-leader)`} />
+        {/* settore già trascorso, più scuro */}
+        <path d={`M${cx} ${cy} L${cx} ${cy - 700} A700 700 0 1 1 ${cx + Math.sin(sweep) * 700} ${cy - Math.cos(sweep) * 700} Z`} fill="#3B342B" opacity=".22" />
+        <line x1={cx} y1={cy} x2={cx + Math.sin(sweep) * 700} y2={cy - Math.cos(sweep) * 700} stroke="#2A241D" strokeWidth="5" opacity=".6" />
+        {/* mirino */}
+        <line x1={SCR.x} y1={cy} x2={SCR.x + SCR.w} y2={cy} stroke="#2A241D" strokeWidth="4" opacity=".75" />
+        <line x1={cx} y1={SCR.y} x2={cx} y2={SCR.y + SCR.h} stroke="#2A241D" strokeWidth="4" opacity=".75" />
+        <circle cx={cx} cy={cy} r={r + 34} fill="none" stroke="#2A241D" strokeWidth="9" />
+        <circle cx={cx} cy={cy} r={r} fill="none" stroke="#F4EEDF" strokeWidth="6" opacity=".9" />
+        <circle cx={cx} cy={cy} r={r - 12} fill="none" stroke="#2A241D" strokeWidth="4" />
+        <text x={cx} y={cy + 96} textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="270" fill="#1E1913">2</text>
+        {/* polvere, peli e graffi della pellicola */}
+        {specks.map(([x, y, rr, light], i) => <circle key={i} cx={x} cy={y} r={rr} fill={light ? '#FFF8E8' : '#1E1913'} opacity=".55" />)}
+        <path d={`M${SCR.x + 190} ${SCR.y} L${SCR.x + 186} ${SCR.y + SCR.h}`} stroke="#FFF8E8" strokeWidth="2" opacity=".45" />
+        <path d={`M${SCR.x + 668} ${SCR.y + 40} Q${SCR.x + 690} ${SCR.y + 70} ${SCR.x + 672} ${SCR.y + 104}`} fill="none" stroke="#1E1913" strokeWidth="2.5" opacity=".7" />
+        {/* luce del proiettore più forte al centro, bordi bruciati */}
+        <rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} fill={`url(#${ID}-scrVig)`} />
+        <rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} fill={`url(#${ID}-grain)`} opacity=".6" />
       </g>
-      {/* anello rosso: il dettaglio da capire */}
-      <ellipse cx={cx - 30} cy={cy - 40} rx="96" ry="86" fill="none" stroke={RED} strokeWidth="12" transform={`rotate(-12 ${cx - 30} ${cy - 40})`} />
-      <path d={`M${cx + 150} ${cy + 150} Q${cx + 120} ${cy + 70} ${cx + 52} ${cy + 20}`} fill="none" stroke={RED} strokeWidth="12" strokeLinecap="round" />
-      <path d={`M${cx + 58} ${cy + 50} L${cx + 50} ${cy + 18} L${cx + 82} ${cy + 12}`} fill="none" stroke={RED} strokeWidth="12" strokeLinecap="round" strokeLinejoin="round" />
-      {/* scritte della miniatura */}
-      <text x={SCR.x + 44} y={SCR.y + 150} fontFamily={DISPLAY} fontWeight={800} fontSize="92" fill={CHALK} stroke={K} strokeWidth="10" paintOrder="stroke">IL FINALE</text>
-      <text x={SCR.x + 44} y={SCR.y + 250} fontFamily={DISPLAY} fontWeight={800} fontSize="92" fill={YEL} stroke={K} strokeWidth="10" paintOrder="stroke">SPIEGATO</text>
-      {/* pulsante play generico */}
-      <g transform={`translate(${SCR.x + 150} ${SCR.y + 345})`}>
-        <circle r="48" fill="#000" opacity=".55" />
-        <circle r="48" fill="none" stroke={CHALK} strokeWidth="5" />
-        <path d="M-14 -24 L26 0 L-14 24 Z" fill={CHALK} />
-      </g>
-      {/* barra di avanzamento */}
-      <rect x={SCR.x} y={SCR.y + SCR.h - 52} width={SCR.w} height="52" fill="#000" opacity=".55" />
-      <rect x={SCR.x + 30} y={SCR.y + SCR.h - 30} width={SCR.w - 60} height="8" rx="4" fill="#FFFFFF" opacity=".3" />
-      <rect x={SCR.x + 30} y={SCR.y + SCR.h - 30} width={(SCR.w - 60) * 0.62} height="8" rx="4" fill={RED} />
-      {[0.24, 0.48, 0.74].map((p) => <rect key={p} x={SCR.x + 30 + (SCR.w - 60) * p} y={SCR.y + SCR.h - 31} width="4" height="10" fill="#000" />)}
-      <circle cx={SCR.x + 30 + (SCR.w - 60) * 0.62} cy={SCR.y + SCR.h - 26} r="13" fill={RED} stroke="#FFFFFF" strokeWidth="3" />
-      {/* riflesso del vetro e grana proiettata */}
-      <path d={`M${SCR.x} ${SCR.y} L${SCR.x + 300} ${SCR.y} L${SCR.x + 120} ${SCR.y + SCR.h} L${SCR.x} ${SCR.y + SCR.h} Z`} fill="#FFFFFF" opacity=".05" />
-      <rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} fill={`url(#${ID}-grain)`} opacity=".5" />
       <rect x={SCR.x} y={SCR.y} width={SCR.w} height={SCR.h} fill="none" stroke={K} strokeWidth="8" />
     </g>
   );
@@ -194,7 +168,15 @@ export const CopertinaCanale: React.FC = () => {
         <defs>
           <FxDefs id={ID} />
           <Lin id={`${ID}-bg`} stops={[[0, '#1B0E16'], [0.45, '#140B12'], [1, '#07050A']]} />
-          <Lin id={`${ID}-thumbBg`} stops={[[0, '#0E2E36'], [1, '#061418']]} x2={1} y2={1} />
+          <radialGradient id={`${ID}-leader`} cx=".5" cy=".48" r=".75">
+            <stop offset="0" stopColor="#F2E9D4" />
+            <stop offset=".6" stopColor="#C9BC9F" />
+            <stop offset="1" stopColor="#8C7E64" />
+          </radialGradient>
+          <radialGradient id={`${ID}-scrVig`} cx=".5" cy=".5" r=".72">
+            <stop offset=".6" stopColor="#2A1C0C" stopOpacity="0" />
+            <stop offset="1" stopColor="#2A1C0C" stopOpacity=".55" />
+          </radialGradient>
           <Lin id={`${ID}-valance`} stops={[[0, '#4A0A14'], [1, '#8E1A26']]} />
           <Lin id={`${ID}-velvet-l`} stops={[[0, VELVET_D], [0.7, VELVET], [1, '#9A2230']]} x2={1} y2={0} />
           <Lin id={`${ID}-velvet-r`} stops={[[0, '#9A2230'], [0.3, VELVET], [1, VELVET_D]]} x2={1} y2={0} />
@@ -252,8 +234,8 @@ export const CopertinaCanale: React.FC = () => {
         <rect x="0" y="1480" width="1080" height="440" fill={`url(#${ID}-floor)`} />
 
         {/* promessa */}
-        <text x="510" y="1180" textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="70" fill={CHALK} stroke={K} strokeWidth="10" paintOrder="stroke">Film e serie spiegati</text>
-        <text x="510" y="1238" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="36" fill={YEL} stroke={K} strokeWidth="7" paintOrder="stroke" letterSpacing="1">FINALE COMPRESO · MERCOLEDÌ E SABATO</text>
+        <text x="510" y="1180" textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="70" fill={CHALK} stroke={K} strokeWidth="10" paintOrder="stroke">Le versioni complete</text>
+        <text x="510" y="1238" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="36" fill={YEL} stroke={K} strokeWidth="7" paintOrder="stroke" letterSpacing="1">NUOVI VIDEO OGNI MERCOLEDÌ E SABATO</text>
 
         {/* pulsante iscriviti */}
         <ellipse cx="510" cy="1318" rx="330" ry="80" fill={`url(#${ID}-glowRed)`} />
@@ -275,9 +257,8 @@ export const CopertinaCanale: React.FC = () => {
           <rect x="-300" y="-40" width="600" height="80" rx="40" fill={CHALK} stroke={K} strokeWidth="6" />
           <circle cx="-246" cy="-6" r="17" fill="none" stroke="#2A2320" strokeWidth="6" />
           <line x1="-234" y1="7" x2="-218" y2="23" stroke="#2A2320" strokeWidth="7" strokeLinecap="round" />
-          <text x="-196" y="14" fontFamily={SANS} fontWeight={400} fontSize="38" fill="#5B514A">Cerca</text>
-          <text x="-88" y="14" fontFamily={SANS} fontWeight={800} fontSize="40" fill="#14100E">In 2 Minuti</text>
-          <rect x="128" y="-22" width="4" height="44" fill="#14100E" />
+          <text x="-196" y="14" fontFamily={SANS} fontWeight={800} fontSize="40" fill="#14100E">@in.2.minuti</text>
+          <rect x="54" y="-22" width="4" height="44" fill="#14100E" />
         </g>
 
         <Finish id={ID} tint="#2A0E14" tintOpacity={0.08} />
