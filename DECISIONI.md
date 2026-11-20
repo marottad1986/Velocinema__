@@ -3,6 +3,11 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 20 nov 2026 · **Ogni video invita al canale YouTube** (idea dell'editore dall'app). Video verticali nuovi: nel finale,
+  sotto «Commenta con…», la riga scritta «Le spiegazioni complete sono su YouTube» (senza logo né voce, per non perdere
+  copertura su TikTok e Instagram; i video già fatti non si rifanno). Didascalie: riga ▶️ prima degli hashtag
+  (`calendario/modelli-social.md`). Link al canale YouTube nella bio di TikTok e Instagram: lo mette l'editore.
+  · produzione, manager
 - 19 nov 2026 · **Programmare appena il video è pronto** (editore, dopo le storie di L'Ultima Cena, Scissione e Conjuring e
   il video di Conjuring trovati non programmati dai commenti della sera). Appena l'editore conferma un video, la stessa
   sessione programma subito su PostFast il video sulle quattro piattaforme e le storie Instagram e Facebook 24 ore prima,
