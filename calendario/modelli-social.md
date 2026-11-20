@@ -89,6 +89,12 @@ Esempi: «Arthur è una vittima o un cattivo?», «Saresti entrato nel parco?»,
 - Prossimo non noto: «👉 Il prossimo lo scegli tu: scrivilo nei commenti!»
 - Mai annunciare un video senza data e titolo confermati nel calendario.
 
+**Invito al canale YouTube** (editore, 20 nov 2026): riga che inizia con ▶️, prima degli hashtag.
+- TikTok, Instagram e Facebook: «▶️ Le spiegazioni complete (8 minuti e più) sono sul nostro canale YouTube: link in bio.»
+  Se lo stesso titolo ha già un video lungo: «▶️ La spiegazione completa di Titolo è sul nostro canale YouTube: link in bio.»
+- YouTube Shorts: «▶️ Le spiegazioni complete sono sul canale: iscriviti!» (il lungo dello stesso titolo si collega con il
+  «video correlato», `SOCIAL.md`).
+
 **Hashtag:** sempre 6, in una sola riga, alla fine.
 - TikTok: #in2minuti #TitoloSenzaSpazi + 3 di categoria/genere + #perte.
   Film: #film #cinema + genere o regista/attore (es. #horror, #Spielberg). Serie: #spiegatofacile #serietv + piattaforma
