@@ -8,8 +8,8 @@ import { SunRays } from '../../lib/elements';
 // Una sala di cinema vuota: sipario rosso ai lati, il fascio del proiettore che illumina uno schermo 16:9 con il
 // conto alla rovescia di una vecchia pellicola fermo sul «2» (immagine generica), cornice di lampadine da insegna, file di poltrone vuote in basso (una con il secchiello di popcorn).
 // Sopra, grande: «IL CANALE / YOUTUBE» (senza logo di YouTube); sullo schermo un lettore video generico con il logo
-// del canale (cronometro «2'» + IN 2 MINUTI su giallo, come il banner); sotto lo schermo «Le versioni complete»
-// (i lunghi sono più approfonditi), i giorni delle uscite, «Iscriviti» con la campanella e la ricerca «@in.2.minuti». Niente logo di YouTube, nessuna persona.
+// del canale (cronometro «2'» + IN 2 MINUTI su giallo, come il banner); sull'angolo l'adesivo «×4» (8 minuti); sotto lo schermo
+// «Nuovi video di 8 minuti / OGNI MERCOLEDÌ E SABATO», «Iscriviti» con la campanella e la ricerca «@in.2.minuti». Niente logo di YouTube, nessuna persona.
 // Zone sicure: nessun testo nei primi 250 px e negli ultimi 420; sotto y 800 i testi stanno tra x 120 e 900.
 
 const K = '#0A0809';
@@ -112,6 +112,15 @@ const Thumb: React.FC = () => {
         <Stopwatch x={SCR.x + 180} y={cy + 16} r={112} />
         <text x={SCR.x + 330} y={cy - 12} fontFamily={DISPLAY} fontWeight={800} fontSize="150" fill={K} letterSpacing="-4">IN 2</text>
         <text x={SCR.x + 330} y={cy + 114} fontFamily={DISPLAY} fontWeight={800} fontSize="122" fill={K} letterSpacing="-4">MINUTI</text>
+        {/* adesivo «×4» appiccicato sopra il logo, defilato a destra (4 × 2 minuti = 8 minuti) */}
+        <g transform={`translate(${SCR.x + 718} ${cy - 118}) rotate(10)`}>
+          <ellipse cx="6" cy="10" rx="74" ry="62" fill="#000" opacity=".28" />
+          <path d="M-78 -54 Q-80 -66 -66 -66 L70 -66 Q80 -66 80 -54 L80 46 Q80 58 68 58 L-50 58 L-80 30 Z" fill="#FFFFFF" stroke={K} strokeWidth="6" />
+          <path d="M-68 -56 L68 -56 L68 46 L-46 46 L-68 24 Z" fill={RED} />
+          <path d="M-80 30 L-50 30 L-50 58 Z" fill="#E9E1D2" stroke={K} strokeWidth="5" strokeLinejoin="round" />
+          <text x="10" y="26" textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="84" fill="#FFFFFF" stroke={K} strokeWidth="6" paintOrder="stroke">×4</text>
+          <rect x="-60" y="-50" width="120" height="14" rx="7" fill="#FFFFFF" opacity=".25" />
+        </g>
         {/* comandi del lettore */}
         <rect x={SCR.x} y={barY - 40} width={SCR.w} height="100" fill={`url(#${ID}-playerFade)`} />
         <rect x={SCR.x + 30} y={barY} width={SCR.w - 60} height="8" rx="4" fill="#FFFFFF" opacity=".45" />
@@ -246,8 +255,8 @@ export const CopertinaCanale: React.FC = () => {
         <rect x="0" y="1480" width="1080" height="440" fill={`url(#${ID}-floor)`} />
 
         {/* promessa */}
-        <text x="510" y="1180" textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="70" fill={CHALK} stroke={K} strokeWidth="10" paintOrder="stroke">Le versioni complete</text>
-        <text x="510" y="1238" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="36" fill={YEL} stroke={K} strokeWidth="7" paintOrder="stroke" letterSpacing="1">NUOVI VIDEO OGNI MERCOLEDÌ E SABATO</text>
+        <text x="510" y="1178" textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize="64" fill={CHALK} stroke={K} strokeWidth="10" paintOrder="stroke">Nuovi video di 8 minuti</text>
+        <text x="510" y="1244" textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize="50" fill={YEL} stroke={K} strokeWidth="9" paintOrder="stroke" letterSpacing="1">OGNI MERCOLEDÌ E SABATO</text>
 
         {/* pulsante iscriviti */}
         <ellipse cx="510" cy="1318" rx="330" ry="80" fill={`url(#${ID}-glowRed)`} />
