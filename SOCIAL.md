@@ -156,6 +156,10 @@ avvisi (`x-avvisi-key`, la mette il proxy: **mai scriverla** in file o comandi).
 `curl --data-binary @file`.
 
 **Video pronto da confermare** (produzione, quando il video con la voce è pronto: controlli verdi, revisori APPROVATO):
+0. Clip della voce nel ramo: `audio/**/*.mp3` e `*.wav` sono in `.gitignore`, quindi si aggiungono con
+   `git add -f audio/<slug>/` (per i lunghi anche le parti nuove, per i trailer `audio/<slug-del-trailer>/`) e si pushano;
+   `git ls-files audio/<slug>` deve elencarle tutte. Senza, il workflow fa il video muto e non lo carica su PostFast
+   (errore del 22 nov, Donnie Darko: clip rimaste nel contenitore della sessione).
 1. Anteprima leggera, sotto 24 MB:
    ```bash
    ffmpeg -i out/<film>-voce.mp4 -vf scale=540:-2 -c:v libx264 -preset veryfast -b:v 600k -c:a aac -b:a 96k \
