@@ -32,7 +32,7 @@ Metodo (vincolante, da `CLAUDE.md`):
    riga con il passo avanti; nello stesso ramo, la riga nel registro di `ASTICELLA.md` e la tecnica resa riutilizzabile nella libreria comune (`src/lib/`), in autonomia e senza chiedere conferma: i video già prodotti non si rigenerano mai.
 6b. Se un revisore segnala un tipo di problema già visto in un altro film, aggiungi una riga a `ERRORI.md`.
 7. Pull request con i verdetti dei revisori. Appena il video finale è pronto da controllare (controlli verdi, revisori
-   APPROVATO), **richiesta di conferma nell'app** (`SOCIAL.md`, «Conferme nell'app»): anteprima a 540 px con ffmpeg (sotto
+   APPROVATO), clip voce nel ramo con `git add -f audio/<slug>/` (sono in `.gitignore`; controlla con `git ls-files`), poi **richiesta di conferma nell'app** (`SOCIAL.md`, «Conferme nell'app»): anteprima a 540 px con ffmpeg (sotto
    24 MB), `POST /api/richieste` tipo `video` (titolo, una riga con contenuto ed esito dei revisori, uscita
    `AAAA-MM-GGTHH:MM`, testo che finisce con «Ramo: <ramo>»), `PUT /api/media/<id>` con l'anteprima, poi `bash scripts/strumenti/attendi-conferma.sh <id>` in
    background (Bash con `run_in_background`, controlla ogni 2 minuti). Se esce con «ancora aperta», o se il turno finisce con la
