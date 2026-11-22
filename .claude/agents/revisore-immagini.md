@@ -44,5 +44,23 @@ Controlla per ogni capitolo:
    frase di lancio (né altri sottotitoli): deve comparire subito dopo, da ~0,4 s (controlla un fotogramma a 0 s e uno a
    1 s). Giudicala come una scena a sé.
 
+**Video lunghi 16:9** (slug in `lunghi/`, scene in `src/lunghi/<slug>/`): i punti 1, 4 e 9 sopra sono del verticale e NON
+valgono. Leggi QUALITA.md §10, YOUTUBE.md (§1–4) e VIDEO-LUNGO.md («Elementi fissi»). Materiale: pacchetto di
+`node scripts/lunghi/pacchetto.mjs <slug>` in `out/revisione/<slug>/` (un PNG per tratto, `miniatura.png`, `tempi.md`);
+altri fotogrammi con `node scripts/lunghi/prova.mjs <slug> <secondi…>` (secondi del video intero). Per il ritmo delle
+immagini fai una striscia ogni 3 s di un tratto a scelta per atto (es. `prova.mjs <slug> 40 43 46 … --scala 0.25`).
+Controlla per ogni atto (aggancio, atti, chiusura):
+1. Criteri di accettazione di QUALITA.md §10: «dove siamo» sempre chiaro; cambio visibile ogni 3–5 s, scena nuova ogni
+   20–30 s, nessuna immagine ferma oltre 5 s; parallasse a 4–6 piani nei movimenti; passaggi senza stacchi al nero.
+2. Zone 16:9: testi e oggetti chiave tra x 96–1824 e y 54–1026; niente di importante nella fascia dei sottotitoli
+   (x 260–1660, y 800–1000); etichetta e titolo dell'atto leggibili su fondo calmo; negli ultimi 20 s metà destra
+   (x 1000–1824, y 180–880) libera.
+3. Scritte animate e cartellini: entrano con la parola della voce (confronta con `tempi.md`), grandi, sempre uguali.
+4. Almeno tre momenti clou costruiti come un trailer; indica dove sono e se funzionano.
+5. Miniatura (fotogramma 0 e `miniatura.png`): leggibile a 160×90 e 320×180, un solo soggetto, 3–4 parole, contrasto;
+   nel fotogramma 0 niente sottotitoli. Primi 30 s: immagine più spettacolare del video e promessa chiara (YOUTUBE.md §2).
+6. Valgono anche i punti 2, 3, 5, 6 e 7 sopra (personaggi, immagine e voce, errori tecnici, appoggi, coerenza).
+Nella risposta usa gli id dei tratti di `tempi.md` e i secondi del video intero.
+
 Formato della risposta: per ogni capitolo «OK» oppure l'elenco dei problemi con il fotogramma (PNG), cosa si vede e la
 correzione proposta (file e componente). Prima del verdetto, una riga «Asticella»: la parte che hai controllato è all'altezza del livello raggiunto (`ASTICELLA.md`, confronto con l'ultimo video dello stesso formato) o sotto, e un miglioramento concreto per il video dopo. Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.

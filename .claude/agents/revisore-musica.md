@@ -35,5 +35,15 @@ Controlla, uno per uno:
 7. Tappeti (pioggia, vento, fuoco, onde) sotto la musica, colpi sopra; prese degli effetti (`da`/`durata`) che cadono
    su un tratto con suono (usa l'inviluppo del file, non indovinare).
 
+**Video lunghi** (slug in `lunghi/`): spartito `scripts/audio/<slug>.mjs`, scene in `src/lunghi/<slug>/`, musica con
+`node scripts/lunghi/render.mjs <slug> --solo-audio` (o `--senza-video`), misure da `node scripts/lunghi/pacchetto.mjs
+<slug> --musica` (`livelli.txt`) o dal WAV con ffmpeg (ebur128) a finestre. Valgono i punti sopra, più (YOUTUBE.md §4):
+- whoosh o passaggio sonoro su ogni volo di camera da un luogo all'altro; crescendo prima delle rivelazioni e un battito
+  di silenzio prima di ogni colpo di scena; i tre momenti clou con il loro arco (sale, silenzio, colpo);
+- in 8–12 minuti la musica non deve stancare: segnala tratti di oltre 60–90 s con lo stesso tappeto o la stessa figura,
+  e cambi di sezione che non seguono i cambi di atto;
+- livelli coerenti tra un atto e l'altro (nessun atto più di 3 dB sopra o sotto la mediana), picco sul colpo chiave;
+- negli ultimi 20 s la musica chiude senza lasciare vuoti sotto la schermata finale.
+
 Formato della risposta: per ogni punto «OK» oppure «DA CORREGGERE» con file:riga, cosa non va e la correzione proposta
 (valori numerici quando servono). Prima del verdetto, una riga «Asticella»: la parte che hai controllato è all'altezza del livello raggiunto (`ASTICELLA.md`, confronto con l'ultimo video dello stesso formato) o sotto, e un miglioramento concreto per il video dopo. Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.

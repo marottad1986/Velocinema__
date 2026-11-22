@@ -71,7 +71,7 @@ mai restare senza risposta.
   sono fondamentali: ogni scena va disegnata con la cura dei primi film (Shutter Island, Interstellar, Truman,
   La La Land, Frankenstein Junior), mai di fretta né a gruppi. Prima di ogni film rileggere `BRIEF-SCENA.md`,
   `QUALITA.md` (più `qualita/<film>.md` del film) e la scena di riferimento; una scena alla volta, controllata sui fotogrammi prima di passare alla
-  successiva; una sola immagine per capitolo, non più immagini in dissolvenza; oggetti ricchi di dettaglio, non
+  successiva; una sola immagine per capitolo, non più immagini in dissolvenza (nei video verticali; i lunghi 16:9 sono un mondo unico in cui la camera viaggia, `QUALITA.md` §10); oggetti ricchi di dettaglio, non
   schematici. Se un revisore trova problemi di fondo (inquadratura vuota, oggetto illeggibile), si ripensa la scena,
   non si rattoppa. Meglio un film in più giorni che un film meno curato.
 - **Evolversi: ogni video più bello del precedente** (regola dell'editore, 16 nov 2026). Mai sotto il livello già

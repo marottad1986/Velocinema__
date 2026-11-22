@@ -40,5 +40,16 @@ Controlla:
    Eccezione decisa: l'etichetta «IL FILM IN 2 MINUTI» sopra il titolo resta, ma solo nelle copertine dei riassunti di
    film (non segnalarla); in tutti gli altri formati va segnalata (canzoni: «CANZONI SPIEGATE», quadri: «QUADRI SPIEGATI»).
 
+**Video lunghi** (slug in `lunghi/`): il JSON è `lunghi/<slug>.json` (parti; i capitoli nuovi hanno `testo`, gli
+episodi riusati rimandano a `films/`). Leggi anche YOUTUBE.md (§1–3) e VIDEO-LUNGO.md. Valgono tutti i punti sopra,
+letti sull'intero racconto (8–12 minuti) come uno spettatore che lo guarda di seguito, più:
+- una sola grande domanda dall'inizio alla fine; anello aperto nei primi 30 s chiuso davvero alla fine;
+- rilancio ogni 60–90 s (domanda nuova, «ma c'è un problema…», colpo di scena annunciato): indica i tratti lunghi senza rilancio;
+- niente ripetizioni tra un atto e l'altro, niente riassunti a metà, niente ripartenze («Capitolo 2»);
+- aggancio (15–25 s) con domanda forte e promessa; chiusura breve (riassunto, iscriviti, «Commenta con…»);
+- titolo YouTube (`titolo_youtube`): parole cercate prima, ≤ ~60 caratteri visibili, nessuna durata; nomi dei capitoli
+  YouTube (`capitolo_youtube`) chiari e cercabili; mai la durata totale nel testo;
+- ritmo della voce come nel formato del lungo (Spiegato semplice ≤ 3,4 parole/s, meglio 3,1).
+
 Formato della risposta: per ogni capitolo «OK» oppure i problemi con la frase esatta e la riscrittura proposta (con il
 conteggio delle parole). Prima del verdetto, una riga «Asticella»: la parte che hai controllato è all'altezza del livello raggiunto (`ASTICELLA.md`, confronto con l'ultimo video dello stesso formato) o sotto, e un miglioramento concreto per il video dopo. Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.

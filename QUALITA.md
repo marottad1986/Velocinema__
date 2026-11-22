@@ -1,6 +1,9 @@
 # Guida qualità immagini (vincolante per ogni scena)
 
 Riferimento visivo: `reference/prova-qualita-uragano/scene-dopo.js` (versione "dopo").
+
+> I numeri delle sezioni 1–8 sono del verticale 9:16 (1080×1920). Per i **video lunghi 16:9** valgono le sezioni 2, 3, 5,
+> 6 e 7 così come sono e il dettaglio della 4; camera, piani, zone e criteri sono quelli della **sezione 10**.
 Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-prima.js` per capire la differenza.
 
 ## 1. Profondità e parallasse
@@ -76,6 +79,39 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
 - [ ] velatura di colore del film
 - [ ] nessun personaggio del film
 - [ ] anteprima fluida e titolo/sottotitoli leggibili
+
+## 10. Video lunghi orizzontali 16:9 (1920×1080, vincolante dal 22 nov 2026)
+Vale con `YOUTUBE.md` («Grafica dei lunghi»). Cosa cambia rispetto al verticale:
+- **Niente «una sola immagine per capitolo»**: il lungo è un mondo unico in cui la camera viaggia. Qualcosa cambia sullo
+  schermo ogni 3–5 s (camera, oggetto che entra, scritta, luce), una scena nuova (un luogo o un'inquadratura diversa
+  del mondo) ogni 20–30 s, nessuna immagine ferma oltre 5 s. Passaggi senza stacchi al nero né dissolvenze incrociate:
+  la camera vola da un luogo all'altro o l'oggetto di una scena diventa quello della dopo.
+- **Camera**: non il ±40 px / zoom 1,04–1,09 del verticale, ma movimenti dichiarati per inquadratura (carrellata,
+  avvicinamento, volo tra due luoghi) con accelerazione e frenata morbide; nei momenti clou più veloce. Mai un salto di
+  inquadratura senza movimento o senza un colpo di musica che lo giustifichi.
+- **Piani**: 4–6 in profondità anche qui, con parallasse visibile in ogni movimento; primo piano scuro che tocca i bordi
+  sinistro o destro (non sempre il fondo), composizione sui terzi, soggetto mai al centro esatto per più di un'inquadratura.
+- **Orizzonte** tra y 560 e 760 (terzo inferiore), coerente tra un luogo e l'altro dello stesso mondo.
+- **Zone**: testi e oggetti chiave tra x 96 e 1824 e tra y 54 e 1026. Etichetta (x 96, y 56) e titolo dell'atto
+  (y 116–180) in alto a sinistra: dietro, una zona calma. Sottotitoli centrati con la base a y 1000, larghi al massimo
+  1400 px (x 260–1660, y 800–1000): gli oggetti chiave stanno sopra y 780 o ai lati di quella fascia. Negli ultimi 20 s
+  la metà destra (x 1000–1824, y 180–880) resta libera per la schermata finale di YouTube.
+- **Scritte animate**: 2–3 parole grandi (almeno 90 px) a tempo con la voce, dentro la zona sicura e mai sopra i
+  sottotitoli; cartellini fissi «LA REGOLA», «COLPO DI SCENA», «TEORIA» sempre uguali in tutto il lungo.
+- **Momenti clou**: almeno tre, costruiti come un piccolo trailer (camera veloce, luce che cambia, un attimo di buio o
+  di silenzio prima della rivelazione).
+- **Miniatura** (1280×720): un solo oggetto enorme, al massimo 3–4 parole grandissime, leggibile a 160×90 e a 320×180;
+  stessa grafica per tutti i lunghi; tre versioni per «Testa e confronta».
+- **Contorni** come nel verticale (8–10 px oggetti principali, 4–6 dettagli): la larghezza dell'immagine è quasi la stessa.
+
+Criteri di accettazione per ogni atto di un lungo:
+- [ ] «dove siamo» nel mondo sempre chiaro (il luogo si riconosce, la camera ci arriva volando)
+- [ ] cambio visibile ogni 3–5 s, scena nuova ogni 20–30 s, nessuna immagine ferma oltre 5 s
+- [ ] 4–6 piani con parallasse in ogni movimento, primo piano ai bordi
+- [ ] luce con gradienti e aloni, grana, vignettatura, velatura, particelle (come il verticale)
+- [ ] l'immagine mostra ciò di cui parla la voce in quel momento (le scritte entrano con la parola)
+- [ ] nessun testo o oggetto chiave fuori zona o sotto i sottotitoli; metà destra libera negli ultimi 20 s
+- [ ] nessun personaggio umano; anteprima fluida
 
 ## 9. Suggerimenti scena per scena
 
