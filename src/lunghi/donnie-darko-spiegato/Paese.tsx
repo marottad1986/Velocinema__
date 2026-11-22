@@ -4,7 +4,7 @@ import { HAND, SANS } from '../../lib/fonts';
 import { FxDefs } from '../../lib/fx';
 import { Fog, Glow, Lightning, Stars, flashAt } from '../../lib/elements';
 import { subtitleTimes } from '../../components/ChapterOverlay';
-import { Finish16, H, Motes16, TopShade, W } from '../fx16';
+import { H, Motes16, TopShade, W } from '../fx16';
 import L from '../../../lunghi/donnie-darko-spiegato.json';
 import {
   Aereo, Albero, COPY, Casa, CasaCunn, CasaNonna, Cinema, Collina, DARK, DIM, ENGINE, ENG_HIT, Fari, Golf, INK, Lampione, Motore, RED, Scuola,
@@ -58,8 +58,8 @@ const pop = (T: number, t0: number) => eob(seg(T, t0, t0 + 0.45), 1.7);
 export const GROUND = 700;
 export const X = { golf: 0, casa: 1300, studio: 2450, scuola: 3600, cinema: 4800, cunn: 5950, nonna: 7150, collina: 8450 } as const;
 export const COPY_DY = -1150; // la copia sta sopra il paese vero
-const VORTEX = [4400, -170] as const;
-const HIT = [X.casa + ENG_HIT[0], GROUND + ENG_HIT[1]] as const; // il punto del tetto dove si pianta il motore
+export const VORTEX = [4400, -170] as const;
+export const HIT = [X.casa + ENG_HIT[0], GROUND + ENG_HIT[1]] as const; // il punto del tetto dove si pianta il motore
 
 // ---------------------------------------------------------------------------------------------------------------- camera
 
@@ -477,7 +477,8 @@ const copiaVis = (T: number) => keys(T, [
   [S('porta'), 1, 1.5], [ev('salvi', 0, 0.3), 0, 3], [S('aperto'), 0.5, 1.5], [S('ventotto'), 0, 1.5],
 ]);
 
-export const Mondo: React.FC<{ T: number; cam?: Cam; chiusura?: boolean }> = ({ T, cam: cam0 }) => {
+/** w, h: formato (1920×1080 nel lungo, 1080×1920 nel trailer); pulito: solo il mondo, senza scritte, nodi e contatore. */
+export const Mondo: React.FC<{ T: number; cam?: Cam; chiusura?: boolean; w?: number; h?: number; pulito?: boolean }> = ({ T, cam: cam0, w = W, h = H, pulito = false }) => {
   const cam = cam0 ?? camAt(T);
   const a = alba(T);
   const tv = tavVera(a);
@@ -493,11 +494,11 @@ export const Mondo: React.FC<{ T: number; cam?: Cam; chiusura?: boolean }> = ({ 
   const vort = keys(T, [[0, 0], [ev('vortice', 0, 0.2), 1, 2.5], [ev('letto', 0, 0.3), 0, 1.2], [S('porta'), 1, 2], [ev('salvi', 1), 0, 2.5]]);
   const ragLetto = ev('letto', 0, 0.3);
   // ---- trasformazione della camera
-  const view = (f = 1, fy = f) => `translate(${960 + Math.sin(T * 60) * 9 * shake} ${540 + Math.cos(T * 55) * 7 * shake}) scale(${cam.z}) translate(${-cam.x * f} ${-cam.y * fy})`;
+  const view = (f = 1, fy = f) => `translate(${w / 2 + Math.sin(T * 60) * 9 * shake} ${h / 2 + Math.cos(T * 55) * 7 * shake}) scale(${cam.z}) translate(${-cam.x * f} ${-cam.y * fy})`;
   const ns = Math.min(3.2, Math.max(1, 0.95 / cam.z)); // scala dei simboli nelle vedute larghe
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} style={{ position: 'absolute', inset: 0 }}>
+    <svg viewBox={`0 0 ${w} ${h}`} width={w} height={h} style={{ position: 'absolute', inset: 0 }}>
       <defs>
         <FxDefs id="dd16" />
         <linearGradient id="dd16-sky" x1="0" y1="0" x2="0" y2="1">
@@ -512,12 +513,12 @@ export const Mondo: React.FC<{ T: number; cam?: Cam; chiusura?: boolean }> = ({ 
           <stop offset="1" stopColor="#7FA6FF" stopOpacity="0" />
         </radialGradient>
       </defs>
-      <rect width={W} height={H} fill="url(#dd16-sky)" />
+      <rect width={w} height={h} fill="url(#dd16-sky)" />
       {/* stelle e luna (lontane: si muovono poco) */}
       <g opacity={night}>
-        <Stars t={T} seed={1988} n={110} x={0} y={0} w={W} h={H} color="#EEF0F7" size={1.1} />
+        <Stars t={T} seed={1988} n={110} x={0} y={0} w={w} h={h} color="#EEF0F7" size={1.1} />
       </g>
-      <g transform={`translate(${1560 - cam.x * 0.03} ${150 - cam.y * 0.04})`} opacity={0.3 + 0.7 * night}>
+      <g transform={`translate(${w - 360 - cam.x * 0.03} ${150 - cam.y * 0.04})`} opacity={0.3 + 0.7 * night}>
         <Glow id="dd16-moon" x={0} y={0} r={160} t={T} color="#DDE4FF" amp={0.03} rate={1} opacity={0.4} />
         <circle r={48} fill="#E8ECFA" />
         <circle cx={-14} cy={-8} r={9} fill="#C9D0EA" /><circle cx={12} cy={14} r={6} fill="#C9D0EA" />
@@ -560,10 +561,10 @@ export const Mondo: React.FC<{ T: number; cam?: Cam; chiusura?: boolean }> = ({ 
         {hits.map((h, i) => T >= h && T < h + 2.2 ? <Polvere key={i} T={T - h} x={HIT[0]} y={HIT[1]} /> : null)}
 
         {/* ---- i capitoli */}
-        <Storia T={T} ns={ns} />
-        <Regole T={T} ns={ns} />
-        <Finale T={T} ns={ns} />
-        <AggancioMondo T={T} ns={ns} />
+        {!pulito && <Storia T={T} ns={ns} />}
+        {!pulito && <Regole T={T} ns={ns} />}
+        {!pulito && <Finale T={T} ns={ns} />}
+        {!pulito && <AggancioMondo T={T} ns={ns} />}
         {/* primo piano scuro: cespugli e staccionata davanti alla strada (si muovono più veloci: parallasse) */}
         <g transform={`translate(${-cam.x * 0.3} 0)`}>{PRIMO.map((b, i) => (
           <g key={i} transform={`translate(${b.x} ${GROUND + 180})`}>
@@ -576,12 +577,14 @@ export const Mondo: React.FC<{ T: number; cam?: Cam; chiusura?: boolean }> = ({ 
         <Fog id="dd16-fog2" t={T} y={GROUND + 40} x={6600} rx={2800} ry={80} color={mix('#8A90C0', '#E8C8B8', a)} opacity={0.14} drift={300} speed={0.04} ph={2} />
       </g>
 
-      {T >= S('coniglio') && T < S('chiusura') && <TopShade id="dd16" color="#06070F" h={230} />}
-      <Contatore T={T} />
-      <Motes16 T={T} color="#EEF0F7" k={0.8} />
-      {flash > 0 && <rect width={W} height={H} fill="#FFF3DA" opacity={0.35 * flash} />}
-      {T >= ragLetto && T < ragLetto + 1.6 && <Riavvolgi T={T - ragLetto} />}
-      <Finish16 id="dd16" tint={mix('#141830', '#3A2A40', a)} tintOpacity={0.12} />
+      {!pulito && T >= S('coniglio') && T < S('chiusura') && <TopShade id="dd16" color="#06070F" h={230} />}
+      {!pulito && <Contatore T={T} />}
+      {w === W && <Motes16 T={T} color="#EEF0F7" k={0.8} />}
+      {flash > 0 && <rect width={w} height={h} fill="#FFF3DA" opacity={0.35 * flash} />}
+      {!pulito && T >= ragLetto && T < ragLetto + 1.6 && <Riavvolgi T={T - ragLetto} />}
+      <rect width={w} height={h} fill={mix('#141830', '#3A2A40', a)} opacity={0.12} />
+      <rect width={w} height={h} fill="url(#dd16-vig)" />
+      <rect width={w} height={h} fill="url(#dd16-grain)" opacity=".5" />
     </svg>
   );
 };

@@ -1,0 +1,79 @@
+{
+  "formato": "promo",
+  "tipo": "film",
+  "titolo": "Donnie Darko",
+  "regista": "Richard Kelly",
+  "anno": 2001,
+  "bpm": 60,
+  "lungo": "donnie-darko-spiegato",
+  "nota": "Trailer verticale del video lungo «Donnie Darko spiegato» (TRAILER.md): esce in contemporanea al lungo, mercoledì 25 novembre alle 17:30. Trailer di cinema: miniatura, cold open con cartello sul nero, tre cartelli che salgono (28 GIORNI, IL MOTORE, IL VORTICE) con colpi di ottoni, montaggio a un'inquadratura per battito, buio con il contatore che pulsa, titolo alla fine. Le inquadrature sono il mondo del lungo (src/lunghi/donnie-darko-spiegato/Paese.tsx) ricomposto per il 9:16, senza scritte. «voce» = secondi della parte in cui parla la voce. Mai la durata totale del lungo.",
+  "palette": {
+    "chiaro": "#EEF0F7",
+    "principale": "#2A2E5C",
+    "scuro": "#0A0C1A",
+    "accento": "#F2A03A"
+  },
+  "parti": [
+    {
+      "id": "copertina",
+      "durata": 4,
+      "immagine": "Fotogramma 0 = miniatura: la casa dei Darko di notte vista dal basso, il motore d'aereo arancione che sta per sfondare il tetto con la sua scia, «NUOVO SU YOUTUBE», «SPIEGATO SEMPLICE», «DONNIE DARKO» enorme, «IL FINALE SPIEGATO», la riga del regista. A 3,5 s il motore colpisce: lampo e nero.",
+      "sottotitoli": ["Un motore cade dal cielo. Ma nessun aereo l'ha perso."]
+    },
+    {
+      "id": "inizio",
+      "durata": 8,
+      "voce": 7,
+      "immagine": "Cold open con le bande nere: cartello «2 OTTOBRE · 1988» sul nero; poi la casa dei Darko di notte con la finestra della camera che si accende, la camera che scende lenta sul prato e sul campo da golf nella nebbia.",
+      "sottotitoli": ["Donnie, un ragazzo sonnambulo, una notte segue una voce fuori di casa."]
+    },
+    {
+      "id": "giorni",
+      "durata": 7,
+      "voce": 6,
+      "immagine": "Colpo di ottoni sul cartello «28 GIORNI» al neon rosso; poi la scuola allagata di notte con l'acqua che esce dal portone.",
+      "sottotitoli": ["Un coniglio gigante gli dice che il mondo sta per finire."]
+    },
+    {
+      "id": "fuoco",
+      "durata": 7,
+      "voce": 6,
+      "immagine": "Colpo di ottoni sul cartello «IL FUOCO»; poi la grande casa che brucia, il fumo nel cielo viola; poi lo schermo azzurro del cinema.",
+      "sottotitoli": ["Ogni notte gli ordina qualcosa di peggio."]
+    },
+    {
+      "id": "vortice",
+      "durata": 7,
+      "voce": 6,
+      "immagine": "Colpo di ottoni sul cartello «IL VORTICE»; poi il vortice di nuvole che si apre all'alba sopra il paese, l'aereo che ci entra.",
+      "sottotitoli": ["E all'alba, sopra la città, il cielo si apre."]
+    },
+    {
+      "id": "corsa",
+      "durata": 4,
+      "voce": 3,
+      "immagine": "Montaggio a un'inquadratura per battito: il motore nel tetto, la copia azzurra del paese nel cielo, il fuoco, il vortice; poi taglio al nero, il contatore che pulsa nel buio.",
+      "sottotitoli": ["Ogni cosa segue una regola."]
+    },
+    {
+      "id": "titolo",
+      "durata": 5,
+      "voce": 2.5,
+      "immagine": "Nel buio il contatore rosso che pulsa a tempo, la battuta; poi il colpo forte e il titolo «DONNIE DARKO · IL FINALE SPIEGATO» sul paese con il vortice e la copia azzurra.",
+      "sottotitoli": ["E solo una fine possibile."]
+    },
+    {
+      "id": "chiusura",
+      "durata": 7.5,
+      "immagine": "Il paese di notte, calmo e scuro; «ORA SU YOUTUBE», lettore video generico (senza logo) con la miniatura del lungo e la barra divisa in tre (la storia, le regole, il finale); «Metti like», «Iscriviti al canale» che resta qualche secondo e poi si preme, «Cerca In 2 Minuti su YouTube», «Commenta con il film che vorresti.»",
+      "sottotitoli": ["Donnie Darko, spiegato semplice, ora sul canale YouTube In 2 Minuti.", "Commenta con il film che vorresti."]
+    }
+  ],
+  "fonti": [
+    "2 ottobre 1988, Donnie sonnambulo seguito da una voce; Frank in costume da coniglio gli dice che il mondo finirà tra 28 giorni; Frank spinge Donnie ad allagare la scuola e a incendiare la casa di Cunningham; all'alba un vortice sopra la città e l'aereo che perde il motore: https://en.wikipedia.org/wiki/Donnie_Darko",
+    "Il libro «La filosofia del viaggio nel tempo» spiega le regole dell'universo tangente: https://it.wikipedia.org/wiki/Donnie_Darko"
+  ],
+  "pronuncia": {
+    "In 2 Minuti": "In due Minuti"
+  }
+}
