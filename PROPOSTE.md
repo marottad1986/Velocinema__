@@ -56,3 +56,5 @@ in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo
   con animali e oggetti, voce più calda, nessuna raccolta di dati dei bambini). · un secondo canale che cresce con le
   visualizzazioni ripetute dei bambini · aperta
 - 22 nov 2026 · **Prima di YouTube per ogni lungo** (manager, da una domanda dell'editore sulle live automatiche): pubblicare i lunghi come Premiere (conto alla rovescia e chat dal vivo all'ora fissa, nessuno presente); niente LIVE preregistrate su TikTok (vietate); diretta 24/7 in loop solo dopo i 1.000 iscritti. · direzione → editore
+- 22 nov 2026 · `ascolta-voce.mjs` rifà da solo la trascrizione quando la clip è più recente della cache (oggi, dopo una rigenerazione, mostra la trascrizione vecchia). · revisore-voce → produzione
+- 22 nov 2026 · Tabella di compensazione in `campioni.mjs` per le note anomale di spiccato e pizzicato (la 71 delle viole spiccato è circa +9 dB rispetto alle vicine: in Donnie Darko spiegato faceva il picco del film). · revisore-musica → produzione
