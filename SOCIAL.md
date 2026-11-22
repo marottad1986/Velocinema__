@@ -320,6 +320,16 @@ Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere
 - Uscite e calendari: MyMovies, FilmTV, ComingSoon, Sorrisi; trame e date su Wikipedia.
 
 ## Cosa dicono i dati (aggiornare ogni domenica)
+- **Regola dell'editore (22 nov 2026): nelle analisi conta prima YouTube.** Ogni domenica la classifica parte dalle
+  visualizzazioni YouTube di ogni video (lunghi e Short), poi TikTok e Instagram; un titolo che rende su YouTube vale più
+  di uno che rende solo su TikTok, perché YouTube è la fonte di sostenibilità.
+- 22 novembre 2026 (PostFast): **YouTube 154 iscritti, +68 in sei giorni** (~11 al giorno: per 1.000 al 31 dicembre ne
+  servono ~22 al giorno). Su YouTube gli Short migliori sono i titoli famosissimi o «culturali» che si cercano per nome:
+  Titanic 1.214, GTA VI 1.202, Il miglio verde 1.163, **L'Ultima Cena 1.158** (quasi nulla su TikTok e Instagram), mentre
+  **Donnie Darko** esplode altrove (154.852 Instagram con 1.036 condivisioni, 49.229 TikTok) e su YouTube fa 106. Il lungo
+  di Ritorno al futuro: 311 visualizzazioni in 4 giorni, durata media 2:55 (35,5%, sotto l'obiettivo del 40%). X Factor
+  chiude debole (247 YouTube). Nessun post fallito. Lettura: i lunghi devono stare su titoli cercati per nome (Backrooms,
+  Lost, Interstellar) e gli Short da portare su YouTube sono quelli famosi, non solo quelli che vanno bene su Instagram.
 - 14 novembre 2026 (Metricool): **Instagram ora porta più di TikTok sugli Spiegato** (Inception 221.124 e 1.334 condivisioni,
   Tenet 71.802, Dark 3 66.594, contro 8–17 mila su TikTok). Breaking Bad stagione 1 sorprende su Instagram (48.414): le serie
   a puntate reggono. Film con colpo di scena nella media (Il sesto senso 8.905 + 6.593). **X Factor debole** (1.043 + 1.504):

@@ -89,4 +89,4 @@ Valgono `QUALITA.md` e `BRIEF-SCENA.md`, con queste aggiunte per l'orizzontale:
 | Uscita | Lungo | Clic miniatura | Restano dopo 30 s | Durata media vista | Iscritti | Lezione |
 |---|---|---|---|---|---|---|
 | 14 nov | Dark, tutta la serie | | | | | 229 visualizzazioni in 4 giorni (formato a Short incollati) |
-| 18 nov | Ritorno al futuro, la trilogia | | | | | |
+| 18 nov | Ritorno al futuro, la trilogia | (da YouTube Studio) | (da YouTube Studio) | 2:55 su 8:12 (35,5%, PostFast) | | 311 visualizzazioni in 4 giorni; trailer verticale 560 su YouTube, 1.405 TikTok, 3.637 Instagram. Uscito mercoledì alle 20:30, non alle 17:30 |

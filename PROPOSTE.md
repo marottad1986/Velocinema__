@@ -55,3 +55,4 @@ in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo
   gennaio 2027, dopo il traguardo YouTube del 31 dicembre, con un episodio pilota; regole proprie da scrivere prima (fiabe
   con animali e oggetti, voce più calda, nessuna raccolta di dati dei bambini). · un secondo canale che cresce con le
   visualizzazioni ripetute dei bambini · aperta
+- 22 nov 2026 · **Prima di YouTube per ogni lungo** (manager, da una domanda dell'editore sulle live automatiche): pubblicare i lunghi come Premiere (conto alla rovescia e chat dal vivo all'ora fissa, nessuno presente); niente LIVE preregistrate su TikTok (vietate); diretta 24/7 in loop solo dopo i 1.000 iscritti. · direzione → editore
