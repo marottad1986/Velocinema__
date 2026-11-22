@@ -14,7 +14,7 @@ import { suona, archi, colpo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 
 export const strumenti = ['pianoforte_coda', 'arpa', 'glockenspiel', 'violini', 'viole', 'celli', 'contrabbasso', 'violini_trem', 'celli_spicc', 'viole_spicc', 'contrabbasso_pizz', 'timpani', 'grancassa', 'piatto_sospeso'];
-export const effetti = ['scatti', 'metallo_schianto', 'rombo', 'pagine', 'onde', 'fuoco', 'fiammata', 'auto_epoca', 'colpi_cavi', 'pistola', 'vento_raffiche', 'aereo', 'metallo_colpi', 'passaggio'];
+export const effetti = ['tuono_secco', 'scatti', 'metallo_schianto', 'rombo', 'pagine', 'onde', 'fuoco', 'fiammata', 'auto_epoca', 'colpi_cavi', 'pistola', 'vento_raffiche', 'aereo', 'metallo_colpi', 'passaggio'];
 /** Sala grande e scura, notte di periferia (come lo Short). */
 export const sala = { rt60: 2.8, brillo: 4800, predelay: 0.03, wet: 0.5 };
 
@@ -30,7 +30,7 @@ const drone = (mix, m, { t, dur, vel = 40, gain = 1, seed = 1 }) =>
 const strings = (mix, m, { t, dur, vel = 40, pan = 0, gain = 1, att = 1, seed = 1 }) =>
   archi(mix, m, { t, dur, vel: vel + 8, pan, rev: 0.6, gain: gain * 1.4, attack: att, release: 1.4, seed });
 const spic = (mix, m, { t, vel = 40, pan = 0, gain = 1 }) =>
-  suona(mix, m < 55 ? 'celli_spicc' : 'viole_spicc', m, { t, dur: CROMA * 0.8, vel: vel * 1.7, pan, rev: 0.35, gain: gain * 2.6, release: 0.12 });
+  suona(mix, m < 55 ? 'celli_spicc' : 'viole_spicc', m, { t, dur: CROMA * 0.8, vel: vel * 1.7, pan, rev: 0.35, gain: gain * 2.6 * (m === 71 ? 0.35 : 1), release: 0.12 });
 const piano = (mix, m, { t, dur, vel, pan = 0.1 }) =>
   suona(mix, 'pianoforte_coda', m, { t, dur: Math.min(dur, 4), vel: vel * 1.2, pan, rev: 0.6, gain: 1.4, release: 0.8 });
 const harp = (mix, m, { t, vel = 40, pan = -0.2 }) =>
@@ -116,7 +116,7 @@ export default (mix, T) => {
   // ---------------------------------------------------------------- LA STORIA
   sec(T.coniglio, T.motore, { drone: 32, arp: 28, mel: 38, keep: 0.85 });
   sec(T.motore, T.testa, { drone: 38, arp: 30, str: 30, pause: [[CRASH - 0.05, CRASH + B2]] });
-  sec(T.testa, T.libro, { drone: 32, harp: 32, mel: 34, keep: 0.8 });
+  sec(T.testa, T.libro, { drone: 38, str: 26, harp: 32, mel: 34, keep: 0.8 });
   sec(T.libro, T.ordini, { drone: 34, harp: 36, mel: 40, bells: 30 });
   sec(T.ordini, T.gretchen, { drone: 40, spic: 32, str: 32, arp: 24 });
   sec(T.gretchen, T.notte, { drone: 42, arp: 30, str: 36, mel: 38 });
@@ -129,18 +129,18 @@ export default (mix, T) => {
   sec(T.artefatto, T.crollo, { drone: 32, harp: 34, arp: 24 });
   sec(T.crollo, T.ricevitore, { drone: 46, str: 44, spic: 40, pause: [[at('crollo', 0, 0.8) + 3, at('crollo', 0, 0.8) + 4]] });
   sec(T.ricevitore, T.viventi, { drone: 36, harp: 38, mel: 38, bells: 40, oct: 12 });
-  sec(T.viventi, T.morti, { drone: 32, pizz: 30, harp: 30 });
+  sec(T.viventi, T.morti, { drone: 36, pizz: 32, harp: 34 });
   sec(T.morti, T.trappola, { drone: 38, str: 34, harp: 34, bells: 34 });
   sec(T.trappola, T.porta, { drone: 44, str: 40, spic: 36 });
   // ---------------------------------------------------------------- IL FINALE SPIEGATO
   sec(T.porta, T.ritorno, { drone: 42, str: 44, arp: 30, mel: 36 });
   sec(T.ritorno, T.ride, { drone: 38, harp: 36, bells: 36, mel: 38 });
-  sec(T.ride, T.salvi, { drone: 30, harp: 30, mel: 32, keep: 0.8, pause: [[RIDE_HIT - 0.05, RIDE_HIT + BEAT]] });
+  sec(T.ride, T.salvi, { drone: 36, str: 26, harp: 30, mel: 32, keep: 0.8, pause: [[RIDE_HIT - 0.05, RIDE_HIT + BEAT]] });
   sec(T.salvi, SALVO, { drone: 34, str: 36, harp: 32 });
   // il mondo vero è salvo: Mi maggiore aperto sul cartellino, fino alla fine
   sec(SALVO, T.aperto, { drone: 34, str: 40, harp: 36, mel: 38, bells: 32, maj: true });
   sec(T.aperto, T.ventotto, { drone: 30, harp: 32, arp: 26, maj: true });
-  sec(T.ventotto, T.seguito, { drone: 30, pizz: 28, harp: 30, maj: true });
+  sec(T.ventotto, T.seguito, { drone: 36, pizz: 32, harp: 34, maj: true });
   sec(T.seguito, T.chiusura, { drone: 32, harp: 34, mel: 36, bells: 30, maj: true });
   sec(T.chiusura, T.END, { drone: 34, str: 40, harp: 36, mel: 40, maj: true });
 
@@ -187,10 +187,14 @@ export default (mix, T) => {
   clip(mix, 'vento_raffiche', { t: T.vortice, da: 9.2, durata: T.letto + 1 - T.vortice, gain: 0.09, fadeIn: 1.2, fadeOut: 1.2, largo: 1.6 });
   clip(mix, 'rombo', { t: at('vortice', 0, 0.3), da: 3.6, durata: 4, gain: 0.1, fadeIn: 1, fadeOut: 1.5, largo: 1.6 });
   clip(mix, 'aereo', { t: at('vortice', 2, -1), da: 3, durata: 4.4, gain: 0.18, fadeIn: 0.6, fadeOut: 0.8, largo: 1.4 });
-  clip(mix, 'metallo_colpi', { t: tear, da: 0.54, durata: 0.4, gain: 0.9, rev: 0.4 });
+  clip(mix, 'metallo_colpi', { t: tear, da: 0.54, durata: 0.4, gain: 1.2, rev: 0.4 });
   timp(mix, tear, { vel: 127, gain: 1.2, forte: true });
   clip(mix, 'passaggio', { t: tear + 0.5, da: 0.56, durata: 1.6, gain: 0.25, fadeOut: 0.5, rev: 0.4 });
   [79, 76, 71, 67, 64].forEach((m, k) => bell(mix, m, { t: at('vortice', 3, 0.3) + k * CROMA / 2, vel: 36 }));
+  // i fulmini dentro il vortice (Paese.tsx, Vortice): un tuono secco e basso; quello vicino allo strappo più piano
+  for (const [b, gn] of [[at('vortice', 0, 1.5), 0.13], [at('vortice', 2, 0.5), 0.08], [at('porta', 1), 0.13], [at('porta', 3, 0.5), 0.13]]) clip(mix, 'tuono_secco', { t: b + 0.15, da: 0.78, durata: 2.2, gain: gn, fadeIn: 0.03, fadeOut: 0.9, rev: 0.35, lp: 3000 });
+  // il motore che scende piano sopra la camera in «ride»
+  clip(mix, 'passaggio', { t: RIDE_HIT - 3, da: 12.27, durata: 2.2, gain: 0.12, fadeIn: 0.8, fadeOut: 0.3, rev: 0.35 });
   // capitolo 10: tutto si riavvolge (piatto e sibilo)
   swell(mix, rew - 0.2, 1.6, { gain: 0.4 });
   clip(mix, 'passaggio', { t: rew + 0.2, da: 12.27, durata: 1.4, gain: 0.2, fadeOut: 0.4, rev: 0.35 });
@@ -204,7 +208,7 @@ export default (mix, T) => {
   timp(mix, buco + 3, { vel: 124, gain: 1.0, forte: true });
   clip(mix, 'rombo', { t: buco + 3, da: 3.6, durata: 3, gain: 0.14, fadeOut: 1.4, largo: 1.5 });
   [0, 1, 2, 3, 4].forEach((i) => bell(mix, [64, 67, 71, 74, 62][i], { t: [at('ricevitore', 2, 0.3), at('ricevitore', 2, 1.0), at('ricevitore', 2, 1.8), at('ricevitore', 2, 2.4), at('ricevitore', 4)][i], vel: i === 4 ? 30 : 38 }));
-  for (let i = 0; i < 18; i++) clip(mix, 'scatti', { t: croma(at('viventi', 2, -0.3) + i * 0.18 + 0.2), da: 6.49, durata: 0.06, gain: 0.35, rev: 0.2, pan: -0.6 + i * 0.07 });
+  for (let i = 0; i < 18; i++) clip(mix, 'scatti', { t: at('viventi', 2, -0.3) + i * 0.18 + 0.2, da: 6.49, durata: 0.06, gain: 0.3, rev: 0.2, pan: -0.6 + i * 0.07 });
   [64, 67, 71, 74, 76, 79].forEach((m, k) => bell(mix, m, { t: at('morti', 2, 1.0) + k * CROMA / 2, vel: 34 }));
   [0, 1, 2].forEach((i) => clip(mix, 'metallo_colpi', { t: at('trappola', 1, 0.3) + i * 0.6, da: 0.54, durata: 0.3, gain: 0.5, rev: 0.4, pan: -0.3 + i * 0.3 }));
   // IL FINALE: la porta (il motore che attraversa), il cerchio che si chiude, le morti che si annullano, il saluto
