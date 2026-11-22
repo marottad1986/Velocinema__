@@ -1,0 +1,392 @@
+{
+  "formato": "lungo",
+  "tipo": "film",
+  "titolo": "Donnie Darko",
+  "titolo_youtube": "DONNIE DARKO spiegazione: il finale e le regole del tempo 🐇",
+  "etichetta": "SPIEGATO SEMPLICE · IL FILM E IL FINALE",
+  "regista": "Richard Kelly",
+  "anno": 2001,
+  "bpm": 60,
+  "palette": {
+    "chiaro": "#EEF0F7",
+    "principale": "#2A2E5C",
+    "scuro": "#0A0C1A",
+    "accento": "#F2A03A"
+  },
+  "parti": [
+    {
+      "tipo": "aggancio",
+      "id": "aggancio",
+      "durata": 26,
+      "capitolo_youtube": "Da dove arriva il motore?",
+      "immagine": "Copertina 16:9 (miniatura YouTube): a sinistra «SPIEGATO SEMPLICE · IL FILM E IL FINALE», «DONNIE DARKO» enorme su due righe, sotto «IL FINALE SPIEGATO»; a destra, di notte, la casa dei Darko con un motore d'aereo arancione conficcato nel tetto, fumo e scintille, sopra un cielo viola con un vortice di nuvole appena accennato e il contatore rosso «28 GIORNI». Poi la camera scende: il motore che cade dal vortice, il contatore che parte, la copia azzurra del paese che si stacca dal paese vero. Niente persone, niente costume del coniglio (solo un cerchio con le orecchie), niente locandine.",
+      "sottotitoli": [
+        "Una notte un motore d'aereo cade dal cielo e sfonda la camera di un ragazzo.",
+        "Ma quella notte nessun aereo ha perso un motore.",
+        "Da dove arriva? È il mistero di Donnie Darko, film del 2001.",
+        "Oggi lo spieghiamo in modo semplice: la storia, le regole, il finale.",
+        "E alla fine ti mostro il gesto dell'ultima scena, che a molti sfugge."
+      ]
+    },
+    {
+      "tipo": "capitoli",
+      "id": "storia",
+      "nome": "LA STORIA",
+      "capitolo_youtube": "La storia: 28 giorni alla fine del mondo",
+      "capitoli": [
+        {
+          "id": "coniglio",
+          "titolo": "Chi è il coniglio?",
+          "durata": 22,
+          "scena": "Il paese di notte in 16:9 (mondo unico, da sinistra: il campo da golf, la casa dei Darko sulla collinetta, la scuola, il cinema, la casa di Cunningham, la strada con la casa di Nonna Morte). La camera parte dal cielo stellato e scende sulla casa dei Darko: la finestra della camera si accende, la porta si apre, un tratteggio di passi (le pantofole) esce in giardino. Sul prato un cerchio con le orecchie da coniglio (Frank) con il cartellino. Sopra il tetto si accende il contatore rosso 28:06:42:12, che comincia a scendere.",
+          "sottotitoli": [
+            "È il 2 ottobre 1988, in una cittadina tranquilla degli Stati Uniti.",
+            "Donnie è un ragazzo inquieto, e di notte cammina nel sonno.",
+            "Una notte una voce lo chiama fuori di casa.",
+            "In giardino c'è Frank, uno vestito da coniglio gigante, che vede solo lui.",
+            "E gli dice una cosa terribile: il mondo finirà tra 28 giorni."
+          ]
+        },
+        {
+          "id": "motore",
+          "titolo": "Da dove arriva il motore?",
+          "durata": 16,
+          "scena": "Il tratteggio dei passi porta al campo da golf (bandierina, buca, nebbia bassa); l'alba si accende. La camera corre alla casa: dal cielo nero cade il motore d'aereo arancione (scia, lampo, polvere, tegole che volano) e si pianta nel tetto della camera; il letto vuoto illuminato dal buco. Un cartellino pieno: «NESSUN AEREO L'HA PERSO». Anello rosso sul motore.",
+          "sottotitoli": [
+            "Al mattino Donnie si sveglia su un campo da golf, lontano da casa.",
+            "Quando torna, trova i vigili del fuoco:",
+            "un motore d'aereo è caduto proprio sulla sua camera.",
+            "Se fosse rimasto a letto, sarebbe morto. Ma c'è un mistero:",
+            "nessun aereo ha perso un motore."
+          ]
+        },
+        {
+          "id": "testa",
+          "titolo": "Donnie è malato o vede davvero?",
+          "durata": 15,
+          "scena": "Lo studio della terapeuta (una poltrona vuota, una lampada, un metronomo che oscilla, un taccuino aperto) come una stanza nel mondo; dalle pantofole di Donnie partono nuvolette azzurre con le orecchie del coniglio; sul taccuino si scrive a mano «allucinazioni?»; la camera stringe sul punto interrogativo.",
+          "sottotitoli": [
+            "Frank torna, giorno dopo giorno, e i genitori si spaventano.",
+            "Così mandano Donnie da una psicologa.",
+            "Lei pensa che il coniglio sia un'allucinazione, cioè una cosa che non c'è.",
+            "Ma Frank, intanto, gli parla di viaggi nel tempo."
+          ]
+        },
+        {
+          "id": "libro",
+          "titolo": "Chi è Nonna Morte?",
+          "durata": 17,
+          "scena": "La scuola (aula di scienze: lavagna con un cono di luce e un cerchio, banchi vuoti); il libro (copertina scura con il titolo inventato, mai quello del film) passa dalla cattedra alle pantofole lungo una linea; poi la camera vola lungo la strada fino alla casa di Nonna Morte (casa isolata, cassetta della posta, una finestra accesa); cartellino «NONNA MORTE · ex insegnante» con il libro.",
+          "sottotitoli": [
+            "Donnie allora chiede dei viaggi nel tempo al professore di scienze.",
+            "E lui gli presta uno strano libro: La filosofia del viaggio nel tempo.",
+            "L'ha scritto un'anziana ex insegnante della scuola,",
+            "che vive da sola fuori città.",
+            "In paese tutti la chiamano Nonna Morte."
+          ]
+        },
+        {
+          "id": "ordini",
+          "titolo": "Cosa gli ordina Frank?",
+          "durata": 17,
+          "scena": "La scuola di notte: un tubo dell'acqua spezzato e l'acqua che sale nei corridoi e esce dal portone (onde, riflessi delle lampade); il giorno dopo la scuola chiusa e la bicicletta di Gretchen (cerchio con la bicicletta, cartellino «la ragazza nuova») che si avvicina alle pantofole lungo la strada; una linea con un cuore scritto a mano li unisce.",
+          "sottotitoli": [
+            "Frank però gli dà ordini, e Donnie li esegue come in sogno.",
+            "Una notte rompe un tubo e allaga la scuola.",
+            "Così la scuola chiude, e Donnie accompagna a casa Gretchen, una ragazza nuova.",
+            "È scappata con la madre da un patrigno violento,",
+            "e tra lei e Donnie nasce un amore."
+          ]
+        },
+        {
+          "id": "gretchen",
+          "titolo": "Chi c'è sotto la maschera?",
+          "durata": 22,
+          "scena": "Il cinema del paese (insegna luminosa, pensilina a lampadine); sopra, lo schermo azzurro come le visioni con le orecchie da coniglio che si tolgono e un cerchio con il segno rosso sull'occhio destro (nessun volto); poi una linea rossa tratteggiata porta alla casa di Cunningham, che prende fuoco (fiamme, scintille, fumo nel cielo viola); cerchio con la videocassetta (Cunningham) con «vende corsi di felicità» e il cartellino pieno «ARRESTATO».",
+          "sottotitoli": [
+            "Una sera vanno al cinema, e mentre Gretchen dorme Frank appare di nuovo.",
+            "Stavolta si toglie la maschera: è un ragazzo, con un occhio ferito.",
+            "E gli ordina di bruciare la casa di Jim Cunningham, uno che vende corsi di felicità.",
+            "Donnie obbedisce, e tra le macerie i pompieri trovano le prove di crimini gravi,",
+            "così Cunningham viene arrestato."
+          ]
+        },
+        {
+          "id": "notte",
+          "titolo": "Cosa succede l'ultima notte?",
+          "durata": 19,
+          "scena": "Il contatore scende alle ultime ore (00:06:...); un aereo con le luci di posizione attraversa il cielo lontano (la mamma, cartellino «la mamma torna da Los Angeles»); la camera corre lungo la strada fino alla casa di Nonna Morte: due cerchi con un passamontagna (i bulli) davanti alla porta, la luce della finestra che trema; i fari di un'auto che arrivano dalla curva.",
+          "sottotitoli": [
+            "L'ultima notte la mamma di Donnie è in aereo, di ritorno da Los Angeles.",
+            "Donnie sa che il tempo sta finendo,",
+            "e va con Gretchen e due amici da Nonna Morte, a cercare risposte.",
+            "Ma davanti alla sua casa trovano due bulli che la stanno derubando.",
+            "Scoppia una rissa in mezzo alla strada, e arriva un'auto."
+          ]
+        },
+        {
+          "id": "sparo",
+          "titolo": "Chi c'è al volante?",
+          "durata": 17,
+          "scena": "I fari dell'auto riempiono l'inquadratura, frenata (segni sull'asfalto); il cerchio della bicicletta (Gretchen) si spegne e diventa grigio, con un cartellino pieno «GRETCHEN MUORE»; sul cofano compaiono le orecchie da coniglio (Frank al volante, nessuna figura); un lampo e un colpo secco: un anello rosso sull'occhio destro del cerchio di Frank, che si spegne.",
+          "sottotitoli": [
+            "L'auto investe Gretchen, e la uccide.",
+            "Al volante c'è Frank, il fidanzato della sorella di Donnie,",
+            "vestito proprio con il costume da coniglio delle visioni.",
+            "Donnie, sconvolto, prende la pistola del padre,",
+            "e gli spara a un occhio."
+          ]
+        },
+        {
+          "id": "vortice",
+          "titolo": "Cos'è il vortice nel cielo?",
+          "durata": 17,
+          "scena": "L'alba sopra il paese: un enorme vortice di nuvole si apre sopra la casa dei Darko (spirale che gira, lampi dentro, luce viola e arancio); un'auto sale sulla collina che guarda il paese (solo i fari); l'aereo della mamma entra nel vortice, il motore si strappa con una scintilla e viene risucchiato all'indietro lungo il tratteggio giallo del viaggio nel tempo; il contatore arriva a 00:00:00:00.",
+          "sottotitoli": [
+            "All'alba, sopra la città, si apre un enorme vortice di nuvole.",
+            "Donnie porta il corpo di Gretchen su una collina, e guarda il cielo.",
+            "Passa l'aereo della mamma, e il vortice gli strappa un motore.",
+            "Il motore sparisce all'indietro nel tempo."
+          ]
+        },
+        {
+          "id": "letto",
+          "titolo": "Come finisce il film?",
+          "durata": 19,
+          "scena": "Tutto il paese si riavvolge (l'acqua della scuola si ritira, il fuoco si spegne, il cartellino di Gretchen torna acceso, il contatore torna a 28:06:42:12); la camera torna alla casa dei Darko, notte del 2 ottobre: la finestra della camera accesa, il letto con le pantofole accanto; il motore cade dal vortice nel tetto (lampo, polvere); il cerchio di Donnie si spegne; il resto del paese resta intatto. Poi la camera si allontana e il paese si sdoppia appena: sopra, la copia azzurra tratteggiata (rilancio).",
+          "sottotitoli": [
+            "Così tutto si riavvolge, fino alla notte del 2 ottobre.",
+            "Donnie è di nuovo nel suo letto, e stavolta non esce.",
+            "Ride, mentre il motore cade sulla sua camera e lo uccide.",
+            "Ma perché? Cosa c'entra un motore con la fine del mondo?",
+            "Per capirlo serve il libro di Nonna Morte."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "capitoli",
+      "id": "regole",
+      "nome": "LE REGOLE DEL TEMPO",
+      "capitolo_youtube": "Le regole del tempo: il libro di Nonna Morte",
+      "capitoli": [
+        {
+          "id": "copia",
+          "titolo": "Cos'è l'universo tangente?",
+          "durata": 20,
+          "scena": "Il libro si apre a tutto schermo come un grande leggio (pagine con disegni a mano); dalle pagine si alza il paese vero, e sopra si stacca la sua copia azzurra tratteggiata, come una strada che devia dal tracciato dritto (la linea bianca = mondo vero, la deviazione azzurra = la copia); cartellino «LA REGOLA».",
+          "sottotitoli": [
+            "Le pagine del libro compaiono nella versione lunga del film, uscita nel 2004.",
+            "Dice che a volte il tempo si guasta: nasce una copia del mondo.",
+            "Si chiama universo tangente, cioè che devia:",
+            "è come una strada che esce da quella principale.",
+            "Ma è fragile, e dura solo poche settimane."
+          ]
+        },
+        {
+          "id": "artefatto",
+          "titolo": "Perché il motore è il problema?",
+          "durata": 17,
+          "scena": "Le due versioni del paese una sopra l'altra, uguali in ogni dettaglio; una lente passa sulle due e si ferma sul tetto dei Darko: nella copia c'è il motore, nel mondo vero no; cartellino «ARTEFATTO» sul motore e un pezzo di puzzle in più che non entra.",
+          "sottotitoli": [
+            "La copia è identica al mondo vero, tranne una cosa:",
+            "un oggetto di metallo in più, che il libro chiama artefatto.",
+            "Qui l'artefatto è il motore caduto sulla camera di Donnie.",
+            "È come il pezzo di troppo in un puzzle:",
+            "finché resta lì, il tempo non torna a posto."
+          ]
+        },
+        {
+          "id": "crollo",
+          "titolo": "Perché il mondo finirebbe?",
+          "durata": 17,
+          "scena": "La copia azzurra comincia a creparsi; al centro si forma un buco nero che risucchia le case della copia; un tratteggio rosso mostra il buco nero che tira giù anche il paese vero sotto; il contatore rosso dei 28 giorni pulsa; cartellino «28 GIORNI = IL TEMPO PRIMA DEL CROLLO».",
+          "sottotitoli": [
+            "Ed ecco il pericolo: quando la copia crolla, diventa un buco nero.",
+            "Se l'artefatto è ancora lì, si porta via anche il mondo vero.",
+            "I 28 giorni di Frank sono proprio questo:",
+            "il tempo che resta prima del crollo."
+          ]
+        },
+        {
+          "id": "ricevitore",
+          "titolo": "Perché proprio Donnie?",
+          "durata": 19,
+          "scena": "Il cerchio delle pantofole (Donnie) al centro, con un alone che si accende; intorno quattro piccoli simboli che si illuminano uno alla volta: un pugno di pietra (forza), un occhio con le linee del futuro, una goccia (l'acqua), una nuvola d'incubo; cartellino «RICEVITORE VIVENTE»; dal petto del cerchio escono le linee trasparenti del futuro (come scie d'acqua).",
+          "sottotitoli": [
+            "Qualcuno deve rimandare il motore nel mondo vero, prima del crollo.",
+            "Il libro lo chiama ricevitore vivente: qui è Donnie.",
+            "Il ricevitore ha poteri strani: forza, visioni del futuro, potere su acqua e fuoco.",
+            "Ma paga un prezzo:",
+            "incubi, paura, e la sensazione di impazzire."
+          ]
+        },
+        {
+          "id": "viventi",
+          "titolo": "Perché tutti lo aiutano senza saperlo?",
+          "durata": 17,
+          "scena": "Intorno alle pantofole compaiono i cerchi delle persone vicine (il professore con un gesso, la psicologa con il metronomo, Cunningham con la videocassetta, Gretchen con la bicicletta), collegati in fila da tessere del domino che cadono una dopo l'altra verso la collina; cartellino «MANIPOLATI VIVENTI».",
+          "sottotitoli": [
+            "Poi ci sono i manipolati viventi: le persone vicine al ricevitore.",
+            "Senza saperlo, fanno proprio le mosse che servono,",
+            "come tessere del domino che cadono una dopo l'altra.",
+            "Il professore gli presta il libro, e ogni incontro lo spinge avanti."
+          ]
+        },
+        {
+          "id": "morti",
+          "titolo": "Chi è davvero il coniglio?",
+          "durata": 18,
+          "scena": "Il cerchio con le orecchie da coniglio (Frank) diventa azzurro trasparente come un fantasma; un tratteggio giallo parte dalla notte dello sparo (fondo del contatore) e torna indietro fino alla prima notte, dove compare il coniglio in giardino; il segno rosso sull'occhio resta uguale nelle due posizioni, con un anello rosso che le collega; cartellino «MANIPOLATI MORTI».",
+          "sottotitoli": [
+            "E poi ci sono i manipolati morti: chi muore dentro la copia.",
+            "Loro sanno più dei vivi, e possono viaggiare nel tempo.",
+            "Frank muore la notte dello sparo, e torna indietro per guidare Donnie.",
+            "Ecco perché nelle visioni ha l'occhio ferito:",
+            "è il colpo che riceverà alla fine."
+          ]
+        },
+        {
+          "id": "trappola",
+          "titolo": "Perché muore Gretchen?",
+          "durata": 17,
+          "scena": "La strada davanti alla casa di Nonna Morte vista dall'alto come una tagliola: il cerchio della bicicletta grigio al centro, intorno le strade che si chiudono una dopo l'altra (sbarre rosse), resta aperta solo la strada che porta alla collina e al vortice; cartellino pieno «TRAPPOLA DI SICUREZZA».",
+          "sottotitoli": [
+            "L'ultima regola è la più crudele: la trappola di sicurezza.",
+            "I morti preparano una situazione che non lascia scelta al ricevitore.",
+            "Qui la trappola è la morte di Gretchen.",
+            "Davanti a quella perdita, a Donnie resta una sola strada: chiudere la copia."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "capitoli",
+      "id": "finale",
+      "nome": "IL FINALE SPIEGATO",
+      "capitolo_youtube": "Il finale spiegato e il gesto dell'ultima scena",
+      "capitoli": [
+        {
+          "id": "porta",
+          "titolo": "Cosa fa Donnie sulla collina?",
+          "durata": 17,
+          "scena": "Il vortice visto dalla collina come una porta circolare tra la copia azzurra (sopra) e il mondo vero (sotto); il motore arancione passa attraverso la porta lungo il tratteggio giallo e scende nel mondo vero fino alla notte del 2 ottobre; cartellino «LA PORTA TRA I DUE MONDI».",
+          "sottotitoli": [
+            "Con queste regole, il finale diventa chiaro.",
+            "Sulla collina Donnie usa i suoi poteri, e il vortice diventa una porta",
+            "tra la copia e il mondo vero.",
+            "Il motore dell'aereo della mamma ci passa dentro,",
+            "e torna nel mondo vero, alla notte del 2 ottobre."
+          ]
+        },
+        {
+          "id": "ritorno",
+          "titolo": "Quindi da dove arrivava il motore?",
+          "durata": 18,
+          "scena": "Il cerchio si chiude: dal vortice dell'alba il motore arancione corre all'indietro lungo il tratteggio giallo, sopra il contatore che si riavvolge, fino al tetto della prima notte; la stessa scintilla in due punti (l'aereo in cielo e il tetto) unita da un anello; cartellino pieno «L'AEREO NON ERA ANCORA PARTITO».",
+          "sottotitoli": [
+            "E ora si risolve anche il mistero dell'inizio.",
+            "Il motore caduto sulla camera era proprio quello dell'aereo della mamma.",
+            "Ecco perché nessun aereo l'aveva perso: quell'aereo non era ancora partito.",
+            "È un cerchio perfetto: il motore cade, crea la copia, e la copia lo rimanda indietro."
+          ]
+        },
+        {
+          "id": "ride",
+          "titolo": "Perché Donnie ride?",
+          "durata": 17,
+          "scena": "La camera di Donnie in sezione (il letto, la lampada, la finestra, il soffitto con le crepe che stanno per aprirsi): le pantofole accanto al letto; una luce calda sale dal cuscino come una risata; sopra il tetto il motore che scende piano; cartellino «TEORIA» per il perché ride.",
+          "sottotitoli": [
+            "Nel mondo vero Donnie si sveglia nel suo letto, la notte del 2 ottobre.",
+            "Stavolta sembra sapere cosa sta per succedere, e resta lì apposta.",
+            "E ride. Forse perché ha capito che non era pazzo,",
+            "e che c'è un modo per salvare tutti."
+          ]
+        },
+        {
+          "id": "salvi",
+          "titolo": "Chi si salva?",
+          "durata": 17,
+          "scena": "La copia azzurra si dissolve in particelle e con lei i cartellini delle morti (Gretchen, Frank) che si riaccendono di colore nel mondo vero; il contatore sparisce; il cerchio delle pantofole resta spento sotto il tetto con il motore; il paese vero all'alba intatto (la scuola asciutta, la casa di Cunningham intera).",
+          "sottotitoli": [
+            "Con il motore al suo posto, la copia sparisce,",
+            "e con lei spariscono anche le morti della copia.",
+            "Così Gretchen e Frank sono vivi, e il mondo vero è salvo.",
+            "L'unico a morire è Donnie, come doveva succedere fin dall'inizio."
+          ]
+        },
+        {
+          "id": "gesto",
+          "titolo": "Il gesto dell'ultima scena",
+          "durata": 18,
+          "scena": "Il mattino dopo davanti a casa Darko (il nastro dei vigili del fuoco, il motore nel tetto): la bicicletta di Gretchen passa lenta sul vialetto; sopra la bicicletta e sopra la casa due cerchi-personaggio (la bicicletta e la valigia della mamma) con un'onda di saluto; un filo azzurro tratteggiato della copia le collega; cartellino «UN RICORDO DELLA COPIA?».",
+          "sottotitoli": [
+            "Ed ecco il gesto promesso, nell'ultima scena.",
+            "Il giorno dopo Gretchen passa in bici davanti alla casa di Donnie.",
+            "Non ha mai conosciuto Donnie, eppure lei e la mamma di lui",
+            "si salutano con la mano, come se si conoscessero già:",
+            "forse un ricordo della copia, rimasto addosso a tutte e due."
+          ]
+        },
+        {
+          "id": "aperto",
+          "titolo": "È tutto vero o è nella sua testa?",
+          "durata": 17,
+          "scena": "Lo schema completo, piccolo: a sinistra il paese con la copia e il libro (cartellino «IL LIBRO»), a destra le pantofole con le nuvolette del sogno (cartellino «LA MENTE DI DONNIE»), al centro un punto interrogativo grande che si accende; cartellino «TEORIA» su entrambe.",
+          "sottotitoli": [
+            "Attenzione, però: questa è la lettura del libro.",
+            "Per molti, invece, è tutto nella mente di Donnie, che vede cose che non esistono.",
+            "E il regista, Richard Kelly, ha lasciato apposta più di una risposta:",
+            "secondo lui, spiegare di più avrebbe rovinato il film."
+          ]
+        },
+        {
+          "id": "ventotto",
+          "titolo": "Perché proprio 28?",
+          "durata": 17,
+          "scena": "Il contatore rosso al centro come un'insegna; intorno tre cartellini che si accendono a tempo: un blocco di fogli con «28 GIORNI» (la sceneggiatura), una cinepresa con «28 GIORNI» (le riprese), l'insegna di un cinema con «28 MESI» (le proiezioni di mezzanotte a New York).",
+          "sottotitoli": [
+            "Una curiosità: il numero 28 non sta solo dentro il film.",
+            "Richard Kelly ha scritto la sceneggiatura in 28 giorni,",
+            "e anche le riprese sono durate 28 giorni.",
+            "E a New York un cinema l'ha proiettato a mezzanotte per 28 mesi di fila."
+          ]
+        },
+        {
+          "id": "seguito",
+          "titolo": "Ci sarà un seguito?",
+          "durata": 17,
+          "scena": "Il libro di Nonna Morte si richiude e accanto ne compare uno nuovo, molto più spesso, con la copertina ancora coperta da un telo e un cartellino «FINE 2026?»; il contatore rosso si riaccende e mostra un punto interrogativo al posto dei numeri.",
+          "sottotitoli": [
+            "E la storia potrebbe non essere finita.",
+            "Richard Kelly ha annunciato un romanzo che continua il film,",
+            "con lo stesso titolo del libro di Nonna Morte.",
+            "Dovrebbe uscire a dicembre 2026, e lui ha in progetto anche nuovi film."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "chiusura",
+      "id": "chiusura",
+      "durata": 20,
+      "capitolo_youtube": "Donnie Darko in una frase",
+      "immagine": "Lo schema completo del paese, piccolo nella metà sinistra (la casa con il motore nel tetto, la copia azzurra che si dissolve, il vortice chiuso, il contatore a zero); sotto il riquadro «Ti è servito?» con «Metti like» e «Iscriviti al canale» e «Commenta con il film che vorresti spiegato.»; metà destra libera per la schermata finale di YouTube.",
+      "sottotitoli": [
+        "Donnie muore nel mondo vero, per salvare tutti gli altri.",
+        "Tu l'avevi capito, il finale? Se ti è servito, iscriviti al canale,",
+        "e commenta con il film che vorresti spiegato."
+      ]
+    }
+  ],
+  "musica": "60 bpm come lo Short di Donnie Darko (un battito per secondo, il ticchettio del contatore dei 28 giorni), Mi minore come lo Short con archi e pianoforte campionati; il vortice e la notte dello sparo a passo doppio; colpo di timpano forte e silenzio dopo il motore che cade e dopo lo sparo; il finale (la porta, il motore che torna) che si apre in Mi maggiore sul motore che cade nel tetto; la chiusura in maggiore, aperta.",
+  "fonti": [
+    "2 ottobre 1988, Donnie sonnambulo seguito da una voce; Frank nel costume da coniglio gli dice che il mondo finirà tra 28 giorni, 6 ore, 42 minuti e 12 secondi; si sveglia su un campo da golf; motore d'aereo caduto nella sua camera, gli investigatori non ne conoscono l'origine; visioni di Frank, i genitori lo mandano dalla psicoterapeuta che parla di allucinazioni; Frank gli chiede se crede nei viaggi nel tempo; il professore di scienze gli dà «La filosofia del viaggio nel tempo» di Roberta Sparrow, ex insegnante della scuola, anziana che vive fuori città, chiamata «Grandma Death»; Donnie allaga la scuola rompendo una conduttura; Gretchen, arrivata in città con la madre per sfuggire al patrigno violento; al cinema, mentre Gretchen dorme, Frank si mostra come un ragazzo con l'occhio destro ferito e lo convince a bruciare la casa di Cunningham, motivatore; nelle macerie si trova materiale pedopornografico e Cunningham viene arrestato; la madre di Donnie va a Los Angeles; l'ultima notte Donnie va con Gretchen e due amici da Sparrow e trova due bulli che rubano in casa; rissa in strada, un'auto investe e uccide Gretchen; alla guida Frank Anderson, fidanzato della sorella Elizabeth, con il costume da coniglio; Donnie gli spara all'occhio destro con la pistola del padre; all'alba un vortice; sulla collina guarda l'aereo con la madre che perde un motore che torna indietro nel tempo; Donnie si sveglia il 2 ottobre, ride mentre il motore cade e lo uccide; Gretchen passa davanti a casa Darko, scopre la morte di Donnie e lei e Rose si salutano con un senso di déjà vu: https://en.wikipedia.org/wiki/Donnie_Darko",
+    "Il DVD della director's cut (2004) contiene il testo del libro «La filosofia del viaggio nel tempo»: gran parte del film avviene in un universo tangente instabile, copia esatta dell'universo primario con un oggetto di metallo in più, l'artefatto (il motore); il vortice è l'ingresso del cunicolo che collega i due universi; se l'artefatto non viene rimandato nel primario dal ricevitore vivente (Donnie) entro 28 giorni, il tangente collassa in un buco nero e distrugge il primario; il ricevitore ha poteri (preveggenza, forza, poteri sugli elementi) ma visioni e paranoia; i manipolati viventi lo aiutano con una catena di eventi a domino; i manipolati morti (chi muore nel tangente, come Frank e Gretchen) sono più consapevoli, possono viaggiare nel tempo e preparano la trappola di sicurezza che non lascia scelta al ricevitore: https://en.wikipedia.org/wiki/Donnie_Darko",
+    "Director's cut uscita il 29 maggio 2004, con venti minuti in più; universo tangente che dura pochi giorni e poi collassa; ricevitore vivente con poteri e problemi psicologici; manipolato morto (Frank) che indirizza il ricevitore; manipolati viventi (il libro dato a Donnie); la morte di Gretchen come trappola di sicurezza; Donnie rispedisce il motore nell'universo primario, dove muore; il libro è un testo fittizio ideato per il film: https://it.wikipedia.org/wiki/Donnie_Darko",
+    "Kelly riconosce di aver voluto che non ci fosse una sola risposta semplice alla trama (se avesse chiarito di più il finale, il film sarebbe crollato); nell'agosto 2026 Kelly annuncia un romanzo seguito intitolato «The Philosophy of Time Travel» e progetti di nuovi film: https://en.wikipedia.org/wiki/Donnie_Darko",
+    "Romanzo seguito «The Philosophy of Time Travel» di Richard Kelly annunciato nell'agosto 2026, uscita indicata a dicembre 2026 (data non definitiva), piani per altri film: https://www.joblo.com/donnie-darko-sequel-book/ , https://shelf-awareness.com/theshelf/2026-08-26/film:_donnie_darko_sequel_book_in_the_works.html",
+    "Romanzo seguito «The Philosophy of Time Travel» di Richard Kelly annunciato nell'agosto 2026, ambientato subito dopo il film, uscita prevista il 15 dicembre 2026, piani per altri film: https://www.gamesradar.com/entertainment/sci-fi-movies/25-years-later-donnie-darko-director-is-releasing-an-800-page-sequel-novel-taking-place-immediately-after-the-movie/ , https://www.dreadcentral.com/news/586478/donnie-darko-getting-sequel-novel-from-filmmaker-richard-kelly-more-films-in-works/",
+    "L'allagamento della scuola diventa l'occasione per avvicinarsi a Gretchen; Donnie incendia la casa di Cunningham mentre Gretchen dorme al cinema; Donnie porta il corpo di Gretchen sulla collina che guarda la città; Kelly: chiarire di più il finale avrebbe fatto crollare il film, e non si volle una sola risposta semplice: https://it.wikipedia.org/wiki/Donnie_Darko , https://en.wikipedia.org/wiki/Donnie_Darko"
+  ]
+}

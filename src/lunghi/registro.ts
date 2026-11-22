@@ -11,6 +11,8 @@ import raf1 from '../../films/ritorno-al-futuro.json';
 import raf2 from '../../films/ritorno-al-futuro-parte-2.json';
 import raf3 from '../../films/ritorno-al-futuro-parte-3.json';
 import { RAF_TRILOGIA } from './ritorno-al-futuro-trilogia';
+import ddSpiegato from '../../lunghi/donnie-darko-spiegato.json';
+import { DONNIE_DARKO_SPIEGATO } from './donnie-darko-spiegato';
 
 // Registro dei video lunghi orizzontali (VIDEO-LUNGO.md): JSON in lunghi/<slug>.json, episodi riusati, scene in src/lunghi/<slug>/.
 
@@ -37,6 +39,12 @@ export const LUNGHI: LungoDef[] = [
     data: rafTrilogia as LungoData,
     episodi: { 'ritorno-al-futuro': raf1 as FilmData, 'ritorno-al-futuro-parte-2': raf2 as FilmData, 'ritorno-al-futuro-parte-3': raf3 as FilmData },
     scene: RAF_TRILOGIA,
+  },
+  {
+    slug: 'donnie-darko-spiegato',
+    data: ddSpiegato as LungoData,
+    episodi: {},
+    scene: DONNIE_DARKO_SPIEGATO,
   },
 ];
 
