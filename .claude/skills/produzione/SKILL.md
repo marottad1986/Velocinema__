@@ -34,8 +34,9 @@ Metodo (vincolante, da `CLAUDE.md`):
 7. Pull request con i verdetti dei revisori. Appena il video finale è pronto da controllare (controlli verdi, revisori
    APPROVATO), **richiesta di conferma nell'app** (`SOCIAL.md`, «Conferme nell'app»): anteprima a 540 px con ffmpeg (sotto
    24 MB), `POST /api/richieste` tipo `video` (titolo, una riga con contenuto ed esito dei revisori, uscita
-   `AAAA-MM-GGTHH:MM`), `PUT /api/media/<id>` con l'anteprima, poi `bash scripts/strumenti/attendi-conferma.sh <id>` in
-   background (Bash con `run_in_background`, controlla ogni 2 minuti). Manda il video anche in questa chat (SendUserFile);
+   `AAAA-MM-GGTHH:MM`, testo che finisce con «Ramo: <ramo>»), `PUT /api/media/<id>` con l'anteprima, poi `bash scripts/strumenti/attendi-conferma.sh <id>` in
+   background (Bash con `run_in_background`, controlla ogni 2 minuti). Se esce con «ancora aperta», o se il turno finisce con la
+   richiesta aperta, `send_later` fra 60 minuti e di nuovo lo script: l'attesa non scade mai (SOCIAL.md, punto 4). Manda il video anche in questa chat (SendUserFile);
    anche un problema che fa saltare la data va segnalato lì subito. A contenuto unito su main, il video arriva su MEGA.
    La richiesta «video pronto» è obbligatoria e va creata prima di chiudere la sessione: una produzione non è finita
    finché l'anteprima non risulta caricata (`PUT` → `{"ok":true}`).

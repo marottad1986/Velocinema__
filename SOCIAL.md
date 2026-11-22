@@ -162,8 +162,9 @@ avvisi (`x-avvisi-key`, la mette il proxy: **mai scriverla** in file o comandi).
      -movflags +faststart "$SCRATCH/<film>-anteprima.mp4"
    ```
    (se supera 24 MB, abbassare `-b:v`).
-2. `POST /api/richieste` con `{"tipo":"video","titolo":"<titolo>","testo":"<una riga: cosa contiene, esito dei revisori>","uscita":"AAAA-MM-GGTHH:MM"}`
-   (ora italiana dal calendario) → risposta `{"ok":true,"id":"rq-…"}`.
+2. `POST /api/richieste` con `{"tipo":"video","titolo":"<titolo>","testo":"<una riga: cosa contiene, esito dei revisori> Ramo: <ramo della sessione>","uscita":"AAAA-MM-GGTHH:MM"}`
+   (ora italiana dal calendario) → risposta `{"ok":true,"id":"rq-…"}`. La riga finale «Ramo: <ramo>» è obbligatoria: serve a
+   `scripts/strumenti/conferme-in-sospeso.mjs` per trovare i video approvati rimasti fuori da main.
 3. `PUT /api/media/<id>` con il file come corpo: `curl -sS -X PUT https://in-2-minuti-gestione.pages.dev/api/media/<id> -H 'content-type: video/mp4' --data-binary @"$SCRATCH/<film>-anteprima.mp4"`
    → `{"ok":true,"mb":…}`; da qui l'editore riceve la notifica.
 4. Attesa in background, mai a mano: `bash scripts/strumenti/attendi-conferma.sh <id>` (Bash con `run_in_background`;
@@ -172,7 +173,16 @@ avvisi (`x-avvisi-key`, la mette il proxy: **mai scriverla** in file o comandi).
    - `da rifare` → si legge `risposta.nota`, si corregge, si rifà il video e si riparte dal punto 1 (nuova richiesta).
    - Vale anche la conferma scritta dall'editore nella chat della sessione: vale la prima che arriva (se arriva prima in
      chat, si ferma il ciclo in background).
-   Se la sessione si chiude prima della risposta, chi la riprende rilancia lo script con lo stesso id.
+   - **L'attesa non scade mai** (errore del 22 nov, Donnie Darko: lo script si fermava dopo 2 ore, la sessione ha smesso
+     di aspettare e l'approvazione arrivata alle 21:00 non l'ha vista nessuno, lungo e trailer non programmati). Lo script
+     esce da solo dopo 100 minuti con «STATO: ancora aperta»: in quel caso, e comunque **prima di chiudere ogni turno con
+     una richiesta ancora aperta**, la sessione fissa un `send_later` fra 60 minuti («ricontrolla la richiesta <id>: se
+     approvata unisci e programma, se aperta fissa un altro send_later») e rilancia lo script. Il `send_later` sopravvive
+     al riavvio del contenitore, lo script no. Mai chiudere chiedendo solo «scrivimi in chat»: si ripete finché l'editore
+     risponde (di notte, dalle 23 alle 7, il controllo si sposta alle 7:30).
+   - Rete di sicurezza: `node scripts/strumenti/conferme-in-sospeso.mjs` elenca i video approvati nell'app ma con il ramo non
+     ancora su main. Lo lanciano ogni sera l'attività dei commenti e ogni mattina quella della missione YouTube; per ogni
+     «DA UNIRE» chi lo trova unisce il ramo su main (l'editore ha già confermato) e programma come al punto `approvata`.
 
 **Commenti della sera** (attività delle 21:52): per i commenti a cui proporre una risposta si crea **una sola** richiesta:
 `POST /api/richieste` con `{"tipo":"commenti","titolo":"Commenti della sera del <data>","voci":[{"itemId":"<da list_inbox_items di PostFast>","piattaforma":"TIKTOK|INSTAGRAM|FACEBOOK","video":"<titolo>","autore":"@…","commento":"…","risposta":"…"}]}`.
