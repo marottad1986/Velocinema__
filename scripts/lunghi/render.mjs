@@ -19,7 +19,7 @@ import { impulso, convolvi } from '../audio/sala.mjs';
 import { scaricaCampioni } from '../audio/campioni.mjs';
 import { scaricaEffetti } from '../audio/effetti.mjs';
 import { duration, run } from '../audio/film.mjs';
-import { durataLungo, episodiDi, inizioParti, loadLungo, lunghi, mmss, trattiLungo } from './tempi.mjs';
+import { durataLungo, episodiDi, frasiTratto, inizioParti, loadLungo, lunghi, mmss, trattiLungo } from './tempi.mjs';
 
 /** La voce e i sottotitoli dell'aggancio partono qui (fotogramma 0 = miniatura senza testo): come INIZIO_AGGANCIO in src/lunghi/Lungo.tsx. */
 export const INIZIO_AGGANCIO = 0.4;
@@ -49,14 +49,7 @@ const END = durataLungo(tr);
 mkdirSync('out', { recursive: true });
 
 /** Inizio di ogni frase di un tratto (s nel video lungo), come Overlay16 / subtitleTimes. */
-const frasi = (x) => {
-  const inizio = INIZIO[x.tipo] ?? 0;
-  const w = x.testo.map((l) => l.length + 6);
-  const tot = w.reduce((a, b) => a + b, 0);
-  const span = x.dur - inizio - 0.35;
-  let cur = 0.15;
-  return w.map((v) => { const s = x.start + inizio + cur; cur += (v / tot) * span; return s; });
-};
+const frasi = (x) => frasiTratto(x).map((s) => x.start + s);
 
 // ---------------------------------------------------------------- capitoli YouTube
 if (flag('capitoli')) {

@@ -42,7 +42,7 @@ export const LUNGHI: LungoDef[] = [
   },
   {
     slug: 'donnie-darko-spiegato',
-    data: ddSpiegato as LungoData,
+    data: ddSpiegato as unknown as LungoData,
     episodi: {},
     scene: DONNIE_DARKO_SPIEGATO,
   },

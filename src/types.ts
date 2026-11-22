@@ -11,7 +11,11 @@ export type Capitolo = {
   /** Solo formato "spiegato": anno evidenziato sulla linea del tempo e personaggi presentati nel capitolo. */
   anno?: number;
   personaggi?: string[];
+  /** Video lunghi: tempi veri delle frasi nella clip ripulita (s) e durata del parlato, da ascolta-voce --scrivi-tempi. */
+  voce?: VoceTempi;
 };
+
+export type VoceTempi = { parlato: number; frasi: [number, number][] };
 
 /** Formato "spiegato": ogni personaggio è rappresentato da un oggetto, mai da una figura. */
 export type Personaggio = { nome: string; ruolo: string; oggetto: string };

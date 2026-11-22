@@ -1,9 +1,9 @@
-import type { Capitolo, FilmData, Palette } from '../types';
+import type { Capitolo, FilmData, Palette, VoceTempi } from '../types';
 import { subtitleTimes } from '../components/ChapterOverlay';
 
 // Video lunghi orizzontali (VIDEO-LUNGO.md): tempi delle parti, uguali a scripts/lunghi/tempi.mjs.
 
-export type ParteAggancio = { tipo: 'aggancio' | 'chiusura'; id: string; durata: number; capitolo_youtube: string; sottotitoli: string[]; immagine?: string };
+export type ParteAggancio = { tipo: 'aggancio' | 'chiusura'; id: string; durata: number; capitolo_youtube: string; sottotitoli: string[]; immagine?: string; voce?: VoceTempi };
 export type ParteEpisodio = { tipo: 'episodio'; film: string; nome: string; sottotitolo: string; capitolo_youtube: string; /** riassunto nuovo (senza «In una frase:»), al posto della voce del finale dell'episodio */ riassunto?: string };
 export type ParteCapitoli = { tipo: 'capitoli'; id: string; nome: string; capitolo_youtube: string; capitoli: Capitolo[] };
 export type Parte = ParteAggancio | ParteEpisodio | ParteCapitoli;
@@ -63,3 +63,18 @@ export const durataTotale = (tr: Tratto[]) => tr.reduce((a, x) => Math.max(a, x.
 
 /** Inizio (s) di ogni frase di un tratto con testo, come i sottotitoli dei video verticali. */
 export const cuesDi = (righe: string[], dur: number) => subtitleTimes(righe, dur).map(([a]) => a);
+
+/** Da dove parte la voce in un tratto (come INIZIO_VOCE in scripts/lunghi/tempi.mjs). */
+export const INIZIO_VOCE: Record<string, number> = { aggancio: 0.4, chiusura: 0.5, riassunto: 0.3 };
+
+/**
+ * Finestre [inizio, fine] di ogni frase di un tratto, dai tempi veri della voce (`voce.frasi` nel JSON, da
+ * ascolta-voce --scrivi-tempi): ogni sottotitolo resta finché parte il successivo, l'ultimo fino a 1,2 s dopo la voce.
+ * null se il tratto non ha i tempi della voce (lunghi già usciti: restano come prima).
+ */
+export const tempiVoce = (righe: string[], v: VoceTempi | undefined, inizio: number, dur: number): [number, number][] | null => {
+  if (!v || v.frasi.length !== righe.length) return null;
+  const a = v.frasi.map(([s]) => inizio + s - 0.05);
+  const fine = Math.min(dur - 0.1, inizio + v.frasi[v.frasi.length - 1][1] + 1.2);
+  return a.map((s, i) => [Math.max(0, s), i + 1 < a.length ? a[i + 1] : fine]);
+};

@@ -3,7 +3,7 @@ import { AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig } from 'remotio
 import { SANS } from '../lib/fonts';
 import { Overlay16 } from './Overlay16';
 import { getLungo } from './registro';
-import { cuesDi, durataTotale, tratti, type Tratto } from './tempi';
+import { cuesDi, durataTotale, tempiVoce, tratti, type Tratto } from './tempi';
 
 export const FPS = 30;
 /** La voce e i sottotitoli dell'aggancio partono da qui: il fotogramma 0 è la miniatura, senza testo (CLAUDE.md). */
@@ -27,6 +27,7 @@ export const TrattoView: React.FC<{ slug: string; indice: number; offset?: numbe
   const { fps } = useVideoConfig();
   const t = frame / fps + offset;
   const P = L.data.palette;
+  const nativo = !L.data.parti.some((p) => p.tipo === 'episodio');
   return (
     <AbsoluteFill style={{ background: P.scuro, overflow: 'hidden' }}>
       <Scena L={L} x={x} t={t} />
@@ -34,10 +35,12 @@ export const TrattoView: React.FC<{ slug: string; indice: number; offset?: numbe
         <Overlay16 P={P} t={t} dur={x.dur} tempo={tempoEpisodio(tr, x, t)} etichetta={`${x.parte.nome} · CAPITOLO ${x.n} DI ${x.di}`} titolo={x.capitolo.titolo} righe={x.capitolo.sottotitoli} />
       )}
       {x.tipo === 'capitolo' && (
-        <Overlay16 P={P} t={t} dur={x.dur} etichetta={`${x.parte.nome} · ${x.n} DI ${x.di}`} titolo={x.capitolo.titolo} righe={x.capitolo.sottotitoli} />
+        // lunghi nativi (senza episodi, YOUTUBE.md §3): l'etichetta è solo il nome dell'atto, senza «n DI m»
+        <Overlay16 P={P} t={t} dur={x.dur} etichetta={nativo ? x.parte.nome : `${x.parte.nome} · ${x.n} DI ${x.di}`} titolo={x.capitolo.titolo}
+          righe={x.capitolo.sottotitoli} tempi={tempiVoce(x.capitolo.sottotitoli, x.capitolo.voce, 0, x.dur)} />
       )}
-      {x.tipo === 'aggancio' && <Overlay16 P={P} t={t} dur={x.dur} righe={x.parte.sottotitoli} inizio={INIZIO_AGGANCIO} />}
-      {x.tipo === 'chiusura' && <Overlay16 P={P} t={t} dur={x.dur} righe={x.parte.sottotitoli} inizio={INIZIO_CHIUSURA} />}
+      {x.tipo === 'aggancio' && <Overlay16 P={P} t={t} dur={x.dur} righe={x.parte.sottotitoli} inizio={INIZIO_AGGANCIO} tempi={tempiVoce(x.parte.sottotitoli, x.parte.voce, INIZIO_AGGANCIO, x.dur)} />}
+      {x.tipo === 'chiusura' && <Overlay16 P={P} t={t} dur={x.dur} righe={x.parte.sottotitoli} inizio={INIZIO_CHIUSURA} tempi={tempiVoce(x.parte.sottotitoli, x.parte.voce, INIZIO_CHIUSURA, x.dur)} />}
     </AbsoluteFill>
   );
 };
@@ -53,10 +56,10 @@ const Scena: React.FC<{ L: ReturnType<typeof getLungo>; x: Tratto; t: number }> 
   }
   if (x.tipo === 'capitolo') {
     const C = S.capitoli[x.capitolo.id];
-    if (C) return <C t={t} dur={x.dur} cues={cuesDi(x.capitolo.sottotitoli, x.dur)} />;
+    if (C) return <C t={t} dur={x.dur} cues={tempiVoce(x.capitolo.sottotitoli, x.capitolo.voce, 0, x.dur)?.map(([a]) => a + 0.05) ?? cuesDi(x.capitolo.sottotitoli, x.dur)} />;
   }
-  if (x.tipo === 'aggancio' && S.aggancio) return <S.aggancio t={t} dur={x.dur} cues={cuesDi(x.parte.sottotitoli, x.dur - INIZIO_AGGANCIO).map((c) => c + INIZIO_AGGANCIO)} />;
-  if (x.tipo === 'chiusura' && S.chiusura) return <S.chiusura t={t} dur={x.dur} cues={cuesDi(x.parte.sottotitoli, x.dur - INIZIO_CHIUSURA).map((c) => c + INIZIO_CHIUSURA)} />;
+  if (x.tipo === 'aggancio' && S.aggancio) return <S.aggancio t={t} dur={x.dur} cues={tempiVoce(x.parte.sottotitoli, x.parte.voce, INIZIO_AGGANCIO, x.dur)?.map(([a]) => a + 0.05) ?? cuesDi(x.parte.sottotitoli, x.dur - INIZIO_AGGANCIO).map((c) => c + INIZIO_AGGANCIO)} />;
+  if (x.tipo === 'chiusura' && S.chiusura) return <S.chiusura t={t} dur={x.dur} cues={tempiVoce(x.parte.sottotitoli, x.parte.voce, INIZIO_CHIUSURA, x.dur)?.map(([a]) => a + 0.05) ?? cuesDi(x.parte.sottotitoli, x.dur - INIZIO_CHIUSURA).map((c) => c + INIZIO_CHIUSURA)} />;
   return (
     <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center' }}>
       <p style={{ fontFamily: SANS, fontSize: 40, color: '#E4E7E1', opacity: 0.6 }}>[scena da disegnare: {x.id}]</p>
