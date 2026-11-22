@@ -3,6 +3,11 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 22 nov 2026 · **«Ogni video più bello del precedente» vale anche per i lunghi** (editore). La regola del 16 nov resta
+  valida per tutti i formati e si applica in modo esplicito ai video lunghi YouTube e ai loro trailer: ogni lungo parte
+  dal livello del lungo precedente, porta almeno un passo avanti deciso prima di disegnare (e un elemento nuovo nella
+  libreria comune), si confronta in 16:9 con l'ultimo lungo uscito prima di andare all'editore e scrive la sua riga in
+  `ASTICELLA.md` (punto 7). · produzione, revisori, direzione
 - 22 nov 2026 · **Revisori sempre attivi sui lunghi**: ogni video lungo YouTube e il suo trailer passano da tutti e quattro i
   revisori (testi, immagini, musica, voce) con le regole del 16:9 (`QUALITA.md` §10 e sezione «Video lunghi» delle istruzioni
   dei revisori), anche quando l'editore ha già visto il video. · produzione
