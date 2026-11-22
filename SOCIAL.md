@@ -362,6 +362,11 @@ chiesto anche Salvate il soldato Ryan, poi cancellato dall'autore); **Lo squalo*
 **18 novembre:** **Lost, stagione per stagione** (Instagram, commenti del post di Dark sul canale YouTube, 17 nov sera): già
 nelle priorità dello Spiegato semplice (CLAUDE.md); nei commenti di Shining due persone chiedono della foto finale (teoria della
 reincarnazione di Jack): spunto per uno Spiegato o per **Doctor Sleep**, già in lista.
+**20–22 novembre** (commenti della sera del 22): **Vanilla Sky** e **I soliti sospetti** (TikTok, commenti di Donnie Darko,
+20 nov: «spiegato così»); **The Butterfly Effect** (TikTok, Donnie Darko, 22 nov); **Il Signore degli Anelli** e **Saw**
+(TikTok, Il miglio verde, 20 nov); **Nascosto nel buio** (TikTok, The Others, 21 nov; chiesto anche Shutter Island, già fatto);
+**Scissione – stagione 2** (Instagram, 22 nov, «in previsione della terza»; su TikTok una persona chiede delle nuove stagioni);
+canzoni **Henna** di Lucio Dalla e **Un'estate al mare** di Giuni Russo (Instagram, commenti di Gli anni, 22 nov).
 **Quadro confermato per la settimana 23–29 novembre: L'urlo di Munch** (chiesto nei commenti di Notte stellata; deciso
 dall'utente il 14 novembre, insieme a L'Ultima Cena per sabato 21). Va nel weekend alle 10:00.
 Evento della settimana da non perdere: **Edoardo Bove – «In un battito»** (documentario in sala 16–18 novembre),
