@@ -208,7 +208,7 @@ export default (mix, T) => {
   timp(mix, buco + 3, { vel: 124, gain: 1.0, forte: true });
   clip(mix, 'rombo', { t: buco + 3, da: 3.6, durata: 3, gain: 0.14, fadeOut: 1.4, largo: 1.5 });
   [0, 1, 2, 3, 4].forEach((i) => bell(mix, [64, 67, 71, 74, 62][i], { t: [at('ricevitore', 2, 0.3), at('ricevitore', 2, 1.0), at('ricevitore', 2, 1.8), at('ricevitore', 2, 2.4), at('ricevitore', 4)][i], vel: i === 4 ? 30 : 38 }));
-  for (let i = 0; i < 18; i++) clip(mix, 'scatti', { t: at('viventi', 2, -0.3) + i * 0.18 + 0.2, da: 6.49, durata: 0.06, gain: 0.3, rev: 0.2, pan: -0.6 + i * 0.07 });
+  for (let i = 0; i < 18; i++) clip(mix, 'scatti', { t: at('viventi', 2, -0.3) + i * 0.18 + 0.2, da: 6.49, durata: 0.06, gain: 0.45, rev: 0.2, pan: -0.6 + i * 0.07 });
   [64, 67, 71, 74, 76, 79].forEach((m, k) => bell(mix, m, { t: at('morti', 2, 1.0) + k * CROMA / 2, vel: 34 }));
   [0, 1, 2].forEach((i) => clip(mix, 'metallo_colpi', { t: at('trappola', 1, 0.3) + i * 0.6, da: 0.54, durata: 0.3, gain: 0.5, rev: 0.4, pan: -0.3 + i * 0.3 }));
   // IL FINALE: la porta (il motore che attraversa), il cerchio che si chiude, le morti che si annullano, il saluto
