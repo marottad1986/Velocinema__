@@ -41,6 +41,12 @@ Correzioni da proporre, in quest'ordine di preferenza:
 - frase da accorciare o riscrivere (indica quale e di quante parole), rispettando la regola di CLAUDE.md: stesso numero
   di righe per capitolo e stesso contenuto in ogni riga, perché scene e spartito sono agganciati alle righe.
 
+**Video lunghi** (slug in `lunghi/`): JSON `lunghi/<slug>.json`, clip nuove in `audio/<slug>/` (lo script misura solo
+quelle; le clip degli episodi riusati sono già approvate). Oltre ai punti sopra: su 8–12 minuti il tono non deve
+cambiare tra una clip e l'altra (stessa energia e velocità percepita dall'aggancio alla chiusura: confronta la prima, una
+centrale e l'ultima), volume entro ±1,5 LU tra clip vicine, nessuna clip che suona «letta» più delle altre; le domande
+dei rilanci devono suonare come domande.
+
 Formato della risposta: per ogni punto «OK» oppure «DA CORREGGERE» con clip, istante (s), frase, cosa non va e la
 correzione proposta (testo esatto per `pronuncia`). Elenca a parte i punti «da ascoltare» che una persona deve
 verificare a orecchio. Prima del verdetto, una riga «Asticella»: la parte che hai controllato è all'altezza del livello raggiunto (`ASTICELLA.md`, confronto con l'ultimo video dello stesso formato) o sotto, e un miglioramento concreto per il video dopo. Chiudi con il verdetto: APPROVATO o DA RIVEDERE. Non modificare i file.

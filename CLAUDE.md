@@ -71,7 +71,7 @@ mai restare senza risposta.
   sono fondamentali: ogni scena va disegnata con la cura dei primi film (Shutter Island, Interstellar, Truman,
   La La Land, Frankenstein Junior), mai di fretta né a gruppi. Prima di ogni film rileggere `BRIEF-SCENA.md`,
   `QUALITA.md` (più `qualita/<film>.md` del film) e la scena di riferimento; una scena alla volta, controllata sui fotogrammi prima di passare alla
-  successiva; una sola immagine per capitolo, non più immagini in dissolvenza; oggetti ricchi di dettaglio, non
+  successiva; una sola immagine per capitolo, non più immagini in dissolvenza (nei video verticali; i lunghi 16:9 sono un mondo unico in cui la camera viaggia, `QUALITA.md` §10); oggetti ricchi di dettaglio, non
   schematici. Se un revisore trova problemi di fondo (inquadratura vuota, oggetto illeggibile), si ripensa la scena,
   non si rattoppa. Meglio un film in più giorni che un film meno curato.
 - **Evolversi: ogni video più bello del precedente** (regola dell'editore, 16 nov 2026). Mai sotto il livello già
@@ -317,7 +317,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - **Immagini viste prima dall'utente (vincolante):** prima di chiamare `revisore-immagini`, il video con la voce
   (`out/<film>-voce.mp4`) si manda all'utente nella chat della sessione (SendUserFile) e si aspetta la sua risposta. Se lo
   approva, il revisore delle immagini non si chiama e la pull request riporta «Immagini: approvate dall'utente»; se chiede
-  modifiche, si applicano e si rimanda il video. Il revisore delle immagini si chiama solo se l'utente lo chiede.
+  modifiche, si applicano e si rimanda il video. Il revisore delle immagini si chiama solo se l'utente lo chiede. **Eccezione: video lunghi e loro trailer** (editore, 22 nov 2026):
+  sempre tutti e quattro i revisori, immagini compresi, con le regole del 16:9 (`QUALITA.md` §10).
 - **Video pronto da confermare nell'app (vincolante, dal 17 nov 2026):** quando il video con la voce è pronto (controlli
   verdi, revisori APPROVATO), la conferma dell'editore passa dall'app «In 2 minuti»: anteprima leggera a 540 px (sotto 24 MB),
   richiesta `POST /api/richieste` di tipo `video`, `PUT /api/media/<id>` con l'anteprima, poi attesa in background con

@@ -75,6 +75,14 @@ Tutti funzione di `t`, con seme e `id` per i gradienti. Catalogo visivo: composi
 Se ti serve un elemento che manca e che potrà servire ad altri film, aggiungilo a `elements.tsx` (stesse regole:
 funzione pura di `t`, seme, `id`, niente filtri) e mettilo nel catalogo. Il resto si disegna nella scena.
 
+## 3b. Video lunghi 16:9
+Le regole di questo file sono scritte per le scene verticali (viewBox 1080×1920, una scena per capitolo, `camera()`).
+Per i lunghi (`src/lunghi/<slug>/`, 1920×1080) valgono `QUALITA.md` §10 e `YOUTUBE.md` §4: un mondo unico disegnato una
+volta (es. `src/lunghi/donnie-darko-spiegato/Paese.tsx`) con una camera propria che vola da un luogo all'altro, niente
+`camera()` del verticale, zone del 16:9 (x 96–1824, y 54–1026, sottotitoli x 260–1660 e y 800–1000). Degli errori qui
+sotto valgono tutti tranne quelli con le coordinate del verticale (cartellini, testi coperti, icone delle app, zona del
+titolo a y 640, metà bassa).
+
 ## 4. Errori già fatti (da non ripetere)
 - **Cartellini dei personaggi (formato «spiegato»).** Mentre una frase presenta un personaggio compare in basso a
   sinistra (x 60–800, y 1090–1250) il cartellino «NOME = oggetto»: in quel momento tieni l'oggetto chiave fuori da quella

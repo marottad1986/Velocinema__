@@ -8,7 +8,8 @@
 Formato per i video lunghi del canale YouTube: più episodi già fatti (di solito le stagioni di uno Spiegato semplice)
 montati in un solo racconto orizzontale, con un aggancio, i raccordi e un capitolo nuovo. Valgono tutte le regole di
 `CLAUDE.md` (contenuti, testo per chi non conosce l'opera, fatti verificati, stile, musica originale campionata, voce,
-revisori prima della pull request); qui solo ciò che cambia. Primo video: `lunghi/dark-tutta-la-serie.json`.
+revisori prima della pull request: per i lunghi e i loro trailer sempre tutti e quattro, immagini compresi, decisione
+dell'editore del 22 nov 2026); qui solo ciò che cambia. Primo video: `lunghi/dark-tutta-la-serie.json`.
 
 ## Formato (vincolante)
 - **1920×1080, 30 fps**, **durata di almeno 8 minuti** (480 s; di solito 8–10 minuti): se le parti riusate non bastano, si allungano le parti nuove (il capitolo nuovo, mai riempitivi). `controlli.mjs` dà errore sotto gli 8:00. Lingua: italiano.
@@ -21,8 +22,8 @@ revisori prima della pull request); qui solo ciò che cambia. Primo video: `lung
      i capitoli dell'episodio (112 s) e il riassunto finale (4 s, voce e musica del finale dell'episodio; dal 17 nov 2026 senza «In una frase:» davanti);
   3. `capitoli`: le parti nuove (es. «Il finale spiegato»), stesse regole di scrittura del formato dell'episodio;
   4. `chiusura` (15–20 s): riassunto in una frase, «Iscriviti al canale», invito a commentare.
-- **Copertina = miniatura YouTube** (regola della copertina di `CLAUDE.md`, vincolante): il fotogramma 0 è già la
-  miniatura completa, senza sottotitoli; soggetto e titolo leggibili anche a 320×180 (la miniatura nei risultati di ricerca
+- **Copertina = miniatura YouTube** (regola della copertina di `CLAUDE.md`, vincolante): il fotogramma 0 è già una
+  miniatura completa (la prima delle tre di «Testa e confronta»; le altre due si disegnano apposta, `YOUTUBE.md` §1), senza sottotitoli; soggetto e titolo leggibili anche a 320×180 (la miniatura nei risultati di ricerca
   e sul telefono): titolo enorme (almeno 200 px di altezza delle lettere), al massimo 6–7 parole in tutto, contrasto forte,
   un solo soggetto. La frase della voce entra da ~0,4 s. Niente logo, locandine ufficiali, volti.
   Il fotogramma 0 si esporta anche come PNG 1280×720 da caricare come miniatura (`node scripts/lunghi/render.mjs <slug> --miniatura`).
@@ -33,10 +34,12 @@ revisori prima della pull request); qui solo ciò che cambia. Primo video: `lung
 - Etichetta della copertina: il nome del formato (es. «SPIEGATO SEMPLICE»), senza durate.
 
 ## Elementi fissi (16:9)
+- Qualità delle immagini: `QUALITA.md` §10 (camera, piani, zone, criteri di accettazione del 16:9).
 - Zona sicura: testi tra x 96 e 1824 e tra y 54 e 1026 (5% per lato, televisori e anteprime). YouTube copre il fondo
   con la barra del lettore quando si mette in pausa: sottotitoli con la base a y ≤ 1000.
-- Etichetta in alto a sinistra (x 96, y 56): «STAGIONE N · CAPITOLO M DI K» con il tempo della stagione «m:ss / 2:00»,
-  come nel verticale (mai il tempo o la durata del video lungo); nelle parti nuove «IL FINALE SPIEGATO · M DI K» senza tempo.
+- Etichetta in alto a sinistra (x 96, y 56): nei lunghi nativi (da Donnie Darko) il nome dell'atto, senza numeri di
+  capitolo né tempi (`YOUTUBE.md` §3); solo nei due lunghi a episodi già usciti (Dark, Ritorno al futuro)
+  «STAGIONE N · CAPITOLO M DI K · m:ss / 2:00». Mai il tempo o la durata del video lungo.
   Niente barra a capitoli (YouTube mostra i capitoli nella sua barra).
 - Titolo del capitolo sotto l'etichetta (y 112, 60 px), a sinistra; sfondo calmo dietro.
 - Sottotitoli in basso al centro, una frase alla volta, larghezza massima 1400 px, 46 px, base a y 1000.

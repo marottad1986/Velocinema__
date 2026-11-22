@@ -27,6 +27,9 @@ Metodo (vincolante, da `CLAUDE.md`):
    (`revisore-testi`, `revisore-musica`, `revisore-voce`); secondo passaggio solo sulle parti cambiate.
    Immagini: prima del `revisore-immagini` il video con la voce si manda all'utente in chat (SendUserFile) e si aspetta la
    risposta; se lo approva, il revisore delle immagini non si chiama (nella pull request: «Immagini: approvate dall'utente»).
+   **Video lunghi e loro trailer** (decisione dell'editore, 22 nov 2026): sempre tutti e quattro i revisori, immagini
+   compresi, con `node scripts/lunghi/pacchetto.mjs <slug> --musica` e la sezione «Video lunghi» delle loro istruzioni;
+   l'approvazione dell'utente in chat non sostituisce il revisore delle immagini.
 6a. Prima di mandare il video all'editore: copertina e scena più forte affiancate a quelle dell'ultimo video dello
    stesso formato; se non è più bello, rinforza la scena più debole. Nel messaggio all'editore e nella pull request, una
    riga con il passo avanti; nello stesso ramo, la riga nel registro di `ASTICELLA.md` e la tecnica resa riutilizzabile nella libreria comune (`src/lib/`), in autonomia e senza chiedere conferma: i video già prodotti non si rigenerano mai.

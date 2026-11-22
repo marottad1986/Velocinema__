@@ -3,6 +3,9 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 22 nov 2026 · **Revisori sempre attivi sui lunghi**: ogni video lungo YouTube e il suo trailer passano da tutti e quattro i
+  revisori (testi, immagini, musica, voce) con le regole del 16:9 (`QUALITA.md` §10 e sezione «Video lunghi» delle istruzioni
+  dei revisori), anche quando l'editore ha già visto il video. · produzione
 - 20 nov 2026 · **Ogni video invita al canale YouTube** (idea dell'editore dall'app). Video verticali nuovi: nel finale,
   sotto «Commenta con…», la riga scritta «Le spiegazioni complete sono su YouTube» (senza logo né voce, per non perdere
   copertura su TikTok e Instagram; i video già fatti non si rifanno). Didascalie: riga ▶️ prima degli hashtag
