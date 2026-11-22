@@ -9,7 +9,8 @@ Formato per i video lunghi del canale YouTube: più episodi già fatti (di solit
 montati in un solo racconto orizzontale, con un aggancio, i raccordi e un capitolo nuovo. Valgono tutte le regole di
 `CLAUDE.md` (contenuti, testo per chi non conosce l'opera, fatti verificati, stile, musica originale campionata, voce,
 revisori prima della pull request: per i lunghi e i loro trailer sempre tutti e quattro, immagini compresi, decisione
-dell'editore del 22 nov 2026); qui solo ciò che cambia. Primo video: `lunghi/dark-tutta-la-serie.json`.
+dell'editore del 22 nov 2026; regola «ogni video più bello del precedente» di `ASTICELLA.md`, punto 7: ogni lungo supera il
+lungo precedente); qui solo ciò che cambia. Primo video: `lunghi/dark-tutta-la-serie.json`.
 
 ## Formato (vincolante)
 - **1920×1080, 30 fps**, **durata di almeno 8 minuti** (480 s; di solito 8–10 minuti): se le parti riusate non bastano, si allungano le parti nuove (il capitolo nuovo, mai riempitivi). `controlli.mjs` dà errore sotto gli 8:00. Lingua: italiano.

@@ -77,7 +77,8 @@ mai restare senza risposta.
 - **Evolversi: ogni video più bello del precedente** (regola dell'editore, 16 nov 2026). Mai sotto il livello già
   raggiunto, almeno un passo avanti nuovo per produzione (scene, copertina, testo, musica o voce), confronto con l'ultimo
   video prima di mandarlo all'editore, e ciò che si impara va nel registro di `ASTICELLA.md` (letto all'inizio di ogni
-  produzione) e, se riusabile, nella libreria comune.
+  produzione) e, se riusabile, nella libreria comune. Vale per tutti i formati, **anche per i video lunghi YouTube e i loro
+  trailer** (editore, 22 nov 2026): ogni lungo più bello del lungo precedente (`ASTICELLA.md`, punto 7).
 - **I testi si scrivono sempre immaginando che lo spettatore non conosca la trama**: chi guarda non ha visto il film
   (o non conosce la canzone, il quadro, la serie) e deve capire tutto solo da quello che sente (regole sotto).
 
