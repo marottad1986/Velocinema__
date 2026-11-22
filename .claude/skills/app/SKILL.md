@@ -28,7 +28,8 @@ Ogni avviso arriva come notifica sul telefono. Quando mandarli: `SOCIAL.md`, «A
 
 ## 2. Video da confermare (produzione)
 Procedura completa in `SOCIAL.md`, «Conferme nell'app»: anteprima 540 px sotto 24 MB → `POST /api/richieste`
-(`"tipo":"video"`) → `PUT /api/media/<id>` → attesa in background con `bash scripts/strumenti/attendi-conferma.sh <id>`.
+(`"tipo":"video"`) → `PUT /api/media/<id>` → attesa in background con `bash scripts/strumenti/attendi-conferma.sh <id>`, più un `send_later` fra 60 minuti finché la
+richiesta resta aperta (l'attesa non scade mai; testo della richiesta con «Ramo: <ramo>»: SOCIAL.md, «Conferme nell'app»).
 Esiti: `approvata` (si prosegue) o `da rifare` (si legge `risposta.nota` e si rifà).
 
 ## 3. Risposte ai commenti (commenti della sera)

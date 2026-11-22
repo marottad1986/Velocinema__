@@ -321,7 +321,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - **Video pronto da confermare nell'app (vincolante, dal 17 nov 2026):** quando il video con la voce è pronto (controlli
   verdi, revisori APPROVATO), la conferma dell'editore passa dall'app «In 2 minuti»: anteprima leggera a 540 px (sotto 24 MB),
   richiesta `POST /api/richieste` di tipo `video`, `PUT /api/media/<id>` con l'anteprima, poi attesa in background con
-  `bash scripts/strumenti/attendi-conferma.sh <id>` (controlla ogni 2 minuti). `approvata` → unione su main e programmazione;
+  `bash scripts/strumenti/attendi-conferma.sh <id>` (controlla ogni 2 minuti; se resta aperta, `send_later` fra 60 minuti e di nuovo: l'attesa non scade mai; rete di sicurezza `scripts/strumenti/conferme-in-sospeso.mjs`). `approvata` → unione su main e programmazione;
   `da rifare` → si legge `risposta.nota`, si corregge e si rifà la richiesta. Vale anche la conferma scritta in chat (la
   prima che arriva). La chiave la mette il proxy, mai scriverla. Procedura completa in `SOCIAL.md`, «Conferme nell'app».
   Anche le risposte ai commenti della sera passano da una richiesta `commenti` e le pubblica l'app, non la sessione.
