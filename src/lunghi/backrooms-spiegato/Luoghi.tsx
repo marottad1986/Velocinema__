@@ -34,7 +34,7 @@ export const L1 = { top: 820, bot: 1040 } as const; // Livello 1 (parcheggio)
 export const L2 = { top: 1200, bot: 1340 } as const; // Livello 2 (tunnel)
 export const X = {
   forum: 300, negozio: 2000, fessura: 2560, studio: 3350, casaMary: 3950, async: 5200, anello: 5000, monitor: 5500, stanzetta: 5980, cinema: 7000,
-  tavola: 3500, kat: 2950, copiaNeg: 4400, copiaStudio: 4900, copiaStanza: 6000,
+  tavola: 3696, kat: 2950, copiaNeg: 4400, copiaStudio: 4900, copiaStanza: 6000,
 } as const;
 /** Stanze del Livello 0 in sezione: inizio x e larghezza. */
 const r0 = rng(2019);

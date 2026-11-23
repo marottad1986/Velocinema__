@@ -104,9 +104,11 @@ export const Corridoio: React.FC<{
         const dmid = za + SEG / 2 - z;
         if (zb <= z + 0.26) return null;
         const r = (k: number) => hash(i * 7 + k, seed);
-        const on = neonAt(T, i, seed, rotto) * luce * (spenti ? 1 - spenti(i) : 1);
+        const forzato = spenti ? spenti(i) : 0;
+        const on = neonAt(T, i, seed, rotto) * luce * (1 - forzato);
         // luce del tratto: il suo neon e un po' dei vicini
-        const lum = clamp01(0.35 + 0.65 * on);
+        // un neon spento a forza scurisce davvero il suo tratto (muri, moquette, soffitto), non solo il pannello
+        const lum = clamp01(0.35 + 0.65 * on) * (1 - 0.72 * forzato);
         const fk = fogK(dmid);
         const tone = (c: string, dark: string, k: number) => mixHex(mixHex(c, dark, 1 - k), look.foschia, fk * (0.4 + 0.6 * luce));
         const apreSx = r(1) > 0.72, apreDx = r(2) > 0.74;

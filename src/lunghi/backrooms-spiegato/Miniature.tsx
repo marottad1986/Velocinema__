@@ -1,8 +1,7 @@
 import React from 'react';
-import { ANTON, HAND, SANS } from '../../lib/fonts';
+import { ANTON, SANS } from '../../lib/fonts';
 import { Corridoio } from '../../lib/liminale';
-import { Mondo, S } from './Mondo';
-import { NIGHT, PAPER, RED, X, YEL } from './Luoghi';
+import { NIGHT, PAPER, RED, YEL } from './Luoghi';
 import { SulMuro } from './Pov';
 
 // Le altre due miniature per «Testa e confronta» di YouTube Studio (YOUTUBE.md §1; la prima è il fotogramma 0 del lungo):
@@ -31,27 +30,22 @@ export const MiniaturaB: React.FC = () => (
   </div>
 );
 
-export const MiniaturaC: React.FC = () => {
-  const T = S('uscita') + 1.8; // i livelli della leggenda visibili, la fessura accesa
-  return (
-    <div style={{ position: 'absolute', inset: 0, background: NIGHT }}>
-      <Mondo T={T} cam={{ x: X.fessura + 520, y: 520, z: 0.52 }} pulito />
-      <svg viewBox="0 0 1920 1080" width={1920} height={1080} style={{ position: 'absolute', inset: 0 }}>
-        {/* anello rosso sulla fessura (l'uscita) */}
-        {(() => {
-          const cx = 960 + (X.fessura - (X.fessura + 520)) * 0.52, cy = 540 + (120 - 520) * 0.52;
-          return (
-            <g>
-              <circle cx={cx} cy={cy} r={120} fill="none" stroke={RED} strokeWidth={18} strokeDasharray="60 22" />
-              <circle cx={cx} cy={cy} r={142} fill="none" stroke={RED} strokeWidth={5} opacity={0.6} />
-              <text x={cx + 150} y={cy - 80} fontFamily={HAND} fontWeight={700} fontSize={90} fill={YEL} stroke={NIGHT} strokeWidth={14} paintOrder="stroke">l'uscita?</text>
-            </g>
-          );
-        })()}
-      </svg>
-      <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 460, background: `linear-gradient(0deg, ${NIGHT}F2 0%, ${NIGHT}B0 60%, ${NIGHT}00 100%)` }} />
-      <Titolo righe={['COME SI ESCE?']} x={96} y={760} size={230} color={YEL} />
-      <div style={{ position: 'absolute', right: 96, top: 70, padding: '8px 20px', borderRadius: 10, background: PAPER, color: NIGHT, fontFamily: SANS, fontWeight: 900, fontSize: 40, letterSpacing: '0.12em' }}>BACKROOMS</div>
-    </div>
-  );
-};
+export const MiniaturaC: React.FC = () => (
+  // un solo oggetto enorme: la fessura luminosa nel muro di mattoni del seminterrato, con l'anello rosso
+  <div style={{ position: 'absolute', inset: 0, background: '#1E1810' }}>
+    <svg viewBox="0 0 1920 1080" width={1920} height={1080} style={{ position: 'absolute', inset: 0 }}>
+      <rect width={1920} height={1080} fill="#2E2418" />
+      {Array.from({ length: 14 }, (_, r) => Array.from({ length: 12 }, (_, c) => (
+        <rect key={`${r}-${c}`} x={-80 + c * 180 + (r % 2) * 90} y={r * 80} width={170} height={70} rx={4} fill="#4A3826" stroke="#1E160C" strokeWidth={6} />
+      )))}
+      <radialGradient id="mc-luce"><stop offset="0" stopColor="#FFF4B8" stopOpacity=".75" /><stop offset=".5" stopColor="#FFE58A" stopOpacity=".25" /><stop offset="1" stopColor="#FFE58A" stopOpacity="0" /></radialGradient>
+      <ellipse cx={1330} cy={500} rx={420} ry={520} fill="url(#mc-luce)" />
+      <path d="M1330 80 Q1270 300 1305 500 Q1380 700 1330 930 Q1375 700 1350 500 Q1395 300 1330 80 Z" fill="#FFFDF0" stroke="#F2D06A" strokeWidth={8} />
+      <circle cx={1330} cy={505} r={330} fill="none" stroke={RED} strokeWidth={26} strokeDasharray="150 46" />
+      <circle cx={1330} cy={505} r={364} fill="none" stroke={RED} strokeWidth={7} opacity={0.6} />
+    </svg>
+    <div style={{ position: 'absolute', left: 0, top: 0, width: 1000, height: 1080, background: `linear-gradient(90deg, ${NIGHT}F0 0%, ${NIGHT}B0 60%, ${NIGHT}00 100%)` }} />
+    <div style={{ position: 'absolute', left: 96, top: 150, display: 'inline-block', padding: '8px 20px', borderRadius: 10, background: YEL, color: NIGHT, fontFamily: SANS, fontWeight: 900, fontSize: 34, letterSpacing: '0.16em' }}>BACKROOMS</div>
+    <Titolo righe={['COME', 'SI ESCE?']} x={90} y={220} size={260} color={PAPER} />
+  </div>
+);

@@ -111,8 +111,13 @@ const vistaAggancio = (T: number) => {
     const t = ev('aggancio', 1, 2.2) + (14 - i) * 0.12;
     return seg(T, t, t + 0.15) * (1 - seg(T, ev('aggancio', 2, -0.6), ev('aggancio', 2, -0.2)));
   };
+  // spenti tutti: mezzo secondo di buio in cui resta solo la luce della porta, poi la camera esce
+  const tutti = ev('aggancio', 1, 2.2) + 15 * 0.12 + 0.15;
+  const buio = seg(T, tutti - 0.3, tutti) * (1 - seg(T, ev('aggancio', 2, -0.6), ev('aggancio', 2, -0.2)));
+  const off = seg(T, ev('aggancio', 1, 2.2), tutti) * (1 - seg(T, ev('aggancio', 2, -0.6), ev('aggancio', 2, -0.2)));
   return (
-    <Corridoio T={T} z={z} x={0.35 + Math.sin(T * 0.4) * 0.12} id="pov-ag" seed={3} spenti={spenti(spegni, z)}
+    <g>
+    <Corridoio T={T} z={z} x={0.35 + Math.sin(T * 0.4) * 0.12} id="pov-ag" seed={3} spenti={spenti(spegni, z)} luce={1 - 0.85 * buio}
       oggetti={(p) => (
         <g>
           <PortaInFondo p={p} z={22} T={T} apre={0.3 + 0.05 * Math.sin(T * 0.7)} />
@@ -125,6 +130,21 @@ const vistaAggancio = (T: number) => {
           })()}
         </g>
       )} />
+      {/* il buio che avanza verso la camera: resta accesa solo la luce della porta in fondo */}
+      {off > 0 && (
+        <g>
+          <defs>
+            <radialGradient id="pov-ag-buio" cx="935" cy="540" r="900" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stopColor="#050402" stopOpacity="0" />
+              <stop offset=".1" stopColor="#050402" stopOpacity=".55" />
+              <stop offset=".35" stopColor="#050402" stopOpacity=".9" />
+              <stop offset="1" stopColor="#050402" stopOpacity=".95" />
+            </radialGradient>
+          </defs>
+          <rect x={-200} y={-200} width={2320} height={1480} fill="url(#pov-ag-buio)" opacity={off} />
+        </g>
+      )}
+    </g>
   );
 };
 /** Converte una funzione «neon i spento» in coordinate del corridoio (indice dal tratto della camera). */
@@ -164,10 +184,10 @@ const vistaLivello0 = (T: number) => {
     <g>
       <Corridoio T={T} z={z} x={-0.3 + Math.sin(T * 0.3) * 0.2} id="pov-l0" seed={21} rotto={inCap(T, 'livello0') ? seg(T, ev('livello0', 1), ev('livello0', 1, 1)) * 0.6 : 0}
         oggetti={(p) => <SulMuro p={p} side={-1} z={36} y={2.1} text="LIVELLO 0" size={190} color="#3A2A10" font={SANS} />} />
-      <Tag T={T} t0={ev('livello0', 0, 0.6)} x={1260} y={440} text="600.000.000" size={96} until={ev('livello0', 1, 1)} />
-      <Tag T={T} t0={ev('livello0', 0, 1.4)} x={1260} y={580} text="MIGLIA QUADRATE" size={46} bg={PAPER} until={ev('livello0', 1, 1)} />
+      <Tag T={T} t0={ev('livello0', 0, 0.6)} x={1440} y={330} text="600.000.000" size={96} until={ev('livello0', 1, 1)} />
+      <Tag T={T} t0={ev('livello0', 0, 1.4)} x={1440} y={470} text="MIGLIA QUADRATE" size={46} bg={PAPER} until={ev('livello0', 1, 1)} />
       {T >= ev('livello0', 0, 3.6) && T < ev('livello0', 1, 1.5) && (
-        <g transform="translate(1260 720)" opacity={1 - seg(T, ev('livello0', 1, 1), ev('livello0', 1, 1.5))}>
+        <g transform="translate(1480 620)" opacity={1 - seg(T, ev('livello0', 1, 1), ev('livello0', 1, 1.5))}>
           <text x={-260} y={22} fontFamily={SANS} fontWeight={900} fontSize={60} fill={PAPER} stroke={NIGHT} strokeWidth={8} paintOrder="stroke">=</text>
           {[0, 1, 2].map((i) => {
             const t = ev('livello0', 0, 3.6 + i * 0.3);
@@ -193,10 +213,11 @@ const vistaCassetta = (T: number) => {
   const attacco = ev('cassetta', 2, 1.2);
   const neve = seg(T, attacco, attacco + 0.2);
   const torcia = 1 - seg(T, attacco - 0.4, attacco);
-  const tw = Math.sin(T * 7) * 30 + Math.sin(T * 13) * 14;
+  const panico = seg(T, attacco - 2, attacco);
+  const tw = (Math.sin(T * 7) * 30 + Math.sin(T * 13) * 14) * (1 + 3 * panico);
   return (
     <g>
-      <Corridoio T={T} z={z} x={Math.sin(T * 1.3) * 0.25} roll={Math.sin(T * 1.1) * 2} id="pov-vhs" seed={1990} luce={0.25} rotto={1}
+      <Corridoio T={T} z={z} x={Math.sin(T * 1.3) * 0.25 + Math.sin(T * 23) * 0.12 * panico} roll={Math.sin(T * 1.1) * 2 + Math.sin(T * 17) * 6 * panico} id="pov-vhs" seed={1990} luce={0.25} rotto={1}
         oggetti={() => null} />
       <rect width={1920} height={1080} fill="#0A0804" opacity={0.62} />
       {/* il cono della torcia */}
@@ -274,6 +295,20 @@ const vistaPirata = (T: number) => {
         oggetti={(p) => (
           <g>
             <Impronte p={p} z0={zh - 1} z1={zh + 14} />
+            {/* la gamba di legno (un piolo, nessuna figura): dal pavimento sotto il cappello; si spezza con l'attaccapanni */}
+            {T < ev('cemento', 2, 1.6) && (() => {
+              const g0 = p(0.2, 0, zh), g1 = p(0.2, 0.95 - 0.55 * rotto, zh);
+              if (!g0 || !g1) return null;
+              const w = g0.s * 0.07;
+              return (
+                <g>
+                  <path d={`M${g0.x - w / 2} ${g0.y} L${g1.x - w * 0.7} ${g1.y} H${g1.x + w * 0.7} L${g0.x + w / 2} ${g0.y} Z`} fill="#8A5A30" stroke={INK} strokeWidth={3} />
+                  <ellipse cx={g0.x} cy={g0.y} rx={w * 0.7} ry={w * 0.25} fill="#5A3A1E" stroke={INK} strokeWidth={2} />
+                  <path d={`M${g1.x - w * 0.8} ${g1.y + w * 0.6} H${g1.x + w * 0.8}`} stroke="#3A2410" strokeWidth={w * 0.3} />
+                  {rotto > 0.3 && <path d={`M${g1.x - w * 0.7} ${g1.y} l${w * 0.35} ${-w * 0.6} l${w * 0.3} ${w * 0.4} l${w * 0.35} ${-w * 0.5} l${w * 0.3} ${w * 0.7}`} fill="#C8945A" stroke={INK} strokeWidth={2} />}
+                </g>
+              );
+            })()}
             {T < ev('cemento', 2, 1.6) && <PirataPov p={p} z={zh} T={T} rotto={rotto} />}
             {/* l'attaccapanni che vola contro la gamba di legno */}
             {T >= attacc - 0.6 && T < attacc + 1.4 && (() => {
@@ -281,7 +316,7 @@ const vistaPirata = (T: number) => {
               const a = p(lerp(-1, 0.2, q), lerp(0.4, 0.5, q), lerp(z + 1.2, zh - 0.2, q));
               if (!a) return null;
               return (
-                <g transform={`translate(${a.x} ${a.y}) rotate(${-70 + q * 160}) scale(${a.s / 220})`}>
+                <g transform={`translate(${a.x} ${a.y}) rotate(${-70 + q * 160}) scale(${a.s / 130})`}>
                   <path d="M0 -150 V150 M-40 150 H40 M0 -150 L-30 -170 M0 -150 L30 -170 M0 -130 L-26 -146 M0 -130 L26 -146" stroke="#6A4A2A" strokeWidth={14} strokeLinecap="round" />
                 </g>
               );
@@ -293,10 +328,19 @@ const vistaPirata = (T: number) => {
               return a ? <rect key={i} x={a.x} y={a.y} width={a.s * 0.06} height={a.s * 0.18} fill="#A8784A" stroke={INK} strokeWidth={1.5} transform={`rotate(${i * 40 + tt * 400} ${a.x} ${a.y})`} opacity={1 - seg(tt, 1, 1.6)} /> : null;
             })}
             {/* il pezzo di cemento lanciato */}
-            {T >= lancio && T < colpo + 0.1 && (() => {
+            {T >= lancio - 0.4 && T < colpo + 0.1 && (() => {
+              // entra da sotto il bordo, grande e grigio, con un alone, e vola contro il cappello
               const q = eio(seg(T, lancio, colpo));
-              const a = p(lerp(0.3, 0.1, q), lerp(1.0, 2.2, q) + Math.sin(q * Math.PI) * 0.6, lerp(z + 0.8, zh, q));
-              return a ? <g transform={`translate(${a.x} ${a.y}) rotate(${q * 540}) scale(${a.s / 140})`}><Icona k="cemento" /></g> : null;
+              const a = p(lerp(0.45, 0.2, q), lerp(0.75, 2.5, q) + Math.sin(q * Math.PI) * 0.5, lerp(z + 0.6, zh, q));
+              if (!a) return null;
+              const sz = a.s / 55;
+              return (
+                <g>
+                  <circle cx={a.x} cy={a.y} r={sz * 55} fill="#FFF4C8" opacity={0.25} />
+                  <g transform={`translate(${a.x} ${a.y}) rotate(${q * 540}) scale(${sz})`}><Icona k="cemento" /></g>
+                  {q < 0.45 && <Tag T={T} t0={lancio - 0.3} x={a.x} y={a.y - sz * 60} text="UN PEZZO DI CEMENTO" size={50} />}
+                </g>
+              );
             })()}
           </g>
         )} />
@@ -311,15 +355,35 @@ const vistaPirata = (T: number) => {
           })}
         </g>
       )}
-      <Tag T={T} t0={attacc + 0.2} x={1340} y={380} text="LA GAMBA DI LEGNO" size={46} until={ev('cemento', 1, 0.2)} />
+      <Tag T={T} t0={attacc + 0.2} x={1340} y={380} text="LA GAMBA DI LEGNO" size={46} until={ev('cemento', 1, -0.5)} />
       {T >= colpo + 0.9 && T < ev('cemento', 2, 0.6) && (
         <g>
-          <Tag T={T} t0={colpo + 0.9} x={960} y={330} text="UN PEZZO DI CEMENTO" size={56} until={ev('cemento', 2, 0.2)} />
           <text x={960} y={720} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={96} fill={YEL} stroke={NIGHT} strokeWidth={16} paintOrder="stroke" opacity={seg(T, ev('cemento', 1, 2.4), ev('cemento', 1, 2.8))}>ricordatelo!</text>
         </g>
       )}
       <Tag T={T} t0={ev('cemento', 2, 1.2)} x={960} y={360} text="LA TRAPPOLA DI ASYNC" size={52} bg="#7FC6D8" />
     </g>
+  );
+};
+
+/** Il dettaglio (momento clou finale): il corridoio, il cappello del pirata (la copia) in fondo che trema; il cemento con
+ * dentro la casa di Mary (disegnato sopra, in Mondo.tsx) lo colpisce: lampo, il cappello si incrina e cade sulla moquette. */
+const vistaDettaglio = (T: number) => {
+  const z = 500 + passo(T, S('dettaglio'), 0.25);
+  const hit = ev('dettaglio', 3, 0.8);
+  const trema = seg(T, ev('dettaglio', 2), ev('dettaglio', 2, 0.6)) * (T < hit ? 1 : 0);
+  const cade = eio(seg(T, hit + 0.1, hit + 1.2));
+  return (
+    <Corridoio T={T} z={z} id="pov-det" seed={88} luce={0.75 + 0.25 * cade} rotto={T < hit ? 0.5 : 0}
+      oggetti={(p) => {
+        const zh = z + 9;
+        return (
+          <g transform={`translate(${Math.sin(T * 45) * 6 * trema} ${cade * 150})`} opacity={1 - 0.85 * cade}>
+            <PirataPov p={p} z={zh} T={T} rotto={cade} />
+            {T >= hit && (() => { const a = p(0.2, 2.72, zh); return a ? <path d={`M${a.x - a.s * 0.1} ${a.y - a.s * 0.9} l${a.s * 0.12} ${a.s * 0.3} l${-a.s * 0.1} ${a.s * 0.25} l${a.s * 0.12} ${a.s * 0.3}`} stroke="#F4F0E4" strokeWidth={4} fill="none" /> : null; })()}
+          </g>
+        );
+      }} />
   );
 };
 
@@ -332,6 +396,7 @@ export const POV_SEGMENTI: Seg[] = [
   { t0: S('cassetta'), t1: ev('cassetta', 3), f: fin(X.monitor, 135, 126), vista: vistaCassetta },
   { t0: ev('fessura', 2, -0.2), t1: ev('fessura', 3, 1.0), f: fin(X.fessura, 120, 150), vista: vistaFessura },
   { t0: ev('pirata', 3, 0.6), t1: ev('cemento', 3), f: fin(X.tavola + 700, Y0), vista: vistaPirata },
+  { t0: S('dettaglio') + 0.2, t1: ev('dettaglio', 4), f: fin(X.tavola + 150, Y0), vista: vistaDettaglio },
 ];
 
 /** Il corridoio disegnato nella finestra della stanza, che si allarga fino a riempire lo schermo. */

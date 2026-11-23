@@ -79,6 +79,14 @@ export const Icona: React.FC<{ k: string; T?: number }> = ({ k, T = 0 }) => {
         <circle cx={14} cy={8} r={3} fill="#6A665E" />
       </g>
     );
+    case 'taccuinoCopia': return ( // la copia deforme del taccuino di Mary: grigio, storto, colato, righe sbagliate
+      <g>
+        <path d="M-28 -30 Q-10 -36 26 -30 L30 18 Q24 30 18 26 Q14 40 8 30 Q0 34 -6 28 Q-14 44 -18 30 Q-28 34 -30 24 Z" fill="#C8C4B8" {...o} />
+        <path d="M-18 -16 Q0 -10 14 -20 M-16 -2 Q-2 4 18 -8 M-14 12 Q4 6 10 16" stroke="#8A867C" strokeWidth={3} fill="none" />
+        {[-18, -6, 6].map((x) => <circle key={x} cx={x} cy={-32 + (x % 4)} r={4} fill="none" stroke={INK} strokeWidth={2.5} />)}
+        <path d="M18 26 Q19 34 17 40 M-18 30 Q-17 38 -19 44" stroke="#C8C4B8" strokeWidth={4} strokeLinecap="round" />
+      </g>
+    );
     case 'utente': return ( // l'utente anonimo del forum: un puntatore
       <path d="M-14 -30 L-14 22 L-2 10 L8 32 L16 28 L6 6 L22 6 Z" fill={PAPER} {...o} />
     );

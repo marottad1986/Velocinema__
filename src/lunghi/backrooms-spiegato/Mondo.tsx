@@ -6,7 +6,7 @@ import { Fog, Glow, Stars, flashAt } from '../../lib/elements';
 import { Corridoio, neonAt } from '../../lib/liminale';
 import { H, Motes16, W } from '../fx16';
 import {
-  ASYNC, Async, COPY, Cappello, CasaForum, CasaMary, Cinema, Divano, Fessura, INK, L0, L1, L2, Livelli, Livello0, Mano, NIGHT, Negozio,
+  ASYNC, Async, COPY, Cappello, stanzaDi, CasaForum, CasaMary, Cinema, Divano, Fessura, INK, L0, L1, L2, Livelli, Livello0, Mano, NIGHT, Negozio,
   PAPER, RED, Stanzetta, Studio, Terra, X, YEL, mix,
 } from './Luoghi';
 import { Anello, Cartello, Icona, ManoS, Nodo, Tag, cartW, tagW } from './Segni';
@@ -64,9 +64,9 @@ const SHOTS: Key[] = [
   K(ev('oshkosh', 1), 1220, -660, 0.95, 2.2),
   K(ev('oshkosh', 2), 1380, -620, 0.9, 2.0),
   K(ev('oshkosh', 3, -0.2), X.negozio - 120, -250, 0.85, 2.4),
-  K(S('parsons'), 2900, -760, 0.95, 2.4),
-  K(ev('parsons', 2), 2900, -230, 0.45, 2.8),
-  K(ev('parsons', 3), 3250, -640, 0.8, 2.4),
+  K(S('parsons'), 1000, -260, 1.0, 2.4),
+  K(ev('parsons', 2), 1000, 160, 0.6, 2.8),
+  K(ev('parsons', 3), 1150, -230, 0.85, 2.4),
   K(S('async'), X.async - 80, 40, 0.95, 2.8),
   K(ev('async', 1, 0.8), X.anello + 60, 300, 0.85, 2.0),
   K(S('a24'), X.cinema, -230, 1.05, 2.8),
@@ -120,7 +120,7 @@ const SHOTS: Key[] = [
   K(S('metafora'), 3300, Y0, 0.62, 2.4),
   K(ev('metafora', 2), X.tavola, Y0, 1.2, 2.0),
   K(ev('metafora', 3), 3300, Y0, 0.55, 2.0),
-  K(S('dettaglio'), X.tavola + 150, Y0 - 20, 1.3, 2.4),
+  KF(S('dettaglio') + 0.2, POV_SEGMENTI[6].f, 1.6),
   K(ev('dettaglio', 4), X.fessura + 200, 200, 0.7, 2.8),
   K(S('seguito'), X.fessura, 150, 1.2, 2.4),
   K(ev('seguito', 1), 4600, 260, 0.38, 3.0),
@@ -271,8 +271,8 @@ export const Mondo: React.FC<{ T: number; cam?: Cam; w?: number; h?: number; pul
         <>
           <defs>
             <radialGradient id="br16-tit" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(330 110) scale(860 200)">
-              <stop offset="0" stopColor="#06060A" stopOpacity=".6" />
-              <stop offset=".6" stopColor="#06060A" stopOpacity=".28" />
+              <stop offset="0" stopColor="#06060A" stopOpacity=".8" />
+              <stop offset=".6" stopColor="#06060A" stopOpacity=".45" />
               <stop offset="1" stopColor="#06060A" stopOpacity="0" />
             </radialGradient>
           </defs>
@@ -283,7 +283,7 @@ export const Mondo: React.FC<{ T: number; cam?: Cam; w?: number; h?: number; pul
       {/* buio prima del colpo del cemento e del dettaglio (momenti clou) */}
       {!pulito && (() => {
         const clou = (t: number) => seg(T, t - 0.6, t + 0.1) * (1 - seg(T, t + 0.3, t + 1.4));
-        const dk = Math.max(clou(ev('cemento', 1, 0.8)), 0.8 * clou(ev('dettaglio', 3, 0.8)), 0.7 * seg(T, ev('cassetta', 2, 1.2), ev('cassetta', 2, 1.6)) * (1 - seg(T, ev('cassetta', 2, 2.4), ev('cassetta', 2, 3))));
+        const dk = Math.max(0.5 * clou(ev('cemento', 1, 0.8)), 0.45 * clou(ev('dettaglio', 3, 0.8)), 0.7 * seg(T, ev('cassetta', 2, 1.2), ev('cassetta', 2, 1.6)) * (1 - seg(T, ev('cassetta', 2, 2.4), ev('cassetta', 2, 3))));
         return dk > 0 ? <rect width={w} height={h} fill="#020203" opacity={0.85 * dk} /> : null;
       })()}
       {flash > 0 && <rect width={w} height={h} fill="#FFF6DA" opacity={0.4 * flash} />}
@@ -502,8 +502,12 @@ const Liminali: React.FC<{ T: number }> = ({ T }) => {
       </g>
       {/* centro commerciale all'alba: la scala mobile ferma */}
       <g transform={`translate(1620 ${y})`}>
-        <path d="M-160 0 L40 -180 H90 V0 Z" fill={mix('#8A8A92', '#2A2A30', b)} stroke={INK} strokeWidth={4} />
-        <path d="M-150 -14 L46 -190" stroke="#3A3A40" strokeWidth={6} />
+        <path d="M-170 0 L30 -170 H100 V0 Z" fill={mix('#8A8A92', '#2A2A30', b)} stroke={INK} strokeWidth={4} />
+        {/* i gradini */}
+        {Array.from({ length: 9 }, (_, i) => <path key={i} d={`M${-150 + i * 20} ${-17 - i * 17} h20 v17`} fill="none" stroke={mix('#C8C8D0', '#3A3A40', b)} strokeWidth={3} />)}
+        {/* il corrimano nero con la fascia scura */}
+        <path d="M-190 -40 L20 -222 Q40 -236 60 -222 H110" fill="none" stroke="#141418" strokeWidth={14} strokeLinecap="round" />
+        <path d="M-180 -40 L-180 0 M110 -222 V0" stroke="#5A5A62" strokeWidth={8} />
         <rect x={110} y={-120} width={70} height={60} fill={mix('#E8C87A', '#3A3020', b)} stroke={INK} strokeWidth={3} />
       </g>
     </g>
@@ -513,7 +517,7 @@ const Liminali: React.FC<{ T: number }> = ({ T }) => {
 /** La videocassetta gigante di Kane Parsons. */
 const Videocassetta: React.FC<{ T: number }> = ({ T }) => {
   const k = capOp(T, 'parsons');
-  const x = 2900, y = -760;
+  const x = 960, y = -175; // appoggiata sulla strada, tra la casa del forum e il negozio
   const srot = eo(seg(T, ev('parsons', 1, 0.4), ev('parsons', 1, 1.6)));
   return (
     <g opacity={k}>
@@ -545,32 +549,41 @@ const pop2 = (T: number, t0: number) => 0.85 + 0.15 * eo(seg(T, t0, t0 + 0.6));
 const Tavola: React.FC<{ T: number }> = ({ T }) => {
   const k = capOp(T, 'tavola', S('tavola'), E('cemento'));
   const x = X.tavola, y = L0.bot - 22;
+  const st = stanzaDi(x);
+  const bx0 = st.x + 26, bx1 = st.x + st.w - 26; // il muro di fondo della stanza (Luoghi.tsx, Livello0)
   const bianco = eo(seg(T, ev('tavola', 1), ev('tavola', 1, 1)));
   const cola = seg(T, ev('tavola', 2), ev('tavola', 2, 3));
   return (
     <g opacity={k}>
-      {/* carta da parati sbagliata: fiori, non righe */}
-      <rect x={x - 260} y={L0.top + 10} width={520} height={L0.bot - L0.top - 40} fill="#9A7A6A" opacity={0.55} />
-      {Array.from({ length: 24 }, (_, i) => <circle key={i} cx={x - 230 + (i % 8) * 66} cy={L0.top + 40 + Math.floor(i / 8) * 60} r={8} fill="#C89A8A" opacity={0.7} />)}
-      <rect x={x + 170} y={y - 170} width={80} height={170} rx={8} fill="#E8E4D8" stroke={INK} strokeWidth={4} />
-      <path d={`M${x + 180} ${y - 110} H${x + 240} M${x + 232} ${y - 150} V${y - 126}`} stroke={INK} strokeWidth={3} />
-      <rect x={x - 160} y={y - 70} width={280} height={14} fill="#7A5A3A" stroke={INK} strokeWidth={4} />
-      <path d={`M${x - 150} ${y - 56} V${y} M${x + 110} ${y - 56} V${y}`} stroke={INK} strokeWidth={6} />
-      {[-130, -40, 50].map((dx, i) => (
+      {/* carta da parati sbagliata (fiori, non righe), solo sul muro di fondo di questa stanza */}
+      <rect x={bx0} y={L0.top + 30} width={bx1 - bx0} height={L0.bot - L0.top - 76} fill="#9A7A6A" />
+      {Array.from({ length: Math.floor((bx1 - bx0) / 46) * 3 }, (_, i) => {
+        const n = Math.floor((bx1 - bx0) / 46);
+        return <circle key={i} cx={bx0 + 23 + (i % n) * 46} cy={L0.top + 60 + Math.floor(i / n) * 52} r={7} fill="#C89A8A" />;
+      })}
+      {/* frigorifero */}
+      <rect x={x + 118} y={y - 150} width={56} height={150} rx={7} fill="#E8E4D8" stroke={INK} strokeWidth={4} />
+      <path d={`M${x + 118} ${y - 98} H${x + 174} M${x + 165} ${y - 136} V${y - 112}`} stroke={INK} strokeWidth={3} />
+      {/* tavola */}
+      <rect x={x - 160} y={y - 70} width={226} height={13} fill="#7A5A3A" stroke={INK} strokeWidth={4} />
+      <path d={`M${x - 150} ${y - 57} V${y} M${x + 56} ${y - 57} V${y}`} stroke={INK} strokeWidth={6} />
+      {[-150, -94, -38].map((dx, i) => (
         <g key={i}>
-          <circle cx={x + dx + 20} cy={y - 74} r={12} fill="#E8E4D8" stroke={INK} strokeWidth={2} />
+          <ellipse cx={x + dx + 20} cy={y - 73} rx={13} ry={4} fill="#E8E4D8" stroke={INK} strokeWidth={2} />
           {/* sedia */}
-          <path d={`M${x + dx} ${y} V${y - 46} H${x + dx + 40} V${y} M${x + dx} ${y - 46} V${y - 110}`} stroke={INK} strokeWidth={5} fill="none" />
-          {/* la copia bianca: una macchia informe che cola (nessuna figura) */}
+          <path d={`M${x + dx + 4} ${y} V${y - 44} H${x + dx + 36} V${y} M${x + dx + 4} ${y - 44} V${y - 104}`} stroke={INK} strokeWidth={5} fill="none" />
+          {/* la copia bianca: una massa bassa e larga, come cera colata sulla sedia (nessuna figura, mai più alta dello schienale) */}
           {bianco > 0 && (
-            <path d={`M${x + dx - 6} ${y - 46} Q${x + dx - 14} ${y - 100 * bianco} ${x + dx + 20} ${y - 116 * bianco} Q${x + dx + 54} ${y - 96 * bianco} ${x + dx + 44} ${y - 46} Q${x + dx + 30} ${y - 46 + 30 * cola} ${x + dx + 26} ${y - 46 + 40 * cola} Q${x + dx + 18} ${y - 40} ${x + dx + 8} ${y - 46 + 20 * cola} Z`}
+            <path d={`M${x + dx - 2} ${y - 44} C${x + dx - 4} ${y - 44 - 30 * bianco} ${x + dx + 10} ${y - 44 - 40 * bianco} ${x + dx + 22} ${y - 44 - 34 * bianco} C${x + dx + 34} ${y - 44 - 44 * bianco} ${x + dx + 44} ${y - 44 - 22 * bianco} ${x + dx + 42} ${y - 44}
+              C${x + dx + 41} ${y - 30 + 22 * cola} ${x + dx + 36} ${y - 26 + 26 * cola} ${x + dx + 33} ${y - 44 + 8} C${x + dx + 28} ${y - 30 + 12 * cola} ${x + dx + 22} ${y - 36} ${x + dx + 14} ${y - 40}
+              C${x + dx + 8} ${y - 30 + 18 * cola} ${x + dx + 2} ${y - 32} ${x + dx - 2} ${y - 44} Z`}
               fill="#F2EFE6" stroke={INK} strokeWidth={3} opacity={bianco} />
           )}
         </g>
       ))}
       {/* la sedia di Mary, con la corda */}
-      <path d={`M${x + 130} ${y} V${y - 46} H${x + 90} V${y} M${x + 130} ${y - 46} V${y - 110}`} stroke={INK} strokeWidth={5} fill="none" />
-      {T < ev('pirata', 1) && <path d={`M${x + 88} ${y - 70} Q${x + 110} ${y - 60} ${x + 132} ${y - 70}`} stroke="#C8A86A" strokeWidth={5} fill="none" />}
+      <path d={`M${x + 104} ${y} V${y - 44} H${x + 72} V${y} M${x + 104} ${y - 44} V${y - 104}`} stroke={INK} strokeWidth={5} fill="none" />
+      {T < ev('pirata', 1) && <path d={`M${x + 70} ${y - 66} Q${x + 88} ${y - 56} ${x + 106} ${y - 66}`} stroke="#C8A86A" strokeWidth={5} fill="none" />}
     </g>
   );
 };
@@ -637,7 +650,7 @@ const Schermo: React.FC<{ T: number; sc: (x: number, y: number) => [number, numb
       {vis('liminale') && (
         <g>
           {tag(1150, L0.top - 90, ev('liminale', 1), 'SPAZIO LIMINALE', { size: 56 })}
-          {mano(1150, L0.top - 10, ev('liminale', 1, 1.2), 'luoghi di passaggio', ev('liminale', 3), 62)}
+          {mano(1640, L0.top - 90, ev('liminale', 1, 1.2), 'luoghi di passaggio', ev('liminale', 3), 62)}
           {mano(1150, L0.bot + 70, ev('liminale', 3, 0.4), 'qui non dovresti esserci', E('liminale'), 76, '#F28A7A')}
         </g>
       )}
@@ -658,18 +671,18 @@ const Schermo: React.FC<{ T: number; sc: (x: number, y: number) => [number, numb
         <g>
           {tag(1000, -950, ev('oshkosh', 1), 'RITROVATA NEL 2024', { until: ev('oshkosh', 3) })}
           {tag(1600, -330, ev('oshkosh', 2, 0.6), 'OSHKOSH · 2002', { bg: RED, fg: PAPER, until: ev('oshkosh', 3, 1) })}
-          {tag(X.negozio - 260, -600, ev('oshkosh', 3, 1.4), 'UN NEGOZIO DI MOBILI', { until: E('oshkosh') })}
+          {tag(X.negozio + 300, -560, ev('oshkosh', 3, 1.4), 'UN NEGOZIO DI MOBILI', { until: E('oshkosh') })}
           {ring(X.negozio - 260, -510, 260, seg(T, ev('oshkosh', 3, 1.8), ev('oshkosh', 3, 2.4)) * capOp(T, 'oshkosh'))}
         </g>
       )}
       {/* PARSONS */}
       {vis('parsons') && (
         <g>
-          {nodo(2400, -760, { t0: S('parsons') + 0.6, icon: 'cassetta', name: 'KANE PARSONS', sub: '16 anni', fade: capOp(T, 'parsons') })}
-          {tag(2900, -1020, ev('parsons', 0, 1.6), '7 GENNAIO 2022', { until: ev('parsons', 2) })}
-          {tag(3300, -520, ev('parsons', 1, 0.6), '9 MINUTI · ANNI \'90', { until: ev('parsons', 3) })}
-          {tag(3600, -1000, ev('parsons', 3, 0.4), 'DECINE DI MILIONI DI VISTE', { bg: RED, fg: PAPER })}
-          {mano(3800, -380, ev('parsons', 3, 1.6), 'diventa una serie', E('parsons'), 66)}
+          {nodo(560, -330, { t0: S('parsons') + 0.6, icon: 'cassetta', name: 'KANE PARSONS', sub: '16 anni', fade: capOp(T, 'parsons') })}
+          {tag(960, -420, ev('parsons', 0, 1.6), '7 GENNAIO 2022', { until: ev('parsons', 2) })}
+          {tag(1400, -300, ev('parsons', 1, 0.6), '9 MINUTI · ANNI \'90', { until: ev('parsons', 2) })}
+          {tag(1150, -470, ev('parsons', 3, 0.4), 'DECINE DI MILIONI DI VISTE', { bg: RED, fg: PAPER })}
+          {mano(1650, -120, ev('parsons', 3, 1.6), 'diventa una serie', E('parsons'), 66)}
         </g>
       )}
       {/* ASYNC */}
@@ -714,7 +727,7 @@ const Schermo: React.FC<{ T: number; sc: (x: number, y: number) => [number, numb
           {mano(X.negozio + 200, -20, S('fessura') + 0.6, 'le luci sfarfallano', ev('fessura', 1), 64)}
           {tag(X.fessura, -20, ev('fessura', 1, 0.6), 'UNA FESSURA', { until: ev('fessura', 2) })}
           {nodo(X.fessura - 200, 120, { t0: ev('fessura', 3, 0.8), icon: 'prezzo', name: 'CLARK', fade: 1 - seg(T, ev('fessura', 4, -0.2), ev('fessura', 4, 0.3)) })}
-          {nodo(X.monitor - 40, 120, { t0: ev('fessura', 4, 1.2), icon: 'telecamera', name: 'PHIL', sub: 'scienziato di Async' })}
+          {nodo(X.fessura + 920, L0.top - 150, { t0: ev('fessura', 4, 1.0), icon: 'telecamera', name: 'PHIL', sub: 'scienziato di Async' })}
         </g>
       )}
       {/* COMMESSI */}
@@ -796,8 +809,21 @@ const Schermo: React.FC<{ T: number; sc: (x: number, y: number) => [number, numb
           {tag(X.copiaNeg, L0.top - 50, S('montaggio') + 0.4, 'IL NEGOZIO', { bg: COPY, until: ev('montaggio', 1) })}
           {tag(X.copiaStudio, L0.top - 50, ev('montaggio', 1, 0.4), 'LO STUDIO', { bg: COPY, until: ev('montaggio', 2) })}
           {tag(X.copiaStanza, L0.top - 50, ev('montaggio', 2, 0.4), 'LA STANZETTA', { bg: COPY })}
-          {nodo(X.copiaStanza - 30, Y0 + 20, { t0: ev('montaggio', 3, 0.6), icon: 'taccuino', ghost: 1, name: 'COPIA DI MARY' })}
-          {(() => { const [sx, sy] = at(X.copiaStanza - 30, Y0 + 20, 110, 90); return <Anello T={T} x={sx} y={sy - 20} r={80} on={seg(T, ev('montaggio', 3, 1.4), ev('montaggio', 3, 2)) * capOp(T, 'montaggio')} />; })()}
+          {(() => {
+            // la copia deforme di Mary: un taccuino grigio-bianco, storto, colato, posato sulla sedia (la voce dice «seduta»)
+            const t0 = ev('montaggio', 3, 0.6);
+            if (T < t0) return null;
+            const [sx, sy] = sc(X.copiaStanza - 160, L0.bot - 86);
+            const z = camAt(T).z;
+            const k = eo(seg(T, t0, t0 + 0.6)) * capOp(T, 'montaggio');
+            return (
+              <g opacity={k}>
+                <g transform={`translate(${sx} ${sy}) scale(${z * 1.1}) skewX(-14) rotate(9)`}><Icona k="taccuinoCopia" T={T} /></g>
+                <text x={sx} y={sy + 70 * z} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize={32} fill={PAPER} stroke={NIGHT} strokeWidth={7} paintOrder="stroke">COPIA DI MARY</text>
+                <Anello T={T} x={sx} y={sy} r={46 * z + 30} on={seg(T, ev('montaggio', 3, 1.4), ev('montaggio', 3, 2)) * capOp(T, 'montaggio')} />
+              </g>
+            );
+          })()}
         </g>
       )}
       {/* MOSTRA */}
@@ -805,7 +831,7 @@ const Schermo: React.FC<{ T: number; sc: (x: number, y: number) => [number, numb
         <g>
           {(() => { const [x, y] = fermo(1360, 330); return <Cartello T={T} t0={S('mostra') + 0.4} x={x} y={y} head="COSA MOSTRA IL FILM" text="ANCHE LEI È COPIATA" color={PAPER} />; })()}
           {nodo(X.stanzetta - 70, 120, { t0: S('mostra') + 0.6, icon: 'taccuino', name: 'MARY' })}
-          {nodo(X.copiaStanza - 30, Y0 + 20, { t0: S('mostra') + 0.6, icon: 'taccuino', ghost: 1, name: 'COPIA' })}
+          {nodo(X.copiaStanza - 160, Y0 - 10, { t0: S('mostra') + 0.6, icon: 'taccuinoCopia', ghost: 1, name: 'COPIA' })}
           {nodo(X.negozio + 100, -150, { t0: ev('mostra', 2, 0.4), icon: 'prezzo', name: 'CLARK', fade: 1 - seg(T, ev('mostra', 3), ev('mostra', 3, 0.5)) })}
           {nodo(X.tavola + 320, L0.top + 60, { t0: ev('mostra', 2, 0.8), icon: 'cappello', ghost: 1, name: 'COPIA', fade: 1 - seg(T, ev('mostra', 3), ev('mostra', 3, 0.5)) })}
           {mano(X.stanzetta + 400, 420, ev('mostra', 3, 0.6), 'ricordano anche lei', E('mostra'), 66)}
@@ -814,9 +840,9 @@ const Schermo: React.FC<{ T: number; sc: (x: number, y: number) => [number, numb
       {/* SORTE */}
       {vis('sorte') && (
         <g>
-          {(() => { const [x, y] = fermo(640, 640); return <Cartello T={T} t0={S('sorte') + 0.4} x={x} y={y} head="TEORIA" text="CHE FINE FA MARY?" color={RED} />; })()}
+          {(() => { const [x, y] = fermo(640, 640); return <Cartello T={T} t0={S('sorte') + 0.4} x={x} y={y} head="DUE TEORIE" text="CHE FINE FA MARY?" color={RED} until={ev('sorte', 1, 0.8)} />; })()}
           {nodo(X.stanzetta + 50, 120, { t0: S('sorte') + 0.4, icon: 'taccuino', name: 'MARY', ring: 1 })}
-          {tag(X.anello - 120, L0.top - 40, ev('sorte', 1, 1.2), 'RIMANDATA LAGGIÙ', { bg: RED, fg: PAPER })}
+          {tag(X.anello, L0.top + 120, ev('sorte', 1, 1.2), 'RIMANDATA LAGGIÙ', { bg: RED, fg: PAPER })}
           {tag(X.cinema - 300, -200, ev('sorte', 2, 1.2), 'SALVA', { bg: YEL })}
           {mano(X.stanzetta + 300, L0.bot + 90, ev('sorte', 3, 0.6), 'il regista non conferma', E('sorte'), 66)}
         </g>
@@ -828,7 +854,7 @@ const Schermo: React.FC<{ T: number; sc: (x: number, y: number) => [number, numb
       {/* SEGUITO */}
       {vis('seguito') && (
         <g>
-          {tag(4600, -260, S('seguito') + 1.2, 'ALTRO IN LAVORAZIONE', { until: ev('seguito', 2) })}
+          {tag(4600, -260, S('seguito') + 1.2, 'ALTRO IN LAVORAZIONE', { until: ev('seguito', 1) })}
           {tag(6200, -140, ev('seguito', 1, 0.6), 'UN NUOVO FILM CON A24?', { until: ev('seguito', 2, 0.4) })}
           {nodo(6900, L0.top - 170, { t0: ev('seguito', 2, 0.4), icon: 'taccuino', name: 'MARY?', ring: 1 })}
         </g>
@@ -923,12 +949,13 @@ const Metafora: React.FC<{ T: number; sc: (x: number, y: number) => [number, num
 const Dettaglio: React.FC<{ T: number; sc: (x: number, y: number) => [number, number]; fermo: (x: number, y: number) => [number, number] }> = ({ T, fermo }) => {
   void eio;
   const t0 = S('dettaglio');
-  const k = seg(T, t0 + 0.4, t0 + 1.2) * (1 - seg(T, ev('dettaglio', 4, 0.2), ev('dettaglio', 4, 1)));
+  const k = seg(T, t0 + 0.4, t0 + 1.2) * (1 - seg(T, ev('dettaglio', 3, 0.85), ev('dettaglio', 3, 1.1)));
   const casa = eo(seg(T, ev('dettaglio', 1, 0.4), ev('dettaglio', 1, 2)));
   const lancio = eio(seg(T, ev('dettaglio', 3, 0.2), ev('dettaglio', 3, 0.8)));
   const [cx, cy] = fermo(1460, 300);
-  const x = lerp(760, 1400, lancio), y = lerp(500, 320, lancio);
-  const s = lerp(1.9, 0.6, lancio) * (1 + 0.02 * Math.sin(T * 2));
+  // il cappello è in fondo al corridoio (Pov.tsx, vistaDettaglio): il cemento ci arriva sopra
+  const x = lerp(700, 982, lancio), y = lerp(560, 390, lancio);
+  const s = lerp(1.9, 0.5, lancio) * (1 + 0.02 * Math.sin(T * 2));
   return (
     <g>
       <Cartello T={T} t0={t0 + 0.4} x={cx} y={cy} head="LA NOSTRA LETTURA" text="IL PEZZO DI CEMENTO" until={ev('dettaglio', 2, 0.4)} />
@@ -945,20 +972,7 @@ const Dettaglio: React.FC<{ T: number; sc: (x: number, y: number) => [number, nu
           </g>
         </g>
       )}
-      {/* il cappello del pirata (la copia) colpito: si incrina e cade */}
-      {T >= ev('dettaglio', 2, 0.4) && T < ev('dettaglio', 4, 1) && (() => {
-        const hit = ev('dettaglio', 3, 0.8);
-        const cade = eio(seg(T, hit + 0.2, hit + 1.4));
-        const k = seg(T, ev('dettaglio', 2, 0.4), ev('dettaglio', 2, 1)) * (1 - seg(T, ev('dettaglio', 4, 0.4), ev('dettaglio', 4, 1)));
-        const tr = T < hit ? Math.sin(T * 40) * 4 * seg(T, ev('dettaglio', 2, 0.6), ev('dettaglio', 2, 1.2)) : 0;
-        return (
-          <g transform={`translate(${1420 + tr} ${330 + cade * 380}) rotate(${-8 + cade * 70}) scale(2.6)`} opacity={k * (1 - 0.6 * cade)}>
-            <Icona k="cappello" />
-            {T >= hit && <path d="M-6 -40 L2 -22 L-8 -8 L4 6" fill="none" stroke={PAPER} strokeWidth={3} />}
-          </g>
-        );
-      })()}
-      <Tag T={T} t0={ev('dettaglio', 1, 1.6)} x={cx} y={cy + 140} text="IL SUO RICORDO" until={ev('dettaglio', 3)} />
+      <Tag T={T} t0={ev('dettaglio', 1, 1.6)} x={700} y={790} text="IL SUO RICORDO" until={ev('dettaglio', 3)} />
       <ManoS T={T} t0={ev('dettaglio', 2, 0.4)} x={1420} y={700} text="i ricordi diventano trappole" size={62} until={ev('dettaglio', 3, -0.2)} />
       <ManoS T={T} t0={ev('dettaglio', 4, 1.0)} x={1380} y={300} text="affrontare i ricordi" size={84} />
     </g>
