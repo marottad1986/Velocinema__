@@ -219,10 +219,14 @@ for (const c of clips) {
   }
   // tempi di ogni frase dalle parole riconosciute
   const tempiClip = [];
+  let ultima = -1; // ultima parola sentita della frase precedente
   c.frasi.forEach((f, k) => {
     const idx = map.filter((j, i) => fraseDi[i] === k && j >= 0);
     if (!idx.length) { tempiClip.push(null); return log(`- frase ${k + 1}: nessuna parola riconosciuta`); }
-    const t0 = sen[idx[0]].start;
+    // la frase parte dalla prima parola sentita dopo la frase precedente, anche se la trascrizione la scrive diversa
+    // (es. «Donny» per «Donnie»: altrimenti il sottotitolo arriva mezzo secondo dopo la voce, revisore voce 23 nov)
+    const t0 = sen[Math.min(idx[0], ultima + 1)].start;
+    ultima = idx[idx.length - 1];
     const t1 = sen[idx[idx.length - 1]].end;
     tempiClip.push([t0, t1]);
     const wps = peso(f) / Math.max(0.1, t1 - t0);
