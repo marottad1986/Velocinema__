@@ -18,7 +18,7 @@ const Art: React.FC<{ t: number; id: string; calmo?: number }> = ({ t, id, calmo
         return (
           <g>
             <PortaInFondo p={p} z={22} T={t} apre={0.3} />
-            <SulMuro p={p} side={1} z={13} y={1.35} text="DOVE SEI?" size={230} color="#7A1A10" />
+            <SulMuro p={p} side={1} z={18} y={1.35} text="DOVE SEI?" size={150} color="#7A1A10" />
             {c && <circle cx={c.x} cy={c.y} r={c.s * 1.35} fill="none" stroke={RED} strokeWidth={10} strokeDasharray={`${c.s * 0.7} ${c.s * 0.25}`} strokeDashoffset={-t * 40} />}
           </g>
         );

@@ -116,7 +116,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
           oggetti={(p) => (
             <g>
               <PortaInFondo p={p} z={22} T={t} apre={0.3} />
-              <SulMuro p={p} side={1} z={13} y={1.35} text="DOVE SEI?" size={230} color="#7A1A10" />
+              <SulMuro p={p} side={1} z={18} y={1.35} text="DOVE SEI?" size={150} color="#7A1A10" />
               {anelloPorta(1 - seg(t, E.spegni - 0.4, E.spegni))(p)}
             </g>
           )}>
@@ -129,7 +129,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
         const s = lerp(0.62, 3.2, k);
         return (
           <Cor T={t} z={10 + Math.max(0, t - E.foto - 2) * 0.9} id="tr-foto">
-            <g transform={`translate(540 960) scale(${s}) translate(-540 -960)`}>
+            <g transform={`translate(540 810) scale(${s}) translate(-540 -960)`}>
               <path fillRule="evenodd" d="M-3000 -3000 H4080 V4920 H-3000 Z M150 520 H930 V1400 H150 Z" fill="#050402" />
               <path fillRule="evenodd" d="M110 480 H970 V1560 H110 Z M150 520 H930 V1400 H150 Z" fill="#F4F0E4" stroke="#1C170C" strokeWidth={6} />
               <text x={540} y={1490} textAnchor="middle" fontFamily={HAND} fontWeight={700} fontSize={56} fill="#3A3020">12/05/2019</text>
@@ -140,7 +140,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
       {/* LIVELLO 0: il corridoio con la scritta sul muro */}
       {t >= E.l0 && t < E.b2 && (
         <Cor T={t} z={30 + (t - E.l0) * 1.3} id="tr-l0" x={-0.3} rotto={0.5}
-          oggetti={(p) => <SulMuro p={p} side={-1} z={40} y={2.0} text="LIVELLO 0" size={200} color="#3A2A10" font={SANS} />} />
+          oggetti={(p) => <SulMuro p={p} side={-1} z={46} y={1.9} text="LIVELLO 0" size={105} color="#3A2A10" font={SANS} />} />
       )}
       {/* il negozio di mobili con la fessura nel seminterrato */}
       {t >= E.neg && t < E.b3 && (
@@ -148,27 +148,35 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
       )}
       {/* la sala da pranzo copiata */}
       {t >= E.cop && t < cor && (
-        <Mondo T={ev('tavola', 2, 2.5) + (t - E.cop)} cam={{ x: X.tavola + 20, y: Y0 - 10, z: 1.7 + (t - E.cop) * 0.06 }} w={1080} h={1920} pulito />
+        <Mondo T={ev('tavola', 2, 2.5) + (t - E.cop)} cam={{ x: X.tavola + 20, y: Y0 - 30, z: 2.1 + (t - E.cop) * 0.06 }} w={1080} h={1920} pulito />
       )}
       {/* montaggio a un battito */}
       {t >= cor && t < cor + BEAT && <Mondo T={ev('fessura', 1, 2)} cam={{ x: X.fessura, y: 120, z: 2.6 + (t - cor) * 0.3 }} w={1080} h={1920} pulito />}
       {t >= cor + BEAT && t < cor + 2 * BEAT && (
-        <Cor T={t} z={400 - (t - cor) * 3} id="tr-pir" rotto={1} oggetti={(p) => <PirataPov p={p} z={400 - (t - cor) * 3 + 7} T={t} rotto={0} />} />
+        <Cor T={t} z={400 - (t - cor) * 3} id="tr-pir" rotto={1} x={0.5} oggetti={(p) => <PirataPov p={p} z={400 - (t - cor) * 3 + 7} T={t} rotto={0} />} />
       )}
       {t >= cor + 2 * BEAT && t < cor + 3 * BEAT && <Mondo T={ev('async', 1, 1.5)} cam={{ x: X.anello, y: 160, z: 2.0 + (t - cor) * 0.2 }} w={1080} h={1920} pulito />}
       {t >= cor + 3 * BEAT && t < E.buio && <Mondo T={STARTS.montaggio + 15} cam={{ x: X.copiaStanza, y: Y0 + 10, z: 2.4 + (t - cor) * 0.2 }} w={1080} h={1920} pulito />}
       {card && <Cartello c={card} t={t} />}
       {/* nel buio: un solo neon che sfarfalla a tempo; poi i neon si riaccendono uno alla volta verso il fondo */}
-      {t >= E.buio && t < E.hit && (
-        <div style={{ position: 'absolute', inset: 0, background: '#050402' }}>
-          <Cor T={t} z={50} id="tr-buio" spenti={rel((i) => {
-            if (i === 1) return 1 - (Math.max(0, 1 - ((t - E.buio) % BEAT) / 0.35) * 0.9);
-            const on = E.hit - 1.6 + i * 0.1;
-            return 1 - seg(t, on, on + 0.1);
-          }, 50)} />
-          <div style={{ position: 'absolute', inset: 0, background: '#050402', opacity: 0.8 * (1 - seg(t, E.hit - 1.6, E.hit)) }} />
-        </div>
-      )}
+      {t >= E.buio && t < E.hit && (() => {
+        // nel buio un solo neon sfarfalla a tempo (TRAILER.md §5), poi i neon si riaccendono a scatti verso il fondo
+        const lampo = Math.max(0, 1 - ((t - E.buio) % BEAT) / 0.35) * (t < E.hit - 1.6 ? 1 : 0);
+        const scatti = Math.floor(seg(t, E.hit - 1.6, E.hit) * 6) / 6;
+        return (
+          <div style={{ position: 'absolute', inset: 0, background: '#050402' }}>
+            <Cor T={t} z={50} id="tr-buio" />
+            <div style={{ position: 'absolute', inset: 0, background: '#050402', opacity: 0.95 * (1 - scatti) }} />
+            <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: 'absolute', inset: 0 }}>
+              <defs>
+                <radialGradient id="tr-neon-luce"><stop offset="0" stopColor="#FFF4B8" stopOpacity=".9" /><stop offset=".4" stopColor="#FFF4B8" stopOpacity=".3" /><stop offset="1" stopColor="#FFF4B8" stopOpacity="0" /></radialGradient>
+              </defs>
+              <ellipse cx={540} cy={660} rx={420} ry={260} fill="url(#tr-neon-luce)" opacity={0.85 * lampo} />
+              <rect x={430} y={640} width={220} height={26} rx={6} fill="#FFFBE6" opacity={0.25 + 0.75 * lampo} />
+            </svg>
+          </div>
+        );
+      })()}
       {tit && t < E.fine && (
         <div style={{ position: 'absolute', inset: 0, transform: `scale(${lerp(1.12, 1, eo(seg(t, E.hit, E.hit + 2.5)))})`, transformOrigin: '540px 1000px' }}>
           <Cor T={t} z={50 + (t - E.hit) * 0.8} id="tr-tit" oggetti={(p) => <PortaInFondo p={p} z={72} T={t} apre={0.45} />} />
@@ -223,7 +231,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
               <Mondo T={0} pulito />
               <div style={{ position: 'absolute', left: 96, top: 170, fontFamily: ANTON, fontSize: 250, lineHeight: 0.95, color: INK, textShadow: `0 10px 0 ${DARK}` }}>BACK<br />ROOMS</div>
             </div>
-            <svg viewBox="-60 -60 120 120" width="120" height="120" style={{ position: 'absolute', left: 330, top: 170 }}>
+            <svg viewBox="-60 -60 120 120" width="120" height="120" style={{ position: 'absolute', left: 520, top: 260 }}>
               <circle r="54" fill="#D9302A" opacity=".92" />
               <path d="M-16 -24 L26 0 L-16 24 Z" fill="#FFF" />
             </svg>
