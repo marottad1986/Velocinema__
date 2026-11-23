@@ -555,7 +555,7 @@ export const Mondo: React.FC<{ T: number; cam?: Cam; chiusura?: boolean; w?: num
         {/* ---- la copia: il paese in linee azzurre, nel cielo */}
         {vis > 0.01 && (
           <g transform={`translate(0 ${COPY_DY + (1 - Math.min(1, vis * 1.4)) * 300})`} opacity={vis} strokeDasharray="14 10">
-            <Copia T={T} />
+            <Copia T={T} pulito={pulito} />
           </g>
         )}
         {/* ---- il vortice */}
@@ -632,7 +632,7 @@ export const Mondo: React.FC<{ T: number; cam?: Cam; chiusura?: boolean; w?: num
 };
 
 /** La copia del paese, in linee azzurre; con il crollo si incrina e si risucchia nel buco nero; con «salvi» si dissolve. */
-const Copia: React.FC<{ T: number }> = ({ T }) => {
+const Copia: React.FC<{ T: number; pulito?: boolean }> = ({ T, pulito = false }) => {
   const crack = keys(T, [[0, 0], [S('crollo'), 1, 1.5], [E('crollo') - 1.2, 0, 1.2]]);
   const hole = keys(T, [[0, 0], [ev('crollo', 0, 0.8), 1, 3], [E('crollo') - 1.2, 0, 1.2]]);
   const pull = hole;
@@ -643,7 +643,7 @@ const Copia: React.FC<{ T: number }> = ({ T }) => {
     <g>
       {/* la bolla tratteggiata che la contiene */}
       <rect x={-900} y={GROUND - 760} width={10500} height={980} rx={160} fill="rgba(127,166,255,0.04)" stroke={COPY} strokeWidth={8} strokeDasharray="40 26" strokeDashoffset={-T * 30} />
-      <text x={2600} y={GROUND - 680} fontFamily={SANS} fontWeight={900} fontSize={80} letterSpacing="10" fill={COPY} strokeDasharray="none">LA COPIA · UNIVERSO TANGENTE</text>
+      {!pulito && <text x={2600} y={GROUND - 680} fontFamily={SANS} fontWeight={900} fontSize={80} letterSpacing="10" fill={COPY} strokeDasharray="none">LA COPIA · UNIVERSO TANGENTE</text>}
       <g transform={`translate(${cx} ${cy}) scale(${1 - 0.25 * pull}) translate(${-cx} ${-cy})`} opacity={1 - dissolve}>
         <Citta T={T} c={tavCopia} crash={1} flood={0} fire={0} burnt={0} />
       </g>

@@ -2,7 +2,7 @@ import React from 'react';
 import { eio, eo, eob, lerp, seg } from '../../lib/anim';
 import { ANTON, SANS } from '../../lib/fonts';
 import type { ScenaPromoProps } from '../registro';
-import { GROUND, HIT, Mondo, STARTS, VORTEX, X, ev } from '../../lunghi/donnie-darko-spiegato/Paese';
+import { COPY_DY, GROUND, HIT, Mondo, STARTS, VORTEX, X, ev } from '../../lunghi/donnie-darko-spiegato/Paese';
 
 // Trailer verticale del video lungo «Donnie Darko spiegato» (promo/trailer-donnie-darko.json, TRAILER.md), montato come
 // un trailer di cinema: fotogramma 0 = miniatura (la casa di notte, il motore che sta per sfondare il tetto, il titolo),
@@ -82,21 +82,21 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
     { a: E.casa, b: E.golf, W0: notte, c0: [X.casa + 60, 470, 1.15], c1: [X.casa - 60, 520, 1.3] },
     { a: E.golf, b: E.b1, W0: notte + 3, c0: [X.casa - 700, 600, 1.0], c1: [X.golf + 120, 560, 1.15] },
     // la scuola allagata
-    { a: E.scuola, b: E.b2, W0: ev('ordini', 1, 2), c0: [X.scuola, 520, 1.0], c1: [X.scuola + 80, 600, 1.35] },
+    { a: E.scuola, b: E.b2, W0: ev('ordini', 1, 2), c0: [X.scuola, 600, 1.2], c1: [X.scuola, 700, 1.7] },
     // la casa che brucia
     { a: E.casaFuoco, b: E.b3, W0: W.gretchen + 15, c0: [X.cunn, 380, 1.0], c1: [X.cunn + 60, 330, 1.25] },
     // il vortice all'alba
     { a: E.cielo, b: E.corsa, W0: ev('vortice', 0, 2.5), c0: [VORTEX[0], 200, 0.55], c1: [VORTEX[0], -60, 0.7] },
     // montaggio a un battito
     { a: E.corsa, b: E.corsa + BEAT, W0: W.motore + 12, c0: [HIT[0], HIT[1] + 40, 1.7], c1: [HIT[0], HIT[1] + 40, 2.0] },
-    { a: E.corsa + BEAT, b: E.corsa + 2 * BEAT, W0: W.copia + 14, c0: [X.casa + 500, GROUND - 1300, 0.5], c1: [X.casa + 700, GROUND - 1300, 0.55] },
+    { a: E.corsa + BEAT, b: E.corsa + 2 * BEAT, W0: W.copia + 14, c0: [HIT[0], HIT[1] + COPY_DY - 60, 0.8], c1: [HIT[0], HIT[1] + COPY_DY - 60, 0.92] },
     { a: E.corsa + 2 * BEAT, b: E.corsa + 3 * BEAT, W0: W.gretchen + 17, c0: [X.cunn, 300, 1.5], c1: [X.cunn, 280, 1.8] },
     { a: E.corsa + 3 * BEAT, b: E.buio, W0: ev('vortice', 2, 2.5), c0: [VORTEX[0], -170, 0.9], c1: [VORTEX[0], -170, 1.2] },
   ];
   const cards: Card[] = [
     { a: E.nero + 0.25, b: E.casa, top: 'UNA CITTADINA AMERICANA', big: '2 OTTOBRE 1988', color: INK },
     { a: E.b1, b: E.scuola, top: 'IL MONDO FINIRÀ TRA', big: '28 GIORNI', color: RED },
-    { a: E.b2, b: E.casaFuoco, top: 'OGNI NOTTE UN ORDINE', big: 'IL FUOCO' },
+    { a: E.b2, b: E.casaFuoco, top: 'POI ARRIVANO GLI ORDINI', big: 'IL FUOCO' },
     { a: E.b3, b: E.cielo, top: 'ALL\'ALBA', big: 'IL VORTICE', color: COPY },
   ];
   const shot = shots.find((s) => t >= s.a && t < s.b);
@@ -120,12 +120,18 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
   return (
     <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', background: '#04050C' }}>
       {/* miniatura: la casa dal basso, il motore che sta per colpire (nel lungo è il colpo dell'aggancio, a 1,5 s) */}
-      {thumb && <Mondo T={Math.min(1.5, (t * 1.5) / 3.5)} cam={{ x: HIT[0] + 40, y: 110, z: 1.05 + 0.02 * t }} w={1080} h={1920} pulito />}
+      {thumb && <Mondo T={Math.min(1.5, (t * 1.5) / 3.5)} cam={{ x: HIT[0] + 40, y: 160, z: 1.05 + 0.02 * t }} w={1080} h={1920} pulito />}
       {shot && <Inquadratura s={shot} t={t} />}
       {card && <Cartello c={card} t={t} />}
       {/* nel buio: il contatore rosso che pulsa a tempo */}
       {t >= E.buio && t < E.hit && (
         <div style={{ position: 'absolute', inset: 0, background: '#04050C' }}>
+          {/* l'immagine emerge piano dal buio prima del titolo (TRAILER.md §5): il paese all'alba, i lampioni che si accendono */}
+          {t >= E.hit - 1.2 && (
+            <div style={{ position: 'absolute', inset: 0, opacity: 0.4 * eo(seg(t, E.hit - 1.2, E.hit)) }}>
+              <Mondo T={ev('vortice', 0, 1) + (t - E.hit)} cam={{ x: VORTEX[0], y: -500, z: 0.42 }} w={1080} h={1920} pulito />
+            </div>
+          )}
           <div style={{ position: 'absolute', left: 120, width: 840, top: 760, textAlign: 'center', fontFamily: SANS, fontWeight: 800, fontSize: 92, color: RED,
             opacity: 0.25 + 0.75 * Math.max(0, 1 - ((t - E.buio) % BEAT) / 0.45), textShadow: `0 0 30px ${RED}`, fontVariantNumeric: 'tabular-nums' }}>
             00:00:00:{String(Math.max(0, Math.ceil(E.hit - t))).padStart(2, '0')}
@@ -134,7 +140,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
       )}
       {tit && t < E.fine && (
         <div style={{ position: 'absolute', inset: 0, transform: `scale(${lerp(1.12, 1, eo(seg(t, E.hit, E.hit + 2.5)))})`, transformOrigin: '540px 1000px' }}>
-          <Mondo T={W.porta + 4 + (t - E.hit)} cam={{ x: VORTEX[0], y: -260, z: 0.42 }} w={1080} h={1920} pulito />
+          <Mondo T={W.porta + 4 + (t - E.hit)} cam={{ x: VORTEX[0], y: -500, z: 0.42 }} w={1080} h={1920} pulito />
         </div>
       )}
       {t >= E.fine && (
@@ -173,7 +179,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
 
       {t >= E.fine && (
         <div style={{ position: 'absolute', inset: 0, fontFamily: SANS, color: INK }}>
-          <p style={{ position: 'absolute', left: 120, width: 840, top: 280, margin: 0, textAlign: 'center', fontSize: 40, fontWeight: 800, letterSpacing: '0.16em', color: ENGINE,
+          <p style={{ position: 'absolute', left: 120, width: 780, top: 280, margin: 0, textAlign: 'center', fontSize: 40, fontWeight: 800, letterSpacing: '0.16em', color: ENGINE,
             opacity: scr, textShadow: `0 3px 0 ${DARK}` }}>ORA SU YOUTUBE</p>
           <div style={{ position: 'absolute', left: 120, top: 350, width: 780, height: 439, borderRadius: 22, overflow: 'hidden', border: `5px solid ${INK}`,
             boxShadow: `0 0 50px ${COPY}66`, opacity: scr, transform: `scale(${0.9 + 0.1 * scr})` }}>
