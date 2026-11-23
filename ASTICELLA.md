@@ -27,6 +27,12 @@ pagina deve sentire che, andando avanti, la qualità sale: non si resta fermi su
 6. **I revisori guardano anche avanti.** Oltre a cercare errori, ogni revisore dice nel verdetto se la parte che ha
    controllato è **all'altezza o sotto** il livello del registro, e suggerisce un miglioramento possibile per il video
    dopo (va in `PROPOSTE.md` se riguarda tutti).
+7. **Vale anche per i video lunghi e i loro trailer** (editore, 22 nov 2026). Ogni lungo YouTube è più bello del lungo
+   precedente e ogni trailer del trailer precedente: si parte dalle righe del registro dei lunghi (e da `YOUTUBE.md` §3–4),
+   il passo avanti si decide prima di disegnare e si scrive nella pull request, e il confronto del punto 3 si fa con
+   l'ultimo lungo uscito (miniatura 1280×720 anche vista a 320×180, una scena forte e un passaggio tra due scene, in 16:9)
+   o con l'ultimo trailer. Il lungo porta almeno un elemento grafico nuovo nella libreria comune e la sua riga qui sotto.
+   I revisori (sempre tutti e quattro sui lunghi) dicono nel verdetto se è all'altezza del lungo precedente.
 
 ## Registro dei passi avanti
 Una riga per produzione, le più recenti in alto: data · contenuto · cosa c'è di nuovo · dove sta il codice da riusare.
