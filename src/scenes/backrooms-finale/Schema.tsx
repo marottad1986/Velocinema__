@@ -182,10 +182,10 @@ export const makeSchema = (id: string): React.FC<SceneProps> => {
             <Mondo T={SL('sorte') + 6 + t} cam={cam} w={1080} h={1920} pulito />
             <Ombra />
             <Sopra>
-              <Cartello T={t} t0={c(0, 0.2)} x={540} y={620} head="TEORIA" text="MARY È SALVA?" color={RED} />
-              <Tag T={t} t0={c(1, 0.6)} x={330} y={1150} text="LAGGIÙ" size={52} bg={RED} fg={PAPER} />
+              <Cartello T={t} t0={c(0, 0.2)} x={540} y={620} head="DUE TEORIE" text="MARY È SALVA?" color={RED} />
+              <Tag T={t} t0={c(1, 0.6)} x={330} y={1150} text="RIMANDATA" size={52} bg={RED} fg={PAPER} />
               <Tag T={t} t0={c(1, 2.6)} x={760} y={1150} text="SALVA" size={52} />
-              <Mano t={t} t0={c(2, 0.6)} x={540} y={860} text="ormai la ricordano" size={74} />
+              <Mano t={t} t0={c(2, 0.6)} x={540} y={860} text="le stanze la ricordano" size={70} />
             </Sopra>
           </>
         );
