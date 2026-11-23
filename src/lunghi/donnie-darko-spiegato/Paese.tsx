@@ -48,6 +48,10 @@ const INIZIO: Record<string, number> = { aggancio: 0.4, chiusura: 0.5 };
   }
   STARTS.fine = acc;
 }
+/** Lunghezza del titolo di ogni capitolo (per tenere scritte e cartelli fuori dalla sua zona). */
+const TITOLI: Record<string, number> = {};
+for (const p of L.parti as { capitoli?: { id: string; titolo: string }[] }[]) for (const c of p.capitoli ?? []) TITOLI[c.id] = c.titolo.length;
+const capitoloDi = (T: number) => Object.keys(TITOLI).find((id) => T >= STARTS[id] && T < STARTS[id] + DUR[id]);
 const CROMA = 0.5;
 export const g = (s: number) => Math.round(s / CROMA) * CROMA;
 /** Istante (sulla croma) della frase i del capitolo id, più d secondi. */
@@ -118,6 +122,7 @@ const SHOTS: Key[] = [
   K(ev('vortice', 1), X.collina - 400, 360, 0.8, 2.6),
   // lo strappo del motore da vicino (momento clou)
   K(ev('vortice', 2, -0.4), VORTEX[0] + 900, VORTEX[1] + 60, 0.8, 1.6),
+  K(ev('vortice', 2, 1.7), VORTEX[0] + 300, -200, 0.6, 1.4),
   K(ev('vortice', 3), 3000, -150, 0.42, 2.4),
   K(S('letto'), X.casa + 140, 380, 1.0, 2.0),
   K(ev('letto', 1), X.casa + 140, 440, 1.6, 2.0),
@@ -351,8 +356,11 @@ export const Icona: React.FC<{ k: string; T?: number }> = ({ k, T = 0 }) => {
 const Nodo: React.FC<{
   T: number; t0: number; x: number; y: number; icon: string; name?: string; sub?: string; s?: number; fade?: number; ring?: number; color?: string;
   dead?: number; ghost?: number; r?: number;
-}> = ({ T, t0, x, y, icon, name, sub, s = 1, fade = 1, ring = 0, color = INK, dead = 0, ghost = 0, r = 54 }) => {
+}> = ({ T, t0, x: x0, y: y0, icon, name, sub, s = 1, fade = 1, ring = 0, color = INK, dead = 0, ghost = 0, r = 54 }) => {
+  let x = x0, y = y0;
   if (T < t0 || fade <= 0) return null;
+  [x, y] = fit(T, x, y + 40 * s, Math.max(r, 70) * 1.5 * s, (r + 50) * s);
+  y -= 40 * s;
   const k = pop(T, t0);
   const hi = color === INK ? TIME : color;
   const stroke = ghost > 0.5 ? COPY : ring > 0.5 ? hi : color;
@@ -374,11 +382,14 @@ const Nodo: React.FC<{
 
 /** Cartellino pieno: colpo di scena o parola chiave (o «LA REGOLA», «TEORIA»). */
 const Tag: React.FC<{ T: number; t0: number; x: number; y: number; text: string; bg?: string; fg?: string; size?: number; rot?: number; until?: number; s?: number }> = ({
-  T, t0, x, y, text, bg = TIME, fg = DARK, size = 40, rot = 0, until = 1e9, s: s0 = 1,
+  T, t0, x: x0, y: y0, text, bg = TIME, fg = DARK, size = 40, rot = 0, until = 1e9, s: s0 = 1,
 }) => {
   if (T < t0 || T > until + 0.5) return null;
+  let x = x0, y = y0;
   const s = zk(T) * s0; // s0 = grandezza relativa (1 = normale)
   const w = text.length * size * 0.6 + size;
+  [x, y] = fit(T, x, y - size * 0.15 * s, (w / 2) * s, size * 0.8 * s);
+  y += size * 0.15 * s;
   return (
     <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${pop(T, t0) * s})`} opacity={1 - seg(T, until, until + 0.5)}>
       <rect x={-w / 2 + 6} y={-size * 0.95 + 6} width={w} height={size * 1.6} rx={size * 0.3} fill="#000" opacity={0.35} />
@@ -388,10 +399,12 @@ const Tag: React.FC<{ T: number; t0: number; x: number; y: number; text: string;
   );
 };
 /** Cartello «LA REGOLA» / «TEORIA»: etichetta piccola sopra, testo grande sotto. */
-const Cartello: React.FC<{ T: number; t0: number; x: number; y: number; head: string; text: string; s?: number; until?: number; color?: string }> = ({ T, t0, x, y, head, text, until = 1e9, color = TIME }) => {
+const Cartello: React.FC<{ T: number; t0: number; x: number; y: number; head: string; text: string; s?: number; until?: number; color?: string }> = ({ T, t0, x: x0, y: y0, head, text, until = 1e9, color = TIME }) => {
   if (T < t0 || T > until + 0.5) return null;
   const s = zk(T) * 1.05;
   const w = Math.max(text.length * 30 + 80, 320);
+  const [x, yc] = fit(T, x0, y0 - 8 * s, (w / 2) * s, 75 * s);
+  const y = yc + 8 * s;
   return (
     <g transform={`translate(${x} ${y}) scale(${pop(T, t0) * s})`} opacity={1 - seg(T, until, until + 0.5)}>
       <rect x={-w / 2 + 8} y={-52} width={w} height={124} rx={18} fill="#000" opacity={0.35} />
@@ -420,9 +433,32 @@ const zoomAt = (T: number) => camAt(T).z;
 /** Scala dei simboli (nodi, tag, cartelli): 1,45 px sullo schermo per unità del disegno. */
 export const nsAt = (z: number) => Math.min(6, Math.max(0.55, 1.45 / z));
 const zk = (T: number) => nsAt(zoomAt(T));
+/**
+ * Tiene un elemento (centro x, y nel mondo, mezza larghezza e mezza altezza nel mondo) dentro le zone del 16:9
+ * (QUALITA.md §10): x 96–1824, sopra i sottotitoli (y ≤ 780), sotto il titolo a sinistra (y ≥ 250 per x < 1000) e
+ * sotto il contatore a destra (y ≥ 170 per x > 1400). Restituisce il centro corretto nel mondo. Revisore immagini, 23 nov.
+ */
+const fit = (T: number, x: number, y: number, hw: number, hh: number): [number, number] => {
+  const c = camAt(T);
+  const z = c.z;
+  let sx = W / 2 + (x - c.x) * z, sy = H / 2 + (y - c.y) * z;
+  const w = hw * z, h = hh * z;
+  // un elemento del tutto fuori quadro (la camera è altrove) resta dov'è: si corregge solo ciò che si vede
+  if (sx + w < 0 || sx - w > W || sy + h < 0 || sy - h > H) return [x, y];
+  sx = Math.min(Math.max(sx, 96 + w), 1824 - w);
+  const cap = capitoloDi(T);
+  const titoloFino = cap ? 96 + TITOLI[cap] * 31 : 0; // fin dove arriva il titolo del capitolo (60 px, ~31 px a lettera)
+  const top = cap && sx - w < titoloFino ? 250 : sx + w > 1400 && T >= S('coniglio') && T < S('copia') ? 170 : 70;
+  sy = Math.min(Math.max(sy, top + h), Math.max(top + h, 780 - h));
+  return [c.x + (sx - W / 2) / z, c.y + (sy - H / 2) / z];
+};
 const Mano: React.FC<{ T: number; t0: number; x: number; y: number; text: string; size?: number; color?: string; until?: number; anchor?: 'start' | 'middle' | 'end'; rot?: number }> = ({
-  T, t0, x, y, text, size: size0 = 46, color = TIME, until = 1e9, anchor = 'middle', rot = 0,
-}) => { const z = zoomAt(T); const size = Math.min(130, Math.max(70, size0 * 1.5)) / z; return (T < t0 || T > until + 0.5 ? null : (
+  T, t0, x: x0, y: y0, text, size: size0 = 46, color = TIME, until = 1e9, anchor = 'middle', rot = 0,
+}) => { const z = zoomAt(T); const size = Math.min(130, Math.max(70, size0 * 1.5)) / z; if (T < t0 || T > until + 0.5) return null;
+  const tw = text.length * size * 0.47;
+  const cx0 = anchor === 'middle' ? x0 : anchor === 'start' ? x0 + tw / 2 : x0 - tw / 2;
+  const [cx, cy] = fit(T, cx0, y0 - size * 0.3, tw / 2, size * 0.6);
+  const x = cx + (x0 - cx0), y = cy + size * 0.3; return (T < t0 ? null : (
   <text x={x} y={y} textAnchor={anchor} transform={rot ? `rotate(${rot} ${x} ${y})` : undefined} fontFamily={HAND} fontWeight={700} fontSize={size} fill={color} stroke={DARK} strokeWidth={size * 0.17} paintOrder="stroke"
     opacity={seg(T, t0, t0 + 0.4) * (1 - seg(T, until, until + 0.5))}>{text}</text>
 )); };
@@ -540,7 +576,7 @@ export const Mondo: React.FC<{ T: number; cam?: Cam; chiusura?: boolean; w?: num
       <g opacity={night}>
         <Stars t={T} seed={1988} n={110} x={0} y={0} w={w} h={h} color="#EEF0F7" size={1.1} />
       </g>
-      <g transform={`translate(${w - 360 - cam.x * 0.03} ${150 - cam.y * 0.04})`} opacity={0.3 + 0.7 * night}>
+      <g transform={`translate(${w === W ? w - 640 - cam.x * 0.03 : w - 360 - cam.x * 0.03} ${(w === W ? 200 : 150) - cam.y * 0.04})`} opacity={0.3 + 0.7 * night}>
         <Glow id="dd16-moon" x={0} y={0} r={160} t={T} color="#DDE4FF" amp={0.03} rate={1} opacity={0.4} />
         <circle r={48} fill="#E8ECFA" />
         <circle cx={-14} cy={-8} r={9} fill="#C9D0EA" /><circle cx={12} cy={14} r={6} fill="#C9D0EA" />
@@ -643,7 +679,7 @@ const Copia: React.FC<{ T: number; pulito?: boolean }> = ({ T, pulito = false })
     <g>
       {/* la bolla tratteggiata che la contiene */}
       <rect x={-900} y={GROUND - 760} width={10500} height={980} rx={160} fill="rgba(127,166,255,0.04)" stroke={COPY} strokeWidth={8} strokeDasharray="40 26" strokeDashoffset={-T * 30} />
-      {!pulito && <text x={2600} y={GROUND - 680} fontFamily={SANS} fontWeight={900} fontSize={80} letterSpacing="10" fill={COPY} strokeDasharray="none">LA COPIA · UNIVERSO TANGENTE</text>}
+      {!pulito && <text opacity={capOp(T, 'copia')} x={2600} y={GROUND - 680} fontFamily={SANS} fontWeight={900} fontSize={80} letterSpacing="10" fill={COPY} strokeDasharray="none">LA COPIA · UNIVERSO TANGENTE</text>}
       <g transform={`translate(${cx} ${cy}) scale(${1 - 0.25 * pull}) translate(${-cx} ${-cy})`} opacity={1 - dissolve}>
         <Citta T={T} c={tavCopia} crash={1} flood={0} fire={0} burnt={0} />
       </g>
@@ -840,8 +876,8 @@ const Storia: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
       <Tag T={T} t0={ev('motore', 4, 0.1)} x={HIT[0] + 40} y={HIT[1] - 230} text="NESSUN AEREO L'HA PERSO" until={E('motore') - 0.3} />
       <Anello T={T} x={HIT[0]} y={HIT[1]} r={130} on={seg(T, ev('motore', 4, 0.3), ev('motore', 4, 0.8)) * (1 - seg(T, E('motore') - 0.5, E('motore')))} />
       {/* le luci dei vigili del fuoco */}
-      {inCap(T, 'motore') && T > ev('motore', 1) && (
-        <g>
+      {vicino(T, 'motore') && T > ev('motore', 1) && (
+        <g opacity={capOp(T, 'motore')}>
           <Glow id="dd16-vf1" x={X.casa + 420} y={GROUND - 40} r={260} t={T} color={Math.sin(T * 8) > 0 ? '#FF3A3A' : '#3A6AFF'} amp={0.2} rate={8} opacity={0.5} />
           <Mano T={T} t0={ev('motore', 1, 0.4)} x={X.casa + 560} y={GROUND - 260} text="vigili del fuoco" size={44} color="#FFB0A0" until={ev('motore', 3)} />
         </g>
@@ -851,10 +887,10 @@ const Storia: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
 
       {/* ---- testa: la psicologa e le visioni */}
       <Nodo T={T} t0={S('testa') + 0.8} x={X.studio + 380} y={300} icon="metronomo" name="la psicologa" s={ns} fade={capOp(T, 'testa')} />
-      {inCap(T, 'testa') && [0, 1, 2].map((i) => {
+      {vicino(T, 'testa') && [0, 1, 2].map((i) => {
         const t0 = ev('testa', 0, 0.2 + i * 0.5);
         const p = eo(seg(T, t0, t0 + 0.6));
-        return T >= t0 ? <g key={i} transform={`translate(${dx + 90 + i * 70} ${dy - 80 - i * 60}) scale(${p * (0.6 + i * 0.25)})`} opacity={0.8}>
+        return T >= t0 ? <g key={i} transform={`translate(${dx + 90 + i * 70} ${dy - 80 - i * 60}) scale(${p * (0.6 + i * 0.25)})`} opacity={0.8 * capOp(T, 'testa')}>
           <circle r={34} fill="rgba(127,166,255,0.25)" stroke={COPY} strokeWidth={4} strokeDasharray="10 7" />
           {i === 2 && <g transform="scale(.6)"><Icona k="orecchie" /></g>}
         </g> : null;
@@ -876,7 +912,7 @@ const Storia: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
       <Tag T={T} t0={ev('libro', 4, 0.2)} x={X.nonna + 20} y={-70} text="NONNA MORTE" bg={INK} until={E('libro') - 0.2} />
 
       {/* ---- ordini: la scuola allagata, Gretchen */}
-      <Mano T={T} t0={ev('ordini', 0, 0.4)} x={X.scuola + 700} y={60} text="come in sogno" size={46} color="#B8C4FF" until={ev('ordini', 2)} />
+      <Mano T={T} t0={ev('ordini', 0, 0.4)} x={X.scuola - 250} y={250} text="come in sogno" size={46} color="#B8C4FF" until={ev('ordini', 2)} />
       <Mano T={T} t0={ev('ordini', 1, 0.6)} x={X.scuola + 560} y={400} text="allaga la scuola" size={54} color="#A8D4FF" until={ev('ordini', 2, 0.5)} />
       <Tag T={T} t0={ev('ordini', 2, 0.2)} x={X.scuola} y={GROUND - 120} text="SCUOLA CHIUSA" bg={INK} rot={-4} until={E('ordini') - 0.3} />
       <Nodo T={T} t0={ev('ordini', 2, 0.6)} x={gretchenPos(T)[0]} y={gretchenPos(T)[1]} icon="bicicletta" name="Gretchen" sub={T < S('gretchen') ? 'la ragazza nuova' : undefined} s={ns} dead={gDead}
@@ -978,7 +1014,7 @@ const AereoMamma: React.FC<{ T: number }> = ({ T }) => {
     x = lerp(VORTEX[0] + 2200, VORTEX[0] - 600, p); y = lerp(VORTEX[1] - 260, VORTEX[1] - 10, p); show = true; engine = T < agT; k = 1.5;
   }
   const tear = ev('vortice', 2, 1.5);
-  if (inCap(T, 'vortice') && T >= ev('vortice', 2, -1)) {
+  if (vicino(T, 'vortice') && T >= ev('vortice', 2, -1)) {
     const p = seg(T, ev('vortice', 2, -1), tear + 2.5);
     x = lerp(7600, VORTEX[0] - 1200, p); y = lerp(-420, VORTEX[1] - 40, p); show = true; engine = T < tear; k = 1.6;
   }
@@ -995,12 +1031,12 @@ const AereoMamma: React.FC<{ T: number }> = ({ T }) => {
 /** Il motore strappato dall'aereo che torna indietro nel tempo, lungo il tratteggio giallo, fino alla prima notte. */
 const MotoreIndietro: React.FC<{ T: number }> = ({ T }) => {
   const tear = ev('vortice', 2, 1.5);
-  if (!inCap(T, 'vortice') || T < tear) return null;
+  if (!vicino(T, 'vortice') || T < tear) return null;
   const p = eio(seg(T, tear + 0.3, ev('vortice', 3, 2.5)));
-  const a = [VORTEX[0] - 300, VORTEX[1] + 40] as const, c = [2600, -700] as const, b = [HIT[0], HIT[1] - 600] as const;
+  const a = [VORTEX[0] + 1000, VORTEX[1] - 105] as const, c = [3200, -800] as const, b = [HIT[0], HIT[1] - 600] as const;
   const [x, y] = qpt(a, c, b, p);
   return (
-    <g>
+    <g opacity={capOp(T, 'vortice')}>
       <Linea T={T} t0={tear + 0.3} id="dd16-ind" d={`M${a[0]} ${a[1]} Q${c[0]} ${c[1]} ${b[0]} ${b[1]}`} color={TIME} w={12} dashed dur={2.5} />
       <g transform={`translate(${x} ${y}) rotate(${T * 200}) scale(1.3)`} opacity={1 - seg(T, ev('vortice', 3, 2.3), ev('vortice', 3, 2.8))}><Motore T={T} spin={3} glow={1} /></g>
       <Mano T={T} t0={ev('vortice', 3, 0.3)} x={2700} y={-520} text="all'indietro nel tempo" size={64} until={E('vortice')} />
@@ -1033,18 +1069,18 @@ const Regole: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
       <Anello T={T} x={COPY_HIT[0]} y={COPY_HIT[1]} r={150} on={seg(T, ev('artefatto', 4), ev('artefatto', 4, 0.5)) * (1 - seg(T, E('artefatto') - 0.4, E('artefatto')))} />
 
       {/* ---- crollo: le frecce che tirano giù anche il mondo vero */}
-      {inCap(T, 'crollo') && [1500, 4400, 7300].map((x, i) => (
-        <Linea key={x} T={T} t0={ev('crollo', 1, 0.3 + i * 0.3)} id={`dd16-tira${i}`} d={`M${x} ${GROUND + 80} Q${(x + VORTEX[0]) / 2} ${GROUND - 200} ${VORTEX[0] + (x - VORTEX[0]) * 0.15} ${GROUND + COPY_DY - 280}`} color={RED} w={26} dashed dur={1.2} />
+      {vicino(T, 'crollo') && [1500, 4400, 7300].map((x, i) => (
+        <Linea key={x} fade={capOp(T, 'crollo')} T={T} t0={ev('crollo', 1, 0.3 + i * 0.3)} id={`dd16-tira${i}`} d={`M${x} ${GROUND + 80} Q${(x + VORTEX[0]) / 2} ${GROUND - 200} ${VORTEX[0] + (x - VORTEX[0]) * 0.15} ${GROUND + COPY_DY - 280}`} color={RED} w={26} dashed dur={1.2} />
       ))}
       <Cartello T={T} t0={ev('crollo', 0, 1.2)} x={VORTEX[0]} y={-1100} head="LA REGOLA" text="LA COPIA CROLLA: BUCO NERO" until={ev('crollo', 2)} />
-      {inCap(T, 'crollo') && T >= ev('crollo', 2) && <Grande28 T={T} t0={ev('crollo', 2)} x={VORTEX[0] + 1300} y={-1000} s={ns * 0.45} sub="IL TEMPO PRIMA DEL CROLLO" />}
+      {vicino(T, 'crollo') && T >= ev('crollo', 2) && <g opacity={capOp(T, 'crollo')}><Grande28 T={T} t0={ev('crollo', 2)} x={VORTEX[0] + 1300} y={-1000} s={ns * 0.45} sub="IL TEMPO PRIMA DEL CROLLO" /></g>}
 
       {/* ---- ricevitore: Donnie al centro con i poteri */}
       <Ricevitore T={T} />
 
       {/* ---- viventi: i cerchi delle persone vicine e il domino */}
       {vicino(T, 'viventi') && <g opacity={capOp(T, 'viventi')}><Domino T={T} ns={ns} /></g>}
-      <Cartello T={T} t0={ev('viventi', 0, 0.6)} x={5600} y={-760} head="LA REGOLA" text="MANIPOLATI VIVENTI" until={ev('viventi', 3, 0.3)} />
+      <Cartello T={T} t0={ev('viventi', 0, 0.6)} x={5600} y={-760} head="LA REGOLA" text="MANIPOLATI VIVENTI" until={ev('viventi', 1, -0.5)} />
 
       {/* ---- morti: Frank fantasma che torna indietro */}
       <Morti T={T} ns={ns} />
@@ -1099,28 +1135,32 @@ const Lente: React.FC<{ T: number }> = ({ T }) => {
 /** Il pezzo di puzzle di troppo, accanto al motore della copia. */
 const Pezzo: React.FC<{ T: number }> = ({ T }) => {
   const t0 = ev('artefatto', 3, 0.2);
-  if (!inCap(T, 'artefatto') || T < t0) return null;
+  if (!vicino(T, 'artefatto') || T < t0) return null;
   const k = pop(T, t0);
   const wob = Math.sin((T - t0) * 9) * 8 * (1 - seg(T, t0 + 1, t0 + 2.5));
   return (
-    <>
+    <g opacity={capOp(T, 'artefatto')}>
     <Mano T={T} t0={t0 + 0.4} x={COPY_HIT[0] - 560} y={COPY_HIT[1] + 160} text="un pezzo di troppo" size={52} />
     <g transform={`translate(${COPY_HIT[0] - 560} ${COPY_HIT[1] - 80}) rotate(${-12 + wob}) scale(${2.4 * k})`}>
       <path d="M-40 -40 H-12 Q-14 -58 0 -58 Q14 -58 12 -40 H40 V-12 Q58 -14 58 0 Q58 14 40 12 V40 H-40 Z" fill={ENGINE} stroke={DARK} strokeWidth={5} />
       <text y={14} textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize={34} fill={DARK}>+1</text>
     </g>
-    </>
+    </g>
   );
 };
 
 /** Il contatore grande, nel mondo. */
-const Grande28: React.FC<{ T: number; t0: number; y: number; s?: number; sub?: string; x?: number; q?: boolean }> = ({ T, t0, y, s = 1, sub, x = VORTEX[0], q }) => (
+const Grande28: React.FC<{ T: number; t0: number; y: number; s?: number; sub?: string; x?: number; q?: boolean }> = ({ T, t0, y: y0, s = 1, sub, x: x0 = VORTEX[0], q }) => {
+  const [x, yc] = fit(T, x0, y0 + 50 * s, 560 * s, 200 * s);
+  const y = yc - 50 * s;
+  return (
   <g transform={`translate(${x} ${y}) scale(${pop(T, t0) * s})`}>
     <rect x={-560} y={-150} width={1120} height={260} rx={40} fill={DARK} stroke={RED} strokeWidth={10} />
     <text y={60} textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize={170} letterSpacing="6" fill={RED} style={{ fontVariantNumeric: 'tabular-nums' }}>{q ? '?? : ??' : '28 GIORNI'}</text>
     {sub && <text y={190} textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize={56} letterSpacing="4" fill={INK} stroke={DARK} strokeWidth={10} paintOrder="stroke">{sub}</text>}
   </g>
-);
+  );
+};
 
 /** Donnie ricevitore: il cerchio grande con l'alone e i quattro poteri che si accendono. */
 const Ricevitore: React.FC<{ T: number }> = ({ T }) => {
@@ -1172,7 +1212,7 @@ const Domino: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
   return (
     <g>
       <Nodo T={T} t0={S('viventi') + 0.3} x={X.casa + 400} y={-200} icon="pantofole" name="Donnie" s={ns} ring={1} />
-      {people.map(([ic, name, x], i) => <Nodo key={ic} T={T} t0={t0 + i * 0.35} x={x} y={-200} icon={ic} name={name} s={ns * 0.9} ring={ic === 'videocassetta' && T >= ev('viventi', 3, 0.2) ? 1 : 0} />)}
+      {people.map(([ic, name, x], i) => <Nodo key={ic} T={T} t0={ev('viventi', 1, -0.2) + i * 0.35} x={x} y={-200} icon={ic} name={name} s={ns * 0.9} ring={ic === 'videocassetta' && T >= ev('viventi', 3, 0.2) ? 1 : 0} />)}
       {/* la catena dell'ultima frase: il fuoco → Cunningham arrestato → la mamma sull'aereo */}
       <Nodo T={T} t0={ev('viventi', 3, 1.6)} x={X.collina - 500} y={-200} icon="valigia" name="la mamma" sub="sull'aereo" s={ns} ring={1} />
       <Linea T={T} t0={ev('viventi', 3, 0.6)} id="dd16-catena" d={`M${X.cunn} ${-330} Q${X.nonna} ${-800} ${X.collina - 500} ${-330}`} color={TIME} w={10} dashed dur={1.2} />
@@ -1187,7 +1227,6 @@ const Domino: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
           </g>
         );
       })}
-      <Mano T={T} t0={ev('viventi', 2, 0.4)} x={X.nonna} y={GROUND - 600} text="una dopo l'altra" size={60} until={ev('viventi', 3)} />
     </g>
   );
 };
@@ -1226,7 +1265,6 @@ const Trappola: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
   const tc = ev('trappola', 1, 0.3);
   return (
     <g opacity={capOp(T, 'trappola')}>
-      <Cartello T={T} t0={ev('trappola', 0, 0.5)} x={o[0] + 1100} y={-540} head="LA REGOLA" text="TRAPPOLA DI SICUREZZA" until={E('trappola') - 0.3} />
       {roads.map(([dx, dy, open], i) => {
         const shut = !open && T >= tc + i * CROMA;
         const d = `M${o[0]} ${o[1]} L${o[0] + dx} ${o[1] + dy}`;
@@ -1242,6 +1280,7 @@ const Trappola: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
           </g>
         );
       })}
+      <Cartello T={T} t0={ev('trappola', 0, 0.5)} x={o[0] + 1100} y={-540} head="LA REGOLA" text="TRAPPOLA DI SICUREZZA" until={E('trappola') - 0.3} />
       <Nodo T={T} t0={S('trappola') + 0.3} x={o[0]} y={o[1]} icon="bicicletta" name="Gretchen" s={ns} dead={1} />
       <Mano T={T} t0={ev('trappola', 3, 0.6)} x={o[0] + 1250} y={o[1] - 120} text="una sola strada: la collina" size={46} until={E('trappola')} />
     </g>

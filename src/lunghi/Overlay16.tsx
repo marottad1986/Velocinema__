@@ -16,7 +16,7 @@ export const Overlay16: React.FC<{
   /** secondo da cui partono i sottotitoli (copertina: niente testo nella miniatura) */ inizio?: number;
   /** finestre vere delle frasi (tempiVoce): se mancano, distribuite sul tratto */ tempi?: [number, number][] | null;
 }> = ({ P, t, dur, tempo, etichetta, titolo, righe, inizio = 0, tempi }) => {
-  const pt = eo(seg(t, 0.1, 0.55));
+  const pt = eo(seg(t, 0.1, 0.55)) * (1 - seg(t, dur - 0.2, dur)); // il titolo svanisce a fine capitolo
   const times = tempi ?? (righe ? subtitleTimes(righe, dur - inizio).map(([a, b]) => [a + inizio, b + inizio] as const) : []);
   return (
     <div style={{ position: 'absolute', inset: 0, fontFamily: SANS }}>

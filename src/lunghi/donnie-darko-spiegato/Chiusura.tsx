@@ -28,7 +28,7 @@ export const Chiusura: React.FC<ParteProps> = ({ t, cues }) => {
   return (
     <>
       <Mondo T={STARTS.chiusura + t} />
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(6,7,15,0) 0%, rgba(6,7,15,0) 50%, rgba(6,7,15,.55) 60%, rgba(6,7,15,.7) 100%)', opacity: box }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(6,7,15,0) 0%, rgba(6,7,15,0) 48%, rgba(6,7,15,.78) 56%, rgba(6,7,15,.86) 100%)', opacity: box }} />
       <div style={{ position: 'absolute', left: 96, top: 120, width: 880, opacity: box, transform: `translateY(${(1 - box) * 20}px)`, padding: '22px 28px', borderRadius: 24, background: 'rgba(10,12,26,0.72)' }}>
         <div style={{ fontFamily: DISPLAY, fontWeight: 800, fontSize: 60, color: INK }}>Ti è servito?</div>
         <div style={{ display: 'flex', gap: 20, marginTop: 18 }}>
