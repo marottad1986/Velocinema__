@@ -355,7 +355,7 @@ const vistaPirata = (T: number) => {
         </g>
       )}
       {/* il cartellino del cemento: accanto alla strada del blocco, nella zona sicura, acceso fino a dopo il colpo */}
-      <Tag T={T} t0={lancio - 0.3} x={1380} y={640} text="UN PEZZO DI CEMENTO" size={52} until={colpo + 1.6} />
+      <Tag T={T} t0={lancio - 0.3} x={1380} y={640} text="UN PEZZO DI CEMENTO" size={52} until={colpo + 1.1} />
       <Tag T={T} t0={attacc + 0.2} x={1340} y={380} text="LA GAMBA DI LEGNO" size={46} until={ev('cemento', 1, -0.5)} />
       {T >= colpo + 0.9 && T < ev('cemento', 2, 0.6) && (
         <g>
