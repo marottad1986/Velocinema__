@@ -10,7 +10,7 @@ import { clip } from './effetti.mjs';
 import { loadFilm, timeline } from './film.mjs';
 
 export const strumenti = ['pianoforte_coda', 'arpa', 'glockenspiel', 'marimba', 'organo', 'violini', 'viole', 'celli', 'contrabbasso', 'celli_spicc', 'viole_spicc', 'contrabbasso_pizz', 'timpani', 'grancassa', 'piatto_sospeso'];
-export const effetti = ['ronzio_neon', 'scatti', 'passaggio', 'colpi_legno', 'legno_cade', 'sibilo', 'rombo', 'campanello_negozio'];
+export const effetti = ['ronzio_neon', 'passaggio', 'colpi_legno', 'legno_cade', 'sibilo', 'rombo', 'campanello_negozio'];
 export const sala = { rt60: 2.2, brillo: 5200, predelay: 0.02, wet: 0.45 };
 
 const BPM = 75;
@@ -54,8 +54,9 @@ export default (mix, T) => {
   let sid = 0;
 
   const sec = (from, to, o) => {
-    const f0 = from <= 0 ? 0 : snap(from);
-    to = snap(to);
+    // esatto: niente aggancio al battito (il cambio cade proprio sull'evento)
+    const f0 = from <= 0 ? 0 : o.esatto ? from : snap(from);
+    to = o.esatto ? to : snap(to);
     const R = rng(5000 + sid++ * 131);
     const ch = o.maj ? MAJ : CHORDS;
     const mot = o.maj ? MOTIF_M : MOTIF;
@@ -119,13 +120,13 @@ export default (mix, T) => {
   sec(T.fessura, T.regola, { drone: 36, str: 30, pizz: 28 });
   sec(T.regola, T.pirata, { drone: 34, harp: 32, org: 24, bells: 30, mel: 32, keep: 0.8 });
   sec(T.pirata, T.cemento, { drone: 44, spic: 44, doppio: true, str: 40, pause: [[morte - 0.05, morte + BEAT]] });
-  sec(T.cemento, lancio, { drone: 50, spic: 52, doppio: true, str: 48 });
+  sec(T.cemento, colpo1 - BEAT, { drone: 50, spic: 46, doppio: true, str: 48, esatto: true });
   sec(colpo1 + B2, T.async, { drone: 36, str: 30, harp: 28 });
   sec(T.async, T.scena, { drone: 38, str: 32, pizz: 28, org: 20 });
-  sec(T.scena, T.sorte, { drone: 40, spic: 36, str: 34 });
+  sec(T.scena, T.sorte, { drone: 40, spic: 36, str: 34, pause: [[at('scena', 2, 1.6) - 0.05, at('scena', 2, 1.6) + BEAT]] });
   sec(T.sorte, T.dettaglio, { drone: 34, harp: 32, str: 28, mel: 32, keep: 0.8 });
   sec(T.dettaglio, hit, { drone: 36, str: 34, harp: 30, pause: [[hit - 1.2, hit]] });
-  sec(hit + BEAT, T.END, { drone: 34, str: 38, harp: 36, mel: 38, bells: 32, maj: true });
+  sec(hit + BEAT, T.END, { drone: 34, str: 38, harp: 36, mel: 38, bells: 32, maj: true, esatto: true });
 
   // il ronzio dei neon sotto la copertina e i corridoi
   for (const [t, d, gn] of [[0, T.fessura, 0.08], [T.cemento, colpo1 - T.cemento, 0.06], [T.scena, T.sorte - T.scena, 0.05]]) {
@@ -151,7 +152,7 @@ export default (mix, T) => {
   timp(mix, colpo1, { vel: 127, gain: 1.2, forte: true });
   colpo(mix, 'grancassa', 'bdrum_ff', { t: colpo1, vel: 120, gain: 0.6, rev: 0.4 });
   clip(mix, 'rombo', { t: colpo1 + 0.1, da: 3.6, durata: 2.4, gain: 0.12, fadeOut: 1.2, largo: 1.4 });
-  clip(mix, 'sibilo', { t: at('cemento', 2, 0.4), da: 1, durata: 3, gain: 0.2, fadeIn: 0.4, fadeOut: 1, largo: 1.3 });
+  clip(mix, 'sibilo', { t: at('cemento', 2, 0.4), da: 1, durata: 3, gain: 0.08, fadeIn: 0.4, fadeOut: 1, largo: 1.3 });
   // async: Phil, «non decido io»
   bell(mix, 73, { t: at('async', 1, 0.4), vel: 32 });
   timp(mix, at('async', 2, 1.6), { vel: 95, gain: 0.55 });
@@ -163,6 +164,10 @@ export default (mix, T) => {
   [69, 73, 76].forEach((m, k) => harp(mix, m + 12, { t: at('sorte', 1, 2.6) + k * CROMA, vel: 34 }));
   // dettaglio: la casa nel cemento (campanelle), il colpo: si apre il La maggiore
   [69, 73, 76, 81].forEach((m, k) => bell(mix, m, { t: at('dettaglio', 0, 1) + k * CROMA, vel: 36 }));
+  // la camera scende nel cemento fino alla casa
+  clip(mix, 'passaggio', { t: at('dettaglio', 1, 1.6), da: 0.56, durata: 0.8, gain: 0.15, fadeIn: 0.1, rev: 0.3 });
+  // il pezzo di casa che si stacca col colpo
+  clip(mix, 'legno_cade', { t: hit + 1.3, gain: 0.12, rev: 0.4 });
   swell(mix, hit - 3, 1.8, { gain: 0.35 });
   timp(mix, hit, { vel: 124, gain: 1.0, forte: true });
   [69, 73, 76, 81, 85].forEach((m, k) => harp(mix, m, { t: hit + BEAT + k * CROMA / 2, vel: 36 }));
