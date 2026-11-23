@@ -84,7 +84,20 @@ export default (mix, T) => {
       const [root, iv] = ch[kk];
       const t0 = Math.max(t, from);
       const d = Math.min(t + BAR * 1.02, to) - t0;
-      if (o.str && !tacet(t0) && d > 0.5) [iv[1], iv[2], iv[3]].forEach((v, j) => strings(mix, root + 12 + v, { t: t0 + j * 0.04, dur: d, vel: o.str, gain: 0.9, pan: (j - 1) * 0.35, seed: j + k }));
+      // archi spezzati nelle pause e chiusi 0,3 s prima, così il rilascio non entra nel silenzio (revisore musica)
+      if (o.str && d > 0.5) {
+        const segs = [];
+        let a = t0;
+        const fine = t0 + d;
+        for (const [p0, p1] of [...pause].sort((x, y) => x[0] - y[0])) {
+          if (p1 <= a || p0 >= fine) continue;
+          if (p0 - 0.3 > a) segs.push([a, p0 - 0.3]);
+          a = Math.max(a, p1);
+        }
+        if (a < fine) segs.push([a, fine]);
+        segs.filter(([x, y]) => y - x > 0.5).forEach(([x, y]) => [iv[1], iv[2], iv[3]].forEach((v, j) =>
+          strings(mix, root + 12 + v, { t: x + j * 0.04, dur: y - x, vel: o.str, gain: 0.9, pan: (j - 1) * 0.35, seed: j + k, att: Math.min(1, (y - x) / 3) })));
+      }
       if (o.arp) for (let i = 0; i < 8 && t + i * CROMA < to - 0.05; i++) {
         const tt = t + i * CROMA;
         if (tt < from || tacet(tt)) continue;
@@ -158,7 +171,7 @@ export default (mix, T) => {
   // il mondo vero è salvo: Mi maggiore aperto sul cartellino, fino alla fine
   sec(SALVO, T.aperto, { drone: 34, str: 40, harp: 36, mel: 38, bells: 32, maj: true });
   sec(T.aperto, T.ventotto, { drone: 30, str: 30, arp: 26, maj: true });
-  sec(T.ventotto, T.seguito, { drone: 36, pizz: 32, spic: 26, maj: true });
+  sec(T.ventotto, T.seguito, { drone: 42, pizz: 40, spic: 34, harp: 30, maj: true });
   sec(T.seguito, T.gesto, { drone: 32, harp: 34, mel: 36, bells: 30, maj: true });
   sec(T.gesto, T.chiusura, { drone: 30, str: 34, arp: 26, mel: 34, bells: 32, maj: true });
   sec(T.chiusura, T.END, { drone: 34, str: 40, harp: 36, mel: 40, maj: true });
@@ -251,7 +264,7 @@ export default (mix, T) => {
   timp(mix, mamma, { vel: 118, gain: 0.9, forte: true });
   bell(mix, 83, { t: mamma, vel: 40 });
   clip(mix, 'passaggio', { t: mamma + 1, da: 0.56, durata: 1.4, gain: 0.2, fadeOut: 0.4, rev: 0.35 });
-  [64, 68, 71, 76, 80].forEach((m, k) => harp(mix, m + 12, { t: at('salvi', 2, 0.2) + k * CROMA / 2, vel: 36 }));
+  [64, 68, 71, 76, 80].forEach((m, k) => harp(mix, m + 12, { t: SALVO + 0.5 + k * CROMA / 2, vel: 36 }));
   swell(mix, SALVO - 3, 2, { gain: 0.35 });
   timp(mix, SALVO, { vel: 115, gain: 0.85, forte: true });
   [76, 80, 83].forEach((m, k) => bell(mix, m, { t: at('gesto', 3) + k * CROMA, vel: 36 }));
