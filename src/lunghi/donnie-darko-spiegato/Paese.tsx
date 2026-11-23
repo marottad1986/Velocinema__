@@ -4,7 +4,7 @@ import { HAND, SANS } from '../../lib/fonts';
 import { FxDefs } from '../../lib/fx';
 import { Fog, Glow, Lightning, Stars, flashAt } from '../../lib/elements';
 import { subtitleTimes } from '../../components/ChapterOverlay';
-import { H, Motes16, TopShade, W } from '../fx16';
+import { H, Motes16, W } from '../fx16';
 import L from '../../../lunghi/donnie-darko-spiegato.json';
 import {
   Aereo, Albero, COPY, Casa, CasaCunn, CasaNonna, Cinema, Collina, DARK, DIM, ENGINE, ENG_HIT, Fari, Golf, INK, Lampione, Motore, RED, Scuola,
@@ -55,6 +55,10 @@ export const ev = (id: string, i: number, d = 0) => g(CUES[id][i] + d);
 const S = (id: string) => STARTS[id];
 const E = (id: string) => STARTS[id] + DUR[id];
 const inCap = (T: number, id: string) => T >= S(id) && T < E(id);
+/** Capitolo «quasi»: fino a 0,5 s dopo la fine, per far svanire gli elementi invece di toglierli di colpo. */
+const vicino = (T: number, id: string) => T >= S(id) && T < E(id) + 0.5;
+/** Opacità degli elementi di un capitolo: entrano in 0,3 s e svaniscono negli ultimi 0,5 s (niente scatti tra le scene). */
+const capOp = (T: number, id: string) => seg(T, S(id), S(id) + 0.3) * (1 - seg(T, E(id) - 0.1, E(id) + 0.4));
 const pop = (T: number, t0: number) => eob(seg(T, t0, t0 + 0.45), 1.7);
 
 // ---------------------------------------------------------------------------------------------------------------- luoghi
@@ -157,25 +161,26 @@ const SHOTS: Key[] = [
 ];
 SHOTS.sort((a, b) => a[0] - b[0]);
 export type Cam = { x: number; y: number; z: number };
+/** Posizione lungo il movimento della chiave `key` partendo da `from` (zoom in scala logaritmica: i grandi cambi non accelerano). */
+const lungo = (from: Cam, key: Key, T: number): Cam => {
+  const [t1, x1, y1, z1, mv = 1.6] = key;
+  const k = mv > 0 ? eio(seg(T, t1, t1 + mv)) : 1;
+  return { x: lerp(from.x, x1, k), y: lerp(from.y, y1, k), z: Math.exp(lerp(Math.log(from.z), Math.log(z1), k)) };
+};
+// Punto di partenza di ogni movimento = dove si trovava davvero la camera in quell'istante (anche a metà del movimento
+// precedente): così tra un'inquadratura e l'altra non c'è nessuno scatto.
+const PARTENZE: Cam[] = [];
+SHOTS.forEach((key, i) => {
+  if (i === 0) { PARTENZE.push({ x: key[1], y: key[2], z: key[3] }); return; }
+  PARTENZE.push(lungo(PARTENZE[i - 1], SHOTS[i - 1], key[0]));
+});
 export const camAt = (T: number): Cam => {
   let i = 0;
   while (i + 1 < SHOTS.length && SHOTS[i + 1][0] <= T) i++;
-  const [t1, x1, y1, z1, mv = 1.6] = SHOTS[i];
-  const prev = SHOTS[Math.max(0, i - 1)];
-  // il movimento parte da dove era arrivata la camera (anche se il movimento precedente non era finito)
-  const from = i > 0 ? camRaw(prev, SHOTS[Math.max(0, i - 2)], t1) : { x: x1, y: y1, z: z1 };
-  const k = mv > 0 ? eio(seg(T, t1, t1 + mv)) : 1;
-  // zoom in scala logaritmica, così i grandi cambi di zoom non accelerano
-  const z = Math.exp(lerp(Math.log(from.z), Math.log(z1), k));
-  const drift = 1 + 0.018 * Math.sin((T - t1) * 0.35);
-  return { x: lerp(from.x, x1, k) + Math.sin(T * 0.21) * 8, y: lerp(from.y, y1, k) + Math.sin(T * 0.17) * 5, z: z * drift };
+  const c = lungo(PARTENZE[i], SHOTS[i], T);
+  const drift = 1 + 0.018 * Math.sin(T * 0.35); // continua nel tempo: non riparte a ogni nuova inquadratura
+  return { x: c.x + Math.sin(T * 0.21) * 8, y: c.y + Math.sin(T * 0.17) * 5, z: c.z * drift };
 };
-function camRaw(key: Key, before: Key, T: number): Cam {
-  const [t1, x1, y1, z1, mv = 1.6] = key;
-  const k = mv > 0 ? eio(seg(T, t1, t1 + mv)) : 1;
-  if (key === before) return { x: x1, y: y1, z: z1 };
-  return { x: lerp(before[1], x1, k), y: lerp(before[2], y1, k), z: Math.exp(lerp(Math.log(before[3]), Math.log(z1), k)) };
-}
 
 // ---------------------------------------------------------------------------------------------------------------- stati
 
@@ -594,7 +599,19 @@ export const Mondo: React.FC<{ T: number; cam?: Cam; chiusura?: boolean; w?: num
         <Fog id="dd16-fog2" t={T} y={GROUND + 40} x={6600} rx={2800} ry={80} color={mix('#8A90C0', '#E8C8B8', a)} opacity={0.14} drift={300} speed={0.04} ph={2} />
       </g>
 
-      {!pulito && T >= S('coniglio') && T < S('chiusura') && <TopShade id="dd16" color="#06070F" h={230} />}
+      {/* ombra morbida solo dietro etichetta e titolo, in alto a sinistra (non più una fascia scura su tutta la larghezza) */}
+      {!pulito && T >= S('coniglio') && T < S('chiusura') && (
+        <>
+          <defs>
+            <radialGradient id="dd16-tit" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(330 110) scale(820 190)">
+              <stop offset="0" stopColor="#06070F" stopOpacity=".62" />
+              <stop offset=".6" stopColor="#06070F" stopOpacity=".3" />
+              <stop offset="1" stopColor="#06070F" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <rect width={w} height={320} fill="url(#dd16-tit)" />
+        </>
+      )}
       {!pulito && <Contatore T={T} />}
       {w === W && <Motes16 T={T} color="#EEF0F7" k={0.8} />}
       {/* un attimo di buio prima dello sparo e dello strappo del motore (momenti clou) */}
@@ -833,7 +850,7 @@ const Storia: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
       <Linea T={T} t0={ev('motore', 3)} id="dd16-letto" d={`M${X.casa + 140} ${GROUND - 120} L${X.casa + 132} ${GROUND - 190}`} color={TIME} w={6} fade={1 - seg(T, ev('motore', 4), ev('motore', 4, 0.4))} />
 
       {/* ---- testa: la psicologa e le visioni */}
-      <Nodo T={T} t0={S('testa') + 0.8} x={X.studio + 380} y={300} icon="metronomo" name="la psicologa" s={ns} fade={inCap(T, 'testa') ? 1 : 0} />
+      <Nodo T={T} t0={S('testa') + 0.8} x={X.studio + 380} y={300} icon="metronomo" name="la psicologa" s={ns} fade={capOp(T, 'testa')} />
       {inCap(T, 'testa') && [0, 1, 2].map((i) => {
         const t0 = ev('testa', 0, 0.2 + i * 0.5);
         const p = eo(seg(T, t0, t0 + 0.6));
@@ -865,19 +882,19 @@ const Storia: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
       <Nodo T={T} t0={ev('ordini', 2, 0.6)} x={gretchenPos(T)[0]} y={gretchenPos(T)[1]} icon="bicicletta" name="Gretchen" sub={T < S('gretchen') ? 'la ragazza nuova' : undefined} s={ns} dead={gDead}
         fade={T < S('vortice') ? 1 : 1 - seg(T, S('vortice'), S('vortice') + 1) + seg(T, rew, rew + 1)} />
       <Mano T={T} t0={ev('ordini', 3, 0.3)} x={X.scuola + 760} y={110} text="scappata da un patrigno violento" size={42} color="#FFB0A0" until={ev('ordini', 4)} />
-      <Linea T={T} t0={ev('ordini', 4, 0.2)} id="dd16-cuore" d={`M${X.scuola + 820} ${200} Q${X.scuola + 1000} ${40} ${X.scuola + 1180} ${200}`} color="#E86A9A" w={7} fade={inCap(T, 'ordini') ? 1 : 0} />
+      <Linea T={T} t0={ev('ordini', 4, 0.2)} id="dd16-cuore" d={`M${X.scuola + 820} ${200} Q${X.scuola + 1000} ${40} ${X.scuola + 1180} ${200}`} color="#E86A9A" w={7} fade={capOp(T, 'ordini')} />
       <Mano T={T} t0={ev('ordini', 4, 0.6)} x={X.scuola + 1000} y={70} text="♥" size={70} color="#E86A9A" until={E('ordini')} />
 
       {/* ---- gretchen: il cinema, lo schermo con Frank senza maschera, la casa che brucia, l'arresto */}
       <Schermo T={T} />
-      <Linea T={T} t0={ev('gretchen', 2, 0.2)} id="dd16-brucia" d={`M${X.cinema + 200} ${60} Q${X.cinema + 700} ${-160} ${X.cunn - 200} ${GROUND - 420}`} color={RED} w={8} dashed dur={1.2} fade={inCap(T, 'gretchen') ? 1 : 0} />
+      <Linea T={T} t0={ev('gretchen', 2, 0.2)} id="dd16-brucia" d={`M${X.cinema + 200} ${60} Q${X.cinema + 700} ${-160} ${X.cunn - 200} ${GROUND - 420}`} color={RED} w={8} dashed dur={1.2} fade={capOp(T, 'gretchen')} />
       <Mano T={T} t0={ev('gretchen', 2, 0.6)} x={X.cinema + 760} y={-140} text="brucia la casa" size={50} color="#FFB0A0" until={ev('gretchen', 3, 0.5)} />
-      <Nodo T={T} t0={ev('gretchen', 2, 1.2)} x={X.cunn + 520} y={220} icon="videocassetta" name="Jim Cunningham" sub="vende corsi di felicità" s={ns} fade={inCap(T, 'gretchen') ? 1 : 0} dead={seg(T, ev('gretchen', 4), ev('gretchen', 4, 0.6))} />
+      <Nodo T={T} t0={ev('gretchen', 2, 1.2)} x={X.cunn + 520} y={220} icon="videocassetta" name="Jim Cunningham" sub="vende corsi di felicità" s={ns} fade={capOp(T, 'gretchen')} dead={seg(T, ev('gretchen', 4), ev('gretchen', 4, 0.6))} />
       <Mano T={T} t0={ev('gretchen', 3, 0.5)} x={X.cunn - 420} y={170} text="prove di crimini gravi" size={44} color="#FFB0A0" until={ev('gretchen', 4, 0.5)} />
       <Tag T={T} t0={ev('gretchen', 4, 0.1)} x={X.cunn + 520} y={500} text="ARRESTATO" bg={RED} fg={INK} until={E('gretchen') - 0.2} />
       {/* e per questo la mamma parte per Los Angeles: la causa dell'aereo (revisore testi) */}
-      <Nodo T={T} t0={ev('gretchen', 4, 1.4)} x={X.cunn - 520} y={230} icon="valigia" name="la mamma" sub="parte per Los Angeles" s={ns} fade={inCap(T, 'gretchen') ? 1 : 0} />
-      <Linea T={T} t0={ev('gretchen', 4, 1.9)} id="dd16-la" d={`M${X.cunn - 420} ${170} Q${X.cunn - 100} ${-200} ${X.cunn + 400} ${-60}`} color={TIME} w={8} dashed dur={1} fade={inCap(T, 'gretchen') ? 1 : 0} />
+      <Nodo T={T} t0={ev('gretchen', 4, 1.4)} x={X.cunn - 520} y={230} icon="valigia" name="la mamma" sub="parte per Los Angeles" s={ns} fade={capOp(T, 'gretchen')} />
+      <Linea T={T} t0={ev('gretchen', 4, 1.9)} id="dd16-la" d={`M${X.cunn - 420} ${170} Q${X.cunn - 100} ${-200} ${X.cunn + 400} ${-60}`} color={TIME} w={8} dashed dur={1} fade={capOp(T, 'gretchen')} />
 
       {/* ---- notte: l'aereo della mamma, Nonna Morte, i bulli, i fari */}
       <AereoMamma T={T} />
@@ -969,7 +986,7 @@ const AereoMamma: React.FC<{ T: number }> = ({ T }) => {
   return (
     <g>
       <g transform={`translate(${x} ${y}) scale(${-k * zk(T)} ${k * zk(T)})`}><Aereo T={T} engine={engine} /></g>
-      {inCap(T, 'notte') && <Mano T={T} t0={S('notte') + 0.8} x={x} y={y - 120} text="la mamma torna da Los Angeles" size={46} until={ev('notte', 2, 0.6)} />}
+      {vicino(T, 'notte') && <g opacity={capOp(T, 'notte')}><Mano T={T} t0={S('notte') + 0.8} x={x} y={y - 120} text="la mamma torna da Los Angeles" size={46} until={ev('notte', 2, 0.6)} /></g>}
       {inCap(T, 'notte') && <g transform={`translate(${x + 40} ${y - 220})`}><Nodo T={T} t0={S('notte') + 0.4} x={0} y={0} icon="valigia" s={0.9} fade={1 - seg(T, ev('notte', 2), ev('notte', 2, 0.6))} r={44} /></g>}
     </g>
   );
@@ -1000,16 +1017,16 @@ const Regole: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
   return (
     <g opacity={fadeAll}>
       {/* ---- copia: il libro aperto, la strada che devia */}
-      {inCap(T, 'copia') && <LibroAperto T={T} />}
-      <Linea T={T} t0={ev('copia', 3)} id="dd16-dev" d={`M${-600} ${GROUND + 70} H${X.casa} C${X.casa + 1200} ${GROUND + 70} ${X.casa + 600} ${GROUND + COPY_DY + 70} ${X.casa + 2200} ${GROUND + COPY_DY + 70} H${X.collina - 600}`} color={COPY} w={22} dashed dur={2} fade={inCap(T, 'copia') ? 1 : 0} />
-      <Linea T={T} t0={ev('copia', 3)} id="dd16-ver" d={`M${X.casa} ${GROUND + 70} H${9800}`} color={INK} w={18} dur={1} fade={inCap(T, 'copia') ? 1 : 0} />
+      {vicino(T, 'copia') && <g opacity={capOp(T, 'copia')}><LibroAperto T={T} /></g>}
+      <Linea T={T} t0={ev('copia', 3)} id="dd16-dev" d={`M${-600} ${GROUND + 70} H${X.casa} C${X.casa + 1200} ${GROUND + 70} ${X.casa + 600} ${GROUND + COPY_DY + 70} ${X.casa + 2200} ${GROUND + COPY_DY + 70} H${X.collina - 600}`} color={COPY} w={22} dashed dur={2} fade={capOp(T, 'copia')} />
+      <Linea T={T} t0={ev('copia', 3)} id="dd16-ver" d={`M${X.casa} ${GROUND + 70} H${9800}`} color={INK} w={18} dur={1} fade={capOp(T, 'copia')} />
       <Mano T={T} t0={ev('copia', 3, 0.8)} x={2700} y={-60} text="la strada che devia" size={80} color={COPY} until={E('copia')} />
       <Cartello T={T} t0={ev('copia', 2, 0.4)} x={4300} y={-1280} head="LA REGOLA" text="UNIVERSO TANGENTE = COPIA DEL MONDO" until={E('copia') - 0.3} />
       <Mano T={T} t0={ev('copia', 4, 0.2)} x={6200} y={-200} text="dura poche settimane" size={70} until={E('copia')} />
       <Tag T={T} t0={ev('copia', 4, 1.8)} x={4300} y={-880} text="LA STORIA DI DONNIE È QUI DENTRO" bg={COPY} until={E('copia')} />
 
       {/* ---- artefatto: la lente sui due tetti, il pezzo di troppo */}
-      {inCap(T, 'artefatto') && <Lente T={T} />}
+      {vicino(T, 'artefatto') && <g opacity={capOp(T, 'artefatto')}><Lente T={T} /></g>}
       <Cartello T={T} t0={ev('artefatto', 1, 0.6)} x={COPY_HIT[0] + 760} y={COPY_HIT[1] + 330} head="LA REGOLA" text="ARTEFATTO" until={E('artefatto') - 0.3} s={1.1} />
       <Mano T={T} t0={ev('artefatto', 0, 1)} x={HIT[0] + 640} y={HIT[1] - 240} text="mondo vero: niente motore" size={52} color={INK} until={E('artefatto')} />
       <Pezzo T={T} />
@@ -1026,7 +1043,7 @@ const Regole: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
       <Ricevitore T={T} />
 
       {/* ---- viventi: i cerchi delle persone vicine e il domino */}
-      {inCap(T, 'viventi') && <Domino T={T} ns={ns} />}
+      {vicino(T, 'viventi') && <g opacity={capOp(T, 'viventi')}><Domino T={T} ns={ns} /></g>}
       <Cartello T={T} t0={ev('viventi', 0, 0.6)} x={5600} y={-760} head="LA REGOLA" text="MANIPOLATI VIVENTI" until={ev('viventi', 3, 0.3)} />
 
       {/* ---- morti: Frank fantasma che torna indietro */}
@@ -1107,12 +1124,12 @@ const Grande28: React.FC<{ T: number; t0: number; y: number; s?: number; sub?: s
 
 /** Donnie ricevitore: il cerchio grande con l'alone e i quattro poteri che si accendono. */
 const Ricevitore: React.FC<{ T: number }> = ({ T }) => {
-  if (!inCap(T, 'ricevitore')) return null;
+  if (!vicino(T, 'ricevitore')) return null;
   const c = [2800, -420] as const;
   const t0 = S('ricevitore') + 0.4;
   const pw: [string, string, number][] = [['forza', 'pugno', ev('ricevitore', 2, 0.3)], ['visioni', 'occhio', ev('ricevitore', 2, 1.0)], ['acqua', 'onde', ev('ricevitore', 2, 1.8)], ['fuoco', 'fiamma', ev('ricevitore', 2, 2.4)], ['incubi', 'nuvola', ev('ricevitore', 4)]];
   return (
-    <g>
+    <g opacity={capOp(T, 'ricevitore')}>
       <Nodo T={T} t0={t0} x={c[0]} y={c[1]} icon="pantofole" s={zk(T) * 1.6} ring={1} />
       {/* le linee del futuro che escono dal cerchio, trasparenti come acqua */}
       {T >= ev('ricevitore', 2, 1.8) && Array.from({ length: 5 }, (_, i) => {
@@ -1177,13 +1194,13 @@ const Domino: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
 
 /** I manipolati morti: Frank fantasma, il tratteggio giallo dalla notte dello sparo alla prima notte. */
 const Morti: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
-  if (!inCap(T, 'morti')) return null;
+  if (!vicino(T, 'morti')) return null;
   const a = [X.nonna + 470, GROUND - 330] as const, b = [X.casa - 860, 350] as const, c = [4300, -1300] as const;
   const t0 = ev('morti', 2, 0.6);
   const p = eio(seg(T, t0 + 0.4, t0 + 3));
   const [fx, fy] = qpt(a, c, b, p);
   return (
-    <g>
+    <g opacity={capOp(T, 'morti')}>
       <Cartello T={T} t0={ev('morti', 0, 0.6)} x={4030} y={-1000} head="LA REGOLA" text="MANIPOLATI MORTI" until={E('morti') - 0.3} />
       <Mano T={T} t0={ev('morti', 2)} x={a[0] - 1500} y={a[1] - 260} text="la notte dello sparo" size={50} />
       <Mano T={T} t0={ev('morti', 2, 2.4)} x={b[0] + 1100} y={b[1] - 300} text="la prima notte" size={50} />
@@ -1203,12 +1220,12 @@ const Morti: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
 
 /** La trappola di sicurezza: le strade si chiudono, resta solo quella verso la collina e il vortice. */
 const Trappola: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
-  if (!inCap(T, 'trappola')) return null;
+  if (!vicino(T, 'trappola')) return null;
   const o = [X.nonna + 120, 300] as const;
   const roads: [number, number, boolean][] = [[-1500, -200, false], [-900, -900, false], [400, -1000, false], [1400, -500, true]];
   const tc = ev('trappola', 1, 0.3);
   return (
-    <g>
+    <g opacity={capOp(T, 'trappola')}>
       <Cartello T={T} t0={ev('trappola', 0, 0.5)} x={o[0] + 1100} y={-540} head="LA REGOLA" text="TRAPPOLA DI SICUREZZA" until={E('trappola') - 0.3} />
       {roads.map(([dx, dy, open], i) => {
         const shut = !open && T >= tc + i * CROMA;
@@ -1240,8 +1257,8 @@ const Finale: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
       <Porta T={T} ns={ns} />
       <Ritorno T={T} ns={ns} />
       {/* ride */}
-      {inCap(T, 'ride') && (
-        <g>
+      {vicino(T, 'ride') && (
+        <g opacity={capOp(T, 'ride')}>
           <Mano T={T} t0={ev('ride', 1, 0.3)} x={X.casa + 470} y={GROUND - 520} text="resta lì apposta" size={44} until={ev('ride', 2)} />
           {T >= ev('ride', 2) && <Glow id="dd16-ride" x={X.casa + 108} y={GROUND - 166} r={120} t={T} color="#FFE7B8" amp={0.3} rate={9} opacity={0.6} />}
           <Cartello T={T} t0={ev('ride', 2, 0.4)} x={X.casa + 300} y={400} head="TEORIA" text="NON ERA PAZZO" until={E('ride') - 0.5} color={COPY} />
@@ -1258,13 +1275,13 @@ const Finale: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
 
 /** Il vortice come porta tra la copia (sopra) e il mondo vero (sotto); il motore che la attraversa. */
 const Porta: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
-  if (!inCap(T, 'porta')) return null;
+  if (!vicino(T, 'porta')) return null;
   const t3 = ev('porta', 3);
   const p = eio(seg(T, t3, ev('porta', 4, 1.5)));
   const a = [VORTEX[0], VORTEX[1] - 500] as const, c = [VORTEX[0] - 400, VORTEX[1] + 200] as const, b = [HIT[0], HIT[1] - 60] as const;
   const [x, y] = p < 0.35 ? [lerp(a[0], VORTEX[0], p / 0.35), lerp(a[1], VORTEX[1], p / 0.35)] as const : qpt([VORTEX[0], VORTEX[1]], c, b, (p - 0.35) / 0.65);
   return (
-    <g>
+    <g opacity={capOp(T, 'porta')}>
       <Nodo T={T} t0={ev('porta', 1, 0.2)} x={X.collina - 260} y={-80} icon="pantofole" name="Donnie" sub="sulla collina" s={ns} ring={1} />
       <Linea T={T} t0={ev('porta', 1, 0.8)} id="dd16-poteri" d={`M${X.collina - 400} ${-80} Q${6400} ${-700} ${VORTEX[0] + 450} ${VORTEX[1]}`} color={TIME} w={16} dur={1.2} />
       <Cartello T={T} t0={ev('porta', 2, 0.2)} x={4800} y={VORTEX[1] - 820} head="LA REGOLA" text="LA PORTA TRA I DUE MONDI" until={E('porta') - 0.3} />
@@ -1281,10 +1298,10 @@ const Porta: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
 
 /** Il cerchio si chiude: il motore dell'aereo (sopra) e il motore nel tetto (sotto) sono lo stesso. */
 const Ritorno: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
-  if (!inCap(T, 'ritorno')) return null;
+  if (!vicino(T, 'ritorno')) return null;
   const pl = [6600, -560] as const;
   return (
-    <g>
+    <g opacity={capOp(T, 'ritorno')}>
       <g transform={`translate(${pl[0]} ${pl[1]}) scale(${-1.8} 1.8)`}><Aereo T={T} engine /></g>
       <Anello T={T} x={pl[0] + 50} y={pl[1] + 55} r={110} on={seg(T, ev('ritorno', 1, 0.3), ev('ritorno', 1, 0.8))} />
       <Anello T={T} x={HIT[0]} y={HIT[1]} r={160} on={seg(T, ev('ritorno', 1, 0.9), ev('ritorno', 1, 1.4))} />
@@ -1305,10 +1322,10 @@ const Ritorno: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
 
 /** Chi si salva: la copia si dissolve, le morti della copia si annullano. */
 const Salvi: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
-  if (!inCap(T, 'salvi')) return null;
+  if (!vicino(T, 'salvi')) return null;
   const t1 = ev('salvi', 1, 0.3), t2 = ev('salvi', 2, 0.2);
   return (
-    <g>
+    <g opacity={capOp(T, 'salvi')}>
       {[['bicicletta', 'Gretchen', X.cinema - 380], ['orecchie', 'Frank', X.nonna - 300]].map(([ic, name, x], i) => (
         <Nodo key={ic} T={T} t0={S('salvi') + 0.4} x={x as number} y={120} icon={ic as string} name={name as string} sub={T >= t2 + i * 0.4 ? 'vivo' + (i ? '' : 'a') : undefined} s={ns} dead={1 - seg(T, t2 + i * 0.4, t2 + i * 0.4 + 0.6)} />
       ))}
@@ -1321,12 +1338,12 @@ const Salvi: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
 
 /** Il gesto dell'ultima scena: la bicicletta davanti alla casa, i due saluti, il filo azzurro della copia. */
 const Gesto: React.FC<{ T: number }> = ({ T }) => {
-  if (!inCap(T, 'gesto')) return null;
+  if (!vicino(T, 'gesto')) return null;
   const pb = eio(seg(T, ev('gesto', 1), ev('gesto', 2, 0.6)));
   const bx = lerp(X.casa + 1500, X.casa + 880, pb);
   const t3 = ev('gesto', 3);
   return (
-    <g>
+    <g opacity={capOp(T, 'gesto')}>
       <g transform={`translate(${bx} ${GROUND - 40}) scale(1.8)`}><Icona k="bicicletta" T={T * (1 - seg(T, ev('gesto', 2, 0.4), ev('gesto', 2, 0.8)))} /></g>
       <Nodo T={T} t0={ev('gesto', 1, 0.2)} x={X.casa + 920} y={330} icon="bicicletta" name="Gretchen" s={zk(T) * 1.1} />
       <Nodo T={T} t0={ev('gesto', 2, 0.2)} x={X.casa + 360} y={330} icon="valigia" name="la mamma di Donnie" s={zk(T) * 1.1} />
@@ -1345,9 +1362,9 @@ const Gesto: React.FC<{ T: number }> = ({ T }) => {
 
 /** Due letture: il libro (la copia) o la mente di Donnie. */
 const Aperto: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
-  if (!inCap(T, 'aperto')) return null;
+  if (!vicino(T, 'aperto')) return null;
   return (
-    <g>
+    <g opacity={capOp(T, 'aperto')}>
       <Cartello T={T} t0={ev('aperto', 0, 0.6)} x={3300} y={-1400} head="TEORIA 1" text="IL LIBRO: LA COPIA ESISTE" color={COPY} />
       <Cartello T={T} t0={ev('aperto', 1, 0.4)} x={5100} y={-700} head="TEORIA 2" text="È TUTTO NELLA SUA MENTE" color="#E86A9A" />
       {T >= ev('aperto', 1, 0.4) && [0, 1, 2].map((i) => (
@@ -1366,10 +1383,10 @@ const Aperto: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
 
 /** Perché proprio 28: il contatore grande e i tre cartelli. */
 const Ventotto: React.FC<{ T: number }> = ({ T }) => {
-  if (!inCap(T, 'ventotto')) return null;
+  if (!vicino(T, 'ventotto')) return null;
   const items: [number, string, string][] = [[ev('ventotto', 1, 0.3), 'LA SCENEGGIATURA', '28 GIORNI'], [ev('ventotto', 2, 0.3), 'LE RIPRESE', '28 GIORNI'], [ev('ventotto', 3, 0.1), 'IL CINEMA DI MEZZANOTTE', '28 MESI']];
   return (
-    <g>
+    <g opacity={capOp(T, 'ventotto')}>
       <Grande28 T={T} t0={S('ventotto') + 0.5} y={-560} s={0.95} />
       {items.map(([t0, a, b], i) => T >= t0 ? (
         <g key={a} transform={`translate(${4400 + (i - 1) * 800} ${-140}) scale(${pop(T, t0)})`}>
@@ -1399,12 +1416,11 @@ const Insegna: React.FC<{ T: number }> = ({ T }) => (
 
 /** Il seguito: il libro di Nonna Morte si chiude, accanto un libro nuovo coperto da un telo. */
 const Seguito: React.FC<{ T: number }> = ({ T }) => {
-  if (!inCap(T, 'seguito')) return null;
-  const out = seg(T, E('seguito') - 0.8, E('seguito'));
+  if (!vicino(T, 'seguito')) return null;
   const t1 = ev('seguito', 1, 0.3);
   const lift = seg(T, ev('seguito', 2, 0.6), ev('seguito', 2, 1.6));
   return (
-    <g opacity={1 - out}>
+    <g opacity={capOp(T, 'seguito')}>
       <g transform={`translate(${4000} ${-220}) scale(${3 * pop(T, S('seguito') + 0.3)})`}><Icona k="libro" /></g>
       {T >= t1 && (
         <g transform={`translate(${4700} ${-240}) scale(${pop(T, t1)})`}>
