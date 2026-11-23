@@ -163,7 +163,7 @@ export default (mix, T) => {
   sec(T.oshkosh, T.parsons, { drone: 32, harp: 34, mar: 28, bells: 30, mel: 34, keep: 0.8 });
   sec(T.parsons, T.async, { drone: 34, arp: 22, org: 24, mel: 30 });
   sec(T.async, T.a24, { drone: 40, str: 34, spic: 30 });
-  sec(T.a24, T.cassetta, { drone: 34, str: 34, harp: 34, mel: 38, bells: 32 });
+  sec(T.a24, T.cassetta, { drone: 34, str: 34, harp: 34, mel: 35, bells: 32 });
   // ---------------------------------------------------------------- LA STORIA DEL FILM
   sec(T.cassetta, T.negozio, { drone: 40, str: 30, pause: [[neveVhs - 1, neveVhs - 0.05], [neveVhs, neveVhs + B2]] });
   sec(T.negozio, T.fessura, { drone: 32, arp: 22, mar: 24, mel: 30, keep: 0.85 });
@@ -284,7 +284,7 @@ export default (mix, T) => {
   timp(mix, at('pirata', 3, 0.2), { vel: 112, gain: 0.75, forte: true });
   // cemento (momento clou): l'attaccapanni che spezza la gamba, il lancio, il silenzio, il colpo, il gas
   clip(mix, 'legno_cade', { t: attacc, da: 0, durata: 1, gain: 0.5, fadeOut: 0.4, rev: 0.35 });
-  clip(mix, 'colpi_legno', { t: attacc + 0.05, da: 0.2, durata: 0.5, gain: 0.4, rev: 0.3 });
+  clip(mix, 'colpi_legno', { t: attacc + 0.05, da: 0.27, durata: 0.25, gain: 0.4, rev: 0.3 });
   clip(mix, 'passaggio', { t: lancio, da: 0.56, durata: COLPO - lancio, gain: 0.2, fadeIn: 0.1, rev: 0.3 });
   timp(mix, COLPO, { vel: 127, gain: 1.2, forte: true });
   colpo(mix, 'grancassa', 'bdrum_ff', { t: COLPO, vel: 120, gain: 0.9, rev: 0.4 });

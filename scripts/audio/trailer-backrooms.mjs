@@ -111,7 +111,7 @@ export default (mix, T) => {
     kick(t + 0.02, 0.25);
   }
   // i neon che si riaccendono uno alla volta verso il fondo
-  for (let i = 0; i < 12; i++) clip(mix, 'scatti', { t: E.hit - 1.6 + i * 0.1, da: 6.49, durata: 0.05, gain: 0.25, rev: 0.3 });
+  for (let i = 0; i < 6; i++) clip(mix, 'scatti', { t: E.hit - 1.6 + i * BEAT / 3, da: 6.49, durata: 0.05, gain: 0.25, rev: 0.3 });
   colpo(mix, 'piatto_sospeso', 'susp_FX_scrape_continuous', { t: E.hit - 1.5, dur: 1.5, vel: 90, gain: 0.4, release: 0.2, rev: 0.4, da: 2 });
   // crescendo mentre l'immagine emerge dal buio: tremolo degli archi e rombo che salgono fino al colpo
   [42, 49, 54, 61, 66].forEach((m, j) => suona(mix, m < 55 ? 'celli_trem' : 'violini_trem', m, { t: E.hit - 1.5, dur: 1.5, vel: 80, gain: 0.3, attack: 1.5, release: 0.05, rev: 0.4, pan: (j - 2) * 0.2 }));
