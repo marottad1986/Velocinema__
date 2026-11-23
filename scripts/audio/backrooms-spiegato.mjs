@@ -175,8 +175,8 @@ export default (mix, T) => {
   sec(T.regola, T.uscita, { drone: 34, harp: 34, org: 24, bells: 30 });
   sec(T.uscita, T.pirata, { drone: 34, str: 32, harp: 32, mel: 34 });
   sec(T.pirata, passiPirata, { esatto: true, drone: 40, str: 34 });
-  sec(passiPirata, T.cemento, { esatto: true, drone: 48, spic: 50, doppio: true, str: 46 });
-  sec(T.cemento, lancio, { esatto: true, drone: 50, spic: 54, doppio: true, str: 50, pause: [[attacc - 0.05, attacc + CROMA], [COLPO - BEAT, COLPO + B2]] });
+  sec(passiPirata, T.cemento, { esatto: true, drone: 44, spic: 42, doppio: true, str: 40 });
+  sec(T.cemento, lancio, { esatto: true, drone: 44, spic: 44, doppio: true, str: 42, pause: [[attacc - 0.05, attacc + CROMA], [COLPO - BEAT, COLPO + B2]] });
   // il colpo: silenzio prima (dal lancio), colpo, un battito di silenzio dopo
   sec(COLPO + B2, T.phil, { esatto: true, drone: 36, str: 30, harp: 28 });
   sec(T.phil, T.montaggio, { drone: 38, str: 32, pizz: 28, org: 20 });
@@ -279,7 +279,7 @@ export default (mix, T) => {
   timp(mix, at('uscita', 0, 2.6), { vel: 95, gain: 0.55 });
   [54, 57, 61, 66, 69, 73, 78].forEach((m, k) => harp(mix, m, { t: at('uscita', 2) + k * CROMA / 2, vel: 34 }));
   // pirata: la frase di Mary, il cappello che arriva, i passi della gamba di legno, Clark ucciso
-  for (let k = 0; k < 6; k++) clip(mix, 'colpi_legno', { t: passiPirata + k * CROMA, da: 0.2, durata: 0.28, gain: 0.25 + k * 0.05, rev: 0.4, lp: 2500 });
+  for (let k = 0; k < 6; k++) clip(mix, 'colpi_legno', { t: passiPirata + k * CROMA, da: 0.27, durata: 0.22, gain: 0.25 + k * 0.05, rev: 0.4, lp: 2500 });
   for (let i = 0; i < 10; i++) clip(mix, 'scatti', { t: at('pirata', 1, 0.8) + i * CROMA / 2, da: 6.49, durata: 0.06, gain: 0.25, rev: 0.3 }); // i neon che si spengono a ondata
   timp(mix, at('pirata', 3, 0.2), { vel: 112, gain: 0.75, forte: true });
   // cemento (momento clou): l'attaccapanni che spezza la gamba, il lancio, il silenzio, il colpo, il gas
@@ -287,7 +287,7 @@ export default (mix, T) => {
   clip(mix, 'colpi_legno', { t: attacc + 0.05, da: 0.2, durata: 0.5, gain: 0.4, rev: 0.3 });
   clip(mix, 'passaggio', { t: lancio, da: 0.56, durata: COLPO - lancio, gain: 0.2, fadeIn: 0.1, rev: 0.3 });
   timp(mix, COLPO, { vel: 127, gain: 1.2, forte: true });
-  colpo(mix, 'grancassa', 'bdrum_ff', { t: COLPO, vel: 120, gain: 0.6, rev: 0.4 });
+  colpo(mix, 'grancassa', 'bdrum_ff', { t: COLPO, vel: 120, gain: 0.9, rev: 0.4 });
   clip(mix, 'rombo', { t: COLPO + 0.1, da: 3.6, durata: 2.4, gain: 0.12, fadeOut: 1.2, largo: 1.4 });
   clip(mix, 'sibilo', { t: at('cemento', 2, 0.4), da: 1, durata: 3, gain: 0.15, fadeIn: 0.4, fadeOut: 1, largo: 1.3 });
   bell(mix, 69, { t: at('cemento', 1, 2.4), vel: 34 }); // «ricordatelo!»
