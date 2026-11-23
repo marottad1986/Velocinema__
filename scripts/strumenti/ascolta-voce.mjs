@@ -218,11 +218,17 @@ for (const c of clips) {
     log(`- ${d.t.toFixed(1)} s, frase ${fraseDi[Math.min(d.i, fraseDi.length - 1)] + 1}: ${tipo}: scritto «${a}», sentito «${s}»${num}`);
   }
   // tempi di ogni frase dalle parole riconosciute
+  const tempiClip = [];
+  let ultima = -1; // ultima parola sentita della frase precedente
   c.frasi.forEach((f, k) => {
     const idx = map.filter((j, i) => fraseDi[i] === k && j >= 0);
-    if (!idx.length) return log(`- frase ${k + 1}: nessuna parola riconosciuta`);
-    const t0 = sen[idx[0]].start;
+    if (!idx.length) { tempiClip.push(null); return log(`- frase ${k + 1}: nessuna parola riconosciuta`); }
+    // la frase parte dalla prima parola sentita dopo la frase precedente, anche se la trascrizione la scrive diversa
+    // (es. «Donny» per «Donnie»: altrimenti il sottotitolo arriva mezzo secondo dopo la voce, revisore voce 23 nov)
+    const t0 = sen[Math.min(idx[0], ultima + 1)].start;
+    ultima = idx[idx.length - 1];
     const t1 = sen[idx[idx.length - 1]].end;
+    tempiClip.push([t0, t1]);
     const wps = peso(f) / Math.max(0.1, t1 - t0);
     const next = map.find((j, i) => fraseDi[i] === k + 1 && j >= 0);
     const dopo = next !== undefined ? sen[next].start - t1 : null;
@@ -235,6 +241,37 @@ for (const c of clips) {
     ].filter(Boolean);
     log(`- frase ${k + 1}: ${t0.toFixed(1)}–${t1.toFixed(1)} s, ${wps.toFixed(2)} parole/s${dopo !== null ? `, pausa dopo ${dopo.toFixed(2)} s` : ''}${note.length ? ` ⚠ ${note.join('; ')}` : ''}`);
   });
+  // frasi non riconosciute: tra la fine della precedente e l'inizio della successiva, in proporzione ai caratteri
+  tempiClip.forEach((v, k) => {
+    if (v) return;
+    const a = k ? tempiClip[k - 1]?.[1] ?? 0 : 0;
+    const b = tempiClip.slice(k + 1).find(Boolean)?.[0] ?? c.len;
+    tempiClip[k] = [a + 0.1, Math.max(a + 0.2, b - 0.1)];
+  });
+  c.tempiClip = tempiClip.map(([a, b]) => [Math.round(a * 100) / 100, Math.round(b * 100) / 100]);
+}
+// --scrivi-tempi (solo video lunghi): tempi veri delle frasi e durata del parlato nel JSON del lungo (`voce`, secondi
+// dall'inizio della clip ripulita dal silenzio), così sottotitoli, eventi delle scene e musica seguono la voce
+// (errore del 22 nov, Donnie Darko: distribuiti sulla durata del tratto arrivavano fino a 6 s dopo la voce).
+// Con --adatta-durate porta anche la durata di ogni tratto di testo nuovo al parlato + inizio + 0,7 s, arrotondata al secondo.
+if (lungo && flag('scrivi-tempi')) {
+  const path = `lunghi/${slug}.json`;
+  const J = JSON.parse(readFileSync(path, 'utf8'));
+  const perId = new Map(clips.filter((c) => c.tempiClip).map((c) => [c.id, c]));
+  const INI = { aggancio: 0.4, chiusura: 0.5 };
+  let n = 0;
+  for (const p of J.parti) {
+    const tratti = p.tipo === 'capitoli' ? p.capitoli : p.tipo === 'aggancio' || p.tipo === 'chiusura' ? [p] : [];
+    for (const c of tratti) {
+      const k = perId.get(c.id);
+      if (!k) continue;
+      c.voce = { parlato: Math.round(k.len * 100) / 100, frasi: k.tempiClip };
+      if (flag('adatta-durate') && p.tipo !== 'chiusura') c.durata = Math.max(Math.ceil((INI[p.tipo] ?? 0) + k.len + 0.7), 4);
+      n++;
+    }
+  }
+  writeFileSync(path, JSON.stringify(J, null, 2) + '\n');
+  console.log(`Tempi della voce scritti in ${path} (${n} tratti${flag('adatta-durate') ? ', durate adattate' : ''}).`);
 }
 if (sttBloccata) {
   log();

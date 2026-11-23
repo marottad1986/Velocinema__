@@ -14,9 +14,10 @@ export const Overlay16: React.FC<{
   /** tempo da mostrare nell'etichetta: [trascorso, totale] della parte (es. la stagione, «m:ss / 2:00»); mai la durata del video lungo */ tempo?: [number, number];
   etichetta?: string; titolo?: string; righe?: string[];
   /** secondo da cui partono i sottotitoli (copertina: niente testo nella miniatura) */ inizio?: number;
-}> = ({ P, t, dur, tempo, etichetta, titolo, righe, inizio = 0 }) => {
-  const pt = eo(seg(t, 0.1, 0.55));
-  const times = righe ? subtitleTimes(righe, dur - inizio).map(([a, b]) => [a + inizio, b + inizio] as const) : [];
+  /** finestre vere delle frasi (tempiVoce): se mancano, distribuite sul tratto */ tempi?: [number, number][] | null;
+}> = ({ P, t, dur, tempo, etichetta, titolo, righe, inizio = 0, tempi }) => {
+  const pt = eo(seg(t, 0.1, 0.55)) * (1 - seg(t, dur - 0.2, dur)); // il titolo svanisce a fine capitolo
+  const times = tempi ?? (righe ? subtitleTimes(righe, dur - inizio).map(([a, b]) => [a + inizio, b + inizio] as const) : []);
   return (
     <div style={{ position: 'absolute', inset: 0, fontFamily: SANS }}>
       {etichetta && (

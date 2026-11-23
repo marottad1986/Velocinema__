@@ -11,7 +11,7 @@ import { renderStill, selectComposition } from '@remotion/renderer';
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import { loadLungo, mmss, trattiLungo } from './tempi.mjs';
+import { frasiTratto, loadLungo, mmss, trattiLungo } from './tempi.mjs';
 
 const args = process.argv.slice(2);
 const slug = args.find((a, i) => !a.startsWith('--') && !(i > 0 && args[i - 1] === '--parti'));
@@ -23,13 +23,7 @@ const tr = trattiLungo(slug, L);
 const dir = `out/revisione/${slug}`;
 mkdirSync(dir, { recursive: true });
 
-const frasi = (x) => {
-  const inizio = x.tipo === 'aggancio' ? 0.4 : 0;
-  const w = x.testo.map((l) => l.length + 6);
-  const tot = w.reduce((a, b) => a + b, 0);
-  let cur = 0.15;
-  return w.map((v) => { const s = inizio + cur; cur += (v / tot) * (x.dur - inizio - 0.35); return s; });
-};
+const frasi = (x) => frasiTratto(x);
 
 // ---- tempi.md
 const righe = [`# Tempi di ${L.titolo_youtube}`, '', 'Istanti in secondi: relativi al tratto (assoluti nel video lungo tra parentesi).', ''];

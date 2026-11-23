@@ -47,6 +47,24 @@ export const trattiLungo = (slug, L = loadLungo(slug)) => {
   return out;
 };
 
+/** Da dove parte la voce in un tratto (come INIZIO in render.mjs e Lungo.tsx). */
+export const INIZIO_VOCE = { aggancio: 0.4, chiusura: 0.5, riassunto: 0.3 };
+/**
+ * Inizio di ogni frase di un tratto (s dall'inizio del tratto). Se il JSON ha i tempi veri della voce (`voce.frasi`,
+ * da ascolta-voce --scrivi-tempi) usa quelli; altrimenti le frasi si distribuiscono sul tratto in proporzione ai
+ * caratteri, come i sottotitoli dei video verticali (lunghi già usciti).
+ */
+export const frasiTratto = (x) => {
+  const inizio = INIZIO_VOCE[x.tipo] ?? 0;
+  const v = (x.capitolo ?? x.parte)?.voce;
+  if (v && v.frasi.length === x.testo.length) return v.frasi.map(([a]) => inizio + a);
+  const w = x.testo.map((l) => l.length + 6);
+  const tot = w.reduce((a, b) => a + b, 0);
+  const span = x.dur - inizio - 0.35;
+  let cur = 0.15;
+  return w.map((q) => { const s = inizio + cur; cur += (q / tot) * span; return s; });
+};
+
 export const durataLungo = (tr) => tr.reduce((a, x) => Math.max(a, x.start + x.dur), 0);
 
 /** Inizio di ogni parte del JSON (per i capitoli YouTube e per posare la musica degli episodi). */
