@@ -248,9 +248,9 @@ export const Mondo: React.FC<{ T: number; cam?: Cam; w?: number; h?: number; pul
         <Cinema T={T} on={keys(T, [[0, 0.3], [S('a24'), 1, 1.2], [S('cassetta'), 0.4, 1.5]])} />
         {/* le copie nel Livello 0 (il finale): il negozio, lo studio e la stanzetta, storti e grigi */}
         <Copie T={T} />
-        {!pulito && <MondoCapitoli T={T} />}
+        <MondoCapitoli T={T} />
         {/* lampioni e cespugli scuri in primo piano sulla strada (parallasse) */}
-        <g transform={`translate(${-cam.x * 0.25} 0)`} opacity={1 - seg(cam.y, -40, 160)}>
+        <g transform={`translate(${-cam.x * 0.25} 0)`} opacity={1 - seg(cam.y, -120, 60)}>
           {Array.from({ length: 30 }, (_, i) => {
             const bx = -1600 + i * 420 + ((i * 97) % 160);
             return (
@@ -264,7 +264,7 @@ export const Mondo: React.FC<{ T: number; cam?: Cam; w?: number; h?: number; pul
         <Fog id="br16-fog" t={T} y={L0.bot - 20} x={3500} rx={6000} ry={60} color="#E9DA8E" opacity={0.08} drift={400} speed={0.04} />
       </g>
       {/* il corridoio in prospettiva dentro la finestra della stanza (Pov.tsx) */}
-      <Pov T={T} cam={cam} pulito={pulito} />
+      {w === W && <Pov T={T} cam={cam} pulito={pulito} />}
       {!pulito && <Schermo T={T} sc={sc} cam={cam} />}
       {/* ombra morbida dietro etichetta e titolo */}
       {!pulito && T >= S('foto') && T < S('chiusura') && (

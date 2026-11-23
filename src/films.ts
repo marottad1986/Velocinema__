@@ -107,6 +107,9 @@ import { Copertina as HGCover, Finale as HGEnd } from './scenes/hunger-games/Loc
 import scissione1 from '../films/scissione-stagione-1.json';
 import { SCISSIONE_1_SCENES } from './scenes/scissione-stagione-1';
 import { Copertina as Sci1Cover, Finale as Sci1End } from './scenes/scissione-stagione-1/Locandina';
+import backroomsFinale from '../films/backrooms-finale.json';
+import { BACKROOMS_FINALE_SCENES } from './scenes/backrooms-finale';
+import { Copertina as BrfCover, Finale as BrfEnd } from './scenes/backrooms-finale/Locandina';
 import boveInUnBattito from '../films/bove-in-un-battito.json';
 import { BOVE_SCENES } from './scenes/bove-in-un-battito';
 import { Copertina as BoveCover, Finale as BoveEnd } from './scenes/bove-in-un-battito/Locandina';
@@ -149,6 +152,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'il-miglio-verde', data: ilMiglioVerde as FilmData, scenes: IL_MIGLIO_VERDE_SCENES, cover: MVCover, ending: MVEnd, posterFont: CRIMSON },
   { slug: 'donnie-darko', data: donnieDarko as FilmData, scenes: DONNIE_DARKO_SCENES, cover: DDCover, ending: DDEnd, posterFont: BEBAS },
   { slug: 'scissione-stagione-1', data: scissione1 as FilmData, scenes: SCISSIONE_1_SCENES, cover: Sci1Cover, ending: Sci1End, posterFont: SYNCOPATE },
+  { slug: 'backrooms-finale', data: backroomsFinale as FilmData, scenes: BACKROOMS_FINALE_SCENES, cover: BrfCover, ending: BrfEnd, posterFont: ANTON },
   { slug: 'ritorno-al-futuro-parte-3', data: ritornoAlFuturo3 as FilmData, scenes: RITORNO_AL_FUTURO_3_SCENES, cover: RAF3Cover, ending: RAF3End, posterFont: RIGHTEOUS },
   { slug: 'the-conjuring', data: theConjuring as FilmData, scenes: THE_CONJURING_SCENES, cover: TCCover, ending: TCEnd, posterFont: FELL },
 ];

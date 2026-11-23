@@ -7,6 +7,8 @@ import trailerRaf from '../../promo/trailer-ritorno-al-futuro.json';
 import { Scena as TrailerRaf } from './trailer-ritorno-al-futuro/Scena';
 import trailerDd from '../../promo/trailer-donnie-darko.json';
 import { Scena as TrailerDd } from './trailer-donnie-darko/Scena';
+import trailerBr from '../../promo/trailer-backrooms.json';
+import { Scena as TrailerBr } from './trailer-backrooms/Scena';
 
 // Short promozionali verticali (1080×1920) che portano al canale YouTube: JSON in promo/<slug>.json, scena in src/promo/<slug>/.
 // Una sola immagine per tutto lo Short, con la camera che segue la voce; sottotitoli come nei video verticali.
@@ -41,6 +43,7 @@ export type PromoDef = { slug: string; data: PromoData; Scena: React.FC<ScenaPro
 export const PROMO: PromoDef[] = [{ slug: 'canale-youtube-dark', data: canaleDark as PromoData, Scena: CanaleDark },
   { slug: 'trailer-ritorno-al-futuro', data: trailerRaf as PromoData, Scena: TrailerRaf },
   { slug: 'trailer-donnie-darko', data: trailerDd as PromoData, Scena: TrailerDd },
+  { slug: 'trailer-backrooms', data: trailerBr as PromoData, Scena: TrailerBr },
 ];
 
 export const getPromo = (slug: string) => {

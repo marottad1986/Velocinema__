@@ -20,7 +20,7 @@ const fin = (x: number, y: number, h = 250): Finestra => ({ x, y, h });
 // ---------------------------------------------------------------------------------------------------------------- oggetti nel corridoio
 
 /** Testo dipinto su un muro del corridoio (lato -1 sinistra, 1 destra), in prospettiva approssimata. */
-const SulMuro: React.FC<{ p: Proietta; side: -1 | 1; z: number; y: number; text: string; size: number; color?: string; font?: string; op?: number }> = ({ p, side, z, y, text, size, color = '#3A2A10', font = HAND, op = 1 }) => {
+export const SulMuro: React.FC<{ p: Proietta; side: -1 | 1; z: number; y: number; text: string; size: number; color?: string; font?: string; op?: number }> = ({ p, side, z, y, text, size, color = '#3A2A10', font = HAND, op = 1 }) => {
   const a = p(side * 2.1, y, z), b = p(side * 2.1, y, z + 1.5);
   if (!a || !b) return null;
   // il testo si legge da sinistra a destra: sul muro sinistro dal vicino al lontano, sul destro dal lontano al vicino
@@ -34,7 +34,7 @@ const SulMuro: React.FC<{ p: Proietta; side: -1 | 1; z: number; y: number; text:
 };
 
 /** La porta socchiusa in fondo al corridoio, con la luce bianca che filtra. */
-const PortaInFondo: React.FC<{ p: Proietta; z: number; T: number; apre?: number }> = ({ p, z, T, apre = 0.25 }) => {
+export const PortaInFondo: React.FC<{ p: Proietta; z: number; T: number; apre?: number }> = ({ p, z, T, apre = 0.25 }) => {
   const tl = p(-2.1, 3, z), br = p(2.1, 0, z);
   const d0 = p(-0.55, 2.2, z), d1 = p(0.55, 0, z);
   if (!tl || !br || !d0 || !d1) return null;
@@ -61,7 +61,7 @@ const ATerra: React.FC<{ p: Proietta; x: number; z: number; k: string; s?: numbe
 };
 
 /** Il cappello da pirata gigante che avanza nel corridoio (sfiora il soffitto), con le impronte della gamba di legno. */
-const PirataPov: React.FC<{ p: Proietta; z: number; T: number; rotto: number }> = ({ p, z, T, rotto }) => {
+export const PirataPov: React.FC<{ p: Proietta; z: number; T: number; rotto: number }> = ({ p, z, T, rotto }) => {
   const a = p(0.2, 2.72 - rotto * 1.1, z);
   if (!a) return null;
   return (
@@ -87,7 +87,7 @@ const PirataPov: React.FC<{ p: Proietta; z: number; T: number; rotto: number }> 
 };
 
 /** Impronte rotonde della gamba di legno sulla moquette. */
-const Impronte: React.FC<{ p: Proietta; z0: number; z1: number }> = ({ p, z0, z1 }) => (
+export const Impronte: React.FC<{ p: Proietta; z0: number; z1: number }> = ({ p, z0, z1 }) => (
   <g>
     {Array.from({ length: 12 }, (_, i) => {
       const zz = z0 + i * 1.4;
