@@ -133,7 +133,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
             </div>
           )}
           <div style={{ position: 'absolute', left: 120, width: 840, top: 760, textAlign: 'center', fontFamily: SANS, fontWeight: 800, fontSize: 92, color: RED,
-            opacity: 0.25 + 0.75 * Math.max(0, 1 - ((t - E.buio) % BEAT) / 0.45), textShadow: `0 0 30px ${RED}`, fontVariantNumeric: 'tabular-nums' }}>
+            opacity: 0.25 + 0.75 * Math.max(0, 1 - ((t - E.buio - CROMA + BEAT) % BEAT) / 0.45), textShadow: `0 0 30px ${RED}`, fontVariantNumeric: 'tabular-nums' }}>
             00:00:00:{String(Math.max(0, Math.ceil(E.hit - t))).padStart(2, '0')}
           </div>
         </div>
