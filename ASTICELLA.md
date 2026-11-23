@@ -61,3 +61,4 @@ La aggiunge chi produce, nello stesso ramo del video, prima dell'unione su main.
   riferimento `reference/prova-qualita-uragano/scene-dopo.js` e delle ultime uscite (Il miglio verde: corridoio comune con
   lampade che scoppiano e sciame che si fa oro; L'Ultima Cena: opera vera animata con annotazioni editoriali in
   `src/lib/annotazioni.tsx`). Da qui in poi ogni produzione aggiunge la sua riga.
+- 23 nov 2026 · Donnie Darko spiegato (lungo 16:9) · primo lungo con un mondo unico tutto disegnato apposta: sottotitoli, eventi e musica agganciati ai tempi veri della voce (`voce.frasi` da `ascolta-voce --scrivi-tempi`), scritte e simboli a grandezza fissa sullo schermo e tenuti fuori da titolo, contatore e sottotitoli (`fit()` in `Paese.tsx`), camera senza scatti, cartelli «COLPO DI SCENA», momenti clou con buio e silenzio prima del colpo, tre atti in tonalità diverse. Per il prossimo: `fit()` per gruppi di elementi e controlli automatici delle sovrapposizioni.
