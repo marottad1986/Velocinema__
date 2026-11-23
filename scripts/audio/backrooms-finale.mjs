@@ -80,7 +80,7 @@ export default (mix, T) => {
     });
     for (let t = G0 + Math.floor((f0 - G0) / BAR) * BAR; t < to - 0.3; t += BAR) {
       const k = Math.round((t - G0) / BAR);
-      const [root, iv] = ch[((k % 4) + 4) % 4];
+      const [root, iv] = ch[(((k - (o.giro ?? 0)) % 4) + 4) % 4];
       const t0 = Math.max(t, f0);
       const fine = Math.min(t + BAR * 1.02, to);
       if (o.str) pezzi(t0, fine).forEach(([x, y]) => [iv[1], iv[2], iv[3]].forEach((v, j) => strings(mix, root + 12 + v, { t: x + j * 0.04, dur: y - x, vel: o.str, pan: (j - 1) * 0.35, seed: j + k, att: Math.min(1, (y - x) / 3) })));
@@ -120,13 +120,13 @@ export default (mix, T) => {
   sec(T.fessura, T.regola, { drone: 36, str: 30, pizz: 28 });
   sec(T.regola, T.pirata, { drone: 34, harp: 32, org: 24, bells: 30, mel: 32, keep: 0.8 });
   sec(T.pirata, T.cemento, { drone: 44, spic: 44, doppio: true, str: 40, pause: [[morte - 0.05, morte + BEAT]] });
-  sec(T.cemento, colpo1 - BEAT, { drone: 50, spic: 46, doppio: true, str: 48, esatto: true });
+  sec(T.cemento, colpo1 - BEAT, { drone: 50, spic: 36, doppio: true, str: 48, esatto: true, pause: [[colpo1 - 2 * BEAT, colpo1]] });
   sec(colpo1 + B2, T.async, { drone: 36, str: 30, harp: 28 });
   sec(T.async, T.scena, { drone: 38, str: 32, pizz: 28, org: 20 });
   sec(T.scena, T.sorte, { drone: 40, spic: 36, str: 34, pause: [[at('scena', 2, 1.6) - 0.05, at('scena', 2, 1.6) + BEAT]] });
   sec(T.sorte, T.dettaglio, { drone: 34, harp: 32, str: 28, mel: 32, keep: 0.8 });
   sec(T.dettaglio, hit, { drone: 36, str: 34, harp: 30, pause: [[hit - 1.2, hit]] });
-  sec(hit + BEAT, T.END, { drone: 34, str: 38, harp: 36, mel: 38, bells: 32, maj: true, esatto: true });
+  sec(hit + BEAT, T.END, { drone: 34, str: 28, harp: 28, mel: 32, bells: 28, maj: true, esatto: true, giro: 1 });
 
   // il ronzio dei neon sotto la copertina e i corridoi
   for (const [t, d, gn] of [[0, T.fessura, 0.08], [T.cemento, colpo1 - T.cemento, 0.06], [T.scena, T.sorte - T.scena, 0.05]]) {
@@ -167,9 +167,9 @@ export default (mix, T) => {
   // la camera scende nel cemento fino alla casa
   clip(mix, 'passaggio', { t: at('dettaglio', 1, 1.6), da: 0.56, durata: 0.8, gain: 0.15, fadeIn: 0.1, rev: 0.3 });
   // il pezzo di casa che si stacca col colpo
-  clip(mix, 'legno_cade', { t: hit + 1.3, gain: 0.12, rev: 0.4 });
+  clip(mix, 'legno_cade', { t: hit + 1.4, gain: 0.35, rev: 0.4 });
   swell(mix, hit - 3, 1.8, { gain: 0.35 });
-  timp(mix, hit, { vel: 124, gain: 1.0, forte: true });
-  [69, 73, 76, 81, 85].forEach((m, k) => harp(mix, m, { t: hit + BEAT + k * CROMA / 2, vel: 36 }));
+  timp(mix, hit, { vel: 124, gain: 1.3, forte: true });
+  [69, 73, 76, 81, 85].forEach((m, k) => harp(mix, m, { t: hit + BEAT + k * CROMA / 2, vel: 26 }));
   [76, 81, 85, 88].forEach((m, k) => bell(mix, m, { t: T.END - 3.4 + k * CROMA, vel: 32 }));
 };
