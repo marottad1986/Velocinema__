@@ -26,7 +26,7 @@ export const MiniaturaB: React.FC = () => (
     </svg>
     <div style={{ position: 'absolute', left: 0, top: 0, width: 1100, height: 1080, background: `linear-gradient(90deg, ${NIGHT}EE 0%, ${NIGHT}AA 55%, ${NIGHT}00 100%)` }} />
     <div style={{ position: 'absolute', left: 96, top: 130, display: 'inline-block', padding: '8px 20px', borderRadius: 10, background: YEL, color: NIGHT, fontFamily: SANS, fontWeight: 900, fontSize: 34, letterSpacing: '0.16em' }}>BACKROOMS</div>
-    <Titolo righe={['LIVELLO', '0']} x={90} y={200} size={330} />
+    <Titolo righe={['LIVELLO 0']} x={90} y={300} size={250} />
   </div>
 );
 

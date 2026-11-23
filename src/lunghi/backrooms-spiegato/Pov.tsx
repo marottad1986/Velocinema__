@@ -338,7 +338,6 @@ const vistaPirata = (T: number) => {
                 <g>
                   <circle cx={a.x} cy={a.y} r={sz * 55} fill="#FFF4C8" opacity={0.25} />
                   <g transform={`translate(${a.x} ${a.y}) rotate(${q * 540}) scale(${sz})`}><Icona k="cemento" /></g>
-                  {q < 0.45 && <Tag T={T} t0={lancio - 0.3} x={a.x} y={a.y - sz * 60} text="UN PEZZO DI CEMENTO" size={50} />}
                 </g>
               );
             })()}
@@ -355,6 +354,8 @@ const vistaPirata = (T: number) => {
           })}
         </g>
       )}
+      {/* il cartellino del cemento: accanto alla strada del blocco, nella zona sicura, acceso fino a dopo il colpo */}
+      <Tag T={T} t0={lancio - 0.3} x={1380} y={640} text="UN PEZZO DI CEMENTO" size={52} until={colpo + 1.6} />
       <Tag T={T} t0={attacc + 0.2} x={1340} y={380} text="LA GAMBA DI LEGNO" size={46} until={ev('cemento', 1, -0.5)} />
       {T >= colpo + 0.9 && T < ev('cemento', 2, 0.6) && (
         <g>

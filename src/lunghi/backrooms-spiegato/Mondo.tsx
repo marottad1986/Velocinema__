@@ -671,8 +671,8 @@ const Schermo: React.FC<{ T: number; sc: (x: number, y: number) => [number, numb
         <g>
           {tag(1000, -950, ev('oshkosh', 1), 'RITROVATA NEL 2024', { until: ev('oshkosh', 3) })}
           {tag(1600, -330, ev('oshkosh', 2, 0.6), 'OSHKOSH · 2002', { bg: RED, fg: PAPER, until: ev('oshkosh', 3, 1) })}
-          {tag(X.negozio + 300, -560, ev('oshkosh', 3, 1.4), 'UN NEGOZIO DI MOBILI', { until: E('oshkosh') })}
-          {ring(X.negozio - 260, -510, 260, seg(T, ev('oshkosh', 3, 1.8), ev('oshkosh', 3, 2.4)) * capOp(T, 'oshkosh'))}
+          {tag(X.negozio + 380, -560, ev('oshkosh', 3, 1.4), 'UN NEGOZIO DI MOBILI', { until: E('oshkosh') })}
+          {ring(X.negozio - 260, -512, 200, seg(T, ev('oshkosh', 3, 1.8), ev('oshkosh', 3, 2.4)) * capOp(T, 'oshkosh'))}
         </g>
       )}
       {/* PARSONS */}
@@ -680,7 +680,7 @@ const Schermo: React.FC<{ T: number; sc: (x: number, y: number) => [number, numb
         <g>
           {nodo(560, -330, { t0: S('parsons') + 0.6, icon: 'cassetta', name: 'KANE PARSONS', sub: '16 anni', fade: capOp(T, 'parsons') })}
           {tag(960, -420, ev('parsons', 0, 1.6), '7 GENNAIO 2022', { until: ev('parsons', 2) })}
-          {tag(1400, -300, ev('parsons', 1, 0.6), '9 MINUTI · ANNI \'90', { until: ev('parsons', 2) })}
+          {tag(1480, -300, ev('parsons', 1, 0.6), '9 MINUTI · ANNI \'90', { until: ev('parsons', 2) })}
           {tag(1150, -470, ev('parsons', 3, 0.4), 'DECINE DI MILIONI DI VISTE', { bg: RED, fg: PAPER })}
           {mano(1650, -120, ev('parsons', 3, 1.6), 'diventa una serie', E('parsons'), 66)}
         </g>
@@ -727,7 +727,7 @@ const Schermo: React.FC<{ T: number; sc: (x: number, y: number) => [number, numb
           {mano(X.negozio + 200, -20, S('fessura') + 0.6, 'le luci sfarfallano', ev('fessura', 1), 64)}
           {tag(X.fessura, -20, ev('fessura', 1, 0.6), 'UNA FESSURA', { until: ev('fessura', 2) })}
           {nodo(X.fessura - 200, 120, { t0: ev('fessura', 3, 0.8), icon: 'prezzo', name: 'CLARK', fade: 1 - seg(T, ev('fessura', 4, -0.2), ev('fessura', 4, 0.3)) })}
-          {nodo(X.fessura + 920, L0.top - 150, { t0: ev('fessura', 4, 1.0), icon: 'telecamera', name: 'PHIL', sub: 'scienziato di Async' })}
+          {nodo(X.fessura + 920, L0.top - 210, { t0: ev('fessura', 4, 1.0), icon: 'telecamera', name: 'PHIL', sub: 'scienziato di Async' })}
         </g>
       )}
       {/* COMMESSI */}
@@ -854,8 +854,8 @@ const Schermo: React.FC<{ T: number; sc: (x: number, y: number) => [number, numb
       {/* SEGUITO */}
       {vis('seguito') && (
         <g>
-          {tag(4600, -260, S('seguito') + 1.2, 'ALTRO IN LAVORAZIONE', { until: ev('seguito', 1) })}
-          {tag(6200, -140, ev('seguito', 1, 0.6), 'UN NUOVO FILM CON A24?', { until: ev('seguito', 2, 0.4) })}
+          {tag(X.fessura + 350, -260, S('seguito') + 1.2, 'ALTRO IN LAVORAZIONE', { until: ev('seguito', 1) })}
+          {tag(6200, -400, ev('seguito', 1, 0.6), 'UN NUOVO FILM CON A24?', { until: ev('seguito', 2, 0.4) })}
           {nodo(6900, L0.top - 170, { t0: ev('seguito', 2, 0.4), icon: 'taccuino', name: 'MARY?', ring: 1 })}
         </g>
       )}
