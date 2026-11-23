@@ -154,9 +154,9 @@ export const CasaForum: React.FC<{ T: number; griglia: number }> = ({ T, griglia
       <g transform={`translate(${X.forum + 90} -20)`}>
         <rect x={-150} y={-90} width={300} height={16} fill="#6A4A30" {...o} />
         <path d="M-136 -74 V0 M136 -74 V0" {...o} strokeWidth={6} />
-        <rect x={-70} y={-200} width={140} height={110} rx={10} fill="#C8C0A8" {...o} />
-        <rect x={-56} y={-188} width={112} height={80} rx={6} fill="#1A2A22" />
-        <rect x={-56} y={-188} width={112} height={80} rx={6} fill="#8FE0A8" opacity={0.15 + 0.05 * Math.sin(T * 9)} />
+        <rect x={-78} y={-198} width={156} height={104} rx={10} fill="#C8C0A8" {...o} />
+        <rect x={-64} y={-186} width={128} height={72} rx={4} fill="#1A2A22" />
+        <rect x={-64} y={-186} width={128} height={72} rx={4} fill="#8FE0A8" opacity={0.15 + 0.05 * Math.sin(T * 9)} />
         <path d="M-40 -90 H40 L30 -82 H-30 Z" fill="#A8A088" {...o} strokeWidth={2.5} />
         <rect x={-60} y={-80} width={120} height={10} rx={3} fill="#B8B098" {...o} strokeWidth={2.5} />
       </g>
@@ -298,8 +298,8 @@ export const Async: React.FC<{ T: number; anello: number; tv: number; stanzetta:
       <rect x={x0 + 620} y={20} width={460} height={260} fill="#202A30" {...o} />
       <g transform={`translate(${X.monitor} 150)`}>
         <rect x={-140} y={-100} width={280} height={200} rx={20} fill="#8A8478" {...O} />
-        <rect x={-116} y={-80} width={232} height={150} rx={16} fill="#101418" />
-        {tv <= 0 && <rect x={-116} y={-80} width={232} height={150} rx={16} fill={ASYNC} opacity={0.12 + 0.04 * Math.sin(T * 20)} />}
+        <rect x={-112} y={-78} width={224} height={126} rx={10} fill="#101418" />
+        {tv <= 0 && <rect x={-112} y={-78} width={224} height={126} rx={10} fill={ASYNC} opacity={0.12 + 0.04 * Math.sin(T * 20)} />}
         <rect x={-150} y={100} width={300} height={30} fill="#4A3E30" {...o} />
         <circle cx={110} cy={86} r={6} fill="#5A5048" />
       </g>
@@ -356,32 +356,62 @@ export const Cinema: React.FC<{ T: number; on: number }> = ({ T, on }) => {
 
 // ---------------------------------------------------------------------------------------------------------------- sotto terra
 
-/** Il Livello 0 in sezione: stanze gialle una dopo l'altra, neon a soffitto, moquette, porte; `buio` 0–1. */
-export const Livello0: React.FC<{ T: number; x0: number; x1: number; buio: (x: number) => number; rotto?: number }> = ({ T, x0, x1, buio, rotto = 0 }) => (
-  <g>
-    <rect x={x0} y={L0.top - 30} width={x1 - x0} height={L0.bot - L0.top + 60} fill="#2A2210" />
-    {STANZE.filter((s) => s.x + s.w > x0 && s.x < x1).map((s, i) => {
-      const b = buio(s.x + s.w / 2);
-      const on = neonAt(T, s.lamp, 5, rotto) * (1 - b);
-      const wall = mix(mix(YEL_D, YEL, 0.35 + 0.65 * on), '#0E0C06', b * 0.8);
-      const dx = s.x + s.w * s.door;
-      return (
-        <g key={s.x}>
-          <rect x={s.x} y={L0.top} width={s.w} height={L0.bot - L0.top} fill={wall} />
-          {/* righe della carta da parati */}
-          {Array.from({ length: Math.floor(s.w / 34) }, (_, k) => <path key={k} d={`M${s.x + 17 + k * 34} ${L0.top + 8} V${L0.bot - 26}`} stroke={mix('#B9A24C', '#0E0C06', b * 0.8)} strokeWidth={3} opacity={0.5} />)}
-          {/* moquette */}
-          <rect x={s.x} y={L0.bot - 22} width={s.w} height={22} fill={mix('#9C8A45', '#0E0C06', 0.3 + b * 0.6)} />
-          {/* porta verso la stanza dopo (un muro con un varco) */}
-          <rect x={s.x + s.w - 14} y={L0.top} width={28} height={L0.bot - L0.top - 150} fill={mix(YEL_D, '#0E0C06', b * 0.8)} stroke={INK} strokeWidth={3} />
-          <rect x={dx - 6} y={L0.top} width={12} height={50} fill={mix(YEL_D, '#0E0C06', b * 0.8)} opacity={0.6} />
-          {on > 0.05 && <NeonSez x={s.x + s.w / 2} y={L0.top + 2} w={Math.min(110, s.w * 0.3)} on={on} id={`l0-${i}-${s.x}`} />}
-        </g>
-      );
-    })}
-    <path d={`M${x0} ${L0.top} H${x1} M${x0} ${L0.bot} H${x1}`} stroke={INK} strokeWidth={8} />
-  </g>
-);
+/** Il Livello 0 in sezione, come una casa delle bambole: per ogni stanza il soffitto a pannelli e la moquette in
+ * prospettiva verso il fondo, il muro di fondo a righe con il battiscopa, macchie bagnate, prese e varchi verso le stanze
+ * dietro, i muri tagliati tra una stanza e l'altra; `buio` 0–1 per stanza. */
+export const Livello0: React.FC<{ T: number; x0: number; x1: number; buio: (x: number) => number; rotto?: number }> = ({ T, x0, x1, buio, rotto = 0 }) => {
+  const top = L0.top, bot = L0.bot, PF = 46, PS = 30; // profondità del pavimento e del soffitto
+  return (
+    <g>
+      <rect x={x0} y={top - 30} width={x1 - x0} height={bot - top + 60} fill="#2A2210" />
+      {STANZE.filter((s) => s.x + s.w > x0 && s.x < x1).map((s, i) => {
+        const b = buio(s.x + s.w / 2);
+        const on = neonAt(T, s.lamp, 5, rotto) * (1 - b);
+        const lum = 0.35 + 0.65 * on;
+        const dk = (c: string, k = 1) => mix(mix(mix(c, '#3A3010', 1 - lum), '#0E0C06', b * 0.8), '#0E0C06', 1 - k);
+        const ins = 26; // rientro del muro di fondo
+        const bx0 = s.x + ins, bx1 = s.x + s.w - ins, by0 = top + PS, by1 = bot - PF;
+        const cx = s.x + s.w / 2;
+        const r = (k: number) => ((s.lamp * 9301 + k * 49297) % 233280) / 233280;
+        const varco = r(1) > 0.45;
+        const vx = bx0 + (bx1 - bx0 - 70) * r(2);
+        return (
+          <g key={s.x}>
+            {/* soffitto in prospettiva */}
+            <path d={`M${s.x} ${top} H${s.x + s.w} L${bx1} ${by0} H${bx0} Z`} fill={dk('#CFC08A', 0.9)} />
+            {[0.25, 0.5, 0.75].map((f) => <path key={f} d={`M${s.x + s.w * f} ${top} L${bx0 + (bx1 - bx0) * f} ${by0}`} stroke={dk('#9E8E58')} strokeWidth={2} />)}
+            {/* muro di fondo con le righe */}
+            <rect x={bx0} y={by0} width={bx1 - bx0} height={by1 - by0} fill={dk(YEL)} />
+            {Array.from({ length: Math.floor((bx1 - bx0) / 26) }, (_, k) => <path key={k} d={`M${bx0 + 13 + k * 26} ${by0} V${by1}`} stroke={dk('#B9A24C')} strokeWidth={2.5} opacity={0.55} />)}
+            <rect x={bx0} y={by1 - 10} width={bx1 - bx0} height={10} fill={dk('#6E5A22')} />
+            {/* varco verso la stanza dietro (più buia) */}
+            {varco && (
+              <g>
+                <rect x={vx} y={by0 + 50} width={70} height={by1 - by0 - 50} fill={dk('#5E5124')} stroke={INK} strokeWidth={2.5} />
+                <rect x={vx + 8} y={by0 + 58} width={54} height={by1 - by0 - 58} fill={dk('#8E7A30', 0.7)} />
+              </g>
+            )}
+            {!varco && <rect x={cx + (r(3) - 0.5) * (bx1 - bx0 - 40)} y={by1 - 30} width={14} height={10} rx={2} fill={dk('#E8E0C0')} stroke={INK} strokeWidth={1.5} />}
+            {/* moquette in prospettiva, con le macchie bagnate */}
+            <path d={`M${bx0} ${by1} H${bx1} L${s.x + s.w} ${bot} H${s.x} Z`} fill={dk('#9C8A45')} />
+            <ellipse cx={s.x + s.w * (0.3 + 0.4 * r(4))} cy={bot - PF * 0.4} rx={30 + 50 * r(5)} ry={9} fill={dk('#5E5124')} opacity={0.6} />
+            {/* muri laterali tagliati (la sezione) */}
+            <path d={`M${s.x} ${top} L${bx0} ${by0} V${by1} L${s.x} ${bot} Z`} fill={dk('#C9B45A', 0.85)} />
+            <path d={`M${s.x + s.w} ${top} L${bx1} ${by0} V${by1} L${s.x + s.w} ${bot} Z`} fill={dk('#B9A24C', 0.8)} />
+            <path d={`M${bx0} ${by0} H${bx1} V${by1} H${bx0} Z`} fill="none" stroke={INK} strokeWidth={2} opacity={0.5} />
+            {on > 0.05 && (
+              <g>
+                <NeonSez x={cx} y={(top + by0) / 2 - 4} w={Math.min(110, s.w * 0.3)} on={on} id={`l0-${i}-${s.x}`} />
+              </g>
+            )}
+            <rect x={s.x - 9} y={top} width={18} height={bot - top} fill="#1C170C" />
+          </g>
+        );
+      })}
+      <path d={`M${x0} ${top} H${x1} M${x0} ${bot} H${x1}`} stroke={INK} strokeWidth={8} />
+    </g>
+  );
+};
 
 /** I livelli della leggenda (solo nel capitolo della leggenda): il parcheggio infinito e i tunnel caldi. */
 export const Livelli: React.FC<{ T: number; k1: number; k2: number; x0: number; x1: number; croce?: number }> = ({ T, k1, k2, x0, x1, croce = 0 }) => (
