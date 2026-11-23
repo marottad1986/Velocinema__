@@ -109,7 +109,7 @@ const SHOTS: Key[] = [
   K(ev('gretchen', 2), X.cinema + 600, 300, 0.75, 1.8),
   K(ev('gretchen', 3), X.cunn, 420, 1.0, 1.8),
   K(ev('gretchen', 4), X.cunn - 80, 330, 0.95, 1.6),
-  K(S('notte'), 5600, 40, 0.5, 2.4),
+  K(S('notte'), 6400, 80, 0.5, 2.4),
   K(ev('notte', 2), X.nonna - 160, 420, 0.95, 3.0),
   K(ev('notte', 3), X.nonna + 60, 470, 1.25, 1.6),
   K(ev('notte', 4), X.nonna + 300, 480, 1.05, 1.4),
@@ -576,7 +576,7 @@ export const Mondo: React.FC<{ T: number; cam?: Cam; chiusura?: boolean; w?: num
       <g opacity={night}>
         <Stars t={T} seed={1988} n={110} x={0} y={0} w={w} h={h} color="#EEF0F7" size={1.1} />
       </g>
-      <g transform={`translate(${w === W ? w - 640 - cam.x * 0.03 : w - 360 - cam.x * 0.03} ${(w === W ? 200 : 150) - cam.y * 0.04})`} opacity={0.3 + 0.7 * night}>
+      <g transform={`translate(${w === W ? w - 420 - cam.x * 0.02 : w - 360 - cam.x * 0.03} ${(w === W ? 250 : 150) - cam.y * 0.04})`} opacity={0.3 + 0.7 * night}>
         <Glow id="dd16-moon" x={0} y={0} r={160} t={T} color="#DDE4FF" amp={0.03} rate={1} opacity={0.4} />
         <circle r={48} fill="#E8ECFA" />
         <circle cx={-14} cy={-8} r={9} fill="#C9D0EA" /><circle cx={12} cy={14} r={6} fill="#C9D0EA" />
@@ -1211,7 +1211,6 @@ const Domino: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
   const td = ev('viventi', 2, -0.3);
   return (
     <g>
-      <Nodo T={T} t0={S('viventi') + 0.3} x={X.casa + 400} y={-200} icon="pantofole" name="Donnie" s={ns} ring={1} />
       {people.map(([ic, name, x], i) => <Nodo key={ic} T={T} t0={ev('viventi', 1, -0.2) + i * 0.35} x={x} y={-200} icon={ic} name={name} s={ns * 0.9} ring={ic === 'videocassetta' && T >= ev('viventi', 3, 0.2) ? 1 : 0} />)}
       {/* la catena dell'ultima frase: il fuoco → Cunningham arrestato → la mamma sull'aereo */}
       <Nodo T={T} t0={ev('viventi', 3, 1.6)} x={X.collina - 500} y={-200} icon="valigia" name="la mamma" sub="sull'aereo" s={ns} ring={1} />
@@ -1234,16 +1233,16 @@ const Domino: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
 /** I manipolati morti: Frank fantasma, il tratteggio giallo dalla notte dello sparo alla prima notte. */
 const Morti: React.FC<{ T: number; ns: number }> = ({ T, ns }) => {
   if (!vicino(T, 'morti')) return null;
-  const a = [X.nonna + 470, GROUND - 330] as const, b = [X.casa - 860, 350] as const, c = [4300, -1300] as const;
+  const a = [X.nonna + 470, GROUND - 540] as const, b = [X.casa - 860, 270] as const, c = [4300, -1300] as const;
   const t0 = ev('morti', 2, 0.6);
   const p = eio(seg(T, t0 + 0.4, t0 + 3));
   const [fx, fy] = qpt(a, c, b, p);
   return (
     <g opacity={capOp(T, 'morti')}>
-      <Cartello T={T} t0={ev('morti', 0, 0.6)} x={4030} y={-1000} head="LA REGOLA" text="MANIPOLATI MORTI" until={E('morti') - 0.3} />
-      <Mano T={T} t0={ev('morti', 2)} x={a[0] - 1500} y={a[1] - 260} text="la notte dello sparo" size={50} />
+      <Mano T={T} t0={ev('morti', 2)} x={a[0] - 1500} y={a[1] + 330} text="la notte dello sparo" size={50} />
       <Mano T={T} t0={ev('morti', 2, 2.4)} x={b[0] + 1100} y={b[1] - 300} text="la prima notte" size={50} />
       <Linea T={T} t0={t0} id="dd16-morti" d={`M${a[0]} ${a[1]} Q${c[0]} ${c[1]} ${b[0]} ${b[1]}`} color={TIME} w={14 * ns * 0.6} dashed dur={2.6} />
+      <Cartello T={T} t0={ev('morti', 0, 0.6)} x={4030} y={-1000} head="LA REGOLA" text="MANIPOLATI MORTI" until={E('morti') - 0.3} />
       <Nodo T={T} t0={S('morti') + 0.6} x={T < t0 + 0.4 ? a[0] : fx} y={T < t0 + 0.4 ? a[1] : fy} icon="orecchie" name="Frank" s={ns} ghost={1} />
       {/* l'occhio ferito: stesso segno rosso nei due punti, collegati dall'anello */}
       {T >= ev('morti', 3) && [a, b].map((q, i) => (
