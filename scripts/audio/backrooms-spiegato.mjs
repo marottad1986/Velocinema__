@@ -14,7 +14,7 @@ import { suona, archi, colpo } from './campioni.mjs';
 import { clip } from './effetti.mjs';
 
 export const strumenti = ['pianoforte_coda', 'arpa', 'glockenspiel', 'marimba', 'organo', 'violini', 'viole', 'celli', 'contrabbasso', 'violini_trem', 'celli_spicc', 'viole_spicc', 'contrabbasso_pizz', 'timpani', 'grancassa', 'piatto_sospeso'];
-export const effetti = ['ronzio_neon', 'scatti', 'passaggio', 'disturbo', 'macchina_scrivere', 'pagine', 'campanello_negozio', 'colpi_legno', 'legno_cade', 'sibilo', 'ronzio_tesla', 'rombo', 'porta_cigolio'];
+export const effetti = ['ronzio_neon', 'scatti', 'passaggio', 'disturbo', 'macchina_scrivere', 'pagine', 'campanello_negozio', 'colpi_legno', 'legno_cade', 'sibilo', 'ronzio_tesla', 'rombo'];
 /** Sala media e spoglia: un ufficio vuoto con il soffitto basso. */
 export const sala = { rt60: 2.2, brillo: 5200, predelay: 0.02, wet: 0.45 };
 
@@ -63,7 +63,8 @@ export default (mix, T) => {
 
   /** Una sezione da `from` a `to`: drone · str · arp · harp · spic (doppio) · mel · bells · pizz · org · mar · pausa. */
   const sec = (from, to, o) => {
-    from = snap(from); to = snap(to);
+    // `esatto`: gli estremi agganciati a un evento (già sulla croma) non si arrotondano al battito (revisore musica)
+    from = o.esatto ? from : snap(from); to = o.esatto ? to : snap(to);
     const R = rng(7000 + sid++ * 131);
     const ch = o.maj ? MAJ : CHORDS;
     const mot = o.maj ? MOTIF_M : MOTIF;
@@ -151,8 +152,8 @@ export default (mix, T) => {
   const copiaMary = at('montaggio', 3, 1.4);
 
   // ---------------------------------------------------------------- aggancio
-  sec(T.aggancio, fuoriAg, { drone: 30, mar: 30, org: 26, mel: 36, keep: 0.8, pause: [[spegniAg + 1.6, fuoriAg]] });
-  sec(fuoriAg, T.foto, { drone: 34, str: 32, harp: 34, bells: 30, mel: 36 });
+  sec(T.aggancio, fuoriAg, { esatto: true, drone: 30, mar: 30, org: 26, mel: 36, keep: 0.8, pause: [[spegniAg + 1.6, fuoriAg]] });
+  sec(fuoriAg, T.foto, { esatto: true, drone: 34, str: 32, harp: 34, bells: 30, mel: 36 });
   // ---------------------------------------------------------------- COSA SONO LE BACKROOMS: il centro commerciale vuoto
   sec(T.foto, T.noclip, { drone: 30, org: 28, mar: 28, keep: 0.85 });
   sec(T.noclip, T.livello0, { drone: 32, org: 26, harp: 32, bells: 30 });
@@ -160,24 +161,24 @@ export default (mix, T) => {
   sec(T.liminale, T.leggenda, { drone: 30, org: 32, mar: 34, mel: 32, keep: 0.7 });
   sec(T.leggenda, T.oshkosh, { drone: 38, str: 30, pizz: 30, org: 22 });
   sec(T.oshkosh, T.parsons, { drone: 32, harp: 34, mar: 28, bells: 30, mel: 34, keep: 0.8 });
-  sec(T.parsons, T.async, { drone: 34, arp: 28, org: 24, mel: 34 });
+  sec(T.parsons, T.async, { drone: 34, arp: 22, org: 24, mel: 30 });
   sec(T.async, T.a24, { drone: 40, str: 34, spic: 30 });
   sec(T.a24, T.cassetta, { drone: 34, str: 34, harp: 34, mel: 38, bells: 32 });
   // ---------------------------------------------------------------- LA STORIA DEL FILM
   sec(T.cassetta, T.negozio, { drone: 40, str: 30, pause: [[neveVhs - 1, neveVhs - 0.05], [neveVhs, neveVhs + B2]] });
-  sec(T.negozio, T.fessura, { drone: 32, arp: 28, mar: 24, mel: 34, keep: 0.85 });
-  sec(T.fessura, fuga, { drone: 38, str: 32, pizz: 30 });
-  sec(fuga, T.commessi, { drone: 46, spic: 46, doppio: true, str: 40 });
+  sec(T.negozio, T.fessura, { drone: 32, arp: 22, mar: 24, mel: 30, keep: 0.85 });
+  sec(T.fessura, fuga, { esatto: true, drone: 38, str: 32, pizz: 30 });
+  sec(fuga, T.commessi, { esatto: true, drone: 46, spic: 46, doppio: true, str: 40 });
   sec(T.commessi, T.mary, { drone: 40, str: 36, pizz: 34, pause: [[bobby - 0.05, bobby + BEAT]] });
   sec(T.mary, T.tavola, { drone: 38, str: 30, arp: 24, pause: [[buioMary, buioMary + B2]] });
   sec(T.tavola, T.regola, { drone: 34, harp: 30, bells: 32, mel: 32, keep: 0.8 });
   sec(T.regola, T.uscita, { drone: 34, harp: 34, org: 24, bells: 30 });
   sec(T.uscita, T.pirata, { drone: 34, str: 32, harp: 32, mel: 34 });
-  sec(T.pirata, passiPirata, { drone: 40, str: 34 });
-  sec(passiPirata, T.cemento, { drone: 48, spic: 50, doppio: true, str: 46 });
-  sec(T.cemento, lancio, { drone: 50, spic: 54, doppio: true, str: 50, pause: [[attacc - 0.05, attacc + CROMA]] });
+  sec(T.pirata, passiPirata, { esatto: true, drone: 40, str: 34 });
+  sec(passiPirata, T.cemento, { esatto: true, drone: 48, spic: 50, doppio: true, str: 46 });
+  sec(T.cemento, lancio, { esatto: true, drone: 50, spic: 54, doppio: true, str: 50, pause: [[attacc - 0.05, attacc + CROMA], [COLPO - BEAT, COLPO + B2]] });
   // il colpo: silenzio prima (dal lancio), colpo, un battito di silenzio dopo
-  sec(COLPO + B2, T.phil, { drone: 36, str: 30, harp: 28 });
+  sec(COLPO + B2, T.phil, { esatto: true, drone: 36, str: 30, harp: 28 });
   sec(T.phil, T.montaggio, { drone: 38, str: 32, pizz: 28, org: 20 });
   // ---------------------------------------------------------------- IL FINALE SPIEGATO
   sec(T.montaggio, T.mostra, { drone: 40, spic: 36, str: 36, pause: [[copiaMary - 0.8, copiaMary - 0.05]] });
@@ -199,8 +200,8 @@ export default (mix, T) => {
       clip(mix, 'ronzio_neon', { t: t + x, da: 3 + ((t + x) % 30), durata: d, gain, fadeIn: x === 0 ? 0.8 : 2, fadeOut: x + d >= dur - 0.01 ? 0.8 : 2, largo: 1.2 });
     }
   };
-  ronzio(0, spegniAg + 1.6, 0.09);
-  ronzio(at('foto', 2), T.leggenda - at('foto', 2), 0.06);
+  ronzio(0, spegniAg + 1.6, 0.16);
+  ronzio(at('foto', 2), T.leggenda - at('foto', 2), 0.10);
   ronzio(at('fessura', 2), fuga - at('fessura', 2), 0.07);
   ronzio(T.tavola, T.pirata - T.tavola, 0.05);
   ronzio(T.montaggio, T.dettaglio - T.montaggio, 0.05);
@@ -209,11 +210,12 @@ export default (mix, T) => {
   // i voli della camera da un luogo all'altro: un soffio all'inizio di ogni capitolo e nei passaggi delle finestre
   const volo = (t, mv, g = 0.12) => clip(mix, 'passaggio', { t, da: 0.56, durata: mv, gain: g, fadeIn: mv * 0.3, fadeOut: mv * 0.4, rev: 0.35 });
   for (const id of ['noclip', 'liminale', 'leggenda', 'oshkosh', 'parsons', 'async', 'a24', 'cassetta', 'negozio', 'fessura', 'commessi', 'mary', 'tavola', 'regola', 'uscita', 'pirata', 'phil', 'montaggio', 'mostra', 'sorte', 'metafora', 'dettaglio', 'seguito', 'chiusura']) volo(croma(T[id] - 0.2), 1.6, 0.1);
-  for (const t of [fuoriAg, at('foto', 3, -0.2), at('livello0', 2, 0.6), at('cassetta', 0, 1.4), at('fessura', 2, -0.2), at('pirata', 3, 0.6), at('montaggio', 1), at('montaggio', 2)]) volo(t, 1.4, 0.16);
+  for (const t of [at('aggancio', 2, 4.8), at('aggancio', 3, 4.2), at('aggancio', 4, 3.6), at('a24', 3), at('mary', 1), at('pirata', 2), at('seguito', 1), fuoriAg, at('foto', 3, -0.2), at('livello0', 2, 0.6), at('cassetta', 0, 1.4), at('fessura', 2, -0.2), at('pirata', 3, 0.6), at('montaggio', 1), at('montaggio', 2)]) volo(t, 1.4, 0.16);
   // aggancio: i neon che si spengono uno dopo l'altro, dal fondo verso di noi; le tre promesse; il cemento con l'anello
-  for (let i = 0; i < 12; i++) clip(mix, 'scatti', { t: croma(spegniAg) + i * 0.12, da: 6.49, durata: 0.06, gain: 0.3 + i * 0.03, rev: 0.25, pan: 0.2 - i * 0.03 });
+  for (let i = 0; i < 16; i++) clip(mix, 'scatti', { t: croma(spegniAg) - 0.12 + i * 0.12, da: 6.49, durata: 0.06, gain: 0.28 + i * 0.025, rev: 0.25, pan: 0.2 - i * 0.025 });
   timp(mix, croma(spegniAg + 1.6), { vel: 90, gain: 0.5 });
-  [0, 1].forEach((i) => bell(mix, [76, 81][i], { t: at('aggancio', 2, 0.6) + i * B2, vel: 34 }));
+  bell(mix, 76, { t: at('aggancio', 2, 0.6), vel: 34 });
+  bell(mix, 81, { t: at('aggancio', 3, 0.4), vel: 34 });
   timp(mix, at('aggancio', 4, 0.8), { vel: 100, gain: 0.6 });
   bell(mix, 73, { t: at('aggancio', 4, 1.2), vel: 36 });
   // foto: i messaggi del forum, la foto che arriva
@@ -226,7 +228,7 @@ export default (mix, T) => {
   timp(mix, at('noclip', 3, 0.8), { vel: 85, gain: 0.45 });
   // livello 0: il numero enorme, le tre Terre, il ronzio
   timp(mix, at('livello0', 0, 0.6), { vel: 95, gain: 0.55 });
-  [0, 1, 2].forEach((i) => mar(mix, [66, 69, 73][i], { t: at('livello0', 0, 3.6) + i * 0.3, vel: 40 }));
+  [0, 1, 2].forEach((i) => mar(mix, [66, 69, 73][i], { t: at('livello0', 0, 3.6) + i * CROMA, vel: 40 }));
   clip(mix, 'ronzio_neon', { t: at('livello0', 1, 1.6), da: 4, durata: 2, gain: 0.14, fadeIn: 0.2, fadeOut: 0.6 });
   // leggenda: i livelli che compaiono, le pagine dell'enciclopedia, la foto (domanda)
   timp(mix, at('leggenda', 1, -0.2), { vel: 90, gain: 0.5 });
@@ -251,7 +253,7 @@ export default (mix, T) => {
   timp(mix, neveVhs, { vel: 118, gain: 0.85, forte: true });
   clip(mix, 'disturbo', { t: neveVhs, da: 6, durata: Math.min(5.5, at('cassetta', 3) - neveVhs + 0.4), gain: 0.16, fadeOut: 0.5 });
   // negozio: il campanello del negozio di mobili, il cappello sull'insegna, la casa demolita
-  clip(mix, 'campanello_negozio', { t: T.negozio + 0.4, da: 0, durata: 1.6, gain: 0.2, fadeOut: 0.5, rev: 0.3 });
+  clip(mix, 'campanello_negozio', { t: T.negozio + 0.4, da: 0.3, durata: 1.6, gain: 0.2, fadeOut: 0.5, rev: 0.3 });
   bell(mix, 78, { t: at('negozio', 2, 1.0), vel: 34 });
   [69, 66, 61].forEach((m, k) => harp(mix, m, { t: at('negozio', 4, 0.6) + k * CROMA, vel: 32 }));
   // fessura: le luci che sfarfallano, la fessura che brilla, le cose di Naren, la fuga, la telecamera di Phil
@@ -266,7 +268,7 @@ export default (mix, T) => {
   clip(mix, 'colpi_legno', { t: at('commessi', 3, 0.6), da: 0.2, durata: 0.6, gain: 0.35, rev: 0.4 });
   // mary: la segreteria (scatto del nastro), il viaggio fino alla fessura, i neon che si spengono
   clip(mix, 'scatti', { t: T.mary + 0.4, da: 2.1, durata: 0.5, gain: 0.3, rev: 0.2, pan: -0.3 });
-  for (let i = 0; i < 6; i++) clip(mix, 'scatti', { t: buioMary - 0.4 + i * 0.08, da: 6.49, durata: 0.06, gain: 0.35, rev: 0.3 });
+  for (let i = 0; i < 6; i++) clip(mix, 'scatti', { t: buioMary + i * 0.05, da: 6.49, durata: 0.06, gain: 0.35, rev: 0.3 });
   timp(mix, buioMary, { vel: 100, gain: 0.6 });
   // tavola: le copie bianche che compaiono, «Still Life», Kat
   [61, 66, 69].forEach((m, k) => bell(mix, m, { t: at('tavola', 1) + k * 0.4, vel: 30 }));
@@ -277,7 +279,8 @@ export default (mix, T) => {
   timp(mix, at('uscita', 0, 2.6), { vel: 95, gain: 0.55 });
   [54, 57, 61, 66, 69, 73, 78].forEach((m, k) => harp(mix, m, { t: at('uscita', 2) + k * CROMA / 2, vel: 34 }));
   // pirata: la frase di Mary, il cappello che arriva, i passi della gamba di legno, Clark ucciso
-  for (let k = 0; k < 6; k++) clip(mix, 'colpi_legno', { t: passiPirata + k * CROMA, da: 0.2, durata: 0.4, gain: 0.25 + k * 0.05, rev: 0.4, lp: 2500 });
+  for (let k = 0; k < 6; k++) clip(mix, 'colpi_legno', { t: passiPirata + k * CROMA, da: 0.2, durata: 0.28, gain: 0.25 + k * 0.05, rev: 0.4, lp: 2500 });
+  for (let i = 0; i < 10; i++) clip(mix, 'scatti', { t: at('pirata', 1, 0.8) + i * CROMA / 2, da: 6.49, durata: 0.06, gain: 0.25, rev: 0.3 }); // i neon che si spengono a ondata
   timp(mix, at('pirata', 3, 0.2), { vel: 112, gain: 0.75, forte: true });
   // cemento (momento clou): l'attaccapanni che spezza la gamba, il lancio, il silenzio, il colpo, il gas
   clip(mix, 'legno_cade', { t: attacc, da: 0, durata: 1, gain: 0.5, fadeOut: 0.4, rev: 0.35 });
@@ -286,7 +289,7 @@ export default (mix, T) => {
   timp(mix, COLPO, { vel: 127, gain: 1.2, forte: true });
   colpo(mix, 'grancassa', 'bdrum_ff', { t: COLPO, vel: 120, gain: 0.6, rev: 0.4 });
   clip(mix, 'rombo', { t: COLPO + 0.1, da: 3.6, durata: 2.4, gain: 0.12, fadeOut: 1.2, largo: 1.4 });
-  clip(mix, 'sibilo', { t: at('cemento', 2, 0.4), da: 1, durata: 3, gain: 0.2, fadeIn: 0.4, fadeOut: 1, largo: 1.3 });
+  clip(mix, 'sibilo', { t: at('cemento', 2, 0.4), da: 1, durata: 3, gain: 0.15, fadeIn: 0.4, fadeOut: 1, largo: 1.3 });
   bell(mix, 69, { t: at('cemento', 1, 2.4), vel: 34 }); // «ricordatelo!»
   // phil: la stanzetta, la ricerca, «non decido io»
   timp(mix, at('phil', 3, 1.2), { vel: 95, gain: 0.55 });
