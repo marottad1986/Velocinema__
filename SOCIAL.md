@@ -381,6 +381,10 @@ reincarnazione di Jack): spunto per uno Spiegato o per **Doctor Sleep**, già in
 (TikTok, Il miglio verde, 20 nov); **Nascosto nel buio** (TikTok, The Others, 21 nov; chiesto anche Shutter Island, già fatto);
 **Scissione – stagione 2** (Instagram, 22 nov, «in previsione della terza»; su TikTok una persona chiede delle nuove stagioni);
 canzoni **Henna** di Lucio Dalla e **Un'estate al mare** di Giuni Russo (Instagram, commenti di Gli anni, 22 nov).
+**23 novembre** (commenti della sera del 23): **The Nun – La vocazione del male** (Instagram, commenti di Conjuring, 23 nov;
+spin-off della saga di Conjuring); **Scissione – stagione 3** (TikTok, commenti di Scissione, 23 nov: chiede della terza, già
+confermata; la stagione 2 è già in lista). Nei commenti di Gli anni due persone (TikTok e Instagram) correggono l'età di Pezzali:
+nel 1995 aveva 27 anni (nato nel novembre 1967), non 25 come dice il capitolo «uscita».
 **Quadro confermato per la settimana 23–29 novembre: L'urlo di Munch** (chiesto nei commenti di Notte stellata; deciso
 dall'utente il 14 novembre, insieme a L'Ultima Cena per sabato 21). Va nel weekend alle 10:00.
 Evento della settimana da non perdere: **Edoardo Bove – «In un battito»** (documentario in sala 16–18 novembre),
