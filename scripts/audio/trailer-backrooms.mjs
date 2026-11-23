@@ -28,7 +28,7 @@ export default (mix, T) => {
   const S = T;
   const E = {
     spegni: 3.2, nero: S.inizio, foto: S.inizio + 5 * CROMA,
-    b1: S.livello, b2: S.negozio, b3: S.copie, corsa: S.corsa, buio: g(S.corsa + 5 * BEAT), hit: g(S.titolo + 2.8), fine: S.chiusura,
+    b1: S.livello, b2: S.negozio, b3: S.copie, corsa: S.corsa, buio: S.corsa + 5 * BEAT, hit: S.titolo + 3 * BEAT, fine: S.chiusura,
     like: g(T.frase('chiusura', 0) + 1.6), iscr: g(T.frase('chiusura', 0) + 2.4), press: g(T.frase('chiusura', 0) + 5.2), comm: g(T.frase('chiusura', 1)),
   };
   // accordi contati dall'inizio della sezione (revisore musica): ogni sezione parte dal suo primo accordo
@@ -69,9 +69,12 @@ export default (mix, T) => {
 
   // ---- miniatura: il ronzio dei neon, poi si spengono dal fondo verso di noi (scatti) e resta il nero
   clip(mix, 'ronzio_neon', { t: 0, da: 3, durata: E.spegni + 0.6, gain: 0.12, fadeIn: 0.05, fadeOut: 0.2 });
-  [73, 78, 81].forEach((m, k) => bell(0.4 + k * BEAT, m + 12, 30));
+  [73, 78, 81].forEach((m, k) => bell(0.4 + k * BEAT, m + 12, 36));
   for (let i = 0; i < 10; i++) clip(mix, 'scatti', { t: E.spegni + i * 0.04, da: 6.49, durata: 0.05, gain: 0.3 + i * 0.04, rev: 0.25 });
   timp(g(E.spegni + 0.4), 100, 0.55, false);
+  // il cartello «12 MAGGIO 2019» entra con lo sfarfallio del neon
+  clip(mix, 'scatti', { t: E.nero + 0.25, da: 6.49, durata: 0.05, gain: 0.3, rev: 0.2 });
+  clip(mix, 'ronzio_neon', { t: E.nero + 0.25, da: 5, durata: E.foto - E.nero - 0.25, gain: 0.05, fadeIn: 0.1, fadeOut: 0.3 });
   // ---- cold open: bordone, il ronzio, il motivo al pianoforte spoglio (la foto)
   suona(mix, 'contrabbasso', 30, { t: E.nero, dur: E.b1 - E.nero, vel: 46, gain: 1.2, attack: 0.6, release: 1.4, rev: 0.6 });
   MOTIF.forEach(([b, m]) => suona(mix, 'pianoforte_coda', m, { t: E.foto + b * CROMA, dur: 1.4, vel: 24 * 1.2, pan: 0.15, rev: 0.6, gain: 0.7, release: 0.8 }));
@@ -99,10 +102,11 @@ export default (mix, T) => {
   for (let i = 0; i < 5; i++) { kick(E.corsa + i * BEAT, 0.5); timp(E.corsa + i * BEAT, 100, 0.4, false); }
   clip(mix, 'colpi_legno', { t: E.corsa + BEAT, da: 0.2, durata: 0.4, gain: 0.3, rev: 0.4 });
   clip(mix, 'ronzio_tesla', { t: E.corsa + 2 * BEAT, da: 1, durata: 0.8, gain: 0.15, fadeOut: 0.3 });
-  for (let t = E.corsa; t < E.buio - 0.05; t += BEAT / 4) snare(t, 0.12 + 0.2 * ((t - E.corsa) / (E.buio - E.corsa)));
+  for (let t = E.corsa; t < E.buio - 0.05; t += BEAT / 4) snare(t, 0.10 + 0.18 * ((t - E.corsa) / (E.buio - E.corsa)));
   // ---- nel buio: silenzio, il contatore che pulsa (ticchettio secco e battito basso) sotto la battuta
-  for (let t = E.buio; t < E.hit - 1.7; t += BEAT) {
-    clip(mix, 'scatti', { t, da: 6.49, durata: 0.06, gain: 0.4, rev: 0.1 });
+  // la spia nel buio: il neon sfarfalla a ogni battito fino al colpo (TRAILER.md §5), più piano sotto il crescendo
+  for (let t = E.buio; t < E.hit - 0.1; t += BEAT) {
+    clip(mix, 'scatti', { t, da: 6.49, durata: 0.06, gain: t >= E.hit - 1.6 ? 0.25 : 0.4, rev: 0.1 });
     clip(mix, 'ronzio_neon', { t, da: 5, durata: 0.35, gain: 0.12, fadeOut: 0.1 });
     kick(t + 0.02, 0.25);
   }

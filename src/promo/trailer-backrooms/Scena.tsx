@@ -39,8 +39,8 @@ export const eventi = (S: Record<string, number>, cue: (id: string, n: number) =
   b1: S.livello, l0: S.livello + CARTELLO,
   b2: S.negozio, neg: S.negozio + CARTELLO,
   b3: S.copie, cop: S.copie + CARTELLO,
-  corsa: S.corsa, buio: g(S.corsa + 5 * BEAT),
-  hit: g(S.titolo + 2.8),
+  corsa: S.corsa, buio: S.corsa + 5 * BEAT,
+  hit: S.titolo + 3 * BEAT,
   fine: S.chiusura,
   like: g(cue('chiusura', 0) + 1.6),
   iscr: g(cue('chiusura', 0) + 2.4),
@@ -161,7 +161,7 @@ export const Scena: React.FC<ScenaPromoProps> = ({ T: t, tempi, cue }) => {
       {/* nel buio: un solo neon che sfarfalla a tempo; poi i neon si riaccendono uno alla volta verso il fondo */}
       {t >= E.buio && t < E.hit && (() => {
         // nel buio un solo neon sfarfalla a tempo (TRAILER.md §5), poi i neon si riaccendono a scatti verso il fondo
-        const lampo = Math.max(0, 1 - ((t - E.buio) % BEAT) / 0.35) * (t < E.hit - 1.6 ? 1 : 0);
+        const lampo = Math.max(0, 1 - ((t - E.buio) % BEAT) / 0.35) * (t < E.hit - 0.4 ? 1 : 0);
         const scatti = Math.floor(seg(t, E.hit - 1.6, E.hit) * 6) / 6;
         return (
           <div style={{ position: 'absolute', inset: 0, background: '#050402' }}>

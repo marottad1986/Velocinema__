@@ -33,7 +33,7 @@
     },
     {
       "id": "livello",
-      "durata": 7,
+      "durata": 7.2,
       "voce": 6,
       "immagine": "Colpo di ottoni sul cartello «LIVELLO 0» al neon giallo; poi il corridoio con la scritta sul muro e i neon che ronzano, la camera che cammina.",
       "sottotitoli": [
@@ -42,7 +42,7 @@
     },
     {
       "id": "negozio",
-      "durata": 7,
+      "durata": 7.2,
       "voce": 6,
       "immagine": "Colpo di ottoni sul cartello «IL NEGOZIO»; poi il negozio di mobili in sezione, di notte, e sotto il seminterrato con la fessura che brilla nel muro.",
       "sottotitoli": [
@@ -51,7 +51,7 @@
     },
     {
       "id": "copie",
-      "durata": 7,
+      "durata": 7.2,
       "voce": 6,
       "immagine": "Colpo di ottoni sul cartello «LE COPIE» in grigio; poi la sala da pranzo copiata nel Livello 0 con le tre macchie bianche sulle sedie e il frigorifero.",
       "sottotitoli": [
@@ -69,7 +69,7 @@
     },
     {
       "id": "titolo",
-      "durata": 5,
+      "durata": 4.8,
       "voce": 2.5,
       "immagine": "Nel buio un neon che sfarfalla a tempo, poi i neon che si accendono uno alla volta verso il fondo mentre la voce dice la battuta; colpo forte e il titolo «BACKROOMS · IL FINALE SPIEGATO» sul corridoio pieno di luce.",
       "sottotitoli": [
@@ -78,7 +78,7 @@
     },
     {
       "id": "chiusura",
-      "durata": 7.5,
+      "durata": 7.2,
       "immagine": "Il corridoio calmo e scuro; «ORA SU YOUTUBE», lettore video generico (senza logo) con la miniatura del lungo e la barra divisa in tre (cosa sono, il film, il finale); «Metti like», «Iscriviti al canale» che resta qualche secondo e poi si preme, «Cerca In 2 Minuti su YouTube», «Commenta con il film che vorresti.»",
       "sottotitoli": [
         "Backrooms, spiegato semplice, ora sul canale YouTube In 2 Minuti.",
