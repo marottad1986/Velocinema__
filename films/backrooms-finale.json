@@ -40,7 +40,8 @@
     "durata": 4,
     "frase_lancio": "Come si esce da stanze gialle infinite?",
     "etichetta": "SPIEGATO SEMPLICE · FILM",
-    "immagine": "Locandina senza sigla, con «SPIEGATO SEMPLICE · FILM» in alto e il titolo «BACKROOMS» già completo dal primo fotogramma, sotto «IL FINALE SPIEGATO»: il corridoio giallo infinito in prospettiva verticale (src/lib/liminale.tsx), i neon, la moquette bagnata, in fondo la porta socchiusa con la luce bianca e l'anello rosso; sul muro «DOVE SEI?». La camera cammina piano verso la porta. Niente persone, niente locandine."
+    "immagine": "Locandina senza sigla, con «SPIEGATO SEMPLICE · FILM» in alto e il titolo «BACKROOMS» già completo dal primo fotogramma, sotto «IL FINALE SPIEGATO»: il corridoio giallo infinito in prospettiva verticale (src/lib/liminale.tsx), i neon, la moquette bagnata, in fondo la porta socchiusa con la luce bianca e l'anello rosso; sul muro «DOVE SEI?». La camera cammina piano verso la porta. Niente persone, niente locandine.",
+    "voce": "Come si esce da stanze gialle infinite?"
   },
   "capitoli": [
     {
@@ -106,7 +107,7 @@
       "sottotitoli": [
         "Mary, la psicologa di Clark, è entrata a cercarlo.",
         "Scappa, e colpisce il pirata con un pezzo di cemento.",
-        "Poi la salvano gli uomini di Async, un istituto segreto."
+        "Poi la catturano gli uomini di Async, un istituto segreto."
       ]
     },
     {
@@ -149,14 +150,14 @@
     },
     {
       "id": "dettaglio",
-      "titolo": "Il dettaglio del cemento",
+      "titolo": "Da dove viene il cemento?",
       "durata": 14,
       "personaggi": [],
       "scena": "Il mondo del lungo (src/lunghi/backrooms-spiegato/) in verticale: vedi src/scenes/backrooms-finale/Schema.tsx.",
       "sottotitoli": [
         "E il cemento? Viene dalla casa demolita di Mary.",
         "È il suo ricordo più doloroso, e lei lo usa per difendersi.",
-        "Forse il senso è questo: i ricordi vanno affrontati, non evitati."
+        "Forse il senso è questo: si esce affrontando i ricordi, non evitandoli."
       ]
     }
   ],
