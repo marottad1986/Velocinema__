@@ -1,0 +1,188 @@
+{
+  "formato": "spiegato",
+  "tipo": "film",
+  "schema": true,
+  "sigla": false,
+  "titolo": "Backrooms",
+  "regista": "Kane Parsons",
+  "anno": 2026,
+  "bpm": 75,
+  "lungo": "backrooms-spiegato",
+  "palette": {
+    "chiaro": "#F4E9B8",
+    "principale": "#C9B25A",
+    "scuro": "#14110A",
+    "accento": "#E8D36A"
+  },
+  "personaggi": [
+    {
+      "nome": "Clark",
+      "ruolo": "un ex architetto con un negozio di mobili",
+      "oggetto": "cartellino del prezzo"
+    },
+    {
+      "nome": "Mary",
+      "ruolo": "la psicologa di Clark",
+      "oggetto": "taccuino"
+    },
+    {
+      "nome": "Phil",
+      "ruolo": "uno scienziato di Async",
+      "oggetto": "telecamera"
+    },
+    {
+      "nome": "Il pirata",
+      "ruolo": "la copia gigante di Clark",
+      "oggetto": "cappello da pirata"
+    }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Come si esce da stanze gialle infinite?",
+    "etichetta": "SPIEGATO SEMPLICE · FILM",
+    "immagine": "Locandina senza sigla, con «SPIEGATO SEMPLICE · FILM» in alto e il titolo «BACKROOMS» già completo dal primo fotogramma, sotto «IL FINALE SPIEGATO»: il corridoio giallo infinito in prospettiva verticale (src/lib/liminale.tsx), i neon, la moquette bagnata, in fondo la porta socchiusa con la luce bianca e l'anello rosso; sul muro «DOVE SEI?». La camera cammina piano verso la porta. Niente persone, niente locandine.",
+    "voce": "Come si esce da stanze gialle infinite?"
+  },
+  "capitoli": [
+    {
+      "id": "stanze",
+      "titolo": "Cosa sono le Backrooms?",
+      "durata": 14,
+      "personaggi": [],
+      "scena": "Il mondo del lungo (src/lunghi/backrooms-spiegato/) in verticale: vedi src/scenes/backrooms-finale/Schema.tsx.",
+      "sottotitoli": [
+        "Immagina stanze gialle tutte uguali, con i neon che ronzano.",
+        "Sono le Backrooms, nate da una foto su internet nel 2019.",
+        "Nel 2026 sono diventate un film, diretto da Kane Parsons."
+      ]
+    },
+    {
+      "id": "fessura",
+      "titolo": "Come ci si entra?",
+      "durata": 11,
+      "personaggi": [
+        "Clark"
+      ],
+      "scena": "Il mondo del lungo (src/lunghi/backrooms-spiegato/) in verticale: vedi src/scenes/backrooms-finale/Schema.tsx.",
+      "sottotitoli": [
+        "Clark, un ex architetto, ha un negozio di mobili.",
+        "Una notte trova una fessura che brilla nel seminterrato.",
+        "Ci entra, e finisce nelle stanze gialle."
+      ]
+    },
+    {
+      "id": "regola",
+      "titolo": "Qual è la regola?",
+      "durata": 11,
+      "personaggi": [],
+      "scena": "Il mondo del lungo (src/lunghi/backrooms-spiegato/) in verticale: vedi src/scenes/backrooms-finale/Schema.tsx.",
+      "sottotitoli": [
+        "Laggiù c'è una regola strana.",
+        "Le Backrooms copiano i ricordi, ma male, come una fotocopia sbiadita.",
+        "Così nascono stanze finte, e perfino copie delle persone."
+      ]
+    },
+    {
+      "id": "pirata",
+      "titolo": "Chi è il pirata gigante?",
+      "durata": 12,
+      "personaggi": [
+        "Il pirata"
+      ],
+      "scena": "Il mondo del lungo (src/lunghi/backrooms-spiegato/) in verticale: vedi src/scenes/backrooms-finale/Schema.tsx.",
+      "sottotitoli": [
+        "Il negozio di Clark ha una mascotte: un pirata.",
+        "Le Backrooms ne fanno una copia enorme, con la faccia di Clark.",
+        "E il pirata uccide proprio Clark."
+      ]
+    },
+    {
+      "id": "cemento",
+      "titolo": "Come si salva Mary?",
+      "durata": 13,
+      "personaggi": [
+        "Mary"
+      ],
+      "scena": "Il mondo del lungo (src/lunghi/backrooms-spiegato/) in verticale: vedi src/scenes/backrooms-finale/Schema.tsx.",
+      "sottotitoli": [
+        "Mary, la psicologa di Clark, è entrata a cercarlo.",
+        "Scappa, e colpisce il pirata con un pezzo di cemento.",
+        "Poi la catturano gli uomini di Async, un istituto segreto."
+      ]
+    },
+    {
+      "id": "async",
+      "titolo": "Cosa vuole Async?",
+      "durata": 13,
+      "personaggi": [
+        "Phil"
+      ],
+      "scena": "Il mondo del lungo (src/lunghi/backrooms-spiegato/) in verticale: vedi src/scenes/backrooms-finale/Schema.tsx.",
+      "sottotitoli": [
+        "Async studia le Backrooms di nascosto, da anni.",
+        "Phil, uno dei suoi scienziati, interroga Mary in una stanzetta.",
+        "Lei vuole tornare a casa, ma lui dice: non decido io."
+      ]
+    },
+    {
+      "id": "scena",
+      "titolo": "Cosa mostra l'ultima scena?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Il mondo del lungo (src/lunghi/backrooms-spiegato/) in verticale: vedi src/scenes/backrooms-finale/Schema.tsx.",
+      "sottotitoli": [
+        "Poi vediamo i luoghi del film, ricopiati nelle stanze gialle.",
+        "L'ultimo è la stanzetta dell'interrogatorio.",
+        "E dentro c'è una copia deforme di Mary, immobile."
+      ]
+    },
+    {
+      "id": "sorte",
+      "titolo": "Mary è salva?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Il mondo del lungo (src/lunghi/backrooms-spiegato/) in verticale: vedi src/scenes/backrooms-finale/Schema.tsx.",
+      "sottotitoli": [
+        "Il film non lo dice.",
+        "Per alcuni Async la rimanda laggiù. Per altri lei si salva.",
+        "Di sicuro, le Backrooms ormai ricordano anche lei."
+      ]
+    },
+    {
+      "id": "dettaglio",
+      "titolo": "Da dove viene il cemento?",
+      "durata": 14,
+      "personaggi": [],
+      "scena": "Il mondo del lungo (src/lunghi/backrooms-spiegato/) in verticale: vedi src/scenes/backrooms-finale/Schema.tsx.",
+      "sottotitoli": [
+        "E il cemento? Viene dalla casa demolita di Mary.",
+        "È il suo ricordo più doloroso, e lei lo usa per difendersi.",
+        "Forse il senso è questo: si esce affrontando i ricordi, non evitandoli."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "Il finale resta aperto: le Backrooms hanno copiato anche Mary.",
+    "immagine": "Il corridoio giallo più calmo, la porta in fondo con l'anello rosso; riquadro in alto: «Ti è servito?» + pulsanti «Metti like» e «Segui la pagina» + «Commenta con la spiegazione che vorresti.» + la riga piccola «Le spiegazioni complete sono su YouTube»."
+  },
+  "musica": "Lo stesso mondo sonoro del lungo «Backrooms spiegato» (75 bpm, Fa diesis minore): organo d'attesa e marimba lontana sopra il ronzio dei neon, archi e pizzicati nella storia, il colpo del cemento con il silenzio prima, il La maggiore sul dettaglio finale; nessun brano o tema del film.",
+  "fonti": [
+    "Thread del 12 maggio 2019 sulla board /x/ di 4chan che chiedeva immagini inquietanti che sembrano «sbagliate»; risposta del 13 maggio con il testo sul «noclip» fuori dalla realtà e «circa seicento milioni di miglia quadrate» di stanze vuote, odore di moquette umida, giallo monotono e ronzio dei neon; diffusione su Reddit, livelli inventati dai fan (Level 1 parcheggio, Level 2 tunnel caldi e stretti); wiki su Fandom e Wikidot sul modello di SCP; spazi liminali; foto scattata nel 2002 durante la ristrutturazione di un ex negozio di mobili a Oshkosh, Wisconsin, ritrovata nel maggio 2024; video di Kane Parsons del 7 gennaio 2022 a 16 anni: https://en.wikipedia.org/wiki/The_Backrooms",
+    "The Backrooms (Found Footage), 7 gennaio 2022, canale Kane Pixels, 9 minuti, finta registrazione su videocassetta del 1991: https://en.wikipedia.org/wiki/The_Backrooms_(Found_Footage)",
+    "Film Backrooms (A24), regia di Kane Parsons al primo film; annunciato a febbraio 2023; riprese a Vancouver dal 7 luglio al 14 agosto 2025; in Italia dal 27 maggio 2026 (I Wonder Pictures); videocassetta del 19 giugno 1990 con l'esploratore Async Naren Warne attaccato; Clark architetto fallito, divorziato, alcolista, negozio di mobili a San Jose, vive nel negozio; la terapeuta Mary Kline e la demolizione della sua casa d'infanzia; luci che sfarfallano, fessura luminosa nel seminterrato, oggetti di Naren, fuga; Phil, scienziato di Async, guarda da una telecamera; ritorno con i commessi Kat e Bobby, Bobby filma con una videocamera, viene trascinato via e ucciso, Kat visibile oltre un muro, un'entità prende la videocamera; messaggio in segreteria, Mary entra, Clark la strangola fino a farle perdere i sensi; sala da pranzo con tre simulacri commestibili di sostanza bianca («Still Life»), Kat morta; Mary rimprovera Clark per i suoi fallimenti, lui la libera; simulacro gigante di Clark vestito da pirata, mascotte del negozio, uccide Clark e insegue Mary in spazi che cambiano; Mary spezza la gamba di legno con un attaccapanni e lo colpisce con un pezzo di cemento della sua casa d'infanzia; trappola di gas di Async, ricercatori in tuta; interrogatorio con Phil, Async fabbricava macchinari per risonanza magnetica, la decisione sul suo rilascio non spetta a lui; nell'ultima scena una copia approssimativa della stanza dell'interrogatorio con il simulacro deforme di Mary; il regista ha detto che altro è in lavorazione, contratto con A24 per un seguito: https://en.wikipedia.org/wiki/Backrooms_(film)",
+    "Clark lascia la videocamera e un'entità la prende; Bobby fidanzato di Kat, vicedirettrice del negozio; la moglie ha lasciato Clark; Clark spiega a Mary che quel posto è una copia difettosa della realtà; Async ha fatto delle Backrooms la sua ricerca principale; la lotta fa scattare la trappola di gas: https://en.wikipedia.org/wiki/Backrooms_(film)",
+    "Trama: Async ex azienda medica che ha trovato le Backrooms per caso; lo spazio rigenera i ricordi in maniera distorta; montaggio finale dei luoghi reali del film riprodotti nelle Backrooms fino alla replica della saletta con una versione deforme di Mary; differenze dalla leggenda: un solo livello, si esce da dove si è entrati, Async al posto del M.E.G.: https://it.wikipedia.org/wiki/Backrooms_(film)",
+    "Teorie sul finale: Mary rimandata dentro e probabilmente morta, oppure sopravvissuta; il regista Kane Parsons non conferma né smentisce le teorie: https://guides.justwatch.com/it/backrooms-finale-spiegato-teorie",
+    "Il regista non conferma né smentisce le teorie sul finale; Mary sopravvive o no: https://www.libero.it/magazine/news/backrooms-film-cinema-come-finisce-spiegazione-finale-mary-sopravvive-clark-209146"
+  ],
+  "pronuncia": {
+    "A24": "A ventiquattro",
+    "Async": "Éisinc",
+    "Kane Parsons": "Kein Pàrsons",
+    "Parsons": "Pàrsons",
+    "Still Life": "Stil Laif",
+    "noclip": "nò-clip",
+    "Oshkosh": "Òsh-kosh"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "formato": "promo",
+  "tipo": "film",
+  "titolo": "Backrooms",
+  "regista": "Kane Parsons",
+  "anno": 2026,
+  "bpm": 75,
+  "lungo": "backrooms-spiegato",
+  "nota": "Trailer verticale del video lungo «Backrooms spiegato» (TRAILER.md): esce in contemporanea al lungo, sabato 28 novembre alle 17:30. Trailer di cinema: miniatura, cold open con cartello sul nero, tre cartelli che salgono (LIVELLO 0, IL NEGOZIO, LE COPIE) con colpi di ottoni, montaggio a un'inquadratura per battito, buio con un neon che sfarfalla, titolo alla fine. Le inquadrature sono il mondo del lungo (src/lunghi/backrooms-spiegato/) ricomposto per il 9:16 e il corridoio in prospettiva (src/lib/liminale.tsx) in verticale, senza scritte. «voce» = secondi della parte in cui parla la voce. Mai la durata totale del lungo.",
+  "palette": {
+    "chiaro": "#F4E9B8",
+    "principale": "#C9B25A",
+    "scuro": "#14110A",
+    "accento": "#E8D36A"
+  },
+  "parti": [
+    {
+      "id": "copertina",
+      "durata": 4,
+      "immagine": "Fotogramma 0 = miniatura: il corridoio giallo infinito in prospettiva verticale, i neon, la moquette bagnata, in fondo la porta socchiusa con la luce bianca e l'anello rosso, «DOVE SEI?» a pennarello sul muro; in alto «NUOVO SU YOUTUBE», «SPIEGATO SEMPLICE», «BACKROOMS» enorme, «IL FINALE SPIEGATO», la riga del regista. A 3,2 s i neon si spengono dal fondo verso di noi: nero.",
+      "sottotitoli": [
+        "Una stanza gialla. Poi un'altra. E nessuna uscita."
+      ]
+    },
+    {
+      "id": "inizio",
+      "durata": 8,
+      "voce": 7,
+      "immagine": "Cold open con le bande nere: cartello «12 MAGGIO 2019 · UNA FOTO SU INTERNET» sul nero; poi la foto della stanza gialla sullo schermo del vecchio computer e la camera che ci entra: il corridoio che comincia a scorrere.",
+      "sottotitoli": [
+        "Tutto comincia da una foto: una stanza gialla e vuota, che mette i brividi."
+      ]
+    },
+    {
+      "id": "livello",
+      "durata": 7.2,
+      "voce": 6,
+      "immagine": "Colpo di ottoni sul cartello «LIVELLO 0» al neon giallo; poi il corridoio con la scritta sul muro e i neon che ronzano, la camera che cammina.",
+      "sottotitoli": [
+        "Se esci dalla realtà nel punto sbagliato, finisci lì dentro."
+      ]
+    },
+    {
+      "id": "negozio",
+      "durata": 7.2,
+      "voce": 6,
+      "immagine": "Colpo di ottoni sul cartello «IL NEGOZIO»; poi il negozio di mobili in sezione, di notte, e sotto il seminterrato con la fessura che brilla nel muro.",
+      "sottotitoli": [
+        "Clark, un uomo che vende mobili, trova un passaggio nel suo seminterrato."
+      ]
+    },
+    {
+      "id": "copie",
+      "durata": 7.2,
+      "voce": 6,
+      "immagine": "Colpo di ottoni sul cartello «LE COPIE» in grigio; poi la sala da pranzo copiata nel Livello 0 con le tre macchie bianche sulle sedie e il frigorifero.",
+      "sottotitoli": [
+        "E laggiù qualcosa copia tutto: le stanze, i ricordi, le persone."
+      ]
+    },
+    {
+      "id": "corsa",
+      "durata": 4,
+      "voce": 3,
+      "immagine": "Montaggio a un'inquadratura per battito: la fessura, il cappello gigante nel corridoio, l'anello di Async che si accende, la stanzetta copiata; poi taglio al nero.",
+      "sottotitoli": [
+        "E qualcuno, da anni, guarda tutto."
+      ]
+    },
+    {
+      "id": "titolo",
+      "durata": 4.8,
+      "voce": 2.5,
+      "immagine": "Nel buio un neon che sfarfalla a tempo, poi i neon che si accendono uno alla volta verso il fondo mentre la voce dice la battuta; colpo forte e il titolo «BACKROOMS · IL FINALE SPIEGATO» sul corridoio pieno di luce.",
+      "sottotitoli": [
+        "Allora, come si esce?"
+      ]
+    },
+    {
+      "id": "chiusura",
+      "durata": 7.2,
+      "immagine": "Il corridoio calmo e scuro; «ORA SU YOUTUBE», lettore video generico (senza logo) con la miniatura del lungo e la barra divisa in tre (cosa sono, il film, il finale); «Metti like», «Iscriviti al canale» che resta qualche secondo e poi si preme, «Cerca In 2 Minuti su YouTube», «Commenta con il film che vorresti.»",
+      "sottotitoli": [
+        "Backrooms, spiegato semplice, ora sul canale YouTube In 2 Minuti.",
+        "Commenta con il film che vorresti."
+      ]
+    }
+  ],
+  "fonti": [
+    "Thread del 12 maggio 2019 sulla board /x/ di 4chan che chiedeva immagini inquietanti che sembrano «sbagliate»; risposta del 13 maggio con il testo sul «noclip» fuori dalla realtà e «circa seicento milioni di miglia quadrate» di stanze vuote, odore di moquette umida, giallo monotono e ronzio dei neon; diffusione su Reddit, livelli inventati dai fan (Level 1 parcheggio, Level 2 tunnel caldi e stretti); wiki su Fandom e Wikidot sul modello di SCP; spazi liminali; foto scattata nel 2002 durante la ristrutturazione di un ex negozio di mobili a Oshkosh, Wisconsin, ritrovata nel maggio 2024; video di Kane Parsons del 7 gennaio 2022 a 16 anni: https://en.wikipedia.org/wiki/The_Backrooms",
+    "The Backrooms (Found Footage), 7 gennaio 2022, canale Kane Pixels, 9 minuti, finta registrazione su videocassetta del 1991: https://en.wikipedia.org/wiki/The_Backrooms_(Found_Footage)",
+    "Film Backrooms (A24), regia di Kane Parsons al primo film; annunciato a febbraio 2023; riprese a Vancouver dal 7 luglio al 14 agosto 2025; in Italia dal 27 maggio 2026 (I Wonder Pictures); videocassetta del 19 giugno 1990 con l'esploratore Async Naren Warne attaccato; Clark architetto fallito, divorziato, alcolista, negozio di mobili a San Jose, vive nel negozio; la terapeuta Mary Kline e la demolizione della sua casa d'infanzia; luci che sfarfallano, fessura luminosa nel seminterrato, oggetti di Naren, fuga; Phil, scienziato di Async, guarda da una telecamera; ritorno con i commessi Kat e Bobby, Bobby filma con una videocamera, viene trascinato via e ucciso, Kat visibile oltre un muro, un'entità prende la videocamera; messaggio in segreteria, Mary entra, Clark la strangola fino a farle perdere i sensi; sala da pranzo con tre simulacri commestibili di sostanza bianca («Still Life»), Kat morta; Mary rimprovera Clark per i suoi fallimenti, lui la libera; simulacro gigante di Clark vestito da pirata, mascotte del negozio, uccide Clark e insegue Mary in spazi che cambiano; Mary spezza la gamba di legno con un attaccapanni e lo colpisce con un pezzo di cemento della sua casa d'infanzia; trappola di gas di Async, ricercatori in tuta; interrogatorio con Phil, Async fabbricava macchinari per risonanza magnetica, la decisione sul suo rilascio non spetta a lui; nell'ultima scena una copia approssimativa della stanza dell'interrogatorio con il simulacro deforme di Mary; il regista ha detto che altro è in lavorazione, contratto con A24 per un seguito: https://en.wikipedia.org/wiki/Backrooms_(film)"
+  ],
+  "pronuncia": {
+    "A24": "A ventiquattro",
+    "Async": "Éisinc",
+    "Kane Parsons": "Kein Pàrsons",
+    "Parsons": "Pàrsons",
+    "Still Life": "Stil Laif",
+    "noclip": "nò-clip",
+    "Oshkosh": "Òsh-kosh"
+  }
+}
