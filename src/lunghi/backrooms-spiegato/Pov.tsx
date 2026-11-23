@@ -2,7 +2,7 @@ import React from 'react';
 import { clamp01, eio, eo, lerp, seg } from '../../lib/anim';
 import { HAND, SANS, TYPEWRITER } from '../../lib/fonts';
 import { Glow } from '../../lib/elements';
-import { Corridoio, type Proietta } from '../../lib/liminale';
+import { Corridoio, passi, type Proietta } from '../../lib/liminale';
 import { INK, L0, NIGHT, PAPER, RED, X, YEL } from './Luoghi';
 import { Icona, Tag } from './Segni';
 import { E, S, ev, inCap, type Cam } from './Tempi';
@@ -101,10 +101,7 @@ export const Impronte: React.FC<{ p: Proietta; z0: number; z1: number }> = ({ p,
 
 // ---------------------------------------------------------------------------------------------------------------- vedute
 
-const passo = (T: number, t0: number, v: number, ramp = 0.8) => {
-  const t = Math.max(0, T - t0);
-  return t < ramp ? (v * t * t) / (2 * ramp) : v * (t - ramp / 2);
-};
+const passo = passi;
 
 /** Aggancio (e miniatura): il corridoio giallo infinito con la porta socchiusa in fondo e «DOVE SEI?» sul muro. */
 const vistaAggancio = (T: number) => {

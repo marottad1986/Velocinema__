@@ -1,4 +1,5 @@
 import React from 'react';
+import { Corridoio } from './liminale';
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from 'remotion';
 import { camera } from './anim';
 import { DISPLAY, SANS } from './fonts';
@@ -107,10 +108,16 @@ const Interni: React.FC<{ t: number }> = ({ t }) => {
             lights={[{ x: 540, y: 2100, r: 120, angle: -90 + 30 * Math.sin(t * 1.2), length: 520, spread: 30 }, { x: 900, y: 1700, r: 160 }]} />
         </g>
       </g>
+      {/* Corridoio (src/lib/liminale.tsx): spazio liminale in prospettiva vera, la camera cammina (Backrooms) */}
+      <g transform="translate(640 200) scale(0.36)">
+        <clipPath id="ci-lim"><rect width="1080" height="1920" rx="40" /></clipPath>
+        <g clipPath="url(#ci-lim)"><Corridoio T={t} z={t * 1.2} w={1080} h={1920} id="ci-cor" rotto={0.4} /></g>
+        <rect width="1080" height="1920" rx="40" fill="none" stroke="#0B0818" strokeWidth="14" />
+      </g>
       <Finish id="ci" tint="#2C2456" />
       <Tag x={40} y={60}>SunRays · Neon(onAt) · StringLights · GlassDrops · Fireflies</Tag>
       <Tag x={40} y={100}>Beam(sweep) · Dust · Drips · Fire · Embers · Glow · Wisps · Notes</Tag>
-      <Tag x={40} y={140}>Flyers · Confetti · Buio (in basso: torcia e lume)</Tag>
+      <Tag x={40} y={140}>Flyers · Confetti · Buio (in basso: torcia e lume) · Corridoio (in alto a destra)</Tag>
     </svg>
   );
 };

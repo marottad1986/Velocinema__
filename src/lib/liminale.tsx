@@ -1,5 +1,5 @@
 import React from 'react';
-import { clamp01, lerp, mod } from './anim';
+import { clamp01, lerp } from './anim';
 
 // Spazi liminali in prospettiva vera (passo avanti del lungo di Backrooms, ASTICELLA.md): un corridoio a stanze
 // che la camera percorre davvero in profondità (prospettiva a un punto di fuga), costruito a segmenti dal fondo verso
@@ -209,14 +209,8 @@ export const Corridoio: React.FC<{
   );
 };
 
-/** Metri percorsi camminando: passo regolare con partenza e frenata morbide. */
-export const passi = (T: number, t0: number, t1: number, v = 1.3) => {
-  const d = t1 - t0;
-  const u = clamp01((T - t0) / d);
-  const ramp = Math.min(0.8, d / 3);
-  // integrale di una velocità che sale e scende in `ramp` secondi
-  const tt = u * d;
-  if (tt < ramp) return (v * tt * tt) / (2 * ramp);
-  if (tt > d - ramp) return v * (d - ramp) - (v * (d - tt) ** 2) / (2 * ramp) + 0 * mod(0, 1);
-  return v * (tt - ramp / 2);
+/** Metri percorsi camminando dall'istante t0 a velocità v (m/s), con una partenza morbida di `ramp` secondi. */
+export const passi = (T: number, t0: number, v = 1.3, ramp = 0.8) => {
+  const t = Math.max(0, T - t0);
+  return t < ramp ? (v * t * t) / (2 * ramp) : v * (t - ramp / 2);
 };

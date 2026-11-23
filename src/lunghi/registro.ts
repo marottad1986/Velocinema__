@@ -26,6 +26,8 @@ export type ScenaLunga = {
   capitoli: Record<string, React.FC<ParteProps>>;
   /** Un episodio intero nel 16:9: T = secondi dall'inizio del suo video verticale. */
   episodio: React.FC<{ film: string; T: number; parte: ParteEpisodio; riassunto: string }>;
+  /** Miniature in più per «Testa e confronta» (YOUTUBE.md §1), 1920×1080 come il video (si esportano a 1280×720). */
+  miniature?: Record<string, React.FC>;
 };
 export type LungoDef = { slug: string; data: LungoData; episodi: Record<string, FilmData>; scene: ScenaLunga };
 

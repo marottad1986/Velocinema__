@@ -17,6 +17,9 @@ export const RootLunghi: React.FC = () => (
             <Composition key={x.id} id={`${L.slug}--${x.id}`} component={TrattoView} defaultProps={{ slug: L.slug, indice: i, offset: 0 }}
               durationInFrames={Math.round(x.dur * FPS)} fps={FPS} width={1920} height={1080} />
           ))}
+          {Object.entries(L.scene.miniature ?? {}).map(([k, M]) => (
+            <Composition key={k} id={`${L.slug}--miniatura-${k}`} component={M} durationInFrames={1} fps={FPS} width={1920} height={1080} />
+          ))}
         </Folder>
       );
     })}

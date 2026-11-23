@@ -3,6 +3,7 @@ import type { ParteProps, ScenaLunga } from '../registro';
 import { Mondo, STARTS } from './Mondo';
 import { Aggancio } from './Aggancio';
 import { Chiusura } from './Chiusura';
+import { MiniaturaB, MiniaturaC } from './Miniature';
 import L from '../../../lunghi/backrooms-spiegato.json';
 
 // Backrooms spiegato (video lungo nativo 16:9): tutti i tratti sono lo stesso mondo (Mondo.tsx) a tempi diversi.
@@ -14,4 +15,5 @@ export const BACKROOMS_SPIEGATO: ScenaLunga = {
   chiusura: Chiusura,
   capitoli: Object.fromEntries(ids.map((id) => [id, capitolo(id)])),
   episodio: () => null,
+  miniature: { b: MiniaturaB, c: MiniaturaC },
 };
