@@ -1,0 +1,1018 @@
+{
+  "formato": "lungo",
+  "tipo": "film",
+  "titolo": "Backrooms",
+  "titolo_youtube": "BACKROOMS spiegazione: cosa sono e il finale del film 🟨",
+  "etichetta": "SPIEGATO SEMPLICE · IL FILM E IL FINALE",
+  "regista": "Kane Parsons",
+  "anno": 2026,
+  "bpm": 75,
+  "palette": {
+    "chiaro": "#F4E9B8",
+    "principale": "#C9B25A",
+    "scuro": "#14110A",
+    "accento": "#E8D36A"
+  },
+  "parti": [
+    {
+      "tipo": "aggancio",
+      "id": "aggancio",
+      "durata": 25,
+      "capitolo_youtube": "Le stanze gialle infinite",
+      "immagine": "Copertina 16:9 (miniatura YouTube): a sinistra «SPIEGATO SEMPLICE · IL FILM E IL FINALE», «BACKROOMS» enorme, sotto «IL FINALE SPIEGATO»; a destra un corridoio giallo infinito in prospettiva, neon che ronzano, moquette bagnata, in fondo una porta socchiusa con una luce bianca e la scritta a pennarello «DOVE SEI?». Poi la camera cammina nel corridoio, un neon sfarfalla e si spegne, una stanza dopo l'altra.",
+      "sottotitoli": [
+        "Una stanza gialla, vuota, con la moquette bagnata e le luci che ronzano.",
+        "Poi un'altra, e un'altra ancora, per chilometri. E allora, come si esce?",
+        "Sono le Backrooms: nate da una foto su internet, oggi sono un film.",
+        "Ti spiego cosa sono, la storia del film e il suo finale, che ha confuso tanti.",
+        "E alla fine ti mostro il dettaglio che ferma il mostro, e che quasi nessuno nota."
+      ],
+      "voce": {
+        "parlato": 23.68,
+        "frasi": [
+          [
+            0.04,
+            4.44
+          ],
+          [
+            4.84,
+            9.38
+          ],
+          [
+            10,
+            14.32
+          ],
+          [
+            14.72,
+            19.02
+          ],
+          [
+            19.38,
+            23.62
+          ]
+        ]
+      }
+    },
+    {
+      "tipo": "capitoli",
+      "id": "cosa",
+      "nome": "COSA SONO LE BACKROOMS",
+      "capitolo_youtube": "Cosa sono le Backrooms: la foto, il noclip, il Livello 0",
+      "capitoli": [
+        {
+          "id": "foto",
+          "titolo": "Da dove arriva la stanza gialla?",
+          "durata": 22,
+          "scena": "Lo schermo di un vecchio computer in una stanza buia: una discussione del forum anonimo, poi la foto della stanza gialla che riempie lo schermo e da lì si entra nel mondo.",
+          "sottotitoli": [
+            "Tutto comincia il 12 maggio 2019, su un forum anonimo di internet.",
+            "Qualcuno chiede di pubblicare foto che mettono a disagio, senza un motivo preciso.",
+            "Arriva la foto di una stanza gialla e vuota, con la moquette e i neon accesi.",
+            "Non c'è niente di spaventoso, eppure inquieta: sembra un posto in cui non dovresti essere."
+          ],
+          "voce": {
+            "parlato": 21.17,
+            "frasi": [
+              [
+                0,
+                5
+              ],
+              [
+                5.46,
+                10.06
+              ],
+              [
+                10.54,
+                14.98
+              ],
+              [
+                15.4,
+                21.14
+              ]
+            ]
+          }
+        },
+        {
+          "id": "noclip",
+          "titolo": "Cosa vuol dire uscire dalla realtà?",
+          "durata": 21,
+          "scena": "Il pavimento di una stanza normale diventa trasparente come in un videogioco: un cartellino cade attraverso la griglia del pavimento e atterra nella stanza gialla.",
+          "sottotitoli": [
+            "Il giorno dopo, un altro utente scrive sotto la foto una piccola storia.",
+            "Dice che, se esci dalla realtà nel punto sbagliato, finisci lì dentro, nelle Backrooms.",
+            "Usa la parola noclip: nei videogiochi è il trucco che fa passare attraverso i muri.",
+            "Come un personaggio che cade sotto il pavimento, in un posto che non esiste."
+          ],
+          "voce": {
+            "parlato": 19.64,
+            "frasi": [
+              [
+                0.04,
+                3.98
+              ],
+              [
+                4.46,
+                9.82
+              ],
+              [
+                10.34,
+                15.36
+              ],
+              [
+                15.86,
+                19.6
+              ]
+            ]
+          }
+        },
+        {
+          "id": "livello0",
+          "titolo": "Com'è fatto il Livello 0?",
+          "durata": 18,
+          "scena": "La camera cammina nel corridoio giallo: neon che ronzano, macchie scure sulla moquette, carta da parati a righe. Il numero «600 MILIONI» enorme, la scritta «LIVELLO 0».",
+          "sottotitoli": [
+            "Laggiù, scrive, ci sono seicento milioni di miglia quadrate di stanze vuote: tre volte la Terra.",
+            "Tutte uguali, tutte gialle, con l'odore di moquette umida e il ronzio dei neon.",
+            "Più tardi i fan lo chiameranno Livello 0: la prima stanza in cui si cade."
+          ],
+          "voce": {
+            "parlato": 17.17,
+            "frasi": [
+              [
+                0.06,
+                6.54
+              ],
+              [
+                7.06,
+                11.64
+              ],
+              [
+                12.24,
+                17.14
+              ]
+            ]
+          }
+        },
+        {
+          "id": "liminale",
+          "titolo": "Perché fanno così paura?",
+          "durata": 22,
+          "scena": "Accanto al corridoio giallo si accendono altri luoghi vuoti e conosciuti: un corridoio di scuola di notte, una piscina chiusa, un centro commerciale all'alba. Cartellino «SPAZIO LIMINALE».",
+          "sottotitoli": [
+            "Il motivo è semplice: sono posti che conosciamo, ma senza nessuno dentro.",
+            "Si chiamano spazi liminali, cioè luoghi di passaggio, come corridoi e sale d'attesa.",
+            "Di solito sono pieni di gente, e così, vuoti, sembrano sbagliati, come in un sogno.",
+            "E il cervello ci dice una cosa sola: qui non dovresti esserci."
+          ],
+          "voce": {
+            "parlato": 20.92,
+            "frasi": [
+              [
+                0,
+                4.66
+              ],
+              [
+                5.14,
+                10.64
+              ],
+              [
+                11.08,
+                16.54
+              ],
+              [
+                17,
+                20.86
+              ]
+            ]
+          }
+        },
+        {
+          "id": "leggenda",
+          "titolo": "Perché la leggenda è cresciuta?",
+          "durata": 24,
+          "scena": "Dalla stanza gialla la camera si allarga sulla pianta dei livelli in sezione, uno sotto l'altro: si aggiungono il parcheggio infinito, i tunnel caldi, le pagine dell'enciclopedia dei fan che si attaccano alle pareti.",
+          "sottotitoli": [
+            "In pochi giorni la storia si sparge, e migliaia di persone ci aggiungono pezzi.",
+            "Nascono altri livelli: un parcheggio infinito, tunnel stretti e caldissimi.",
+            "Nascono creature, regole, perfino gruppi di esploratori immaginari.",
+            "Tutto finisce in enciclopedie online scritte dai fan, come succede con i miti.",
+            "Ma resta un mistero: dove è stata scattata quella foto?"
+          ],
+          "voce": {
+            "parlato": 22.95,
+            "frasi": [
+              [
+                0.04,
+                4.64
+              ],
+              [
+                5.12,
+                9.72
+              ],
+              [
+                10.12,
+                14.16
+              ],
+              [
+                14.66,
+                18.86
+              ],
+              [
+                19.34,
+                22.88
+              ]
+            ]
+          }
+        },
+        {
+          "id": "oshkosh",
+          "titolo": "Dove è stata scattata la foto?",
+          "durata": 19,
+          "scena": "La foto della stanza gialla appesa come una polaroid gigante; una puntina rossa su una piccola mappa: il Wisconsin; dietro la foto si disegna il vecchio negozio di mobili con il cartello «LAVORI IN CORSO».",
+          "sottotitoli": [
+            "Per cinque anni nessuno sa da dove venga quella foto.",
+            "Poi, nel 2024, alcuni fan la ritrovano in un vecchio blog.",
+            "È del 2002, e viene da un ex negozio di mobili a Oshkosh, negli Stati Uniti.",
+            "Un negozio di mobili: tienilo a mente, perché nel film torna."
+          ],
+          "voce": {
+            "parlato": 17.34,
+            "frasi": [
+              [
+                0,
+                3.16
+              ],
+              [
+                3.6,
+                7.52
+              ],
+              [
+                7.98,
+                12.98
+              ],
+              [
+                13.54,
+                17.3
+              ]
+            ]
+          }
+        },
+        {
+          "id": "parsons",
+          "titolo": "Chi è Kane Parsons?",
+          "durata": 21,
+          "scena": "Una videocassetta gigante nel mondo; il nastro si srotola e diventa il corridoio; sullo schermo di un televisore a tubo il contatore delle visualizzazioni che corre.",
+          "sottotitoli": [
+            "Nel 2022 Kane Parsons, un ragazzo americano di sedici anni, pubblica un video su YouTube.",
+            "Dura nove minuti e sembra una vecchia videocassetta degli anni Novanta.",
+            "Chi riprende cade per sbaglio nelle stanze gialle, e qualcosa lo insegue.",
+            "Il video viene visto decine di milioni di volte, e diventa una serie."
+          ],
+          "voce": {
+            "parlato": 19.73,
+            "frasi": [
+              [
+                0.06,
+                5.86
+              ],
+              [
+                6.38,
+                9.52
+              ],
+              [
+                9.52,
+                15.14
+              ],
+              [
+                15.76,
+                19.68
+              ]
+            ]
+          }
+        },
+        {
+          "id": "async",
+          "titolo": "Cos'è l'istituto Async?",
+          "durata": 17,
+          "scena": "Nella pianta del mondo compare il laboratorio sotterraneo di Async con un grande macchinario ad anello: l'anello si accende e apre un varco luminoso verso le stanze gialle. Cartellino «ASYNC».",
+          "sottotitoli": [
+            "Nella serie compare un istituto di ricerca segreto, che si chiama Async.",
+            "Costruiva macchinari per gli ospedali, ma durante un esperimento apre per caso un passaggio.",
+            "Dall'altra parte ci sono le Backrooms, e Async manda gente a esplorarle, in segreto."
+          ],
+          "voce": {
+            "parlato": 15.63,
+            "frasi": [
+              [
+                0.06,
+                3.64
+              ],
+              [
+                3.84,
+                9.88
+              ],
+              [
+                10.32,
+                15.58
+              ]
+            ]
+          }
+        },
+        {
+          "id": "a24",
+          "titolo": "Come nasce il film?",
+          "durata": 24,
+          "scena": "Il varco si allarga come lo schermo di un cinema; una claquette senza scritte del film; la data «27 MAGGIO 2026» al neon.",
+          "sottotitoli": [
+            "Così, nel 2023, lo studio americano A24 annuncia un film, diretto proprio da lui.",
+            "Parsons lo gira a Vancouver, nell'estate del 2025: è il suo primo film.",
+            "Si intitola Backrooms, ed esce nei cinema italiani il 27 maggio 2026.",
+            "Racconta una storia nuova, con personaggi nuovi, ma con lo stesso istituto Async."
+          ],
+          "voce": {
+            "parlato": 22.56,
+            "frasi": [
+              [
+                0,
+                6.04
+              ],
+              [
+                6.54,
+                11.46
+              ],
+              [
+                11.94,
+                17.18
+              ],
+              [
+                17.7,
+                21.8
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "capitoli",
+      "id": "storia",
+      "nome": "LA STORIA DEL FILM",
+      "capitolo_youtube": "La trama del film Backrooms",
+      "capitoli": [
+        {
+          "id": "cassetta",
+          "titolo": "Cosa c'è nella videocassetta?",
+          "durata": 22,
+          "scena": "Un televisore a tubo nel laboratorio di Async: righe della VHS, data «19 GIUGNO 1990», la torcia di Naren che trema nel corridoio, poi il buio e la scritta «SEGNALE PERSO».",
+          "sottotitoli": [
+            "Il film si apre con una videocassetta del 19 giugno 1990.",
+            "Naren, un esploratore di Async, si è perso da solo nelle stanze gialle.",
+            "Chiede aiuto, ma nessuno arriva. Poi qualcosa, che non vediamo, lo attacca.",
+            "Gli scienziati di Async guardano quella registrazione: sanno che laggiù si rischia la vita."
+          ],
+          "voce": {
+            "parlato": 20.84,
+            "frasi": [
+              [
+                0.06,
+                4.68
+              ],
+              [
+                5.16,
+                9.66
+              ],
+              [
+                10.1,
+                15.06
+              ],
+              [
+                15.58,
+                20.7
+              ]
+            ]
+          }
+        },
+        {
+          "id": "negozio",
+          "titolo": "Chi è Clark?",
+          "durata": 23,
+          "scena": "La camera esce dal laboratorio e sale in superficie: il negozio di mobili di notte, insegna con il pirata disegnato, divani con i cartellini dei prezzi, un letto in vendita usato come letto vero. Il cartellino del prezzo è Clark, il taccuino è Mary.",
+          "sottotitoli": [
+            "Poi conosciamo Clark: era un architetto, ma la sua carriera è andata male.",
+            "La moglie l'ha lasciato, beve troppo, e ha un negozio di mobili: come quello della foto.",
+            "Ci vive perfino dentro, e la mascotte del suo negozio è un pirata.",
+            "Ogni settimana parla con Mary, la sua psicologa.",
+            "Anche lei porta un dolore: la casa in cui è cresciuta è stata demolita."
+          ],
+          "voce": {
+            "parlato": 21.83,
+            "frasi": [
+              [
+                0,
+                4.78
+              ],
+              [
+                5.24,
+                9.96
+              ],
+              [
+                10.4,
+                14.18
+              ],
+              [
+                14.78,
+                17.4
+              ],
+              [
+                17.96,
+                21.78
+              ]
+            ]
+          }
+        },
+        {
+          "id": "fessura",
+          "titolo": "Cosa c'è sotto il negozio?",
+          "durata": 26,
+          "scena": "Spaccato del negozio: la camera scende nel seminterrato, i neon che sfarfallano, una fessura luminosa nel muro di mattoni; di là dal muro il Livello 0. Una telecamera di Async con la spia rossa che guarda.",
+          "sottotitoli": [
+            "Intanto, da qualche tempo, le luci del negozio sfarfallano.",
+            "Una notte, nel seminterrato, Clark trova nel muro una fessura che brilla.",
+            "Ci entra, e si ritrova nelle stanze gialle, dove trova perfino gli oggetti di Naren.",
+            "Qualcosa lo insegue: lui scappa indietro dalla fessura, e poi racconta tutto a Mary.",
+            "Non lo sa, ma una telecamera lo guarda: è di Phil, uno scienziato di Async."
+          ],
+          "voce": {
+            "parlato": 24.69,
+            "frasi": [
+              [
+                0.04,
+                3.6
+              ],
+              [
+                4.14,
+                8.56
+              ],
+              [
+                9.04,
+                13.82
+              ],
+              [
+                14.4,
+                19.32
+              ],
+              [
+                19.88,
+                24.14
+              ]
+            ]
+          }
+        },
+        {
+          "id": "commessi",
+          "titolo": "Perché Clark torna nelle Backrooms?",
+          "durata": 24,
+          "scena": "La fessura; tre cerchi-personaggio (cartellino del prezzo di Clark, cartellino del nome di Kat, cuore di Bobby) entrano con la telecamera; il tratteggio dei passi si divide; il cerchio di Bobby viene trascinato via e si spegne; un muro si chiude tra Clark e Kat; il cerchio di Clark trema, con un anello rosso spezzato.",
+          "sottotitoli": [
+            "Mary non gli crede, così Clark torna laggiù a cercare prove, con due commessi.",
+            "Sono Kat, la sua vice, e Bobby, il fidanzato di lei: vogliono filmare tutto.",
+            "Ma laggiù Bobby viene trascinato via, e muore.",
+            "Clark e Kat si perdono. Lui la vede oltre un muro, ma non riesce a raggiungerla.",
+            "E Clark, rimasto solo laggiù, comincia a perdere la testa."
+          ],
+          "voce": {
+            "parlato": 22.46,
+            "frasi": [
+              [
+                0.08,
+                4.82
+              ],
+              [
+                5.26,
+                10.08
+              ],
+              [
+                10.6,
+                13.34
+              ],
+              [
+                13.88,
+                18.46
+              ],
+              [
+                18.84,
+                22.4
+              ]
+            ]
+          }
+        },
+        {
+          "id": "mary",
+          "titolo": "Perché Mary entra nelle Backrooms?",
+          "durata": 17,
+          "scena": "La segreteria telefonica che lampeggia nello studio di Mary; il nastro che gira; il taccuino attraversa il negozio buio e la fessura; un neon che si spegne di colpo.",
+          "sottotitoli": [
+            "Intanto Mary trova in segreteria un messaggio di Clark: dice che resterà laggiù, e non tornerà.",
+            "Preoccupata, va al negozio, trova la fessura ed entra anche lei.",
+            "Laggiù ritrova Clark, ma lui sembra impazzito.",
+            "E la stringe al collo, finché lei perde i sensi."
+          ],
+          "voce": {
+            "parlato": 16.09,
+            "frasi": [
+              [
+                0.04,
+                5.68
+              ],
+              [
+                6.18,
+                9.76
+              ],
+              [
+                10.22,
+                13.02
+              ],
+              [
+                13.4,
+                16.04
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tavola",
+          "titolo": "Chi sono gli ospiti a tavola?",
+          "durata": 22,
+          "scena": "Una sala da pranzo dentro le stanze gialle, con la carta da parati sbagliata: tavola apparecchiata, quattro sedie, su tre sedie un velo bianco di gesso che cola (nessuna figura, solo una macchia bianca informe), il segnaposto «STILL LIFE». Un frigorifero chiuso con la luce che filtra.",
+          "sottotitoli": [
+            "Mary si sveglia legata a una sedia, in una sala da pranzo che sembra vera.",
+            "Intorno al tavolo ci sono tre ospiti immobili: sembrano persone, ma non lo sono.",
+            "Sono copie, fatte di una strana sostanza bianca che si può perfino mangiare.",
+            "Si chiamano Still Life, cioè nature morte.",
+            "E Mary scopre che anche Kat è morta."
+          ],
+          "voce": {
+            "parlato": 21.09,
+            "frasi": [
+              [
+                0.1,
+                4.16
+              ],
+              [
+                4.76,
+                9.82
+              ],
+              [
+                10.32,
+                14.68
+              ],
+              [
+                15.24,
+                18.12
+              ],
+              [
+                18.66,
+                21.04
+              ]
+            ]
+          }
+        },
+        {
+          "id": "regola",
+          "titolo": "Come funzionano le Backrooms?",
+          "durata": 21,
+          "scena": "Cartello «LA REGOLA». Dalla sala da pranzo esce una fotocopiatrice gigante: entra un ricordo (la foto di una casa) ed esce una copia più storta, poi un'altra ancora più storta.",
+          "sottotitoli": [
+            "Qui Clark le spiega la regola di quel posto.",
+            "Le Backrooms prendono i ricordi delle persone e li ricopiano, ma male.",
+            "Come la fotocopia di una fotocopia: le forme ci sono, ma qualcosa è sbagliato.",
+            "Per questo laggiù ci sono stanze che sembrano case, negozi, uffici veri.",
+            "E per questo ci sono anche copie delle persone."
+          ],
+          "voce": {
+            "parlato": 20.21,
+            "frasi": [
+              [
+                0.04,
+                2.74
+              ],
+              [
+                3.2,
+                7.34
+              ],
+              [
+                7.8,
+                12.44
+              ],
+              [
+                12.9,
+                17.26
+              ],
+              [
+                17.68,
+                20.16
+              ]
+            ]
+          }
+        },
+        {
+          "id": "uscita",
+          "titolo": "Come si esce dalle Backrooms?",
+          "durata": 18,
+          "scena": "La pianta: un solo livello (non i tanti della leggenda); il tratteggio dei passi torna indietro fino alla fessura del negozio, che si illumina. Cartellino «SOLO DA DOVE SEI ENTRATO».",
+          "sottotitoli": [
+            "Nel film, a differenza della leggenda, c'è un solo livello, quello giallo.",
+            "E c'è una cosa che dà speranza: dalle Backrooms si può uscire.",
+            "Ma solo dallo stesso punto da cui si è entrati.",
+            "Per questo Clark era riuscito a scappare. Il problema è ritrovare la strada."
+          ],
+          "voce": {
+            "parlato": 16.48,
+            "frasi": [
+              [
+                0.06,
+                4.4
+              ],
+              [
+                4.88,
+                8.82
+              ],
+              [
+                9.42,
+                11.76
+              ],
+              [
+                12.14,
+                16.42
+              ]
+            ]
+          }
+        },
+        {
+          "id": "pirata",
+          "titolo": "Chi è il pirata gigante?",
+          "durata": 20,
+          "scena": "Il cappello da pirata enorme che sfiora il soffitto, impronte rotonde di una gamba di legno che si avvicinano sulla moquette, i neon che si spengono uno dopo l'altro; il cartellino del prezzo di Clark si spegne.",
+          "sottotitoli": [
+            "Mary gli dice che la moglie l'ha lasciato perché non ammette mai i suoi errori.",
+            "Colpito, Clark comincia a slegarla, ma arriva un gigante vestito da pirata.",
+            "È un'altra copia di Clark: vestito come la mascotte del negozio, ma enorme.",
+            "Il pirata uccide Clark, e insegue Mary tra stanze che cambiano forma."
+          ],
+          "voce": {
+            "parlato": 18.81,
+            "frasi": [
+              [
+                0.06,
+                4.02
+              ],
+              [
+                4.58,
+                9.32
+              ],
+              [
+                9.82,
+                14.24
+              ],
+              [
+                14.76,
+                18.76
+              ]
+            ]
+          }
+        },
+        {
+          "id": "cemento",
+          "titolo": "Come si salva Mary?",
+          "durata": 19,
+          "scena": "Momento clou: corsa nel corridoio, l'attaccapanni che spezza la gamba di legno (schegge), il pezzo di cemento che vola (lampo, silenzio), poi il gas verde dalle bocchette e le torce dei soccorritori di Async (solo luci e tute come cerchi gialli).",
+          "sottotitoli": [
+            "Mary scappa, e con un attaccapanni spezza la gamba di legno del pirata.",
+            "Poi lo colpisce in faccia con un pezzo di cemento. Ricordatelo: ci torniamo alla fine.",
+            "La lotta fa scattare una trappola di Async: esce un gas, e arrivano uomini in tuta.",
+            "E gli uomini di Async portano via Mary."
+          ],
+          "voce": {
+            "parlato": 17.32,
+            "frasi": [
+              [
+                0.08,
+                4.06
+              ],
+              [
+                4.5,
+                9.18
+              ],
+              [
+                9.8,
+                14.78
+              ],
+              [
+                15.24,
+                17.28
+              ]
+            ]
+          }
+        },
+        {
+          "id": "phil",
+          "titolo": "Cosa vuole Async da Mary?",
+          "durata": 25,
+          "scena": "La stanzetta degli interrogatori di Async: un tavolo, due sedie, una lampada, uno specchio scuro; la telecamera di Phil e il taccuino di Mary uno davanti all'altro. Il cartellino «NON DECIDO IO».",
+          "sottotitoli": [
+            "Mary si sveglia in una stanzetta per interrogatori, davanti a Phil, lo scienziato della telecamera.",
+            "Lui le spiega che ormai le Backrooms sono la ricerca più importante di Async.",
+            "E che le studiano di nascosto, da anni, almeno dai tempi della cassetta di Naren.",
+            "Mary vuole tornare a casa. Ma Phil risponde che non è lui a decidere.",
+            "Cosa le succederà? Il film risponde con un'ultima scena."
+          ],
+          "voce": {
+            "parlato": 24.2,
+            "frasi": [
+              [
+                0.08,
+                5.32
+              ],
+              [
+                5.9,
+                10
+              ],
+              [
+                10.06,
+                15.44
+              ],
+              [
+                16.1,
+                20.16
+              ],
+              [
+                20.7,
+                24.16
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "capitoli",
+      "id": "finale",
+      "nome": "IL FINALE SPIEGATO",
+      "capitolo_youtube": "Il finale spiegato: la copia di Mary e le teorie",
+      "capitoli": [
+        {
+          "id": "montaggio",
+          "titolo": "Cosa mostra l'ultima scena?",
+          "durata": 19,
+          "scena": "Volo veloce lungo le stanze gialle: uno dopo l'altro i luoghi del film ricostruiti dentro il Livello 0, sempre più storti (il negozio, la sala da pranzo, lo studio), fino alla stanzetta dell'interrogatorio; dentro, sulla sedia, il taccuino di Mary deformato e grigio (nessuna figura). Anello rosso.",
+          "sottotitoli": [
+            "Nell'ultima scena vediamo, uno dopo l'altro, i luoghi del film.",
+            "Ma non sono quelli veri: sono ricostruiti dentro le Backrooms, un po' storti, come ricordi.",
+            "L'ultimo è proprio la stanzetta dell'interrogatorio.",
+            "E dentro, seduta e immobile, c'è una copia deforme di Mary."
+          ],
+          "voce": {
+            "parlato": 17.97,
+            "frasi": [
+              [
+                0.06,
+                4.08
+              ],
+              [
+                4.58,
+                10.06
+              ],
+              [
+                10.56,
+                13.36
+              ],
+              [
+                13.74,
+                17.94
+              ]
+            ]
+          }
+        },
+        {
+          "id": "mostra",
+          "titolo": "Cosa mostra il film di sicuro?",
+          "durata": 16,
+          "scena": "Cartello «COSA MOSTRA IL FILM». Due stanzette affiancate: quella vera di Async e la copia gialla; una linea collega il taccuino vero a quello grigio, come prima il cartellino di Clark al cappello del pirata.",
+          "sottotitoli": [
+            "Partiamo da quello che il film mostra davvero.",
+            "Le Backrooms hanno già copiato la stanza in cui Mary ha appena parlato con Phil.",
+            "E hanno copiato anche lei, come prima avevano copiato Clark nel pirata.",
+            "Vuol dire che ormai le Backrooms ricordano anche lei."
+          ],
+          "voce": {
+            "parlato": 14.6,
+            "frasi": [
+              [
+                0,
+                2.26
+              ],
+              [
+                2.76,
+                7.1
+              ],
+              [
+                7.62,
+                11.46
+              ],
+              [
+                11.94,
+                14.56
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sorte",
+          "titolo": "Mary è morta o si è salvata?",
+          "durata": 19,
+          "scena": "Cartello «TEORIA». Il taccuino di Mary al centro, due strade: a sinistra la porta di Async che si richiude verso il giallo; a destra la porta di casa con la luce del giorno. Punto interrogativo.",
+          "sottotitoli": [
+            "Ma la vera Mary, che fine fa? Il film non lo dice.",
+            "Per alcuni, Async la rimanda laggiù per studiarla, e lei non ne esce più.",
+            "Per altri si salva: la copia è solo una traccia, lasciata dal suo passaggio.",
+            "E il regista non ha voluto confermare nessuna delle due letture."
+          ],
+          "voce": {
+            "parlato": 17.37,
+            "frasi": [
+              [
+                0.06,
+                3.66
+              ],
+              [
+                4.16,
+                8.68
+              ],
+              [
+                9.18,
+                13.5
+              ],
+              [
+                13.96,
+                17.3
+              ]
+            ]
+          }
+        },
+        {
+          "id": "metafora",
+          "titolo": "Di cosa parla davvero il film?",
+          "durata": 19,
+          "scena": "Cartello «TEORIA». Le stanze gialle diventano schede di un telefono che scorrono all'infinito; poi diventano scatoloni di ricordi impilati.",
+          "sottotitoli": [
+            "C'è poi chi legge tutto il film come una metafora.",
+            "Le Backrooms sarebbero il posto dove restano i ricordi che non riusciamo a lasciare andare.",
+            "Infatti Clark resta chiuso nei suoi fallimenti, e laggiù muore.",
+            "Altri ci vedono internet, che scorre all'infinito come quelle stanze tutte uguali."
+          ],
+          "voce": {
+            "parlato": 17.76,
+            "frasi": [
+              [
+                0.02,
+                2.84
+              ],
+              [
+                3.3,
+                7.68
+              ],
+              [
+                8.16,
+                12.26
+              ],
+              [
+                12.94,
+                17.72
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dettaglio",
+          "titolo": "Il dettaglio che quasi nessuno nota",
+          "durata": 27,
+          "scena": "Cartello «LA NOSTRA LETTURA». Momento clou finale: il pezzo di cemento in primo piano, enorme, grigio in un mondo giallo; dentro si accende il ricordo della casa d'infanzia (una casetta con il giardino, disegnata a linee); le copie intorno (il cappello del pirata, la sala da pranzo) tremano e si incrinano. Cartellino «IL SUO RICORDO».",
+          "sottotitoli": [
+            "Ed ecco il dettaglio promesso, che è una nostra lettura: il pezzo di cemento.",
+            "Il film dice che viene dalla casa demolita di Mary, il suo ricordo più doloroso.",
+            "Laggiù i ricordi diventano copie che intrappolano, come è successo a Clark.",
+            "Mary invece prende in mano proprio quel dolore, e lo usa per fermare il mostro.",
+            "Forse il film ci dice questo: dalle Backrooms si esce affrontando i ricordi, non scappando."
+          ],
+          "voce": {
+            "parlato": 25.45,
+            "frasi": [
+              [
+                0.04,
+                4.7
+              ],
+              [
+                5.22,
+                9.6
+              ],
+              [
+                10.16,
+                14.04
+              ],
+              [
+                14.66,
+                19.14
+              ],
+              [
+                19.68,
+                25.42
+              ]
+            ]
+          }
+        },
+        {
+          "id": "seguito",
+          "titolo": "Ci sarà un seguito?",
+          "durata": 14,
+          "scena": "La fessura del seminterrato che si richiude piano; una nuova fessura che si accende altrove nella pianta.",
+          "sottotitoli": [
+            "E adesso? Parsons ha detto che c'è già altro in lavorazione.",
+            "Si parla di un nuovo film con A24, ma per ora senza date.",
+            "Così la domanda resta aperta: Mary è davvero uscita dalle Backrooms?"
+          ],
+          "voce": {
+            "parlato": 12.45,
+            "frasi": [
+              [
+                0,
+                3.66
+              ],
+              [
+                4.04,
+                7.76
+              ],
+              [
+                8.18,
+                12.4
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "chiusura",
+      "id": "chiusura",
+      "durata": 20,
+      "capitolo_youtube": "Riassunto finale",
+      "immagine": "Il corridoio giallo nella metà sinistra, la fessura del seminterrato che si spegne; sotto il riquadro «Ti è servito?» con «Metti like» e «Iscriviti al canale» e «Commenta con il film che vorresti.»; metà destra libera per la schermata finale di YouTube.",
+      "sottotitoli": [
+        "Le Backrooms sono nate da una foto, e sono diventate una copia storta del nostro mondo.",
+        "Se ti è servito, metti like e iscriviti al canale,",
+        "e commenta con il film che vorresti spiegato."
+      ],
+      "voce": {
+        "parlato": 11.19,
+        "frasi": [
+          [
+            0.04,
+            5.32
+          ],
+          [
+            5.94,
+            8.62
+          ],
+          [
+            8.92,
+            11.12
+          ]
+        ]
+      }
+    }
+  ],
+  "musica": "75 bpm (una croma = 0,4 s), Fa diesis minore: tappeto basso di archi tenuti e il ronzio dei neon (un Si bemolle sintetico a 120 Hz solo come effetto), pianoforte campionato a note rade come passi nel corridoio, celesta sui ricordi copiati; la storia del film più tesa (pizzicati a crome, timpano sui colpi), la fuga dal pirata a passo doppio; silenzio prima del colpo del cemento; il finale spiegato più aperto, il dettaglio in La maggiore; chiusura sospesa.",
+  "fonti": [
+    "Thread del 12 maggio 2019 sulla board /x/ di 4chan che chiedeva immagini inquietanti che sembrano «sbagliate»; risposta del 13 maggio con il testo sul «noclip» fuori dalla realtà e «circa seicento milioni di miglia quadrate» di stanze vuote, odore di moquette umida, giallo monotono e ronzio dei neon; diffusione su Reddit, livelli inventati dai fan (Level 1 parcheggio, Level 2 tunnel caldi e stretti); wiki su Fandom e Wikidot sul modello di SCP; spazi liminali; foto scattata nel 2002 durante la ristrutturazione di un ex negozio di mobili a Oshkosh, Wisconsin, ritrovata nel maggio 2024; video di Kane Parsons del 7 gennaio 2022 a 16 anni: https://en.wikipedia.org/wiki/The_Backrooms",
+    "Livello 0 con carta da parati gialla, moquette umida e neon che ronzano; livelli, entità e gruppi di esploratori della leggenda; wiki ufficiale del maggio 2019: https://it.wikipedia.org/wiki/Backrooms_(meme_di_Internet)",
+    "The Backrooms (Found Footage), 7 gennaio 2022, canale Kane Pixels, 9 minuti, finta registrazione su videocassetta del 1991: https://en.wikipedia.org/wiki/The_Backrooms_(Found_Footage)",
+    "Serie Backrooms di Kane Parsons, decine di milioni di visualizzazioni, ambientata nei primi anni Novanta; Async Research Institute, istituto di ricerca su macchinari per risonanza magnetica, apre per caso un passaggio verso le Backrooms: https://en.wikipedia.org/wiki/Backrooms_(web_series)",
+    "Film Backrooms (A24), regia di Kane Parsons al primo film; annunciato a febbraio 2023; riprese a Vancouver dal 7 luglio al 14 agosto 2025; in Italia dal 27 maggio 2026 (I Wonder Pictures); videocassetta del 19 giugno 1990 con l'esploratore Async Naren Warne attaccato; Clark architetto fallito, divorziato, alcolista, negozio di mobili a San Jose, vive nel negozio; la terapeuta Mary Kline e la demolizione della sua casa d'infanzia; luci che sfarfallano, fessura luminosa nel seminterrato, oggetti di Naren, fuga; Phil, scienziato di Async, guarda da una telecamera; ritorno con i commessi Kat e Bobby, Bobby filma con una videocamera, viene trascinato via e ucciso, Kat visibile oltre un muro, un'entità prende la videocamera; messaggio in segreteria, Mary entra, Clark la strangola fino a farle perdere i sensi; sala da pranzo con tre simulacri commestibili di sostanza bianca («Still Life»), Kat morta; Mary rimprovera Clark per i suoi fallimenti, lui la libera; simulacro gigante di Clark vestito da pirata, mascotte del negozio, uccide Clark e insegue Mary in spazi che cambiano; Mary spezza la gamba di legno con un attaccapanni e lo colpisce con un pezzo di cemento della sua casa d'infanzia; trappola di gas di Async, ricercatori in tuta; interrogatorio con Phil, Async fabbricava macchinari per risonanza magnetica, la decisione sul suo rilascio non spetta a lui; nell'ultima scena una copia approssimativa della stanza dell'interrogatorio con il simulacro deforme di Mary; il regista ha detto che altro è in lavorazione, contratto con A24 per un seguito: https://en.wikipedia.org/wiki/Backrooms_(film)",
+    "Clark lascia la videocamera e un'entità la prende; Bobby fidanzato di Kat, vicedirettrice del negozio; la moglie ha lasciato Clark; Clark spiega a Mary che quel posto è una copia difettosa della realtà; Async ha fatto delle Backrooms la sua ricerca principale; la lotta fa scattare la trappola di gas: https://en.wikipedia.org/wiki/Backrooms_(film)",
+    "Trama: Async ex azienda medica che ha trovato le Backrooms per caso; lo spazio rigenera i ricordi in maniera distorta; montaggio finale dei luoghi reali del film riprodotti nelle Backrooms fino alla replica della saletta con una versione deforme di Mary; differenze dalla leggenda: un solo livello, si esce da dove si è entrati, Async al posto del M.E.G.: https://it.wikipedia.org/wiki/Backrooms_(film)",
+    "Teorie sul finale: Mary rimandata dentro e probabilmente morta, oppure sopravvissuta; il regista Kane Parsons non conferma né smentisce le teorie: https://guides.justwatch.com/it/backrooms-finale-spiegato-teorie",
+    "Teoria del finale come allegoria dello scorrere dei social: https://movieplayer.it/articoli/backrooms-spiegazione-finale-film_37551/",
+    "Il regista non conferma né smentisce le teorie sul finale; Mary sopravvive o no: https://www.libero.it/magazine/news/backrooms-film-cinema-come-finisce-spiegazione-finale-mary-sopravvive-clark-209146",
+    "Il finale divide il pubblico; montaggio dei luoghi assorbiti dalle Backrooms: https://www.comingsoon.net/movies/features/2141161-backrooms-ending-explained-why-horror-movies-finale-is-proving-divisive",
+    "Il montaggio finale e le Still Life: https://www.thewrap.com/creative-content/movies/backrooms-ending-lore-explained/",
+    "Superficie della Terra circa 197 milioni di miglia quadrate (600 milioni sono circa tre volte): https://it.wikipedia.org/wiki/Terra"
+  ],
+  "pronuncia": {
+    "A24": "A ventiquattro",
+    "Async": "Éisinc",
+    "Kane Parsons": "Kein Pàrsons",
+    "Parsons": "Pàrsons",
+    "Still Life": "Stil Laif",
+    "noclip": "nò-clip",
+    "Oshkosh": "Òsh-kosh"
+  }
+}

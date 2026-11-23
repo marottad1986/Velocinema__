@@ -13,6 +13,8 @@ import raf3 from '../../films/ritorno-al-futuro-parte-3.json';
 import { RAF_TRILOGIA } from './ritorno-al-futuro-trilogia';
 import ddSpiegato from '../../lunghi/donnie-darko-spiegato.json';
 import { DONNIE_DARKO_SPIEGATO } from './donnie-darko-spiegato';
+import brSpiegato from '../../lunghi/backrooms-spiegato.json';
+import { BACKROOMS_SPIEGATO } from './backrooms-spiegato';
 
 // Registro dei video lunghi orizzontali (VIDEO-LUNGO.md): JSON in lunghi/<slug>.json, episodi riusati, scene in src/lunghi/<slug>/.
 
@@ -45,6 +47,12 @@ export const LUNGHI: LungoDef[] = [
     data: ddSpiegato as unknown as LungoData,
     episodi: {},
     scene: DONNIE_DARKO_SPIEGATO,
+  },
+  {
+    slug: 'backrooms-spiegato',
+    data: brSpiegato as unknown as LungoData,
+    episodi: {},
+    scene: BACKROOMS_SPIEGATO,
   },
 ];
 
