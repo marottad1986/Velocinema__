@@ -330,6 +330,9 @@ Per ogni uscita, nel `calendario/<settimana>-social.md`, una sezione «Diffusion
 - **Chi invia**: i messaggi privati li manda l'editore (sono contatti con persone reali a nome della pagina); la squadra li
   prepara e ricorda il momento giusto (subito dopo l'uscita) con l'avviso del giorno nell'app.
 - Si annota la risposta in `calendario/pubblicati.md` (colonna Note), così si sa chi rilancia e chi no.
+- **Follower interessanti** (editore, 24 nov): ogni domenica, nell'avviso della settimana, i profili pubblici tra nuovi
+  follower e commentatori che potrebbero collaborare (giornalisti, scrittori, attori di cinema e teatro, cantanti, creator),
+  con un'idea di collaborazione e il messaggio pronto. Li contatta solo l'editore.
 
 ## Come si sceglie un titolo (la parte più importante)
 Gli eventi della settimana (anniversari, uscite al cinema e in streaming, festività, eventi TV) danno 2–3 titoli.
@@ -347,6 +350,13 @@ Punteggio da 0 a 3 per ogni voce:
 | **Disegnabile** | Luoghi e oggetti forti, senza bisogno di personaggi (regola vincolante: con 0 il titolo è scartato). |
 
 Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere sulla settimana.
+- **Disponibilità a collaborare** (editore, 24 nov): per ogni candidato si annota (alta, media, bassa, con la fonte pubblica)
+  quanto protagonista, autore, produttore o distributore rispondono e rilanciano i contenuti di altri; a parità di punteggio
+  vince la disponibilità più alta. Nessun contatto diretto: i messaggi li manda l'editore.
+- **Eventi della settimana**: prima di scegliere, ricerca web di uscite in sala e in streaming, anniversari, ricorrenze ed
+  eventi TV della settimana, citati con la fonte nel calendario.
+- **Format che crescono su YouTube** (editore, 24 nov): classifica dei format per iscritti e visualizzazioni YouTube; dopo
+  2 prove, i primi tre guadagnano un'uscita in più a settimana (vedi `DECISIONI.md`).
 - Il titolo più forte della settimana va nel giorno con più visualizzazioni (dai dati del profilo).
 - Dopo un video che va molto bene, entro 3–4 giorni esce qualcosa di simile (il seguito, lo stesso regista, lo stesso genere).
 - Il video migliore del momento si fissa in alto sul profilo.
@@ -355,7 +365,8 @@ Si scelgono i titoli con il punteggio più alto, poi si bilanciano tipo e genere
 - Classifiche: Top 10 Netflix Italia (www.netflix.com/tudum/top10/italy), JustWatch Italia (popolari e dove vederli),
   box office Cinetel; FlixPatrol blocca i programmi (403), si usa la ricerca web.
 - Tendenze: Google Trends Italia, TikTok Creative Center (hashtag e brani di tendenza in Italia).
-- Uscite e calendari: MyMovies, FilmTV, ComingSoon, Sorrisi; trame e date su Wikipedia.
+- Uscite e calendari: MyMovies, FilmTV, ComingSoon, Sorrisi; trame e date su Wikipedia **più almeno una fonte non
+  Wikipedia** per ogni testo (decisione del 24 nov).
 
 ## Cosa dicono i dati (aggiornare ogni domenica)
 - **Regola dell'editore (22 nov 2026): nelle analisi conta prima YouTube.** Ogni domenica la classifica parte dalle

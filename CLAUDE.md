@@ -17,6 +17,9 @@ Serie **talent spiegati** (sospesa dal 18 nov 2026): programmi TV in corso con p
 con `"tipo": "talent"`. Regole proprie (nessuna persona disegnata, niente canzoni cantate né imitazioni, niente logo,
 fatti della gara verificati su fonti, vocabolario visivo fisso): vedi `TALENT.md`.
 
+Serie **libri spiegati** (dal 24 nov 2026, primo Cime tempestose): un libro famoso in 2 minuti, JSON in `films/` con
+`"tipo": "libro"`, etichetta «LIBRI SPIEGATI», finale «Commenta con il libro che vorresti.»: vedi `LIBRI.md`.
+
 Serie **videogiochi spiegati**: la storia di un videogioco (come un film, o Spiegato semplice per le storie intricate),
 JSON in `films/` con `"tipo": "videogioco"`, uscita fissa il sabato alle 12:30 (fino al 17 nov il martedì). Regole proprie (niente immagini, loghi o
 interfacce del gioco, giochi non ancora usciti solo con fatti annunciati ufficialmente): vedi `GIOCHI.md`.
@@ -209,7 +212,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   (`films/inception.json`, schema `src/scenes/inception/Piani.tsx`), Ritorno al futuro parte I
   (`films/ritorno-al-futuro.json`, schema delle linee del tempo `src/scenes/ritorno-al-futuro/Linee.tsx`, da riusare nel lungo della trilogia), parte II (`films/ritorno-al-futuro-parte-2.json`, `src/scenes/ritorno-al-futuro-parte-2/Linee2.tsx`, che importa i pezzi della parte I); Donnie Darko (`films/donnie-darko.json`, schema della copia del mondo `src/scenes/donnie-darko/Copia.tsx`); Scissione stagione 1 (`films/scissione-stagione-1.json`, schema del piano diviso `src/scenes/scissione-stagione-1/Piani.tsx`); musica in `scripts/audio/<slug>.mjs`.
 - Priorità: serie intricate (Dark, Lost, Westworld, Severance, Twin Peaks, 1899; una stagione per video se lunghe),
-  film (Inception, Tenet, Mulholland Drive, Donnie Darko, Primer). Libri solo dopo ~10 episodi.
+  film (Inception, Tenet, Mulholland Drive, Donnie Darko, Primer). I libri hanno un format proprio, «Libri spiegati» (dal 24 nov 2026): vedi `LIBRI.md`.
 
 ## Voce
 - I sottotitoli coincidono con il testo voce. Ritmo di riferimento: circa 2,8 parole al secondo
