@@ -3,6 +3,11 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 24 nov 2026 · **Ritmo della voce misurato come si sente nel video** (proposta del revisore voce approvata dall'editore il
+  22 nov). `node scripts/strumenti/ascolta-voce.mjs` dà le parole al secondo di ogni clip e di ogni frase anche «nel
+  video», cioè dopo le pause accorciate e l'accelerazione di `npm run voce`, e segnala «veloce nel video» oltre 3,4: i
+  limiti di ritmo si controllano su quel valore. · produzione, revisore-voce
+
 - 22 nov 2026 · **«Ogni video più bello del precedente» vale anche per i lunghi** (editore). La regola del 16 nov resta
   valida per tutti i formati e si applica in modo esplicito ai video lunghi YouTube e ai loro trailer: ogni lungo parte
   dal livello del lungo precedente, porta almeno un passo avanti deciso prima di disegnare (e un elemento nuovo nella

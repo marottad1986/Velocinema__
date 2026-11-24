@@ -5,6 +5,9 @@
 //   - pronuncia: trascrive la clip con ElevenLabs Speech to Text (scribe) e la confronta parola per parola con il testo
 //     mandato alla voce (JSON + "pronuncia"): le parole sentite diverse da quelle scritte sono le pronunce da ascoltare;
 //     con i tempi delle parole dà anche il ritmo e la pausa dopo ogni frase.
+//   - ritmo nel video: parole al secondo di ogni clip e di ogni frase come suoneranno dopo npm run voce (pause tra le
+//     frasi portate a 0,25 s e accelerazione applicate), non solo sulla clip grezza (proposta «Ritmo delle frasi dopo
+//     il montaggio», approvata dall'editore il 22 nov 2026): una frase a 3,3 grezza può diventare 3,8 nel video.
 //   Trascrizioni in cache in out/voce-tmp/trascrizioni/ (--rifai-trascrizione le rifà). Report anche in
 //   out/revisione/<film>/voce.md.
 //   La trascrizione richiede sulla chiave ElevenLabs il permesso «Speech to Text» (oltre a Text to Speech e Voices: read);
@@ -171,7 +174,7 @@ for (const s of segmenti) {
     lenMont = duration(p2);
   }
   const speed = lenMont <= s.dur - MARGIN ? 1 : lenMont / (s.dur - MARGIN);
-  clips.push({ ...s, base, src, trim, len, speed, frasi: s.testo.map(leggi), pause: pause(trim), ...loudness(trim) });
+  clips.push({ ...s, base, src, trim, len, lenMont, accorcia: len > s.dur - MARGIN, speed, frasi: s.testo.map(leggi), pause: pause(trim), ...loudness(trim) });
 }
 if (!clips.length) {
   console.error(`Nessuna clip da ascoltare in ${dir}`);
@@ -184,16 +187,19 @@ log();
 log('Riferimenti: circa 2,8 parole/s (frasi tra 2,2 e 3,4' + (spiegato ? '; Spiegato semplice: ≤ 3,4, meglio 3,1, anni a 4 cifre = 4 parole' : '') + '); accelerazione di npm run voce al massimo +25%;');
 log('volume delle clip entro ±2 LU dalla mediana; pausa tra le frasi 0,2–0,9 s; nessuna pausa oltre 0,6 s a metà frase.');
 log();
-log('| clip | parlato | capitolo | accelerazione | parole/s | LUFS | picco | pause > 0,6 s |');
-log('|---|---|---|---|---|---|---|---|');
+log('«nel video» = come suonerà dopo npm run voce (pause tra le frasi a 0,25 s e accelerazione): è il ritmo da controllare.');
+log();
+log('| clip | parlato | capitolo | accelerazione | parole/s | nel video | LUFS | picco | pause > 0,6 s |');
+log('|---|---|---|---|---|---|---|---|---|');
 for (const c of clips) {
   const parole = c.frasi.reduce((a, f) => a + peso(f), 0);
   c.wps = parole / c.len;
+  c.wpsVideo = parole / (c.lenMont / c.speed);
   const acc = c.speed === 1 ? 'nessuna' : `+${((c.speed - 1) * 100).toFixed(0)}%${c.speed > MAX_SPEEDUP ? ' TROPPO' : ''}`;
   const lunghe = c.pause.filter((p) => p.dur > 0.6).map((p) => `${p.da.toFixed(1)}s (${p.dur.toFixed(2)})`).join(', ') || '–';
   const vol = `${c.lufs.toFixed(1)}${Math.abs(c.lufs - medLufs) > 2 ? ' ⚠' : ''}`;
   const pk = `${c.picco.toFixed(1)}${c.picco > -1 ? ' ⚠' : ''}`;
-  log(`| ${c.base} | ${c.len.toFixed(2)} s | ${c.dur} s | ${acc} | ${c.wps.toFixed(2)}${c.wps > 3.4 ? ' ⚠' : ''} | ${vol} | ${pk} | ${lunghe} |`);
+  log(`| ${c.base} | ${c.len.toFixed(2)} s | ${c.dur} s | ${acc} | ${c.wps.toFixed(2)}${c.wps > 3.4 ? ' ⚠' : ''} | ${c.wpsVideo.toFixed(2)}${c.wpsVideo > 3.4 ? ' ⚠' : ''} | ${vol} | ${pk} | ${lunghe} |`);
 }
 
 // ---- pronuncia e ritmo frase per frase
@@ -233,13 +239,17 @@ for (const c of clips) {
     const next = map.find((j, i) => fraseDi[i] === k + 1 && j >= 0);
     const dopo = next !== undefined ? sen[next].start - t1 : null;
     const interne = c.pause.filter((p) => p.da > t0 + 0.05 && p.a < t1 - 0.05 && p.dur > 0.6);
+    // durata nel video: le pause dentro la frase oltre 0,25 s si accorciano (solo se la clip sfora), poi atempo
+    const tolte = c.accorcia ? c.pause.filter((p) => p.da > t0 && p.a < t1).reduce((a, p) => a + Math.max(0, p.dur - MAX_PAUSE), 0) : 0;
+    const wpsV = peso(f) / Math.max(0.1, (t1 - t0 - tolte) / c.speed);
+    const video = Math.abs(wpsV - wps) >= 0.01 ? ` (nel video ${wpsV.toFixed(2)})` : '';
     const note = [
-      wps > 3.4 ? 'veloce' : wps < 2.2 ? 'trascinata' : '',
+      wpsV > 3.4 ? (wps > 3.4 ? 'veloce' : 'veloce nel video (grezza ' + wps.toFixed(2) + ')') : wps < 2.2 ? 'trascinata' : '',
       dopo !== null && dopo < 0.15 && /[.!?»:;]$/.test(f.trim()) ? 'attaccata alla frase dopo' : '',
       dopo !== null && dopo > 0.9 ? 'pausa lunga dopo' : '',
       interne.length ? `pausa a metà frase a ${interne.map((p) => p.da.toFixed(1)).join(', ')} s` : '',
     ].filter(Boolean);
-    log(`- frase ${k + 1}: ${t0.toFixed(1)}–${t1.toFixed(1)} s, ${wps.toFixed(2)} parole/s${dopo !== null ? `, pausa dopo ${dopo.toFixed(2)} s` : ''}${note.length ? ` ⚠ ${note.join('; ')}` : ''}`);
+    log(`- frase ${k + 1}: ${t0.toFixed(1)}–${t1.toFixed(1)} s, ${wps.toFixed(2)} parole/s${video}${dopo !== null ? `, pausa dopo ${dopo.toFixed(2)} s` : ''}${note.length ? ` ⚠ ${note.join('; ')}` : ''}`);
   });
   // frasi non riconosciute: tra la fine della precedente e l'inizio della successiva, in proporzione ai caratteri
   tempiClip.forEach((v, k) => {
