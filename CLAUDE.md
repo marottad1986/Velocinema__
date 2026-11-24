@@ -278,7 +278,9 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   per la musica.
 - Prima del revisore musica, controllo da fare da sé: ogni evento visibile importante ha il suo suono (e viceversa);
   dopo un colpo forte la musica tace almeno un battito (negli spartiti nuovi `taci(mix, da, a)` di `campioni.mjs` zittisce
-  anche archi tenuti e bordoni; `node scripts/livelli.mjs` segnala colpi «coperti» e «musica non tace»); i tappeti stanno sotto la musica; nessun avviso «ATTENZIONE
+  anche archi tenuti e bordoni; `node scripts/livelli.mjs` segnala colpi «coperti» e «musica non tace»); negli spartiti
+  nuovi anche `compensa(mix)` (stesso file), che abbassa i campioni di spiccato, pizzicato e staccato molto più forti dei
+  vicini (elenco: `node scripts/audio/campioni.mjs --anomalie`); i tappeti stanno sotto la musica; nessun avviso «ATTENZIONE
   effetto … presa oltre la fine» né «… parte su … s di silenzio» da `npm run musica` (li stampa `clip()` quando
   `da`+`durata` supera il file o quando la presa parte su più di 0,1 s di silenzio: il suono arriverebbe in ritardo); il cambio
   di carattere (es. il maggiore del finale) cade con l'evento visivo, non sulla battuta prima.
