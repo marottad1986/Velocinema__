@@ -15,6 +15,7 @@
   },
   "pronuncia": {
     "Hyrule": "Àirul",
+    "gli dei": "gli dèi",
     "1986": "millenovecentottantasei",
     "Ganondorf": "Gànondorf",
     "Ganon": "Gànon",
@@ -99,7 +100,7 @@
         "Poi c'è la Triforza, tre triangoli d'oro magici.",
         "Uno è il Potere, uno la Saggezza, uno il Coraggio.",
         "Chi la tocca deve avere il cuore in equilibrio,",
-        "altrimenti si spezza in tre e gliene resta un pezzo."
+        "altrimenti si spezza e gliene resta un pezzo."
       ],
       "voce_velocita": 1.08
     },
@@ -153,10 +154,10 @@
       "personaggi": [],
       "scena": "Schema su pergamena: vedi Schema.tsx.",
       "sottotitoli": [
-        "Nel secondo ramo Link è tornato indietro: niente eroe.",
+        "Nel secondo ramo Link torna indietro: niente eroe.",
         "Ganondorf torna, e per fermarlo gli dei sommergono Hyrule.",
         "Sul mare c'è Wind Waker, tutto isole,",
-        "e il suo eroe, poi, trova una terra nuova."
+        "e il suo eroe poi trova una terra nuova."
       ],
       "voce_velocita": 1.1
     },
@@ -168,7 +169,7 @@
       "scena": "Schema su pergamena: vedi Schema.tsx.",
       "sottotitoli": [
         "Nel terzo ramo Link, tornato bambino, avverte Zelda.",
-        "Ganondorf viene fermato e cacciato nel Reame del Crepuscolo.",
+        "Ganondorf viene cacciato nel Reame del Crepuscolo.",
         "Qui ci sono Majora's Mask e Twilight Princess,",
         "dove Ganondorf torna da quel mondo d'ombra."
       ],
