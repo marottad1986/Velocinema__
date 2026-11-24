@@ -97,6 +97,7 @@ export const CATALOGO = {
   ronzio_neon: ['Red_Library_Sci-Fi', 'R21-41-Electric Light Hum.wav', -15],
   auto_epoca: ['SSE_Library_VEHICLES', 'CAR/VEHCar_Large 1946 buick with bad exhaust by slowly_CS_USC.wav', -6.4],
   risacca: ['SSE_Library_WATER', 'SURF/WATRSurf_Surf; medium distance; loopable_CS_USC.wav', -9],
+  gabbiano: ['Red_Library_Animals_Birds', 'R01-71-Close up Seagull.wav', -11.5],
   // Breaking Bad, stagione 1
   sirene: ['Red_Library_Sirens', 'R18-55-Two Vehicles Arrive with Sirens.wav', -18.4],
   termite: ['SSE_Library_FIRE', 'SIZZLE/FIRESizz_Fire bomb; lights and hisses; fuse_CS_USC.wav', -11.2],
