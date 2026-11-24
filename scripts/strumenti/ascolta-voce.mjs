@@ -195,7 +195,11 @@ for (const c of clips) {
   const parole = c.frasi.reduce((a, f) => a + peso(f), 0);
   c.wps = parole / c.len;
   c.wpsVideo = parole / (c.lenMont / c.speed);
-  const acc = c.speed === 1 ? 'nessuna' : `+${((c.speed - 1) * 100).toFixed(0)}%${c.speed > MAX_SPEEDUP ? ' TROPPO' : ''}`;
+  // oltre +8% conviene rigenerare la clip già più veloce ("voce_velocita" del capitolo, scripts/genera-voce.mjs)
+  const base = film.voce_impostazioni?.speed ?? 1.02;
+  const vv = Math.round(base * c.speed * 100) / 100;
+  const consiglio = c.speed <= 1.08 ? '' : vv <= 1.1 ? ` (meglio "voce_velocita": ${vv})` : ' (meglio "voce_velocita": 1.1 e qualche parola in meno)';
+  const acc = c.speed === 1 ? 'nessuna' : `+${((c.speed - 1) * 100).toFixed(0)}%${c.speed > MAX_SPEEDUP ? ' TROPPO' : ''}${consiglio}`;
   const lunghe = c.pause.filter((p) => p.dur > 0.6).map((p) => `${p.da.toFixed(1)}s (${p.dur.toFixed(2)})`).join(', ') || '–';
   const vol = `${c.lufs.toFixed(1)}${Math.abs(c.lufs - medLufs) > 2 ? ' ⚠' : ''}`;
   const pk = `${c.picco.toFixed(1)}${c.picco > -1 ? ' ⚠' : ''}`;

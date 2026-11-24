@@ -185,7 +185,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   il titolo la dice (es. «La regola dei 33 anni»), in ordine di comprensione.
 - Scrittura: frasi brevi (max ~12 parole), parole comuni; ogni idea difficile ha un paragone quotidiano
   (es. «come un ascensore con tre piani»). Ritmo un po' più lento: al massimo 3,4 parole/s contando ogni anno
-  a quattro cifre come 4 parole, meglio intorno a 3,1.
+  a quattro cifre come 4 parole, meglio intorno a 2,9 (obiettivo dei testi nuovi dal 24 nov 2026).
 - Personaggi come oggetti: ogni personaggio ha un oggetto simbolo fisso (`personaggi`: nome, ruolo, oggetto), che
   compare con un cartellino col nome nel capitolo in cui viene presentato (`personaggi` del capitolo) e poi lo
   rappresenta sempre. Mai figure, sagome o volti.
@@ -222,7 +222,9 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
 - Clip generate una per capitolo in `audio/<film>/`, nominate `00_copertina`, `01_<id>`, `02_<id>`…
 - `node scripts/genera-voce.mjs <film>` genera le clip direttamente con l'API di ElevenLabs, una per
   parte, dal testo del JSON e con voce, modello e impostazioni di `scripts/audio/voce.json` (il `voice_id` si cerca per nome
-  la prima volta e si salva lì). Salta le clip già presenti; `--capitolo <id>` (anche `copertina`/`finale`) ne rifà una,
+  la prima volta e si salva lì). Un capitolo denso può avere nel JSON `"voce_velocita": 1.08` (0,7–1,2, meglio non oltre
+  1,10): quella clip si genera già più veloce invece di essere accelerata dopo con atempo, che si sente di più
+  (`ascolta-voce.mjs` lo suggerisce oltre +8%). Salta le clip già presenti; `--capitolo <id>` (anche `copertina`/`finale`) ne rifà una,
   `--rifai` tutte, `--prova` mostra testi e crediti senza chiamare l'API; `--voci [nome]` e `--modelli` per la configurazione.
   Chiave con permessi Text to Speech e Voices: read: in locale in `ELEVENLABS_API_KEY`; nell'ambiente cloud come segreto di rete
   per `api.elevenlabs.io` con intestazione `xi-api-key` (la aggiunge il proxy, lo script non la vede).

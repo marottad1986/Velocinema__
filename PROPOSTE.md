@@ -22,7 +22,7 @@ in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo
 - 17 nov 2026 · revisore-voce (Scissione) · **Velocità della voce per capitolo**: permettere nel JSON una `speed` per
   capitolo (oggi `voce_impostazioni` vale per tutto il contenuto, `scripts/genera-voce.mjs`), così un capitolo denso si
   genera già a 1,08–1,10 invece di essere accelerato dopo con atempo, che si sente di più; e un obiettivo di 2,9 parole/s
-  nei testi degli Spiegato semplice. · voce più naturale nei capitoli densi · aperta
+  nei testi degli Spiegato semplice. · voce più naturale nei capitoli densi · decisa dall'editore il 22 nov 2026, fatta il 24 nov (`voce_velocita` per capitolo, obiettivo 2,9)
 - 17 nov 2026 · produzione (Scissione) · **`Snow` nella libreria comune**: la neve a due livelli chiusa in un riquadro
   (`src/scenes/scissione-stagione-1/Piani.tsx`) serve anche a Shining, Frozen, Natale; non l'ho messa in
   `src/lib/elements.tsx` perché toccare il codice comune rigenera tutti i film su MEGA. Proposta: spostarla insieme al

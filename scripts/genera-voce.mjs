@@ -75,6 +75,10 @@ const lungo = lunghi().includes(slug);
 const corto = promo().includes(slug);
 const film = lungo ? loadLungo(slug) : corto ? loadPromo(slug) : loadFilm(slug);
 // "voce_impostazioni" nel JSON (facoltativo, es. { "speed": 0.95 }): sostituisce le impostazioni di voce.json solo per quel contenuto
+// "voce_velocita" in un capitolo (o in copertina, finale, tratto di un lungo, parte di un promo; facoltativo, 0,7–1,2,
+// es. 1.08): velocità di ElevenLabs solo per quella clip (proposta «Velocità della voce per capitolo», approvata
+// dall'editore il 22 nov 2026). Un capitolo denso si genera già un po' più veloce invece di essere accelerato dopo con
+// atempo da npm run voce, che si sente di più. Meglio non oltre 1,10.
 // "pronuncia" nel JSON del film (facoltativo): parole da leggere in un altro modo, es. { "883": "otto otto tre" };
 // cambia solo il testo mandato a ElevenLabs, i sottotitoli restano come sono
 const leggi = (testo) => Object.entries(film.pronuncia ?? {}).reduce((a, [da, a2]) => a.split(da).join(a2), testo);
@@ -86,6 +90,29 @@ const segmenti = corto
 const parts = segmenti
   .filter((s) => s.testo.length && (!solo || s.id === solo))
   .map((s) => ({ ...s, testo: leggi(s.testo.join(' ')) }));
+// oggetto del JSON con quell'id (capitolo, copertina, finale, tratto o parte), per leggerne "voce_velocita"
+const perId = (id) => {
+  const trovati = [];
+  const visita = (o) => {
+    if (!o || typeof o !== 'object') return;
+    if (Array.isArray(o)) return o.forEach(visita);
+    if (o.id === id) trovati.push(o);
+    Object.values(o).forEach(visita);
+  };
+  visita(film.capitoli ?? film.parti ?? []);
+  if (id === 'copertina' && film.copertina) trovati.push(film.copertina);
+  if (id === 'finale' && film.finale) trovati.push(film.finale);
+  return trovati.find((o) => o.voce_velocita !== undefined);
+};
+for (const p of parts) {
+  const v = perId(p.id)?.voce_velocita;
+  if (v === undefined) continue;
+  if (typeof v !== 'number' || v < 0.7 || v > 1.2) {
+    console.error(`${p.id}: "voce_velocita" ${v} fuori dai limiti di ElevenLabs (da 0,7 a 1,2)`);
+    process.exit(1);
+  }
+  p.velocita = v;
+}
 if (!parts.length) {
   console.error(solo ? `Nessuna parte "${solo}" con testo voce in films/${slug}.json` : `Nessun testo voce in films/${slug}.json`);
   process.exit(1);
@@ -97,7 +124,7 @@ const caratteri = daFare.reduce((a, p) => a + p.testo.length, 0);
 
 console.log(`Voce per ${slug}: ${daFare.length} clip da generare, ${caratteri} caratteri (circa ${caratteri} crediti).`);
 if (flag('prova')) {
-  daFare.forEach((p) => console.log(`  ${p.base.padEnd(16)} ${String(p.testo.length).padStart(4)}  ${p.testo}`));
+  daFare.forEach((p) => console.log(`  ${p.base.padEnd(16)} ${String(p.testo.length).padStart(4)}${p.velocita ? `  [velocità ${p.velocita}]` : ''}  ${p.testo}`));
   process.exit(0);
 }
 
@@ -118,7 +145,7 @@ if (!conf.voice_id) {
 for (const p of daFare) {
   const dest = `${dir}/${p.base}.mp3`;
   api('POST', `/v1/text-to-speech/${conf.voice_id}?output_format=${conf.formato}`, {
-    body: { text: p.testo, model_id: conf.modello, voice_settings: { ...conf.impostazioni, ...(film.voce_impostazioni ?? {}) } },
+    body: { text: p.testo, model_id: conf.modello, voice_settings: { ...conf.impostazioni, ...(film.voce_impostazioni ?? {}), ...(p.velocita ? { speed: p.velocita } : {}) } },
     out: `${TMP}/${p.base}.mp3`,
   });
   const vecchia = esistente(p.base);
@@ -126,6 +153,6 @@ for (const p of daFare) {
   writeFileSync(dest, readFileSync(`${TMP}/${p.base}.mp3`));
   const len = duration(dest);
   const nota = len > p.dur ? `  più lunga del capitolo di ${(len - p.dur).toFixed(1)} s: npm run voce la accorcia (fino al 25%)` : '';
-  console.log(`  ${p.base.padEnd(16)} ${len.toFixed(2).padStart(5)} s / ${p.dur} s${nota}`);
+  console.log(`  ${p.base.padEnd(16)} ${len.toFixed(2).padStart(5)} s / ${p.dur} s${p.velocita ? `  (velocità ${p.velocita})` : ''}${nota}`);
 }
 console.log(`\nClip in ${dir}. Ora: npm run voce -- ${slug} (con out/${slug}.mp4 già fatto da npm run render -- ${slug}).`);
