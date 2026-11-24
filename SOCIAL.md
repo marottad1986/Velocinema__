@@ -67,7 +67,12 @@ Le produzioni avviate dal manager seguono la stessa regola: prima `create_sessio
      recente e si scrive la fonte.
    - Controllo dei post falliti della settimana: `list_posts` con `statuses: FAILED`; quelli falliti vanno nell'avviso
      della domenica con il motivo (`lastError`).
-2. Si aggiorna `calendario/pubblicati.md` e si legge cosa sta funzionando (generi, formati, giorni).
+2. Si aggiorna `calendario/pubblicati.md` e si legge cosa sta funzionando (generi, formati, giorni). Con gli stessi dati
+   si aggiunge la riga della settimana in `collaborazioni/numeri.md` (**dati per vendere**, decisione dell'editore del
+   22 nov 2026): visualizzazioni medie e mediana per video negli ultimi 30 giorni, tasso di condivisione e di salvataggio,
+   follower per piattaforma; il primo domenica del mese anche il pubblico per età, genere e città, dagli screenshot che
+   l'editore manda dai pannelli delle app (richiesta con un avviso). Le cifre principali vanno anche nell'avviso della
+   domenica.
 3. Si propone la **settimana che inizia il giorno dopo** (lunedì–domenica) in `calendario/<aaaa-mm-gg>.md`, con
    un'alternativa pronta per ogni contenuto da produrre e l'ordine in cui produrre. Lunedì e martedì sono i giorni più
    stretti: lì vanno i contenuti già pronti o quelli che la produzione può finire la domenica stessa; i contenuti nuovi

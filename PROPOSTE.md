@@ -38,7 +38,7 @@ in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo
   trasforma le uscite attuali in trattative · **decisa il 16 nov** (con cautela: 3 titoli a settimana, primi contatti in `collaborazioni/2026-11-16.md`)
 - 16 nov 2026 · direzione · **Dati per vendere**: il manager aggiunge alla domenica le metriche che chiedono gli sponsor
   (visualizzazioni medie per video negli ultimi 30 giorni, tasso di condivisione, pubblico per età e città dai pannelli
-  delle app). · rende il media kit credibile · aperta
+  delle app). · rende il media kit credibile · decisa dall'editore il 22 nov 2026, fatta il 24 nov (`collaborazioni/numeri.md`, SOCIAL.md punto 2 della domenica)
 - 17 nov 2026 · revisore-voce (The Conjuring) · **Trascrizioni e clip sempre allineate**: `ascolta-voce.mjs` tiene in cache
   le trascrizioni anche quando una clip viene rigenerata (in The Conjuring il revisore ha letto trascrizioni vecchie e ha
   segnalato tre clip «sbagliate» che erano giuste). `genera-voce.mjs` salva accanto a ogni clip un'impronta del testo
