@@ -1,0 +1,181 @@
+{
+  "titolo": "Breaking Bad",
+  "tipo": "serie",
+  "stagione": 2,
+  "regista": "Vince Gilligan",
+  "anno": 2009,
+  "bpm": 96,
+  "palette": {
+    "chiaro": "#F2E4C4",
+    "principale": "#3F7A55",
+    "scuro": "#0F1410",
+    "accento": "#F0B53A"
+  },
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Piove un orsacchiotto. È colpa di un professore.",
+    "immagine": "Il giardino di una villetta di periferia in bianco e nero argentato, come gli anticipi della stagione: la piscina con l'acqua ferma, colonne di fumo nel cielo, rottami sparsi sul prato; unico colore il rosa di un orsacchiotto bruciato che galleggia a faccia in giù, con l'occhio di vetro staccato sul fondo. Titolo in Big Shoulders Stencil giallo-oro. NON usare la locandina ufficiale, persone, né il logo della serie con i simboli della tavola periodica.",
+    "voce": "Breaking Bad, stagione 2: perché dal cielo cade un orsacchiotto?"
+  },
+  "capitoli": [
+    {
+      "id": "rapimento",
+      "titolo": "Rapiti nel deserto",
+      "durata": 10,
+      "scena": "Una strada sterrata nel deserto al tramonto: un'auto scura che corre sollevando un nuvolone di polvere verso una casupola isolata con una sola finestra accesa; pali della luce storti, cactus, un'antenna; in primo piano un paio di occhiali da vista caduti sulla ghiaia.",
+      "sottotitoli": [
+        "Walter, professore malato di cancro, produce droga col socio Jesse,",
+        "e la vende a Tuco, un boss pazzo braccato dalla polizia:",
+        "così li rapisce e si nasconde con loro nel deserto."
+      ],
+      "voce_velocita": 1.08
+    },
+    {
+      "id": "campanello",
+      "titolo": "Il veleno e il campanello",
+      "durata": 10,
+      "scena": "Il soggiorno polveroso della casupola: una sedia a rotelle vuota davanti a un vecchio televisore acceso, sul bracciolo un campanello d'ottone; un tavolo con un piatto di burritos e una capsula di veleno aperta; tende a fiori, un ventilatore che gira, luce calda dalla finestra.",
+      "sottotitoli": [
+        "Lì vive Hector, zio di Tuco, muto e paralizzato: parla col campanello.",
+        "Walter e Jesse avvelenano il cibo di Tuco,",
+        "ma Hector se ne accorge e suona per avvertirlo."
+      ],
+      "voce_velocita": 1.1
+    },
+    {
+      "id": "hank",
+      "titolo": "La sparatoria di Hank",
+      "durata": 10,
+      "scena": "Il cortile della casupola sotto il sole: l'auto di Jesse parcheggiata, un'auto della polizia che arriva nella polvere, un sasso a terra, due lampi di sparo dietro il pick-up, bossoli dorati che cadono sulla ghiaia; mesa sullo sfondo e un falco in cielo.",
+      "sottotitoli": [
+        "Jesse ferisce Tuco con un sasso, e i due si nascondono;",
+        "ma Hank, cognato di Walter e agente antidroga, lo sta cercando:",
+        "segue l'auto di Jesse, arriva lì e uccide Tuco."
+      ],
+      "voce_velocita": 1.1
+    },
+    {
+      "id": "fuga",
+      "titolo": "La finta perdita di memoria",
+      "durata": 10,
+      "scena": "Il corridoio di un supermercato di notte con le luci al neon: scaffali pieni di scatole e bottiglie, un carrello abbandonato, a terra un mucchio di vestiti, scarpe e calzini lasciati lì; dalle vetrine in fondo entrano le luci rosse e bianche di un'ambulanza; un braccialetto d'ospedale.",
+      "sottotitoli": [
+        "Walter fugge, ma deve spiegare alla famiglia dov'è stato:",
+        "così compare nudo in un supermercato e finge un vuoto di memoria,",
+        "e la moglie Skyler, per ora, gli crede."
+      ]
+    },
+    {
+      "id": "bancomat",
+      "titolo": "Il ladro e il bancomat",
+      "durata": 10,
+      "scena": "Il soggiorno sporco di una casa di tossici: divano sfondato, televisore acceso sui cartoni, pacchetti di cristalli su un tavolino, un bancomat rubato appoggiato in piedi contro il muro che a un tratto si rovescia sollevando polvere; la luce di una lampada nuda e le tapparelle rotte.",
+      "sottotitoli": [
+        "Morto Tuco, Walter produce e Jesse spaccia con tre amici.",
+        "Una coppia di tossici deruba un amico; Jesse va da loro,",
+        "lì la donna schiaccia il compagno con un bancomat rubato."
+      ],
+      "voce_velocita": 1.08
+    },
+    {
+      "id": "saul",
+      "titolo": "L'avvocato Saul",
+      "durata": 10,
+      "scena": "Un centro commerciale di periferia di notte: la vetrina di uno studio legale con l'insegna al neon che si accende «AVVOCATO», una panchina della fermata dell'autobus con la pubblicità dell'avvocato, le luci di una volante riflesse sull'asfalto bagnato; in primo piano una ventiquattrore aperta piena di mazzette.",
+      "sottotitoli": [
+        "Poi Badger, uno dei tre, viene arrestato e rischia di parlare,",
+        "così assumono Saul Goodman, un avvocato senza scrupoli,",
+        "che lo libera e da allora ripulisce i loro soldi."
+      ],
+      "voce_velocita": 1.1
+    },
+    {
+      "id": "gus",
+      "titolo": "La consegna e la nascita",
+      "durata": 10,
+      "scena": "Il parcheggio di una stazione di servizio per camion di notte: le pompe illuminate, un camion fermo, in fondo l'insegna gialla e rossa di un fast food di pollo fritto con una coscia di pollo; in primo piano un'auto con il bagagliaio aperto e i pacchi di cristalli; sul cruscotto un cellulare che si illumina con le chiamate perse.",
+      "sottotitoli": [
+        "Saul trova un grande compratore: Gus, che ha ristoranti di pollo,",
+        "ma Jesse e la sua ragazza Jane prendono eroina:",
+        "così Walter consegna da solo, mentre nasce sua figlia."
+      ],
+      "voce_velocita": 1.1
+    },
+    {
+      "id": "jane",
+      "titolo": "Jane e il ricatto",
+      "durata": 10,
+      "scena": "Il soggiorno dell'appartamento di Jesse di sera: un divano con una coperta, sul tavolino un quaderno di disegni, due tazze, un accendino e un cucchiaio annerito; la porta d'ingresso aperta sul pianerottolo con un borsone pieno di banconote; lampada calda e finestra blu.",
+      "sottotitoli": [
+        "Visto che Jesse si droga, Walter non gli dà la sua parte,",
+        "ma Jane, che sa tutto, lo ricatta:",
+        "o paga, o lei lo denuncia. E Walter paga."
+      ]
+    },
+    {
+      "id": "notte",
+      "titolo": "Walter lascia morire Jane",
+      "durata": 10,
+      "scena": "Il corridoio buio dell'appartamento di notte: una porta socchiusa da cui esce una lama di luce calda, dentro si intravede la sponda di un letto disfatto e il comodino con una sveglia; a terra una giacca abbandonata; la luce della stanza che si affievolisce fino a spegnersi.",
+      "sottotitoli": [
+        "Poco dopo Walter torna da Jesse e li trova addormentati dalla droga:",
+        "Jane, girata sulla schiena, vomita e soffoca,",
+        "e Walter, che potrebbe salvarla, la guarda morire."
+      ]
+    },
+    {
+      "id": "aerei",
+      "titolo": "Lo scontro tra due aerei",
+      "durata": 11,
+      "scena": "Il cielo azzurro sopra i tetti di Albuquerque: un aereo di linea e un piccolo aereo che si avvicinano, poi un lampo e una palla di fuoco; scie di fumo e rottami in fiamme che piovono sulle case, colonne di fumo nero; in primo piano un'antenna e un lampione.",
+      "sottotitoli": [
+        "Il padre di Jane, controllore di volo, torna al lavoro distrutto,",
+        "e per un suo errore due aerei si scontrano sopra la città:",
+        "i rottami piovono sulle case, fino alla piscina di Walter."
+      ]
+    },
+    {
+      "id": "fine",
+      "titolo": "L'orsacchiotto in piscina",
+      "durata": 11,
+      "scena": "Il giardino di casa White, prima in bianco e nero e poi a colori: la piscina con l'orsacchiotto rosa bruciato che galleggia a faccia in giù, l'occhio di vetro sul fondo, rottami e fumo nel cielo; la finestra della casa che si spegne e un'auto che esce dal vialetto con i fari accesi.",
+      "sottotitoli": [
+        "L'orsacchiotto in piscina è l'ultimo effetto delle scelte di Walter.",
+        "Il suo tumore è regredito, ma Skyler scopre le bugie e gli dice di andarsene,",
+        "e la terza stagione riparte da Walter, solo."
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "immagine": "La piscina di notte sotto le stelle, con l'occhio di vetro dell'orsacchiotto che brilla sul bordo e la luce azzurra dell'acqua; 'Fine della stagione 2' nel carattere della copertina; riquadro in alto: 'Ti è piaciuto?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con la serie che vorresti.' + 'Le spiegazioni complete sono su YouTube'."
+  },
+  "musica": "Originale e strumentale, la stessa voce della stagione 1 (pizzicati del deserto, marimba, tromba con la sordina, archi tesi) con un colore nuovo: un violino solo per Jane e per il finale; carillon di glockenspiel per l'orsacchiotto. Niente brani o temi della serie. Rumori: vento, motore, campanello, spari, neon, sirena, soldi, accendino, aerei e schianto, acqua della piscina.",
+  "fonti": [
+    "Tuco crede che Gonzo lo abbia tradito e porta Walter e Jesse nel rifugio nel deserto dello zio Hector, paralizzato, in sedia a rotelle e senza parola, che comunica con un campanello; Walter e Jesse provano ad avvelenarlo, Hector se ne accorge e col campanello avverte Tuco; Jesse lo colpisce con una pietra; Hank segue l'auto di Jesse con l'antifurto satellitare e uccide Tuco nella sparatoria: https://en.wikipedia.org/wiki/Grilled_(Breaking_Bad)",
+    "Piano della ricina nella droga per Tuco: https://en.wikipedia.org/wiki/Seven_Thirty-Seven",
+    "Riassunto della stagione e delle puntate (rapimento, campanello, finta fuga al supermercato, Jane vicina e padrona di casa): https://it.wikipedia.org/wiki/Episodi_di_Breaking_Bad_(seconda_stagione)",
+    "Walter si spoglia in un supermercato, finge di non ricordare gli ultimi giorni e viene ricoverato; poi ammette che la fuga era finta: https://en.wikipedia.org/wiki/Bit_by_a_Dead_Bee",
+    "Jesse prende come spacciatori Combo, Badger e Skinny Pete; Jane Margolis vicina e padrona di casa; Badger arrestato; voce in città che Jesse sia un killer; remissione del tumore nell'episodio 4 Days Out: https://en.wikipedia.org/wiki/Breaking_Bad_season_2",
+    "Skinny Pete derubato da una coppia di tossici; la donna fa cadere sul compagno il bancomat rubato; Jesse prende soldi e droga: https://en.wikipedia.org/wiki/Peekaboo_(Breaking_Bad)",
+    "Badger arrestato in un'operazione di polizia; Walter e Jesse assumono l'avvocato Saul Goodman: https://en.wikipedia.org/wiki/Better_Call_Saul_(Breaking_Bad)",
+    "Saul presenta Gus Fring, padrone della catena Los Pollos Hermanos; consegna entro un'ora in una stazione per camion; Jane fa tornare Jesse all'eroina: https://en.wikipedia.org/wiki/Mandala_(Breaking_Bad)",
+    "Walter consegna in tempo a Gus e perde la nascita della figlia Holly; Jane ricatta Walter per la parte di Jesse e Walter paga; Walter torna da Jesse e Jane addormentati per l'eroina, Jane vomita e soffoca e Walter la lascia morire: https://en.wikipedia.org/wiki/Phoenix_(Breaking_Bad)",
+    "Donald Margolis, padre di Jane e controllore di volo, sconvolto, fa scontrare il volo Wayfarer 515 con un piccolo aereo sopra Albuquerque; un orsacchiotto rosa bruciato cade nella piscina di Walter; Skyler scopre le bugie di Walter (il secondo cellulare), gli dice di andarsene e se ne va: https://en.wikipedia.org/wiki/ABQ_(Breaking_Bad)",
+    "Hank cerca Jesse sperando di trovare Walter sparito; Walter si spoglia al supermercato e finge di non ricordare nulla: https://en.wikipedia.org/wiki/Bit_by_a_Dead_Bee",
+    "Tuco braccato dalla DEA tiene Walter e Jesse nel rifugio del deserto; Walter avvelena il cibo di Tuco con la ricina; Hank trova l'auto con l'antifurto satellitare: https://en.wikipedia.org/wiki/Grilled_(Breaking_Bad)",
+    "Walter rifiuta a Jesse la sua parte per via della droga; Jane lo ricatta e lui paga; Saul ripulisce i soldi con il sito delle donazioni: https://en.wikipedia.org/wiki/Phoenix_(Breaking_Bad)",
+    "Jane porta Jesse all'eroina prima dell'accordo con Gus: https://en.wikipedia.org/wiki/Mandala_(Breaking_Bad)"
+  ],
+  "pronuncia": {
+    "Walter": "Uòlter",
+    "Jesse": "Gèssi",
+    "Badger": "Bègiar",
+    "Skyler": "Skàiler",
+    "Hank": "Hènk",
+    "Jane": "Gièin",
+    "Hector": "Èctor",
+    "Saul": "Sòol",
+    "Goodman": "Gùdmen"
+  }
+}

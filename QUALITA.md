@@ -52,6 +52,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
   - Stranger Things (stagione 1): blu notte di provincia (#142036, opacità 12%); unico colore caldo il giallo delle lampadine
     e delle lucine (#F5B83D), luce fredda azzurra del Sottosopra (#7FB8D8).
   - Breaking Bad (stagione 1): ocra caldo del deserto di giorno (#D8A040, opacità 10%), blu notte di periferia (#142235), bruno negli interni chiusi (#4A3A1E), rosso nei tramonti di pericolo (#8A3A2A); unico colore deciso il giallo-oro (#F0B53A) sui cristalli e sugli oggetti chiave.
+  - Breaking Bad (stagione 2): come la stagione 1; gli anticipi (copertina, inizio dell'ultimo capitolo) in bianco e nero argentato (`Mono`) con un solo colore, il rosa dell'orsacchiotto (#EE8FB4).
   - Il sesto senso: fredda azzurro-grigia di Filadelfia (#22303E di notte, #3A4450 di giorno, opacità 12–14%); unico colore deciso il rosso (#D0342C) sugli oggetti toccati dall'aldilà.
   - Edoardo Bove – «In un battito» (storia vera): notte viola-blu negli stadi (#1A1830–#2C2456, 10–14%), calda all'alba (#E8913A, 8%); unico colore deciso il giallo (#F5C518) sulla linea del battito.
   - X Factor 2026 (talent spiegati): viola notte da studio televisivo (#2A1E4A, opacità 12%); colori delle squadre sulle luci, oro solo sull'oggetto chiave.
@@ -130,6 +131,7 @@ leggono solo questo file e quello del film. Un film nuovo aggiunge il suo file q
 - Titanic: `qualita/titanic.md`
 - Joker: `qualita/joker.md`
 - Breaking Bad, stagione 1: `qualita/breaking-bad-stagione-1.md`
+- Breaking Bad, stagione 2: `qualita/breaking-bad-stagione-2.md`
 - The Others: `qualita/the-others.md`
 - Stranger Things, stagione 1: `qualita/stranger-things-stagione-1.md`
 - Il sesto senso: `qualita/il-sesto-senso.md`

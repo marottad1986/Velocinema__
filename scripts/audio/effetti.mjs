@@ -111,6 +111,8 @@ export const CATALOGO = {
   passaggio_livello: ['Red_Library_Bells_Horns_Whistles', 'R04-63-Train Crossing.wav', -20.5],
   // Donnie Darko: lo sparo a Frank
   pistola: ['SSE_Library_GUNS', 'PISTOL/GUNPis_Big optical gun shot_CS_USC.wav', -16],
+  // Breaking Bad stagione 2: lo spruzzo dell'orsacchiotto nella piscina
+  spruzzo: ['Red_Library_Water_1', 'R23-09-Water Splashes.wav', -16],
 };
 
 const percorso = (id) => `${CACHE}/${CATALOGO[id][0]}/${CATALOGO[id][1].replace(/[/;?]/g, '_')}`;
