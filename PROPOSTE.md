@@ -46,7 +46,7 @@ in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo
   JSON, così si evitano falsi allarmi e crediti sprecati. Per i nomi stranieri si decide la `pronuncia` prima della prima
   generazione. · meno passaggi a vuoto dei revisori · decisa dall'editore il 22 nov 2026, fatta il 24 nov (`audio/<film>/impronte.json`, trascrizioni rifatte da sole)
 - 18 nov 2026 · produzione (dai revisori di Ritorno al futuro, trilogia): `clip()` avvisi quando una presa parte su più di 0,1 s di silenzio, come già fa per le prese oltre la fine; `ascolta-voce.mjs` rifaccia la trascrizione quando la clip è più recente della cache (dopo una rigenerazione il report mostrava la clip vecchia). · decisa dall'editore il 22 nov 2026, fatta il 24 nov
-- 18 nov 2026 · produzione (dal revisore musica): `scripts/livelli.mjs` anche per i video lunghi e `livelli.txt` nel pacchetto dei lunghi, così vuoti tra le sezioni e picchi si vedono senza misure a mano.
+- 18 nov 2026 · produzione (dal revisore musica): `scripts/livelli.mjs` anche per i video lunghi e `livelli.txt` nel pacchetto dei lunghi, così vuoti tra le sezioni e picchi si vedono senza misure a mano. · decisa dall'editore il 22 nov 2026, fatta il 24 nov
 - 19 nov 2026 · direzione (idea dell'editore): **«In 2 minuti Kids»**, video lunghi per bambini su un **canale YouTube
   separato** (mai sul canale principale: i video «per bambini» perdono annunci personalizzati, commenti, schermate finali e
   notifiche, e mescolati ai thriller e agli horror confondono l'algoritmo). Due formati con ricerca già misurata il 19 nov:

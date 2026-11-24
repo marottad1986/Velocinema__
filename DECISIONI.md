@@ -3,6 +3,11 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 24 nov 2026 · **Livelli della musica anche per i lunghi** (proposta della produzione approvata dall'editore il 22 nov).
+  `node scripts/livelli.mjs <lungo>` misura lo spartito delle parti nuove tratto per tratto (buchi, effetti sopra la
+  musica, colpi coperti; i ticchettii ripetuti si riassumono in una riga) e `scripts/lunghi/pacchetto.mjs --musica` lo
+  aggiunge a `livelli.txt`. · produzione, revisore-musica
+
 - 24 nov 2026 · **Effetti che partono sul silenzio** (proposta dei revisori di Ritorno al futuro approvata dall'editore il
   22 nov). `clip()` avvisa quando una presa parte su più di 0,1 s di silenzio del file e indica il «da» giusto; l'avviso
   conta come quello delle prese oltre la fine: nessuno dei due deve restare in `npm run musica` di un film nuovo. ·
