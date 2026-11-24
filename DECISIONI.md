@@ -3,6 +3,34 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 24 nov 2026 · **Più spazio ai format che fanno crescere YouTube** (editore, app: «mi affido a voi»). Ogni domenica il
+  manager classifica i format (lunghi per tipo, Spiegato semplice, film, serie, videogiochi, libri…) per iscritti e
+  visualizzazioni YouTube portati; un format nuovo si prova almeno 2 volte, poi se è tra i primi tre gli si dà un'uscita in
+  più a settimana (al posto del format ultimo in classifica), sempre nei limiti di produzione e di token. La decisione e i
+  numeri vanno nel calendario della settimana («Perché»). · manager, direzione
+
+- 24 nov 2026 · **Disponibilità a collaborare tra i criteri di scelta** (editore, app). Per ogni titolo candidato il
+  manager cerca, solo su fonti pubbliche, quanto il protagonista, l'autore, il produttore o il distributore risponde e
+  rilancia (interazioni con creator e fan, collaborazioni già fatte, condivisioni di contenuti di altri) e lo annota (alta,
+  media, bassa) nel calendario: a parità di punteggio vince il titolo con disponibilità più alta. Nessun contatto parte
+  dalla squadra: i messaggi li prepara la squadra e li manda l'editore (`SOCIAL.md`, «Diffusione»). · manager
+
+- 24 nov 2026 · **Follower interessanti per collaborazioni** (editore, app). Ogni domenica il manager guarda i nuovi
+  follower e chi commenta (PostFast, casella e commenti) e segnala all'editore, nell'avviso della settimana, i profili
+  pubblici di giornalisti, scrittori, attori di cinema e teatro, cantanti, musicisti e creator, con un'idea di
+  collaborazione per ciascuno (es. un giornalista per un format di attualità, uno scrittore per il format dei libri) e un
+  messaggio pronto. Solo profili pubblici; nessun contatto senza il via dell'editore, che li manda lui. · manager
+
+- 24 nov 2026 · **Fonti dei testi non solo Wikipedia** (verifica chiesta dall'editore). Finora i riassunti verticali
+  usavano quasi solo Wikipedia italiana e inglese (i lunghi e i talent anche giornali e siti di cinema). Da oggi ogni testo
+  nuovo ha nel campo `fonti` **almeno una fonte che non sia Wikipedia** (schede di MyMovies, ComingSoon, FilmTV, Treccani,
+  Britannica, il testo originale per i libri, interviste o siti ufficiali), e ogni fatto discusso o colpo di scena si
+  conferma su due fonti. Il manager, ogni domenica, cerca sul web gli eventi della settimana (uscite in sala e in
+  streaming, anniversari, ricorrenze, eventi TV) e li cita con la fonte nel calendario. · produzione, revisore-testi, manager
+
+- 24 nov 2026 · **Nasce il format dei libri: «Libri spiegati»** (editore, app). Il primo è **Cime tempestose** di Emily
+  Brontë, all'inizio della settimana 30 novembre – 6 dicembre; regole in `LIBRI.md`. · manager, produzione
+
 - 24 nov 2026 · **I contenuti già usciti non si rifanno** (editore, in chat). Quando l'editore segnala un errore (o
   arriva dai commenti) su un video già pubblicato, prima si controlla se è già uscito: se sì, non si corregge, non si
   rigenera e non si ripubblica nulla (spreco di tempo e di token). Si scrive solo la lezione in `ERRORI.md` e, se serve,
