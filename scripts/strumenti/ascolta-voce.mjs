@@ -8,15 +8,19 @@
 //   - ritmo nel video: parole al secondo di ogni clip e di ogni frase come suoneranno dopo npm run voce (pause tra le
 //     frasi portate a 0,25 s e accelerazione applicate), non solo sulla clip grezza (proposta «Ritmo delle frasi dopo
 //     il montaggio», approvata dall'editore il 22 nov 2026): una frase a 3,3 grezza può diventare 3,8 nel video.
-//   Trascrizioni in cache in out/voce-tmp/trascrizioni/ (--rifai-trascrizione le rifà). Report anche in
+//   Trascrizioni in cache in out/voce-tmp/trascrizioni/ (--rifai-trascrizione le rifà); una clip rigenerata (contenuto
+//   diverso da quello trascritto) viene ritrascritta da sola, e le clip il cui testo non è più quello del JSON
+//   (audio/<film>/impronte.json, scritto da genera-voce.mjs) sono segnalate «da rigenerare» in cima al report. Report anche in
 //   out/revisione/<film>/voce.md.
 //   La trascrizione richiede sulla chiave ElevenLabs il permesso «Speech to Text» (oltre a Text to Speech e Voices: read);
 //   senza, lo script lo dice e fa solo le misure di cadenza e volume.
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { duration, loadFilm, run, timeline } from '../audio/film.mjs';
 import { lunghi, loadLungo, trattiLungo } from '../lunghi/tempi.mjs';
 import { loadPromo, partiPromo, promo } from '../promo/tempi.mjs';
+import { velocitaDi } from '../audio/voce-velocita.mjs';
 
 const API = 'https://api.elevenlabs.io';
 const TMP = 'out/voce-tmp';
@@ -87,9 +91,17 @@ const loudness = (file) => {
 
 // ---- trascrizione con ElevenLabs (la chiave la mette il proxy nel cloud, o ELEVENLABS_API_KEY in locale)
 let sttBloccata = flag('senza-trascrizione') ? 'esclusa con --senza-trascrizione' : null;
-const trascrivi = (file, base) => {
+// la cache porta l'impronta del file trascritto: se la clip è cambiata (rigenerata o rimontata) si trascrive di nuovo
+const impronta = (x) => createHash('sha1').update(x).digest('hex').slice(0, 12);
+let ritrascritte = 0;
+const trascrivi = (file, base, src) => {
   const cache = `${CACHE}/${slug}-${base}.json`;
-  if (existsSync(cache) && !flag('rifai-trascrizione')) return JSON.parse(readFileSync(cache, 'utf8'));
+  const firma = impronta(readFileSync(src));
+  if (existsSync(cache) && !flag('rifai-trascrizione')) {
+    const j = JSON.parse(readFileSync(cache, 'utf8'));
+    if (j._impronta === firma || (!j._impronta && statSync(cache).mtimeMs >= statSync(src).mtimeMs)) return j;
+    ritrascritte++;
+  }
   if (sttBloccata) return null;
   const key = process.env.ELEVENLABS_API_KEY;
   const resp = `${TMP}/stt-risposta.json`;
@@ -109,6 +121,7 @@ const trascrivi = (file, base) => {
     return null;
   }
   const json = JSON.parse(readFileSync(resp, 'utf8'));
+  json._impronta = firma;
   writeFileSync(cache, JSON.stringify(json));
   return json;
 };
@@ -184,7 +197,24 @@ const medLufs = [...clips.map((c) => c.lufs)].sort((a, b) => a - b)[Math.floor(c
 
 log(`# Voce di ${slug} (${dir})`);
 log();
-log('Riferimenti: circa 2,8 parole/s (frasi tra 2,2 e 3,4' + (spiegato ? '; Spiegato semplice: ≤ 3,4, meglio 3,1, anni a 4 cifre = 4 parole' : '') + '); accelerazione di npm run voce al massimo +25%;');
+// clip rimaste indietro rispetto al testo del JSON (o alla voce_velocita) secondo audio/<film>/impronte.json
+const IMPRONTE = `${dir}/impronte.json`;
+if (existsSync(IMPRONTE)) {
+  const imp = JSON.parse(readFileSync(IMPRONTE, 'utf8'));
+  const vecchie = clips.filter((c) => {
+    const i = imp[c.base];
+    if (!i) return false;
+    const sorgente = readFileSync(c.src);
+    const cambiataFuori = i.file && i.file !== impronta(sorgente); // clip sostituita a mano (es. npm run dividi): non giudicabile
+    return !cambiataFuori && (i.testo !== impronta(leggi(c.testo.join(' '))) || (i.velocita ?? null) !== (velocitaDi(film, c.id) ?? null));
+  });
+  if (vecchie.length) {
+    log(`⚠ Clip da rigenerare, il testo o la velocità del JSON sono cambiati dopo la generazione: ${vecchie.map((c) => c.base).join(', ')}`);
+    log(`  (node scripts/genera-voce.mjs ${slug} --capitolo <id>; le misure qui sotto valgono per la clip vecchia)`);
+  } else log('Clip allineate al testo del JSON (impronte di genera-voce.mjs).');
+  log();
+}
+log('Riferimenti: circa 2,8 parole/s (frasi tra 2,2 e 3,4' + (spiegato ? '; Spiegato semplice: ≤ 3,4, meglio 2,9, anni a 4 cifre = 4 parole' : '') + '); accelerazione di npm run voce al massimo +25%;');
 log('volume delle clip entro ±2 LU dalla mediana; pausa tra le frasi 0,2–0,9 s; nessuna pausa oltre 0,6 s a metà frase.');
 log();
 log('«nel video» = come suonerà dopo npm run voce (pause tra le frasi a 0,25 s e accelerazione): è il ritmo da controllare.');
@@ -210,7 +240,7 @@ for (const c of clips) {
 log();
 log('## Pronuncia e ritmo delle frasi');
 for (const c of clips) {
-  const stt = trascrivi(c.trim, c.base);
+  const stt = trascrivi(c.trim, c.base, c.src);
   if (!stt) continue;
   const sen = (stt.words ?? []).filter((w) => w.type === 'word').flatMap((w) => tokens(w.text).map((t) => ({ w: t, raw: w.text, start: w.start, end: w.end })));
   const att = [];

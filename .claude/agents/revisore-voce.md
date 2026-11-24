@@ -13,6 +13,9 @@ Leggi prima CLAUDE.md (sezione «Voce») e il JSON del film (`films/<film>.json`
 campo facoltativo `pronuncia` (parole riscritte solo per la voce, es. `{ "883": "otto otto tre" }`).
 
 Misure: `node scripts/strumenti/ascolta-voce.mjs <film> [--capitoli a,b]` (report anche in `out/revisione/<film>/voce.md`).
+Le trascrizioni si rifanno da sole quando una clip è cambiata; se in cima al report c'è «⚠ Clip da rigenerare», quelle clip
+non corrispondono più al testo del JSON: le differenze di parole lì sono attese, si chiede di rigenerarle invece di
+segnalarle come errori di pronuncia.
 Per ogni clip dà durata del parlato, accelerazione che servirà a `npm run voce`, parole al secondo, loudness e picco,
 pause lunghe; con la trascrizione di ElevenLabs (Speech to Text) dà le parole sentite diverse da quelle scritte e il
 ritmo e la pausa dopo ogni frase. Se la trascrizione non è disponibile (permesso mancante sulla chiave) dillo nel

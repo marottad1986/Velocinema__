@@ -3,6 +3,12 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 24 nov 2026 · **Trascrizioni e clip sempre allineate** (proposte del revisore voce approvate dall'editore il 22 e 23 nov).
+  `genera-voce.mjs` scrive `audio/<film>/impronte.json` (testo e velocità di ogni clip): va committato con il film.
+  `ascolta-voce.mjs` ritrascrive da solo una clip cambiata e segnala in cima al report le clip da rigenerare perché il
+  testo del JSON è cambiato dopo. Per i nomi stranieri la `pronuncia` si decide prima della prima generazione. ·
+  produzione, revisore-voce
+
 - 24 nov 2026 · **Dati per vendere** (proposta della direzione approvata dall'editore il 22 nov). Ogni domenica il manager
   scrive in `collaborazioni/numeri.md` le cifre che chiedono gli sponsor: visualizzazioni medie e mediana per video negli
   ultimi 30 giorni, tasso di condivisione e salvataggio, follower per piattaforma; una volta al mese il pubblico per età,
