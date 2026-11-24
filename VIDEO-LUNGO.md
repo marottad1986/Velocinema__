@@ -67,7 +67,9 @@ lungo precedente); qui solo ciò che cambia. Primo video: `lunghi/dark-tutta-la-
 - `node scripts/lunghi/render.mjs <slug>` → `out/<slug>.mp4` (con musica) e, se ci sono tutte le clip, `out/<slug>-voce.mp4`;
   opzioni `--parte <id>` (una parte sola, per le prove), `--miniatura`, `--capitoli`, `--solo-audio`.
 - `node scripts/lunghi/prova.mjs <slug> <secondi...>` → PNG in `out/prova/` (secondi del video lungo).
-- `node scripts/lunghi/pacchetto.mjs <slug> [--parti a,b]` → fotogrammi per il revisore delle immagini in `out/revisione/<slug>/`.
+- `node scripts/lunghi/pacchetto.mjs <slug> [--parti a,b]` → fotogrammi per il revisore delle immagini in `out/revisione/<slug>/`,
+  più `testi.md` (scritte e cartelli sovrapposti, misurati nel browser a ogni frase; da vuotare prima del revisore) e, con
+  `--musica`, `livelli.txt` (colpi coperti e «niente vuoto prima» dei colpi forti).
 - Anteprima: `npx remotion studio src/lunghi/index.ts`.
 - `node scripts/controlli.mjs <slug>` controlla anche i lunghi (griglia degli episodi, ritmo della voce, fonti, chiusura).
 - Archivio su MEGA: il workflow rigenera il lungo quando cambia il suo JSON, `src/lunghi/`, il suo spartito o le sue clip,
