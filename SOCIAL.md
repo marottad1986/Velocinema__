@@ -249,8 +249,8 @@ Quando si programma (vincolante):
   `youtubeIsShort: false`, `youtubeContainsSyntheticMedia: true`, titolo, descrizione e capitoli da `out/<film>-capitoli.txt`;
   il trailer con i controlli dei video verticali e il link al lungo nella didascalia o nel primo commento).
 - **Ogni lungo esce come Prima di YouTube** (Premiere: pagina con conto alla rovescia e chat dal vivo all'ora fissa, nessuno
-  deve essere presente; decisione dell'editore del 22 nov 2026). PostFast e l'API di YouTube non sanno creare una Prima,
-  quindi:
+  deve essere presente; decisione dell'editore del 22 nov 2026; vale per i lunghi non ancora programmati su PostFast al
+  24 nov). PostFast e l'API di YouTube non sanno creare una Prima, quindi:
   1. Il lungo si carica con PostFast **24 ore prima dell'uscita** (insieme alla storia), con `youtubePrivacy: "PRIVATE"` e
      tutti gli altri controlli di sempre (titolo, descrizione con i capitoli, miniatura, playlist). Così il link del lungo
      esiste già e va nel trailer.
