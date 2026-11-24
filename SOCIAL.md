@@ -248,6 +248,20 @@ Quando si programma (vincolante):
   Shorts); la storia esce 24 ore prima, come per ogni altro video. Si programmano insieme con PostFast (il lungo con
   `youtubeIsShort: false`, `youtubeContainsSyntheticMedia: true`, titolo, descrizione e capitoli da `out/<film>-capitoli.txt`;
   il trailer con i controlli dei video verticali e il link al lungo nella didascalia o nel primo commento).
+- **Ogni lungo esce come Prima di YouTube** (Premiere: pagina con conto alla rovescia e chat dal vivo all'ora fissa, nessuno
+  deve essere presente; decisione dell'editore del 22 nov 2026). PostFast e l'API di YouTube non sanno creare una Prima,
+  quindi:
+  1. Il lungo si carica con PostFast **24 ore prima dell'uscita** (insieme alla storia), con `youtubePrivacy: "PRIVATE"` e
+     tutti gli altri controlli di sempre (titolo, descrizione con i capitoli, miniatura, playlist). Così il link del lungo
+     esiste già e va nel trailer.
+  2. Appena è caricato, avviso nell'app (`reparto` `pubblicazione`, `tipo` `info`, titolo «Imposta la Prima di <titolo>»)
+     con i passi per l'editore: YouTube Studio → Contenuti → il video → Visibilità → Programma → <giorno e ora
+     dell'uscita> → spunta «Imposta come Prima» → Programma. Poi l'editore risponde «fatto» dall'app o in chat.
+  3. Rete di sicurezza: se 2 ore prima dell'uscita la conferma non è arrivata, avviso `problema`; se a 1 ora prima non è
+     ancora arrivata, la sessione carica di nuovo il lungo con PostFast **pubblico** all'ora dell'uscita (come prima di
+     questa regola) e scrive all'editore di cancellare la copia privata. L'uscita non salta mai.
+- **Dirette**: niente LIVE preregistrate su TikTok (le regole di TikTok le vietano); una diretta 24/7 in loop su YouTube
+  si valuta solo dopo i 1.000 iscritti.
 - **Trailer e Short promozionali** (`promo/<slug>.json`) passano dallo stesso workflow: unito su main, «Video su MEGA» li
   rigenera (`node scripts/promo/render.mjs`), li carica su MEGA e su PostFast e registra la chiave come per i film.
 - **Storie su TikTok: a mano.** L'API di TikTok (e quindi PostFast) non pubblica storie: la locandina la carica l'editore
