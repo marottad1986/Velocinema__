@@ -44,7 +44,7 @@ in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo
   segnalato tre clip «sbagliate» che erano giuste). `genera-voce.mjs` salva accanto a ogni clip un'impronta del testo
   usato; `ascolta-voce.mjs` rifà la trascrizione se la clip è più nuova della cache e segnala le clip vecchie rispetto al
   JSON, così si evitano falsi allarmi e crediti sprecati. Per i nomi stranieri si decide la `pronuncia` prima della prima
-  generazione. · meno passaggi a vuoto dei revisori · aperta
+  generazione. · meno passaggi a vuoto dei revisori · decisa dall'editore il 22 nov 2026, fatta il 24 nov (`audio/<film>/impronte.json`, trascrizioni rifatte da sole)
 - 18 nov 2026 · produzione (dai revisori di Ritorno al futuro, trilogia): `clip()` avvisi quando una presa parte su più di 0,1 s di silenzio, come già fa per le prese oltre la fine; `ascolta-voce.mjs` rifaccia la trascrizione quando la clip è più recente della cache (dopo una rigenerazione il report mostrava la clip vecchia).
 - 18 nov 2026 · produzione (dal revisore musica): `scripts/livelli.mjs` anche per i video lunghi e `livelli.txt` nel pacchetto dei lunghi, così vuoti tra le sezioni e picchi si vedono senza misure a mano.
 - 19 nov 2026 · direzione (idea dell'editore): **«In 2 minuti Kids»**, video lunghi per bambini su un **canale YouTube
@@ -56,7 +56,7 @@ in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo
   con animali e oggetti, voce più calda, nessuna raccolta di dati dei bambini). · un secondo canale che cresce con le
   visualizzazioni ripetute dei bambini · aperta
 - 22 nov 2026 · **Prima di YouTube per ogni lungo** (manager, da una domanda dell'editore sulle live automatiche): pubblicare i lunghi come Premiere (conto alla rovescia e chat dal vivo all'ora fissa, nessuno presente); niente LIVE preregistrate su TikTok (vietate); diretta 24/7 in loop solo dopo i 1.000 iscritti. · direzione → editore
-- 22 nov 2026 · `ascolta-voce.mjs` rifà da solo la trascrizione quando la clip è più recente della cache (oggi, dopo una rigenerazione, mostra la trascrizione vecchia). · revisore-voce → produzione
+- 22 nov 2026 · `ascolta-voce.mjs` rifà da solo la trascrizione quando la clip è più recente della cache (oggi, dopo una rigenerazione, mostra la trascrizione vecchia). · revisore-voce → produzione · decisa dall'editore il 23 nov 2026, fatta il 24 nov
 - 22 nov 2026 · Tabella di compensazione in `campioni.mjs` per le note anomale di spiccato e pizzicato (la 71 delle viole spiccato è circa +9 dB rispetto alle vicine: in Donnie Darko spiegato faceva il picco del film). · revisore-musica → produzione
 - 23 nov 2026 · Controllo automatico dei lunghi in `pacchetto.mjs`/`controlli.mjs`: rettangoli di scritte e cartelli che si sovrappongono tra loro o alla zona del titolo, e per ogni colpo dichiarato la sola musica nel secondo prima almeno 8 dB sotto la media del capitolo (Donnie Darko spiegato: serviti tre giri a mano). · revisori immagini e musica → produzione · aperta
 - 23 nov 2026 · Modulo comune per i trailer (`scripts/audio/trailer-comune.mjs`): colpo del cartello, frusciate d'entrata, crescendo nel buio, accordi contati dall'inizio della sezione, colpi dei cartelli in salita misurabile; e nei mondi condivisi la modalità «pulito» non disegna mai testo. · revisori musica e immagini → produzione · aperta

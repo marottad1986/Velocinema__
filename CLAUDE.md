@@ -226,6 +226,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   1,10): quella clip si genera già più veloce invece di essere accelerata dopo con atempo, che si sente di più
   (`ascolta-voce.mjs` lo suggerisce oltre +8%). Salta le clip già presenti; `--capitolo <id>` (anche `copertina`/`finale`) ne rifà una,
   `--rifai` tutte, `--prova` mostra testi e crediti senza chiamare l'API; `--voci [nome]` e `--modelli` per la configurazione.
+  Accanto alle clip scrive `audio/<film>/impronte.json` (impronta del testo e velocità di ogni clip, da tenere nel ramo):
+  `ascolta-voce.mjs` segnala le clip rimaste indietro rispetto al JSON e ritrascrive da solo le clip rigenerate.
   Chiave con permessi Text to Speech e Voices: read: in locale in `ELEVENLABS_API_KEY`; nell'ambiente cloud come segreto di rete
   per `api.elevenlabs.io` con intestazione `xi-api-key` (la aggiunge il proxy, lo script non la vede).
 - In alternativa una registrazione unica con tutti i capitoli di seguito, separati da una pausa lunga:

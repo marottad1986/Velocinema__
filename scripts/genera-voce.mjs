@@ -9,9 +9,11 @@
 // Dopo: npm run render -- <film> (se il video non c'è) e npm run voce -- <film> per montare e controllare i tempi.
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { duration, loadFilm, timeline } from './audio/film.mjs';
 import { lunghi, loadLungo, trattiLungo } from './lunghi/tempi.mjs';
 import { loadPromo, partiPromo, promo } from './promo/tempi.mjs';
+import { velocitaDi } from './audio/voce-velocita.mjs';
 
 const API = 'https://api.elevenlabs.io';
 const CONFIG = 'scripts/audio/voce.json';
@@ -90,22 +92,8 @@ const segmenti = corto
 const parts = segmenti
   .filter((s) => s.testo.length && (!solo || s.id === solo))
   .map((s) => ({ ...s, testo: leggi(s.testo.join(' ')) }));
-// oggetto del JSON con quell'id (capitolo, copertina, finale, tratto o parte), per leggerne "voce_velocita"
-const perId = (id) => {
-  const trovati = [];
-  const visita = (o) => {
-    if (!o || typeof o !== 'object') return;
-    if (Array.isArray(o)) return o.forEach(visita);
-    if (o.id === id) trovati.push(o);
-    Object.values(o).forEach(visita);
-  };
-  visita(film.capitoli ?? film.parti ?? []);
-  if (id === 'copertina' && film.copertina) trovati.push(film.copertina);
-  if (id === 'finale' && film.finale) trovati.push(film.finale);
-  return trovati.find((o) => o.voce_velocita !== undefined);
-};
 for (const p of parts) {
-  const v = perId(p.id)?.voce_velocita;
+  const v = velocitaDi(film, p.id);
   if (v === undefined) continue;
   if (typeof v !== 'number' || v < 0.7 || v > 1.2) {
     console.error(`${p.id}: "voce_velocita" ${v} fuori dai limiti di ElevenLabs (da 0,7 a 1,2)`);
@@ -141,6 +129,13 @@ if (!conf.voice_id) {
   console.log(`  voce: ${v.name} (${v.voice_id}), salvata in ${CONFIG}`);
 }
 
+// ---- impronte (proposta «Trascrizioni e clip sempre allineate», approvata dall'editore il 22 nov 2026): accanto alle
+// clip, audio/<film>/impronte.json tiene per ogni clip l'impronta del testo mandato e la velocità usata, così
+// ascolta-voce.mjs riconosce le clip rimaste indietro rispetto al JSON e le trascrizioni da rifare
+const IMPRONTE = `${dir}/impronte.json`;
+const impronte = existsSync(IMPRONTE) ? JSON.parse(readFileSync(IMPRONTE, 'utf8')) : {};
+const impronta = (testo) => createHash('sha1').update(testo).digest('hex').slice(0, 12);
+
 // ---- una chiamata per parte; ogni clip sostituisce quella con lo stesso nome
 for (const p of daFare) {
   const dest = `${dir}/${p.base}.mp3`;
@@ -151,6 +146,8 @@ for (const p of daFare) {
   const vecchia = esistente(p.base);
   if (vecchia) rmSync(`${dir}/${vecchia}`);
   writeFileSync(dest, readFileSync(`${TMP}/${p.base}.mp3`));
+  impronte[p.base] = { testo: impronta(p.testo), velocita: p.velocita ?? null, file: impronta(readFileSync(dest)), quando: new Date().toISOString() };
+  writeFileSync(IMPRONTE, `${JSON.stringify(impronte, null, 2)}\n`);
   const len = duration(dest);
   const nota = len > p.dur ? `  più lunga del capitolo di ${(len - p.dur).toFixed(1)} s: npm run voce la accorcia (fino al 25%)` : '';
   console.log(`  ${p.base.padEnd(16)} ${len.toFixed(2).padStart(5)} s / ${p.dur} s${p.velocita ? `  (velocità ${p.velocita})` : ''}${nota}`);

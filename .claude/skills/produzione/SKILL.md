@@ -22,7 +22,8 @@ Metodo (vincolante, da `CLAUDE.md`):
 3. Testo: fatti verificati su fonti (campo `fonti`), scritto per chi non conosce l'opera, ritmo della voce.
 4. Scene: una alla volta, controllata sui fotogrammi prima di passare alla successiva.
 5. Musica originale con strumenti campionati, un solo bpm; voce con `node scripts/genera-voce.mjs` e controllo con
-   `node scripts/strumenti/ascolta-voce.mjs`.
+   `node scripts/strumenti/ascolta-voce.mjs` (nomi stranieri: `pronuncia` nel JSON prima della prima generazione;
+   `audio/<film>/impronte.json` si committa con il film; capitoli densi: `voce_velocita`).
 6. `node scripts/controlli.mjs <film>` verde, poi `node scripts/pacchetto.mjs <film>` e i revisori della parte toccata
    (`revisore-testi`, `revisore-musica`, `revisore-voce`); secondo passaggio solo sulle parti cambiate.
    Immagini: prima del `revisore-immagini` il video con la voce si manda all'utente in chat (SendUserFile) e si aspetta la
