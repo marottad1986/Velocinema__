@@ -27,6 +27,10 @@ Controlla:
 7. Titoli dei capitoli chiari anche fuori contesto.
 8. Fedeltà: ogni fatto della trama citato è corretto e confermato dalle fonti del campo `fonti` (voce Wikipedia italiana
    del film, sezione «Trama», poi quella inglese o le pagine degli episodi); dillo nel rapporto («verificato su…»).
+   **Numeri di persone reali (età, anni, date, classifiche)**: ricalcolali tu dalla data di nascita e dalla data
+   dell'evento, entrambe su fonte (errore del 24 nov, Gli anni: «Pezzali ha venticinque anni» nel 1995, ne aveva 27,
+   segnalato da più persone nei commenti). Un'età presa da un'intervista, da una serie TV o da un film sulla persona non
+   basta: vale solo il calcolo dalle date. Controlla lo stesso numero anche nelle scene (candeline, cartelli, calendari).
    Se `fonti` manca o non copre un fatto, verifica tu e chiudi il rapporto con una sezione «FONTI» da copiare nel JSON
    («<fatti confermati>: <url>», una voce per fonte). Per canzoni e quadri, distinzione tra ciò che è documentato e
    ciò che è ipotesi.

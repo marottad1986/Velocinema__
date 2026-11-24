@@ -3,6 +3,23 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 24 nov 2026 · **I contenuti già usciti non si rifanno** (editore, in chat). Quando l'editore segnala un errore (o
+  arriva dai commenti) su un video già pubblicato, prima si controlla se è già uscito: se sì, non si corregge, non si
+  rigenera e non si ripubblica nulla (spreco di tempo e di token). Si scrive solo la lezione in `ERRORI.md` e, se serve,
+  la regola o il controllo che evitano l'errore nei video successivi. Si correggono solo i contenuti non ancora usciti. ·
+  tutti i reparti
+
+- 24 nov 2026 · **La squadra è autonoma; l'editore solo per le criticità** (editore, in chat). Se tutto va come da
+  calendario si applicano le solite regole: produzioni intere, 5 ore tra un avvio e l'altro, storie 24 ore prima. Se
+  qualcosa cambia (ritardi, crediti o token finiti, errori, sessioni ferme), la squadra si riorganizza da sola: sposta
+  produzioni, usa contenuti già pronti, riprova. Le produzioni si pianificano sui token residui, con una previsione di
+  consumo per le uscite successive. L'editore si interpella **solo** per una criticità che non si riesce a risolvere,
+  sicuramente quando un'uscita non può essere pubblicata in tempo, e con anticipo (avviso «problema» nell'app con la
+  soluzione proposta). Per ora l'editore controlla ancora il video e lo conferma prima della pubblicazione (richiesta
+  nell'app); a breve vorrà togliere anche questo passaggio: quando lo deciderà, la pubblicazione sarà automatica dopo i
+  controlli e i revisori, e gli errori saranno responsabilità della squadra. Rete di sicurezza: il guardiano delle 9
+  (`SOCIAL.md`). · tutti i reparti
+
 - 24 nov 2026 · **Pezzi comuni dei trailer** (proposta dei revisori musica e immagini approvata dall'editore il 23 nov). La
   musica dei trailer nuovi parte da `scripts/audio/trailer-comune.mjs` (cartelli in salita di 1,5 dB, frusciate, archi
   contati dall'inizio della sezione, buio con crescendo, titolo); i mondi dei lunghi nuovi avvolgono tutto in

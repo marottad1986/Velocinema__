@@ -65,3 +65,10 @@ si può verificare in automatico, una regola in `scripts/controlli.mjs`). Righe 
   produzione (`SOCIAL.md`); ogni mattina alle 9 l'attività «missione YouTube» fa da guardiano: avvia ciò che manca,
   sblocca le sessioni ferme e controlla le uscite delle 48 ore successive. Le sessioni di produzione non restano mai ferme
   in silenzio: se aspettano l'editore mandano l'avviso nell'app e fissano un `send_later`.
+- Età sbagliata di una persona reale (22 nov, Gli anni: «Pezzali ha venticinque anni» nell'estate del 1995, ne aveva 27;
+  segnalato da diverse persone nei commenti; il numero veniva da un'intervista ed era anche disegnato sulla torta) → età e
+  anni si calcolano sempre dalla data di nascita e dalla data dell'evento, con entrambe le fonti nel campo `fonti`; il
+  revisore dei testi le ricalcola e controlla lo stesso numero nelle scene. Il video già uscito non si rifà.
+- Video già pubblicato rifatto dopo una segnalazione dell'editore (24 nov, Gli anni: testo, scena e voce rielaborati,
+  fermato dall'editore) → un contenuto già uscito non si corregge né si ripubblica: si registra l'errore e la regola per
+  i prossimi (`DECISIONI.md`, 24 nov).
