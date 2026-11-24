@@ -5,7 +5,8 @@ import { Finish, FxDefs } from '../../lib/fx';
 import { Clouds, Dust, Glow, Gulls } from '../../lib/elements';
 import { Inchiostro, puntoSu, type Pt } from '../../lib/pergamena';
 import type { PosterProps } from '../../types';
-import { AMBER, BLUE, GOLD, INK, RED, Spada } from './Schema';
+import { AMBER, BLUE, GOLD, INK, RED, Tri } from './Schema';
+import { ArtHyrule } from './Hyrule';
 
 // Copertina e finale di «Zelda, la linea del tempo» (Videogiochi spiegati, senza sigla: la copertina è anche la miniatura).
 // Testata verde scuro da manoscritto con il titolo ZELDA in Cinzel color crema e l'ombra verde; sotto, la miniatura di giorno:
@@ -14,11 +15,11 @@ import { AMBER, BLUE, GOLD, INK, RED, Spada } from './Schema';
 // Niente persone, logo, carattere o oggetti uguali a quelli del gioco. Il fotogramma 0 è già completo.
 
 const HEAD = 690;
-const FORK: Pt = [420, 1300];
+const FORK: Pt = [360, 1385];
 const PATHS: Pt[][] = [
-  [FORK, [600, 1250], [820, 1215], [1140, 1200]],
-  [FORK, [640, 1318], [880, 1322], [1140, 1320]],
-  [FORK, [600, 1370], [820, 1420], [1140, 1430]],
+  [FORK, [560, 1330], [820, 1300], [1140, 1290]],
+  [FORK, [600, 1392], [880, 1392], [1140, 1390]],
+  [FORK, [560, 1440], [820, 1480], [1140, 1490]],
 ];
 const COLS = [GOLD, '#5AA8F0', '#E8553F'];
 
@@ -62,104 +63,38 @@ const Art: React.FC<{ t: number; id: string; calm?: number }> = ({ t, id, calm =
         </linearGradient>
       </defs>
       <g transform={`translate(540 1300) scale(${z}) translate(-540 -1300)`}>
-        <rect y={HEAD - 40} width="1080" height={1960 - HEAD} fill={`url(#${id}-sky)`} />
-        <Glow id={`${id}-sun`} x={180} y={HEAD + 90} r={220} t={t} color="#FFF2B8" amp={0.05} rate={1.2} opacity={0.7} />
-        <Clouds id={`${id}-cl`} t={t} color="#FFFFFF" seed={7} n={3} y={HEAD + 40} h={110} opacity={0.75} />
-        <Gulls t={t + 4} seed={3} n={3} y={HEAD + 90} h={80} color={INK} size={0.7} period={14} />
-        {/* montagne innevate */}
-        <path d={`M0 1080 L170 900 L300 1010 L470 860 L640 1040 L760 980 L1080 1060 V1120 H0 Z`} fill="#8FB0C8" />
-        <path d="M150 921 L170 900 L192 921 L178 916 Z M446 884 L470 860 L496 886 L478 880 Z" fill="#FFFFFF" />
-        {/* la collina del castello */}
-        <path d="M540 1150 Q760 1000 1080 1040 V1220 H540 Z" fill={`url(#${id}-hill)`} stroke={INK} strokeWidth="6" />
-        <g transform="translate(830 1050) scale(1.08)">
-          <rect x="-110" y="-40" width="220" height="90" fill={`url(#${id}-wall)`} stroke={INK} strokeWidth="5" />
-          {Array.from({ length: 10 }, (_, i) => <rect key={i} x={-110 + i * 22} y="-52" width="12" height="14" fill={`url(#${id}-wall)`} stroke={INK} strokeWidth="3" />)}
-          <path d="M-22 50 V14 Q0 -8 22 14 V50 Z" fill="#5A3A22" stroke={INK} strokeWidth="4" />
-          {[[-92, -120, 40, 92], [92, -120, 40, 92], [0, -196, 54, 160]].map(([x, y, w, h], i) => (
-            <g key={i}>
-              <rect x={x - w / 2} y={y} width={w} height={h} fill={`url(#${id}-wall)`} stroke={INK} strokeWidth="5" />
-              <path d={`M${x - w / 2 - 8} ${y + 2} L${x} ${y - w * 1.5} L${x + w / 2 + 8} ${y + 2} Z`} fill="#3A64B0" stroke={INK} strokeWidth="5" strokeLinejoin="round" />
-              <path d={`M${x} ${y - w * 1.5} V${y - w * 1.5 - 30}`} stroke={INK} strokeWidth="3" />
-              <path d={`M${x} ${y - w * 1.5 - 30} l26 ${6 + Math.sin(t * 5 + i) * 4} l-26 10 Z`} fill="#E8553F" stroke={INK} strokeWidth="2" />
-              <rect x={x - 6} y={y + 18} width="12" height="20" rx="6" fill={calm ? '#FFC060' : '#FFD66A'} stroke={INK} strokeWidth="2" />
-            </g>
-          ))}
+        {/* il mondo di Hyrule (lo stesso del video), abbassato sotto la testata */}
+        <g transform="translate(0 230)">
+          <ArtHyrule T={t} par={() => ''} dark={0} open={1} pulled={0} dawn={calm} />
         </g>
-        <path d="M820 1106 Q720 1150 660 1190" stroke="#E8D6A8" strokeWidth="16" fill="none" strokeLinecap="round" />
-        {/* colline davanti e alberi */}
-        <path d="M0 1130 Q260 1050 520 1110 Q760 1160 1080 1110 V1960 H0 Z" fill={`url(#${id}-mead)`} stroke={INK} strokeWidth="6" />
-        {[[90, 1080, 34], [150, 1100, 26], [1010, 1080, 30]].map(([x, y, r], i) => (
+        {calm > 0 && <rect y={HEAD - 40} width="1080" height="1300" fill="#E8804A" opacity={0.22 * calm} />}
+        {/* i tre triangoli d'oro separati nel cielo, con i raggi */}
+        {[[150, 860], [300, 820], [450, 860]].map(([x, y], i) => (
           <g key={i}>
-            <path d={`M${x} ${y + r} V${y + r + 22}`} stroke={INK} strokeWidth="6" />
-            <circle cx={x} cy={y} r={r} fill="#3E8A40" stroke={INK} strokeWidth="5" />
-            <circle cx={x - r * 0.3} cy={y - r * 0.3} r={r * 0.4} fill="#6AB050" />
+            <path d={`M${x - 40} ${y + 30} L${x - 150} ${y + 560} H${x + 150} L${x + 40} ${y + 30} Z`} fill="#FFF2B0" opacity={0.14 * (1 - 0.6 * calm)} />
+            <g transform={`translate(${x} ${y + Math.sin(t * 2 + i) * 6}) scale(1.25)`}><Tri T={t} id={`${id}-tri${i}`} glow={1} /></g>
           </g>
         ))}
-        {/* la spada nella roccia dentro il fascio di luce */}
-        <path d={`M300 ${HEAD - 40} H560 L600 1240 H260 Z`} fill={`url(#${id}-beam)`} opacity={(1 - 0.7 * calm) * (0.85 + 0.15 * Math.sin(t * 2))} />
-        <Dust t={t} top={{ y: HEAD, x0: 320, x1: 540 }} bottom={{ y: 1220, x0: 280, x1: 580 }} seed={7} n={22} color="#FFF6D0" />
-        <Glow id={`${id}-sw`} x={430} y={1060} r={170} t={t} color="#FFF4C0" amp={0.12} rate={2.2} opacity={0.55 * (1 - 0.5 * calm)} />
-        <g transform="translate(430 1052) scale(3.2) rotate(-22)"><Spada /></g>
-        <path d="M300 1245 L338 1170 H522 L560 1245 Z" fill={`url(#${id}-stone)`} stroke={INK} strokeWidth="7" strokeLinejoin="round" />
-        <path d="M340 1215 l40 -6 M430 1226 l50 -10" stroke={INK} strokeWidth="3.5" opacity=".6" />
-        <path d="M312 1238 q-14 -24 6 -34 M548 1238 q14 -22 -4 -32" stroke="#4E8A3A" strokeWidth="6" fill="none" strokeLinecap="round" />
-        {/* la linea del tempo che arriva da sinistra e si divide in tre sentieri */}
-        <Inchiostro id={`${id}-tr`} pts={[[-40, 1310], [200, 1296], [FORK[0], FORK[1]]]} p={1} t={t} color="#F4ECD8" w={16} nib={false} halo={1} />
+        {/* il filo del tempo che arriva al bivio e si divide in tre fiumi di luce */}
+        <Inchiostro id={`${id}-tr`} pts={[[-40, 1400], [180, 1392], [FORK[0], FORK[1]]]} p={1} t={t} color="#FFD866" w={18} nib={false} halo={1.4} />
         {PATHS.map((pts, i) => (
           <g key={i}>
-            <Inchiostro id={`${id}-p${i}`} pts={pts} p={1} t={t} color={COLS[i]} w={16} nib={false} halo={1} />
-            {[0, 1, 2].map((k) => {
-              const q = puntoSu(pts, k === 0 ? 0.33 : k === 1 ? 0.62 : 0.9);
-              return <circle key={k} cx={q.x} cy={q.y} r="13" fill="#FFF8E0" stroke={INK} strokeWidth="4" />;
-            })}
-            {/* la scintilla che corre sul sentiero */}
+            <Inchiostro id={`${id}-p${i}`} pts={pts} p={1} t={t} color={COLS[i]} w={18} nib={false} halo={1.4} />
             {(() => {
               const u = mod(t * 0.45 + i * 0.33, 1);
               const q = puntoSu(pts, u);
               return (
                 <g transform={`translate(${q.x} ${q.y})`} opacity={Math.sin(u * Math.PI)}>
-                  <circle r="26" fill={COLS[i]} opacity=".35" />
-                  <circle r="9" fill="#FFFFFF" />
+                  <circle r="30" fill={COLS[i]} opacity=".4" />
+                  <circle r="10" fill="#FFFFFF" />
                 </g>
               );
             })()}
           </g>
         ))}
-        <circle cx={FORK[0]} cy={FORK[1]} r="22" fill={GOLD} stroke={INK} strokeWidth="6" />
-        <circle cx={FORK[0]} cy={FORK[1]} r="8" fill="#FFF8E0" />
-        {/* il prato in primo piano, fino al bordo basso */}
-        {Array.from({ length: 70 }, (_, i) => {
-          const x = (i * 157) % 1080 + (i % 3) * 5, y = 1480 + ((i * 89) % 420);
-          return <path key={i} d={`M${x} ${y} q${4 + Math.sin(t * 2 + i) * 4} -14 ${3 + Math.sin(t * 2 + i) * 7} -26`} stroke="#2E6A2E" strokeWidth="4" fill="none" strokeLinecap="round" />;
-        })}
-        {Array.from({ length: 40 }, (_, i) => (
-          <circle key={`f${i}`} cx={(i * 211) % 1080} cy={1460 + ((i * 131) % 440)} r={5 + (i % 3)} fill={['#F4F0E4', '#F2A8C0', GOLD, '#9AC8F0'][i % 4]} stroke={INK} strokeWidth="1.8" />
-        ))}
-        {/* ciuffi d'erba alta e fiori con lo stelo in primo piano, ai bordi */}
-        {[[60, 1930, 1.4], [200, 1960, 1.1], [900, 1940, 1.3], [1040, 1910, 1.5], [520, 1990, 1.0]].map(([x, y, s], i) => (
-          <g key={i} transform={`translate(${x} ${y}) scale(${s})`}>
-            {[-40, -24, -10, 4, 18, 32].map((a, k) => (
-              <path key={k} d={`M${a * 0.6} 0 Q${a * 0.9 + Math.sin(t * 1.6 + i + k) * 6} -90 ${a * 1.8 + Math.sin(t * 1.6 + i + k) * 12} ${-150 - (k % 3) * 40}`} stroke={k % 2 ? '#2E6A2E' : '#22522A'} strokeWidth="10" fill="none" strokeLinecap="round" />
-            ))}
-            <path d={`M10 0 Q16 -110 ${24 + Math.sin(t * 1.4 + i) * 8} -200`} stroke="#22522A" strokeWidth="5" fill="none" />
-            <g transform={`translate(${24 + Math.sin(t * 1.4 + i) * 8} -206)`}>
-              {[0, 72, 144, 216, 288].map((a) => <ellipse key={a} cx="0" cy="-11" rx="7" ry="11" fill={i % 2 ? '#F2A8C0' : '#F4F0E4'} stroke={INK} strokeWidth="2" transform={`rotate(${a})`} />)}
-              <circle r="6" fill={GOLD} stroke={INK} strokeWidth="2" />
-            </g>
-          </g>
-        ))}
-        {/* farfalle */}
-        {[0, 1].map((i) => {
-          const fx = 260 + i * 520 + Math.sin(t * 0.7 + i * 2) * 70, fy = 1560 - i * 80 + Math.sin(t * 1.3 + i) * 30;
-          const w = 0.4 + 0.6 * Math.abs(Math.sin(t * 9 + i));
-          return (
-            <g key={i} transform={`translate(${fx} ${fy})`}>
-              <ellipse cx={-9 * w} cy="-4" rx={10 * w} ry="8" fill={i ? '#9AC8F0' : '#F2C230'} stroke={INK} strokeWidth="2" />
-              <ellipse cx={9 * w} cy="-4" rx={10 * w} ry="8" fill={i ? '#9AC8F0' : '#F2C230'} stroke={INK} strokeWidth="2" />
-              <path d="M0 -10 V6" stroke={INK} strokeWidth="3" />
-            </g>
-          );
-        })}
+        <Glow id={`${id}-fk`} x={FORK[0]} y={FORK[1]} r={90} t={t} color="#FFE08A" amp={0.15} rate={3} opacity={0.8} />
+        <circle cx={FORK[0]} cy={FORK[1]} r="24" fill={GOLD} stroke={INK} strokeWidth="6" />
+        <circle cx={FORK[0]} cy={FORK[1]} r="9" fill="#FFF8E0" />
       </g>
       {/* la testata verde da manoscritto */}
       <rect width="1080" height={HEAD} fill={`url(#${id}-head)`} />

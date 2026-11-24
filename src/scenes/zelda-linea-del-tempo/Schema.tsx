@@ -182,7 +182,7 @@ export const Ocarina: React.FC<{ s?: number }> = ({ s = 1 }) => (
   </g>
 );
 /** Uno dei tre triangoli d'oro (separati, mai lo stemma). */
-const Tri: React.FC<{ s?: number; glow?: number; T: number; id: string }> = ({ s = 1, glow = 1, T, id }) => (
+export const Tri: React.FC<{ s?: number; glow?: number; T: number; id: string }> = ({ s = 1, glow = 1, T, id }) => (
   <g transform={`scale(${s})`}>
     {glow > 0 && <Glow id={id} x={0} y={-6} r={96} t={T} color={GOLD} amp={0.12} rate={2.4} opacity={0.55 * glow} />}
     <path d="M0 -44 L40 26 H-40 Z" fill={GOLD} stroke={INK} strokeWidth="5" strokeLinejoin="round" />
