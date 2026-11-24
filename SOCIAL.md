@@ -416,6 +416,7 @@ reincarnazione di Jack): spunto per uno Spiegato o per **Doctor Sleep**, già in
 (TikTok, Il miglio verde, 20 nov); **Nascosto nel buio** (TikTok, The Others, 21 nov; chiesto anche Shutter Island, già fatto);
 **Scissione – stagione 2** (Instagram, 22 nov, «in previsione della terza»; su TikTok una persona chiede delle nuove stagioni);
 canzoni **Henna** di Lucio Dalla e **Un'estate al mare** di Giuni Russo (Instagram, commenti di Gli anni, 22 nov).
+**24 novembre** (commenti della sera del 24): **1408** (film del 2007 dal racconto di Stephen King; Instagram, commenti di Ritorno al futuro, 24 nov: «Quando farete room 1408?»). Nei commenti di Gli anni le persone continuano a scrivere il «loro» bar (Saronno, Messina): idea per un post o una storia «il tuo bar degli anni ’90».
 **23 novembre** (commenti della sera del 23): **The Nun – La vocazione del male** (Instagram, commenti di Conjuring, 23 nov;
 spin-off della saga di Conjuring); **Scissione – stagione 3** (TikTok, commenti di Scissione, 23 nov: chiede della terza, già
 confermata; la stagione 2 è già in lista). Nei commenti di Gli anni due persone (TikTok e Instagram) correggono l'età di Pezzali:

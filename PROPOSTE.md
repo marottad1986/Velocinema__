@@ -9,6 +9,7 @@ parte da solo; procedura nella skill `app` (punto 4). L'app riconosce ogni propo
 in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo lo stato in fondo alla riga.
 
 ## Aperte
+- 24 nov 2026 · editore (messaggio nell'app, chiesta dall'editore) · **Video su anniversari ed eventi**: corti e lunghi su eventi della storia o della cronaca in occasione di anniversari, e video di fisica, scienza e cultura generale legati a eventi e ricorrenze; poco adatti alle collaborazioni, ma utili alla crescita di YouTube, che paga per visualizzazioni. Da valutare con la classifica dei format del 29 nov (prova di 2 uscite, decisione del 24 nov). · più iscritti e visualizzazioni YouTube · aperta (portata alla direzione dalla sessione dei commenti della sera)
 - 17 nov 2026 · revisore-musica (Scissione) · **Colpi che si sentono anche sotto la voce**: il ducking di `scripts/voce.mjs`
   (sidechaincompress, comune a tutti) schiaccia i timpani chiave che cadono mentre la voce parla; proposta: ducking più
   leggero sotto i 150 Hz, oppure i colpi chiave nelle pause della voce; e misurare l'emergere dei colpi sul video con la
