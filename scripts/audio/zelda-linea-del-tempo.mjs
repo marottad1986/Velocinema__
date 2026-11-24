@@ -64,10 +64,10 @@ export default (mix, T) => {
   const win = at('ocarina', 3, 1.6);
   const split = at('triforza', 3, 0.5);
   // prima dei colpi forti la musica si ritira (resta solo il rullo del piatto), dopo tace un battito
-  for (const h of [defeat, conquest, win]) taci(mix, h - 0.85, h - 0.03);
+  for (const h of [defeat, conquest, win]) taci(mix, h - 1.1, h - 0.03);
   taci(mix, split - 1.1, split - 0.03);
   taci(mix, split + 0.05, split + BEAT);
-  taci(mix, at('crepuscolo', 1, 1.8) - 0.9, at('crepuscolo', 1, 1.8) - 0.03);
+  taci(mix, at('crepuscolo', 1, 1.8) - 1.1, at('crepuscolo', 1, 1.8) - 0.03);
   taci(mix, at('crepuscolo', 1, 1.8) + 0.05, at('crepuscolo', 1, 1.8) + BEAT);
   taci(mix, defeat + 0.05, defeat + BEAT);
   taci(mix, conquest + 0.05, conquest + BEAT);
@@ -214,7 +214,7 @@ export default (mix, T) => {
   trem(at('sconfitta', 1, 0.1), 1.6, [50, 57, 62], { vel: 46, gain: 0.16 });
   [77, 81, 84].forEach((m, i) => bell(at('sconfitta', 1, 0.1) + i * 0.3, m - 4, 34, -0.3 + i * 0.3)); // la Triforza intera
   for (let i = 0; i < 7; i++) bell(at('sconfitta', 2, 0.6) + i * (1.2 / 7), [74, 77, 81, 84, 86, 89, 93][i], 36, -0.6 + i * 0.2); // i sette saggi
-  clip(mix, 'campana_grave', { t: at('sconfitta', 2, 1.8), da: 0.45, durata: 2.4, gain: 0.5, fadeOut: 1.2, rev: 0.4 }); // il sigillo
+  clip(mix, 'campana_grave', { t: at('sconfitta', 2, 1.8), da: 0.45, durata: 2.4, gain: 0.35, fadeOut: 1.2, rev: 0.4 }); // il sigillo
   motif(Bn(at('sconfitta', 3)) , { id: 'trombone', vel: 38, gain: 0.24, oct: -24 - 3 });
 
   // ---------------------------------------------------------------- 7 · il mare: arpa e glockenspiel, le onde che salgono
