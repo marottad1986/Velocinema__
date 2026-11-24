@@ -3,6 +3,12 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 24 nov 2026 · **Ogni lungo esce come Prima di YouTube** (proposta del manager approvata dall'editore il 22 nov). Il lungo
+  si carica privato con PostFast 24 ore prima; l'editore lo imposta come Prima in YouTube Studio all'ora dell'uscita
+  (avviso con i passi nell'app); se a 1 ora dall'uscita la conferma non c'è, si ricarica pubblico come sempre. Niente LIVE
+  preregistrate su TikTok; diretta 24/7 su YouTube solo dopo i 1.000 iscritti. Procedura in `SOCIAL.md`. · manager,
+  pubblicazione, editore
+
 - 24 nov 2026 · **Livelli della musica anche per i lunghi** (proposta della produzione approvata dall'editore il 22 nov).
   `node scripts/livelli.mjs <lungo>` misura lo spartito delle parti nuove tratto per tratto (buchi, effetti sopra la
   musica, colpi coperti; i ticchettii ripetuti si riassumono in una riga) e `scripts/lunghi/pacchetto.mjs --musica` lo
