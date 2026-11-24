@@ -1,24 +1,24 @@
-# Zelda, la linea del tempo (Videogiochi spiegati, Spiegato semplice con schema): suggerimenti per le scene
+# Zelda, la linea del tempo (Videogiochi spiegati, Spiegato semplice): suggerimenti per le scene
 
 Parte di `QUALITA.md` (regole generali e criteri di accettazione lì): qui solo il look e i suggerimenti scena per scena.
 
-Lo schema (`src/scenes/zelda-linea-del-tempo/Schema.tsx`) è una **pergamena miniata** che si scrive da sola, chiusa tra
-due cilindri d'ottone (si vedono tutti e due nell'inquadratura larga finale), con tralci d'inchiostro e foglie d'oro ai
-margini. Dall'alto: L'ORIGINE (Skyward Sword: isola nel cielo con la cascata, mare di nuvole, spada generica nella roccia
-nel fascio di luce, la tempesta nera del demone che viene risucchiata nella spada); la riga «secoli dopo…»; HYRULE (Ocarina
-of Time: tempio con la spada nel piedistallo e i battenti che si aprono, castello con le torri a cono blu, cielo dove
-cadono i tre triangoli d'oro, che diventa rosso quando Ganondorf conquista il regno); il BIVIO, dove l'inchiostro si divide
-in tre rami (rosso, azzurro, ambra) con il pennino d'oro acceso in punta; tre finestre a sesto acuto miniate (il mondo
-rosso con i sette saggi che sigillano la fiamma; Hyrule che finisce sotto il mare con la barca e le isole; il crepuscolo
-con il varco d'ombra); MOLTO DOPO (terre selvagge, rovine, vulcano, nebbia) e in fondo il calamaio con la penna d'oca.
-Prima del loro capitolo bivio e finestre sono solo abbozzati a matita, tratteggiati con il «?».
-- Personaggi = cerchi con l'oggetto: spada generica (Link: mai l'elsa alata), corona (Zelda), nube di tempesta (Mortipher),
-  fiamma viola (Ganondorf). Tre triangoli d'oro sempre separati, mai lo stemma; i pezzi volano ai tre cerchi.
-- Unico oro acceso: triangoli, pennino, cerchio del bivio. Rosso = ramo dell'eroe sconfitto, anello del nodo, maledizione;
-  azzurro = ramo adulto; ambra = ramo bambino; tratteggio giallo = il viaggio indietro nel tempo dell'ocarina.
-- Titolo dei capitoli scuro sulla pergamena (`dark: true`) con una velatura color pergamena in alto; titoli brevi (una riga).
-- Cartigli in Cinzel con i titoli dei giochi dentro le finestre; i nomi dei rami sotto le finestre solo da vicino (zoom > 1,2).
-- Copertina: testata verde da manoscritto con ZELDA in Cinzel crema e ombra verde, sotto la miniatura di giorno (spada nella
-  roccia nel fascio di luce, castello, la linea che arriva al bivio e si apre in tre sentieri con le scintille che corrono);
-  finale: la stessa scena al tramonto.
-- Gli eventi usano `at()` arrotondato alla croma della musica (90 bpm, tre quarti), gli stessi istanti dello spartito.
+**Seconda versione** (24 nov, dopo il «da rifare» dell'editore: «qualità grafica scarsa e povera»). La prima versione era
+una pergamena chiara con miniature piccole incorniciate: troppo vuoto, oggetti piccoli, look piatto. La seconda è un
+**mondo unico a tutto schermo** (`src/scenes/zelda-linea-del-tempo/Mondo.tsx`) che la camera attraversa, percorso da un
+filo d'oro (la linea del tempo). Ogni luogo è una scena 1080×1920 con 5–6 piani in parallasse rispetto alla camera:
+- ORIGINI (`Origine.tsx`): cielo d'oro con il sole e i raggi, l'isola nel cielo con la torre e la cascata, la tempesta del
+  demone (vortice nero, bagliore rosso, fulmini) risucchiata nella spada sullo sperone di roccia sopra il mare di nuvole.
+- HYRULE (`Hyrule.tsx`): castello grande in pietra a corsi con torri a cono blu e stendardi, borgo con i comignoli, fiume
+  con i riflessi e il ponte, tempio con i battenti e la spada, prato fiorito con l'erba alta ai bordi; rosso con fuochi e
+  braci nella conquista, caldo all'alba della vittoria. La Triforza: tre triangoli separati che scendono con i raggi.
+- VALLE DEL BIVIO (`Bivio.tsx`, larga sopra i tre mondi): orizzonte diviso in tre colori, campi a scacchi, villaggi e
+  mulini, il cerchio di pietre dove il filo si divide in tre fiumi di luce.
+- TRE MONDI (`Rami.tsx`): sigillato (cremisi, luna di sangue, castello nero, colonna di fiamma viola, sigillo dei sette
+  saggi), sommerso (il mare sale e copre il castello, che resta visibile sott'acqua; isole e barca a vela), crepuscolo
+  (sole enorme dietro il castello controluce, varco d'ombra con il bordo d'oro).
+- MOLTO DOPO (`Dopo.tsx`): terre selvagge all'ora d'oro, vulcano, rovine, nebbia a strati.
+Alla fine la camera si allontana e mostra tutto il mondo come uno schema intero, nel buio stellato.
+- Personaggi = cerchi con l'oggetto: spada generica (Link), corona (Zelda), nube di tempesta (Mortipher), fiamma viola (Ganondorf).
+- Titolo chiaro su velatura scura in alto. Cartigli in Cinzel con i titoli dei giochi, solo nel loro capitolo.
+- Copertina: testata verde con ZELDA in Cinzel, sotto lo stesso Hyrule del video con i tre triangoli nel cielo e il filo
+  che arriva al bivio e si apre in tre fiumi di luce.
