@@ -82,12 +82,12 @@
       ],
       "scena": "Schema su pergamena: vedi Schema.tsx.",
       "sottotitoli": [
-        "La storia comincia con Skyward Sword.",
+        "In ordine di tempo, la storia parte da Skyward Sword.",
         "Lì il demone Mortipher, sconfitto, lancia una maledizione:",
         "perseguiterà per sempre i discendenti di Link e Zelda.",
-        "Così rinascono in ogni epoca, come in una recita."
+        "Così male ed eroi rinascono sempre, come in una recita."
       ],
-      "voce_velocita": 1.06
+      "voce_velocita": 1.1
     },
     {
       "id": "triforza",
@@ -115,8 +115,9 @@
         "In Ocarina of Time, Ganondorf, il re dei ladri, vuole la Triforza.",
         "Link, senza volerlo, gli apre la strada.",
         "Così Ganondorf prende il Potere e conquista Hyrule.",
-        "Link dorme sette anni, si sveglia adulto e lo sconfigge."
-      ]
+        "Link, troppo piccolo, dorme sette anni, poi adulto lo sconfigge."
+      ],
+      "voce_velocita": 1.1
     },
     {
       "id": "bivio",
@@ -128,7 +129,7 @@
         "Poi Zelda, con un'ocarina, rimanda Link a quando era bambino.",
         "E qui, dice Nintendo, la storia si divide,",
         "come un fiume in tre rami:",
-        "uno se Link perde, e due se vince."
+        "uno dove Link perde, e due dove vince."
       ]
     },
     {
@@ -138,9 +139,9 @@
       "personaggi": [],
       "scena": "Schema su pergamena: vedi Schema.tsx.",
       "sottotitoli": [
-        "Nel primo ramo Link perde.",
-        "Ganondorf prende tutta la Triforza,",
-        "e i saggi, custodi del regno, riescono solo a sigillarlo.",
+        "Nel primo ramo Link perde lo scontro.",
+        "Così Ganondorf prende tutta la Triforza,",
+        "e i saggi, custodi del regno, possono solo sigillarlo.",
         "Qui c'è A Link to the Past, e perfino il primo Zelda."
       ],
       "voce_velocita": 1.08
@@ -152,10 +153,10 @@
       "personaggi": [],
       "scena": "Schema su pergamena: vedi Schema.tsx.",
       "sottotitoli": [
-        "Nel secondo ramo Link è partito: manca un eroe.",
-        "Ganondorf torna, e gli dei sommergono Hyrule nel mare.",
-        "Sopra le onde c'è Wind Waker, tutto isole,",
-        "poi un nuovo eroe cerca una terra nuova."
+        "Nel secondo ramo Link è tornato indietro: niente eroe.",
+        "Ganondorf torna, e per fermarlo gli dei sommergono Hyrule.",
+        "Sul mare c'è Wind Waker, tutto isole,",
+        "e il suo eroe, poi, trova una terra nuova."
       ],
       "voce_velocita": 1.1
     },
@@ -168,8 +169,8 @@
       "sottotitoli": [
         "Nel terzo ramo Link, tornato bambino, avverte Zelda.",
         "Ganondorf viene fermato e cacciato nel Reame del Crepuscolo.",
-        "Qui stanno Majora's Mask e Twilight Princess,",
-        "dove lui torna da quel mondo d'ombra."
+        "Qui ci sono Majora's Mask e Twilight Princess,",
+        "dove Ganondorf torna da quel mondo d'ombra."
       ],
       "voce_velocita": 1.1
     },
@@ -180,7 +181,7 @@
       "personaggi": [],
       "scena": "Schema su pergamena: vedi Schema.tsx.",
       "sottotitoli": [
-        "Breath of the Wild e Tears of the Kingdom stanno dopo tutti,",
+        "Breath of the Wild e Tears of the Kingdom vengono dopo tutto,",
         "in un futuro lontanissimo.",
         "Ma Nintendo non dice da quale ramo arrivino,",
         "e lascia scegliere a chi gioca: tu quale sceglieresti?"
@@ -202,11 +203,13 @@
     "Nel ramo bambino Link racconta a Zelda il destino di Hyrule; Ganondorf, che i Saggi non riescono a giustiziare, viene bandito nel Reame del Crepuscolo, da cui torna in Twilight Princess: https://it.wikipedia.org/wiki/The_Legend_of_Zelda:_Twilight_Princess",
     "Twilight Princess nel ramo bambino, Ganondorf bandito nel Crepuscolo dopo l'esecuzione fallita: https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Twilight_Princess",
     "Nel ramo adulto Ganon torna, l'Eroe del Tempo non c'è e gli dei sommergono Hyrule sotto il mare; il mondo di Wind Waker è fatto di isole: https://it.wikipedia.org/wiki/The_Legend_of_Zelda:_The_Wind_Waker",
-    "Dopo Wind Waker e Phantom Hourglass, Spirit Tracks è ambientato nella nuova terra fondata dagli eroi (New Hyrule): https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Spirit_Tracks",
     "Hyrule Historia (Nintendo, 21 dicembre 2011) presenta la cronologia ufficiale divisa in tre dopo Ocarina of Time: https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Hyrule_Historia",
     "Il ramo dell'eroe sconfitto parte dalla sconfitta di Link per mano di Ganon e comprende A Link to the Past (fonte non Wikipedia): https://www.spaziogames.it/speciali/Zelda-La-Cronologia-Seconda-Parte-227413",
     "Nel ramo dell'eroe sconfitto The Legend of Zelda (1986) e Zelda II stanno in fondo, dopo A Link to the Past e gli altri: https://en.wikipedia.org/wiki/The_Legend_of_Zelda_(series)",
     "Breath of the Wild alla fine della cronologia; Tears of the Kingdom ambientato poco dopo la fine di Breath of the Wild: https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild",
-    "Eiji Aonuma, produttore della serie, non collega Breath of the Wild a un ramo e lascia ai giocatori la risposta (fonte non Wikipedia): https://www.nintendolife.com/news/2018/11/eiji_aonuma_wants_players_to_decide_how_breath_of_the_wild_connects_to_existing_zelda_timeline"
+    "Eiji Aonuma, produttore della serie, non collega Breath of the Wild a un ramo e lascia ai giocatori la risposta (fonte non Wikipedia): https://www.nintendolife.com/news/2018/11/eiji_aonuma_wants_players_to_decide_how_breath_of_the_wild_connects_to_existing_zelda_timeline",
+    "Dopo Phantom Hourglass il Link di Wind Waker, Tetra e i pirati fondano la nuova terra (New Hyrule); Spirit Tracks è ambientato un secolo dopo con un nuovo Link: https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Spirit_Tracks",
+    "Lo spirito di Link resta sigillato sette anni perché il suo corpo non era ancora pronto a brandire la Spada Suprema: https://it.wikipedia.org/wiki/The_Legend_of_Zelda:_Ocarina_of_Time",
+    "La maledizione: l'incarnazione dell'odio del demone seguirà sempre gli eredi della dea e dell'eroe, e si avvera con Ganondorf in Ocarina of Time: https://en.wikipedia.org/wiki/The_Legend_of_Zelda"
   ]
 }
