@@ -3,6 +3,12 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 24 nov 2026 · **Dati per vendere** (proposta della direzione approvata dall'editore il 22 nov). Ogni domenica il manager
+  scrive in `collaborazioni/numeri.md` le cifre che chiedono gli sponsor: visualizzazioni medie e mediana per video negli
+  ultimi 30 giorni, tasso di condivisione e salvataggio, follower per piattaforma; una volta al mese il pubblico per età,
+  genere e città dagli screenshot dei pannelli che manda l'editore. Prima riga domenica 29 novembre; il media kit prende i
+  numeri da lì. · manager, direzione
+
 - 24 nov 2026 · **Velocità della voce per capitolo** (proposta del revisore voce approvata dall'editore il 22 nov). Un
   capitolo denso può avere `"voce_velocita"` nel JSON (es. 1.08, da 0,7 a 1,2, meglio non oltre 1,10): `genera-voce.mjs`
   genera quella clip già più veloce invece di farla accelerare dopo da `npm run voce`; `ascolta-voce.mjs` suggerisce il
