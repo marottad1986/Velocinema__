@@ -14,7 +14,7 @@ export const strumenti = ['celli', 'viole', 'violini', 'contrabbasso', 'celli_pi
   'marimba', 'tromba_sordina', 'glockenspiel', 'pianoforte_coda', 'arpa', 'violino_solo', 'timpani', 'gong', 'piatto_sospeso', 'tom', 'cassa', 'charleston', 'rullante'];
 export const effetti = ['vento_leggero', 'auto_epoca', 'sirene', 'scatti', 'campanello', 'ceramica', 'colpi_legno', 'pistola', 'tintinnio', 'ali',
   'ronzio_neon', 'stoffa', 'porta_sbatte', 'metallo_schianto', 'serratura', 'pagine', 'sacchi', 'porta_cigolio', 'vetri',
-  'aereo', 'esplosioni', 'fuoco', 'onde'];
+  'aereo', 'esplosioni', 'fuoco', 'spruzzo'];
 /** Stanze piccole e deserto aperto: coda media. */
 export const sala = { rt60: 1.8, brillo: 5200, predelay: 0.02, wet: 0.42 };
 
@@ -54,9 +54,9 @@ export default (mix, T) => {
   const atm = E('bancomat', 2, 1.5);
   const boom = E('aerei', 2, -0.6);
   // un attimo di vuoto prima dei colpi forti e un battito di silenzio dopo
-  taci(mix, shot1 - BEAT, shot1 - 0.03);
-  taci(mix, atm - BEAT, atm - 0.03);
-  taci(mix, boom - BEAT, boom - 0.03);
+  taci(mix, shot1 - 2 * BEAT, shot2 - 0.03);
+  taci(mix, atm - 2 * BEAT, atm - 0.03);
+  taci(mix, boom - 2 * BEAT, boom - 0.03);
   taci(mix, shot2 + 0.05, shot2 + BEAT);
   taci(mix, atm + 0.05, atm + BEAT);
   taci(mix, boom + 0.05, boom + 2 * BEAT);
@@ -179,7 +179,7 @@ export default (mix, T) => {
   strings(B(T.fuga), B(T.bancomat), { half: true, vel: 42, gain: 0.28, chords: CHD });
   motif(B(T.fuga), B(T.bancomat), { half: true, vel: 50, gain: 0.24 });
   clip(mix, 'stoffa', { t: shirt - 0.15, da: 0.2, durata: 0.6, gain: 0.4, fadeOut: 0.2, rev: 0.2 }); // la camicia cade sul mucchio
-  clip(mix, 'sirene', { t: amb, da: 2.4, durata: T.bancomat - amb, gain: 0.3, fadeIn: 0.4, fadeOut: 0.8, rev: 0.3, lp: 3500 }); // l'ambulanza
+  clip(mix, 'sirene', { t: amb, da: 2.4, durata: T.bancomat - amb, gain: 0.12, fadeIn: 0.4, fadeOut: 0.8, rev: 0.3, lp: 3500 }); // l'ambulanza
   glock(amb + 0.6, 81, 0.14); glock(amb + 0.6 + BEAT, 86, 0.12); // il braccialetto
 
   // ---- bancomat: la casa dei tossici, passo doppio; i tre telefoni, la porta, il bancomat che crolla e un battito di silenzio
@@ -201,9 +201,10 @@ export default (mix, T) => {
   groove(B(cue('saul', 1)), B(T.gus), { vel: 36, snr: false });
   clip(mix, 'ronzio_neon', { t: neon, da: 1, durata: T.gus - neon, gain: 0.04, fadeIn: 0.05, fadeOut: 0.5, rev: 0.1 }); // l'insegna si accende
   tromba(neon, [[0, 76, 1], [1, 79, 1], [2, 76, 2]], { gain: 0.22 }); // l'avvocato, un po' sbruffone
-  clip(mix, 'serratura', { t: open - 0.1, da: 2.43, durata: 0.5, gain: 0.22, rev: 0.25 }); // la ventiquattrore si apre
-  clip(mix, 'pagine', { t: open + 0.3, da: 2, durata: 0.8, gain: 0.45, fadeOut: 0.3, rev: 0.25, pan: 0.2 }); // le mazzette
+  clip(mix, 'serratura', { t: open - 0.1, da: 2.43, durata: 0.5, gain: 0.12, rev: 0.25 }); // la ventiquattrore si apre
+  clip(mix, 'pagine', { t: open + 0.3, da: 2.55, durata: 0.8, gain: 0.15, fadeOut: 0.3, rev: 0.25, pan: 0.2 }); // le mazzette
   [83, 88].forEach((m, j) => glock(open + 0.3 + j * BEAT / 2, m, 0.12));
+  strings(B(cue('saul', 2)), B(T.gus), { vel: 40, gain: 0.22, k0: 2 });
 
   // ---- gus: la stazione dei camion di notte; l'insegna del pollo, Jesse che non risponde, il bagagliaio, le chiamate perse
   const sign = E('gus', 0, 1.4), jesse = E('gus', 1, 0.8), trunk = E('gus', 2, 0.4), calls = E('gus', 2, 1.6);
@@ -212,7 +213,7 @@ export default (mix, T) => {
   motif(B(T.gus), B(cue('gus', 1)), { vel: 54, gain: 0.24 });
   strings(B(cue('gus', 1)), B(T.jane), { vel: 44, gain: 0.28, k0: 1 });
   [0, 1].forEach((k) => suona(mix, 'violini_pizz', 81, { t: jesse + k * BEAT / 2, dur: 0.2, vel: 40, gain: 0.1, rev: 0.3, release: 0.2 })); // la chiamata a vuoto
-  clip(mix, 'serratura', { t: trunk, da: 2.43, durata: 0.5, gain: 0.2, rev: 0.25, pan: -0.2 }); // il bagagliaio
+  clip(mix, 'serratura', { t: trunk, da: 2.43, durata: 0.5, gain: 0.12, rev: 0.25, pan: -0.2 }); // il bagagliaio
   glock(trunk + 0.3, 83, 0.14);
   for (let k = 0; k < 6; k++) suona(mix, 'violini_pizz', [86, 81][k % 2], { t: calls + k * BEAT / 2, dur: 0.15, vel: 40, pan: 0.3, gain: 0.09, rev: 0.3, release: 0.15 }); // le chiamate perse
   trem(calls, T.jane - calls, [40, 52, 65], { gain: 0.24 });
@@ -225,15 +226,16 @@ export default (mix, T) => {
   clip(mix, 'scatti', { t: light - 0.02, da: 0.47, durata: 0.12, fadeOut: 0.03, gain: 0.22, rev: 0.2 }); // Jane.tsx: lo scatto dell'accendino
   clip(mix, 'fuoco', { t: light + 0.05, da: 2, durata: 1.6, gain: 0.12, fadeIn: 0.05, fadeOut: 0.6, rev: 0.15 }); // la fiamma
   for (let k = 0; k < 7; k++) suona(mix, 'violini_pizz', [76, 77, 76, 74, 76, 77, 79][k], { t: note + k * BEAT / 4, dur: 0.2, vel: 38, pan: -0.2, gain: 0.08, rev: 0.3, release: 0.15 }); // si scrive PAGA O PARLO
-  trem(note + BEAT, bag - note - BEAT, [52, 53], { gain: 0.24 });
+  trem(note + BEAT, B(T.notte) - note - BEAT, [52, 53], { gain: 0.24 });
   clip(mix, 'sacchi', { t: bag, da: 0.3, durata: 0.5, gain: 0.35, fadeOut: 0.15, rev: 0.2 }); // il borsone scivola dentro
   clip(mix, 'pagine', { t: bag + 0.6, da: 2.5, durata: 0.6, gain: 0.2, fadeOut: 0.2, rev: 0.2 }); // si apre sulle mazzette
 
   // ---- notte: il corridoio buio; la porta, il bicchiere, la luce che si spegne; solo il violino e un bordone
   const openN = E('notte', 0, 0.6), glass = E('notte', 1, 1.4), dim = E('notte', 2, 0.8);
-  clip(mix, 'porta_cigolio', { t: openN, da: 10.68, durata: 1.6, gain: 0.16, fadeOut: 0.5, rev: 0.35 }); // Notte.tsx: la porta si apre
-  suona(mix, 'contrabbasso', 28, { t: B(T.notte), dur: T.aerei - B(T.notte), vel: 44, gain: 0.4, attack: 0.8, release: 1.2, rev: 0.5 });
-  trem(B(T.notte), glass, [40, 41], { gain: 0.22 });
+  clip(mix, 'porta_cigolio', { t: openN, da: 10.68, durata: 1.6, gain: 0.1, fadeOut: 0.5, rev: 0.35 }); // Notte.tsx: la porta si apre
+  suona(mix, 'contrabbasso', 28, { t: B(T.notte), dur: T.aerei - B(T.notte), vel: 44, gain: 0.6, attack: 0.8, release: 1.2, rev: 0.5 });
+  trem(B(T.notte), glass, [40, 41], { gain: 0.32 });
+  strings(B(T.notte), dim, { half: true, vel: 36, gain: 0.18 });
   clip(mix, 'vetri', { t: glass + 0.3, da: 0.12, durata: 0.35, gain: 0.2, fadeOut: 0.15, rev: 0.3, lp: 5000 }); // il bicchiere si rovescia
   violino(glass + BEAT, [[0, 77, 2], [2, 76, 4]], { gain: 0.2 });
   violino(dim, [[0, 71, 3], [3, 72, 2], [5, 71, 6]], { gain: 0.18 }); // la luce cala
@@ -242,26 +244,25 @@ export default (mix, T) => {
 
   // ---- aerei: il cielo; la torre, il piccolo aereo, lo scontro (silenzio di due battiti), la pioggia di rottami, lo spruzzo
   const rain = E('aerei', 2, 0.2), splash = E('aerei', 2, 2.6);
-  clip(mix, 'aereo', { t: T.aerei, da: 2, durata: boom - T.aerei, gain: 0.12, fadeIn: 1.2, fadeOut: 0.2, rev: 0.2, lp: 5000 }); // Aerei.tsx: l'aereo di linea
+  clip(mix, 'aereo', { t: T.aerei, da: 11.4, durata: boom - T.aerei, gain: 0.08, fadeIn: 1.2, fadeOut: 0.2, rev: 0.2, lp: 5000 }); // Aerei.tsx: l'aereo di linea
   pizz(B(T.aerei), boom - BEAT, { vel: 56, gain: 0.34, k0: 1 });
   for (let k = 0; k < 8; k++) suona(mix, 'violini_pizz', 88, { t: B(T.aerei) + k * BAR / 2, dur: 0.1, vel: 30, gain: 0.05, pan: 0.4, rev: 0.4, release: 0.1 }); // il radar
   groove(B(cue('aerei', 1)), boom - BEAT, { vel: 44 });
   trem(B(cue('aerei', 1)), boom - B(cue('aerei', 1)), [40, 41, 64, 65, 76, 77], { gain: 0.32 });
   crescendo(mix, boom - BEAT, 2.4, { gain: 0.28 });
-  clip(mix, 'esplosioni', { t: boom, da: 0.19, durata: 3.5, gain: 0.3, fadeOut: 1.4, rev: 0.35 }); // lo scontro
+  clip(mix, 'esplosioni', { t: boom, da: 3.24, durata: 3.5, gain: 0.2, fadeOut: 1.4, rev: 0.35 }); // lo scontro
   timp(boom, 36, 120, 0.9);
   colpo(mix, 'gong', 'gong_hit_p', { t: boom + 0.02, vel: 90, rev: 0.6, gain: 0.34, dur: 4, release: 1.2 });
   clip(mix, 'fuoco', { t: rain, da: 2, durata: T.fine - rain, gain: 0.06, fadeIn: 0.4, fadeOut: 0.6, rev: 0.2 }); // i rottami in fiamme
-  strings(boom + 2 * BEAT, T.fine, { vel: 46, gain: 0.3, k0: 1 });
-  for (let k = 0; k < 4; k++) tom(rain + k * BEAT, 50 - k * 4, -4); // i rottami sui tetti
-  clip(mix, 'onde', { t: splash - 0.05, da: 1.2, durata: 1.0, gain: 0.4, fadeOut: 0.4, rev: 0.25 }); // lo spruzzo nella piscina
-  glock(splash, 88, 0.14);
+  strings(boom + 2 * BEAT, B(T.fine) + 2 * BEAT, { vel: 46, gain: 0.3, k0: 1 });
+  for (let k = 0; k < 4; k++) tom(rain + 2.5 * BEAT + k * BEAT / 2, 50 - k * 4, -4); // i rottami sui tetti
+  clip(mix, 'spruzzo', { t: splash, da: 0.4, durata: 0.9, gain: 0.3, fadeOut: 0.3, rev: 0.25 }); // lo spruzzo nella piscina
 
   // ---- fine: il bianco e nero con il carillon, il colore che torna (Sol maggiore), il secondo cellulare, le luci che si spengono
   const color = E('fine', 1, 0.2), phone = E('fine', 1, 1.6), off = E('fine', 2, 0.4);
   wind(T.fine, T.END - T.fine, 0.03, 0.5);
-  carillon(B(T.fine), color, { gain: 0.2 });
-  suona(mix, 'contrabbasso', 28, { t: B(T.fine), dur: color - B(T.fine), vel: 44, gain: 0.4, attack: 0.5, release: 1, rev: 0.5 });
+  carillon(B(T.fine) + 2 * BEAT, color, { gain: 0.2 });
+  suona(mix, 'contrabbasso', 28, { t: B(T.fine) + 2 * BEAT, dur: color - B(T.fine) - 2 * BEAT, vel: 44, gain: 0.4, attack: 0.5, release: 1, rev: 0.5 });
   strings(color, B(T.finale), { vel: 44, gain: 0.3, high: true, chords: CHG }); // il colore torna
   [0, 1, 2, 3].forEach((i) => suona(mix, 'arpa', [55, 59, 62, 67][i], { t: color + i * BEAT / 2, dur: 1.6, vel: 50, pan: -0.2 + i * 0.15, rev: 0.5, gain: 0.28, release: 1.2 }));
   for (let k = 0; k < 4; k++) suona(mix, 'violini_pizz', 81, { t: phone + k * BEAT / 4, dur: 0.12, vel: 40, gain: 0.08, rev: 0.3, release: 0.1 }); // il secondo cellulare vibra
