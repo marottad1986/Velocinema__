@@ -14,6 +14,8 @@ si può verificare in automatico, una regola in `scripts/controlli.mjs`). Righe 
 - Copertina: frase di lancio presente nel fotogramma 0 o entrata lenta → fotogramma 0 pulito, frase da 0,4 s in 0,3 s.
 - Evento visivo sfasato rispetto alla frase che lo nomina → ogni evento agganciato a `cues[i]`, verificato su `tempi.md`.
 
+- Schema su fondo piatto con miniature piccole e molto spazio vuoto (24 nov, Zelda prima versione: «qualità grafica scarsa e povera», da rifare) → negli Spiegato semplice lo schema vive dentro scene piene a tutto schermo (5–6 piani, luce, particelle); prima di mandare il video, confronto dei fotogrammi con l'ultimo video forte, non solo con l'ultimo dello stesso formato.
+
 ## Musica (revisore-musica, quasi ogni film)
 - Eventi fuori griglia (copertina compresa) → ogni istante passa da `griglia()`, anche in copertina.
 - Nessun silenzio dopo un colpo forte → almeno un battito di pausa dopo sparo, tuono, eliminazione.

@@ -1,0 +1,216 @@
+{
+  "formato": "spiegato",
+  "tipo": "videogioco",
+  "schema": true,
+  "sigla": false,
+  "titolo": "Zelda, la linea del tempo",
+  "regista": "Nintendo",
+  "anno": 1986,
+  "bpm": 90,
+  "palette": {
+    "chiaro": "#F6EBCF",
+    "principale": "#3E8E4A",
+    "scuro": "#16261A",
+    "accento": "#F2C230"
+  },
+  "pronuncia": {
+    "Hyrule": "Àirul",
+    "gli dei": "gli dèi",
+    "1986": "millenovecentottantasei",
+    "Ganondorf": "Gànondorf",
+    "Ganon": "Gànon",
+    "Mortipher": "Mòrtifer",
+    "Skyward Sword": "Skàiuord Sòrd",
+    "Ocarina of Time": "Ocarina of Tàim",
+    "A Link to the Past": "E Link tu de Pàst",
+    "Wind Waker": "Uìnd Uèiker",
+    "Majora's Mask": "Magiòras Màsk",
+    "Twilight Princess": "Tuàilait Prìncess",
+    "Breath of the Wild": "Brèz of de Uàild",
+    "Tears of the Kingdom": "Tìrs of de Kìngdom"
+  },
+  "personaggi": [
+    {
+      "nome": "Link",
+      "ruolo": "l'eroe",
+      "oggetto": "spada"
+    },
+    {
+      "nome": "Zelda",
+      "ruolo": "la principessa",
+      "oggetto": "corona"
+    },
+    {
+      "nome": "Mortipher",
+      "ruolo": "il demone delle origini",
+      "oggetto": "nube di tempesta nera"
+    },
+    {
+      "nome": "Ganondorf",
+      "ruolo": "il re dei ladri",
+      "oggetto": "fiamma viola"
+    }
+  ],
+  "copertina": {
+    "durata": 4,
+    "frase_lancio": "Un solo regno, tre futuri diversi.",
+    "immagine": "Locandina senza sigla, con «VIDEOGIOCHI SPIEGATI» in alto e il titolo ZELDA (Cinzel color crema con l'ombra verde) già completo dal primo fotogramma, sotto «LA LINEA DEL TEMPO»: colline verdi di giorno, un castello con le torri a cono blu sulla collina a destra, una spada generica piantata in una roccia al centro dentro un fascio di luce con il pulviscolo, e davanti, nell'erba fiorita, una linea d'inchiostro che arriva a un bivio e si apre in tre sentieri colorati (oro, azzurro, rosso). NON usare persone, logo, caratteri, immagini, mappe o oggetti uguali a quelli del gioco (niente Spada Suprema con l'elsa alata, niente stemma della Triforza).",
+    "voce": "Zelda: perché la sua storia si divide in tre?"
+  },
+  "capitoli": [
+    {
+      "id": "chi",
+      "titolo": "Chi sono Link e Zelda?",
+      "durata": 12,
+      "personaggi": [
+        "Link",
+        "Zelda"
+      ],
+      "scena": "Schema su pergamena: vedi Schema.tsx.",
+      "sottotitoli": [
+        "Zelda è una saga di avventure Nintendo, dal 1986.",
+        "L'eroe, Link, salva il regno di Hyrule,",
+        "insieme a Zelda, la principessa.",
+        "Ma ogni gioco ha un Link e una Zelda nuovi."
+      ]
+    },
+    {
+      "id": "origine",
+      "titolo": "Perché rinascono sempre?",
+      "durata": 14,
+      "personaggi": [
+        "Mortipher"
+      ],
+      "scena": "Schema su pergamena: vedi Schema.tsx.",
+      "sottotitoli": [
+        "In ordine di tempo, la storia parte da Skyward Sword.",
+        "Lì il demone Mortipher, sconfitto, lancia una maledizione:",
+        "perseguiterà per sempre i discendenti di Link e Zelda.",
+        "Così male ed eroi rinascono sempre, come in una recita."
+      ],
+      "voce_velocita": 1.1
+    },
+    {
+      "id": "triforza",
+      "titolo": "Cos'è la Triforza?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema su pergamena: vedi Schema.tsx.",
+      "sottotitoli": [
+        "Poi c'è la Triforza, tre triangoli d'oro magici.",
+        "Uno è il Potere, uno la Saggezza, uno il Coraggio.",
+        "Chi la tocca deve avere il cuore in equilibrio,",
+        "altrimenti si spezza e gliene resta un pezzo."
+      ],
+      "voce_velocita": 1.08
+    },
+    {
+      "id": "ocarina",
+      "titolo": "Cosa fa Ganondorf?",
+      "durata": 14,
+      "personaggi": [
+        "Ganondorf"
+      ],
+      "scena": "Schema su pergamena: vedi Schema.tsx.",
+      "sottotitoli": [
+        "In Ocarina of Time, Ganondorf, il re dei ladri, vuole la Triforza.",
+        "Link, senza volerlo, gli apre la strada.",
+        "Così Ganondorf prende il Potere e conquista Hyrule.",
+        "Link, troppo piccolo, dorme sette anni, poi adulto lo sconfigge."
+      ],
+      "voce_velocita": 1.1
+    },
+    {
+      "id": "bivio",
+      "titolo": "Perché si divide in tre?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema su pergamena: vedi Schema.tsx.",
+      "sottotitoli": [
+        "Poi Zelda, con un'ocarina, rimanda Link a quando era bambino.",
+        "E qui, dice Nintendo, la storia si divide,",
+        "come un fiume in tre rami:",
+        "uno dove Link perde, e due dove vince."
+      ]
+    },
+    {
+      "id": "sconfitta",
+      "titolo": "E se l'eroe perde?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema su pergamena: vedi Schema.tsx.",
+      "sottotitoli": [
+        "Nel primo ramo Link perde lo scontro.",
+        "Così Ganondorf prende tutta la Triforza,",
+        "e i saggi, custodi del regno, possono solo sigillarlo.",
+        "Qui c'è A Link to the Past, e perfino il primo Zelda."
+      ],
+      "voce_velocita": 1.08
+    },
+    {
+      "id": "mare",
+      "titolo": "E il futuro senza eroe?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema su pergamena: vedi Schema.tsx.",
+      "sottotitoli": [
+        "Nel secondo ramo Link torna indietro: niente eroe.",
+        "Ganondorf torna, e per fermarlo gli dei sommergono Hyrule.",
+        "Sul mare c'è Wind Waker, tutto isole,",
+        "e il suo eroe poi trova una terra nuova."
+      ],
+      "voce_velocita": 1.1
+    },
+    {
+      "id": "crepuscolo",
+      "titolo": "E se Link torna bambino?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema su pergamena: vedi Schema.tsx.",
+      "sottotitoli": [
+        "Nel terzo ramo Link, tornato bambino, avverte Zelda.",
+        "Ganondorf viene cacciato nel Reame del Crepuscolo.",
+        "Qui ci sono Majora's Mask e Twilight Princess,",
+        "dove Ganondorf torna da quel mondo d'ombra."
+      ],
+      "voce_velocita": 1.1
+    },
+    {
+      "id": "dopo",
+      "titolo": "E gli ultimi giochi?",
+      "durata": 12,
+      "personaggi": [],
+      "scena": "Schema su pergamena: vedi Schema.tsx.",
+      "sottotitoli": [
+        "Breath of the Wild e Tears of the Kingdom vengono dopo tutto,",
+        "in un futuro lontanissimo.",
+        "Ma Nintendo non dice da quale ramo arrivino,",
+        "e lascia scegliere a chi gioca: tu quale sceglieresti?"
+      ]
+    }
+  ],
+  "finale": {
+    "durata": 4,
+    "voce": "Una maledizione, un bivio e tre futuri per lo stesso regno.",
+    "immagine": "La stessa scena della copertina più calma, al tramonto (il fascio di luce spento, i tre sentieri accesi nell'erba); riquadro in alto: 'Ti è servito?' + pulsanti 'Metti like' e 'Segui la pagina' + 'Commenta con il gioco che vorresti.' + riga piccola 'Le spiegazioni complete sono su YouTube'."
+  },
+  "musica": "Originale e strumentale, fiabesca: 90 bpm in tre quarti (una battuta ogni 2 s), arpa in arpeggi e glissandi come filo conduttore, glockenspiel per la magia, corni per l'avventura, archi; il bivio si sente: lo stesso motivo inventato qui si divide in tre colori (ottoni per il ramo dell'eroe sconfitto, arpa e glockenspiel per il mare, archi gravi e violino solo per il crepuscolo); timpani nei colpi (il sigillo, la conquista, lo scontro). Niente temi, sigle o melodie della serie (né la ninna nanna né la canzone dei giochi).",
+  "fonti": [
+    "Serie di Nintendo ideata da Miyamoto e Tezuka, primo gioco nel 1986; regno di Hyrule, l'eroe Link, la principessa Zelda, Ganon/Ganondorf: https://it.wikipedia.org/wiki/The_Legend_of_Zelda",
+    "Link e Zelda si reincarnano nella maggior parte dei giochi; Skyward Sword è l'inizio della storia della serie; dopo Ocarina of Time la cronologia si divide in tre (eroe sconfitto, ramo bambino, ramo adulto); Breath of the Wild collocato nel 2018 dopo tutti i giochi precedenti senza indicare il ramo: https://en.wikipedia.org/wiki/The_Legend_of_Zelda",
+    "Il demone sconfitto lancia la maledizione: il suo odio rinascerà e perseguiterà per sempre i discendenti di Link e Zelda; Link e Zelda si reincarnano: https://en.wikipedia.org/wiki/Universe_of_The_Legend_of_Zelda",
+    "Skyward Sword è il prequel di tutti i giochi della saga; il demone si chiama Mortipher nella versione italiana: https://it.wikipedia.org/wiki/The_Legend_of_Zelda:_Skyward_Sword",
+    "Ocarina of Time (1998): Ganondorf re dei ladri Gerudo vuole la Triforza; Link estrae la Spada Suprema e apre la strada verso la Terra Sacra; la Triforza si divide perché il cuore di Ganondorf non è in equilibrio: a lui il Potere, a Zelda la Saggezza, a Link il Coraggio; Ganondorf conquista Hyrule; Link dorme sette anni, si risveglia adulto e lo sconfigge, i Saggi lo sigillano; Zelda con l'ocarina rimanda Link nell'infanzia: https://it.wikipedia.org/wiki/The_Legend_of_Zelda:_Ocarina_of_Time",
+    "Nel ramo bambino Link racconta a Zelda il destino di Hyrule; Ganondorf, che i Saggi non riescono a giustiziare, viene bandito nel Reame del Crepuscolo, da cui torna in Twilight Princess: https://it.wikipedia.org/wiki/The_Legend_of_Zelda:_Twilight_Princess",
+    "Twilight Princess nel ramo bambino, Ganondorf bandito nel Crepuscolo dopo l'esecuzione fallita: https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Twilight_Princess",
+    "Nel ramo adulto Ganon torna, l'Eroe del Tempo non c'è e gli dei sommergono Hyrule sotto il mare; il mondo di Wind Waker è fatto di isole: https://it.wikipedia.org/wiki/The_Legend_of_Zelda:_The_Wind_Waker",
+    "Hyrule Historia (Nintendo, 21 dicembre 2011) presenta la cronologia ufficiale divisa in tre dopo Ocarina of Time: https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Hyrule_Historia",
+    "Il ramo dell'eroe sconfitto parte dalla sconfitta di Link per mano di Ganon e comprende A Link to the Past (fonte non Wikipedia): https://www.spaziogames.it/speciali/Zelda-La-Cronologia-Seconda-Parte-227413",
+    "Nel ramo dell'eroe sconfitto The Legend of Zelda (1986) e Zelda II stanno in fondo, dopo A Link to the Past e gli altri: https://en.wikipedia.org/wiki/The_Legend_of_Zelda_(series)",
+    "Breath of the Wild alla fine della cronologia; Tears of the Kingdom ambientato poco dopo la fine di Breath of the Wild: https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild",
+    "Eiji Aonuma, produttore della serie, non collega Breath of the Wild a un ramo e lascia ai giocatori la risposta (fonte non Wikipedia): https://www.nintendolife.com/news/2018/11/eiji_aonuma_wants_players_to_decide_how_breath_of_the_wild_connects_to_existing_zelda_timeline",
+    "Dopo Phantom Hourglass il Link di Wind Waker, Tetra e i pirati fondano la nuova terra (New Hyrule); Spirit Tracks è ambientato un secolo dopo con un nuovo Link: https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Spirit_Tracks",
+    "Lo spirito di Link resta sigillato sette anni perché il suo corpo non era ancora pronto a brandire la Spada Suprema: https://it.wikipedia.org/wiki/The_Legend_of_Zelda:_Ocarina_of_Time",
+    "La maledizione: l'incarnazione dell'odio del demone seguirà sempre gli eredi della dea e dell'eroe, e si avvera con Ganondorf in Ocarina of Time: https://en.wikipedia.org/wiki/The_Legend_of_Zelda"
+  ]
+}
