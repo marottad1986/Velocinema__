@@ -53,6 +53,13 @@ persone, musica originale, voce), di `QUALITA.md` e di `ASTICELLA.md`; pubblicaz
 - Da riusare: `src/promo/trailer-ritorno-al-futuro/Scena.tsx` (elenco di inquadrature e cartelli, bande nere, entrata dal
   nero, spia nel buio, lampi, titolo, chiusura) e `comune.tsx` (camera e colori); nello spartito le funzioni `braam`, `stacco`
   e il ticchettio che accelera.
+- **Musica dei trailer nuovi** (dal 24 nov 2026): si parte da `scripts/audio/trailer-comune.mjs` (`trailer(mix, { bpm,
+  accordi })`): colpo del cartello (`braam`) e `cartelli` in salita misurabile (+1,5 dB a cartello), `frusciate` d'entrata
+  dal nero, `archi` e `spiccato` con gli accordi contati dall'inizio della sezione, `corsa`, `buio` (spia e crescendo nel
+  buio, con il vuoto prima del colpo) e `titolo`. Già con `compensa(mix)`. Gli spartiti dei trailer già fatti restano come sono.
+- **Mondo del lungo in modalità «pulito»**: nei mondi nuovi tutto il mondo va dentro `<SenzaTesto attivo={pulito}>`
+  (`src/lib/pulito.tsx`), che nasconde ogni testo anche se un `{!pulito && …}` è stato dimenticato; le insegne del
+  paesaggio che devono restare portano `data-insegna`.
 
 ## Revisione
 - Le immagini le approva l'editore guardando il video (come per tutti i video). Per il primo trailer l'editore ha deciso

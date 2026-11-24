@@ -3,6 +3,12 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 24 nov 2026 · **Pezzi comuni dei trailer** (proposta dei revisori musica e immagini approvata dall'editore il 23 nov). La
+  musica dei trailer nuovi parte da `scripts/audio/trailer-comune.mjs` (cartelli in salita di 1,5 dB, frusciate, archi
+  contati dall'inizio della sezione, buio con crescendo, titolo); i mondi dei lunghi nuovi avvolgono tutto in
+  `<SenzaTesto attivo={pulito}>` (`src/lib/pulito.tsx`), così il trailer non mostra mai scritte del lungo. I trailer già
+  fatti non cambiano. · produzione
+
 - 24 nov 2026 · **Controllo automatico dei lunghi** (proposta dei revisori immagini e musica approvata dall'editore il
   23 nov). `scripts/lunghi/pacchetto.mjs` misura nel browser i testi visibili a ogni frase (`src/lunghi/MisuraTesti.tsx`)
   e scrive in `testi.md` le scritte e i cartelli che si coprono tra loro o coprono titolo e sottotitoli; `livelli.mjs`
