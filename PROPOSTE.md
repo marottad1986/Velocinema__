@@ -15,7 +15,7 @@ in una proposta già scritta **non cambiare questi tre elementi**, aggiorna solo
   voce, non solo sul wav della musica. Cambia il codice comune: serve il via libera. · colpi di scena più forti · decisa dall'editore il 17 nov 2026, fatta (ducking a due bande in `scripts/voce.mjs`; la misura sul video con la voce resta da fare)
 - 17 nov 2026 · revisore-voce (Scissione) · **Ritmo delle frasi dopo il montaggio**: `ascolta-voce.mjs` calcoli le
   parole al secondo di ogni frase come suonerà nel video (pause a 0,25 s e accelerazione applicata), non solo sulla clip
-  grezza: una frase a 3,5 grezza diventa 3,8 nel video senza avviso. · meno clip rifatte · aperta
+  grezza: una frase a 3,5 grezza diventa 3,8 nel video senza avviso. · meno clip rifatte · decisa dall'editore il 22 nov 2026, fatta il 24 nov (colonna e note «nel video» in `ascolta-voce.mjs`)
 - 17 nov 2026 · revisore-musica (Scissione) · **Colpi coperti visibili subito**: `pausa` degli spartiti che silenzi
   anche archi tenuti e bordone (così «tace un battito» è automatico), e in `scripts/livelli.mjs` una riga per ogni `clip` e
   `timp` con il picco del suono contro la musica nello stesso istante. · meno secondi passaggi del revisore · aperta
