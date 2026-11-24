@@ -39,7 +39,8 @@ Controlla, uno per uno:
 
 **Video lunghi** (slug in `lunghi/`): spartito `scripts/audio/<slug>.mjs`, scene in `src/lunghi/<slug>/`, musica con
 `node scripts/lunghi/render.mjs <slug> --solo-audio` (o `--senza-video`), misure da `node scripts/lunghi/pacchetto.mjs
-<slug> --musica` (`livelli.txt`) o dal WAV con ffmpeg (ebur128) a finestre. Valgono i punti sopra, più (YOUTUBE.md §4):
+<slug> --musica` (`livelli.txt`: loudness per tratto e, sotto, `node scripts/livelli.mjs <slug>` sullo spartito delle
+parti nuove con buchi, effetti sopra la musica e colpi coperti; i tratti degli episodi si misurano sui loro film) o dal WAV con ffmpeg (ebur128) a finestre. Valgono i punti sopra, più (YOUTUBE.md §4):
 - whoosh o passaggio sonoro su ogni volo di camera da un luogo all'altro; crescendo prima delle rivelazioni e un battito
   di silenzio prima di ogni colpo di scena; i tre momenti clou con il loro arco (sale, silenzio, colpo);
 - in 8–12 minuti la musica non deve stancare: segnala tratti di oltre 60–90 s con lo stesso tappeto o la stessa figura,

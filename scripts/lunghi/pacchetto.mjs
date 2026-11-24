@@ -4,7 +4,8 @@
 //                 (copertina/aggancio anche al fotogramma 0 = miniatura); id dei tratti come in tempi.md
 //   miniatura.png il fotogramma 0 intero e ridotto a 320×180 (come nei risultati di YouTube)
 //   tempi.md      inizio di ogni tratto nel video lungo e istanti delle frasi
-//   livelli.txt   con --musica: loudness della musica per tratto (out/<slug>-musica.wav)
+//   livelli.txt   con --musica: loudness della musica per tratto (out/<slug>-musica.wav) e le misure di
+//                 scripts/livelli.mjs sullo spartito delle parti nuove (buchi, effetti sopra la musica, colpi coperti)
 // --parti limita ai tratti indicati (secondo passaggio). Browser: REMOTION_BROWSER.
 import { bundle } from '@remotion/bundler';
 import { renderStill, selectComposition } from '@remotion/renderer';
@@ -74,6 +75,9 @@ if (args.includes('--musica')) {
     const sum = r.stderr.slice(r.stderr.lastIndexOf('Summary:'));
     out.push(`${x.id.padEnd(42)} ${mmss(x.start).padStart(6)} ${(sum.match(/I:\s+(-?[\d.]+)/)?.[1] ?? '?').padStart(6)} ${(sum.match(/Peak:\s+(-?[\d.]+)/)?.[1] ?? '?').padStart(6)}`);
   }
+  // più le misure di scripts/livelli.mjs sullo spartito delle parti nuove (mix, musica, effetti, buchi, colpi)
+  const lv = spawnSync('node', ['scripts/livelli.mjs', slug], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  out.push('', '# Spartito delle parti nuove (node scripts/livelli.mjs)', (lv.stdout ?? '') + (lv.stderr ?? ''));
   writeFileSync(`${dir}/livelli.txt`, out.join('\n') + '\n');
   console.log(`${dir}/livelli.txt`);
 }

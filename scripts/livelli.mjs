@@ -13,13 +13,25 @@ import { impulso, convolvi } from './audio/sala.mjs';
 import { scaricaCampioni } from './audio/campioni.mjs';
 import { scaricaEffetti } from './audio/effetti.mjs';
 import { loadFilm, timeline } from './audio/film.mjs';
+import { durataLungo, frasiTratto, loadLungo, lunghi, trattiLungo } from './lunghi/tempi.mjs';
 
 const slug = process.argv[2];
 if (!slug) {
   console.error('Uso: node scripts/livelli.mjs <film> [--finestre]');
   process.exit(1);
 }
-const { T, segments } = timeline(loadFilm(slug));
+// video lunghi (proposta approvata dall'editore il 22 nov 2026): si misura lo spartito delle parti nuove
+// (scripts/audio/<slug>.mjs) con gli stessi tempi di scripts/lunghi/render.mjs; i tratti degli episodi hanno la musica
+// del loro film (misurata con node scripts/livelli.mjs <episodio>) e qui si saltano.
+const lungo = lunghi().includes(slug);
+const { T, segments } = lungo ? tempiLungo(slug) : timeline(loadFilm(slug));
+function tempiLungo(s) {
+  const tr = trattiLungo(s, loadLungo(s));
+  const T = { END: durataLungo(tr), frase: (id, n) => { const x = tr.find((y) => y.id === id); return x.start + frasiTratto(x)[n]; } };
+  for (const x of tr) T[x.id] = x.start;
+  return { T, segments: tr.map((x) => ({ id: x.id, start: x.start, dur: x.dur, episodio: !!x.film })) };
+}
+const W = Math.max(14, ...segments.map((s) => s.id.length));
 const sp = await import(pathToFileURL(`scripts/audio/${slug}.mjs`).href);
 scaricaCampioni(sp.strumenti ?? []);
 scaricaEffetti(sp.effetti ?? []);
@@ -56,7 +68,9 @@ const db = (s, a, b) => {
 };
 
 console.log(`${slug}: RMS in dB (mix / musica / effetti), picco del mix a -3 dB`);
-for (const s of segments) {
+const saltati = segments.filter((s) => s.episodio).length;
+if (saltati) console.log(`(${saltati} tratti degli episodi saltati: la loro musica è quella dei film, misurata a parte)`);
+for (const s of segments.filter((x) => !x.episodio)) {
   const fine = s.start + s.dur;
   const note = [];
   let sopra = 0, maxSopra = 0, buchi = [];
@@ -68,7 +82,7 @@ for (const s of segments) {
   }
   if (maxSopra > 2) note.push(`effetti sopra la musica per ${maxSopra} s di fila`);
   if (buchi.length) note.push(`buchi a ${buchi.join(', ')} s`);
-  console.log(`${s.id.padEnd(14)} ${db(tutto, s.start, fine).toFixed(1).padStart(6)} ${db(musica, s.start, fine).toFixed(1).padStart(6)} ${db(effetti, s.start, fine).toFixed(1).padStart(6)}  ${note.join('; ')}`);
+  console.log(`${s.id.padEnd(W)} ${db(tutto, s.start, fine).toFixed(1).padStart(6)} ${db(musica, s.start, fine).toFixed(1).padStart(6)} ${db(effetti, s.start, fine).toFixed(1).padStart(6)}  ${note.join('; ')}`);
 }
 // ---- colpi
 const picDb = (s, a, b) => {
@@ -77,13 +91,20 @@ const picDb = (s, a, b) => {
   return p ? 20 * Math.log10(p * g) : -120;
 };
 const FORTI = ['timpani', 'grancassa', 'grancassa_rullo', 'gong', 'piatto_crash', 'piatto_sospeso'];
-const lista = eventi
+const tutti = eventi
   .filter((e) => (e.tipo === 'colpo' ? FORTI.includes(e.id) : e.dur <= 2.5) && e.t >= 0 && e.t < T.END)
+  .filter((e) => !segments.find((s) => e.t >= s.start && e.t < s.start + s.dur)?.episodio)
   .sort((a, b) => a.t - b.t)
   .filter((e, i, v) => !v.slice(0, i).some((x) => x.id === e.id && e.t - x.t < 0.1)); // rulli e colpi doppi: una riga
+// suoni ripetuti più di 8 volte (ticchettii, passi, ritmi): sono una trama, non colpi; una riga di riepilogo
+const quanti = new Map();
+for (const e of tutti) quanti.set(e.id, (quanti.get(e.id) ?? 0) + 1);
+const trama = [...quanti].filter(([id, n]) => n > 8 && id !== 'timpani');
+const lista = tutti.filter((e) => !trama.some(([id]) => id === e.id));
 console.log();
 console.log(`Colpi: picco del colpo / picco della sola musica nello stesso istante (0,3 s) e nel secondo prima, in dB`);
 const capDi = (t) => segments.find((s) => t >= s.start && t < s.start + s.dur)?.id ?? '';
+const WC = Math.min(W, 30);
 let coperti = 0;
 for (const e of lista) {
   const src = e.tipo === 'colpo' ? colpi : effetti;
@@ -92,8 +113,9 @@ for (const e of lista) {
   if (c < m) (avvisi.push('coperto'), coperti++);
   else if (c - m < 6) avvisi.push('poco sopra');
   if (c > -12 && c - dopo < 12) avvisi.push('musica non tace');
-  console.log(`${e.t.toFixed(2).padStart(7)} s  ${capDi(e.t).padEnd(14)} ${e.id.padEnd(22)} ${c.toFixed(1).padStart(6)} / ${m.toFixed(1).padStart(6)}  (prima ${prima.toFixed(1)})  ${avvisi.length ? '⚠ ' + avvisi.join('; ') : ''}`);
+  console.log(`${e.t.toFixed(2).padStart(7)} s  ${capDi(e.t).slice(0, WC).padEnd(WC)} ${e.id.padEnd(22)} ${c.toFixed(1).padStart(6)} / ${m.toFixed(1).padStart(6)}  (prima ${prima.toFixed(1)})  ${avvisi.length ? '⚠ ' + avvisi.join('; ') : ''}`);
 }
+if (trama.length) console.log(`Non elencati (ripetuti, fanno da trama): ${trama.map(([id, n]) => `${id} ×${n}`).join(', ')}`);
 console.log(`${lista.length} colpi, ${coperti} coperti dalla musica.`);
 if (process.argv.includes('--finestre')) {
   for (let t = 0; t < T.END; t += 0.5) console.log(t.toFixed(1).padStart(6), db(tutto, t, t + 0.5).toFixed(1), db(musica, t, t + 0.5).toFixed(1), db(effetti, t, t + 0.5).toFixed(1));
