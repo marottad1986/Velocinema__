@@ -27,8 +27,8 @@ const Rottame: React.FC<{ x: number; y: number; s?: number; rot?: number }> = ({
 
 /** Colonna di fumo nero che sale dai rottami: sbuffi morbidi (gradiente radiale) sparsi lungo una curva, sempre più
  *  larghi verso l'alto, che salgono lentamente. Posizioni da un seme fisso. */
-const PUFFS = Array.from({ length: 44 }, (_, i) => ({ f: i / 44, dx: Math.sin(i * 12.9898) * 0.5, dr: 0.7 + 0.6 * Math.abs(Math.sin(i * 78.233)), tone: i % 3 }));
-const Colonna: React.FC<{ id: string; x: number; y: number; h: number; t: number; w?: number }> = ({ id, x, y, h, t, w = 1 }) => (
+export const PUFFS = Array.from({ length: 44 }, (_, i) => ({ f: i / 44, dx: Math.sin(i * 12.9898) * 0.5, dr: 0.7 + 0.6 * Math.abs(Math.sin(i * 78.233)), tone: i % 3 }));
+export const Colonna: React.FC<{ id: string; x: number; y: number; h: number; t: number; w?: number }> = ({ id, x, y, h, t, w = 1 }) => (
   <g>
     {PUFFS.map((p, i) => {
       const ph = mod(t * 0.05 + p.f, 1);
@@ -103,7 +103,8 @@ const Giardino: React.FC<{ id: string; t: number; dur: number; night: boolean }>
             <Rottame x={980} y={1840} s={1.3} rot={14} />
             {!night && <Smoke id={`${id}-sm2`} t={t} x={120} y={1080} color="#5A5A5E" n={5} rise={150} wind={-60} r0={20} r1={70} speed={0.35} opacity={0.65} />}
             <Piscina id={id} t={t} top={1070} bot={1800}
-              bottom={<Occhio id={id} x={330} y={1600} r={30} t={t} glint={night ? 0 : 0.6} look={2} />} />
+              bottom={night ? undefined : <Occhio id={id} x={330} y={1600} r={30} t={t} glint={0.6} look={2} />} />
+            {night && <Glow id={`${id}-poolg`} x={540} y={1450} r={560} t={t} color="#7AE0FF" amp={0.05} rate={1} opacity={0.4} />}
           </g>
         </Mono>
         {/* l'unico colore: l'orsacchiotto rosa (copertina) — di notte l'occhio sul bordo */}

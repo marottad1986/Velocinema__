@@ -134,7 +134,7 @@ export const Saul: React.FC<SceneProps> = ({ t, dur, cues, griglia }) => {
                 <g>
                   <g transform={`translate(0 -110) scale(1 ${-open})`}><rect x="-150" y="0" width="300" height="100" rx="10" fill="#4A2A14" stroke={K} strokeWidth="7" /></g>
                   {[-90, -10, 70].map((mx, i) => <Mazzetta key={i} id="sa" x={mx} y={-120 - 6 * i} s={0.55} rot={-6 + i * 6} />)}
-                  <Glow id="sa-cash" x={0} y={-130} r={150} t={t} color={ORO} amp={0.08} rate={3} opacity={0.3 * open} />
+                  <Glow id="sa-cashg" x={0} y={-130} r={150} t={t} color={ORO} amp={0.08} rate={3} opacity={0.3 * open} />
                 </g>
               )}
               <rect x="-20" y="-70" width="40" height="18" rx="3" fill={ORO} stroke={K} strokeWidth="3" />
