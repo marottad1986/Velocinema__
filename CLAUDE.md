@@ -169,7 +169,7 @@ mai restare senza risposta.
 - Creature e mostri della serie: mai la sagoma intera né i tratti che li rendono riconoscibili (es. la testa a petali
   del mostro di Stranger Things); si mostrano con tracce e parti generiche nel nostro stile (pareti che si gonfiano,
   bava, cenere, un artiglio non umano che sfonda una membrana).
-- Episodi: Breaking Bad stagione 1 (`films/breaking-bad-stagione-1.json`), Stranger Things stagione 1
+- Episodi: Breaking Bad stagione 1 (`films/breaking-bad-stagione-1.json`) e 2 (`films/breaking-bad-stagione-2.json`), Stranger Things stagione 1
   (`films/stranger-things-stagione-1.json`).
 
 ## Secondo formato: "Spiegato semplice" (film e serie TV)
@@ -262,7 +262,7 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   si sente la musica accelerare e rallentare). Lo stesso bpm va nel JSON (`"bpm": 72`): le scene ricevono `griglia(s, div)`,
   che arrotonda un istante del capitolo al battito (div 2 = crome), e gli eventi si scrivono già a tempo, es.
   `seg(t, griglia(cues[2] + 0.4), …)`; `controlli.mjs` verifica che il bpm del JSON sia quello dello spartito. Shutter Island 90, Interstellar 72, Truman 78, La La Land 120,
-  Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute), Joker 96, The Others 72, Il sesto senso 72 (10 s = 3 battute), Breaking Bad stagione 1 96 (10 s = 4 battute); Il miglio verde 72 (10 s = 3 battute; la sedia elettrica e lo sparo in Re minore); The Conjuring 72 (Re minore, gli orologi a crome di pizzicato; l'alba dell'esorcismo in Re maggiore); storia vera Edoardo Bove 72 (il timpano fa da cuore); Spiegato semplice: Inception 68 (sogni profondi a metà passo), Tenet 80 (12 s = 4 battute; la tenaglia a passo doppio), Dark 66 (2052 e 2053 a metà passo, anche la stagione 2); Ritorno al futuro 72 (10 s = 12 battiti, come il video lungo della trilogia; la corsa al fulmine a passo doppio); Donnie Darko 60 (un battito per secondo del contatore dei 28 giorni; il vortice a passo doppio); Scissione stagione 1 72 (pizzicati a crome come un orologio d'ufficio; il piano dei colleghi a passo doppio);
+  Frankenstein Junior 104, Cast Away 72, Jurassic Park 70, Harry Potter 96, Shining 66, Titanic 72 (10 s = 3 battute), Joker 96, The Others 72, Il sesto senso 72 (10 s = 3 battute), Breaking Bad stagione 1 e 2 96 (10 s = 4 battute; nella 2 carillon per l'orsacchiotto e violino solo per Jane); Il miglio verde 72 (10 s = 3 battute; la sedia elettrica e lo sparo in Re minore); The Conjuring 72 (Re minore, gli orologi a crome di pizzicato; l'alba dell'esorcismo in Re maggiore); storia vera Edoardo Bove 72 (il timpano fa da cuore); Spiegato semplice: Inception 68 (sogni profondi a metà passo), Tenet 80 (12 s = 4 battute; la tenaglia a passo doppio), Dark 66 (2052 e 2053 a metà passo, anche la stagione 2); Ritorno al futuro 72 (10 s = 12 battiti, come il video lungo della trilogia; la corsa al fulmine a passo doppio); Donnie Darko 60 (un battito per secondo del contatore dei 28 giorni; il vortice a passo doppio); Scissione stagione 1 72 (pizzicati a crome come un orologio d'ufficio; il piano dei colleghi a passo doppio);
   videogiochi: GTA VI 100 (Spiegato semplice con la mappa di Leonida; il Criminal Profile a passo doppio);
   quadri: Grande onda 88, Notte stellata 92, L'Ultima Cena 72 (Sol minore, si apre in Si bemolle nel restauro);
   Bohemian Rhapsody 70 (opera e rock a passo doppio, 140), Gli anni 600/7 ≈ 85,7 (14 s = 5 battute).
