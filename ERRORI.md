@@ -59,3 +59,9 @@ si può verificare in automatico, una regola in `scripts/controlli.mjs`). Righe 
 - Video approvato nell'app ma mai unito né programmato (22 nov, Donnie Darko lungo + trailer: l'attesa della conferma è scaduta dopo 2 ore, l'editore ha approvato dopo e nessuno se n'è accorto fino all'avviso «NON PROGRAMMATO») → finché la richiesta è aperta, `send_later` ogni 60 minuti; «Ramo: <ramo>» nel testo della richiesta; `node scripts/strumenti/conferme-in-sospeso.mjs` ogni sera e ogni mattina.
 - Clip della voce rimaste nel contenitore della sessione (22 nov, Donnie Darko lungo + trailer: `audio/**/*.mp3` è in `.gitignore`, il workflow ha fatto i video muti e non li ha caricati su PostFast) → `git add -f audio/<slug>/` prima della richiesta di conferma, controllo con `git ls-files audio/<slug>`.
 - Lungo di 8 minuti a 1080p oltre i 250 MB di PostFast (22 nov, Donnie Darko: il workflow si fermava al caricamento) → `scripts/postfast-carica.mjs` ricodifica da solo una copia sotto i 250 MB.
+- Produzioni della settimana mai avviate (24 nov, Breaking Bad 2 previsto alle 8:00 e Zelda il 25: la domenica il calendario
+  è stato approvato in un'altra sessione e nessuno ha creato sessioni e avvii; Backrooms verticale fermo da 16 ore su una
+  domanda in chat; se n'è accorto l'editore) → chi riceve l'approvazione del calendario crea subito sessione e avvio di ogni
+  produzione (`SOCIAL.md`); ogni mattina alle 9 l'attività «missione YouTube» fa da guardiano: avvia ciò che manca,
+  sblocca le sessioni ferme e controlla le uscite delle 48 ore successive. Le sessioni di produzione non restano mai ferme
+  in silenzio: se aspettano l'editore mandano l'avviso nell'app e fissano un `send_later`.

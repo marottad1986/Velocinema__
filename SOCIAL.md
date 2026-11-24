@@ -51,6 +51,11 @@ Attività programmata: «In 2 minuti – programmazione della settimana» (`trig
 `create_trigger`: le attività create così aprono sessioni senza repository (`ERRORI.md`, Conjuring 17 nov).
 Le produzioni avviate dal manager seguono la stessa regola: prima `create_session` con il repository, poi l'attività
 `create_trigger` con `persistent_session_id` all'ora di avvio.
+**Ogni produzione della tabella «Ordine di produzione» deve avere, appena il calendario è approvato, la sua sessione e il
+suo avvio programmato** (anche se l'approvazione arriva in un'altra sessione: chi riceve l'approvazione li crea tutti e lo
+scrive nell'avviso). Rete di sicurezza: ogni mattina alle 9 l'attività «In 2 minuti – missione YouTube» fa da guardiano
+(avvia le produzioni con l'avvio già passato e senza sessione, sblocca quelle ferme, controlla le uscite delle 48 ore
+successive) e lo scrive nell'avviso (errore del 24 nov, Breaking Bad 2: `ERRORI.md`).
 1. Dati del profilo dal connettore **Metricool** (piano gratuito, brand «In 2 minuti», id `7728942`, fuso Europe/Rome),
    strumento `getAnalyticsDataByMetrics`. Metriche usate:
    - TikTok, per video (`TKPO`): 02 data e ora, 05 descrizione, 07 visualizzazioni, 08 like, 09 commenti, 10 condivisioni;
