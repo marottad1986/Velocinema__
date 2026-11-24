@@ -27,7 +27,8 @@
         "Walter, professore malato di cancro, produce droga col socio Jesse,",
         "e la vende a Tuco, un boss pazzo braccato dalla polizia:",
         "così li rapisce e si nasconde con loro nel deserto."
-      ]
+      ],
+      "voce_velocita": 1.08
     },
     {
       "id": "campanello",
@@ -37,9 +38,9 @@
       "sottotitoli": [
         "Lì vive Hector, zio di Tuco, muto e paralizzato: parla col campanello.",
         "Walter e Jesse avvelenano il cibo di Tuco,",
-        "ma Hector se ne accorge e col campanello avverte il nipote."
+        "ma Hector se ne accorge e suona per avvertirlo."
       ],
-      "voce_velocita": 1.08
+      "voce_velocita": 1.1
     },
     {
       "id": "hank",
@@ -51,7 +52,7 @@
         "ma Hank, cognato di Walter e agente antidroga, lo sta cercando:",
         "segue l'auto di Jesse, arriva lì e uccide Tuco."
       ],
-      "voce_velocita": 1.08
+      "voce_velocita": 1.1
     },
     {
       "id": "fuga",
@@ -73,7 +74,8 @@
         "Morto Tuco, Walter produce e Jesse spaccia con tre amici.",
         "Una coppia di tossici deruba un amico; Jesse va da loro,",
         "lì la donna schiaccia il compagno con un bancomat rubato."
-      ]
+      ],
+      "voce_velocita": 1.08
     },
     {
       "id": "saul",
@@ -81,11 +83,11 @@
       "durata": 10,
       "scena": "Un centro commerciale di periferia di notte: la vetrina di uno studio legale con l'insegna al neon che si accende «AVVOCATO», una panchina della fermata dell'autobus con la pubblicità dell'avvocato, le luci di una volante riflesse sull'asfalto bagnato; in primo piano una ventiquattrore aperta piena di mazzette.",
       "sottotitoli": [
-        "Poi Badger, uno dei tre amici, viene arrestato e rischia di parlare,",
+        "Poi Badger, uno dei tre, viene arrestato e rischia di parlare,",
         "così assumono Saul Goodman, un avvocato senza scrupoli,",
-        "che lo tira fuori e da allora ripulisce i loro soldi."
+        "che lo libera e da allora ripulisce i loro soldi."
       ],
-      "voce_velocita": 1.08
+      "voce_velocita": 1.1
     },
     {
       "id": "gus",
@@ -94,10 +96,10 @@
       "scena": "Il parcheggio di una stazione di servizio per camion di notte: le pompe illuminate, un camion fermo, in fondo l'insegna gialla e rossa di un fast food di pollo fritto con una coscia di pollo; in primo piano un'auto con il bagagliaio aperto e i pacchi di cristalli; sul cruscotto un cellulare che si illumina con le chiamate perse.",
       "sottotitoli": [
         "Saul trova un grande compratore: Gus, che ha ristoranti di pollo,",
-        "ma Jesse, con la sua nuova ragazza Jane, prende eroina:",
-        "così Walter consegna da solo, proprio mentre nasce sua figlia."
+        "ma Jesse e la sua ragazza Jane prendono eroina:",
+        "così Walter consegna da solo, mentre nasce sua figlia."
       ],
-      "voce_velocita": 1.08
+      "voce_velocita": 1.1
     },
     {
       "id": "jane",

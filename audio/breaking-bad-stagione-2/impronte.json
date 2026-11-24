@@ -7,21 +7,21 @@
   },
   "01_rapimento": {
     "testo": "c54287359a46",
-    "velocita": null,
-    "file": "a395106b8554",
-    "quando": "2026-11-24T08:21:08.231Z"
+    "velocita": 1.08,
+    "file": "46826ee69534",
+    "quando": "2026-11-24T08:27:44.859Z"
   },
   "02_campanello": {
-    "testo": "0b20bbfacf08",
-    "velocita": 1.08,
-    "file": "c535738773a1",
-    "quando": "2026-11-24T08:22:21.353Z"
+    "testo": "c2c6f63fa801",
+    "velocita": 1.1,
+    "file": "54839f134f11",
+    "quando": "2026-11-24T08:27:38.392Z"
   },
   "03_hank": {
     "testo": "5ec66a8ce794",
-    "velocita": 1.08,
-    "file": "3c761afc161c",
-    "quando": "2026-11-24T08:22:29.481Z"
+    "velocita": 1.1,
+    "file": "23ad13d8718c",
+    "quando": "2026-11-24T08:27:41.493Z"
   },
   "04_fuga": {
     "testo": "861ecdb7b8b6",
@@ -31,21 +31,21 @@
   },
   "05_bancomat": {
     "testo": "edf109d1b866",
-    "velocita": null,
-    "file": "7151dfe17fbc",
-    "quando": "2026-11-24T08:21:21.976Z"
+    "velocita": 1.08,
+    "file": "204d11c55457",
+    "quando": "2026-11-24T08:27:48.516Z"
   },
   "06_saul": {
-    "testo": "bbeb60535d2b",
-    "velocita": 1.08,
-    "file": "629d0351e920",
-    "quando": "2026-11-24T08:22:25.480Z"
+    "testo": "3e40aa7833e9",
+    "velocita": 1.1,
+    "file": "81998da48447",
+    "quando": "2026-11-24T08:27:35.231Z"
   },
   "07_gus": {
-    "testo": "7cd0633511a9",
-    "velocita": 1.08,
-    "file": "481213b81e23",
-    "quando": "2026-11-24T08:22:18.054Z"
+    "testo": "4223182bc0fb",
+    "velocita": 1.1,
+    "file": "3b6474bd5df7",
+    "quando": "2026-11-24T08:27:31.460Z"
   },
   "08_jane": {
     "testo": "ae52a1a1e9a3",
