@@ -25,11 +25,12 @@ Controlla, uno per uno:
    Cerca anche nel testo le parole a rischio anche se la trascrizione non le segnala: nomi e titoli stranieri, sigle,
    numeri romani, anni, unità di misura, parole con accento ambiguo (àncora/ancóra, prìncipi/princìpi, sùbito/subìto).
 2. **Cadenza.** Ritmo di riferimento circa 2,8 parole/s (frasi tra 2,2 e 3,4; Spiegato semplice al massimo 3,4, meglio
-   3,1, contando ogni anno a quattro cifre come 4 parole); nessuna clip oltre l'accelerazione massima (+25%) e,
+   2,9, contando ogni anno a quattro cifre come 4 parole); nessuna clip oltre l'accelerazione massima (+25%) e,
    meglio, nessuna oltre +15% (si sente); pause tra le frasi tra circa 0,2 e 0,9 s; nessuna pausa oltre 0,6 s a metà
    frase; nessuna frase attaccata alla successiva quando cambia argomento. I limiti delle parole/s valgono sul ritmo
    **nel video** (colonna «nel video» e «nel video …» accanto a ogni frase del report: pause a 0,25 s e accelerazione già
-   applicate), non sulla clip grezza: «veloce nel video» è un problema come «veloce».
+   applicate), non sulla clip grezza: «veloce nel video» è un problema come «veloce». Una clip accelerata oltre +8% si
+   corregge meglio con `"voce_velocita"` nel capitolo del JSON (il report suggerisce il valore) e una nuova generazione.
 3. **Continuità.** Volume delle clip entro ±2 LU dalla mediana del film; picco sotto −1 dBFS; nessun salto di tono
    evidente tra un capitolo e l'altro (clip molto più veloce o più lenta delle vicine).
 4. **Testo.** Sottotitoli e voce coincidono (a parte le parole del campo `pronuncia`); nessuna indicazione di tono tra

@@ -3,6 +3,12 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 24 nov 2026 · **Velocità della voce per capitolo** (proposta del revisore voce approvata dall'editore il 22 nov). Un
+  capitolo denso può avere `"voce_velocita"` nel JSON (es. 1.08, da 0,7 a 1,2, meglio non oltre 1,10): `genera-voce.mjs`
+  genera quella clip già più veloce invece di farla accelerare dopo da `npm run voce`; `ascolta-voce.mjs` suggerisce il
+  valore quando l'accelerazione supera l'8%. Obiettivo dei testi nuovi degli Spiegato semplice: circa 2,9 parole/s (il
+  massimo resta 3,4). · produzione, revisore-voce, revisore-testi
+
 - 24 nov 2026 · **Colpi coperti visibili subito** (proposta del revisore musica approvata dall'editore il 22 nov). Negli
   spartiti nuovi il silenzio dopo un colpo forte si scrive con `taci(mix, da, a)` (`scripts/audio/campioni.mjs`, all'inizio
   dello spartito): tacciono tutte le note, anche archi tenuti e bordoni, restano colpi ed effetti. `node scripts/livelli.mjs`
