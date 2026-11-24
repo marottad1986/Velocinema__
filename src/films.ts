@@ -85,6 +85,9 @@ import { Copertina as JokerCover, Finale as JokerEnd } from './scenes/joker/Loca
 import breakingBad1 from '../films/breaking-bad-stagione-1.json';
 import { BREAKING_BAD_1_SCENES } from './scenes/breaking-bad-stagione-1';
 import { Copertina as BB1Cover, Finale as BB1End } from './scenes/breaking-bad-stagione-1/Locandina';
+import zelda from '../films/zelda-linea-del-tempo.json';
+import { ZELDA_SCENES } from './scenes/zelda-linea-del-tempo';
+import { Copertina as ZeldaCover, Finale as ZeldaEnd } from './scenes/zelda-linea-del-tempo/Locandina';
 import breakingBad2 from '../films/breaking-bad-stagione-2.json';
 import { BREAKING_BAD_2_SCENES } from './scenes/breaking-bad-stagione-2';
 import { Copertina as BB2Cover, Finale as BB2End } from './scenes/breaking-bad-stagione-2/Locandina';
@@ -158,6 +161,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'scissione-stagione-1', data: scissione1 as FilmData, scenes: SCISSIONE_1_SCENES, cover: Sci1Cover, ending: Sci1End, posterFont: SYNCOPATE },
   { slug: 'backrooms-finale', data: backroomsFinale as FilmData, scenes: BACKROOMS_FINALE_SCENES, cover: BrfCover, ending: BrfEnd, posterFont: ANTON },
   { slug: 'ritorno-al-futuro-parte-3', data: ritornoAlFuturo3 as FilmData, scenes: RITORNO_AL_FUTURO_3_SCENES, cover: RAF3Cover, ending: RAF3End, posterFont: RIGHTEOUS },
+  { slug: 'zelda-linea-del-tempo', data: zelda as FilmData, scenes: ZELDA_SCENES, cover: ZeldaCover, ending: ZeldaEnd, posterFont: CINZEL },
   { slug: 'the-conjuring', data: theConjuring as FilmData, scenes: THE_CONJURING_SCENES, cover: TCCover, ending: TCEnd, posterFont: FELL },
 ];
 

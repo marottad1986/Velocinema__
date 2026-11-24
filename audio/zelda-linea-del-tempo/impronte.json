@@ -1,0 +1,68 @@
+{
+  "00_copertina": {
+    "testo": "cc88d6071d95",
+    "velocita": null,
+    "file": "962e0b9369ee",
+    "quando": "2026-11-24T15:26:14.959Z"
+  },
+  "01_chi": {
+    "testo": "b2e28b3e9d63",
+    "velocita": null,
+    "file": "ee06c5a7cf7e",
+    "quando": "2026-11-24T15:26:18.809Z"
+  },
+  "02_origine": {
+    "testo": "3baf7cefd340",
+    "velocita": 1.06,
+    "file": "661bb96fc5b5",
+    "quando": "2026-11-24T15:27:26.107Z"
+  },
+  "03_triforza": {
+    "testo": "060a80ee4e84",
+    "velocita": 1.08,
+    "file": "3686e6ac11d8",
+    "quando": "2026-11-24T15:27:31.626Z"
+  },
+  "04_ocarina": {
+    "testo": "06a0bd541054",
+    "velocita": null,
+    "file": "475043a8218b",
+    "quando": "2026-11-24T15:26:33.470Z"
+  },
+  "05_bivio": {
+    "testo": "e3b27b6bc1c7",
+    "velocita": null,
+    "file": "af1021302862",
+    "quando": "2026-11-24T15:26:37.608Z"
+  },
+  "06_sconfitta": {
+    "testo": "c9000e2d4d3d",
+    "velocita": 1.08,
+    "file": "c8d44ff228f9",
+    "quando": "2026-11-24T15:28:23.545Z"
+  },
+  "07_mare": {
+    "testo": "61b81d7a7672",
+    "velocita": 1.1,
+    "file": "cd2ca471d9e7",
+    "quando": "2026-11-24T15:28:53.957Z"
+  },
+  "08_crepuscolo": {
+    "testo": "8e0e53790996",
+    "velocita": 1.1,
+    "file": "461a8b2b7b51",
+    "quando": "2026-11-24T15:28:33.013Z"
+  },
+  "09_dopo": {
+    "testo": "4655d331b13e",
+    "velocita": null,
+    "file": "be6d92172430",
+    "quando": "2026-11-24T15:26:58.177Z"
+  },
+  "10_finale": {
+    "testo": "631ff26a2ca8",
+    "velocita": null,
+    "file": "78ad1d132796",
+    "quando": "2026-11-24T15:26:59.805Z"
+  }
+}
