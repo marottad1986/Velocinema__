@@ -166,6 +166,26 @@ export const clip = (mix, id, { t, da = 0, durata, gain = 1, pan = 0, rev = 0.15
       console.warn(`ATTENZIONE effetto «${id}»: presa da ${da} s per ${dur.toFixed(2)} s, ma il file dura ${fine.toFixed(2)} s (${(da + dur * rate - fine).toFixed(2)} s di silenzio)`);
     }
   }
+  // presa che parte su un tratto di silenzio del file (proposta dei revisori di Ritorno al futuro, approvata dall'editore il
+  // 22 nov 2026): il suono arriverebbe in ritardo rispetto a t. Silenzio = finestre da 10 ms più di 40 dB sotto il picco
+  // del file (CATALOGO); avviso una volta per presa se dura più di 0,1 s, con il «da» che fa partire subito il suono.
+  {
+    const soglia = 10 ** ((CATALOGO[id][2] - 40) / 20);
+    const w = Math.max(1, Math.round(sr * 0.01));
+    let k = Math.round(da * sr);
+    const fineScan = Math.min(x.length, k + Math.round(sr * Math.min(dur * rate, 2)));
+    for (; k + w <= fineScan; k += w) {
+      let e = 0;
+      for (let j = k; j < k + w; j++) e += x[j] * x[j];
+      if (Math.sqrt(e / w) >= soglia) break;
+    }
+    const muto = k / sr - da;
+    const chiave = `${id}@${da}:silenzio`;
+    if (muto > 0.1 && !PRESE_AVVISATE.has(chiave)) {
+      PRESE_AVVISATE.add(chiave);
+      console.warn(`ATTENZIONE effetto «${id}»: la presa da ${da} s parte su ${muto.toFixed(2)} s di silenzio (il suono arriva in ritardo; il suono inizia a da ≈ ${(k / sr).toFixed(2)})`);
+    }
+  }
   const len = Math.ceil((dur * SR) / rate);
   const read = (pos) => {
     const k = Math.floor(pos), f = pos - k;

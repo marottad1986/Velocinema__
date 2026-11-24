@@ -3,6 +3,11 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 24 nov 2026 · **Effetti che partono sul silenzio** (proposta dei revisori di Ritorno al futuro approvata dall'editore il
+  22 nov). `clip()` avvisa quando una presa parte su più di 0,1 s di silenzio del file e indica il «da» giusto; l'avviso
+  conta come quello delle prese oltre la fine: nessuno dei due deve restare in `npm run musica` di un film nuovo. ·
+  produzione, revisore-musica
+
 - 24 nov 2026 · **Trascrizioni e clip sempre allineate** (proposte del revisore voce approvate dall'editore il 22 e 23 nov).
   `genera-voce.mjs` scrive `audio/<film>/impronte.json` (testo e velocità di ogni clip): va committato con il film.
   `ascolta-voce.mjs` ritrascrive da solo una clip cambiata e segnala in cima al report le clip da rigenerare perché il
