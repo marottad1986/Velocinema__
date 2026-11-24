@@ -3,6 +3,12 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 24 nov 2026 · **Campioni anomali compensati** (proposta del revisore musica approvata dall'editore il 23 nov). Gli
+  spartiti nuovi chiamano `compensa(mix)` all'inizio (`scripts/audio/campioni.mjs`): i campioni di spiccato, pizzicato e
+  staccato più di 4 dB sopra i vicini dello stesso strato vengono abbassati alla loro mediana (es. la ripetizione delle
+  viole spiccato che in Donnie Darko spiegato faceva il picco del film). Niente più correzioni a mano nota per nota; gli
+  spartiti già fatti non cambiano. · produzione, revisore-musica
+
 - 24 nov 2026 · **Ogni lungo esce come Prima di YouTube** (proposta del manager approvata dall'editore il 22 nov). Il lungo
   si carica privato con PostFast 24 ore prima; l'editore lo imposta come Prima in YouTube Studio all'ora dell'uscita
   (avviso con i passi nell'app); se a 1 ora dall'uscita la conferma non c'è, si ricarica pubblico come sempre. Niente LIVE

@@ -116,6 +116,36 @@ const silenzio = (mix, x) => {
   }
   return g;
 };
+/**
+ * Compensazione dei campioni anomali (proposta del revisore musica approvata dall'editore il 23 nov 2026): negli
+ * strumenti ad articolazione breve (spiccato, pizzicato, staccato) alcune ripetizioni sono molto più forti delle
+ * vicine (es. viole_spicc «C4» v2 rr2, circa +6 dB: in Donnie Darko spiegato faceva il picco del film sulla nota 71).
+ * Con compensa(mix) all'inizio dello spartito, ogni campione più di 4 dB sopra la mediana dei campioni dello stesso
+ * strato entro ±5 semitoni (misura `db` di vsco.json) viene abbassato fino a quella mediana (al massimo 10 dB). Facoltativa: gli
+ * spartiti già fatti non la chiamano e suonano come prima. Elenco: node scripts/audio/campioni.mjs --anomalie
+ */
+export const compensa = (mix) => {
+  mix.compensa = true;
+};
+const BREVI = /_(spicc|pizz|stacc)$/;
+const correzioniCache = new Map();
+/** Correzione in dB (≤ 0) per ogni file campione di uno strumento breve. */
+export const correzioni = (id) => {
+  if (!correzioniCache.has(id)) {
+    const out = new Map();
+    if (BREVI.test(id)) {
+      const cs = INDICE.strumenti[id].campioni;
+      for (const c of cs) {
+        const vicini = cs.filter((x) => x !== c && x.dyn === c.dyn && Math.abs(x.midi - c.midi) <= 5).map((x) => x.db).sort((a, b) => a - b);
+        if (vicini.length < 2) continue;
+        const med = vicini[Math.floor(vicini.length / 2)];
+        if (c.db - med > 4) out.set(c.f, Math.max(-10, med - c.db));
+      }
+    }
+    correzioniCache.set(id, out);
+  }
+  return correzioniCache.get(id);
+};
 /** scripts/livelli.mjs registra i colpi (istante, strumento) per misurarne l'emergere sulla musica. */
 const segnaColpo = (t, id) => globalThis.VELOCINEMA_COLPI?.push({ t, id, tipo: 'colpo' });
 
@@ -145,7 +175,8 @@ export const suona = (mix, id, nota, { t, dur, vel = 64, pan = 0, rev = 0.3, gai
   const { L, R } = carica(s, c);
   const ratio = 2 ** ((midi + cents / 100 - c.midi - (c.cents ?? 0) / 100) / 12);
   // volume: lo strato porta già il suo timbro; la velocità rifinisce dentro lo strato
-  const g = gain * livello(id) * (0.35 + 0.65 * (vel / 127)) ** 1.5;
+  const corr = mix.compensa ? correzioni(id).get(c.f) ?? 0 : 0;
+  const g = gain * livello(id) * (0.35 + 0.65 * (vel / 127)) ** 1.5 * 10 ** (corr / 20);
 
   // prolungamento: oltre B si torna ad A con dissolvenza incrociata di X campioni (a potenza costante)
   const n = L.length;
@@ -218,3 +249,11 @@ export const crescendo = (mix, tEnd, dur, { gain = 0.4, pan = 0, rev = 0.45 } = 
   const d = Math.min(dur, 3.3);
   colpo(mix, 'piatto_sospeso', 'susp_hit_softmall_roll2_cresc', { t: tEnd - d, da: 3.4 - d, vel: 100, gain, pan, rev, dur: d + 0.2, release: 1.2 });
 };
+
+// node scripts/audio/campioni.mjs --anomalie → campioni compensati da compensa(mix), strumento per strumento
+if (process.argv[1]?.endsWith('campioni.mjs') && process.argv.includes('--anomalie')) {
+  for (const id of Object.keys(INDICE.strumenti).filter((k) => BREVI.test(k))) {
+    const c = [...correzioni(id)];
+    if (c.length) console.log(`${id}: ${c.map(([f, d]) => `${f} ${d.toFixed(1)} dB`).join(', ')}`);
+  }
+}
