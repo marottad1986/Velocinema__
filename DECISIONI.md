@@ -3,6 +3,12 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 24 nov 2026 · **Colpi coperti visibili subito** (proposta del revisore musica approvata dall'editore il 22 nov). Negli
+  spartiti nuovi il silenzio dopo un colpo forte si scrive con `taci(mix, da, a)` (`scripts/audio/campioni.mjs`, all'inizio
+  dello spartito): tacciono tutte le note, anche archi tenuti e bordoni, restano colpi ed effetti. `node scripts/livelli.mjs`
+  elenca ogni colpo ed effetto breve con il picco contro la sola musica e segnala «coperto» e «musica non tace». Gli
+  spartiti già fatti non cambiano. · produzione, revisore-musica
+
 - 24 nov 2026 · **Ritmo della voce misurato come si sente nel video** (proposta del revisore voce approvata dall'editore il
   22 nov). `node scripts/strumenti/ascolta-voce.mjs` dà le parole al secondo di ogni clip e di ogni frase anche «nel
   video», cioè dopo le pause accorciate e l'accelerazione di `npm run voce`, e segnala «veloce nel video» oltre 3,4: i

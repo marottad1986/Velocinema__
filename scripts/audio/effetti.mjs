@@ -152,10 +152,11 @@ const carica = (id) => {
  */
 const PRESE_AVVISATE = new Set();
 export const clip = (mix, id, { t, da = 0, durata, gain = 1, pan = 0, rev = 0.15, fadeIn = 0.005, fadeOut = 0.05, lp = 0, rate = 1, largo = 0 }) => {
-  if (globalThis.VELOCINEMA_STEM === 'musica') return; // scripts/livelli.mjs: misura della sola musica
+  if (['musica', 'senza-colpi', 'colpi'].includes(globalThis.VELOCINEMA_STEM)) return; // scripts/livelli.mjs
   const { sr, x } = carica(id);
   const step = (sr / SR) * rate;
   const dur = durata ?? (x.length / sr - da);
+  globalThis.VELOCINEMA_COLPI?.push({ t, id, tipo: 'effetto', dur: dur / rate });
   // presa oltre la fine del file: il tratto mancante sarebbe silenzio (avviso una volta per presa)
   const fine = x.length / sr;
   if (da + dur * rate > fine + 0.05) {
