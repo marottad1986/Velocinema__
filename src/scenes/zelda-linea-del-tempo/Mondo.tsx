@@ -336,11 +336,11 @@ const Mondo: React.FC<{ T: number; cam: { x: number; y: number; z: number } }> =
         const apart = eo(seg(T, split, split + 0.6));
         const fly = eio(seg(T, toOwners + i * 0.12, toOwners + 1.0 + i * 0.12));
         const shake = T > split - 0.1 && T < split + 0.3 ? Math.sin(T * 80) * 6 : 0;
-        const hx = tr.home[0] + (i - 1) * 50 * apart + shake, hy = tr.home[1];
+        const hx = tr.home[0] + (i - 1) * 50 * apart + shake, hy = tr.home[1] + 160 * eio(seg(T, STARTS.ocarina - 0.6, STARTS.ocarina + 1.0));
         const ox = tr.owner[0] + 44, oy = tr.owner[1] - 46;
         const x = lerp(hx, ox, fly), y = lerp(lerp(hy - 260, hy, drop), oy, fly);
         const s = lerp(1.35, 0.4, fly) * (0.4 + 0.6 * seg(T, t1, t1 + 0.3));
-        const lab = focus(at('triforza', 1, 0.1 + i * 0.45), toOwners) * (WIDEV ? 0 : 1);
+        const lab = focus(at('triforza', 1, 0.1 + i * 0.45), end('triforza') - 0.4) * (WIDEV ? 0 : 1);
         return (
           <g key={tr.key}>
             {fly < 0.5 && <path d={`M${x - 40} ${y + 30} L${x - 160} ${y + 700} H${x + 160} L${x + 40} ${y + 30} Z`} fill="#FFF2B0" opacity={0.18 * (1 - fly * 2) * seg(T, t1, t1 + 0.5)} />}
