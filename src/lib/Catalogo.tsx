@@ -1,5 +1,6 @@
 import React from 'react';
 import { Corridoio } from './liminale';
+import { Arco, Inchiostro, Pergamena, Sigillo } from './pergamena';
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from 'remotion';
 import { camera } from './anim';
 import { DISPLAY, SANS } from './fonts';
@@ -114,10 +115,24 @@ const Interni: React.FC<{ t: number }> = ({ t }) => {
         <g clipPath="url(#ci-lim)"><Corridoio T={t} z={t * 1.2} w={1080} h={1920} id="ci-cor" rotto={0.4} /></g>
         <rect width="1080" height="1920" rx="40" fill="none" stroke="#0B0818" strokeWidth="14" />
       </g>
+      {/* Pergamena miniata (src/lib/pergamena.tsx): foglio, inchiostro che scrive e si divide, arco a sesto acuto, sigillo (Zelda) */}
+      <g transform="translate(640 920) scale(0.36)">
+        <clipPath id="ci-pg"><rect width="1080" height="1920" rx="40" /></clipPath>
+        <g clipPath="url(#ci-pg)">
+          <Pergamena id="ci-perg" x={0} y={0} w={1080} h={1920} seed={3} />
+          <Inchiostro id="ci-ink" pts={[[540, 200], [520, 500], [540, 760]]} p={Math.min(1, (t % 4) / 2)} t={t} />
+          {[[240, '#B23A2A'], [540, '#2D6CB0'], [840, '#C8871A']].map(([x, c], i) => (
+            <Inchiostro key={i} id={`ci-br${i}`} pts={[[540, 760], [(540 + (x as number)) / 2, 900], [x as number, 1060]]} p={Math.max(0, Math.min(1, ((t % 4) - 2) / 1.5))} t={t} color={c as string} />
+          ))}
+          <Arco x={415} y={1100} w={250} h={330} p={1} t={t} lit={1} color="#2D6CB0" />
+          <Sigillo x={540} y={1650} t={t} t0={0} s={2} />
+        </g>
+        <rect width="1080" height="1920" rx="40" fill="none" stroke="#0B0818" strokeWidth="14" />
+      </g>
       <Finish id="ci" tint="#2C2456" />
       <Tag x={40} y={60}>SunRays · Neon(onAt) · StringLights · GlassDrops · Fireflies</Tag>
       <Tag x={40} y={100}>Beam(sweep) · Dust · Drips · Fire · Embers · Glow · Wisps · Notes</Tag>
-      <Tag x={40} y={140}>Flyers · Confetti · Buio (in basso: torcia e lume) · Corridoio (in alto a destra)</Tag>
+      <Tag x={40} y={140}>Flyers · Confetti · Buio (in basso: torcia e lume) · Corridoio (in alto a destra) · Pergamena (sotto)</Tag>
     </svg>
   );
 };

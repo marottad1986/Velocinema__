@@ -6,7 +6,7 @@ import { eo, mod, rng, seg } from './anim';
 //   tutto con gradienti, niente filtri (QUALITA §7).
 // - `Inchiostro`: una linea che si scrive da sola, con il pennino d'oro acceso in punta, le goccioline che restano sul
 //   foglio e le pagliuzze d'oro che si staccano. Si passa un elenco di punti (curva morbida Catmull-Rom) e `p` 0–1.
-//   `dividi` serve per un bivio: tre (o più) linee che partono dallo stesso punto e si scrivono insieme.
+//   Per un bivio si mettono tre `Inchiostro` che partono dallo stesso punto con lo stesso `p`: si scrivono insieme.
 // - `Arco`: la cornice a sesto acuto delle miniature (vetrata o pagina miniata), doppio filo d'oro, chiodini agli angoli;
 //   `clip` dà il percorso dell'arco per ritagliare il disegno dentro.
 // - `Sigillo`: il sigillo di ceralacca con un simbolo inciso (cartellino «colpo di scena» in stile manoscritto).
