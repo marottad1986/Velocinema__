@@ -137,7 +137,7 @@ export default (mix, T) => {
   const kick = (t, gain = 0.5) => colpo(mix, 'grancassa', 'bdrum_f', { t, vel: 100, gain, rev: 0.4, seed: Math.round(t * 10) });
 
   // ---------------------------------------------------------------- copertina: l'arpa che sale, le scintille sui sentieri
-  gliss(0.02, 53, 77, { dur: 1.0, vel: 42, gain: 0.35 });
+  gliss(0.02, 53, 77, { dur: 1.0, vel: 42, gain: 0.25 });
   pad(0, G0, { vel: 36, gain: 0.26 });
   [77, 81, 84].forEach((m, k) => bell(1.33 + k * CROMA, m, 38, 0.1 + k * 0.15));
   harpN(2, 41 + 12, { vel: 44, pan: -0.3, dur: 2 });
@@ -224,7 +224,7 @@ export default (mix, T) => {
   motifN(B(at('sconfitta', 3)), [57, 53, 50, 52, 53, 55, 58, 57, 53], { id: 'trombone', vel: 38, gain: 0.24, pan: -0.3 }); // il colore rosso, in Re minore
 
   // ---------------------------------------------------------------- 7 · il mare: arpa e glockenspiel, le onde che salgono
-  valzer(start('mare'), end('mare'), { chords: SEA, vel: 36 });
+  valzer(start('mare'), end('mare'), { chords: SEA, vel: 32 });
   pad(start('mare'), at('mare', 1, 0.4), { chords: SEA, vel: 32, gain: 0.22 });
   bell(at('mare', 0, 0.6), 81, 30);
   // il diluvio: archi che crescono mentre il mare sale
@@ -267,7 +267,7 @@ export default (mix, T) => {
   valzer(B(at('dopo', 3)), F, { vel: 30, chords: [[48, [0, 5, 7]], [46, [0, 4, 7]], [48, [0, 5, 7]], [46, [0, 4, 7]]] });
 
   // ---------------------------------------------------------------- finale: la cadenza in Fa maggiore
-  gliss(F - 0.1, 53, 84, { dur: 0.9, vel: 40, gain: 0.35 });
+  gliss(F - 0.1, 53, 84, { dur: 0.9, vel: 40, gain: 0.2 });
   [41, 53, 57, 60, 65, 69].forEach((m, j) => archi(mix, m, { t: F, dur: 3.8, vel: 50, pan: -0.4 + j * 0.16, rev: 0.6, gain: 0.28, attack: 0.3, release: 1.6, seed: j + 30 }));
   brass(F, 3.6, [53, 57, 60], { vel: 44, gain: 0.18 });
   [77, 81, 84, 89].forEach((m, k) => bell(F + 0.6 + k * CROMA, m, 34, -0.3 + k * 0.2));
