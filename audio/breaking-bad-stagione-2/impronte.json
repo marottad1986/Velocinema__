@@ -1,0 +1,74 @@
+{
+  "00_copertina": {
+    "testo": "4b25c0b87ff6",
+    "velocita": null,
+    "file": "06840a214c1c",
+    "quando": "2026-11-24T08:21:04.933Z"
+  },
+  "01_rapimento": {
+    "testo": "c54287359a46",
+    "velocita": null,
+    "file": "a395106b8554",
+    "quando": "2026-11-24T08:21:08.231Z"
+  },
+  "02_campanello": {
+    "testo": "0b20bbfacf08",
+    "velocita": 1.08,
+    "file": "c535738773a1",
+    "quando": "2026-11-24T08:22:21.353Z"
+  },
+  "03_hank": {
+    "testo": "5ec66a8ce794",
+    "velocita": 1.08,
+    "file": "3c761afc161c",
+    "quando": "2026-11-24T08:22:29.481Z"
+  },
+  "04_fuga": {
+    "testo": "861ecdb7b8b6",
+    "velocita": null,
+    "file": "6b181d5943a9",
+    "quando": "2026-11-24T08:21:18.325Z"
+  },
+  "05_bancomat": {
+    "testo": "edf109d1b866",
+    "velocita": null,
+    "file": "7151dfe17fbc",
+    "quando": "2026-11-24T08:21:21.976Z"
+  },
+  "06_saul": {
+    "testo": "bbeb60535d2b",
+    "velocita": 1.08,
+    "file": "629d0351e920",
+    "quando": "2026-11-24T08:22:25.480Z"
+  },
+  "07_gus": {
+    "testo": "7cd0633511a9",
+    "velocita": 1.08,
+    "file": "481213b81e23",
+    "quando": "2026-11-24T08:22:18.054Z"
+  },
+  "08_jane": {
+    "testo": "ae52a1a1e9a3",
+    "velocita": null,
+    "file": "f0e1308812c4",
+    "quando": "2026-11-24T08:21:32.000Z"
+  },
+  "09_notte": {
+    "testo": "ce5a1ae3e3b6",
+    "velocita": null,
+    "file": "1d1c3af131d8",
+    "quando": "2026-11-24T08:21:35.382Z"
+  },
+  "10_aerei": {
+    "testo": "f62d84115a11",
+    "velocita": null,
+    "file": "1ed6a6f04195",
+    "quando": "2026-11-24T08:21:39.114Z"
+  },
+  "11_fine": {
+    "testo": "8f7d0b3686df",
+    "velocita": null,
+    "file": "a4b5fea9006d",
+    "quando": "2026-11-24T08:21:42.845Z"
+  }
+}

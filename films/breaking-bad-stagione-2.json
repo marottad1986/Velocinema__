@@ -38,7 +38,8 @@
         "Lì vive Hector, zio di Tuco, muto e paralizzato: parla col campanello.",
         "Walter e Jesse avvelenano il cibo di Tuco,",
         "ma Hector se ne accorge e col campanello avverte il nipote."
-      ]
+      ],
+      "voce_velocita": 1.08
     },
     {
       "id": "hank",
@@ -49,7 +50,8 @@
         "Jesse ferisce Tuco con un sasso, e i due si nascondono;",
         "ma Hank, cognato di Walter e agente antidroga, lo sta cercando:",
         "segue l'auto di Jesse, arriva lì e uccide Tuco."
-      ]
+      ],
+      "voce_velocita": 1.08
     },
     {
       "id": "fuga",
@@ -82,7 +84,8 @@
         "Poi Badger, uno dei tre amici, viene arrestato e rischia di parlare,",
         "così assumono Saul Goodman, un avvocato senza scrupoli,",
         "che lo tira fuori e da allora ripulisce i loro soldi."
-      ]
+      ],
+      "voce_velocita": 1.08
     },
     {
       "id": "gus",
@@ -93,7 +96,8 @@
         "Saul trova un grande compratore: Gus, che ha ristoranti di pollo,",
         "ma Jesse, con la sua nuova ragazza Jane, prende eroina:",
         "così Walter consegna da solo, proprio mentre nasce sua figlia."
-      ]
+      ],
+      "voce_velocita": 1.08
     },
     {
       "id": "jane",
@@ -165,10 +169,11 @@
     "Walter": "Uòlter",
     "Jesse": "Gèssi",
     "Badger": "Bègiar",
-    "Saul Goodman": "Sòol Gùdmen",
     "Skyler": "Skàiler",
     "Hank": "Hènk",
     "Jane": "Gièin",
-    "Hector": "Èctor"
+    "Hector": "Èctor",
+    "Saul": "Sòol",
+    "Goodman": "Gùdmen"
   }
 }
