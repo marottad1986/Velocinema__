@@ -273,7 +273,8 @@ sopra (formato 2:00, stile, contenuti, voce, musica), con queste aggiunte.
   confrontare musica ed effetti misurati separatamente; i vecchi strumenti sintetici di synth.mjs non vanno più usati
   per la musica.
 - Prima del revisore musica, controllo da fare da sé: ogni evento visibile importante ha il suo suono (e viceversa);
-  dopo un colpo forte la musica tace almeno un battito; i tappeti stanno sotto la musica; nessun avviso «ATTENZIONE
+  dopo un colpo forte la musica tace almeno un battito (negli spartiti nuovi `taci(mix, da, a)` di `campioni.mjs` zittisce
+  anche archi tenuti e bordoni; `node scripts/livelli.mjs` segnala colpi «coperti» e «musica non tace»); i tappeti stanno sotto la musica; nessun avviso «ATTENZIONE
   effetto … presa oltre la fine» da `npm run musica` (lo stampa `clip()` quando `da`+`durata` supera il file); il cambio
   di carattere (es. il maggiore del finale) cade con l'evento visivo, non sulla battuta prima.
 - `node scripts/livelli.mjs <film> [--finestre]`: livelli per capitolo di mix, sola musica e soli effetti (con la stessa

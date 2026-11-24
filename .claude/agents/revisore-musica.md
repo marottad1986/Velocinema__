@@ -28,7 +28,9 @@ Controlla, uno per uno:
    senza suono e i suoni senza evento: per trovarli confronta gli istanti animati delle scene (`seg(t, …)`,
    `flashAt`, `cues[i]` nei *.tsx) con gli effetti dello spartito.
 6. Livelli: `node scripts/livelli.mjs <film> [--finestre]` (mix, sola musica e soli effetti per capitolo; segnala
-   buchi sotto −45 dB e tratti con effetti più di 3 dB sopra la musica). Atteso: capitoli tra circa −22 e −36 dB, il
+   buchi sotto −45 dB e tratti con effetti più di 3 dB sopra la musica; in fondo una riga per ogni colpo e ogni effetto
+   breve, col suo picco contro la sola musica nello stesso istante: «⚠ coperto» = sotto la musica, «⚠ poco sopra» = meno di 6 dB sopra,
+   «⚠ musica non tace» = dopo un colpo forte la musica resta forte). Atteso: capitoli tra circa −22 e −36 dB, il
    picco del film nel suo momento più forte, nessun buco fra le sezioni, effetti sopra la musica per non più di 2 s di
    fila salvo l'evento che lo richiede (dillo). Confronta con la versione su main dello stesso film
    (`git show origin/main:scripts/audio/<film>.mjs`) e con un altro film già approvato.

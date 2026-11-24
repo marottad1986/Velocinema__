@@ -96,13 +96,41 @@ const putStereo = (mix, t, len, gen, { gain = 1, pan = 0, rev = 0.2 }) => {
 // ---------------------------------------------------------------- note
 
 /**
+ * Silenzio della musica dopo un colpo forte (proposta «Colpi coperti visibili subito», approvata dall'editore il
+ * 22 nov 2026): da `da` ad `a` (secondi) tacciono TUTTE le note di suona(), anche archi tenuti, bordoni e code
+ * iniziate prima, con una sfumatura breve ai bordi; i colpi (colpo(), timpani) e gli effetti registrati restano.
+ * Così «dopo un colpo forte la musica tace almeno un battito» è automatico. Va chiamata all'inizio dello spartito,
+ * prima delle note (vale per le note scritte dopo la chiamata). Una nota che deve suonare lo stesso: `sempre: true`.
+ * Facoltativa: gli spartiti già fatti non la usano e non cambiano.
+ */
+export const taci = (mix, da, a, { sfuma = 0.04 } = {}) => {
+  (mix.taci ??= []).push([da, a, Math.max(0.005, sfuma)]);
+};
+/** Guadagno della musica all'istante x (secondi) per i silenzi di taci(): 1 fuori, 0 dentro, sfumato ai bordi. */
+const silenzio = (mix, x) => {
+  let g = 1;
+  for (const [da, a, f] of mix.taci) {
+    if (x <= da - f || x >= a + f) continue;
+    const k = x < da ? (da - x) / f : x > a ? (x - a) / f : 0;
+    g = Math.min(g, Math.sin(k * (Math.PI / 2)) ** 2);
+  }
+  return g;
+};
+/** scripts/livelli.mjs registra i colpi (istante, strumento) per misurarne l'emergere sulla musica. */
+const segnaColpo = (t, id) => globalThis.VELOCINEMA_COLPI?.push({ t, id, tipo: 'colpo' });
+
+/**
  * Suona una nota con uno strumento campionato.
  * nota: nome ('D3') o numero MIDI. t/dur in secondi; vel 0–127 sceglie lo strato di dinamica e il volume.
  * attack: dissolvenza d'entrata (archi che crescono); release: coda dopo dur (archi ~0,8 s; arpa/piano lasciano
  * suonare con release lungo); start: secondi di campione da saltare (attacco più morbido); cents: scordatura voluta.
  */
-export const suona = (mix, id, nota, { t, dur, vel = 64, pan = 0, rev = 0.3, gain = 1, attack = 0, release = 0.6, start = 0, cents = 0, seed = 1 }) => {
+export const suona = (mix, id, nota, { t, dur, vel = 64, pan = 0, rev = 0.3, gain = 1, attack = 0, release = 0.6, start = 0, cents = 0, seed = 1, sempre = false }) => {
   if (globalThis.VELOCINEMA_STEM === 'effetti') return; // scripts/livelli.mjs: misura dei soli effetti
+  if (id === 'timpani') {
+    if (globalThis.VELOCINEMA_STEM === 'senza-colpi') return;
+    segnaColpo(t, id);
+  } else if (globalThis.VELOCINEMA_STEM === 'colpi') return;
   const s = INDICE.strumenti[id];
   const midi = typeof nota === 'number' ? nota : Math.round(69 + 12 * Math.log2(hz(nota) / 440));
   const r = rng(seed * 7919 + Math.round(t * 1000) + midi * 31);
@@ -141,10 +169,12 @@ export const suona = (mix, id, nota, { t, dur, vel = 64, pan = 0, rev = 0.3, gai
   const fineNaturale = loop ? Infinity : (n - s0) / ratio / SR;
   const len = Math.ceil(Math.min(dur + release, fineNaturale) * SR);
   const atk = attack * SR, d = dur * SR, rel = Math.max(1, release * SR);
+  const muto = mix.taci?.length && !sempre && id !== 'timpani';
   putStereo(mix, t, len, (i, o) => {
     const v = s0 + i * ratio;
     let env = atk > 0 && i < atk ? Math.sin((i / atk) * (Math.PI / 2)) ** 2 : 1;
     if (i > d) env *= Math.max(0, 1 - (i - d) / rel) ** 2;
+    if (muto) env *= silenzio(mix, t + i / SR);
     o[0] = at(L, v) * env;
     o[1] = at(R, v) * env;
   }, { gain: g, pan, rev });
@@ -156,7 +186,8 @@ export const suona = (mix, id, nota, { t, dur, vel = 64, pan = 0, rev = 0.3, gai
  * da = secondi di campione da saltare.
  */
 export const colpo = (mix, id, file, { t, vel = 100, pan = 0, rev = 0.3, gain = 1, dur = Infinity, release = 0.5, pitch = 0, da = 0, seed = 1 }) => {
-  if (globalThis.VELOCINEMA_STEM === 'effetti') return; // scripts/livelli.mjs: misura dei soli effetti
+  if (globalThis.VELOCINEMA_STEM === 'effetti' || globalThis.VELOCINEMA_STEM === 'senza-colpi') return; // scripts/livelli.mjs
+  segnaColpo(t, id);
   const s = INDICE.strumenti[id];
   const cand = s.campioni.filter((c) => c.f.startsWith(file) || c.dyn === file);
   if (!cand.length) throw new Error(`Nessun campione "${file}" in ${id}`);
