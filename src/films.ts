@@ -85,6 +85,9 @@ import { Copertina as JokerCover, Finale as JokerEnd } from './scenes/joker/Loca
 import breakingBad1 from '../films/breaking-bad-stagione-1.json';
 import { BREAKING_BAD_1_SCENES } from './scenes/breaking-bad-stagione-1';
 import { Copertina as BB1Cover, Finale as BB1End } from './scenes/breaking-bad-stagione-1/Locandina';
+import breakingBad2 from '../films/breaking-bad-stagione-2.json';
+import { BREAKING_BAD_2_SCENES } from './scenes/breaking-bad-stagione-2';
+import { Copertina as BB2Cover, Finale as BB2End } from './scenes/breaking-bad-stagione-2/Locandina';
 import ilSestoSenso from '../films/il-sesto-senso.json';
 import { IL_SESTO_SENSO_SCENES } from './scenes/il-sesto-senso';
 import { Copertina as SestoCover, Finale as SestoEnd } from './scenes/il-sesto-senso/Locandina';
@@ -141,6 +144,7 @@ export const FILMS: FilmDef[] = [
   { slug: 'joker', data: joker as FilmData, scenes: JOKER_SCENES, cover: JokerCover, ending: JokerEnd, posterFont: ANTON },
   { slug: 'tenet', data: tenet as FilmData, scenes: TENET_SCENES, cover: TenetCover, ending: TenetEnd, posterFont: ANTON },
   { slug: 'breaking-bad-stagione-1', data: breakingBad1 as FilmData, scenes: BREAKING_BAD_1_SCENES, cover: BB1Cover, ending: BB1End, posterFont: STENCIL },
+  { slug: 'breaking-bad-stagione-2', data: breakingBad2 as FilmData, scenes: BREAKING_BAD_2_SCENES, cover: BB2Cover, ending: BB2End, posterFont: STENCIL },
   { slug: 'il-sesto-senso', data: ilSestoSenso as FilmData, scenes: IL_SESTO_SENSO_SCENES, cover: SestoCover, ending: SestoEnd, posterFont: CRIMSON },
   { slug: 'x-factor-2026-live-3', data: xFactor2026Live3 as FilmData, scenes: X_FACTOR_2026_LIVE_3_SCENES, cover: XF26L3Cover, ending: XF26L3End, posterFont: ANTON },
   { slug: 'x-factor-2026-live-4', data: xFactor2026Live4 as FilmData, scenes: X_FACTOR_2026_LIVE_4_SCENES, cover: XF26L4Cover, ending: XF26L4End, posterFont: ANTON },

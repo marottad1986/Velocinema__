@@ -54,3 +54,28 @@ export const Lin: React.FC<{ id: string; stops: [number, string, number?][]; x2?
     ))}
   </linearGradient>
 );
+
+/**
+ * Bianco e nero con un solo colore (Breaking Bad, stagione 2: gli anticipi in bianco e nero con l'orsacchiotto rosa).
+ * <MonoDefs id amount> nei <defs> (amount 0 = colori pieni, 1 = bianco e nero argentato con un po' di contrasto), poi i
+ * piani da spegnere dentro <Mono id>…</Mono>; l'oggetto che resta a colori si disegna fuori, sopra o tra due gruppi Mono.
+ * Un solo filtro leggero (matrice di colore), niente sfocature: il colore può tornare a poco a poco animando amount.
+ */
+export const MonoDefs: React.FC<{ id: string; amount: number; contrast?: number }> = ({ id, amount, contrast = 0.18 }) => {
+  const a = Math.max(0, Math.min(1, amount));
+  const k = 1 + contrast * a;
+  return (
+    <filter id={`${id}-mono`} x="0" y="0" width="100%" height="100%" colorInterpolationFilters="sRGB">
+      <feColorMatrix type="saturate" values={(1 - a).toFixed(3)} />
+      <feComponentTransfer>
+        {(['R', 'G', 'B'] as const).map((c) => {
+          const Tag = `feFunc${c}` as 'feFuncR';
+          return <Tag key={c} type="linear" slope={k.toFixed(3)} intercept={(-(k - 1) / 2).toFixed(3)} />;
+        })}
+      </feComponentTransfer>
+    </filter>
+  );
+};
+
+export const Mono: React.FC<{ id: string; amount: number; children: React.ReactNode }> = ({ id, amount, children }) =>
+  amount <= 0.001 ? <>{children}</> : <g filter={`url(#${id}-mono)`}>{children}</g>;
