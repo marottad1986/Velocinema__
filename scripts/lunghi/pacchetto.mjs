@@ -4,6 +4,8 @@
 //                 (copertina/aggancio anche al fotogramma 0 = miniatura); id dei tratti come in tempi.md
 //   miniatura.png il fotogramma 0 intero e ridotto a 320×180 (come nei risultati di YouTube)
 //   tempi.md      inizio di ogni tratto nel video lungo e istanti delle frasi
+//   testi.md      scritte che si sovrappongono (cartelli, titolo, etichetta, sottotitoli), misurate nel browser a metà
+//                 di ogni frase di ogni tratto (src/lunghi/MisuraTesti.tsx); --senza-testi per saltarlo
 //   livelli.txt   con --musica: loudness della musica per tratto (out/<slug>-musica.wav) e le misure di
 //                 scripts/livelli.mjs sullo spartito delle parti nuove (buchi, effetti sopra la musica, colpi coperti)
 // --parti limita ai tratti indicati (secondo passaggio). Browser: REMOTION_BROWSER.
@@ -64,6 +66,48 @@ for (const x of tr.filter((y) => !solo || solo.includes(y.id))) {
   console.log(`${dir}/${x.id}.png  (${mmss(x.start)} · secondi ${secs.join(', ')})`);
 }
 rmSync(tmp, { recursive: true, force: true });
+
+// ---- scritte sovrapposte (proposta dei revisori immagini e musica, approvata dall'editore il 23 nov 2026)
+if (!args.includes('--senza-testi')) {
+  const tmpT = `${dir}/tmp-testi`;
+  mkdirSync(tmpT, { recursive: true });
+  const righeT = [`# Scritte sovrapposte in ${L.titolo_youtube}`, '', 'Due testi visibili (opacità ≥ 0,15, almeno 3 lettere) i cui rettangoli si coprono per più del 15% del più piccolo, misurati poco dopo l\'inizio e a metà di ogni frase. Una scritta della scena coperta dai sottotitoli o dal titolo va spostata.', ''];
+  let problemi = 0, misurati = 0, fotogrammi = 0;
+  for (const x of tr.filter((y) => !solo || solo.includes(y.id))) {
+    if (x.tipo === 'carta' || x.tipo === 'capitolo-episodio' || x.tipo === 'riassunto') continue; // scene degli episodi: già approvate nei loro film
+    const composition = await selectComposition({ serveUrl, id: `${slug}--${x.id}`, browserExecutable, chromiumOptions });
+    const q = frasi(x);
+    const istanti = [...new Set(q.flatMap((s, i) => [s + 0.6, (s + (q[i + 1] ?? x.dur)) / 2]).map((s) => Math.min(x.dur - 0.05, +s.toFixed(2))))];
+    const trovati = new Map();
+    for (const s of istanti) {
+      let misura = null;
+      await renderStill({ serveUrl, composition, frame: Math.min(Math.round(s * 30), composition.durationInFrames - 1), output: `${tmpT}/m.png`, browserExecutable, chromiumOptions, scale: 0.1,
+        inputProps: { ...composition.props, misura: true },
+        onBrowserLog: (log) => { if (log.text.startsWith('MISURA ')) misura = JSON.parse(log.text.slice(7)); } });
+      // il riquadro di una riga è più alto delle lettere (interlinea): si stringe del 20% sopra e sotto
+      // lettere singole (insegne verticali, iniziali decorative) non sono scritte da leggere: si saltano
+      const T = (misura?.testi ?? []).filter((u) => u.testo.replace(/\s/g, '').length > 2).map((u) => ({ ...u, y: u.y + u.h * 0.2, h: u.h * 0.6 }));
+      fotogrammi++;
+      misurati += T.length;
+      for (let i = 0; i < T.length; i++) for (let j = i + 1; j < T.length; j++) {
+        const a = T[i], b = T[j];
+        const w = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x), h = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+        if (w <= 0 || h <= 0) continue;
+        const quota = (w * h) / Math.min(a.w * a.h, b.w * b.h);
+        if (quota < 0.15) continue;
+        const k = `«${a.testo}» e «${b.testo}»`;
+        if (!trovati.has(k)) trovati.set(k, { s, quota });
+      }
+    }
+    for (const [k, v] of trovati) righeT.push(`- ${x.id}, a ${v.s} s (${mmss(x.start + v.s)}): ${k} si coprono al ${Math.round(v.quota * 100)}%`);
+    problemi += trovati.size;
+  }
+  if (!problemi) righeT.push('Nessuna sovrapposizione trovata.');
+  righeT.push('', `(${fotogrammi} fotogrammi, ${misurati} testi misurati in tutto)`);
+  rmSync(tmpT, { recursive: true, force: true });
+  writeFileSync(`${dir}/testi.md`, righeT.join('\n') + '\n');
+  console.log(`${dir}/testi.md  (${problemi} sovrapposizioni)`);
+}
 
 // ---- livelli della musica per tratto
 if (args.includes('--musica')) {

@@ -6,7 +6,8 @@
 // (timpani, grancassa, gong, piatti) e per ogni effetto registrato breve (fino a 2,5 s), con il picco del suono
 // contro il picco della sola musica (note, senza colpi né effetti) nello stesso istante (0,3 s dal colpo) e nel
 // secondo prima; «coperto» se il colpo resta sotto la musica, «poco sopra» se la supera di meno di 6 dB, «musica non tace» se nei 0,5 s dopo
-// un colpo forte la musica resta entro 12 dB dal colpo (spartiti: taci() in campioni.mjs).
+// un colpo forte la musica resta entro 12 dB dal colpo (spartiti: taci() in campioni.mjs), «niente vuoto prima» se nel
+// secondo prima di un colpo forte la sola musica non è almeno 8 dB sotto la media del capitolo.
 import { pathToFileURL } from 'node:url';
 import { createMix, SR } from './audio/synth.mjs';
 import { impulso, convolvi } from './audio/sala.mjs';
@@ -113,6 +114,13 @@ for (const e of lista) {
   if (c < m) (avvisi.push('coperto'), coperti++);
   else if (c - m < 6) avvisi.push('poco sopra');
   if (c > -12 && c - dopo < 12) avvisi.push('musica non tace');
+  // colpo forte: la sola musica nel secondo prima almeno 8 dB sotto la media del capitolo (il vuoto che lo prepara;
+  // proposta dei revisori immagini e musica approvata dall'editore il 23 nov 2026)
+  const cap = segments.find((s) => e.t >= s.start && e.t < s.start + s.dur);
+  if (c > -12 && cap) {
+    const vuoto = db(note, cap.start, cap.start + cap.dur) - db(note, e.t - 1, e.t);
+    if (vuoto < 8) avvisi.push(`niente vuoto prima (musica solo ${vuoto.toFixed(1)} dB sotto la media del capitolo, servono 8)`);
+  }
   console.log(`${e.t.toFixed(2).padStart(7)} s  ${capDi(e.t).slice(0, WC).padEnd(WC)} ${e.id.padEnd(22)} ${c.toFixed(1).padStart(6)} / ${m.toFixed(1).padStart(6)}  (prima ${prima.toFixed(1)})  ${avvisi.length ? '⚠ ' + avvisi.join('; ') : ''}`);
 }
 if (trama.length) console.log(`Non elencati (ripetuti, fanno da trama): ${trama.map(([id, n]) => `${id} ×${n}`).join(', ')}`);

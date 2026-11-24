@@ -46,7 +46,8 @@ Controlla per ogni capitolo:
 
 **Video lunghi 16:9** (slug in `lunghi/`, scene in `src/lunghi/<slug>/`): i punti 1, 4 e 9 sopra sono del verticale e NON
 valgono. Leggi QUALITA.md §10, YOUTUBE.md (§1–4) e VIDEO-LUNGO.md («Elementi fissi»). Materiale: pacchetto di
-`node scripts/lunghi/pacchetto.mjs <slug>` in `out/revisione/<slug>/` (un PNG per tratto, `miniatura.png`, `tempi.md`);
+`node scripts/lunghi/pacchetto.mjs <slug>` in `out/revisione/<slug>/` (un PNG per tratto, `miniatura.png`, `tempi.md`,
+`testi.md` con le scritte che si coprono tra loro o coprono titolo e sottotitoli, misurate a ogni frase: partire da lì);
 altri fotogrammi con `node scripts/lunghi/prova.mjs <slug> <secondi…>` (secondi del video intero). Per il ritmo delle
 immagini fai una striscia ogni 3 s di un tratto a scelta per atto (es. `prova.mjs <slug> 40 43 46 … --scala 0.25`).
 Controlla per ogni atto (aggancio, atti, chiusura):

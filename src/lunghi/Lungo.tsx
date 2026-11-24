@@ -1,6 +1,7 @@
 import React from 'react';
 import { AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig } from 'remotion';
 import { SANS } from '../lib/fonts';
+import { MisuraTesti } from './MisuraTesti';
 import { Overlay16 } from './Overlay16';
 import { getLungo } from './registro';
 import { cuesDi, durataTotale, tempiVoce, tratti, type Tratto } from './tempi';
@@ -41,6 +42,7 @@ export const TrattoView: React.FC<{ slug: string; indice: number; offset?: numbe
       )}
       {x.tipo === 'aggancio' && <Overlay16 P={P} t={t} dur={x.dur} righe={x.parte.sottotitoli} inizio={INIZIO_AGGANCIO} tempi={tempiVoce(x.parte.sottotitoli, x.parte.voce, INIZIO_AGGANCIO, x.dur)} />}
       {x.tipo === 'chiusura' && <Overlay16 P={P} t={t} dur={x.dur} righe={x.parte.sottotitoli} inizio={INIZIO_CHIUSURA} tempi={tempiVoce(x.parte.sottotitoli, x.parte.voce, INIZIO_CHIUSURA, x.dur)} />}
+      <MisuraTesti />
     </AbsoluteFill>
   );
 };

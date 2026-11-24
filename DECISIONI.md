@@ -3,6 +3,12 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 24 nov 2026 · **Controllo automatico dei lunghi** (proposta dei revisori immagini e musica approvata dall'editore il
+  23 nov). `scripts/lunghi/pacchetto.mjs` misura nel browser i testi visibili a ogni frase (`src/lunghi/MisuraTesti.tsx`)
+  e scrive in `testi.md` le scritte e i cartelli che si coprono tra loro o coprono titolo e sottotitoli; `livelli.mjs`
+  segnala i colpi forti senza il vuoto di almeno 8 dB nel secondo prima. Prima del revisore immagini `testi.md` va
+  vuotato (o ogni riga spiegata). · produzione, revisori immagini e musica
+
 - 24 nov 2026 · **Campioni anomali compensati** (proposta del revisore musica approvata dall'editore il 23 nov). Gli
   spartiti nuovi chiamano `compensa(mix)` all'inizio (`scripts/audio/campioni.mjs`): i campioni di spiccato, pizzicato e
   staccato più di 4 dB sopra i vicini dello stesso strato vengono abbassati alla loro mediana (es. la ripetizione delle
