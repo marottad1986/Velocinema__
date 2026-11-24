@@ -232,11 +232,11 @@ export default (mix, T) => {
 
   // ---- notte: il corridoio buio; la porta, il bicchiere, la luce che si spegne; solo il violino e un bordone
   const openN = E('notte', 0, 0.6), glass = E('notte', 1, 1.4), dim = E('notte', 2, 0.8);
-  clip(mix, 'porta_cigolio', { t: openN, da: 10.68, durata: 1.6, gain: 0.1, fadeOut: 0.5, rev: 0.35 }); // Notte.tsx: la porta si apre
+  clip(mix, 'porta_cigolio', { t: openN, da: 10.68, durata: 1.6, gain: 0.18, fadeOut: 0.5, rev: 0.35 }); // Notte.tsx: la porta si apre
   suona(mix, 'contrabbasso', 28, { t: B(T.notte), dur: T.aerei - B(T.notte), vel: 44, gain: 0.6, attack: 0.8, release: 1.2, rev: 0.5 });
   trem(B(T.notte), glass, [40, 41], { gain: 0.32 });
   strings(B(T.notte), dim, { half: true, vel: 36, gain: 0.18 });
-  clip(mix, 'vetri', { t: glass + 0.3, da: 0.12, durata: 0.35, gain: 0.2, fadeOut: 0.15, rev: 0.3, lp: 5000 }); // il bicchiere si rovescia
+  clip(mix, 'vetri', { t: glass + 0.3, da: 0.12, durata: 0.35, gain: 0.26, fadeOut: 0.15, rev: 0.3, lp: 5000 }); // il bicchiere si rovescia
   violino(glass + BEAT, [[0, 77, 2], [2, 76, 4]], { gain: 0.2 });
   violino(dim, [[0, 71, 3], [3, 72, 2], [5, 71, 6]], { gain: 0.18 }); // la luce cala
   strings(dim, T.aerei, { half: true, vel: 36, gain: 0.2, k0: 0 });
