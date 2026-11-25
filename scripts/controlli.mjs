@@ -220,7 +220,7 @@ for (const slug of listaPromo) {
   const E = [], A = [];
   const P = loadPromo(slug);
   const parti = partiPromo(P);
-  const totale = durataPromo(P) + (P.sigla_finale ? 3.5 : 0); // con il logo finale dei trailer (TRAILER.md punto 8)
+  const totale = durataPromo(P);
   if (totale > 60) E.push(`dura ${totale} s: uno Short promozionale resta entro 60 s`);
   // ritmo della voce, righe, frasi vietate
   for (const x of parti) {

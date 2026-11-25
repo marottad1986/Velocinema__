@@ -2,7 +2,6 @@ import React from 'react';
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from 'remotion';
 import { seg } from '../lib/anim';
 import { SANS } from '../lib/fonts';
-import { SiglaScena } from '../sigla/Sigla';
 import { getPromo, tempiPromo } from './registro';
 
 const alpha = (hex: string, a: number) => hex + Math.round(a * 255).toString(16).padStart(2, '0');
@@ -68,8 +67,6 @@ export const Promo: React.FC<{ slug: string }> = ({ slug }) => {
           );
         })}
       </div>
-      {/* logo «2M Studios» alla fine dei trailer nuovi ("sigla_finale": true): la sigla «Zoom» di src/sigla/ in 9:16 */}
-      {P.data.sigla_finale && T >= tempi.fine && <SiglaScena T={T - tempi.fine} W={1080} H={1920} />}
     </AbsoluteFill>
   );
 };

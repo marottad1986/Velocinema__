@@ -15,16 +15,16 @@ Ramo `claude/quirky-volta-ajyqfo` (pushato, nessuna pull request). Materiale in 
   (`SIGLA`: 0,5 il 2 · 1,0 la M · 1,25 lo stacco · 1,5 STUDIOS) o aggiornare anche `Sigla.tsx`.
 
 ## Fatto (25 nov 2026)
-- **Posizione decisa dall'editore**: sigla al secondo zero solo nei video lunghi di YouTube (`"sigla": true`), logo alla
-  fine dei trailer (`"sigla_finale": true`). Codice in `src/lunghi/` (tratto `sigla` in `tempi.ts`), `src/promo/`,
-  `scripts/lunghi/render.mjs`, `scripts/promo/render.mjs` (jingle da `scriviSigla()`), `scripts/controlli.mjs`.
-  Regole in `YOUTUBE.md` §2, `VIDEO-LUNGO.md`, `TRAILER.md` punto 8, `DECISIONI.md`. Esempi in `sigla/prove/esempio-*.mp4`.
+- **Posizione decisa dall'editore**: sigla al secondo zero **solo nei video lunghi di YouTube** (`"sigla": true`).
+  **Mai nei trailer** (l'editore ha tolto il logo finale: «fallo solo sui video lunghi»). Codice in `src/lunghi/` (tratto
+  `sigla` in `tempi.ts`), `scripts/lunghi/render.mjs` (jingle da `scriviSigla()`), `scripts/controlli.mjs`.
+  Regole in `YOUTUBE.md` §2, `VIDEO-LUNGO.md`, `DECISIONI.md`. Esempio in `sigla/prove/esempio-lungo-con-sigla-iniziale.mp4`.
 
 ## Da fare
 1. Pull request del ramo verso main (revisori musica e immagini per la sigla, regole del 16:9), poi unione.
 2. Messaggio dell'app su «fatto» (`POST /api/messaggi/msg-8204410764909-6a9756b8`) da una sessione della squadra (serve la
    chiave dell'app, che c'è solo nell'ambiente cloud).
-3. Il primo lungo nuovo e il primo trailer nuovo si fanno con la sigla accesa.
+3. Il primo lungo nuovo si fa con la sigla accesa.
 ## Note
 - `npx tsc --noEmit` ha due errori vecchi in `src/promo/trailer-ritorno-al-futuro/Foto.tsx`, non legati alla sigla.
 - Mai script nuovi in `scripts/` senza aggiungerli a «non cambiano i video» di `scripts/cambiati.mjs` (ERRORI.md): per questo

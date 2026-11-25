@@ -14,7 +14,6 @@ import { impulso, convolvi } from '../audio/sala.mjs';
 import { scaricaCampioni } from '../audio/campioni.mjs';
 import { scaricaEffetti } from '../audio/effetti.mjs';
 import { duration, run } from '../audio/film.mjs';
-import { SIGLA_DURATA, scriviSigla } from '../audio/sigla-2m-studios.mjs';
 import { durataPromo, loadPromo, partiPromo, promo } from './tempi.mjs';
 
 const args = process.argv.slice(2);
@@ -25,31 +24,20 @@ if (!slug || !promo().includes(slug)) {
 }
 const P = loadPromo(slug);
 const parti = partiPromo(P);
-const FINE_PARTI = durataPromo(P);
-// "sigla_finale": true (trailer nuovi, dal 25 nov 2026): dopo l'ultima parte 3,5 s di sigla «2M Studios» con il suo jingle
-const END = FINE_PARTI + (P.sigla_finale ? SIGLA_DURATA : 0);
+const END = durataPromo(P);
 mkdirSync('out', { recursive: true });
 
 // ---------------------------------------------------------------- musica
 const { default: score, strumenti = [], effetti = [], sala } = await import(pathToFileURL(path.resolve(`scripts/audio/${slug}.mjs`)).href);
 scaricaCampioni(strumenti);
 scaricaEffetti(effetti);
-const T = { END: FINE_PARTI, frase: (id, n) => parti.find((x) => x.id === id).frasi[n] };
+const T = { END, frase: (id, n) => parti.find((x) => x.id === id).frasi[n] };
 for (const x of parti) T[x.id] = x.start;
-const mix = createMix(FINE_PARTI);
+const mix = createMix(END);
 score(mix, T);
 const musica = `out/${slug}-musica.wav`;
 const ir = sala && impulso(sala);
-const spartito = P.sigla_finale ? `out/${slug}-spartito.wav` : musica;
-writeWav(mix, spartito, { peakDb: -3, fadeOut: 1.2, ...(ir && { wet: sala.wet ?? 0.5, riverbero: (ch, side) => convolvi(ch, ir[side]) }) });
-if (P.sigla_finale) {
-  // il jingle della sigla subito dopo la musica del trailer, 3 dB sotto (con lo stesso picco suonava più forte della chiusura)
-  const sg = scriviSigla(`out/${slug}-sigla.wav`);
-  const FMT = 'aformat=sample_rates=44100:channel_layouts=stereo';
-  run('ffmpeg', ['-y', '-v', 'error', '-i', spartito, '-i', sg, '-filter_complex',
-    `[0:a]${FMT},apad=whole_dur=${END}[m];[1:a]${FMT},volume=-3dB,adelay=${Math.round(FINE_PARTI * 1000)}:all=1[s];[m][s]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.89[a]`,
-    '-map', '[a]', '-t', String(END), '-c:a', 'pcm_s16le', musica]);
-}
+writeWav(mix, musica, { peakDb: -3, fadeOut: 1.2, ...(ir && { wet: sala.wet ?? 0.5, riverbero: (ch, side) => convolvi(ch, ir[side]) }) });
 console.log(`Musica: ${musica}`);
 
 // ---------------------------------------------------------------- video

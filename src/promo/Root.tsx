@@ -10,7 +10,7 @@ export const RootPromo: React.FC = () => (
   <Folder name="promo">
     {PROMO.map((p) => (
       <Composition key={p.slug} id={p.slug} component={Promo} defaultProps={{ slug: p.slug }}
-        durationInFrames={Math.round(tempiPromo(p.data).durata * FPS)} fps={FPS} width={1080} height={1920} />
+        durationInFrames={Math.round(tempiPromo(p.data).fine * FPS)} fps={FPS} width={1080} height={1920} />
     ))}
   </Folder>
 );

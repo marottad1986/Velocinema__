@@ -1,7 +1,6 @@
 import type React from 'react';
 import type { Palette } from '../types';
 import { subtitleTimes } from '../components/ChapterOverlay';
-import { SIGLA_DURATA } from '../sigla/Sigla';
 import canaleDark from '../../promo/canale-youtube-dark.json';
 import { Scena as CanaleDark } from './canale-youtube-dark/Scena';
 import trailerRaf from '../../promo/trailer-ritorno-al-futuro.json';
@@ -16,15 +15,12 @@ import { Scena as TrailerBr } from './trailer-backrooms/Scena';
 
 /** voce (facoltativo): secondi della parte in cui stanno voce e sottotitoli (il resto è silenzio, es. lo stacco al nero dei trailer). */
 export type PartePromo = { id: string; durata: number; voce?: number; immagine: string; sottotitoli: string[] };
-export type PromoData = { formato: 'promo'; titolo: string; regista?: string; anno: number; bpm: number; lungo?: string; palette: Palette; parti: PartePromo[]; fonti?: string[]; bollino_youtube?: boolean;
-  /** Sigla «2M Studios» (logo) dopo l'ultima parte, 3,5 s (decisione dell'editore, 25 nov 2026): solo nei trailer nuovi. */
-  sigla_finale?: boolean };
+export type PromoData = { formato: 'promo'; titolo: string; regista?: string; anno: number; bpm: number; lungo?: string; palette: Palette; parti: PartePromo[]; fonti?: string[]; bollino_youtube?: boolean };
 
 /** La frase di lancio entra da qui: il fotogramma 0 è la miniatura senza testo (CLAUDE.md). */
 export const INIZIO_LANCIO = 0.4;
 
-/** fine = fine dell'ultima parte; durata = tutto lo Short (con la sigla finale, fine + 3,5 s). */
-export type TempiPromo = { inizio: Record<string, number>; frasi: Record<string, [number, number][]>; fine: number; durata: number };
+export type TempiPromo = { inizio: Record<string, number>; frasi: Record<string, [number, number][]>; fine: number };
 
 /** Inizio di ogni parte e istanti (s dall'inizio dello Short) di ogni frase, come scripts/promo/tempi.mjs. */
 export const tempiPromo = (d: PromoData): TempiPromo => {
@@ -37,7 +33,7 @@ export const tempiPromo = (d: PromoData): TempiPromo => {
     frasi[p.id] = subtitleTimes(p.sottotitoli, (p.voce ?? p.durata) - o).map(([a, b]) => [t + o + a, t + o + b]);
     t += p.durata;
   });
-  return { inizio, frasi, fine: t, durata: t + (d.sigla_finale ? SIGLA_DURATA : 0) };
+  return { inizio, frasi, fine: t };
 };
 
 /** Scena: T = secondi dall'inizio dello Short; cue(id, n) = inizio della frase n della parte id. */

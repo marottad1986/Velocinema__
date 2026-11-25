@@ -58,7 +58,6 @@ Dado
   con gli script per rifarle (`node brand/2m-studios/suono/sigla-proposte-5.mjs` ecc.). Indicazioni dell'editore: semplice e
   riconoscibile, professionale ma non aggressivo, niente «cartone animato» né «horror»; riferimenti di stile Netflix / Prime
   Video, Intel / Windows, Mastercard / Spotify; la più vicina finora «O Pop» senza battito di mani.
-- Dove va (decisione dell'editore, 25 nov 2026): **all'inizio solo nei video lunghi di YouTube** (`"sigla": true`,
-  `VIDEO-LUNGO.md`) e **alla fine dei trailer** (`"sigla_finale": true`, `TRAILER.md` punto 8). Esempi:
-  `sigla/prove/esempio-lungo-con-sigla-iniziale.mp4` e `sigla/prove/esempio-trailer-con-logo-finale.mp4` (Backrooms,
-  solo prova: i video già usciti non cambiano).
+- Dove va (decisione dell'editore, 25 nov 2026): **solo all'inizio dei video lunghi di YouTube** (`"sigla": true`,
+  `VIDEO-LUNGO.md`). **Non nei trailer** (né all'inizio né alla fine) e non negli altri formati. Esempio:
+  `sigla/prove/esempio-lungo-con-sigla-iniziale.mp4` (Backrooms, solo prova: i video già usciti non cambiano).
