@@ -48,8 +48,14 @@ Dado
 - Il logo resta com'è, sempre con «STUDIOS». Il nome del canale resta «In 2 minuti».
 - Banner YouTube con una frase generica (né settore né durata): `banner_youtube_con_frase_2560x1440.png`,
   «Le grandi storie, spiegate semplice.» (Inter Tight Extra Bold, dentro la zona sicura 1546×423).
-- Sigla «2M Studios» per i video lunghi e i trailer, come il logo di uno studio prima di un film: animazione in
-  `src/sigla/Sigla.tsx` (composizioni `sigla-2m-studios` 16:9 e `sigla-2m-studios-verticale` 9:16, 3,5 s,
-  `npx remotion studio src/sigla/index.ts`), jingle originale in `scripts/audio/sigla-2m-studios.mjs`
-  (`suonaSigla(mix, t0)` dentro uno spartito, o da solo `node scripts/audio/sigla-2m-studios.mjs`). Anteprime in `sigla/`.
+- Sigla «2M Studios» per i video lunghi e i trailer, come il logo di uno studio prima di un film: versione **«Zoom»**
+  (scelta dall'editore il 25 nov 2026 tra quattro prove: Clone, Cronometro, Zoom, Strisce; le altre in `sigla/prove/`).
+  La camera parte dentro il 2 giallo e si allarga a tempo con il jingle fino al logo intero; piatta, senza bagliori,
+  taglio rapido in fondo. `src/sigla/Sigla.tsx` (composizioni `sigla-2m-studios` 16:9 e `sigla-2m-studios-verticale` 9:16,
+  3,5 s, `npx remotion studio src/sigla/index.ts`). Anteprime in `sigla/`.
+- Musica della sigla: **per ora quella originale** (jingle orchestrale in Re maggiore, `scripts/audio/sigla-2m-studios.mjs`);
+  l'editore ci ripensa più avanti. Le 16 prove di marchio sonoro (acustiche, «serie», elettroniche e pop) sono in `suono/`
+  con gli script per rifarle (`node brand/2m-studios/suono/sigla-proposte-5.mjs` ecc.). Indicazioni dell'editore: semplice e
+  riconoscibile, professionale ma non aggressivo, niente «cartone animato» né «horror»; riferimenti di stile Netflix / Prime
+  Video, Intel / Windows, Mastercard / Spotify; la più vicina finora «O Pop» senza battito di mani.
   Dove metterla nei lunghi e nei trailer: da confermare con l'editore prima di inserirla.
