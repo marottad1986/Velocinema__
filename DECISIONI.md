@@ -3,6 +3,12 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 25 nov 2026 · **Nasce il format «Accadde oggi»: anniversari ed eventi** (proposta dell'editore approvata nell'app). Video
+  su storia, cronaca, scienza e cultura generale pubblicati nel giorno dell'anniversario; prima prova di 2 uscite
+  verticali (consigliate: 125 anni del segnale radio di Marconi, 12 dicembre; 125 anni dei premi Nobel, 10 dicembre, o
+  100 anni della scomparsa di Agatha Christie, 3 dicembre), poi decide la classifica dei format della domenica. Regole in
+  `EVENTI.md` (nessuna persona disegnata, niente foto d'archivio, fatti su due fonti, tragedie con rispetto). Il manager
+  mette le 2 prove nel calendario di domenica 29 novembre. · manager, produzione, revisore-testi
 - 25 nov 2026 · **Sigla «2M Studios» solo all'inizio dei lunghi YouTube** (editore: «all'inizio solo nel video lungo di
   youtube»; poi «non la devi mettere alla fine del trailer. fallo solo sui video lunghi»). Versione «Zoom»
   (`src/sigla/Sigla.tsx`, 3,5 s) con il jingle orchestrale originale. Lunghi nuovi: `"sigla": true` nel JSON, sigla al
