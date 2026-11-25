@@ -10,6 +10,12 @@ per scena): qui c'è il metodo per applicarle senza rileggere tutto il progetto.
 3. `src/lib/elements.tsx`: gli elementi pronti (elenco al §3). **Usali invece di ridisegnarli.**
 4. Una sola scena d'esempio, la più simile alla tua (vedi §6). Non leggere le altre.
 
+## 1b. Fotogramma chiave prima dell'animazione (dal 25 nov 2026)
+Le scene le disegna il subagente `disegnatore` (`.claude/agents/disegnatore.md`, impegno alto), una per incarico.
+Prima si disegna l'immagine ferma nel suo momento migliore e la si controlla (lettura in piccolo, dettaglio, luce,
+tavola di stile di `QUALITA.md` §2b); solo quando è giusta si anima. Così non si rifà un'animazione intera per un
+disegno sbagliato.
+
 ## 2. Scheletro di una scena
 
 ```tsx

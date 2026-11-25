@@ -19,6 +19,23 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
 - Fasci di luce con gradiente lineare che sfuma a zero. Lampi o cambi di luce al massimo due per scena, mai più di 3 lampi al secondo.
 - Bordi illuminati: una linea chiara sottile sul lato rivolto alla luce per staccare le forme dallo sfondo.
 
+## 2b. Tavola di stile della casa (vincolante dal 25 nov 2026, decisione dell'editore)
+Serve a far riconoscere un video di «In 2 minuti» a colpo d'occhio. Esempio: `src/prove/disegnatore/RapimentoNuovo.tsx`
+(«Rapiti nel deserto» ridisegnato, confronto approvato dall'editore). Ogni scena ne usa almeno quattro.
+- **Contorni**: 8–10 px colore scuro del film sugli oggetti principali, 4–6 px sui dettagli, nessuno sui piani lontani.
+- **Filo di luce**: sul lato rivolto alla fonte di luce una linea chiara di 2–4 px (bordi di tetti, pali, sassi, lenti):
+  stacca le forme dallo sfondo anche in controluce.
+- **Luce che ha una direzione**: si decide dov'è la fonte (sole basso, finestra, lampione) e tutto la rispetta. Il
+  controluce (sole dietro il soggetto, facce verso la camera in ombra calda) è la scelta preferita per gli esterni.
+- **Ombre portate lunghe**, colorate (viola-bruno o blu notte, opacità ~0,45), mai nere, coerenti con la fonte.
+- **Prospettiva aerea**: più lontano = più chiaro, più freddo o più viola, senza contorni.
+- **Un punto di fuga dichiarato** (strada, binari, corridoio, fila di pali o lampioni) che porta l'occhio al soggetto.
+- **Materiali che si riconoscono**: intonaco crepato con i mattoni sotto, legno con le venature, lamiera ondulata, vetro
+  che riflette il cielo, metallo con il riflesso.
+- **Firme ricorrenti**: la finestra accesa con la luce che cade sul terreno; la polvere (o il pulviscolo) che brilla nella
+  luce; il cielo riflesso in un vetro o in una lente; il primo piano che entra dal bordo (piante, pali, tende); l'accento
+  del film solo sull'oggetto chiave.
+
 ## 3. Texture
 - Grana leggera fissa su tutto il fotogramma (trama di puntini chiari e scuri, opacità totale 5–8%). Non animarla fotogramma per fotogramma.
 - Vignettatura con gradiente radiale scuro ai bordi (opacità massima 50–60%).

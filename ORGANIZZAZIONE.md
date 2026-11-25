@@ -24,6 +24,7 @@ format, titoli,  │           Metricool,     commenti, risposte di spesa
 settimana,       │           storie, orari  nell'app,    
 monetizzazione   │                          persone da coinvolgere
                  │
+     DISEGNATORE (subagente, impegno alto): una scena alla volta
      REVISORI (subagenti): testi · immagini · musica · voce
 ```
 
@@ -36,6 +37,7 @@ monetizzazione   │                          persone da coinvolgere
 | **Community e diffusione** | manager, `SOCIAL.md` «Commenti» e «Diffusione» | Commenti → risposte proposte nell'app; per ogni video chi può rilanciarlo (protagonista, regista, distributore, pagine di fan) e messaggio pronto | Bozze di risposte e messaggi | **Ogni messaggio a persone esterne** lo invia l'editore (o lo approva) |
 | **Contabilità** | `/contabilita`, `contabilita/` | Registro costi ed entrate, abbonamenti, crediti (ElevenLabs, IFTTT), rendiconto mensile, avvisi di spesa | Registrazioni, avvisi | Nuove spese, cambi di piano |
 | **App di gestione** | app «In 2 minuti» (telefono dell'editore), sessione sul PC dell'editore, skill `app` | Mostra uscite, produzioni, numeri e avvisi; raccoglie le decisioni dell'editore (video, commenti, proposte); aggiorna le procedure dell'app per la squadra | Come mostrare i dati, le procedure tecniche con l'app | Funzioni nuove dell'app |
+| **Disegnatore** | `.claude/agents/disegnatore.md` | Disegna le scene per la produzione, una alla volta: prima il fotogramma chiave, poi l'animazione, con la tavola di stile (`QUALITA.md` §2b) | Composizione e disegno della scena | – |
 | **Revisori** | `.claude/agents/` | Controllo indipendente di testi, immagini, musica, voce | Verdetti | – |
 
 Memoria comune della squadra (si legge all'inizio di ogni sessione del proprio reparto, così non si ragiona da capo):

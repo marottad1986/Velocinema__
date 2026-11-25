@@ -20,7 +20,11 @@ Metodo (vincolante, da `CLAUDE.md`):
 2b. **Evolviti** (`ASTICELLA.md`): decidi prima di disegnare qual è il passo avanti di questo video rispetto ai
    precedenti (almeno uno, visibile o udibile) e non scendere mai sotto il livello del registro.
 3. Testo: fatti verificati su fonti (campo `fonti`), scritto per chi non conosce l'opera, ritmo della voce.
-4. Scene: una alla volta, controllata sui fotogrammi prima di passare alla successiva.
+4. Scene: una alla volta, controllata sui fotogrammi prima di passare alla successiva. Le disegna il subagente
+   `disegnatore` (impegno alto: i token in più vanno solo sulle scene), un incarico per scena, in primo piano (non in
+   background) perché la scena dopo parte solo quando la precedente è controllata: gli passi film, capitolo, `scena`,
+   frasi con i loro istanti, eventi da agganciare e il passo avanti. Lui fa prima il fotogramma chiave fermo, poi
+   l'animazione (`BRIEF-SCENA.md` §1b, tavola di stile in `QUALITA.md` §2b). Tu guardi il suo PNG prima di passare oltre.
 5. Musica originale con strumenti campionati, un solo bpm; voce con `node scripts/genera-voce.mjs` e controllo con
    `node scripts/strumenti/ascolta-voce.mjs` (nomi stranieri: `pronuncia` nel JSON prima della prima generazione;
    `audio/<film>/impronte.json` si committa con il film; capitoli densi: `voce_velocita`).

@@ -3,6 +3,12 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 25 nov 2026 · **Disegni più curati senza molti token in più** (editore, in chat, dopo la prova su «Rapiti nel
+  deserto»). Le scene le disegna il subagente `disegnatore` con impegno alto (testi, musica e montaggio restano
+  all'impegno normale); per ogni scena prima il fotogramma chiave fermo, controllato, poi l'animazione; ogni scena segue la
+  tavola di stile della casa (`QUALITA.md` §2b: filo di luce, controluce, ombre lunghe colorate, prospettiva aerea, punto di
+  fuga, materiali, firme ricorrenti). Vale per le produzioni nuove; i video usciti restano come sono. · produzione
+
 - 24 nov 2026 · **Più spazio ai format che fanno crescere YouTube** (editore, app: «mi affido a voi»). Ogni domenica il
   manager classifica i format (lunghi per tipo, Spiegato semplice, film, serie, videogiochi, libri…) per iscritti e
   visualizzazioni YouTube portati; un format nuovo si prova almeno 2 volte, poi se è tra i primi tre gli si dà un'uscita in
