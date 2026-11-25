@@ -127,11 +127,22 @@ const trascrivi = (file, base, src) => {
 };
 
 // ---- allineamento parola per parola (LCS) tra testo atteso e parole sentite
+// parole scritte per la voce con una voce «pronuncia» del JSON (es. «Àirul» per «Hyrule», «millenovecentottantasei» per
+// «1986»): la trascrizione di solito le scrive come l'originale, e vanno contate come uguali, altrimenti il confine tra
+// le frasi si sposta e compaiono falsi «veloce», «trascinata» e «pausa lunga» (revisore voce, Zelda, 24 nov 2026)
+const alias = new Map();
+for (const [da, a] of Object.entries(film.pronuncia ?? {})) {
+  const td = tokens(da);
+  const ta = tokens(a);
+  const coppie = td.length === ta.length ? ta.map((t, k) => [t, td[k]]) : ta.length === 1 ? [[ta[0], td.join('')]] : [];
+  for (const [x, y] of coppie) if (x !== y) (alias.get(x) ?? alias.set(x, new Set()).get(x)).add(y);
+}
+const uguale = (a, s) => a === s || !!alias.get(a)?.has(s);
 const allinea = (att, sen) => {
   const n = att.length;
   const m = sen.length;
   const L = Array.from({ length: n + 1 }, () => new Int32Array(m + 1));
-  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) L[i][j] = att[i] === sen[j].w ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) L[i][j] = uguale(att[i], sen[j].w) ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
   const map = new Array(n).fill(-1); // indice della parola sentita per ogni parola attesa
   const diff = [];
   let i = 0;
@@ -142,7 +153,7 @@ const allinea = (att, sen) => {
     cur = null;
   };
   while (i < n || j < m) {
-    if (i < n && j < m && att[i] === sen[j].w) {
+    if (i < n && j < m && uguale(att[i], sen[j].w)) {
       chiudi();
       map[i++] = j++;
     } else {
