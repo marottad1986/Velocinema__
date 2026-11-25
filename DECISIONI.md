@@ -106,6 +106,12 @@ decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. F
   elenca ogni colpo ed effetto breve con il picco contro la sola musica e segnala «coperto» e «musica non tace». Gli
   spartiti già fatti non cambiano. · produzione, revisore-musica
 
+- 25 nov 2026 · **Le pronunce del JSON non danno più falsi allarmi sulla voce** (proposta del revisore voce approvata
+  dall'editore il 24 nov). `ascolta-voce.mjs` conta come uguale una parola sentita scritta come l'originale di una voce
+  `pronuncia` (es. «Hyrule» per «Àirul», «1986» per «millenovecentottantasei»), così i confini tra le frasi restano
+  giusti e spariscono i falsi «veloce», «trascinata» e «pausa lunga». Le pronunce restano da ascoltare a orecchio: il
+  report non le elenca più come «sentito diverso». · produzione, revisore-voce
+
 - 24 nov 2026 · **Ritmo della voce misurato come si sente nel video** (proposta del revisore voce approvata dall'editore il
   22 nov). `node scripts/strumenti/ascolta-voce.mjs` dà le parole al secondo di ogni clip e di ogni frase anche «nel
   video», cioè dopo le pause accorciate e l'accelerazione di `npm run voce`, e segnala «veloce nel video» oltre 3,4: i
