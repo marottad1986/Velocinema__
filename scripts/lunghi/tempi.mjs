@@ -1,6 +1,7 @@
 // Video lunghi orizzontali (VIDEO-LUNGO.md): JSON in lunghi/<slug>.json e tempi delle parti, uguali a src/lunghi/tempi.ts.
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { loadFilm } from '../audio/film.mjs';
+import { SIGLA_DURATA } from '../audio/sigla-2m-studios.mjs';
 
 export const lunghi = () => (existsSync('lunghi') ? readdirSync('lunghi').filter((f) => f.endsWith('.json')).map((f) => f.slice(0, -5)).sort() : []);
 export const loadLungo = (slug) => JSON.parse(readFileSync(`lunghi/${slug}.json`, 'utf8'));
@@ -18,6 +19,11 @@ export const trattiLungo = (slug, L = loadLungo(slug)) => {
   const out = [];
   let t = 0;
   let n = 0;
+  // sigla «2M Studios» al secondo zero ("sigla": true, solo lunghi nuovi): niente voce, i tratti dopo slittano di 3,5 s
+  if (L.sigla) {
+    out.push({ tipo: 'sigla', id: 'sigla', start: 0, dur: SIGLA_DURATA, testo: [], voce: null, parte: null });
+    t = SIGLA_DURATA;
+  }
   const nuova = (id) => ({ dir: `audio/${slug}`, base: `${String(n++).padStart(2, '0')}_${id}` });
   for (const p of L.parti) {
     if (p.tipo === 'aggancio' || p.tipo === 'chiusura') {
@@ -70,7 +76,7 @@ export const durataLungo = (tr) => tr.reduce((a, x) => Math.max(a, x.start + x.d
 /** Inizio di ogni parte del JSON (per i capitoli YouTube e per posare la musica degli episodi). */
 export const inizioParti = (tr) => {
   const m = new Map();
-  for (const x of tr) if (!m.has(x.parte)) m.set(x.parte, x.start);
+  for (const x of tr) if (x.parte && !m.has(x.parte)) m.set(x.parte, x.start);
   return m;
 };
 

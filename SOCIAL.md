@@ -263,7 +263,7 @@ Quando si programma (vincolante):
      esiste già e va nel trailer.
   2. Appena è caricato, avviso nell'app (`reparto` `pubblicazione`, `tipo` `info`, titolo «Imposta la Prima di <titolo>»)
      con i passi per l'editore: YouTube Studio → Contenuti → il video → Visibilità → Programma → <giorno e ora
-     dell'uscita> → spunta «Imposta come Prima» → Programma. Poi l'editore risponde «fatto» dall'app o in chat.
+     dell'uscita> → spunta «Imposta come Prima» → Programma. Nei lunghi con la sigla («sigla»: true) i passi dicono anche di controllare la miniatura in YouTube Studio e, se manca, di caricare `out/<slug>-miniatura.png` (allegata all'avviso): senza, YouTube sceglierebbe un fotogramma della sigla. Poi l'editore risponde «fatto» dall'app o in chat.
   3. Rete di sicurezza: se 2 ore prima dell'uscita la conferma non è arrivata, avviso `problema`; se a 1 ora prima non è
      ancora arrivata, la sessione carica di nuovo il lungo con PostFast **pubblico** all'ora dell'uscita (come prima di
      questa regola) e scrive all'editore di cancellare la copia privata. L'uscita non salta mai.

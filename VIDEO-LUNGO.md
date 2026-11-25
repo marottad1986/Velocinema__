@@ -17,8 +17,14 @@ lungo precedente); qui solo ciò che cambia. Primo video: `lunghi/dark-tutta-la-
 - I video verticali restano come sono: il lungo è una composizione separata (`src/lunghi/`, entry `src/lunghi/index.ts`),
   con un suo JSON in `lunghi/<slug>.json`. Le scene degli episodi si riusano importandole, mai copiandole; se serve
   modificarle per il 16:9, il video verticale deve restare identico fotogramma per fotogramma.
+- **Sigla «2M Studios»** (decisione dell'editore, 25 nov 2026): nei lunghi nuovi `"sigla": true` nel JSON (fuori da
+  `parti`). I primi 3,5 s sono la sigla «Zoom» (`src/sigla/Sigla.tsx`) con il suo jingle (`scripts/audio/sigla-2m-studios.mjs`),
+  poi l'aggancio. Lo spartito del lungo si scrive come sempre (`T.<id>` e la griglia dei battiti partono dall'aggancio):
+  `scripts/lunghi/render.mjs` posa la musica dopo la sigla, il primo capitolo YouTube resta a 0:00 e `--miniatura`
+  prende il primo fotogramma dell'aggancio. Quando nel resto di questo file si dice «fotogramma 0» si intende l'inizio
+  dell'aggancio. I lunghi già usciti restano senza sigla.
 - **Struttura** (parti in ordine nel JSON, `parti`):
-  1. `aggancio` (15–25 s): copertina 16:9 al fotogramma 0 e una domanda forte nella voce;
+  1. `aggancio` (15–25 s): copertina 16:9 al fotogramma 0 (dopo la sigla) e una domanda forte nella voce;
   2. per ogni episodio riusato, `episodio`: cartello del titolo (4 s, con la voce e la musica della copertina dell'episodio),
      i capitoli dell'episodio (112 s) e il riassunto finale (4 s, voce e musica del finale dell'episodio; dal 17 nov 2026 senza «In una frase:» davanti);
   3. `capitoli`: le parti nuove (es. «Il finale spiegato»), stesse regole di scrittura del formato dell'episodio;

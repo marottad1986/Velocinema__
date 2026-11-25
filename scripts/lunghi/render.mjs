@@ -6,7 +6,9 @@
 //   - out/<slug>-voce.mp4: con la voce, se ci sono tutte le clip (episodi: audio/<episodio>/, parti nuove: audio/<slug>/).
 //     Come npm run voce: silenzio ai bordi tolto, pause accorciate e accelerazione fino al 25% se una clip sfora, ducking;
 //   - --capitoli: out/<slug>-capitoli.txt (capitoli YouTube da incollare nella descrizione);
-//   - --miniatura: out/<slug>-miniatura.png (fotogramma 0, 1280×720, da caricare come miniatura).
+//   - --miniatura: out/<slug>-miniatura.png (fotogramma 0, o il primo dopo la sigla, 1280×720, da caricare come miniatura).
+//   Con "sigla": true nel JSON (lunghi nuovi, dal 25 nov 2026) i primi 3,5 s sono la sigla «2M Studios» con il suo jingle
+//   (scripts/audio/sigla-2m-studios.mjs); la musica del video parte con l'aggancio, il primo capitolo YouTube resta a 0:00.
 //   --solo-audio: solo musica (e voce su un video già fatto); --senza-video: niente render, rifà solo audio e montaggio.
 // Browser: REMOTION_BROWSER (in un ambiente cloud il Chromium installato).
 import { spawnSync } from 'node:child_process';
@@ -19,6 +21,7 @@ import { impulso, convolvi } from '../audio/sala.mjs';
 import { scaricaCampioni } from '../audio/campioni.mjs';
 import { scaricaEffetti } from '../audio/effetti.mjs';
 import { duration, run } from '../audio/film.mjs';
+import { scriviSigla } from '../audio/sigla-2m-studios.mjs';
 import { durataLungo, episodiDi, frasiTratto, inizioParti, loadLungo, lunghi, mmss, trattiLungo } from './tempi.mjs';
 
 /** La voce e i sottotitoli dell'aggancio partono qui (fotogramma 0 = miniatura senza testo): come INIZIO_AGGANCIO in src/lunghi/Lungo.tsx. */
@@ -54,7 +57,8 @@ const frasi = (x) => frasiTratto(x).map((s) => x.start + s);
 // ---------------------------------------------------------------- capitoli YouTube
 if (flag('capitoli')) {
   const ini = inizioParti(tr);
-  const righe = L.parti.map((p) => `${mmss(ini.get(p))} ${p.capitolo_youtube}`);
+  // YouTube vuole il primo capitolo a 0:00: con la sigla il primo capitolo la comprende
+  const righe = L.parti.map((p, i) => `${mmss(i === 0 ? 0 : ini.get(p))} ${p.capitolo_youtube}`);
   writeFileSync(`out/${slug}-capitoli.txt`, `${righe.join('\n')}\n`);
   console.log(`Capitoli YouTube (out/${slug}-capitoli.txt):\n${righe.join('\n')}`);
 }
@@ -65,21 +69,25 @@ const remotion = (argv) => {
   if (res.status !== 0) process.exit(res.status ?? 1);
 };
 if (flag('miniatura')) {
-  remotion(['still', 'src/lunghi/index.ts', slug, `out/${slug}-miniatura.png`, '--frame=0', '--scale=0.6666667']);
+  remotion(['still', 'src/lunghi/index.ts', slug, `out/${slug}-miniatura.png`, `--frame=${Math.round((L.sigla ? tr[1].start : 0) * FPS)}`, '--scale=0.6666667']);
   console.log(`Miniatura: out/${slug}-miniatura.png`);
 }
 if ((flag('capitoli') || flag('miniatura')) && !flag('solo-audio') && !opt('parte') && args.filter((a) => a.startsWith('--')).every((a) => ['--capitoli', '--miniatura'].includes(a))) process.exit(0);
 
 // ---------------------------------------------------------------- musica
 const generaMusicaLunga = async () => {
+  // con la sigla («sigla»: true) la musica del video si scrive come sempre, da 0 = inizio dell'aggancio, e poi si posa
+  // 3,5 s più avanti dietro al jingle: gli spartiti e la griglia dei battiti non cambiano
+  const O = L.sigla ? tr[1].start : 0;
+  const FINE = END - O;
   // parti nuove
   const scorePath = `scripts/audio/${slug}.mjs`;
   const { default: score, strumenti = [], effetti = [], sala } = await import(pathToFileURL(path.resolve(scorePath)).href);
   scaricaCampioni(strumenti);
   scaricaEffetti(effetti);
-  const T = { END, frase: (id, n) => frasi(tr.find((x) => x.id === id))[n] };
-  for (const x of tr) T[x.id] = x.start;
-  const mix = createMix(END);
+  const T = { END: FINE, frase: (id, n) => frasi(tr.find((x) => x.id === id))[n] - O };
+  for (const x of tr) if (x.tipo !== 'sigla') T[x.id] = x.start - O;
+  const mix = createMix(FINE);
   score(mix, T);
   const nuove = `out/${slug}-nuove.wav`;
   const ir = sala && impulso(sala);
@@ -91,7 +99,8 @@ const generaMusicaLunga = async () => {
     const wav = await generaMusica(p.film);
     if (!wav) throw new Error(`Manca lo spartito di ${p.film}`);
     const t0 = ini.get(p);
-    if (Math.abs((t0 * L.bpm) / 60 - Math.round((t0 * L.bpm) / 60)) > 1e-6) console.warn(`  ATTENZIONE ${p.film} entra a ${t0} s, fuori dal battito di ${L.bpm} bpm`);
+    const b = ((t0 - O) * L.bpm) / 60;
+    if (Math.abs(b - Math.round(b)) > 1e-6) console.warn(`  ATTENZIONE ${p.film} entra a ${t0} s, fuori dal battito di ${L.bpm} bpm`);
     ep.push({ wav, t0 });
   }
   const out = `out/${slug}-musica.wav`;
@@ -100,7 +109,10 @@ const generaMusicaLunga = async () => {
   const gn = g(nuove);
   ep.forEach((e) => { e.g = g(e.wav); });
   console.log(`  livelli portati a ${MUSICA_LUFS} LUFS: parti nuove ${gn} dB, ${ep.map((e) => `${e.wav.slice(4, -11)} ${e.g} dB`).join(', ')}`);
-  const parts = [`[0:a]${FMT},volume=${gn}dB[n]`, ...ep.map((e, i) => `[${i + 1}:a]${FMT},volume=${e.g}dB,adelay=${Math.round(e.t0 * 1000)}:all=1[e${i}]`)];
+  // sigla «2M Studios»: il suo jingle al secondo zero, portato allo stesso livello del resto
+  const sg = L.sigla && scriviSigla(`out/${slug}-sigla.wav`);
+  if (sg) ep.push({ wav: sg, t0: 0, g: g(sg) });
+  const parts = [`[0:a]${FMT},volume=${gn}dB${O ? `,adelay=${Math.round(O * 1000)}:all=1` : ''}[n]`, ...ep.map((e, i) => `[${i + 1}:a]${FMT},volume=${e.g}dB,adelay=${Math.round(e.t0 * 1000)}:all=1[e${i}]`)];
   parts.push(`[n]${ep.map((_, i) => `[e${i}]`).join('')}amix=inputs=${ep.length + 1}:duration=first:normalize=0,alimiter=limit=0.89,apad=whole_dur=${END}[a]`);
   run('ffmpeg', ['-y', '-v', 'error', '-i', nuove, ...ep.flatMap((e) => ['-i', e.wav]), '-filter_complex', parts.join(';'), '-map', '[a]', '-t', String(END), '-c:a', 'pcm_s16le', out]);
   console.log(`Musica: ${out}`);
