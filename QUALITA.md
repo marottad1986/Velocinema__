@@ -81,6 +81,7 @@ Ogni scena deve raggiungere almeno quel livello. Confronta sempre con `scene-pri
 - [ ] velatura di colore del film
 - [ ] nessun personaggio del film
 - [ ] anteprima fluida e titolo/sottotitoli leggibili
+- [ ] almeno due firme della casa (§11) e fotogramma chiave controllato anche in piccolo
 
 ## 10. Video lunghi orizzontali 16:9 (1920×1080, vincolante dal 22 nov 2026)
 Vale con `YOUTUBE.md` («Grafica dei lunghi»). Cosa cambia rispetto al verticale:
@@ -114,6 +115,25 @@ Criteri di accettazione per ogni atto di un lungo:
 - [ ] l'immagine mostra ciò di cui parla la voce in quel momento (le scritte entrano con la parola)
 - [ ] nessun testo o oggetto chiave fuori zona o sotto i sottotitoli; metà destra libera negli ultimi 20 s
 - [ ] nessun personaggio umano; anteprima fluida
+
+## 11. Tavola di stile della casa (dal 25 nov 2026, vincolante per le scene nuove)
+Quello che rende un nostro fotogramma riconoscibile a colpo d'occhio, in tutti i formati. Le scene già fatte restano come sono.
+- **Contorni**: mai nero puro, ma il colore più scuro della palette del film (es. `#0B1418`); 8–10 px sul soggetto, 4–6 px
+  sui dettagli, niente contorni su lontananze e atmosfera. Angoli arrotondati (`strokeLinejoin="round"`).
+- **Quattro luci della casa**, al massimo due per scena: (1) calda da finestra o lampada, con alone radiale che pulsa
+  piano (`Glow`); (2) fredda di luna o schermo, che dà il bordo illuminato alle sagome; (3) fascio che entra di sbieco
+  con il pulviscolo dentro (`Beam` + `Dust`); (4) controluce bassa dell'alba o del tramonto sull'orizzonte.
+- **Grana e bordi**: grana fissa 5–8% e vignettatura 50–60% sempre con `Finish`, velatura del film in §6.
+- **Firme ricorrenti** (almeno due per scena, scelte tra queste):
+  1. finestre accese calde nella notte, con qualche finestra spenta e una tenda;
+  2. pulviscolo che galleggia nella luce;
+  3. bordo illuminato sottile sul lato rivolto alla luce;
+  4. riflessi tremolanti a trattini su acqua, vetro o pavimento bagnato (`Reflection`);
+  5. un solo oggetto con il colore accento, tutto il resto nella palette;
+  6. primo piano scuro che incornicia dai bordi (tende, rami, stipiti, sbarre);
+  7. fumo o vapore che sale lento da qualcosa di caldo (`Smoke`, `Wisps`);
+  8. piccole luci lontane che brillano a ritmi diversi (stelle, città, lampioni).
+- **Fotogramma chiave**: ogni scena nuova nasce da un fotogramma fermo controllato prima dell'animazione (BRIEF-SCENA §2b).
 
 ## 9. Suggerimenti scena per scena
 
