@@ -20,10 +20,15 @@ Ramo `claude/quirky-volta-ajyqfo` (pushato, nessuna pull request). Materiale in 
   `sigla` in `tempi.ts`), `scripts/lunghi/render.mjs` (jingle da `scriviSigla()`), `scripts/controlli.mjs`.
   Regole in `YOUTUBE.md` §2, `VIDEO-LUNGO.md`, `DECISIONI.md`. Esempio in `sigla/prove/esempio-lungo-con-sigla-iniziale.mp4`.
 
+- **Revisori (25 nov, sessione dopo, ramo `claude/new-session-5ylgz9`)**: musica APPROVATO (tre ritocchi facoltativi allo
+  spartito non applicati: l'editore ha scelto il jingle così). Immagini: DA CORREGGERE al primo passaggio (camera che si
+  fermava a 1,0 s, M che cambiava colore in un fotogramma, clone semitrasparente) → corretto in `Sigla.tsx` (una sola curva
+  di zoom in scala logaritmica 0,4–1,5 s, M panna in dissolvenza, clone pieno), anteprime e lungo d'esempio rifatti.
+  Nota sulla miniatura dei lunghi con sigla aggiunta all'avviso «Imposta la Prima» in `SOCIAL.md`.
+
 ## Da fare
-1. Pull request del ramo verso main (revisori musica e immagini per la sigla, regole del 16:9), poi unione.
-2. Messaggio dell'app su «fatto» (`POST /api/messaggi/msg-8204410764909-6a9756b8`) da una sessione della squadra (serve la
-   chiave dell'app, che c'è solo nell'ambiente cloud).
+1. Pull request del ramo `claude/new-session-5ylgz9` verso main, poi unione.
+2. Messaggio dell'app `msg-8204410764909-6a9756b8` su «fatto» dopo l'unione.
 3. Il primo lungo nuovo si fa con la sigla accesa.
 ## Note
 - `npx tsc --noEmit` ha due errori vecchi in `src/promo/trailer-ritorno-al-futuro/Foto.tsx`, non legati alla sigla.

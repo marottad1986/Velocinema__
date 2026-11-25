@@ -48,7 +48,7 @@ Dado
 - Il logo resta com'è, sempre con «STUDIOS». Il nome del canale resta «In 2 minuti».
 - Banner YouTube con una frase generica (né settore né durata): `banner_youtube_con_frase_2560x1440.png`,
   «Le grandi storie, spiegate semplice.» (Inter Tight Extra Bold, dentro la zona sicura 1546×423).
-- Sigla «2M Studios» per i video lunghi e i trailer, come il logo di uno studio prima di un film: versione **«Zoom»**
+- Sigla «2M Studios» solo all'inizio dei video lunghi YouTube (mai nei trailer), come il logo di uno studio prima di un film: versione **«Zoom»**
   (scelta dall'editore il 25 nov 2026 tra quattro prove: Clone, Cronometro, Zoom, Strisce; le altre in `sigla/prove/`).
   La camera parte dentro il 2 giallo e si allarga a tempo con il jingle fino al logo intero; piatta, senza bagliori,
   taglio rapido in fondo. `src/sigla/Sigla.tsx` (composizioni `sigla-2m-studios` 16:9 e `sigla-2m-studios-verticale` 9:16,

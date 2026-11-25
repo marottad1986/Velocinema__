@@ -1,4 +1,4 @@
-// Jingle della sigla «2M Studios» (src/sigla/Sigla.tsx), da mettere nei video lunghi e nei trailer.
+// Jingle della sigla «2M Studios» (src/sigla/Sigla.tsx), solo all'inizio dei video lunghi YouTube (mai nei trailer).
 // Musica originale: Re maggiore, 120 bpm (un battito = 0,5 s), tre gesti come i loghi degli studi di cinema:
 //  0,0–0,5  rullo della grancassa e piatto sospeso che crescono sotto la fessura di luce, archi gravi che si aprono
 //  0,5      il 2: timpani, contrabbasso e tromboni sul Re (prima nota del motivo)
