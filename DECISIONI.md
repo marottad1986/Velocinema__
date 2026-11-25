@@ -3,6 +3,12 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 25 nov 2026 · **Disegni più curati senza molti token in più** (proposta della direzione approvata dall'editore nell'app).
+  (1) Nuovo collega `disegnatore` (`.claude/agents/disegnatore.md`, impegno massimo solo sulle scene; testi, musica e
+  montaggio restano all'impegno normale); (2) **fotogramma chiave prima dell'animazione** (BRIEF-SCENA §2b): immagine
+  ferma nel momento migliore, controllata anche in piccolo, poi l'animazione; (3) **tavola di stile della casa**
+  (QUALITA.md §11: contorni, quattro luci, otto firme ricorrenti, almeno due per scena). Vale per le scene nuove; quelle
+  già fatte restano come sono. · produzione, revisore-immagini
 - 25 nov 2026 · **Nasce il format «Accadde oggi»: anniversari ed eventi** (proposta dell'editore approvata nell'app). Video
   su storia, cronaca, scienza e cultura generale pubblicati nel giorno dell'anniversario; prima prova di 2 uscite
   verticali (consigliate: 125 anni del segnale radio di Marconi, 12 dicembre; 125 anni dei premi Nobel, 10 dicembre, o

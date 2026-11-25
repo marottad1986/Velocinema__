@@ -60,6 +60,18 @@ export const NomeScena: React.FC<SceneProps> = ({ t, dur, palette: P, cues }) =>
   In copertina la fascia della frase di lancio non c'è nel fotogramma 0 (miniatura): entra da ~0,4 s, ad es.
   `opacity: eo(seg(t, 0.4, 0.7))` con un piccolo `translateY`, poi resta.
 
+## 2b. Fotogramma chiave prima dell'animazione (dal 25 nov 2026)
+Prima di animare, disegna l'**immagine ferma** della scena nel suo momento migliore (di solito l'evento principale):
+tutti i piani, la luce, i dettagli e le firme della casa (`QUALITA.md` §11), con camera ferma e senza eventi.
+1. `npm run prova -- <film> <id> <secondo>` e la versione piccola, come la vede chi scorre:
+   `ffmpeg -y -i out/prova/<png> -vf scale=270:-1 out/prova/<nome>-piccolo.png`.
+2. Controlla grande e piccolo: soggetto riconoscibile in piccolo, almeno 3 dettagli secondari, una fonte di luce chiara
+   con alone, zona del titolo calma, primo piano che incornicia, nessuna metà vuota.
+3. Se non regge, si ripensa l'inquadratura e si rifà il fotogramma; **solo quando regge** si aggiungono camera,
+   parallasse, particelle ed eventi. Così non si rifà un'animazione intera per un disegno sbagliato.
+Le scene si fanno disegnare al collega `disegnatore` (`.claude/agents/disegnatore.md`, impegno massimo solo sul
+disegno), una scena per chiamata.
+
 ## 3. Elementi pronti (`src/lib/elements.tsx`)
 Tutti funzione di `t`, con seme e `id` per i gradienti. Catalogo visivo: composizioni `libreria--esterni` e `libreria--interni`.
 

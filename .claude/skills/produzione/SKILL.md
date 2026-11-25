@@ -21,6 +21,8 @@ Metodo (vincolante, da `CLAUDE.md`):
    precedenti (almeno uno, visibile o udibile) e non scendere mai sotto il livello del registro.
 3. Testo: fatti verificati su fonti (campo `fonti`), scritto per chi non conosce l'opera, ritmo della voce.
 4. Scene: una alla volta, controllata sui fotogrammi prima di passare alla successiva.
+   Ogni scena la disegna il collega `disegnatore` (subagente, impegno massimo solo sul disegno), una per chiamata, con il
+   fotogramma chiave controllato prima dell'animazione (BRIEF-SCENA §2b) e le firme della casa (QUALITA §11).
 5. Musica originale con strumenti campionati, un solo bpm; voce con `node scripts/genera-voce.mjs` e controllo con
    `node scripts/strumenti/ascolta-voce.mjs` (nomi stranieri: `pronuncia` nel JSON prima della prima generazione;
    `audio/<film>/impronte.json` si committa con il film; capitoli densi: `voce_velocita`).
