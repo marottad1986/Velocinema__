@@ -24,6 +24,10 @@ Serie **videogiochi spiegati**: la storia di un videogioco (come un film, o Spie
 JSON in `films/` con `"tipo": "videogioco"`, uscita fissa il sabato alle 12:30 (fino al 17 nov il martedì). Regole proprie (niente immagini, loghi o
 interfacce del gioco, giochi non ancora usciti solo con fatti annunciati ufficialmente): vedi `GIOCHI.md`.
 
+Serie **accadde oggi** (dal 25 nov 2026, prova di 2 uscite): eventi della storia, della cronaca e della scienza nel giorno
+del loro anniversario, JSON in `films/` con `"tipo": "evento"`, etichetta «ACCADDE OGGI», finale «Commenta con la storia che
+vorresti.» (nessuna persona disegnata, niente foto d'archivio, fatti su due fonti, tragedie con rispetto): vedi `EVENTI.md`.
+
 **YouTube è la piattaforma su cui si punta tutto** (unica che paga le visualizzazioni in Italia): strategia, confezione,
 ritmo e grafica dei lunghi in `YOUTUBE.md` (vincolante, prima di `VIDEO-LUNGO.md`).
 Video **lunghi orizzontali** per YouTube (1920×1080, almeno 8 minuti, più episodi montati in un solo racconto, es. Dark tutta la serie):
@@ -131,7 +135,7 @@ mai restare senza risposta.
   riassunti di film → «Commenta con il film che vorresti.»; riassunti di serie (es. Breaking Bad, una stagione per video:
   etichetta «STAGIONE N IN 2 MINUTI», finale «Fine della stagione N») → «Commenta con la serie che vorresti.»; Spiegato semplice → «Commenta con la spiegazione che vorresti.»;
   canzoni → «Commenta con la canzone che vorresti.»; quadri → «Commenta con il quadro che vorresti.»;
-  talent spiegati (`TALENT.md`) → «Commenta con chi vorresti in finale.»; videogiochi (`GIOCHI.md`) → «Commenta con il gioco che vorresti.»
+  talent spiegati (`TALENT.md`) → «Commenta con chi vorresti in finale.»; videogiochi (`GIOCHI.md`) → «Commenta con il gioco che vorresti.»; accadde oggi (`EVENTI.md`) → «Commenta con la storia che vorresti.»
 - **Invito al canale YouTube** (editore, 20 nov 2026; video verticali nuovi, quelli già fatti restano come sono): nel
   finale, sotto «Commenta con…», una riga piccola solo scritta «Le spiegazioni complete sono su YouTube»: niente logo di
   YouTube, niente voce (TikTok e Instagram mostrano meno i video che portano su altre app, soprattutto con il logo).
