@@ -1,6 +1,7 @@
 import React from 'react';
 import { AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig } from 'remotion';
 import { SANS } from '../lib/fonts';
+import { SiglaScena } from '../sigla/Sigla';
 import { MisuraTesti } from './MisuraTesti';
 import { Overlay16 } from './Overlay16';
 import { getLungo } from './registro';
@@ -14,7 +15,7 @@ export const INIZIO_CHIUSURA = 0.5;
 
 /** Tempo nella stagione, come nel video verticale («m:ss / 2:00»): il lungo non dichiara mai la sua durata totale. */
 const tempoEpisodio = (tr: Tratto[], x: Tratto, t: number): [number, number] => {
-  const ep = tr.filter((y) => 'parte' in y && y.parte === x.parte);
+  const ep = tr.filter((y) => 'parte' in y && 'parte' in x && y.parte === x.parte);
   const inizio = ep[0].start;
   return [x.start - inizio + t, ep.reduce((a, y) => a + y.dur, 0)];
 };
@@ -29,6 +30,8 @@ export const TrattoView: React.FC<{ slug: string; indice: number; offset?: numbe
   const t = frame / fps + offset;
   const P = L.data.palette;
   const nativo = !L.data.parti.some((p) => p.tipo === 'episodio');
+  // sigla «2M Studios» al secondo zero ("sigla": true): la versione «Zoom» di src/sigla/, a tutto schermo
+  if (x.tipo === 'sigla') return <SiglaScena T={t} W={1920} H={1080} />;
   return (
     <AbsoluteFill style={{ background: P.scuro, overflow: 'hidden' }}>
       <Scena L={L} x={x} t={t} />

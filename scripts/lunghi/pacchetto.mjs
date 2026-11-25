@@ -74,7 +74,7 @@ if (!args.includes('--senza-testi')) {
   const righeT = [`# Scritte sovrapposte in ${L.titolo_youtube}`, '', 'Due testi visibili (opacità ≥ 0,15, almeno 3 lettere) i cui rettangoli si coprono per più del 15% del più piccolo, misurati poco dopo l\'inizio e a metà di ogni frase. Una scritta della scena coperta dai sottotitoli o dal titolo va spostata.', ''];
   let problemi = 0, misurati = 0, fotogrammi = 0;
   for (const x of tr.filter((y) => !solo || solo.includes(y.id))) {
-    if (x.tipo === 'carta' || x.tipo === 'capitolo-episodio' || x.tipo === 'riassunto') continue; // scene degli episodi: già approvate nei loro film
+    if (x.tipo === 'sigla' || x.tipo === 'carta' || x.tipo === 'capitolo-episodio' || x.tipo === 'riassunto') continue; // scene degli episodi: già approvate nei loro film
     const composition = await selectComposition({ serveUrl, id: `${slug}--${x.id}`, browserExecutable, chromiumOptions });
     const q = frasi(x);
     const istanti = [...new Set(q.flatMap((s, i) => [s + 0.6, (s + (q[i + 1] ?? x.dur)) / 2]).map((s) => Math.min(x.dur - 0.05, +s.toFixed(2))))];

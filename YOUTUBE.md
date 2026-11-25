@@ -36,7 +36,10 @@ Traguardo al 31 dicembre: 1.000 iscritti oppure un lungo oltre 10.000 visualizza
 - Niente volti né sagome, niente locandine o loghi (regole di `CLAUDE.md`).
 
 ## 2. I primi 30 secondi
-- Il fotogramma 0 è già un'immagine forte; **niente sigla, niente logo, niente presentazione del canale**.
+- **Sigla «2M Studios» al secondo zero** (decisione dell'editore, 25 nov 2026; `"sigla": true` nel JSON, solo i lunghi
+  nuovi): 3,5 s di logo animato con il suo jingle, poi subito la copertina dell'aggancio, che resta un'immagine forte.
+  Nient'altro prima dell'aggancio: **niente presentazione del canale**, niente «ciao a tutti». La miniatura da caricare
+  è il primo fotogramma dopo la sigla (`--miniatura` lo prende da solo).
 - 0–10 s: la domanda e l'immagine più spettacolare del video (un pezzo del momento clou, mostrato prima).
 - 10–30 s: la promessa (cosa capirà chi resta) e un **anello aperto** che si chiude solo alla fine («alla fine ti spiego
   il dettaglio del finale che quasi nessuno nota»).

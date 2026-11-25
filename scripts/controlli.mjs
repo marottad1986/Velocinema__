@@ -149,7 +149,7 @@ for (const slug of listaLunghi) {
     const sp = existsSync(`scripts/audio/${x.film}.mjs`) ? readFileSync(`scripts/audio/${x.film}.mjs`, 'utf8') : '';
     const b = Number((sp.match(/^const BPM = ([\d.]+)/m) ?? [])[1]);
     if (b && b !== L.bpm) E.push(`${x.film}: lo spartito è a ${b} bpm, il lungo a ${L.bpm}`);
-    const battiti = (x.start * L.bpm) / 60;
+    const battiti = ((x.start - (L.sigla ? tr[1].start : 0)) * L.bpm) / 60; // con la sigla la griglia parte dopo i suoi 3,5 s
     if (Math.abs(battiti - Math.round(battiti)) > 1e-6) E.push(`${x.film} entra a ${x.start} s, fuori dal battito (${L.bpm} bpm): musica fuori griglia`);
     if (!existsSync(`src/scenes/${x.film}`)) E.push(`${x.film}: scene non trovate`);
   }
@@ -177,7 +177,9 @@ for (const slug of listaLunghi) {
     for (const m of t.matchAll(/\bin (\d+|due|tre|quattro|cinque|sei|sette|otto|nove|dieci) minuti\b/gi)) if (!/^in (2|due) minuti$/i.test(m[0])) E.push(`«${m[0]}»: il lungo non dichiara la durata totale (VIDEO-LUNGO.md)`);
   const chiusura = tr.find((x) => x.tipo === 'chiusura');
   if (!chiusura || !/commenta con/i.test(chiusura.testo.join(' '))) E.push('la voce della chiusura non invita a commentare');
-  if (!tr.length || tr[0].tipo !== 'aggancio') E.push('il video deve aprirsi con l\'aggancio (copertina = miniatura)');
+  // con la sigla «2M Studios» (lunghi nuovi, 25 nov 2026) l'aggancio viene subito dopo i suoi 3,5 s
+  const primo = tr.find((x) => x.tipo !== 'sigla');
+  if (!primo || primo.tipo !== 'aggancio') E.push('il video deve aprirsi con l\'aggancio (copertina = miniatura), dopo la sigla se c\'è');
   // capitoli YouTube: almeno 3, il primo a 0:00, ognuno di almeno 10 s
   const parti = L.parti.map((p) => tr.filter((x) => x.parte === p));
   if (parti.length < 3) E.push('servono almeno 3 capitoli YouTube');
@@ -218,7 +220,7 @@ for (const slug of listaPromo) {
   const E = [], A = [];
   const P = loadPromo(slug);
   const parti = partiPromo(P);
-  const totale = durataPromo(P);
+  const totale = durataPromo(P) + (P.sigla_finale ? 3.5 : 0); // con il logo finale dei trailer (TRAILER.md punto 8)
   if (totale > 60) E.push(`dura ${totale} s: uno Short promozionale resta entro 60 s`);
   // ritmo della voce, righe, frasi vietate
   for (const x of parti) {

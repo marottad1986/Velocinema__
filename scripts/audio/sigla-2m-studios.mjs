@@ -66,14 +66,16 @@ export default (mix) => {
 export const strumenti = strumentiSigla;
 export const sala = { rt60: 2.2, brillo: 6000, predelay: 0.025, wet: 0.42 };
 
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+/** Scrive la sigla da sola (con la sua sala) in un wav: i render dei lunghi e dei trailer la posano sopra la loro musica. */
+export const scriviSigla = (out = 'out/sigla-2m-studios-musica.wav') => {
   scaricaCampioni(strumentiSigla);
   const mix = createMix(SIGLA_DURATA);
   compensa(mix);
   suonaSigla(mix, 0);
   mkdirSync('out', { recursive: true });
-  const out = 'out/sigla-2m-studios-musica.wav';
   const ir = impulso(sala);
   writeWav(mix, out, { peakDb: -3, fadeIn: 0.005, fadeOut: 0.45, wet: sala.wet, riverbero: (ch, side) => convolvi(ch, ir[side]) });
-  console.log(`Sigla: ${out}`);
-}
+  return out;
+};
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) console.log(`Sigla: ${scriviSigla()}`);

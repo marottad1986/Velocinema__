@@ -29,6 +29,11 @@ persone, musica originale, voce), di `QUALITA.md` e di `ASTICELLA.md`; pubblicaz
    spettacolare, non sulla locandina.
 7. **Chiusura:** «ORA SU YOUTUBE», lettore video generico (senza logo) con la miniatura del lungo, «Metti like», «Iscriviti
    al canale» e «Commenta con … che vorresti.» (vedi `CLAUDE.md`, «Finale»).
+8. **Logo «2M Studios» alla fine** (decisione dell'editore, 25 nov 2026): dopo la chiusura, 3,5 s di sigla «Zoom» in
+   9:16 con il suo jingle. Si accende con `"sigla_finale": true` nel JSON (obbligatorio nei trailer nuovi; quelli già
+   fatti restano come sono): `src/promo/Promo.tsx` la disegna e `scripts/promo/render.mjs` aggiunge il jingle 3 dB sotto
+   la musica del trailer. Lo spartito del trailer finisce con la chiusura (`T.END`), la sigla si aggiunge da sola.
+   Con la sigla il trailer deve restare entro 60 s.
 
 ## Bollino YouTube sempre presente (editore, 25 nov 2026)
 - Dalla fine della miniatura fino alla chiusura resta in alto a sinistra (y 262, x da 120) il bollino **«▶ GUARDALO SU

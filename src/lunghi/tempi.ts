@@ -1,5 +1,6 @@
 import type { Capitolo, FilmData, Palette, VoceTempi } from '../types';
 import { subtitleTimes } from '../components/ChapterOverlay';
+import { SIGLA_DURATA } from '../sigla/Sigla';
 
 // Video lunghi orizzontali (VIDEO-LUNGO.md): tempi delle parti, uguali a scripts/lunghi/tempi.mjs.
 
@@ -19,10 +20,13 @@ export type LungoData = {
   palette: Palette;
   parti: Parte[];
   fonti?: string[];
+  /** Sigla «2M Studios» al secondo zero (decisione dell'editore, 25 nov 2026): solo nei lunghi nuovi, quelli già usciti restano come sono. */
+  sigla?: boolean;
 };
 
 /** Un tratto del video lungo, con i tempi assoluti (s). */
 export type Tratto =
+  | { tipo: 'sigla'; id: 'sigla'; start: number; dur: number; indice: -1 }
   | { tipo: 'aggancio' | 'chiusura'; id: string; start: number; dur: number; parte: ParteAggancio; indice: number }
   | { tipo: 'carta' | 'riassunto'; id: string; start: number; dur: number; parte: ParteEpisodio; film: FilmData; indice: number }
   | { tipo: 'capitolo-episodio'; id: string; start: number; dur: number; parte: ParteEpisodio; film: FilmData; capitolo: Capitolo; n: number; di: number; indice: number }
@@ -35,6 +39,10 @@ export type Tratto =
 export const tratti = (L: LungoData, episodi: Record<string, FilmData>): Tratto[] => {
   const out: Tratto[] = [];
   let t = 0;
+  if (L.sigla) {
+    out.push({ tipo: 'sigla', id: 'sigla', start: 0, dur: SIGLA_DURATA, indice: -1 });
+    t = SIGLA_DURATA;
+  }
   L.parti.forEach((p, indice) => {
     if (p.tipo === 'aggancio' || p.tipo === 'chiusura') {
       out.push({ tipo: p.tipo, id: p.id, start: t, dur: p.durata, parte: p, indice });
