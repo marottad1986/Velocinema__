@@ -3,6 +3,7 @@ import { Composition, Folder } from 'remotion';
 import { ChapterView, FPS, Film, PosterView, filmDuration } from './components/Film';
 import { FILMS } from './films';
 import { Catalogo } from './lib/Catalogo';
+import { PROVE_IDS, ProvaView, provaDurata } from './prove/Prova';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -38,6 +39,12 @@ export const RemotionRoot: React.FC = () => (
     <Folder name="libreria">
       <Composition id="libreria--esterni" component={Catalogo} defaultProps={{ page: 'esterni' as const }} durationInFrames={4 * FPS} fps={FPS} width={1080} height={1920} />
       <Composition id="libreria--interni" component={Catalogo} defaultProps={{ page: 'interni' as const }} durationInFrames={4 * FPS} fps={FPS} width={1080} height={1920} />
+    </Folder>
+    {/* Prove di disegno (src/prove/): scene ridisegnate da confrontare con quelle uscite, fuori dai video */}
+    <Folder name="prove">
+      {PROVE_IDS.map((id) => (
+        <Composition key={id} id={`prova--${id}`} component={ProvaView} defaultProps={{ prova: id }} durationInFrames={provaDurata(id) * FPS} fps={FPS} width={1080} height={1920} />
+      ))}
     </Folder>
   </>
 );
