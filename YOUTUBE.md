@@ -38,9 +38,10 @@ Traguardo al 31 dicembre: 1.000 iscritti oppure un lungo oltre 10.000 visualizza
 ## 2. I primi 30 secondi
 - **Sigla «2M Studios» al secondo zero** (decisione dell'editore, 25 nov 2026; `"sigla": true` nel JSON, solo i lunghi
   nuovi): 3,5 s di logo animato con il suo jingle, poi subito la copertina dell'aggancio, che resta un'immagine forte.
-  Nient'altro prima dell'aggancio: **niente presentazione del canale**, niente «ciao a tutti». La miniatura da caricare
-  è il primo fotogramma dopo la sigla (`--miniatura` lo prende da solo): va **sempre caricata a mano**, perché quella
-  automatica di YouTube mostrerebbe la sigla.
+  Nient'altro prima dell'aggancio: **niente presentazione del canale**, niente «ciao a tutti». La miniatura è il primo
+  fotogramma dopo la sigla (`--miniatura` e `miniature.mjs` lo prendono da soli) e va **sempre caricata con il video**,
+  perché quella automatica di YouTube mostrerebbe la sigla: la carica PostFast insieme al lungo (`youtubeThumbnailKey`,
+  `SOCIAL.md`), senza passaggi a mano.
 - 0–10 s: la domanda e l'immagine più spettacolare del video (un pezzo del momento clou, mostrato prima).
 - 10–30 s: la promessa (cosa capirà chi resta) e un **anello aperto** che si chiude solo alla fine («alla fine ti spiego
   il dettaglio del finale che quasi nessuno nota»).

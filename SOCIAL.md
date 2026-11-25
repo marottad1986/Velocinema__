@@ -259,11 +259,15 @@ Quando si programma (vincolante):
   deve essere presente; decisione dell'editore del 22 nov 2026; vale per i lunghi non ancora programmati su PostFast al
   24 nov). PostFast e l'API di YouTube non sanno creare una Prima, quindi:
   1. Il lungo si carica con PostFast **24 ore prima dell'uscita** (insieme alla storia), con `youtubePrivacy: "PRIVATE"` e
-     tutti gli altri controlli di sempre (titolo, descrizione con i capitoli, miniatura, playlist). Così il link del lungo
+     tutti gli altri controlli di sempre (titolo, descrizione con i capitoli, miniatura, playlist). La miniatura va
+     **sempre** nel post (vincolante dai lunghi con la sigla): `upload_media` di `out/<slug>-miniatura-a.png` (o
+     `out/<slug>-miniatura.png`, PNG 1280×720) e la sua chiave in `controls.youtubeThumbnailKey` della stessa chiamata
+     `create_posts`. Dopo il caricamento si controlla con `list_posts` che la miniatura risulti nel post. Così il link del lungo
      esiste già e va nel trailer.
   2. Appena è caricato, avviso nell'app (`reparto` `pubblicazione`, `tipo` `info`, titolo «Imposta la Prima di <titolo>»)
      con i passi per l'editore: YouTube Studio → Contenuti → il video → Visibilità → Programma → <giorno e ora
-     dell'uscita> → spunta «Imposta come Prima» → Programma. Nei lunghi con la sigla («sigla»: true) i passi dicono anche di controllare la miniatura in YouTube Studio e, se manca, di caricare `out/<slug>-miniatura.png` (allegata all'avviso): senza, YouTube sceglierebbe un fotogramma della sigla. Poi l'editore risponde «fatto» dall'app o in chat.
+     dell'uscita> → spunta «Imposta come Prima» → Programma. Già che è nella pagina del video, l'editore guarda che la miniatura sia quella giusta e non un fotogramma della sigla
+     (la carica PostFast al punto 1; se mancasse, la sessione la ricarica, non l'editore). Poi l'editore risponde «fatto» dall'app o in chat.
   3. Rete di sicurezza: se 2 ore prima dell'uscita la conferma non è arrivata, avviso `problema`; se a 1 ora prima non è
      ancora arrivata, la sessione carica di nuovo il lungo con PostFast **pubblico** all'ora dell'uscita (come prima di
      questa regola) e scrive all'editore di cancellare la copia privata. L'uscita non salta mai.
