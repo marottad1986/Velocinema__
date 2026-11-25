@@ -248,6 +248,8 @@ Quando si programma (vincolante):
   → storia alle 17:30 del giorno prima; video alle 12:30 → storia alle 12:30). Locandina PNG da `calendario/storie/<settimana>/`
   caricata con `node scripts/postfast-carica.mjs <png>`, poi `instagramPublishType: "STORY"` e `facebookContentType: "STORY"`.
   Si programmano insieme al materiale social, subito dopo l'approvazione della settimana.
+  Le storie dei **video lunghi** (e dei loro trailer) portano ben visibile lo stesso bollino «▶ GUARDALO SU YOUTUBE» dei
+  trailer (play generico in un cerchio rosso, mai il logo; editore, 25 nov 2026), in alto sotto i primi 250 px.
 - **Video lungo di YouTube (regola dell'editore, 16 novembre 2026):** il trailer verticale del video lungo esce **in contemporanea**
   alla pubblicazione del lungo su YouTube, alla stessa ora, su tutti i social (TikTok, Instagram Reel, Facebook Reel, YouTube
   Shorts); la storia esce 24 ore prima, come per ogni altro video. Si programmano insieme con PostFast (il lungo con

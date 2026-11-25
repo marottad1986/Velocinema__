@@ -30,6 +30,13 @@ persone, musica originale, voce), di `QUALITA.md` e di `ASTICELLA.md`; pubblicaz
 7. **Chiusura:** «ORA SU YOUTUBE», lettore video generico (senza logo) con la miniatura del lungo, «Metti like», «Iscriviti
    al canale» e «Commenta con … che vorresti.» (vedi `CLAUDE.md`, «Finale»).
 
+## Bollino YouTube sempre presente (editore, 25 nov 2026)
+- Dalla fine della miniatura fino alla chiusura resta in alto a sinistra (y 262, x da 120) il bollino **«▶ GUARDALO SU
+  YOUTUBE»**: pillola scura con un play generico in un cerchio rosso, mai il logo di YouTube (regola del 20 nov: TikTok e
+  Instagram mostrano meno i video con il logo di un'altra app). Si accende con `"bollino_youtube": true` nel JSON del
+  trailer (`src/promo/Promo.tsx`, `BollinoYouTube`): obbligatorio nei trailer nuovi; quelli già fatti restano come sono.
+  Le inquadrature non mettono scritte o oggetti chiave in quell'angolo.
+
 ## Ritmo e dettagli (dalle correzioni dell'editore)
 - **Cartelli:** restano a schermo circa 2 s (5 crome a 72 bpm), poi sfumano nel nero e la scena entra dal nero (~0,35 s)
   con una frusciata: un taglio secco subito dopo il cartello «sembra troppo attaccato».

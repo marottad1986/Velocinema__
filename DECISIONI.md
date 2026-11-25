@@ -106,6 +106,11 @@ decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. F
   elenca ogni colpo ed effetto breve con il picco contro la sola musica e segnala «coperto» e «musica non tace». Gli
   spartiti già fatti non cambiano. · produzione, revisore-musica
 
+- 25 nov 2026 · **Bollino «GUARDALO SU YOUTUBE» sempre presente nei trailer e nelle storie dei lunghi** (editore, messaggio
+  del 24 nov). Dalla fine della miniatura alla chiusura, in alto a sinistra: play generico in un cerchio rosso e la scritta,
+  mai il logo di YouTube (resta la regola del 20 nov). `"bollino_youtube": true` nel JSON dei trailer nuovi; regole in
+  `TRAILER.md` e `SOCIAL.md`. I trailer già fatti restano come sono. · produzione, manager
+
 - 25 nov 2026 · **Le pronunce del JSON non danno più falsi allarmi sulla voce** (proposta del revisore voce approvata
   dall'editore il 24 nov). `ascolta-voce.mjs` conta come uguale una parola sentita scritta come l'originale di una voce
   `pronuncia` (es. «Hyrule» per «Àirul», «1986» per «millenovecentottantasei»), così i confini tra le frasi restano
