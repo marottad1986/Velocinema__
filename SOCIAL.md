@@ -424,6 +424,7 @@ reincarnazione di Jack): spunto per uno Spiegato o per **Doctor Sleep**, già in
 canzoni **Henna** di Lucio Dalla e **Un'estate al mare** di Giuni Russo (Instagram, commenti di Gli anni, 22 nov).
 **24 novembre** (commenti della sera del 24): **1408** (film del 2007 dal racconto di Stephen King; Instagram, commenti di Ritorno al futuro, 24 nov: «Quando farete room 1408?»). Nei commenti di Gli anni le persone continuano a scrivere il «loro» bar (Saronno, Messina): idea per un post o una storia «il tuo bar degli anni ’90».
 **25 novembre** (commenti della sera del 25): **Dexter, tutte le stagioni** (Instagram, commenti di Breaking Bad stagione 1, 25 nov: «fai dexter in tutte le serie»): serie a stagioni, adatta ai riassunti di serie o a un lungo. Nei commenti di Shining una persona dice che è uno dei suoi libri preferiti (Stephen King): spunto per «Libri spiegati».
+**26 novembre** (commenti della sera del 26): **Cime tempestose** di nuovo (Instagram, commenti di Shining, 26 nov: la stessa persona appassionata di libri lo propone; è già il primo «Libri spiegati», chiesto dall'editore il 24). Nessuna altra richiesta di titoli nuova.
 **23 novembre** (commenti della sera del 23): **The Nun – La vocazione del male** (Instagram, commenti di Conjuring, 23 nov;
 spin-off della saga di Conjuring); **Scissione – stagione 3** (TikTok, commenti di Scissione, 23 nov: chiede della terza, già
 confermata; la stagione 2 è già in lista). Nei commenti di Gli anni due persone (TikTok e Instagram) correggono l'età di Pezzali:
