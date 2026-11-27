@@ -3,6 +3,13 @@
 Registro delle decisioni prese dall'editore con la direzione. Ogni reparto lo legge all'inizio della sessione: una
 decisione qui vale per tutti finché non viene tolta. Le più recenti in alto. Formato: data · decisione · chi la applica.
 
+- 27 nov 2026 · **Videogioco sotto esame con Zelda (sab 28), poi forse 3 lunghi a settimana** (editore). Domenica 29 il
+  manager confronta Zelda con la mediana delle uscite verticali delle 17:30 della settimana, a parità di ore. Se è sotto:
+  via il videogioco; **3 lunghi a settimana, lunedì, mercoledì e sabato alle 17:30** (ognuno con il trailer; nel giorno del
+  terzo lungo nessun altro corto); gli altri 4 giorni **corti autonomi, non estratti dei lunghi**. Terzo lungo da lunedì
+  7 dicembre (venerdì 4 solo se si può partire domenica 29 senza fretta). Se Zelda è sopra, resta la settimana attuale.
+  Regola completa in `SOCIAL.md`, «Ritmo e orari». · manager, produzione
+
 - 25 nov 2026 · **Disegni più curati senza molti token in più** (proposta della direzione approvata dall'editore nell'app).
   (1) Nuovo collega `disegnatore` (`.claude/agents/disegnatore.md`, impegno massimo solo sulle scene; testi, musica e
   montaggio restano all'impegno normale); (2) **fotogramma chiave prima dell'animazione** (BRIEF-SCENA §2b): immagine

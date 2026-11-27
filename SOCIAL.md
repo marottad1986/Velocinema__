@@ -12,10 +12,19 @@ proporre la settimana.
   gran parte della settimana senza produzioni in più.
 - **Tolti**: X Factor (talent spiegati, dati deboli; l'ultimo è il Live 4 del 18 nov) e le uscite doppie delle **10:00 di
   sabato e domenica** (quadri, canzoni, storie vere). Le uscite già prodotte e programmate fino a domenica 22 restano.
-- **Sabato alle 12:30** l'uscita in più dei **videogiochi spiegati** (`GIOCHI.md`; spostata dal martedì il 18 nov, dalla
-  settimana del 23 novembre), o del formato che la sostituirà; il sabato alle 17:30 resta il video lungo. Il videogioco è
-  sotto esame: domenica 29 novembre il manager confronta i numeri di GTA VI con le uscite delle 17:30 e, se è sotto la media,
-  propone all'editore un formato sostitutivo per lo stesso posto (sabato 12:30).
+- **Sabato alle 12:30** l'uscita in più dei **videogiochi spiegati** (`GIOCHI.md`; spostata dal martedì il 18 nov), **sotto
+  esame con Zelda di sabato 28 novembre** (decisione dell'editore del 27 nov). Domenica 29 il manager confronta Zelda, a parità
+  di ore dall'uscita, con la **mediana delle uscite verticali delle 17:30 della stessa settimana** (YouTube + TikTok + Instagram,
+  e gli iscritti YouTube portati). **Se Zelda è sotto la mediana:**
+  1. **via il videogioco** (niente più uscita del sabato alle 12:30);
+  2. **3 video lunghi a settimana: lunedì, mercoledì e sabato alle 17:30**, ognuno con il suo trailer verticale alla
+     stessa ora; nel giorno del terzo lungo non esce un altro corto (esce solo il trailer);
+  3. **gli altri 4 giorni alle 17:30 corti autonomi**, prodotti apposta (Spiegato semplice, serie a puntate, film con
+     mistero), **non estratti dei lunghi**.
+  Il terzo lungo parte dalla settimana del 7 dicembre (lunedì 7); nella settimana del 30 novembre, già avviata (Cime
+  tempestose lunedì, Memento martedì), il manager lo mette venerdì 4 solo se la produzione può partire domenica 29 senza
+  fretta, altrimenti quella settimana resta con 2 lunghi e il sabato 12:30 libero. **Se Zelda è sopra la mediana**, resta la
+  settimana di prima (2 lunghi più il videogioco del sabato).
 - Totale: 7 uscite a settimana (2 lunghi con trailer + 5 video da 2 minuti) più il videogioco del sabato alle 12:30. Nessun giorno
   di pausa per ora: la regolarità quotidiana delle 17:30 è ciò che fa crescere TikTok e Instagram. Se la produzione non
   regge, il primo giorno da togliere è quello con la media più bassa nelle ultime due settimane (lo indica il manager
